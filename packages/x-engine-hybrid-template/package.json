@@ -1,7 +1,6 @@
-
 {
   "name": "@zkty-team/x-engine-moudle-template",
-  "version": "0.0.7",
+  "version": "0.0.35",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,6 +17,5 @@
   "bugs": {
     "url": "https://github.com/zkty-team/x-engine/issues"
   },
-  "homepage": "https://github.com/zkty-team/x-engine#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/zkty-team/x-engine#readme"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-nav",
-  "version": "0.0.14",
+  "version": "0.0.35",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -19,6 +19,6 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "~0.0.1"
+    "@zkty-team/x-engine-module-engine": "^0.0.35"
   }
 }

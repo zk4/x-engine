@@ -1,0 +1,11 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/zkty-team/x-engine-pods.git'
+
+target 'protocols' do
+  target 'protocolsUITests' do
+  end
+
+end

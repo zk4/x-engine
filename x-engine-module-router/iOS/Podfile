@@ -1,0 +1,17 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+load './ModulePods.rb'
+target 'router' do
+  #use_frameworks!
+
+  module_pods
+  pod 'WechatOpenSDK'
+
+  target 'routerUITests' do
+    # Pods for testing
+  end
+
+end

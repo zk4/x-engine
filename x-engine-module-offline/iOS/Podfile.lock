@@ -1,0 +1,87 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.4.3)
+  - SSZipArchive (2.2.3)
+  - x-engine-module-engine (1.0.10):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+  - x-engine-module-microapp (1.0.0):
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-network (1.0.0):
+    - AFNetworking (~> 4.0.0)
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-protocols (1.0.1)
+  - x-engine-module-tools (1.0.0):
+    - SSZipArchive
+    - x-engine-module-engine
+    - x-engine-module-protocols
+
+DEPENDENCIES:
+  - JSONModel
+  - SSZipArchive
+  - x-engine-module-engine (from `../../x-engine-module-engine`)
+  - x-engine-module-microapp (from `../../x-engine-module-microapp`)
+  - x-engine-module-network (from `../../x-engine-module-network`)
+  - x-engine-module-protocols (from `../../x-engine-module-protocols`)
+  - x-engine-module-tools (from `../../x-engine-module-tools`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+  trunk:
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+
+EXTERNAL SOURCES:
+  x-engine-module-engine:
+    :path: "../../x-engine-module-engine"
+  x-engine-module-microapp:
+    :path: "../../x-engine-module-microapp"
+  x-engine-module-network:
+    :path: "../../x-engine-module-network"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols"
+  x-engine-module-tools:
+    :path: "../../x-engine-module-tools"
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  x-engine-module-engine: d779f491989f1db8ed36bbe485540f166181f8aa
+  x-engine-module-microapp: 90d087a2dd4147b8b34c1db59939267ed421069b
+  x-engine-module-network: 88ae5b04cb9838b201b647f10946d4d78e856eae
+  x-engine-module-protocols: 0d437aa2d12f81473dc72c966cb29d6252db2233
+  x-engine-module-tools: f63cbe059fd402655077d5abc7f6ade3e5228ef8
+
+PODFILE CHECKSUM: cfd47da0b27e893246752e304028e425e59a289b
+
+COCOAPODS: 1.9.1

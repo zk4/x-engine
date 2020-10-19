@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <title>Module_Template</title>
+    <script type="text/javascript" src="./main.js"></script>
+
+    <script type="text/javascript">
+        window.ontouchstart = function (e) {
+            e.preventDefault();
+        };
+
+        function setStorage() {
+            const data = {
+                name: 'cwz',
+                age: 18,
+                array: [{
+                    name: 'cwz',
+                    age: 18,
+                }, {
+                    name: 'cwz',
+                    age: 18,
+                }, {
+                    name: 'cwz',
+                    age: 18,
+                }],
+                array1: []
+            }
+
+            xengine.localStorage.setLocalStorage({
+                key: 'ud',
+                data: data,
+                success: (res) => {
+                    if (res.result == 'success') {
+                        alert('存储成功');
+                    }
+                },
+                fail: (error) => {
+                    alert(error);
+
+                }
+            })
+
+            // xengine.localStorage.setLocalStorage({
+            //     key: 'ud',
+            //     data: data
+            // }).then(res => {
+            //     if (res.result == 'success') {
+            //         alert('存储成功');
+            //     }
+            // }).catch(error => {
+            //     alert(error);
+            // });
+        }
+
+        function getStorage() {
+            const res = xengine.localStorage.getLocalStorage('ud');
+            alert(res);
+        }
+
+        function removeStorage() {
+            // xengine.localStorage.removeLocalStorage({
+            //     key: 'ud',
+            //     success: (res) => {
+            //         if (res.result == 'success') {
+            //             alert('删除成功')
+            //         }
+            //     },
+            //     fail: (error) => {
+            //         alert(error);
+            //     }
+            // });
+
+            xengine.localStorage.removeLocalStorage({
+                key: 'ud'
+            }).then(res => {
+                if (res.result == 'success') {
+                    alert('删除成功')
+                }
+            }).catch(error => {
+                alert(error)
+            })
+        }
+    </script>
+
+    <style>
+        * {
+            -webkit-touch-callout:none; /*系统默认菜单被禁用*/
+    -webkit-user-select:none; /*webkit浏览器*/
+    -khtml-user-select:none; /*早期浏览器*/
+    -moz-user-select:none;/*火狐*/
+    -ms-user-select:none; /*IE10*/
+    user-select:none;
+        }
+
+        .button-class {
+            margin: 0 auto;
+            width: 90%;
+            height: 44px;
+            border: 1px solid #f7f7f7;
+            background-color: #f7f7f7;
+            text-align: center;
+            line-height: 44px;
+            margin-bottom: 10px;
+            display: block;
+            border-radius: 50px;
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 示例 -->
+    <button class="button-class" onclick="setStorage()">存储</button>
+    <button class="button-class" onclick="getStorage()">读取</button>
+    <button class="button-class" onclick="removeStorage()">删除</button>
+<script src="main.js"></script></body>
+
+</html>

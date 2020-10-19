@@ -1,0 +1,14 @@
+//
+//  XEngineSDKDemo.pch
+//  XEngineSDKDemo
+//
+//  Created by edz on 2020/7/21.
+//  Copyright © 2020 edz. All rights reserved.
+//
+
+#ifndef XEngineSDKDemo_pch
+#define XEngineSDKDemo_pch
+
+#import "XEngine.h"
+
+#endif /* XEngineSDKDemo_pch */

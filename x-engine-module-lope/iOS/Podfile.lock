@@ -1,0 +1,39 @@
+PODS:
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.4.3)
+  - SSZipArchive (2.2.3)
+  - x-engine-module-engine (0.0.13):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+
+DEPENDENCIES:
+  - "x-engine-module-engine (from `../node_modules/@zkty-team/x-engine-module-engine`)"
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+
+EXTERNAL SOURCES:
+  x-engine-module-engine:
+    :path: "../node_modules/@zkty-team/x-engine-module-engine"
+
+SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  x-engine-module-engine: 6fc232c85f6c81a1c467717debbb0920ae6dbd69
+
+PODFILE CHECKSUM: c6664c9c874dffd4b2d789952fb2b82d077d2572
+
+COCOAPODS: 1.9.3

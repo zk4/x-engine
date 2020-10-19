@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <title>Module_A</title>
+    <script type="text/javascript" src="./main.js"></script>
+
+    <script type="text/javascript">
+
+        function clickNavTitle() {
+            xengine.nav.setNavTitle({
+                title: '导航条',
+                titleColor: "#8333221",
+                titleSize: 20
+            });
+        }
+
+        function clickLeftLayout() {
+            xengine.nav.setNavLeftBtn({
+                title: '左边按钮',
+                // icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596456362878&di=99177ce9410bda093227bc2dd8eef373&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F86%2F27%2F1356eaf9c2b096c.jpg'
+            });
+
+            xengine.nav.handleNavLeftBtn({
+                success: (res) => {
+                    alert('点击了navLeftBtn');
+                },
+                fail: (error) => {
+                    console.log(error)
+                }
+            });
+        }
+
+        function clickRightLayout() {
+            xengine.nav.setNavRightBtn({
+                title: '右边按钮',
+                // icon: '/assets/search.png'
+                // icon:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596456362878&di=99177ce9410bda093227bc2dd8eef373&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F86%2F27%2F1356eaf9c2b096c.jpg',
+            });
+
+            xengine.nav.handleNavRightBtn({
+                success: (res) => {
+                    alert('点击了navRightBtn');
+                },
+                fail: (error) => {
+                    console.log(error)
+                }
+            });
+        }
+
+        function clickRightMenuLayout() {
+            xengine.nav.setNavRightMenuBtn({
+                icon: '/assets/search.png',
+                showMenuImg: 'true',
+                iconSize: [20, 20],
+                menuWidth: '200',
+                itemList: [
+                    { title: 'A', icon: '/assets/search.png', iconSize: [20, 20] },
+                    { title: 'B', icon: '/assets/search.png', iconSize: [20, 20] },
+                    { title: 'C', icon: '/assets/search.png', iconSize: [20, 20] },
+                    { title: 'D', icon: '/assets/search.png', iconSize: [20, 20] },
+                    { title: 'E', icon: '/assets/search.png', iconSize: [20, 20] }
+                ]
+            });
+
+            xengine.nav.handleNavRightMenuBtn({
+                success: (res) => {
+                    alert(res);
+                },
+                fail: (error) => {
+                    alert('error', error);
+                }
+            })
+        }
+
+        function clickRightMoreLayout() {
+            xengine.nav.setNavRightMoreBtn([
+                {
+                    title: 'A', icon: '/assets/search.png', iconSize: [20, 20]
+                },
+                {
+                    title: 'B', icon: '/assets/search.png', iconSize: [20, 20]
+                }
+            ]);
+
+            xengine.nav.handleNavRightMoreBtn({
+                success: (res) => {
+                    alert(res);
+                },
+                fail: (error) => {
+                    alert('error', error);
+                }
+            });
+        }
+    </script>
+
+    <style>
+        * {
+            -webkit-touch-callout: none;
+            /*系统默认菜单被禁用*/
+            -webkit-user-select: none;
+            /*webkit浏览器*/
+            -khtml-user-select: none;
+            /*早期浏览器*/
+            -moz-user-select: none;
+            /*火狐*/
+            -ms-user-select: none;
+            /*IE10*/
+            user-select: none;
+        }
+
+        input {
+            -webkit-user-select: auto;
+            /*webkit浏览器*/
+        }
+
+        textarea {
+            -webkit-user-select: auto;
+            /*webkit浏览器*/
+        }
+
+        .button-class {
+            margin: 0 auto;
+            width: 90%;
+            height: 44px;
+            border: 1px solid #f7f7f7;
+            background-color: #f7f7f7;
+            text-align: center;
+            line-height: 44px;
+            margin-bottom: 10px;
+            display: block;
+            border-radius: 50px;
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button class="button-class" onclick="clickNavTitle()">设置导航条文字</button>
+    <button class="button-class" onclick="clickLeftLayout()">设置左边按钮</button>
+    <button class="button-class" onclick="clickRightLayout()">设置右边按钮</button>
+    <button class="button-class" onclick="clickRightMenuLayout()">设置右边子按钮</button>
+    <button class="button-class" onclick="clickRightMoreLayout()">设置右边多个按钮</button>
+
+<script src="main.js"></script></body>
+
+</html>

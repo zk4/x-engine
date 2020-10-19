@@ -1,0 +1,10 @@
+{
+  "before_tests": "webpack --config webpack.test.js ",
+  "serve_files": [
+      "tmp/test/main.js"
+  ],
+  "framework": "jasmine",
+  "src_files": [
+    "test/**/*.js"
+  ]
+}

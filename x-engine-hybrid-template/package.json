@@ -1,0 +1,23 @@
+
+{
+  "name": "@zkty-team/x-engine-moudle-template",
+  "version": "0.0.7",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "patch": "npm version patch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://github.com/zkty-team/x-engine.git"
+  },
+  "keywords": [],
+  "author": "zk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zkty-team/x-engine/issues"
+  },
+  "homepage": "https://github.com/zkty-team/x-engine#readme",
+  "dependencies": {}
+}

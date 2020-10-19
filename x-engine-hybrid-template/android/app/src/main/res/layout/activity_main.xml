@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/modules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_common"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="模块测试"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:visibility="gone"></TextView>
+
+            <TextView
+                android:id="@+id/microapps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_common"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="微应用测试"
+                android:textColor="@color/white"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/qrcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_common"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="二维码"
+                android:textColor="@color/white"
+                android:textSize="16dp"></TextView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

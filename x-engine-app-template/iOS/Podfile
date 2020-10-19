@@ -1,0 +1,17 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+load './ModulePods.rb'
+target 'demo' do
+  #use_frameworks!
+  # 在开发时,将所有依赖的 module 包放这.包括依赖的依赖，因为我们没有 pod 的库，用的 npm 的库。
+  #pod 'x-engine-module-engine', :path =>'../node_modules/@zkty-team/x-engine-module-engine'
+  module_pods
+
+  target 'demoUITests' do
+    # Pods for testing
+  end
+
+end

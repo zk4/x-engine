@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/layout_dialog_loading_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape_common_loading"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.zkty.modules.loaded.widget.dialog.LoadingView
+            android:id="@+id/normal_loading_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/normal_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_state_y"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/dialog_loading_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:maxLines="1"
+            android:text="success"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,5 @@
+{
+  "appId": "com.zkty.microapp",
+  "appSecret": "8b387ca3ebdd412e9c97ef81ed352ee7",
+  "offlineServerUrl": "http://127.0.0.1:8000"
+}

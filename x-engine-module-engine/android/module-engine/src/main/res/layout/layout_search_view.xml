@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_actionbar_search_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_search"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:visibility="visible">
+
+    <ImageView
+        android:id="@+id/iv_search_view_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@mipmap/icon_search" />
+
+    <EditText
+        android:id="@+id/et_search_view_key"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@null"
+        android:hint="请输入"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/text_color_34"
+        android:textColorHint="@color/text_color_34"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/iv_search_view_clear"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_margin="8dp"
+        android:src="@mipmap/icon_clear"
+        android:visibility="invisible" />
+
+</LinearLayout>
+

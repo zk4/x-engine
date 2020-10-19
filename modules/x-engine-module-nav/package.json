@@ -1,0 +1,24 @@
+{
+  "name": "@zkty-team/x-engine-module-nav",
+  "version": "0.0.14",
+  "main": "h5/src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 ",
+    "build": "webpack  --config webpack.prod.js",
+    "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",
+    "patch": "npm version patch"
+  },
+  "files": [
+    "iOS/Class/*",
+    "iOS/*.md",
+    "h5/src/*.js",
+    "h5/src/*.md",
+    "*.md",
+    "*.podspec",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@zkty-team/x-engine-module-engine": "~0.0.1"
+  }
+}

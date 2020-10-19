@@ -1,6 +1,13 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "0.0.35"
+  "packages": ["packages/*"],
+  "version": "0.0.35",
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "ignoreChanges": ["*.md"],
+      "verifyAccess": false,
+      "verifyRegistry": false,
+      "message": "chore: publish"
+    }
+  }
 }

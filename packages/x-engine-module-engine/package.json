@@ -22,5 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "dsbridge": "^3.1.4"
-  }
+  },
+  "gitHead": "238acbcb08448a19ace6e3617b611279e25a04cc"
 }

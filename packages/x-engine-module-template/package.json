@@ -23,5 +23,6 @@
   },
   "devDependencies": {
     "lerna": "^3.22.1"
-  }
+  },
+  "gitHead": "238acbcb08448a19ace6e3617b611279e25a04cc"
 }

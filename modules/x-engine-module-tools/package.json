@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-tools",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.37"
+    "@zkty-team/x-engine-module-engine": "^0.0.38"
   },
   "gitHead": "192e6132090d14d75bf39b5513c5f0a54549a06b"
 }

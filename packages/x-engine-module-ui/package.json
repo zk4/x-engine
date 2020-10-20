@@ -3,12 +3,6 @@
   "version": "0.0.35",
   "main": "h5/src/index.js",
   "license": "MIT",
-  "scripts": {
-    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",
-    "build": "webpack  --config webpack.prod.js",
-    "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",
-    "patch": "npm version patch"
-  },
   "files": [
     "iOS/Class/*",
     "iOS/*.md",

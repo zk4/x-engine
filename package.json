@@ -1,6 +1,12 @@
 {
   "private": true,
   "name": "x-engine",
+  "scripts": {
+    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",
+    "build": "webpack  --config webpack.prod.js",
+    "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",
+    "patch": "npm version patch"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",

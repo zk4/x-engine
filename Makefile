@@ -2,5 +2,5 @@ version:
 	lerna version --conventional-commits
 
 publish:
-	lerna publish from-git
+	lerna publish --no-verify-access
 

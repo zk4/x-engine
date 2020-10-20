@@ -7,7 +7,8 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.4.3)
   - SSZipArchive (2.2.3)
-  - x-engine-module-engine (1.0.10):
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-engine (0.0.37):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -19,6 +20,7 @@ PODS:
   - x-engine-module-protocols (1.0.3)
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
+    - WechatOpenSDK
     - x-engine-module-engine
     - x-engine-module-protocols
 
@@ -36,6 +38,7 @@ SPEC REPOS:
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
+    - WechatOpenSDK
   https://github.com/zkty-team/x-engine-pods.git:
     - x-engine-module-protocols
 
@@ -54,11 +57,12 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  x-engine-module-engine: d779f491989f1db8ed36bbe485540f166181f8aa
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-engine: 143aea1aff5bd38222ace5cdb9ec6f4fc03d36a0
   x-engine-module-microapp: 90d087a2dd4147b8b34c1db59939267ed421069b
   x-engine-module-protocols: 46fd3a3763aca856726b49f2c332be6d922b7d5b
-  x-engine-module-tools: f63cbe059fd402655077d5abc7f6ade3e5228ef8
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: 16c095c73210c063f6e1c12a51bb53aadbcdfd39
+PODFILE CHECKSUM: 9200854d53928ee6b728e27013b098745f8fef40
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

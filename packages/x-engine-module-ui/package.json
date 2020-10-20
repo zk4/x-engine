@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-ui",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "main": "h5/src/index.js",
   "license": "MIT",
   "files": [
@@ -13,6 +13,6 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.35"
+    "@zkty-team/x-engine-module-engine": "^0.0.36"
   }
 }

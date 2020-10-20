@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-microapp",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -25,7 +25,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.35",
+    "@zkty-team/x-engine-module-engine": "^0.0.36",
     "@zkty-team/x-engine-module-protocols": "0.0.9"
   }
 }

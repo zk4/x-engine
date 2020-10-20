@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-scan",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "main": "h5/index.js",
   "license": "MIT",
   "scripts": {
@@ -25,13 +25,13 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-camera": "^0.0.35",
-    "@zkty-team/x-engine-module-engine": "^0.0.35",
-    "@zkty-team/x-engine-module-microapp": "~0.0.11",
-    "@zkty-team/x-engine-module-protocols": "^0.0.35",
+    "@zkty-team/x-engine-module-camera": "^0.0.36",
+    "@zkty-team/x-engine-module-engine": "^0.0.36",
+    "@zkty-team/x-engine-module-microapp": "^0.0.36",
+    "@zkty-team/x-engine-module-protocols": "^0.0.36",
     "@zkty-team/x-engine-module-router": "0.0.11",
-    "@zkty-team/x-engine-module-tools": "^0.0.35",
-    "@zkty-team/x-engine-module-ui": "^0.0.35",
+    "@zkty-team/x-engine-module-tools": "^0.0.36",
+    "@zkty-team/x-engine-module-ui": "^0.0.36",
     "webpack-dev-server-qr-code": "^1.2.0"
   }
 }

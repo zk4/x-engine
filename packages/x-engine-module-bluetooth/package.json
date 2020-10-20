@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-bluetooth",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.36"
+    "@zkty-team/x-engine-module-engine": "^0.0.37"
   },
   "gitHead": "238acbcb08448a19ace6e3617b611279e25a04cc"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-xxxx",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.36"
+    "@zkty-team/x-engine-module-engine": "^0.0.37"
   },
   "devDependencies": {
     "lerna": "^3.22.1"

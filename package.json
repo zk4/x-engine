@@ -25,6 +25,6 @@
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "workspaces": [
-    "packages/*"
+    "modules/*"
   ]
 }

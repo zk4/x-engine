@@ -34,5 +34,5 @@
     "@zkty-team/x-engine-module-ui": "^0.0.38",
     "webpack-dev-server-qr-code": "^1.2.0"
   },
-  "gitHead": "192e6132090d14d75bf39b5513c5f0a54549a06b"
+  "gitHead": "3895febff13dd6c6a858b0194796032ae3516979"
 }

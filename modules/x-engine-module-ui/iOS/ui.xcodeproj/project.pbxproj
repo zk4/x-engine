@@ -73,7 +73,6 @@
 		44148F863026BC4300C451EB /* libPods-ui-uiUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ui-uiUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ui-uiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ui-uiUITests.release.xcconfig"; path = "Target Support Files/Pods-ui-uiUITests/Pods-ui-uiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		51DA8A46C534CEA2E56BB592 /* libPods-uiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5865E02424CF31B500A0AF21 /* xengine_protocol_UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xengine_protocol_UI.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ui.release.xcconfig"; path = "Target Support Files/Pods-ui/Pods-ui.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ui.debug.xcconfig"; path = "Target Support Files/Pods-ui/Pods-ui.debug.xcconfig"; sourceTree = "<group>"; };
 		C758FA98888CABFC22CDEFAF /* libPods-ui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ui.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +163,6 @@
 				DD94D14C2511DDE0001ED4FB /* Class */,
 				0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
-				5865E02424CF31B500A0AF21 /* xengine_protocol_UI.h */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
 				00DFC6E424C84000006A53EE /* Assets.xcassets */,

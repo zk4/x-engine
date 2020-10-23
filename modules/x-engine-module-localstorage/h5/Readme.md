@@ -1,60 +1,123 @@
 
-`
-com.zkty.module.localstorage
-`
+``` bash
+npm install @zkty-team/com-zkty-module-localstorage
+```
 
 
 
-## setLocalStorage
-
- set
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| key | string |  | key |  |
-| value | string |  | value |  |
-| isPublic | bool |  |  |  |
+## set
 
 
-## getLocalStorage
 
- get
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| key | string |  | key |  |
-| isPublic | bool |  |  |  |
-
-
-## removeLocalStorageItem
-
- remoteItem
+**demo**
+``` js
+ {
+  window.set = () => {
+    localstorage
+      .set({
+        key: "key",
+        value: "value",
+        isPublic: false,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| key | string |  | all |  |
-| isPublic | bool |  |  |  |
+| key | string |  | key | 存储设置key值 |
+| value | string |  | value | 存储设置value值 |
+| isPublic | bool |  |  | 是否数据共享 |
 
 
-## removeLocalStorageAll
+## get
 
- remoteAll
+
+
+**demo**
+``` js
+ {
+  window.get = () => {
+    localstorage
+      .get({
+        key: "key",
+        isPublic: false,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| key | string |  | all |  |
+| key | string |  | key | 要获取的存储值的key值 |
+| isPublic | bool |  |  | 要获取的存储值是否是共享数据 |
+
+
+## remove
+
+
+
+**demo**
+``` js
+ {
+  window.remove = () => {
+    localstorage
+      .remove({
+        key: "key",
+        isPublic: false,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| key | string |  | key | 要删除的存储值的key值 |
+| isPublic | bool |  |  | 要删除的存储值是否是共享数据 |
+
+
+## removeAll
+
+
+
+**demo**
+``` js
+ {
+  window.removeAll = () => {
+    localstorage
+      .removeAll({
+        isPublic: false,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
 | isPublic | bool |  |  |  |
 
     

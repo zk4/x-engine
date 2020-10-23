@@ -29,9 +29,14 @@
 @end
     
   
+@implementation StorageRemoveAllDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
+  
 @implementation StorageStatusDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
     
@@ -50,50 +55,34 @@
         return @"com.zkty.module.localstorage";
     }
     
-    - (void) setLocalStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) set:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           StorageSetDTO* dto = [self convert:dict clazz:StorageSetDTO.class];
-          [self _setLocalStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+          [self _set:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
-    - (void) getLocalStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) get:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           StorageGetDTO* dto = [self convert:dict clazz:StorageGetDTO.class];
-          [self _getLocalStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+          [self _get:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
-    - (void) removeLocalStorageItem:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) remove:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           StorageRemoveDTO* dto = [self convert:dict clazz:StorageRemoveDTO.class];
-          [self _removeLocalStorageItem:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+          [self _remove:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
-    - (void) removeLocalStorageAll:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) removeAll:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          StorageRemoveDTO* dto = [self convert:dict clazz:StorageRemoveDTO.class];
-          [self _removeLocalStorageAll:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) _testSetOtherIDLocalStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          StorageSetDTO* dto = [self convert:dict clazz:StorageSetDTO.class];
-          [self __testSetOtherIDLocalStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) _testGetOtherIDLocalStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          StorageGetDTO* dto = [self convert:dict clazz:StorageGetDTO.class];
-          [self __testGetOtherIDLocalStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+          StorageRemoveAllDTO* dto = [self convert:dict clazz:StorageRemoveAllDTO.class];
+          [self _removeAll:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

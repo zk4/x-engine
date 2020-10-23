@@ -21,3 +21,9 @@ h5:
 
 ts-dev:
 	watchexec --exts ts ts-node ../x-engine-api-generator/src/model_parser.ts model.ts
+
+publish: 
+	find . -name .DS_Store -print0 | xargs -0 rm 
+	git commit -am 'before publish' || echo "!! nothing changed!"
+	npm version patch
+	npm publish --access public

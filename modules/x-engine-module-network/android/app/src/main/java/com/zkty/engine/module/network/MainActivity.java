@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 String url = "https://8d43e215e8343f810d26627a6ca96c6b.dlied1.cdntips.net/dlied1.qq.com/qqweb/QQ_1/android_apk/Androidqq_8.4.8.4810_537065343.apk?mkey=5f6c0d257b78981c&f=8504&cip=123.120.190.233&proto=https&access_type=$header_ApolloNet";
 
 
-                XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.GET, url, null, null, null, new IXEngineNetProtocolCallback() {
+                XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.GET, url, null, null, null, null, new IXEngineNetProtocolCallback() {
                     @Override
                     public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
 
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Map<String, String> file = new HashMap<>();
                 file.put("cat.jpg", jpg.getParent());
-                XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.POST, url, null, null, file, new IXEngineNetProtocolCallback() {
+                XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.POST, url, null, null, null, file, new IXEngineNetProtocolCallback() {
                     @Override
                     public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                         DebugUtils.debug(TAG, "resp:" + response.toString());

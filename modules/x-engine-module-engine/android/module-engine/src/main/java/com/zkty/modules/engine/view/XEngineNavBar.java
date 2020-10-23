@@ -290,4 +290,14 @@ public class XEngineNavBar extends RelativeLayout {
         public List<Double> iconSize;
 
     }
+
+    public void setLeftTitle(String title) {
+        leftTv.setText(title);
+        leftTv.setVisibility(VISIBLE);
+    }
+
+    public ImageView getLiftIv() {
+        return leftIv;
+
+    }
 }

@@ -13,9 +13,12 @@
 #import "MicroAppLoader.h"
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 
+@property (nonatomic, copy) NSString *rootPath;
 @property (nonatomic, strong) UIViewController *parentVC;
 @property (nonatomic, readwrite) BOOL statusBarHidden;
 @property (nonatomic, strong) UIProgressView *progresslayer;
+
+@property (nonatomic, assign) BOOL isClearHistory;
 
 @end
 
@@ -34,42 +37,57 @@
 }
 
 - (instancetype)initWithUrl:(NSString *) fileUrl{
-    return [self initWithUrl:fileUrl withIsRoot:YES];
+    return [self initWithUrl:fileUrl withRootPath:fileUrl];
 }
 
-- (instancetype)initWithUrl:(NSString *)fileUrl withIsRoot:(BOOL)isRoot{
+- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath{
     self = [super init];
     if (self){
         
+        if(rootPath.length > 0){
+            self.rootPath = rootPath;
+        }else{
+            NSURLComponents *components = [[NSURLComponents alloc] initWithString:fileUrl];
+            self.rootPath = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+        }
         self.fileUrl = fileUrl;
-        if(isRoot || ![XEOneWebViewPool sharedInstance].inSingle){
-            self.webview = [[XEOneWebViewPool sharedInstance] getWebView:fileUrl];
-            //
-            self.webview.frame = self.view.bounds;
+        
+        if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
+           || [fileUrl isEqualToString:self.rootPath]){
+            
+            self.webview = [[XEOneWebViewPool sharedInstance] getWebView:self.rootPath];
+            self.webview.frame = [UIScreen mainScreen].bounds;
             [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webViewProgressChange:) name:XEWebViewProgressChangeNotification object:nil];
         }
-        self.preLevelPath = fileUrl;
+        if([fileUrl hasPrefix:self.rootPath]){
+            
+            NSString *interface = [fileUrl substringFromIndex:self.rootPath.length];
+            if([interface hasPrefix:@"#"]){
+                interface = [interface substringFromIndex:1];
+            }
+            if([interface hasPrefix:@"/"]){
+                interface = [interface substringFromIndex:1];
+            }
+            NSRange range = [interface rangeOfString:@"?"];
+            if(range.location != NSNotFound){
+                self.preLevelPath = [interface substringToIndex:range.location];
+            } else {
+                self.preLevelPath = interface;
+            }
+        }
     }
     return self;
 }
 
+-(void)setWebview:(XEngineWebView *)webview{
+    _webview = webview;
+}
+
 - (void)loadFileUrl:(NSString *)url{
     if(url){
-        NSURLComponents *components = [NSURLComponents componentsWithString:url];
-        NSRange parmarRange = [components.fragment rangeOfString:@"?"];
-        NSString *levelPath;
-        if(parmarRange.location == NSNotFound){
-            levelPath = components.fragment;
-        } else{
-            levelPath = [components.fragment substringToIndex:parmarRange.location];
-        }
-        if(levelPath){
-            self.preLevelPath = levelPath;
-        }
-        //    preLevelPath
+
         [self.webview stopLoading];
-        self.fileUrl = url;
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
         NSLog(@"%@",self.fileUrl);
     }
@@ -150,8 +168,8 @@
 }
 
 - (void)setSignleWebView:(XEngineWebView *)webView{
-    self.webview = webView;
     [self.webview removeFromSuperview];
+    self.webview = webView;
     [self.view addSubview:self.webview];
 }
 
@@ -160,22 +178,60 @@
 }
 
 -(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler {
-    [self.webview callHandler:event arguments:arguments completionHandler:completionHandler];
+    if(event.length > 0){
+        [self.webview callHandler:event arguments:arguments completionHandler:completionHandler];
+    }
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
     self.webview.frame = self.view.bounds;
+    self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
+}
+-(void)goback:(UIButton *)sender{
+    
+    if(self.webview.backForwardList.backList.count > 1){
+            
+        if([XEOneWebViewPool sharedInstance].inSingle && self.navigationController.viewControllers.count >= 2){
+            UIViewController *toVc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+            if([toVc isKindOfClass:[RecyleWebViewController class]]){
+                RecyleWebViewController *toWebVc = (RecyleWebViewController *)toVc;
+                NSString *path = [toWebVc.webview.backForwardList.backList.lastObject.URL absoluteString];
+                if([path isEqualToString:toWebVc.fileUrl] || [path isEqualToString:[NSString stringWithFormat:@"%@#/", toWebVc.fileUrl]]){
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+            }
+        }
+        [self.webview goBack];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"back_arrow" ofType:@"png"];
+    if(path){
+        UIButton *btn = [[UIButton alloc] init];
+        btn.frame = CGRectMake(0, 0, 44, 0);
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:path]]];
+        img.userInteractionEnabled = NO;
+        img.frame = CGRectMake(4, 6, 22, 22);
+        [btn addSubview:img];
+        [btn addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
-    
     [self.view addSubview:self.webview];
     
     self.progresslayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.5);
@@ -203,6 +259,9 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    if(!self.isCloseClear && ![self.navigationController.viewControllers.lastObject isKindOfClass:[RecyleWebViewController class]]){
+        self.isClearHistory = YES;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -213,6 +272,9 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
+    if(self.isClearHistory){
+        [[XEOneWebViewPool sharedInstance] resetUrl: self.rootPath];
+    }
 }
 
 - (void)reloadData{

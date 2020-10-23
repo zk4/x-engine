@@ -18,7 +18,7 @@ target 'offline' do
   pod 'x-engine-module-network', :path =>'../../x-engine-module-network'
   pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols'
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
-  pod 'x-engine-module-microapp', :path =>'../../x-engine-module-microapp'
+#  pod 'x-engine-module-microapp', :path =>'../../x-engine-module-microapp'
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
   
 

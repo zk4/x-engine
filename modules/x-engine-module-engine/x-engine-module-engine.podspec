@@ -35,8 +35,9 @@ Pod::Spec.new do |s|
   :tag => s.version.to_s }
 
 
-    s.source_files  = "iOS/Class/**/*.{h,m}","iOS/Class/gen/**/*.{h,m}"
+    s.source_files  = "iOS/Class/**/*.{h,m}","iOS/Class/gen/**/*.{h,m,png}"
     s.public_header_files = "iOS/Class/**/*.h","iOS/Class/gen/**/*.h"
+    s.resources = ["iOS/Class/back_arrow.png"]
 
     s.frameworks  = "CoreServices"
 

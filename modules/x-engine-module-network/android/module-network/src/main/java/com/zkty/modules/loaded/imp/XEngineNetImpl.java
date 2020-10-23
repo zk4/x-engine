@@ -1,6 +1,7 @@
 package com.zkty.modules.loaded.imp;
 
 import android.os.Handler;
+import android.text.TextUtils;
 
 import com.zkty.modules.loaded.callback.IXEngineNetProtocol;
 import com.zkty.modules.loaded.callback.IXEngineNetProtocolCallback;
@@ -66,6 +67,7 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
 
     @Override
     public void doRequest(Method method, final String url, final Map<String, String> header, final Map<String, String> params,
+                          final String json,
                           final Map<String, String> file, final IXEngineNetProtocolCallback callback) {
         Request.Builder builder = new Request.Builder();
         if (header != null) {
@@ -92,47 +94,67 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                         stringBuilder.append("&").append(entry.getKey()).append("=").append(entry.getValue());
                     }
                 }
+                if(header!=null){
+                    Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
+                    while (iterator.hasNext()) {
+                        Map.Entry<String, String> entry = iterator.next();
+                        builder.addHeader(entry.getKey(), entry.getValue());
+                    }
+                }
+
                 builder.url(stringBuilder.toString());
                 builder.get();
                 break;
             case POST:
-                multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-                if (params != null) {
-                    Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
-                    while (iterator.hasNext()) {
-                        Map.Entry<String, String> entry = iterator.next();
-                        multipartBuilder.addFormDataPart(entry.getKey(), entry.getValue());
-                    }
-                }
-
-                boolean hasFile = false;
-                if (file != null && !file.isEmpty()) {
-                    Iterator<Map.Entry<String, String>> iterator = file.entrySet().iterator();
-                    while (iterator.hasNext()) {
-                        Map.Entry<String, String> entry = iterator.next();
-                        DebugUtils.debug(TAG, "fileName:" + entry.getKey() + "----path:" + entry.getValue());
-                        if (new File(entry.getValue(), entry.getKey()).exists()) {
-                            multipartBuilder.addFormDataPart("file", entry.getKey(), RequestBody.create(new File(entry.getValue(), entry.getKey()), MediaType.parse("multipart/form-data")));
-                            hasFile = true;
+                if (!TextUtils.isEmpty(json)) {                 //json不为空 按照CONTENT_TYPE_JSON处理
+                    if (header != null) {
+                        Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
+                        while (iterator.hasNext()) {
+                            Map.Entry<String, String> entry = iterator.next();
+                            builder.addHeader(entry.getKey(), entry.getValue());
                         }
                     }
-                }
+                    RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
+                    builder.post(body);
+                } else {                                     //json为空
+                    multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+                    if (params != null) {
+                        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+                        while (iterator.hasNext()) {
+                            Map.Entry<String, String> entry = iterator.next();
+                            multipartBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+                        }
+                    }
 
-                if ((params == null || params.isEmpty()) && !hasFile) {
-                    builder.post(RequestBody.create(null, ""));        //空body
-                } else {
+                    boolean hasFile = false;
+                    if (file != null && !file.isEmpty()) {
+                        Iterator<Map.Entry<String, String>> iterator = file.entrySet().iterator();
+                        while (iterator.hasNext()) {
+                            Map.Entry<String, String> entry = iterator.next();
+                            DebugUtils.debug(TAG, "fileName:" + entry.getKey() + "----path:" + entry.getValue());
+                            if (new File(entry.getValue(), entry.getKey()).exists()) {
+                                multipartBuilder.addFormDataPart("file", entry.getKey(), RequestBody.create(new File(entry.getValue(), entry.getKey()), MediaType.parse("multipart/form-data")));
+                                hasFile = true;
+                            }
+                        }
+                    }
+
+                    if ((params == null || params.isEmpty()) && !hasFile) {
+                        builder.post(RequestBody.create(null, ""));        //空body
+                    } else {
 //                    builder.post(multipartBuilder.build());
-                    builder.post(new ProgressRequestBody(multipartBuilder.build(), new ProgressRequestListener() {
-                        @Override
-                        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                            XEngineNetRequest xEngineNetRequest = new XEngineNetRequest();
-                            xEngineNetRequest.setUrl(url);
-                            xEngineNetRequest.setHeader(header);
-                            xEngineNetRequest.setParams(params);
+                        builder.post(new ProgressRequestBody(multipartBuilder.build(), new ProgressRequestListener() {
+                            @Override
+                            public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                                XEngineNetRequest xEngineNetRequest = new XEngineNetRequest();
+                                xEngineNetRequest.setUrl(url);
+                                xEngineNetRequest.setHeader(header);
+                                xEngineNetRequest.setParams(params);
 
-                            callback.onUploadProgress(xEngineNetRequest, bytesWritten, contentLength, done);
-                        }
-                    }));
+                                callback.onUploadProgress(xEngineNetRequest, bytesWritten, contentLength, done);
+                            }
+                        }));
+                    }
                 }
                 builder.url(url);
                 break;

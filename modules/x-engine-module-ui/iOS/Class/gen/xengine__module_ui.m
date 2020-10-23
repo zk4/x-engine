@@ -42,12 +42,22 @@
    
    
    
+   
    	return NO;
     }
 @end
     
   
-@implementation XEAlertResultDTO
+@implementation XESheetDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	if ([propertyName isEqualToString:@"itemList"]) { return YES; }
+   	if ([propertyName isEqualToString:@"content"]) { return YES; }
+   	return NO;
+    }
+@end
+    
+  
+@implementation XERetDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
@@ -67,20 +77,6 @@
         return @"com.zkty.module.ui";
     }
     
-    - (void) showSuccessToast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          XETipDTO* dto = [self convert:dict clazz:XETipDTO.class];
-          [self _showSuccessToast:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
-          }];
-      }
-    - (void) showFailToast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          XETipDTO* dto = [self convert:dict clazz:XETipDTO.class];
-          [self _showFailToast:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
-          }];
-      }
     - (void) showToast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           XEToastDTO* dto = [self convert:dict clazz:XEToastDTO.class];
@@ -116,21 +112,25 @@
     - (void) showModal:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           XEModalDTO* dto = [self convert:dict clazz:XEModalDTO.class];
-          [self _showModal:dto complete:^(XEAlertResultDTO* result,  BOOL complete) {
+          [self _showModal:dto complete:^(XERetDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
     - (void) showActionSheet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _showActionSheet:^(BOOL complete) {
-                 completionHandler(nil,complete); 
+          XESheetDTO* dto = [self convert:dict clazz:XESheetDTO.class];
+          [self _showActionSheet:dto complete:^(XERetDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
+        
       }
     - (void) showPickerView:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _showPickerView:^(BOOL complete) {
-                 completionHandler(nil,complete); 
+          XEPickerDTO* dto = [self convert:dict clazz:XEPickerDTO.class];
+          [self _showPickerView:dto complete:^(XERetDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
+        
       }
   @end

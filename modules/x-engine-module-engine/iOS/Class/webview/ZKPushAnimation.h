@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (ZKPushAnimation *)instance;
 
+- (void)isOpenCustomAnimation:(BOOL)isOpen withFrom:(UIViewController *)fromVc withTo:(UIViewController *)toVc;
 - (void)isOpenCustomAnimation:(BOOL)isOpen withNavigationController:(UINavigationController *)navController;
 
 //- (void)navtionGestreAction:(UINavigationController *)navController;

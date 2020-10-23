@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-engine",
-  "version": "0.0.38",
+  "version": "0.0.21",
   "description": "zkty-team/x-engine-module-engine",
   "main": "h5/src/index.js",
   "scripts": {
@@ -20,8 +20,20 @@
   "keywords": [],
   "author": "zk",
   "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "vconsole-webpack-plugin": "^1.5.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
   "dependencies": {
     "dsbridge": "^3.1.4"
-  },
-  "gitHead": "3895febff13dd6c6a858b0194796032ae3516979"
+  }
 }

@@ -184,4 +184,8 @@ public class SearchEditView extends LinearLayout {
         }
     }
 
+    public EditText getEditText() {
+        return this.etKey;
+    }
+
 }

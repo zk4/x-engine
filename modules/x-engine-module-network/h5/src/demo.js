@@ -19,7 +19,7 @@ import network from './index.js'
                 passwork: 'e10adc3949ba59abbe56e057f20f883e'
             }
         }).then((res) => {
-            document.getElementById("debug_text").innerText = res;
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
 
@@ -28,7 +28,7 @@ import network from './index.js'
             url: 'https://api.mocki.io/v1/b043df5a',
             method: 'delete',
         }).then((res) => {
-            document.getElementById("debug_text").innerText = res;
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
 
@@ -37,7 +37,7 @@ import network from './index.js'
             url: 'https://api.mocki.io/v1/b043df5a',
             method: 'head',
         }).then((res) => {
-            document.getElementById("debug_text").innerText = res;
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
 
@@ -46,7 +46,7 @@ import network from './index.js'
             url: 'https://api.mocki.io/v1/b043df5a',
             method: 'put',
         }).then((res) => {
-            document.getElementById("debug_text").innerText = res;
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
 
@@ -55,7 +55,7 @@ import network from './index.js'
             url: 'https://api.mocki.io/v1/b043df5a',
             method: 'patch',
         }).then((res) => {
-            document.getElementById("debug_text").innerText = res;
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
 
@@ -77,7 +77,7 @@ import network from './index.js'
                     document.getElementById("debug_text").innerText = "上传进度" + progress + "%";
                 },
             }).then((res) => {
-                document.getElementById("debug_text").innerText = JSON.stringify(res.data);
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
             });
         });
     };
@@ -89,7 +89,7 @@ import network from './index.js'
             filename: 'custom.png',
             filepath: '',
         }).then((res) => {
-            document.getElementById("debug_text").innerText = res.data;
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
 

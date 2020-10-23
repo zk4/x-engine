@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -14,12 +14,7 @@ function osCheck() {
     [
   {
     "name": "openDoor",
-    "default_args": {
-      "serviceUUID": [
-        "2560",
-        "FEE7"
-      ]
-    }
+    "default_args": {}
   },
   {
     "name": "customOpenDoor",
@@ -28,12 +23,6 @@ function osCheck() {
   {
     "name": "lightLift",
     "default_args": {}
-  },
-  {
-    "name": "haveArgRetPrimitive",
-    "default_args": {
-      "title": "abc"
-    }
   }
 ]
 )}}

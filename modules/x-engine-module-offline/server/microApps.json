@@ -3,19 +3,9 @@
      
     "data": [
         {
-            "microAppName": "device",
-            "microAppId": "com.zkty.microapp.device",
-            "microAppVersion": 4
-        },
-        {
-            "microAppName": "hello",
-            "microAppId": "com.zkty.microapp.demo0",
-            "microAppVersion": 6
-        },
-        {
-            "microAppName": "vivo",
-            "microAppId": "com.zkty.microapp.pullDownRefresh",
-            "microAppVersion": 8
+            "microAppName": "物业公告1",
+            "microAppId": "com.zkty.microapp.demo4",
+            "microAppVersion": 2
         }
     ]
 }

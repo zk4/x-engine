@@ -1,4 +1,5 @@
-<!DOCTYPE HTML>
+
+  <!DOCTYPE HTML>
 <html>
 
 <head>
@@ -6,68 +7,68 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="HandheldFriendly" content="true" />
     <meta name="MobileOptimized" content="320" />
-    <title>Module_Template</title>
-    <script type="text/javascript" src="./main.js"></script>
-
+    <title>Module_xxxx</title>
     <script type="text/javascript">
 
-        const _ui = window.xengine.module("com.zkty.module.engine");
-        const ui  =  {
-          showActionSheet: (args)=>{return _ui("showActionSheet",args)},
-          hideActionSheet: (args)=>{return _ui("hideActionSheet",args)}
-        }
-
-        function clickActionSheet() {
-          ui.showActionSheet(
-            { title:"title",
-              itemList:['a','b','c','d'],
-              content:"content"
-            }
-          ).then(res=>{
-            console.log(res);
-            document.getElementById("debug_text").innerText= res;
-          })
-        }
-  
-//    clickActionSheet()
-//      setTimeout(()=>{
-//          ui.hideActionSheet({}).then(res=>{})
-//
-//      },1000)
     </script>
 
     <style>
-        #debug_text{
-            margin: 0 auto;
-            width: 90%;
-            height: 144px;
-            border: 1px solid #f7f7f7;
-            background-color: #f7f7f7;
-            margin-bottom: 10px;
-            display: block;
-            font-size: 20px;
-        }
-        .button-class {
-            margin: 0 auto;
-            width: 90%;
-            height: 44px;
-            border: 1px solid #f7f7f7;
-            background-color: #f7f7f7;
-            text-align: center;
-            line-height: 44px;
-            margin-bottom: 10px;
-            display: block;
-            border-radius: 50px;
-            font-size: 20px;
-        }
+      * {
+          -webkit-touch-callout: none;
+          /*系统默认菜单被禁用*/
+          -webkit-user-select: none;
+          /*webkit浏览器*/
+          -khtml-user-select: none;
+          /*早期浏览器*/
+          -moz-user-select: none;
+          /*火狐*/
+          -ms-user-select: none;
+          /*IE10*/
+          user-select: none;
+      }
+
+      input {
+          -webkit-user-select: auto;
+          /*webkit浏览器*/
+      }
+
+      textarea {
+          -webkit-user-select: auto;
+          /*webkit浏览器*/
+      }
+
+      #debug_text{
+          margin: 0 auto;
+          width: 90%;
+          height: 144px;
+          border: 1px solid #f7f7f7;
+          background-color: #f7f7f7;
+          margin-bottom: 10px;
+          display: block;
+          font-size: 20px;
+      }
+
+      .button-class {
+          margin: 0 auto;
+          width: 90%;
+          height: 44px;
+          border: 1px solid #f7f7f7;
+          background-color: #f7f7f7;
+          text-align: center;
+          line-height: 44px;
+          margin-bottom: 10px;
+          display: block;
+          border-radius: 50px;
+          font-size: 20px;
+      }
     </style>
+
 </head>
 
 <body>
     <!-- 示例 -->
-    <button class="button-class" onclick="clickActionSheet()">点击ActionSheet</button>
+    <button class="button-class" onclick="push()">push</button>
     <textarea id="debug_text"></textarea>
-    <!-- 示例 --> </!-->
 </body>
 
 </html>

@@ -2,27 +2,32 @@
 const moduleID = "com.zkty.module.lope";
 
 // dto
-interface serviceUUIDDTO {
-  serviceUUID: Array<string>;
-  
+interface SheetDTO {
+  // 标题
+  title: string;
+  // 子标题?
+  itemList?: Array<string>;
+  // 内容
+  content?: string;
+  // 点击子标题回调函数
+  __event__: (index:string)=>void,
 }
 
-function openDoor(serviceUUIDDTO: serviceUUIDDTO = {
-  serviceUUID: ["2560","FEE7"],
-}) {
-    window.openDoor = () => {
-    lope
-      .openDoor()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res["title"];
-      });
+function openDoor(){
+  window.openDoor = (...args) => {
+  lope
+    .openDoor(...args)
+    .then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
   };
+
 }
 
 function customOpenDoor(){
-  window.customOpenDoor = () => {
+  window.customOpenDoor = (...args) => {
   lope
-    .customOpenDoor()
+    .customOpenDoor(...args)
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
@@ -31,26 +36,13 @@ function customOpenDoor(){
 }
 
 function lightLift(){
-  window.lightLift = () => {
+  window.lightLift = (...args) => {
   lope
-    .lightLift()
+    .lightLift(...args)
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
   };
 
 }
-
-// have args ret primitive
-function haveArgRetPrimitive(arg:SheetDTO={title:"abc"}):string {
-    window.haveArgRetPrimitive = (...args) => {
-    lope
-      .haveArgRetPrimitive(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
-      });
-  };
-}
-
-
 

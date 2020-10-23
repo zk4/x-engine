@@ -1,7 +1,7 @@
 
-`
-com.zkty.module.lope
-`
+``` bash
+npm install @zkty-team/com-zkty-module-lope
+```
 
 
 
@@ -10,11 +10,9 @@ com.zkty.module.lope
 
 
 	
-**参数说明**
+**无参数**
 
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| serviceUUID | Array\<string\> |  | ["2560","FEE7"] |  |
+
 
 
 ## customOpenDoor
@@ -30,16 +28,6 @@ com.zkty.module.lope
 ## lightLift
 
 
-
-	
-**无参数**
-
-
-
-
-## haveArgRetPrimitive
-
- have args ret primitive
 
 	
 **无参数**

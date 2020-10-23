@@ -38,5 +38,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 //    api 'com.zkty.mudules:module-engine:0.0.1'
-    compile project(':module-engine')
+    api project(':module-engine')
+    api project(':module-router')
+    api project(':module-dcloud')
 }

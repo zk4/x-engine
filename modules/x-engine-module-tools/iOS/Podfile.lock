@@ -10,14 +10,9 @@ PODS:
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
-  - x-engine-module-microapp (1.0.0):
-    - x-engine-module-engine
-    - x-engine-module-protocols
-  - x-engine-module-protocols (1.0.3)
 
 DEPENDENCIES:
   - x-engine-module-engine (from `../../x-engine-module-engine`)
-  - x-engine-module-microapp (from `../../x-engine-module-microapp`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -26,14 +21,10 @@ SPEC REPOS:
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
-  https://github.com/zkty-team/x-engine-pods.git:
-    - x-engine-module-protocols
 
 EXTERNAL SOURCES:
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
-  x-engine-module-microapp:
-    :path: "../../x-engine-module-microapp"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -41,10 +32,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  x-engine-module-engine: 0422f9641754b6d211e610a80d8662300f640dff
-  x-engine-module-microapp: 90d087a2dd4147b8b34c1db59939267ed421069b
-  x-engine-module-protocols: 46fd3a3763aca856726b49f2c332be6d922b7d5b
+  x-engine-module-engine: 30eec2363cffe0973de0a6d70dde04f3d06a6296
 
-PODFILE CHECKSUM: 393b56ed2b73739aa07d5c2bcde14d5ffdd7cb9c
+PODFILE CHECKSUM: 68eabcccf3eb711bebcbc7e22575bec0a7dcc338
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1

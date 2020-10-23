@@ -1,7 +1,7 @@
 
-`
-undefined
-`
+``` bash
+npm install @zkty-team/com-zkty-module-network
+```
 
 
 
@@ -28,13 +28,27 @@ network.getRequest({
 });
  ```
 
+**demo**
+``` js
+ {
+    window.getRequest = () => {
+        network.getRequest({
+            url: 'https://api.mocki.io/v1/b043df5a',
+            method: 'get',
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求url |
-| method | string | true | "patch" | 请求方法 |
+| url | string |  |  | 请求url |
+| method | string | true | patch | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求haeders |
 | params | Map\<string,string\> | true |  | 请求params |
 
@@ -56,13 +70,31 @@ network.getRequest({
  });
  ```
 
+**demo**
+``` js
+ {
+    window.postRequest = () => {
+        network.postRequest({
+            url: 'http://lihong.utools.club/api/user/login',
+            method: 'post',
+            params: {
+                username: 'admin',
+                passwork: 'e10adc3949ba59abbe56e057f20f883e'
+            }
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求url |
-| method | string | true | "patch" | 请求方法 |
+| url | string |  |  | 请求url |
+| method | string | true | patch | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求haeders |
 | params | Map\<string,string\> | true |  | 请求params |
 
@@ -80,13 +112,27 @@ network.getRequest({
  });
  ```
 
+**demo**
+``` js
+ {
+    window.deleteRequest = () => {
+        network.deleteRequest({
+            url: 'https://api.mocki.io/v1/b043df5a',
+            method: 'delete',
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求url |
-| method | string | true | "patch" | 请求方法 |
+| url | string |  |  | 请求url |
+| method | string | true | patch | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求haeders |
 | params | Map\<string,string\> | true |  | 请求params |
 
@@ -104,13 +150,27 @@ network.getRequest({
  });
  ```
 
+**demo**
+``` js
+ {
+    window.headRequest = () => {
+        network.headRequest({
+            url: 'https://api.mocki.io/v1/b043df5a',
+            method: 'head',
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求url |
-| method | string | true | "patch" | 请求方法 |
+| url | string |  |  | 请求url |
+| method | string | true | patch | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求haeders |
 | params | Map\<string,string\> | true |  | 请求params |
 
@@ -128,13 +188,27 @@ network.getRequest({
  });
  ```
 
+**demo**
+``` js
+ {
+    window.putRequest = () => {
+        network.putRequest({
+            url: 'https://api.mocki.io/v1/b043df5a',
+            method: 'put',
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求url |
-| method | string | true | "patch" | 请求方法 |
+| url | string |  |  | 请求url |
+| method | string | true | patch | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求haeders |
 | params | Map\<string,string\> | true |  | 请求params |
 
@@ -152,13 +226,27 @@ network.getRequest({
  });
  ```
 
+**demo**
+``` js
+ {
+    window.patchRequest = () => {
+        network.patchRequest({
+            url: 'https://api.mocki.io/v1/b043df5a',
+            method: 'patch',
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求url |
-| method | string | true | "patch" | 请求方法 |
+| url | string |  |  | 请求url |
+| method | string | true | patch | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求haeders |
 | params | Map\<string,string\> | true |  | 请求params |
 
@@ -186,17 +274,45 @@ network.getRequest({
  }); 
  ``` 
 
+**demo**
+``` js
+ {
+    window.downloadRequest = () => {
+        network.downloadRequest({
+            url: 'http://httpbin.org/image/jpeg',
+            method: 'GET',
+            __event__: (progress)=>{
+                document.getElementById("debug_text").innerText = "下载进度" + progress + "%";
+            },
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = "下载成功";
+            network.uploadRequest({
+                url: 'http://httpbin.org/post',
+                method: 'POST',
+                filename: 'custom.png',
+                filepath: res.filePath,
+                __event__: (progress)=>{
+                    document.getElementById("debug_text").innerText = "上传进度" + progress + "%";
+                },
+            }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+            });
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求url |
-| method | string | true | "POST" | 请求方法 |
+| url | string |  |  | 请求url |
+| method | string | true | POST | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求haeders |
 | params | Map\<string,string\> | true |  | 请求params |
-| __event__ | string | true |  | progress: (progress:float)=>void |
-| isNeedBase64 | bool |  | false | 是否需要base64的内容 |
+| \_\_event\_\_ | string | true |  | progress: (progress:float)=>void |
+| isNeedBase64 | bool |  |  | 是否需要base64的内容 |
 
 
 ## uploadRequest
@@ -214,20 +330,34 @@ network.getRequest({
  });
  ```
 
+**demo**
+``` js
+ {
+    window.uploadRequest = () => {
+        network.uploadRequest({
+            url: 'http://httpbin.org/post',
+            method: 'POST',
+            filename: 'custom.png',
+            filepath: '',
+        }).then((res) => {
+            document.getElementById("debug_text").innerText = JSON.stringify(res);
+        });
+    };
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  | "" | 请求地址 |
-| method | string | true | "POST" | 请求方法 |
+| url | string |  |  | 请求地址 |
+| method | string | true | POST | 请求方法 |
 | headers | Map\<string,string\> | true |  | 请求头 |
 | params | Map\<string,string\> | true |  | 请求参数 |
 | filename | string |  |  | 上传文件名称 |
 | filepath | string | true |  | 上传文件路径 |
 | fileBaseStr | string | true |  | 上传文件的base64 |
-| __event__ | string | true |  | progress: (progress:float)=>void |
-
-    =>void |
+| \_\_event\_\_ | string | true |  | progress: (progress:float)=>void |
 
     

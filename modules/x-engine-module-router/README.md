@@ -1,9 +1,12 @@
-统一所有的跳转
+统一所有的跳转, router 与 nav 在路由功能有一些重叠的地方. 但 nav 更加关注于微应用内的路由. 而 router 更关注应用间的路由.
+
+
 
 ##### 规则
 
 - 跳 h5
   - https://..
+  - http://..
 - 跳微应用
   - appid + 路径 + 参数
 - 跳 uniapp
@@ -22,9 +25,10 @@
 
 ````
 {
-  type: enum (native | h5 | microapp | uni | wx ),  // 类型
+  type: string (native | h5 | microapp | uni | wx ),  // 类型
   uri:  string (url | appid | wx_username | 'XViewController,XActivity'), // 资源名
-  path: string                         // 路径 /abc  /abc?a=
+  path: string, // 路径 /abc  /abc?a=1
+  args: string  // 暂时未使用, 简单参数通过 path 传递
 }
 ````
 

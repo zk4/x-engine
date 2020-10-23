@@ -27,8 +27,9 @@ public class XEngineNetManager {
 
     public void doRequest(IXEngineNetProtocol.Method method,
                           final String url, final HashMap<String, String> header, final HashMap<String, String> params,
+                          final String json,
                           final Map<String, String> file, final IXEngineNetProtocolCallback callback) {
-        ixEngineNetProtocol.doRequest(method, url, header, params, file, callback);
+        ixEngineNetProtocol.doRequest(method, url, header, params, json, file, callback);
     }
 
 

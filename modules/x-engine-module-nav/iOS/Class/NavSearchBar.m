@@ -20,12 +20,13 @@
 
 @property (nonatomic, strong) UISearchBar* searchBar;
 @property (nonatomic, assign) BOOL isInput;
+@property (nonatomic, strong) NavSearchBarDTO *dto;
 @end
 
 @implementation NavSearchBar
 
 -(void)setSearchModel:(NavSearchBarDTO *)dto{
-    
+    self.dto = dto;
     self.isInput = dto.isInput;
     UISearchBar* searchBar = [[UISearchBar alloc]init];
     
@@ -101,7 +102,7 @@
     }];
     [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setAttributedPlaceholder:attrString];
     
-    if (dto.isInput) {
+    if (!dto.isInput) {
         
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] init];//WithTarget:self action:@selector(tapGesture:)];
         [gesture touchActionBlock:^(UITapGestureRecognizer *sender) {
@@ -110,9 +111,10 @@
                 RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
                 if (dto.__event__){
                     [webVC.webview callHandler:dto.__event__ arguments:@[@(0)] completionHandler:nil];
-                } else {
-                    [webVC.webview callHandler:@"handlerNavSearchBar" arguments:@[@"0"] completionHandler:nil];
                 }
+//                else {
+//                    [webVC.webview callHandler:@"handlerNavSearchBar" arguments:@[@"0"] completionHandler:nil];
+//                }
             }
         }];
         if (@available(iOS 13, *)) {
@@ -127,6 +129,11 @@
     }
     searchBar.delegate = self;
     [self addSubview:searchBar];
+    
+    if(self.searchBar){
+        [self.searchBar removeFromSuperview];
+        self.searchBar = nil;
+    }
     self.searchBar = searchBar;
 }
 
@@ -136,7 +143,7 @@
 }
 #pragma mark searchBar Delegate
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    if (self.isInput) {
+    if (!self.isInput) {
         return NO;
     }
     return YES;
@@ -145,11 +152,7 @@
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     if ([topVC isKindOfClass:RecyleWebViewController.class]){
         RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-        NSDictionary *dict = @{
-            @"value" : searchBar.text
-        };
-        [webVC.webview callHandler:@"handlerNavSearchBar" arguments:@[[JSONToDictionary toString: dict]] completionHandler:^(id  _Nullable value) {
-        }];
+        [webVC runJsFunction:self.dto.__event__ arguments:@[searchBar.text]];
     }
     if ([searchBar isFirstResponder]) {
         [searchBar resignFirstResponder];

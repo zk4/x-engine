@@ -20,7 +20,7 @@ public class DialogHelper {
             mLoadingDialog.show();
         }
         if (duration > 0) {
-            new Handler().postDelayed(() -> hideDialog(), duration*1000);
+            new Handler().postDelayed(() -> hideDialog(), duration * 1000);
         }
 
     }
@@ -36,7 +36,23 @@ public class DialogHelper {
             mLoadingDialog.show();
         }
         if (duration > 0) {
-            new Handler().postDelayed(() -> hideDialog(), duration*1000);
+            new Handler().postDelayed(() -> hideDialog(), duration * 1000);
+        }
+
+    }
+
+    public static void showFailDialog(Context cxt, String content, long duration) {
+        if (mLoadingDialog == null) {
+            mLoadingDialog = new LoadingDialog(cxt);
+        }
+        mLoadingDialog.setContentMessage(content);
+        mLoadingDialog.setMode(LoadingDialog.TYPE.FAIL);
+        mLoadingDialog.setCanceledOnTouchOutside(false);
+        if (!mLoadingDialog.isShowing()) {
+            mLoadingDialog.show();
+        }
+        if (duration > 0) {
+            new Handler().postDelayed(() -> hideDialog(), duration * 1000);
         }
 
     }

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nativePage(View view) {
-        RouterMaster.openTargetRouter(this, "native", "com.zkty.engine.module.router.SecondActivity", null);
+        RouterMaster.openTargetRouter(this, "native", "xxx,com.zkty.engine.module.router.SecondActivity", null);
 
     }
 }

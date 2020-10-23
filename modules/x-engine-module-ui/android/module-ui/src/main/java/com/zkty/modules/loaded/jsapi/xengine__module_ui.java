@@ -59,26 +59,38 @@
 
     public String rowHeight;
 
-    public String data;
+    public List<List<String>> data;
 
     public String toolBarBackgroundColor;
+
+    public String __event__;
   }
   
-  class XEAlertResultDTO {
-    public String tapIndex;
+  class XESheetDTO {
+    public String title;
+
+    @Optional
+		public List<String> itemList;
+
+    @Optional
+		public String content;
+
+    public String __event__;
+  }
+  
+  class XERetDTO {
+    public String content;
   }
   
   interface xengine__module_ui_i {
-    public void _showSuccessToast(XETipDTO dto, final CompletionHandler<Nullable> handler);
-public void _showFailToast(XETipDTO dto, final CompletionHandler<Nullable> handler);
-public void _showToast(XEToastDTO dto, final CompletionHandler<Nullable> handler);
+    public void _showToast(XEToastDTO dto, final CompletionHandler<Nullable> handler);
 public void _hideToast(final CompletionHandler<Nullable> handler);
 public void _hiddenHudToast(final CompletionHandler<Nullable> handler);
 public void _showLoading(XETipDTO dto, final CompletionHandler<Nullable> handler);
 public void _hideLoading(final CompletionHandler<Nullable> handler);
-public void _showModal(XEModalDTO dto, final CompletionHandler<XEAlertResultDTO> handler);
-public void _showActionSheet(final CompletionHandler<Nullable> handler);
-public void _showPickerView(final CompletionHandler<Nullable> handler);
+public void _showModal(XEModalDTO dto, final CompletionHandler<XERetDTO> handler);
+public void _showActionSheet(XESheetDTO dto, final CompletionHandler<XERetDTO> handler);
+public void _showPickerView(XEPickerDTO dto, final CompletionHandler<XERetDTO> handler);
   }
   
   
@@ -88,34 +100,6 @@ public void _showPickerView(final CompletionHandler<Nullable> handler);
       return "com.zkty.module.ui";
     }
   
-    @JavascriptInterface
-    final public void showSuccessToast(JSONObject obj, final CompletionHandler<Object> handler) {
-      XETipDTO data= convert(obj,XETipDTO.class);
-      _showSuccessToast(data, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void showFailToast(JSONObject obj, final CompletionHandler<Object> handler) {
-      XETipDTO data= convert(obj,XETipDTO.class);
-      _showFailToast(data, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
     @JavascriptInterface
     final public void showToast(JSONObject obj, final CompletionHandler<Object> handler) {
       XEToastDTO data= convert(obj,XEToastDTO.class);
@@ -186,39 +170,41 @@ public void _showPickerView(final CompletionHandler<Nullable> handler);
     @JavascriptInterface
     final public void showModal(JSONObject obj, final CompletionHandler<Object> handler) {
       XEModalDTO data= convert(obj,XEModalDTO.class);
-      _showModal(data, new CompletionHandler<XEAlertResultDTO>() {
+      _showModal(data, new CompletionHandler<XERetDTO>() {
         @Override
-        public void complete(XEAlertResultDTO retValue) { handler.complete(retValue); }
+        public void complete(XERetDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(XEAlertResultDTO value) { handler.setProgressData(value); }
+        public void setProgressData(XERetDTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
     final public void showActionSheet(JSONObject obj, final CompletionHandler<Object> handler) {
-      _showActionSheet(new CompletionHandler<Nullable>() {
+      XESheetDTO data= convert(obj,XESheetDTO.class);
+      _showActionSheet(data, new CompletionHandler<XERetDTO>() {
         @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
+        public void complete(XERetDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+        public void setProgressData(XERetDTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
     final public void showPickerView(JSONObject obj, final CompletionHandler<Object> handler) {
-      _showPickerView(new CompletionHandler<Nullable>() {
+      XEPickerDTO data= convert(obj,XEPickerDTO.class);
+      _showPickerView(data, new CompletionHandler<XERetDTO>() {
         @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
+        public void complete(XERetDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+        public void setProgressData(XERetDTO value) { handler.setProgressData(value); }
       });
 
     }

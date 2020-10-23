@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
 import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
@@ -53,7 +55,7 @@ public class SharePreferenceUtils {
      * @return
      */
 
-    public static Object get(Context context, boolean isPublish, String key, Object defaultValue) {
+    public static Object get(Context context, boolean isPublish, String key, @NonNull Object defaultValue) {
         if (defaultValue instanceof String) {
             return getSp(context, isPublish).getString(key, (String) defaultValue);
         } else if (defaultValue instanceof Integer) {
@@ -108,7 +110,7 @@ public class SharePreferenceUtils {
             namespace = getNamespace();
         }
         return context.getSharedPreferences(namespace,
-                Context.MODE_PRIVATE);
+                Context.MODE_MULTI_PROCESS);
     }
 
     private static String getNamespace() {

@@ -10,7 +10,7 @@
 @protocol DeviceMoreDTO;
 
 @interface DeviceSheetDTO: JSONModel
-  	@property(nonatomic,copy) NSString* __event__;
+  	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
@@ -52,7 +52,7 @@
         - (void) _getSafeAreaLeft:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _getSafeAreaRight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceSheetDTO* result,BOOL complete)) completionHandler;
+        - (void) _getSafeAreaRight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
 
       @required 
         - (void) _getStatusHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;

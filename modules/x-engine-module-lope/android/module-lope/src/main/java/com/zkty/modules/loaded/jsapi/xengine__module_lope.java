@@ -15,15 +15,22 @@
   import androidx.annotation.Nullable;
 
   
-  class serviceUUIDDTO {
-    public List<String> serviceUUID;
+  class SheetDTO {
+    public String title;
+
+    @Optional
+		public List<String> itemList;
+
+    @Optional
+		public String content;
+
+    public String __event__;
   }
   
   interface xengine__module_lope_i {
-    public void _openDoor(serviceUUIDDTO dto, final CompletionHandler<Nullable> handler);
+    public void _openDoor(final CompletionHandler<Nullable> handler);
 public void _customOpenDoor(final CompletionHandler<Nullable> handler);
 public void _lightLift(final CompletionHandler<Nullable> handler);
-public void _haveArgRetPrimitive(SheetDTO dto, final CompletionHandler<String> handler);
   }
   
   
@@ -35,8 +42,7 @@ public void _haveArgRetPrimitive(SheetDTO dto, final CompletionHandler<String> h
   
     @JavascriptInterface
     final public void openDoor(JSONObject obj, final CompletionHandler<Object> handler) {
-      serviceUUIDDTO data= convert(obj,serviceUUIDDTO.class);
-      _openDoor(data, new CompletionHandler<Nullable>() {
+      _openDoor(new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -69,20 +75,6 @@ public void _haveArgRetPrimitive(SheetDTO dto, final CompletionHandler<String> h
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void haveArgRetPrimitive(JSONObject obj, final CompletionHandler<Object> handler) {
-      SheetDTO data= convert(obj,SheetDTO.class);
-      _haveArgRetPrimitive(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
       });
 
     }

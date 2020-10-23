@@ -9,7 +9,7 @@
 #import "__xengine__module_router.h"
 #import <XEngineContext.h>
 #import <micros.h>
-#import "XERouterManage.h"
+#import "XERouterManager.h"
 
 
 @interface __xengine__module_router()
@@ -20,7 +20,7 @@
  
 
 -(void)_openTargetRouter:(RouterOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    [XERouterManage routerToTarget:[dto.type intValue] withUri:dto.uri withPath:dto.path];
+    [XERouterManager routerToTarget:dto.type withUri:dto.uri withPath:dto.path];
 }
 
 @end

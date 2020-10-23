@@ -8,16 +8,13 @@ PODS:
   - MJRefresh (3.4.3)
   - SSZipArchive (2.2.3)
   - WechatOpenSDK (1.8.7.1)
-  - x-engine-module-engine (0.0.37):
+  - x-engine-module-engine (0.0.21):
     - JSONModel
     - Masonry
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
-  - x-engine-module-microapp (1.0.0):
-    - x-engine-module-engine
-    - x-engine-module-protocols
-  - x-engine-module-protocols (1.0.3)
+  - x-engine-module-protocols (0.0.9)
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
     - WechatOpenSDK
@@ -27,7 +24,7 @@ PODS:
 DEPENDENCIES:
   - GCDWebServer (~> 3.0)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
-  - x-engine-module-microapp (from `../../x-engine-module-microapp`)
+  - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
   - x-engine-module-tools (from `../../x-engine-module-tools`)
 
 SPEC REPOS:
@@ -39,14 +36,12 @@ SPEC REPOS:
     - MJRefresh
     - SSZipArchive
     - WechatOpenSDK
-  https://github.com/zkty-team/x-engine-pods.git:
-    - x-engine-module-protocols
 
 EXTERNAL SOURCES:
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
-  x-engine-module-microapp:
-    :path: "../../x-engine-module-microapp"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols/"
   x-engine-module-tools:
     :path: "../../x-engine-module-tools"
 
@@ -58,11 +53,10 @@ SPEC CHECKSUMS:
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
-  x-engine-module-engine: 143aea1aff5bd38222ace5cdb9ec6f4fc03d36a0
-  x-engine-module-microapp: 90d087a2dd4147b8b34c1db59939267ed421069b
-  x-engine-module-protocols: 46fd3a3763aca856726b49f2c332be6d922b7d5b
+  x-engine-module-engine: dfb8facaaf55c5aa6f3d67b51fb5f9cc36d1b9de
+  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: 9200854d53928ee6b728e27013b098745f8fef40
+PODFILE CHECKSUM: cf1365b4ede40bdb96dd5ff5dc824536aa8f80dd
 
 COCOAPODS: 1.9.3

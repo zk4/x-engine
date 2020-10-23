@@ -19,25 +19,23 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.5.0)
   - SSZipArchive (2.2.3)
-  - x-engine-module-engine (1.0.10):
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-engine (0.0.19):
     - JSONModel
     - Masonry
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
-  - x-engine-module-microapp (1.0.0):
-    - x-engine-module-engine
-    - x-engine-module-protocols
   - x-engine-module-protocols (1.0.1)
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
+    - WechatOpenSDK
     - x-engine-module-engine
     - x-engine-module-protocols
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0.0)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
-  - x-engine-module-microapp (from `../../x-engine-module-microapp`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols`)
   - x-engine-module-tools (from `../../x-engine-module-tools`)
 
@@ -49,12 +47,11 @@ SPEC REPOS:
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
+    - WechatOpenSDK
 
 EXTERNAL SOURCES:
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
-  x-engine-module-microapp:
-    :path: "../../x-engine-module-microapp"
   x-engine-module-protocols:
     :path: "../../x-engine-module-protocols"
   x-engine-module-tools:
@@ -67,11 +64,11 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  x-engine-module-engine: d779f491989f1db8ed36bbe485540f166181f8aa
-  x-engine-module-microapp: 90d087a2dd4147b8b34c1db59939267ed421069b
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-engine: 30eec2363cffe0973de0a6d70dde04f3d06a6296
   x-engine-module-protocols: 0d437aa2d12f81473dc72c966cb29d6252db2233
-  x-engine-module-tools: f63cbe059fd402655077d5abc7f6ade3e5228ef8
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: d65db7ffbd0a6a06819a0fbd11689e4f1ced1282
+PODFILE CHECKSUM: b564fbe700a9ae37ded01abfc62358bdafa227df
 
 COCOAPODS: 1.9.1

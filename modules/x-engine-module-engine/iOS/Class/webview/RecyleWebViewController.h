@@ -6,9 +6,10 @@
 @property (nonatomic, copy) NSString *fileUrl;
 @property (nonatomic, copy) NSString *preLevelPath;
 @property (nonatomic, strong) XEngineWebView * webview;
+@property (nonatomic, assign) BOOL isCloseClear;
 
-- (instancetype)initWithUrl:(NSString *) fileUrl;
-- (instancetype)initWithUrl:(NSString *) fileUrl withIsRoot:(BOOL)isRoot;
+- (instancetype)initWithUrl:(NSString *)fileUrl;
+- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath;
 - (void)loadFileUrl:(NSString *)url;
 - (void)forwardUrl:(NSString *)preLevelPath;
 - (void)popUrl:(NSString *)preLevelPath;

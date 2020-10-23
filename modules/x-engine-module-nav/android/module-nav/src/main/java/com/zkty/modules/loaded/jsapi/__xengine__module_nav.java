@@ -17,7 +17,11 @@ import com.zkty.modules.engine.webview.XOneWebViewPool;
 public class __xengine__module_nav extends xengine__module_nav {
     private static final String TAG = __xengine__module_nav.class.getSimpleName();
 
+    @Override
+    public void _navigatorRouter(NavOpenAppDTO dto, CompletionHandler<Nullable> handler) {
 
+        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(), dto.type, dto.uri, dto.path);
+    }
 
     @Override
     public String moduleId() {

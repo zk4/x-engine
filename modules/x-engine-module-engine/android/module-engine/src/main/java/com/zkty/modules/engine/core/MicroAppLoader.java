@@ -4,7 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.anthonynsimon.url.URL;
+import com.anthonynsimon.url.exceptions.MalformedURLException;
 import com.zkty.modules.engine.manager.MicroAppsManager;
+import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
 import java.util.Locale;
 
@@ -58,6 +61,20 @@ public class MicroAppLoader {
      */
     public String getMicroAppByMicroAppId(String route, String params) {
         // getMicroAppByMicroAppId(microAppId);
+
+        String url = XEngineWebActivityManager.sharedInstance().getCurrent().getWebUrl();
+        if (url != null & url.startsWith("http")) {
+            try {
+                URL base = URL.parse(url);
+                StringBuilder sb = new StringBuilder();
+                return sb.append(base.getScheme()).append("://").append(base.getHost()).append(base.getPath())
+                        .append("#").append(route).append("?params=").append(params).toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         if (TextUtils.isEmpty(params)) {
             return String.format(Locale.ENGLISH, "%s#%s", currentIndexPath, route);
         }

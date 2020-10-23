@@ -11,7 +11,6 @@
 #import <micros.h>
 #import <x-engine-module-tools/UIViewController+.h>
 #import <x-engine-module-tools/JSONToDictionary.h>
-#import <x-engine-module-microApp/Unity.h>
 #import <sys/utsname.h>
 
 @interface __xengine__module_device()

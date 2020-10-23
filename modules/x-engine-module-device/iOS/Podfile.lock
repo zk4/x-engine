@@ -4,24 +4,23 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.4.3)
   - SSZipArchive (2.2.3)
-  - x-engine-module-engine (1.0.10):
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-engine (0.0.21):
     - JSONModel
     - Masonry
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
-  - x-engine-module-microapp (1.0.0):
-    - x-engine-module-engine
-    - x-engine-module-protocols
-  - x-engine-module-protocols (1.0.3)
+  - x-engine-module-protocols (0.0.9)
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
+    - WechatOpenSDK
     - x-engine-module-engine
     - x-engine-module-protocols
 
 DEPENDENCIES:
   - x-engine-module-engine (from `../../x-engine-module-engine`)
-  - x-engine-module-microapp (from `../../x-engine-module-microapp`)
+  - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
   - x-engine-module-tools (from `../../x-engine-module-tools`)
 
 SPEC REPOS:
@@ -31,14 +30,14 @@ SPEC REPOS:
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
-  https://github.com/zkty-team/x-engine-pods.git:
-    - x-engine-module-protocols
+  trunk:
+    - WechatOpenSDK
 
 EXTERNAL SOURCES:
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
-  x-engine-module-microapp:
-    :path: "../../x-engine-module-microapp"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols/"
   x-engine-module-tools:
     :path: "../../x-engine-module-tools"
 
@@ -48,11 +47,11 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  x-engine-module-engine: d779f491989f1db8ed36bbe485540f166181f8aa
-  x-engine-module-microapp: 90d087a2dd4147b8b34c1db59939267ed421069b
-  x-engine-module-protocols: 46fd3a3763aca856726b49f2c332be6d922b7d5b
-  x-engine-module-tools: f63cbe059fd402655077d5abc7f6ade3e5228ef8
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-engine: dfb8facaaf55c5aa6f3d67b51fb5f9cc36d1b9de
+  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: e3c8194eddd32f75fb59febaae4aea93dc161756
+PODFILE CHECKSUM: fce5c2db5af71a4b013fa4c573fb70aae08db402
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

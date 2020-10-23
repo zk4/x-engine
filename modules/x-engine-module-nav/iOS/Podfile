@@ -6,8 +6,8 @@ target 'nav' do
   #use_frameworks!
 
   # use private repo
-  source 'https://github.com/CocoaPods/Specs.git'
-  source 'https://github.com/zkty-team/x-engine-pods.git'
+#  source 'https://github.com/CocoaPods/Specs.git'
+#  source 'https://github.com/zkty-team/x-engine-pods.git'
 
 
   pod 'x-engine-module-engine', :path =>'../../x-engine-module-engine/'

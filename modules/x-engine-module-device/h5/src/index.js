@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -14,87 +14,59 @@ function osCheck() {
     [
   {
     "name": "getPhoneType",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getSystemVersion",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getUDID",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getBatteryLevel",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getPreferredLanguage",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getScreenWidth",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getScreenHeight",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getSafeAreaTop",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getSafeAreaBottom",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getSafeAreaLeft",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getSafeAreaRight",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getStatusHeight",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getNavigationHeight",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "getTabBarHeight",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   }
 ]
 )}}

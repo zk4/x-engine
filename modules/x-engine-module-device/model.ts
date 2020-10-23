@@ -3,16 +3,18 @@ const moduleID = "com.zkty.module.device";
 
 // dto
 interface DeviceSheetDTO {
-  __event__: string;
+  //回调方法
+  __event__: (string)=>void;
 }
 interface DeviceMoreDTO {
+  //返回值
   content: string;
 }
 
 //设备类型
 function getPhoneType(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO {
   window.getPhoneType = () => {
@@ -31,7 +33,7 @@ function getPhoneType(
 //系统版本
 function getSystemVersion(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getSystemVersion = () => {
@@ -50,7 +52,7 @@ function getSystemVersion(
 //UDID
 function getUDID(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getUDID = () => {
@@ -69,7 +71,7 @@ function getUDID(
 //电池电量
 function getBatteryLevel(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getBatteryLevel = () => {
@@ -88,7 +90,7 @@ function getBatteryLevel(
 //当前语言
 function getPreferredLanguage(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getPreferredLanguage = () => {
@@ -107,7 +109,7 @@ function getPreferredLanguage(
 //屏幕宽度
 function getScreenWidth(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getScreenWidth = () => {
@@ -126,7 +128,7 @@ function getScreenWidth(
 //屏幕高度
 function getScreenHeight(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getScreenHeight = () => {
@@ -145,7 +147,7 @@ function getScreenHeight(
 //安全区域上边距
 function getSafeAreaTop(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getSafeAreaTop = () => {
@@ -164,7 +166,7 @@ function getSafeAreaTop(
 //安全区域下边距
 function getSafeAreaBottom(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getSafeAreaBottom = () => {
@@ -183,7 +185,7 @@ function getSafeAreaBottom(
 //安全区域左边距
 function getSafeAreaLeft(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getSafeAreaLeft = () => {
@@ -202,9 +204,9 @@ function getSafeAreaLeft(
 //安全区域右边距
 function getSafeAreaRight(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
-):MoreDTO{
+):DeviceMoreDTO{
   window.getSafeAreaRight = () => {
     device
       .getSafeAreaRight({
@@ -221,7 +223,7 @@ function getSafeAreaRight(
 //状态栏高度
 function getStatusHeight(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getStatusHeight = () => {
@@ -240,7 +242,7 @@ function getStatusHeight(
 //导航条高度
 function getNavigationHeight(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getNavigationHeight = () => {
@@ -259,7 +261,7 @@ function getNavigationHeight(
 //tabBar高度
 function getTabBarHeight(
   DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):DeviceMoreDTO{
   window.getTabBarHeight = () => {

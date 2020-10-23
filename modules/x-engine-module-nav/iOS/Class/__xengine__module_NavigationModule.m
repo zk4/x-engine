@@ -121,9 +121,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 //    [self addMoreItemBarButtonWithParam:param isLeft:NO];
 //}
 
--(void)setNavSearchBar:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
-    [self addSearchBar:param];
-}
+//-(void)setNavSearchBar:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
+//    [self addSearchBar:param];
+//}
 
 #pragma mark - fun
 ///切换tabbar页签
@@ -247,6 +247,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     dto.iconClear = param[@"iconClear"];
     dto.iconClearSize = param[@"iconClearSize"];
     dto.textColor = param[@"textColor"];
+    dto.__event__ = param[@"__event__"];
     dto.fontSize = [param[@"fontSize"] integerValue];
     dto.placeHolder = param[@"placeHolder"];
     dto.placeHolderFontSize = [param[@"placeHolderFontSize"] integerValue];
@@ -281,33 +282,32 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     if ([@"0" isEqualToString:dto.url]){
         [[Unity sharedInstance].getCurrentVC.navigationController popToRootViewControllerAnimated:YES];
         return;
-    }
-    
-    BOOL isAction = false;
-    NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-    for (UIViewController *vc in ary) {
-        
-        if ([vc isKindOfClass:RecyleWebViewController.class]){
-            RecyleWebViewController *webVC = (RecyleWebViewController *)vc;
-            if ([webVC.preLevelPath isEqualToString:dto.url]){
-                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
-                isAction = YES;
-                break;
-            }
-            else if ([@"/index" isEqualToString:dto.url] && [vc isKindOfClass:[RecyleWebViewController class]]){
-                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
-                isAction = YES;
-                break;
-            }
-            //            else if ([@"0" isEqualToString:dto.url]){
-            //                [[Unity sharedInstance].getCurrentVC.navigationController popToRootViewControllerAnimated:YES];
-            //                isAction = YES;
-            //                break;
-            //            }
-        }
-    }
-    if (!isAction){
+    }if (dto.url.length == 0){
         [[Unity sharedInstance].getCurrentVC pop];
+        return;
+    } else{
+        
+        BOOL isAction = false;
+        NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
+        for (UIViewController *vc in ary) {
+            
+            if ([vc isKindOfClass:RecyleWebViewController.class]){
+                RecyleWebViewController *webVC = (RecyleWebViewController *)vc;
+                if ([webVC.preLevelPath isEqualToString:dto.url] || [[NSString stringWithFormat:@"/%@", webVC.preLevelPath] isEqualToString:dto.url]){
+                    [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
+                    isAction = YES;
+                    break;
+                }
+                else if ([@"/index" isEqualToString:dto.url] && [vc isKindOfClass:[RecyleWebViewController class]]){
+                    [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
+                    isAction = YES;
+                    break;
+                }
+            }
+        }
+        if (!isAction){
+            [[Unity sharedInstance].getCurrentVC pop];
+        }
     }
     if(completionHandler){
         completionHandler(YES);
@@ -317,8 +317,11 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
     NSString *urlStr = dto.url;
-    [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithUrl:urlStr withParams:dto.params];
-    
+    if([urlStr hasPrefix:@"http"]){
+        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:urlStr];
+    } else{
+        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithPath:urlStr withParams:dto.params];
+    }
     if(completionHandler){
         completionHandler(YES);
     }
@@ -509,14 +512,15 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     switch ([dto.type intValue]) {
         case 0:{
             //http
-            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithUrl:dto.uri withParams:nil];
+            [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:dto.uri];
             break;
         }
         case 1:{
             //appid
             long version;
             NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:dto.uri out_version:&version];
-            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithUrl:urlStr withParams:nil];
+//            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithUrl:urlStr withParams:nil];
+            [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:urlStr];
             break;
         }
         case 2:

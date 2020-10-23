@@ -1,7 +1,7 @@
 
-`
-undefined
-`
+``` bash
+npm install @zkty-team/com-zkty-module-tools
+```
 
 
 
@@ -14,9 +14,9 @@ undefined
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| filePath | string |  | "" | 文件路径 |
-| unZipPath | string | true | "" | 解压到 路径 |
-| __event__ | string | true |  | 压缩进度 |
+| filePath | string |  |  | 文件路径 |
+| unZipPath | string | true |  | 解压到 路径 |
+| \_\_event\_\_ | string | true |  | 压缩进度 |
 
 
 ## zipFile
@@ -28,10 +28,8 @@ undefined
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| filePath | string |  | "" | 文件路径 |
-| toZipPath | string | true | "" | 压缩到 路径 |
-| __event__ | string | true |  | 解压缩进度 |
-
-    �度 |
+| filePath | string |  |  | 文件路径 |
+| toZipPath | string | true |  | 压缩到 路径 |
+| \_\_event\_\_ | string | true |  | 解压缩进度 |
 
     

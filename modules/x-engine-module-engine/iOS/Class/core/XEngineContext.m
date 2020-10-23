@@ -53,7 +53,7 @@
 
 - (void) onAllMoudlesInited{
     for (xengine__module_BaseModule *module in self.modules) {
-        [module onAllMoudlesInited];
+        [module onAllModulesInited];
     }
 }
 

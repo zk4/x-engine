@@ -92,58 +92,46 @@
     [XEOneWebViewPool sharedInstance].inSingle = isSingle;
 }
 
-- (void)pushViewControllerWithUrl:(NSString *)url withParams:(NSString *)params{
-
-    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withNavigationController:[Unity sharedInstance].getCurrentVC.navigationController];
-    
-    [Unity sharedInstance].getCurrentVC.hidesBottomBarWhenPushed = YES;
-    url = [[XEOneWebViewControllerManage sharedInstance] getUrl:url params:params];
+- (void)pushWebViewControllerWithUrl:(NSString *)url{
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
     
-    UINavigationController *nav = [Unity sharedInstance].getCurrentVC.navigationController;
+//    [[Unity sharedInstance].getCurrentVC.navigationController setXEPopDelegate:^BOOL(BOOL r) {
+//        
+//        [[XEOneWebViewPool sharedInstance] resetUrl: self.rootUrl];
+//        return YES;
+//    }]; 
+}
 
-    [nav setXEPopDelegate:^BOOL(BOOL animated) {
-        
-        if([[Unity sharedInstance].getCurrentVC isKindOfClass:[RecyleWebViewController class]]){
+- (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params{
 
-            RecyleWebViewController *topVc = (RecyleWebViewController *)[Unity sharedInstance].getCurrentVC;
-            if(topVc.webview.backForwardList.backList.count > 1){
-                
-                if([XEOneWebViewPool sharedInstance].inSingle && [Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count >= 2){
-                    UIViewController *toVc = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers[[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count - 2];
-                    if([toVc isKindOfClass:[RecyleWebViewController class]]){
-                        RecyleWebViewController *toWebVc = (RecyleWebViewController *)toVc;
-                        NSString *path = [topVc.webview.backForwardList.backList.lastObject.URL absoluteString];
-                         if([path isEqualToString:toWebVc.fileUrl] || [path isEqualToString:[NSString stringWithFormat:@"%@#/", toWebVc.fileUrl]]){
-                            return YES;
-                        }
-                    }
-                }
-                [topVc.webview goBack];
-                return NO;
-            } else{
-                return YES;
-            }
-        }
-        return YES;
-    }];
+    [Unity sharedInstance].getCurrentVC.hidesBottomBarWhenPushed = YES;
+    NSString *url = [self getUrl:path params:params];
+    
+    UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
+    //
+    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
+    
+    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)pushViewControllerWithAppid:(NSString *)appid withParams:(NSString *)params{
     long version;
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:&version];
-    [self pushViewControllerWithUrl:urlStr withParams:nil];
+    [self setMainUrl:urlStr];
+    [self pushWebViewControllerWithUrl:urlStr];
 }
 
 -(NSString *)setMainUrl:(NSString *)url{
     
-    if(![url hasSuffix:@"index.html"] && ![url hasSuffix:@"index.html/"]){
-        if([url hasSuffix:@"/"])
-            url = [NSString stringWithFormat:@"%@index.html", url];
-        else
-            url = [NSString stringWithFormat:@"%@/index.html", url];
+    if([url rangeOfString:@".html"].location == NSNotFound){
+        if(![url hasSuffix:@"index.html"] && ![url hasSuffix:@"index.html/"]){
+            if([url hasSuffix:@"/"])
+                url = [NSString stringWithFormat:@"%@index.html", url];
+            else
+                url = [NSString stringWithFormat:@"%@/index.html", url];
+        }
     }
     self.rootUrl = url;
     [self createCacheVC];
@@ -183,7 +171,7 @@
 
 -(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
 
-    XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:url withIsRoot:[url isEqualToString:self.rootUrl]];
+    XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:url withRootPath:nil];
     return vc;
 }
 

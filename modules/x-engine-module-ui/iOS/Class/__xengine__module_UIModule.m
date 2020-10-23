@@ -31,6 +31,8 @@
 @property (nonatomic, copy) NSString *pickerResultTwo;
 @property (nonatomic, copy) NSString *pickerResultThree;
 @property (nonatomic, copy) NSString *pickerResultFour;
+@property(nonatomic,copy)NSString * event;
+
 /********************pickerView********************/
 @end
 
@@ -45,120 +47,108 @@
     return @"com.zkty.module.ui";
 }
 
-- (void)showSuccessToast:(NSString *)jsonString complate:(XEngineCallBack)completionHandler {
-    NSDictionary *param = [JSONToDictionary toDictionary:jsonString];
-    
-    NSTimeInterval time = 2;
-    if (param) {
-        NSString *duration =[NSString stringWithFormat:@"%@",param[@"duration"]];
-        NSString *title = param[@"title"];
-        if (duration.doubleValue != 0.0 && ![duration isEqualToString:@""]) {
-            time = duration.floatValue / 1000.0;
-        }
-        [MBProgressHUD showToastWithTitle:title image:[UIImage imageNamed:@"thcket_success"] time:time];
-    } else {
-        [[Unity sharedInstance].getCurrentVC showLoading];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[Unity sharedInstance].getCurrentVC hideLoading];
-        });
-    }
-}
+#pragma mark - Toast
 
-- (void)showFailToast:(NSString *)jsonString complate:(XEngineCallBack)completionHandler {
-    NSDictionary *param = [JSONToDictionary toDictionary:jsonString];
-    NSTimeInterval time = 2;
-    if (param) {
-        NSString *duration =[NSString stringWithFormat:@"%@",param[@"duration"]];
-        NSString *title = param[@"title"];
-        if (duration.doubleValue != 0.0 && ![duration isEqualToString:@""]) {
-            time = duration.floatValue / 1000.0;
-        }
-        [MBProgressHUD showToastWithTitle:title image:[UIImage imageNamed:@"Ticket_fail"] time:time];
-    } else {
-        [[Unity sharedInstance].getCurrentVC showLoading];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[Unity sharedInstance].getCurrentVC hideLoading];
-        });
-    }
-}
+ - (void)_hideToast:(void (^)(BOOL))completionHandler {
+     [[Unity sharedInstance].getCurrentVC hideLoading];
+     
+//     [self hiddenHudToast:[Unity sharedInstance].topView];
+ }
 
- 
-- (void)hideToast:(NSString *)jsonString callBack:(XEngineCallBack)completionHandler {
+
+- (void)_hiddenHudToast:(void (^)(BOOL))completionHandler {
     [[Unity sharedInstance].getCurrentVC hideLoading];
-    [self hiddenHudToast:[Unity sharedInstance].topView];
+//    [MBProgressHUD hideHUDForView:[Unity sharedInstance].topView] animated:YES];
 }
 
-- (void)hiddenHudToast:(UIView *)view {
-    [[Unity sharedInstance].getCurrentVC hideLoading];
-    [MBProgressHUD hideHUDForView:view animated:YES];
-}
-
-#pragma mark - Loading
-- (void)showLoading:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler {
+- (void)_showToast:(XEToastDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    NSTimeInterval time = 2;
     @try {
-        NSString *title = param[@"title"];
+        NSString *title = dto.tipContent;
         if ([self checkRequiredParam:title name:@"title"]) {
-            [[Unity sharedInstance].getCurrentVC showLoading:title];
-        }
-        
-    } @catch (NSException *exception) {
-        
-    } @finally {
-        
-    }
-}
-
-- (void)hideLoading:(NSString *)jsonString complate:(XEngineCallBack)completionHandler {
-    [[Unity sharedInstance].getCurrentVC hideLoading];
-}
-
-#pragma mark - Alert
-//- (void)showModal:(NSDictionary *)param complate:(XEngineCallBack)completionHandler {
-//    NSString *title = param[@"title"];
-//    if ( [self checkRequiredParam:title name:@"title"]) {
-//        NSString *message = param[@"content"];
-//        BOOL showCancel =[param[@"showCancel"] boolValue];
-//        if (showCancel) {
-//            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message cancelTitle:@"取消" sureTitle:@"确定" cancelHandler:^(UIAlertAction * _Nonnull action) {
-//                NSDictionary *callBackParam = @{@"tapIndex": [NSString stringWithFormat:@"%d",0]};
-//                completionHandler([JSONToDictionary toString:callBackParam],YES);
-//            } sureHandler:^(UIAlertAction * _Nonnull action) {
-//                NSDictionary *callBackParam = @{@"tapIndex": [NSString stringWithFormat:@"%d",1]};
-//                completionHandler([JSONToDictionary toString:callBackParam],YES);
-//            }];
-//        } else {
-//            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {
-//                NSDictionary *callBackParam = @{@"tapIndex": [NSString stringWithFormat:@"%d",1]};
-//                completionHandler([JSONToDictionary toString:callBackParam],YES);
-//            }];
-//        }
-//    }
-//}
-
-
-- (void)showActionSheet:(NSDictionary *)param complate:(XEngineCallBack)completionHandler {
-    @try{
-        NSString *title = param[@"title"];
-        NSString *message = param[@"content"];
-        NSArray *itemList = param[@"itemList"];
-        if ([self checkRequiredParam:itemList name:@"itemList"]) {
-            NSMutableArray *actionHandlers = [NSMutableArray array];
-            for (int i = 0; i < itemList.count; i++) {
-                ActionHandler handler = ^(UIAlertAction * _Nonnull action){
-                    NSDictionary *callBackParam = @{@"tapIndex": [NSString stringWithFormat:@"%d",i]};
-                    completionHandler([JSONToDictionary toString:callBackParam],YES);
-                };
-                [actionHandlers addObject:handler];
+            NSString *duration =[NSString stringWithFormat:@"%ld",(long)dto.duration];
+            if (duration.doubleValue != 0.0 && ![duration isEqualToString:@""]) {
+                time = duration.floatValue / 1000.0;
             }
             
-            [[Unity sharedInstance].getCurrentVC showActionSheetWithTitle:title message:message cancelTitle:@"取消" sureTitles:itemList cancelHandler:^(UIAlertAction * _Nonnull action) {
-            } sureHandlers:actionHandlers];
+            NSString *icon = dto.icon;
+            if ([icon isEqualToString:@"success"]) {
+                [MBProgressHUD showToastWithTitle:title image:[UIImage imageNamed:@"toast_success" inAssets:@"xengine-ui"] time:time];
+            } else if ([icon isEqualToString:@"loading"]) {
+                [[Unity sharedInstance].getCurrentVC showLoading:title];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[Unity sharedInstance].getCurrentVC hideLoading];
+                });
+            } else {
+                [MBProgressHUD showToastWithTitle:title image:nil time:time];
+            }
         }
-    }@catch (NSException *exception) {}
+    } @catch (NSException *exception) {}
 }
 
 
-/********************pickerView********************/
+#pragma mark - Loading
+
+- (void)_showLoading:(XETipDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    NSString *title = dto.tipContent;
+    if ([self checkRequiredParam:title name:@"title"]) {
+        [[Unity sharedInstance].getCurrentVC showLoading:title];
+    }
+}
+
+- (void)_hideLoading:(void (^)(BOOL))completionHandler {
+    [[Unity sharedInstance].getCurrentVC hideLoading];
+}
+
+
+#pragma mark - Alert/Modal
+- (void)_showModal:(XEModalDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
+    NSString *title = dto.tipTitle;
+    if ( [self checkRequiredParam:title name:@"title"]) {
+        NSString *message = dto.tipContent;
+        BOOL showCancel = dto.showCancel;
+        if (showCancel) {
+            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message cancelTitle:@"取消" sureTitle:@"确定" cancelHandler:^(UIAlertAction * _Nonnull action) {
+                XERetDTO * d = [XERetDTO new];
+                d.content = [NSString stringWithFormat:@"%d",0];
+                completionHandler(d,YES);
+            } sureHandler:^(UIAlertAction * _Nonnull action) {
+                XERetDTO * d = [XERetDTO new];
+                d.content = [NSString stringWithFormat:@"%d",1];
+                completionHandler(d,YES);
+            }];
+        } else {
+            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {
+                XERetDTO * d = [XERetDTO new];
+                d.content = [NSString stringWithFormat:@"%d",1];
+                completionHandler(d,YES);
+            }];
+        }
+    }
+}
+
+
+
+#pragma mark - ActionSheet
+- (void)_showActionSheet:(XESheetDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
+    NSMutableArray *actionHandlers = [NSMutableArray array];
+        for (int i = 0; i < dto.itemList.count; i++)
+        {
+            ActionHandler handler = ^(UIAlertAction * _Nonnull action){
+                
+                NSLog(@"%d",i);
+                XERetDTO * d = [XERetDTO new];
+                d.content = [NSString stringWithFormat:@"%d",i];
+                completionHandler(d, YES);
+            };
+            [actionHandlers addObject:handler];
+        }
+        UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
+    
+        [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {} sureHandlers:actionHandlers];
+}
+
+#pragma mark - PickerView
 - (NSMutableArray *)pickerViewData {
     if (!_pickerViewData) {
         _pickerViewData = [NSMutableArray array];
@@ -166,38 +156,42 @@
     return _pickerViewData;
 }
 
-- (void)showPickerView:(NSDictionary *)params complate:(XEngineCallBack)completionHandler {
+- (void)_showPickerView:(XEPickerDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
+    self.event = dto.__event__;
     // 左边文字
-    NSString *leftText = [NSString stringWithFormat:@"%@", params[@"leftText"]];
+    NSString *leftText = [NSString stringWithFormat:@"%@", dto.leftText];
     // 左边文字大小
-    int leftTextSize = [params[@"leftTextSize"] intValue];
+    NSInteger leftTextSize = dto.leftTextSize;
     // 左边文字颜色
-    NSString *leftTextColor = [NSString stringWithFormat:@"%@", params[@"leftTextColor"]];
+    NSString *leftTextColor = [NSString stringWithFormat:@"%@", dto.leftTextColor];
     
     // 右边文字
-    NSString *rightText = [NSString stringWithFormat:@"%@", params[@"rightText"]];
+    NSString *rightText = [NSString stringWithFormat:@"%@", dto.rightText];
     // 右边文字大小
-    int rightTextSize = [params[@"rightTextSize"] intValue];
+    NSInteger rightTextSize = dto.rightTextSize;
     // 右边文字颜色
-    NSString *rightTextColor = [NSString stringWithFormat:@"%@", params[@"rightTextColor"]];
+    NSString *rightTextColor = [NSString stringWithFormat:@"%@",dto.rightTextColor];
     
     // pickerView 背景颜色
-    NSString *backgroundColor = [NSString stringWithFormat:@"%@", params[@"backgroundColor"]];
+    NSString *backgroundColor = [NSString stringWithFormat:@"%@", dto.backgroundColor];
     // pickerView 背景透明度
-    NSString *backgroundColorAlpha = [NSString stringWithFormat:@"%@", params[@"backgroundColorAlpha"]];
+    NSString *backgroundColorAlpha = [NSString stringWithFormat:@"%@", dto.backgroundColorAlpha];
     double alpha = [backgroundColorAlpha doubleValue];
     
     // pickerView 背景色
-    NSString *bgColor = [NSString stringWithFormat:@"%@", params[@"pickerBackgroundColor"]];
+    NSString *bgColor = [NSString stringWithFormat:@"%@", dto.pickerBackgroundColor];
     // pickerView 高度
-    NSInteger pickerViewHeight = [params[@"pickerHeight"] intValue];
+    NSInteger pickerViewHeight = [dto.pickerHeight intValue];
     // pickerView 行高
-    self.pickerViewRowHeight = [params[@"rowHeight"] intValue];
+    self.pickerViewRowHeight = [dto.rowHeight intValue];
     // pickerView 数据
-    self.pickerViewData = params[@"data"];
-    
+    self.pickerViewData = [[NSMutableArray alloc]initWithArray:dto.data];
+    self.pickerResultOne = self.pickerViewData[0][0];
+    self.pickerResultTwo = self.pickerViewData[1][0];
+    self.pickerResultThree = self.pickerViewData[2][0];
+    self.pickerResultFour = self.pickerViewData[3][0];
     // toolbar背景颜色
-    NSString *toolBarBackgroundColor = [NSString stringWithFormat:@"%@", params[@"toolBarBackgroundColor"]];
+    NSString *toolBarBackgroundColor = [NSString stringWithFormat:@"%@", dto.toolBarBackgroundColor];
     
     // pickerView背景
     UIView *view = [UIView new];
@@ -220,24 +214,24 @@
     
     UIBlockButton *leftBtn = [UIBlockButton buttonWithType:UIButtonTypeCustom];
     
- 
+    
     [leftBtn handleControlEvent:UIControlEventTouchUpInside withBlock:^(UIBlockButton *sender){
         [self  didClickPickerLeftBtn];
     }];
     leftBtn.frame = CGRectMake(10, 0, 100, 44);
     leftBtn.titleLabel.font = [UIFont systemFontOfSize:leftTextSize];
     [leftBtn setTitle:leftText forState:UIControlStateNormal];
-//    [leftBtn addTarget:self action:@selector(didClickPickerLeftBtn) forControlEvents:UIControlEventTouchUpInside];
+    //    [leftBtn addTarget:self action:@selector(didClickPickerLeftBtn) forControlEvents:UIControlEventTouchUpInside];
     [leftBtn setTitleColor:[UIColor colorWithHexString:leftTextColor] forState:UIControlStateNormal];
     // pickerView右边按钮
     UIBlockButton *rightBtn = [UIBlockButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(pickerToolBarView.frame.size.width - 110, 0, 100, 44);
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:rightTextSize];
     [rightBtn setTitle:rightText forState:UIControlStateNormal];
-//    [rightBtn addTarget:self action:@selector(didClickPickerRightBtn) forControlEvents:UIControlEventTouchUpInside];
+    //    [rightBtn addTarget:self action:@selector(didClickPickerRightBtn) forControlEvents:UIControlEventTouchUpInside];
     [rightBtn handleControlEvent:UIControlEventTouchUpInside withBlock:^(UIBlockButton *sender){
-          [self  didClickPickerRightBtn];
-      }];
+        [self  didClickPickerRightBtn];
+    }];
     [rightBtn setTitleColor:[UIColor colorWithHexString:rightTextColor] forState:UIControlStateNormal];
     [pickerToolBarView addSubview:leftBtn];
     [pickerToolBarView addSubview:rightBtn];
@@ -271,12 +265,17 @@
         pickerResult = [NSMutableString stringWithFormat:@"%@,%@,%@,%@", _pickerResultOne, _pickerResultTwo, _pickerResultThree, _pickerResultFour];
     }
 
-    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-    if ([topVC isKindOfClass:MircroAppController.class]){
+     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    if ([topVC isKindOfClass:RecyleWebViewController.class]) {
+        
         RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
+        XERetDTO* d = [XERetDTO new];
         NSDictionary *dict = @{@"data" : pickerResult };
         NSString *args = [JSONToDictionary toString:dict];
-        [webVC.webview callHandler:@"handlerPickerViewEnter" arguments:@[args] completionHandler:^(id  _Nullable value) {}];
+        d.content = args;
+        NSLog(@"ddddd%@",self.event);
+        [webVC.webview callHandler:self.event arguments:@[d.content] completionHandler:^(id  _Nullable value) {}];
+        
     }
 }
 
@@ -346,99 +345,6 @@
 // 行高
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
     return self.pickerViewRowHeight;
-}
-/********************pickerView********************/ 
-
-
-
-
-//- (void)_showAlertAction:(ZKUIAlertDTO *)dto complete:(void (^)(BOOL))completionHandler {
-//
-//    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-//
-//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:dto.title message:dto.content preferredStyle:dto.isAlert ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
-//    if (dto.btnItem.count > 0){
-//        for (int i = 0; i < dto.btnItem.count; i++){
-//            ZKUIBtnDTO *item = dto.btnItem[i];
-//            UIAlertAction *action = [UIAlertAction actionWithTitle:item.title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                if ([topVC isKindOfClass:[RecyleWebViewController class]]){
-//                    RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-//                    if (item.__event__){
-//                        [webVC.webview callHandler:item.__event__ arguments:@[@(i)] completionHandler:nil];
-//                    }
-//                }
-//            }];
-//            [alert addAction:action];
-//        }
-//    } else {
-//        UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//        [alert addAction:action];
-//    }
-//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-//    completionHandler(YES);
-//}
-
-- (void)_showLoading:(void (^)(BOOL))completionHandler {
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [[UIApplication sharedApplication].keyWindow addSubview:activityIndicator];
-    //设置小菊花的frame
-    activityIndicator.frame= CGRectMake(100, 100, 100, 100);
-    //设置小菊花颜色
-    activityIndicator.color = [UIColor redColor];
-    //设置背景颜色
-    activityIndicator.backgroundColor = [UIColor cyanColor];
-    //刚进入这个界面会显示控件，并且停止旋转也会显示，只是没有在转动而已，没有设置或者设置为YES的时候，刚进入页面不会显示
-    activityIndicator.hidesWhenStopped = NO;
-}
-
-//- (void)_showModal:(ZKUIModalDTO *)dto complete:(void (^)(BOOL))completionHandler{
-//    
-//    NSString *title = dto.title;
-//    if ( [self checkRequiredParam:title name:@"title"]) {
-//        NSString *message = dto.content;
-//        BOOL showCancel = dto.showCancel;
-//        if (showCancel) {
-//            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message cancelTitle:@"取消" sureTitle:@"确定" cancelHandler:^(UIAlertAction * _Nonnull action) {
-//                NSDictionary *callBackParam = @{@"tapIndex": [NSString stringWithFormat:@"%d",0]};
-//                completionHandler([JSONToDictionary toString:callBackParam],YES);
-//            } sureHandler:^(UIAlertAction * _Nonnull action) {
-//                NSDictionary *callBackParam = @{@"tapIndex": [NSString stringWithFormat:@"%d",1]};
-//                completionHandler([JSONToDictionary toString:callBackParam],YES);
-//            }];
-//        } else {
-//            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {
-//                NSDictionary *callBackParam = @{@"tapIndex": [NSString stringWithFormat:@"%d",1]};
-//                completionHandler([JSONToDictionary toString:callBackParam],YES);
-//            }];
-//        }
-//    }
-//    completionHandler(YES);
-//}
-  
-
-- (void)_showToast:(XEToastDTO *)dto complete:(void (^)(BOOL))completionHandler {
-     NSTimeInterval time = 2;
-       @try {
-           NSString *title = dto.tipContent;
-           if ([self checkRequiredParam:title name:@"title"]) {
-               NSString *duration =[NSString stringWithFormat:@"%d",dto.duration];
-               if (duration.doubleValue != 0.0 && ![duration isEqualToString:@""]) {
-                   time = duration.floatValue / 1000.0;
-               }
-               
-               NSString *icon = dto.icon;
-               if ([icon isEqualToString:@"success"]) {
-                   [MBProgressHUD showToastWithTitle:title image:[UIImage imageNamed:@"toast_success" inAssets:@"xengine-ui"] time:time];
-               } else if ([icon isEqualToString:@"loading"]) {
-                   [[Unity sharedInstance].getCurrentVC showLoading:title];
-                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                       [[Unity sharedInstance].getCurrentVC hideLoading];
-                   });
-               } else {
-                   [MBProgressHUD showToastWithTitle:title image:nil time:time];
-               }
-           }
-       } @catch (NSException *exception) {}
 }
 
 @end

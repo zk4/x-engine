@@ -1,7 +1,7 @@
 
-`
-com.zkty.module.demo
-`
+``` bash
+npm install @zkty-team/com-zkty-module-demo
+```
 
 
 
@@ -44,10 +44,10 @@ com.zkty.module.demo
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | "hello" |  标题 |
+| title | string |  | hello |  标题 |
 | itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | "content" |  内容 |
-| __event__ |  |  | null |  点击子标题回调函数 |
+| content | string | true | content |  内容 |
+| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
 
 
 ## haveArgRetPrimitive
@@ -59,10 +59,10 @@ com.zkty.module.demo
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | "hello" |  标题 |
+| title | string |  | hello |  标题 |
 | itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | "content" |  内容 |
-| __event__ |  |  | null |  点击子标题回调函数 |
+| content | string | true | content |  内容 |
+| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
 
 
 ## haveArgRetSheetDTO
@@ -74,10 +74,10 @@ com.zkty.module.demo
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | "hello" |  标题 |
+| title | string |  | hello |  标题 |
 | itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | "content" |  内容 |
-| __event__ |  |  | null |  点击子标题回调函数 |
+| content | string | true | content |  内容 |
+| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
 
 
 ## showActionSheet
@@ -101,9 +101,9 @@ ui.showActionSheet({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | "hello" |  标题 |
+| title | string |  | hello |  标题 |
 | itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | "content" |  内容 |
-| __event__ |  |  | null |  点击子标题回调函数 |
+| content | string | true | content |  内容 |
+| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
 
     

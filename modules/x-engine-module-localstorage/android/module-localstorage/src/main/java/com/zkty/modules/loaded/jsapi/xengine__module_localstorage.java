@@ -35,19 +35,19 @@
     public boolean isPublic;
   }
   
-  class StorageStatusDTO {
-    public String result;
-
+  class StorageRemoveAllDTO {
     public boolean isPublic;
   }
   
+  class StorageStatusDTO {
+    public String result;
+  }
+  
   interface xengine__module_localstorage_i {
-    public void _setLocalStorage(StorageSetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void _getLocalStorage(StorageGetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void _removeLocalStorageItem(StorageRemoveDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void _removeLocalStorageAll(StorageRemoveDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void __testSetOtherIDLocalStorage(StorageSetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void __testGetOtherIDLocalStorage(StorageGetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
+    public void _set(StorageSetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
+public void _get(StorageGetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
+public void _remove(StorageRemoveDTO dto, final CompletionHandler<StorageStatusDTO> handler);
+public void _removeAll(StorageRemoveAllDTO dto, final CompletionHandler<StorageStatusDTO> handler);
   }
   
   
@@ -58,9 +58,9 @@ public void __testGetOtherIDLocalStorage(StorageGetDTO dto, final CompletionHand
     }
   
     @JavascriptInterface
-    final public void setLocalStorage(JSONObject obj, final CompletionHandler<Object> handler) {
+    final public void set(JSONObject obj, final CompletionHandler<Object> handler) {
       StorageSetDTO data= convert(obj,StorageSetDTO.class);
-      _setLocalStorage(data, new CompletionHandler<StorageStatusDTO>() {
+      _set(data, new CompletionHandler<StorageStatusDTO>() {
         @Override
         public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
         @Override
@@ -72,9 +72,9 @@ public void __testGetOtherIDLocalStorage(StorageGetDTO dto, final CompletionHand
     }
 
     @JavascriptInterface
-    final public void getLocalStorage(JSONObject obj, final CompletionHandler<Object> handler) {
+    final public void get(JSONObject obj, final CompletionHandler<Object> handler) {
       StorageGetDTO data= convert(obj,StorageGetDTO.class);
-      _getLocalStorage(data, new CompletionHandler<StorageStatusDTO>() {
+      _get(data, new CompletionHandler<StorageStatusDTO>() {
         @Override
         public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
         @Override
@@ -86,9 +86,9 @@ public void __testGetOtherIDLocalStorage(StorageGetDTO dto, final CompletionHand
     }
 
     @JavascriptInterface
-    final public void removeLocalStorageItem(JSONObject obj, final CompletionHandler<Object> handler) {
+    final public void remove(JSONObject obj, final CompletionHandler<Object> handler) {
       StorageRemoveDTO data= convert(obj,StorageRemoveDTO.class);
-      _removeLocalStorageItem(data, new CompletionHandler<StorageStatusDTO>() {
+      _remove(data, new CompletionHandler<StorageStatusDTO>() {
         @Override
         public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
         @Override
@@ -100,37 +100,9 @@ public void __testGetOtherIDLocalStorage(StorageGetDTO dto, final CompletionHand
     }
 
     @JavascriptInterface
-    final public void removeLocalStorageAll(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageRemoveDTO data= convert(obj,StorageRemoveDTO.class);
-      _removeLocalStorageAll(data, new CompletionHandler<StorageStatusDTO>() {
-        @Override
-        public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(StorageStatusDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void _testSetOtherIDLocalStorage(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageSetDTO data= convert(obj,StorageSetDTO.class);
-      __testSetOtherIDLocalStorage(data, new CompletionHandler<StorageStatusDTO>() {
-        @Override
-        public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(StorageStatusDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void _testGetOtherIDLocalStorage(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageGetDTO data= convert(obj,StorageGetDTO.class);
-      __testGetOtherIDLocalStorage(data, new CompletionHandler<StorageStatusDTO>() {
+    final public void removeAll(JSONObject obj, final CompletionHandler<Object> handler) {
+      StorageRemoveAllDTO data= convert(obj,StorageRemoveAllDTO.class);
+      _removeAll(data, new CompletionHandler<StorageStatusDTO>() {
         @Override
         public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
         @Override

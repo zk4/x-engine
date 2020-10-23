@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)showErrorAlert:(NSString *)errorString;
 
-- (void) onAllMoudlesInited;
+- (void) onAllModulesInited;
 
 
 

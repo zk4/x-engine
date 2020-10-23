@@ -1,7 +1,7 @@
 
-`
-com.zkty.module.bluetooth
-`
+``` bash
+npm install @zkty-team/com-zkty-module-bluetooth
+```
 
 
 

@@ -19,8 +19,11 @@ UIKIT_EXTERN NSNotificationName const XEWebViewProgressChangeNotification;
 
 + (instancetype)sharedInstance;
 
+- (BOOL)checkUrl:(NSString *)url;
 - (XEngineWebView *)getWebView:(NSString *)url; 
 - (XEngineWebView *)createNewWebView:(NSString *)baseUrl;
+
+- (void)resetUrl:(NSString *)url;
 
 @end
 

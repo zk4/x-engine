@@ -9,6 +9,7 @@
 @protocol StorageSetDTO;
 @protocol StorageGetDTO;
 @protocol StorageRemoveDTO;
+@protocol StorageRemoveAllDTO;
 @protocol StorageStatusDTO;
 
 @interface StorageSetDTO: JSONModel
@@ -30,31 +31,29 @@
 @end
     
 
+@interface StorageRemoveAllDTO: JSONModel
+  	@property(nonatomic,assign) BOOL isPublic;
+@end
+    
+
 @interface StorageStatusDTO: JSONModel
   	@property(nonatomic,copy) NSString* result;
-   	@property(nonatomic,assign) BOOL isPublic;
 @end
     
 
 
 @protocol xengine__module_localstorage_protocol
        @required 
-        - (void) _setLocalStorage:(StorageSetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
+        - (void) _set:(StorageSetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _getLocalStorage:(StorageGetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
+        - (void) _get:(StorageGetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _removeLocalStorageItem:(StorageRemoveDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
+        - (void) _remove:(StorageRemoveDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _removeLocalStorageAll:(StorageRemoveDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) __testSetOtherIDLocalStorage:(StorageSetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) __testGetOtherIDLocalStorage:(StorageGetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
+        - (void) _removeAll:(StorageRemoveAllDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
 
 @end
   

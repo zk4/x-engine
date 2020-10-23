@@ -1,13 +1,13 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '11.0'
 
-source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/zkty-team/x-engine-pods.git'
+#source 'https://github.com/CocoaPods/Specs.git'
+#source 'https://github.com/zkty-team/x-engine-pods.git'
 
 target 'ModuleApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
-  pod 'JSONModel'
+  #pod 'JSONModel'
   #pod 'SSZipArchive'
   #pod 'AFNetworking'
   #pod 'XEngineSDK'
@@ -18,10 +18,11 @@ target 'ModuleApp' do
   pod 'x-engine-module-engine', :path =>'../../x-engine-module-engine'
   #pod 'x-engine-module-microapp', :path =>'../../x-engine-module-microapp'
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
+  pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols/'
+
   
 
  target 'ModuleAppTests' do
-    inherit! :search_paths
     # Pods for testing
   end
 

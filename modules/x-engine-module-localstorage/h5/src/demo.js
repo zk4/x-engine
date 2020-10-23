@@ -1,61 +1,103 @@
 
 import localstorage from './index.js'
 
-  window.setLocalStorage = () => {
-    localstorage.setLocalStorage({
-      key: "key",
-      value: "value"
-    })
+  window.set = () => {
+    localstorage
+      .set({
+        key: "key",
+        value: "value",
+        isPublic: false,
+      })
       .then((res) => {
-        document.getElementById("debug_text").innerText = res.result;
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 
-  window.getLocalStorage = () => {
-    localstorage.getLocalStorage({
-      key: "key",
-      isPublic: false,
-    })
+  window.get = () => {
+    localstorage
+      .get({
+        key: "key",
+        isPublic: false,
+      })
       .then((res) => {
-        document.getElementById("debug_text").innerText = res.result;
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 
-  window.removeLocalStorageItem = () => {
-    localstorage.removeLocalStorageItem({
-      key: "item",
-    })
+  window.remove = () => {
+    localstorage
+      .remove({
+        key: "key",
+        isPublic: false,
+      })
       .then((res) => {
-        document.getElementById("debug_text").innerText = res.result;
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 
-  window.removeLocalStorageAll = () => {
-    localstorage.removeLocalStorageAll({
-      key: "all",
-    }).then((res) => {
-      document.getElementById("debug_text").innerText = res.result;
-    });
-  };
-
-  window._testSetOtherIDLocalStorage = () => {
-    localstorage._testSetOtherIDLocalStorage({
-      key: "key",
-      value: "value2222",
-      isPublic: false,
-    })
+  window.removeAll = () => {
+    localstorage
+      .removeAll({
+        isPublic: false,
+      })
       .then((res) => {
-        document.getElementById("debug_text").innerText = res.result;
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 
-  window._testGetOtherIDLocalStorage = () => {
-    localstorage._testGetOtherIDLocalStorage({
-      key: "key",
-      isPublic: false,
-    })
+  window._testRemoveAllPublic = () => {
+    localstorage
+      .removeAll({
+        isPublic: true,
+      })
       .then((res) => {
-        document.getElementById("debug_text").innerText = res.result;
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+
+  window._testSetPublicStorage = () => {
+    localstorage
+      .set({
+        key: "key",
+        value: "public value",
+        isPublic: true,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+
+  window._testGetPublicStorage = () => {
+    localstorage
+      .get({
+        key: "key",
+        isPublic: true,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+
+  window._testSetLocalStorage = () => {
+    localstorage
+      .set({
+        key: "key",
+        value: "local value",
+        isPublic: false,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+
+  window._testGetLocalStorage = () => {
+    localstorage
+      .get({
+        key: "key",
+        isPublic: false,
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 

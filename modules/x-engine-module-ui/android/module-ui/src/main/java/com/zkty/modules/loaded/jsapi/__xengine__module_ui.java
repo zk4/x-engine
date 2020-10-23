@@ -8,11 +8,15 @@ import androidx.annotation.Nullable;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.modules.dsbridge.CompletionHandler;
+import com.zkty.modules.dsbridge.OnReturnValue;
 import com.zkty.modules.engine.utils.ActivityUtils;
 import com.zkty.modules.loaded.widget.dialog.BottomDialog;
 import com.zkty.modules.loaded.widget.dialog.CommonDialog;
 import com.zkty.modules.loaded.widget.dialog.DialogHelper;
 import com.zkty.modules.loaded.widget.pickerview.PickerView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,45 +36,39 @@ public class __xengine__module_ui extends xengine__module_ui {
 
 
     @Override
-    public void _showAlertAction(ZKUIAlertDTO dto, CompletionHandler<Nullable> handler) {
-        Log.d(TAG, JSONObject.toJSONString(dto));
-        try {
-            BottomDialog bottomDialog = new BottomDialog(ActivityUtils.getCurrentActivity());
+    public void _showToast(XEToastDTO dto, CompletionHandler<Nullable> handler) {
 
-            String title = !TextUtils.isEmpty(dto.title) ? dto.title : null;
-            String content = !TextUtils.isEmpty(dto.content) ? dto.content : null;
 
-            String[] item = new String[dto.btnItem.size()];
-            for (int i = 0; i < dto.btnItem.size(); i++) {
-                if (!TextUtils.isEmpty(dto.btnItem.get(i).title)) {
-                    item[i] = dto.btnItem.get(i).title;
-                } else {
-                    item[i] = "";
-                }
-            }
-
-            bottomDialog.initDialog(title, content, item, (view, which, l) -> {
-                if (which != -2) {
-                    JSONObject object = new JSONObject();
-                    object.put(TAPINDEX, which);
-                    //handler.complete(JSONObject.toJSONString(object));
-                    handler.complete();
-                }
-            });
-            bottomDialog.showDialog();
-
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-            handler.complete();
+        String title = !TextUtils.isEmpty(dto.tipContent) ? dto.tipContent : null;
+        String icon = !TextUtils.isEmpty(dto.icon) ? dto.icon : "none";
+        switch (icon) {
+            case "success":
+                DialogHelper.showSuccessDialog(ActivityUtils.getCurrentActivity(), title, dto.duration);
+                break;
+            case "loading":
+                DialogHelper.showLoadingDialog(ActivityUtils.getCurrentActivity(), title, dto.duration);
+                break;
+            case "none":
+            default:
+                DialogHelper.showNoIconDialog(ActivityUtils.getCurrentActivity(), title, dto.duration);
+                break;
         }
+
+        handler.complete();
 
     }
 
     @Override
-    public void _showLoading(ZKUIBtnDTO dto, CompletionHandler<Nullable> handler) {
+    public void _hiddenHudToast(CompletionHandler<Nullable> handler) {
+        DialogHelper.hideDialog();
+        handler.complete();
+    }
+
+    @Override
+    public void _showLoading(XETipDTO dto, CompletionHandler<Nullable> handler) {
         Log.d(TAG, JSONObject.toJSONString(dto));
         try {
-            String title = !TextUtils.isEmpty(dto.title) ? dto.title : "加载中...";
+            String title = !TextUtils.isEmpty(dto.tipContent) ? dto.tipContent : "加载中...";
             DialogHelper.showLoadingDialog(ActivityUtils.getCurrentActivity(), title, 0);
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -79,62 +77,45 @@ public class __xengine__module_ui extends xengine__module_ui {
     }
 
     @Override
-    public void _hideLoading(CompletionHandler<Nullable> handler) {
-        DialogHelper.hideDialog();
-    }
+    public void _showModal(XEModalDTO dto, CompletionHandler<XEAlertResultDTO> handler) {
 
-    @Override
-    public void _showModal(ZKUIAlertDTO dto, CompletionHandler<Nullable> handler) {
-        Log.d(TAG, JSONObject.toJSONString(dto));
-        try {
-            String title = !TextUtils.isEmpty(dto.title) ? dto.title : null;
-            String content = !TextUtils.isEmpty(dto.content) ? dto.content : null;
-            boolean showCancel = dto.showCancel;
+        String title = !TextUtils.isEmpty(dto.tipTitle) ? dto.tipTitle : null;
+        String content = !TextUtils.isEmpty(dto.tipContent) ? dto.tipContent : null;
 
+        CommonDialog dialog = new CommonDialog(ActivityUtils.getCurrentActivity());
+        dialog.setTitle(title);
+        dialog.setContent(content);
+        if (!dto.showCancel)
+            dialog.setSingleMode();
+        dialog.setCanceledOnTouchOutside(false);
 
-            CommonDialog dialog = new CommonDialog(ActivityUtils.getCurrentActivity());
-            dialog.setMessageTitle(title);
-            dialog.setContentMessage(content);
-            dialog.setCancelVisibility(showCancel);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setCommonDialogCallBack(isConfirm -> {
-                JSONObject object = new JSONObject();
-                object.put(TAPINDEX, isConfirm ? 1 : 0);
-                //  handler.complete(JSONObject.toJSONString(object));
-                handler.complete();
-            });
-            dialog.show();
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-            handler.complete();
-        }
-    }
-
-    @Override
-    public void _showToast(ZKUIToastDTO dto, CompletionHandler<Nullable> handler) {
-        Log.d(TAG, JSONObject.toJSONString(dto));
-        try {
-            String title = !TextUtils.isEmpty(dto.title) ? dto.title : null;
-            String icon = !TextUtils.isEmpty(dto.icon) ? dto.icon : "none";
-            long duration = !TextUtils.isEmpty(dto.duration) ? Long.parseLong(dto.duration) : 2000;
-            switch (icon) {
-                case "success":
-                    DialogHelper.showSuccessDialog(ActivityUtils.getCurrentActivity(), title, duration);
-                    break;
-                case "loading":
-                    DialogHelper.showLoadingDialog(ActivityUtils.getCurrentActivity(), title, duration);
-                    break;
-                case "none":
-                default:
-                    DialogHelper.showNoIconDialog(ActivityUtils.getCurrentActivity(), title, duration);
-                    break;
+        dialog.setClickCallback(new CommonDialog.ClickCallback() {
+            @Override
+            public void onCancel() {
+                XEAlertResultDTO resultDTO = new XEAlertResultDTO();
+                resultDTO.tapIndex = "0";
+                handler.complete(resultDTO);
             }
 
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-            handler.complete();
-        }
+            @Override
+            public void onConfirm() {
+                XEAlertResultDTO resultDTO = new XEAlertResultDTO();
+                resultDTO.tapIndex = "1";
+                handler.complete(resultDTO);
+            }
+        });
+
+        dialog.show();
+
     }
+
+
+    @Override
+    public void _hideLoading(CompletionHandler<Nullable> handler) {
+        DialogHelper.hideDialog();
+        handler.complete();
+    }
+
 
     @Override
     public void _hideToast(CompletionHandler<Nullable> handler) {
@@ -142,9 +123,45 @@ public class __xengine__module_ui extends xengine__module_ui {
         handler.complete();
     }
 
+
     @Override
-    public void _showPickerView(ZKUIPickDTO dto, CompletionHandler<Nullable> handler) {
-        Log.d(TAG, JSONObject.toJSONString(dto));
+    public void _showSuccessToast(XEToastDTO dto, CompletionHandler<Nullable> handler) {
+        DialogHelper.showSuccessDialog(ActivityUtils.getCurrentActivity(), dto.tipContent, dto.duration);
+        handler.complete();
+    }
+
+    @Override
+    public void _showFailToast(XEToastDTO dto, CompletionHandler<Nullable> handler) {
+        DialogHelper.showFailDialog(ActivityUtils.getCurrentActivity(), dto.tipContent, dto.duration);
+        handler.complete();
+    }
+
+    @Override
+    public void _showActionSheet(XESheetDTO dto, CompletionHandler<XERetDTO> handler) {
+
+        BottomDialog bottomDialog = new BottomDialog(ActivityUtils.getCurrentActivity());
+
+        String[] item = new String[dto.itemList.size()];
+        for (int i = 0; i < dto.itemList.size(); i++) {
+            item[i] = dto.itemList.get(i);
+        }
+        bottomDialog.initDialog(dto.title, dto.content, item, (view, which, l) -> {
+            mXEngineWebView.callHandler(dto.__event__, new Object[]{which}, new OnReturnValue<Object>() {
+                @Override
+                public void onValue(Object retValue) {
+
+                }
+            });
+
+
+        });
+        bottomDialog.showDialog();
+
+    }
+
+    @Override
+    public void _showPickerView(XEPickerDTO dto, CompletionHandler<XERetDTO> handler) {
+
         List<List<String>> data = new ArrayList<>();
         if (dto.data != null) {
             data = dto.data;
@@ -155,7 +172,14 @@ public class __xengine__module_ui extends xengine__module_ui {
                 .setData(data).setOnDateSelectedListener(new PickerView.OnDataSelectedListener() {
                     @Override
                     public void onDataSelected(List<String> data) {
-                        Log.d(TAG, data.toString());
+
+                        mXEngineWebView.callHandler(dto.__event__, new Object[]{data}, new OnReturnValue<Object>() {
+                            @Override
+                            public void onValue(Object retValue) {
+
+                            }
+                        });
+
                     }
 
                     @Override
@@ -175,8 +199,8 @@ public class __xengine__module_ui extends xengine__module_ui {
         if (!TextUtils.isEmpty(dto.backgroundColorAlpha)) {
             builder.setBackgroundColorAlpha(dto.backgroundColorAlpha);
         }
-        builder.setPickerHeight((int) dto.pickerHeight);
-        builder.setRowHeight((int) dto.rowHeight);
+        builder.setPickerHeight(Integer.parseInt(dto.pickerHeight));
+        builder.setRowHeight(Integer.parseInt(dto.rowHeight));
         if (!TextUtils.isEmpty(dto.leftText)) {
             builder.setLeftText(dto.leftText);
         }
@@ -195,7 +219,5 @@ public class __xengine__module_ui extends xengine__module_ui {
         dateDialog = builder.create();
         dateDialog.show();
 
-
-        handler.complete();
     }
 }

@@ -11,7 +11,8 @@
 #import <Photos/Photos.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <ZBarSDK/ZBarSDK.h>
-#import <x-engine-module-router/XERouterManage.h>
+#import <x-engine-module-router/XERouterManager.h>
+#import <x-engine-module-engine/Unity.h>
 
 #import <x-engine-module-tools/UIView+YYAdd.h>
 #import <x-engine-module-tools/UIButton+Block.h>
@@ -51,7 +52,7 @@
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"扫描二维码";
     
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
@@ -242,9 +243,10 @@
     
     [AVCapturePhotoSettings photoSettings].flashMode = AVCaptureFlashModeOff;
     for (ZBarSymbol *bol in symbols) {
-        
-        NSLog(@"%@", bol.data);
-        [XERouterManage routerToTarget:0 withUri:bol.data withPath:nil];
+        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
+        if(self.block){
+            self.block(bol.data);
+        }
         return;
     }
 }

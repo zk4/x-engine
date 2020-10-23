@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -15,10 +15,22 @@ function osCheck() {
   {
     "name": "openTargetRouter",
     "default_args": {
-      "type": "0",
+      "type": "h5",
       "uri": "https://www.baidu.com",
       "path": ""
     }
+  },
+  {
+    "name": "_testh5",
+    "default_args": null
+  },
+  {
+    "name": "_testnative",
+    "default_args": null
+  },
+  {
+    "name": "_testmicroapp",
+    "default_args": null
   }
 ]
 )}}

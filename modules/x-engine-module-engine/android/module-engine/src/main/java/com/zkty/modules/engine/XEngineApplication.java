@@ -1,5 +1,6 @@
 package com.zkty.modules.engine;
 
+import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
@@ -17,10 +18,12 @@ import java.util.Map;
 
 public class XEngineApplication extends MultiDexApplication {
     private static final String TAG = XEngineApplication.class.getSimpleName();
+    private static Application application;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        application = this;
         XEngineContext.init(this);
         ResourceManager.init(this);
         MicroAppsManager.init(this);
@@ -50,6 +53,7 @@ public class XEngineApplication extends MultiDexApplication {
                 }
             }
         }
+
     }
 
     @Override
@@ -80,5 +84,9 @@ public class XEngineApplication extends MultiDexApplication {
                 }
             }
         }
+    }
+
+    public static Application getApplication() {
+        return application;
     }
 }

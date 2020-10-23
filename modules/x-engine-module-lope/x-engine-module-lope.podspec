@@ -6,12 +6,16 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
+require "json"
+package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+version = package['version']
+
 Pod::Spec.new do |s|
 
 
     s.name         = "x-engine-module-lope"
-    s.version      = "0.0.6"
-    s.summary      = "summary of x-engine-module-lope"
+    s.version      = version
+    s.summary      = package["description"]
 
      s.description  = <<-DESC
             description
@@ -25,17 +29,18 @@ Pod::Spec.new do |s|
 
     s.requires_arc = true
 
-    s.author             = { "zkty" => "liuzq7@gmail.com" }
+    s.author             = { "zkty-team" => "liuzq7@gmail.com" }
 
-    s.platform     = :ios, "11.0"
-    s.ios.deployment_target = "11.0"
+    s.cocoapods_version      = ">= 1.2.0"
+    s.platform     = :ios, "10.0"
+    s.ios.deployment_target = "10.0"
 
     s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-lope.git',
   :tag => s.version.to_s }
 
 
-    s.source_files  = "iOS/Class/*.{h,m}"
-    s.public_header_files = "iOS/Class/*.h"
+    s.source_files  = "iOS/Class/**/*.{h,m}"
+    s.public_header_files = "iOS/Class/**/*.h"
    
     s.frameworks  = "CoreServices"
 

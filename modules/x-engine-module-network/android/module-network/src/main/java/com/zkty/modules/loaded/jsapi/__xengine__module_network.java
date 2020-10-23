@@ -24,7 +24,7 @@ public class __xengine__module_network extends xengine__module_network {
     @Override
     public void _getRequest(final RequestDTO dto, final CompletionHandler<ReponseDTO> handler) {
         DebugUtils.debug(TAG, "request_GET:" + JSONObject.toJSONString(dto));
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.GET, dto.url, dto.headers, dto.params, null, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.GET, dto.url, dto.headers, dto.params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 ReponseDTO responseDto = new ReponseDTO();
@@ -60,7 +60,7 @@ public class __xengine__module_network extends xengine__module_network {
     public void _postRequest(final RequestDTO dto, final CompletionHandler<ReponseDTO> handler) {
         DebugUtils.debug(TAG, "request_POST:" + JSONObject.toJSONString(dto));
 
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.POST, dto.url, dto.headers, dto.params, null, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.POST, dto.url, dto.headers, dto.params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 ReponseDTO responseDto = new ReponseDTO();
@@ -95,7 +95,7 @@ public class __xengine__module_network extends xengine__module_network {
     @Override
     public void _deleteRequest(final RequestDTO dto, final CompletionHandler<ReponseDTO> handler) {
         DebugUtils.debug(TAG, "request_DELETE:" + JSONObject.toJSONString(dto));
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.DELETE, dto.url, dto.headers, dto.params, null, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.DELETE, dto.url, dto.headers, dto.params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 ReponseDTO responseDto = new ReponseDTO();
@@ -130,7 +130,7 @@ public class __xengine__module_network extends xengine__module_network {
     @Override
     public void _headRequest(final RequestDTO dto, final CompletionHandler<ReponseDTO> handler) {
         DebugUtils.debug(TAG, "request_HEAD:" + JSONObject.toJSONString(dto));
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.HEADER, dto.url, dto.headers, dto.params, null, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.HEADER, dto.url, dto.headers, dto.params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 ReponseDTO responseDto = new ReponseDTO();
@@ -166,7 +166,7 @@ public class __xengine__module_network extends xengine__module_network {
     public void _putRequest(final RequestDTO dto, final CompletionHandler<ReponseDTO> handler) {
         DebugUtils.debug(TAG, "request_PUT:" + JSONObject.toJSONString(dto));
 
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.PUT, dto.url, dto.headers, dto.params, null, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.PUT, dto.url, dto.headers, dto.params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 ReponseDTO responseDto = new ReponseDTO();
@@ -201,7 +201,7 @@ public class __xengine__module_network extends xengine__module_network {
     @Override
     public void _patchRequest(final RequestDTO dto, final CompletionHandler<ReponseDTO> handler) {
         DebugUtils.debug(TAG, "request_PATCH:" + JSONObject.toJSONString(dto));
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.PATCH, dto.url, dto.headers, dto.params, null, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.PATCH, dto.url, dto.headers, dto.params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 ReponseDTO responseDto = new ReponseDTO();
@@ -237,7 +237,7 @@ public class __xengine__module_network extends xengine__module_network {
     public void _downloadRequest(final DownloadRequestDTO dto, final CompletionHandler<DownloadReponseDTO> handler) {
         DebugUtils.debug(TAG, "request_DOWNLOAD:" + JSONObject.toJSONString(dto));
 
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.GET, dto.url, dto.headers, dto.params, null, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.GET, dto.url, dto.headers, dto.params, null,null,  new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 DownloadReponseDTO downloadReponseDTO = new DownloadReponseDTO();
@@ -339,7 +339,7 @@ public class __xengine__module_network extends xengine__module_network {
 
         Map<String, String> file = new HashMap<>();
         file.put(dto.filename, dto.filepath);
-        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.POST, dto.url, dto.headers, dto.params, file, new IXEngineNetProtocolCallback() {
+        XEngineNetImpl.getInstance().doRequest(IXEngineNetProtocol.Method.POST, dto.url, dto.headers, dto.params, null, file, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
                 UploadReponseDTO uploadReponseDTO = new UploadReponseDTO();

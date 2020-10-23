@@ -1,5 +1,5 @@
 //rootProject.name='x-engine-module-network'
 include ':app'
-//include ':module-engine'
-//project(':module-engine').projectDir = new File('../../x-engine-module-engine/android/module-engine')
+include ':module-engine'
+project(':module-engine').projectDir = new File('../../x-engine-module-engine/android/module-engine')
 include ':module-network'

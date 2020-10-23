@@ -7,8 +7,11 @@
 #import <micros.h>
 
 
-@implementation serviceUUIDDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+@implementation SheetDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	if ([propertyName isEqualToString:@"itemList"]) { return YES; }
+   	if ([propertyName isEqualToString:@"content"]) { return YES; }
+   	return NO;
     }
 @end
     
@@ -29,9 +32,8 @@
     
     - (void) openDoor:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          serviceUUIDDTO* dto = [self convert:dict clazz:serviceUUIDDTO.class];
-          [self _openDoor:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          [self _openDoor:^(BOOL complete) {
+                 completionHandler(nil,complete); 
           }];
       }
     - (void) customOpenDoor:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
@@ -45,13 +47,5 @@
           [self _lightLift:^(BOOL complete) {
                  completionHandler(nil,complete); 
           }];
-      }
-    - (void) haveArgRetPrimitive:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
-          [self _haveArgRetPrimitive:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
       }
   @end

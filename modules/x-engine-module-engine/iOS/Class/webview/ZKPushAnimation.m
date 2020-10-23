@@ -57,7 +57,27 @@
     
 }
 
+- (void)isOpenCustomAnimation:(BOOL)isOpen withFrom:(UIViewController *)fromVc withTo:(UIViewController *)toVc{
+    if([fromVc isKindOfClass:[RecyleWebViewController class]]
+       && [toVc isKindOfClass:[RecyleWebViewController class]]){
+        
+        if(isOpen && [XEOneWebViewPool sharedInstance].inSingle){
+            UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
+            gesture.enabled = NO;
+            UIView *gestureView = gesture.view;
+            
+            UIScreenEdgePanGestureRecognizer *edgePan = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleControllerPop:)];
+            edgePan.edges = UIRectEdgeLeft;
+            [gestureView addGestureRecognizer:edgePan];
+        } else {
+            UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
+            gesture.enabled = YES;
+        }
+        [Unity sharedInstance].getCurrentVC.navigationController.delegate = isOpen ? self : nil;
+    }
+}
 - (void)isOpenCustomAnimation:(BOOL)isOpen withNavigationController:(UINavigationController *)navController{
+    
     
     if(isOpen && [XEOneWebViewPool sharedInstance].inSingle){
         UIGestureRecognizer *gesture = navController.interactivePopGestureRecognizer;
@@ -78,6 +98,7 @@
                                  animationControllerForOperation:(UINavigationControllerOperation)operation
                                               fromViewController:(UIViewController *)fromVC
                                                 toViewController:(UIViewController *)toVC{
+    
     if (operation == UINavigationControllerOperationPush){
         self.isPush = YES;
     } else {
@@ -116,8 +137,10 @@
     RecyleWebViewController *fromeVc = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     RecyleWebViewController *toVc = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = transitionContext.containerView;
+    containerView.backgroundColor = [UIColor whiteColor];
     
     UIView *screenView = [fromeVc.view resizableSnapshotViewFromRect:fromeVc.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+    screenView.backgroundColor = [UIColor whiteColor];
     UIImage *img = [self getImageFromView:fromeVc.view];
     [fromeVc setScreenImage:img];
     
@@ -172,29 +195,35 @@
     UIView *fromeView = fromVc.view;
     
     if([toVc isKindOfClass:[RecyleWebViewController class]]){
-        RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
-        toView.frame = CGRectMake(toView.bounds.size.width * -0.5,
-                                  toView.frame.origin.y,
-                                  toView.bounds.size.width,
-                                  toView.bounds.size.height);
+        
+//        toView.frame = CGRectMake(0,
+//                                  0,
+//                                  containerView.bounds.size.width,
+//                                  containerView.bounds.size.height);
         [containerView addSubview:toView];
+        
+        RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
+        
+        //获取toView的截屏
+        UIImage *toScreenImg = [toVC getScreenImage];
+        UIImageView *toViewScreenImageView = [[UIImageView alloc] initWithImage:toScreenImg];
+        [containerView addSubview:toViewScreenImageView];
+        toViewScreenImageView.frame = CGRectMake(toView.bounds.size.width * -0.5,
+                                                 containerView.bounds.size.height - toViewScreenImageView.bounds.size.height,
+                                                 containerView.bounds.size.width,
+                                                 toViewScreenImageView.bounds.size.height);
         
         self.toUrl = toVC.fileUrl;
         UIView *fromScreenView = [fromVc.view resizableSnapshotViewFromRect:fromVc.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];;
-        
-        UIImage *toScreenImg = [toVC getScreenImage];
-        UIImageView *toViewScreenImageView = [[UIImageView alloc] initWithImage:toScreenImg];
-        [toView addSubview:toViewScreenImageView];
-        
         fromScreenView.layer.shadowColor = [UIColor blackColor].CGColor;
         fromScreenView.layer.shadowOffset = CGSizeMake(-6, 0);
         fromScreenView.layer.shadowOpacity = 0.2;
-        
         fromScreenView.frame = fromVc.view.frame;
+//        CGRectMake(0,
+//                                          0,
+//                                          fromScreenView.bounds.size.width,
+//                                          fromScreenView.bounds.size.height);
         [containerView addSubview:fromScreenView];
-        
-        
-        toViewScreenImageView.frame = toView.bounds;
         
         UIView *shawView = [[UIView alloc] init];
         shawView.frame = fromScreenView.bounds;
@@ -210,10 +239,10 @@
                          animations:^{
             shawView.alpha = 0;
             
-            toView.frame = CGRectMake(0,
-                                      toView.frame.origin.y,
-                                      toView.bounds.size.width,
-                                      toView.bounds.size.height);
+            toViewScreenImageView.frame = CGRectMake(0,
+                                                     containerView.bounds.size.height - toViewScreenImageView.bounds.size.height,
+                                                     containerView.bounds.size.width,
+                                                     toViewScreenImageView.bounds.size.height);
             
             fromScreenView.frame = CGRectMake(fromScreenView.frame.size.width,
                                               fromScreenView.frame.origin.y,

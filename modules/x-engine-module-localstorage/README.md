@@ -1,9 +1,11 @@
-## desc
-localstorage 会根据 host 自动加入 namespace.
-默认情况:
-http 微应用, 则会使用 host的倒序 作为 namespace.
-离线 微应用, 则会使用 appid 作为 namespace.
+localstorage 会根据微应用的 appid 自动加入 namespace.
 
-也可以在调用函数时,传入namespace, 则优先使用
+也可以向全局写入, 用于应用间的数据共享.
+
+微应用A 无法访问微应用 B的数据.
+
+
+
+
 
 

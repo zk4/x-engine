@@ -116,7 +116,7 @@
     - (void) getSafeAreaRight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getSafeAreaRight:dto complete:^(DeviceSheetDTO* result,  BOOL complete) {
+          [self _getSafeAreaRight:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

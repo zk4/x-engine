@@ -1,20 +1,6 @@
 
 import ui from './index.js'
 
-  window.showSuccessToast = () => {
-    ui
-      .showSuccessToast()
-      .then((res) => {
-      });
-  };
-
-  window.showFailToast = () => {
-    ui
-      .showFailToast()
-      .then((res) => {
-      });
-  };
-
   window.showToast = () => {
     ui
       .showToast()
@@ -54,20 +40,35 @@ import ui from './index.js'
     ui
       .showModal()
       .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 
-  window.showActionSheet = () => {
+  window.showActionSheet = (...args) => {
     ui
-      .showActionSheet()
+      .showActionSheet({
+        title: "hello",
+        itemList: ["hello", "world", "he"],
+        content: "content",
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
       .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 
-  window.showPickerView = () => {
+  window.showPickerView = (...args) => {
     ui
-      .showPickerView()
+      .showPickerView({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
       .then((res) => {
+
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 

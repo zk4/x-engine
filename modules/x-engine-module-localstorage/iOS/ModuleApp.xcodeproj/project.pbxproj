@@ -20,9 +20,9 @@
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
 		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
+		072959EB9FFEE34B822FD102 /* libPods-ModuleApp-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6731C5402100C41760C0F9F9 /* libPods-ModuleApp-ModuleAppTests.a */; };
 		58EC090224DD445C004CF06D /* __xengine__module_localstorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EC090124DD445C004CF06D /* __xengine__module_localstorage.m */; };
 		DDE671112523078700173183 /* XEDataSaveManage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE671102523078700173183 /* XEDataSaveManage.m */; };
-		E3839F690B0B8479C84EF26A /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC00B356D2EEAAB988F7F91 /* libPods-ModuleAppTests.a */; };
 		F79C05101336455C0576272C /* libPods-ModuleApp-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 607396E2768166FB68469406 /* libPods-ModuleApp-ModuleAppUITests.a */; };
 		F8692CDBA1DBEA0A0FF1733F /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 182312870029BA58FD6AAD66 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -71,12 +71,14 @@
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		182312870029BA58FD6AAD66 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		4FC00B356D2EEAAB988F7F91 /* libPods-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BBB5EEECE0CC848CF3426F9 /* Pods-ModuleApp-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppTests/Pods-ModuleApp-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		5865E02424CF31B500A0AF21 /* xengine_protocol_UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xengine_protocol_UI.h; sourceTree = "<group>"; };
 		58EC090024DD445C004CF06D /* __xengine__module_localstorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = __xengine__module_localstorage.h; path = Class/__xengine__module_localstorage.h; sourceTree = SOURCE_ROOT; };
 		58EC090124DD445C004CF06D /* __xengine__module_localstorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = __xengine__module_localstorage.m; path = Class/__xengine__module_localstorage.m; sourceTree = SOURCE_ROOT; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
+		5DD7E703099DEC816DCD7DA9 /* Pods-ModuleApp-ModuleAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppTests/Pods-ModuleApp-ModuleAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		607396E2768166FB68469406 /* libPods-ModuleApp-ModuleAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp-ModuleAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6731C5402100C41760C0F9F9 /* libPods-ModuleApp-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DDE6710F2523078700173183 /* XEDataSaveManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XEDataSaveManage.h; path = Class/XEDataSaveManage.h; sourceTree = SOURCE_ROOT; };
 		DDE671102523078700173183 /* XEDataSaveManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XEDataSaveManage.m; path = Class/XEDataSaveManage.m; sourceTree = SOURCE_ROOT; };
@@ -98,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3839F690B0B8479C84EF26A /* libPods-ModuleAppTests.a in Frameworks */,
+				072959EB9FFEE34B822FD102 /* libPods-ModuleApp-ModuleAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +208,8 @@
 				484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */,
 				F9A3BC2B46BBF2CB2EAD73CC /* Pods-ModuleAppTests.debug.xcconfig */,
 				EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */,
+				5DD7E703099DEC816DCD7DA9 /* Pods-ModuleApp-ModuleAppTests.debug.xcconfig */,
+				4BBB5EEECE0CC848CF3426F9 /* Pods-ModuleApp-ModuleAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -216,7 +220,7 @@
 				003F95D924DA4A6100633E1F /* libc++.tbd */,
 				182312870029BA58FD6AAD66 /* libPods-ModuleApp.a */,
 				607396E2768166FB68469406 /* libPods-ModuleApp-ModuleAppUITests.a */,
-				4FC00B356D2EEAAB988F7F91 /* libPods-ModuleAppTests.a */,
+				6731C5402100C41760C0F9F9 /* libPods-ModuleApp-ModuleAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -251,6 +255,7 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
+				8E2941713C3233F9159C0D81 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -391,7 +396,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ModuleAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ModuleApp-ModuleAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -452,6 +457,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E2941713C3233F9159C0D81 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModuleApp-ModuleAppTests/Pods-ModuleApp-ModuleAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModuleApp-ModuleAppTests/Pods-ModuleApp-ModuleAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModuleApp-ModuleAppTests/Pods-ModuleApp-ModuleAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -676,7 +698,7 @@
 		};
 		00DFC6DD24C83F95006A53EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9A3BC2B46BBF2CB2EAD73CC /* Pods-ModuleAppTests.debug.xcconfig */;
+			baseConfigurationReference = 5DD7E703099DEC816DCD7DA9 /* Pods-ModuleApp-ModuleAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -697,7 +719,7 @@
 		};
 		00DFC6DE24C83F95006A53EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */;
+			baseConfigurationReference = 4BBB5EEECE0CC848CF3426F9 /* Pods-ModuleApp-ModuleAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

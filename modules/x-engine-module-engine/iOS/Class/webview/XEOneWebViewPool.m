@@ -10,7 +10,6 @@
 #import "XEngineContext.h"
 #import "xengine__module_BaseModule.h"
 
-
 NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgressChangeNotification";
 
 @interface XEOneWebViewPool ()
@@ -37,12 +36,26 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
     if (self){
         self.wkprocessPool = [[WKProcessPool alloc] init];
         self.webCacheDic = [@{} mutableCopy];
-        self.inSingle = YES;
+//        self.inSingle = YES;
 //        self.inAllSingle = YES;
     }
     return self;
 }
+
+-(void)resetUrl:(NSString *)url{
+    XEngineWebView *webView = [self getWebView:url];
+    if(webView && webView.backForwardList.backList.count > 2){
+        [webView goBack];
+    }else{
+        [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
+    }
+}
     
+-(BOOL)checkUrl:(NSString *)url{
+    NSString *key = [self urlToDicKey:url];
+    return (self.webCacheDic[key] == nil);
+}
+
 - (XEngineWebView *)getWebView:(NSString *)url{
     
     NSString *key = [self urlToDicKey:url];

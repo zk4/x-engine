@@ -19,6 +19,7 @@ public interface IXEngineNetProtocol {
 
     void doRequest(Method method,
                    final String url, final Map<String, String> header, final Map<String, String> params,
+                   final String json,
                    final Map<String, String> file, final IXEngineNetProtocolCallback callback);
 
     /**

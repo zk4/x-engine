@@ -15,7 +15,7 @@
     NSUserDefaults *defaults;
     if(isPublic){
         
-        defaults = [NSUserDefaults standardUserDefaults];
+        defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
     } else {
         
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
@@ -29,19 +29,22 @@
     
     NSUserDefaults *defaults;
     if(isPublic){
-        defaults = [NSUserDefaults standardUserDefaults];
+        defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
     } else {
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
     }
     NSString *value = [defaults objectForKey: key];
+    if(value.length < 1){
+        value = nil;
+    }
     return value;
 }
 
 // 删除某一个
-+ (void)remoteLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic {
++ (void)removeLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic {
     NSUserDefaults *defaults;
     if(isPublic){
-        defaults = [NSUserDefaults standardUserDefaults];
+        defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
     } else {
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
     }
@@ -50,11 +53,15 @@
 }
 
 // 删除全部
-+ (void)removeLocalStorageAll {
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
-    [defaults removePersistentDomainForName:[MicroAppLoader sharedInstance].nowMicroAppId];
-//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
++ (void)removeLocalStorageAll:(BOOL)isPublic {
+    
+    if(isPublic){
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        [defaults removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    }else{
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
+        [defaults removePersistentDomainForName:[MicroAppLoader sharedInstance].nowMicroAppId];
+    }
 }
 
 //// 设置

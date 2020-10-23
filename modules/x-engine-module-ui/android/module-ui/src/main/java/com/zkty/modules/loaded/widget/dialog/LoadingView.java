@@ -40,7 +40,7 @@ public class LoadingView extends LinearLayout {
         ivWrapper = (ImageView) view.findViewById(R.id.iv_wrapper);
         removeAllViews();
         addView(view);
-        initWrapper();
+    //    initWrapper();
         initInterior();
 
     }

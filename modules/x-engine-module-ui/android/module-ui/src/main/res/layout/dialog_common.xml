@@ -1,88 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <LinearLayout
-        android:id="@+id/layout_message_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_common_rounded_white"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/shape_corner_16"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/message_dialog_title_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/message_dialog_title"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="title"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:maxLines="1"
+                android:textColor="#35343D"
+                android:textSize="22sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:textColor="#121212"
+                android:textSize="18sp" />
+
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/message_dialog_msg_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:linksClickable="true"
-            android:minHeight="50dp"
-            android:paddingBottom="15dp"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/view_dialog_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="50dp"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:visibility="gone"></LinearLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/mz_dialog_btn_layout"
-            android:layout_width="match_parent"
-            android:layout_height="52dp">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/message_dialog_tv_cancle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="30dp"
-                android:layout_toLeftOf="@+id/message_dialog_tv_ok"
-                android:padding="10dp"
+                android:id="@+id/tv_cancel"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_f5_8"
+                android:gravity="center"
                 android:text="取消"
-                android:textColor="#9fa9ba"
+                android:textColor="@color/color_8d8d8d"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/message_dialog_tv_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="25dp"
-                android:padding="10dp"
+                android:id="@+id/tv_confirm"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_e8374a_8"
+                android:gravity="center"
                 android:text="确定"
-                android:textColor="#1495eb"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
-        </RelativeLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

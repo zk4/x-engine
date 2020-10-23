@@ -10,7 +10,8 @@
 @protocol XEToastDTO;
 @protocol XEModalDTO;
 @protocol XEPickerDTO;
-@protocol XEAlertResultDTO;
+@protocol XESheetDTO;
+@protocol XERetDTO;
 
 @interface XETipDTO: JSONModel
   	@property(nonatomic,copy) NSString* tipContent;
@@ -43,25 +44,28 @@
    	@property(nonatomic,copy) NSString* pickerBackgroundColor;
    	@property(nonatomic,copy) NSString* pickerHeight;
    	@property(nonatomic,copy) NSString* rowHeight;
-   	@property(nonatomic,copy) NSString* data;
+   	@property(nonatomic,strong) NSArray<NSArray<NSString*>*>* data;
    	@property(nonatomic,copy) NSString* toolBarBackgroundColor;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
-@interface XEAlertResultDTO: JSONModel
-  	@property(nonatomic,copy) NSString* tapIndex;
+@interface XESheetDTO: JSONModel
+  	@property(nonatomic,copy) NSString* title;
+   	@property(nonatomic,strong) NSArray<NSString*>* itemList;
+   	@property(nonatomic,copy) NSString* content;
+   	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
+@interface XERetDTO: JSONModel
+  	@property(nonatomic,copy) NSString* content;
 @end
     
 
 
 @protocol xengine__module_ui_protocol
        @required 
-        - (void) _showSuccessToast:(XETipDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-        - (void) _showFailToast:(XETipDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
         - (void) _showToast:(XEToastDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
@@ -77,14 +81,14 @@
        - (void) _hideLoading:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-        - (void) _showModal:(XEModalDTO*) dto complete:(void (^)(XEAlertResultDTO* result,BOOL complete)) completionHandler;
+        - (void) _showModal:(XEModalDTO*) dto complete:(void (^)(XERetDTO* result,BOOL complete)) completionHandler;
 
       @required 
-       - (void) _showActionSheet:(void (^)(BOOL complete)) completionHandler;
-    
+        - (void) _showActionSheet:(XESheetDTO*) dto complete:(void (^)(XERetDTO* result,BOOL complete)) completionHandler;
+
       @required 
-       - (void) _showPickerView:(void (^)(BOOL complete)) completionHandler;
-    
+        - (void) _showPickerView:(XEPickerDTO*) dto complete:(void (^)(XERetDTO* result,BOOL complete)) completionHandler;
+
 @end
   
 

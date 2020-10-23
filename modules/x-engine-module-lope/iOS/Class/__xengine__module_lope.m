@@ -18,7 +18,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <AVFoundation/AVFoundation.h>
 
-#define PID          @"C7ACA63782479B2EA33B"
+#define PID          @"03jfuto709chalfwo84nf921qujt5p"
 #define kReadUUID    @"2560"
 #define kServiceUUID @"FF09"
 #define kPeripheralName @"EEEE"
@@ -40,11 +40,13 @@
 @end
 
 @implementation __xengine__module_lope
+
 - (instancetype)init{
     self = [super init];
     // 门禁设备信息将导出给接入方, 包括MAC，秘钥等基本信息
-    self.locks =  @[@{@"mac":@"9C:1D:58:0D:01:E7", @"key": @"j58uM2iFxazkdPtsuf43Ew"},
-                    @{@"mac":@"30:45:11:6E:2C:28", @"key": @"kFL/ynGJKvTpQ2JIvmJDPg"}];
+    //@"mac":@"9C:1D:58:0D:01:E7", @"key": @"j58uM2iFxazkdPtsuf43Ew"
+    self.locks =  @[@{@"mac":@"00:18:E4:0C:73:89", @"key": @"12345678"},
+                    @{@"mac":@"00:18:E4:0C:6C:21", @"key": @"12345678"}];
     
     // 当需要下发卡片黑名单时，ikeyplus物理ID: @[卡片1ID, 卡片2ID..]，格式存储, 在开门时可写入.
     self.blacklist = @{
@@ -81,32 +83,6 @@
     [self.openDoorAudio prepareToPlay];
 }
 
-
-
-- (void)_haveArgRetPrimitive:(SheetDTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    
-}
-
-- (void)_haveArgRetSheetDTO:(SheetDTO *)dto complete:(void (^)(SheetDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_openDoor:(SheetDTO *)dto complete:(void (^)(SheetDTO *, BOOL))completionHandler {
-    NSLog(@"%@//",dto);
-}
-//- (void)_openDoor:(void (^)(BOOL))completionHandler {
-//    if (!self.busy) {
-//        self.isCustomCentralManager = NO;
-//        self.startTime = [NSDate new];
-//        self.busy = YES;
-//
-//        [self.key startScanWithInterval:0.15 serviceUUIDs:@[@"2560",@"FEE7"] immediately:NO];
-//    } else {
-//        NSLog(@"正在执行,请稍后..");
-//    }
-//}
-
-
 - (void)_customOpenDoor:(void (^)(BOOL))completionHandler {
     if (!self.busy) {
         self.isCustomCentralManager = YES;
@@ -114,8 +90,21 @@
         self.busy = YES;
         [self.scanLocks removeAllObjects];
 
-        [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"FEE7"]] options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
-        [self performSelector:@selector(stopBleScan) withObject:nil afterDelay:0.2];
+        [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"2560"]] options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
+        [self performSelector:@selector(stopBleScan) withObject:nil afterDelay:1];
+    } else {
+        NSLog(@"正在执行,请稍后..");
+    }
+
+}
+
+- (void)_openDoor:(void (^)(BOOL))completionHandler {
+    if (!self.busy) {
+        self.isCustomCentralManager = NO;
+        self.startTime = [NSDate new];
+        self.busy = YES;
+
+        [self.key startScanWithInterval:1 serviceUUIDs:@[@"2560",@"FEE7"] immediately:NO];
     } else {
         NSLog(@"正在执行,请稍后..");
     }
@@ -231,8 +220,5 @@
     }
     return;
 }
-
-
-
 @end
  

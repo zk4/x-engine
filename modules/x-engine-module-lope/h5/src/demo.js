@@ -1,38 +1,31 @@
 
 import lope from './index.js'
 
-    window.openDoor = () => {
-    lope
-      .openDoor()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res["title"];
-      });
-  };
-
-  window.customOpenDoor = () => {
+  window.openDoor = (...args) => {
   lope
-    .customOpenDoor()
+    .openDoor(...args)
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
   };
 
 
-  window.lightLift = () => {
+  window.customOpenDoor = (...args) => {
   lope
-    .lightLift()
+    .customOpenDoor(...args)
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
   };
 
 
-    window.haveArgRetPrimitive = (...args) => {
-    lope
-      .haveArgRetPrimitive(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
-      });
+  window.lightLift = (...args) => {
+  lope
+    .lightLift(...args)
+    .then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
   };
+
 
     

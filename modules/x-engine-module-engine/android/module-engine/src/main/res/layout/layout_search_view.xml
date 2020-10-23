@@ -12,7 +12,8 @@
         android:id="@+id/iv_search_view_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"
         android:src="@mipmap/icon_search" />
 
     <EditText
@@ -25,9 +26,9 @@
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"
-        android:textColor="@color/text_color_34"
-        android:textColorHint="@color/text_color_34"
-        android:textSize="13sp" />
+        android:textColor="#121212"
+        android:textColorHint="#8d8d8d"
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/iv_search_view_clear"

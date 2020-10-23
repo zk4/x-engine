@@ -9,7 +9,7 @@
 //#import "MicroAppLoader.h"
 #import <x-engine-module-protocols/xengine_protocol_network.h>
 #import <x-engine-module-engine/XEngineContext.h>
-#import <x-engine-module-microApp/MicroAppLoader.h>
+#import <x-engine-module-engine/MicroAppLoader.h>
 #import <x-engine-module-tools/XEZipUtil.h>
 #import <x-engine-module-tools/NSString+Extras.h>
 //#import <SSZipArchive/SSZipArchive.h>
@@ -49,7 +49,7 @@
     return @"com.zkty.module.offline";
 }
 
-- (void)onAllMoudlesInited {
+- (void)onAllModulesInited {
     _network = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(xengine_protocol_network)];
     _localMicroAppDict = [NSDictionary dictionary];
     self.microAppLoader = [MicroAppLoader sharedInstance];
@@ -72,7 +72,7 @@
 }
 - (void) getMicroAppJsonFromNet {
     if(!self.configModel || !self.configModel.offlineServerUrl){
-        [self showErrorAlert:@"xengine.json is not correct"];
+        [self showErrorAlert:@"xengine_config.json is not correct"];
     }
     
     NSString *key = [[NSString stringWithFormat:@"%@%@", self.configModel.appId, self.configModel.appSecret] md5HexDigest];

@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -13,7 +13,7 @@ function osCheck() {
     return  xengine.use("com.zkty.module.localstorage", 
     [
   {
-    "name": "setLocalStorage",
+    "name": "set",
     "default_args": {
       "key": "key",
       "value": "value",
@@ -21,40 +21,46 @@ function osCheck() {
     }
   },
   {
-    "name": "getLocalStorage",
+    "name": "get",
     "default_args": {
       "key": "key",
       "isPublic": false
     }
   },
   {
-    "name": "removeLocalStorageItem",
-    "default_args": {
-      "key": "item",
-      "isPublic": false
-    }
-  },
-  {
-    "name": "removeLocalStorageAll",
-    "default_args": {
-      "key": "all",
-      "isPublic": false
-    }
-  },
-  {
-    "name": "_testSetOtherIDLocalStorage",
-    "default_args": {
-      "key": "key",
-      "value": "value",
-      "isPublic": false
-    }
-  },
-  {
-    "name": "_testGetOtherIDLocalStorage",
+    "name": "remove",
     "default_args": {
       "key": "key",
       "isPublic": false
     }
+  },
+  {
+    "name": "removeAll",
+    "default_args": {
+      "isPublic": false
+    }
+  },
+  {
+    "name": "_testRemoveAllPublic",
+    "default_args": {
+      "isPublic": true
+    }
+  },
+  {
+    "name": "_testSetPublicStorage",
+    "default_args": null
+  },
+  {
+    "name": "_testGetPublicStorage",
+    "default_args": null
+  },
+  {
+    "name": "_testSetLocalStorage",
+    "default_args": null
+  },
+  {
+    "name": "_testGetLocalStorage",
+    "default_args": null
   }
 ]
 )}}

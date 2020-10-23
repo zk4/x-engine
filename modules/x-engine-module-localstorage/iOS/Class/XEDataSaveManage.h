@@ -21,7 +21,7 @@
 + (void)removeLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic ;
 
 // 删除全部
-+ (void)removeLocalStorageAll;
++ (void)removeLocalStorageAll:(BOOL)isPublic;
 
 //+ (void)setLocalStorage2:(NSString *)key withValue:(NSString *)value withIsPublic:(BOOL)isPublic;
 //+ (NSString *)getLocalStorage2:(NSString *)key withIsPublic:(BOOL)isPublic;

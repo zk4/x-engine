@@ -1,6 +1,6 @@
 
 import demo from './index.js'
-{
+
     window.noArgNoRet = (...args) => {
     demo
       .noArgNoRet(...args)
@@ -9,7 +9,7 @@ import demo from './index.js'
       });
   };
 
-} {
+
     window.noArgRetPrimitive = (...args) => {
     demo
       .noArgRetPrimitive(...args)
@@ -17,7 +17,7 @@ import demo from './index.js'
         document.getElementById("debug_text").innerText = "ret:"+res;
       });
   };
-} {
+
     window.noArgRetSheetDTO = (...args) => {
     demo
       .noArgRetSheetDTO(...args)
@@ -25,7 +25,7 @@ import demo from './index.js'
         document.getElementById("debug_text").innerText = "title:"+res["title"];
       });
   };
-}{
+
     window.haveArgNoRet = (...args) => {
     demo
       .haveArgNoRet(...args)
@@ -33,7 +33,7 @@ import demo from './index.js'
         document.getElementById("debug_text").innerText = "ret:"+res;
       });
   };
-} {
+
     window.haveArgRetPrimitive = (...args) => {
     demo
       .haveArgRetPrimitive(...args)
@@ -41,7 +41,7 @@ import demo from './index.js'
         document.getElementById("debug_text").innerText = "ret:"+res;
       });
   };
-} {
+
     window.haveArgRetSheetDTO = (...args) => {
     demo
       .haveArgRetSheetDTO(...args)
@@ -49,7 +49,7 @@ import demo from './index.js'
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });
   };
-}{
+
   window.showActionSheet = (...args) => {
     demo
       .showActionSheet({
@@ -65,15 +65,15 @@ import demo from './index.js'
         //document.getElementById("debug_text").innerText = res;
       });
   };
-}{
-    window.testHelloButton=(...args)=>{
+
+    window.testHelloButton=()=>{
       demo.showActionSheet(
-      	{title:"title",itemList:["a","b","c"],content:"content"}
+      	sheetDTO:SheetDTO={title:"title",itemList:["a","b","c"],content:"content"}
       )
       .then(res=>{
         document.getElementById("debug_text").innerText= res;
       })
     }
 
-}
+
     

@@ -6,17 +6,20 @@
 #import <xengine__module_BaseModule.h>
 #import "JSONModel.h"
 
-@protocol serviceUUIDDTO;
+@protocol SheetDTO;
 
-@interface serviceUUIDDTO: JSONModel
-  	@property(nonatomic,strong) NSArray<NSString*>* serviceUUID;
+@interface SheetDTO: JSONModel
+  	@property(nonatomic,copy) NSString* title;
+   	@property(nonatomic,strong) NSArray<NSString*>* itemList;
+   	@property(nonatomic,copy) NSString* content;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
 
 @protocol xengine__module_lope_protocol
        @required 
-        - (void) _openDoor:(serviceUUIDDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+       - (void) _openDoor:(void (^)(BOOL complete)) completionHandler;
     
       @required 
        - (void) _customOpenDoor:(void (^)(BOOL complete)) completionHandler;
@@ -24,9 +27,6 @@
       @required 
        - (void) _lightLift:(void (^)(BOOL complete)) completionHandler;
     
-      @required 
-        - (void) _haveArgRetPrimitive:(SheetDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
 @end
   
 

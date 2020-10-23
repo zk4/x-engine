@@ -1,0 +1,32 @@
+apply plugin: 'maven'
+
+//publisher
+//def POM_NAME='core'
+def POM_GROUPID = 'com.zkty.mudules'  //项目组id
+def POM_ARTIFACTID = "module-router"//项目名称id
+def POM_VERSION = '0.0.1'
+def POM_PACKAGING = 'aar'
+def POM_DESCRIPTION = 'router'
+def USERNAME = 'admin'   //用户名
+def PASSWORD = 'admin123'  //密码
+//设置相对路径，方便各模块开发直接引用aar
+def REPOSITORY_URL = 'file://..\\..\\..\\maven-repo'  //repository的URL
+//def REPOSITORY_URL = 'https://github.com/zkty-team/maven-repo'  //repository的URL
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: REPOSITORY_URL) {
+                authentication(userName: USERNAME, password: PASSWORD)
+            }
+            pom.project {
+//                name POM_NAME
+                version POM_VERSION
+                artifactId POM_ARTIFACTID
+                groupId POM_GROUPID
+                packaging POM_PACKAGING
+                description POM_DESCRIPTION
+            }
+        }
+    }
+}

@@ -115,28 +115,23 @@
     return flag;
 }
 
-- (void)setSignleWebView:(XEngineWebView *)webView{
-    if(webView){
-        self.webview = webView;
-        [self.webview removeFromSuperview];
-    }
-    [self.view addSubview:self.webview];
-}
+//- (void)setSignleWebView:(XEngineWebView *)webView{
+//    if(webView){
+//        self.webview = webView;
+//        [self.webview removeFromSuperview];
+//    }
+//    [self.view addSubview:self.webview];
+//}
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
 
-    float safeTop = 0;
-    if (@available(iOS 11.0, *)) {
-        safeTop = [UIApplication sharedApplication].keyWindow.safeAreaInsets.top;
-    }
-    self.webview.frame = self.view.bounds;
 }
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    if( [Unity sharedInstance].getCurrentVC.navigationController.delegate != [ZKPushAnimation instance] ){
-        [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withNavigationController:[Unity sharedInstance].getCurrentVC.navigationController];
-    }
+//    if( [Unity sharedInstance].getCurrentVC.navigationController.delegate != [ZKPushAnimation instance] ){
+//        [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withNavigationController:[Unity sharedInstance].getCurrentVC.navigationController];
+//    }
 }
 @end

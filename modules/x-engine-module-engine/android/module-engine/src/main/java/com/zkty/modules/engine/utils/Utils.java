@@ -60,7 +60,7 @@ public class Utils {
         Uri uri = Uri.parse(url);
         Log.d(TAG, "url:" + uri.toString() + "---host:" + uri.getHost() + "---path:" + uri.getPath() + "--query:" + uri.getQuery());
         String path = uri.getPath();
-        if ((path.endsWith(".jpg") || path.endsWith(".png") || path.endsWith(".webp"))) {
+        if (path != null && ((path.endsWith(".jpg") || path.endsWith(".png") || path.endsWith(".webp")))) {
             File image = new File(path);
             if (image.exists()) {           //存在本地图片
                 int degree = 0;

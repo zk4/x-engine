@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
-import java.util.Map;
 
+import java.util.Map;
 
 
 public class RouterMaster {
@@ -69,8 +70,10 @@ public class RouterMaster {
 
                 break;
             case "native"://原生页面
+                if (!uri.contains(",")) return;
+                String[] classNames = uri.split(",");
                 try {
-                    Class<?> classActivity = Class.forName(uri);
+                    Class<?> classActivity = Class.forName(classNames[1]);
                     Intent intent = new Intent(context, classActivity);
                     if (!TextUtils.isEmpty(path)) {
                         intent.putExtra("params", path);

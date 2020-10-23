@@ -19,7 +19,7 @@ public class LoadingDialog extends BaseDialog {
     private LoadingView mLoadingView;
     private ImageView mSuccessView;
 
-    public enum TYPE {SUCCESS, LOADING, NONE}
+    public enum TYPE {SUCCESS, LOADING, NONE, FAIL}
 
     public LoadingDialog(Context context) {
         super(context);
@@ -45,6 +45,11 @@ public class LoadingDialog extends BaseDialog {
                 mLoadingView.setVisibility(View.VISIBLE);
                 break;
             case SUCCESS:
+                mSuccessView.setImageResource(R.mipmap.icon_state_y);
+                mSuccessView.setVisibility(View.VISIBLE);
+                break;
+            case FAIL:
+                mSuccessView.setImageResource(R.mipmap.icon_state_x);
                 mSuccessView.setVisibility(View.VISIBLE);
                 break;
             case NONE:

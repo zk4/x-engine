@@ -3,6 +3,7 @@ const moduleID = "com.zkty.module.dcloud";
 
 // dto
 interface DcloudDTO{
+  //小程序appId
   appId:string;
 }
 

@@ -15,22 +15,47 @@
   import androidx.annotation.Nullable;
 
   
-  class SheetDTO {
-    public String title;
-
-    @Optional
-		public List<String> itemList;
-
-    @Optional
-		public String content;
+  class LopePIDDTO {
+    public String pid;
 
     public String __event__;
   }
   
+  class LopeScanDTO {
+    public Integer interval;
+
+    public List<String> serviceUUIDs;
+
+    public boolean immediately;
+
+    public String __event__;
+  }
+  
+  class OpenDoorDTO {
+    public List<Map<String,String>> locks;
+
+    public String __event__;
+  }
+  
+  class LightLiftDTO {
+    public String mac;
+
+    public Integer ioIndex;
+
+    public String __event__;
+  }
+  
+  class LopeRetStatusDTO {
+    public String status;
+
+    public String code;
+  }
+  
   interface xengine__module_lope_i {
-    public void _openDoor(final CompletionHandler<Nullable> handler);
-public void _customOpenDoor(final CompletionHandler<Nullable> handler);
-public void _lightLift(final CompletionHandler<Nullable> handler);
+    public void _initSdkAndConfigure(LopePIDDTO dto, final CompletionHandler<LopeRetStatusDTO> handler);
+public void _scanDevice(LopeScanDTO dto, final CompletionHandler<LopeRetStatusDTO> handler);
+public void _openDoor(OpenDoorDTO dto, final CompletionHandler<LopeRetStatusDTO> handler);
+public void _lightLift(LightLiftDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -41,34 +66,51 @@ public void _lightLift(final CompletionHandler<Nullable> handler);
     }
   
     @JavascriptInterface
-    final public void openDoor(JSONObject obj, final CompletionHandler<Object> handler) {
-      _openDoor(new CompletionHandler<Nullable>() {
+    final public void initSdkAndConfigure(JSONObject obj, final CompletionHandler<Object> handler) {
+      LopePIDDTO data= convert(obj,LopePIDDTO.class);
+      _initSdkAndConfigure(data, new CompletionHandler<LopeRetStatusDTO>() {
         @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
+        public void complete(LopeRetStatusDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+        public void setProgressData(LopeRetStatusDTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
-    final public void customOpenDoor(JSONObject obj, final CompletionHandler<Object> handler) {
-      _customOpenDoor(new CompletionHandler<Nullable>() {
+    final public void scanDevice(JSONObject obj, final CompletionHandler<Object> handler) {
+      LopeScanDTO data= convert(obj,LopeScanDTO.class);
+      _scanDevice(data, new CompletionHandler<LopeRetStatusDTO>() {
         @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
+        public void complete(LopeRetStatusDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+        public void setProgressData(LopeRetStatusDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void openDoor(JSONObject obj, final CompletionHandler<Object> handler) {
+      OpenDoorDTO data= convert(obj,OpenDoorDTO.class);
+      _openDoor(data, new CompletionHandler<LopeRetStatusDTO>() {
+        @Override
+        public void complete(LopeRetStatusDTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(LopeRetStatusDTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
     final public void lightLift(JSONObject obj, final CompletionHandler<Object> handler) {
-      _lightLift(new CompletionHandler<Nullable>() {
+      LightLiftDTO data= convert(obj,LightLiftDTO.class);
+      _lightLift(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

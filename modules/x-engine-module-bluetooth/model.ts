@@ -3,32 +3,41 @@ const moduleID = "com.zkty.module.bluetooth";
 
 // dto
 interface BuletoothEventDTO {
-  __event__: string;
+  //返回初始化状态
+  __event__: (string)=>void;
 }
 interface BuletoothContentDTO {
+  //各方法返回值
   content: string;
 }
 
 interface BuletoothDeviceDTO {
+  //蓝牙设备deviceID
   deviceID:string;
-  __event__: string;
+  //获取蓝牙设备characteristics特征回调方法
+  __event__: (string)=>void;
 }
 
 interface BtCharacteristicsDTO{
+  //蓝牙设备deviceID
   deviceID:string;
+  //蓝牙设备serviceId
   serviceId:string;
-  __event__: string;
+  //获取蓝牙设备characteristicId回调方法
+  __event__: (string)=>void;
 }
 
 interface BtCharacteristicIdDTO{
+  //蓝牙设备characteristicId
   characteristicId:string;
-  __event__: string;
+  //向对应特征值写入数据回调方法
+  __event__: (string)=>void;
 }
 
 //初始化蓝牙
 function initBluetooth(
   BuletoothEventDTO: BuletoothEventDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO{
   window.initBluetooth = () => {
@@ -43,7 +52,7 @@ function initBluetooth(
 //扫描蓝牙设备
 function scanBluetoothDevice(
   BuletoothEventDTO: BuletoothEventDTO = {
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO {
   window.scanBluetoothDevice = () => {
@@ -79,7 +88,7 @@ function closeBluetoothDevice(){
 function linkBluetoothDevice(
   BuletoothDeviceDTO: BuletoothDeviceDTO = {
     deviceID:"9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB",
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO{
   window.linkBluetoothDevice = () => {
@@ -95,7 +104,7 @@ function linkBluetoothDevice(
 function cancelLinkBluetoothDevice(
   BuletoothDeviceDTO: BuletoothDeviceDTO = {
     deviceID:"9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB",
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO{
   window.cancelLinkBluetoothDevice = () => {
@@ -111,7 +120,7 @@ function cancelLinkBluetoothDevice(
 function discoverServices(
   BuletoothDeviceDTO: BuletoothDeviceDTO = {
     deviceID:"9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB",
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO{
   window.discoverServices = () => {
@@ -128,7 +137,7 @@ function discoverCharacteristics(
   BtCharacteristicsDTO: BtCharacteristicsDTO = {
     deviceID:"1A5D368E-68E3-069F-D963-E3781097CCD1",
     serviceId:"FFF0",
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO{
   window.discoverCharacteristics = () => {
@@ -144,7 +153,7 @@ function discoverCharacteristics(
 function writeValueForCharacteristic(
   BtCharacteristicIdDTO: BtCharacteristicIdDTO = {
     characteristicId:'FFF1',
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO{
   window.writeValueForCharacteristic = () => {
@@ -160,7 +169,7 @@ function writeValueForCharacteristic(
 function readCharacteristic(
   BtCharacteristicIdDTO: BtCharacteristicIdDTO = {
     characteristicId:'FFF1',
-    __event__: null,
+    __event__: (string)=>{},
   }
 ):BuletoothContentDTO{
   window.readCharacteristic = () => {

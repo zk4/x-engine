@@ -6,26 +6,58 @@
 #import <xengine__module_BaseModule.h>
 #import "JSONModel.h"
 
-@protocol SheetDTO;
+@protocol LopePIDDTO;
+@protocol LopeScanDTO;
+@protocol OpenDoorDTO;
+@protocol LightLiftDTO;
+@protocol LopeRetStatusDTO;
 
-@interface SheetDTO: JSONModel
-  	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,strong) NSArray<NSString*>* itemList;
-   	@property(nonatomic,copy) NSString* content;
+@interface LopePIDDTO: JSONModel
+  	@property(nonatomic,copy) NSString* pid;
    	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
+@interface LopeScanDTO: JSONModel
+  	@property(nonatomic,assign) NSInteger interval;
+   	@property(nonatomic,strong) NSArray<NSString*>* serviceUUIDs;
+   	@property(nonatomic,assign) BOOL immediately;
+   	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
+@interface OpenDoorDTO: JSONModel
+  	@property(nonatomic,strong) NSArray<NSDictionary<NSString*,NSString*>*>* locks;
+   	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
+@interface LightLiftDTO: JSONModel
+  	@property(nonatomic,copy) NSString* mac;
+   	@property(nonatomic,assign) NSInteger ioIndex;
+   	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
+@interface LopeRetStatusDTO: JSONModel
+  	@property(nonatomic,copy) NSString* status;
+   	@property(nonatomic,copy) NSString* code;
 @end
     
 
 
 @protocol xengine__module_lope_protocol
        @required 
-       - (void) _openDoor:(void (^)(BOOL complete)) completionHandler;
-    
+        - (void) _initSdkAndConfigure:(LopePIDDTO*) dto complete:(void (^)(LopeRetStatusDTO* result,BOOL complete)) completionHandler;
+
       @required 
-       - (void) _customOpenDoor:(void (^)(BOOL complete)) completionHandler;
-    
+        - (void) _scanDevice:(LopeScanDTO*) dto complete:(void (^)(LopeRetStatusDTO* result,BOOL complete)) completionHandler;
+
       @required 
-       - (void) _lightLift:(void (^)(BOOL complete)) completionHandler;
+        - (void) _openDoor:(OpenDoorDTO*) dto complete:(void (^)(LopeRetStatusDTO* result,BOOL complete)) completionHandler;
+
+      @required 
+        - (void) _lightLift:(LightLiftDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   

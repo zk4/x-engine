@@ -12,7 +12,7 @@
 #import "RecyleWebViewController.h"
 #import "XEOneWebViewPool.h"
 
-@interface ZKPushAnimation () <UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning>
+@interface ZKPushAnimation () <UIViewControllerAnimatedTransitioning>//UINavigationControllerDelegate
 
 @property (nonatomic, assign) float animationTime;
 
@@ -57,9 +57,20 @@
     
 }
 
+-(void)removeAnimationDelegate{
+    [Unity sharedInstance].getCurrentVC.navigationController.delegate = nil;
+}
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    
+}
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    
+}
 - (void)isOpenCustomAnimation:(BOOL)isOpen withFrom:(UIViewController *)fromVc withTo:(UIViewController *)toVc{
-    if([fromVc isKindOfClass:[RecyleWebViewController class]]
-       && [toVc isKindOfClass:[RecyleWebViewController class]]){
+    if(
+//       [fromVc isKindOfClass:[RecyleWebViewController class]]
+//       &&
+       [toVc isKindOfClass:[RecyleWebViewController class]]){
         
         if(isOpen && [XEOneWebViewPool sharedInstance].inSingle){
             UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
@@ -73,6 +84,7 @@
             UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
             gesture.enabled = YES;
         }
+//        [Unity sharedInstance].getCurrentVC.navigationController.delegate = isOpen ? self : nil;
         [Unity sharedInstance].getCurrentVC.navigationController.delegate = isOpen ? self : nil;
     }
 }
@@ -135,55 +147,60 @@
 -(void)signlePushTo:(id<UIViewControllerContextTransitioning>)transitionContext{
     
     RecyleWebViewController *fromeVc = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    RecyleWebViewController *toVc = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *containerView = transitionContext.containerView;
-    containerView.backgroundColor = [UIColor whiteColor];
-    
-    UIView *screenView = [fromeVc.view resizableSnapshotViewFromRect:fromeVc.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
-    screenView.backgroundColor = [UIColor whiteColor];
-    UIImage *img = [self getImageFromView:fromeVc.view];
-    [fromeVc setScreenImage:img];
-    
-    UIView *toView = toVc.view;
-    [toVc setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVc.fileUrl]];
-    
-    [toVc loadFileUrl:toVc.fileUrl];
-    
-    toView.layer.shadowColor = [UIColor blackColor].CGColor;
-    toView.layer.shadowOffset = CGSizeMake(-3, 0);
-    toView.layer.shadowOpacity = 0.2;
-    
-    screenView.frame = fromeVc.view.frame;//containerView.bounds;
-    [containerView addSubview:screenView];
-    [containerView addSubview:toView];
-    toView.frame = CGRectMake(toView.frame.size.width,
-                              toView.frame.origin.y,
-                              toView.frame.size.width,
-                              toView.frame.size.height);
-    
-    UIView *shawView = [[UIView alloc] init];
-    shawView.frame = screenView.bounds;
-    shawView.backgroundColor = [UIColor blackColor];
-    shawView.alpha = 0;
-    [screenView addSubview:shawView];
-    
-    [UIView animateWithDuration:self.animationTime
-                     animations:^{
-        //        toView.layer.shadowOpacity = 0.5;
-        screenView.frame = CGRectMake(fromeVc.view.frame.size.width * -0.5,
-                                      screenView.frame.origin.y,
-                                      screenView.frame.size.width,
-                                      screenView.frame.size.height);
-        toView.frame = CGRectMake(0,
+    RecyleWebViewController *viewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+//    if([viewController isKindOfClass:[RecyleWebViewController class]]){
+        RecyleWebViewController *toVc = viewController;
+        UIView *containerView = transitionContext.containerView;
+        containerView.backgroundColor = [UIColor whiteColor];
+        
+        UIView *screenView = [fromeVc.view resizableSnapshotViewFromRect:fromeVc.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+        screenView.backgroundColor = [UIColor whiteColor];
+        UIImage *img = [self getImageFromView:fromeVc.view];
+        [fromeVc setScreenImage:img];
+        
+        UIView *toView = toVc.view;
+        [toVc setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVc.fileUrl]];
+        
+        [toVc loadFileUrl:toVc.fileUrl];
+        
+        toView.layer.shadowColor = [UIColor blackColor].CGColor;
+        toView.layer.shadowOffset = CGSizeMake(-3, 0);
+        toView.layer.shadowOpacity = 0.2;
+        
+        screenView.frame = fromeVc.view.frame;//containerView.bounds;
+        [containerView addSubview:screenView];
+        [containerView addSubview:toView];
+        toView.frame = CGRectMake(toView.frame.size.width,
                                   toView.frame.origin.y,
                                   toView.frame.size.width,
                                   toView.frame.size.height);
-        shawView.alpha = 0.2;
-    } completion:^(BOOL finished) {
-        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-        [shawView removeFromSuperview];
-        [screenView removeFromSuperview];
-    }];
+        
+        UIView *shawView = [[UIView alloc] init];
+        shawView.frame = screenView.bounds;
+        shawView.backgroundColor = [UIColor blackColor];
+        shawView.alpha = 0;
+        [screenView addSubview:shawView];
+        
+        [UIView animateWithDuration:self.animationTime
+                         animations:^{
+            //        toView.layer.shadowOpacity = 0.5;
+            screenView.frame = CGRectMake(fromeVc.view.frame.size.width * -0.5,
+                                          screenView.frame.origin.y,
+                                          screenView.frame.size.width,
+                                          screenView.frame.size.height);
+            toView.frame = CGRectMake(0,
+                                      toView.frame.origin.y,
+                                      toView.frame.size.width,
+                                      toView.frame.size.height);
+            shawView.alpha = 0.2;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+            [shawView removeFromSuperview];
+            [screenView removeFromSuperview];
+        }];
+//    } else {
+//
+//    }
 }
 
 -(void)signlePopTo:(id<UIViewControllerContextTransitioning>)transitionContext{
@@ -196,10 +213,6 @@
     
     if([toVc isKindOfClass:[RecyleWebViewController class]]){
         
-//        toView.frame = CGRectMake(0,
-//                                  0,
-//                                  containerView.bounds.size.width,
-//                                  containerView.bounds.size.height);
         [containerView addSubview:toView];
         
         RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
@@ -219,10 +232,7 @@
         fromScreenView.layer.shadowOffset = CGSizeMake(-6, 0);
         fromScreenView.layer.shadowOpacity = 0.2;
         fromScreenView.frame = fromVc.view.frame;
-//        CGRectMake(0,
-//                                          0,
-//                                          fromScreenView.bounds.size.width,
-//                                          fromScreenView.bounds.size.height);
+
         [containerView addSubview:fromScreenView];
         
         UIView *shawView = [[UIView alloc] init];
@@ -297,13 +307,15 @@
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             if (!transitionContext.transitionWasCancelled) {
+                
                 [Unity sharedInstance].getCurrentVC.navigationController.delegate = nil;
                 UIGestureRecognizer *gesture = [Unity sharedInstance].getCurrentVC.navigationController.interactivePopGestureRecognizer;
                 gesture.enabled = YES;
                 
                 if([fromVc isKindOfClass:[RecyleWebViewController class]]){
                     RecyleWebViewController *fromWeVC = (RecyleWebViewController *)fromVc;
-                    [fromWeVC popToRoot];
+//                    [fromWeVC popToRoot];
+                    [fromWeVC pop];
                 }
             }
         }];
@@ -355,7 +367,7 @@
     
     UIView *screenView = [fromeVc.view resizableSnapshotViewFromRect:fromeVc.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
     UIView *toView = toVc.view;
-    [toVc setSignleWebView:nil];
+//    [toVc setSignleWebView:nil];
     
     toView.layer.shadowColor = [UIColor blackColor].CGColor;
     toView.layer.shadowOffset = CGSizeMake(-3, 0);
@@ -364,6 +376,7 @@
     screenView.frame = fromeVc.view.frame;
     [containerView addSubview:screenView];
     [containerView addSubview:toView];
+    
     toView.frame = CGRectMake(toView.frame.size.width,
                               toView.frame.origin.y,
                               toView.frame.size.width,

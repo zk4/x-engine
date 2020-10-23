@@ -7,14 +7,45 @@
 #import <micros.h>
 
 
-@implementation SheetDTO
+@implementation LopePIDDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	if ([propertyName isEqualToString:@"itemList"]) { return YES; }
-   	if ([propertyName isEqualToString:@"content"]) { return YES; }
    	return NO;
     }
 @end
     
+  
+@implementation LopeScanDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   
+   	return NO;
+    }
+@end
+    
+  
+@implementation OpenDoorDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
+  
+@implementation LightLiftDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   	return NO;
+    }
+@end
+    
+  
+@implementation LopeRetStatusDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
+
+
 
 
 
@@ -30,22 +61,35 @@
         return @"com.zkty.module.lope";
     }
     
+    - (void) initSdkAndConfigure:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          LopePIDDTO* dto = [self convert:dict clazz:LopePIDDTO.class];
+          [self _initSdkAndConfigure:dto complete:^(LopeRetStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) scanDevice:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          LopeScanDTO* dto = [self convert:dict clazz:LopeScanDTO.class];
+          [self _scanDevice:dto complete:^(LopeRetStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
     - (void) openDoor:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _openDoor:^(BOOL complete) {
-                 completionHandler(nil,complete); 
+          OpenDoorDTO* dto = [self convert:dict clazz:OpenDoorDTO.class];
+          [self _openDoor:dto complete:^(LopeRetStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
-      }
-    - (void) customOpenDoor:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _customOpenDoor:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
+        
       }
     - (void) lightLift:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _lightLift:^(BOOL complete) {
-                 completionHandler(nil,complete); 
+          LightLiftDTO* dto = [self convert:dict clazz:LightLiftDTO.class];
+          [self _lightLift:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
           }];
       }
   @end

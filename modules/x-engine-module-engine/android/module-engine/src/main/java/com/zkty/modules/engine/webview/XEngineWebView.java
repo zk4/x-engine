@@ -122,7 +122,7 @@ public class XEngineWebView extends DWebView {
         stopLoading();
         setWebChromeClient(null);
 //      setWebViewClient(null);
-        clearCache(true);
+        clearCache(false);
         clearHistory();
         loadUrl("about:blank");
 

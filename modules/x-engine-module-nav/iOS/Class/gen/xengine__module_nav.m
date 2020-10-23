@@ -28,6 +28,9 @@
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
    
+   
+   
+   
    	if ([propertyName isEqualToString:@"icon"]) { return YES; }
    
    	if ([propertyName isEqualToString:@"popList"]) { return YES; }

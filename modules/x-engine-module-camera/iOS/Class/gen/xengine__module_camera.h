@@ -14,7 +14,7 @@
    	@property(nonatomic,assign) BOOL savePhotosAlbum;
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
    	@property(nonatomic,copy) NSString* cameraDevice;
-   	@property(nonatomic,copy) NSString* __event__;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 

@@ -9,6 +9,18 @@ npm install @zkty-team/com-zkty-module-ui
 
 
 
+**demo**
+``` js
+ {
+  window.showToast = () => {
+    ui
+      .showToast()
+      .then((res) => {
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -24,6 +36,18 @@ toast图片地址 |
 
 
 
+**demo**
+``` js
+ {
+  window.hideToast = () => {
+    ui
+      .hideToast()
+      .then((res) => {
+      });
+  };
+}
+``` 
+
 	
 **无参数**
 
@@ -34,6 +58,18 @@ toast图片地址 |
 
 
 
+**demo**
+``` js
+ {
+  window.hiddenHudToast = () => {
+    ui
+      .hiddenHudToast()
+      .then((res) => {
+      });
+  };
+}
+``` 
+
 	
 **无参数**
 
@@ -43,6 +79,18 @@ toast图片地址 |
 ## showLoading
 
 
+
+**demo**
+``` js
+ {
+  window.showLoading = () => {
+    ui
+      .showLoading()
+      .then((res) => {
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -56,6 +104,18 @@ toast图片地址 |
 
 
 
+**demo**
+``` js
+ {
+  window.hideLoading = () => {
+    ui
+      .hideLoading()
+      .then((res) => {
+      });
+  };
+}
+``` 
+
 	
 **无参数**
 
@@ -65,6 +125,19 @@ toast图片地址 |
 ## showModal
 
 
+
+**demo**
+``` js
+{
+  window.showModal = () => {
+    ui
+      .showModal()
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -80,6 +153,26 @@ toast图片地址 |
 
 
 
+**demo**
+``` js
+{
+  window.showActionSheet = (...args) => {
+    ui
+      .showActionSheet({
+        title: "hello",
+        itemList: ["hello", "world", "he"],
+        content: "content",
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -94,6 +187,24 @@ toast图片地址 |
 ## showPickerView
 
 
+
+**demo**
+``` js
+{
+  window.showPickerView = (...args) => {
+    ui
+      .showPickerView({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+``` 
 
 	
 **参数说明**

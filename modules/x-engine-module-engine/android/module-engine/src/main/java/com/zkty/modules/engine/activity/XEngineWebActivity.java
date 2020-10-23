@@ -120,7 +120,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         xEngineNavBar = findViewById(R.id.nav_bar);
         mRoot = findViewById(R.id.content_root);
         ivScreen = findViewById(R.id.iv_screen);
-        mWebView = XOneWebViewPool.sharedInstance().peekUnusedWebViewFromPool();
+        mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool();
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
         lifecycleListeners = new LinkedHashSet<>();
@@ -129,9 +129,10 @@ public class XEngineWebActivity extends AppCompatActivity {
             mWebView.loadUrl(url);
         }
         url = TextUtils.isEmpty(mWebView.getOriginalUrl()) ? mWebView.getUrl() : mWebView.getOriginalUrl();
-
+        xEngineNavBar.setLeftListener(view -> backUp());
 
     }
+
 
     @Override
     public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -256,6 +257,32 @@ public class XEngineWebActivity extends AppCompatActivity {
     public XEngineWebView getXEngineWebView() {
         return this.mWebView;
 
+    }
+
+    private void backUp() {
+
+        WebBackForwardList backForwardList = mWebView.copyBackForwardList();
+        if (backForwardList != null && backForwardList.getSize() != 0) {
+            //当前页面在历史队列中的位置
+            int currentIndex = backForwardList.getCurrentIndex();
+            WebHistoryItem historyItem =
+                    backForwardList.getItemAtIndex(currentIndex - 1);
+            if (historyItem != null) {
+                String backPageUrl = historyItem.getOriginalUrl();
+                XEngineWebActivity last = XEngineWebActivityManager.sharedInstance().getLastActivity();
+                if (last == null && mWebView.canGoBack() && !"about:blank".equals(backPageUrl)) {//单页面，可返回
+                    mWebView.goBack();
+                    return;
+                }
+                if (last != null && !last.getWebUrl().equals(backPageUrl)) {
+                    mWebView.goBack();
+                    return;
+                }
+
+            }
+        }
+
+        finish();
     }
 
     @Override

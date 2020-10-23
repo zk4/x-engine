@@ -12,6 +12,7 @@
 - (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath;
 - (void)loadFileUrl:(NSString *)url;
 - (void)forwardUrl:(NSString *)preLevelPath;
+- (void)pop;
 - (void)popUrl:(NSString *)preLevelPath;
 - (void)popToRoot;
 - (void)setSignleWebView:(XEngineWebView *)webView;

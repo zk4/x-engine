@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.zkty.engine.module.offline.R;
 import com.zkty.engine.module.offline.adapter.MicroAppAdapter;
 import com.zkty.modules.engine.manager.MicroAppVersionBean;
@@ -17,9 +16,6 @@ import java.util.ArrayList;
 
 public class MicroAppListActivity extends AppCompatActivity {
     private static final String TAG = MicroAppListActivity.class.getSimpleName();
-
-
-    private String app = "com.zkty.microapp.xiaoqu.door";
 
     private RecyclerView recyclerView;
     private MicroAppAdapter appAdapter;

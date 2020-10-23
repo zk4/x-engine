@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -14,15 +14,11 @@ function osCheck() {
     [
   {
     "name": "initBluetooth",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "scanBluetoothDevice",
-    "default_args": {
-      "__event__": null
-    }
+    "default_args": {}
   },
   {
     "name": "closeBluetoothDevice",
@@ -31,44 +27,38 @@ function osCheck() {
   {
     "name": "linkBluetoothDevice",
     "default_args": {
-      "deviceID": "9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB",
-      "__event__": null
+      "deviceID": "9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB"
     }
   },
   {
     "name": "cancelLinkBluetoothDevice",
     "default_args": {
-      "deviceID": "9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB",
-      "__event__": null
+      "deviceID": "9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB"
     }
   },
   {
     "name": "discoverServices",
     "default_args": {
-      "deviceID": "9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB",
-      "__event__": null
+      "deviceID": "9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB"
     }
   },
   {
     "name": "discoverCharacteristics",
     "default_args": {
       "deviceID": "1A5D368E-68E3-069F-D963-E3781097CCD1",
-      "serviceId": "FFF0",
-      "__event__": null
+      "serviceId": "FFF0"
     }
   },
   {
     "name": "writeValueForCharacteristic",
     "default_args": {
-      "characteristicId": "FFF1",
-      "__event__": null
+      "characteristicId": "FFF1"
     }
   },
   {
     "name": "readCharacteristic",
     "default_args": {
-      "characteristicId": "FFF1",
-      "__event__": null
+      "characteristicId": "FFF1"
     }
   }
 ]

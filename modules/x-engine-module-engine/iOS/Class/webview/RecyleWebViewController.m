@@ -20,20 +20,22 @@
 
 @property (nonatomic, assign) BOOL isClearHistory;
 
+@property (nonatomic, assign) BOOL isReadyLoading;
+
 @end
 
 @implementation RecyleWebViewController
 
 -(void)webViewProgressChange:(NSNotification *)notifi{
     
-    self.progresslayer.alpha = 1;
-    float floatNum = [notifi.object floatValue];
-    [self.progresslayer setProgress:floatNum animated:YES];
-    if (floatNum == 1) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.progresslayer.alpha = 0;
-        }];
-    }
+        self.progresslayer.alpha = 1;
+        float floatNum = [notifi.object floatValue];
+        [self.progresslayer setProgress:floatNum animated:YES];
+        if (floatNum == 1) {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.progresslayer.alpha = 0;
+            }];
+        }
 }
 
 - (instancetype)initWithUrl:(NSString *) fileUrl{
@@ -53,13 +55,18 @@
         self.fileUrl = fileUrl;
         
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
-           || [fileUrl isEqualToString:self.rootPath]){
+           || [fileUrl isEqualToString:self.rootPath]
+            || ![XEOneWebViewPool sharedInstance].inSingle){
             
-            self.webview = [[XEOneWebViewPool sharedInstance] getWebView:self.rootPath];
+            self.isReadyLoading = YES;
+            self.webview = [[XEOneWebViewPool sharedInstance] getWebView:self.rootPath];;
             self.webview.frame = [UIScreen mainScreen].bounds;
             [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webViewProgressChange:) name:XEWebViewProgressChangeNotification object:nil];
         }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewProgressChange:)
+                                                     name:XEWebViewProgressChangeNotification
+                                                   object:nil];
         if([fileUrl hasPrefix:self.rootPath]){
             
             NSString *interface = [fileUrl substringFromIndex:self.rootPath.length];
@@ -85,11 +92,12 @@
 }
 
 - (void)loadFileUrl:(NSString *)url{
-    if(url){
-
-        [self.webview stopLoading];
-        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-        NSLog(@"%@",self.fileUrl);
+    if(!self.isReadyLoading){
+        if(url){
+            [self.webview stopLoading];
+            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+            NSLog(@"%@",self.fileUrl);
+        }
     }
 }
 
@@ -97,6 +105,10 @@
     if (self.webview.backForwardList.backList.count > 0){
         [self.webview goToBackForwardListItem:self.webview.backForwardList.backList.firstObject];
     }
+}
+
+- (void)pop{
+    [self.webview goBack];
 }
 
 - (void)popUrl:(NSString *)preLevelPath{
@@ -168,9 +180,12 @@
 }
 
 - (void)setSignleWebView:(XEngineWebView *)webView{
-    [self.webview removeFromSuperview];
-    self.webview = webView;
-    [self.view addSubview:self.webview];
+    if(self.webview != webView){
+        [self.webview removeFromSuperview];
+        self.webview = webView;
+//        [self.view addSubview:self.webview];
+        [self.view insertSubview:self.webview atIndex:0];
+    }
 }
 
 -(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments {
@@ -225,8 +240,6 @@
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     }
     
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -234,27 +247,30 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     [self.view addSubview:self.webview];
     
+    self.progresslayer = [[UIProgressView alloc] init];
     self.progresslayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.5);
     self.progresslayer.progressTintColor = [UIColor orangeColor];
     [self.view addSubview:self.progresslayer];
 }
 
--(UIProgressView *)progresslayer{
-    if(_progresslayer == nil){
-        _progresslayer = [[UIProgressView alloc] init];
-    }
-    return _progresslayer;
-}
+//-(UIProgressView *)progresslayer{
+//    if(_progresslayer == nil){
+//        _progresslayer = [[UIProgressView alloc] init];
+//    }
+//    return _progresslayer;
+//}
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if(self.navigationController.viewControllers.count>1){
         
         self.parentVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
     }
     [[XEOneWebViewControllerManage sharedInstance] createCacheVC];
+    [self.view insertSubview:self.webview atIndex:0];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -272,7 +288,7 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
-    if(self.isClearHistory){
+    if(self.navigationController == nil && self.isClearHistory){
         [[XEOneWebViewPool sharedInstance] resetUrl: self.rootPath];
     }
 }
@@ -330,4 +346,9 @@
     }];
 }
 #endif
+
+- (void)dealloc
+{
+    
+}
 @end

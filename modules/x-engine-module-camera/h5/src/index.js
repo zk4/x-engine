@@ -18,8 +18,7 @@ function osCheck() {
       "allowsEditing": true,
       "savePhotosAlbum": false,
       "cameraFlashMode": -1,
-      "cameraDevice": "back",
-      "__event__": null
+      "cameraDevice": "back"
     }
   }
 ]

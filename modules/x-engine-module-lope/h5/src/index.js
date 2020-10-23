@@ -13,16 +13,43 @@ function osCheck() {
     return  xengine.use("com.zkty.module.lope", 
     [
   {
-    "name": "openDoor",
-    "default_args": {}
+    "name": "initSdkAndConfigure",
+    "default_args": {
+      "pid": "03jfuto709chalfwo84nf921qujt5p"
+    }
   },
   {
-    "name": "customOpenDoor",
-    "default_args": {}
+    "name": "scanDevice",
+    "default_args": {
+      "interval": 1,
+      "serviceUUIDs": [
+        "2560",
+        "FEE7"
+      ],
+      "immediately": false
+    }
+  },
+  {
+    "name": "openDoor",
+    "default_args": {
+      "locks": [
+        {
+          "mac": "00:18:E4:0C:73:89",
+          "key": "12345678"
+        },
+        {
+          "mac": "00:18:E4:0C:6C:21",
+          "key": "12345678"
+        }
+      ]
+    }
   },
   {
     "name": "lightLift",
-    "default_args": {}
+    "default_args": {
+      "mac": "B0:7E:11:F4:D9:94",
+      "ioIndex": 4
+    }
   }
 ]
 )}}

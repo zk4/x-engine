@@ -3,7 +3,6 @@ package com.zkty.modules.loaded.jsapi;
 
 import androidx.annotation.Nullable;
 
-import com.alibaba.fastjson.JSON;
 import com.zkty.modules.dsbridge.CompletionHandler;
 
 
@@ -30,23 +29,29 @@ public class __xengine__module_xxxx extends xengine__module_xxxx {
 	}
 
 	@Override
-	public void _haveArgNoRet(HaveArgDTO dto, CompletionHandler<Nullable> handler) {
+	public void _haveArgNoRet(SheetDTO dto, CompletionHandler<Nullable> handler) {
 		System.out.println( dto);
 		handler.complete();
 	}
 
 	@Override
-	public void _haveArgRetPrimitive(HaveArgDTO dto, CompletionHandler<String> handler) {
+	public void _haveArgRetPrimitive(SheetDTO dto, CompletionHandler<String> handler) {
 		System.out.println( dto);
 		handler.complete("hello world.");
 	}
 
 	@Override
-	public void _haveArgRetSheetDTO(HaveArgDTO dto,CompletionHandler<SheetDTO> handler ) {
+	public void _haveArgRetSheetDTO(SheetDTO dto,CompletionHandler<SheetDTO> handler ) {
 		System.out.println( dto);
 		SheetDTO dd = new SheetDTO();
 		dd.title="hello";
 		dd.content="content";
 		handler.complete(dd);
+	}
+
+	@Override
+	public void _showActionSheet(SheetDTO dto, CompletionHandler<Nullable> handler) {
+		System.out.println( dto);
+		handler.complete();
 	}
 }

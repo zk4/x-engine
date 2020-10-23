@@ -10,6 +10,9 @@
 #import "XEngineContext.h"
 #import "xengine__module_BaseModule.h"
 
+#import "Unity.h"
+#import "RecyleWebViewController.h"
+
 NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgressChangeNotification";
 
 @interface XEOneWebViewPool ()
@@ -43,17 +46,31 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 }
 
 -(void)resetUrl:(NSString *)url{
-    XEngineWebView *webView = [self getWebView:url];
-    if(webView && webView.backForwardList.backList.count > 2){
-        [webView goBack];
-    }else{
-        [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
+    if(self.inSingle || self.inAllSingle){
+//        if(self.webCacheDic.allKeys.count > 3){
+//            NSString *key = [self urlToDicKey:url];
+//            XEngineWebView *webView = self.webCacheDic[key];
+//            [webView removeFromSuperview];
+//            self.webCacheDic[key] = nil;
+//        } else{
+            XEngineWebView *webView = [self getWebView:url];
+            if(webView && webView.backForwardList.backList.count > 1){
+                //        [webView goBack];
+                [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
+            }
+//        }
     }
 }
     
 -(BOOL)checkUrl:(NSString *)url{
     NSString *key = [self urlToDicKey:url];
-    return (self.webCacheDic[key] == nil);
+    if(self.webCacheDic[key] == nil){
+        return YES;
+    }
+    if(self.webCacheDic[key].superview == nil){
+        return YES;
+    }
+    return NO;
 }
 
 - (XEngineWebView *)getWebView:(NSString *)url{
@@ -89,17 +106,23 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 }
 
 -(NSString *)urlToDicKey:(NSString *)url{
-    NSString *key = nil;
-    if(url){
-        NSRange indexRange = [url rangeOfString:@"index.html"];
-        if(indexRange.location != NSNotFound){
-            key = [url substringToIndex:indexRange.location];
+    
+    NSString *head = @"";
+    for (int i = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count - 1; i >= 0; i--) {
+        UIViewController *vc = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers[i];
+        if(![vc isKindOfClass:[RecyleWebViewController class]]){
+
+            head = [[NSNumber numberWithLongLong:(long long)vc] stringValue];
+            break;
         }
     }
-    if(key == nil) {
-        key = @"null";
-    }
-    return key;
+    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
+    NSString *ss = [NSString stringWithFormat:@"%@%@://%@", head, components.scheme, components.host];
+    return ss;
+    
+//    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
+//    NSString *ss = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+//    return ss;
 }
 
 -(XEngineWebView *)createWebView:(NSString *)baseUrl{
@@ -107,11 +130,11 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
-    webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//    webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     for (xengine__module_BaseModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
-    [webview loadUrl:@"about:blank"];
+//    [webview loadUrl:@"about:blank"];
 //    [webview loadUrl:baseUrl];
     
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];

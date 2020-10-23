@@ -8,14 +8,14 @@
 #import <UIViewController+.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
+#import "ZKPushAnimation.h"
+
 @interface EntryViewController ()
 
 @end
 
 @implementation EntryViewController
-- (IBAction)Action:(id)sender {
-    [self pushTestModule];
-}
+
 
 
 - (NSString *)getIPAddress {
@@ -49,15 +49,33 @@
 -(void) pushTestModule{
     // 启动 h5 服务器, npm run dev
     // 将下面的 ip 换成你的电脑 ip 即可实时调试
-   NSString* url = [NSString stringWithFormat:@"http://0.0.0.0:8000",[self getIPAddress]];
-   MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:8080"];
+//   NSString* url = [NSString stringWithFormat:@"http://0.0.0.0:8000",[self getIPAddress]];
+   MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.44.55:8080"];
    [self pushViewController:webLaderVC];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIButton *btn = [[UIButton alloc] init];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitle:@"to" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(action) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake((self.view.bounds.size.width - 100) * 0.5,
+                           (self.view.bounds.size.height - 50) * 0.5,
+                           100,
+                           50);
+    [self.view addSubview:btn];
     [self pushTestModule];
 }
 
+- (void)action {
+    [self pushTestModule];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 @end

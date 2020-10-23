@@ -28,21 +28,32 @@
              success:(nullable void (^)(NSURLSessionDataTask *, id _Nullable))successBlock
              failure:(nullable void (^)(NSURLSessionDataTask * _Nullable, NSError *))failBlock{
     
+    AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
+    if([headers[@"Content-Type"] rangeOfString:@"application/json"].location != NSNotFound){
+        [manage.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nullable(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError *__autoreleasing  _Nullable * _Nullable error) {
+            NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+            if(data){
+                return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];;
+            }else{
+                return @"";
+            }
+        }];
+    }
     if ([method isEqualToString:@"PUT"]){
-        [[AFHTTPSessionManager manager] PUT:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
+        [manage PUT:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
     } else if ([method isEqualToString:@"DELETE"]){
-        [[AFHTTPSessionManager manager] DELETE:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
+        [manage DELETE:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
     } else if ([method isEqualToString:@"PATCH"]){
-        [[AFHTTPSessionManager manager] PATCH:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
+        [manage PATCH:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
     }else if ([method isEqualToString:@"HEAD"]){
-        [[AFHTTPSessionManager manager] HEAD:URLString parameters:parameters headers:headers success:^(NSURLSessionDataTask *task) {
+        [manage HEAD:URLString parameters:parameters headers:headers success:^(NSURLSessionDataTask *task) {
             successBlock(task, nil);
         } failure:failBlock];
     } else if ([method isEqualToString:@"GET"]){
-        [[AFHTTPSessionManager manager] GET:URLString parameters:parameters headers:headers progress:nil success:successBlock failure:failBlock];
+        [manage GET:URLString parameters:parameters headers:headers progress:nil success:successBlock failure:failBlock];
     } else {
         //默认POST
-        [[AFHTTPSessionManager manager] POST:URLString parameters:parameters headers:headers progress:nil success:successBlock failure:failBlock];
+        [manage POST:URLString parameters:parameters headers:headers progress:nil success:successBlock failure:failBlock];
     }
 }
 

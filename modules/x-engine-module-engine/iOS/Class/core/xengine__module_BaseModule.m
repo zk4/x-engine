@@ -62,8 +62,8 @@
 - (int) order {
     return 0;
 }
-- (void) onAllMoudlesInited{
-    NSLog(@"onAllMoudlesInited");
+- (void) onAllModulesInited{
+    NSLog(@"onAllModulesInited");
 }
  
 - (id) convert:(NSDictionary *)param  clazz:(Class)clazz{

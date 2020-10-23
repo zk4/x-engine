@@ -1,7 +1,7 @@
 
-``` bash
-npm install @zkty-team/com-zkty-module-bluetooth
-```
+`
+com.zkty.module.bluetooth
+`
 
 
 
@@ -14,7 +14,7 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | string |  |  |  |
+| \_\_event\_\_ |  |  | (string)=>{} | 返回初始化状态 |
 
 
 ## scanBluetoothDevice
@@ -26,7 +26,7 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | string |  |  |  |
+| \_\_event\_\_ |  |  | (string)=>{} | 返回初始化状态 |
 
 
 ## closeBluetoothDevice
@@ -48,8 +48,8 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| deviceID | string |  | 9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB |  |
-| \_\_event\_\_ | string |  |  |  |
+| deviceID | string |  | 9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB | 蓝牙设备deviceID |
+| \_\_event\_\_ |  |  | (string)=>{} | 获取蓝牙设备characteristics特征回调方法 |
 
 
 ## cancelLinkBluetoothDevice
@@ -61,8 +61,8 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| deviceID | string |  | 9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB |  |
-| \_\_event\_\_ | string |  |  |  |
+| deviceID | string |  | 9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB | 蓝牙设备deviceID |
+| \_\_event\_\_ |  |  | (string)=>{} | 获取蓝牙设备characteristics特征回调方法 |
 
 
 ## discoverServices
@@ -74,8 +74,8 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| deviceID | string |  | 9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB |  |
-| \_\_event\_\_ | string |  |  |  |
+| deviceID | string |  | 9E7A382F-1BBD-2431-D7B5-6415DDA4BEFB | 蓝牙设备deviceID |
+| \_\_event\_\_ |  |  | (string)=>{} | 获取蓝牙设备characteristics特征回调方法 |
 
 
 ## discoverCharacteristics
@@ -87,9 +87,9 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| deviceID | string |  | 1A5D368E-68E3-069F-D963-E3781097CCD1 |  |
-| serviceId | string |  | FFF0 |  |
-| \_\_event\_\_ | string |  |  |  |
+| deviceID | string |  | 1A5D368E-68E3-069F-D963-E3781097CCD1 | 蓝牙设备deviceID |
+| serviceId | string |  | FFF0 | 蓝牙设备serviceId |
+| \_\_event\_\_ |  |  | (string)=>{} | 获取蓝牙设备characteristicId回调方法 |
 
 
 ## writeValueForCharacteristic
@@ -101,8 +101,8 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| characteristicId | string |  | FFF1 |  |
-| \_\_event\_\_ | string |  |  |  |
+| characteristicId | string |  | FFF1 | 蓝牙设备characteristicId |
+| \_\_event\_\_ |  |  | (string)=>{} | 向对应特征值写入数据回调方法 |
 
 
 ## readCharacteristic
@@ -114,7 +114,7 @@ npm install @zkty-team/com-zkty-module-bluetooth
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| characteristicId | string |  | FFF1 |  |
-| \_\_event\_\_ | string |  |  |  |
+| characteristicId | string |  | FFF1 | 蓝牙设备characteristicId |
+| \_\_event\_\_ |  |  | (string)=>{} | 向对应特征值写入数据回调方法 |
 
     

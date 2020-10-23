@@ -87,8 +87,14 @@ public class XEngineNavBar extends RelativeLayout {
 
     public void setNavLeftBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, OnClickListener listener) {
         setClickView(leftTv, leftIv, title, titleColor, titleSize, icon, iconSize);
+        if (listener != null) {
+            layoutLeft.setOnClickListener(listener);
+        }
+
+    }
+
+    public void setLeftListener(OnClickListener listener) {
         layoutLeft.setOnClickListener(listener);
-        layoutLeft.setVisibility(VISIBLE);
     }
 
     public void setNavRightBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, OnClickListener listener) {

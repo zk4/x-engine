@@ -13,7 +13,7 @@
 @protocol BtCharacteristicIdDTO;
 
 @interface BuletoothEventDTO: JSONModel
-  	@property(nonatomic,copy) NSString* __event__;
+  	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
@@ -24,20 +24,20 @@
 
 @interface BuletoothDeviceDTO: JSONModel
   	@property(nonatomic,copy) NSString* deviceID;
-   	@property(nonatomic,copy) NSString* __event__;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
 @interface BtCharacteristicsDTO: JSONModel
   	@property(nonatomic,copy) NSString* deviceID;
    	@property(nonatomic,copy) NSString* serviceId;
-   	@property(nonatomic,copy) NSString* __event__;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
 @interface BtCharacteristicIdDTO: JSONModel
   	@property(nonatomic,copy) NSString* characteristicId;
-   	@property(nonatomic,copy) NSString* __event__;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 

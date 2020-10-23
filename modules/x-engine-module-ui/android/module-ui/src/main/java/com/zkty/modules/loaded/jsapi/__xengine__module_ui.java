@@ -76,39 +76,6 @@ public class __xengine__module_ui extends xengine__module_ui {
         }
     }
 
-    @Override
-    public void _showModal(XEModalDTO dto, CompletionHandler<XEAlertResultDTO> handler) {
-
-        String title = !TextUtils.isEmpty(dto.tipTitle) ? dto.tipTitle : null;
-        String content = !TextUtils.isEmpty(dto.tipContent) ? dto.tipContent : null;
-
-        CommonDialog dialog = new CommonDialog(ActivityUtils.getCurrentActivity());
-        dialog.setTitle(title);
-        dialog.setContent(content);
-        if (!dto.showCancel)
-            dialog.setSingleMode();
-        dialog.setCanceledOnTouchOutside(false);
-
-        dialog.setClickCallback(new CommonDialog.ClickCallback() {
-            @Override
-            public void onCancel() {
-                XEAlertResultDTO resultDTO = new XEAlertResultDTO();
-                resultDTO.tapIndex = "0";
-                handler.complete(resultDTO);
-            }
-
-            @Override
-            public void onConfirm() {
-                XEAlertResultDTO resultDTO = new XEAlertResultDTO();
-                resultDTO.tapIndex = "1";
-                handler.complete(resultDTO);
-            }
-        });
-
-        dialog.show();
-
-    }
-
 
     @Override
     public void _hideLoading(CompletionHandler<Nullable> handler) {
@@ -123,18 +90,6 @@ public class __xengine__module_ui extends xengine__module_ui {
         handler.complete();
     }
 
-
-    @Override
-    public void _showSuccessToast(XEToastDTO dto, CompletionHandler<Nullable> handler) {
-        DialogHelper.showSuccessDialog(ActivityUtils.getCurrentActivity(), dto.tipContent, dto.duration);
-        handler.complete();
-    }
-
-    @Override
-    public void _showFailToast(XEToastDTO dto, CompletionHandler<Nullable> handler) {
-        DialogHelper.showFailDialog(ActivityUtils.getCurrentActivity(), dto.tipContent, dto.duration);
-        handler.complete();
-    }
 
     @Override
     public void _showActionSheet(XESheetDTO dto, CompletionHandler<XERetDTO> handler) {
@@ -219,5 +174,38 @@ public class __xengine__module_ui extends xengine__module_ui {
         dateDialog = builder.create();
         dateDialog.show();
 
+    }
+
+    @Override
+    public void _showModal(XEModalDTO dto, CompletionHandler<XERetDTO> handler) {
+        String title = !TextUtils.isEmpty(dto.tipTitle) ? dto.tipTitle : null;
+        String content = !TextUtils.isEmpty(dto.tipContent) ? dto.tipContent : null;
+
+        CommonDialog dialog = new CommonDialog(ActivityUtils.getCurrentActivity());
+        dialog.setTitle(title);
+        dialog.setContent(content);
+        if (!dto.showCancel)
+            dialog.setSingleMode();
+        dialog.setCanceledOnTouchOutside(false);
+
+        dialog.setClickCallback(new CommonDialog.ClickCallback() {
+            @Override
+            public void onCancel() {
+                XERetDTO resultDTO = new XERetDTO();
+                resultDTO.content = "0";
+                dialog.dismiss();
+                handler.complete(resultDTO);
+            }
+
+            @Override
+            public void onConfirm() {
+                XERetDTO resultDTO = new XERetDTO();
+                resultDTO.content = "1";
+                dialog.dismiss();
+                handler.complete(resultDTO);
+            }
+        });
+
+        dialog.show();
     }
 }

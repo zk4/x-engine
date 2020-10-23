@@ -8,9 +8,11 @@ PODS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+  - x-engine-module-protocols (0.0.9)
 
 DEPENDENCIES:
   - "x-engine-module-engine (from `../node_modules/@zkty-team/x-engine-module-engine`)"
+  - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -22,6 +24,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   x-engine-module-engine:
     :path: "../node_modules/@zkty-team/x-engine-module-engine"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols/"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -29,7 +33,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   x-engine-module-engine: bb6baa38f8f9fffa7ade9fa0735b552a0934e7d4
+  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
 
-PODFILE CHECKSUM: c6664c9c874dffd4b2d789952fb2b82d077d2572
+PODFILE CHECKSUM: e45b7036a3f23d4e9b81bfdf9eab3be70c27688e
 
 COCOAPODS: 1.9.3

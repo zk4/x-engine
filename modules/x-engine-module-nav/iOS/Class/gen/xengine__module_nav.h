@@ -33,6 +33,9 @@
   	@property(nonatomic,copy) NSString* title;
    	@property(nonatomic,copy) NSString* titleColor;
    	@property(nonatomic,assign) NSInteger titleSize;
+   	@property(nonatomic,copy) NSString* titleBig;
+   	@property(nonatomic,copy) NSString* titleFontName;
+   	@property(nonatomic,assign) BOOL isBoldFont;
    	@property(nonatomic,copy) NSString* icon;
    	@property(nonatomic,strong) NSArray<NSNumber*>* iconSize;
    	@property(nonatomic,strong) NSArray<NSDictionary<NSString*,NSString*>*>* popList;

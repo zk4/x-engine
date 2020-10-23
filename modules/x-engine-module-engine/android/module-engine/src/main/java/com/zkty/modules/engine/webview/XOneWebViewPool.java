@@ -2,13 +2,14 @@ package com.zkty.modules.engine.webview;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class XOneWebViewPool {
 
-    public static final boolean IS_SINGLE = true;
+    public static boolean IS_SINGLE = false;
 
     private static List<XEngineWebView> circleList;
     private static final byte[] lock = new byte[]{};
@@ -58,7 +59,12 @@ public class XOneWebViewPool {
         synchronized (lock) {
             XEngineWebView webView = null;
             if (IS_SINGLE) {
+
                 webView = circleList.get(0);
+                ViewGroup parent = (ViewGroup) webView.getParent();
+                if (parent != null) {
+                    parent.removeAllViews();
+                }
             } else {
                 webView = new XEngineWebView(mContext);
                 circleList.add(0, webView);

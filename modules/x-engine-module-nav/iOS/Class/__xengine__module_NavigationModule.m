@@ -92,19 +92,19 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 //    [self _navigatorBack:dto complete:change];
 //}
 
-- (void)setNavLeftBtn:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
-    //    if ([Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count <= 1) {
-    [self addItemBarButtonWithParam:param isLeft:YES];
-    //    }
-}
+//- (void)setNavLeftBtn:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
+//    //    if ([Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count <= 1) {
+//    [self addItemBarButtonWithParam:param isLeft:YES];
+//    //    }
+//}
 
-- (void)setNavRightBtn:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
-    [self addItemBarButtonWithParam:param isLeft:NO];
-}
-
-- (void)setNavRightMenuBtn:(NSDictionary *)param callBlock:(XEngineCallBack)completionHandler{
-    [self addItemBarButtonWithParam:param isLeft:NO];
-}
+//- (void)setNavRightBtn:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
+//    [self addItemBarButtonWithParam:param isLeft:NO];
+//}
+//
+//- (void)setNavRightMenuBtn:(NSDictionary *)param callBlock:(XEngineCallBack)completionHandler{
+//    [self addItemBarButtonWithParam:param isLeft:NO];
+//}
 
 - (void)setNavTitle:(NSDictionary *)param callBlock:(XEngineCallBack)completionHandler{
     NSString *title = param[@"title"];
@@ -121,9 +121,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 //    [self addMoreItemBarButtonWithParam:param isLeft:NO];
 //}
 
-//-(void)setNavSearchBar:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
-//    [self addSearchBar:param];
-//}
+-(void)setNavSearchBar:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
+    [self addSearchBar:param];
+}
 
 #pragma mark - fun
 ///切换tabbar页签
@@ -148,30 +148,30 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 }
 
 
-- (void)addItemBarButtonWithParam:(NSDictionary *)param isLeft:(BOOL)isLeft{
-    
-    NavBtnDTO *btn = [[NavBtnDTO alloc] init];
-    btn.title = param[@"title"];
-    btn.icon = param[@"icon"];
-    
-    btn.titleColor = param[@"titleColor"];
-    btn.titleSize = [[NSString stringWithFormat:@"%@", param[@"titleSize"] ?: @"16"] integerValue];
-    btn.iconSize = param[@"iconSize"];
-    btn.__event__ = param[@"__event__"];
-    if (param[@"itemList"]){
-        btn.popList = param[@"itemList"];
-    }
-    if (param[@"popList"]){
-        btn.popList = param[@"popList"];
-    }
-    
-    btn.popWidth = param[@"popWidth"];
-    if (isLeft){
-        [self _setNavLeftBtn:btn complete:nil];
-    } else {
-        [self _setNavRightBtn:btn complete:nil];
-    }
-}
+//- (void)addItemBarButtonWithParam:(NSDictionary *)param isLeft:(BOOL)isLeft{
+//
+//    NavBtnDTO *btn = [[NavBtnDTO alloc] init];
+//    btn.title = param[@"title"];
+//    btn.icon = param[@"icon"];
+//
+//    btn.titleColor = param[@"titleColor"];
+//    btn.titleSize = [[NSString stringWithFormat:@"%@", param[@"titleSize"] ?: @"16"] integerValue];
+//    btn.iconSize = param[@"iconSize"];
+//    btn.__event__ = param[@"__event__"];
+//    if (param[@"itemList"]){
+//        btn.popList = param[@"itemList"];
+//    }
+//    if (param[@"popList"]){
+//        btn.popList = param[@"popList"];
+//    }
+//
+//    btn.popWidth = param[@"popWidth"];
+//    if (isLeft){
+//        [self _setNavLeftBtn:btn complete:nil];
+//    } else {
+//        [self _setNavRightBtn:btn complete:nil];
+//    }
+//}
 
 - (void)addMoreItemBarButtonWithParam:(NSDictionary *)params isLeft:(BOOL)isLeft{
     
@@ -247,7 +247,6 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     dto.iconClear = param[@"iconClear"];
     dto.iconClearSize = param[@"iconClearSize"];
     dto.textColor = param[@"textColor"];
-    dto.__event__ = param[@"__event__"];
     dto.fontSize = [param[@"fontSize"] integerValue];
     dto.placeHolder = param[@"placeHolder"];
     dto.placeHolderFontSize = [param[@"placeHolderFontSize"] integerValue];
@@ -282,32 +281,29 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     if ([@"0" isEqualToString:dto.url]){
         [[Unity sharedInstance].getCurrentVC.navigationController popToRootViewControllerAnimated:YES];
         return;
-    }if (dto.url.length == 0){
-        [[Unity sharedInstance].getCurrentVC pop];
-        return;
-    } else{
+    }
+    
+    BOOL isAction = false;
+    NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
+    for (UIViewController *vc in ary) {
         
-        BOOL isAction = false;
-        NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-        for (UIViewController *vc in ary) {
-            
-            if ([vc isKindOfClass:RecyleWebViewController.class]){
-                RecyleWebViewController *webVC = (RecyleWebViewController *)vc;
-                if ([webVC.preLevelPath isEqualToString:dto.url] || [[NSString stringWithFormat:@"/%@", webVC.preLevelPath] isEqualToString:dto.url]){
-                    [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
-                    isAction = YES;
-                    break;
-                }
-                else if ([@"/index" isEqualToString:dto.url] && [vc isKindOfClass:[RecyleWebViewController class]]){
-                    [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
-                    isAction = YES;
-                    break;
-                }
+        if ([vc isKindOfClass:RecyleWebViewController.class]){
+            RecyleWebViewController *webVC = (RecyleWebViewController *)vc;
+            if ([webVC.preLevelPath isEqualToString:dto.url]){
+                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
+                isAction = YES;
+                break;
+            }
+            else if ([@"/index" isEqualToString:dto.url] && [vc isKindOfClass:[RecyleWebViewController class]]){
+                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
+                isAction = YES;
+                break;
             }
         }
-        if (!isAction){
-            [[Unity sharedInstance].getCurrentVC pop];
-        }
+    }
+    if (!isAction){
+//        [[Unity sharedInstance].getCurrentVC pop];
+        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
     }
     if(completionHandler){
         completionHandler(YES);
@@ -316,12 +312,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 
 
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    NSString *urlStr = dto.url;
-    if([urlStr hasPrefix:@"http"]){
-        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:urlStr];
-    } else{
-        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithPath:urlStr withParams:dto.params];
-    }
+    
+    [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithPath:dto.url withParams:dto.params];
+    
     if(completionHandler){
         completionHandler(YES);
     }
@@ -476,6 +469,8 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
                             RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
                             [webVC.webview callHandler:eventName arguments:@[@(tag + index)] completionHandler:nil];
                         }
+                    }else{
+                        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
                     }
                 }
             }];
@@ -519,8 +514,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             //appid
             long version;
             NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:dto.uri out_version:&version];
-//            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithUrl:urlStr withParams:nil];
-            [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:urlStr];
+            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithPath:urlStr withParams:nil];
             break;
         }
         case 2:

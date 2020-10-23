@@ -35,7 +35,7 @@
     self.moduleName2Moudle= [[NSMutableDictionary alloc] init];
     self.moduleName2MoudleProtocolnames= [[NSMutableDictionary alloc] init];
     [self initModules];
-    [self onAllMoudlesInited];
+    [self onAllModulesInited];
     
 //    [XEOneWebViewPool sharedInstance];
 }
@@ -51,7 +51,7 @@
     return _modules;
 }
 
-- (void) onAllMoudlesInited{
+- (void) onAllModulesInited{
     for (xengine__module_BaseModule *module in self.modules) {
         [module onAllModulesInited];
     }

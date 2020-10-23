@@ -9,7 +9,7 @@ public interface IOfflinePackageProtocol {
      * @param version
      * @param engineVersion
      */
-    public void downLoadApp(String baseUrl, final String appId, String appSecret, final String microAppId, final int version, int engineVersion, final IXEngineNetProtocolCallback callback);
+    public void downLoadApp(String baseUrl, final String appId, String appSecret, final String microAppId, final int version, int engineVersion, final IXEngineNetProtocolCallback callback, final IMicroAppInstallListener installListener);
 
 
     /**

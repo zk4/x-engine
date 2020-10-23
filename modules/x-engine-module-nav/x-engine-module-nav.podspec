@@ -1,4 +1,4 @@
-#
+# 
 #  Be sure to run `pod spec lint JsApiTest.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 
     s.source_files  = "iOS/Class/**/*.{h,m}"
     s.public_header_files = "iOS/Class/**/*.h"
-    
+    s.resources = ["iOS/search.png"]
    
     s.frameworks  = "UIKit"
 

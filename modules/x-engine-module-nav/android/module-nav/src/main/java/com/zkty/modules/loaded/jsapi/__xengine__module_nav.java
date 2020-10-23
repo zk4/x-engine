@@ -42,10 +42,14 @@ public class __xengine__module_nav extends xengine__module_nav {
 
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
-            mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, view -> {
-                mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{new JSONObject().put("success", "success")}, retValue -> {
+            if (TextUtils.isEmpty(dto.__event__)) {
+                mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, null);
+            } else {
+                mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, view -> {
+                    mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{new JSONObject().put("success", "success")}, retValue -> {
+                    });
                 });
-            });
+            }
         });
 
         handler.complete();
@@ -105,9 +109,10 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
             String url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(dto.url, dto.params);
-            XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
-
-            mActivity.startActivity(new Intent(mActivity, XEngineWebActivity.class));
+//            XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
+            Intent intent = new Intent(mActivity, XEngineWebActivity.class);
+            intent.putExtra(XEngineWebActivity.URL, url);
+            mActivity.startActivity(intent);
             handler.complete();
         });
 
@@ -115,10 +120,7 @@ public class __xengine__module_nav extends xengine__module_nav {
 
     @Override
     public void _navigatorBack(NavNavigatorDTO dto, CompletionHandler<Nullable> handler) {
-        if (TextUtils.isEmpty(dto.url)) {
-            handler.complete();
-            return;
-        }
+
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
             if (dto == null || dto.url == null) {

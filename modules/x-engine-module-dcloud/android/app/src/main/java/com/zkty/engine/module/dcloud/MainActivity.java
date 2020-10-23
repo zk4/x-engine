@@ -8,8 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
-import com.zkty.modules.engine.core.MicroAppLoader;
-import com.zkty.modules.engine.webview.WebViewPool;
 import com.zkty.modules.engine.webview.XEngineWebView;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
 

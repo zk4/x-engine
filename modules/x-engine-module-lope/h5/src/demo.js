@@ -1,18 +1,37 @@
 
 import lope from './index.js'
 
-  window.openDoor = (...args) => {
-  lope
-    .openDoor(...args)
-    .then((res) => {
-      document.getElementById("debug_text").innerText = "ret:"+res;
-    });
+  window.initSdkAndConfigure = () => {
+    lope
+      .initSdkAndConfigure({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
   };
 
+  window.scanDevice = () => {
+    lope
+      .scanDevice({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
 
-  window.customOpenDoor = (...args) => {
+  window.openDoor = () => {
   lope
-    .customOpenDoor(...args)
+    .openDoor({
+      __event__: (res) => {
+        document.getElementById("debug_text").innerText = res;
+      },
+    })
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
@@ -21,7 +40,11 @@ import lope from './index.js'
 
   window.lightLift = (...args) => {
   lope
-    .lightLift(...args)
+    .lightLift({
+      __event__: (res) => {
+        document.getElementById("debug_text").innerText = res;
+      },
+    })
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });

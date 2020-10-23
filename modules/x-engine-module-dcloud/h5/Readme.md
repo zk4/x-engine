@@ -1,7 +1,7 @@
 
-``` bash
-npm install @zkty-team/com-zkty-module-dcloud
-```
+`
+com.zkty.module.dcloud
+`
 
 
 
@@ -14,7 +14,7 @@ npm install @zkty-team/com-zkty-module-dcloud
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| appId | string |  | __UNI__11E9B73 |  |
+| appId | string |  | __UNI__11E9B73 | 小程序appId |
 
 
 ## preloadUniMP
@@ -26,7 +26,7 @@ npm install @zkty-team/com-zkty-module-dcloud
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| appId | string |  | __UNI__11E9B73 |  |
+| appId | string |  | __UNI__11E9B73 | 小程序appId |
 
 
 ## openUniMPWithArg

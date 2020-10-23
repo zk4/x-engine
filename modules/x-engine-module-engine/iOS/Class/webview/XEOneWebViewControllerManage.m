@@ -5,7 +5,7 @@
 #import "Unity.h"
 #import "ZKPushAnimation.h"
 #import <objc/runtime.h>
- 
+
 #import "UINavigationController+Customized.h"
 
 
@@ -95,17 +95,12 @@
 - (void)pushWebViewControllerWithUrl:(NSString *)url{
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
+    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
-    
-//    [[Unity sharedInstance].getCurrentVC.navigationController setXEPopDelegate:^BOOL(BOOL r) {
-//        
-//        [[XEOneWebViewPool sharedInstance] resetUrl: self.rootUrl];
-//        return YES;
-//    }]; 
 }
 
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params{
-
+    
     [Unity sharedInstance].getCurrentVC.hidesBottomBarWhenPushed = YES;
     NSString *url = [self getUrl:path params:params];
     
@@ -152,25 +147,36 @@
 }
 
 -(NSString *)getUrl:(NSString *)url params:(NSString *)params{
-    NSString *toUrl;
+    NSMutableString *toUrl = [[NSMutableString alloc] init];
     if ([[url lowercaseString] hasPrefix:@"http"]){
-        toUrl = url;
+        [toUrl appendString:url];
     } else if (url.length > 0){
-        
-        toUrl = [self.rootUrl stringByAppendingFormat:@"#%@", url];
-        
+        [toUrl appendFormat:@"%@#%@", self.rootUrl, url];
         if(params){
-            NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
-            toUrl = [toUrl stringByAppendingFormat:@"%@params=%@", range.location == NSNotFound ? @"?" : @"&", params];
+            if([params isKindOfClass:[NSString class]]){
+                NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
+                [toUrl appendFormat:@"%@params=%@", range.location == NSNotFound ? @"?" : @"&", params];
+            }else if([params isKindOfClass:[NSDictionary class]]){
+                NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
+                if(range.location == NSNotFound){
+                    [toUrl appendString:@"?"];
+                } else{
+                    [toUrl appendString:@"&"];
+                }
+                NSDictionary *dic = (NSDictionary *)params;
+                for (NSString *key in [dic allKeys]) {
+                    [toUrl appendFormat:@"&%@=%@", key, dic[key]];
+                }
+            }
         }
     } else {
-        toUrl = self.rootUrl;
+        [toUrl appendString:self.rootUrl];
     }
     return toUrl;
 }
 
 -(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
-
+    
     XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:url withRootPath:nil];
     return vc;
 }

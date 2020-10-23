@@ -39,8 +39,10 @@ public class XEngineWebActivityManager {
         if (!url.startsWith("http")) {
             url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(url);
         }
-        XOneWebViewPool.sharedInstance().peekUnusedWebViewFromPool().preLoad(url);
-        context.startActivity(new Intent(context, XEngineWebActivity.class));
+//        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
+        Intent intent = new Intent(context, XEngineWebActivity.class);
+        intent.putExtra(XEngineWebActivity.URL,url);
+        context.startActivity(intent);
 
     }
 
@@ -49,8 +51,10 @@ public class XEngineWebActivityManager {
             url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(url);
         }
         url = TextUtils.isEmpty(path) ? url : url + "?" + path;
-        XOneWebViewPool.sharedInstance().peekUnusedWebViewFromPool().preLoad(url);
-        context.startActivity(new Intent(context, XEngineWebActivity.class));
+//        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
+        Intent intent = new Intent(context, XEngineWebActivity.class);
+        intent.putExtra(XEngineWebActivity.URL,url);
+        context.startActivity(intent);
 
     }
 
@@ -70,7 +74,7 @@ public class XEngineWebActivityManager {
     public void clearActivity(XEngineWebActivity activity) {
         activityList.remove(activity);
         if (activityList.isEmpty()) {
-            XOneWebViewPool.sharedInstance().peekUnusedWebViewFromPool().cleanCache();
+            XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().cleanCache();
         }
     }
 

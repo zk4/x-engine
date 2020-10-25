@@ -305,7 +305,7 @@ function setNavSearchBar(
 function setSearchBarHidden(arg:NavHiddenBarDTO){
   window.setSearchBarHidden = () => {
     nav
-      .setHidden({
+      .setSearchBarHidden({
         isHidden: true,
         isAnimation: true,
       })
@@ -316,7 +316,7 @@ function setSearchBarHidden(arg:NavHiddenBarDTO){
 function setNavBarHidden(arg:NavHiddenBarDTO){
   window.setNavBarHidden = () => {
     nav
-      .setHidden({
+      .setNavBarHidden({
         isHidden: true,
         isAnimation: true,
       })
@@ -327,7 +327,7 @@ function setNavBarHidden(arg:NavHiddenBarDTO){
 function testSetHidden(arg:NavHiddenBarDTO){
   window.testSetHidden = () => {
     nav
-      .setHidden({
+      .setSearchBarHidden({
         isHidden: false,
         isAnimation: false,
       })

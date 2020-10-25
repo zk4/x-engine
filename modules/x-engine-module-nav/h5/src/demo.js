@@ -88,7 +88,7 @@ import nav from './index.js'
 
   window.setSearchBarHidden = () => {
     nav
-      .setHidden({
+      .setSearchBarHidden({
         isHidden: true,
         isAnimation: true,
       })
@@ -97,7 +97,7 @@ import nav from './index.js'
 
   window.setNavBarHidden = () => {
     nav
-      .setHidden({
+      .setNavBarHidden({
         isHidden: true,
         isAnimation: true,
       })
@@ -106,7 +106,7 @@ import nav from './index.js'
 
   window.testSetHidden = () => {
     nav
-      .setHidden({
+      .setSearchBarHidden({
         isHidden: false,
         isAnimation: false,
       })

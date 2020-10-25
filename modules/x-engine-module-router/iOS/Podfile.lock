@@ -11,6 +11,9 @@ PODS:
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
+  - x-engine-module-nav (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-protocols
   - x-engine-module-protocols (0.0.9)
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
@@ -21,6 +24,7 @@ PODS:
 DEPENDENCIES:
   - WechatOpenSDK
   - x-engine-module-engine (from `../../x-engine-module-engine`)
+  - x-engine-module-nav (from `../../x-engine-module-nav`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols`)
   - x-engine-module-tools (from `../../x-engine-module-tools`)
 
@@ -37,6 +41,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
+  x-engine-module-nav:
+    :path: "../../x-engine-module-nav"
   x-engine-module-protocols:
     :path: "../../x-engine-module-protocols"
   x-engine-module-tools:
@@ -50,9 +56,10 @@ SPEC CHECKSUMS:
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   x-engine-module-engine: dfb8facaaf55c5aa6f3d67b51fb5f9cc36d1b9de
+  x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
   x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: 76a902f2ef9cfdcccbd0bcecee1688a7a7a48d7e
+PODFILE CHECKSUM: 3aed9e7ae51c18e38d6120865de9083f510494f1
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

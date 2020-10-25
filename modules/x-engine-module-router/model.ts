@@ -41,7 +41,7 @@ function _testnative(arg: RouterOpenAppDTO  ) {
 function _testmicroapp(arg: RouterOpenAppDTO) {
   window._testmicroapp = () => {
     router
-      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.moduledemo", path:"" })
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"" })
       .then((res) => { });
   };
 }

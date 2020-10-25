@@ -70,7 +70,7 @@ export default {
           params: `${this.pageType==='create'?'create':'edit'}`
         });
       }
-    });
+    };
   },
   
 methods: {

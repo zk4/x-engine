@@ -20,6 +20,7 @@
 		00DFC70024C843A3006A53EE /* xengine_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FF24C843A3006A53EE /* xengine_config.json */; };
 		36644A9B6347D8F3F465E2F2 /* libPods-router.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64777595404EB1F495371D9F /* libPods-router.a */; };
 		538009B44D3E4E8C337189A9 /* libPods-router-routerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8D19D09EC03B26C734EC3 /* libPods-router-routerUITests.a */; };
+		587A403325444BC200157C04 /* com.zkty.microapp.navdemo.0 in Resources */ = {isa = PBXBuildFile; fileRef = 587A403225444BC200157C04 /* com.zkty.microapp.navdemo.0 */; };
 		587F741B250669A300F515BD /* __xengine__module_router.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_router.m */; };
 		587F74262506737800F515BD /* xengine__module_router.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_router.m */; };
 		C9B4278725401B2200209DB3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B4278625401B2200209DB3 /* Security.framework */; };
@@ -67,6 +68,7 @@
 		00DFC6FF24C843A3006A53EE /* xengine_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xengine_config.json; sourceTree = "<group>"; };
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		587A403225444BC200157C04 /* com.zkty.microapp.navdemo.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.microapp.navdemo.0; path = "../../../x-engine-module-nav/navigator-demo/com.zkty.microapp.navdemo.0"; sourceTree = "<group>"; };
 		587F7419250669A300F515BD /* __xengine__module_router.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __xengine__module_router.h; sourceTree = "<group>"; };
 		587F741A250669A300F515BD /* __xengine__module_router.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_router.m; sourceTree = "<group>"; };
 		587F74222506737700F515BD /* xengine__module_router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_router.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		00DFC6E224C84000006A53EE /* router */ = {
 			isa = PBXGroup;
 			children = (
+				587A403225444BC200157C04 /* com.zkty.microapp.navdemo.0 */,
 				0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
@@ -351,6 +354,7 @@
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
 				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				587A403325444BC200157C04 /* com.zkty.microapp.navdemo.0 in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
 			);

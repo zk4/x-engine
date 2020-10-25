@@ -43,16 +43,19 @@
 
     public Integer titleSize;
 
-    public String titleBig;
+    @Optional
+		public String titleBig;
 
-    public String titleFontName;
+    @Optional
+		public String titleFontName;
 
-    public boolean isBoldFont;
+    @Optional
+		public boolean isBoldFont;
 
     @Optional
 		public String icon;
 
-    public List<double> iconSize;
+    public List<Double> iconSize;
 
     @Optional
 		public List<Map<String,String>> popList;
@@ -94,11 +97,11 @@
 
     public String iconSearch;
 
-    public List<double> iconSearchSize;
+    public List<Double> iconSearchSize;
 
     public String iconClear;
 
-    public List<double> iconClearSize;
+    public List<Double> iconClearSize;
 
     public String textColor;
 

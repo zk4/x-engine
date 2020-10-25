@@ -26,12 +26,12 @@ interface NavBtnDTO {
   titleSize: int;
 
   //按钮文字粗细 
-  titleBig: string;
+  titleBig?: string;
   
   //设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium
-  titleFontName: string;
+  titleFontName?: string;
   //在不设置 titleFontName 时, 是否使用系统粗体.
-  isBoldFont: boolean;
+  isBoldFont?: boolean;
 
   //见下方说明
   icon?: string;

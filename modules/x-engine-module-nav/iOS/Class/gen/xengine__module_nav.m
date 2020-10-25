@@ -28,9 +28,9 @@
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
    
-   
-   
-   
+   	if ([propertyName isEqualToString:@"titleBig"]) { return YES; }
+   	if ([propertyName isEqualToString:@"titleFontName"]) { return YES; }
+   	if ([propertyName isEqualToString:@"isBoldFont"]) { return YES; }
    	if ([propertyName isEqualToString:@"icon"]) { return YES; }
    
    	if ([propertyName isEqualToString:@"popList"]) { return YES; }

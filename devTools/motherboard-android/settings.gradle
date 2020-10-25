@@ -1,0 +1,26 @@
+include ':app'
+rootProject.name = "motherboard-android"
+
+
+include ':module-engine'
+project(':module-engine').projectDir = new File('../../modules/x-engine-module-engine/android/module-engine')
+include ':module-nav'
+project(':module-nav').projectDir = new File('../../modules/x-engine-module-nav/android/module-nav')
+include ':module-localstorage'
+project(':module-localstorage').projectDir = new File('../../modules/x-engine-module-localStorage/android/module-localstorage')
+include ':module-device'
+project(':module-device').projectDir = new File('../../modules/x-engine-module-device/android/module-device')
+include ':module-camera'
+project(':module-camera').projectDir = new File('../../modules/x-engine-module-camera/android/module-camera')
+include ':module-network'
+project(':module-network').projectDir = new File('../../modules/x-engine-module-network/android/module-network')
+include ':module-ui'
+project(':module-ui').projectDir = new File('../../modules/x-engine-module-ui/android/module-ui')
+include ':module-router'
+project(':module-router').projectDir = new File('../../modules/x-engine-module-router/android/module-router')
+include ':module-scan'
+project(':module-scan').projectDir = new File('../../modules/x-engine-module-scan/android/module-scan')
+include ':module-dcloud'
+project(':module-dcloud').projectDir = new File('../../modules/x-engine-module-dcloud/android/module-dcloud')
+
+

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-offline",
-  "version": "0.0.33",
+  "version": "0.0.39",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -34,8 +34,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "~0.0.13",
-    "@zkty-team/x-engine-module-network": "~0.0.9",
-    "@zkty-team/x-engine-module-protocols": "~0.0.9"
+    "@zkty-team/x-engine-module-engine": "^0.0.39",
+    "@zkty-team/x-engine-module-network": "^0.0.39",
+    "@zkty-team/x-engine-module-protocols": "^0.0.39"
   }
 }

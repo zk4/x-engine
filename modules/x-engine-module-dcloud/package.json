@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-dcloud",
-  "version": "0.0.2",
+  "version": "0.0.39",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "@zkty-team/x-cli": "^1.0.6",
-    "@zkty-team/x-engine-module-engine": "~0.0.1"
+    "@zkty-team/x-engine-module-engine": "^0.0.39"
   }
 }

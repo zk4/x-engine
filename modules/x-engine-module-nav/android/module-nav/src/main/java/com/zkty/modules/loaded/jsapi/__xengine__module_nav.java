@@ -2,6 +2,7 @@ package com.zkty.modules.loaded.jsapi;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -146,6 +147,17 @@ public class __xengine__module_nav extends xengine__module_nav {
                         mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{key}, retValue -> {
                         });
                     });
+        });
+        handler.complete();
+
+    }
+
+    @Override
+    public void _setHidden(NavHiddenBarDTO dto, CompletionHandler<Nullable> handler) {
+
+        XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        mActivity.runOnUiThread(() -> {
+            mActivity.getXEngineNavBar().setVisibility(dto.isHidden ? View.GONE : View.VISIBLE);
         });
         handler.complete();
 

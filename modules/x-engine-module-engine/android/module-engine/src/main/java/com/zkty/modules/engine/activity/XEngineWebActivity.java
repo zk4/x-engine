@@ -1,5 +1,6 @@
 package com.zkty.modules.engine.activity;
 
+import android.app.Instrumentation;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -260,29 +261,19 @@ public class XEngineWebActivity extends AppCompatActivity {
     }
 
     private void backUp() {
+        //模拟 KeyEvent.ACTION_DOWN事件,调用onKeyDown
+        new Thread(new Runnable() {
+            public void run() {
+                // 开线程调用方法
+                try {
+                    Instrumentation inst = new Instrumentation();
+                    inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
 
-        WebBackForwardList backForwardList = mWebView.copyBackForwardList();
-        if (backForwardList != null && backForwardList.getSize() != 0) {
-            //当前页面在历史队列中的位置
-            int currentIndex = backForwardList.getCurrentIndex();
-            WebHistoryItem historyItem =
-                    backForwardList.getItemAtIndex(currentIndex - 1);
-            if (historyItem != null) {
-                String backPageUrl = historyItem.getOriginalUrl();
-                XEngineWebActivity last = XEngineWebActivityManager.sharedInstance().getLastActivity();
-                if (last == null && mWebView.canGoBack() && !"about:blank".equals(backPageUrl)) {//单页面，可返回
-                    mWebView.goBack();
-                    return;
+                } catch (Exception e) {
+                    // 异常catch
                 }
-                if (last != null && !last.getWebUrl().equals(backPageUrl)) {
-                    mWebView.goBack();
-                    return;
-                }
-
             }
-        }
-
-        finish();
+        }).start();
     }
 
     @Override

@@ -28,14 +28,18 @@
 
 -(void)webViewProgressChange:(NSNotification *)notifi{
     
+    NSDictionary *dic = notifi.object;
+    float floatNum = [dic[@"progress"] floatValue];
+    id web = dic[@"webView"];
+    if(web == self.webview){
         self.progresslayer.alpha = 1;
-        float floatNum = [notifi.object floatValue];
         [self.progresslayer setProgress:floatNum animated:YES];
         if (floatNum == 1) {
             [UIView animateWithDuration:0.3 animations:^{
                 self.progresslayer.alpha = 0;
             }];
         }
+    }
 }
 
 - (instancetype)initWithUrl:(NSString *) fileUrl{
@@ -268,6 +272,7 @@
     if(self.navigationController.viewControllers.count>1){
         self.parentVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
     }
+    self.progresslayer.alpha = 0;
     [[XEOneWebViewControllerManage sharedInstance] createCacheVC];
     [self.view insertSubview:self.webview atIndex:0];
 }

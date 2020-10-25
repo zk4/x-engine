@@ -145,7 +145,10 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
     if ([keyPath isEqualToString:@"estimatedProgress"]) {
         
         float floatNum = [[change objectForKey:@"new"] floatValue];
-        [[NSNotificationCenter defaultCenter] postNotificationName:XEWebViewProgressChangeNotification object:@(floatNum)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:XEWebViewProgressChangeNotification object:@{
+            @"progress":@(floatNum),
+            @"webView":object,
+        }];
         if (floatNum >= 1 && (!self.inAllSingle && !self.inSingle)) {
             [object removeObserver:self forKeyPath:@"estimatedProgress"];
         }

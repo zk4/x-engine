@@ -1,9 +1,12 @@
 <template>
   <div class="property_notice_detail">
+    <!-- <div class="title">
+      <van-nav-bar left-text="房产详情" left-arrow @click-left="onClickLeft" />
+    </div> -->
     <div class="details">
       <div style="padding: 20px 0">
-        <p class="address">{{ this.$route.query.address }}</p>
-        <p class="address2">{{ this.$route.query.address2 }}</p>
+        <p class="address">{{ this.$route.query.id }}</p>
+        <p class="address2">{{ this.$route.query.name }}</p>
       </div>
       <van-divider
         dashed
@@ -44,39 +47,7 @@ import nav from "@zkty-team/x-engine-module-nav";
 import householdinformation from "@/components/householdinformation.vue";
 import otherinformation from "@/components/otherinformation.vue";
 import api from "@/api";
-/*import { CellGroup } from 'vant';*/
 export default {
-  mounted() {
-    nav.setNavLeftBtn({
-      // title: "房产详情",
-      // titleColor: "#000000",
-      // titleSize: 18
-      title: "房产详情",
-      titleColor: "#000000",
-      titleSize: 24,
-      icon: "back_arrow",
-      titleFontName:"PingFangSC-Medium",
-      iconSize: ["20", "20"],
-    });
-  nav
-    .setNavRightMenuBtn({
-      title: "menu",
-      titleColor: "#000000",
-      titleSize: 16,
-      icon: "",
-      iconSize: ["20", "20"],
-      popWidth: "200",
-      showMenuImg: "false",
-      popList: [
-        { icon: "", iconSize: "20", title: "1" },
-        { icon: "", iconSize: "20", title: "2" },
-        { icon: "", iconSize: "20", title: "3" },
-      ],
-      __event__: () => {
-      },
-    })
-    .then(() => {});
-  },
   name: "PropertyNoticeDetail",
   components: {
     householdinformation,
@@ -142,6 +113,14 @@ export default {
     console.log(this.active);
     console.log(this.$store.state.user.active);
     this.active = this.$store.state.user.active;
+  },
+  mounted(){
+    nav.setNavLeftBtn({
+      title: "房产详情",
+      titleColor: "#000000",
+      titleSize: 24,
+      titleBig: 500
+    })
   },
   methods: {
     onClickLeft() {
@@ -286,9 +265,9 @@ export default {
       margin: 0 0 0 20px;
       text-align: center;
     }
-    li {
-      background: #C1C1CA;
-    }
+    // li {
+    //   background: #C1C1CA;
+    // }
   .clearfix{zoom:1;    top: -82px;/*为IE6，7的兼容性设置*/}
     .clearfix:after {
       content: '.';

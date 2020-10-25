@@ -302,11 +302,21 @@ function setNavSearchBar(
   };
 }
 
-
-function setHidden(arg:NavHiddenBarDTO){
-  window.setHidden = () => {
+function setSearchBarHidden(arg:NavHiddenBarDTO){
+  window.setSearchBarHidden = () => {
     nav
-      .setHidden({
+      .setSearchBarHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+}
+
+function setNavBarHidden(arg:NavHiddenBarDTO){
+  window.setNavBarHidden = () => {
+    nav
+      .setNavBarHidden({
         isHidden: true,
         isAnimation: true,
       })
@@ -317,7 +327,7 @@ function setHidden(arg:NavHiddenBarDTO){
 function testSetHidden(arg:NavHiddenBarDTO){
   window.testSetHidden = () => {
     nav
-      .setHidden({
+      .setSearchBarHidden({
         isHidden: false,
         isAnimation: false,
       })

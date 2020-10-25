@@ -1,6 +1,6 @@
 <template>
   <div class="property_notice_detail">
-    <ul>
+    <ul style="padding:16px;">
       <li v-for="(item, index) in list" :key="index">
         <div class="beida" v-show="item.namer || item.listed">
           <div class="topb">{{ item.name }}</div>
@@ -17,7 +17,7 @@
                   <div class="basicInfo-left">
                     <img
                       class="imangetu"
-                      src="@/assets/位图 2@2x.png"
+                      src="@/assets/title.png"
                       style="width: 40px; height: 40px;margin-right:9px;"
                     />
                   </div>
@@ -234,7 +234,7 @@ export default {
     flex-direction: column;
     background: #ffffff;
     box-shadow: 0px 6px 30px 0px rgba(71, 77, 96, 0.06);
-    padding: 16px;
+    padding: 19px;
     margin-bottom: 10px;
     .topb {
       font-size: 18px;
@@ -242,7 +242,7 @@ export default {
       font-weight: 500;
       color: #121212;
       line-height: 20px;
-      padding: 19px 0 19px 19px;
+      padding: 0 0 11px 19px;
       border-bottom: 1px dashed #c1c1ca;
     }
     .bottenb {
@@ -250,7 +250,7 @@ export default {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 0 16px 16px;
+      padding: 16px 0 0 16px;
       .dpname {
         font-size: 18px;
         font-family: PingFangSC-Medium, PingFang SC;
@@ -271,7 +271,7 @@ export default {
         align-items: center;
         width: 16px;
         height: 16px;
-        background-image: url("../assets/delete@2x.png");
+        background-image: url("../assets/img/bianzu.png");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 16px 16px;

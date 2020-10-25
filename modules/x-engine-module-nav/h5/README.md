@@ -190,7 +190,20 @@ nav
 | \_\_event\_\_ | string | true |  |  |
 
 
-## setHidden
+## setSearchBarHidden
+
+
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| isHidden | bool |  |  | 是否隐藏navBar |
+| isAnimation | bool |  |  | 是否使用动画效果 |
+
+
+## setNavBarHidden
 
 
 

@@ -32,12 +32,12 @@
         />
       </van-dropdown-menu>
     </div>
+    <!-- <van-loading type="spinner" vertical color="#1989fa" v-if="loading_xs"/> -->
     <div>
-      <div class="default-content" v-if="datas.length === 0">
+      <div class="default-content" v-if="showCard_list&&datas.length === 0">
         <div class="container">
           <span class="default-icon"></span>
-          <p>您还没有创建公告哦~</p>
-          <span class="add-btn" @click="addNotie">新建公告</span>
+          <p>您还没有房产档案信息哦~</p>
         </div>
       </div>
     </div>
@@ -83,6 +83,8 @@
 </template>
 
 <script>
+const cardIcon = require("@/assets/img/searchfor.png")
+import { Toast } from 'vant'
 import nav from "@zkty-team/x-engine-module-nav";
 import api from "@/api";
 export default {
@@ -93,74 +95,75 @@ export default {
   },
   data() {
     return {
+      showCard_list: false,
       busy: false,
       moreList: [],
       i: 0,
       pageSize: 10,
       value: "",
       isShow: true,
-      isShow2: false,
-      value1: 0,
+      isShow2: true,
+      value1: 2206329166721191006,
       option1: [
-        { text: "全部商品", value: 0 },
+        { text: "全部商品", value: 2206329166721191006 },
         { text: "恒大地产", value: 1 },
         { text: "景泰地产", value: 2 },
       ],
       datas: [
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
-        {
-          buildingName: "5号楼2单元",
-          roomName: "1202",
-          blockName: "时代·倾城城市花园（珠海）",
-          value: "87.91㎡",
-        },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
+        // {
+        //   buildingName: "5号楼2单元",
+        //   roomName: "1202",
+        //   blockName: "时代·倾城城市花园（珠海）",
+        //   value: "87.91㎡",
+        // },
       ],
     };
   },
@@ -174,18 +177,9 @@ export default {
     },
   },
   mounted() {
-    nav.setNavLeftBtn({
-      title: "房产档案",
-      titleColor: "#000000",
-      titleSize: 24,
-      icon: "back_arrow",
-      titleFontName:"PingFangSC-Medium",
-      iconSize: ["20", "20"],
-    });
-      nav
-      .setNavSearchBar({
+    let searchnavArg={
         cornerRadius: 5,
-        backgroundColor: "#FF0000",
+        backgroundColor: "#D8D8D8",
         iconSearch: "",
         iconSearchSize: [20, 20],
         iconClear: "",
@@ -196,12 +190,55 @@ export default {
         placeHolderFontSize: 16,
         isInput: true,
         becomeFirstResponder: false,
+        __event__: (i) => {
+          this.value=i
+        },
+      };
+    // nav.setNavTitle({
+    //   title: "房产档案",
+    //   titleColor: "#000000",
+    //   titleSize: 18
+    // });
+    nav.setNavLeftBtn({
+      title: "房产档案",
+      titleColor: "#000000",
+      titleSize: 24,
+      titleBig: 500
+    })
+    nav.setNavRightBtn({
+      title: "right",
+        titleColor: "#000000",
+        titleSize: 16,
+        icon: cardIcon,
+        iconSize: ["20", "20"],
         __event__: () => {
-          document.getElementById("debug_text").innerText =
-            "ret: click searchBar";
+           nav
+      .setNavRightBtn({
+        title: "取消",
+        titleColor: "#000000",
+        titleSize: 16,
+        icon: "",
+        iconSize: ["20", "20"],
+        __event__: () => {
+           this.value=[]
+            nav.setNavLeftBtn({
+      title: "房产档案",
+      titleColor: "#000000",
+      titleSize: 24,
+      titleBig: 500
+    })
         },
       })
-      .then(() => {});
+          nav
+      .setNavSearchBar({...searchnavArg,})
+      nav.setNavLeftBtn({
+      title: " ",
+      titleColor: "#000000",
+      titleSize: 24,
+      titleBig: 500
+    })
+        },
+      })
   },
   methods: {
     addNotie() {
@@ -242,11 +279,17 @@ export default {
     },
 
     old() {
+       this.showCard_list=false
       const para = {
         pageIndex: "1",
         pageSize: this.pageSize,
         projectId: "2206329166721191006",
       };
+       Toast.loading({
+         duration: 0, // 持续展示 toast
+         forbidClick: true,
+         message: "加载中..."
+     });
       //下拉菜单
       api.houseject().then((res) => {
         console.log(res);
@@ -258,10 +301,25 @@ export default {
       //数据展示
       api.houselist(para).then((res) => {
         console.log(res.data.records);
-        for (let v of res.data.records) {
+        if(res.code==200){
+           if (res.data == []) {
+            this.showCard_list = false;
+          }else{
+            this.showCard_list = true;
+            Toast.clear();
+          }
+           for (let v of res.data.records) {
           this.datas.push(v);
         }
-      });
+        }else{
+           this.showCard_list = false;
+          Toast.fail(res.msg);
+        }
+       
+      }).finally(() => {
+              // this.loading_xs=false
+              Toast.clear();
+            });
       console.log(this.datas, "第一次执行");
     },
     onClickLeft() {
@@ -295,17 +353,55 @@ export default {
       // console.log(this.option1[event].id);
       console.log(event);
       //根据下拉菜单的id拉取循环数据
+        const para = {
+        pageIndex: "1",
+        pageSize: this.pageSize,
+        projectId: event,
+      };
+      //下拉菜单
+      api.houseject().then((res) => {
+        console.log(res);
+        //  for (let v in res.data.records) {
+
+        // this.option1.push({'text':res.data.records[v].blockName,'value':parseInt(v),'id':res.data.records[v].id})
+        //   }
+      });
+      //数据展示
+      this.datas=[]
+      api.houselist(para).then((res) => {
+        console.log(res.data.records);
+        if(res.code==200){
+           if (res.data == []) {
+            this.showCard_list = false;
+          }else{
+            this.showCard_list = true;
+          }
+           for (let v of res.data.records) {
+          this.datas.push(v);
+        }
+        }else{
+           this.showCard_list = false;
+        }
+       
+      }).finally(() => {
+              this.loading_xs=false
+            });
     },
     turn_detail(index, item) {
       console.log(index, item);
-      /*const  query= {*/
-          /*name: item.blockName,*/
-          /*id: item.buildingName + item.roomName,*/
-          /*idr: item.id,*/
-        /*}*/
+      // this.$router.push({
+      //   name: "PropertyNoticeDetail",
+      // const  query= {
+      //     name: item.blockName,
+      //     id: item.buildingName + item.roomName,
+      //     idr: item.id,
+      //   }
+      // });
+        //  params:`status=${item.status}&noticeId=${item.id}`
        nav.navigatorPush({
-        url: "/Property_Detail",
-        params:"address=2&address2=3"
+         url: "/Property_Detail",
+        //  params:"name="+item.blockName
+         params:encodeURI(`name=${item.blockName}&id=${item.buildingName+item.roomName}&idr=${item.id}`)
       });
     },
   },
@@ -335,7 +431,7 @@ export default {
   //固定定位
   position: fixed;
   width: 100%;
-  margin-top: 27px;
+  // margin-top: 27px;
 }
 .van-nav-bar {
   height: -webkit-fill-available;
@@ -354,11 +450,6 @@ export default {
   line-height: 24px;
 }
 .title {
-  height: 102px;
-  padding: 55px 0 23px 0;
-  box-shadow: 0px 5px 10px 0px rgba(0, 64, 128, 0.04);
-}
-.titletow {
   height: 102px;
   padding: 55px 0 23px 0;
   box-shadow: 0px 5px 10px 0px rgba(0, 64, 128, 0.04);
@@ -454,13 +545,13 @@ export default {
   align-items: center;
   justify-content: center;
   .container {
-    margin-top: -60px;
+    margin-top: 0.8rem;
     .default-icon {
       width: 375px;
       height: 200px;
       margin-top: 100px;
       display: inline-block;
-      background: url("../../assets/img/空状态@2x.png");
+      background: url("../../assets/img/background.png");
       background-size: 100% 100%;
     }
     .add-btn {

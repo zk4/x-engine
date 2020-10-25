@@ -2,10 +2,10 @@
   <div class="property_notice_detail">
     <div class="tiile">
       <div class="rightbbox">
-          <router-link class="base-info-item" :to="{ name: 'coursebyid' }">
+          <div class="base-info-item" @click="click_set">
                   <div class="title-left" >业主变更历史</div>
                   <div class="arrow-right"></div>
-                </router-link>
+                </div>
         <!-- <router-link class="couby" :to="{ name: 'coursebyid' }">业主变更历史 <van-icon style="vertical-align: middle;" name="play" /></router-link> -->
       </div>
       <div class="leftbbox"> <div class="base-info-item">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import nav from "@zkty-team/x-engine-module-nav";
 export default {
   name: "PropertyNoticeDetail",
   components: {},
@@ -26,7 +27,13 @@ export default {
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    click_set(){
+       nav.navigatorPush({
+         url: "/CourseByid",
+      });
+    }
+  },
 };
 </script>
 

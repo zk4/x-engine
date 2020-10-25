@@ -164,10 +164,17 @@
              completionHandler(nil ,complete);
           }];
       }
-    - (void) setHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) setSearchBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
-          [self _setHidden:dto complete:^(BOOL complete) {
+          [self _setSearchBarHidden:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
+          }];
+      }
+    - (void) setNavBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
+          [self _setNavBarHidden:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
       }

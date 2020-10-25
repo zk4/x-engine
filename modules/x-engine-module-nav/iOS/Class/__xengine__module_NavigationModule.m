@@ -370,6 +370,17 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     }
 }
 
+- (void)_setSearchBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    
+    if(dto.isAnimation){
+        [UIView animateWithDuration:0.3 animations:^{
+            topVC.navigationItem.titleView.alpha = dto.isHidden ? 0 : 1;
+        }];
+    }else{
+        topVC.navigationItem.titleView.alpha = dto.isHidden ? 0 : 1;
+    }
+}
 
 //- (void)_setNavBase:(NavDTO *)dto complete:(void (^)(BOOL))completionHandler {
 //
@@ -424,7 +435,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     [topVC.navigationController setNavigationBarHidden:isHidden animated:YES];
 }
 
--(void)_setHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{
+-(void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{
     
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     [topVC.navigationController setNavigationBarHidden:dto.isHidden animated:dto.isAnimation];

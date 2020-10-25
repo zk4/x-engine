@@ -2,7 +2,7 @@
   "packages": [
     "modules/*"
   ],
-  "version": "0.0.38",
+  "version": "0.0.40",
   "npmClient": "yarn",
   "command": {
     "publish": {

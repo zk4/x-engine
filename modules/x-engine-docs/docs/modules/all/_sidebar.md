@@ -1,3 +1,4 @@
+- [offline](./docs/modules/all/模块-offline.md)
 - [scan](./docs/modules/all/模块-scan.md)
 - [dcloud](./docs/modules/all/模块-dcloud.md)
 - [nav](./docs/modules/all/模块-nav.md)

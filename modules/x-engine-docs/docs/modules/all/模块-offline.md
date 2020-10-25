@@ -135,14 +135,12 @@ microApps.json:
           {
             "microAppName":"开门",
             "microAppId":"com.zkty.xiaoqu.opendoor",
-            "microAppVersion":2,
-  					"url":"http://www.download.com/abc/com.zkty.xiaoqu.opendoor.2.zip"
+            "microAppVersion":2
           },
           {
             "microAppName":"物业",
-            "microAppId":"com.zkty.xiaoqu.realstate",
-            "microAppVersion":1,
-            "url":"http://www.download.com/abc/com.zkty.xiaoqu.realstate.1.zip"
+            "microAppId":"com.zkty.xiaoqu.realstate"
+            "microAppVersion":1
           }
         ]
   }
@@ -181,7 +179,8 @@ xEngine.showMicroApp({microAppId},{version},{args},{microAppName})
 ## 微应用 zip 下载地址
 
 ```
-GET: {url}?key=md5(appSecret+microAppId+version)&engine_build=1
+GET: {offlineServerUrl}/app/{appId}/{microAppId}.{version}.zip?key=md5(appSecret+microAppId+version)&engine_build=1
+
 ```
 
 返回: zip 包

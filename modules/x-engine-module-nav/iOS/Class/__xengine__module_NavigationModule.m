@@ -121,9 +121,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 //    [self addMoreItemBarButtonWithParam:param isLeft:NO];
 //}
 
--(void)setNavSearchBar:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
-    [self addSearchBar:param];
-}
+//-(void)setNavSearchBar:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
+//    [self addSearchBar:param];
+//}
 
 #pragma mark - fun
 ///切换tabbar页签
@@ -236,25 +236,25 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     [topVC presentViewController:popover animated:YES completion:nil];
 }
 
--(void)addSearchBar:(NSDictionary *)param{
-    
-    NavSearchBarDTO *dto = [[NavSearchBarDTO alloc] init];
-    
-    dto.cornerRadius = [param[@"cornerRadius"] integerValue];
-    dto.backgroundColor = param[@"backgroundColor"];
-    dto.iconSearch = param[@"iconSearch"];
-    dto.iconSearchSize = param[@"iconSearchSize"];
-    dto.iconClear = param[@"iconClear"];
-    dto.iconClearSize = param[@"iconClearSize"];
-    dto.textColor = param[@"textColor"];
-    dto.fontSize = [param[@"fontSize"] integerValue];
-    dto.placeHolder = param[@"placeHolder"];
-    dto.placeHolderFontSize = [param[@"placeHolderFontSize"] integerValue];
-    dto.isInput = [param[@"isInput"] boolValue];
-    dto.becomeFirstResponder = [param[@"becomeFirstResponder"] boolValue];
-    
-    [self _setNavSearchBar:dto complete:nil];
-}
+//-(void)addSearchBar:(NSDictionary *)param{
+//    
+//    NavSearchBarDTO *dto = [[NavSearchBarDTO alloc] init];
+//    
+//    dto.cornerRadius = [param[@"cornerRadius"] integerValue];
+//    dto.backgroundColor = param[@"backgroundColor"];
+//    dto.iconSearch = param[@"iconSearch"];
+//    dto.iconSearchSize = param[@"iconSearchSize"];
+//    dto.iconClear = param[@"iconClear"];
+//    dto.iconClearSize = param[@"iconClearSize"];
+//    dto.textColor = param[@"textColor"];
+//    dto.fontSize = [param[@"fontSize"] integerValue];
+//    dto.placeHolder = param[@"placeHolder"];
+//    dto.placeHolderFontSize = [param[@"placeHolderFontSize"] integerValue];
+//    dto.isInput = [param[@"isInput"] boolValue];
+//    dto.becomeFirstResponder = [param[@"becomeFirstResponder"] boolValue];
+//    
+//    [self _setNavSearchBar:dto complete:nil];
+//}
 
 
 //-(void)tapGesture:(UITapGestureRecognizer *)gesture{

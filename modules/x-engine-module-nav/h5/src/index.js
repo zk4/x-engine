@@ -146,7 +146,11 @@ function osCheck() {
     }
   },
   {
-    "name": "setHidden",
+    "name": "setSearchBarHidden",
+    "default_args": null
+  },
+  {
+    "name": "setNavBarHidden",
     "default_args": null
   }
 ]

@@ -86,7 +86,16 @@ import nav from './index.js'
       .then((res) => {});
   };
 
-  window.setHidden = () => {
+  window.setSearchBarHidden = () => {
+    nav
+      .setHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+
+  window.setNavBarHidden = () => {
     nav
       .setHidden({
         isHidden: true,

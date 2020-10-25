@@ -117,7 +117,10 @@
         - (void) _setNavSearchBar:(NavSearchBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-        - (void) _setHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _setSearchBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+        - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   

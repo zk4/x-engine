@@ -302,9 +302,19 @@ function setNavSearchBar(
   };
 }
 
+function setSearchBarHidden(arg:NavHiddenBarDTO){
+  window.setSearchBarHidden = () => {
+    nav
+      .setHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+}
 
-function setHidden(arg:NavHiddenBarDTO){
-  window.setHidden = () => {
+function setNavBarHidden(arg:NavHiddenBarDTO){
+  window.setNavBarHidden = () => {
     nav
       .setHidden({
         isHidden: true,

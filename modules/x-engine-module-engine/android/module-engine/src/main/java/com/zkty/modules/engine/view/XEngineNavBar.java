@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -85,8 +87,8 @@ public class XEngineNavBar extends RelativeLayout {
 
     }
 
-    public void setNavLeftBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, OnClickListener listener) {
-        setClickView(leftTv, leftIv, title, titleColor, titleSize, icon, iconSize);
+    public void setNavLeftBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {
+        setClickView(leftTv, leftIv, title, titleColor, titleSize, icon, iconSize, isBold);
         if (listener != null) {
             layoutLeft.setOnClickListener(listener);
         }
@@ -97,10 +99,10 @@ public class XEngineNavBar extends RelativeLayout {
         layoutLeft.setOnClickListener(listener);
     }
 
-    public void setNavRightBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, OnClickListener listener) {
+    public void setNavRightBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {
         layoutMore.setVisibility(GONE);
         layoutMenu.setVisibility(GONE);
-        setClickView(rightTv, rightIv, title, titleColor, titleSize, icon, iconSize);
+        setClickView(rightTv, rightIv, title, titleColor, titleSize, icon, iconSize, isBold);
         layoutRight.setOnClickListener(listener);
         layoutRight.setVisibility(VISIBLE);
     }
@@ -122,7 +124,7 @@ public class XEngineNavBar extends RelativeLayout {
     public void setNavRightMenuBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, List<Map<String, String>> itemList, boolean showMenuImg, String menuWidth, AdapterView.OnItemClickListener listener) {
         layoutRight.setVisibility(GONE);
         layoutMore.setVisibility(GONE);
-        setClickView(menuTv, menuIv, title, titleColor, titleSize, icon, iconSize);
+        setClickView(menuTv, menuIv, title, titleColor, titleSize, icon, iconSize, false);
         layoutMenu.setVisibility(VISIBLE);
         layoutMenu.setOnClickListener(view -> showMenu(itemList, showMenuImg, menuWidth, listener));
     }
@@ -194,13 +196,18 @@ public class XEngineNavBar extends RelativeLayout {
         private ImageView ivIcon;
     }
 
-    private void setClickView(TextView tv, ImageView iv, String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize) {
+    private void setClickView(TextView tv, ImageView iv, String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold) {
         if (!TextUtils.isEmpty(title)) {
             tv.setText(title);
             tv.setTextColor(Color.parseColor(titleColor));
             if (titleSize != null && titleSize > 9 && titleSize < 17) {
                 tv.setTextSize(titleSize);
             }
+            if (isBold) {
+                Typeface font = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD);
+                tv.setTypeface(font);
+            }
+
             tv.setVisibility(View.VISIBLE);
         }
         if (!TextUtils.isEmpty(icon) && TextUtils.isEmpty(title)) {//Object中如果同时存在title和icon会默认显示文字?

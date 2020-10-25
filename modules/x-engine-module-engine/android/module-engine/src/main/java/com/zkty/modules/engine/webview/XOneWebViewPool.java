@@ -10,6 +10,7 @@ import java.util.List;
 public class XOneWebViewPool {
 
     public static boolean IS_SINGLE = false;
+    public static boolean IS_WEB = false;
 
     private static List<XEngineWebView> circleList;
     private static final byte[] lock = new byte[]{};
@@ -58,8 +59,7 @@ public class XOneWebViewPool {
     public XEngineWebView getUnusedWebViewFromPool() {
         synchronized (lock) {
             XEngineWebView webView = null;
-            if (IS_SINGLE) {
-
+            if (IS_WEB || IS_SINGLE) {
                 webView = circleList.get(0);
                 ViewGroup parent = (ViewGroup) webView.getParent();
                 if (parent != null) {
@@ -67,7 +67,7 @@ public class XOneWebViewPool {
                 }
             } else {
                 webView = new XEngineWebView(mContext);
-                circleList.add(0, webView);
+                circleList.set(0, webView);
             }
             return webView;
         }

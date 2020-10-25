@@ -30,10 +30,13 @@ import nav from "@zkty-team/x-engine-module-nav";
 export default {
   name: "PropertyNoticeDetail",
   mounted() {
-    nav.setNavTitle({
+    nav.setNavLeftBtn({
       title: "业主变更",
       titleColor: "#000000",
-      titleSize: 18
+      titleSize: 24,
+      icon: "back_arrow",
+      titleFontName:"PingFangSC-Medium",
+      iconSize: ["20", "20"],
     });
     },
   components: {},

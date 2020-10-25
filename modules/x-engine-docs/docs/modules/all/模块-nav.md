@@ -112,6 +112,9 @@ npm install @zkty-team/com-zkty-module-nav
 | title | string |  | menu | 导航条右边按钮的文字 |
 | titleColor | string |  | #000000 | 16进制的颜色色值 |
 | titleSize | int |  | 16 | 导航条文字的大小 |
+| titleBig | string | true |  | 按钮文字粗细  |
+| titleFontName | string | true |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
+| isBoldFont | bool | true |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | true |  | 见下方说明 |
 | iconSize | Array\<double\> |  | ["20","20"] | 图片的宽高 |
 | popList | Array\<Map\<string,string\>\> | true | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
@@ -152,6 +155,9 @@ npm install @zkty-team/com-zkty-module-nav
 | title | string |  | menu | 导航条右边按钮的文字 |
 | titleColor | string |  | #000000 | 16进制的颜色色值 |
 | titleSize | int |  | 16 | 导航条文字的大小 |
+| titleBig | string | true |  | 按钮文字粗细  |
+| titleFontName | string | true |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
+| isBoldFont | bool | true |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | true |  | 见下方说明 |
 | iconSize | Array\<double\> |  | ["20","20"] | 图片的宽高 |
 | popList | Array\<Map\<string,string\>\> | true | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
@@ -200,6 +206,9 @@ npm install @zkty-team/com-zkty-module-nav
 | title | string |  | menu | 导航条右边按钮的文字 |
 | titleColor | string |  | #000000 | 16进制的颜色色值 |
 | titleSize | int |  | 16 | 导航条文字的大小 |
+| titleBig | string | true |  | 按钮文字粗细  |
+| titleFontName | string | true |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
+| isBoldFont | bool | true |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | true |  | 见下方说明 |
 | iconSize | Array\<double\> |  | ["20","20"] | 图片的宽高 |
 | popList | Array\<Map\<string,string\>\> | true | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |

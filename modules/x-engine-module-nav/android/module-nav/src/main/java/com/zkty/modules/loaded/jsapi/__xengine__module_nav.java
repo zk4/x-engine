@@ -43,9 +43,9 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
             if (TextUtils.isEmpty(dto.__event__)) {
-                mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, null);
+                mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, null);
             } else {
-                mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, view -> {
+                mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, view -> {
                     mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{new JSONObject().put("success", "success")}, retValue -> {
                     });
                 });
@@ -60,7 +60,7 @@ public class __xengine__module_nav extends xengine__module_nav {
     public void _setNavRightBtn(NavBtnDTO dto, CompletionHandler<Nullable> handler) {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
-            mActivity.getXEngineNavBar().setNavRightBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, view -> {
+            mActivity.getXEngineNavBar().setNavRightBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, view -> {
                 mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{new JSONObject().put("success", "success")}, retValue -> {
                 });
             });
@@ -108,11 +108,7 @@ public class __xengine__module_nav extends xengine__module_nav {
         }
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
-            String url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(dto.url, dto.params);
-//            XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
-            Intent intent = new Intent(mActivity, XEngineWebActivity.class);
-            intent.putExtra(XEngineWebActivity.URL, url);
-            mActivity.startActivity(intent);
+            XEngineWebActivityManager.sharedInstance().navigatorPush(mActivity, dto.url, dto.params);
             handler.complete();
         });
 

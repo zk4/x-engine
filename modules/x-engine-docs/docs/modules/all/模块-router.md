@@ -41,6 +41,18 @@
 
 > 注： 如果 uni app 需要支持统一路由，则需要将 uni 请求代理到统一路由模块。
 
+
+
+|          | h5   | microApp | wx   | native | uni  |
+| -------- | ---- | -------- | ---- | ------ | ---- |
+| h5       | -    | -        | -    | -      | -    |
+| microApp | 支持 | 支持     | 支持 | 支持   | 支持 |
+| wx       | -    | -        | -    | -      | -    |
+| native   | 支持 | 支持     | 支持 | 支持   | 支持 |
+| uni      | -    | -        | -    | -      | -    |
+
+
+
 [跳微信小程序需知](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Launching_a_Mini_Program/Launching_a_Mini_Program.html)
 
 **跳转规则**

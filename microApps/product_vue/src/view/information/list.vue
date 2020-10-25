@@ -174,11 +174,34 @@ export default {
     },
   },
   mounted() {
-    nav.setNavTitle({
-      title: "kkk",
+    nav.setNavLeftBtn({
+      title: "房产档案",
       titleColor: "#000000",
-      titleSize: 18
+      titleSize: 24,
+      icon: "back_arrow",
+      titleFontName:"PingFangSC-Medium",
+      iconSize: ["20", "20"],
     });
+      nav
+      .setNavSearchBar({
+        cornerRadius: 5,
+        backgroundColor: "#FF0000",
+        iconSearch: "",
+        iconSearchSize: [20, 20],
+        iconClear: "",
+        iconClearSize: [20, 20],
+        textColor: "#000000",
+        fontSize: 16,
+        placeHolder: "默认文字",
+        placeHolderFontSize: 16,
+        isInput: true,
+        becomeFirstResponder: false,
+        __event__: () => {
+          document.getElementById("debug_text").innerText =
+            "ret: click searchBar";
+        },
+      })
+      .then(() => {});
   },
   methods: {
     addNotie() {

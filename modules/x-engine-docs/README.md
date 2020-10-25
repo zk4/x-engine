@@ -15,7 +15,6 @@ x-engine 的目的并不是做“另一个跨平台”框架，
 native + h5  : cordova 
 
 h5 -> native  : reactie-native  weex 
-
 self-render   : flutter
 
 native + web- : 小程序
@@ -60,14 +59,11 @@ x-engine 将会全面开源，包括核心源码。在出问题时，你能跟�
 
 模块模板:[module-template](https://github.com/zkty-team/x-engine-module-template)
 
-基座下载地址 [ios](https://www.pgyer.com/ZCfP) / [android](https://www.pgyer.com/BUBN) (基座集成了部分组件,可供开发使用)
-
 包含:
 
 
 module-nav
 module-localstorage
-module-network
 module-ui
 module-router
 module-scan

@@ -88,7 +88,7 @@ class ReadmeAggregator():
         # print("path",path,"out",out+"/assets/*",join(self.outputDir,"assets"))
         # subprocess.Popen(["cp","-r",out+"/assets/",join(self.outputDir,"assets/") ]).communicate()
     def gen_dist(self):
-        os.system(f"pushd {self.folder_path}  &&  x-cli model model.ts && yarn md && popd && rm -rdf {self.outputDir}/dist/{self.get_short_module_name()} &&  cp -fr {self.folder_path}/h5/dist {self.outputDir}/dist/{self.get_short_module_name()}")
+        os.system(f"pushd {self.folder_path}  &&   yarn md && popd && rm -rdf {self.outputDir}/dist/{self.get_short_module_name()} &&  cp -fr {self.folder_path}/h5/dist {self.outputDir}/dist/{self.get_short_module_name()}")
 
     def get_short_module_name(self):
         return self.module_short_name

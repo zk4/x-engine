@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.zkty.engine.module.offline.R;
 import com.zkty.engine.module.offline.activitys.CommonWebActivity;
 import com.zkty.modules.engine.manager.MicroAppVersionBean;
+import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
 import java.util.ArrayList;
 
@@ -53,10 +54,7 @@ public class MicroAppAdapter extends RecyclerView.Adapter<MicroAppAdapter.VHolde
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(mContext, CommonWebActivity.class);
-                intent.putExtra(CommonWebActivity.KEY_URI, datas.get(position).getMicroAppId());
-                mContext.startActivity(intent);
+                XEngineWebActivityManager.sharedInstance().startXEngineActivity(mContext, datas.get(position).getMicroAppId());
             }
         });
     }

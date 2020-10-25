@@ -62,7 +62,18 @@
             android:text="卸载所有微应用"
             android:textColor="@color/default_text_color"
             android:textSize="14dp"></TextView>
-
+        
+        <TextView
+            android:id="@+id/remote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_item"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="远程升级"
+            android:textColor="@color/default_text_color"
+            android:textSize="14dp"></TextView>
 
     </LinearLayout>
 </ScrollView>

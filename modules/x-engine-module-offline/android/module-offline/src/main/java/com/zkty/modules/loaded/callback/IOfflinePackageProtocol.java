@@ -14,9 +14,10 @@ public interface IOfflinePackageProtocol {
 
     /**
      * @param baseUrl
+     * @param path
      * @param appId
      * @param appSecret
      * @param engineVersion
      */
-    public void checkMicroAppsUpdate(String baseUrl, final String appId, final String appSecret, final int engineVersion, final IXEngineNetProtocolCallback callback);
+    public void checkMicroAppsUpdate(String baseUrl, String path, final String appId, final String appSecret, final int engineVersion, final IXEngineNetProtocolCallback callback);
 }

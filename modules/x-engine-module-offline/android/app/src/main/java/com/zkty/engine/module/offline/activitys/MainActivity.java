@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,6 +16,10 @@ import androidx.core.app.ActivityCompat;
 import com.zkty.engine.module.offline.R;
 import com.zkty.modules.engine.manager.MicroAppsManager;
 import com.zkty.modules.engine.utils.FileUtils;
+import com.zkty.modules.loaded.callback.IXEngineNetProtocolCallback;
+import com.zkty.modules.loaded.callback.XEngineNetRequest;
+import com.zkty.modules.loaded.callback.XEngineNetResponse;
+import com.zkty.modules.loaded.imp.MicroAppsUpdateManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView uninstall;
 
+    private TextView remote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         lastApps = findViewById(R.id.last_apps);
 
         uninstall = findViewById(R.id.uninstall);
+
+        remote = findViewById(R.id.remote);
 
         install.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +143,36 @@ public class MainActivity extends AppCompatActivity {
                 if (apps.exists()) {
                     FileUtils.deleteFile(apps);
                 }
+            }
+        });
+
+        remote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "remote!");
+                MicroAppsUpdateManager microAppsUpdateManager = new MicroAppsUpdateManager();
+                microAppsUpdateManager.checkMicroAppsUpdate("http://192.168.43.40:80", "/microApp.json", "", "", 0, new IXEngineNetProtocolCallback() {
+                    @Override
+                    public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {         //注意不要在这里读取数据流
+                        Log.d(TAG, "success!");
+                    }
+
+                    @Override
+                    public void onUploadProgress(XEngineNetRequest request, long bytesWritten, long contentLength, boolean done) {
+
+                    }
+
+                    @Override
+                    public void onDownLoadProgress(XEngineNetRequest request, XEngineNetResponse response, long bytesReaded, long contentLength, boolean done) {
+
+                    }
+
+                    @Override
+                    public void onFailed(XEngineNetRequest request, String error) {
+                        Log.d(TAG, "error:" + error);
+                    }
+                });
+
             }
         });
 

@@ -26,6 +26,7 @@ public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
 
 
     /**
+     * 废弃原始制定规则
      * 根据微应用版本信息拼接地址url并下载安装
      * GET: {offlineServerUrl}/app/{appId}/{microAppId}.{version}.zip?key=md5(appSecret+microAppId+version)&engine_version=1
      *
@@ -42,26 +43,36 @@ public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
         HashMap<String, String> header = new HashMap<>();
 
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(baseUrl)
-                .append("/").append("app")
-                .append("/").append(appId)
-                .append("/").append(microAppId).append(".").append(version).append(".zip");
+        if (!baseUrl.endsWith("/")) {
+            urlBuilder.append(baseUrl + "/");
+        } else {
+            urlBuilder.append(baseUrl);
+        }
+        if (TextUtils.isEmpty(microAppId)) {
+            Log.d(TAG, "not define microAppId");
+            return;
+        }
+        urlBuilder.append(microAppId);
+        urlBuilder.append(".");
+        urlBuilder.append(version);
+        urlBuilder.append(".zip");
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("key", MD5Utils.getMD5(appSecret + microAppId + version));
+        if (!TextUtils.isEmpty(appSecret)) {
+            params.put("key", MD5Utils.getMD5(appSecret + microAppId + version));
+        }
         params.put("engine_version", String.valueOf(engineVersion));
 
         ixEngineNetProtocol.doRequest(IXEngineNetProtocol.Method.GET, urlBuilder.toString(), header, params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
-                if (callback != null) {
-                    callback.onSuccess(request, response);
-                }
                 InputStream inputStream = response.getBody();
                 if (inputStream != null) {
                     String path = MicroAppsManager.getInstance().saveApp(inputStream, microAppId, String.valueOf(version));
+                    Log.d(TAG, "path:" + path);
                     if (!TextUtils.isEmpty(path)) {
                         boolean installed = MicroAppsManager.getInstance().installApp(new File(path));         //安装微应用
+                        Log.d(TAG, "installed:" + installed);
                         if (installListener != null) {
                             installListener.onIMicroAppInstallListener(installed, microAppId);
                         }
@@ -95,6 +106,7 @@ public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
 
 
     /**
+     * 废弃原始制定规则
      * GET: {offlineServerUrl}/app/{appId}/microApps.json?key=md5(appSecret+appId)
      *
      * @param url
@@ -108,31 +120,39 @@ public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
      * @param engineVersion
      */
     @Override
-    public void checkMicroAppsUpdate(final String baseUrl, final String appId, final String appSecret, final int engineVersion, final IXEngineNetProtocolCallback callback) {
+    public void checkMicroAppsUpdate(final String baseUrl, String path, final String appId, final String appSecret, final int engineVersion, final IXEngineNetProtocolCallback callback) {
         final IXEngineNetProtocol ixEngineNetProtocol = XEngineNetImpl.getInstance();
 
         HashMap<String, String> header = new HashMap<>();
-
+        if (TextUtils.isEmpty(baseUrl) || TextUtils.isEmpty(path)) {
+            return;
+        }
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(baseUrl).append("/").append("app").append("/").append(appId).append("/").append("microApps.json");
+        if (baseUrl.endsWith("/")) {                            //带"/"删除
+            urlBuilder.append(baseUrl.substring(0, baseUrl.length() - 1));
+        } else {
+            urlBuilder.append(baseUrl);
+        }
+        if (path.startsWith("/")) {
+            urlBuilder.append(path);
+        } else {
+            urlBuilder.append("/").append(path);
+        }
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("key", MD5Utils.getMD5(appSecret + appId));
+        if (!TextUtils.isEmpty(appId) && !TextUtils.isEmpty(appSecret)) {
+            params.put("key", MD5Utils.getMD5(appSecret + appId));
+        }
 
         ixEngineNetProtocol.doRequest(IXEngineNetProtocol.Method.GET, urlBuilder.toString(), header, params, null, null, new IXEngineNetProtocolCallback() {
             @Override
             public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {             //获取到所有微应用版本信息
-                if (callback != null) {
-                    callback.onSuccess(request, response);
-                }
-
                 String resp = FileUtils.readInputSteam(response.getBody());
                 if (!TextUtils.isEmpty(resp)) {
                     Log.d(TAG, "resp:" + resp);
                     try {
                         JSONObject body = new JSONObject(resp);
                         int code = body.optInt("code", 0);
-                        int version = body.optInt("version", 0);
                         switch (code) {
                             case 0:     //有新版本
                                 JSONArray array = body.optJSONArray("data");
@@ -140,18 +160,17 @@ public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
                                     for (int i = 0; i < array.length(); i++) {
                                         JSONObject app = array.getJSONObject(i);        //获取每一个微应用的配置信息
 
-                                        boolean forceUpdate = app.optBoolean("forceUpdate", false);
                                         String microAppName = app.optString("microAppName", null);
                                         String microAppId = app.optString("microAppId", null);
                                         int microAppVersion = app.optInt("microAppVersion", 0);
 
                                         if (MicroAppsManager.getInstance().isMicroAppExit(microAppId)) {                //本地存在
                                             int old = MicroAppsManager.getInstance().getHighMicroAppVersionCode(microAppId);
-                                            if (microAppVersion > old && forceUpdate) {        //有新版本且需要强制升级
-                                                downLoadApp(baseUrl, appId, appSecret, microAppId, version, engineVersion, null, null);
+                                            if (microAppVersion > old) {        //有新版本且需要强制升级
+                                                downLoadApp(baseUrl, appId, appSecret, microAppId, microAppVersion, engineVersion, null, null);
                                             }
                                         } else {                                    //本地不存在[直接下载微应用安装到本地]
-                                            downLoadApp(baseUrl, appId, appSecret, microAppId, version, engineVersion, null, null);
+                                            downLoadApp(baseUrl, appId, appSecret, microAppId, microAppVersion, engineVersion, null, null);
                                         }
                                     }
                                 }

@@ -3,4 +3,5 @@
 - [nav](./docs/modules/all/模块-nav.md)
 - [router](./docs/modules/all/模块-router.md)
 - [localstorage](./docs/modules/all/模块-localstorage.md)
+- [network](./docs/modules/all/模块-network.md)
 - [camera](./docs/modules/all/模块-camera.md)

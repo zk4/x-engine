@@ -43,11 +43,14 @@
 
     public Integer titleSize;
 
-    public String titleBig;
+    @Optional
+		public String titleBig;
 
-    public String titleFontName;
+    @Optional
+		public String titleFontName;
 
-    public boolean isBoldFont;
+    @Optional
+		public boolean isBoldFont;
 
     @Optional
 		public String icon;

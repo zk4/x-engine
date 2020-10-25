@@ -13,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.alibaba.fastjson.JSON;
 import com.zkty.engine.module.offline.R;
 import com.zkty.modules.engine.manager.MicroAppsManager;
 import com.zkty.modules.engine.utils.FileUtils;
+import com.zkty.modules.loaded.ServerConfig;
 import com.zkty.modules.loaded.callback.IXEngineNetProtocolCallback;
 import com.zkty.modules.loaded.callback.XEngineNetRequest;
 import com.zkty.modules.loaded.callback.XEngineNetResponse;
@@ -150,33 +152,63 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "remote!");
-                MicroAppsUpdateManager microAppsUpdateManager = new MicroAppsUpdateManager();
-                microAppsUpdateManager.checkMicroAppsUpdate("http://192.168.43.40:80", "/microApp.json", "", "", 0, new IXEngineNetProtocolCallback() {
-                    @Override
-                    public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {         //注意不要在这里读取数据流
-                        Log.d(TAG, "success!");
-                    }
 
-                    @Override
-                    public void onUploadProgress(XEngineNetRequest request, long bytesWritten, long contentLength, boolean done) {
+                autoCheckMicroApps();
 
-                    }
-
-                    @Override
-                    public void onDownLoadProgress(XEngineNetRequest request, XEngineNetResponse response, long bytesReaded, long contentLength, boolean done) {
-
-                    }
-
-                    @Override
-                    public void onFailed(XEngineNetRequest request, String error) {
-                        Log.d(TAG, "error:" + error);
-                    }
-                });
+//                MicroAppsUpdateManager microAppsUpdateManager = new MicroAppsUpdateManager();
+//                microAppsUpdateManager.checkMicroAppsUpdate("http://192.168.43.40:80", "/microApp.json", "", "", 0, new IXEngineNetProtocolCallback() {
+//                    @Override
+//                    public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {         //注意不要在这里读取数据流
+//                        Log.d(TAG, "success!");
+//                    }
+//
+//                    @Override
+//                    public void onUploadProgress(XEngineNetRequest request, long bytesWritten, long contentLength, boolean done) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onDownLoadProgress(XEngineNetRequest request, XEngineNetResponse response, long bytesReaded, long contentLength, boolean done) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailed(XEngineNetRequest request, String error) {
+//                        Log.d(TAG, "error:" + error);
+//                    }
+//                });
 
             }
         });
 
         checkStoragePermission();
+    }
+
+
+    /**
+     * 自动更新
+     */
+    private void autoCheckMicroApps() {
+        InputStream inputStream = null;
+        try {
+            inputStream = getAssets().open("xengine_config.json");
+            if (inputStream != null) {
+                String json = FileUtils.readInputSteam(inputStream);
+                Log.d(TAG, "json:" + json);
+                ServerConfig serverConfig = JSON.parseObject(json, ServerConfig.class);
+                MicroAppsUpdateManager.getInstance().update(serverConfig);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override

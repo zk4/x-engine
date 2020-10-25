@@ -6,6 +6,7 @@ import android.util.Log;
 import com.zkty.modules.engine.manager.MicroAppsManager;
 import com.zkty.modules.engine.utils.FileUtils;
 import com.zkty.modules.engine.utils.MD5Utils;
+import com.zkty.modules.loaded.ServerConfig;
 import com.zkty.modules.loaded.callback.IMicroAppInstallListener;
 import com.zkty.modules.loaded.callback.IOfflinePackageProtocol;
 import com.zkty.modules.loaded.callback.IXEngineNetProtocol;
@@ -24,6 +25,24 @@ import java.util.HashMap;
 public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
     private static final String TAG = MicroAppsUpdateManager.class.getSimpleName();
 
+
+    private static MicroAppsUpdateManager INSTANCE = new MicroAppsUpdateManager();
+
+    public static MicroAppsUpdateManager getInstance() {
+        return INSTANCE;
+    }
+
+
+    /**
+     * 自动更新
+     *
+     * @param serverConfig
+     */
+    public void update(ServerConfig serverConfig) {
+        if (!TextUtils.isEmpty(serverConfig.getOfflineServerUrl())) {
+            checkMicroAppsUpdate(serverConfig.getOfflineServerUrl(), "/microApps.json", serverConfig.getAppId(), serverConfig.getAppSecret(), 0, null);
+        }
+    }
 
     /**
      * 废弃原始制定规则

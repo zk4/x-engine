@@ -322,9 +322,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 
 
 - (void)_setNavLeftBtn:(NavBtnDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    if ([Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count <= 1) {
+//    if ([Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count <= 1) {
         [self setBarItems:@[dto] withIsRight:NO withEvent:nil withBeginIndex:0];
-    }
+//    }
     if(completionHandler){
         completionHandler(YES);
     }
@@ -474,15 +474,21 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
                     }
                 }
             }];
+            
             if ([NavUtil getNoEmptyString:title]){
                 [itemButton setTitle:title forState:UIControlStateNormal];
             }
-            //            else {
-            if ([NavUtil getNoEmptyString:icon]) {
-                UIImage * image = [NavUtil getOrignalImage:icon];
-                [itemButton setImage:[NavUtil setImageSize:iconSize image:image] forState:UIControlStateNormal];
+            
+            if(item.__event__){
+                if ([NavUtil getNoEmptyString:icon]) {
+                    UIImage * image = [NavUtil getOrignalImage:icon];
+                    [itemButton setImage:[NavUtil setImageSize:iconSize image:image] forState:UIControlStateNormal];
+                }
+            }else{
+                UIImage * image = [UIImage imageNamed:@"back_arrow"];
+                [itemButton setImage:image forState:UIControlStateNormal]; 
             }
-            //            }
+            
             
             [itemButton sizeToFit];
             if ([NavUtil getNoEmptyString:titleColor]){
@@ -490,7 +496,11 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             } else {
                 [itemButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
-            itemButton.titleLabel.font = [UIFont systemFontOfSize:item.titleSize];
+            if ([NavUtil getNoEmptyString:item.titleFontName]){
+                itemButton.titleLabel.font = [UIFont fontWithName:item.titleFontName size:item.titleSize];
+            }else{
+                itemButton.titleLabel.font = [UIFont systemFontOfSize:item.titleSize];
+            }
             [barAry addObject:btnItem];
             tag += 1;
         }

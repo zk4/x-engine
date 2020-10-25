@@ -47,10 +47,16 @@ import api from "@/api";
 /*import { CellGroup } from 'vant';*/
 export default {
   mounted() {
-    nav.setNavTitle({
+    nav.setNavLeftBtn({
+      // title: "房产详情",
+      // titleColor: "#000000",
+      // titleSize: 18
       title: "房产详情",
       titleColor: "#000000",
-      titleSize: 18
+      titleSize: 24,
+      icon: "back_arrow",
+      titleFontName:"PingFangSC-Medium",
+      iconSize: ["20", "20"],
     });
   nav
     .setNavRightMenuBtn({

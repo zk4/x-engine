@@ -230,7 +230,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"back_arrow" ofType:@"png"];
     if(path){

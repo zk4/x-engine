@@ -144,6 +144,10 @@ function osCheck() {
       "isInput": true,
       "becomeFirstResponder": false
     }
+  },
+  {
+    "name": "setHidden",
+    "default_args": null
   }
 ]
 )}}

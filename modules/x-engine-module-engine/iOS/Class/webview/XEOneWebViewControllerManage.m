@@ -155,6 +155,7 @@
         if(params){
             if([params isKindOfClass:[NSString class]]){
                 NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
+                123
                 [toUrl appendFormat:@"%@%@", range.location == NSNotFound ? @"?" : @"&", params];
             }else if([params isKindOfClass:[NSDictionary class]]){
                 NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];

@@ -237,9 +237,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 }
 
 //-(void)addSearchBar:(NSDictionary *)param{
-//    
+//
 //    NavSearchBarDTO *dto = [[NavSearchBarDTO alloc] init];
-//    
+//
 //    dto.cornerRadius = [param[@"cornerRadius"] integerValue];
 //    dto.backgroundColor = param[@"backgroundColor"];
 //    dto.iconSearch = param[@"iconSearch"];
@@ -252,7 +252,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 //    dto.placeHolderFontSize = [param[@"placeHolderFontSize"] integerValue];
 //    dto.isInput = [param[@"isInput"] boolValue];
 //    dto.becomeFirstResponder = [param[@"becomeFirstResponder"] boolValue];
-//    
+//
 //    [self _setNavSearchBar:dto complete:nil];
 //}
 
@@ -422,6 +422,12 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 - (void)isHiddenNavbar:(BOOL)isHidden{
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     [topVC.navigationController setNavigationBarHidden:isHidden animated:YES];
+}
+
+-(void)_setHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{
+    
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    [topVC.navigationController setNavigationBarHidden:dto.isHidden animated:dto.isAnimation];
 }
 
 - (void)setBarItems:(NSArray<NavBtnDTO *> *)dtoNavBarAry withIsRight:(BOOL)isRight withEvent:(NSString *)event withBeginIndex:(NSUInteger)index{

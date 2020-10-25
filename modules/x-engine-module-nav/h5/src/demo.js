@@ -86,4 +86,22 @@ import nav from './index.js'
       .then((res) => {});
   };
 
+  window.setHidden = () => {
+    nav
+      .setHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+
+  window.testSetHidden = () => {
+    nav
+      .setHidden({
+        isHidden: false,
+        isAnimation: false,
+      })
+      .then((res) => {});
+  };
+
     

@@ -264,9 +264,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     if(self.navigationController.viewControllers.count>1){
-        
         self.parentVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
     }
     [[XEOneWebViewControllerManage sharedInstance] createCacheVC];

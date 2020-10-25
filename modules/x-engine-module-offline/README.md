@@ -121,8 +121,6 @@ microApps.json:
 ``` json
 {
   "code":0,
-  "version":3,     // microApps.json 版本标识
-  "forceUpdate" true,  // 是否强制更新
   "data":
         [
           {

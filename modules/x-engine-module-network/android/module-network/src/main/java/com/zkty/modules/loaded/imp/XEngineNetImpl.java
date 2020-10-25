@@ -132,8 +132,8 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                         while (iterator.hasNext()) {
                             Map.Entry<String, String> entry = iterator.next();
                             DebugUtils.debug(TAG, "fileName:" + entry.getKey() + "----path:" + entry.getValue());
-                            if (new File(entry.getValue(), entry.getKey()).exists()) {
-                                multipartBuilder.addFormDataPart("file", entry.getKey(), RequestBody.create(new File(entry.getValue(), entry.getKey()), MediaType.parse("multipart/form-data")));
+                            if (new File(entry.getValue()).exists()) {
+                                multipartBuilder.addFormDataPart("file", entry.getKey(), RequestBody.create(new File(entry.getValue()), MediaType.parse("multipart/form-data")));
                                 hasFile = true;
                             }
                         }

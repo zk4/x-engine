@@ -23,6 +23,9 @@
         [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
         return;
     } else if([type isEqual:@"h5"]){
+        if(![uri hasPrefix:@"http"]){
+            uri = [NSString stringWithFormat:@"https://%@", uri];
+        }
         [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:uri];
     } else if([type isEqual:@"microapp"]){

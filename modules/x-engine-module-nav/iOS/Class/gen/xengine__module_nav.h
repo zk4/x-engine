@@ -13,6 +13,7 @@
 @protocol NavNavigatorDTO;
 @protocol NavOpenAppDTO;
 @protocol NavSearchBarDTO;
+@protocol NavHiddenBarDTO;
 
 @interface NavTitleDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -80,6 +81,12 @@
 @end
     
 
+@interface NavHiddenBarDTO: JSONModel
+  	@property(nonatomic,assign) BOOL isHidden;
+   	@property(nonatomic,assign) BOOL isAnimation;
+@end
+    
+
 
 @protocol xengine__module_nav_protocol
        @required 
@@ -108,6 +115,12 @@
     
       @required 
         - (void) _setNavSearchBar:(NavSearchBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+        - (void) _setSearchBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+        - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   

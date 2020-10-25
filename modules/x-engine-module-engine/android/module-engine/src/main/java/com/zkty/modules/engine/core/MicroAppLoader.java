@@ -68,7 +68,7 @@ public class MicroAppLoader {
                 URL base = URL.parse(url);
                 StringBuilder sb = new StringBuilder();
                 return sb.append(base.getScheme()).append("://").append(base.getHost()).append(base.getPath())
-                        .append("#").append(route).append("?params=").append(params).toString();
+                        .append("#").append(route).append("?").append(params).toString();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -78,7 +78,7 @@ public class MicroAppLoader {
         if (TextUtils.isEmpty(params)) {
             return String.format(Locale.ENGLISH, "%s#%s", currentIndexPath, route);
         }
-        return String.format(Locale.ENGLISH, "%s#%s?params=%s", currentIndexPath, route, params);
+        return String.format(Locale.ENGLISH, "%s#%s?%s", currentIndexPath, route, params);
 
     }
 

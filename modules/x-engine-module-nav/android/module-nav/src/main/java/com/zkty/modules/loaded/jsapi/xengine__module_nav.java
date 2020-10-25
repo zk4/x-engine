@@ -119,6 +119,12 @@
 		public String __event__;
   }
   
+  class NavHiddenBarDTO {
+    public boolean isHidden;
+
+    public boolean isAnimation;
+  }
+  
   interface xengine__module_nav_i {
     public void _setNavTitle(NavTitleDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavLeftBtn(NavBtnDTO dto, final CompletionHandler<Nullable> handler);
@@ -129,6 +135,8 @@ public void _navigatorPush(NavNavigatorDTO dto, final CompletionHandler<Nullable
 public void _navigatorBack(NavNavigatorDTO dto, final CompletionHandler<Nullable> handler);
 public void _navigatorRouter(NavOpenAppDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavSearchBar(NavSearchBarDTO dto, final CompletionHandler<Nullable> handler);
+public void _setSearchBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
+public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -254,6 +262,34 @@ public void _setNavSearchBar(NavSearchBarDTO dto, final CompletionHandler<Nullab
     final public void setNavSearchBar(JSONObject obj, final CompletionHandler<Object> handler) {
       NavSearchBarDTO data= convert(obj,NavSearchBarDTO.class);
       _setNavSearchBar(data, new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void setSearchBarHidden(JSONObject obj, final CompletionHandler<Object> handler) {
+      NavHiddenBarDTO data= convert(obj,NavHiddenBarDTO.class);
+      _setSearchBarHidden(data, new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void setNavBarHidden(JSONObject obj, final CompletionHandler<Object> handler) {
+      NavHiddenBarDTO data= convert(obj,NavHiddenBarDTO.class);
+      _setNavBarHidden(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

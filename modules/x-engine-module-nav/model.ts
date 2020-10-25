@@ -96,6 +96,13 @@ interface NavSearchBarDTO {
   __event__?: string;
 }
 
+interface NavHiddenBarDTO {
+
+  //是否隐藏navBar
+  isHidden: boolean;
+  //是否使用动画效果
+  isAnimation: boolean;
+}
 // **demo**
 // ``` js
 // nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
@@ -290,6 +297,39 @@ function setNavSearchBar(
           document.getElementById("debug_text").innerText =
             "ret: click searchBar";
         },
+      })
+      .then((res) => {});
+  };
+}
+
+function setSearchBarHidden(arg:NavHiddenBarDTO){
+  window.setSearchBarHidden = () => {
+    nav
+      .setSearchBarHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+}
+
+function setNavBarHidden(arg:NavHiddenBarDTO){
+  window.setNavBarHidden = () => {
+    nav
+      .setNavBarHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+}
+
+function testSetHidden(arg:NavHiddenBarDTO){
+  window.testSetHidden = () => {
+    nav
+      .setSearchBarHidden({
+        isHidden: false,
+        isAnimation: false,
       })
       .then((res) => {});
   };

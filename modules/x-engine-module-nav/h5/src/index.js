@@ -144,6 +144,14 @@ function osCheck() {
       "isInput": true,
       "becomeFirstResponder": false
     }
+  },
+  {
+    "name": "setSearchBarHidden",
+    "default_args": null
+  },
+  {
+    "name": "setNavBarHidden",
+    "default_args": null
   }
 ]
 )}}

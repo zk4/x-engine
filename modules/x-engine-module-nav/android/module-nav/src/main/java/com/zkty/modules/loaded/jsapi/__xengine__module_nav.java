@@ -156,20 +156,6 @@ public class __xengine__module_nav extends xengine__module_nav {
 
     }
 
-    @Override
-    public void _setHidden(NavHiddenBarDTO dto, CompletionHandler<Nullable> handler) {
-
-        XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
-        mActivity.runOnUiThread(() -> {
-            if (dto.isAnimation && dto.isHidden) {
-                startAnim(mActivity.getXEngineNavBar());
-            } else {
-                mActivity.getXEngineNavBar().setVisibility(dto.isHidden ? View.GONE : View.VISIBLE);
-            }
-        });
-        handler.complete();
-
-    }
 
     private void startAnim(View view) {
         AnimatorSet animator = new AnimatorSet();//组合动画
@@ -198,5 +184,34 @@ public class __xengine__module_nav extends xengine__module_nav {
             }
         });
         animator.start();//开始
+    }
+
+    @Override
+    public void _setSearchBarHidden(NavHiddenBarDTO dto, CompletionHandler<Nullable> handler) {
+        XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        mActivity.runOnUiThread(() -> {
+            if (mActivity.getXEngineNavBar().getSearchEditView() != null) {
+                if (dto.isAnimation && dto.isHidden) {
+                    startAnim(mActivity.getXEngineNavBar().getSearchEditView());
+                } else {
+                    mActivity.getXEngineNavBar().getSearchEditView().setVisibility(dto.isHidden ? View.GONE : View.VISIBLE);
+                }
+            }
+        });
+
+        handler.complete();
+    }
+
+    @Override
+    public void _setNavBarHidden(NavHiddenBarDTO dto, CompletionHandler<Nullable> handler) {
+        XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        mActivity.runOnUiThread(() -> {
+            if (dto.isAnimation && dto.isHidden) {
+                startAnim(mActivity.getXEngineNavBar());
+            } else {
+                mActivity.getXEngineNavBar().setVisibility(dto.isHidden ? View.GONE : View.VISIBLE);
+            }
+        });
+        handler.complete();
     }
 }

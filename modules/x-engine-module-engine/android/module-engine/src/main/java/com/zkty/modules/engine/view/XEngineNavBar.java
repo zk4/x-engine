@@ -313,4 +313,8 @@ public class XEngineNavBar extends RelativeLayout {
         return leftIv;
 
     }
+
+    public SearchEditView getSearchEditView() {
+        return searchEditView;
+    }
 }

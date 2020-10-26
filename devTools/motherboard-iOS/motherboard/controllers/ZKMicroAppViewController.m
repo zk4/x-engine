@@ -69,6 +69,11 @@
     ZKScanViewController *vc = [[ZKScanViewController alloc] init];
     __weak typeof(self) weakSelf = self;
     vc.block = ^(NSString *data) {
+        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:data];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:webLaderVC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+        
         self.searchBar.text = data;
         NSDictionary * dataDic = @{
             @"image":@"1",
@@ -79,6 +84,7 @@
             [weakSelf.scanResultArr addObject:dataDic];
         }
         [weakSelf reloadUIView];
+        
     };
     
     self.hidesBottomBarWhenPushed = YES;

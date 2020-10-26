@@ -1,6 +1,0 @@
-framework module LopeKit {
-  umbrella header "LopeKit.h"
-
-  export *
-  module * { export * }
-}

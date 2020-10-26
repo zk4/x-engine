@@ -11,6 +11,7 @@
 #import <MircroAppController.h>
 #import "UIViewController+.h"
 #import "moduleTableViewCell.h"
+#import "ZKScanViewController.h"
 
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
@@ -69,9 +70,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (@available(iOS 11.0, *)){
-        return 55 * 13  + 13;
+        return 55 * 11  + 13;
     }
-    return 55 * 13  ;
+    return 55 * 11  ;
 }
 
 -(void)module_nav:(UIButton *)button{
@@ -123,7 +124,15 @@
 }
 
 - (void)module_scan:(UIButton * _Nullable)button {
-    [self pushTestModule:@"com.zkty.module.scan"];
+//    [self pushTestModule:@"com.zkty.module.scan"];
+    ZKScanViewController *vc = [[ZKScanViewController alloc] init];
+       vc.block = ^(NSString *data) {
+           NSLog(@"scanResult:%@",data);
+       };
+       
+       self.hidesBottomBarWhenPushed = YES;
+       [self.navigationController pushViewController:vc animated:YES];
+       self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)module_UI:(UIButton * _Nullable)button {

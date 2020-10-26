@@ -33,7 +33,7 @@
                         <action selector="goMicroAppAction:" destination="-1" eventType="touchUpInside" id="Bvi-M5-X2H"/>
                     </connections>
                 </button>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kit-TT-KwM">
+                <searchBar contentMode="redraw" placeholder="请输入地址" translatesAutoresizingMaskIntoConstraints="NO" id="kit-TT-KwM">
                     <rect key="frame" x="20" y="54" width="314" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Tru-TS-ydI"/>

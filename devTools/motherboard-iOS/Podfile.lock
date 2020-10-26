@@ -14,21 +14,9 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - DoraemonKit/Core (3.0.4):
-    - FMDB
-    - GCDWebServer
-    - GCDWebServer/WebDAV
-    - GCDWebServer/WebUploader
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - GCDWebServer (3.5.4):
     - GCDWebServer/Core (= 3.5.4)
   - GCDWebServer/Core (3.5.4)
-  - GCDWebServer/WebDAV (3.5.4):
-    - GCDWebServer/Core
-  - GCDWebServer/WebUploader (3.5.4):
-    - GCDWebServer/Core
   - JSONModel (1.8.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
@@ -75,10 +63,12 @@ PODS:
     - WechatOpenSDK
     - x-engine-module-engine
     - x-engine-module-protocols
+  - x-engine-module-ui (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
   - ZBarSDK (1.3.1)
 
 DEPENDENCIES:
-  - DoraemonKit/Core (~> 3.0.2)
   - Masonry
   - UniBoost (from `../../modules/UniBoost`)
   - x-engine-module-bluetooth (from `../../modules/x-engine-module-bluetooth`)
@@ -92,6 +82,7 @@ DEPENDENCIES:
   - x-engine-module-protocols (from `../../modules/x-engine-module-protocols/`)
   - x-engine-module-router (from `../../modules/x-engine-module-router/`)
   - x-engine-module-tools (from `../../modules/x-engine-module-tools/`)
+  - x-engine-module-ui (from `../../modules/x-engine-module-ui`)
   - ZBarSDK
 
 SPEC REPOS:
@@ -100,8 +91,6 @@ SPEC REPOS:
     - ZBarSDK
   trunk:
     - AFNetworking
-    - DoraemonKit
-    - FMDB
     - GCDWebServer
     - JSONModel
     - MBProgressHUD
@@ -134,11 +123,11 @@ EXTERNAL SOURCES:
     :path: "../../modules/x-engine-module-router/"
   x-engine-module-tools:
     :path: "../../modules/x-engine-module-tools/"
+  x-engine-module-ui:
+    :path: "../../modules/x-engine-module-ui"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  DoraemonKit: b507a1500667024070f248d648632a3f7bbb6044
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -158,8 +147,9 @@ SPEC CHECKSUMS:
   x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
   x-engine-module-router: 6557b2068b7466e53b3a160f47f4d5d802efa0c2
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+  x-engine-module-ui: 62dacd7d9a25a868e874db76dd049c9e0a926b5e
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: 7e3faeebf33b16c432a2607cf5df13938f67530b
+PODFILE CHECKSUM: 83cd300cc9d5aa0f2464744b24442acfe78754f9
 
 COCOAPODS: 1.9.3

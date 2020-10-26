@@ -9,12 +9,12 @@
 #import "__xengine__module_lope.h"
 #import <XEngineContext.h>
 #import <micros.h>
-#import <UIViewController+.h>
-#import <JSONToDictionary.h>
+//#import <UIViewController+.h>
+//#import <JSONToDictionary.h>
 #import <RecyleWebViewController.h>
 #import <XEngineWebView.h>
 #import <Unity.h>
-#import <LopeKit/LopeKit.h>
+#import "LopeKit.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <AVFoundation/AVFoundation.h>
 

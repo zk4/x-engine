@@ -1,10 +1,11 @@
 {
   "name": "@zkty-team/x-engine-module-lope",
-  "version": "0.0.40",
+  "version": "0.0.41",
+  "description":"@zkty-team/x-engine-module-lope",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 192.168.3.149 ",
+    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0  --config webpack.dev.js",
     "md": "webpack  --config webpack.md.js",
     "build": "webpack  --config webpack.prod.js",
     "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",
@@ -35,7 +36,7 @@
   },
   "dependencies": {
     "@zkty-team/x-cli": "^1.0.8",
-    "@zkty-team/x-engine-module-engine": "^0.0.40"
+    "@zkty-team/x-engine-module-engine": "^0.0.41"
   },
-  "gitHead": "0fa58d58f43daa51ad5ec80ab501e49c81b9a7d4"
+  "gitHead": "f0d381898ade46081fd0a07b172efeca86c2b922"
 }

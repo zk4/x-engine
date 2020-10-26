@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="924" id="KGk-i7-Jjw" customClass="moduleTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="394" height="924"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="394" height="924"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAl-6Z-6vl">
+                        <rect key="frame" x="20" y="10" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="GjI-hm-Skd"/>
+                        </constraints>
+                        <state key="normal" title="模块-nav">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_nav:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BlB-Sf-eHj"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y01-UO-BYJ">
+                        <rect key="frame" x="20" y="120" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="ja3-FV-8hG"/>
+                        </constraints>
+                        <state key="normal" title="模块-localstorage">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_localstorage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7nS-z5-x6b"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-OK-7KA">
+                        <rect key="frame" x="20" y="175" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="GBP-82-fIS"/>
+                        </constraints>
+                        <state key="normal" title="模块-camera">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_camera:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="S4l-oX-Jq8"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORb-La-HzE">
+                        <rect key="frame" x="20" y="230" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="wfB-pr-3Ap"/>
+                        </constraints>
+                        <state key="normal" title="模块-device">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_device:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="L8v-Z9-okR"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYt-Ux-13K">
+                        <rect key="frame" x="20" y="285" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="QhK-eo-TUA"/>
+                        </constraints>
+                        <state key="normal" title="模块-bluetooth">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_bluetooth:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="S0q-mg-e6m"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVQ-Y1-dmB">
+                        <rect key="frame" x="20" y="65" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="7jp-AR-nxU"/>
+                        </constraints>
+                        <state key="normal" title="模块-nav push">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_nav_push:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EJH-BJ-Nhe"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxF-pk-pD9">
+                        <rect key="frame" x="20" y="340" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="UaS-Pm-BPA"/>
+                        </constraints>
+                        <state key="normal" title="模块-dcloud">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_dcloud:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qYa-xj-Edy"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woD-6W-H8C">
+                        <rect key="frame" x="20" y="395" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="AM1-Y3-k7Z"/>
+                        </constraints>
+                        <state key="normal" title="模块-network">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="module_network:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fVH-zg-dwR"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-GT-YnJ">
+                        <rect key="frame" x="20" y="450" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="r8Z-1f-uuc"/>
+                        </constraints>
+                        <state key="normal" title="模块-router">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="module_router:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TbF-s0-RM6"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fe-2s-3D7">
+                        <rect key="frame" x="20" y="505" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="R35-DB-B00"/>
+                        </constraints>
+                        <state key="normal" title="模块-scan">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="module_scan:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5bf-io-T0x"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76i-fa-pGC">
+                        <rect key="frame" x="20" y="560" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="3eS-xC-b0g"/>
+                        </constraints>
+                        <state key="normal" title="模块-UI">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="module_UI:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A8k-3f-7aH"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QxF-pk-pD9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="156-BR-mI3"/>
+                    <constraint firstItem="Y01-UO-BYJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2kC-sr-G3B"/>
+                    <constraint firstItem="76i-fa-pGC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="48y-TY-o1N"/>
+                    <constraint firstItem="mAl-6Z-6vl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="4BC-8M-5Oo"/>
+                    <constraint firstItem="p6h-OK-7KA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="585-5k-qu9"/>
+                    <constraint firstItem="ORb-La-HzE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6xp-R9-uO9"/>
+                    <constraint firstAttribute="trailing" secondItem="xYt-Ux-13K" secondAttribute="trailing" constant="20" id="9dp-Ja-l5E"/>
+                    <constraint firstItem="hVQ-Y1-dmB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ATd-Hm-ef0"/>
+                    <constraint firstItem="p6h-OK-7KA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AiI-gH-gFr"/>
+                    <constraint firstItem="mAl-6Z-6vl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="B18-ue-ylx"/>
+                    <constraint firstAttribute="trailing" secondItem="hVQ-Y1-dmB" secondAttribute="trailing" constant="20" id="C59-wg-DkC"/>
+                    <constraint firstItem="ORb-La-HzE" firstAttribute="top" secondItem="p6h-OK-7KA" secondAttribute="bottom" constant="10" id="EVL-5S-SDg"/>
+                    <constraint firstAttribute="trailing" secondItem="ORb-La-HzE" secondAttribute="trailing" constant="20" id="FgQ-uZ-aje"/>
+                    <constraint firstItem="p6h-OK-7KA" firstAttribute="top" secondItem="Y01-UO-BYJ" secondAttribute="bottom" constant="10" id="GTU-cf-ocY"/>
+                    <constraint firstItem="QxF-pk-pD9" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="L0b-pE-6eg"/>
+                    <constraint firstItem="woD-6W-H8C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="L8V-NQ-frc"/>
+                    <constraint firstAttribute="trailing" secondItem="76i-fa-pGC" secondAttribute="trailing" constant="20" id="M8f-rv-9LI"/>
+                    <constraint firstItem="p6h-OK-7KA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="NC2-zF-hA4"/>
+                    <constraint firstItem="QxF-pk-pD9" firstAttribute="top" secondItem="xYt-Ux-13K" secondAttribute="bottom" constant="10" id="P0J-eV-kJz"/>
+                    <constraint firstAttribute="trailing" secondItem="mAl-6Z-6vl" secondAttribute="trailing" constant="20" id="PPq-8h-d5y"/>
+                    <constraint firstItem="Y01-UO-BYJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="QFP-g5-dGA"/>
+                    <constraint firstItem="ORb-La-HzE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Sq9-W1-MRp"/>
+                    <constraint firstItem="xYt-Ux-13K" firstAttribute="top" secondItem="ORb-La-HzE" secondAttribute="bottom" constant="10" id="TjO-fY-L7O"/>
+                    <constraint firstAttribute="trailing" secondItem="3fe-2s-3D7" secondAttribute="trailing" constant="20" id="ZEN-Kd-Fvc"/>
+                    <constraint firstItem="QxF-pk-pD9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="aDn-3m-0py"/>
+                    <constraint firstItem="76i-fa-pGC" firstAttribute="top" secondItem="3fe-2s-3D7" secondAttribute="bottom" constant="10" id="bLO-fK-Qth"/>
+                    <constraint firstItem="Y01-UO-BYJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="cuE-9S-6Er"/>
+                    <constraint firstItem="E6W-GT-YnJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="czH-6D-G2h"/>
+                    <constraint firstAttribute="trailing" secondItem="E6W-GT-YnJ" secondAttribute="trailing" constant="20" id="dHZ-o6-2bg"/>
+                    <constraint firstItem="hVQ-Y1-dmB" firstAttribute="top" secondItem="mAl-6Z-6vl" secondAttribute="bottom" constant="10" id="fm2-lf-X63"/>
+                    <constraint firstItem="woD-6W-H8C" firstAttribute="top" secondItem="QxF-pk-pD9" secondAttribute="bottom" constant="10" id="hve-EG-29d"/>
+                    <constraint firstItem="mAl-6Z-6vl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="jkY-1O-cTN"/>
+                    <constraint firstAttribute="trailing" secondItem="p6h-OK-7KA" secondAttribute="trailing" constant="20" id="nQf-1o-tuP"/>
+                    <constraint firstItem="3fe-2s-3D7" firstAttribute="top" secondItem="E6W-GT-YnJ" secondAttribute="bottom" constant="10" id="oC9-my-XTG"/>
+                    <constraint firstAttribute="trailing" secondItem="QxF-pk-pD9" secondAttribute="trailing" constant="20" id="pr1-cX-FvC"/>
+                    <constraint firstAttribute="trailing" secondItem="woD-6W-H8C" secondAttribute="trailing" constant="20" id="pvf-T9-7nP"/>
+                    <constraint firstItem="3fe-2s-3D7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="pyd-1g-wOM"/>
+                    <constraint firstItem="Y01-UO-BYJ" firstAttribute="top" secondItem="hVQ-Y1-dmB" secondAttribute="bottom" constant="10" id="qjs-DK-Rze"/>
+                    <constraint firstItem="E6W-GT-YnJ" firstAttribute="top" secondItem="woD-6W-H8C" secondAttribute="bottom" constant="10" id="v9c-Oo-L6c"/>
+                    <constraint firstItem="ORb-La-HzE" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="vIX-8L-chY"/>
+                    <constraint firstItem="xYt-Ux-13K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="xK8-jq-jdP"/>
+                    <constraint firstAttribute="trailing" secondItem="Y01-UO-BYJ" secondAttribute="trailing" constant="20" id="zuL-j1-QzL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="159.42028985507247" y="216.29464285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

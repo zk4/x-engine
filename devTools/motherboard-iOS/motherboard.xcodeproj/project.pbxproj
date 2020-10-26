@@ -1,0 +1,909 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */ = {isa = PBXBuildFile; fileRef = 0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */; };
+		003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 003F95D924DA4A6100633E1F /* libc++.tbd */; };
+		00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* iOSTests.m */; };
+		00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6D424C83F95006A53EE /* iOSUITests.m */; };
+		00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
+		00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */; };
+		00DFC6F424C84000006A53EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E924C84000006A53EE /* Main.storyboard */; };
+		00DFC6F524C84000006A53EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EB24C84000006A53EE /* main.m */; };
+		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
+		00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
+		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
+		00DFC70024C843A3006A53EE /* xengine_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FF24C843A3006A53EE /* xengine_config.json */; };
+		36644A9B6347D8F3F465E2F2 /* libPods-motherboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64777595404EB1F495371D9F /* libPods-motherboard.a */; };
+		538009B44D3E4E8C337189A9 /* libPods-motherboard-motherboardUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8D19D09EC03B26C734EC3 /* libPods-motherboard-motherboardUITests.a */; };
+		C94A62202542C96900F9CD56 /* ZYDL_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A621F2542C96900F9CD56 /* ZYDL_TabBarController.m */; };
+		C94A62252542D20500F9CD56 /* ZKMicroAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A62232542D20500F9CD56 /* ZKMicroAppViewController.m */; };
+		C94A62262542D20500F9CD56 /* ZKMicroAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C94A62242542D20500F9CD56 /* ZKMicroAppViewController.xib */; };
+		C94A622E2542D25800F9CD56 /* ZKLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A622D2542D25800F9CD56 /* ZKLogViewController.m */; };
+		C94A62332542D34E00F9CD56 /* moduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C94A62312542D34E00F9CD56 /* moduleTableViewCell.xib */; };
+		C94A62342542D34E00F9CD56 /* moduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A62322542D34E00F9CD56 /* moduleTableViewCell.m */; };
+		C94A62372542D38200F9CD56 /* ZKModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A62362542D38200F9CD56 /* ZKModuleViewController.m */; };
+		C9C4A61C254670180018D71B /* ZKScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A61A254670180018D71B /* ZKScanViewController.m */; };
+		C9C4A61E254697E40018D71B /* com.zkty.module.navpush.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A61D254697E40018D71B /* com.zkty.module.navpush.0 */; };
+		C9C4A6262546983C0018D71B /* com.zkty.module.bluetooth.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6202546983B0018D71B /* com.zkty.module.bluetooth.0 */; };
+		C9C4A6272546983C0018D71B /* com.zkty.module.device.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6212546983B0018D71B /* com.zkty.module.device.0 */; };
+		C9C4A6282546983C0018D71B /* com.zkty.module.dcloud.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6222546983C0018D71B /* com.zkty.module.dcloud.0 */; };
+		C9C4A6292546983C0018D71B /* com.zkty.module.localstorage.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6232546983C0018D71B /* com.zkty.module.localstorage.0 */; };
+		C9C4A62A2546983C0018D71B /* come.zkty.module.camera.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6242546983C0018D71B /* come.zkty.module.camera.0 */; };
+		C9C4A62D25469A050018D71B /* __UNI__5DE1E68.wgt in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A62B25469A040018D71B /* __UNI__5DE1E68.wgt */; };
+		C9C4A62E25469A050018D71B /* __UNI__11E9B73.wgt in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A62C25469A050018D71B /* __UNI__11E9B73.wgt */; };
+		C9C4A6442546A02C0018D71B /* com.zkty.module.nav.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6432546A02C0018D71B /* com.zkty.module.nav.0 */; };
+		C9C4A6572546CC180018D71B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C4A6562546CC180018D71B /* CoreBluetooth.framework */; };
+		C9C4A6692546D1BB0018D71B /* com.zkty.module.network.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */; };
+		C9C4A66B2546D3BB0018D71B /* com.zkty.module.router.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */; };
+		C9C4A66F2546D6790018D71B /* com.zkty.module.UI.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00DFC6C624C83F95006A53EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00DFC6A224C83F94006A53EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00DFC6A924C83F94006A53EE;
+			remoteInfo = iOS;
+		};
+		00DFC6D124C83F95006A53EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00DFC6A224C83F94006A53EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00DFC6A924C83F94006A53EE;
+			remoteInfo = iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.microapp.moduledemo.0; sourceTree = "<group>"; };
+		003F95D924DA4A6100633E1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		00DFC6AA24C83F94006A53EE /* motherboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = motherboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DFC6C524C83F95006A53EE /* motherboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = motherboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DFC6C924C83F95006A53EE /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
+		00DFC6CB24C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00DFC6D024C83F95006A53EE /* motherboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = motherboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DFC6D424C83F95006A53EE /* iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSUITests.m; sourceTree = "<group>"; };
+		00DFC6D624C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00DFC6E324C84000006A53EE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		00DFC6E424C84000006A53EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00DFC6E824C84000006A53EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		00DFC6EA24C84000006A53EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		00DFC6EB24C84000006A53EE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00DFC6EC24C84000006A53EE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		00DFC6ED24C84000006A53EE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00DFC6F824C841FD006A53EE /* EntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EntryViewController.h; path = controllers/EntryViewController.h; sourceTree = "<group>"; };
+		00DFC6F924C841FD006A53EE /* EntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EntryViewController.m; path = controllers/EntryViewController.m; sourceTree = "<group>"; };
+		00DFC6FA24C841FD006A53EE /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EntryViewController.xib; path = controllers/EntryViewController.xib; sourceTree = "<group>"; };
+		00DFC6FF24C843A3006A53EE /* xengine_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xengine_config.json; sourceTree = "<group>"; };
+		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
+		60F8D19D09EC03B26C734EC3 /* libPods-motherboard-motherboardUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motherboard-motherboardUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64777595404EB1F495371D9F /* libPods-motherboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motherboard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		884143ABEFD722050DDC70A3 /* Pods-motherboard-motherboardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard-motherboardUITests.release.xcconfig"; path = "Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9272408DD3356C0889C56BE8 /* Pods-motherboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard.release.xcconfig"; path = "Target Support Files/Pods-motherboard/Pods-motherboard.release.xcconfig"; sourceTree = "<group>"; };
+		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		C94A62152542B8AA00F9CD56 /* Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
+		C94A621E2542C96000F9CD56 /* ZYDL_TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYDL_TabBarController.h; sourceTree = "<group>"; };
+		C94A621F2542C96900F9CD56 /* ZYDL_TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYDL_TabBarController.m; sourceTree = "<group>"; };
+		C94A62222542D20500F9CD56 /* ZKMicroAppViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKMicroAppViewController.h; sourceTree = "<group>"; };
+		C94A62232542D20500F9CD56 /* ZKMicroAppViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKMicroAppViewController.m; sourceTree = "<group>"; };
+		C94A62242542D20500F9CD56 /* ZKMicroAppViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZKMicroAppViewController.xib; sourceTree = "<group>"; };
+		C94A622C2542D25800F9CD56 /* ZKLogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKLogViewController.h; sourceTree = "<group>"; };
+		C94A622D2542D25800F9CD56 /* ZKLogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKLogViewController.m; sourceTree = "<group>"; };
+		C94A62302542D34E00F9CD56 /* moduleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = moduleTableViewCell.h; sourceTree = "<group>"; };
+		C94A62312542D34E00F9CD56 /* moduleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moduleTableViewCell.xib; sourceTree = "<group>"; };
+		C94A62322542D34E00F9CD56 /* moduleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = moduleTableViewCell.m; sourceTree = "<group>"; };
+		C94A62352542D38200F9CD56 /* ZKModuleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKModuleViewController.h; sourceTree = "<group>"; };
+		C94A62362542D38200F9CD56 /* ZKModuleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKModuleViewController.m; sourceTree = "<group>"; };
+		C9C4A61A254670180018D71B /* ZKScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKScanViewController.m; sourceTree = "<group>"; };
+		C9C4A61B254670180018D71B /* ZKScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKScanViewController.h; sourceTree = "<group>"; };
+		C9C4A61D254697E40018D71B /* com.zkty.module.navpush.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.navpush.0; sourceTree = "<group>"; };
+		C9C4A6202546983B0018D71B /* com.zkty.module.bluetooth.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.bluetooth.0; sourceTree = "<group>"; };
+		C9C4A6212546983B0018D71B /* com.zkty.module.device.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.device.0; sourceTree = "<group>"; };
+		C9C4A6222546983C0018D71B /* com.zkty.module.dcloud.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.dcloud.0; sourceTree = "<group>"; };
+		C9C4A6232546983C0018D71B /* com.zkty.module.localstorage.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.localstorage.0; sourceTree = "<group>"; };
+		C9C4A6242546983C0018D71B /* come.zkty.module.camera.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = come.zkty.module.camera.0; sourceTree = "<group>"; };
+		C9C4A62B25469A040018D71B /* __UNI__5DE1E68.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__5DE1E68.wgt; sourceTree = "<group>"; };
+		C9C4A62C25469A050018D71B /* __UNI__11E9B73.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__11E9B73.wgt; sourceTree = "<group>"; };
+		C9C4A6432546A02C0018D71B /* com.zkty.module.nav.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.nav.0; sourceTree = "<group>"; };
+		C9C4A6562546CC180018D71B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.network.0; path = "../../../modules/x-engine-module-network/h5/com.zkty.module.network.0"; sourceTree = "<group>"; };
+		C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.router.0; path = "../../../modules/x-engine-module-router/h5/com.zkty.module.router.0"; sourceTree = "<group>"; };
+		C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.UI.0; path = "../../../modules/x-engine-module-ui/h5/com.zkty.module.UI.0"; sourceTree = "<group>"; };
+		DC24F7764E32FC4DBD8E03D7 /* Pods-motherboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard.debug.xcconfig"; path = "Target Support Files/Pods-motherboard/Pods-motherboard.debug.xcconfig"; sourceTree = "<group>"; };
+		F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard-motherboardUITests.debug.xcconfig"; path = "Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00DFC6A724C83F94006A53EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
+				36644A9B6347D8F3F465E2F2 /* libPods-motherboard.a in Frameworks */,
+				C9C4A6572546CC180018D71B /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00DFC6C224C83F95006A53EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00DFC6CD24C83F95006A53EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				538009B44D3E4E8C337189A9 /* libPods-motherboard-motherboardUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00DFC6A124C83F94006A53EE = {
+			isa = PBXGroup;
+			children = (
+				C9C4A62B25469A040018D71B /* __UNI__5DE1E68.wgt */,
+				C9C4A62C25469A050018D71B /* __UNI__11E9B73.wgt */,
+				00DFC6E224C84000006A53EE /* motherboard */,
+				00DFC6C824C83F95006A53EE /* iOSTests */,
+				00DFC6D324C83F95006A53EE /* iOSUITests */,
+				00DFC6AB24C83F94006A53EE /* Products */,
+				5566DC63F412C2C1E9076389 /* Pods */,
+				B1C6B1D81743291D8E148429 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		00DFC6AB24C83F94006A53EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00DFC6AA24C83F94006A53EE /* motherboard.app */,
+				00DFC6C524C83F95006A53EE /* motherboardTests.xctest */,
+				00DFC6D024C83F95006A53EE /* motherboardUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00DFC6C824C83F95006A53EE /* iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				00DFC6C924C83F95006A53EE /* iOSTests.m */,
+				00DFC6CB24C83F95006A53EE /* Info.plist */,
+			);
+			path = iOSTests;
+			sourceTree = "<group>";
+		};
+		00DFC6D324C83F95006A53EE /* iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				00DFC6D424C83F95006A53EE /* iOSUITests.m */,
+				00DFC6D624C83F95006A53EE /* Info.plist */,
+			);
+			path = iOSUITests;
+			sourceTree = "<group>";
+		};
+		00DFC6E224C84000006A53EE /* motherboard */ = {
+			isa = PBXGroup;
+			children = (
+				C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */,
+				C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */,
+				C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */,
+				C9C4A6432546A02C0018D71B /* com.zkty.module.nav.0 */,
+				C9C4A6202546983B0018D71B /* com.zkty.module.bluetooth.0 */,
+				C9C4A6222546983C0018D71B /* com.zkty.module.dcloud.0 */,
+				C9C4A6212546983B0018D71B /* com.zkty.module.device.0 */,
+				C9C4A6232546983C0018D71B /* com.zkty.module.localstorage.0 */,
+				C9C4A6242546983C0018D71B /* come.zkty.module.camera.0 */,
+				C9C4A61D254697E40018D71B /* com.zkty.module.navpush.0 */,
+				C94A62212542CB8E00F9CD56 /* controllers */,
+				C94A622F2542D2B600F9CD56 /* View */,
+				C94A62142542B83C00F9CD56 /* others */,
+				0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */,
+				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
+				00DFC6E324C84000006A53EE /* AppDelegate.h */,
+				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
+				00DFC6F824C841FD006A53EE /* EntryViewController.h */,
+				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
+				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
+				00DFC6E424C84000006A53EE /* Assets.xcassets */,
+				00DFC6ED24C84000006A53EE /* Info.plist */,
+				00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */,
+				00DFC6EB24C84000006A53EE /* main.m */,
+				00DFC6E924C84000006A53EE /* Main.storyboard */,
+			);
+			path = motherboard;
+			sourceTree = "<group>";
+		};
+		5566DC63F412C2C1E9076389 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */,
+				5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */,
+				1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */,
+				484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */,
+				DC24F7764E32FC4DBD8E03D7 /* Pods-motherboard.debug.xcconfig */,
+				9272408DD3356C0889C56BE8 /* Pods-motherboard.release.xcconfig */,
+				F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */,
+				884143ABEFD722050DDC70A3 /* Pods-motherboard-motherboardUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B1C6B1D81743291D8E148429 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9C4A6562546CC180018D71B /* CoreBluetooth.framework */,
+				003F95D924DA4A6100633E1F /* libc++.tbd */,
+				64777595404EB1F495371D9F /* libPods-motherboard.a */,
+				60F8D19D09EC03B26C734EC3 /* libPods-motherboard-motherboardUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C94A62142542B83C00F9CD56 /* others */ = {
+			isa = PBXGroup;
+			children = (
+				C94A62152542B8AA00F9CD56 /* Prefix.h */,
+				C94A621E2542C96000F9CD56 /* ZYDL_TabBarController.h */,
+				C94A621F2542C96900F9CD56 /* ZYDL_TabBarController.m */,
+			);
+			path = others;
+			sourceTree = "<group>";
+		};
+		C94A62212542CB8E00F9CD56 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C9C4A61B254670180018D71B /* ZKScanViewController.h */,
+				C9C4A61A254670180018D71B /* ZKScanViewController.m */,
+				C94A62222542D20500F9CD56 /* ZKMicroAppViewController.h */,
+				C94A62232542D20500F9CD56 /* ZKMicroAppViewController.m */,
+				C94A62242542D20500F9CD56 /* ZKMicroAppViewController.xib */,
+				C94A622C2542D25800F9CD56 /* ZKLogViewController.h */,
+				C94A622D2542D25800F9CD56 /* ZKLogViewController.m */,
+				C94A62352542D38200F9CD56 /* ZKModuleViewController.h */,
+				C94A62362542D38200F9CD56 /* ZKModuleViewController.m */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		C94A622F2542D2B600F9CD56 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C94A62302542D34E00F9CD56 /* moduleTableViewCell.h */,
+				C94A62322542D34E00F9CD56 /* moduleTableViewCell.m */,
+				C94A62312542D34E00F9CD56 /* moduleTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00DFC6A924C83F94006A53EE /* motherboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00DFC6D924C83F95006A53EE /* Build configuration list for PBXNativeTarget "motherboard" */;
+			buildPhases = (
+				0D35607985D032CA76333046 /* [CP] Check Pods Manifest.lock */,
+				00DFC6A624C83F94006A53EE /* Sources */,
+				00DFC6A724C83F94006A53EE /* Frameworks */,
+				00DFC6A824C83F94006A53EE /* Resources */,
+				0C7B32A76B4E99D3BF8E9903 /* [CP] Copy Pods Resources */,
+				5826725D24FFE94A001D6CF3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = motherboard;
+			productName = iOS;
+			productReference = 00DFC6AA24C83F94006A53EE /* motherboard.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00DFC6C424C83F95006A53EE /* motherboardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00DFC6DC24C83F95006A53EE /* Build configuration list for PBXNativeTarget "motherboardTests" */;
+			buildPhases = (
+				00DFC6C124C83F95006A53EE /* Sources */,
+				00DFC6C224C83F95006A53EE /* Frameworks */,
+				00DFC6C324C83F95006A53EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00DFC6C724C83F95006A53EE /* PBXTargetDependency */,
+			);
+			name = motherboardTests;
+			productName = iOSTests;
+			productReference = 00DFC6C524C83F95006A53EE /* motherboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		00DFC6CF24C83F95006A53EE /* motherboardUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "motherboardUITests" */;
+			buildPhases = (
+				50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */,
+				00DFC6CC24C83F95006A53EE /* Sources */,
+				00DFC6CD24C83F95006A53EE /* Frameworks */,
+				00DFC6CE24C83F95006A53EE /* Resources */,
+				2B8EBC06553ECFFD01EDB8CD /* [CP] Copy Pods Resources */,
+				5826725C24FFE896001D6CF3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00DFC6D224C83F95006A53EE /* PBXTargetDependency */,
+			);
+			name = motherboardUITests;
+			productName = iOSUITests;
+			productReference = 00DFC6D024C83F95006A53EE /* motherboardUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00DFC6A224C83F94006A53EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = zk;
+				TargetAttributes = {
+					00DFC6A924C83F94006A53EE = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					00DFC6C424C83F95006A53EE = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 00DFC6A924C83F94006A53EE;
+					};
+					00DFC6CF24C83F95006A53EE = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 00DFC6A924C83F94006A53EE;
+					};
+				};
+			};
+			buildConfigurationList = 00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "motherboard" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00DFC6A124C83F94006A53EE;
+			productRefGroup = 00DFC6AB24C83F94006A53EE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00DFC6A924C83F94006A53EE /* motherboard */,
+				00DFC6C424C83F95006A53EE /* motherboardTests */,
+				00DFC6CF24C83F95006A53EE /* motherboardUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00DFC6A824C83F94006A53EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C94A62262542D20500F9CD56 /* ZKMicroAppViewController.xib in Resources */,
+				C94A62332542D34E00F9CD56 /* moduleTableViewCell.xib in Resources */,
+				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
+				C9C4A66B2546D3BB0018D71B /* com.zkty.module.router.0 in Resources */,
+				C9C4A6692546D1BB0018D71B /* com.zkty.module.network.0 in Resources */,
+				C9C4A62A2546983C0018D71B /* come.zkty.module.camera.0 in Resources */,
+				C9C4A6272546983C0018D71B /* com.zkty.module.device.0 in Resources */,
+				C9C4A61E254697E40018D71B /* com.zkty.module.navpush.0 in Resources */,
+				C9C4A6442546A02C0018D71B /* com.zkty.module.nav.0 in Resources */,
+				C9C4A6292546983C0018D71B /* com.zkty.module.localstorage.0 in Resources */,
+				C9C4A6262546983C0018D71B /* com.zkty.module.bluetooth.0 in Resources */,
+				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,
+				C9C4A66F2546D6790018D71B /* com.zkty.module.UI.0 in Resources */,
+				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
+				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				C9C4A62E25469A050018D71B /* __UNI__11E9B73.wgt in Resources */,
+				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
+				C9C4A62D25469A050018D71B /* __UNI__5DE1E68.wgt in Resources */,
+				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
+				C9C4A6282546983C0018D71B /* com.zkty.module.dcloud.0 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00DFC6C324C83F95006A53EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00DFC6CE24C83F95006A53EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C7B32A76B4E99D3BF8E9903 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0D35607985D032CA76333046 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-motherboard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B8EBC06553ECFFD01EDB8CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-motherboard-motherboardUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5826725C24FFE896001D6CF3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		5826725D24FFE94A001D6CF3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport SERVER_IP=`ipconfig getifaddr en0`\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00DFC6A624C83F94006A53EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
+				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
+				C94A62342542D34E00F9CD56 /* moduleTableViewCell.m in Sources */,
+				C94A62252542D20500F9CD56 /* ZKMicroAppViewController.m in Sources */,
+				C94A62372542D38200F9CD56 /* ZKModuleViewController.m in Sources */,
+				C94A622E2542D25800F9CD56 /* ZKLogViewController.m in Sources */,
+				C94A62202542C96900F9CD56 /* ZYDL_TabBarController.m in Sources */,
+				00DFC6F524C84000006A53EE /* main.m in Sources */,
+				C9C4A61C254670180018D71B /* ZKScanViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00DFC6C124C83F95006A53EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00DFC6CC24C83F95006A53EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00DFC6C724C83F95006A53EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00DFC6A924C83F94006A53EE /* motherboard */;
+			targetProxy = 00DFC6C624C83F95006A53EE /* PBXContainerItemProxy */;
+		};
+		00DFC6D224C83F95006A53EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00DFC6A924C83F94006A53EE /* motherboard */;
+			targetProxy = 00DFC6D124C83F95006A53EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00DFC6E824C84000006A53EE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		00DFC6E924C84000006A53EE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00DFC6EA24C84000006A53EE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00DFC6D724C83F95006A53EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		00DFC6D824C83F95006A53EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00DFC6DA24C83F95006A53EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-motherboard.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MQSNCQR864;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/motherboard/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
+				PRODUCT_BUNDLE_IDENTIFIER = com.times.motherboard;
+				PRODUCT_NAME = motherboard;
+				PROVISIONING_PROFILE_SPECIFIER = motherboard;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		00DFC6DB24C83F95006A53EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-motherboard.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MQSNCQR864;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/motherboard/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
+				PRODUCT_BUNDLE_IDENTIFIER = com.times.motherboard;
+				PRODUCT_NAME = motherboard;
+				PROVISIONING_PROFILE_SPECIFIER = motherboard;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		00DFC6DD24C83F95006A53EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				INFOPLIST_FILE = iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/motherboard.app/motherboard";
+			};
+			name = Debug;
+		};
+		00DFC6DE24C83F95006A53EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				INFOPLIST_FILE = iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/motherboard.app/motherboard";
+			};
+			name = Release;
+		};
+		00DFC6E024C83F95006A53EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				INFOPLIST_FILE = iOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iOS;
+			};
+			name = Debug;
+		};
+		00DFC6E124C83F95006A53EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 884143ABEFD722050DDC70A3 /* Pods-motherboard-motherboardUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				INFOPLIST_FILE = iOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "motherboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00DFC6D724C83F95006A53EE /* Debug */,
+				00DFC6D824C83F95006A53EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00DFC6D924C83F95006A53EE /* Build configuration list for PBXNativeTarget "motherboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00DFC6DA24C83F95006A53EE /* Debug */,
+				00DFC6DB24C83F95006A53EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00DFC6DC24C83F95006A53EE /* Build configuration list for PBXNativeTarget "motherboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00DFC6DD24C83F95006A53EE /* Debug */,
+				00DFC6DE24C83F95006A53EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "motherboardUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00DFC6E024C83F95006A53EE /* Debug */,
+				00DFC6E124C83F95006A53EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00DFC6A224C83F94006A53EE /* Project object */;
+}

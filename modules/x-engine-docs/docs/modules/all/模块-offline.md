@@ -107,7 +107,7 @@ xengine_config.json:
 请求地址:
 
 ```
-GET: {offlineServerUrl}/app/{appId}/microApps.json?key=md5(appSecret+appId)
+GET: {offlineServerUrl}/microApps.json?key=md5(appSecret+appId)
 ```
 
 
@@ -128,37 +128,16 @@ microApps.json:
 ``` json
 {
   "code":0,
-  "version":3,     // microApps.json 版本标识
-  "forceUpdate" true,  // 是否强制更新
   "data":
         [
           {
             "microAppName":"开门",
             "microAppId":"com.zkty.xiaoqu.opendoor",
             "microAppVersion":2,
-  					"url":"http://www.download.com/abc/com.zkty.xiaoqu.opendoor.2.zip"
-          },
-          {
-            "microAppName":"物业",
-            "microAppId":"com.zkty.xiaoqu.realstate",
-            "microAppVersion":1,
-            "url":"http://www.download.com/abc/com.zkty.xiaoqu.realstate.1.zip"
+            "url":"http://www.dfsf/com.zkty.xiaoqu.opendoor.2.zip"，
+            "fallback":"http://www.ddfs/com.zkty.xiaoqu.opendoor.2/index.html"
           }
         ]
-  }
-```
-
-
-
-没新版本:
-
-http status: 200
-
-``` json
-{
-  "code":304,
-  "version":1,
- 
   }
 ```
 
@@ -170,29 +149,18 @@ http status: 200
 
 
 
-打开微应用
-
-```
-xEngine.showMicroApp({microAppId},{version},{args},{microAppName})
-```
-
 
 
 ## 微应用 zip 下载地址
 
 ```
 GET: {url}?key=md5(appSecret+microAppId+version)&engine_build=1
+http://www.dfsf/com.zkty.xiaoqu.opendoor.2.zip?key=md5(appSecret+microAppId+version)&engine_build=1
+
 ```
-
-返回: zip 包
-
-示例:
-
-http://192.168.3.129:8000/app/com.zkty.xiaoqu/com.zkty.xiaoqu.opendoor.1.zip?key=1f2414c23a7d55dddc11caa32a8e9a4a&engine_build=1
 
  
 
-engine_build 为引擎 build 号. 由引擎 sdk 暴露获取方法. engine_build 为一个数字.
 
 
 

@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.zkty.modules.engine.utils.FileUtils;
-import com.zkty.modules.engine.utils.Utils;
 
 import java.io.File;
 import java.io.FilenameFilter;

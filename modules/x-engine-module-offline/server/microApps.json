@@ -5,7 +5,7 @@
       "microAppName": "物业公告1",
       "microAppId": "com.zkty.microapp.demo4",
       "microAppVersion": 2,
-      "url": "http://192.168.8.120:8000/com.zkty.microapp.demo4.2.zip"
+      "url": "http://192.168.8.153:80/com.zkty.microapp.demo4.2.zip"
     }
   ]
 }

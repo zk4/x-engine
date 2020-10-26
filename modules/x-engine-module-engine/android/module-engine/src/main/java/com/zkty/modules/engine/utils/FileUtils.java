@@ -377,7 +377,10 @@ public class FileUtils {
 
             name = new File(name).getParentFile().getPath();
 
-            Log.d(TAG, "name:" + name + "-----" + new File(name).getParentFile().getPath());
+            //name = name + zipfileName.substring(0, zipfileName.lastIndexOf("."));
+            name = new File(name, zipfileName.substring(0, zipfileName.lastIndexOf("."))).getPath();
+
+            Log.d(TAG, "name:" + name);
 
             for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) {
                 ZipEntry entry = (ZipEntry) entries.nextElement();

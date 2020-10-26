@@ -7,7 +7,6 @@
 
 
 
-
 # JS
 
 
@@ -21,7 +20,7 @@ npm install @zkty-team/com-zkty-module-tools
 
 
 
-	
+
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
@@ -30,12 +29,11 @@ npm install @zkty-team/com-zkty-module-tools
 | unZipPath | string | true |  | 解压到 路径 |
 | \_\_event\_\_ | string | true |  | 压缩进度 |
 
-
 ## zipFile
 
 
 
-	
+
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
@@ -44,7 +42,7 @@ npm install @zkty-team/com-zkty-module-tools
 | toZipPath | string | true |  | 压缩到 路径 |
 | \_\_event\_\_ | string | true |  | 解压缩进度 |
 
-    
+​    
 
 # iOS
 

@@ -1,6 +1,7 @@
 {
   "name": "@zkty-team/x-engine-module-lope",
   "version": "0.0.41",
+  "description":"@zkty-team/x-engine-module-lope",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {

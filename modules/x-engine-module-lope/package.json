@@ -4,7 +4,7 @@
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 192.168.3.149 ",
+    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0  --config webpack.dev.js",
     "md": "webpack  --config webpack.md.js",
     "build": "webpack  --config webpack.prod.js",
     "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",

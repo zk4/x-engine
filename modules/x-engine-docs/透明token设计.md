@@ -1,6 +1,9 @@
-##　由网络处理
+##　当前问题
 
-如果将业务耦合进通用模块不太科学，那怎么将Get Token Process 动态传入模块？JS？
+业务将会污染网络模块，两种隔离业务的方案，
+
+1.　通过 js　传入业务登陆逻辑。
+2.　将业务逻辑单独模块化。（当前解决方案）
 
 ``` mermaid
 sequenceDiagram
@@ -24,7 +27,11 @@ sequenceDiagram
 
 
 
-## 增加 Token业务模块
+
+
+## 将业务逻辑单独模块化 （当前解决方案）
+
+x-engine-module-timestoken
 
 ```mermaid
 sequenceDiagram

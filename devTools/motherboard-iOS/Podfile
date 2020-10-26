@@ -1,0 +1,28 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+#source 'https://github.com/CocoaPods/Specs.git'
+
+#load './ModulePods.rb'
+target 'motherboard' do
+
+  pod 'ZBarSDK'
+  pod 'Masonry'
+  pod 'x-engine-module-engine', :path =>'../../modules/x-engine-module-engine'
+  pod 'x-engine-module-protocols', :path =>'../../modules/x-engine-module-protocols/'
+  pod 'x-engine-module-router', :path =>'../../modules/x-engine-module-router/'
+  pod 'x-engine-module-tools', :path =>'../../modules/x-engine-module-tools/'
+  pod 'x-engine-module-nav', :path =>'../../modules/x-engine-module-nav'
+  pod 'x-engine-module-dcloud', :path =>'../../modules/x-engine-module-dcloud'
+  pod 'UniBoost', :path => '../../modules/UniBoost'
+  pod 'x-engine-module-camera', :path =>'../../modules/x-engine-module-camera'
+  pod 'x-engine-module-device', :path =>'../../modules/x-engine-module-device'
+  pod 'x-engine-module-bluetooth', :path =>'../../modules/x-engine-module-bluetooth'
+  pod 'x-engine-module-localstorage', :path =>'../../modules/x-engine-module-localstorage'
+  pod 'x-engine-module-lope', :path =>'../../modules/x-engine-module-lope'
+  pod 'x-engine-module-network', :path =>'../../modules/x-engine-module-network'
+
+  target 'motherboardUITests' do
+  end
+
+end

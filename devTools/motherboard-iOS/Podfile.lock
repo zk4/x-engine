@@ -1,0 +1,165 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - DoraemonKit/Core (3.0.4):
+    - FMDB
+    - GCDWebServer
+    - GCDWebServer/WebDAV
+    - GCDWebServer/WebUploader
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - GCDWebServer/WebDAV (3.5.4):
+    - GCDWebServer/Core
+  - GCDWebServer/WebUploader (3.5.4):
+    - GCDWebServer/Core
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.5.0)
+  - SSZipArchive (2.2.3)
+  - UniBoost (0.1.0)
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-bluetooth (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-camera (0.0.1):
+    - GCDWebServer (~> 3.0)
+    - JSONModel
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-dcloud (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-device (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-engine (0.0.41):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+  - x-engine-module-localstorage (1.0.5):
+    - JSONModel
+    - x-engine-module-engine
+  - x-engine-module-nav (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-network (0.0.4):
+    - AFNetworking (~> 4.0.0)
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-protocols (0.0.9)
+  - x-engine-module-router (0.0.41):
+    - WechatOpenSDK
+    - x-engine-module-engine
+  - x-engine-module-tools (1.0.0):
+    - SSZipArchive
+    - WechatOpenSDK
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - ZBarSDK (1.3.1)
+
+DEPENDENCIES:
+  - DoraemonKit/Core (~> 3.0.2)
+  - Masonry
+  - UniBoost (from `../../modules/UniBoost`)
+  - x-engine-module-bluetooth (from `../../modules/x-engine-module-bluetooth`)
+  - x-engine-module-camera (from `../../modules/x-engine-module-camera`)
+  - x-engine-module-dcloud (from `../../modules/x-engine-module-dcloud`)
+  - x-engine-module-device (from `../../modules/x-engine-module-device`)
+  - x-engine-module-engine (from `../../modules/x-engine-module-engine`)
+  - x-engine-module-localstorage (from `../../modules/x-engine-module-localstorage`)
+  - x-engine-module-nav (from `../../modules/x-engine-module-nav`)
+  - x-engine-module-network (from `../../modules/x-engine-module-network`)
+  - x-engine-module-protocols (from `../../modules/x-engine-module-protocols/`)
+  - x-engine-module-router (from `../../modules/x-engine-module-router/`)
+  - x-engine-module-tools (from `../../modules/x-engine-module-tools/`)
+  - ZBarSDK
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Masonry
+    - ZBarSDK
+  trunk:
+    - AFNetworking
+    - DoraemonKit
+    - FMDB
+    - GCDWebServer
+    - JSONModel
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+    - WechatOpenSDK
+
+EXTERNAL SOURCES:
+  UniBoost:
+    :path: "../../modules/UniBoost"
+  x-engine-module-bluetooth:
+    :path: "../../modules/x-engine-module-bluetooth"
+  x-engine-module-camera:
+    :path: "../../modules/x-engine-module-camera"
+  x-engine-module-dcloud:
+    :path: "../../modules/x-engine-module-dcloud"
+  x-engine-module-device:
+    :path: "../../modules/x-engine-module-device"
+  x-engine-module-engine:
+    :path: "../../modules/x-engine-module-engine"
+  x-engine-module-localstorage:
+    :path: "../../modules/x-engine-module-localstorage"
+  x-engine-module-nav:
+    :path: "../../modules/x-engine-module-nav"
+  x-engine-module-network:
+    :path: "../../modules/x-engine-module-network"
+  x-engine-module-protocols:
+    :path: "../../modules/x-engine-module-protocols/"
+  x-engine-module-router:
+    :path: "../../modules/x-engine-module-router/"
+  x-engine-module-tools:
+    :path: "../../modules/x-engine-module-tools/"
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  DoraemonKit: b507a1500667024070f248d648632a3f7bbb6044
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  UniBoost: dcfc0af46da66cdcc58f648fdaf14d04f34fc6fe
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-bluetooth: 84cf85eea4ca9b6d258bc2973ffe124e053fdab8
+  x-engine-module-camera: a638443e1ab16d15ce768d5a4e91bf732818e613
+  x-engine-module-dcloud: 336e085f1db3087d8f192f42159e159048712043
+  x-engine-module-device: fa22e80597da692741f6a97d6d84c4566bf12deb
+  x-engine-module-engine: d086398fa3e7bfa03328bbf9bc94ed7ccb31c823
+  x-engine-module-localstorage: 185961699495e0c7de351fa06a086eea10aae9ef
+  x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
+  x-engine-module-network: c91ab154d7760385096a6299b9d8bbe030091128
+  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
+  x-engine-module-router: 6557b2068b7466e53b3a160f47f4d5d802efa0c2
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
+
+PODFILE CHECKSUM: 7e3faeebf33b16c432a2607cf5df13938f67530b
+
+COCOAPODS: 1.9.3

@@ -134,7 +134,8 @@ microApps.json:
             "microAppName":"开门",
             "microAppId":"com.zkty.xiaoqu.opendoor",
             "microAppVersion":2,
-            "url":"http://www.dfsf/com.zkty.xiaoqu.opendoor.2.zip"
+            "url":"http://www.dfsf/com.zkty.xiaoqu.opendoor.2.zip"，
+            "fallback":"http://www.ddfs/com.zkty.xiaoqu.opendoor.2/index.html"
           }
         ]
   }

@@ -35,23 +35,23 @@ x-engine-module-timestoken
 
 ```mermaid
 sequenceDiagram
+		participant App
+    participant TokenModule
     participant MicroApp
-    participant Token
-    participant Network
     participant Server
-    MicroApp->>Token:Ask Token
-    Token->>Token:Get Token Process
-    Token->>MicroApp:Return Token
-    MicroApp->>Network: Request
-    Network->>Server: Request
+    App->>TokenModule: phone(code) / 微信相关
+    TokenModule->>TokenModule: Get Token/RefreshToken Process
+    TokenModule->>App:Return Token
+    App->>App: 带 token 业务请求
+    MicroApp->>TokenModule:getToken()
+    TokenModule->>MicroApp:Return Token
+    MicroApp->>Server: Request
     Server->>MicroApp: 403
-    MicroApp->>Token : Ask Token and Tell Token Expired
-    Token->>Token:Refresh Token Process
-    Token->>MicroApp:Return Token
-    MicroApp->>Network: Request
-    Network->>Server: Request
+    MicroApp->>TokenModule : getToken(1)
+    TokenModule->>TokenModule:Refresh Token Process
+    TokenModule->>App:　RefreshToken　过期，返回登陆页
+    TokenModule->>MicroApp:Return Token
+    MicroApp->>Server: Request
     Server->>MicroApp: 200
-
-
 ```
 

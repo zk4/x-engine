@@ -27,7 +27,7 @@
     _scanResultArr = [[NSMutableArray alloc]init];
     self.title = @"微应用";
     [self setUpUI];
-    
+
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyBoard)];
     tapGesture.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGesture];

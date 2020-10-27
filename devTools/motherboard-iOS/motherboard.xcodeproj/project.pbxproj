@@ -42,7 +42,6 @@
 		C9C4A66B2546D3BB0018D71B /* com.zkty.module.router.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */; };
 		C9C4A66F2546D6790018D71B /* com.zkty.module.UI.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */; };
 		C9C4A6812547D3F10018D71B /* com.zkty.module.scan.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */; };
-		C9C4A6842547D48F0018D71B /* ZKTYScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A6832547D48F0018D71B /* ZKTYScanViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,8 +117,6 @@
 		C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.router.0; path = "../../../modules/x-engine-module-router/h5/com.zkty.module.router.0"; sourceTree = "<group>"; };
 		C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.UI.0; path = "../../../modules/x-engine-module-ui/h5/com.zkty.module.UI.0"; sourceTree = "<group>"; };
 		C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.scan.0; path = "../../../modules/x-engine-module-scan/h5/com.zkty.module.scan.0"; sourceTree = "<group>"; };
-		C9C4A6822547D48F0018D71B /* ZKTYScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKTYScanViewController.h; sourceTree = "<group>"; };
-		C9C4A6832547D48F0018D71B /* ZKTYScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKTYScanViewController.m; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-motherboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard.debug.xcconfig"; path = "Target Support Files/Pods-motherboard/Pods-motherboard.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard-motherboardUITests.debug.xcconfig"; path = "Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,8 +271,6 @@
 				C94A622D2542D25800F9CD56 /* ZKLogViewController.m */,
 				C94A62352542D38200F9CD56 /* ZKModuleViewController.h */,
 				C94A62362542D38200F9CD56 /* ZKModuleViewController.m */,
-				C9C4A6822547D48F0018D71B /* ZKTYScanViewController.h */,
-				C9C4A6832547D48F0018D71B /* ZKTYScanViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -567,7 +562,6 @@
 				C94A622E2542D25800F9CD56 /* ZKLogViewController.m in Sources */,
 				C94A62202542C96900F9CD56 /* ZYDL_TabBarController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
-				C9C4A6842547D48F0018D71B /* ZKTYScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

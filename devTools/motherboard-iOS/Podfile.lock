@@ -58,11 +58,17 @@ PODS:
   - x-engine-module-router (0.0.41):
     - WechatOpenSDK
     - x-engine-module-engine
+  - x-engine-module-scan (0.0.41):
+    - x-engine-module-engine
+    - ZBarSDK (~> 1.3.1)
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
     - WechatOpenSDK
     - x-engine-module-engine
     - x-engine-module-protocols
+  - x-engine-module-ui (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
   - ZBarSDK (1.3.1)
 
 DEPENDENCIES:
@@ -78,20 +84,23 @@ DEPENDENCIES:
   - x-engine-module-network (from `../../modules/x-engine-module-network`)
   - x-engine-module-protocols (from `../../modules/x-engine-module-protocols/`)
   - x-engine-module-router (from `../../modules/x-engine-module-router/`)
+  - x-engine-module-scan (from `../../modules/x-engine-module-scan`)
   - x-engine-module-tools (from `../../modules/x-engine-module-tools/`)
+  - x-engine-module-ui (from `../../modules/x-engine-module-ui`)
   - ZBarSDK
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Masonry
+    - ZBarSDK
   trunk:
     - AFNetworking
     - GCDWebServer
     - JSONModel
-    - Masonry
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
     - WechatOpenSDK
-    - ZBarSDK
 
 EXTERNAL SOURCES:
   UniBoost:
@@ -116,8 +125,12 @@ EXTERNAL SOURCES:
     :path: "../../modules/x-engine-module-protocols/"
   x-engine-module-router:
     :path: "../../modules/x-engine-module-router/"
+  x-engine-module-scan:
+    :path: "../../modules/x-engine-module-scan"
   x-engine-module-tools:
     :path: "../../modules/x-engine-module-tools/"
+  x-engine-module-ui:
+    :path: "../../modules/x-engine-module-ui"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -139,9 +152,11 @@ SPEC CHECKSUMS:
   x-engine-module-network: c91ab154d7760385096a6299b9d8bbe030091128
   x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
   x-engine-module-router: 6557b2068b7466e53b3a160f47f4d5d802efa0c2
+  x-engine-module-scan: dad610d86b0a36a91e9b312c7e12df47bb3dae35
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+  x-engine-module-ui: 62dacd7d9a25a868e874db76dd049c9e0a926b5e
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: cb18aaa44d3043b3a9a1d18a622a1ce69055b386
+PODFILE CHECKSUM: 93b68404635f556e65f34ec51b4117a9c495005d
 
 COCOAPODS: 1.9.3

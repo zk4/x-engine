@@ -22,6 +22,7 @@ target 'motherboard' do
   pod 'x-engine-module-network', :path =>'../../modules/x-engine-module-network'
   pod 'x-engine-module-ui', :path =>'../../modules/x-engine-module-ui'
   pod 'x-engine-module-scan', :path =>'../../modules/x-engine-module-scan'
+  pod 'x-engine-module-lope', :path =>'../../modules/x-engine-module-lope'
 
   
   target 'motherboardUITests' do

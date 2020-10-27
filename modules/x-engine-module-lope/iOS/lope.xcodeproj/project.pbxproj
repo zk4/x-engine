@@ -26,7 +26,7 @@
 		C9824DF0253D3FFC006AD1FC /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9824DEF253D3FFC006AD1FC /* CoreBluetooth.framework */; };
 		C9C4A6BB254815D70018D71B /* lope.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6BA254815D70018D71B /* lope.bundle */; };
 		C9C4A6BD254816000018D71B /* res.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6BC254816000018D71B /* res.bundle */; };
-		C9C4A6BF254816210018D71B /* LopeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C4A6BE254816210018D71B /* LopeKit.framework */; };
+		C9C4A6C1254819D10018D71B /* LopeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C4A6C0254819D10018D71B /* LopeKit.framework */; };
 		C9E3E75625397FEB00AB91E6 /* dooropen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9E3E75325397FEB00AB91E6 /* dooropen.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +96,7 @@
 		C9824DEF253D3FFC006AD1FC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		C9C4A6BA254815D70018D71B /* lope.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = lope.bundle; path = Assets/lope.bundle; sourceTree = SOURCE_ROOT; };
 		C9C4A6BC254816000018D71B /* res.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = res.bundle; sourceTree = "<group>"; };
-		C9C4A6BE254816210018D71B /* LopeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LopeKit.framework; sourceTree = "<group>"; };
+		C9C4A6C0254819D10018D71B /* LopeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LopeKit.framework; sourceTree = "<group>"; };
 		C9E3E75325397FEB00AB91E6 /* dooropen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dooropen.mp3; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-lope.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lope.debug.xcconfig"; path = "Target Support Files/Pods-lope/Pods-lope.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-lope-lopeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lope-lopeUITests.debug.xcconfig"; path = "Target Support Files/Pods-lope-lopeUITests/Pods-lope-lopeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
-				C9C4A6BF254816210018D71B /* LopeKit.framework in Frameworks */,
+				C9C4A6C1254819D10018D71B /* LopeKit.framework in Frameworks */,
 				36644A9B6347D8F3F465E2F2 /* libPods-lope.a in Frameworks */,
 				C9824DF0253D3FFC006AD1FC /* CoreBluetooth.framework in Frameworks */,
 			);
@@ -219,7 +219,7 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				C9C4A6BE254816210018D71B /* LopeKit.framework */,
+				C9C4A6C0254819D10018D71B /* LopeKit.framework */,
 				C9C4A6BC254816000018D71B /* res.bundle */,
 				C9C4A6BA254815D70018D71B /* lope.bundle */,
 				C9E3E75225397FEB00AB91E6 /* Resource */,

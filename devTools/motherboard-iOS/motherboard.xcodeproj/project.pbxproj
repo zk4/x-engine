@@ -306,6 +306,7 @@
 				00DFC6A824C83F94006A53EE /* Resources */,
 				0C7B32A76B4E99D3BF8E9903 /* [CP] Copy Pods Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
+				735A7AC5FCBE6E04102F50D2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -344,6 +345,7 @@
 				00DFC6CE24C83F95006A53EE /* Resources */,
 				2B8EBC06553ECFFD01EDB8CD /* [CP] Copy Pods Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
+				DC3270E431D4350205CC0C2D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -556,6 +558,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport SERVER_IP=`ipconfig getifaddr en0`\n";
+		};
+		735A7AC5FCBE6E04102F50D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC3270E431D4350205CC0C2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

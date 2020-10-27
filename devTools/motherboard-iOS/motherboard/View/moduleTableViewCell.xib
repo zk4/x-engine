@@ -215,8 +215,27 @@
                             <action selector="module_UI:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A8k-3f-7aH"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFx-Ro-uwD">
+                        <rect key="frame" x="20" y="615" width="354" height="45"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="Pxu-8p-gDd"/>
+                        </constraints>
+                        <state key="normal" title="模块-lope">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="module_lope:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="isc-6l-NpZ"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="eFx-Ro-uwD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="0Pc-Ql-NNh"/>
                     <constraint firstItem="QxF-pk-pD9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="156-BR-mI3"/>
                     <constraint firstItem="Y01-UO-BYJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2kC-sr-G3B"/>
                     <constraint firstItem="76i-fa-pGC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="48y-TY-o1N"/>
@@ -227,6 +246,7 @@
                     <constraint firstItem="hVQ-Y1-dmB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ATd-Hm-ef0"/>
                     <constraint firstItem="p6h-OK-7KA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AiI-gH-gFr"/>
                     <constraint firstItem="mAl-6Z-6vl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="B18-ue-ylx"/>
+                    <constraint firstAttribute="trailing" secondItem="eFx-Ro-uwD" secondAttribute="trailing" constant="20" id="Bci-YL-lhe"/>
                     <constraint firstAttribute="trailing" secondItem="hVQ-Y1-dmB" secondAttribute="trailing" constant="20" id="C59-wg-DkC"/>
                     <constraint firstItem="ORb-La-HzE" firstAttribute="top" secondItem="p6h-OK-7KA" secondAttribute="bottom" constant="10" id="EVL-5S-SDg"/>
                     <constraint firstAttribute="trailing" secondItem="ORb-La-HzE" secondAttribute="trailing" constant="20" id="FgQ-uZ-aje"/>
@@ -234,6 +254,7 @@
                     <constraint firstItem="QxF-pk-pD9" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="L0b-pE-6eg"/>
                     <constraint firstItem="woD-6W-H8C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="L8V-NQ-frc"/>
                     <constraint firstAttribute="trailing" secondItem="76i-fa-pGC" secondAttribute="trailing" constant="20" id="M8f-rv-9LI"/>
+                    <constraint firstItem="eFx-Ro-uwD" firstAttribute="top" secondItem="76i-fa-pGC" secondAttribute="bottom" constant="10" id="NB8-lD-W0U"/>
                     <constraint firstItem="p6h-OK-7KA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="NC2-zF-hA4"/>
                     <constraint firstItem="QxF-pk-pD9" firstAttribute="top" secondItem="xYt-Ux-13K" secondAttribute="bottom" constant="10" id="P0J-eV-kJz"/>
                     <constraint firstAttribute="trailing" secondItem="mAl-6Z-6vl" secondAttribute="trailing" constant="20" id="PPq-8h-d5y"/>

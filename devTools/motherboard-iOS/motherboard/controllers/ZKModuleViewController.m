@@ -69,9 +69,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (@available(iOS 11.0, *)){
-        return 55 * 11  + 13;
+        return 55 * 12  + 13;
     }
-    return 55 * 11  ;
+    return 55 * 12  ;
 }
 
 -(void)module_nav:(UIButton *)button{

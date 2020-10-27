@@ -9,7 +9,7 @@
 #import "ZKMicroAppViewController.h"
 #import <Masonry/Masonry.h>
 #import "Prefix.h"
-#import "ZKScanViewController.h"
+#import "ZKTYScanViewController.h"
 #import <MircroAppController.h>
 
 @interface ZKMicroAppViewController ()
@@ -66,7 +66,7 @@
 }
 
 -(void)scanAction{
-    ZKScanViewController *vc = [[ZKScanViewController alloc] init];
+    ZKTYScanViewController *vc = [[ZKTYScanViewController alloc] init];
     __weak typeof(self) weakSelf = self;
     vc.block = ^(NSString *data) {
         MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:data];

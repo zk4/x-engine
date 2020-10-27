@@ -1,12 +1,12 @@
 //
-//  ZKScanViewController.m
-//  scan
+//  ZKTYScanViewController.m
+//  motherboard
 //
-//  Created by 吕冬剑 on 2020/10/14.
+//  Created by 李宫 on 2020/10/27.
 //  Copyright © 2020 zk. All rights reserved.
 //
 
-#import "ZKScanViewController.h"
+#import "ZKTYScanViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -20,8 +20,7 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_BOUNDS  [UIScreen mainScreen].bounds
-
-@interface ZKScanViewController ()<AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ZBarReaderViewDelegate>{
+@interface ZKTYScanViewController ()<AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ZBarReaderViewDelegate>{
    
     int num;
     NSTimer * timer;
@@ -40,7 +39,7 @@
 
 @end
 
-@implementation ZKScanViewController
+@implementation ZKTYScanViewController
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -273,5 +272,4 @@
 -(void)dealloc{
     
 }
-
 @end

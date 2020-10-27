@@ -28,7 +28,6 @@
 		C94A62332542D34E00F9CD56 /* moduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C94A62312542D34E00F9CD56 /* moduleTableViewCell.xib */; };
 		C94A62342542D34E00F9CD56 /* moduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A62322542D34E00F9CD56 /* moduleTableViewCell.m */; };
 		C94A62372542D38200F9CD56 /* ZKModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A62362542D38200F9CD56 /* ZKModuleViewController.m */; };
-		C9C4A61C254670180018D71B /* ZKScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A61A254670180018D71B /* ZKScanViewController.m */; };
 		C9C4A61E254697E40018D71B /* com.zkty.module.navpush.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A61D254697E40018D71B /* com.zkty.module.navpush.0 */; };
 		C9C4A6262546983C0018D71B /* com.zkty.module.bluetooth.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6202546983B0018D71B /* com.zkty.module.bluetooth.0 */; };
 		C9C4A6272546983C0018D71B /* com.zkty.module.device.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6212546983B0018D71B /* com.zkty.module.device.0 */; };
@@ -42,6 +41,8 @@
 		C9C4A6692546D1BB0018D71B /* com.zkty.module.network.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */; };
 		C9C4A66B2546D3BB0018D71B /* com.zkty.module.router.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */; };
 		C9C4A66F2546D6790018D71B /* com.zkty.module.UI.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */; };
+		C9C4A6812547D3F10018D71B /* com.zkty.module.scan.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */; };
+		C9C4A6842547D48F0018D71B /* ZKTYScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C4A6832547D48F0018D71B /* ZKTYScanViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,8 +104,6 @@
 		C94A62322542D34E00F9CD56 /* moduleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = moduleTableViewCell.m; sourceTree = "<group>"; };
 		C94A62352542D38200F9CD56 /* ZKModuleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKModuleViewController.h; sourceTree = "<group>"; };
 		C94A62362542D38200F9CD56 /* ZKModuleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKModuleViewController.m; sourceTree = "<group>"; };
-		C9C4A61A254670180018D71B /* ZKScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKScanViewController.m; sourceTree = "<group>"; };
-		C9C4A61B254670180018D71B /* ZKScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKScanViewController.h; sourceTree = "<group>"; };
 		C9C4A61D254697E40018D71B /* com.zkty.module.navpush.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.navpush.0; sourceTree = "<group>"; };
 		C9C4A6202546983B0018D71B /* com.zkty.module.bluetooth.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.bluetooth.0; sourceTree = "<group>"; };
 		C9C4A6212546983B0018D71B /* com.zkty.module.device.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.device.0; sourceTree = "<group>"; };
@@ -118,6 +117,9 @@
 		C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.network.0; path = "../../../modules/x-engine-module-network/h5/com.zkty.module.network.0"; sourceTree = "<group>"; };
 		C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.router.0; path = "../../../modules/x-engine-module-router/h5/com.zkty.module.router.0"; sourceTree = "<group>"; };
 		C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.UI.0; path = "../../../modules/x-engine-module-ui/h5/com.zkty.module.UI.0"; sourceTree = "<group>"; };
+		C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.scan.0; path = "../../../modules/x-engine-module-scan/h5/com.zkty.module.scan.0"; sourceTree = "<group>"; };
+		C9C4A6822547D48F0018D71B /* ZKTYScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKTYScanViewController.h; sourceTree = "<group>"; };
+		C9C4A6832547D48F0018D71B /* ZKTYScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKTYScanViewController.m; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-motherboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard.debug.xcconfig"; path = "Target Support Files/Pods-motherboard/Pods-motherboard.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard-motherboardUITests.debug.xcconfig"; path = "Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 		00DFC6E224C84000006A53EE /* motherboard */ = {
 			isa = PBXGroup;
 			children = (
+				C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */,
 				C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */,
 				C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */,
 				C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */,
@@ -264,8 +267,6 @@
 		C94A62212542CB8E00F9CD56 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C9C4A61B254670180018D71B /* ZKScanViewController.h */,
-				C9C4A61A254670180018D71B /* ZKScanViewController.m */,
 				C94A62222542D20500F9CD56 /* ZKMicroAppViewController.h */,
 				C94A62232542D20500F9CD56 /* ZKMicroAppViewController.m */,
 				C94A62242542D20500F9CD56 /* ZKMicroAppViewController.xib */,
@@ -273,6 +274,8 @@
 				C94A622D2542D25800F9CD56 /* ZKLogViewController.m */,
 				C94A62352542D38200F9CD56 /* ZKModuleViewController.h */,
 				C94A62362542D38200F9CD56 /* ZKModuleViewController.m */,
+				C9C4A6822547D48F0018D71B /* ZKTYScanViewController.h */,
+				C9C4A6832547D48F0018D71B /* ZKTYScanViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				C9C4A66B2546D3BB0018D71B /* com.zkty.module.router.0 in Resources */,
 				C9C4A6692546D1BB0018D71B /* com.zkty.module.network.0 in Resources */,
 				C9C4A62A2546983C0018D71B /* come.zkty.module.camera.0 in Resources */,
+				C9C4A6812547D3F10018D71B /* com.zkty.module.scan.0 in Resources */,
 				C9C4A6272546983C0018D71B /* com.zkty.module.device.0 in Resources */,
 				C9C4A61E254697E40018D71B /* com.zkty.module.navpush.0 in Resources */,
 				C9C4A6442546A02C0018D71B /* com.zkty.module.nav.0 in Resources */,
@@ -563,7 +567,7 @@
 				C94A622E2542D25800F9CD56 /* ZKLogViewController.m in Sources */,
 				C94A62202542C96900F9CD56 /* ZYDL_TabBarController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
-				C9C4A61C254670180018D71B /* ZKScanViewController.m in Sources */,
+				C9C4A6842547D48F0018D71B /* ZKTYScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,7 +740,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D98ZZZNWR2;
+				DEVELOPMENT_TEAM = MQSNCQR864;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -765,7 +769,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D98ZZZNWR2;
+				DEVELOPMENT_TEAM = 85M34KSCY6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

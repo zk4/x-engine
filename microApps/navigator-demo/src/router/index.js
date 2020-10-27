@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import nav from '@zkty-team/x-engine-module-nav'
 
 Vue.use(Router)
 
@@ -36,6 +37,15 @@ const router = new Router({
     mode: 'hash',
     base: process.env.BASE_URL,
     routes
+})
+
+// GOOD
+router.beforeEach((to, from, next) => {
+  console.log("to",to,"from",from)
+  nav.navigatorPush({
+    url:to.path
+  })
+  //next()
 })
 
 export default router

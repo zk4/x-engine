@@ -14,7 +14,8 @@
 #import <RecyleWebViewController.h>
 #import <XEngineWebView.h>
 #import <Unity.h>
-#import "LopeKit.h"
+//#import "LopeKit.h"
+
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -75,7 +76,7 @@
 }
 
 -(void) setupUI {
-    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"dooropen" ofType:@"mp3"];
+    NSString *audioPath =  [[NSBundle mainBundle] pathForResource:@"lope" ofType:@"bundle"];
     NSURL *audioUrl = [[NSURL alloc] initFileURLWithPath:audioPath];
     self.openDoorAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioUrl error:nil];
     [self.openDoorAudio prepareToPlay];

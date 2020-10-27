@@ -130,6 +130,9 @@
     [self pushTestModule:@"com.zkty.module.UI"];
 }
 
+- (void)module_tzcash:(UIButton * _Nullable)button {
+    [self pushTestModule:@"com.zkty.module.tzcash"];
+}
 - (void)pushTestModule:(NSString*) appid {
     MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:appid ];
     [self pushViewController:webLaderVC];

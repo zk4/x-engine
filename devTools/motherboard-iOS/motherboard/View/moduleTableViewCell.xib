@@ -152,6 +152,11 @@
                         <state key="normal" title="模块-network">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="module_network:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fVH-zg-dwR"/>
                         </connections>
@@ -165,6 +170,11 @@
                         <state key="normal" title="模块-router">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="module_router:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TbF-s0-RM6"/>
                         </connections>
@@ -178,6 +188,11 @@
                         <state key="normal" title="模块-scan">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="module_scan:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5bf-io-T0x"/>
                         </connections>
@@ -191,6 +206,11 @@
                         <state key="normal" title="模块-UI">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="module_UI:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A8k-3f-7aH"/>
                         </connections>

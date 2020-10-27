@@ -144,7 +144,7 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   x-engine-module-bluetooth: 84cf85eea4ca9b6d258bc2973ffe124e053fdab8
   x-engine-module-camera: a638443e1ab16d15ce768d5a4e91bf732818e613
-  x-engine-module-dcloud: 336e085f1db3087d8f192f42159e159048712043
+  x-engine-module-dcloud: 7d8806f509cc254cd0545000f9afb7d071b70937
   x-engine-module-device: fa22e80597da692741f6a97d6d84c4566bf12deb
   x-engine-module-engine: d086398fa3e7bfa03328bbf9bc94ed7ccb31c823
   x-engine-module-localstorage: 185961699495e0c7de351fa06a086eea10aae9ef
@@ -157,6 +157,6 @@ SPEC CHECKSUMS:
   x-engine-module-ui: 62dacd7d9a25a868e874db76dd049c9e0a926b5e
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: 93b68404635f556e65f34ec51b4117a9c495005d
+PODFILE CHECKSUM: 136d133e4adb2f255eb3ae52122e9ea2b8aca2df
 
 COCOAPODS: 1.9.3

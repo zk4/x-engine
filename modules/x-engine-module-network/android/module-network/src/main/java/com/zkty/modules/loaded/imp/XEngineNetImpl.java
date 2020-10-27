@@ -94,13 +94,13 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                         stringBuilder.append("&").append(entry.getKey()).append("=").append(entry.getValue());
                     }
                 }
-                if(header!=null){
-                    Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
-                    while (iterator.hasNext()) {
-                        Map.Entry<String, String> entry = iterator.next();
-                        builder.addHeader(entry.getKey(), entry.getValue());
-                    }
-                }
+//                if(header!=null){
+//                    Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
+//                    while (iterator.hasNext()) {
+//                        Map.Entry<String, String> entry = iterator.next();
+//                        builder.addHeader(entry.getKey(), entry.getValue());
+//                    }
+//                }
 
                 builder.url(stringBuilder.toString());
                 builder.get();

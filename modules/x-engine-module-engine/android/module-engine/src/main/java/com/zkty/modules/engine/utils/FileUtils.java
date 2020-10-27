@@ -386,7 +386,18 @@ public class FileUtils {
                 ZipEntry entry = (ZipEntry) entries.nextElement();
                 String zipEntryName = entry.getName();
                 InputStream in = zip.getInputStream(entry);
-                String outPath = (name + "/" + zipEntryName).replaceAll("\\*", "/");
+
+                Log.d(TAG, "entryName:" + zipEntryName);
+
+                String outPath = "";
+
+                File temp = new File(name);
+                Log.d(TAG, "parent:" + temp.getParent() + "--sub:" + temp.getName());
+                if(zipEntryName.startsWith(temp.getName())){
+                    outPath = (name.replace(temp.getName(), "") + "/" + zipEntryName).replaceAll("\\*", "/");
+                }else {
+                    outPath = (name + "/" + zipEntryName).replaceAll("\\*", "/");
+                }
 
                 // 判断路径是否存在,不存在则创建文件路径
                 File file = new File(outPath.substring(0, outPath.lastIndexOf('/')));

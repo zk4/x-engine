@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-localstorage",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.42"
+    "@zkty-team/x-engine-module-engine": "^0.0.43"
   },
   "gitHead": "ba1fa30ef9399cffba73cefdbd72d1e9005d3d7a"
 }

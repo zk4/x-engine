@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-tzcash",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "description": "zkty-team/x-engine-module-tzcash",
   "main": "h5/src/index.js",
   "scripts": {

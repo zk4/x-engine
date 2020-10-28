@@ -22,7 +22,7 @@ localstorage 会根据微应用的 appid 自动加入 namespace.
 
 
 ``` bash
-npm install @zkty-team/com-zkty-module-localstorage
+npm install @zkty-team/x-engine-module-localstorage
 ```
 
 

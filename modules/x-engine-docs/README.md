@@ -53,24 +53,9 @@ x-engine 将会全面开源，包括核心源码。在出问题时，你能跟�
 
 # 资源地址
 
-引擎: [iOS](https://github.com/zkty-team/x-engine-module-engine/tree/master/iOS) [android](https://github.com/zkty-team/x-engine-module-engine/tree/master/android)
+源码:[github](https://github.com/zkty-team/monorepo) （当前仅开发人员可见）
 
-微应用模板:[hybrid-tempalte](https://github.com/zkty-team/x-engine-hybrid-template)
-
-模块模板:[module-template](https://github.com/zkty-team/x-engine-module-template)
-
-包含:
+真机基座下载:[下载地址](https://www.pgyer.com/engine-motherboard)
 
 
-module-nav
-module-localstorage
-module-ui
-module-router
-module-scan
-
-
-
-# 项目管理
-
-https://zktyfe.worktile.com/tasks/projects/5f164ffa478dbd1d67107712
 

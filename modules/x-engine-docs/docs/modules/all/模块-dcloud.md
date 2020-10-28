@@ -11,15 +11,26 @@
 # JS
 
 
-`
-com.zkty.module.dcloud
-`
+``` bash
+npm install @zkty-team/x-engine-module-dcloud
+```
 
 
 
 ## openUniMP
 
  启动小程序
+
+**demo**
+``` js
+{
+  window.openUniMP = () => {
+    dcloud.openUniMP().then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+}
+``` 
 
 	
 **参数说明**
@@ -33,6 +44,17 @@ com.zkty.module.dcloud
 
  预加载后打开小程序
 
+**demo**
+``` js
+{
+  window.preloadUniMP = () => {
+    dcloud.preloadUniMP().then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+}
+``` 
+
 	
 **参数说明**
 
@@ -44,6 +66,17 @@ com.zkty.module.dcloud
 ## openUniMPWithArg
 
 
+
+**demo**
+``` js
+{
+  window.openUniMPWithArg = () => {
+    dcloud.openUniMPWithArg().then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+}
+``` 
 
 	
 **参数说明**

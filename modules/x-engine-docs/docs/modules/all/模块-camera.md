@@ -11,7 +11,7 @@
 
 
 ``` bash
-npm install @zkty-team/com-zkty-module-camera
+npm install @zkty-team/x-engine-module-camera
 ```
 
 

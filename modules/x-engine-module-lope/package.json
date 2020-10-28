@@ -1,7 +1,7 @@
 {
   "name": "@zkty-team/x-engine-module-lope",
-  "version": "0.0.41",
-  "description":"@zkty-team/x-engine-module-lope",
+  "version": "0.0.42",
+  "description": "@zkty-team/x-engine-module-lope",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@zkty-team/x-cli": "^1.0.8",
-    "@zkty-team/x-engine-module-engine": "^0.0.41"
+    "@zkty-team/x-engine-module-engine": "^0.0.42"
   },
   "gitHead": "f0d381898ade46081fd0a07b172efeca86c2b922"
 }

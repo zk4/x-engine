@@ -5,9 +5,10 @@
 
 #import "EntryViewController.h"
 #import <MircroAppController.h>
-#import <UIViewController+.h>
+#import <x-engine-module-tools/UIViewController+.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
+#import "__xengine__module_lope.h"
 @interface EntryViewController ()
 
 @end
@@ -49,6 +50,10 @@
 -(void) pushTestModule{
     // 启动 h5 服务器, npm run dev
     // 将下面的 ip 换成你的电脑 ip 即可实时调试
+    __xengine__module_lope *oo = [[__xengine__module_lope alloc] init];
+    LopePIDDTO *dto = [[LopePIDDTO alloc] init];
+    dto.pid = @"03jfuto709chalfwo84nf921qujt5p";
+    [oo _initSdkAndConfigure:dto complete:nil];
    NSString* url = [NSString stringWithFormat:@"http://0.0.0.0:8000",[self getIPAddress]];
    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.3.149:8080"];
    [self pushViewController:webLaderVC];

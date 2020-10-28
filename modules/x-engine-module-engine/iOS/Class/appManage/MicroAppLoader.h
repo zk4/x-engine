@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *nowMicroAppId;
 
 + (instancetype)sharedInstance;
-- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId out_version:(long*) version;
++ (NSString *)microappDirectory;
+- (NSString *) locateMicroAppByMicroappId:(NSString*)microappId out_version:(long*) version;
+-(BOOL)checkMicroAppVersion:(NSString *)microappId version:(long)version;
 
 @end
 

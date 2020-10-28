@@ -19,6 +19,7 @@
 #import "UIBlockButton.h"
 #import "XEOneWebViewControllerManage.h"
 #import "NavUtil.h"
+#import <x-engine-module-router/XERouterManager.h>
 
 //#import "WXApi.h"
 #import "NavSearchBar.h"
@@ -530,46 +531,8 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 }
 
 - (void)_navigatorRouter:(NavOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-    switch ([dto.type intValue]) {
-        case 0:{
-            //http
-            [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:dto.uri];
-            break;
-        }
-        case 1:{
-            //appid
-            long version;
-            NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:dto.uri out_version:&version];
-            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithPath:urlStr withParams:nil];
-            break;
-        }
-        case 2:
-            //uni
-            break;
-        case 3:{
-            //wx
-//            WXLaunchMiniProgramReq *launchMiniProgramReq = [WXLaunchMiniProgramReq object];
-//            launchMiniProgramReq.userName = dto.uri;  //拉起的小程序的username
-//            launchMiniProgramReq.path = dto.path;    ////拉起小程序页面的可带参路径，不填默认拉起小程序首页，对于小游戏，可以只传入 query 部分，来实现传参效果，如：传入 "?foo=bar"。
-//            launchMiniProgramReq.miniProgramType = WXMiniProgramTypeRelease; //拉起小程序的类型
-//            [WXApi sendReq:launchMiniProgramReq];
-            break;
-        }
-        case 4:{
-            //navtie
-            NSArray *ary = [dto.uri componentsSeparatedByString:@","];
-            for (NSString *item in ary){
-                if([item hasSuffix:@"Controller"]){
-                    UIViewController *vc = [[NSClassFromString(item) alloc] init];
-                    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
-                }
-            }
-            break;
-        }
-        default:
-            break;
-    }
+    [XERouterManager routerToTarget:dto.type withUri:dto.uri withPath:dto.path];
+    completionHandler(YES);
 }
 
 

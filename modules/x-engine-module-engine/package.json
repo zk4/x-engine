@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-engine",
-  "version": "0.0.41",
+  "version": "0.0.43",
   "description": "zkty-team/x-engine-module-engine",
   "main": "h5/src/index.js",
   "scripts": {
@@ -36,5 +36,5 @@
   "dependencies": {
     "dsbridge": "^3.1.4"
   },
-  "gitHead": "f0d381898ade46081fd0a07b172efeca86c2b922"
+  "gitHead": "ba1fa30ef9399cffba73cefdbd72d1e9005d3d7a"
 }

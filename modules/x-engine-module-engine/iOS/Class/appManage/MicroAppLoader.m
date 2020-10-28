@@ -80,7 +80,7 @@
     if(v)
     {
         *version = [v integerValue];
-        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory],microappId,*version];
+        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, *version];
         return sandbox_microapp_location;
     }
     // otherwise found in project / NSBundle
@@ -93,6 +93,14 @@
     }
     *version = -1;
     return nil;
+}
+
+-(BOOL)checkMicroAppVersion:(NSString *)microappId version:(long)version{
+    
+    NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html", [MicroAppLoader microappDirectory], microappId, version];
+    BOOL isDir = false;
+    BOOL isEx = [[NSFileManager defaultManager] fileExistsAtPath:sandbox_microapp_location isDirectory:&isDir];
+    return (isEx && isDir);
 }
  
 -(NSString *)nowMicroAppId{

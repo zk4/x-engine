@@ -1,12 +1,28 @@
 package com.zkty.modules.loaded.jsapi;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.tencent.mmkv.MMKV;
+import com.zkty.modules.engine.core.IApplicationListener;
 import com.zkty.modules.engine.utils.ActivityUtils;
 import com.zkty.modules.loaded.util.SharePreferenceUtils;
 
 import com.zkty.modules.dsbridge.CompletionHandler;
 
-public class __xengine__module_localstorage extends xengine__module_localstorage {
+public class __xengine__module_localstorage extends xengine__module_localstorage implements IApplicationListener {
 
+    @Override
+    public void onAppCreate(Context context) {
+        String dir = context.getFilesDir().getAbsolutePath() + "/mmkv";
+        String rootDir = MMKV.initialize(dir);
+        Log.d("MMKV", "mmkv root: " + rootDir);
+    }
+
+    @Override
+    public void onAppLowMemory() {
+
+    }
 
     @Override
     public void _set(StorageSetDTO dto, CompletionHandler<StorageStatusDTO> handler) {

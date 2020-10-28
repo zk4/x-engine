@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.tencent.mmkv.MMKV;
 import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
@@ -26,23 +27,20 @@ public class SharePreferenceUtils {
     private static final String NAME_SPACE = "x-localstorage";
 
     public static void put(Context context, Boolean isPublish, String key, Object object) {
-        SharedPreferences.Editor editor = getSp(context, isPublish).edit();
-
+        MMKV mmkv = getSp(context, isPublish);
         if (object instanceof String) {
-            editor.putString(key, (String) object);
+            mmkv.encode(key, (String) object);
         } else if (object instanceof Integer) {
-            editor.putInt(key, (Integer) object);
+            mmkv.encode(key, (Integer) object);
         } else if (object instanceof Boolean) {
-            editor.putBoolean(key, (Boolean) object);
+            mmkv.encode(key, (Boolean) object);
         } else if (object instanceof Float) {
-            editor.putFloat(key, (Float) object);
+            mmkv.encode(key, (Float) object);
         } else if (object instanceof Long) {
-            editor.putLong(key, (Long) object);
+            mmkv.encode(key, (Long) object);
         } else {
-            editor.putString(key, object.toString());
+            mmkv.encode(key, object.toString());
         }
-
-        editor.apply();
 
     }
 
@@ -56,16 +54,18 @@ public class SharePreferenceUtils {
      */
 
     public static Object get(Context context, boolean isPublish, String key, @NonNull Object defaultValue) {
-        if (defaultValue instanceof String) {
-            return getSp(context, isPublish).getString(key, (String) defaultValue);
+        if (defaultValue == null) {
+            return getSp(context, isPublish).decodeString(key, (String) defaultValue);
+        } else if (defaultValue instanceof String) {
+            return getSp(context, isPublish).decodeString(key, (String) defaultValue);
         } else if (defaultValue instanceof Integer) {
-            return getSp(context, isPublish).getInt(key, (Integer) defaultValue);
+            return getSp(context, isPublish).decodeInt(key, (Integer) defaultValue);
         } else if (defaultValue instanceof Boolean) {
-            return getSp(context, isPublish).getBoolean(key, (Boolean) defaultValue);
+            return getSp(context, isPublish).decodeBool(key, (Boolean) defaultValue);
         } else if (defaultValue instanceof Float) {
-            return getSp(context, isPublish).getFloat(key, (Float) defaultValue);
+            return getSp(context, isPublish).decodeFloat(key, (Float) defaultValue);
         } else if (defaultValue instanceof Long) {
-            return getSp(context, isPublish).getLong(key, (Long) defaultValue);
+            return getSp(context, isPublish).decodeLong(key, (Long) defaultValue);
         }
         return null;
     }
@@ -77,7 +77,7 @@ public class SharePreferenceUtils {
      * @param key
      */
     public static void remove(Context context, boolean isPublish, String key) {
-        getSp(context, isPublish).edit().remove(key).apply();
+        getSp(context, isPublish).removeValueForKey(key);
     }
 
     /**
@@ -88,7 +88,7 @@ public class SharePreferenceUtils {
      * @return
      */
     public static boolean contains(Context context, boolean isPublish, String key) {
-        return getSp(context, isPublish).contains(key);
+        return getSp(context, isPublish).containsKey(key);
     }
 
     /**
@@ -97,20 +97,19 @@ public class SharePreferenceUtils {
      * @param context
      */
     public static void clear(Context context, boolean isPublish) {
-        getSp(context, isPublish).edit().clear().apply();
+        getSp(context, isPublish).clearAll();
 
     }
 
 
-    public static SharedPreferences getSp(Context context, boolean isPublish) {
+    public static MMKV getSp(Context context, boolean isPublish) {
         String namespace;
         if (isPublish) {
             namespace = NAME_SPACE;
         } else {
             namespace = getNamespace();
         }
-        return context.getSharedPreferences(namespace,
-                Context.MODE_MULTI_PROCESS);
+        return MMKV.mmkvWithID(namespace, MMKV.MULTI_PROCESS_MODE);
     }
 
     private static String getNamespace() {

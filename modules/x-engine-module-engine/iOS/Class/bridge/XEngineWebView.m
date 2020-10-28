@@ -330,7 +330,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
-                    action(JavascriptInterfaceObject,selasyn,arg,completionHandler);
+                    action(JavascriptInterfaceObject, selasyn, arg, completionHandler);
                     break;
                 }
             }else if([JavascriptInterfaceObject respondsToSelector:sel]){

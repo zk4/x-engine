@@ -3,8 +3,6 @@ package com.zkty.modules.loaded.jsapi;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -25,7 +23,7 @@ public class __xengine__module_nav extends xengine__module_nav {
     @Override
     public void _navigatorRouter(NavOpenAppDTO dto, CompletionHandler<Nullable> handler) {
 
-        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(), dto.type, dto.uri, dto.path);
+        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(), dto.type, dto.uri, dto.path, null, null);
     }
 
     @Override
@@ -132,7 +130,7 @@ public class __xengine__module_nav extends xengine__module_nav {
             } else if ("/index".equals(dto.url)) {
                 XEngineWebActivityManager.sharedInstance().backToIndexPage();
             } else {
-                String url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(dto.url, null);
+                String url = MicroAppLoader.sharedInstance().getFullRouterUrl(dto.url, null);
                 XOneWebViewPool.sharedInstance().peekUnusedWebViewFromPool().backToPage(url);
                 XEngineWebActivityManager.sharedInstance().backToHistoryPage(url);
             }

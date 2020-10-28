@@ -54,7 +54,11 @@
             self.rootPath = rootPath;
         }else{
             NSURLComponents *components = [[NSURLComponents alloc] initWithString:fileUrl];
-            self.rootPath = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+            if(components.host.length > 0){
+                self.rootPath = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+            }else{
+                self.rootPath = fileUrl;
+            }
         }
         self.fileUrl = fileUrl;
         
@@ -64,8 +68,22 @@
             
             self.isReadyLoading = YES;
             self.webview = [[XEOneWebViewPool sharedInstance] getWebView:self.rootPath];;
+            self.webview.configuration.preferences.javaScriptEnabled = YES;
+            self.webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+            
+            [self.webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
+            [self.webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
             self.webview.frame = [UIScreen mainScreen].bounds;
-            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
+            if([self.fileUrl hasPrefix:@"http"]){
+                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
+            }else{
+                
+                if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+                    [self.webview loadFileURL:[NSURL fileURLWithPath:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+                }else{
+                    [self.webview loadFileURL:[NSURL fileURLWithPath:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+                }
+            }
         }
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -99,7 +117,15 @@
     if(!self.isReadyLoading){
         if(url){
             [self.webview stopLoading];
-            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+            if([url hasPrefix:@"http"]){
+                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+            }else{
+                if([url rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+                    [self.webview loadFileURL:[NSURL fileURLWithPath:url] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+                }else{
+                    [self.webview loadFileURL:[NSURL fileURLWithPath:url] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+                }
+            }
             NSLog(@"%@",self.fileUrl);
         }
     }

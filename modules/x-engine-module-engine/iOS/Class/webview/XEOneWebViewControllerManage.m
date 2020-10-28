@@ -114,8 +114,10 @@
 - (void)pushViewControllerWithAppid:(NSString *)appid withParams:(NSString *)params{
     long version;
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:&version];
-    [self setMainUrl:urlStr];
-    [self pushWebViewControllerWithUrl:urlStr];
+    if(urlStr){
+        [self setMainUrl:urlStr];
+        [self pushWebViewControllerWithUrl:urlStr];
+    }
 }
 
 -(NSString *)setMainUrl:(NSString *)url{

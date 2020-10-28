@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class RouterMaster {
 
-    public static void openTargetRouter(Context context, String type, String uri, String path, String microAppVersion) {
+    public static void openTargetRouter(Context context, String type, String uri, String path, String arg, String microAppVersion) {
 
         if (context == null || type == null) return;
         switch (type) {
@@ -26,7 +26,7 @@ public class RouterMaster {
                 XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, url);
                 break;
             case "microapp"://微应用
-                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, uri, path, microAppVersion);
+                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, uri, path, arg, microAppVersion);
                 break;
             case "wx"://微信小程序
                 String appId = null;

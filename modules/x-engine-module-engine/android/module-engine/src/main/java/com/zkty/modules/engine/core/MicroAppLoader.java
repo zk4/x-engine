@@ -43,7 +43,7 @@ public class MicroAppLoader {
      * @param microAppId 微应用id
      * @return 最新版本微应用
      */
-    public String getFullRouterUrl(String microAppId) {
+    public String getMicroAppByMicroAppId(String microAppId) {
         this.currentMicroAppId = microAppId;
         currentRootPath = MicroAppsManager.getInstance().getMicroAppPath(microAppId);
         if (currentRootPath == null) {
@@ -53,6 +53,7 @@ public class MicroAppLoader {
         return currentIndexPath;
 
     }
+
 
     /**
      * @param microAppId 微应用id

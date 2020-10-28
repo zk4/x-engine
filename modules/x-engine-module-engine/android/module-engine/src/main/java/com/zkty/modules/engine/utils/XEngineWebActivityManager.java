@@ -41,7 +41,7 @@ public class XEngineWebActivityManager {
      */
     public void startXEngineActivity(Context context, @NonNull String url) {
         if (!url.startsWith("http")) {
-            url = MicroAppLoader.sharedInstance().getFullRouterUrl(url);
+            url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(url);
         } else {
             XOneWebViewPool.IS_WEB = true;
         }
@@ -52,17 +52,18 @@ public class XEngineWebActivityManager {
 
     }
 
-    public void startXEngineActivity(Context context, @NonNull String url, @NonNull String path, String version) {
+    public void startXEngineActivity(Context context, @NonNull String url, String path, String args, String version) {
         if (!url.startsWith("http")) {
             if (TextUtils.isEmpty(version)) {
-                url = MicroAppLoader.sharedInstance().getFullRouterUrl(url);
+                url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(url);
             } else {
                 url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppIdAndVersion(url, version);
             }
         } else {
             XOneWebViewPool.IS_WEB = true;
         }
-        url = TextUtils.isEmpty(path) ? url : url + "?" + path;
+        url = TextUtils.isEmpty(path) ? url : url + "#" + path;
+        url = TextUtils.isEmpty(args) ? url : url + "?" + args;
 //        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
         Intent intent = new Intent(context, XEngineWebActivity.class);
         intent.putExtra(XEngineWebActivity.URL, url);

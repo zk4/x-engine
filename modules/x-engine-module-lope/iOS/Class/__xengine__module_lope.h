@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class SheetDTO;
 @interface __xengine__module_lope : xengine__module_lope 
- 
+- (void)_initSdkAndConfigure:(LopePIDDTO *)dto complete:(void (^)(LopeRetStatusDTO *, BOOL))completionHandler;
  @end
 
 NS_ASSUME_NONNULL_END

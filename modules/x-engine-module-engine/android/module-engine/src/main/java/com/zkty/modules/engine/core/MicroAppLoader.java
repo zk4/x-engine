@@ -43,7 +43,7 @@ public class MicroAppLoader {
      * @param microAppId 微应用id
      * @return 最新版本微应用
      */
-    public String getMicroAppByMicroAppId(String microAppId) {
+    public String getFullRouterUrl(String microAppId) {
         this.currentMicroAppId = microAppId;
         currentRootPath = MicroAppsManager.getInstance().getMicroAppPath(microAppId);
         if (currentRootPath == null) {
@@ -56,12 +56,24 @@ public class MicroAppLoader {
 
     /**
      * @param microAppId 微应用id
+     * @param version    指定版本号
+     * @return 指定版本微应用
+     */
+    public String getMicroAppByMicroAppIdAndVersion(String microAppId, String version) {
+        this.currentMicroAppId = microAppId;
+        currentRootPath = MicroAppsManager.getInstance().getMicroAppPath(microAppId, version);
+        currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
+        return currentIndexPath;
+    }
+
+
+    /**
+     * @param microAppId 微应用id
      * @param route      路由地址
      * @return
      */
-    public String getMicroAppByMicroAppId(String route, String params) {
+    public String getFullRouterUrl(String route, String params) {
         // getMicroAppByMicroAppId(microAppId);
-
         String url = XEngineWebActivityManager.sharedInstance().getCurrent().getWebUrl();
         if (url != null & url.startsWith("http")) {
             try {
@@ -73,25 +85,11 @@ public class MicroAppLoader {
                 e.printStackTrace();
             }
         }
-
-
         if (TextUtils.isEmpty(params)) {
             return String.format(Locale.ENGLISH, "%s#%s", currentIndexPath, route);
         }
         return String.format(Locale.ENGLISH, "%s#%s?%s", currentIndexPath, route, params);
 
-    }
-
-    /**
-     * @param microAppId 微应用id
-     * @param version    指定版本号
-     * @return 指定版本微应用
-     */
-    public String getMicroAppByMicroAppId(String microAppId, int version) {
-        this.currentMicroAppId = microAppId;
-        currentRootPath = MicroAppsManager.getInstance().getMicroAppPath(microAppId, String.valueOf(version));
-        currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
-        return currentIndexPath;
     }
 
 

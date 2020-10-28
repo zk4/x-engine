@@ -51,7 +51,7 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                 .writeTimeout(60, TimeUnit.SECONDS)     //默认10s
                 .connectTimeout(60, TimeUnit.SECONDS)   //默认10s
                 .build();
-
+        
         client.dispatcher().setMaxRequests(128);                //设置最大处理请求量（非就绪队列，是正在运行队列）
         client.dispatcher().setMaxRequestsPerHost(16);          //每个主机复用连接个数
 
@@ -107,13 +107,13 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                 break;
             case POST:
                 if (!TextUtils.isEmpty(json)) {                 //json不为空 按照CONTENT_TYPE_JSON处理
-                    if (header != null) {
-                        Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
-                        while (iterator.hasNext()) {
-                            Map.Entry<String, String> entry = iterator.next();
-                            builder.addHeader(entry.getKey(), entry.getValue());
-                        }
-                    }
+//                    if (header != null) {
+//                        Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
+//                        while (iterator.hasNext()) {
+//                            Map.Entry<String, String> entry = iterator.next();
+//                            builder.addHeader(entry.getKey(), entry.getValue());
+//                        }
+//                    }
                     RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
                     builder.post(body);
                 } else {                                     //json为空

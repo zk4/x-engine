@@ -131,7 +131,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         }
         url = TextUtils.isEmpty(mWebView.getOriginalUrl()) ? mWebView.getUrl() : mWebView.getOriginalUrl();
         xEngineNavBar.setLeftListener(view -> backUp());
-
+        Log.d(TAG, "onCreate()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
     }
 
 
@@ -144,6 +144,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0) + "----requestCode:" + requestCode + "---resultCode:" + resultCode);
         if (lifecycleListeners != null) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -155,6 +156,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d(TAG, "onRequestPermissionsResult()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -166,6 +168,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        Log.d(TAG, "onRestart()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -176,6 +179,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        Log.d(TAG, "onResume()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (isFirst) {
             isFirst = false;
         } else {
@@ -199,13 +203,13 @@ public class XEngineWebActivity extends AppCompatActivity {
             while (iterator.hasNext()) {
                 iterator.next().onResume();
             }
-            Log.d(TAG, "lifeCycleListeners size:" + lifecycleListeners.size());
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -218,6 +222,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -228,6 +233,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        Log.d(TAG, "onDestroy()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {

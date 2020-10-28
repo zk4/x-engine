@@ -85,4 +85,10 @@
     }
 }
 
+- (IBAction)module_tzcash:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(module_tzcash:)]) {
+        [self.delegate module_tzcash:sender];
+    }
+}
+
 @end

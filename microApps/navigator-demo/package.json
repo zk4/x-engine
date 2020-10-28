@@ -8,9 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "@zkty-team/x-engine-module-nav": "~0.0.1",
     "@zkty-team/x-engine-module-engine": "~0.0.1",
+    "@zkty-team/x-engine-module-nav": "^0.0.41",
+    "core-js": "^3.6.5",
     "vant": "^2.9.3",
     "vconsole": "^3.3.4",
     "vue": "^2.6.11",

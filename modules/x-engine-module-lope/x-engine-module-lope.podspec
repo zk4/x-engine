@@ -44,6 +44,9 @@ Pod::Spec.new do |s|
    
     s.frameworks  = "CoreServices"
 
+    s.resources    = "iOS/Assets/res.bundle","iOS/Assets/lope.bundle"
+    s.vendored_frameworks = 'iOS/Class/*.framework'
+    
     # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
     # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
     s.dependency "x-engine-module-engine"

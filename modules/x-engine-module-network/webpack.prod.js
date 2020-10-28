@@ -3,7 +3,7 @@ const common = require("./webpack.config.js");
 module.exports = {
   ...common,
   entry: {
-    main: "./h5/src/index.js",
+    main: "./h5/src/demo.js",
   },
   optimization: {
     minimize: true,

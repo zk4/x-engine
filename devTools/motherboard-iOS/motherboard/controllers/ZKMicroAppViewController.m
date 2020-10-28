@@ -9,13 +9,15 @@
 #import "ZKMicroAppViewController.h"
 #import <Masonry/Masonry.h>
 #import "Prefix.h"
-#import "ZKScanViewController.h"
+#import <ZKScanViewController.h>
 #import <MircroAppController.h>
 
 @interface ZKMicroAppViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong,nonatomic) UIButton * scanBtn;
 @property (strong,nonatomic)NSMutableArray * scanResultArr;
+@property (nonatomic, assign)BOOL isCanUseSideBack;  // 手势是否启动
+
 @end
 
 @implementation ZKMicroAppViewController
@@ -25,11 +27,22 @@
     _scanResultArr = [[NSMutableArray alloc]init];
     self.title = @"微应用";
     [self setUpUI];
-    
+
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyBoard)];
     tapGesture.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGesture];
+    
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self cancelSideBack];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self startSideBack];
+}
+
 
 -(void)setUpUI{
     _searchBar.layer.borderWidth=1;
@@ -118,4 +131,31 @@
 -(void)dismissKeyBoard{
     [self.searchBar resignFirstResponder];
 }
+
+/**
+ * 关闭ios右滑返回
+ */
+-(void)cancelSideBack{
+    self.isCanUseSideBack = NO;
+    
+    __weak typeof(self) weakself = self;
+
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate=(id)weakself;
+    }
+}
+/*
+ 开启ios右滑返回
+ */
+- (void)startSideBack {
+    self.isCanUseSideBack=YES;
+    
+    if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
+    return self.isCanUseSideBack;
+}
+
 @end

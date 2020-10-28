@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)module_router:(UIButton *_Nullable)button;
 - (void)module_scan:(UIButton *_Nullable)button;
 - (void)module_UI:(UIButton *_Nullable)button;
+- (void)module_tzcash:(UIButton *_Nullable)button;
 
 @end
 @interface moduleTableViewCell : UITableViewCell

@@ -69,9 +69,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (@available(iOS 11.0, *)){
-        return 55 * 11  + 13;
+        return 55 * 12  + 13;
     }
-    return 55 * 11  ;
+    return 55 * 12  ;
 }
 
 -(void)module_nav:(UIButton *)button{
@@ -130,6 +130,9 @@
     [self pushTestModule:@"com.zkty.module.UI"];
 }
 
+- (void)module_tzcash:(UIButton * _Nullable)button {
+    [self pushTestModule:@"com.zkty.module.tzcash"];
+}
 - (void)pushTestModule:(NSString*) appid {
     MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:appid ];
     [self pushViewController:webLaderVC];

@@ -106,16 +106,16 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 //    [self addItemBarButtonWithParam:param isLeft:NO];
 //}
 
-- (void)setNavTitle:(NSDictionary *)param callBlock:(XEngineCallBack)completionHandler{
-    NSString *title = param[@"title"];
-    NSString *titleColor = param[@"titleColor"];
-    NSInteger titleSize = [param[@"titleSize"] integerValue];
-    
-    if ([self checkRequiredParam:title name:@"title"]) {
-        [self setNavTitle:title withTitleColor:titleColor withTitleSize:titleSize];
-    }
-    
-}
+//- (void)setNavTitle:(NSDictionary *)param callBlock:(XEngineCallBack)completionHandler{
+//    NSString *title = param[@"title"];
+//    NSString *titleColor = param[@"titleColor"];
+//    NSInteger titleSize = [param[@"titleSize"] integerValue];
+//
+//    if ([self checkRequiredParam:title name:@"title"]) {
+//        [self setNavTitle:title withTitleColor:titleColor withTitleSize:titleSize];
+//    }
+//
+//}
 
 //-(void)setNavRightMoreBtn:(NSDictionary *)param callBack:(XEngineCallBack)completionHandler{
 //    [self addMoreItemBarButtonWithParam:param isLeft:NO];
@@ -136,16 +136,16 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     }
 }
 
-///隐藏navbar
-- (void)navigateHidden:(NSDictionary *)data complate:(XEngineCallBack)completionHandler{
-    [self isHiddenNavbar:YES];
-}
-
-///显示navbar
-- (void)navigateShow:(NSDictionary *)data callBlock:(XEngineCallBack)completionHandler{
-    
-    [self isHiddenNavbar:NO];
-}
+/////隐藏navbar
+//- (void)navigateHidden:(NSDictionary *)data complate:(XEngineCallBack)completionHandler{
+//    [self isHiddenNavbar:YES];
+//}
+//
+/////显示navbar
+//- (void)navigateShow:(NSDictionary *)data callBlock:(XEngineCallBack)completionHandler{
+//
+//    [self isHiddenNavbar:NO];
+//}
 
 
 //- (void)addItemBarButtonWithParam:(NSDictionary *)param isLeft:(BOOL)isLeft{

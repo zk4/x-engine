@@ -19,7 +19,6 @@
 #import "UIBlockButton.h"
 #import "XEOneWebViewControllerManage.h"
 #import "NavUtil.h"
-#import <x-engine-module-router/XERouterManager.h>
 
 //#import "WXApi.h"
 #import "NavSearchBar.h"
@@ -531,7 +530,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 }
 
 - (void)_navigatorRouter:(NavOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    [XERouterManager routerToTarget:dto.type withUri:dto.uri withPath:dto.path];
+    
     completionHandler(YES);
 }
 

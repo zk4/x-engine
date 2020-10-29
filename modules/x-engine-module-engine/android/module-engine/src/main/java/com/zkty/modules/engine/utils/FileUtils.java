@@ -303,6 +303,7 @@ public class FileUtils {
             } finally {
                 if (fileOutputStream != null) {
                     try {
+                        fileOutputStream.flush();
                         fileOutputStream.close();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -393,9 +394,9 @@ public class FileUtils {
 
                 File temp = new File(name);
                 Log.d(TAG, "parent:" + temp.getParent() + "--sub:" + temp.getName());
-                if(zipEntryName.startsWith(temp.getName())){
+                if (zipEntryName.startsWith(temp.getName())) {
                     outPath = (name.replace(temp.getName(), "") + "/" + zipEntryName).replaceAll("\\*", "/");
-                }else {
+                } else {
                     outPath = (name + "/" + zipEntryName).replaceAll("\\*", "/");
                 }
 

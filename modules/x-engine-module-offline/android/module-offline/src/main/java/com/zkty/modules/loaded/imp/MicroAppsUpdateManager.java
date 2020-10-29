@@ -34,6 +34,59 @@ public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
 
 
     /**
+     * 输入全路径安装微应用
+     *
+     * @param fullUrl
+     * @param microAppId
+     * @param microAppVersion
+     * @param callback
+     * @param installListener
+     */
+    public void downLoadMicroAppWithFullUrl(final String fullUrl, final String microAppId, final int microAppVersion, final IXEngineNetProtocolCallback callback, final IMicroAppInstallListener installListener) {
+        final IXEngineNetProtocol ixEngineNetProtocol = XEngineNetImpl.getInstance();
+
+        ixEngineNetProtocol.doRequest(IXEngineNetProtocol.Method.GET, fullUrl, null, null, null, null, new IXEngineNetProtocolCallback() {
+            @Override
+            public void onSuccess(XEngineNetRequest request, XEngineNetResponse response) {
+                InputStream inputStream = response.getBody();
+                if (inputStream != null) {
+                    String path = MicroAppsManager.getInstance().saveApp(inputStream, microAppId, String.valueOf(microAppVersion));
+                    Log.d(TAG, "path:" + path);
+                    if (!TextUtils.isEmpty(path)) {
+                        boolean installed = MicroAppsManager.getInstance().installApp(new File(path));         //安装微应用
+                        Log.d(TAG, "installed:" + installed);
+                        if (installListener != null) {
+                            installListener.onIMicroAppInstallListener(installed, microAppId);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onUploadProgress(XEngineNetRequest xEngineNetRequest, long l, long l1, boolean b) {
+                if (callback != null) {
+                    callback.onUploadProgress(xEngineNetRequest, l, l1, b);
+                }
+            }
+
+            @Override
+            public void onDownLoadProgress(XEngineNetRequest xEngineNetRequest, XEngineNetResponse xEngineNetResponse, long l, long l1, boolean b) {
+                if (callback != null) {
+                    callback.onDownLoadProgress(xEngineNetRequest, xEngineNetResponse, l, l1, b);
+                }
+            }
+
+            @Override
+            public void onFailed(XEngineNetRequest request, String error) {
+                Log.d(TAG, "download app error:" + error);
+                if (callback != null) {
+                    callback.onFailed(request, error);
+                }
+            }
+        });
+    }
+
+    /**
      * 自动更新
      *
      * @param serverConfig
@@ -43,6 +96,7 @@ public class MicroAppsUpdateManager implements IOfflinePackageProtocol {
             checkMicroAppsUpdate(serverConfig.getOfflineServerUrl(), "/microApps.json", serverConfig.getAppId(), serverConfig.getAppSecret(), 0, null);
         }
     }
+
 
     /**
      * 废弃原始制定规则

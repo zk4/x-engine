@@ -77,7 +77,8 @@
             if([self.fileUrl hasPrefix:@"http"]){
                 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
             }else{
-                
+                if(self.fileUrl.length == 0)
+                    return self;
                 if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
                     [self.webview loadFileURL:[NSURL fileURLWithPath:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{

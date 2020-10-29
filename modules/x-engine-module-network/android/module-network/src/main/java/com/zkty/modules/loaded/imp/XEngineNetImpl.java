@@ -36,6 +36,16 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
     private AtomicLong processFailedCount;
     private Handler mHandler;
 
+    private static OkHttpClient.Builder builder;
+
+    /**
+     * 自定义Builder
+     *
+     * @param customBuilder
+     */
+    public static void initBuilder(OkHttpClient.Builder customBuilder) {
+        builder = customBuilder;
+    }
 
     public static XEngineNetImpl getInstance() {
         return HOLDER.INSTANCE;
@@ -46,12 +56,17 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
     }
 
     private XEngineNetImpl() {
-        client = new OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)      //默认10s
-                .writeTimeout(60, TimeUnit.SECONDS)     //默认10s
-                .connectTimeout(60, TimeUnit.SECONDS)   //默认10s
-                .build();
-        
+        if (builder != null) {
+            client = builder.build();
+        } else {
+            client = new OkHttpClient.Builder()
+                    .readTimeout(60, TimeUnit.SECONDS)      //默认10s
+                    .writeTimeout(60, TimeUnit.SECONDS)     //默认10s
+                    .connectTimeout(60, TimeUnit.SECONDS)   //默认10s
+                    .build();
+        }
+
+
         client.dispatcher().setMaxRequests(128);                //设置最大处理请求量（非就绪队列，是正在运行队列）
         client.dispatcher().setMaxRequestsPerHost(16);          //每个主机复用连接个数
 

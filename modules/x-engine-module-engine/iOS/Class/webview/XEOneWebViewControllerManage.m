@@ -111,11 +111,13 @@
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)pushViewControllerWithAppid:(NSString *)appid withParams:(NSString *)params{
-    long version;
-    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:&version];
-    [self setMainUrl:urlStr];
-    [self pushWebViewControllerWithUrl:urlStr];
+- (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withParams:(NSString *)params{
+    
+    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:version];
+    if(urlStr){
+        [self setMainUrl:urlStr];
+        [self pushWebViewControllerWithUrl:urlStr];
+    }
 }
 
 -(NSString *)setMainUrl:(NSString *)url{
@@ -136,7 +138,7 @@
 -(void)setMainAppid:(NSString *)appid withPath:(NSString *)path{
     
     long version;
-    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:&version];
+    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:0];
     NSString *fullpath;
     if (path.length > 0){
         fullpath = [NSString stringWithFormat:@"%@%@", toUrl, path];
@@ -185,7 +187,7 @@
 -(UIViewController *)getWebViewControllerWithId:(NSString *)appid{
     
     long version;
-    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:&version];
+    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:0];
     XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:toUrl];
     return vc;
 }

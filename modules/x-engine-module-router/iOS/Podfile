@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '10.0'
+platform :ios, '11.0'
  
 #source 'https://github.com/CocoaPods/Specs.git'
 
@@ -12,6 +12,9 @@ target 'router' do
   pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols'
   pod 'x-engine-module-nav', :path =>'../../x-engine-module-nav'
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
+  pod 'x-engine-module-dcloud', :path =>'../../x-engine-module-dcloud'
+  #pod 'UniBoost', :path => '../../UniBoost'
+
 
   pod 'WechatOpenSDK'
 

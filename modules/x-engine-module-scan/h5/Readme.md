@@ -1,6 +1,6 @@
 
 ``` bash
-npm install @zkty-team/com-zkty-module-scan
+npm install @zkty-team/x-engine-module-scan
 ```
 
 

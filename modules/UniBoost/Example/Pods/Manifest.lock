@@ -1,0 +1,16 @@
+PODS:
+  - UniBoost (0.1.0)
+
+DEPENDENCIES:
+  - UniBoost (from `../`)
+
+EXTERNAL SOURCES:
+  UniBoost:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  UniBoost: dcfc0af46da66cdcc58f648fdaf14d04f34fc6fe
+
+PODFILE CHECKSUM: d7a6e58c62ec4af4254d710e8a1ca7902ce48414
+
+COCOAPODS: 1.9.3

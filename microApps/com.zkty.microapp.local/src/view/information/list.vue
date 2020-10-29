@@ -68,35 +68,6 @@ export default {
   components: {},
   created() {
     this.old();
-  },
-  data() {
-    return {
-      showCard_list: false,
-      busy: false,
-      moreList: [],
-      i: 0,
-      pageSize: 10,
-      pageIndex: 1,
-      totalnum:'',
-      value: "",
-      isShow: true,
-      isShow2: true,
-      value1: -1,
-      option1: [{ text: "全部", value: -1, id: 2206329166721191006 }],
-      datas: [],
-      urlimg:cardIcon
-    };
-  },
-  watch: {
-    ownerList: {
-      handler(newVal) {
-        console.log("ownerList newVal :>> ", newVal);
-      },
-      immediate: true, //刷新加载 立马触发一次handler
-      deep: true, // 可以深度检测到 person 对象的属性值的变化
-    },
-  },
-  mounted() {
     //搜索框数据
     let searchnavArg = {
       cornerRadius: 5,
@@ -187,6 +158,36 @@ export default {
         },
       });
     }
+  },
+  data() {
+    return {
+      showCard_list: false,
+      busy: false,
+      moreList: [],
+      i: 0,
+      pageSize: 10,
+      pageIndex: 1,
+      totalnum:'',
+      value: "",
+      isShow: true,
+      isShow2: true,
+      value1: -1,
+      option1: [{ text: "全部", value: -1, id: 2206329166721191006 }],
+      datas: [],
+      urlimg:cardIcon
+    };
+  },
+  watch: {
+    ownerList: {
+      handler(newVal) {
+        console.log("ownerList newVal :>> ", newVal);
+      },
+      immediate: true, //刷新加载 立马触发一次handler
+      deep: true, // 可以深度检测到 person 对象的属性值的变化
+    },
+  },
+  mounted() {
+    //alert('hello');
   },
   methods: {
     addNotie() {

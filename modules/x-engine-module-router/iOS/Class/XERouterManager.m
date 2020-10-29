@@ -13,8 +13,7 @@
 
 @implementation XERouterManager
 
-+(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path{
-
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withVersion:(long)version{
     if([type isEqual:@"native"]){
         NSArray *ary = [uri componentsSeparatedByString:@","];
         NSString *className = ary[0];
@@ -29,7 +28,7 @@
         [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:uri];
     } else if([type isEqual:@"microapp"]){
-        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withParams:nil];
+        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withVersion:version withParams:nil];
     } else if([type isEqual:@"uni"]){
         
     } else if([type isEqual:@"wx"]){
@@ -51,4 +50,10 @@
         }
     }
 }
+
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path{
+
+    [self routerToTarget:type withUri:uri withPath:path withVersion:0];
+}
+
 @end

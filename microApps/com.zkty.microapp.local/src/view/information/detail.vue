@@ -100,14 +100,14 @@ export default {
   },
   created() {
     this.newactive()
-  },
-  mounted(){
     nav.setNavLeftBtn({
       title: "房产详情",
       titleColor: "#000000",
       titleSize: 24,
       titleBig: 500
     })
+  },
+  mounted(){
   },
   methods: {
      onClick(name, title) {

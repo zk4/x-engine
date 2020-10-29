@@ -44,14 +44,14 @@ export default {
   },
   created() {
     this.housetoken_api();
-  },
-  mounted() {
     nav.setNavLeftBtn({
       title: "业主变更历史",
       titleColor: "#000000",
       titleSize: 24,
       titleBig: 500,
     });
+  },
+  mounted() {
   },
   methods: {
     housetoken_api() {

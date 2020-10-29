@@ -14,12 +14,6 @@
 @end
 
 @implementation AppDelegate
-+ (void)load
-{
-    // 有意思, 像 java
-    NSLog(@"hello ,world");
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[__xengine__module_dcloud shareInstance] application:application didFinishLaunchingWithOptions:launchOptions];

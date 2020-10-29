@@ -94,8 +94,8 @@
     
     assert(microappId != nil);
     [MicroAppLoader sharedInstance].nowMicroAppId = microappId;
-    long version;
-    NSString* indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId out_version:&version];
+//    long version;
+    NSString* indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId out_version:0];
     return [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:[[XEOneWebViewControllerManage sharedInstance] setMainUrl:indexfile]];
 }
 - (instancetype)initWithMicroAppId:(NSString *)microappId route:(NSString*)path
@@ -104,8 +104,7 @@
     
     [MicroAppLoader sharedInstance].nowMicroAppId = microappId;
     
-    long version;
-    NSString *indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId out_version:&version];
+    NSString *indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId out_version:0];
     NSString *fullpath = [NSString stringWithFormat:@"%@%@",indexfile, path];
 //    self = [super initWithUrl:fullpath];
 //    current_index_path = indexfile;

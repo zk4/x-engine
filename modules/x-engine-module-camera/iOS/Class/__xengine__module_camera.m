@@ -26,6 +26,7 @@
 @property(nonatomic,assign) BOOL savePhotosAlbum;
 @property(nonatomic,strong) UIImage * photoImage;
 @property(nonatomic,copy)NSString * event;
+@property(nonatomic,assign) BOOL isbase64;
 @end
 
 @implementation __xengine__module_camera
@@ -33,6 +34,7 @@
 - (void)_openImagePicker:(CameraDTO *)dto complete:(void (^)(RetDTO *, BOOL))completionHandler {
     self.allowsEditing = dto.allowsEditing;
     self.savePhotosAlbum = dto.savePhotosAlbum;
+    self.isbase64 = dto.isbase64;
     self.event = dto.__event__;
     __weak typeof(self) weakself = self;
     NSMutableArray *actionHandlers = [NSMutableArray array];
@@ -137,21 +139,21 @@
                 }
             }];
         }
-         
-        weakself.webServer = [[GCDWebServer alloc] init];
-        [self startServer];
-       
-        NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
-        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
-        if(filePath && filePath.length>0) [UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
         
-        UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-        if ([topVC isKindOfClass:RecyleWebViewController.class]) {
-            RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-            RetDTO* d = [RetDTO new];
-            d.imageUrl=[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr];
-            [webVC.webview callHandler:self.event arguments:@[d.imageUrl,d.imageUrl] completionHandler:^(id  _Nullable value) {}];
+        if (!self.isbase64) {
+            weakself.webServer = [[GCDWebServer alloc] init];
+            [self startServer];
+            
+            NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
+            NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
+            if(filePath && filePath.length>0) [UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
+           [self sendParamtoWeb:[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr]];
+        }else{
+            [self sendParamtoWeb:[self UIImageToBase64Str:weakself.photoImage]];
         }
+       
+        
+        
     }];
 }
 
@@ -270,6 +272,27 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYYMMddHHmmssSS"];
     return [dateFormatter stringFromDate:currentDate];
+}
+
+//image转base64
+- (NSString *)UIImageToBase64Str:(UIImage *)image{
+    
+    NSData *data = UIImagePNGRepresentation(image);
+    
+    NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    return encodedImageStr;
+    
+}
+
+-(void)sendParamtoWeb:(NSString *)param{
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    if ([topVC isKindOfClass:RecyleWebViewController.class]) {
+        RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
+        RetDTO* d = [RetDTO new];
+        d.imageUrl=param;
+        [webVC.webview callHandler:self.event arguments:@[d.imageUrl] completionHandler:^(id  _Nullable value) {}];
+    }
 }
 
 @end

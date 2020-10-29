@@ -12,6 +12,7 @@
 @interface XERouterManager : NSObject
 
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path;
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withVersion:(long)version;
 
 @end
 

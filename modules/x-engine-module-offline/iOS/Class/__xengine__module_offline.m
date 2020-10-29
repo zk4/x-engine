@@ -88,10 +88,10 @@
             for (NSDictionary *dict in microapp_dict[@"data"]) {
                 NSString *microAppID = dict[@"microAppId"];
                 NSInteger microAppVersion =  [dict[@"microAppVersion"] longValue];
-                long cur_version;
+//                long cur_version;
                 NSLog(@"remote:%@.%ld",microAppID, (long)microAppVersion);
-                NSString* local_path = [self.microAppLoader locateMicroAppByMicroappId:microAppID out_version:&cur_version];
-                if(!local_path || cur_version < microAppVersion){
+                NSString* local_path = [self.microAppLoader locateMicroAppByMicroappId:microAppID out_version:0];
+                if(!local_path ){//}|| cur_version < microAppVersion){
                     NSString *urlStr = [NSString stringWithFormat:@"%@/%@.%ld.zip",self.configModel.offlineServerUrl, microAppID, (long)microAppVersion];
                     NSURL *URL = [NSURL URLWithString:urlStr];
                     NSURLRequest *request = [NSURLRequest requestWithURL:URL];

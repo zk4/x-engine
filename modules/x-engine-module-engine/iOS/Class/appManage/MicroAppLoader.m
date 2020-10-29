@@ -73,26 +73,18 @@
     }
 }
 
-- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId out_version:(long*) version{
+- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId out_version:(long) version{
     self.nowMicroAppId = microappId;
-    [self scanMicroAppsInSandBox];
-    NSNumber* v = [self.microappId_versionInSandbox objectForKey:microappId];
-    // found in sand box
-    if(v)
-    {
-        *version = [v integerValue];
-        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, *version];
+    BOOL r = [self checkMicroAppVersion:microappId version:version];
+    if(r){
+        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, version];
         return sandbox_microapp_location;
-    }
-    // otherwise found in project / NSBundle
-    else{
-       NSString * htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%@/index",microappId,@"0"] ofType:@"html"];
+    }else{
+       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%@/index", microappId, @"0"] ofType:@"html"];
        if (htmlPath) {
-            *version = 0;
             return [NSString stringWithFormat:@"file://%@", htmlPath];
        }
     }
-    *version = -1;
     return nil;
 }
 

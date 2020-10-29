@@ -39,8 +39,8 @@ public class XEngineWebActivityManager {
      * @param context
      * @param url     appid 或url
      */
-    public void startXEngineActivity(Context context, @NonNull String url) {
-        if (!url.startsWith("http")) {
+    public void startXEngineActivity(Context context, String type, @NonNull String url) {
+        if ("microapp".equals(type)) {
             url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(url);
         } else {
             XOneWebViewPool.IS_WEB = true;
@@ -52,8 +52,8 @@ public class XEngineWebActivityManager {
 
     }
 
-    public void startXEngineActivity(Context context, @NonNull String url, String path, String args, String version) {
-        if (!url.startsWith("http")) {
+    public void startXEngineActivity(Context context, String type, @NonNull String url, String path, String args, String version) {
+        if ("microapp".equals(type)) {
             if (TextUtils.isEmpty(version)) {
                 url = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(url);
             } else {

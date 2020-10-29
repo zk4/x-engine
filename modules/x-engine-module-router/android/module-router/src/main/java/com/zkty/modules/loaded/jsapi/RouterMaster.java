@@ -21,12 +21,16 @@ public class RouterMaster {
 
         if (context == null || type == null) return;
         switch (type) {
+            case "0":
             case "h5"://h5
+                type = "h5";
                 String url = TextUtils.isEmpty(path) ? uri : uri + "?" + path;
-                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, url);
+                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, url);
                 break;
+            case "2":
             case "microapp"://微应用
-                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, uri, path, arg, microAppVersion);
+                type = "microapp";
+                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, uri, path, arg, microAppVersion);
                 break;
             case "wx"://微信小程序
                 String appId = null;
@@ -54,7 +58,8 @@ public class RouterMaster {
                 api.sendReq(req);
 
                 break;
-            case "uni"://uniApp
+            case "3":
+            case "uniapp"://uniApp
                 String path1 = null;
                 Map<String, String> params = null;
                 if (path != null) {
@@ -69,6 +74,7 @@ public class RouterMaster {
                 UniMPMaster.startUniApp(uri, path1, params);
 
                 break;
+            case "1":
             case "native"://原生页面
                 if (!uri.contains(",")) return;
                 String[] classNames = uri.split(",");

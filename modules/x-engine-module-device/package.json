@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-device",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@zkty-team/x-cli": "^1.0.6",
-    "@zkty-team/x-engine-module-engine": "^0.0.47"
+    "@zkty-team/x-engine-module-engine": "^0.0.48"
   },
   "gitHead": "6adf8c2dc26710e6a22ad8f9105ed21031c6481d"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-network",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -36,8 +36,8 @@
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.43",
-    "@zkty-team/x-engine-module-protocols": "^0.0.43"
+    "@zkty-team/x-engine-module-engine": "^0.0.44",
+    "@zkty-team/x-engine-module-protocols": "^0.0.44"
   },
   "gitHead": "77420a6b2da2f94fdae10f7125b39c8e7c53a85b"
 }

@@ -231,7 +231,17 @@
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
-    self.webview.frame = self.view.bounds;
+    if(self.view.bounds.size.height == [UIScreen mainScreen].bounds.size.height && self.navigationController.navigationBar.bounds.size.height > 0){
+        
+        self.webview.frame = CGRectMake(0,
+                                        CGRectGetMaxY(self.navigationController.navigationBar.frame),
+                                        self.view.bounds.size.width,
+                                        [UIScreen mainScreen].bounds.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame));
+    }else{
+        self.webview.frame = self.view.bounds;
+    }
+    
+    
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
 }
 -(void)goback:(UIButton *)sender{

@@ -39,7 +39,7 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
     if (self){
         self.wkprocessPool = [[WKProcessPool alloc] init];
         self.webCacheDic = [@{} mutableCopy];
-//        self.inSingle = YES;
+        self.inSingle = YES;
 //        self.inAllSingle = YES;
     }
     return self;

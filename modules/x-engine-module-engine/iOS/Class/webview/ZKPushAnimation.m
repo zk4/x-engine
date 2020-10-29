@@ -68,8 +68,8 @@
 }
 - (void)isOpenCustomAnimation:(BOOL)isOpen withFrom:(UIViewController *)fromVc withTo:(UIViewController *)toVc{
     if(
-//       [fromVc isKindOfClass:[RecyleWebViewController class]]
-//       &&
+       [fromVc isKindOfClass:[RecyleWebViewController class]]
+       &&
        [toVc isKindOfClass:[RecyleWebViewController class]]){
         
         if(isOpen && [XEOneWebViewPool sharedInstance].inSingle){
@@ -287,11 +287,14 @@
             }
         }];
     } else {
-        
+//        toView.frame = CGRectMake(containerView.bounds.size.width * -0.5,
+//                                  toView.frame.origin.y,
+//                                  toView.bounds.size.width,
+//                                  toView.bounds.size.height);
         toView.frame = CGRectMake(containerView.bounds.size.width * -0.5,
-                                  0,//toView.frame.origin.y,
+                                  0,
                                   toView.bounds.size.width,
-                                  toView.bounds.size.height);
+                                  containerView.bounds.size.height);
         [containerView addSubview:toView];
         [containerView addSubview:fromeView];
         

@@ -28,15 +28,17 @@
     @Optional
 		public String cameraDevice;
 
+    public boolean isbase64;
+
     public String __event__;
   }
   
-  class RetDTO {
-    public String imageUrl;
+  class CameraRetDTO {
+    public String retImage;
   }
   
   interface xengine__module_camera_i {
-    public void _openImagePicker(CameraDTO dto, final CompletionHandler<RetDTO> handler);
+    public void _openImagePicker(CameraDTO dto, final CompletionHandler<CameraRetDTO> handler);
   }
   
   
@@ -49,13 +51,13 @@
     @JavascriptInterface
     final public void openImagePicker(JSONObject obj, final CompletionHandler<Object> handler) {
       CameraDTO data= convert(obj,CameraDTO.class);
-      _openImagePicker(data, new CompletionHandler<RetDTO>() {
+      _openImagePicker(data, new CompletionHandler<CameraRetDTO>() {
         @Override
-        public void complete(RetDTO retValue) { handler.complete(retValue); }
+        public void complete(CameraRetDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(RetDTO value) { handler.setProgressData(value); }
+        public void setProgressData(CameraRetDTO value) { handler.setProgressData(value); }
       });
 
     }

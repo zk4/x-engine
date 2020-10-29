@@ -68,8 +68,8 @@
 }
 - (void)isOpenCustomAnimation:(BOOL)isOpen withFrom:(UIViewController *)fromVc withTo:(UIViewController *)toVc{
     if(
-//       [fromVc isKindOfClass:[RecyleWebViewController class]]
-//       &&
+       [fromVc isKindOfClass:[RecyleWebViewController class]]
+       &&
        [toVc isKindOfClass:[RecyleWebViewController class]]){
         
         if(isOpen && [XEOneWebViewPool sharedInstance].inSingle){
@@ -170,10 +170,14 @@
         screenView.frame = fromeVc.view.frame;//containerView.bounds;
         [containerView addSubview:screenView];
         [containerView addSubview:toView];
-        toView.frame = CGRectMake(toView.frame.size.width,
-                                  toView.frame.origin.y,
-                                  toView.frame.size.width,
-                                  toView.frame.size.height);
+//        toView.frame = CGRectMake(toView.frame.size.width,
+//                                  fromeVc.navigationController.navigationBar.bounds.size.height,//toView.frame.origin.y,
+//                                  toView.frame.size.width,
+//                                  containerView.bounds.size.height - fromeVc.navigationController.navigationBar.bounds.size.height);//toView.frame.size.height);
+    toView.frame = CGRectMake(toView.frame.size.width,
+                              toView.frame.origin.y,
+                              toView.frame.size.width,
+                              toView.frame.size.height);
         
         UIView *shawView = [[UIView alloc] init];
         shawView.frame = screenView.bounds;
@@ -183,7 +187,7 @@
         
         [UIView animateWithDuration:self.animationTime
                          animations:^{
-            //        toView.layer.shadowOpacity = 0.5;
+            
             screenView.frame = CGRectMake(fromeVc.view.frame.size.width * -0.5,
                                           screenView.frame.origin.y,
                                           screenView.frame.size.width,
@@ -194,6 +198,7 @@
                                       toView.frame.size.height);
             shawView.alpha = 0.2;
         } completion:^(BOOL finished) {
+            
             [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             [shawView removeFromSuperview];
             [screenView removeFromSuperview];
@@ -282,11 +287,14 @@
             }
         }];
     } else {
-        
+//        toView.frame = CGRectMake(containerView.bounds.size.width * -0.5,
+//                                  toView.frame.origin.y,
+//                                  toView.bounds.size.width,
+//                                  toView.bounds.size.height);
         toView.frame = CGRectMake(containerView.bounds.size.width * -0.5,
-                                  toView.frame.origin.y,
+                                  0,
                                   toView.bounds.size.width,
-                                  toView.bounds.size.height);
+                                  containerView.bounds.size.height);
         [containerView addSubview:toView];
         [containerView addSubview:fromeView];
         

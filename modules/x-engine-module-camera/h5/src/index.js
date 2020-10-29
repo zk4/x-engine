@@ -18,7 +18,8 @@ function osCheck() {
       "allowsEditing": true,
       "savePhotosAlbum": false,
       "cameraFlashMode": -1,
-      "cameraDevice": "back"
+      "cameraDevice": "back",
+      "isbase64": true
     }
   }
 ]

@@ -1,5 +1,3 @@
-# xengine
-
 ## web 容器选型
 
 android 各平台 web 引擎差异太大, android 将统一基于 X5 web 引擎.
@@ -8,9 +6,7 @@ iOS 端将统一使用 WkWebview
 
 ## h5 与 native 交互
 
-js <-> native ,可同步, 可异步. 
-
-数据仅为简单数据的传递. 会有一定性能损失.
+js <-> native ,全异步方法。
 
 ## webview 高速渲染
 

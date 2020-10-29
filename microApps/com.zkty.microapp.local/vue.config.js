@@ -137,7 +137,7 @@ const vueConfig = {
         changeOrigin: true,
       },
       "/times/": {
-        target: "http://dev.linli580.com:16666", //后端ip地址及端口
+        target: "http://192.168.8.120:3000", //后端ip地址及端口
         ws: true, //是否跨域
         changeOrigin: true,
       },

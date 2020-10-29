@@ -47,3 +47,9 @@ https://xxx/../index.html
 ftp://xxx/../index.html
 ```
 
+
+
+## 关于vue router
+
+![image-20201028151553890](assets/image-20201028151553890.png)
+

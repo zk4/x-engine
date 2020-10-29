@@ -12,7 +12,7 @@
 
 
 ``` bash
-npm install @zkty-team/com-zkty-module-dcloud
+npm install @zkty-team/x-engine-module-dcloud
 ```
 
 

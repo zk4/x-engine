@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'development') {
   BASEURL = '/'
   // BASEURL = "http://sit.linli580.com:8888/";
 } else {
-  BASEURL = "http://172.20.10.4:3000/";
+  BASEURL = "http://192.168.8.120:3000/";
   // BASEURL = "http://10.71.31.41:7000/";
   // BASEURL = "http://172.20.10.4:3000/";
   // BASEURL = location.origin

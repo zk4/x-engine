@@ -25,14 +25,23 @@
 
 ````
 {
-  type: string (native | h5 | microapp | uni | wx ),  // 类型
-  uri:  string (url | appid | wx_username | 'XViewController,XActivity'), // 资源名
-  path: string, // 路径 /abc  /abc?a=1
-  args: string  // 暂时未使用, 简单参数通过 path 传递
+  type: string (native | h5 | microapp | uni | wx ),  // string 类型 maxlength(16)
+  uri:  string (url | appid | wx_username | 'XViewController,com.zkty.view.XActivity'), // 资源名 maxlength(256)
+  path: string, // 路径 /abc  /abc?a=1  maxlengthkkk(4096)
+  args: map  // 其他参数通过 path 传递 varchar(6400)
 }
 ````
 
-> 注： 如果 uni app 需要支持统一路由，则需要将 uni 请求代理到统一路由模块。
+
+
+args　形如：
+
+```
+{
+	version: int,   // 如果是 microapp, version 代表版本号
+	fallback: string,(url链接)
+}
+```
 
 
 

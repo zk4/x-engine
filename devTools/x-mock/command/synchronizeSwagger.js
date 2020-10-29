@@ -109,15 +109,15 @@ const synchronizeSwagger = {
       //}
     //})
 
-    let paths = await storage.getItem(md5(url));
-    console.log(paths)
-    if ( paths == undefined ){
-       paths  = await swaggerParserMock(url)['paths'];
-      console.log(paths)
-      await storage.setItem( md5(url), paths)
-    }else{
-      console.log("hit cache")
-    }
+    //let paths = await storage.getItem(md5(url));
+    //console.log(paths)
+    //if ( paths == undefined ){
+    let {paths}  = await swaggerParserMock(url);
+      //console.log(paths)
+      //await storage.setItem( md5(url), paths)
+    //}else{
+      //console.log("hit cache")
+    //}
     this.traverse(paths);
   },
   // 初始化目录 判断是否有该文件
@@ -167,7 +167,7 @@ const synchronizeSwagger = {
     // api path中的{petId}形式改为:petId
     const data = formatResToMock(path, example, this.dataLength);
     const urlpath= path.replace(/\{([^}]*)\}/g, ":$1")
-    //console.log(method.toLowerCase(),`http://localhost:${port}/times/${this.name}${urlpath}`);
+    console.log(method.toLowerCase(),`http://localhost:${port}/times/${this.name}${urlpath}`);
     //console.log(this.name+urlpath)
     app[method.toLowerCase()](
       "/times/"+this.name+urlpath,

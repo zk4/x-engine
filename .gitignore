@@ -36,3 +36,5 @@ lerna-debug.log
 swagger.config.js
 devTools/x-mock/bin/cache/cache
 devTools/x-mock/cache
+microApps/navigator-demo/node_modules
+node_modules

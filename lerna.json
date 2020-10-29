@@ -1,6 +1,6 @@
 {
   "packages": [
-    "modules/x-engine-module-ui"
+    "modules/*"
   ],
   "version": "0.0.45",
   "npmClient": "yarn",

@@ -117,9 +117,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     __weak typeof(self) weakself = self;
-    if(self.webServer){
-        [self.webServer stop];
-    }
+   
     [picker dismissViewControllerAnimated:YES completion:^{
         if(weakself.allowsEditing){
             weakself.photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
@@ -141,6 +139,9 @@
         }
         
         if (!self.isbase64) {
+            if(self.webServer){
+                [self.webServer stop];
+            }
             weakself.webServer = [[GCDWebServer alloc] init];
             [self startServer];
             
@@ -278,7 +279,6 @@
 - (NSString *)UIImageToBase64Str:(UIImage *)image{
     
     NSData *data = UIImagePNGRepresentation(image);
-    
     NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
     return encodedImageStr;

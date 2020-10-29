@@ -20,6 +20,12 @@
             android:name="com.zkty.modules.loaded.imp.activity.ImagePreActivity"
             android:screenOrientation="portrait"></activity>
 
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <!-- Android 7.0 文件共享配置，必须配置 -->
         <provider
             android:name="com.zkty.modules.loaded.imp.provider.ImagePickerProvider"

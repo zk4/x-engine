@@ -26,9 +26,11 @@
 ````
 {
   type: string (native | h5 | microapp | uni | wx ),  // string 类型 maxlength(16)
-  uri:  string (url | appid | wx_username | 'XViewController,com.zkty.view.XActivity'), // 资源名 maxlength(256)
-  path: string, // 路径 /abc  /abc?a=1  maxlengthkkk(4096)
-  args: map  // 其他参数通过 path 传递 varchar(6400)
+  uri:  string (url | microappid | wx_username | 'XViewController,com.zkty.view.XActivity'), // 资源名 maxlength(1024)
+  fallback: string,         //(url链接)，maxlength(1024)
+  path: string,             // 路径 /abc  /abc?a=1  maxlength(4096)　注意：参数在这传递！
+ 	version: int,             // 如果是 microapp, version 代表版本号，
+　args: map                 // 保留字段，　
 }
 ````
 
@@ -38,10 +40,52 @@ args　形如：
 
 ```
 {
-	version: int,   // 如果是 microapp, version 代表版本号
-	fallback: string,(url链接)
+	"something":"",
+	...
 }
 ```
+
+
+
+比如金刚区：
+
+``` json
+[
+ {
+   "type": "microapp",
+   "uri": "com.zkty.microapp.propertylist",
+   "path": "/", 
+   "fallback": "http//:www.baidu.com",
+   "version":0,
+   "args": {}
+ },
+ {
+   "type": "h5",
+   "uri": "https://www.baidu.com",
+   "fallback": "http//:www.baidu.com",
+   "path": "/"
+ },
+ {
+   "type": "uni",
+   "uri": "__UNI__86C4327",
+   "fallback": "http//:www.baidu.com",
+   "path": "/"
+ },
+ {
+   "type":"native",
+   "url":"ZKPageViewController3,cn.timesneighborhood.app.c.view.activity.OpenGatesActivity",
+   "fallback": "http//:www.baidu.com",   
+ },
+ {
+   "type":"wx",
+   "uri":"wx_dfsnosj28123"，
+   "path":"/home",
+   "fallback": "http//:www.baidu.com"
+ }
+]
+```
+
+
 
 
 

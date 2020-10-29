@@ -28,6 +28,8 @@
     @Optional
 		public String cameraDevice;
 
+    public boolean isbase64;
+
     public String __event__;
   }
   

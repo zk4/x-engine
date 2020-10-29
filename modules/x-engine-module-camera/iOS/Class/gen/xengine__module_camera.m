@@ -12,6 +12,7 @@
    	if ([propertyName isEqualToString:@"savePhotosAlbum"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraFlashMode"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraDevice"]) { return YES; }
+   
    	return NO;
     }
 @end

@@ -7,7 +7,7 @@
 #import "JSONModel.h"
 
 @protocol CameraDTO;
-@protocol RetDTO;
+@protocol CameraRetDTO;
 
 @interface CameraDTO: JSONModel
   	@property(nonatomic,assign) BOOL allowsEditing;
@@ -19,15 +19,15 @@
 @end
     
 
-@interface RetDTO: JSONModel
-  	@property(nonatomic,copy) NSString* imageUrl;
+@interface CameraRetDTO: JSONModel
+  	@property(nonatomic,copy) NSString* retImage;
 @end
     
 
 
 @protocol xengine__module_camera_protocol
        @required 
-        - (void) _openImagePicker:(CameraDTO*) dto complete:(void (^)(RetDTO* result,BOOL complete)) completionHandler;
+        - (void) _openImagePicker:(CameraDTO*) dto complete:(void (^)(CameraRetDTO* result,BOOL complete)) completionHandler;
 
 @end
   

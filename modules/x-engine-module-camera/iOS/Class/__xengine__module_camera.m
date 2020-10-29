@@ -31,7 +31,7 @@
 
 @implementation __xengine__module_camera
 
-- (void)_openImagePicker:(CameraDTO *)dto complete:(void (^)(RetDTO *, BOOL))completionHandler {
+- (void)_openImagePicker:(CameraDTO *)dto complete:(void (^)(CameraRetDTO *, BOOL))completionHandler {
     self.allowsEditing = dto.allowsEditing;
     self.savePhotosAlbum = dto.savePhotosAlbum;
     self.isbase64 = dto.isbase64;
@@ -289,9 +289,9 @@
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     if ([topVC isKindOfClass:RecyleWebViewController.class]) {
         RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-        RetDTO* d = [RetDTO new];
-        d.imageUrl=param;
-        [webVC.webview callHandler:self.event arguments:@[d.imageUrl] completionHandler:^(id  _Nullable value) {}];
+        CameraRetDTO* d = [CameraRetDTO new];
+        d.retImage = param;
+        [webVC.webview callHandler:self.event arguments:@[d.retImage] completionHandler:^(id  _Nullable value) {}];
     }
 }
 

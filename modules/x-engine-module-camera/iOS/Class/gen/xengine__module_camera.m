@@ -18,7 +18,7 @@
 @end
     
   
-@implementation RetDTO
+@implementation CameraRetDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
@@ -41,7 +41,7 @@
     - (void) openImagePicker:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           CameraDTO* dto = [self convert:dict clazz:CameraDTO.class];
-          [self _openImagePicker:dto complete:^(RetDTO* result,  BOOL complete) {
+          [self _openImagePicker:dto complete:^(CameraRetDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

@@ -17,8 +17,8 @@ interface CameraDTO {
   __event__: (string)=>void;
   
 }
-interface RetDTO {
-  imageUrl: string;
+interface CameraRetDTO {
+  retImage: string;
 }
 
 function openImagePicker(
@@ -30,7 +30,7 @@ function openImagePicker(
     isbase64:true,
     __event__:(string)=>{}
   }
-):RetDTO {
+):CameraRetDTO {
   window.openImagePicker = () => {
     camera
       .openImagePicker({

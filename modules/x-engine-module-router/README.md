@@ -73,7 +73,7 @@ args　形如：
  },
  {
    "type":"native",
-   "url":"ZKPageViewController3,cn.timesneighborhood.app.c.view.activity.OpenGatesActivity",
+   "url":"ZKLocalWebViewController,cn.timesneighborhood.app.c.view.activity.OpenGatesActivity",
    "fallback": "http//:www.baidu.com",   
  },
  {

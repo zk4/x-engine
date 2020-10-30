@@ -184,7 +184,19 @@
             imageData = UIImageJPEGRepresentation(image, 1);
         }
         
-        return [GCDWebServerDataResponse responseWithData:imageData contentType:@"image"];
+        GCDWebServerDataResponse *response;
+        //响应
+        response = [GCDWebServerDataResponse responseWithStatusCode:200];
+        //响应头设置，跨域请求需要设置，只允许设置的域名或者ip才能跨域访问本接口）
+        [response setValue:@"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+        [response setValue:@"Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method" forAdditionalHeader:@"Access-Control-Allow-Headers"];
+        [response setValue:@"GET, POST, OPTIONS, PATCH, PUT, DELETE" forAdditionalHeader:@"Access-Control-Allow-Methods"];
+        [response setValue:@"GET, POST, PATCH, OPTIONS, PUT, DELETE" forAdditionalHeader:@"Allow"];
+
+        //设置options的实效性（我设置了12个小时=43200秒）
+        [response setValue:@"43200" forAdditionalHeader:@"Access-Control-max-age"];
+        response = [GCDWebServerDataResponse responseWithData:imageData contentType:@"image"];
+        return response;
     }];
    
     [_webServer startWithPort:18129 bonjourName:@"GCD Web Server"];

@@ -28,6 +28,7 @@ public class RouterMaster {
                 XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, url);
                 break;
             case "2":
+            case "microApp":
             case "microapp"://微应用
                 type = "microapp";
                 XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, uri, path, arg, microAppVersion);

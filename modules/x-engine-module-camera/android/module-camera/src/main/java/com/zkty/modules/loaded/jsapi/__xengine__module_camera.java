@@ -8,12 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +33,13 @@ import com.zkty.modules.engine.core.IApplicationListener;
 import com.zkty.modules.engine.exception.XEngineException;
 import com.zkty.modules.engine.utils.FileUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
+import com.zkty.modules.loaded.imp.GlideLoader;
 import com.zkty.modules.loaded.imp.ImagePicker;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import module.camera.R;
@@ -80,7 +85,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
 
     @Override
-    public void _openImagePicker(final CameraDTO dto, final CompletionHandler<RetDTO> handler) {
+    public void _openImagePicker(final CameraDTO dto, final CompletionHandler<CameraRetDTO> handler) {
         Log.d(TAG, "receive object:" + JSONObject.toJSONString(dto));
         cameraDTO = dto;
 //        //test
@@ -228,11 +233,28 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                             if (mXEngineWebView != null && out.exists()) {
                                 String path = out.getPath();
+
+                                BitmapFactory.Options options = new BitmapFactory.Options();
+                                options.inPreferredConfig = Bitmap.Config.RGB_565;
                                 Log.d(TAG, "path:" + path);
-                                mXEngineWebView.callHandler(dto.__event__, new Object[]{path}, new OnReturnValue<Object>() {
+                                Log.d(TAG, "start:" + System.currentTimeMillis());
+                                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+
+                                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
+                                String base64 = bmpToBase64(bitmap);
+//                                base64="888";
+                                Log.d(TAG, "length:" + base64.length());
+                                Log.d(TAG, "end:" + System.currentTimeMillis());
+                                CameraRetDTO ret = new CameraRetDTO();
+                                //  ret.retImage = bmpToBase64(bitmap);
+                                ret.retImage = "6666";
+                                Log.d(TAG, "base64:" + ret.retImage);
+
+
+                                mXEngineWebView.callHandler(dto.__event__, new Object[]{base64}, new OnReturnValue<Object>() {
                                     @Override
                                     public void onValue(Object retValue) {
-
+                                        Log.d(TAG, "result:" + System.currentTimeMillis());
                                     }
                                 });
                             } else {
@@ -386,11 +408,47 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG);
-        intent.putExtra("outputX", 720);
-        intent.putExtra("outputY", 720);
+        intent.putExtra("outputX", 160);
+        intent.putExtra("outputY", 160);
         intent.putExtra("scale", true);
         intent.putExtra("scaleUpIfNeeded", true);
         intent.putExtra("return-data", false);
         activity.startActivityForResult(intent, REQUEST_CROP);
     }
+
+
+    /**
+     * bitmap转Base64
+     *
+     * @param bitmap
+     * @return
+     */
+    public static String bmpToBase64(Bitmap bitmap) {
+        String result = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            if (bitmap != null) {
+                baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                baos.flush();
+                baos.close();
+                byte[] bitmapBytes = baos.toByteArray();
+                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.flush();
+                    baos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
 }

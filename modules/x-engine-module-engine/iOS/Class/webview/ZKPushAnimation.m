@@ -324,6 +324,7 @@
                     RecyleWebViewController *fromWeVC = (RecyleWebViewController *)fromVc;
 //                    [fromWeVC popToRoot];
                     [fromWeVC pop];
+                    [fromWeVC.webview removeFromSuperview];
                 }
             }
         }];

@@ -15,7 +15,7 @@
     NSUserDefaults *defaults;
     if(isPublic){
         
-        defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        defaults = [NSUserDefaults standardUserDefaults];//[[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
     } else {
         
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
@@ -29,7 +29,7 @@
     
     NSUserDefaults *defaults;
     if(isPublic){
-        defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        defaults = [NSUserDefaults standardUserDefaults];//[NSUserDefaults standardUserDefaults] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
     } else {
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
     }
@@ -44,7 +44,7 @@
 + (void)removeLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic {
     NSUserDefaults *defaults;
     if(isPublic){
-        defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        defaults = [NSUserDefaults standardUserDefaults];//[[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
     } else {
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
     }
@@ -56,7 +56,7 @@
 + (void)removeLocalStorageAll:(BOOL)isPublic {
     
     if(isPublic){
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];//[[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
         [defaults removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
     }else{
         NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];

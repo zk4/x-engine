@@ -1,6 +1,6 @@
 
 ``` bash
-npm install @zkty-team/x-engine-module-router
+npm install @zkty-team/com-zkty-module-router
 ```
 
 
@@ -8,17 +8,6 @@ npm install @zkty-team/x-engine-module-router
 ## openTargetRouter
 
 跳转页面.
-
-**demo**
-``` js
- {
-  window.openTargetRouter = () => {
-    router
-      .openTargetRouter({ type: "h5", uri:"https://www.baidu.com", path:"" })
-      .then((res) => { });
-  };
-}
-``` 
 
 	
 **参数说明**

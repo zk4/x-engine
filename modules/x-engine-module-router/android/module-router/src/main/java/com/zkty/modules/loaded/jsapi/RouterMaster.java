@@ -59,7 +59,7 @@ public class RouterMaster {
 
                 break;
             case "3":
-            case "uniapp"://uniApp
+            case "uni"://uniApp
                 String path1 = null;
                 Map<String, String> params = null;
                 if (path != null) {

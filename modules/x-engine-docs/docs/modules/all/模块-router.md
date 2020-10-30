@@ -34,7 +34,7 @@
 {
   type: string (native | h5 | microapp | uni | wx ),  // string 类型 maxlength(16)
   uri:  string (url | microappid | wx_username | 'XViewController,com.zkty.view.XActivity'), // 资源名 maxlength(1024)
-  fallback: string,         //(url链接)，maxlength(1024)
+  fallback: string,         // 找不到路由，或者下载失败，则打开url链接，maxlength(1024)
   path: string,             // 路径 /abc  /abc?a=1  maxlength(4096)　注意：参数在这传递！
  	version: int,             // 如果是 microapp, version 代表版本号，
 　args: map                 // 保留字段，　
@@ -47,7 +47,7 @@ args　形如：
 
 ```
 {
-	"something":"",
+	"":"",
 	...
 }
 ```
@@ -145,9 +145,9 @@ npm install @zkty-team/x-engine-module-router
       .then((res) => { });
   };
 }
-``` 
+```
 
-	
+
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
@@ -156,7 +156,7 @@ npm install @zkty-team/x-engine-module-router
 | uri | string |  | https://www.baidu.com | 跳转目标 |
 | path | string |  |  | 跳转参数 |
 
-    
+​    
 
 # iOS
 

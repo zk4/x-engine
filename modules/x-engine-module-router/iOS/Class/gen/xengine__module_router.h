@@ -13,6 +13,7 @@
    	@property(nonatomic,copy) NSString* uri;
    	@property(nonatomic,copy) NSString* path;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
+   	@property(nonatomic,assign) NSInteger version;
 @end
     
 

@@ -11,7 +11,8 @@
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
    
-   	if ([propertyName isEqualToString:@"args"]) { return YES; }	return NO;
+   	if ([propertyName isEqualToString:@"args"]) { return YES; }
+   	if ([propertyName isEqualToString:@"version"]) { return YES; }	return NO;
     }
 @end
     

@@ -59,7 +59,7 @@
     NSString *url = [self getUrl:path params:params];
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
-    //
+    
     [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];

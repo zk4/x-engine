@@ -3,7 +3,7 @@ import router from './index.js'
 
   window.openTargetRouter = () => {
     router
-      .openTargetRouter({ type: "h5", uri:"https://www.baidu.com", path:"" })
+      .openTargetRouter({ type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" })
       .then((res) => { });
   };
 
@@ -21,13 +21,25 @@ import router from './index.js'
 
   window._testmicroapp = () => {
     router
-      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/" })
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/",version:0 })
       .then((res) => { });
   };
 
-  window._testmicroapppath = () => {
+  window._testmicroapp_version1 = () => {
     router
-      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC" })
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/",version:1 })
+      .then((res) => { });
+  };
+
+  window._testmicroapp_path = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC",version:0 })
+      .then((res) => { });
+  };
+
+  window._testmicroapp_path_version1 = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC",version:1 })
       .then((res) => { });
   };
 

@@ -10,13 +10,15 @@ interface RouterOpenAppDTO {
   path: string;
   //其他参数
   args?:Map<string, string>;
+
+  version?: int;
 }
 
 //跳转页面.
-function openTargetRouter(arg: RouterOpenAppDTO = { type: "h5", uri:"https://www.baidu.com", path:"" }) {
+function openTargetRouter(arg: RouterOpenAppDTO = { type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" }) {
   window.openTargetRouter = () => {
     router
-      .openTargetRouter({ type: "h5", uri:"https://www.baidu.com", path:"" })
+      .openTargetRouter({ type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" })
       .then((res) => { });
   };
 }
@@ -43,16 +45,33 @@ function _testnative(arg: RouterOpenAppDTO  ) {
 function _testmicroapp(arg: RouterOpenAppDTO) {
   window._testmicroapp = () => {
     router
-      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"" })
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/",version:0 })
+      .then((res) => { });
+  };
+}
+//跳转native页面.
+function _testmicroapp_version1(arg: RouterOpenAppDTO) {
+  window._testmicroapp_version1 = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/",version:1 })
       .then((res) => { });
   };
 }
 
 //跳转native页面.
-function _testmicroapppath(arg: RouterOpenAppDTO) {
-  window._testmicroapppath = () => {
+function _testmicroapp_path(arg: RouterOpenAppDTO) {
+  window._testmicroapp_path = () => {
     router
-      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC" })
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC",version:0 })
+      .then((res) => { });
+  };
+}
+
+//跳转native页面.
+function _testmicroapp_path_version1(arg: RouterOpenAppDTO) {
+  window._testmicroapp_path_version1 = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC",version:1 })
       .then((res) => { });
   };
 }

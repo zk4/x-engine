@@ -95,7 +95,7 @@
 - (BOOL)checkUniMPResource:(NSString *)appId {
     if (![DCUniMPSDKEngine isExistsApp:appId]) {
         // 读取导入到工程中的wgt应用资源
-        NSString *appResourcePath = [[NSBundle mainBundle] pathForResource:appId ofType:@"wgt"];
+    NSString *appResourcePath = [[NSBundle mainBundle] pathForResource:appId ofType:@"wgt"];
         if (!appResourcePath) {
             NSLog(@"资源路径不正确，请检查");
             return NO;

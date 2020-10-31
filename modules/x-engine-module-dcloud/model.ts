@@ -24,7 +24,7 @@ interface UniMPDTO {
 // 启动小程序
 function openUniMP(
   DcloudDTO:DcloudDTO = {
-    appId:'__UNI__86C4327'
+    appId:'__UNI__B98DEB4'
   }){
   window.openUniMP = () => {
     dcloud.openUniMP().then((res) => {

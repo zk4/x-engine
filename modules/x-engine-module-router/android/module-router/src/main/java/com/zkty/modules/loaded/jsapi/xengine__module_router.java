@@ -21,6 +21,8 @@
     public String uri;
 
     public String path;
+
+    public String agrs;
   }
   
   interface xengine__module_router_i {

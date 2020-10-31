@@ -153,7 +153,8 @@
             if(filePath && filePath.length>0) [UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
            [self sendParamtoWeb:[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr]];
         }else{
-            UIImage *image = [self cutImageWidth:self.cameraDto.width height:self.cameraDto.height quality:self.cameraDto.quality bytes:self.cameraDto.bytes];
+            NSDictionary * argsDic = self.cameraDto.args;
+            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
             [self sendParamtoWeb:[self UIImageToBase64Str:image]];
         }
         

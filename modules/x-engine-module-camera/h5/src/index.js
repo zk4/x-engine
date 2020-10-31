@@ -20,10 +20,12 @@ function osCheck() {
       "cameraFlashMode": -1,
       "cameraDevice": "back",
       "isbase64": true,
-      "width": "200",
-      "height": "100",
-      "quality": "0.5",
-      "bytes": "1024"
+      "args": {
+        "width": "200",
+        "height": "100",
+        "quality": "0.5",
+        "bytes": "1024"
+      }
     }
   }
 ]

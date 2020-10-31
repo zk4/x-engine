@@ -25,13 +25,16 @@
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
 @property(nonatomic,strong) UIImage * photoImage;
-@property(nonatomic,copy)NSString * event;
+@property(nonatomic,copy)   NSString * event;
 @property(nonatomic,assign) BOOL isbase64;
+@property(nonatomic,strong) CameraDTO * cameraDto;
+
 @end
 
 @implementation __xengine__module_camera
 
 - (void)_openImagePicker:(CameraDTO *)dto complete:(void (^)(CameraRetDTO *, BOOL))completionHandler {
+    self.cameraDto = dto;
     self.allowsEditing = dto.allowsEditing;
     self.savePhotosAlbum = dto.savePhotosAlbum;
     self.isbase64 = dto.isbase64;
@@ -150,10 +153,10 @@
             if(filePath && filePath.length>0) [UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
            [self sendParamtoWeb:[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr]];
         }else{
-            [self sendParamtoWeb:[self UIImageToBase64Str:weakself.photoImage]];
+            NSDictionary * argsDic = self.cameraDto.args;
+            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            [self sendParamtoWeb:[self UIImageToBase64Str:image]];
         }
-       
-        
         
     }];
 }
@@ -184,7 +187,19 @@
             imageData = UIImageJPEGRepresentation(image, 1);
         }
         
-        return [GCDWebServerDataResponse responseWithData:imageData contentType:@"image"];
+        GCDWebServerDataResponse *response;
+        //响应
+        response = [GCDWebServerDataResponse responseWithStatusCode:200];
+        //响应头设置，跨域请求需要设置，只允许设置的域名或者ip才能跨域访问本接口）
+        [response setValue:@"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+        [response setValue:@"Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method" forAdditionalHeader:@"Access-Control-Allow-Headers"];
+        [response setValue:@"GET, POST, OPTIONS, PATCH, PUT, DELETE" forAdditionalHeader:@"Access-Control-Allow-Methods"];
+        [response setValue:@"GET, POST, PATCH, OPTIONS, PUT, DELETE" forAdditionalHeader:@"Allow"];
+
+        //设置options的实效性（我设置了12个小时=43200秒）
+        [response setValue:@"43200" forAdditionalHeader:@"Access-Control-max-age"];
+        response = [GCDWebServerDataResponse responseWithData:imageData contentType:@"image"];
+        return response;
     }];
    
     [_webServer startWithPort:18129 bonjourName:@"GCD Web Server"];
@@ -283,6 +298,27 @@
     
     return encodedImageStr;
     
+}
+
+-(UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
+    UIImage *image = self.photoImage;
+    NSData *imageData;
+    CGFloat width_height_per = image.size.width/image.size.height;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    NSString * w = [NSString stringWithFormat:@"%@",imageWidth];
+    NSString * h = [NSString stringWithFormat:@"%@",imageHeight];
+    if ([self getNoEmptyString:w])  width = w.floatValue;
+    if ([self getNoEmptyString:h])  height = h.floatValue;
+    if (![self getNoEmptyString:w]) width = height*width_height_per;
+    if (![self getNoEmptyString:h]) height = width/width_height_per;
+    image= [__xengine__module_camera imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
+
+    NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
+    NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
+    imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
+    image = [UIImage imageWithData:imageData];
+    return image;
 }
 
 -(void)sendParamtoWeb:(NSString *)param{

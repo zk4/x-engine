@@ -6,14 +6,10 @@ interface RouterOpenAppDTO {
   type: string;
   //跳转目标
   uri: string;
-  //(url链接)，maxlength(1024)
-  fallback?: string;
   //跳转参数
   path: string;
-  // 如果是 microapp, version 代表版本号
-  version?: int;
-  // 保留字段
-  args?: Map<string,string>;
+  //其他参数
+  args:Map<string, string>;
 }
 
 //跳转页面.
@@ -47,7 +43,7 @@ function _testnative(arg: RouterOpenAppDTO  ) {
 function _testmicroapp(arg: RouterOpenAppDTO) {
   window._testmicroapp = () => {
     router
-      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo",version:0, path:"" })
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"" })
       .then((res) => { });
   };
 }

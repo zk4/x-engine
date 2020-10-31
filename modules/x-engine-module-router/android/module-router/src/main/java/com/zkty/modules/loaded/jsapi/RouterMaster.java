@@ -28,6 +28,7 @@ public class RouterMaster {
                 XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, url);
                 break;
             case "2":
+            case "microApp":
             case "microapp"://微应用
                 type = "microapp";
                 XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, uri, path, arg, microAppVersion);
@@ -59,7 +60,7 @@ public class RouterMaster {
 
                 break;
             case "3":
-            case "uniapp"://uniApp
+            case "uni"://uniApp
                 String path1 = null;
                 Map<String, String> params = null;
                 if (path != null) {

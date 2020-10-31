@@ -30,6 +30,8 @@
 
     public boolean isbase64;
 
+    public Map<String,String> args;
+
     public String __event__;
   }
   

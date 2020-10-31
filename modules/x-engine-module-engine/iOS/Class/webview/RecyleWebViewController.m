@@ -67,7 +67,7 @@
             || ![XEOneWebViewPool sharedInstance].inSingle){
             
             self.isReadyLoading = YES;
-            self.webview = [[XEOneWebViewPool sharedInstance] getWebView:self.rootPath];;
+            self.webview = [[XEOneWebViewPool sharedInstance] getWebView:fileUrl];;
             self.webview.configuration.preferences.javaScriptEnabled = YES;
             self.webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
             
@@ -80,9 +80,9 @@
                 if(self.fileUrl.length == 0)
                     return self;
                 if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-                    [self.webview loadFileURL:[NSURL fileURLWithPath:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{
-                    [self.webview loadFileURL:[NSURL fileURLWithPath:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
                 }
             }
         }

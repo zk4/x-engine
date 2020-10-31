@@ -16,8 +16,8 @@ import localstorage from './index.js'
   window.get = () => {
     localstorage
       .get({
-        key: "key",
-        isPublic: false,
+        key: "LLBToken",
+        isPublic: true,
       })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

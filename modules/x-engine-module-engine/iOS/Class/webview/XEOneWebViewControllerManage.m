@@ -65,11 +65,11 @@
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withPath:(NSString *)path withParams:(NSString *)params{
+- (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withPath:(NSString *)path withParams:(NSString *)params forceCreate:(Boolean) forceCreate{
 
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version ];
     if(urlStr){
-        [self setMainUrl:urlStr];
+        [self setMainUrl:urlStr forceCreate: forceCreate];
         [self pushWebViewControllerWithUrl:[NSString stringWithFormat:@"%@?/#%@", urlStr,path]];
     }
 }
@@ -78,7 +78,10 @@
 ////    return [NSString stringWithFormat:@"%@://%@:%@/%@",]
 //    return @"";
 //}
--(NSString *)setMainUrl:(NSString *)url{
+-(NSString *)setMainUrl:(NSString *)url {
+   return [self setMainUrl:url forceCreate:FALSE];
+}
+-(NSString *)setMainUrl:(NSString *)url forceCreate:(Boolean) forceCreate{
 //    [self normalizeUrl:url];
     if([url rangeOfString:@".html"].location == NSNotFound){
         if(![url hasSuffix:@"index.html"] && ![url hasSuffix:@"index.html/"]){
@@ -89,7 +92,7 @@
         }
     }
     self.rootUrl = url;
-    [self createCacheVC];
+    [self createCacheVC: forceCreate];
     return url;
 }
 
@@ -145,10 +148,13 @@
     XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:toUrl];
     return vc;
 }
+- (void)createCacheVC {
+    [[XEOneWebViewPool sharedInstance] createNewWebView:self.rootUrl forceCreate:FALSE];
+}
 
 
--(void)createCacheVC{
-    [[XEOneWebViewPool sharedInstance] createNewWebView:self.rootUrl];
+-(void)createCacheVC:(Boolean) forceCreate{
+    [[XEOneWebViewPool sharedInstance] createNewWebView:self.rootUrl forceCreate:forceCreate];
 }
 
 @end

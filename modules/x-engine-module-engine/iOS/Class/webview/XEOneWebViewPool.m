@@ -77,7 +77,7 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
         web = self.webCacheDic[key];
     }
     if (web == nil){
-        web = [self createNewWebView:url];
+        web = [self createNewWebView:url forceCreate:true];
     }
     if (!self.inAllSingle && !self.inSingle){
         [self.webCacheDic removeObjectForKey:key];
@@ -85,18 +85,17 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
     return web;
 }
 
-- (XEngineWebView *)createNewWebView:(NSString *)baseUrl{
-    
+- (XEngineWebView *)createNewWebView:(NSString *)baseUrl forceCreate:(Boolean) forceCreate{
+    XEngineWebView *web =nil;
+    NSString *key = [self urlToDicKey:baseUrl];
     if(baseUrl){
-        NSString *key = [self urlToDicKey:baseUrl];
-        XEngineWebView *web = self.webCacheDic[key];
-        if (web == nil){
-            web = [self createWebView:baseUrl];
-            self.webCacheDic[key] = web;
-        }
-        return web;
+        web= self.webCacheDic[key];
     }
-    return nil;
+    if (web == nil || forceCreate){
+        web = [self createWebView:baseUrl];
+        self.webCacheDic[key] = web;
+    }
+    return web;
 }
 
 -(NSString *)urlToDicKey:(NSString *)url{

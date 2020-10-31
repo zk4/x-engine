@@ -52,8 +52,7 @@
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:uri];
     
     } else if([type isEqual:@"microapp"]){
-        
-        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withVersion:version withPath:path withParams:nil];
+        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withVersion:version withPath:path withParams:nil forceCreate:TRUE];
         
     } else if([type isEqual:@"uni"]){
         UniMPDTO* d= [UniMPDTO new];

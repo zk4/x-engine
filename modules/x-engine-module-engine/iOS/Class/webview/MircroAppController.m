@@ -48,7 +48,7 @@
     
     [MicroAppLoader sharedInstance].nowMicroAppId = microappId;
 
-    NSString *indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId in_version:0];
+    NSString *indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId in_version:0 ];
     NSString *fullpath = [NSString stringWithFormat:@"%@%@",indexfile, path];
 
     return [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:[[XEOneWebViewControllerManage sharedInstance] setMainUrl:fullpath]];

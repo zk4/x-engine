@@ -21,7 +21,7 @@ UIKIT_EXTERN NSNotificationName const XEWebViewProgressChangeNotification;
 
 - (BOOL)checkUrl:(NSString *)url;
 - (XEngineWebView *)getWebView:(NSString *)url; 
-- (XEngineWebView *)createNewWebView:(NSString *)baseUrl;
+- (XEngineWebView *)createNewWebView:(NSString *)baseUrl forceCreate:(Boolean)forceCreate;
 
 - (void)resetUrl:(NSString *)url;
 

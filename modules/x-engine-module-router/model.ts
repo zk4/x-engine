@@ -59,6 +59,15 @@ function _testmicroapp_version1(arg: RouterOpenAppDTO) {
 }
 
 //跳转native页面.
+function _testmicroapp_version_not_exist(arg: RouterOpenAppDTO) {
+  window._testmicroapp_version_not_exist = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/",version:9 })
+      .then((res) => { });
+  };
+}
+
+//跳转native页面.
 function _testmicroapp_path(arg: RouterOpenAppDTO) {
   window._testmicroapp_path = () => {
     router
@@ -72,6 +81,14 @@ function _testmicroapp_path_version1(arg: RouterOpenAppDTO) {
   window._testmicroapp_path_version1 = () => {
     router
       .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC",version:1 })
+      .then((res) => { });
+  };
+}
+
+function _testmicroapp_path_query(arg: RouterOpenAppDTO) {
+  window._testmicroapp_path_query = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC?qid=hello&b=3",version:0 })
       .then((res) => { });
   };
 }

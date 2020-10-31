@@ -37,11 +37,19 @@ function osCheck() {
     "default_args": null
   },
   {
+    "name": "_testmicroapp_version_not_exist",
+    "default_args": null
+  },
+  {
     "name": "_testmicroapp_path",
     "default_args": null
   },
   {
     "name": "_testmicroapp_path_version1",
+    "default_args": null
+  },
+  {
+    "name": "_testmicroapp_path_query",
     "default_args": null
   },
   {

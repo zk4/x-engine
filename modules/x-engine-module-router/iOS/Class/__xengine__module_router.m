@@ -32,8 +32,10 @@
     NSString* type = dto.type;
     NSString* uri = dto.uri;
     NSString* path = dto.path;
+    NSInteger version = dto.version;
+
     NSDictionary* args =dto.args;
-    long version = 0;
+//    long version = 0;
     if([type isEqual:@"native"]){
         NSArray *ary = [uri componentsSeparatedByString:@","];
         NSString *className = ary[0];
@@ -42,17 +44,17 @@
         [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
         return;
     } else if([type isEqual:@"h5"]){
+        
         if(![uri hasPrefix:@"http"]){
             uri = [NSString stringWithFormat:@"https://%@", uri];
         }
         [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:uri];
+    
     } else if([type isEqual:@"microapp"]){
-//        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:8080"];
-//        [self pushViewController:webLaderVC];
-
+        
         [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withVersion:version withPath:path withParams:nil];
-
+        
     } else if([type isEqual:@"uni"]){
         UniMPDTO* d= [UniMPDTO new];
         d.appId=uri;

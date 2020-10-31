@@ -1,4 +1,5 @@
 
+version: 0.0.49
 ``` bash
 npm install @zkty-team/x-engine-module-router
 ```

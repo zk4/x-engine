@@ -66,16 +66,20 @@
 }
 
 - (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withPath:(NSString *)path withParams:(NSString *)params{
-    
-    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:version];
+
+    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version ];
     if(urlStr){
         [self setMainUrl:urlStr];
         [self pushWebViewControllerWithUrl:[NSString stringWithFormat:@"%@?/#%@", urlStr,path]];
     }
 }
-
+//-(NSString*) normalizeUrl:(NSString*)url{
+//    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
+////    return [NSString stringWithFormat:@"%@://%@:%@/%@",]
+//    return @"";
+//}
 -(NSString *)setMainUrl:(NSString *)url{
-    
+//    [self normalizeUrl:url];
     if([url rangeOfString:@".html"].location == NSNotFound){
         if(![url hasSuffix:@"index.html"] && ![url hasSuffix:@"index.html/"]){
             if([url hasSuffix:@"/"])
@@ -91,8 +95,8 @@
 
 -(void)setMainAppid:(NSString *)appid withPath:(NSString *)path{
     
-    long version;
-    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:0];
+
+    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0  ];
     NSString *fullpath;
     if (path.length > 0){
         fullpath = [NSString stringWithFormat:@"%@%@", toUrl, path];
@@ -111,7 +115,6 @@
         if(params){
             if([params isKindOfClass:[NSString class]]){
                 NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
-//                123
                 [toUrl appendFormat:@"%@%@", range.location == NSNotFound ? @"?" : @"&", params];
             }else if([params isKindOfClass:[NSDictionary class]]){
                 NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
@@ -133,15 +136,12 @@
 }
 
 -(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
-    
     XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:url withRootPath:nil];
     return vc;
 }
 
 -(UIViewController *)getWebViewControllerWithId:(NSString *)appid{
-    
-    long version;
-    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:0];
+    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0 ];
     XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:toUrl];
     return vc;
 }

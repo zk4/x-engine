@@ -31,6 +31,12 @@ import router from './index.js'
       .then((res) => { });
   };
 
+  window._testmicroapp_version_not_exist = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/",version:9 })
+      .then((res) => { });
+  };
+
   window._testmicroapp_path = () => {
     router
       .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC",version:0 })
@@ -40,6 +46,12 @@ import router from './index.js'
   window._testmicroapp_path_version1 = () => {
     router
       .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC",version:1 })
+      .then((res) => { });
+  };
+
+  window._testmicroapp_path_query = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC?qid=hello&b=3",version:0 })
       .then((res) => { });
   };
 

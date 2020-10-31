@@ -27,7 +27,6 @@
 }
 
 -(void)_openTargetRouter:(RouterOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
-//    [self routerToTarget:dto.type withUri:dto.uri withPath:dto.path withVersion:0];
     NSString* type = dto.type;
     NSString* uri = dto.uri;
     NSString* path = dto.path;
@@ -71,7 +70,7 @@
             }
         }
     }
-
+    completionHandler(true);
 }
  
 @end

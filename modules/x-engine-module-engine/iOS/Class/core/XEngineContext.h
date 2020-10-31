@@ -9,6 +9,7 @@
 
 - (NSMutableArray*) modules;
 - (id) getModuleByProtocol:(Protocol *) proto;
+- (id) getModuleByName:(NSString*) clazzName;
 - (NSMutableArray*) getModulesByProtocol:(Protocol *) proto;
 - (void) onApplicationDelegate:(NSString*) eventName arg1:(id)application args:(id) args;
 - (void) start;

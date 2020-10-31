@@ -31,6 +31,10 @@ function osCheck() {
   {
     "name": "_testmicroapp",
     "default_args": null
+  },
+  {
+    "name": "_testuni",
+    "default_args": null
   }
 ]
 )}}

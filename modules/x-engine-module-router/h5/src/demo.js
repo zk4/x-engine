@@ -25,4 +25,10 @@ import router from './index.js'
       .then((res) => { });
   };
 
+  window._testuni = () => {
+    router
+      .openTargetRouter({ type: "uni", uri:"__UNI__C002620", path:"" })
+      .then((res) => { });
+  };
+
     

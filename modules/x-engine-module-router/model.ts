@@ -9,7 +9,7 @@ interface RouterOpenAppDTO {
   //跳转参数
   path: string;
   //其他参数
-  args:Map<string, string>;
+  args?:Map<string, string>;
 }
 
 //跳转页面.
@@ -44,6 +44,13 @@ function _testmicroapp(arg: RouterOpenAppDTO) {
   window._testmicroapp = () => {
     router
       .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"" })
+      .then((res) => { });
+  };
+}
+function _testuni(arg: RouterOpenAppDTO) {
+  window._testuni = () => {
+    router
+      .openTargetRouter({ type: "uni", uri:"__UNI__C002620", path:"" })
       .then((res) => { });
   };
 }

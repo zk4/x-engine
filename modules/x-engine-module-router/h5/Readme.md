@@ -17,6 +17,6 @@ npm install @zkty-team/com-zkty-module-router
 | type | string |  | h5 | 跳转类型 |
 | uri | string |  | https://www.baidu.com | 跳转目标 |
 | path | string |  |  | 跳转参数 |
-| agrs | string |  |  |  |
+| args | Map\<string,string\> |  |  | 其他参数 |
 
     

@@ -22,7 +22,7 @@
 
     public String path;
 
-    public String agrs;
+    public Map<String,String> args;
   }
   
   interface xengine__module_router_i {

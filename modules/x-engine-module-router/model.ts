@@ -8,8 +8,8 @@ interface RouterOpenAppDTO {
   uri: string;
   //跳转参数
   path: string;
-  //
-  agrs:string;
+  //其他参数
+  args:Map<string, string>;
 }
 
 //跳转页面.

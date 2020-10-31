@@ -12,7 +12,7 @@
   	@property(nonatomic,copy) NSString* type;
    	@property(nonatomic,copy) NSString* uri;
    	@property(nonatomic,copy) NSString* path;
-   	@property(nonatomic,copy) NSString* agrs;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
 @end
     
 

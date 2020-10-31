@@ -89,34 +89,34 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SwipeBackHelper.onCreate(this);
+//        SwipeBackHelper.onCreate(this);
         setContentView(R.layout.activity_engine_webview);
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white)
                 .statusBarDarkFont(true).init();
 
-        SwipeBackHelper.getCurrentPage(this)
-                .addListener(new SwipeListener() {
-                    @Override
-                    public void onScroll(float percent, int px) {
-
-                    }
-
-                    @Override
-                    public void onEdgeTouch() {
-
-                    }
-
-                    @Override
-                    public void onScrollToClose() {
-                        mWebView.backUp();
-                    }
-                })
-                .setSwipeBackEnable(true)
-                .setSwipeSensitivity(0.5f)
-                .setSwipeRelateEnable(true)
-                .setSwipeRelateOffset(300);
+//        SwipeBackHelper.getCurrentPage(this)
+//                .addListener(new SwipeListener() {
+//                    @Override
+//                    public void onScroll(float percent, int px) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onEdgeTouch() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onScrollToClose() {
+//                        mWebView.backUp();
+//                    }
+//                })
+//                .setSwipeBackEnable(true)
+//                .setSwipeSensitivity(0.5f)
+//                .setSwipeRelateEnable(true)
+//                .setSwipeRelateOffset(300);
 
         xEngineNavBar = findViewById(R.id.nav_bar);
         mRoot = findViewById(R.id.content_root);
@@ -138,7 +138,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onPostCreate(savedInstanceState, persistentState);
-        SwipeBackHelper.onPostCreate(this);
+//        SwipeBackHelper.onPostCreate(this);
     }
 
     @Override
@@ -185,7 +185,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         } else {
             new Handler().postDelayed(() ->
                             showScreenCapture(false)
-                    , 300);
+                    , 100);
             if (XOneWebViewPool.IS_SINGLE) {
                 if (mWebView.getParent() != null) {
                     ((ViewGroup) mWebView.getParent()).removeView(mWebView);
@@ -248,7 +248,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         Log.d(TAG, "lifeCycleListeners size after:" + lifecycleListeners.size());
         XEngineWebActivityManager.sharedInstance().clearActivity(this);
         super.onDestroy();
-        SwipeBackHelper.onDestroy(this);
+//        SwipeBackHelper.onDestroy(this);
 
     }
 

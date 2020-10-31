@@ -9,7 +9,7 @@ import java.util.List;
 
 public class XOneWebViewPool {
 
-    public static boolean IS_SINGLE = false;
+    public static boolean IS_SINGLE = true;
     public static boolean IS_WEB = false;
 
     private static List<XEngineWebView> circleList;

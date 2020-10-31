@@ -25,13 +25,16 @@
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
 @property(nonatomic,strong) UIImage * photoImage;
-@property(nonatomic,copy)NSString * event;
+@property(nonatomic,copy)   NSString * event;
 @property(nonatomic,assign) BOOL isbase64;
+@property(nonatomic,strong) CameraDTO * cameraDto;
+
 @end
 
 @implementation __xengine__module_camera
 
 - (void)_openImagePicker:(CameraDTO *)dto complete:(void (^)(CameraRetDTO *, BOOL))completionHandler {
+    self.cameraDto = dto;
     self.allowsEditing = dto.allowsEditing;
     self.savePhotosAlbum = dto.savePhotosAlbum;
     self.isbase64 = dto.isbase64;
@@ -150,10 +153,9 @@
             if(filePath && filePath.length>0) [UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
            [self sendParamtoWeb:[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr]];
         }else{
-            [self sendParamtoWeb:[self UIImageToBase64Str:weakself.photoImage]];
+            UIImage *image = [self cutImageWidth:self.cameraDto.width height:self.cameraDto.height quality:self.cameraDto.quality bytes:self.cameraDto.bytes];
+            [self sendParamtoWeb:[self UIImageToBase64Str:image]];
         }
-       
-        
         
     }];
 }
@@ -295,6 +297,27 @@
     
     return encodedImageStr;
     
+}
+
+-(UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
+    UIImage *image = self.photoImage;
+    NSData *imageData;
+    CGFloat width_height_per = image.size.width/image.size.height;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    NSString * w = [NSString stringWithFormat:@"%@",imageWidth];
+    NSString * h = [NSString stringWithFormat:@"%@",imageHeight];
+    if ([self getNoEmptyString:w])  width = w.floatValue;
+    if ([self getNoEmptyString:h])  height = h.floatValue;
+    if (![self getNoEmptyString:w]) width = height*width_height_per;
+    if (![self getNoEmptyString:h]) height = width/width_height_per;
+    image= [__xengine__module_camera imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
+
+    NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
+    NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
+    imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
+    image = [UIImage imageWithData:imageData];
+    return image;
 }
 
 -(void)sendParamtoWeb:(NSString *)param{

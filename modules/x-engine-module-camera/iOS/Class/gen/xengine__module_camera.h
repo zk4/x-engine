@@ -15,6 +15,10 @@
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
    	@property(nonatomic,copy) NSString* cameraDevice;
    	@property(nonatomic,assign) BOOL isbase64;
+   	@property(nonatomic,copy) NSString* width;
+   	@property(nonatomic,copy) NSString* height;
+   	@property(nonatomic,copy) NSString* quality;
+   	@property(nonatomic,copy) NSString* bytes;
    	@property(nonatomic,strong) NSString* __event__;
 @end
     

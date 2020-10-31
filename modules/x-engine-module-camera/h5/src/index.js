@@ -19,7 +19,11 @@ function osCheck() {
       "savePhotosAlbum": false,
       "cameraFlashMode": -1,
       "cameraDevice": "back",
-      "isbase64": true
+      "isbase64": true,
+      "width": "200",
+      "height": "100",
+      "quality": "0.5",
+      "bytes": "1024"
     }
   }
 ]

@@ -12,7 +12,8 @@ target 'dcloud' do
   #pod 'AFNetworking'
   #pod 'XEngineSDK'
   #pod 'UIModule'
-		
+  pod 'SDWebImage'
+
  
 # Pods for XEngineSDK
 # 在开发时,将所有依赖的 module 包放这.包括依赖的依赖

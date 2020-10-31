@@ -15,7 +15,7 @@ function osCheck() {
   {
     "name": "openUniMP",
     "default_args": {
-      "appId": "__UNI__86C4327"
+      "appId": "__UNI__B98DEB4"
     }
   },
   {

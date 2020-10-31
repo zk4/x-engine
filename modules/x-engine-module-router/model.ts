@@ -47,6 +47,15 @@ function _testmicroapp(arg: RouterOpenAppDTO) {
       .then((res) => { });
   };
 }
+
+//跳转native页面.
+function _testmicroapppath(arg: RouterOpenAppDTO) {
+  window._testmicroapppath = () => {
+    router
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/testC" })
+      .then((res) => { });
+  };
+}
 function _testuni(arg: RouterOpenAppDTO) {
   window._testuni = () => {
     router

@@ -29,53 +29,7 @@
     return sharedInstance;
 }
 
-
-//+(void)addTestFunc:(Class)class withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
-//
-//    Method origMethod = class_getClassMethod(class, oldSel);
-//    Method altMethod = class_getClassMethod(class, newSel);
-//
-//    if (!origMethod || !altMethod) {
-//        return;
-//    }
-//    Class metaClass = object_getClass(class);
-//    BOOL didAddMethod = class_addMethod(metaClass,
-//                                        oldSel,
-//                                        method_getImplementation(altMethod),
-//                                        method_getTypeEncoding(altMethod));
-//
-//    if (didAddMethod) {
-//        class_replaceMethod(metaClass,
-//                            newSel,
-//                            method_getImplementation(origMethod),
-//                            method_getTypeEncoding(origMethod));
-//    } else {
-//        method_exchangeImplementations(origMethod, altMethod);
-//    }
-//}
-//+(void)addTestInstanceFunc:(Class)class withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
-//
-//    Method origMethod = class_getInstanceMethod(class, oldSel);
-//    Method altMethod = class_getInstanceMethod(class, newSel);
-//    if (!origMethod || !altMethod) {
-//        return;
-//    }
-//    Class metaClass = class;
-//    BOOL didAddMethod = class_addMethod(metaClass,
-//                                        oldSel,
-//                                        method_getImplementation(altMethod),
-//                                        method_getTypeEncoding(altMethod));
-//
-//    if (didAddMethod) {
-//        class_replaceMethod(metaClass,
-//                            newSel,
-//                            method_getImplementation(origMethod),
-//                            method_getTypeEncoding(origMethod));
-//    } else {
-//        method_exchangeImplementations(origMethod, altMethod);
-//    }
-//}
-
+ 
 
 - (instancetype)init
 {
@@ -111,12 +65,12 @@
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withParams:(NSString *)params{
+- (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withPath:(NSString *)path withParams:(NSString *)params{
     
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:version];
     if(urlStr){
         [self setMainUrl:urlStr];
-        [self pushWebViewControllerWithUrl:urlStr];
+        [self pushWebViewControllerWithUrl:[NSString stringWithFormat:@"%@?/#%@", urlStr,path]];
     }
 }
 

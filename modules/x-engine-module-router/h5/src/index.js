@@ -33,6 +33,10 @@ function osCheck() {
     "default_args": null
   },
   {
+    "name": "_testmicroapppath",
+    "default_args": null
+  },
+  {
     "name": "_testuni",
     "default_args": null
   }

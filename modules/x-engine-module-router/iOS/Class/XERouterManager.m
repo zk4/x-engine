@@ -26,9 +26,15 @@
             uri = [NSString stringWithFormat:@"https://%@", uri];
         }
         [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
-        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:uri];
+        NSMutableString *url = [[NSMutableString alloc] initWithString:uri];
+        if([uri hasPrefix:@"/"]){
+            [url appendString:path];
+        }else{
+            [url appendFormat:@"/%@", path];
+        }
+        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:url];
     } else if([type isEqual:@"microapp"]){
-        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withVersion:version withParams:nil];
+        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
     } else if([type isEqual:@"uni"]){
         
     } else if([type isEqual:@"wx"]){

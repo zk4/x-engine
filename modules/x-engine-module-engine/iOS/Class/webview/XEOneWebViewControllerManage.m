@@ -111,11 +111,17 @@
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withParams:(NSString *)params{
+- (void)pushViewControllerWithAppid:(NSString *)appid
+                           withPath:(NSString *)path
+                        withVersion:(long)version
+                         withParams:(NSString *)params{
     
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:version];
     if(urlStr){
         [self setMainUrl:urlStr];
+        if(path){
+            urlStr = [NSString stringWithFormat:@"%@/%@", urlStr, path];
+        }
         [self pushWebViewControllerWithUrl:urlStr];
     }
 }

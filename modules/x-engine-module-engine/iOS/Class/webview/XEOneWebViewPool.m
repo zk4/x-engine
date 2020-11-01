@@ -47,18 +47,12 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 
 -(void)resetUrl:(NSString *)url{
     if(self.inSingle || self.inAllSingle){
-//        if(self.webCacheDic.allKeys.count > 3){
-//            NSString *key = [self urlToDicKey:url];
-//            XEngineWebView *webView = self.webCacheDic[key];
-//            [webView removeFromSuperview];
-//            self.webCacheDic[key] = nil;
-//        } else{
             XEngineWebView *webView = [self getWebView:url];
             if(webView && webView.backForwardList.backList.count > 1){
                 //        [webView goBack];
                 [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
             }
-//        }
+
     }
 }
     
@@ -134,9 +128,6 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
     for (xengine__module_BaseModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
-//    [webview loadUrl:@"about:blank"];
-//    [webview loadUrl:baseUrl];
-    
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     return webview;
 }

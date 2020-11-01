@@ -16,7 +16,7 @@ function osCheck() {
     "name": "openTargetRouter",
     "default_args": {
       "type": "h5",
-      "uri": "https://www.baidu.com",
+      "uri": "http://192.168.10.51:8081/index.html",
       "path": ""
     }
   },
@@ -30,6 +30,30 @@ function osCheck() {
   },
   {
     "name": "_testmicroapp",
+    "default_args": null
+  },
+  {
+    "name": "_testmicroapp_version1",
+    "default_args": null
+  },
+  {
+    "name": "_testmicroapp_version_not_exist",
+    "default_args": null
+  },
+  {
+    "name": "_testmicroapp_path",
+    "default_args": null
+  },
+  {
+    "name": "_testmicroapp_path_version1",
+    "default_args": null
+  },
+  {
+    "name": "_testmicroapp_path_query",
+    "default_args": null
+  },
+  {
+    "name": "_testuni",
     "default_args": null
   }
 ]

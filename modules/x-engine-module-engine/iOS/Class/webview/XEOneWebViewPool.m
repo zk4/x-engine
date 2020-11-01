@@ -47,12 +47,11 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 
 -(void)resetUrl:(NSString *)url{
     if(self.inSingle || self.inAllSingle){
-            XEngineWebView *webView = [self getWebView:url];
-            if(webView && webView.backForwardList.backList.count > 1){
-                //        [webView goBack];
-                [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
-            }
-
+        XEngineWebView *webView = [self getWebView:url];
+        if(webView && webView.backForwardList.backList.count > 1){
+                    [webView goBack];
+//            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
+        }
     }
 }
     
@@ -102,7 +101,7 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 -(NSString *)urlToDicKey:(NSString *)url{
     
     NSString *head = @"";
-    for (int i = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count - 1; i >= 0; i--) {
+    for (NSInteger i = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count - 1; i >= 0; i--) {
         UIViewController *vc = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers[i];
         if(![vc isKindOfClass:[RecyleWebViewController class]]){
 

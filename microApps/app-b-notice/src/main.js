@@ -9,7 +9,7 @@ import 'vant/lib/index.css';
 import infiniteScroll from 'vue-infinite-scroll'
 import Toast from 'vant';
 import VConsole from 'vconsole/dist/vconsole.min.js'
-let vConsole = new VConsole()
+new VConsole()
 
 Vue.use(Toast);
 Vue.use(infiniteScroll)

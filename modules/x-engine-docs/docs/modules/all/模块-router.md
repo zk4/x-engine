@@ -80,7 +80,7 @@ args　形如：
  },
  {
    "type":"native",
-   "url":"ZKPageViewController3,cn.timesneighborhood.app.c.view.activity.OpenGatesActivity",
+   "url":"ZKLocalWebViewController,cn.timesneighborhood.app.c.view.activity.OpenGatesActivity",
    "fallback": "http//:www.baidu.com",   
  },
  {
@@ -141,7 +141,7 @@ npm install @zkty-team/x-engine-module-router
  {
   window.openTargetRouter = () => {
     router
-      .openTargetRouter({ type: "h5", uri:"https://www.baidu.com", path:"" })
+      .openTargetRouter({ type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" })
       .then((res) => { });
   };
 }
@@ -153,8 +153,10 @@ npm install @zkty-team/x-engine-module-router
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | type | string |  | h5 | 跳转类型 |
-| uri | string |  | https://www.baidu.com | 跳转目标 |
+| uri | string |  | http://192.168.10.51:8081/index.html | 跳转目标 |
 | path | string |  |  | 跳转参数 |
+| args | Map\<string,string\> | true |  | 其他参数 |
+| version | int | true |  |  |
 
     
 

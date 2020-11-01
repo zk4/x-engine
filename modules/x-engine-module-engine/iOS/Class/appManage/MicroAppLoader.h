@@ -15,8 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 + (NSString *)microappDirectory;
-- (NSString*) locateMicroAppByMicroappId:(NSString *)microappId out_version:(long)version;
+
 - (BOOL)checkMicroAppVersion:(NSString *)microappId version:(long)version;
+- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId in_version:(long) in_version;
 
 @end
 

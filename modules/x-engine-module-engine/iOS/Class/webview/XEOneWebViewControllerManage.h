@@ -20,7 +20,10 @@
 
 - (void)pushWebViewControllerWithUrl:(NSString *)url;
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params;
-- (void)pushViewControllerWithAppid:(NSString *)appid withVersion:(long)version withParams:(NSString *)params;
+- (void)pushViewControllerWithAppid:(NSString *)appid
+                           withPath:(NSString *)path
+                        withVersion:(long)version
+                         withParams:(NSString *)params;
 
 @end
 

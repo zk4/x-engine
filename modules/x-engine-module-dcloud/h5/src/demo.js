@@ -1,8 +1,8 @@
 
 import dcloud from './index.js'
 
-  window.openUniMP = () => {
-    dcloud.openUniMP().then((res) => {
+  window.openUniMP = ( ) => {
+    dcloud.openUniMP({ "appId": "__UNI__BBC6091" }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };

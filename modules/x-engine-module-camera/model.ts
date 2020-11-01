@@ -13,14 +13,8 @@ interface CameraDTO {
   cameraDevice?: string;
   //图片是否转为Base64,默认:true
   isbase64: boolean;
-  //裁剪宽度
-  width:string;
-  //裁剪高度
-  height:string;
-  //压缩质量
-  quality:string;
-  //压缩到多少kb以内
-  bytes:string;
+  //裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内;
+  args:Map<string,string>;
   //返回获取图片的地址
   __event__: (string)=>void;
   
@@ -36,10 +30,7 @@ function openImagePicker(
     cameraFlashMode: -1,
     cameraDevice:'back',
     isbase64:true,
-    width:'200',
-    height:'100',
-    quality:'0.5',
-    bytes:'1024',
+    args:{width:'200',height:'100',quality:'0.5',bytes:'1024'},
     __event__:(string)=>{}
   }
 ):CameraRetDTO {

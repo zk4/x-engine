@@ -1,9 +1,57 @@
 # x-engine mono repo
 This repo will use yarn workspace to manage.
 
+# 注意
+10月10号后，不再允许直接提交代码。所有参与者 fork　此库。
+所以提交代码走pull　request 流程。
+  1.　提交应该以功能点提交，合理压缩本地多次提交为一个功能提交。
+  2.  model.ts  的修改，必须单提交。
+  2.  正确的 [git　comment](http://my-bucket-1257400556.cos-website.ap-guangzhou.myqcloud.com/#/./docs/versionlize/%E8%A7%84%E8%8C%83-git), comment 与代码对应。
+  3.　可编译。
+  4.　除可自动根据 model.ts 生成的文档外，完成相应的 readme.md　编写。
+  5.　所写功能完成测试，手工或自动。
+不符合以上规范的提交，一律打回。
 
-# Code: 402 You must sign up for private packages : @org1/pkgname #1821
-You need to provide --access public to the initial publication to publish a scoped package because, as Linus points out, scoped packages are private and paid by default. The publish readme doesn't show any way to provide arbitrary commands to npm, so you'll likely have to do the first publish by hand, without lerna and with npm directly.
+
+#　类与函数
+## 函数
+返回值　函数名（参数）｛
+　　参数校验，失败则异常
+　　实现
+　　返回
+｝
+- 函数名必须与（实现＋返回）明确一致，不能多，不能少。
+- 返回值永远是对应函数名的正确返回，除非你像 c 一样用作函数状态。
+- 异常情况：
+  - 参数不对
+  - 实现逻辑导致异常
+
+## 类
+类不仅是函数＋共享数据。
+一切对外的暴露的函数都需要注意维持内部状态的一致性。
 
 
-https://github.com/lerna/lerna/issues/1821
+### 继承与接口
+继承最大的的作用是为了适应开闭原则。
+如果你的代码在任何时候都是能随便修改。
+不要随便使用继承设计，前提是
+1.　了解过继承与接口设计, 知道自己为什么要这样做。
+2.　明确父类的工程与架构意义。
+3.　且能说出未来子类会有哪些可能性。
+才应该考虑继承的设计。
+
+更加不要随意使用抽象类。
+理由同上。
+
+### 关于单例
+不要创建无意义的单例，增加代码复杂性。
+
+# 第三方库的封装
+尽量不要在第三方库上做再次封装。
+如果需要，只能证明这个第三方库就不值得用。你应该自己基于系统库做第三方库。
+
+
+
+
+
+

@@ -56,6 +56,9 @@
         [module onAllModulesInited];
     }
 }
+- (id) getModuleByName:(NSString*) clazzName{
+    return [self.moduleName2Moudle objectForKey:clazzName];
+}
 
 -(NSMutableArray*) getProtocols:(Class) cls{
     unsigned count;
@@ -107,9 +110,7 @@
     }] mutableCopy];
 }
 
-- (id) getModuleByName: (NSString*) key {
-    return [self.moduleName2Moudle objectForKey:key];
-}
+  
 
 - (id) getModuleByProtocol:(Protocol *) proto{
     // if found multipal modules, choose only the first found, or you can call getModulesByProtocol:

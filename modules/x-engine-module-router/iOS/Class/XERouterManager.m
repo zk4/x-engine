@@ -10,10 +10,14 @@
 #import <x-engine-module-engine/XEOneWebViewControllerManage.h>
 #import "WXApi.h"
 #import <ZKPushAnimation.h>
+#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
+#import <XEngineContext.h>
+
 
 @implementation XERouterManager
 
-+(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withVersion:(long)version{
+
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
     if([type isEqual:@"native"]){
         NSArray *ary = [uri componentsSeparatedByString:@","];
         NSString *className = ary[0];
@@ -26,11 +30,25 @@
             uri = [NSString stringWithFormat:@"https://%@", uri];
         }
         [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
-        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:uri];
+        NSMutableString *url = [[NSMutableString alloc] initWithString:uri];
+        if(path){
+            if([uri hasPrefix:@"/"]){
+                [url appendString:path];
+            }else{
+                [url appendFormat:@"/%@", path];
+            }
+        }
+        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:url];
     } else if([type isEqual:@"microapp"]){
-        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withVersion:version withParams:nil];
+        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
     } else if([type isEqual:@"uni"]){
+        NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
+        __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
         
+        UniMPDTO* d = [UniMPDTO new];
+        d.appId = uri;
+        d.arguments = args;
+        [dcloud _openUniMPWithArg:d complete:nil];
     } else if([type isEqual:@"wx"]){
         
         NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"wx_appkey" ofType:@"md"];
@@ -49,11 +67,6 @@
             }
         }
     }
-}
-
-+(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path{
-
-    [self routerToTarget:type withUri:uri withPath:path withVersion:0];
 }
 
 @end

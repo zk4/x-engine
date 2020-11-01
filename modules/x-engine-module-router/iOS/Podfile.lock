@@ -3,9 +3,16 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.5.0)
+  - SDWebImage (5.9.1):
+    - SDWebImage/Core (= 5.9.1)
+  - SDWebImage/Core (5.9.1)
   - SSZipArchive (2.2.3)
+  - UniBoost (0.1.0)
   - WechatOpenSDK (1.8.7.1)
-  - x-engine-module-engine (0.0.21):
+  - x-engine-module-dcloud (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-engine (0.0.48):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -22,7 +29,10 @@ PODS:
     - x-engine-module-protocols
 
 DEPENDENCIES:
+  - SDWebImage
+  - UniBoost (from `../../UniBoost`)
   - WechatOpenSDK
+  - x-engine-module-dcloud (from `../../x-engine-module-dcloud`)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
   - x-engine-module-nav (from `../../x-engine-module-nav`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols`)
@@ -36,9 +46,14 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - SDWebImage
     - SSZipArchive
 
 EXTERNAL SOURCES:
+  UniBoost:
+    :path: "../../UniBoost"
+  x-engine-module-dcloud:
+    :path: "../../x-engine-module-dcloud"
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
   x-engine-module-nav:
@@ -53,13 +68,16 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  UniBoost: 0f3b7db913ba2762d7eae8056d7f72c32f2f26ae
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
-  x-engine-module-engine: dfb8facaaf55c5aa6f3d67b51fb5f9cc36d1b9de
+  x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
+  x-engine-module-engine: 28cb67c91abeabc2a31f5c22fd53f8b89d050eca
   x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
   x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: 3aed9e7ae51c18e38d6120865de9083f510494f1
+PODFILE CHECKSUM: c99f86cceae88a7db936b4854e254deb6f87047a
 
 COCOAPODS: 1.9.3

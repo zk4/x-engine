@@ -30,13 +30,7 @@
 
     public boolean isbase64;
 
-    public String width;
-
-    public String height;
-
-    public String quality;
-
-    public String bytes;
+    public Map<String,String> args;
 
     public String __event__;
   }

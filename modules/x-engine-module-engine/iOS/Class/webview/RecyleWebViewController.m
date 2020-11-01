@@ -5,7 +5,6 @@
 #import "micros.h"
 #import <WebKit/WebKit.h>
 #import "XEngineWebView.h"
-//#import "JSONToDictionary.h"
 #import "xengine__module_BaseModule.h"
 #import "XEOneWebViewPool.h"
 #import "XEOneWebViewControllerManage.h"
@@ -231,18 +230,7 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    
-//    if(self.view.bounds.size.height == [UIScreen mainScreen].bounds.size.height && self.navigationController.navigationBar.bounds.size.height > 0 && self.view.frame.origin.y == 0){
-//
-//        self.webview.frame = CGRectMake(0,
-//                                        CGRectGetMaxY(self.navigationController.navigationBar.frame),
-//                                        self.view.bounds.size.width,
-//                                        [UIScreen mainScreen].bounds.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame));
-//    }else{
-        self.webview.frame = self.view.bounds;
-//    }
-    
-    
+    self.webview.frame = self.view.bounds;
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
 }
 -(void)goback:(UIButton *)sender{
@@ -294,12 +282,6 @@
     [self.view addSubview:self.progresslayer];
 }
 
-//-(UIProgressView *)progresslayer{
-//    if(_progresslayer == nil){
-//        _progresslayer = [[UIProgressView alloc] init];
-//    }
-//    return _progresslayer;
-//}
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewWillAppear:(BOOL)animated{

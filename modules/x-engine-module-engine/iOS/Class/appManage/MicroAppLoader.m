@@ -73,7 +73,7 @@
     }
 }
 
-- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId out_version:(long) version{
+- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId in_version:(long) version{
     self.nowMicroAppId = microappId;
     BOOL r = [self checkMicroAppVersion:microappId version:version];
     if(r){

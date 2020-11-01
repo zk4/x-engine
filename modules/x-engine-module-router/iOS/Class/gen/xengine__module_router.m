@@ -10,7 +10,9 @@
 @implementation RouterOpenAppDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
-   	return NO;
+   
+   	if ([propertyName isEqualToString:@"args"]) { return YES; }
+   	if ([propertyName isEqualToString:@"version"]) { return YES; }	return NO;
     }
 @end
     

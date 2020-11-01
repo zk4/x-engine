@@ -20,13 +20,9 @@
 //- (instancetype)initWithMicroAppId:(NSString *)microappId microappVersion:(NSString*) version;
 
 
-//- (instancetype)initWithPreLevelPath:(NSString *)preLevelPath;
-
+ 
 - (instancetype)initWithUrl:(NSString *) fileUrl;
-
-//- (instancetype) initWith:(NSString*)scheme host:(NSString*)host port:(NSNumber*)port path:(NSString*)path query:(NSString*)query  fragment:(NSString*) fragment;
-
-//-(void)loadFileUrl:(NSString *)url query:(NSString *)query;
+ 
 /*
  * 加载条背景颜色
  * 16进制色值

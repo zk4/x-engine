@@ -7,7 +7,7 @@ export default {
 
     
     openUniMP(args={
-          "appId": "__UNI__5DE1E68"
+          "appId": "__UNI__11E9B73"
 },userPromise){
       if(userPromise){
         return userPromise()

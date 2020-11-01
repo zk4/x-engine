@@ -33,8 +33,6 @@
 </template>
 
 <script>
-import api from "@/api";
-import moment from "moment"
 import nav from "@zkty-team/x-engine-module-nav";
 
 export default {
@@ -50,144 +48,35 @@ export default {
       createdAt: "",
       title: "",
       typeName: "",
-      a:"11"
+      a:"12221"
     }
   },
   mounted() {
-    nav.setNavLeftBtn({ title: "公告详情", titleColor: "#000000", titleSize: 24, titleFontName: "PingFangSC-Medium", titleBig: "500" })
+    nav.setNavLeftBtn({ title: "公告详情hello", titleColor: "#000000", titleSize: 24, titleFontName: "PingFangSC-Medium", titleBig: "500" })
+                nav.setNavRightMenuBtn({
+                  title: "操作hello",
+                  titleColor: "#000000",
+                  titleSize: 14,
+                  icon: "",
+                  iconSize: ["20", "20"],
+                  popWidth: "96",
+                  showMenuImg: "false",
+                  popList: [
+                    { icon: "", iconSize: "14", title: "编辑" },
+                    { icon: "", iconSize: "14", title: "删除" },
+                  ],
+                  __event__: (r) => {
+                    console.log("hello"+r)
+                    },
+                }).then(()=>{})
+
   },
   created() {
-    this.toast();
-    this.getNoticeDetail();
   },
   activated(){
-    this.toast();
-    this.getNoticeDetail();
     nav.setNavLeftBtn({ title: "公告详情", titleColor: "#000000", titleSize: 24, titleFontName: "PingFangSC-Medium", titleBig: "500" })
   },
   methods: {
-    moment,
-    toast() {
-      this.$toast.loading({
-        duration: 0,
-        type: 'loading',
-        message: '加载中...',
-        forbidClick: true,
-      });
-    },
-    //获取详情
-    getNoticeDetail() {
-      const that = this;
-      const para = {
-        id: this.$route.query.id,
-      };
-      api.getNoticeDetail(para).then(res => {
-        if (res.code === 200) {
-          this.details = res.data.details;
-          this.title = res.data.title;
-          this.createdAt = res.data.createdAt;
-          this.typeName = res.data.typeName;
-          if (res.data.status === 0) {
-            const that = this;
-            nav.setNavRightMenuBtn({
-              title: "操作",
-              titleColor: "#000000",
-              titleSize: 14,
-              icon: "@/assets/img/operation.png",
-              iconSize: ["20", "20"],
-              popWidth: "96",
-              showMenuImg: "false",
-              popList: [
-                { icon: "", iconSize: "14", title: "编辑" },
-                { icon: "", iconSize: "14", title: "删除" },
-              ],
-              __event__: (r) => {
-                if ( r === 0 ) {
-                  nav.navigatorPush({
-                    url: "/addNotice",
-                    params: encodeURI(
-                      `noticeId=${this.this.$route.query.id}`
-                    ),
-                  });
-                } else {
-                  that.$toast("撤回成功");
-                  that.onDeleteNotice()
-                }
-              },
-            })
-          } else {
-
-            nav
-              .setNavRightMenuBtn({
-                title: "menu",
-                titleColor: "#000000",
-                titleSize: 16,
-                icon: "",
-                iconSize: ["20", "20"],
-                popWidth: "200",
-                showMenuImg: "false",
-                popList: [
-                  { icon: "", iconSize: "20", title: "1" },
-                  { icon: "", iconSize: "20", title: "2" },
-                  { icon: "", iconSize: "20", title: "3" },
-                ],
-                __event__: (r) => {
-                  // that.$toast("撤回成功"+r);
-                  that.a = r
-                },
-              })
-              .then(() => {});
-          }
-        }
-      }).finally(() => {
-        this.$toast.clear()
-      });
-    },
-    //删除公告
-    onDeleteNotice() {
-      const para = {
-        id: this.$route.query.id,
-      };
-      api.deleteNotice(para).then(res => {
-        if (res.code === 200) {
-          this.$toast("删除成功");
-        }
-      })
-    },
-    //撤回公告
-    onRevocationNotice() {
-      const para = {
-        id: this.$route.query.id,
-      };
-      api.revocationNotice(para).then(res => {
-        if (res.code === 200) {
-          this.$toast("撤回成功");
-        }
-      })
-    },
-    execText(item) {
-      const link_arr = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g.exec(item);
-      if (link_arr) {
-        const link = link_arr[0];
-        const text = item.split(link);
-        return text[0];
-      } else {
-        return item;
-      }
-    },
-    execLink(item) {
-      const link_arr = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g.exec(item);
-      if (link_arr) {
-        return link_arr[0];
-      }
-    },
-    linkLength(item) {
-      if (item.split(/(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g.exec(item))[0].indexOf("http") >= 0) {
-        return "true";
-      } else {
-        return "false";
-      }
-    }
   }
 }
 </script>

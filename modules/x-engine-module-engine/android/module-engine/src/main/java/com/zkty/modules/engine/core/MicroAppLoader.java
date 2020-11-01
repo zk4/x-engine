@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.anthonynsimon.url.URL;
 import com.anthonynsimon.url.exceptions.MalformedURLException;
+import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.manager.MicroAppsManager;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
@@ -86,10 +87,11 @@ public class MicroAppLoader {
                 e.printStackTrace();
             }
         }
+        XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
         if (TextUtils.isEmpty(params)) {
-            return String.format(Locale.ENGLISH, "%s#%s", currentIndexPath, route);
+            return String.format(Locale.ENGLISH, "%s#%s", current.getIndexUrl(), route);
         }
-        return String.format(Locale.ENGLISH, "%s#%s?%s", currentIndexPath, route, params);
+        return String.format(Locale.ENGLISH, "%s#%s?%s", current.getIndexUrl(), route, params);
 
     }
 

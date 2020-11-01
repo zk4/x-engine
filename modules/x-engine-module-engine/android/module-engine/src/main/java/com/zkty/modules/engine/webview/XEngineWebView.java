@@ -96,7 +96,6 @@ public class XEngineWebView extends DWebView {
                 parent.removeAllViews();
             }
         }
-
         if (canGoBack()) {
             goBack();
         }
@@ -120,9 +119,9 @@ public class XEngineWebView extends DWebView {
     public void cleanCache() {
         clearAnimation();
         stopLoading();
-        setWebChromeClient(null);
+//        setWebChromeClient(null);
 //      setWebViewClient(null);
-        clearCache(false);
+        clearCache(true);
         clearHistory();
         loadUrl("about:blank");
 

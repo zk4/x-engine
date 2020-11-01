@@ -45,7 +45,11 @@ public class XEngineWebActivity extends AppCompatActivity {
     private ImageView ivScreen;
 
     public static final String URL = "x_engine_url";
+    public static final String MICRO_APP_ID = "micro_app_id";
+    public static final String INDEX_URL = "index_url";
     private String url;
+    private String indexUrl;
+    private String mMicroAppId;
 
     //    private ArrayList<LifecycleListener> lifecycleListeners;
     private Set<LifecycleListener> lifecycleListeners;
@@ -96,32 +100,12 @@ public class XEngineWebActivity extends AppCompatActivity {
                 .statusBarColor(R.color.white)
                 .statusBarDarkFont(true).init();
 
-//        SwipeBackHelper.getCurrentPage(this)
-//                .addListener(new SwipeListener() {
-//                    @Override
-//                    public void onScroll(float percent, int px) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onEdgeTouch() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onScrollToClose() {
-//                        mWebView.backUp();
-//                    }
-//                })
-//                .setSwipeBackEnable(true)
-//                .setSwipeSensitivity(0.5f)
-//                .setSwipeRelateEnable(true)
-//                .setSwipeRelateOffset(300);
-
         xEngineNavBar = findViewById(R.id.nav_bar);
         mRoot = findViewById(R.id.content_root);
         ivScreen = findViewById(R.id.iv_screen);
-        mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool();
+        mMicroAppId = getIntent().getStringExtra(MICRO_APP_ID);
+        indexUrl = getIntent().getStringExtra(INDEX_URL);
+        mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
         lifecycleListeners = new LinkedHashSet<>();
@@ -129,6 +113,7 @@ public class XEngineWebActivity extends AppCompatActivity {
             url = getIntent().getStringExtra(URL);
             mWebView.loadUrl(url);
         }
+
         url = TextUtils.isEmpty(mWebView.getOriginalUrl()) ? mWebView.getUrl() : mWebView.getOriginalUrl();
         xEngineNavBar.setLeftListener(view -> backUp());
         Log.d(TAG, "onCreate()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
@@ -185,7 +170,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         } else {
             new Handler().postDelayed(() ->
                             showScreenCapture(false)
-                    , 100);
+                    , 200);
             if (XOneWebViewPool.IS_SINGLE) {
                 if (mWebView.getParent() != null) {
                     ((ViewGroup) mWebView.getParent()).removeView(mWebView);
@@ -256,6 +241,14 @@ public class XEngineWebActivity extends AppCompatActivity {
         return this.url;
     }
 
+    public String getIndexUrl() {
+        return this.indexUrl;
+    }
+
+    public String getMicroAppId() {
+        return this.mMicroAppId;
+    }
+
     public XEngineNavBar getXEngineNavBar() {
         return this.xEngineNavBar;
 
@@ -290,23 +283,40 @@ public class XEngineWebActivity extends AppCompatActivity {
                 //当前页面在历史队列中的位置
                 int currentIndex = backForwardList.getCurrentIndex();
                 WebHistoryItem historyItem =
-                        backForwardList.getItemAtIndex(currentIndex - 1);
+                        backForwardList.getItemAtIndex(currentIndex - 1);//前一个页面
                 if (historyItem != null) {
-                    String backPageUrl = historyItem.getOriginalUrl();
-                    XEngineWebActivity last = XEngineWebActivityManager.sharedInstance().getLastActivity();
-                    if (last == null && mWebView.canGoBack() && !"about:blank".equals(backPageUrl)) {//单页面，可返回
-                        mWebView.goBack();
-                        return true;
-                    }
-                    if (last != null && !last.getWebUrl().equals(backPageUrl)) {
-                        mWebView.goBack();
-                        return true;
-                    }
+                    String backPageUrl = historyItem.getOriginalUrl();//前一个页面地址
+                    XEngineWebActivity last = XEngineWebActivityManager.sharedInstance().getLastActivity();//前一个activity
+                    //当前页面前面是原生，webview可以返回，且可返回页不是空白，说明页面内进行了路由，应执行goback;
+//                    if (last == null && mWebView.canGoBack() && !"about:blank".equals(backPageUrl)) {//单页面，可返回
+//                        mWebView.goBack();
+//                        return true;
+//                    }
+//                    if (last != null && !last.getWebUrl().equals(backPageUrl)) {
+//                        mWebView.goBack();
+//                        return true;
+//                    }
 
+                    if (mWebView.canGoBack()) {
+
+                        if (last == null) {
+                            if ("about:blank".equals(backPageUrl)) {
+                                finish();
+                            } else {
+                                mWebView.goBack();
+                            }
+                        } else {
+                            if (last.getWebUrl().equals(backPageUrl)) {
+                                finish();
+                            }
+                            mWebView.goBack();
+                        }
+                    } else {
+                        finish();
+                    }
+                    return true;
                 }
             }
-
-            mWebView.backUp();
         }
         return super.onKeyDown(keyCode, event);
     }

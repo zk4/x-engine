@@ -21,12 +21,11 @@
     public String uri;
 
     public String path;
+    @Optional
+    public Map<String,String> args;
 
     @Optional
-		public Map<String,String> args;
-
-    @Optional
-		public Integer version;
+    public Integer version;
   }
   
   interface xengine__module_router_i {

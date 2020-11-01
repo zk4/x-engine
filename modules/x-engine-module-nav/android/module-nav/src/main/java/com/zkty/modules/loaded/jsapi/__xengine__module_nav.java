@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.modules.dsbridge.CompletionHandler;
+import com.zkty.modules.dsbridge.OnReturnValue;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
@@ -64,7 +66,11 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavRightBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, view -> {
-                mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{new JSONObject().put("success", "success")}, retValue -> {
+                mActivity.getXEngineWebView().callHandler(dto.__event__, new OnReturnValue<Object>() {
+                    @Override
+                    public void onValue(Object retValue) {
+                        Log.d("DsBridge","append返回了" );
+                    }
                 });
             });
         });
@@ -123,7 +129,7 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
             if (dto == null || dto.url == null) {
-                XOneWebViewPool.sharedInstance().peekUnusedWebViewFromPool().backUp();
+                XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mActivity.getMicroAppId()).backUp();
                 mActivity.finish();
             } else if ("0".equals(dto.url)) {
                 XEngineWebActivityManager.sharedInstance().exitAllXWebPage();
@@ -131,7 +137,7 @@ public class __xengine__module_nav extends xengine__module_nav {
                 XEngineWebActivityManager.sharedInstance().backToIndexPage();
             } else {
                 String url = MicroAppLoader.sharedInstance().getFullRouterUrl(dto.url, null);
-                XOneWebViewPool.sharedInstance().peekUnusedWebViewFromPool().backToPage(url);
+                XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mActivity.getMicroAppId()).backToPage(url);
                 XEngineWebActivityManager.sharedInstance().backToHistoryPage(url);
             }
             handler.complete();

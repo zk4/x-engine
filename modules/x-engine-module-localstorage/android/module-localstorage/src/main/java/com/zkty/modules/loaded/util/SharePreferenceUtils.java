@@ -131,8 +131,8 @@ public class SharePreferenceUtils {
                     }
                     return sb.toString();
                 }
-            } else if (!TextUtils.isEmpty(MicroAppLoader.sharedInstance().getCurrentMicroAppId())) {
-                return MicroAppLoader.sharedInstance().getCurrentMicroAppId();
+            } else if (!TextUtils.isEmpty(XEngineWebActivityManager.sharedInstance().getCurrent().getMicroAppId())) {
+                return XEngineWebActivityManager.sharedInstance().getCurrent().getMicroAppId();
             }
         }
         return NAME_SPACE;

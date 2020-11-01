@@ -21,7 +21,7 @@
     public String uri;
 
     public String path;
-
+    @Optional
     public String agrs;
   }
   

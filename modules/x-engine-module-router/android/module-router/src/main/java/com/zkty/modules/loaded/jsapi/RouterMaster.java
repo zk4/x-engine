@@ -23,15 +23,15 @@ public class RouterMaster {
         switch (type) {
             case "0":
             case "h5"://h5
-                type = "h5";
+
                 String url = TextUtils.isEmpty(path) ? uri : uri + "?" + path;
-                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, url);
+                XEngineWebActivityManager.sharedInstance().startH5EngineActivity(context, url);
                 break;
             case "2":
             case "microApp":
             case "microapp"://微应用
-                type = "microapp";
-                XEngineWebActivityManager.sharedInstance().startXEngineActivity(context, type, uri, path, arg, microAppVersion);
+
+                XEngineWebActivityManager.sharedInstance().startMicroEngineActivity(context, uri, path, arg, microAppVersion);
                 break;
             case "wx"://微信小程序
                 String appId = null;

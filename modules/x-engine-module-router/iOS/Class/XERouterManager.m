@@ -20,10 +20,12 @@
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
     if([type isEqual:@"native"]){
         NSArray *ary = [uri componentsSeparatedByString:@","];
-        NSString *className = ary[0];
-        UIViewController *vc = [[NSClassFromString(className) alloc] init];
-        [[ZKPushAnimation instance] removeAnimationDelegate];
-        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+        if(ary.count == 2){
+            NSString *className = ary[0];
+            UIViewController *vc = [[NSClassFromString(className) alloc] init];
+            [[ZKPushAnimation instance] removeAnimationDelegate];
+            [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+        }
         return;
     } else if([type isEqual:@"h5"]){
         if(![uri hasPrefix:@"http"]){
@@ -31,7 +33,7 @@
         }
         [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
         NSMutableString *url = [[NSMutableString alloc] initWithString:uri];
-        if(path){
+        if(path.length > 0){
             if([uri hasPrefix:@"/"]){
                 [url appendString:path];
             }else{

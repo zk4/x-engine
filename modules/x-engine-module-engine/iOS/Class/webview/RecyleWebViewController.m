@@ -81,7 +81,8 @@
                 if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
                     [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{
-                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+//                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+                    [self.webview loadUrl:self.fileUrl];
                 }
             }
         }
@@ -114,21 +115,25 @@
 }
 
 - (void)loadFileUrl:(NSString *)url{
-    if(!self.isReadyLoading){
+//    if(!self.isReadyLoading){
         if(url){
             [self.webview stopLoading];
             if([url hasPrefix:@"http"]){
                 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
             }else{
                 if([url rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-                    [self.webview loadFileURL:[NSURL fileURLWithPath:url] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+                      allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{
-                    [self.webview loadFileURL:[NSURL fileURLWithPath:url] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+                allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+//                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+//                      allowingReadAccessToURL:[NSURL fileURLWithPath:url]];
                 }
             }
             NSLog(@"%@",self.fileUrl);
         }
-    }
+//    }
 }
 
 - (void)popToRoot{
@@ -210,12 +215,12 @@
 }
 
 - (void)setSignleWebView:(XEngineWebView *)webView{
-    if(self.webview != webView){
+//    if(self.webview != webView){
         [self.webview removeFromSuperview];
         self.webview = webView;
-//        [self.view addSubview:self.webview];
-        [self.view insertSubview:self.webview atIndex:0];
-    }
+        [self.view addSubview:self.webview];
+//        [self.view insertSubview:self.webview atIndex:0];
+//    }
 }
 
 -(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments {

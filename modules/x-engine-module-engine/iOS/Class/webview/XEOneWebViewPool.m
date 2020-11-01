@@ -100,22 +100,22 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 
 -(NSString *)urlToDicKey:(NSString *)url{
     
-    NSString *head = @"";
-    for (NSInteger i = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count - 1; i >= 0; i--) {
-        UIViewController *vc = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers[i];
-        if(![vc isKindOfClass:[RecyleWebViewController class]]){
-
-            head = [[NSNumber numberWithLongLong:(long long)vc] stringValue];
-            break;
-        }
-    }
-    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
-    NSString *ss = [NSString stringWithFormat:@"%@%@://%@", head, components.scheme, components.host];
-    return ss;
-    
+//    NSString *head = @"";
+//    for (NSInteger i = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count - 1; i >= 0; i--) {
+//        UIViewController *vc = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers[i];
+//        if(![vc isKindOfClass:[RecyleWebViewController class]]){
+//
+//            head = [[NSNumber numberWithLongLong:(long long)vc] stringValue];
+//            break;
+//        }
+//    }
 //    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
-//    NSString *ss = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+//    NSString *ss = [NSString stringWithFormat:@"%@%@://%@", head, components.scheme, components.host];
 //    return ss;
+    
+    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
+    NSString *ss = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+    return ss;
 }
 
 -(XEngineWebView *)createWebView:(NSString *)baseUrl{

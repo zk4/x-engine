@@ -10,7 +10,7 @@
 #import <x-engine-module-engine/XEOneWebViewControllerManage.h>
 #import "WXApi.h"
 #import <ZKPushAnimation.h>
-#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
+//#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
 
 @interface XERouterManager ()
 
@@ -34,10 +34,12 @@
         }
         [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
         NSMutableString *url = [[NSMutableString alloc] initWithString:uri];
-        if([uri hasPrefix:@"/"]){
-            [url appendString:path];
-        }else{
-            [url appendFormat:@"/%@", path];
+        if(path){
+            if([uri hasPrefix:@"/"]){
+                [url appendString:path];
+            }else{
+                [url appendFormat:@"/%@", path];
+            }
         }
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:url];
     } else if([type isEqual:@"microapp"]){

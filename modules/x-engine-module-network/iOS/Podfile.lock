@@ -20,13 +20,13 @@ PODS:
   - MJRefresh (3.5.0)
   - SSZipArchive (2.2.3)
   - WechatOpenSDK (1.8.7.1)
-  - x-engine-module-engine (0.0.19):
+  - x-engine-module-engine (0.0.49):
     - JSONModel
     - Masonry
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
-  - x-engine-module-protocols (1.0.1)
+  - x-engine-module-protocols (0.0.9)
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
     - WechatOpenSDK
@@ -65,10 +65,10 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
-  x-engine-module-engine: 30eec2363cffe0973de0a6d70dde04f3d06a6296
-  x-engine-module-protocols: 0d437aa2d12f81473dc72c966cb29d6252db2233
+  x-engine-module-engine: 2b9b5625333af0ba62d7ca60b9ae04a2b703dd02
+  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
 PODFILE CHECKSUM: b564fbe700a9ae37ded01abfc62358bdafa227df
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

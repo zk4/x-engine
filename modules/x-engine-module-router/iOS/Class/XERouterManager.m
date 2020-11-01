@@ -14,7 +14,7 @@
 
 @interface XERouterManager ()
 
-@property(nonatomic, weak) __xengine__module_dcloud* dcloud;
+//@property(nonatomic, strong) __xengine__module_dcloud* dcloud;
 
 @end
 

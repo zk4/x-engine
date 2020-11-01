@@ -62,8 +62,8 @@
         self.fileUrl = fileUrl;
         
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
-           || [fileUrl isEqualToString:self.rootPath]
-            || ![XEOneWebViewPool sharedInstance].inSingle){
+           //           || [fileUrl isEqualToString:self.rootPath]
+           || ![XEOneWebViewPool sharedInstance].inSingle){
             
             self.isReadyLoading = YES;
             self.webview = [[XEOneWebViewPool sharedInstance] getWebView:fileUrl];;
@@ -81,8 +81,7 @@
                 if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
                     [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{
-//                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
-                    [self.webview loadUrl:self.fileUrl];
+                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
                 }
             }
         }
@@ -115,25 +114,26 @@
 }
 
 - (void)loadFileUrl:(NSString *)url{
-//    if(!self.isReadyLoading){
-        if(url){
-            [self.webview stopLoading];
-            if([url hasPrefix:@"http"]){
-                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    //    if(!self.isReadyLoading){
+    //    url = @"/hasOwnerCert";
+    if(url){
+        [self.webview stopLoading];
+        if([url hasPrefix:@"http"]){
+            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+        }else{
+            if([url rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+                [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+                  allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
             }else{
-                if([url rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
-                      allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-                }else{
-                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
-                allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
-//                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
-//                      allowingReadAccessToURL:[NSURL fileURLWithPath:url]];
-                }
+                [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+                  allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+                //                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+                //                      allowingReadAccessToURL:[NSURL fileURLWithPath:url]];
             }
-            NSLog(@"%@",self.fileUrl);
         }
-//    }
+        NSLog(@"%@",self.fileUrl);
+    }
+    //    }
 }
 
 - (void)popToRoot{
@@ -215,12 +215,12 @@
 }
 
 - (void)setSignleWebView:(XEngineWebView *)webView{
-//    if(self.webview != webView){
-        [self.webview removeFromSuperview];
-        self.webview = webView;
-        [self.view addSubview:self.webview];
-//        [self.view insertSubview:self.webview atIndex:0];
-//    }
+    //    if(self.webview != webView){
+    [self.webview removeFromSuperview];
+    self.webview = webView;
+    [self.view addSubview:self.webview];
+    //        [self.view insertSubview:self.webview atIndex:0];
+    //    }
 }
 
 -(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments {
@@ -241,7 +241,7 @@
 -(void)goback:(UIButton *)sender{
     
     if(self.webview.backForwardList.backList.count > 1){
-            
+        
         if([XEOneWebViewPool sharedInstance].inSingle && self.navigationController.viewControllers.count >= 2){
             UIViewController *toVc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
             if([toVc isKindOfClass:[RecyleWebViewController class]]){

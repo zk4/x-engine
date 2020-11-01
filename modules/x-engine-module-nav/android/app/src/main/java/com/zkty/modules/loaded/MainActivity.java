@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void nav(View view) {
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "http://172.20.10.6:8080/");
+        XEngineWebActivityManager.sharedInstance().startH5EngineActivity(this, "http://172.20.10.6:8080/");
     }
 
     public void navPush(View view) {
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "com.zkty.module.navpush");
+        XEngineWebActivityManager.sharedInstance().startMicroEngineActivity(this, "com.zkty.module.navpush", null, null, null);
     }
 }

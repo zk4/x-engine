@@ -164,28 +164,32 @@
 - (void)startServer {
     __weak typeof(self) weakself = self;
     [_webServer addHandlerForMethod:@"GET" pathRegex:@"^/.*" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
-        NSDictionary * requestData = [[NSDictionary alloc]initWithDictionary:request.query];
+//        NSDictionary * requestData = [[NSDictionary alloc]initWithDictionary:request.query];
         UIImage *image = weakself.photoImage;
-        NSData *imageData;
-        CGFloat width_height_per = image.size.width/image.size.height;
-        CGFloat width = image.size.width;
-        CGFloat height = image.size.height;
-        if (requestData.count) {
-            NSString * w = [NSString stringWithFormat:@"%@",requestData[@"w"]];
-            NSString * h = [NSString stringWithFormat:@"%@",requestData[@"h"]];
-            if ([weakself getNoEmptyString:w])  width = w.floatValue;
-            if ([weakself getNoEmptyString:h])  height = h.floatValue;
-            if (![weakself getNoEmptyString:w]) width = height*width_height_per;
-            if (![weakself getNoEmptyString:h]) height = width/width_height_per;
-            image= [__xengine__module_camera imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
+        NSDictionary * argsDic = weakself.cameraDto.args;
+        image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+        NSData *imageData = UIImagePNGRepresentation(image);
 
-            NSString * quality = [NSString stringWithFormat:@"%@",requestData[@"q"]];
-            NSString * bytes = [NSString stringWithFormat:@"%@",requestData[@"bytes"]];
-            imageData = [weakself compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
-            image = [UIImage imageWithData:imageData];
-        }else{
-            imageData = UIImageJPEGRepresentation(image, 1);
-        }
+//        NSData *imageData;
+//        CGFloat width_height_per = image.size.width/image.size.height;
+//        CGFloat width = image.size.width;
+//        CGFloat height = image.size.height;
+//        if (requestData.count) {
+//            NSString * w = [NSString stringWithFormat:@"%@",requestData[@"w"]];
+//            NSString * h = [NSString stringWithFormat:@"%@",requestData[@"h"]];
+//            if ([weakself getNoEmptyString:w])  width = w.floatValue;
+//            if ([weakself getNoEmptyString:h])  height = h.floatValue;
+//            if (![weakself getNoEmptyString:w]) width = height*width_height_per;
+//            if (![weakself getNoEmptyString:h]) height = width/width_height_per;
+//            image= [__xengine__module_camera imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
+//
+//            NSString * quality = [NSString stringWithFormat:@"%@",requestData[@"q"]];
+//            NSString * bytes = [NSString stringWithFormat:@"%@",requestData[@"bytes"]];
+//            imageData = [weakself compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
+//            image = [UIImage imageWithData:imageData];
+//        }else{
+//            imageData = UIImageJPEGRepresentation(image, 1);
+//        }
         
         GCDWebServerDataResponse *response;
         //响应

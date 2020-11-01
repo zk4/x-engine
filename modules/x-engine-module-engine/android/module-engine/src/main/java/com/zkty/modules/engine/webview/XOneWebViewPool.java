@@ -1,23 +1,27 @@
 package com.zkty.modules.engine.webview;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class XOneWebViewPool {
 
     public static boolean IS_SINGLE = true;
     public static boolean IS_WEB = false;
 
-    private static List<XEngineWebView> circleList;
+    private static Map<String, XEngineWebView> circleMap;
     private static final byte[] lock = new byte[]{};
     private Context mContext;
 
+
     private XOneWebViewPool() {
-        circleList = new ArrayList<>();
+        circleMap = new HashMap<>();
     }
 
     private static volatile XOneWebViewPool instance = null;
@@ -39,49 +43,45 @@ public class XOneWebViewPool {
      */
     public void init(Context context) {
         this.mContext = context;
-        synchronized (lock) {
-            expandWebView();
-        }
-    }
 
-    private void expandWebView() {
-        long start = System.currentTimeMillis();
-        XEngineWebView webView = new XEngineWebView(mContext);
-        circleList.add(webView);
-        long duration = System.currentTimeMillis() - start;
-        Log.d("EngineSdk", String.format(" webview pool 耗时%d毫秒,共创建%d个webView", duration, circleList.size()));
     }
 
 
     /**
      * 获取webview
      */
-    public XEngineWebView getUnusedWebViewFromPool() {
+    public XEngineWebView getUnusedWebViewFromPool(String microAppId) {
         synchronized (lock) {
             XEngineWebView webView = null;
             if (IS_WEB || IS_SINGLE) {
-                webView = circleList.get(0);
+                if (TextUtils.isEmpty(microAppId)) {
+                    microAppId = "h5";
+                }
+                if (circleMap.containsKey(microAppId)) {
+                    webView = circleMap.get(microAppId);
+                } else {
+                    webView = new XEngineWebView(mContext);
+                    circleMap.put(microAppId, webView);
+                }
+
                 ViewGroup parent = (ViewGroup) webView.getParent();
                 if (parent != null) {
                     parent.removeAllViews();
                 }
             } else {
                 webView = new XEngineWebView(mContext);
-                circleList.set(0, webView);
+                circleMap.put("common", webView);
             }
             return webView;
         }
     }
 
-    /**
-     * 获取当前webview
-     */
-    public XEngineWebView peekUnusedWebViewFromPool() {
-        return circleList.get(0);
+    public void cleanWebView() {
+        circleMap.clear();
     }
 
     public void putWebViewBackToPool(XEngineWebView webView) {
-        circleList.add(0, webView);
+        circleMap.put("common", webView);
     }
 
 }

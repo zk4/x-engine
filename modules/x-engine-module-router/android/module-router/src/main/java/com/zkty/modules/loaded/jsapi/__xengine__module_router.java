@@ -2,6 +2,7 @@ package com.zkty.modules.loaded.jsapi;
 
 import androidx.annotation.Nullable;
 
+import com.alibaba.fastjson.JSON;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
@@ -11,6 +12,6 @@ public class __xengine__module_router extends xengine__module_router {
     @Override
     public void _openTargetRouter(RouterOpenAppDTO dto, CompletionHandler<Nullable> handler) {
 
-        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(), dto.type, dto.uri, dto.path, null, null);
+        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(), dto.type, dto.uri, dto.path, JSON.toJSONString(dto.args), dto.version == null ? null : String.valueOf(dto.version));
     }
 }

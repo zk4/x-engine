@@ -120,7 +120,7 @@
     if(urlStr){
         [self setMainUrl:urlStr];
         if(path){
-            urlStr = [NSString stringWithFormat:@"%@/%@", urlStr, path];
+            urlStr = [NSString stringWithFormat:@"%@%@", urlStr, path];
         }
         [self pushWebViewControllerWithUrl:urlStr];
     }

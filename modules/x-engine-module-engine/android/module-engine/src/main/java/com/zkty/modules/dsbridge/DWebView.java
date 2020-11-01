@@ -71,7 +71,7 @@ public class DWebView extends WebView {
     private ArrayList<CallInfo> callInfoList;
     private InnerJavascriptInterface innerJavascriptInterface = new InnerJavascriptInterface();
     private Handler mainHandler = new Handler(Looper.getMainLooper());
-
+    private boolean isFirstLoad = true;
 
     class InnerJavascriptInterface {
 
@@ -458,7 +458,10 @@ public class DWebView extends WebView {
         runOnMainThread(new Runnable() {
             @Override
             public void run() {
-                callInfoList = new ArrayList<>();
+                if (isFirstLoad) {
+                    callInfoList = new ArrayList<>();
+                    isFirstLoad = false;
+                }
                 String urlTemp = url;
                 if (url != null && url.startsWith("/data")) {
                     urlTemp = "file://" + url;
@@ -480,7 +483,10 @@ public class DWebView extends WebView {
         runOnMainThread(new Runnable() {
             @Override
             public void run() {
-                callInfoList = new ArrayList<>();
+                if (isFirstLoad) {
+                    callInfoList = new ArrayList<>();
+                    isFirstLoad = false;
+                }
                 String urlTemp = url;
                 if (url != null && url.startsWith("/data")) {
                     urlTemp = "file://" + url;
@@ -495,7 +501,10 @@ public class DWebView extends WebView {
         runOnMainThread(new Runnable() {
             @Override
             public void run() {
-                callInfoList = new ArrayList<>();
+                if (isFirstLoad) {
+                    callInfoList = new ArrayList<>();
+                    isFirstLoad = false;
+                }
                 DWebView.super.reload();
             }
         });

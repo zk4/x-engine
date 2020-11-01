@@ -34,7 +34,9 @@ const assetsCDN = {
 
 // vue.config.js
 const vueConfig = {
-  publicPath:"./",
+    // 默认'/'，部署应用包时的基本 URL
+  // publicPath: process.env.NODE_ENV === 'production' ? '/' : './',
+  publicPath:'./',
   // configureWebpack: {
   //   // webpack plugins
   //   plugins: [
@@ -130,9 +132,12 @@ const vueConfig = {
     port: 8080,
     // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
     proxy: {
+      "/picture/": {
+        target: "https://times-dev-user-center.oss-cn-beijing.aliyuncs.com",
+        changeOrigin: true,
+      },
       "/times/": {
-        // target: "http://dev.linli580.com:16666", //后端ip地址及端口
-        target: 'http://192.168.8.120:3000/',
+        target: "http://dev.linli590.cn:16666", //后端ip地址及端口
         ws: true, //是否跨域
         changeOrigin: true,
       },

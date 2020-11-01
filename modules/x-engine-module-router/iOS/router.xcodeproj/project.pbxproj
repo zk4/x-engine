@@ -28,6 +28,7 @@
 		C9B4278725401B2200209DB3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B4278625401B2200209DB3 /* Security.framework */; };
 		C9B4278925401B2B00209DB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B4278825401B2B00209DB3 /* CoreGraphics.framework */; };
 		C9B4278B25401B3B00209DB3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B4278A25401B3A00209DB3 /* WebKit.framework */; };
+		DD60A4B7254E45C0000D6C87 /* XERouterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD60A4B6254E45C0000D6C87 /* XERouterManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		C9B4278825401B2B00209DB3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C9B4278A25401B3A00209DB3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-router.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-router.debug.xcconfig"; path = "Target Support Files/Pods-router/Pods-router.debug.xcconfig"; sourceTree = "<group>"; };
+		DD60A4B6254E45C0000D6C87 /* XERouterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XERouterManager.m; sourceTree = "<group>"; };
+		DD60A4BB254E45D0000D6C87 /* XERouterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XERouterManager.h; sourceTree = "<group>"; };
 		DDBC0BF225347FCA00773E5A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		DDBC0BF325347FCA00773E5A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DDBC0BF425347FCA00773E5A /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 				587F74202506737700F515BD /* gen */,
 				587F7419250669A300F515BD /* __xengine__module_router.h */,
 				587F741A250669A300F515BD /* __xengine__module_router.m */,
+				DD60A4BB254E45D0000D6C87 /* XERouterManager.h */,
+				DD60A4B6254E45C0000D6C87 /* XERouterManager.m */,
 				DDBC0BF125347FCA00773E5A /* wx */,
 			);
 			path = Class;
@@ -504,6 +509,7 @@
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				587F741B250669A300F515BD /* __xengine__module_router.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
+				DD60A4B7254E45C0000D6C87 /* XERouterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

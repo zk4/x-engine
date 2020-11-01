@@ -7,11 +7,9 @@
 
 #import "MicroAppLoader.h"
 
-
 @interface MicroAppLoader()
-    @property (nonatomic, strong) NSMutableDictionary<NSString*,NSString*> *microappId_versionInSandbox;
+    @property (nonatomic, strong) NSMutableDictionary *microappId_versionInSandbox;
 @end
-
 @implementation MicroAppLoader
 
 + (instancetype)sharedInstance{
@@ -62,37 +60,41 @@
 - (void) scanMicroAppsInSandBox{
     NSString * sandbox_microapps_location = [MicroAppLoader microappDirectory];
     NSArray* microapps = [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:false];
+    NSArray* microapps2 = [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:YES];
     for (NSString* microapp in microapps){
-        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@/index.html",[MicroAppLoader microappDirectory], microapp];
-            [self.microappId_versionInSandbox setObject:sandbox_microapp_location forKey:microapp];
+       NSMutableArray* tokens=[[microapp  componentsSeparatedByString:@"."] mutableCopy];
+       NSInteger cur_version =  [[tokens lastObject] intValue];
+       [tokens removeLastObject];
+       NSString* appid = [tokens componentsJoinedByString:@"."];
+       NSNumber* old_version = [self.microappId_versionInSandbox objectForKey:appid];
+        if(!old_version || (old_version && [old_version integerValue] < cur_version)){
+            [self.microappId_versionInSandbox setObject:[NSNumber numberWithLong:cur_version] forKey:appid];
+        }
     }
 }
 
-- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId in_version:(long) in_version{
+- (NSString*) locateMicroAppByMicroappId:(NSString*)microappId in_version:(long) version{
     self.nowMicroAppId = microappId;
-    NSString* maid_version = [NSString stringWithFormat:@"%@.%ld", microappId, in_version];
-    
-    // TODO no need to scan every time, only when dirty.
-    [self scanMicroAppsInSandBox];
-    
-    NSString* location_in_sandbox = [self.microappId_versionInSandbox objectForKey:maid_version];
-    // found in sand box
-    if(location_in_sandbox)
-    {
-        return location_in_sandbox;
-    }
-    // otherwise found in project / NSBundle
-    else{
-       NSString * htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld/index",microappId,in_version] ofType:@"html"];
+    BOOL r = [self checkMicroAppVersion:microappId version:version];
+    if(r){
+        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, version];
+        return sandbox_microapp_location;
+    }else{
+       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%@/index", microappId, @"0"] ofType:@"html"];
        if (htmlPath) {
-           NSString* htmlPathWithShema=[NSString stringWithFormat:@"file://%@", htmlPath];
-           [self.microappId_versionInSandbox setObject:htmlPathWithShema forKey:maid_version];
-            return htmlPathWithShema;
+            return [NSString stringWithFormat:@"file://%@", htmlPath];
        }
     }
     return nil;
 }
- 
+
+-(BOOL)checkMicroAppVersion:(NSString *)microappId version:(long)version{
+    
+    NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@.%ld", [MicroAppLoader microappDirectory], microappId, version];
+    BOOL isDir = false;
+    BOOL isEx = [[NSFileManager defaultManager] fileExistsAtPath:sandbox_microapp_location isDirectory:&isDir];
+    return (isEx && isDir);
+}
  
 -(NSString *)nowMicroAppId{
     if(_nowMicroAppId == nil){

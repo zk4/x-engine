@@ -10,10 +10,17 @@
 #import <x-engine-module-engine/XEOneWebViewControllerManage.h>
 #import "WXApi.h"
 #import <ZKPushAnimation.h>
+#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
+
+@interface XERouterManager ()
+
+@property(nonatomic, weak) __xengine__module_dcloud* dcloud;
+
+@end
 
 @implementation XERouterManager
 
-+(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withVersion:(long)version{
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
     if([type isEqual:@"native"]){
         NSArray *ary = [uri componentsSeparatedByString:@","];
         NSString *className = ary[0];
@@ -36,7 +43,10 @@
     } else if([type isEqual:@"microapp"]){
         [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
     } else if([type isEqual:@"uni"]){
-        
+//        UniMPDTO* d = [UniMPDTO new];
+//        d.appId = uri;
+//        d.arguments = args;
+//        [self.dcloud _openUniMPWithArg:d complete:nil];
     } else if([type isEqual:@"wx"]){
         
         NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"wx_appkey" ofType:@"md"];
@@ -55,11 +65,6 @@
             }
         }
     }
-}
-
-+(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path{
-
-    [self routerToTarget:type withUri:uri withPath:path withVersion:0];
 }
 
 @end

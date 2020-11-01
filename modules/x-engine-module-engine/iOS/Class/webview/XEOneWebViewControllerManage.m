@@ -116,7 +116,7 @@
                         withVersion:(long)version
                          withParams:(NSString *)params{
     
-    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:version];
+    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
     if(urlStr){
         [self setMainUrl:urlStr];
         if(path){
@@ -144,7 +144,7 @@
 -(void)setMainAppid:(NSString *)appid withPath:(NSString *)path{
     
     long version;
-    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:0];
+    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0];
     NSString *fullpath;
     if (path.length > 0){
         fullpath = [NSString stringWithFormat:@"%@%@", toUrl, path];
@@ -193,7 +193,7 @@
 -(UIViewController *)getWebViewControllerWithId:(NSString *)appid{
     
     long version;
-    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid out_version:0];
+    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0];
     XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:toUrl];
     return vc;
 }

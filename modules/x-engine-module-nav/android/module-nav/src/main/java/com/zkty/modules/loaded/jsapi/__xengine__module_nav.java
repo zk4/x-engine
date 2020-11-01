@@ -66,7 +66,11 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavRightBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, view -> {
-                mActivity.getXEngineWebView().callHandler(dto.__event__, retValue -> {
+                mActivity.getXEngineWebView().callHandler(dto.__event__, new OnReturnValue<Object>() {
+                    @Override
+                    public void onValue(Object retValue) {
+                        Log.d("DsBridge","append返回了" );
+                    }
                 });
             });
         });

@@ -48,9 +48,11 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 -(void)resetUrl:(NSString *)url{
     if(self.inSingle || self.inAllSingle){
         XEngineWebView *webView = [self getWebView:url];
-        if(webView && webView.backForwardList.backList.count > 1){
+        if(webView && webView.backForwardList.backList.count > 0){
                     [webView goBack];
 //            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
+        }else{
+            [webView removeFromSuperview];
         }
     }
 }

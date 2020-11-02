@@ -3,6 +3,7 @@ package com.zkty.modules.engine.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -10,6 +11,7 @@ import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
 
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +62,10 @@ public class XEngineWebActivityManager {
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, microAppId);
 
         String url = TextUtils.isEmpty(path) ? indexUrl : indexUrl + "#" + path;
-        url = TextUtils.isEmpty(args) ? url : url + "?" + args;
+        url = (TextUtils.isEmpty(args) || args.equals("null")) ? url : url + "?" + args;
 //        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
+
+        Log.d("----url", "args:" + (!TextUtils.isEmpty(args) ? args : "----") + "----" + url);
 
         intent.putExtra(XEngineWebActivity.URL, url);
         context.startActivity(intent);

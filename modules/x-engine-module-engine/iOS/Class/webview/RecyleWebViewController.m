@@ -114,26 +114,32 @@
 }
 
 - (void)loadFileUrl:(NSString *)url{
-    //    if(!self.isReadyLoading){
-    //    url = @"/hasOwnerCert";
-    if(url){
-        [self.webview stopLoading];
-        if([url hasPrefix:@"http"]){
-            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+    if([self.fileUrl hasPrefix:@"http"]){
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
+    }else{
+            
+        if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+            [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
         }else{
-            if([url rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-                [self.webview loadFileURL:[NSURL fileURLWithPath:url]
-                  allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-            }else{
-                [self.webview loadFileURL:[NSURL fileURLWithPath:url]
-                  allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
-                //                    [self.webview loadFileURL:[NSURL fileURLWithPath:url]
-                //                      allowingReadAccessToURL:[NSURL fileURLWithPath:url]];
-            }
+            [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
         }
-        NSLog(@"%@",self.fileUrl);
     }
-    //    }
+//    if(url){
+//        [self.webview stopLoading];
+//        if([url hasPrefix:@"http"]){
+//            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+//        }else{
+//            if([url rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+//                [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+//                  allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+//            }else{
+//                [self.webview loadFileURL:[NSURL fileURLWithPath:url]
+//                  allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+//            }
+//        }
+//        NSLog(@"%@",self.fileUrl);
+//    }
 }
 
 - (void)popToRoot{

@@ -120,7 +120,13 @@
     if(urlStr){
         [self setMainUrl:urlStr];
         if(path){
-            urlStr = [NSString stringWithFormat:@"%@%@", urlStr, path];
+            if([urlStr hasSuffix:@"index.html"]){
+                urlStr = [NSString stringWithFormat:@"%@#%@", urlStr, path];
+            }else if([urlStr hasSuffix:@"index.html/"]){
+                urlStr = [NSString stringWithFormat:@"%@#/%@", [urlStr substringToIndex:urlStr.length - 1], path];
+            }else{
+                urlStr = [NSString stringWithFormat:@"%@#%@", urlStr, path];
+            }
         }
         [self pushWebViewControllerWithUrl:urlStr];
     }

@@ -80,7 +80,7 @@
         NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, version];
         return sandbox_microapp_location;
     }else{
-       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%@/index", microappId, @"0"] ofType:@"html"];
+       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld/index", microappId, version] ofType:@"html"];
        if (htmlPath) {
             return [NSString stringWithFormat:@"file://%@", htmlPath];
        }

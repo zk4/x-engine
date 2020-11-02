@@ -9,6 +9,7 @@
 #import "XEngineWebView.h"
 #import "XEngineContext.h"
 #import "xengine__module_BaseModule.h"
+#import <MicroAppLoader.h>
 
 #import "Unity.h"
 #import "RecyleWebViewController.h"
@@ -48,10 +49,11 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 -(void)resetUrl:(NSString *)url{
     if(self.inSingle || self.inAllSingle){
         XEngineWebView *webView = [self getWebView:url];
-        if(webView && webView.backForwardList.backList.count > 0){
+        if(webView && webView.backForwardList.backList.count == 1){
                     [webView goBack];
 //            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
-        }else{
+        }
+        if(webView.backForwardList.backList.count == 0){
             [webView removeFromSuperview];
         }
     }
@@ -116,8 +118,26 @@ NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgre
 //    return ss;
     
     NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
-    NSString *ss = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
-    return ss;
+    if([components.scheme isEqualToString:@"file"]){
+        NSString *path = components.path;
+        if([components.path hasPrefix:[MicroAppLoader microappDirectory]]){
+            path = [components.path substringFromIndex:[MicroAppLoader microappDirectory].length];
+            NSArray *ary = [path componentsSeparatedByString:@"/"];
+            if(ary.count > 0){
+                path = ary[1];
+            }
+        }else if([components.path hasPrefix:[[NSBundle mainBundle] bundlePath]]){
+            path = [components.path substringFromIndex:[[NSBundle mainBundle] bundlePath].length];
+            NSArray *ary = [path componentsSeparatedByString:@"/"];
+            if(ary.count > 0){
+                path = ary[1];
+            }
+        }
+        return path;
+    }else{
+        NSString *ss = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+        return ss;
+    }
 }
 
 -(XEngineWebView *)createWebView:(NSString *)baseUrl{

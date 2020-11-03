@@ -14,20 +14,20 @@
             android:id="@+id/dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/dp_10"
             android:gravity="center"
             android:textColor="#333333"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             android:visibility="gone" />
 
         <TextView
             android:id="@+id/dialog_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/dp_10"
             android:gravity="center"
             android:textColor="#444444"
-            android:textSize="14sp"
+            android:textSize="@dimen/sp_14"
             android:visibility="gone" />
 
         <ListView
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="#EFF4F9"
-            android:dividerHeight="1dp" />
+            android:dividerHeight="@dimen/dp_1" />
 
 
     </LinearLayout>
@@ -43,7 +43,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="@dimen/dp_15" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,16 +57,16 @@
             android:layout_weight="1"
             android:background="@drawable/common_za_dialog_content"
             android:gravity="center"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:paddingTop="@dimen/dp_15"
+            android:paddingBottom="@dimen/dp_15"
             android:text="取消"
             android:textColor="@color/color_8d8d8d"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_18" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="@dimen/dp_10" />
 
 </LinearLayout>

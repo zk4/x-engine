@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -33,7 +32,8 @@ import com.zkty.modules.engine.core.IApplicationListener;
 import com.zkty.modules.engine.exception.XEngineException;
 import com.zkty.modules.engine.utils.FileUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
-import com.zkty.modules.loaded.imp.GlideLoader;
+import com.zkty.modules.loaded.ClientManager;
+import com.zkty.modules.loaded.EditArgs;
 import com.zkty.modules.loaded.imp.ImagePicker;
 
 import java.io.ByteArrayOutputStream;
@@ -53,6 +53,8 @@ public class __xengine__module_camera extends xengine__module_camera implements 
     private int REQUEST_OBTAIN_PIC = 1;
 
     private CameraDTO cameraDTO;
+    private EditArgs editArgs;
+
     private static int REQUEST_CAMERA = 10;     //启动相机
     private static int REQUEST_ALBUM = 11;      //启动相册
     private static int REQUEST_CROP = 12;       //启动裁剪
@@ -84,6 +86,12 @@ public class __xengine__module_camera extends xengine__module_camera implements 
     }
 
 
+    /**
+     * dto.args:{width:"", height:"", quality:"", bytes:""} //
+     *
+     * @param dto
+     * @param handler
+     */
     @Override
     public void _openImagePicker(final CameraDTO dto, final CompletionHandler<CameraRetDTO> handler) {
         Log.d(TAG, "receive object:" + JSONObject.toJSONString(dto));
@@ -92,6 +100,22 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 //        cameraDTO.allowsEditing = false;
 //        cameraDTO.savePhotosAlbum = false;
 //        cameraDTO.cameraDevice = "front";
+
+        editArgs = new EditArgs();
+        if (cameraDTO.args != null) {
+            if (cameraDTO.args.containsKey("width")) {
+                editArgs.setWidth(cameraDTO.args.get("width"));
+            }
+            if (cameraDTO.args.containsKey("height")) {
+                editArgs.setHeight(cameraDTO.args.get("height"));
+            }
+            if (cameraDTO.args.containsKey("quality")) {
+                editArgs.setQuality(cameraDTO.args.get("quality"));
+            }
+            if (cameraDTO.args.containsKey("bytes")) {
+                editArgs.setBytes(cameraDTO.args.get("bytes"));
+            }
+        }
 
         out = null;
         final XEngineWebActivity act = (XEngineWebActivity) XEngineWebActivityManager.sharedInstance().getCurrent();
@@ -151,12 +175,14 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                                 File file = new File(path);
                                 Log.d(TAG, file.getParent() + "---" + file.getName());
 
-                                mXEngineWebView.callHandler(dto.__event__, new Object[]{path}, new OnReturnValue<Object>() {
-                                    @Override
-                                    public void onValue(Object retValue) {
+//                                mXEngineWebView.callHandler(dto.__event__, new Object[]{path}, new OnReturnValue<Object>() {
+//                                    @Override
+//                                    public void onValue(Object retValue) {
+//
+//                                    }
+//                                });
 
-                                    }
-                                });
+                                setResult(act, path, editArgs, handler);           //设置数据返回
                             } else {
                                 throw new XEngineException("XEngineWebView is null!");
                             }
@@ -184,15 +210,17 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                             if (out.exists()) {
                                 if (cameraDTO.allowsEditing) {
-                                    crop(act, FileProvider.getUriForFile(act, act.getPackageName() + ".provider", out), out.getParentFile(), out.getName());
+                                    crop(act, FileProvider.getUriForFile(act, act.getPackageName() + ".provider", out), out.getParentFile(), out.getName(), editArgs);
                                 } else {
                                     if (mXEngineWebView != null) {
-                                        mXEngineWebView.callHandler(dto.__event__, new Object[]{out.getPath()}, new OnReturnValue<Object>() {
-                                            @Override
-                                            public void onValue(Object retValue) {
+//                                        mXEngineWebView.callHandler(dto.__event__, new Object[]{out.getPath()}, new OnReturnValue<Object>() {
+//                                            @Override
+//                                            public void onValue(Object retValue) {
+//
+//                                            }
+//                                        });
 
-                                            }
-                                        });
+                                        setResult(act, out.getPath(), editArgs, handler);           //设置数据返回
                                     } else {
                                         throw new XEngineException("XEngineWebView is null!");
                                     }
@@ -211,15 +239,16 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                                     Log.d(TAG, "out:" + out.getPath());
 
                                     if (cameraDTO.allowsEditing) {              //编辑
-                                        crop(act, uri, out.getParentFile(), out.getName());
+                                        crop(act, uri, out.getParentFile(), out.getName(), editArgs);
                                     } else {                                    //直接返回
                                         if (mXEngineWebView != null && out.exists()) {
-                                            mXEngineWebView.callHandler(dto.__event__, new Object[]{out.getPath()}, new OnReturnValue<Object>() {
-                                                @Override
-                                                public void onValue(Object retValue) {
-
-                                                }
-                                            });
+//                                            mXEngineWebView.callHandler(dto.__event__, new Object[]{out.getPath()}, new OnReturnValue<Object>() {
+//                                                @Override
+//                                                public void onValue(Object retValue) {
+//
+//                                                }
+//                                            });
+                                            setResult(act, out.getPath(), editArgs, handler);           //设置数据返回
                                         } else {
                                             throw new XEngineException("XEngineWebView is null!");
                                         }
@@ -233,30 +262,32 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                             if (mXEngineWebView != null && out.exists()) {
                                 String path = out.getPath();
+                                Log.d(TAG, "crop:" + path);
 
-                                BitmapFactory.Options options = new BitmapFactory.Options();
-                                options.inPreferredConfig = Bitmap.Config.RGB_565;
-                                Log.d(TAG, "path:" + path);
-                                Log.d(TAG, "start:" + System.currentTimeMillis());
-                                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-
-                                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
-                                String base64 = bmpToBase64(bitmap);
-//                                base64="888";
-                                Log.d(TAG, "length:" + base64.length());
-                                Log.d(TAG, "end:" + System.currentTimeMillis());
-                                CameraRetDTO ret = new CameraRetDTO();
-                                //  ret.retImage = bmpToBase64(bitmap);
-                                ret.retImage = "6666";
-                                Log.d(TAG, "base64:" + ret.retImage);
-
-
-                                mXEngineWebView.callHandler(dto.__event__, new Object[]{base64}, new OnReturnValue<Object>() {
-                                    @Override
-                                    public void onValue(Object retValue) {
-                                        Log.d(TAG, "result:" + System.currentTimeMillis());
-                                    }
-                                });
+//                                BitmapFactory.Options options = new BitmapFactory.Options();
+//                                options.inPreferredConfig = Bitmap.Config.RGB_565;
+//                                Log.d(TAG, "path:" + path);
+//                                Log.d(TAG, "start:" + System.currentTimeMillis());
+//                                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+//
+//                                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
+//                                String base64 = bmpToBase64(bitmap);
+////                                base64="888";
+//                                Log.d(TAG, "length:" + base64.length());
+//                                Log.d(TAG, "end:" + System.currentTimeMillis());
+//                                CameraRetDTO ret = new CameraRetDTO();
+//                                //  ret.retImage = bmpToBase64(bitmap);
+//                                ret.retImage = "6666";
+//                                Log.d(TAG, "base64:" + ret.retImage);
+//
+//
+//                                mXEngineWebView.callHandler(dto.__event__, new Object[]{base64}, new OnReturnValue<Object>() {
+//                                    @Override
+//                                    public void onValue(Object retValue) {
+//                                        Log.d(TAG, "result:" + System.currentTimeMillis());
+//                                    }
+//                                });
+                                setResult(act, path, editArgs, handler);           //设置数据返回
                             } else {
                                 throw new XEngineException("XEngineWebView is null!");
                             }
@@ -390,7 +421,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
      * @param dir      裁剪后输出的目录
      * @param fileName 裁剪后输出的文件名
      */
-    private void crop(Activity activity, Uri uri, File dir, String fileName) {
+    private void crop(Activity activity, Uri uri, File dir, String fileName, EditArgs edit) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
@@ -405,11 +436,27 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         }
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri); //指定输出的文件路径及文件名
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
+//        intent.putExtra("aspectX", 1);
+//        intent.putExtra("aspectY", 1);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG);
-        intent.putExtra("outputX", 160);
-        intent.putExtra("outputY", 160);
+
+
+        if (edit != null) {
+            Log.d(TAG, "args:" + edit.toString());
+        } else {
+            Log.d(TAG, "args: null");
+        }
+        if (edit != null && !TextUtils.isEmpty(edit.getWidth())) {
+            intent.putExtra("outputX", Integer.parseInt(edit.getWidth()));
+        } else {
+            intent.putExtra("outputX", 720);
+        }
+        if (edit != null && !TextUtils.isEmpty(edit.getHeight())) {
+            intent.putExtra("outputY", Integer.parseInt(edit.getHeight()));
+        } else {
+            intent.putExtra("outputY", 720);
+        }
+
         intent.putExtra("scale", true);
         intent.putExtra("scaleUpIfNeeded", true);
         intent.putExtra("return-data", false);
@@ -418,37 +465,23 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
 
     /**
-     * bitmap转Base64
-     *
-     * @param bitmap
-     * @return
+     * @param activity
+     * @param path
      */
-    public static String bmpToBase64(Bitmap bitmap) {
-        String result = null;
-        ByteArrayOutputStream baos = null;
-        try {
-            if (bitmap != null) {
-                baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                baos.flush();
-                baos.close();
-                byte[] bitmapBytes = baos.toByteArray();
-                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (baos != null) {
-                    baos.flush();
-                    baos.close();
+    private void setResult(Activity activity, String path, EditArgs editArgs, CompletionHandler<CameraRetDTO> handler) {
+        if (mXEngineWebView != null) {
+            ClientManager.startServer(activity, path, editArgs);
+
+//            CameraRetDTO retDTO = new CameraRetDTO();
+//            retDTO.retImage = path;
+//            handler.complete(retDTO);
+
+            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{path}, new OnReturnValue<Object>() {
+                @Override
+                public void onValue(Object retValue) {
+                    Log.d(TAG, "result:" + System.currentTimeMillis());
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            });
         }
-        return result;
     }
-
-
 }

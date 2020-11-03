@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="@dimen/dp_50"
     android:background="@color/white">
 
     <TextView
@@ -10,12 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="@dimen/sp_16" />
 
     <LinearLayout
         android:id="@+id/ll_actionbar_left"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_50"
         android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -24,7 +24,7 @@
             android:id="@+id/iv_actionbar_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/dp_16"
             android:src="@mipmap/icon_back"
             android:visibility="visible" />
 
@@ -32,9 +32,9 @@
             android:id="@+id/tv_actionbar_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/dp_8"
             android:textColor="#121212"
-            android:textSize="24sp"
+            android:textSize="@dimen/sp_24"
             android:visibility="gone" />
 
     </LinearLayout>
@@ -51,7 +51,7 @@
             android:id="@+id/hl_actionbar_right_more"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="@dimen/dp_15"
             android:orientation="horizontal"
             android:visibility="gone" />
 
@@ -67,15 +67,15 @@
                 android:id="@+id/tv_actionbar_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:textSize="16sp"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:textSize="@dimen/sp_16"
                 android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/iv_actionbar_menu"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="15dp"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_15"
                 android:scaleType="fitXY"
                 android:visibility="gone" />
 
@@ -94,15 +94,15 @@
                 android:id="@+id/tv_actionbar_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:textSize="16sp"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:textSize="@dimen/sp_16"
                 android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/iv_actionbar_right"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="15dp"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_15"
                 android:scaleType="fitXY"
                 android:visibility="gone" />
 
@@ -114,10 +114,10 @@
         android:id="@+id/ll_actionbar_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginBottom="@dimen/dp_5"
         android:layout_toStartOf="@+id/ll_btn_right"
         android:layout_toEndOf="@+id/ll_actionbar_left"
         android:visibility="gone" />
@@ -125,7 +125,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:layout_alignParentBottom="true"
         android:background="#f8f8f8"
         android:visibility="gone" />

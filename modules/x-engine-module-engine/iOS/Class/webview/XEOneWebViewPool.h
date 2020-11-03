@@ -9,7 +9,7 @@
 #import "XEngineWebView.h"
 
 UIKIT_EXTERN NSNotificationName const XEWebViewProgressChangeNotification;
-
+UIKIT_EXTERN NSNotificationName const XEWebViewLoadFailNotification;
 @interface XEOneWebViewPool : NSObject
 
 //每个模块是否单个webView

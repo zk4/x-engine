@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MicroAppLoader : NSObject
 
 @property (nonatomic, copy) NSString *nowMicroAppId;
+@property (nonatomic, assign) long nowMicroAppVersion;
 
 + (instancetype)sharedInstance;
 + (NSString *)microappDirectory;

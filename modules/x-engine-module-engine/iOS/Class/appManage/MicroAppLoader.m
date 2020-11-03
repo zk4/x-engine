@@ -75,6 +75,7 @@
 
 - (NSString*) locateMicroAppByMicroappId:(NSString*)microappId in_version:(long) version{
     self.nowMicroAppId = microappId;
+    self.nowMicroAppVersion = version;
     BOOL r = [self checkMicroAppVersion:microappId version:version];
     if(r){
         NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, version];

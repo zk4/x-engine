@@ -30,14 +30,9 @@
     
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     if([headers[@"Content-Type"] rangeOfString:@"application/json"].location != NSNotFound){
-        [manage.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nullable(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError *__autoreleasing  _Nullable * _Nullable error) {
-            NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-            if(data){
-                return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];;
-            }else{
-                return @"";
-            }
-        }];
+        manage.requestSerializer = [AFJSONRequestSerializer serializer];
+    }else{
+        manage.requestSerializer = [AFHTTPRequestSerializer serializer];
     }
     if ([method isEqualToString:@"PUT"]){
         [manage PUT:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
@@ -47,7 +42,9 @@
         [manage PATCH:URLString parameters:parameters headers:headers success:successBlock failure:failBlock];
     }else if ([method isEqualToString:@"HEAD"]){
         [manage HEAD:URLString parameters:parameters headers:headers success:^(NSURLSessionDataTask *task) {
-            successBlock(task, nil);
+            if(successBlock){
+                successBlock(task, nil);
+            }
         } failure:failBlock];
     } else if ([method isEqualToString:@"GET"]){
         [manage GET:URLString parameters:parameters headers:headers progress:nil success:successBlock failure:failBlock];

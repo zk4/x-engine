@@ -12,7 +12,7 @@
 #import <ZKPushAnimation.h>
 #import <x-engine-module-dcloud/__xengine__module_dcloud.h>
 #import <XEngineContext.h>
-
+#import <MicroAppLoader.h>
 
 @implementation XERouterManager
 
@@ -42,7 +42,23 @@
         }
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:url];
     } else if([type isEqual:@"microapp"]){
-        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
+        int version = 1;
+        if(args[@"version"]){
+            version = [[NSString stringWithFormat:@"%@", args[@"version"]] intValue];
+        }
+        if([[MicroAppLoader sharedInstance] checkMicroAppVersion:uri version:version]){
+            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
+        }else{
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+                                                                object:@{
+                                                                    @"ROUTE_NUMBER":[NSString stringWithFormat:@"%d", version],
+                                                                    @"ROUTE_TYPE":@"microapp",
+                                                                    @"ROUTE_URI":uri,
+                                                                    @"ROUTE_VERSION":[NSString stringWithFormat:@"%d", version],
+                                                                    @"ROUTE_PATH":path,
+            }];
+        }
     } else if([type isEqual:@"uni"]){
         NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
         __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];

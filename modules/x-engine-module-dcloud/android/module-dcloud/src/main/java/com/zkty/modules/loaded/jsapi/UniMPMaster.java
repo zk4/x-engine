@@ -58,10 +58,18 @@ public class UniMPMaster {
         if (DCUniMPSDK.getInstance().isExistsApp(appId)) {
             try {
                 if (params == null) {
-                    DCUniMPSDK.getInstance().startApp(context, appId);
+                    if (redirectPath == null) {
+                        DCUniMPSDK.getInstance().startApp(context, appId);
+                    } else {
+                        DCUniMPSDK.getInstance().startApp(context, appId, redirectPath);
+                    }
                 } else {
                     JSONObject argument = new JSONObject(params);
-                    DCUniMPSDK.getInstance().startApp(context, appId, null, redirectPath, argument);
+                    if (redirectPath == null) {
+                        DCUniMPSDK.getInstance().startApp(context, appId, argument);
+                    } else {
+                        DCUniMPSDK.getInstance().startApp(context, appId, null, redirectPath, argument);
+                    }
                 }
                 return;
             } catch (Exception e) {
@@ -74,10 +82,18 @@ public class UniMPMaster {
             if (code == 1) {//释放wgt完成
                 try {
                     if (params == null) {
-                        DCUniMPSDK.getInstance().startApp(context, appId);
+                        if (redirectPath == null) {
+                            DCUniMPSDK.getInstance().startApp(context, appId);
+                        } else {
+                            DCUniMPSDK.getInstance().startApp(context, appId, redirectPath);
+                        }
                     } else {
                         JSONObject argument = new JSONObject(params);
-                        DCUniMPSDK.getInstance().startApp(context, appId, null, redirectPath, argument);
+                        if (redirectPath == null) {
+                            DCUniMPSDK.getInstance().startApp(context, appId, argument);
+                        } else {
+                            DCUniMPSDK.getInstance().startApp(context, appId, null, redirectPath, argument);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

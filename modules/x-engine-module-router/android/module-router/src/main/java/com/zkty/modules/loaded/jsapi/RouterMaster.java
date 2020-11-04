@@ -61,18 +61,13 @@ public class RouterMaster {
                 break;
             case "3":
             case "uni"://uniApp
-                String path1 = null;
+
                 Map<String, String> params = null;
-                if (path != null) {
-                    if (path.contains("?")) {
-                        String[] splits = path.split("\\?");
-                        path1 = splits[0];
-                        params = JSON.parseObject(splits[1], Map.class);
-                    } else {
-                        path1 = path;
-                    }
+                if (!TextUtils.isEmpty(arg)) {
+                    params = JSON.parseObject(arg, Map.class);
                 }
-                UniMPMaster.startUniApp(uri, path1, params);
+
+                UniMPMaster.startUniApp(uri, path, params);
 
                 break;
             case "1":

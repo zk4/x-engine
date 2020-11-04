@@ -33,6 +33,7 @@
 # JS
 
 
+version: 0.0.55
 ``` bash
 npm install @zkty-team/x-engine-module-network
 ```

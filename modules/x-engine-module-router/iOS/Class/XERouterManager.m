@@ -54,9 +54,9 @@
                                                                 object:@{
 //                                                                    @"ROUTE_NUMBER":[NSString stringWithFormat:@"%d", version],
                                                                     @"ROUTE_TYPE":@"microapp",
-                                                                    @"ROUTE_URI":uri,
+                                                                    @"ROUTE_URI":[NSString stringWithFormat:@"%@", uri],
                                                                     @"ROUTE_VERSION":[NSString stringWithFormat:@"%d", version],
-                                                                    @"ROUTE_PATH":path,
+                                                                    @"ROUTE_PATH":[NSString stringWithFormat:@"%@", path],
             }];
         }
     } else if([type isEqual:@"uni"]){

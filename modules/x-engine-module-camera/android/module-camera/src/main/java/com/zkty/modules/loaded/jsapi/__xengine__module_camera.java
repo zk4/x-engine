@@ -417,7 +417,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         }
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri); //指定输出的文件路径及文件名
-        intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG);
 
         if (edit != null) {
             Log.d(TAG, "args:" + edit.toString());
@@ -452,31 +452,27 @@ public class __xengine__module_camera extends xengine__module_camera implements 
      */
     private void setResult(Activity activity, String path, EditArgs editArgs, final CompletionHandler<CameraRetDTO> handler) {
         if (mXEngineWebView != null) {
-            String ret;
+            CameraRetDTO cameraRetDTO = new CameraRetDTO();
             if (cameraDTO.isbase64) {
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                 Log.d(TAG, "path:" + path + "---start:" + System.currentTimeMillis());
                 Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
-                final String base64 = ClientManager.bmpToBase64(bitmap);
-                Log.d(TAG, "length:" + base64.length());
-                Log.d(TAG, "base64:" + base64);
-                Log.d(TAG, "end:" + System.currentTimeMillis());
+//                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
+//                final String base64 = ClientManager.bmpToBase64(bitmap);
+//                Log.d(TAG, "length:" + base64.length());
+//                Log.d(TAG, "base64:" + base64);
+//                Log.d(TAG, "end:" + System.currentTimeMillis());
 
-                ret = base64;
+                cameraRetDTO.retImage = ClientManager.bmpToBase64(bitmap);
             } else {
-                ret = path;
+                cameraRetDTO.retImage = path;
             }
 
-//            CameraRetDTO cameraRetDTO = new CameraRetDTO();
-//            cameraRetDTO.retImage = ret;
-//            handler.complete(cameraRetDTO);
 
-
-            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{ret}, new OnReturnValue<Object>() {
+            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{cameraRetDTO}, new OnReturnValue<CameraRetDTO>() {
                 @Override
-                public void onValue(Object retValue) {
+                public void onValue(CameraRetDTO retValue) {
                     Log.d(TAG, "result:" + System.currentTimeMillis());
                 }
             });

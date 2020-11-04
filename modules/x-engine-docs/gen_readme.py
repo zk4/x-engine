@@ -1,7 +1,7 @@
 #!/Users/zk/anaconda3/bin/python3
 
 from pathlib import Path
-from os.path import join, isfile,basename,dirname
+from os.path import join, isfile,basename,dirname 
 from pathlib import Path
 from distutils.dir_util import copy_tree
 import subprocess
@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
     arr = os.listdir("..")
     exclude=['x-engine-module-offline','x-engine-module-protocols']
-    include=['x-engine-module-router','x-engine-module-nav','x-engine-module-localstorage','x-engine-module-scan','x-engine-module-camera','x-engine-module-dcloud','x-engine-module-network','x-engine-module-offline']
+    include=['x-engine-module-router','x-engine-module-nav','x-engine-module-localstorage','x-engine-module-scan','x-engine-module-camera','x-engine-module-dcloud','x-engine-module-network','x-engine-module-offline','x-engine-module-device']
     for d in arr:
         if d in include:
             # continue

@@ -69,6 +69,7 @@ public class UniMPMaster {
             }
         }
         String wgtPath = FileUtils.copyAssetsSingleFile(context, context.getCacheDir().getPath(), appId + ".wgt");
+        if (TextUtils.isEmpty(wgtPath)) return;
         DCUniMPSDK.getInstance().releaseWgtToRunPathFromePath(appId, wgtPath, (code, pArgs) -> {
             if (code == 1) {//释放wgt完成
                 try {

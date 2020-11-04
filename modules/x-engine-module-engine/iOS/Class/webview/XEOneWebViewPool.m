@@ -15,6 +15,7 @@
 #import "RecyleWebViewController.h"
 
 NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgressChangeNotification";
+NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNotification";
 
 @interface XEOneWebViewPool ()
 

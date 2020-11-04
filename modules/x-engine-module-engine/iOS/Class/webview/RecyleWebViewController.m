@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UIViewController *parentVC;
 @property (nonatomic, readwrite) BOOL statusBarHidden;
 @property (nonatomic, strong) UIProgressView *progresslayer;
+@property (nonatomic, strong) UIImageView *imageView404;
+@property (nonatomic, strong) UILabel *tipLabel;
 
 @property (nonatomic, assign) BOOL isClearHistory;
 
@@ -38,6 +40,15 @@
                 self.progresslayer.alpha = 0;
             }];
         }
+    }
+}
+
+-(void)webViewLoadFail:(NSNotification *)notifi{
+    
+    NSDictionary *dic = notifi.object;
+    id web = dic[@"webView"];
+    if(web == self.webview){
+        self.imageView404.hidden = NO;
     }
 }
 
@@ -89,6 +100,12 @@
                                                  selector:@selector(webViewProgressChange:)
                                                      name:XEWebViewProgressChangeNotification
                                                    object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadFail:)
+                                                     name:XEWebViewLoadFailNotification
+                                                   object:nil];
+        
         if([fileUrl hasPrefix:self.rootPath]){
             
             NSString *interface = [fileUrl substringFromIndex:self.rootPath.length];
@@ -225,6 +242,8 @@
     [self.webview removeFromSuperview];
     self.webview = webView;
     [self.view addSubview:self.webview];
+    [self.view addSubview:self.progresslayer];
+    [self.view addSubview:self.imageView404];
     //        [self.view insertSubview:self.webview atIndex:0];
     //    }
 }
@@ -243,6 +262,16 @@
     [super viewWillLayoutSubviews];
     self.webview.frame = self.view.bounds;
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
+    float height = (self.view.bounds.size.width / 375.0) * 200;
+    self.imageView404.frame = CGRectMake(0,
+                                         (self.view.bounds.size.height - height) * 0.5,
+                                         self.view.bounds.size.width,
+                                         height);
+    
+    self.tipLabel.frame = CGRectMake(0,
+                                     CGRectGetHeight(self.imageView404.frame) + 8,
+                                     self.imageView404.bounds.size.width,
+                                     self.tipLabel.font.lineHeight);
 }
 -(void)goback:(UIButton *)sender{
     
@@ -291,6 +320,18 @@
     self.progresslayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.5);
     self.progresslayer.progressTintColor = [UIColor orangeColor];
     [self.view addSubview:self.progresslayer];
+    
+    self.imageView404 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"web404"]];
+    self.imageView404.layer.masksToBounds = NO;
+    self.imageView404.hidden = YES;
+    [self.view addSubview:self.imageView404];
+    
+    self.tipLabel = [[UILabel alloc] init];
+    self.tipLabel.textAlignment = NSTextAlignmentCenter;
+    self.tipLabel.text = @"您访问的页面找不到了";
+    self.tipLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+    self.tipLabel.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
+    [self.imageView404 addSubview:self.tipLabel];
 }
 
 

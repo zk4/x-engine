@@ -8,6 +8,7 @@
 
 #import "NavUtil.h"
 #import "micros.h"
+#import <MicroAppLoader.h>
 
 @implementation NavUtil
 
@@ -49,17 +50,26 @@
 
 //获取文件名
 +(NSString *)localFile:(NSString *)pathName {
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:path];
-    NSString *fileName;
-    NSString *R ;
-    while (fileName = [dirEnum nextObject]) {
-        if ([fileName hasSuffix:pathName]) {
-            R = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:fileName];
+    
+    if([MicroAppLoader sharedInstance].nowMicroAppVersion > 0){
+        NSString *path = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:[MicroAppLoader sharedInstance].nowMicroAppId
+                                                                          in_version:[MicroAppLoader sharedInstance].nowMicroAppVersion];
+        
+        path = [NSString stringWithFormat:@"%@%@%@", path, [pathName hasPrefix:@"/"] ? @"" : @"/", pathName];
+        return path;
+    }else{
+        NSString *path = [[NSBundle mainBundle] bundlePath];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:path];
+        NSString *fileName;
+        NSString *R ;
+        while (fileName = [dirEnum nextObject]) {
+            if ([fileName hasSuffix:pathName]) {
+                R = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:fileName];
+            }
         }
+        return R;
     }
-    return R;
 }
 
 
@@ -83,6 +93,7 @@
       NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
       image = [UIImage imageWithData:data];
    }else{
+       
        NSString * pathName = [NavUtil localFile:path];
        image = [UIImage imageWithContentsOfFile:pathName];
    }

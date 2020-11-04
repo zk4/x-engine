@@ -23,6 +23,10 @@
     public String content;
   }
   
+  class DevicePhoneNumDTO {
+    public String phoneNumber;
+  }
+  
   interface xengine__module_device_i {
     public void _getPhoneType(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
 public void _getSystemVersion(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
@@ -38,6 +42,7 @@ public void _getSafeAreaRight(DeviceSheetDTO dto, final CompletionHandler<Device
 public void _getStatusHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
 public void _getNavigationHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
 public void _getTabBarHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
+public void _devicePhoneCall(DevicePhoneNumDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -239,6 +244,20 @@ public void _getTabBarHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceM
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void devicePhoneCall(JSONObject obj, final CompletionHandler<Object> handler) {
+      DevicePhoneNumDTO data= convert(obj,DevicePhoneNumDTO.class);
+      _devicePhoneCall(data, new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

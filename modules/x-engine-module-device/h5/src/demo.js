@@ -169,4 +169,12 @@ import device from './index.js'
       });
   };
 
+  window.devicePhoneCall = (...args) => {
+  device
+    .devicePhoneCall(...args)
+    .then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+};
+
     

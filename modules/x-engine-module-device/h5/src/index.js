@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -67,6 +67,12 @@ function osCheck() {
   {
     "name": "getTabBarHeight",
     "default_args": {}
+  },
+  {
+    "name": "devicePhoneCall",
+    "default_args": {
+      "phoneNumber": "10086"
+    }
   }
 ]
 )}}

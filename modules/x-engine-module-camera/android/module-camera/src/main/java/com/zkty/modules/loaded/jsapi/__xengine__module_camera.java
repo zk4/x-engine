@@ -8,13 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,10 +36,8 @@ import com.zkty.modules.loaded.ClientManager;
 import com.zkty.modules.loaded.EditArgs;
 import com.zkty.modules.loaded.imp.ImagePicker;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import module.camera.R;
@@ -263,23 +261,6 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                             if (mXEngineWebView != null && out.exists()) {
                                 String path = out.getPath();
                                 Log.d(TAG, "crop:" + path);
-
-//                                BitmapFactory.Options options = new BitmapFactory.Options();
-//                                options.inPreferredConfig = Bitmap.Config.RGB_565;
-//                                Log.d(TAG, "path:" + path);
-//                                Log.d(TAG, "start:" + System.currentTimeMillis());
-//                                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-//
-//                                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
-//                                String base64 = bmpToBase64(bitmap);
-////                                base64="888";
-//                                Log.d(TAG, "length:" + base64.length());
-//                                Log.d(TAG, "end:" + System.currentTimeMillis());
-//                                CameraRetDTO ret = new CameraRetDTO();
-//                                //  ret.retImage = bmpToBase64(bitmap);
-//                                ret.retImage = "6666";
-//                                Log.d(TAG, "base64:" + ret.retImage);
-//
 //
 //                                mXEngineWebView.callHandler(dto.__event__, new Object[]{base64}, new OnReturnValue<Object>() {
 //                                    @Override
@@ -436,30 +417,31 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         }
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri); //指定输出的文件路径及文件名
-//        intent.putExtra("aspectX", 1);
-//        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG);
-
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG);
 
         if (edit != null) {
             Log.d(TAG, "args:" + edit.toString());
         } else {
             Log.d(TAG, "args: null");
         }
-        if (edit != null && !TextUtils.isEmpty(edit.getWidth())) {
+        if (edit != null && !TextUtils.isEmpty(edit.getWidth()) && Integer.parseInt(edit.getWidth()) > 0) {
             intent.putExtra("outputX", Integer.parseInt(edit.getWidth()));
+            intent.putExtra("aspectX", Integer.parseInt(edit.getWidth()));
         } else {
             intent.putExtra("outputX", 720);
+            intent.putExtra("aspectX", 1);
         }
-        if (edit != null && !TextUtils.isEmpty(edit.getHeight())) {
+        if (edit != null && !TextUtils.isEmpty(edit.getHeight()) && Integer.parseInt(editArgs.getHeight()) > 0) {
             intent.putExtra("outputY", Integer.parseInt(edit.getHeight()));
+            intent.putExtra("aspectY", Integer.parseInt(edit.getHeight()));
         } else {
             intent.putExtra("outputY", 720);
+            intent.putExtra("aspectY", 1);
         }
 
         intent.putExtra("scale", true);
         intent.putExtra("scaleUpIfNeeded", true);
-        intent.putExtra("return-data", false);
+        intent.putExtra("return-data", true);
         activity.startActivityForResult(intent, REQUEST_CROP);
     }
 
@@ -468,20 +450,38 @@ public class __xengine__module_camera extends xengine__module_camera implements 
      * @param activity
      * @param path
      */
-    private void setResult(Activity activity, String path, EditArgs editArgs, CompletionHandler<CameraRetDTO> handler) {
+    private void setResult(Activity activity, String path, EditArgs editArgs, final CompletionHandler<CameraRetDTO> handler) {
         if (mXEngineWebView != null) {
-            ClientManager.startServer(activity, path, editArgs);
+            String ret;
+            if (cameraDTO.isbase64) {
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                Log.d(TAG, "path:" + path + "---start:" + System.currentTimeMillis());
+                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
+                final String base64 = ClientManager.bmpToBase64(bitmap);
+                Log.d(TAG, "length:" + base64.length());
+                Log.d(TAG, "base64:" + base64);
+                Log.d(TAG, "end:" + System.currentTimeMillis());
 
-//            CameraRetDTO retDTO = new CameraRetDTO();
-//            retDTO.retImage = path;
-//            handler.complete(retDTO);
+                ret = base64;
+            } else {
+                ret = path;
+            }
 
-            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{path}, new OnReturnValue<Object>() {
+//            CameraRetDTO cameraRetDTO = new CameraRetDTO();
+//            cameraRetDTO.retImage = ret;
+//            handler.complete(cameraRetDTO);
+
+
+            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{ret}, new OnReturnValue<Object>() {
                 @Override
                 public void onValue(Object retValue) {
                     Log.d(TAG, "result:" + System.currentTimeMillis());
                 }
             });
+
+//            ClientManager.startServer(activity, path, editArgs);
         }
     }
 }

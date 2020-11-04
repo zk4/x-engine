@@ -119,14 +119,9 @@
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
     if(urlStr){
         [self setMainUrl:urlStr];
-        if(path){
-            if([urlStr hasSuffix:@"index.html"]){
-                urlStr = [NSString stringWithFormat:@"%@#%@", urlStr, path];
-            }else if([urlStr hasSuffix:@"index.html/"]){
-                urlStr = [NSString stringWithFormat:@"%@#/%@", [urlStr substringToIndex:urlStr.length - 1], path];
-            }else{
-                urlStr = [NSString stringWithFormat:@"%@#%@", urlStr, path];
-            }
+        if(path.length > 0){
+            
+            urlStr = [NSString stringWithFormat:@"%@%@%@", urlStr, ([urlStr hasSuffix:@"/"] || [path hasPrefix:@"/"]) ? @"" : @"/", path];
         }
         [self pushWebViewControllerWithUrl:urlStr];
     }

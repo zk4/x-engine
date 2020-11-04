@@ -60,12 +60,8 @@ public class XEngineWebActivityManager {
         Intent intent = new Intent(context, XEngineWebActivity.class);
         intent.putExtra(XEngineWebActivity.INDEX_URL, indexUrl);
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, microAppId);
-
-        String url = TextUtils.isEmpty(path) ? indexUrl : indexUrl + "#" + path;
-        url = (TextUtils.isEmpty(args) || args.equals("null")) ? url : url + "?" + args;
-//        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
-
-        Log.d("----url", "args:" + (!TextUtils.isEmpty(args) ? args : "----") + "----" + url);
+        String url = TextUtils.isEmpty(path) || "null".equals(path) ? indexUrl : indexUrl + "#" + path;
+        url = TextUtils.isEmpty(args) || "null".equals(args) ? url : url + "?" + args;
 
         intent.putExtra(XEngineWebActivity.URL, url);
         context.startActivity(intent);

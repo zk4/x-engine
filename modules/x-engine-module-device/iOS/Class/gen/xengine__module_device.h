@@ -8,6 +8,7 @@
 
 @protocol DeviceSheetDTO;
 @protocol DeviceMoreDTO;
+@protocol DevicePhoneNumDTO;
 
 @interface DeviceSheetDTO: JSONModel
   	@property(nonatomic,strong) NSString* __event__;
@@ -16,6 +17,11 @@
 
 @interface DeviceMoreDTO: JSONModel
   	@property(nonatomic,copy) NSString* content;
+@end
+    
+
+@interface DevicePhoneNumDTO: JSONModel
+  	@property(nonatomic,copy) NSString* phoneNumber;
 @end
     
 
@@ -63,6 +69,9 @@
       @required 
         - (void) _getTabBarHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
 
+      @required 
+        - (void) _devicePhoneCall:(DevicePhoneNumDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
 @end
   
 

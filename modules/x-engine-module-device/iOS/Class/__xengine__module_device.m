@@ -118,6 +118,17 @@
     completionHandler(d, YES);
 }
 
+- (void)_devicePhoneCall:(DevicePhoneNumDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    NSString *telephoneNumber=dto.phoneNumber;
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",telephoneNumber];
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:str];
+    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+        
+    }];
+}
+
+
 //获取手机型号
 - (NSString *)getDeviceName {
     NSString* padType = @"";

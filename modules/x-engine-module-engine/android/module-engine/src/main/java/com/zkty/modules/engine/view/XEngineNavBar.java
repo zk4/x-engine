@@ -88,7 +88,7 @@ public class XEngineNavBar extends RelativeLayout {
     }
 
     public void setNavLeftBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {
-        setClickView(leftTv, leftIv, title, titleColor, titleSize, icon, iconSize, isBold);
+        setClickView(true, leftTv, leftIv, title, titleColor, titleSize, icon, iconSize, isBold);
         if (listener != null) {
             layoutLeft.setOnClickListener(listener);
         }
@@ -102,7 +102,7 @@ public class XEngineNavBar extends RelativeLayout {
     public void setNavRightBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {
         layoutMore.setVisibility(GONE);
         layoutMenu.setVisibility(GONE);
-        setClickView(rightTv, rightIv, title, titleColor, titleSize, icon, iconSize, isBold);
+        setClickView(false, rightTv, rightIv, title, titleColor, titleSize, icon, iconSize, isBold);
         layoutRight.setOnClickListener(listener);
         layoutRight.setVisibility(VISIBLE);
     }
@@ -124,7 +124,7 @@ public class XEngineNavBar extends RelativeLayout {
     public void setNavRightMenuBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, List<Map<String, String>> itemList, boolean showMenuImg, String menuWidth, AdapterView.OnItemClickListener listener) {
         layoutRight.setVisibility(GONE);
         layoutMore.setVisibility(GONE);
-        setClickView(menuTv, menuIv, title, titleColor, titleSize, icon, iconSize, false);
+        setClickView(false, menuTv, menuIv, title, titleColor, titleSize, icon, iconSize, false);
         layoutMenu.setVisibility(VISIBLE);
         layoutMenu.setOnClickListener(view -> showMenu(itemList, showMenuImg, menuWidth, listener));
     }
@@ -196,7 +196,7 @@ public class XEngineNavBar extends RelativeLayout {
         private ImageView ivIcon;
     }
 
-    private void setClickView(TextView tv, ImageView iv, String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold) {
+    private void setClickView(boolean isLeft, TextView tv, ImageView iv, String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold) {
         if (!TextUtils.isEmpty(title)) {
             tv.setText(title);
             tv.setTextColor(Color.parseColor(titleColor));
@@ -209,6 +209,8 @@ public class XEngineNavBar extends RelativeLayout {
             }
 
             tv.setVisibility(View.VISIBLE);
+        } else {
+            tv.setVisibility(GONE);
         }
         if (!TextUtils.isEmpty(icon) && TextUtils.isEmpty(title)) {//Object中如果同时存在title和icon会默认显示文字?
             if (iconSize != null && iconSize.size() == 2) {
@@ -217,6 +219,9 @@ public class XEngineNavBar extends RelativeLayout {
                 lp.height = DensityUtils.dipToPixels(mContext, iconSize.get(1));
             }
             setImage(iv, icon);
+        } else {
+            if (!isLeft)
+                iv.setVisibility(GONE);
         }
     }
 

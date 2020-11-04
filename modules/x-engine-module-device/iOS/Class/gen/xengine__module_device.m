@@ -18,6 +18,12 @@
     }
 @end
     
+  
+@implementation DevicePhoneNumDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
 
 
 
@@ -144,5 +150,12 @@
             completionHandler(result,complete);
           }];
         
+      }
+    - (void) devicePhoneCall:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          DevicePhoneNumDTO* dto = [self convert:dict clazz:DevicePhoneNumDTO.class];
+          [self _devicePhoneCall:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
+          }];
       }
   @end

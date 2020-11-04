@@ -12,6 +12,7 @@
  
 - (instancetype)initWithUrl:(NSString *) fileUrl{
     [MicroAppLoader sharedInstance].nowMicroAppId = fileUrl;
+    [MicroAppLoader sharedInstance].nowMicroAppVersion = 0;
     return [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:[[XEOneWebViewControllerManage sharedInstance] setMainUrl:fileUrl]];
 }
  
@@ -38,7 +39,8 @@
 - (instancetype)initWithMicroAppId:(NSString *)microappId{
     assert(microappId != nil);
     [MicroAppLoader sharedInstance].nowMicroAppId = microappId;
-
+    [MicroAppLoader sharedInstance].nowMicroAppVersion = 0;
+    
     NSString* indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId in_version:0];
     return [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:[[XEOneWebViewControllerManage sharedInstance] setMainUrl:indexfile]];
 }
@@ -47,7 +49,8 @@
     assert(microappId!=nil && path !=nil);
     
     [MicroAppLoader sharedInstance].nowMicroAppId = microappId;
-
+    [MicroAppLoader sharedInstance].nowMicroAppVersion = 0;
+    
     NSString *indexfile = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:microappId in_version:0];
     NSString *fullpath = [NSString stringWithFormat:@"%@%@",indexfile, path];
 

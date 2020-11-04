@@ -11,6 +11,11 @@ interface DeviceMoreDTO {
   content: string;
 }
 
+interface DevicePhoneNumDTO {
+  //手机号
+  phoneNumber: string;
+}
+
 //设备类型
 function getPhoneType(
   DeviceSheetDTO: DeviceSheetDTO = {
@@ -275,4 +280,15 @@ function getTabBarHeight(
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+
+//打电话
+function devicePhoneCall(arg:DevicePhoneNumDTO={phoneNumber:"10086"}){
+  window.devicePhoneCall = (...args) => {
+  device
+    .devicePhoneCall(...args)
+    .then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+};
 }

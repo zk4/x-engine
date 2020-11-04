@@ -52,7 +52,7 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
                                                                 object:@{
-                                                                    @"ROUTE_NUMBER":[NSString stringWithFormat:@"%d", version],
+//                                                                    @"ROUTE_NUMBER":[NSString stringWithFormat:@"%d", version],
                                                                     @"ROUTE_TYPE":@"microapp",
                                                                     @"ROUTE_URI":[NSString stringWithFormat:@"%@", uri],
                                                                     @"ROUTE_VERSION":[NSString stringWithFormat:@"%d", version],

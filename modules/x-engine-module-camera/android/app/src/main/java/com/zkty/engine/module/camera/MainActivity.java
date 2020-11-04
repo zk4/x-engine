@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent();
 //                intent.putExtra(XEngineWebActivity.URL, sb.toString());
-                intent.putExtra(XEngineWebActivity.URL, "http://192.168.3.121:8085/");
+                intent.putExtra(XEngineWebActivity.URL, "http://192.168.3.14:8080/");
                 intent.setClass(MainActivity.this, XEngineWebActivity.class);
                 startActivity(intent);
             }

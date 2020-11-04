@@ -90,7 +90,7 @@ public class SearchEditView extends LinearLayout {
             @Override
             public void afterTextChanged(Editable editable) {
                 searchKey = editable.toString().trim();
-                ivClear.setVisibility(TextUtils.isEmpty(searchKey) ? INVISIBLE : VISIBLE);
+                ivClear.setVisibility(TextUtils.isEmpty(searchKey) ? GONE : VISIBLE);
 
             }
         });

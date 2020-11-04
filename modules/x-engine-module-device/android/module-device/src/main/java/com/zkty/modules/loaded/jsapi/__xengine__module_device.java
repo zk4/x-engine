@@ -1,6 +1,10 @@
 package com.zkty.modules.loaded.jsapi;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+
+import androidx.annotation.Nullable;
 
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.utils.DensityUtils;
@@ -121,5 +125,11 @@ public class __xengine__module_device extends xengine__module_device {
         handler.complete(moreDTO);
     }
 
-
+    @Override
+    public void _devicePhoneCall(DevicePhoneNumDTO dto, CompletionHandler<Nullable> handler) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + dto.phoneNumber);
+        intent.setData(data);
+        XEngineWebActivityManager.sharedInstance().getCurrent().startActivity(intent);
+    }
 }

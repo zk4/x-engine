@@ -9,6 +9,7 @@
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 #import "ZKPushAnimation.h"
+#import "XERouterManager.h"
 
 @interface EntryViewController ()
 
@@ -17,8 +18,9 @@
 @implementation EntryViewController
  
 -(void) pushTestModule{
-   MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:8080"];
-   [self pushViewController:webLaderVC];
+//   MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:8081"];
+//   [self pushViewController:webLaderVC];
+    [XERouterManager routerToTarget:@"microapp" withUri:@"com.times.microapp.AppcMsg" withPath:@"/" withArgs:nil withVersion:1];
 }
 
 - (void)viewDidLoad {

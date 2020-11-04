@@ -23,8 +23,8 @@ function osCheck() {
   {
     "name": "get",
     "default_args": {
-      "key": "LLBToken",
-      "isPublic": true
+      "key": "key",
+      "isPublic": false
     }
   },
   {

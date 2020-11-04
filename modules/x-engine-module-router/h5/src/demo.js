@@ -21,7 +21,7 @@ import router from './index.js'
 
   window._testmicroapp = () => {
     router
-      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"",version:0 })
+      .openTargetRouter({ type: "microapp", uri:"com.zkty.microapp.navdemo", path:"/",version:0 })
       .then((res) => { });
   };
 

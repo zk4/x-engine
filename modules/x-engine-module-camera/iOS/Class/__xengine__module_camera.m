@@ -300,7 +300,7 @@
     NSData *data = UIImagePNGRepresentation(image);
     NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
-    return encodedImageStr;
+    return [NSString stringWithFormat:@"data:image/png;base64,%@",encodedImageStr];
     
 }
 

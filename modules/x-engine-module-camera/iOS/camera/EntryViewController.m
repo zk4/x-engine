@@ -52,7 +52,7 @@
     // 启动 h5 服务器, npm run dev
     // 将下面的 ip 换成你的电脑 ip 即可实时调试
     NSLog(@"%@",[self getIPAddress]);
-    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.1.10:8080/index.html"];
+    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.3.230:8080/index.html"];
 //    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:@"com.zkty.microapp.camera"];
     [self.navigationController pushViewController:webLaderVC animated:YES];
 }

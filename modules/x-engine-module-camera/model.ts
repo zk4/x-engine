@@ -43,10 +43,10 @@ function openImagePicker(
           var tag = document.getElementsByClassName('photo')[0];
           if(tag){
             // tag.setAttribute('src', res+'?w=200&h=100&q=0.5&bytes=1024');
-            tag.setAttribute('src', "data:image/png;base64,"+res);
+            tag.setAttribute('src', res);
           }else{
             // document.body.innerHTML += "<img class='photo' style='width: 100%' "+"src="+res+'?w=200&h=100&q=0.5&bytes=1024'+">";
-            document.body.innerHTML += "<img class='photo' style='width: 100%' "+"src="+"'data:image/png;base64,"+res+"'"+">";
+            document.body.innerHTML += "<img class='photo' style='width: 100%' "+"src="+"'"+res+"'"+">";
           }
         },
       })

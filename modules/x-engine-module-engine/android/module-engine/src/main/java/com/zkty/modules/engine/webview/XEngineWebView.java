@@ -130,11 +130,12 @@ public class XEngineWebView extends DWebView {
     //回微应用首页
     public void goBackToIndexPage() {
         XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-        activity.showScreenCapture(true);
-
-        ViewGroup parent = (ViewGroup) getParent();
-        if (parent != null) {
-            parent.removeAllViews();
+        if (activity != null) {
+            activity.showScreenCapture(true);
+            ViewGroup parent = (ViewGroup) getParent();
+            if (parent != null) {
+                parent.removeAllViews();
+            }
         }
         while (canGoBack()) {
             WebBackForwardList backForwardList = copyBackForwardList();

@@ -42,10 +42,10 @@
         }
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:url];
     } else if([type isEqual:@"microapp"]){
-        int version = 1;
-        if(args[@"version"]){
-            version = [[NSString stringWithFormat:@"%@", args[@"version"]] intValue];
-        }
+//        int version = 1;
+//        if(args[@"version"]){
+//            version = [[NSString stringWithFormat:@"%@", args[@"version"]] intValue];
+//        }
         if([[MicroAppLoader sharedInstance] checkMicroAppVersion:uri version:version]){
             [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
         }else{

@@ -454,7 +454,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         if (mXEngineWebView != null) {
             CameraRetDTO cameraRetDTO = new CameraRetDTO();
             if (cameraDTO.isbase64) {
-                cameraRetDTO.retImage = ClientManager.imageToBase64(path);
+                cameraRetDTO.retImage = "data:image/jpeg;base64,"+ClientManager.imageToBase64(path);
             } else {
                 cameraRetDTO.retImage = path;
             }

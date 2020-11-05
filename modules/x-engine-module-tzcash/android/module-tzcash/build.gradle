@@ -35,8 +35,9 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.73'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api project(':module-engine')
-//    implementation files('libs\\PayLib-android.aar')
-    implementation files('libs\\TzPayLib-debug.aar')
+    implementation project(':module-engine')
+//    api 'com.zkty.mudules:module-engine:0.0.1'
+    implementation files('libs\\PayLib-android.aar')
+//    implementation files('libs\\TzPayLib-debug.aar')
     implementation 'com.google.code.gson:gson:2.4'
 }

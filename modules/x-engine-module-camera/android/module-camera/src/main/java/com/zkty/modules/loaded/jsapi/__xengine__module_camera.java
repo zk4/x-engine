@@ -454,30 +454,17 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         if (mXEngineWebView != null) {
             CameraRetDTO cameraRetDTO = new CameraRetDTO();
             if (cameraDTO.isbase64) {
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                Log.d(TAG, "path:" + path + "---start:" + System.currentTimeMillis());
-                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-//                Log.d(TAG, "width:" + bitmap.getWidth() + "---height:" + bitmap.getHeight());
-//                final String base64 = ClientManager.bmpToBase64(bitmap);
-//                Log.d(TAG, "length:" + base64.length());
-//                Log.d(TAG, "base64:" + base64);
-//                Log.d(TAG, "end:" + System.currentTimeMillis());
-
-                cameraRetDTO.retImage = ClientManager.bmpToBase64(bitmap);
+                cameraRetDTO.retImage = "data:image/jpeg;base64,"+ClientManager.imageToBase64(path);
             } else {
                 cameraRetDTO.retImage = path;
             }
 
-
-            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{cameraRetDTO}, new OnReturnValue<CameraRetDTO>() {
+            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{new String[]{cameraRetDTO.retImage}}, new OnReturnValue<CameraRetDTO>() {
                 @Override
                 public void onValue(CameraRetDTO retValue) {
                     Log.d(TAG, "result:" + System.currentTimeMillis());
                 }
             });
-
-//            ClientManager.startServer(activity, path, editArgs);
         }
     }
 }

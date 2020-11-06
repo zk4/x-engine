@@ -120,13 +120,14 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     __weak typeof(self) weakself = self;
-   
+    
     [picker dismissViewControllerAnimated:YES completion:^{
         if(weakself.allowsEditing){
             weakself.photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
         }else{
             weakself.photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
         }
+
         if(weakself.savePhotosAlbum){
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 if (status == PHAuthorizationStatusAuthorized){
@@ -151,11 +152,22 @@
             NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
             NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
             if(filePath && filePath.length>0) [UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
-           [self sendParamtoWeb:[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr]];
+            NSDictionary * paramDic = @{
+                @"retImage":[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr],
+                @"contentType":@"image/png",
+                @"fileName":photoAppendStr
+            };
+           [self sendParamtoWeb:paramDic];
         }else{
             NSDictionary * argsDic = self.cameraDto.args;
             UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-            [self sendParamtoWeb:[self UIImageToBase64Str:image]];
+            
+            NSDictionary * paramDic = @{
+                @"retImage":[self UIImageToBase64Str:image],
+                @"contentType":@"image/png",
+                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
+            };
+            [self sendParamtoWeb:paramDic];
         }
         
     }];
@@ -325,13 +337,15 @@
     return image;
 }
 
--(void)sendParamtoWeb:(NSString *)param{
+-(void)sendParamtoWeb:(NSDictionary *)param{
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     if ([topVC isKindOfClass:RecyleWebViewController.class]) {
         RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
         CameraRetDTO* d = [CameraRetDTO new];
-        d.retImage = param;
-        [webVC.webview callHandler:self.event arguments:@[d.retImage] completionHandler:^(id  _Nullable value) {}];
+        d.retImage = param[@"retImage"];
+        d.contentType = param [@"contentType"];
+        d.fileName = param[@"fileName"];
+        [webVC.webview callHandler:self.event arguments:@[d.retImage,d.contentType,d.fileName] completionHandler:^(id  _Nullable value) {}];
     }
 }
 

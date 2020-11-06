@@ -22,6 +22,8 @@
 
 @interface CameraRetDTO: JSONModel
   	@property(nonatomic,copy) NSString* retImage;
+   	@property(nonatomic,copy) NSString* fileName;
+   	@property(nonatomic,copy) NSString* contentType;
 @end
     
 

@@ -35,6 +35,7 @@ import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.loaded.ClientManager;
 import com.zkty.modules.loaded.EditArgs;
 import com.zkty.modules.loaded.imp.ImagePicker;
+import com.zkty.modules.loaded.widget.dialog.BottomDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -313,26 +314,21 @@ public class __xengine__module_camera extends xengine__module_camera implements 
      * @param act
      */
     private void showDialog(final Activity act) {
-        final Dialog dialog = new Dialog(act);
-        View content = LayoutInflater.from(act).inflate(R.layout.dialog_select_photo_layout, null);
-        content.findViewById(R.id.camera).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {                                                   //相机
-                dialog.dismiss();
+        String[] sexItem = new String[]{"拍照", "从相册选择"};
+        BottomDialog bottomDialog = new BottomDialog(act);
+        bottomDialog.initDialog(null, null, sexItem, (view, which, l) -> {
+            if (which == 0) {
                 startCamera(act);
-            }
-        });
-
-        content.findViewById(R.id.album).setOnClickListener(new View.OnClickListener() {            //相册
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-
+                bottomDialog.dismissDialog();
+            } else if (which == 1) {
                 startAlbum(act);
+                bottomDialog.dismissDialog();
+            } else {
+                bottomDialog.dismissDialog();
             }
         });
-        dialog.getWindow().setContentView(content, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        dialog.show();
+
+        bottomDialog.showDialog();
     }
 
     /**
@@ -454,7 +450,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         if (mXEngineWebView != null) {
             CameraRetDTO cameraRetDTO = new CameraRetDTO();
             if (cameraDTO.isbase64) {
-                cameraRetDTO.retImage = "data:image/jpeg;base64,"+ClientManager.imageToBase64(path);
+                cameraRetDTO.retImage = "data:image/jpeg;base64," + ClientManager.imageToBase64(path);
             } else {
                 cameraRetDTO.retImage = path;
             }

@@ -37,6 +37,10 @@
   
   class CameraRetDTO {
     public String retImage;
+
+    public String fileName;
+
+    public String contentType;
   }
   
   interface xengine__module_camera_i {

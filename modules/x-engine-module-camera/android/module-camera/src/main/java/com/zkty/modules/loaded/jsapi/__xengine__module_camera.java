@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.OnReturnValue;
@@ -454,8 +455,12 @@ public class __xengine__module_camera extends xengine__module_camera implements 
             } else {
                 cameraRetDTO.retImage = path;
             }
+            cameraRetDTO.contentType = "image/jpeg";
+            File temp = new File(path);
+            if (temp.exists())
+                cameraRetDTO.fileName = temp.getName();
 
-            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{new String[]{cameraRetDTO.retImage}}, new OnReturnValue<CameraRetDTO>() {
+            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{new String[]{JSON.toJSONString(cameraRetDTO)}}, new OnReturnValue<CameraRetDTO>() {
                 @Override
                 public void onValue(CameraRetDTO retValue) {
                     Log.d(TAG, "result:" + System.currentTimeMillis());

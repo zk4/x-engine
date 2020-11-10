@@ -22,7 +22,7 @@ public class PageOneFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
         ButterKnife.bind(this, view);
-      //  EventBus.getDefault().register(this);
+
         return view;
     }
 

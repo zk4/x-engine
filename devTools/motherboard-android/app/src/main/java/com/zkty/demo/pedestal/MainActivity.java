@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
@@ -24,10 +25,10 @@ import activity.ScanActivity;
 
 public class MainActivity extends AppCompatActivity implements MyTabWidget.OnTabSelectedListener {
 
-    private static final int CODE_REQUEST_QRCODE = 0x10;
 
-    private FrameLayout fl_home_content;
+    private TextView tv_title;
     private MyTabWidget mTabWidget;
+
 
     private FragmentManager mFragmentManager;
     private Fragment mContentFragment;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements MyTabWidget.OnTab
 
     private void initView() {
 //
-        fl_home_content = findViewById(R.id.fl_home_content);
+        tv_title = findViewById(R.id.tv_title);
         mTabWidget = findViewById(R.id.tab_widget);
 
         getMyTabWidgetHeight();
@@ -76,31 +77,23 @@ public class MainActivity extends AppCompatActivity implements MyTabWidget.OnTab
     }
 
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == CODE_REQUEST_QRCODE) {
-            if (data.hasExtra("result")) {
-                String url = data.getStringExtra("result");
-                if (!TextUtils.isEmpty(url)) {
-                    RouterMaster.openTargetRouter(MainActivity.this, "h5", url, null, null, null);
-                }
-            }
-        }
     }
 
     public void setTabsDisplay(int index) {
         mTabWidget.setTabsDisplay(this, index, 0);
     }
 
+    String[] titles = new String[]{"微应用", "模块", "日志"};
 
     @Override
     public void onTabSelected(int index) {
         mIndex = index;
         switchFragment(HomeTabManager.getInstance().getFragmentByIndex(mIndex), mIndex);
         setTabsDisplay(mIndex);
+        tv_title.setText(titles[index]);
 
     }
 

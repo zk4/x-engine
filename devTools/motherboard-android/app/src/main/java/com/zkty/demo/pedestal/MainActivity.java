@@ -2,6 +2,9 @@ package com.zkty.demo.pedestal;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,47 +22,61 @@ import com.zkty.modules.loaded.jsapi.RouterMaster;
 
 import activity.ScanActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements MyTabWidget.OnTabSelectedListener {
 
     private static final int CODE_REQUEST_QRCODE = 0x10;
-    private ImageView ivScan;
-    private EditText editText;
+
+    private FrameLayout fl_home_content;
+    private MyTabWidget mTabWidget;
+
+    private FragmentManager mFragmentManager;
+    private Fragment mContentFragment;
+    private int mIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)
                 .statusBarColor(module.engine.R.color.white)
                 .statusBarDarkFont(true).init();
         initView();
-        initListener();
+
 
     }
 
 
     private void initView() {
-        ivScan = findViewById(R.id.iv_main_scan);
-        editText = findViewById(R.id.et_web);
+//
+        fl_home_content = findViewById(R.id.fl_home_content);
+        mTabWidget = findViewById(R.id.tab_widget);
+
+        getMyTabWidgetHeight();
+        mTabWidget.removeAllViews();
+        mTabWidget.init(this);
+        mTabWidget.setOnTabSelectedListener(this);
+
+        mFragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        mContentFragment = HomeTabManager.getInstance().getFragmentByIndex(ConstantValues.HOME_INDEX);
+        mTabWidget.removeAllViews();
+        mTabWidget.init(this);
+        transaction.add(R.id.fl_home_content, mContentFragment);
+        transaction.commitAllowingStateLoss();
+        setTabsDisplay(mIndex);
     }
 
-    private void initListener() {
-        ivScan.setOnClickListener(this);
+    private void getMyTabWidgetHeight() {
+        int w = View.MeasureSpec.makeMeasureSpec(0,
+                View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0,
+                View.MeasureSpec.UNSPECIFIED);
+        mTabWidget.measure(w, h);
     }
 
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.iv_main_scan:
-                startActivityForResult(new Intent(MainActivity.this, ScanActivity.class), CODE_REQUEST_QRCODE);
-                break;
 
-            default:
-                break;
-        }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -66,23 +84,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (resultCode == Activity.RESULT_OK && requestCode == CODE_REQUEST_QRCODE) {
             if (data.hasExtra("result")) {
                 String url = data.getStringExtra("result");
-                if (!TextUtils.isEmpty(url) && url.startsWith("http")) {
-                    RouterMaster.openTargetRouter(MainActivity.this, "h5", url, null);
+                if (!TextUtils.isEmpty(url)) {
+                    RouterMaster.openTargetRouter(MainActivity.this, "h5", url, null, null, null);
                 }
             }
         }
     }
 
-    public void load(View view) {
-        if (TextUtils.isEmpty(editText.getText())) {
-            Toast.makeText(this, "请输入网址", Toast.LENGTH_LONG).show();
-            return;
-        }
-        String url = editText.getText().toString();
-        if (!url.startsWith("http")) {
-            url = "http://" + url;
-        }
-        RouterMaster.openTargetRouter(MainActivity.this, "h5", url, null);
+    public void setTabsDisplay(int index) {
+        mTabWidget.setTabsDisplay(this, index, 0);
+    }
 
+
+    @Override
+    public void onTabSelected(int index) {
+        mIndex = index;
+        switchFragment(HomeTabManager.getInstance().getFragmentByIndex(mIndex), mIndex);
+        setTabsDisplay(mIndex);
+
+    }
+
+    private void switchFragment(Fragment to, int index) {
+        if (mContentFragment != to) {
+            FragmentTransaction transaction = mFragmentManager.beginTransaction().setCustomAnimations(
+                    R.anim.home_fade_in, R.anim.home_fade_out);
+            if (!to.isAdded()) {    // 先判断是否被add过
+                transaction.hide(mContentFragment).add(R.id.fl_home_content, to, index + "").commitAllowingStateLoss(); // 隐藏当前的fragment，add下一个到Activity中
+            } else {
+                transaction.hide(mContentFragment).show(to).commitAllowingStateLoss(); // 隐藏当前的fragment，显示下一个
+            }
+            mContentFragment = to;
+        }
     }
 }

@@ -20,6 +20,8 @@
 #import <Photos/Photos.h>
 #import <MircroAppController.h>
 
+
+typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 @interface __xengine__module_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,strong) GCDWebServer *webServer;
 @property(nonatomic,assign) BOOL allowsEditing;
@@ -33,7 +35,7 @@
 
 @implementation __xengine__module_camera
 
-- (void)_openImagePicker:(CameraDTO *)dto complete:(void (^)(CameraRetDTO *, BOOL))completionHandler {
+- (void)_openImagePicker:(CameraDTO *)dto complete:(CameraResult)completionHandler {
     self.cameraDto = dto;
     self.allowsEditing = dto.allowsEditing;
     self.savePhotosAlbum = dto.savePhotosAlbum;
@@ -341,11 +343,15 @@
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     if ([topVC isKindOfClass:RecyleWebViewController.class]) {
         RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-        CameraRetDTO* d = [CameraRetDTO new];
-        d.retImage = param[@"retImage"];
-        d.contentType = param [@"contentType"];
-        d.fileName = param[@"fileName"];
-        [webVC.webview callHandler:self.event arguments:@[d.retImage,d.contentType,d.fileName] completionHandler:^(id  _Nullable value) {}];
+//        CameraRetDTO* d = [CameraRetDTO new];
+//        d.retImage = param[@"retImage"];
+//        d.contentType = param [@"contentType"];
+//        d.fileName = param[@"fileName"];
+        
+        NSData *data = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:nil];
+        [webVC.webview callHandler:self.event
+                         arguments:@[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]
+                 completionHandler:^(id  _Nullable value) {}];
     }
 }
 

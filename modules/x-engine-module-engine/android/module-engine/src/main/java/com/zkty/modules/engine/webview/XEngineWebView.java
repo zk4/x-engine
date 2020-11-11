@@ -1,23 +1,37 @@
 package com.zkty.modules.engine.webview;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import com.tencent.smtt.export.external.interfaces.WebResourceError;
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebHistoryItem;
 import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.exception.NoModuleIdException;
+import com.zkty.modules.engine.utils.Utils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
+
+import module.engine.R;
 
 
 public class XEngineWebView extends DWebView {
@@ -49,6 +63,33 @@ public class XEngineWebView extends DWebView {
                 ViewGroup.LayoutParams.MATCH_PARENT);
         setLayoutParams(params);
         addJavascript();
+
+        // loadLocalImg();
+       // setErrorPage();
+    }
+
+    private void loadLocalImg() {
+        setWebViewClient(new WebViewClient() {
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
+                InputStream inputStream = Utils.getLocalImage(s);
+                if (inputStream != null) {
+                    WebResourceResponse resourceResponse = new WebResourceResponse();
+                    resourceResponse.setData(inputStream);
+                    return resourceResponse;
+                }
+                return super.shouldInterceptRequest(webView, s);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
+                if (Build.VERSION.SDK_INT < 26) {
+                    webView.loadUrl(s);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
 
@@ -168,6 +209,50 @@ public class XEngineWebView extends DWebView {
                 break;
             }
             goBack();
+        }
+    }
+
+
+    public void setErrorPage() {
+
+        setWebViewClient(new WebViewClient() {
+
+
+            @Override
+            public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
+                super.onReceivedError(webView, webResourceRequest, webResourceError);
+
+                if (webResourceRequest.isForMainFrame()) {
+                    webView.loadUrl("about:blank");
+                    setErrorImg(webView);
+                }
+            }
+
+            @Override
+            public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
+                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
+                int stateCode = webResourceResponse.getStatusCode();
+                if (stateCode >= 400) {
+                    webView.loadUrl("about:blank");
+                    setErrorImg(webView);
+                }
+
+            }
+        });
+
+    }
+
+    private void setErrorImg(WebView webView) {
+
+        RelativeLayout layout = new RelativeLayout(mContext);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_error_page, null);
+        layout.addView(view);
+        layout.setGravity(Gravity.CENTER);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        if (webView.getParent() != null && webView.getParent() instanceof RelativeLayout) {
+            ((RelativeLayout) webView.getParent()).removeAllViews();
+            ((RelativeLayout) webView.getParent()).addView(layout, lp);
         }
     }
 }

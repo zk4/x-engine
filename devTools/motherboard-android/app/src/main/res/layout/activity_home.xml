@@ -4,10 +4,21 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:gravity="center"
+        android:text="微应用"
+        android:textColor="@color/color_12"
+        android:textSize="@dimen/sp_20" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tab_widget"
+        android:layout_marginTop="@dimen/dp_30">
 
         <FrameLayout
             android:id="@+id/fl_home_content"

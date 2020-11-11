@@ -108,14 +108,17 @@
         
         if([fileUrl hasPrefix:self.rootPath]){
             
-            NSString *interface = [fileUrl substringFromIndex:self.rootPath.length];
-            if([interface hasPrefix:@"#"]){
-                interface = [interface substringFromIndex:1];
+            NSString *interface;
+            NSRange range = [fileUrl rangeOfString:@"index.html"];
+            if(range.location != NSNotFound){
+                interface = [fileUrl substringFromIndex:range.location + range.length];
+                if([interface hasPrefix:@"#"]){
+                    interface = [interface substringFromIndex:1];
+                }
+            }else{
+                interface = @"/index";
             }
-            if([interface hasPrefix:@"/"]){
-                interface = [interface substringFromIndex:1];
-            }
-            NSRange range = [interface rangeOfString:@"?"];
+            range = [interface rangeOfString:@"?"];
             if(range.location != NSNotFound){
                 self.preLevelPath = [interface substringToIndex:range.location];
             } else {
@@ -173,27 +176,33 @@
     
     if (preLevelPath) {
         NSArray<WKBackForwardListItem *> *backList = self.webview.backForwardList.backList;
-        for (NSInteger i = backList.count - 1; i >= 0; i--){
-            WKBackForwardListItem *item = backList[i];
-            //        for (WKBackForwardListItem *item in backList){
-            NSURLComponents *itemComponents = [NSURLComponents componentsWithURL:item.URL resolvingAgainstBaseURL:YES];
-            NSString *itemPath = itemComponents.path;
-            NSString *itemFragment = [self framentEmptyAction:itemComponents.fragment];
+        
+        if([preLevelPath isEqualToString:@"/index"]){
             
-            
-            NSURLComponents *finderComponents = [NSURLComponents componentsWithString:preLevelPath];
-            NSString *finderPath = finderComponents.path;
-            NSString *finderFragment = [self framentEmptyAction:finderComponents.fragment];
-            
-            if([itemPath isEqualToString:finderPath]
-               && [itemFragment isEqualToString:finderFragment]){
+            [self.webview goToBackForwardListItem:backList.firstObject];
+        }else{
+            for (NSInteger i = backList.count - 1; i >= 0; i--){
+                WKBackForwardListItem *item = backList[i];
+                //        for (WKBackForwardListItem *item in backList){
+                NSURLComponents *itemComponents = [NSURLComponents componentsWithURL:item.URL resolvingAgainstBaseURL:YES];
+                NSString *itemPath = itemComponents.path;
+                NSString *itemFragment = [self framentEmptyAction:itemComponents.fragment];
                 
-                if(i == backList.count - 1){
-                    [self.webview goBack];
-                }else{
-                    [self.webview goToBackForwardListItem:item];
+                
+                NSURLComponents *finderComponents = [NSURLComponents componentsWithString:preLevelPath];
+                NSString *finderPath = finderComponents.path;
+                NSString *finderFragment = [self framentEmptyAction:finderComponents.fragment];
+                
+                if([itemPath isEqualToString:finderPath]
+                   && [itemFragment isEqualToString:finderFragment]){
+                    
+                    if(i == backList.count - 1){
+                        [self.webview goBack];
+                    }else{
+                        [self.webview goToBackForwardListItem:item];
+                    }
+                    return;
                 }
-                return;
             }
         }
     } else {
@@ -340,7 +349,7 @@
     
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
-    if(self.navigationController.viewControllers.count>1){
+    if(self.navigationController.viewControllers.count > 1){
         self.parentVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
     }
     self.progresslayer.alpha = 0;
@@ -350,7 +359,9 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if(!self.isCloseClear && ![self.navigationController.viewControllers.lastObject isKindOfClass:[RecyleWebViewController class]]){
+    if(!self.isCloseClear
+       && self.navigationController == nil
+       && ![self.parentVC isKindOfClass:[RecyleWebViewController class]]){
         self.isClearHistory = YES;
     }
 }

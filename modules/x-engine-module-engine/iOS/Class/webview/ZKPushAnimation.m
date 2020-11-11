@@ -231,7 +231,7 @@
                                                  containerView.bounds.size.width,
                                                  toViewScreenImageView.bounds.size.height);
         
-        self.toUrl = toVC.fileUrl;
+        self.toUrl = toVC.preLevelPath;
         UIView *fromScreenView = [fromVc.view resizableSnapshotViewFromRect:fromVc.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];;
         fromScreenView.layer.shadowColor = [UIColor blackColor].CGColor;
         fromScreenView.layer.shadowOffset = CGSizeMake(-6, 0);
@@ -246,7 +246,8 @@
         shawView.alpha = 0.2;
         [toView addSubview:shawView];
         
-        [toVC popUrl:toVC.fileUrl];
+//        [toVC popUrl:toVC.fileUrl];
+        [toVC popUrl:toVC.preLevelPath];
         
         [UIView animateWithDuration:self.animationTime
                               delay:0

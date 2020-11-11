@@ -287,29 +287,7 @@ public class DWebView extends WebView {
             // add bridge tag in lower android version
             settings.setUserAgentString(settings.getUserAgentString() + " _dsbridge");
         }
-
-        setWebViewClient(new WebViewClient() {
-            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-                Log.d(LOG_TAG, s);
-                InputStream inputStream = Utils.getLocalImage(s);
-                if (inputStream != null) {
-                    WebResourceResponse resourceResponse = new WebResourceResponse();
-                    resourceResponse.setData(inputStream);
-                    return resourceResponse;
-                }
-                return super.shouldInterceptRequest(webView, s);
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-                if (Build.VERSION.SDK_INT < 26) {
-                    webView.loadUrl(s);
-                    return true;
-                }
-                return false;
-            }
-        });
+        
     }
 
     private String[] parseNamespace(String method) {

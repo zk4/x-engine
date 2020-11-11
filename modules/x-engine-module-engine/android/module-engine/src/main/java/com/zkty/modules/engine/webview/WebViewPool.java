@@ -92,7 +92,6 @@ public class WebViewPool {
         webView.clearAnimation();
         webView.stopLoading();
         webView.setWebChromeClient(null);
-        webView.setWebViewClient(null);
 //        webView.setWebViewClient(null);
         webView.clearCache(true);
         webView.clearHistory();

@@ -22,14 +22,14 @@ public class RouterAspect {
             constructor.setAccessible(true);
             Object object = constructor.newInstance();
             Method methodModule = routerWrapper.getMethod("openTargetRouter", Context.class, String.class, String.class, String.class, String.class, String.class, long.class);
-            methodModule.invoke(object, ActivityUtils.getCurrentActivity(), type, uri, path, arg, version == null ? null : String.valueOf(version), 0);
+            methodModule.invoke(object, ActivityUtils.getCurrentActivity(), type, uri, path, arg, version, 0);
             return;
 
         } catch (Exception e) {
 
         }
 
-        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(),type,uri, path, arg, version == null ? null : String.valueOf(version));
+        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(), type, uri, path, arg, version);
 
     }
 

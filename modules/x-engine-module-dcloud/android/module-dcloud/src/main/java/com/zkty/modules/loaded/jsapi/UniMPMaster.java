@@ -30,7 +30,7 @@ public class UniMPMaster {
                 .setMenuDefFontSize("16px")
                 .setMenuDefFontColor("#ff00ff")
                 .setMenuDefFontWeight("normal")
-                .setMenuActionSheetItems(sheetItems)
+//                .setMenuActionSheetItems(sheetItems)
                 .build();
         DCUniMPSDK.getInstance().initialize(context, config, isSuccess -> Log.d("unimp", "onInitFinished---->" + isSuccess));
 
@@ -89,6 +89,7 @@ public class UniMPMaster {
                         }
                     } else {
                         JSONObject argument = new JSONObject(params);
+
                         if (redirectPath == null) {
                             DCUniMPSDK.getInstance().startApp(context, appId, argument);
                         } else {

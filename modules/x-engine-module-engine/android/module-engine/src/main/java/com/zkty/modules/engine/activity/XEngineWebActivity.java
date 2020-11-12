@@ -11,6 +11,7 @@ import android.os.PersistableBundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.swipbackhelper.SwipeListener;
 import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebHistoryItem;
+import com.zkty.modules.engine.utils.DeviceUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.engine.view.XEngineNavBar;
 import com.zkty.modules.engine.webview.XEngineWebView;
@@ -170,7 +172,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         } else {
             new Handler().postDelayed(() ->
                             showScreenCapture(false)
-                    , 200);
+                    , 400);
             if (XOneWebViewPool.IS_SINGLE) {
                 if (mWebView.getParent() != null) {
                     ((ViewGroup) mWebView.getParent()).removeView(mWebView);
@@ -344,4 +346,22 @@ public class XEngineWebActivity extends AppCompatActivity {
         view.draw(canvas);
         return bitmap;
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        showScreenCapture(true);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            // 判断连续点击事件时间差
+            if (DeviceUtils.isFastClick()) {
+                return true;
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
 }

@@ -1,10 +1,14 @@
 package com.zkty.modules.engine.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
@@ -24,10 +28,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gyf.barlibrary.ImmersionBar;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.swipbackhelper.SwipeListener;
+import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebBackForwardList;
+import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebHistoryItem;
+import com.tencent.smtt.sdk.WebView;
+import com.zkty.modules.engine.utils.AvatarUtils;
 import com.zkty.modules.engine.utils.DeviceUtils;
+import com.zkty.modules.engine.utils.PermissionsUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
+import com.zkty.modules.engine.view.CameraDialog;
 import com.zkty.modules.engine.view.XEngineNavBar;
 import com.zkty.modules.engine.webview.XEngineWebView;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
@@ -56,7 +66,11 @@ public class XEngineWebActivity extends AppCompatActivity {
     //    private ArrayList<LifecycleListener> lifecycleListeners;
     private Set<LifecycleListener> lifecycleListeners;
     private boolean isFirst = true;
-
+    private MyWebChromeClient mWebChromeClient;
+    private android.webkit.ValueCallback<Uri> mUploadMessage;
+    private android.webkit.ValueCallback<Uri[]> mUploadCallbackAboveL;
+    private PermissionsUtils permissionsUtils = new PermissionsUtils();
+    public static final int FILECHOOSER_RESULTCODE = 10;// 表单的结果回调
 
     public interface LifecycleListener {
 
@@ -101,13 +115,14 @@ public class XEngineWebActivity extends AppCompatActivity {
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white)
                 .statusBarDarkFont(true).init();
-
+        mWebChromeClient = new MyWebChromeClient();
         xEngineNavBar = findViewById(R.id.nav_bar);
         mRoot = findViewById(R.id.content_root);
         ivScreen = findViewById(R.id.iv_screen);
         mMicroAppId = getIntent().getStringExtra(MICRO_APP_ID);
         indexUrl = getIntent().getStringExtra(INDEX_URL);
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
+
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
         lifecycleListeners = new LinkedHashSet<>();
@@ -132,6 +147,34 @@ public class XEngineWebActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0) + "----requestCode:" + requestCode + "---resultCode:" + resultCode);
+        if (requestCode == AvatarUtils.RESULT_CODE_PHOTO) {
+            if (null == mUploadMessage && null == mUploadCallbackAboveL) return;
+            Uri result = data == null ? null : data.getData();
+            if (mUploadCallbackAboveL != null) {
+                onActivityResultAboveL(requestCode, resultCode, data);
+            } else if (mUploadMessage != null) {
+                result = AvatarUtils.geturi(data, this);
+                if (result == null) {
+                    return;
+                }
+                mUploadMessage.onReceiveValue(result);
+                mUploadMessage = null;
+            }
+        } else if (requestCode == AvatarUtils.RESULT_CODE_CAMERA) {
+            Uri uri = null;
+
+            AvatarUtils.afterOpenCamera(AvatarUtils.PHOTO_PATH, this);
+            uri = AvatarUtils.PHOTO_URI;
+            if (mUploadCallbackAboveL != null) {
+                Uri[] uris = new Uri[1];
+                uris[0] = uri;
+                mUploadCallbackAboveL.onReceiveValue(uris);
+            } else if (mUploadMessage != null) {
+                mUploadMessage.onReceiveValue(uri);
+                mUploadMessage = null;
+            }
+        }
+
         if (lifecycleListeners != null) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -143,6 +186,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
         Log.d(TAG, "onRequestPermissionsResult()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
@@ -166,7 +210,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "onResume()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
+        mWebView.setWebChromeClient(mWebChromeClient);
         if (isFirst) {
             isFirst = false;
         } else {
@@ -220,19 +264,16 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
                 iterator.next().onDestroy();
             }
         }
-        Log.d(TAG, "lifeCycleListeners size before:" + lifecycleListeners.size());
 
         if (lifecycleListeners != null) {
             lifecycleListeners.clear();
         }
-        Log.d(TAG, "lifeCycleListeners size after:" + lifecycleListeners.size());
         XEngineWebActivityManager.sharedInstance().clearActivity(this);
         super.onDestroy();
 //        SwipeBackHelper.onDestroy(this);
@@ -362,6 +403,109 @@ public class XEngineWebActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+
+    class MyWebChromeClient extends WebChromeClient {
+
+
+        @Override
+        public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {
+            mUploadMessage = valueCallback;
+            showSelectDialog();
+        }
+
+        @Override
+        public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
+            mUploadCallbackAboveL = valueCallback;
+            String[] acceptTypes = fileChooserParams.getAcceptTypes();
+            if (acceptTypes.length > 0 && AvatarUtils.isImage(acceptTypes[0])) {
+                showSelectDialog();
+            } else {
+                choseFile();
+            }
+            return true;
+
+        }
+
+    }
+
+    private void showSelectDialog() {
+        permissionsUtils.checkPermissions(this, new String[]{Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+            @Override
+            public void passPermissions() {
+                CameraDialog bottomDialog = new CameraDialog(XEngineWebActivity.this);
+                String[] photoKey = new String[2];
+                photoKey[0] = "从手机相册选择";
+                photoKey[1] = "拍照";
+                bottomDialog.initDialog(photoKey, (view, which, l) -> {
+                    if (which == 0) {
+                        // 从手机相册选择
+                        AvatarUtils.startAlbum(XEngineWebActivity.this);
+                    } else if (which == 1) {
+                        // 拍照
+                        AvatarUtils.startCamera(XEngineWebActivity.this);
+                    } else if (which == -2) {
+                        mUploadCallbackAboveL.onReceiveValue(null);
+                        mUploadCallbackAboveL = null;
+                    }
+                });
+                bottomDialog.showDialog();
+
+
+            }
+
+            @Override
+            public void forbidPermissions() {
+
+            }
+        });
+
+    }
+
+    private void choseFile() {
+        permissionsUtils.checkPermissions(this, new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+            @Override
+            public void passPermissions() {
+                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                i.addCategory(Intent.CATEGORY_OPENABLE);
+                i.setType("*/*");
+                startActivityForResult(Intent.createChooser(i, "File Chooser"), FILECHOOSER_RESULTCODE);
+            }
+
+            @Override
+            public void forbidPermissions() {
+
+            }
+        });
+
+
+    }
+
+    private void onActivityResultAboveL(int requestCode, int resultCode, Intent data) {
+        if ((requestCode == AvatarUtils.RESULT_CODE_CAMERA || requestCode == AvatarUtils.RESULT_CODE_PHOTO) && mUploadCallbackAboveL != null) {
+            Uri[] results = null;
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    String dataString = data.getDataString();
+                    ClipData clipData = data.getClipData();
+                    if (clipData != null) {
+                        results = new Uri[clipData.getItemCount()];
+                        for (int i = 0; i < clipData.getItemCount(); i++) {
+                            ClipData.Item item = clipData.getItemAt(i);
+                            results[i] = item.getUri();
+                        }
+                    }
+                    if (dataString != null)
+                        results = new Uri[]{Uri.parse(dataString)};
+                }
+            }
+            mUploadCallbackAboveL.onReceiveValue(results);
+            mUploadCallbackAboveL = null;
+        }
+
     }
 
 }

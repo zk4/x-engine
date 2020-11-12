@@ -69,7 +69,7 @@ public class __xengine__module_nav extends xengine__module_nav {
                 mActivity.getXEngineWebView().callHandler(dto.__event__, new OnReturnValue<Object>() {
                     @Override
                     public void onValue(Object retValue) {
-                        Log.d("DsBridge","append返回了" );
+                        Log.d("DsBridge", "append返回了");
                     }
                 });
             });
@@ -85,7 +85,7 @@ public class __xengine__module_nav extends xengine__module_nav {
 
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavRightMenuBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.popList, Boolean.parseBoolean(dto.showMenuImg), dto.popWidth, (adapterView, view, i, l) -> {
-                mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{i}, retValue -> {
+                mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{String.valueOf(i)}, retValue -> {
                 });
             });
         });

@@ -26,19 +26,12 @@
 		583488F02512189E007553E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583488EF2512189E007553E2 /* AVFoundation.framework */; };
 		583488F2251218A5007553E2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583488F1251218A5007553E2 /* CoreVideo.framework */; };
 		583488F4251218AD007553E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583488F3251218AD007553E2 /* CoreMedia.framework */; };
-		584C0AAE254D559C00A39FCC /* __UNI__BBC6091.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 584C0AAD254D559C00A39FCC /* __UNI__BBC6091.wgt */; };
 		587F741B250669A300F515BD /* __xengine__module_dcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_dcloud.m */; };
 		587F74262506737800F515BD /* xengine__module_dcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_dcloud.m */; };
-		58A158B0254C22C5002A117A /* __UNI__B98DEB4.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 58A158AF254C20A9002A117A /* __UNI__B98DEB4.wgt */; };
-		58A158B2254C3E47002A117A /* __UNI__86C4327.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 58A158B1254C3E46002A117A /* __UNI__86C4327.wgt */; };
-		58A158B4254C4C95002A117A /* __UNI__B1690B6.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 58A158B3254C4C95002A117A /* __UNI__B1690B6.wgt */; };
-		58A158B8254C53B8002A117A /* __UNI__B8D1ED1.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 58A158B7254C53B8002A117A /* __UNI__B8D1ED1.wgt */; };
-		58A158BA254D3901002A117A /* __UNI__C002620.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 58A158B9254D3901002A117A /* __UNI__C002620.wgt */; };
+		588AA523255BF59200F9DDED /* __UNI__9B75743.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */; };
 		91828BD8329E1FE3B0E3F0E6 /* libPods-dcloud-dcloudUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC3CFF5E9A9673170BCBFFA /* libPods-dcloud-dcloudUITests.a */; };
 		C93F11612519E39B009A97EA /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93F11602519E39B009A97EA /* SplashView.xib */; };
 		C9C4A6AE2548101D0018D71B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C4A6AD2548101D0018D71B /* liblibNativeUI.a */; };
-		C9C873842514B0D70089EE75 /* __UNI__11E9B73.wgt in Resources */ = {isa = PBXBuildFile; fileRef = C9C873832514B0D70089EE75 /* __UNI__11E9B73.wgt */; };
-		C9CD1297252056E10005A822 /* __UNI__5DE1E68.wgt in Resources */ = {isa = PBXBuildFile; fileRef = C9CD1296252056E10005A822 /* __UNI__5DE1E68.wgt */; };
 		E4CEBC3F48D6CE211ED632E7 /* libPods-dcloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA4EC917E5EC0B8F9B7D14D /* libPods-dcloud.a */; };
 /* End PBXBuildFile section */
 
@@ -89,16 +82,11 @@
 		583488EF2512189E007553E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		583488F1251218A5007553E2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		583488F3251218AD007553E2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		584C0AAD254D559C00A39FCC /* __UNI__BBC6091.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__BBC6091.wgt; sourceTree = "<group>"; };
 		587F7419250669A300F515BD /* __xengine__module_dcloud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __xengine__module_dcloud.h; sourceTree = "<group>"; };
 		587F741A250669A300F515BD /* __xengine__module_dcloud.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_dcloud.m; sourceTree = "<group>"; };
 		587F74222506737700F515BD /* xengine__module_dcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_dcloud.h; sourceTree = "<group>"; };
 		587F74242506737700F515BD /* xengine__module_dcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__module_dcloud.m; sourceTree = "<group>"; };
-		58A158AF254C20A9002A117A /* __UNI__B98DEB4.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__B98DEB4.wgt; sourceTree = "<group>"; };
-		58A158B1254C3E46002A117A /* __UNI__86C4327.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__86C4327.wgt; sourceTree = "<group>"; };
-		58A158B3254C4C95002A117A /* __UNI__B1690B6.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__B1690B6.wgt; sourceTree = "<group>"; };
-		58A158B7254C53B8002A117A /* __UNI__B8D1ED1.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__B8D1ED1.wgt; sourceTree = "<group>"; };
-		58A158B9254D3901002A117A /* __UNI__C002620.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; name = __UNI__C002620.wgt; path = ../../../app/wgt/unini1031/unini1031/__UNI__C002620.wgt; sourceTree = "<group>"; };
+		588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; name = __UNI__9B75743.wgt; path = ../../../wgt/token_test/__UNI__9B75743.wgt; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		6AC3CFF5E9A9673170BCBFFA /* libPods-dcloud-dcloudUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dcloud-dcloudUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		884143ABEFD722050DDC70A3 /* Pods-dcloud-dcloudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud-dcloudUITests.release.xcconfig"; path = "Target Support Files/Pods-dcloud-dcloudUITests/Pods-dcloud-dcloudUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -107,8 +95,6 @@
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C93F11602519E39B009A97EA /* SplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
 		C9C4A6AD2548101D0018D71B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
-		C9C873832514B0D70089EE75 /* __UNI__11E9B73.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__11E9B73.wgt; sourceTree = "<group>"; };
-		C9CD1296252056E10005A822 /* __UNI__5DE1E68.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__5DE1E68.wgt; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-dcloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud.debug.xcconfig"; path = "Target Support Files/Pods-dcloud/Pods-dcloud.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-dcloud-dcloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud-dcloudUITests.debug.xcconfig"; path = "Target Support Files/Pods-dcloud-dcloudUITests/Pods-dcloud-dcloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,14 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				C9C4A6AD2548101D0018D71B /* liblibNativeUI.a */,
-				C9CD1296252056E10005A822 /* __UNI__5DE1E68.wgt */,
-				58A158B1254C3E46002A117A /* __UNI__86C4327.wgt */,
-				58A158AF254C20A9002A117A /* __UNI__B98DEB4.wgt */,
-				C9C873832514B0D70089EE75 /* __UNI__11E9B73.wgt */,
-				584C0AAD254D559C00A39FCC /* __UNI__BBC6091.wgt */,
-				58A158B9254D3901002A117A /* __UNI__C002620.wgt */,
-				58A158B7254C53B8002A117A /* __UNI__B8D1ED1.wgt */,
-				58A158B3254C4C95002A117A /* __UNI__B1690B6.wgt */,
+				588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */,
 				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* dcloud */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
@@ -379,21 +358,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58A158B4254C4C95002A117A /* __UNI__B1690B6.wgt in Resources */,
-				58A158B0254C22C5002A117A /* __UNI__B98DEB4.wgt in Resources */,
+				588AA523255BF59200F9DDED /* __UNI__9B75743.wgt in Resources */,
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
-				58A158B8254C53B8002A117A /* __UNI__B8D1ED1.wgt in Resources */,
 				C93F11612519E39B009A97EA /* SplashView.xib in Resources */,
-				C9CD1297252056E10005A822 /* __UNI__5DE1E68.wgt in Resources */,
 				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,
-				58A158BA254D3901002A117A /* __UNI__C002620.wgt in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
-				584C0AAE254D559C00A39FCC /* __UNI__BBC6091.wgt in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
-				58A158B2254C3E47002A117A /* __UNI__86C4327.wgt in Resources */,
-				C9C873842514B0D70089EE75 /* __UNI__11E9B73.wgt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

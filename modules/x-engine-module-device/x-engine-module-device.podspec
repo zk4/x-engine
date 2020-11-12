@@ -27,8 +27,8 @@ Pod::Spec.new do |s|
 
     s.author             = { "zkty" => "liuzq7@gmail.com" }
 
-    s.platform     = :ios, "11.0"
-    s.ios.deployment_target = "11.0"
+    s.platform     = :ios, "10.0"
+    s.ios.deployment_target = "10.0"
 
     s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-device.git',
   :tag => s.version.to_s }

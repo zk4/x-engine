@@ -131,7 +131,12 @@
     
     if (!dto) {
         // 配置启动小程序时传递的参数（参数可以在小程序中通过 plus.runtime.arguments 获取此参数）
-        configuration.arguments = @{ @"arguments":@"Hello uni microprogram" };
+        configuration.arguments =  @{ @"arguments":
+        @{
+              @"token":@"xxxxxx" ,
+              @"refreshtoken":@"xxxxxxxx"
+        }
+        };
         // 配置小程序启动后直接打开的页面路径 例："pages/component/view/view?a=1&b=2"
         configuration.redirectPath = nil;
         // 开启后台运行

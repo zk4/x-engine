@@ -18,6 +18,9 @@
 
 
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
+    if(uri.length == 0){
+        return;
+    }
     if([type isEqual:@"native"]){
         NSArray *ary = [uri componentsSeparatedByString:@","];
         if(ary.count == 2){
@@ -55,7 +58,7 @@
 //                                                                    @"ROUTE_NUMBER":[NSString stringWithFormat:@"%d", version],
                                                                     @"ROUTE_TYPE":@"microapp",
                                                                     @"ROUTE_URI":[NSString stringWithFormat:@"%@", uri],
-                                                                    @"ROUTE_VERSION":[NSString stringWithFormat:@"%d", version],
+                                                                    @"ROUTE_VERSION":[NSString stringWithFormat:@"%ld", version > 0 ? version : 1],
                                                                     @"ROUTE_PATH":[NSString stringWithFormat:@"%@", path],
             }];
         }

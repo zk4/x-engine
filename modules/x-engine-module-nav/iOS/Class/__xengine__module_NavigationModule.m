@@ -278,16 +278,20 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 
 - (void)_navigatorBack:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
     
-    if ([@"0" isEqualToString:dto.url]){
-        [[Unity sharedInstance].getCurrentVC.navigationController popToRootViewControllerAnimated:YES];
-        return;
-    }
+//    if ([@"0" isEqualToString:dto.url]){
+//        [[Unity sharedInstance].getCurrentVC.navigationController popToRootViewControllerAnimated:YES];
+//        return;
+//    }
     
     BOOL isAction = false;
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
+    UIViewController *lastVc;
     for (UIViewController *vc in ary) {
         
-        if ([vc isKindOfClass:RecyleWebViewController.class]){
+        if ([vc isKindOfClass:[RecyleWebViewController class]]){
+            if ([@"0" isEqualToString:dto.url]){
+                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:lastVc animated:YES];
+            }
             RecyleWebViewController *webVC = (RecyleWebViewController *)vc;
             if ([webVC.preLevelPath isEqualToString:dto.url]){
                 [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
@@ -299,6 +303,8 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
                 isAction = YES;
                 break;
             }
+        }else{
+            lastVc = vc;
         }
     }
     if (!isAction){

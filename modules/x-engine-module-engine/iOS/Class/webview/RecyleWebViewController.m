@@ -39,6 +39,20 @@
             [UIView animateWithDuration:0.3 animations:^{
                 self.progresslayer.alpha = 0;
             }];
+            if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
+                [self.webview evaluateJavaScript:@"document.title"
+                               completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+                    if([response isKindOfClass:[NSString class]]){
+                        NSString *title = response;
+                        title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                        if(title.length > 0){
+                            if(self.title.length == 0){
+                                self.title = title;
+                            }
+                        }
+                    }
+                }];
+            }
         }
     }
 }
@@ -360,7 +374,6 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if(!self.isCloseClear
-       && self.navigationController == nil
        && ![self.parentVC isKindOfClass:[RecyleWebViewController class]]){
         self.isClearHistory = YES;
     }

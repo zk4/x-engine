@@ -50,22 +50,22 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 -(void)resetUrl:(NSString *)url{
     if(self.inSingle || self.inAllSingle){
         XEngineWebView *webView = [self getWebView:url];
-        if(webView && webView.backForwardList.backList.count == 1){
-                    [webView goBack];
-//            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
+        if(webView && webView.backForwardList.backList.count > 0){
+            
+            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
         }
-        if(webView.backForwardList.backList.count == 0){
-            [webView removeFromSuperview];
-        }
+        [webView loadUrl:@"about:blank"];
+        [webView removeFromSuperview];
     }
 }
     
 -(BOOL)checkUrl:(NSString *)url{
     NSString *key = [self urlToDicKey:url];
-    if(self.webCacheDic[key] == nil){
+    UIView *view = self.webCacheDic[key];
+    if(view == nil){
         return YES;
     }
-    if(self.webCacheDic[key].superview == nil){
+    if(view.superview == nil){
         return YES;
     }
     return NO;

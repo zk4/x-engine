@@ -22,6 +22,7 @@ import io.dcloud.feature.sdk.MenuActionSheetItem;
 public class UniMPMaster {
 
     public static void initialize(Context context) {
+        WgtManager.getInstance().init();
         MenuActionSheetItem item = new MenuActionSheetItem("关于", "gy");
         List<MenuActionSheetItem> sheetItems = new ArrayList<>();
         sheetItems.add(item);
@@ -38,7 +39,7 @@ public class UniMPMaster {
 
     public static void preload(String appId) {
         Activity context = ActivityUtils.getCurrentActivity();
-        String wgtPath = FileUtils.copyAssetsSingleFile(context, context.getCacheDir().getPath(), appId + ".wgt");
+        String wgtPath = WgtManager.getInstance().getWgtPath(appId);
         DCUniMPSDK.getInstance().releaseWgtToRunPathFromePath(appId, wgtPath, (code, pArgs) -> {
             if (code == 1) {//释放wgt完成
                 try {
@@ -76,7 +77,7 @@ public class UniMPMaster {
                 e.printStackTrace();
             }
         }
-        String wgtPath = FileUtils.copyAssetsSingleFile(context, context.getCacheDir().getPath(), appId + ".wgt");
+        String wgtPath = WgtManager.getInstance().getWgtPath(appId);
         if (TextUtils.isEmpty(wgtPath)) return;
         DCUniMPSDK.getInstance().releaseWgtToRunPathFromePath(appId, wgtPath, (code, pArgs) -> {
             if (code == 1) {//释放wgt完成
@@ -104,5 +105,14 @@ public class UniMPMaster {
             }
             return null;
         });
+    }
+
+
+    public static boolean isWgtExisted(String appId) {
+        if (TextUtils.isEmpty(appId)) return false;
+        if (DCUniMPSDK.getInstance().isExistsApp(appId)) {
+            return true;
+        }
+        return WgtManager.getInstance().isWgtExit(appId);
     }
 }

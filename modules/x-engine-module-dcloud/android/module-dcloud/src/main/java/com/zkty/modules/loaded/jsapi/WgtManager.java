@@ -170,4 +170,23 @@ public class WgtManager {
         }
         return path;
     }
+
+    /**
+     * 保存下载的wgt
+     *
+     * @return
+     */
+    public String saveUniApp(InputStream inputStream, String microAppId) {
+        String path = null;
+        if (inputStream != null && !TextUtils.isEmpty(microAppId)) {
+            File temp = geWgtRoot();
+            if (!temp.exists()) {
+                temp.mkdirs();
+            }
+            String name = microAppId + ".wgt";
+            path = FileUtils.saveFile(inputStream, temp, name);
+        }
+        return path;
+    }
+
 }

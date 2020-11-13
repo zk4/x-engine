@@ -110,9 +110,7 @@ public class UniMPMaster {
 
     public static boolean isWgtExisted(String appId) {
         if (TextUtils.isEmpty(appId)) return false;
-        if (DCUniMPSDK.getInstance().isExistsApp(appId)) {
-            return true;
-        }
+        if (DCUniMPSDK.getInstance().isExistsApp(appId)) return true;
         return WgtManager.getInstance().isWgtExit(appId);
     }
 }

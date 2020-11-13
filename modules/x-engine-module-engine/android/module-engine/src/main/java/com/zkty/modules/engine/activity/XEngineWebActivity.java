@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
+import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -111,6 +112,12 @@ public class XEngineWebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        SwipeBackHelper.onCreate(this);
         setContentView(R.layout.activity_engine_webview);
+
+        //关闭 关于文件uri暴露的检测（FileUriExposedException）
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
+
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white)
@@ -394,16 +401,16 @@ public class XEngineWebActivity extends AppCompatActivity {
         showScreenCapture(true);
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            // 判断连续点击事件时间差
-            if (DeviceUtils.isFastClick()) {
-                return true;
-            }
-        }
-        return super.dispatchTouchEvent(ev);
-    }
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+//            // 判断连续点击事件时间差
+//            if (DeviceUtils.isFastClick()) {
+//                return true;
+//            }
+//        }
+//        return super.dispatchTouchEvent(ev);
+//    }
 
 
     class MyWebChromeClient extends WebChromeClient {

@@ -67,13 +67,9 @@ public class WgtManager {
 
                                 }
                             }
-                        } else {
-                            Log.d(TAG, "recognize apps count: 0");
                         }
                     }
                 }).start();
-            } else {
-                Log.d(TAG, "microApps dir is empty!");
             }
         } catch (IOException e) {
 

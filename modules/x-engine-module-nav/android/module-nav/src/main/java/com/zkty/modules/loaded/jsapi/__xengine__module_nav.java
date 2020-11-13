@@ -128,7 +128,7 @@ public class __xengine__module_nav extends xengine__module_nav {
 
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
-            if (dto == null || dto.url == null) {
+            if (dto == null || TextUtils.isEmpty(dto.url)) {
                 XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mActivity.getMicroAppId()).backUp();
                 mActivity.finish();
             } else if ("0".equals(dto.url)) {

@@ -349,7 +349,7 @@ public class XEngineWebActivity extends AppCompatActivity {
                                 mWebView.goBack();
                             }
                         } else {
-                            if (last.getWebUrl().equals(backPageUrl)) {
+                            if (!TextUtils.isEmpty(last.getWebUrl()) && last.getWebUrl().equals(backPageUrl)) {
                                 finish();
                             }
                             mWebView.goBack();

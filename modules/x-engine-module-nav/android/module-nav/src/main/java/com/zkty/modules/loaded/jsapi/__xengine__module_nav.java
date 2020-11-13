@@ -15,6 +15,7 @@ import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.OnReturnValue;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.MicroAppLoader;
+import com.zkty.modules.engine.utils.DeviceUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
 
@@ -66,6 +67,7 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavRightBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, view -> {
+                if (DeviceUtils.isFastClick()) return;
                 mActivity.getXEngineWebView().callHandler(dto.__event__, new OnReturnValue<Object>() {
                     @Override
                     public void onValue(Object retValue) {
@@ -85,6 +87,7 @@ public class __xengine__module_nav extends xengine__module_nav {
 
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavRightMenuBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.popList, Boolean.parseBoolean(dto.showMenuImg), dto.popWidth, (adapterView, view, i, l) -> {
+                if (DeviceUtils.isFastClick()) return;
                 mActivity.getXEngineWebView().callHandler(dto.__event__, new Object[]{String.valueOf(i)}, retValue -> {
                 });
             });
@@ -99,6 +102,7 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
 
         mActivity.runOnUiThread(() -> {
+            if (DeviceUtils.isFastClick()) return;
             mActivity.getXEngineNavBar().setNavRightMoreBtn(JSON.toJSONString(dto.btns), (adapterView, view, i, l) -> {
                 mActivity.getXEngineWebView().callHandler(dto.btns.get(i).__event__, new Object[]{i}, retValue -> {
                 });

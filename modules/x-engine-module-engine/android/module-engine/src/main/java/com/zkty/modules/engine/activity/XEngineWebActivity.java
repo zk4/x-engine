@@ -414,6 +414,14 @@ public class XEngineWebActivity extends AppCompatActivity {
 
 
     class MyWebChromeClient extends WebChromeClient {
+        
+        @Override
+        public void onReceivedTitle(WebView webView, String title) {
+            super.onReceivedTitle(webView, title);
+            if (!TextUtils.isEmpty(webView.getUrl()) && webView.getUrl().startsWith("http") && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
+                xEngineNavBar.setTitle(title, "#FF000000", 16);
+            }
+        }
 
 
         @Override

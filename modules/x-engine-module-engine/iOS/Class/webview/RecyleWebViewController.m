@@ -124,7 +124,7 @@
             
             NSString *interface;
             NSRange range = [fileUrl rangeOfString:@"index.html"];
-            if(range.location != NSNotFound){
+            if(range.location != NSNotFound && range.location + range.length != fileUrl.length){
                 interface = [fileUrl substringFromIndex:range.location + range.length];
                 if([interface hasPrefix:@"#"]){
                     interface = [interface substringFromIndex:1];
@@ -198,17 +198,16 @@
             for (NSInteger i = backList.count - 1; i >= 0; i--){
                 WKBackForwardListItem *item = backList[i];
                 //        for (WKBackForwardListItem *item in backList){
-                NSURLComponents *itemComponents = [NSURLComponents componentsWithURL:item.URL resolvingAgainstBaseURL:YES];
-                NSString *itemPath = itemComponents.path;
-                NSString *itemFragment = [self framentEmptyAction:itemComponents.fragment];
+//                NSURLComponents *itemComponents = [NSURLComponents componentsWithURL:item.URL resolvingAgainstBaseURL:YES];
+                NSString *itemPath = item.URL.absoluteString;
+//                NSString *itemFragment = [self framentEmptyAction:itemComponents.fragment];
                 
                 
-                NSURLComponents *finderComponents = [NSURLComponents componentsWithString:preLevelPath];
-                NSString *finderPath = finderComponents.path;
-                NSString *finderFragment = [self framentEmptyAction:finderComponents.fragment];
+//                NSURLComponents *finderComponents = [NSURLComponents componentsWithString:preLevelPath];
+//                NSString *finderPath = finderComponents.path;
+//                NSString *finderFragment = [self framentEmptyAction:finderComponents.fragment];
                 
-                if([itemPath isEqualToString:finderPath]
-                   && [itemFragment isEqualToString:finderFragment]){
+                if([itemPath rangeOfString:preLevelPath].location != NSNotFound){
                     
                     if(i == backList.count - 1){
                         [self.webview goBack];

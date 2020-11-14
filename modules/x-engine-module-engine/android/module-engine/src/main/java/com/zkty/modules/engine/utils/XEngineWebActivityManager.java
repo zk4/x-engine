@@ -100,6 +100,11 @@ public class XEngineWebActivityManager {
     }
 
     public void clearActivity(XEngineWebActivity activity) {
+        if (getLastActivity() != null) {
+            if (activity.getMicroAppId() != null && !activity.getMicroAppId().equals(getLastActivity().getMicroAppId())) {
+                activity.getXEngineWebView().cleanCache();
+            }
+        }
         activityList.remove(activity);
         if (activityList.isEmpty()) {
             XOneWebViewPool.sharedInstance().cleanWebView();

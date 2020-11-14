@@ -13,11 +13,11 @@ import android.widget.Toast;
 import androidx.core.content.FileProvider;
 import androidx.viewpager.widget.ViewPager;
 
+import com.zkty.modules.engine.provider.XEngineProvider;
 import com.zkty.modules.loaded.imp.adapter.ImagePreViewAdapter;
 import com.zkty.modules.loaded.imp.data.MediaFile;
 import com.zkty.modules.loaded.imp.manager.ConfigManager;
 import com.zkty.modules.loaded.imp.manager.SelectionManager;
-import com.zkty.modules.loaded.imp.provider.ImagePickerProvider;
 import com.zkty.modules.loaded.imp.utils.DataUtil;
 import com.zkty.modules.loaded.imp.view.HackyViewPager;
 
@@ -126,7 +126,7 @@ public class ImagePreActivity extends BaseActivity {
             public void onClick(View v) {
                 //实现播放视频的跳转逻辑(调用原生视频播放器)
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                Uri uri = FileProvider.getUriForFile(ImagePreActivity.this, ImagePickerProvider.getFileProviderName(ImagePreActivity.this), new File(mMediaFileList.get(mViewPager.getCurrentItem()).getPath()));
+                Uri uri = FileProvider.getUriForFile(ImagePreActivity.this, XEngineProvider.getProvider(), new File(mMediaFileList.get(mViewPager.getCurrentItem()).getPath()));
                 intent.setDataAndType(uri, "video/*");
                 //给所有符合跳转条件的应用授权
                 List<ResolveInfo> resInfoList = getPackageManager()

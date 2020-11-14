@@ -31,6 +31,7 @@ import com.zkty.modules.dsbridge.OnReturnValue;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.IApplicationListener;
 import com.zkty.modules.engine.exception.XEngineException;
+import com.zkty.modules.engine.provider.XEngineProvider;
 import com.zkty.modules.engine.utils.FileUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.loaded.ClientManager;
@@ -210,7 +211,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                             if (out.exists()) {
                                 if (cameraDTO.allowsEditing) {
-                                    crop(act, FileProvider.getUriForFile(act, act.getPackageName() + ".provider", out), out.getParentFile(), out.getName(), editArgs);
+                                    crop(act, FileProvider.getUriForFile(act, XEngineProvider.getProvider(), out), out.getParentFile(), out.getName(), editArgs);
                                 } else {
                                     if (mXEngineWebView != null) {
 //                                        mXEngineWebView.callHandler(dto.__event__, new Object[]{out.getPath()}, new OnReturnValue<Object>() {
@@ -345,7 +346,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            uri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", out);
+            uri = FileProvider.getUriForFile(activity, XEngineProvider.getProvider(), out);
         } else {
             uri = Uri.fromFile(out);
         }
@@ -406,7 +407,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
         Uri photoUri;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            photoUri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", new File(dir, fileName));
+            photoUri = FileProvider.getUriForFile(activity, XEngineProvider.getProvider(), new File(dir, fileName));
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setClipData(ClipData.newRawUri(MediaStore.EXTRA_OUTPUT, photoUri));
         } else {

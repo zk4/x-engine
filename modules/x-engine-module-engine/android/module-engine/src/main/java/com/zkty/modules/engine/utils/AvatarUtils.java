@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.core.content.FileProvider;
 
 
+import com.zkty.modules.engine.provider.XEngineProvider;
+
 import java.io.File;
 import java.util.UUID;
 
@@ -169,7 +171,7 @@ public class AvatarUtils {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             // 通过FileProvider创建一个content类型的Uri
-            PHOTO_URI = FileProvider.getUriForFile(context, "xengine.provider", temp);
+            PHOTO_URI = FileProvider.getUriForFile(context, XEngineProvider.getProvider(), temp);
         } else {
             PHOTO_URI = Uri.fromFile(temp);
         }

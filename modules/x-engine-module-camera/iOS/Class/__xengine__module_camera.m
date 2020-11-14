@@ -313,8 +313,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     
     NSData *data = UIImagePNGRepresentation(image);
     NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    
-    return [NSString stringWithFormat:@"data:image/png;base64,%@",encodedImageStr];
+    return encodedImageStr;
+//    return [NSString stringWithFormat:@"data:image/png;base64,%@",encodedImageStr];
     
 }
 
@@ -348,9 +348,9 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 //        d.contentType = param [@"contentType"];
 //        d.fileName = param[@"fileName"];
         
-        NSData *data = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:nil];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingFragmentsAllowed error:nil];
         [webVC.webview callHandler:self.event
-                         arguments:@[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]
+                         arguments:@[[[NSString alloc] initWithData:data encoding:4]]
                  completionHandler:^(id  _Nullable value) {}];
     }
 }

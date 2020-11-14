@@ -192,21 +192,15 @@
         NSArray<WKBackForwardListItem *> *backList = self.webview.backForwardList.backList;
         
         if([preLevelPath isEqualToString:@"/index"]){
-            
-            [self.webview goToBackForwardListItem:backList.firstObject];
+            if(backList.count > 1){
+                [self.webview goToBackForwardListItem:backList.firstObject];
+            }
         }else{
             for (NSInteger i = backList.count - 1; i >= 0; i--){
                 WKBackForwardListItem *item = backList[i];
-                //        for (WKBackForwardListItem *item in backList){
-//                NSURLComponents *itemComponents = [NSURLComponents componentsWithURL:item.URL resolvingAgainstBaseURL:YES];
+
                 NSString *itemPath = item.URL.absoluteString;
-//                NSString *itemFragment = [self framentEmptyAction:itemComponents.fragment];
-                
-                
-//                NSURLComponents *finderComponents = [NSURLComponents componentsWithString:preLevelPath];
-//                NSString *finderPath = finderComponents.path;
-//                NSString *finderFragment = [self framentEmptyAction:finderComponents.fragment];
-                
+
                 if([itemPath rangeOfString:preLevelPath].location != NSNotFound){
                     
                     if(i == backList.count - 1){

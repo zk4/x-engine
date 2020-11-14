@@ -24,6 +24,7 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.zkty.modules.engine.provider.XEngineProvider;
 import com.zkty.modules.loaded.imp.ImagePicker;
 import com.zkty.modules.loaded.imp.adapter.ImageFoldersAdapter;
 import com.zkty.modules.loaded.imp.adapter.ImagePickerAdapter;
@@ -33,7 +34,6 @@ import com.zkty.modules.loaded.imp.executors.CommonExecutor;
 import com.zkty.modules.loaded.imp.listener.MediaLoadCallback;
 import com.zkty.modules.loaded.imp.manager.ConfigManager;
 import com.zkty.modules.loaded.imp.manager.SelectionManager;
-import com.zkty.modules.loaded.imp.provider.ImagePickerProvider;
 import com.zkty.modules.loaded.imp.task.ImageLoadTask;
 import com.zkty.modules.loaded.imp.task.MediaLoadTask;
 import com.zkty.modules.loaded.imp.task.VideoLoadTask;
@@ -520,7 +520,7 @@ public class ImagePickerActivity extends BaseActivity implements ImagePickerAdap
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         Uri uri;
         if (Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(this, ImagePickerProvider.getFileProviderName(this), new File(mFilePath));
+            uri = FileProvider.getUriForFile(this, XEngineProvider.getProvider(), new File(mFilePath));
         } else {
             uri = Uri.fromFile(new File(mFilePath));
         }

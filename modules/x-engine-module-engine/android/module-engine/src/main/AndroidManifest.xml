@@ -13,12 +13,13 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name="com.zkty.modules.engine.activity.XEngineWebActivity"
-            android:theme="@style/TranTheme"/>
+        <activity
+            android:name="com.zkty.modules.engine.activity.XEngineWebActivity"
+            android:theme="@style/TranTheme" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="xengine.provider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

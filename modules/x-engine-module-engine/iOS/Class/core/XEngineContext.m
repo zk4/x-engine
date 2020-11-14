@@ -139,13 +139,27 @@
     }
     return modules;
 }
+
 - (void) onApplicationDelegate:(NSString*) eventName arg1:(id)application args:(id) args{
+   
+   SEL  sel = NSSelectorFromString(eventName);
+   for (id d in self.applicationDelegateModules){
+       if( [d respondsToSelector:sel] ) {
+           // invoke the method
+           id(*action)(id,SEL,id,id) = (id(*)(id,SEL,id,id))objc_msgSend;
+           action(d, sel,application, args);
+       }
+   }
+}
+
+- (void) onApplicationDelegate0:(NSString*) eventName arg1:(id)application {
+    
     SEL  sel = NSSelectorFromString(eventName);
     for (id d in self.applicationDelegateModules){
         if( [d respondsToSelector:sel] ) {
             // invoke the method
-            id(*action)(id,SEL,id,id) = (id(*)(id,SEL,id,id))objc_msgSend;
-            action(d, sel,application, args);
+            id(*action)(id,SEL,id) = (id(*)(id,SEL,id))objc_msgSend;
+            action(d, sel,application);
         }
     }
 }

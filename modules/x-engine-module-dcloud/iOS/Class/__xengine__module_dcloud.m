@@ -133,7 +133,7 @@
     /// 初始化小程序的配置信息
     DCUniMPConfiguration *configuration = [[DCUniMPConfiguration alloc] init];
     
-//    if (!dto) {
+    if (!dto) {
         
         // 配置启动小程序时传递的参数（参数可以在小程序中通过 plus.runtime.arguments 获取此参数）
         configuration.arguments = @{ @"arguments":@"Hello uni microprogram" };
@@ -142,21 +142,21 @@
         // 开启后台运行
         configuration.enableBackground = NO;
 
-//    }else{
-//        // 配置启动小程序时传递的参数（参数可以在小程序中通过 plus.runtime.arguments 获取此参数）
-//        configuration.arguments = dto.arguments;
-//        // 配置小程序启动后直接打开的页面路径 例："pages/component/view/view?a=1&b=2"
-//        if (![dto.redirectPath isEqualToString:@""]) {
-//            configuration.redirectPath = dto.redirectPath;
-//        }else{
-//            configuration.redirectPath = nil ;
-//        }
-//        // 开启后台运行
-//        configuration.enableBackground = dto.enableBackground;
-//
-//        configuration.showAnimated = dto.showAnimated;
-//        configuration.hideAnimated = dto.hideAnimated;
-//    }
+    }else{
+        // 配置启动小程序时传递的参数（参数可以在小程序中通过 plus.runtime.arguments 获取此参数）
+        configuration.arguments = dto.arguments;
+        // 配置小程序启动后直接打开的页面路径 例："pages/component/view/view?a=1&b=2"
+        if (![dto.redirectPath isEqualToString:@""]) {
+            configuration.redirectPath = dto.redirectPath;
+        }else{
+            configuration.redirectPath = nil ;
+        }
+        // 开启后台运行
+        configuration.enableBackground = dto.enableBackground;
+
+        configuration.showAnimated = dto.showAnimated;
+        configuration.hideAnimated = dto.hideAnimated;
+    }
     
     return configuration;
 }

@@ -356,7 +356,9 @@ public class XEngineWebActivity extends AppCompatActivity {
                                 mWebView.goBack();
                             }
                         } else {
-                            if (!TextUtils.isEmpty(last.getWebUrl()) && last.getWebUrl().equals(backPageUrl)) {
+                            if ("about:blank".equals(backPageUrl)) {
+                                finish();
+                            } else if (!TextUtils.isEmpty(last.getWebUrl()) && last.getWebUrl().equals(backPageUrl)) {
                                 finish();
                             }
                             mWebView.goBack();
@@ -414,7 +416,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
 
     class MyWebChromeClient extends WebChromeClient {
-        
+
         @Override
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
@@ -452,13 +454,13 @@ public class XEngineWebActivity extends AppCompatActivity {
             public void passPermissions() {
                 CameraDialog bottomDialog = new CameraDialog(XEngineWebActivity.this);
                 String[] photoKey = new String[2];
-                photoKey[0] = "从手机相册选择";
-                photoKey[1] = "拍照";
+                photoKey[0] = "拍照";
+                photoKey[1] = "从手机相册选择";
                 bottomDialog.initDialog(photoKey, (view, which, l) -> {
-                    if (which == 0) {
+                    if (which == 1) {
                         // 从手机相册选择
                         AvatarUtils.startAlbum(XEngineWebActivity.this);
-                    } else if (which == 1) {
+                    } else if (which == 0) {
                         // 拍照
                         AvatarUtils.startCamera(XEngineWebActivity.this);
                     } else if (which == -2) {

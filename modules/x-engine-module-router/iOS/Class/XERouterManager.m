@@ -13,6 +13,7 @@
 #import <x-engine-module-dcloud/__xengine__module_dcloud.h>
 #import <XEngineContext.h>
 #import <MicroAppLoader.h>
+#import <x-engine-module-dcloud/XEUniCheckUtil.h>
 
 @implementation XERouterManager
 
@@ -63,13 +64,22 @@
             }];
         }
     } else if([type isEqual:@"uni"]){
-        NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
-        __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
+        if([XEUniCheckUtil checkUniFile:uri]){
+            NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
+            __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
+            UniMPDTO* d = [UniMPDTO new];
+            d.appId = uri;
+            d.arguments = args;
+            [dcloud _openUniMPWithArg:d complete:nil];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+                                                                object:@{
+                                                                    @"ROUTE_TYPE":@"uni",
+                                                                    @"ROUTE_URI":uri,
+                                                                    @"ROUTE_PATH":[NSString stringWithFormat:@"%@", path],
+            }];
+        }
         
-        UniMPDTO* d = [UniMPDTO new];
-        d.appId = uri;
-        d.arguments = args;
-        [dcloud _openUniMPWithArg:d complete:nil];
     } else if([type isEqual:@"wx"]){
         
         NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"wx_appkey" ofType:@"md"];
@@ -87,6 +97,14 @@
                 [WXApi sendReq:launchMiniProgramReq completion:nil];
             }
         }
+    } else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+                                                            object:@{
+                                                                @"ROUTE_TYPE":type,
+                                                                @"ROUTE_URI":[NSString stringWithFormat:@"%@", uri],
+                                                                @"ROUTE_VERSION":@(version),
+                                                                @"ROUTE_PATH":[NSString stringWithFormat:@"%@", path],
+        }];
     }
 }
 

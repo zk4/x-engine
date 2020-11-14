@@ -16,6 +16,7 @@
 #import "WeexSDK.h"
 #import <XEngineContext.h>
 #import "DCUniMP.h"
+#import <MicroAppLoader.h>
 
 @interface __xengine__module_dcloud() <DCUniMPSDKEngineDelegate>
 @property (nonatomic, weak) DCUniMPInstance *uniMPInstance; /**< 保存当前打开的小程序应用的引用 注意：请使用 weak 修辞，否则应在关闭小程序时置为 nil */
@@ -74,11 +75,13 @@
 
 // 启动小程序传递参数
 - (void)_openUniMPWithArg:(UniMPDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
     if ([self checkUniMPResource:dto.appId]) {
         // 获取配置信息
         DCUniMPConfiguration *configuration = [self getUniMPConfiguration:dto];
         __weak __typeof(self)weakSelf = self;
         // 打开小程序
+//        NSString *uniPath = [[MicroAppLoader uniDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", appId]];
         [DCUniMPSDKEngine openUniMP:dto.appId configuration:configuration completed:^(DCUniMPInstance * _Nullable uniMPInstance, NSError * _Nullable error) {
             if (uniMPInstance) {
                 weakSelf.uniMPInstance = uniMPInstance;
@@ -93,6 +96,7 @@
 #pragma mark 小程序
 /// 检查运行目录是否存在应用资源，不存在将应用资源部署到运行目录
 - (BOOL)checkUniMPResource:(NSString *)appId {
+    
     if (![DCUniMPSDKEngine isExistsApp:appId]) {
         // 读取导入到工程中的wgt应用资源
     NSString *appResourcePath = [[NSBundle mainBundle] pathForResource:appId ofType:@"wgt"];

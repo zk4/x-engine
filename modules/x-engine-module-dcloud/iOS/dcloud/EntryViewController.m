@@ -62,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self pushTestModule];
-    [[XEOneWebViewControllerManage sharedInstance] setMainUrl:@"http://0.0.0.0:8080"];
+    [[XEOneWebViewControllerManage sharedInstance] setMainUrl:@"http://192.168.125.134:8080"];
 }
 
 @end

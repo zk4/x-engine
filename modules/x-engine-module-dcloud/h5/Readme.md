@@ -1,5 +1,5 @@
 
-version: 0.0.55
+version: 0.0.56
 ``` bash
 npm install @zkty-team/x-engine-module-dcloud
 ```
@@ -26,7 +26,7 @@ npm install @zkty-team/x-engine-module-dcloud
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| appId | string |  | __UNI__11E9B73 | 小程序appId |
+| appId | string |  | __UNI__9B75743 | 小程序appId |
 
 
 ## preloadUniMP
@@ -49,7 +49,7 @@ npm install @zkty-team/x-engine-module-dcloud
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| appId | string |  | __UNI__11E9B73 | 小程序appId |
+| appId | string |  | __UNI__9B75743 | 小程序appId |
 
 
 ## openUniMPWithArg
@@ -72,7 +72,7 @@ npm install @zkty-team/x-engine-module-dcloud
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| appId | string |  | __UNI__11E9B73 |  |
+| appId | string |  | __UNI__9B75743 |  |
 | arguments | Map\<string,string\> |  | {"arguments":"Hello uni microprogram"} | 配置启动小程序时传递的参数 |
 | redirectPath | string |  | pages/component/view/view |  路径 |
 | enableBackground | bool |  |  |  开启后台运行 |

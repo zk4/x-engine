@@ -21,13 +21,13 @@ function osCheck() {
   {
     "name": "preloadUniMP",
     "default_args": {
-      "appId": "__UNI__11E9B73"
+      "appId": "__UNI__9B75743"
     }
   },
   {
     "name": "openUniMPWithArg",
     "default_args": {
-      "appId": "__UNI__11E9B73",
+      "appId": "__UNI__9B75743",
       "arguments": {
         "arguments": "Hello uni microprogram"
       },

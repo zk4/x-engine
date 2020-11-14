@@ -19,6 +19,9 @@
 
 
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
+    NSCharacterSet *encode_set= [NSCharacterSet URLQueryAllowedCharacterSet];
+    path = [path stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
+    
     if(uri.length == 0){
         return;
     }

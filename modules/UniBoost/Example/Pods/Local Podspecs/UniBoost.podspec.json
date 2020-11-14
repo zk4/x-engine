@@ -43,7 +43,9 @@
     "CoreTelephony",
     "AssetsLibrary",
     "CoreLocation",
-    "AddressBook"
+    "AddressBook",
+    "Photos",
+    "CoreMedia"
   ],
   "resources": "UniBoost/Assets/Resources/*.*"
 }

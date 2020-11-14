@@ -7,287 +7,285 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		020F1FBED871274B3DBC81F08CC69537 /* WXListComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 1134C8CEBABFC2996DD130626DFA07C4 /* WXListComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		042A9BD28448084A30B8C5A645568A26 /* DCUniMP.h in Headers */ = {isa = PBXBuildFile; fileRef = ACD7E6E5E7965439432979B90F23819B /* DCUniMP.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0968E4B25AE75C454745863A577D753A /* WXApmForInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = 698CE99467D3C36BA1DEDF77AE93C97B /* WXApmForInstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0E4F1D85475E95156F62AF49FA501537 /* WXUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DDF251D6229FE91721FEACE48BFCA668 /* WXUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		135B719AC4EFDB4C538D9EAEBAC523EE /* flex_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = A4A4AB7AEE2AE3807B132EC7F4202C17 /* flex_enum.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		13A28176D900AF491D51728FECB2245F /* WXComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D8CA99D24858B744532D5F344839C38 /* WXComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		16AAB1D56861D28192A1FDB7C50E2A12 /* WXSDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EE36DDA1602141C754FBF57F1ED4F956 /* WXSDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		19D1569CF1B7D59424F8ABBA6648353A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		1BBDA35443DF7EF716234367F81AC05E /* WXJSFrameworkLoadProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D28D01598193D009853A35EF069869 /* WXJSFrameworkLoadProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1F0B513CA0D149E10688E98C7606589D /* WXExceptionUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FDEC84789D15F60E732609B24C66F17 /* WXExceptionUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1F2082A52EA21A6C65AE4080D1080039 /* WXNetworkProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 276668BB7ED93288DDD2353D81D5D50D /* WXNetworkProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FF5FC8F70A939BDA119E7CCB9814757 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		21A8CBB221EDAEFA9283BF2122A0B6D3 /* uni-jsframework.js in Resources */ = {isa = PBXBuildFile; fileRef = 8E191F261C5068C312344D4050E8472A /* uni-jsframework.js */; };
-		222319C3322A0BFDADE312ACCFA5B54B /* WXExtendCallNativeProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6B65682A217709DAC5E04757C2E44A /* WXExtendCallNativeProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		254041ECD9317E2E81FC7F767CAD4BAA /* WXConfigCenterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB753806A05C26D965E7931368B0EF0 /* WXConfigCenterProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		267D55CD3615A9A26E02F27D54E0F190 /* DCUniMPError.h in Headers */ = {isa = PBXBuildFile; fileRef = 6605ACF1E4F0714A07A7E08F3ECF6FCF /* DCUniMPError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2B89A1790B9E192FA1F35302B33E3C37 /* WXRichText.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C6583E7E050E7FAB52E7A3C63F321B1 /* WXRichText.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		312CB29EC2FA890F19040D99F1AF0128 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A5C04899D4580F18DE0D83A3385B8F8 /* weexUniJs.js */; };
-		3274E691EAA4FEE7AA0A64E9F7BCCD75 /* UniBoost-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 220464D4FF63523ECBA42F9FE6202686 /* UniBoost-dummy.m */; };
-		373B3500AB6169AE39912D38C42906F6 /* WXRootViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DE90D9DA12CC97F549974718655680 /* WXRootViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37795E72BB6661E116E0FC3BFC8DFE7C /* WXComponent+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EB0C33AFD4354F50AD48D50D1EBFC52 /* WXComponent+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		385F2370DBACCFBD6F2E63BD1BA236C4 /* WXAppConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 413F0A9707B78AEDF87222273848A3D6 /* WXAppConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38EF29091BF69DA4E32AC58706A6B987 /* WXModalUIModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 516F662E52304E1B587EE263C098C38B /* WXModalUIModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3F241311F110FEF6F9ED039AED0F512F /* WXJSExceptionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DD02CF80E7C151A53F0123C18AF23D /* WXJSExceptionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45C4277325B59893A2AB5CD6634E328A /* WXComponentManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BDB30AE24173720A8E384E44CBFA7734 /* WXComponentManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		46FBB7FF98226001ED932D8D4BFD91A1 /* WXSDKInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = 987A297E548970290E269A9D186666F5 /* WXSDKInstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		495328B16721C09CF27FEB970FEEFE05 /* WeexProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A911C59733563F9E92A8140BF1E5A79 /* WeexProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4B5D74DC90570459525606322856526B /* WXBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1413C0831C49F3B80AB70570A7C0E1F6 /* WXBaseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4C1F9425CB37EA8006965D6D24D2A6E1 /* WXModuleProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 12E6A461CEA9B2222E211F439F6CE52A /* WXModuleProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E1F52E5CC98B98E0F34050C52AA03B3 /* DCUniMPInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = AF3C5A0E184BCE4991E7BC85F2CD596D /* DCUniMPInstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4FBF3E4B4BC49DB0154FA64EA72FDB55 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FC5438AB1A4EBF861541FE4CF9E3B79 /* unincomponents.ttf */; };
-		54F5938FDE396BF3B812BC26A9F56804 /* layout.h in Headers */ = {isa = PBXBuildFile; fileRef = F69386069A7858B14A57BAA7103D2A58 /* layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55C56CCE9738FBE84295E6C1C383B03D /* WXValidateProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4615D3E01A8A8E37241C53A0F5F34016 /* WXValidateProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5FDE0911ED08CB5D6C1E09746FB86444 /* WXScrollerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 470E8919E2B8AD9460E51240AFAE3C53 /* WXScrollerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6299C71DD03C8F9C7FB27AEF18B16161 /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE45C4CA46E81E440B5A52D99552BD4 /* ReplaceMe.m */; };
-		6DF8EC1250ADEA12AC60A24C2D13E147 /* WXPrerenderManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 532425DD87035D0D252841A385F529CC /* WXPrerenderManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E894FCD5112F7542EE944DF6DC7E63E /* WXResourceResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = BD3496586A1EA48195391445382EFE33 /* WXResourceResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		704FDCACA5ED479DE58D7A2EC3EF3A09 /* WXErrorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4FAF444ADCD4D65ED54A95D990E6B /* WXErrorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		72F8A3457AF02FF96D8C032F9E93B2E6 /* NSObject+WXSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = D473AEF2FF235CE0452E12E1ABD02390 /* NSObject+WXSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7412DD03AB55BB4B5B7BDBA58F82D823 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C79B004348059FF45FAFBED52D8CAFE /* weex-polyfill.js */; };
-		74799BBF40D6B60A6B4FCE578893CD5F /* WXSDKError.h in Headers */ = {isa = PBXBuildFile; fileRef = 06EAD5EF4DF143803FBA99ABC9A827C7 /* WXSDKError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7BC67C050BDFBD64958F8D6C5F1E7CF5 /* WeexSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = B801F5EF647FC2603FC1BA922447C688 /* WeexSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		814C897B20D3C2C492827E83DD9CF538 /* WXURLRewriteProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E87449939E8C50E819D193018154363A /* WXURLRewriteProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		846BCA3CCB86430571DB3220ACEBF0F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		866A8F5B1B88DFD75AF0EA19D230CAC8 /* WXNavigationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B62DDE93516E1802FF63B682E77C13E9 /* WXNavigationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		86BE1DF9183D7543FA2055720AF76CED /* DCUniMPMenuActionSheetStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E402F814D92712CB6D410CCE6714B0 /* DCUniMPMenuActionSheetStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A4D3B74A719D5AA536388D71A1C2BE5 /* WXMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 481A852CF9EDE7DC55EEC15123AECC23 /* WXMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8C54E161927D75E7714DB59AF1A23260 /* WXDisplayLinkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E6D8A835FD5921E8B521332676A8E31B /* WXDisplayLinkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8D181FADFB20195829B3CA435AED03CF /* UniBoost-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DB79BF73842955E53EB399FD947C384D /* UniBoost-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		923B490886CA8C185DE31073F5C31BC9 /* WXBridgeProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F17D9D1170B6A0826E98F9965C45A6B4 /* WXBridgeProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		93A7FFCE644E83824DC3D3804045E935 /* WXDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 874CBEF4CD2A9A129F0515B6E42B8106 /* WXDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		93B3115DF7C4D7680D5FF4EA9085292E /* WXLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F0CF13A3C3641112CD7F53518AAC82A3 /* WXLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		960C6653949E1F7983EF1714EF1F1AB4 /* WXResourceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = C5C255C90C78CC31BF2FDC0A2A40DBE5 /* WXResourceRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9709A5713BE22175C56ADBD0B5CFF3BF /* WXSDKEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 184DCB30E6B30CCF6FE98307DD9BE6FF /* WXSDKEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		97F0A1A77C2B8432B6BF5AAE64D0E7F6 /* WXIndicatorComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 39CCFCA067A5B8C36E98D292EBF18B55 /* WXIndicatorComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		99CAFE38DC8C996DCC7A2E428F9F5D3C /* WXTracingProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE567D30F7085F57C4756BD6E888178 /* WXTracingProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9F3F9075462544B1DDDD90A2DC60CE93 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 845897524D11865860EE9256AA5633AE /* style.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A13A681BE8AFE1A481CCECF2E4EE9010 /* DCUniMPSDKEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 76891FF4B31764E10E014B1CBE60D1B2 /* DCUniMPSDKEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6D55611F4E063458BC27959107AF569 /* WXAnalyzerCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A3BDB5B49B267164FB8908E1B736DF7 /* WXAnalyzerCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6FA6C86269E6CE48F28B9020DD33046 /* JSContext+Weex.h in Headers */ = {isa = PBXBuildFile; fileRef = C092D9BF7FAE170D155C0CFEAE94B9E7 /* JSContext+Weex.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A8A5CCC0A863043B5C1B618DF61EFD97 /* Pods-UniBoost_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1278C8A10CBCC45E3F501F0AFFE00F /* Pods-UniBoost_Tests-dummy.m */; };
-		AC0F7A1FED11B8DC5BC1404D98952D60 /* WXScrollerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EC741E57EEC8A0CC97C3BEED29D77EAA /* WXScrollerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AFF4051DB6C6B2933E76853204C19420 /* Pods-UniBoost_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 989452AD627870DA4CE82C6172CD3104 /* Pods-UniBoost_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AFFBEEFBEF53D7BF2223B60577D5C57E /* Pods-UniBoost_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8A25280BC26AD7BD8041399ACA3B8 /* Pods-UniBoost_Example-dummy.m */; };
-		B1A64C08EA00F6FC6139C3888918AD4B /* DCUniMPConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 290CFA9E68D119DFD6231CBF16D60EA9 /* DCUniMPConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B980F6ECB6A10F0284CAB839DC0008AE /* __uniappes6.js in Resources */ = {isa = PBXBuildFile; fileRef = 743438367061A04637563ACDE903C41D /* __uniappes6.js */; };
-		C54EE90543A4D1FFA9999B0A9592A3B2 /* WXRecyclerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 429DEBB63F91A5B8CBB43B594F1F01FB /* WXRecyclerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C998AA7833689FC689D1D997B55AB5D3 /* WXSDKInstance+Bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 4986C12AC699901756FE4026E06C5395 /* WXSDKInstance+Bridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA286D70CD22CC23588AE618A2D53F8A /* UniPluginProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FF3D19151C474A173F9DFB140F4C3573 /* UniPluginProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D06BFE8765F23C41AE2682238DBCD35F /* WXAppMonitorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DBEBFBF1ABAE0AB504CD37B9BC37388 /* WXAppMonitorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0D92DACA78486C3F481FFED0C9073E2 /* WXTracingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 168CD8E9698C85617AB6AF038ABFE9BE /* WXTracingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1A725EBA66C99CCF6395B7787F9BCB7 /* WXRootView.h in Headers */ = {isa = PBXBuildFile; fileRef = F7DE5C7D9DEF1A5F1B066AE3C968B34B /* WXRootView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1C31259A1B894816BF5211DCFE33516 /* WXJSExceptionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 647A76C03A21BBD1FDC8F5E0441DE624 /* WXJSExceptionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D296DBE0BD4CC1F7480642C140C92F9C /* PandoraApi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF8EE274CFFFDB8FFA4BE624684D0B06 /* PandoraApi.bundle */; };
-		D514246C930271DF8FD7A2BEA7589BE8 /* WXPageEventNotifyEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = BF64E79D3D780B59E133AE66537449E3 /* WXPageEventNotifyEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D5AFD5C8910C74145A16546BA391DC63 /* WXImgLoaderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A0CA7A2E01CBFC5E59DF9C02D4BE25A /* WXImgLoaderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DFF7D83BDAAE9286EDAE8EC848489612 /* WXBridgeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = AA0F42BF55B5595CBC31C252DBC85708 /* WXBridgeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DFFFB9173F9F0CAD60B6C3B5775D3E95 /* WXAnalyzerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 158FFC119B45F99DFFEF75D29F39F22A /* WXAnalyzerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E066204D442D5B1CD43037B2B047848C /* WXEventModuleProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CBCA0AF7E0E3D23A0B885AF62EE18E0A /* WXEventModuleProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E07002E84E6EEFAC5EAEEDD9F4DC5BED /* WXView.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D1988369D967DA6B8E10DEC90A88B7 /* WXView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1895F197A0F908B3344B834359C9B6B /* WXApmProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 39D42555945F5F5B9C97C8633C7014F3 /* WXApmProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E345FAC37763A3CA7D6A3022B24923B9 /* WXType.h in Headers */ = {isa = PBXBuildFile; fileRef = F614E342BB508EFFEA457E9ECD41D743 /* WXType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E511958D92E824066765826E1830853F /* WXVoiceOverModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 0886AF8E9738C18B25E5224EB2FB9AB1 /* WXVoiceOverModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E7B541B1DB7DCFEC70B5330D5925A5F7 /* WXResourceLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED8EE2024F1FBD6B3C024CD8BDA40B5 /* WXResourceLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E95D4381377381025B5A500CC05F8DA4 /* WXResourceRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 749049F1D2068C7AB76E0734423B9FA2 /* WXResourceRequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA25A72BF262DF82A376A54FCF1D4041 /* WXDebugTool.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAAD1D663981D323D5F9006EB46106F /* WXDebugTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB85135865E99E63B53964146B063A75 /* WXConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E770DBEDF1A85D48DAA751AB658BADF /* WXConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED00EFF474537394E3C7DD11DC636DA1 /* Pods-UniBoost_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 97AA7EF00D8075E1FB7F2E1906EA567F /* Pods-UniBoost_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F173F6475BD285006F2AE1D600759A17 /* WXAComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = DB8E403EFB5B7AA1AE70198049338961 /* WXAComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FCCED6EC1DAABF600AB64BB26BA67B09 /* WXWebSocketHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 09F505B714D4548BD98C446E94C7D6F1 /* WXWebSocketHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FFFF4C2F44C03AA9DA3B31D1DCEB0785 /* WXSDKInstance+DCExtend.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E37427775B2B409BEB36C0F2E14459 /* WXSDKInstance+DCExtend.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		006E614F91BF24CBFD943B74F32971AB /* PandoraApi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 23C057A44200F43F2718251C10715600 /* PandoraApi.bundle */; };
+		0165BB749F961ACFCD626CEF750388FE /* Pods-UniBoost_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 989452AD627870DA4CE82C6172CD3104 /* Pods-UniBoost_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		01DA447FFF400D3F59A0220656F4E7A0 /* DCUniMPMenuActionSheetStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 056A8D45970197CDDB43D94992C62570 /* DCUniMPMenuActionSheetStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02A14737F5E8678ABA990FC4766ABEEB /* WXJSExceptionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CCC3C196A5952C85CA0FBA3B338B615A /* WXJSExceptionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04AD59B4DDD51AAB73FA094187298B50 /* WXRootView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6627B4A471F7D277FC63CB0D6865F7A5 /* WXRootView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0853812726904A925975F049CE2629C6 /* WXExtendCallNativeProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D97CC794535176B15B937472E60032 /* WXExtendCallNativeProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D32175628D8C5B6F4840D7D01BAFC87 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A01C7F0A9A158A5CEDD128843CB7E0E /* unincomponents.ttf */; };
+		0F586114578255E337DD11E1F1795FAE /* WXTracingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 62EAF30EB0B3E1223B2F95F681BE7082 /* WXTracingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		124F5B3578B22172925B7A087DC72827 /* WXScrollerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EB24455E4DCDE49555E7A64EF18D6EB6 /* WXScrollerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		158D6D5287C27E23E224B1B22AB03563 /* WXListComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0417F89A1A2FEFD7BB8C71C2392A40EA /* WXListComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1671E9CB967BE7012E2638ED8BB142DF /* WXLog.h in Headers */ = {isa = PBXBuildFile; fileRef = C8C3B4CEE826C54EC0F1944DA1882A09 /* WXLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		178209857E0D16D73FE93EA1FA1D3FF1 /* WXWebSocketHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 992C91CAD35955E1CEFADB90C448C8E5 /* WXWebSocketHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1EB93FFDDE95313F04FBCA1B499D976E /* WXImgLoaderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = BC41B63C2997307978E745BF8A1DE72D /* WXImgLoaderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		236879B3A2FD7D83F712ACA8200909CA /* WXDisplayLinkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF5764C7DAA633AE4619692D23B7DF2 /* WXDisplayLinkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B9DB6664115D0A8B89B5C947A31ADD0 /* WXSDKInstance+DCExtend.h in Headers */ = {isa = PBXBuildFile; fileRef = B9BC42F2D89700FD9F5C13EB6D5E3AED /* WXSDKInstance+DCExtend.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F9A5F8863B0DD57F436DF883BC92557 /* UniBoost-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 970F119BFD5D4E83EED0ED76284C0527 /* UniBoost-dummy.m */; };
+		345AEC894D7293141456DFB14B585E1D /* WXBridgeProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E7A86986DA91B3605269E1FF429332 /* WXBridgeProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B23923B401F062CD9667A11039CEBB6 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 93D4883C3FA58F51087B9708D636861D /* TZImagePickerController.bundle */; };
+		3DBA63FF9ACB9AD658415081C5A1F836 /* WXConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = EAD2545A2F189B8F9CB46742F48800BB /* WXConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4114084D75B243EAD20C7F4888FE891D /* WXNavigationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E05DE02EA56585DDC9A629C1E2F643F /* WXNavigationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EA21E4D93AB8A47CE969EF1C591345 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = E28ED29172EA5129E8D7DB69DD556028 /* weex-polyfill.js */; };
+		4539B259D9AA29E2BD624F8F08A139A7 /* WXRootViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EEF2269450C0C19CBAF0850B94C50DE /* WXRootViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45B8149E674BB6987CB8A2DCE02F836C /* WXApmForInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = 48E69BD6EB08CD9A4DD0948CDABD7D13 /* WXApmForInstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4614F15E6B0EF16E979B230F4308AE3F /* WXSDKError.h in Headers */ = {isa = PBXBuildFile; fileRef = E63DF8D544BFDDBB83AF268B9A83FB73 /* WXSDKError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		465034CC75819B30B96051717F30E1E5 /* WXPrerenderManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D8FEE414B23AD1EE899DC10E8B8FE5A8 /* WXPrerenderManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4965B848741CE7AF3492BFDEAF8619EE /* WeexProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A222BBD732F2923B6592CE443A011A2B /* WeexProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52BA293F7098C292A5A88F0C9276D874 /* WXAComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 949006BCA044ABF55267A1ECCC8AD480 /* WXAComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5487256A266D8CC85D3D8E4104CB009A /* WXConfigCenterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5375F574C13E9687C4342395058B721A /* WXConfigCenterProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		568EE03F0C87A52320CA7E7B25CE515C /* WXAppMonitorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 92B108BEF335BF6A82084AF9B4213259 /* WXAppMonitorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61DAF495267F1B7CCC172B4AA0769101 /* WXSDKEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7202D04DEE1E6484D81358D857A0FD73 /* WXSDKEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		628B1A9C9CCFE599481B87B6055EDE4F /* WXType.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D36D5F484D0C792D8AECD4F76308434 /* WXType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643B32C51317657F780DE0E57A8798B5 /* Pods-UniBoost_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8A25280BC26AD7BD8041399ACA3B8 /* Pods-UniBoost_Example-dummy.m */; };
+		6669F22CC923B5436E8D14B85942FDC3 /* WXRecyclerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CE2BB5B69293DCC67169E88D9C18ED1 /* WXRecyclerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6AA420BA25F70931C42CEE74F48A4C9C /* DCUniMP.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D8E6769F9883BAE89A0BB0C040D69B0 /* DCUniMP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6AFCF66C994C38661120F2E98C0ED42F /* WXURLRewriteProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = C2840ACE1CA2A77C4F6C2891D24FA43A /* WXURLRewriteProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6C058CDF167F8C3C867CC3A58636D3BC /* WXEventModuleProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = BC25F69E5061879FE5A0DA2976849F7D /* WXEventModuleProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E7F4747B3CE0D46539552D959A19D99 /* WXValidateProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 32C7833DFF1E0B383087B85143508132 /* WXValidateProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		708E34051EB0F9D5E8EF1FB7745FA31E /* WeexSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F765A0EA705CD79C46E9F71B15E778B /* WeexSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7527EF848426F806F5B9E3D6A6351176 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = 069FA39D48CFCD4AA56D70A61E5BF78D /* weexUniJs.js */; };
+		792F3000DD44EBB131F13838B8C7EC09 /* WXExceptionUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B02349180DCC51D3DC30B03C77291146 /* WXExceptionUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C56A290FCDD424C9428856D5827A8A9 /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0B0FA05AA411D62027DFCB25C64A5C /* ReplaceMe.m */; };
+		8193A92DBCFF98717E4FE606FEA27D90 /* WXIndicatorComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 2737B09DF5D5B0BE441B5F76E2979764 /* WXIndicatorComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		852FCDA57A354882A1ABEA0D9CBDAD6E /* WXView.h in Headers */ = {isa = PBXBuildFile; fileRef = D0E211EB9BF9E9DAB3D90F8CC5AA9FE2 /* WXView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8536C8B2CCA86E5097C680546ECD6AAF /* WXSDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C953940CE0500BD3519C0D0CDECD0B1 /* WXSDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		896EFA547BB39DE0FE1358EA90493CB3 /* WXAppConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA218C531B1F3CCCD170049F3E89BEF /* WXAppConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A25C2EBCCD7ADFDB3B1BD3AAADD2204 /* WXComponent+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1455A8147D43E650025514CF32AB7A19 /* WXComponent+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94825F80A43939EBF19BEBB13010B677 /* WXModuleProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A41967D5218C9563246FF3B48B132642 /* WXModuleProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D34CD46BF87B85574D67D9157E1CFB3 /* DCUniMPSDKEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = C3C942B1B98FB91BFAB4D2CC14E3FCDD /* DCUniMPSDKEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F390D080084A0764FE647382CF9536 /* DCUniMPConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A9684FEB415C9454ECA676535F0955 /* DCUniMPConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0F97819EC1532C486D68202E79E17C5 /* WXNetworkProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 33677535D9503A463CE3DD634C7B656B /* WXNetworkProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1D56E69965B10E2B4B5DE65438B0DF0 /* WXResourceRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 46655A769092330ABF54015AD7C2DB77 /* WXResourceRequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A23A3453CC4B6E0A638FFBF1637DFAD2 /* WXModalUIModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 22251D30445B214C1BDE74E4C8544473 /* WXModalUIModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A58E416270D6D05B54C788DFACCB48F4 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 9934A6FDACBA5A422B81E68D0E72EB9D /* style.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A63A080A15EDBE0F799F733160B15D04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		A67C0E6135109F493AB77ABA9371A980 /* WXVoiceOverModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E0A8EC1A134794BA20785EDA4C8567 /* WXVoiceOverModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A79B74C8F9EED0A0C8E1C670B484C9FF /* WXScrollerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = E60D0B150C06EF568B478E7642B92DD9 /* WXScrollerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD2B5D22C3D1580F4DD937AAFA4EB0A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		AF7D750C2551A47CD8F1529B5155FA3B /* WXSDKInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = E1CEF6DB49B050D0623B4E19F73D52F5 /* WXSDKInstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B16363EEEEAE5BAE2B2994E901E80114 /* UniBoost-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AD4D08130B777AD2CE001FC4C614813 /* UniBoost-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B363319F1E8A47D130084979545130AC /* WXPageEventNotifyEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 1437E916343C48C30162D160FFE5459A /* WXPageEventNotifyEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B83E34149705D34ED15B0B398E9F7F6F /* uni-jsframework.js in Resources */ = {isa = PBXBuildFile; fileRef = 6F1E6F547FD1A2B4AE8A1C760776E752 /* uni-jsframework.js */; };
+		BB5D3BA25A89AE95B9674CDE17170DD4 /* Pods-UniBoost_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 97AA7EF00D8075E1FB7F2E1906EA567F /* Pods-UniBoost_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC62C62B0708F56E1DF1A125CDA063F8 /* WXResourceResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = B163340BA9B21D0E1FDE07BEAEB3AB9A /* WXResourceResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BD4023A962F78F7C80300F6EC8A4F93E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		BE780C2DBBDA71AE517AA295E1EC208B /* WXJSExceptionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = DFE954B66D200F1798F83D80210A671D /* WXJSExceptionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C29275FDC8E4A2FD8DE8D680ADB2A665 /* NSObject+WXSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 76D7EAE857F488CFCB6B49B3F85FD473 /* NSObject+WXSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5928D937884C9AF4665DB4A56FD9BB4 /* WXDebugTool.h in Headers */ = {isa = PBXBuildFile; fileRef = AB9B35C44A2E1532E6D2F8646FADD9E6 /* WXDebugTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C8FD9EDDAC8306890D220DF5D233C501 /* WXBridgeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C97F2BB3DB5F8872017174F16E1136B /* WXBridgeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9F43F182E92D88033BFE9FC178CDC4D /* WXJSFrameworkLoadProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 786451FE6EF9F73DBC9ECA407CE0187E /* WXJSFrameworkLoadProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA7F23E4C6660E83BD47DB9B0053FA75 /* DCUniMPError.h in Headers */ = {isa = PBXBuildFile; fileRef = 2497CB730BA35D33CC74B9168101D99F /* DCUniMPError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D191A1A73E3C7DA79B79952C1E7A50E4 /* Pods-UniBoost_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1278C8A10CBCC45E3F501F0AFFE00F /* Pods-UniBoost_Tests-dummy.m */; };
+		D3CC55B278AD158738CB5859397F1EC5 /* WXDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CE3D1AE6D9C7C89686B03FE2920D354 /* WXDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4B71584CB1A277456FA94592CF8EFA1 /* WXTracingProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F6ADFC30E50874E0D1E6E943579B07A3 /* WXTracingProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D578ACE2A7DBB70FAD709DFD439AE548 /* flex_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = B499C5FC9D166BB645527795B92DAD86 /* flex_enum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D827546EC0339B8CF1294BCBEB3AECCE /* layout.h in Headers */ = {isa = PBXBuildFile; fileRef = D108E9849C99285C98EDED17CA34D2F8 /* layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D878BB30B95BD85308AAD2B1D20021A8 /* WXAnalyzerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6049A9F134BBD31071F240D7A33EF5 /* WXAnalyzerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD66B50C7B0F194C33BC58D3ED751680 /* WXResourceLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 77992F8E7EC1C720E2708657BD922888 /* WXResourceLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF1777E161B70F2DDA51C233541449CA /* WXErrorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 80DEE4A02CDC4CAEEA873465A1DF2BE0 /* WXErrorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E4BE09A78DBA98922C33374F86BE76F6 /* __uniappes6.js in Resources */ = {isa = PBXBuildFile; fileRef = A4495C9ABE0948498E172DD65B695612 /* __uniappes6.js */; };
+		E549517E243C41F09B382ECF06984D9E /* DCUniMPInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CC2417A1CAF85AB0FE9AE43216679E /* DCUniMPInstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E5F952479903A47DE0D2BC93F88E2E01 /* Headers_bak.zip in Sources */ = {isa = PBXBuildFile; fileRef = 1462C56B250B396923D6474810263B65 /* Headers_bak.zip */; };
+		E736EB2FBBC629410196102C794028A9 /* WXApmProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = C2038E92D9A61104FC5301B3DB3F455E /* WXApmProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E75AB4E90910FEAABCE691CDC57502B4 /* WXUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B7689DB68FC3D98CC25BA0B9AFBE9C85 /* WXUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E91E4DB2E9022E0949FD52723D4C0052 /* WXMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 149A540DAFC818503D053668D9574D9B /* WXMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E981C482B3C8752F84743318BB3B10F1 /* WXRichText.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E1D43FEC00CD1B4F4F66DC8935A611 /* WXRichText.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB6F8F1835B68EAEC42069FCC274B4C5 /* WXAnalyzerCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = A46F53F7EFBB6DAF4A6F8DD961C88831 /* WXAnalyzerCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2CEAA20B5C31E6367FA98527BFBF9A6 /* WXComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = FC8E23CC2A6F38B36D4FC9AC9EE0D716 /* WXComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F37855D7A2F0F41CC72690946EBF171F /* WXSDKInstance+Bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 11FB51B092E49AB949CA8D66FB5F28EC /* WXSDKInstance+Bridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA62E421F05136097D40A74A3CB1DEA3 /* WXComponentManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4551F3AD7BB66B2ABFA4A00C1D27869D /* WXComponentManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FB0B0A407C987F3DB1C6B0164EC4C0A1 /* JSContext+Weex.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CF467AC435A1B20F7428448B4E48A61 /* JSContext+Weex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FBC8B21C15475EDB0F2020EF3B1A9AA9 /* WXBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D0930B0F66D65C0C23728122D295D19 /* WXBaseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC7850C0132BCC5A4AE19BBFC0E2E871 /* WXResourceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = E27A19DB3984735EE4E4579C6F19EEB0 /* WXResourceRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FDBF91B9283C6A7A4C7FBE17AAF07534 /* UniPluginProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E25277E0D5A496C8F647D8EF55208C6F /* UniPluginProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		24EE6D75F518D25A9A766B2D22B0C40A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9150E8EE8C33E9FFF0107422265296B1;
-			remoteInfo = UniBoost;
-		};
-		8EE5F77EEA6C944866E4ED59F5815E5C /* PBXContainerItemProxy */ = {
+		99DD6BBB351C7136F19A144774F144D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = ABDA2F16503FB52AD0D4C376E1BD4E84;
 			remoteInfo = "Pods-UniBoost_Example";
 		};
+		A9894F0578D82D7118BFA12C5A24CBF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9150E8EE8C33E9FFF0107422265296B1;
+			remoteInfo = UniBoost;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0417F89A1A2FEFD7BB8C71C2392A40EA /* WXListComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXListComponent.h; sourceTree = "<group>"; };
+		056A8D45970197CDDB43D94992C62570 /* DCUniMPMenuActionSheetStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPMenuActionSheetStyle.h; sourceTree = "<group>"; };
 		05F686ADAD0D3482BEEDC4FE3CCA12B3 /* Pods-UniBoost_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-UniBoost_Example-resources.sh"; sourceTree = "<group>"; };
-		06EAD5EF4DF143803FBA99ABC9A827C7 /* WXSDKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKError.h; sourceTree = "<group>"; };
-		0886AF8E9738C18B25E5224EB2FB9AB1 /* WXVoiceOverModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXVoiceOverModule.h; sourceTree = "<group>"; };
-		09F505B714D4548BD98C446E94C7D6F1 /* WXWebSocketHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXWebSocketHandler.h; sourceTree = "<group>"; };
-		0A3BDB5B49B267164FB8908E1B736DF7 /* WXAnalyzerCenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerCenter.h; sourceTree = "<group>"; };
+		069FA39D48CFCD4AA56D70A61E5BF78D /* weexUniJs.js */ = {isa = PBXFileReference; includeInIndex = 1; name = weexUniJs.js; path = UniBoost/Assets/Resources/weexUniJs.js; sourceTree = "<group>"; };
+		0AD4D08130B777AD2CE001FC4C614813 /* UniBoost-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UniBoost-umbrella.h"; sourceTree = "<group>"; };
 		0EA24D319A816C71F6C1633ACABBE2D4 /* Pods_UniBoost_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_UniBoost_Example.framework; path = "Pods-UniBoost_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0ED8EE2024F1FBD6B3C024CD8BDA40B5 /* WXResourceLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceLoader.h; sourceTree = "<group>"; };
-		0FDEC84789D15F60E732609B24C66F17 /* WXExceptionUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXExceptionUtils.h; sourceTree = "<group>"; };
-		1134C8CEBABFC2996DD130626DFA07C4 /* WXListComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXListComponent.h; sourceTree = "<group>"; };
-		12E6A461CEA9B2222E211F439F6CE52A /* WXModuleProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXModuleProtocol.h; sourceTree = "<group>"; };
-		1413C0831C49F3B80AB70570A7C0E1F6 /* WXBaseViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXBaseViewController.h; sourceTree = "<group>"; };
-		158FFC119B45F99DFFEF75D29F39F22A /* WXAnalyzerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerProtocol.h; sourceTree = "<group>"; };
-		168CD8E9698C85617AB6AF038ABFE9BE /* WXTracingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXTracingManager.h; sourceTree = "<group>"; };
-		16B675301711127A3D2AE4C5968A0B2D /* UniBoost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UniBoost.debug.xcconfig; sourceTree = "<group>"; };
-		184DCB30E6B30CCF6FE98307DD9BE6FF /* WXSDKEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKEngine.h; sourceTree = "<group>"; };
+		0F765A0EA705CD79C46E9F71B15E778B /* WeexSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WeexSDK.h; sourceTree = "<group>"; };
+		11FB51B092E49AB949CA8D66FB5F28EC /* WXSDKInstance+Bridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+Bridge.h"; sourceTree = "<group>"; };
+		1437E916343C48C30162D160FFE5459A /* WXPageEventNotifyEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXPageEventNotifyEvent.h; sourceTree = "<group>"; };
+		1455A8147D43E650025514CF32AB7A19 /* WXComponent+Layout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WXComponent+Layout.h"; sourceTree = "<group>"; };
+		1462C56B250B396923D6474810263B65 /* Headers_bak.zip */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.zip; path = Headers_bak.zip; sourceTree = "<group>"; };
+		149A540DAFC818503D053668D9574D9B /* WXMonitor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXMonitor.h; sourceTree = "<group>"; };
+		14E0A8EC1A134794BA20785EDA4C8567 /* WXVoiceOverModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXVoiceOverModule.h; sourceTree = "<group>"; };
+		14E7A86986DA91B3605269E1FF429332 /* WXBridgeProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXBridgeProtocol.h; sourceTree = "<group>"; };
+		1739E4E3C67E400AA4891D8DA4EEFCC3 /* liblibNativeUI.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibNativeUI.a; path = UniBoost/SDKs/libraries/liblibNativeUI.a; sourceTree = "<group>"; };
 		186CE25407820795C48964766F906F9A /* Pods-UniBoost_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UniBoost_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		1AB753806A05C26D965E7931368B0EF0 /* WXConfigCenterProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXConfigCenterProtocol.h; sourceTree = "<group>"; };
-		1CFE63411196B6222CF772400F934D38 /* liblibPDRCore.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibPDRCore.a; path = UniBoost/SDKs/libraries/liblibPDRCore.a; sourceTree = "<group>"; };
-		220464D4FF63523ECBA42F9FE6202686 /* UniBoost-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UniBoost-dummy.m"; sourceTree = "<group>"; };
-		26F33AC168B74C35BCE0DE4AAC12C92B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		276668BB7ED93288DDD2353D81D5D50D /* WXNetworkProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXNetworkProtocol.h; sourceTree = "<group>"; };
-		290CFA9E68D119DFD6231CBF16D60EA9 /* DCUniMPConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPConfiguration.h; sourceTree = "<group>"; };
+		1C0B0FA05AA411D62027DFCB25C64A5C /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ReplaceMe.m; path = UniBoost/Classes/ReplaceMe.m; sourceTree = "<group>"; };
+		1D36D5F484D0C792D8AECD4F76308434 /* WXType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXType.h; sourceTree = "<group>"; };
+		21CC2417A1CAF85AB0FE9AE43216679E /* DCUniMPInstance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPInstance.h; sourceTree = "<group>"; };
+		21E1D43FEC00CD1B4F4F66DC8935A611 /* WXRichText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRichText.h; sourceTree = "<group>"; };
+		22251D30445B214C1BDE74E4C8544473 /* WXModalUIModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXModalUIModule.h; sourceTree = "<group>"; };
+		23C057A44200F43F2718251C10715600 /* PandoraApi.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = PandoraApi.bundle; path = UniBoost/Assets/Resources/PandoraApi.bundle; sourceTree = "<group>"; };
+		2497CB730BA35D33CC74B9168101D99F /* DCUniMPError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPError.h; sourceTree = "<group>"; };
+		2737B09DF5D5B0BE441B5F76E2979764 /* WXIndicatorComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXIndicatorComponent.h; sourceTree = "<group>"; };
 		2BBA1B9B8ED6444FD40C179E00B9CBD6 /* Pods-UniBoost_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-UniBoost_Tests.modulemap"; sourceTree = "<group>"; };
-		2EB0C33AFD4354F50AD48D50D1EBFC52 /* WXComponent+Layout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WXComponent+Layout.h"; sourceTree = "<group>"; };
-		2FC5438AB1A4EBF861541FE4CF9E3B79 /* unincomponents.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = unincomponents.ttf; path = UniBoost/Assets/Resources/unincomponents.ttf; sourceTree = "<group>"; };
+		2FF5764C7DAA633AE4619692D23B7DF2 /* WXDisplayLinkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXDisplayLinkManager.h; sourceTree = "<group>"; };
+		31CBE3CEE71BAFF350C5E512929E9AE3 /* UniBoost.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = UniBoost.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		39CCFCA067A5B8C36E98D292EBF18B55 /* WXIndicatorComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXIndicatorComponent.h; sourceTree = "<group>"; };
-		39D42555945F5F5B9C97C8633C7014F3 /* WXApmProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXApmProtocol.h; sourceTree = "<group>"; };
-		3DBEBFBF1ABAE0AB504CD37B9BC37388 /* WXAppMonitorProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAppMonitorProtocol.h; sourceTree = "<group>"; };
-		3E96C49170F77BBF0402D63AC206E8A6 /* UniBoost-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UniBoost-prefix.pch"; sourceTree = "<group>"; };
-		40DD02CF80E7C151A53F0123C18AF23D /* WXJSExceptionInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionInfo.h; sourceTree = "<group>"; };
-		413F0A9707B78AEDF87222273848A3D6 /* WXAppConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAppConfiguration.h; sourceTree = "<group>"; };
-		429DEBB63F91A5B8CBB43B594F1F01FB /* WXRecyclerComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRecyclerComponent.h; sourceTree = "<group>"; };
-		4615D3E01A8A8E37241C53A0F5F34016 /* WXValidateProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXValidateProtocol.h; sourceTree = "<group>"; };
-		470E8919E2B8AD9460E51240AFAE3C53 /* WXScrollerComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXScrollerComponent.h; sourceTree = "<group>"; };
-		47F41027F672C27540A1305FE364AE2A /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = storage.framework; path = UniBoost/SDKs/frameworks/storage.framework; sourceTree = "<group>"; };
-		481A852CF9EDE7DC55EEC15123AECC23 /* WXMonitor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXMonitor.h; sourceTree = "<group>"; };
-		4986C12AC699901756FE4026E06C5395 /* WXSDKInstance+Bridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+Bridge.h"; sourceTree = "<group>"; };
-		49E402F814D92712CB6D410CCE6714B0 /* DCUniMPMenuActionSheetStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPMenuActionSheetStyle.h; sourceTree = "<group>"; };
+		32C7833DFF1E0B383087B85143508132 /* WXValidateProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXValidateProtocol.h; sourceTree = "<group>"; };
+		33677535D9503A463CE3DD634C7B656B /* WXNetworkProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXNetworkProtocol.h; sourceTree = "<group>"; };
+		37D97CC794535176B15B937472E60032 /* WXExtendCallNativeProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXExtendCallNativeProtocol.h; sourceTree = "<group>"; };
+		4105919FA608F62E5FEF1D8F16F16816 /* libcoreSupport.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcoreSupport.a; path = UniBoost/SDKs/libraries/libcoreSupport.a; sourceTree = "<group>"; };
+		4551F3AD7BB66B2ABFA4A00C1D27869D /* WXComponentManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXComponentManager.h; sourceTree = "<group>"; };
+		46655A769092330ABF54015AD7C2DB77 /* WXResourceRequestHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceRequestHandler.h; sourceTree = "<group>"; };
+		48E69BD6EB08CD9A4DD0948CDABD7D13 /* WXApmForInstance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXApmForInstance.h; sourceTree = "<group>"; };
+		48FFD9592DE84560373A9F9DC495FA64 /* UniBoost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UniBoost.debug.xcconfig; sourceTree = "<group>"; };
+		49C44955080CF9E09E6C34906EF39B42 /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = storage.framework; path = UniBoost/SDKs/frameworks/storage.framework; sourceTree = "<group>"; };
 		4BF6961229BC9E6BDFCC853BFCD72BF9 /* UniBoost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UniBoost.framework; path = UniBoost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C6583E7E050E7FAB52E7A3C63F321B1 /* WXRichText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRichText.h; sourceTree = "<group>"; };
-		4D8CA99D24858B744532D5F344839C38 /* WXComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXComponent.h; sourceTree = "<group>"; };
-		50D28D01598193D009853A35EF069869 /* WXJSFrameworkLoadProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXJSFrameworkLoadProtocol.h; sourceTree = "<group>"; };
-		516F662E52304E1B587EE263C098C38B /* WXModalUIModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXModalUIModule.h; sourceTree = "<group>"; };
-		532425DD87035D0D252841A385F529CC /* WXPrerenderManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXPrerenderManager.h; sourceTree = "<group>"; };
-		567B43D9743236317067786578BF89D7 /* UniBoost-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UniBoost-Info.plist"; sourceTree = "<group>"; };
-		5A0CA7A2E01CBFC5E59DF9C02D4BE25A /* WXImgLoaderProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderProtocol.h; sourceTree = "<group>"; };
-		5E770DBEDF1A85D48DAA751AB658BADF /* WXConvert.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXConvert.h; sourceTree = "<group>"; };
-		5EF4FAF444ADCD4D65ED54A95D990E6B /* WXErrorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXErrorView.h; sourceTree = "<group>"; };
-		647A76C03A21BBD1FDC8F5E0441DE624 /* WXJSExceptionProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionProtocol.h; sourceTree = "<group>"; };
-		64A602EDA1DE765BC78BD17A25200322 /* liblibStorage.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibStorage.a; path = UniBoost/SDKs/libraries/liblibStorage.a; sourceTree = "<group>"; };
-		6605ACF1E4F0714A07A7E08F3ECF6FCF /* DCUniMPError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPError.h; sourceTree = "<group>"; };
-		698CE99467D3C36BA1DEDF77AE93C97B /* WXApmForInstance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXApmForInstance.h; sourceTree = "<group>"; };
-		6A5C04899D4580F18DE0D83A3385B8F8 /* weexUniJs.js */ = {isa = PBXFileReference; includeInIndex = 1; name = weexUniJs.js; path = UniBoost/Assets/Resources/weexUniJs.js; sourceTree = "<group>"; };
-		6A911C59733563F9E92A8140BF1E5A79 /* WeexProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WeexProtocol.h; sourceTree = "<group>"; };
+		4C97F2BB3DB5F8872017174F16E1136B /* WXBridgeManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXBridgeManager.h; sourceTree = "<group>"; };
+		5375F574C13E9687C4342395058B721A /* WXConfigCenterProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXConfigCenterProtocol.h; sourceTree = "<group>"; };
+		5A01C7F0A9A158A5CEDD128843CB7E0E /* unincomponents.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = unincomponents.ttf; path = UniBoost/Assets/Resources/unincomponents.ttf; sourceTree = "<group>"; };
+		61A9684FEB415C9454ECA676535F0955 /* DCUniMPConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPConfiguration.h; sourceTree = "<group>"; };
+		62EAF30EB0B3E1223B2F95F681BE7082 /* WXTracingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXTracingManager.h; sourceTree = "<group>"; };
+		6627B4A471F7D277FC63CB0D6865F7A5 /* WXRootView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRootView.h; sourceTree = "<group>"; };
 		6CD23FE593CBE5EA07020E25DC57D5BE /* Pods-UniBoost_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UniBoost_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		743438367061A04637563ACDE903C41D /* __uniappes6.js */ = {isa = PBXFileReference; includeInIndex = 1; name = __uniappes6.js; path = UniBoost/Assets/Resources/__uniappes6.js; sourceTree = "<group>"; };
-		749049F1D2068C7AB76E0734423B9FA2 /* WXResourceRequestHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceRequestHandler.h; sourceTree = "<group>"; };
-		74BADED1930115E9880FC541E5F3C83B /* UniBoost.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = UniBoost.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		6CF467AC435A1B20F7428448B4E48A61 /* JSContext+Weex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSContext+Weex.h"; sourceTree = "<group>"; };
+		6D8E6769F9883BAE89A0BB0C040D69B0 /* DCUniMP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMP.h; sourceTree = "<group>"; };
+		6F1E6F547FD1A2B4AE8A1C760776E752 /* uni-jsframework.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "uni-jsframework.js"; path = "UniBoost/Assets/Resources/uni-jsframework.js"; sourceTree = "<group>"; };
+		7202D04DEE1E6484D81358D857A0FD73 /* WXSDKEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKEngine.h; sourceTree = "<group>"; };
 		75CBF323B6F394C90D091232E8C992BE /* Pods-UniBoost_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UniBoost_Tests-Info.plist"; sourceTree = "<group>"; };
-		76891FF4B31764E10E014B1CBE60D1B2 /* DCUniMPSDKEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPSDKEngine.h; sourceTree = "<group>"; };
-		79DE90D9DA12CC97F549974718655680 /* WXRootViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRootViewController.h; sourceTree = "<group>"; };
-		7C79B004348059FF45FAFBED52D8CAFE /* weex-polyfill.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "weex-polyfill.js"; path = "UniBoost/Assets/Resources/weex-polyfill.js"; sourceTree = "<group>"; };
-		845897524D11865860EE9256AA5633AE /* style.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
-		874CBEF4CD2A9A129F0515B6E42B8106 /* WXDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXDefine.h; sourceTree = "<group>"; };
-		875D639F5E5A8BA909A3A3FFF15647B6 /* libSDWebImage.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = UniBoost/SDKs/libraries/libSDWebImage.a; sourceTree = "<group>"; };
-		8E191F261C5068C312344D4050E8472A /* uni-jsframework.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "uni-jsframework.js"; path = "UniBoost/Assets/Resources/uni-jsframework.js"; sourceTree = "<group>"; };
-		8EB946E826D83B92DA7EE3194329F4CA /* UniBoost.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = UniBoost.modulemap; sourceTree = "<group>"; };
+		76D7EAE857F488CFCB6B49B3F85FD473 /* NSObject+WXSwizzle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+WXSwizzle.h"; sourceTree = "<group>"; };
+		77992F8E7EC1C720E2708657BD922888 /* WXResourceLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceLoader.h; sourceTree = "<group>"; };
+		786451FE6EF9F73DBC9ECA407CE0187E /* WXJSFrameworkLoadProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXJSFrameworkLoadProtocol.h; sourceTree = "<group>"; };
+		79B0CA6CD4BA1ADBB30D2EAF9F5817CB /* UniBoost-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UniBoost-prefix.pch"; sourceTree = "<group>"; };
+		80DEE4A02CDC4CAEEA873465A1DF2BE0 /* WXErrorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXErrorView.h; sourceTree = "<group>"; };
+		8AA218C531B1F3CCCD170049F3E89BEF /* WXAppConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAppConfiguration.h; sourceTree = "<group>"; };
+		8C953940CE0500BD3519C0D0CDECD0B1 /* WXSDKManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKManager.h; sourceTree = "<group>"; };
+		8CE3D1AE6D9C7C89686B03FE2920D354 /* WXDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXDefine.h; sourceTree = "<group>"; };
+		91DAEF4B80BB162E0FFB129A3F532AC9 /* UniBoost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UniBoost.release.xcconfig; sourceTree = "<group>"; };
+		92B108BEF335BF6A82084AF9B4213259 /* WXAppMonitorProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAppMonitorProtocol.h; sourceTree = "<group>"; };
+		93D4883C3FA58F51087B9708D636861D /* TZImagePickerController.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = TZImagePickerController.bundle; path = UniBoost/Assets/Resources/TZImagePickerController.bundle; sourceTree = "<group>"; };
+		949006BCA044ABF55267A1ECCC8AD480 /* WXAComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAComponent.h; sourceTree = "<group>"; };
+		96219BE64EE694EF6D106D46B303AB66 /* liblibNavigator.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibNavigator.a; path = UniBoost/SDKs/libraries/liblibNavigator.a; sourceTree = "<group>"; };
+		970F119BFD5D4E83EED0ED76284C0527 /* UniBoost-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UniBoost-dummy.m"; sourceTree = "<group>"; };
 		97AA7EF00D8075E1FB7F2E1906EA567F /* Pods-UniBoost_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-UniBoost_Example-umbrella.h"; sourceTree = "<group>"; };
-		987A297E548970290E269A9D186666F5 /* WXSDKInstance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKInstance.h; sourceTree = "<group>"; };
 		989452AD627870DA4CE82C6172CD3104 /* Pods-UniBoost_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-UniBoost_Tests-umbrella.h"; sourceTree = "<group>"; };
+		992C91CAD35955E1CEFADB90C448C8E5 /* WXWebSocketHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXWebSocketHandler.h; sourceTree = "<group>"; };
+		9934A6FDACBA5A422B81E68D0E72EB9D /* style.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
+		9CE2BB5B69293DCC67169E88D9C18ED1 /* WXRecyclerComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRecyclerComponent.h; sourceTree = "<group>"; };
+		9D0930B0F66D65C0C23728122D295D19 /* WXBaseViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXBaseViewController.h; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DE45C4CA46E81E440B5A52D99552BD4 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ReplaceMe.m; path = UniBoost/Classes/ReplaceMe.m; sourceTree = "<group>"; };
-		A3773E3D9C77ADF0D18938758C7A5729 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		A4A4AB7AEE2AE3807B132EC7F4202C17 /* flex_enum.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = flex_enum.h; sourceTree = "<group>"; };
-		AA0F42BF55B5595CBC31C252DBC85708 /* WXBridgeManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXBridgeManager.h; sourceTree = "<group>"; };
+		9E05DE02EA56585DDC9A629C1E2F643F /* WXNavigationProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXNavigationProtocol.h; sourceTree = "<group>"; };
+		9EEF2269450C0C19CBAF0850B94C50DE /* WXRootViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRootViewController.h; sourceTree = "<group>"; };
+		9F01CEC446F2C9B40CD4D717A2F450B0 /* liblibCamera.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibCamera.a; path = UniBoost/SDKs/libraries/liblibCamera.a; sourceTree = "<group>"; };
+		9FBB3E5E031E649E096E53A1F9BC3BA4 /* liblibWeex.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibWeex.a; path = UniBoost/SDKs/libraries/liblibWeex.a; sourceTree = "<group>"; };
+		A222BBD732F2923B6592CE443A011A2B /* WeexProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WeexProtocol.h; sourceTree = "<group>"; };
+		A2360F6C959A69EAC58515AACA5AC078 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		A41967D5218C9563246FF3B48B132642 /* WXModuleProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXModuleProtocol.h; sourceTree = "<group>"; };
+		A4495C9ABE0948498E172DD65B695612 /* __uniappes6.js */ = {isa = PBXFileReference; includeInIndex = 1; name = __uniappes6.js; path = UniBoost/Assets/Resources/__uniappes6.js; sourceTree = "<group>"; };
+		A46F53F7EFBB6DAF4A6F8DD961C88831 /* WXAnalyzerCenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerCenter.h; sourceTree = "<group>"; };
+		A68A0AFECBCD9C7D87A83177341F28E7 /* liblibUI.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibUI.a; path = UniBoost/SDKs/libraries/liblibUI.a; sourceTree = "<group>"; };
+		A788A45B412FBB265EEBA0312785D843 /* UniBoost.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = UniBoost.modulemap; sourceTree = "<group>"; };
+		AA6049A9F134BBD31071F240D7A33EF5 /* WXAnalyzerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerProtocol.h; sourceTree = "<group>"; };
 		AB85BB5FCB06E9C8A86DCCC4A32561B6 /* Pods-UniBoost_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UniBoost_Example-Info.plist"; sourceTree = "<group>"; };
+		AB9B35C44A2E1532E6D2F8646FADD9E6 /* WXDebugTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXDebugTool.h; sourceTree = "<group>"; };
 		AC1278C8A10CBCC45E3F501F0AFFE00F /* Pods-UniBoost_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-UniBoost_Tests-dummy.m"; sourceTree = "<group>"; };
-		ACD7E6E5E7965439432979B90F23819B /* DCUniMP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMP.h; sourceTree = "<group>"; };
-		AF3C5A0E184BCE4991E7BC85F2CD596D /* DCUniMPInstance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPInstance.h; sourceTree = "<group>"; };
-		B07072C523D965AA7755454B553FFEB1 /* liblibNativeObj.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibNativeObj.a; path = UniBoost/SDKs/libraries/liblibNativeObj.a; sourceTree = "<group>"; };
+		AE679A1E1F1EF83D91A7783934F5C286 /* liblibIO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibIO.a; path = UniBoost/SDKs/libraries/liblibIO.a; sourceTree = "<group>"; };
+		B02349180DCC51D3DC30B03C77291146 /* WXExceptionUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXExceptionUtils.h; sourceTree = "<group>"; };
+		B163340BA9B21D0E1FDE07BEAEB3AB9A /* WXResourceResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceResponse.h; sourceTree = "<group>"; };
+		B230A2CC771D79E878A91DC2A477BCD6 /* liblibPDRCore.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibPDRCore.a; path = UniBoost/SDKs/libraries/liblibPDRCore.a; sourceTree = "<group>"; };
 		B3B8A25280BC26AD7BD8041399ACA3B8 /* Pods-UniBoost_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-UniBoost_Example-dummy.m"; sourceTree = "<group>"; };
-		B62DDE93516E1802FF63B682E77C13E9 /* WXNavigationProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXNavigationProtocol.h; sourceTree = "<group>"; };
-		B801F5EF647FC2603FC1BA922447C688 /* WeexSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WeexSDK.h; sourceTree = "<group>"; };
-		BD3496586A1EA48195391445382EFE33 /* WXResourceResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceResponse.h; sourceTree = "<group>"; };
-		BDB30AE24173720A8E384E44CBFA7734 /* WXComponentManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXComponentManager.h; sourceTree = "<group>"; };
-		BE6B65682A217709DAC5E04757C2E44A /* WXExtendCallNativeProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXExtendCallNativeProtocol.h; sourceTree = "<group>"; };
-		BF64E79D3D780B59E133AE66537449E3 /* WXPageEventNotifyEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXPageEventNotifyEvent.h; sourceTree = "<group>"; };
-		C092D9BF7FAE170D155C0CFEAE94B9E7 /* JSContext+Weex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSContext+Weex.h"; sourceTree = "<group>"; };
+		B499C5FC9D166BB645527795B92DAD86 /* flex_enum.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = flex_enum.h; sourceTree = "<group>"; };
+		B7689DB68FC3D98CC25BA0B9AFBE9C85 /* WXUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXUtility.h; sourceTree = "<group>"; };
+		B9BC42F2D89700FD9F5C13EB6D5E3AED /* WXSDKInstance+DCExtend.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+DCExtend.h"; sourceTree = "<group>"; };
+		BC25F69E5061879FE5A0DA2976849F7D /* WXEventModuleProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXEventModuleProtocol.h; sourceTree = "<group>"; };
+		BC41B63C2997307978E745BF8A1DE72D /* WXImgLoaderProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderProtocol.h; sourceTree = "<group>"; };
 		C19A102299904BE85E9AD145BA48B3E5 /* Pods-UniBoost_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-UniBoost_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C5C255C90C78CC31BF2FDC0A2A40DBE5 /* WXResourceRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceRequest.h; sourceTree = "<group>"; };
-		C9AE58CFC49FB05E3433D6A1D670D9DE /* libcoreSupport.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcoreSupport.a; path = UniBoost/SDKs/libraries/libcoreSupport.a; sourceTree = "<group>"; };
+		C1B9D6230784B13F4ADF1C588A891FE7 /* liblibNativeObj.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibNativeObj.a; path = UniBoost/SDKs/libraries/liblibNativeObj.a; sourceTree = "<group>"; };
+		C2038E92D9A61104FC5301B3DB3F455E /* WXApmProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXApmProtocol.h; sourceTree = "<group>"; };
+		C2840ACE1CA2A77C4F6C2891D24FA43A /* WXURLRewriteProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXURLRewriteProtocol.h; sourceTree = "<group>"; };
+		C3C942B1B98FB91BFAB4D2CC14E3FCDD /* DCUniMPSDKEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DCUniMPSDKEngine.h; sourceTree = "<group>"; };
+		C8C3B4CEE826C54EC0F1944DA1882A09 /* WXLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXLog.h; sourceTree = "<group>"; };
 		CA5075E1E1030E5B8CBF91F03C4F8CDE /* Pods_UniBoost_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_UniBoost_Tests.framework; path = "Pods-UniBoost_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBCA0AF7E0E3D23A0B885AF62EE18E0A /* WXEventModuleProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXEventModuleProtocol.h; sourceTree = "<group>"; };
-		CDE567D30F7085F57C4756BD6E888178 /* WXTracingProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXTracingProtocol.h; sourceTree = "<group>"; };
-		CE73998B32071EB9E8EF1DA0DB496737 /* liblibUI.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibUI.a; path = UniBoost/SDKs/libraries/liblibUI.a; sourceTree = "<group>"; };
-		CF854876E9772A5AB9B5E09625E37901 /* liblibWeex.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibWeex.a; path = UniBoost/SDKs/libraries/liblibWeex.a; sourceTree = "<group>"; };
-		CF8EE274CFFFDB8FFA4BE624684D0B06 /* PandoraApi.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = PandoraApi.bundle; path = UniBoost/Assets/Resources/PandoraApi.bundle; sourceTree = "<group>"; };
-		D473AEF2FF235CE0452E12E1ABD02390 /* NSObject+WXSwizzle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+WXSwizzle.h"; sourceTree = "<group>"; };
+		CCC3C196A5952C85CA0FBA3B338B615A /* WXJSExceptionProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionProtocol.h; sourceTree = "<group>"; };
+		D0E211EB9BF9E9DAB3D90F8CC5AA9FE2 /* WXView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXView.h; sourceTree = "<group>"; };
+		D108E9849C99285C98EDED17CA34D2F8 /* layout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = layout.h; sourceTree = "<group>"; };
 		D5A7006B012B7CB245D2CCF49A484354 /* Pods-UniBoost_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-UniBoost_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D85750E3E340A546A6C47D7761BB9368 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D8FEE414B23AD1EE899DC10E8B8FE5A8 /* WXPrerenderManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXPrerenderManager.h; sourceTree = "<group>"; };
 		DB1AB39B52BF2BA73AF9952807F54207 /* Pods-UniBoost_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-UniBoost_Example.modulemap"; sourceTree = "<group>"; };
-		DB79BF73842955E53EB399FD947C384D /* UniBoost-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UniBoost-umbrella.h"; sourceTree = "<group>"; };
-		DB8E403EFB5B7AA1AE70198049338961 /* WXAComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXAComponent.h; sourceTree = "<group>"; };
-		DD472209FE436DD364A5A2F1545A3DD8 /* UniBoost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UniBoost.release.xcconfig; sourceTree = "<group>"; };
-		DDF251D6229FE91721FEACE48BFCA668 /* WXUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXUtility.h; sourceTree = "<group>"; };
-		E0E37427775B2B409BEB36C0F2E14459 /* WXSDKInstance+DCExtend.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+DCExtend.h"; sourceTree = "<group>"; };
-		E6D8A835FD5921E8B521332676A8E31B /* WXDisplayLinkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXDisplayLinkManager.h; sourceTree = "<group>"; };
-		E87449939E8C50E819D193018154363A /* WXURLRewriteProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXURLRewriteProtocol.h; sourceTree = "<group>"; };
+		DFE954B66D200F1798F83D80210A671D /* WXJSExceptionInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionInfo.h; sourceTree = "<group>"; };
+		E0B3C52484F0073ACEA444CBAC0759F3 /* liblibStorage.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibStorage.a; path = UniBoost/SDKs/libraries/liblibStorage.a; sourceTree = "<group>"; };
+		E1CEF6DB49B050D0623B4E19F73D52F5 /* WXSDKInstance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKInstance.h; sourceTree = "<group>"; };
+		E25277E0D5A496C8F647D8EF55208C6F /* UniPluginProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UniPluginProtocol.h; sourceTree = "<group>"; };
+		E27A19DB3984735EE4E4579C6F19EEB0 /* WXResourceRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXResourceRequest.h; sourceTree = "<group>"; };
+		E28ED29172EA5129E8D7DB69DD556028 /* weex-polyfill.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "weex-polyfill.js"; path = "UniBoost/Assets/Resources/weex-polyfill.js"; sourceTree = "<group>"; };
+		E60D0B150C06EF568B478E7642B92DD9 /* WXScrollerComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXScrollerComponent.h; sourceTree = "<group>"; };
+		E63DF8D544BFDDBB83AF268B9A83FB73 /* WXSDKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKError.h; sourceTree = "<group>"; };
+		E641E1656D60B13D01295BF96CF69F5D /* liblibPGInvocation.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibPGInvocation.a; path = UniBoost/SDKs/libraries/liblibPGInvocation.a; sourceTree = "<group>"; };
 		E9828898CE0E753B959FDC584F89A880 /* Pods-UniBoost_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UniBoost_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E9DBAF2F8AE2513186A96DE7CC899D81 /* Pods-UniBoost_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UniBoost_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		EC741E57EEC8A0CC97C3BEED29D77EAA /* WXScrollerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXScrollerProtocol.h; sourceTree = "<group>"; };
-		EE36DDA1602141C754FBF57F1ED4F956 /* WXSDKManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXSDKManager.h; sourceTree = "<group>"; };
-		F0CF13A3C3641112CD7F53518AAC82A3 /* WXLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXLog.h; sourceTree = "<group>"; };
-		F17D9D1170B6A0826E98F9965C45A6B4 /* WXBridgeProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXBridgeProtocol.h; sourceTree = "<group>"; };
-		F3D1988369D967DA6B8E10DEC90A88B7 /* WXView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXView.h; sourceTree = "<group>"; };
-		F614E342BB508EFFEA457E9ECD41D743 /* WXType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXType.h; sourceTree = "<group>"; };
-		F69386069A7858B14A57BAA7103D2A58 /* layout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = layout.h; sourceTree = "<group>"; };
+		EAD2545A2F189B8F9CB46742F48800BB /* WXConvert.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXConvert.h; sourceTree = "<group>"; };
+		EB24455E4DCDE49555E7A64EF18D6EB6 /* WXScrollerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXScrollerProtocol.h; sourceTree = "<group>"; };
+		F6ADFC30E50874E0D1E6E943579B07A3 /* WXTracingProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXTracingProtocol.h; sourceTree = "<group>"; };
 		F712244EFC7C420845B1D95D1B4FB7FA /* Pods-UniBoost_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UniBoost_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		F7DE5C7D9DEF1A5F1B066AE3C968B34B /* WXRootView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXRootView.h; sourceTree = "<group>"; };
 		F9AD5DBD1FEDDBD1B8E28413F90921A0 /* Pods-UniBoost_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UniBoost_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		FAAAD1D663981D323D5F9006EB46106F /* WXDebugTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXDebugTool.h; sourceTree = "<group>"; };
-		FF3D19151C474A173F9DFB140F4C3573 /* UniPluginProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UniPluginProtocol.h; sourceTree = "<group>"; };
-		FFBFDD112C063A5BEFC6F661EA6EDF34 /* liblibNavigator.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = liblibNavigator.a; path = UniBoost/SDKs/libraries/liblibNavigator.a; sourceTree = "<group>"; };
+		FC8E23CC2A6F38B36D4FC9AC9EE0D716 /* WXComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WXComponent.h; sourceTree = "<group>"; };
+		FF875CFA0DCFF0B81D52683001E88E14 /* UniBoost-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UniBoost-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		108D73B9B04E20D633CA978EB777EA4A /* Frameworks */ = {
+		9308819CB120B623B6335CB8FE673CAE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19D1569CF1B7D59424F8ABBA6648353A /* Foundation.framework in Frameworks */,
+				AD2B5D22C3D1580F4DD937AAFA4EB0A5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		16A0C5F011150E1A28FB7B47D4388AF9 /* Frameworks */ = {
+		A95BE92AD885DEF4EF62327DA61090BC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				846BCA3CCB86430571DB3220ACEBF0F3 /* Foundation.framework in Frameworks */,
+				A63A080A15EDBE0F799F733160B15D04 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8ACE5A3778E7C215C861883A2DE3DF4A /* Frameworks */ = {
+		F11EB06466C50509E5AB920B64EF0094 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FF5FC8F70A939BDA119E7CCB9814757 /* Foundation.framework in Frameworks */,
+				BD4023A962F78F7C80300F6EC8A4F93E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C7AF9292E198FCDD8E6B1EE3E0DEA08 /* Pod */ = {
+		2536F24430AAD5C5CAF2B150C3A03CCA /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				A3773E3D9C77ADF0D18938758C7A5729 /* LICENSE */,
-				26F33AC168B74C35BCE0DE4AAC12C92B /* README.md */,
-				74BADED1930115E9880FC541E5F3C83B /* UniBoost.podspec */,
+				A2360F6C959A69EAC58515AACA5AC078 /* LICENSE */,
+				D85750E3E340A546A6C47D7761BB9368 /* README.md */,
+				31CBE3CEE71BAFF350C5E512929E9AE3 /* UniBoost.podspec */,
 			);
 			name = Pod;
-			sourceTree = "<group>";
-		};
-		1F4661921E6242CF3CA91589E8396BEF /* UniApp */ = {
-			isa = PBXGroup;
-			children = (
-				72CBC97D3E0E31DF310D434CEE89B897 /* Headers */,
-			);
-			name = UniApp;
-			path = UniBoost/Classes/UniApp;
 			sourceTree = "<group>";
 		};
 		38273784896EEFBA5AD90C79688A6BAE /* Pods-UniBoost_Example */ = {
@@ -307,124 +305,106 @@
 			path = "Target Support Files/Pods-UniBoost_Example";
 			sourceTree = "<group>";
 		};
-		39CE5E7AE090DC677E35E6954705E8BE /* Support Files */ = {
+		5F2EA3B8EF06367E3748E5D6958E1275 /* UniApp */ = {
 			isa = PBXGroup;
 			children = (
-				8EB946E826D83B92DA7EE3194329F4CA /* UniBoost.modulemap */,
-				220464D4FF63523ECBA42F9FE6202686 /* UniBoost-dummy.m */,
-				567B43D9743236317067786578BF89D7 /* UniBoost-Info.plist */,
-				3E96C49170F77BBF0402D63AC206E8A6 /* UniBoost-prefix.pch */,
-				DB79BF73842955E53EB399FD947C384D /* UniBoost-umbrella.h */,
-				16B675301711127A3D2AE4C5968A0B2D /* UniBoost.debug.xcconfig */,
-				DD472209FE436DD364A5A2F1545A3DD8 /* UniBoost.release.xcconfig */,
+				1462C56B250B396923D6474810263B65 /* Headers_bak.zip */,
+				AB053B20DDBBA7068512AEF83D3D56A9 /* Headers */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/UniBoost";
+			name = UniApp;
+			path = UniBoost/Classes/UniApp;
 			sourceTree = "<group>";
 		};
-		41C059B75FCE8145BB4E32A160EB0DCD /* weexHeader */ = {
+		6294B7C14095FEC1255827DD20CAF11E /* weexHeader */ = {
 			isa = PBXGroup;
 			children = (
-				A4A4AB7AEE2AE3807B132EC7F4202C17 /* flex_enum.h */,
-				C092D9BF7FAE170D155C0CFEAE94B9E7 /* JSContext+Weex.h */,
-				F69386069A7858B14A57BAA7103D2A58 /* layout.h */,
-				D473AEF2FF235CE0452E12E1ABD02390 /* NSObject+WXSwizzle.h */,
-				845897524D11865860EE9256AA5633AE /* style.h */,
-				FF3D19151C474A173F9DFB140F4C3573 /* UniPluginProtocol.h */,
-				6A911C59733563F9E92A8140BF1E5A79 /* WeexProtocol.h */,
-				B801F5EF647FC2603FC1BA922447C688 /* WeexSDK.h */,
-				DB8E403EFB5B7AA1AE70198049338961 /* WXAComponent.h */,
-				0A3BDB5B49B267164FB8908E1B736DF7 /* WXAnalyzerCenter.h */,
-				158FFC119B45F99DFFEF75D29F39F22A /* WXAnalyzerProtocol.h */,
-				698CE99467D3C36BA1DEDF77AE93C97B /* WXApmForInstance.h */,
-				39D42555945F5F5B9C97C8633C7014F3 /* WXApmProtocol.h */,
-				413F0A9707B78AEDF87222273848A3D6 /* WXAppConfiguration.h */,
-				3DBEBFBF1ABAE0AB504CD37B9BC37388 /* WXAppMonitorProtocol.h */,
-				1413C0831C49F3B80AB70570A7C0E1F6 /* WXBaseViewController.h */,
-				AA0F42BF55B5595CBC31C252DBC85708 /* WXBridgeManager.h */,
-				F17D9D1170B6A0826E98F9965C45A6B4 /* WXBridgeProtocol.h */,
-				4D8CA99D24858B744532D5F344839C38 /* WXComponent.h */,
-				2EB0C33AFD4354F50AD48D50D1EBFC52 /* WXComponent+Layout.h */,
-				BDB30AE24173720A8E384E44CBFA7734 /* WXComponentManager.h */,
-				1AB753806A05C26D965E7931368B0EF0 /* WXConfigCenterProtocol.h */,
-				5E770DBEDF1A85D48DAA751AB658BADF /* WXConvert.h */,
-				FAAAD1D663981D323D5F9006EB46106F /* WXDebugTool.h */,
-				874CBEF4CD2A9A129F0515B6E42B8106 /* WXDefine.h */,
-				E6D8A835FD5921E8B521332676A8E31B /* WXDisplayLinkManager.h */,
-				5EF4FAF444ADCD4D65ED54A95D990E6B /* WXErrorView.h */,
-				CBCA0AF7E0E3D23A0B885AF62EE18E0A /* WXEventModuleProtocol.h */,
-				0FDEC84789D15F60E732609B24C66F17 /* WXExceptionUtils.h */,
-				BE6B65682A217709DAC5E04757C2E44A /* WXExtendCallNativeProtocol.h */,
-				5A0CA7A2E01CBFC5E59DF9C02D4BE25A /* WXImgLoaderProtocol.h */,
-				39CCFCA067A5B8C36E98D292EBF18B55 /* WXIndicatorComponent.h */,
-				40DD02CF80E7C151A53F0123C18AF23D /* WXJSExceptionInfo.h */,
-				647A76C03A21BBD1FDC8F5E0441DE624 /* WXJSExceptionProtocol.h */,
-				50D28D01598193D009853A35EF069869 /* WXJSFrameworkLoadProtocol.h */,
-				1134C8CEBABFC2996DD130626DFA07C4 /* WXListComponent.h */,
-				F0CF13A3C3641112CD7F53518AAC82A3 /* WXLog.h */,
-				516F662E52304E1B587EE263C098C38B /* WXModalUIModule.h */,
-				12E6A461CEA9B2222E211F439F6CE52A /* WXModuleProtocol.h */,
-				481A852CF9EDE7DC55EEC15123AECC23 /* WXMonitor.h */,
-				B62DDE93516E1802FF63B682E77C13E9 /* WXNavigationProtocol.h */,
-				276668BB7ED93288DDD2353D81D5D50D /* WXNetworkProtocol.h */,
-				BF64E79D3D780B59E133AE66537449E3 /* WXPageEventNotifyEvent.h */,
-				532425DD87035D0D252841A385F529CC /* WXPrerenderManager.h */,
-				429DEBB63F91A5B8CBB43B594F1F01FB /* WXRecyclerComponent.h */,
-				0ED8EE2024F1FBD6B3C024CD8BDA40B5 /* WXResourceLoader.h */,
-				C5C255C90C78CC31BF2FDC0A2A40DBE5 /* WXResourceRequest.h */,
-				749049F1D2068C7AB76E0734423B9FA2 /* WXResourceRequestHandler.h */,
-				BD3496586A1EA48195391445382EFE33 /* WXResourceResponse.h */,
-				4C6583E7E050E7FAB52E7A3C63F321B1 /* WXRichText.h */,
-				F7DE5C7D9DEF1A5F1B066AE3C968B34B /* WXRootView.h */,
-				79DE90D9DA12CC97F549974718655680 /* WXRootViewController.h */,
-				470E8919E2B8AD9460E51240AFAE3C53 /* WXScrollerComponent.h */,
-				EC741E57EEC8A0CC97C3BEED29D77EAA /* WXScrollerProtocol.h */,
-				184DCB30E6B30CCF6FE98307DD9BE6FF /* WXSDKEngine.h */,
-				06EAD5EF4DF143803FBA99ABC9A827C7 /* WXSDKError.h */,
-				987A297E548970290E269A9D186666F5 /* WXSDKInstance.h */,
-				4986C12AC699901756FE4026E06C5395 /* WXSDKInstance+Bridge.h */,
-				E0E37427775B2B409BEB36C0F2E14459 /* WXSDKInstance+DCExtend.h */,
-				EE36DDA1602141C754FBF57F1ED4F956 /* WXSDKManager.h */,
-				168CD8E9698C85617AB6AF038ABFE9BE /* WXTracingManager.h */,
-				CDE567D30F7085F57C4756BD6E888178 /* WXTracingProtocol.h */,
-				F614E342BB508EFFEA457E9ECD41D743 /* WXType.h */,
-				E87449939E8C50E819D193018154363A /* WXURLRewriteProtocol.h */,
-				DDF251D6229FE91721FEACE48BFCA668 /* WXUtility.h */,
-				4615D3E01A8A8E37241C53A0F5F34016 /* WXValidateProtocol.h */,
-				F3D1988369D967DA6B8E10DEC90A88B7 /* WXView.h */,
-				0886AF8E9738C18B25E5224EB2FB9AB1 /* WXVoiceOverModule.h */,
-				09F505B714D4548BD98C446E94C7D6F1 /* WXWebSocketHandler.h */,
+				B499C5FC9D166BB645527795B92DAD86 /* flex_enum.h */,
+				6CF467AC435A1B20F7428448B4E48A61 /* JSContext+Weex.h */,
+				D108E9849C99285C98EDED17CA34D2F8 /* layout.h */,
+				76D7EAE857F488CFCB6B49B3F85FD473 /* NSObject+WXSwizzle.h */,
+				9934A6FDACBA5A422B81E68D0E72EB9D /* style.h */,
+				E25277E0D5A496C8F647D8EF55208C6F /* UniPluginProtocol.h */,
+				A222BBD732F2923B6592CE443A011A2B /* WeexProtocol.h */,
+				0F765A0EA705CD79C46E9F71B15E778B /* WeexSDK.h */,
+				949006BCA044ABF55267A1ECCC8AD480 /* WXAComponent.h */,
+				A46F53F7EFBB6DAF4A6F8DD961C88831 /* WXAnalyzerCenter.h */,
+				AA6049A9F134BBD31071F240D7A33EF5 /* WXAnalyzerProtocol.h */,
+				48E69BD6EB08CD9A4DD0948CDABD7D13 /* WXApmForInstance.h */,
+				C2038E92D9A61104FC5301B3DB3F455E /* WXApmProtocol.h */,
+				8AA218C531B1F3CCCD170049F3E89BEF /* WXAppConfiguration.h */,
+				92B108BEF335BF6A82084AF9B4213259 /* WXAppMonitorProtocol.h */,
+				9D0930B0F66D65C0C23728122D295D19 /* WXBaseViewController.h */,
+				4C97F2BB3DB5F8872017174F16E1136B /* WXBridgeManager.h */,
+				14E7A86986DA91B3605269E1FF429332 /* WXBridgeProtocol.h */,
+				FC8E23CC2A6F38B36D4FC9AC9EE0D716 /* WXComponent.h */,
+				1455A8147D43E650025514CF32AB7A19 /* WXComponent+Layout.h */,
+				4551F3AD7BB66B2ABFA4A00C1D27869D /* WXComponentManager.h */,
+				5375F574C13E9687C4342395058B721A /* WXConfigCenterProtocol.h */,
+				EAD2545A2F189B8F9CB46742F48800BB /* WXConvert.h */,
+				AB9B35C44A2E1532E6D2F8646FADD9E6 /* WXDebugTool.h */,
+				8CE3D1AE6D9C7C89686B03FE2920D354 /* WXDefine.h */,
+				2FF5764C7DAA633AE4619692D23B7DF2 /* WXDisplayLinkManager.h */,
+				80DEE4A02CDC4CAEEA873465A1DF2BE0 /* WXErrorView.h */,
+				BC25F69E5061879FE5A0DA2976849F7D /* WXEventModuleProtocol.h */,
+				B02349180DCC51D3DC30B03C77291146 /* WXExceptionUtils.h */,
+				37D97CC794535176B15B937472E60032 /* WXExtendCallNativeProtocol.h */,
+				BC41B63C2997307978E745BF8A1DE72D /* WXImgLoaderProtocol.h */,
+				2737B09DF5D5B0BE441B5F76E2979764 /* WXIndicatorComponent.h */,
+				DFE954B66D200F1798F83D80210A671D /* WXJSExceptionInfo.h */,
+				CCC3C196A5952C85CA0FBA3B338B615A /* WXJSExceptionProtocol.h */,
+				786451FE6EF9F73DBC9ECA407CE0187E /* WXJSFrameworkLoadProtocol.h */,
+				0417F89A1A2FEFD7BB8C71C2392A40EA /* WXListComponent.h */,
+				C8C3B4CEE826C54EC0F1944DA1882A09 /* WXLog.h */,
+				22251D30445B214C1BDE74E4C8544473 /* WXModalUIModule.h */,
+				A41967D5218C9563246FF3B48B132642 /* WXModuleProtocol.h */,
+				149A540DAFC818503D053668D9574D9B /* WXMonitor.h */,
+				9E05DE02EA56585DDC9A629C1E2F643F /* WXNavigationProtocol.h */,
+				33677535D9503A463CE3DD634C7B656B /* WXNetworkProtocol.h */,
+				1437E916343C48C30162D160FFE5459A /* WXPageEventNotifyEvent.h */,
+				D8FEE414B23AD1EE899DC10E8B8FE5A8 /* WXPrerenderManager.h */,
+				9CE2BB5B69293DCC67169E88D9C18ED1 /* WXRecyclerComponent.h */,
+				77992F8E7EC1C720E2708657BD922888 /* WXResourceLoader.h */,
+				E27A19DB3984735EE4E4579C6F19EEB0 /* WXResourceRequest.h */,
+				46655A769092330ABF54015AD7C2DB77 /* WXResourceRequestHandler.h */,
+				B163340BA9B21D0E1FDE07BEAEB3AB9A /* WXResourceResponse.h */,
+				21E1D43FEC00CD1B4F4F66DC8935A611 /* WXRichText.h */,
+				6627B4A471F7D277FC63CB0D6865F7A5 /* WXRootView.h */,
+				9EEF2269450C0C19CBAF0850B94C50DE /* WXRootViewController.h */,
+				E60D0B150C06EF568B478E7642B92DD9 /* WXScrollerComponent.h */,
+				EB24455E4DCDE49555E7A64EF18D6EB6 /* WXScrollerProtocol.h */,
+				7202D04DEE1E6484D81358D857A0FD73 /* WXSDKEngine.h */,
+				E63DF8D544BFDDBB83AF268B9A83FB73 /* WXSDKError.h */,
+				E1CEF6DB49B050D0623B4E19F73D52F5 /* WXSDKInstance.h */,
+				11FB51B092E49AB949CA8D66FB5F28EC /* WXSDKInstance+Bridge.h */,
+				B9BC42F2D89700FD9F5C13EB6D5E3AED /* WXSDKInstance+DCExtend.h */,
+				8C953940CE0500BD3519C0D0CDECD0B1 /* WXSDKManager.h */,
+				62EAF30EB0B3E1223B2F95F681BE7082 /* WXTracingManager.h */,
+				F6ADFC30E50874E0D1E6E943579B07A3 /* WXTracingProtocol.h */,
+				1D36D5F484D0C792D8AECD4F76308434 /* WXType.h */,
+				C2840ACE1CA2A77C4F6C2891D24FA43A /* WXURLRewriteProtocol.h */,
+				B7689DB68FC3D98CC25BA0B9AFBE9C85 /* WXUtility.h */,
+				32C7833DFF1E0B383087B85143508132 /* WXValidateProtocol.h */,
+				D0E211EB9BF9E9DAB3D90F8CC5AA9FE2 /* WXView.h */,
+				14E0A8EC1A134794BA20785EDA4C8567 /* WXVoiceOverModule.h */,
+				992C91CAD35955E1CEFADB90C448C8E5 /* WXWebSocketHandler.h */,
 			);
 			name = weexHeader;
 			path = weexHeader;
 			sourceTree = "<group>";
 		};
-		4F1E3DE27B3C921AF414BB7CCA3CAD02 /* Resources */ = {
+		666C5D12EB14751D1CC2452C78C3606F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				743438367061A04637563ACDE903C41D /* __uniappes6.js */,
-				CF8EE274CFFFDB8FFA4BE624684D0B06 /* PandoraApi.bundle */,
-				8E191F261C5068C312344D4050E8472A /* uni-jsframework.js */,
-				2FC5438AB1A4EBF861541FE4CF9E3B79 /* unincomponents.ttf */,
-				7C79B004348059FF45FAFBED52D8CAFE /* weex-polyfill.js */,
-				6A5C04899D4580F18DE0D83A3385B8F8 /* weexUniJs.js */,
+				A788A45B412FBB265EEBA0312785D843 /* UniBoost.modulemap */,
+				970F119BFD5D4E83EED0ED76284C0527 /* UniBoost-dummy.m */,
+				FF875CFA0DCFF0B81D52683001E88E14 /* UniBoost-Info.plist */,
+				79B0CA6CD4BA1ADBB30D2EAF9F5817CB /* UniBoost-prefix.pch */,
+				0AD4D08130B777AD2CE001FC4C614813 /* UniBoost-umbrella.h */,
+				48FFD9592DE84560373A9F9DC495FA64 /* UniBoost.debug.xcconfig */,
+				91DAEF4B80BB162E0FFB129A3F532AC9 /* UniBoost.release.xcconfig */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		72CBC97D3E0E31DF310D434CEE89B897 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				ACD7E6E5E7965439432979B90F23819B /* DCUniMP.h */,
-				290CFA9E68D119DFD6231CBF16D60EA9 /* DCUniMPConfiguration.h */,
-				6605ACF1E4F0714A07A7E08F3ECF6FCF /* DCUniMPError.h */,
-				AF3C5A0E184BCE4991E7BC85F2CD596D /* DCUniMPInstance.h */,
-				49E402F814D92712CB6D410CCE6714B0 /* DCUniMPMenuActionSheetStyle.h */,
-				76891FF4B31764E10E014B1CBE60D1B2 /* DCUniMPSDKEngine.h */,
-				41C059B75FCE8145BB4E32A160EB0DCD /* weexHeader */,
-			);
-			name = Headers;
-			path = Headers;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/UniBoost";
 			sourceTree = "<group>";
 		};
 		748AFD04C71A1168D73EFA192EBB1A8F /* Products */ = {
@@ -437,20 +417,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		846BB67EFD5400C71A8FEAB978F9EBAA /* Frameworks */ = {
+		93E54E1D10A0A2924C2F52476CB47DDA /* UniBoost */ = {
 			isa = PBXGroup;
 			children = (
-				C9AE58CFC49FB05E3433D6A1D670D9DE /* libcoreSupport.a */,
-				B07072C523D965AA7755454B553FFEB1 /* liblibNativeObj.a */,
-				FFBFDD112C063A5BEFC6F661EA6EDF34 /* liblibNavigator.a */,
-				1CFE63411196B6222CF772400F934D38 /* liblibPDRCore.a */,
-				64A602EDA1DE765BC78BD17A25200322 /* liblibStorage.a */,
-				CE73998B32071EB9E8EF1DA0DB496737 /* liblibUI.a */,
-				CF854876E9772A5AB9B5E09625E37901 /* liblibWeex.a */,
-				875D639F5E5A8BA909A3A3FFF15647B6 /* libSDWebImage.a */,
-				47F41027F672C27540A1305FE364AE2A /* storage.framework */,
+				1C0B0FA05AA411D62027DFCB25C64A5C /* ReplaceMe.m */,
+				E816EC28F0EADE5A7DCE2215A7C63FFB /* Frameworks */,
+				2536F24430AAD5C5CAF2B150C3A03CCA /* Pod */,
+				A833B628E2E584C3E233DCD46968F701 /* Resources */,
+				666C5D12EB14751D1CC2452C78C3606F /* Support Files */,
+				5F2EA3B8EF06367E3748E5D6958E1275 /* UniApp */,
 			);
-			name = Frameworks;
+			name = UniBoost;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		9C618AC88B65B0C0DFEB00DDAB9DB0D8 /* Targets Support Files */ = {
@@ -462,26 +440,41 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		A833B628E2E584C3E233DCD46968F701 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4495C9ABE0948498E172DD65B695612 /* __uniappes6.js */,
+				23C057A44200F43F2718251C10715600 /* PandoraApi.bundle */,
+				93D4883C3FA58F51087B9708D636861D /* TZImagePickerController.bundle */,
+				6F1E6F547FD1A2B4AE8A1C760776E752 /* uni-jsframework.js */,
+				5A01C7F0A9A158A5CEDD128843CB7E0E /* unincomponents.ttf */,
+				E28ED29172EA5129E8D7DB69DD556028 /* weex-polyfill.js */,
+				069FA39D48CFCD4AA56D70A61E5BF78D /* weexUniJs.js */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AB053B20DDBBA7068512AEF83D3D56A9 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				6D8E6769F9883BAE89A0BB0C040D69B0 /* DCUniMP.h */,
+				61A9684FEB415C9454ECA676535F0955 /* DCUniMPConfiguration.h */,
+				2497CB730BA35D33CC74B9168101D99F /* DCUniMPError.h */,
+				21CC2417A1CAF85AB0FE9AE43216679E /* DCUniMPInstance.h */,
+				056A8D45970197CDDB43D94992C62570 /* DCUniMPMenuActionSheetStyle.h */,
+				C3C942B1B98FB91BFAB4D2CC14E3FCDD /* DCUniMPSDKEngine.h */,
+				6294B7C14095FEC1255827DD20CAF11E /* weexHeader */,
+			);
+			name = Headers;
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		C2CFCC80D32E3133C4D86790F12FD555 /* UniBoost */ = {
-			isa = PBXGroup;
-			children = (
-				9DE45C4CA46E81E440B5A52D99552BD4 /* ReplaceMe.m */,
-				846BB67EFD5400C71A8FEAB978F9EBAA /* Frameworks */,
-				1C7AF9292E198FCDD8E6B1EE3E0DEA08 /* Pod */,
-				4F1E3DE27B3C921AF414BB7CCA3CAD02 /* Resources */,
-				39CE5E7AE090DC677E35E6954705E8BE /* Support Files */,
-				1F4661921E6242CF3CA91589E8396BEF /* UniApp */,
-			);
-			name = UniBoost;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -519,10 +512,29 @@
 			path = "Target Support Files/Pods-UniBoost_Tests";
 			sourceTree = "<group>";
 		};
+		E816EC28F0EADE5A7DCE2215A7C63FFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4105919FA608F62E5FEF1D8F16F16816 /* libcoreSupport.a */,
+				9F01CEC446F2C9B40CD4D717A2F450B0 /* liblibCamera.a */,
+				AE679A1E1F1EF83D91A7783934F5C286 /* liblibIO.a */,
+				C1B9D6230784B13F4ADF1C588A891FE7 /* liblibNativeObj.a */,
+				1739E4E3C67E400AA4891D8DA4EEFCC3 /* liblibNativeUI.a */,
+				96219BE64EE694EF6D106D46B303AB66 /* liblibNavigator.a */,
+				B230A2CC771D79E878A91DC2A477BCD6 /* liblibPDRCore.a */,
+				E641E1656D60B13D01295BF96CF69F5D /* liblibPGInvocation.a */,
+				E0B3C52484F0073ACEA444CBAC0759F3 /* liblibStorage.a */,
+				A68A0AFECBCD9C7D87A83177341F28E7 /* liblibUI.a */,
+				9FBB3E5E031E649E096E53A1F9BC3BA4 /* liblibWeex.a */,
+				49C44955080CF9E09E6C34906EF39B42 /* storage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E86E8B6151E7FC79AEF988636281EB01 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C2CFCC80D32E3133C4D86790F12FD555 /* UniBoost */,
+				93E54E1D10A0A2924C2F52476CB47DDA /* UniBoost */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -530,102 +542,102 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5BFFA2F02F02EF8DD76618CDA4F495FA /* Headers */ = {
+		0098DCADF3727880E382CD90B6152743 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFF4051DB6C6B2933E76853204C19420 /* Pods-UniBoost_Tests-umbrella.h in Headers */,
+				6AA420BA25F70931C42CEE74F48A4C9C /* DCUniMP.h in Headers */,
+				A0F390D080084A0764FE647382CF9536 /* DCUniMPConfiguration.h in Headers */,
+				CA7F23E4C6660E83BD47DB9B0053FA75 /* DCUniMPError.h in Headers */,
+				E549517E243C41F09B382ECF06984D9E /* DCUniMPInstance.h in Headers */,
+				01DA447FFF400D3F59A0220656F4E7A0 /* DCUniMPMenuActionSheetStyle.h in Headers */,
+				9D34CD46BF87B85574D67D9157E1CFB3 /* DCUniMPSDKEngine.h in Headers */,
+				D578ACE2A7DBB70FAD709DFD439AE548 /* flex_enum.h in Headers */,
+				FB0B0A407C987F3DB1C6B0164EC4C0A1 /* JSContext+Weex.h in Headers */,
+				D827546EC0339B8CF1294BCBEB3AECCE /* layout.h in Headers */,
+				C29275FDC8E4A2FD8DE8D680ADB2A665 /* NSObject+WXSwizzle.h in Headers */,
+				A58E416270D6D05B54C788DFACCB48F4 /* style.h in Headers */,
+				B16363EEEEAE5BAE2B2994E901E80114 /* UniBoost-umbrella.h in Headers */,
+				FDBF91B9283C6A7A4C7FBE17AAF07534 /* UniPluginProtocol.h in Headers */,
+				4965B848741CE7AF3492BFDEAF8619EE /* WeexProtocol.h in Headers */,
+				708E34051EB0F9D5E8EF1FB7745FA31E /* WeexSDK.h in Headers */,
+				52BA293F7098C292A5A88F0C9276D874 /* WXAComponent.h in Headers */,
+				EB6F8F1835B68EAEC42069FCC274B4C5 /* WXAnalyzerCenter.h in Headers */,
+				D878BB30B95BD85308AAD2B1D20021A8 /* WXAnalyzerProtocol.h in Headers */,
+				45B8149E674BB6987CB8A2DCE02F836C /* WXApmForInstance.h in Headers */,
+				E736EB2FBBC629410196102C794028A9 /* WXApmProtocol.h in Headers */,
+				896EFA547BB39DE0FE1358EA90493CB3 /* WXAppConfiguration.h in Headers */,
+				568EE03F0C87A52320CA7E7B25CE515C /* WXAppMonitorProtocol.h in Headers */,
+				FBC8B21C15475EDB0F2020EF3B1A9AA9 /* WXBaseViewController.h in Headers */,
+				C8FD9EDDAC8306890D220DF5D233C501 /* WXBridgeManager.h in Headers */,
+				345AEC894D7293141456DFB14B585E1D /* WXBridgeProtocol.h in Headers */,
+				8A25C2EBCCD7ADFDB3B1BD3AAADD2204 /* WXComponent+Layout.h in Headers */,
+				F2CEAA20B5C31E6367FA98527BFBF9A6 /* WXComponent.h in Headers */,
+				FA62E421F05136097D40A74A3CB1DEA3 /* WXComponentManager.h in Headers */,
+				5487256A266D8CC85D3D8E4104CB009A /* WXConfigCenterProtocol.h in Headers */,
+				3DBA63FF9ACB9AD658415081C5A1F836 /* WXConvert.h in Headers */,
+				C5928D937884C9AF4665DB4A56FD9BB4 /* WXDebugTool.h in Headers */,
+				D3CC55B278AD158738CB5859397F1EC5 /* WXDefine.h in Headers */,
+				236879B3A2FD7D83F712ACA8200909CA /* WXDisplayLinkManager.h in Headers */,
+				DF1777E161B70F2DDA51C233541449CA /* WXErrorView.h in Headers */,
+				6C058CDF167F8C3C867CC3A58636D3BC /* WXEventModuleProtocol.h in Headers */,
+				792F3000DD44EBB131F13838B8C7EC09 /* WXExceptionUtils.h in Headers */,
+				0853812726904A925975F049CE2629C6 /* WXExtendCallNativeProtocol.h in Headers */,
+				1EB93FFDDE95313F04FBCA1B499D976E /* WXImgLoaderProtocol.h in Headers */,
+				8193A92DBCFF98717E4FE606FEA27D90 /* WXIndicatorComponent.h in Headers */,
+				BE780C2DBBDA71AE517AA295E1EC208B /* WXJSExceptionInfo.h in Headers */,
+				02A14737F5E8678ABA990FC4766ABEEB /* WXJSExceptionProtocol.h in Headers */,
+				C9F43F182E92D88033BFE9FC178CDC4D /* WXJSFrameworkLoadProtocol.h in Headers */,
+				158D6D5287C27E23E224B1B22AB03563 /* WXListComponent.h in Headers */,
+				1671E9CB967BE7012E2638ED8BB142DF /* WXLog.h in Headers */,
+				A23A3453CC4B6E0A638FFBF1637DFAD2 /* WXModalUIModule.h in Headers */,
+				94825F80A43939EBF19BEBB13010B677 /* WXModuleProtocol.h in Headers */,
+				E91E4DB2E9022E0949FD52723D4C0052 /* WXMonitor.h in Headers */,
+				4114084D75B243EAD20C7F4888FE891D /* WXNavigationProtocol.h in Headers */,
+				A0F97819EC1532C486D68202E79E17C5 /* WXNetworkProtocol.h in Headers */,
+				B363319F1E8A47D130084979545130AC /* WXPageEventNotifyEvent.h in Headers */,
+				465034CC75819B30B96051717F30E1E5 /* WXPrerenderManager.h in Headers */,
+				6669F22CC923B5436E8D14B85942FDC3 /* WXRecyclerComponent.h in Headers */,
+				DD66B50C7B0F194C33BC58D3ED751680 /* WXResourceLoader.h in Headers */,
+				FC7850C0132BCC5A4AE19BBFC0E2E871 /* WXResourceRequest.h in Headers */,
+				A1D56E69965B10E2B4B5DE65438B0DF0 /* WXResourceRequestHandler.h in Headers */,
+				BC62C62B0708F56E1DF1A125CDA063F8 /* WXResourceResponse.h in Headers */,
+				E981C482B3C8752F84743318BB3B10F1 /* WXRichText.h in Headers */,
+				04AD59B4DDD51AAB73FA094187298B50 /* WXRootView.h in Headers */,
+				4539B259D9AA29E2BD624F8F08A139A7 /* WXRootViewController.h in Headers */,
+				A79B74C8F9EED0A0C8E1C670B484C9FF /* WXScrollerComponent.h in Headers */,
+				124F5B3578B22172925B7A087DC72827 /* WXScrollerProtocol.h in Headers */,
+				61DAF495267F1B7CCC172B4AA0769101 /* WXSDKEngine.h in Headers */,
+				4614F15E6B0EF16E979B230F4308AE3F /* WXSDKError.h in Headers */,
+				F37855D7A2F0F41CC72690946EBF171F /* WXSDKInstance+Bridge.h in Headers */,
+				2B9DB6664115D0A8B89B5C947A31ADD0 /* WXSDKInstance+DCExtend.h in Headers */,
+				AF7D750C2551A47CD8F1529B5155FA3B /* WXSDKInstance.h in Headers */,
+				8536C8B2CCA86E5097C680546ECD6AAF /* WXSDKManager.h in Headers */,
+				0F586114578255E337DD11E1F1795FAE /* WXTracingManager.h in Headers */,
+				D4B71584CB1A277456FA94592CF8EFA1 /* WXTracingProtocol.h in Headers */,
+				628B1A9C9CCFE599481B87B6055EDE4F /* WXType.h in Headers */,
+				6AFCF66C994C38661120F2E98C0ED42F /* WXURLRewriteProtocol.h in Headers */,
+				E75AB4E90910FEAABCE691CDC57502B4 /* WXUtility.h in Headers */,
+				6E7F4747B3CE0D46539552D959A19D99 /* WXValidateProtocol.h in Headers */,
+				852FCDA57A354882A1ABEA0D9CBDAD6E /* WXView.h in Headers */,
+				A67C0E6135109F493AB77ABA9371A980 /* WXVoiceOverModule.h in Headers */,
+				178209857E0D16D73FE93EA1FA1D3FF1 /* WXWebSocketHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C49326EBA9FDD55C02AF435A27B61120 /* Headers */ = {
+		8C7C9DF9046B5567B647937FC032831A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED00EFF474537394E3C7DD11DC636DA1 /* Pods-UniBoost_Example-umbrella.h in Headers */,
+				BB5D3BA25A89AE95B9674CDE17170DD4 /* Pods-UniBoost_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FAFDD90BCBFE1B13FBC9457BE83D3587 /* Headers */ = {
+		D8F23F8E8A2F0C4644E1D7F9376C0B01 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				042A9BD28448084A30B8C5A645568A26 /* DCUniMP.h in Headers */,
-				B1A64C08EA00F6FC6139C3888918AD4B /* DCUniMPConfiguration.h in Headers */,
-				267D55CD3615A9A26E02F27D54E0F190 /* DCUniMPError.h in Headers */,
-				4E1F52E5CC98B98E0F34050C52AA03B3 /* DCUniMPInstance.h in Headers */,
-				86BE1DF9183D7543FA2055720AF76CED /* DCUniMPMenuActionSheetStyle.h in Headers */,
-				A13A681BE8AFE1A481CCECF2E4EE9010 /* DCUniMPSDKEngine.h in Headers */,
-				135B719AC4EFDB4C538D9EAEBAC523EE /* flex_enum.h in Headers */,
-				A6FA6C86269E6CE48F28B9020DD33046 /* JSContext+Weex.h in Headers */,
-				54F5938FDE396BF3B812BC26A9F56804 /* layout.h in Headers */,
-				72F8A3457AF02FF96D8C032F9E93B2E6 /* NSObject+WXSwizzle.h in Headers */,
-				9F3F9075462544B1DDDD90A2DC60CE93 /* style.h in Headers */,
-				8D181FADFB20195829B3CA435AED03CF /* UniBoost-umbrella.h in Headers */,
-				CA286D70CD22CC23588AE618A2D53F8A /* UniPluginProtocol.h in Headers */,
-				495328B16721C09CF27FEB970FEEFE05 /* WeexProtocol.h in Headers */,
-				7BC67C050BDFBD64958F8D6C5F1E7CF5 /* WeexSDK.h in Headers */,
-				F173F6475BD285006F2AE1D600759A17 /* WXAComponent.h in Headers */,
-				A6D55611F4E063458BC27959107AF569 /* WXAnalyzerCenter.h in Headers */,
-				DFFFB9173F9F0CAD60B6C3B5775D3E95 /* WXAnalyzerProtocol.h in Headers */,
-				0968E4B25AE75C454745863A577D753A /* WXApmForInstance.h in Headers */,
-				E1895F197A0F908B3344B834359C9B6B /* WXApmProtocol.h in Headers */,
-				385F2370DBACCFBD6F2E63BD1BA236C4 /* WXAppConfiguration.h in Headers */,
-				D06BFE8765F23C41AE2682238DBCD35F /* WXAppMonitorProtocol.h in Headers */,
-				4B5D74DC90570459525606322856526B /* WXBaseViewController.h in Headers */,
-				DFF7D83BDAAE9286EDAE8EC848489612 /* WXBridgeManager.h in Headers */,
-				923B490886CA8C185DE31073F5C31BC9 /* WXBridgeProtocol.h in Headers */,
-				37795E72BB6661E116E0FC3BFC8DFE7C /* WXComponent+Layout.h in Headers */,
-				13A28176D900AF491D51728FECB2245F /* WXComponent.h in Headers */,
-				45C4277325B59893A2AB5CD6634E328A /* WXComponentManager.h in Headers */,
-				254041ECD9317E2E81FC7F767CAD4BAA /* WXConfigCenterProtocol.h in Headers */,
-				EB85135865E99E63B53964146B063A75 /* WXConvert.h in Headers */,
-				EA25A72BF262DF82A376A54FCF1D4041 /* WXDebugTool.h in Headers */,
-				93A7FFCE644E83824DC3D3804045E935 /* WXDefine.h in Headers */,
-				8C54E161927D75E7714DB59AF1A23260 /* WXDisplayLinkManager.h in Headers */,
-				704FDCACA5ED479DE58D7A2EC3EF3A09 /* WXErrorView.h in Headers */,
-				E066204D442D5B1CD43037B2B047848C /* WXEventModuleProtocol.h in Headers */,
-				1F0B513CA0D149E10688E98C7606589D /* WXExceptionUtils.h in Headers */,
-				222319C3322A0BFDADE312ACCFA5B54B /* WXExtendCallNativeProtocol.h in Headers */,
-				D5AFD5C8910C74145A16546BA391DC63 /* WXImgLoaderProtocol.h in Headers */,
-				97F0A1A77C2B8432B6BF5AAE64D0E7F6 /* WXIndicatorComponent.h in Headers */,
-				3F241311F110FEF6F9ED039AED0F512F /* WXJSExceptionInfo.h in Headers */,
-				D1C31259A1B894816BF5211DCFE33516 /* WXJSExceptionProtocol.h in Headers */,
-				1BBDA35443DF7EF716234367F81AC05E /* WXJSFrameworkLoadProtocol.h in Headers */,
-				020F1FBED871274B3DBC81F08CC69537 /* WXListComponent.h in Headers */,
-				93B3115DF7C4D7680D5FF4EA9085292E /* WXLog.h in Headers */,
-				38EF29091BF69DA4E32AC58706A6B987 /* WXModalUIModule.h in Headers */,
-				4C1F9425CB37EA8006965D6D24D2A6E1 /* WXModuleProtocol.h in Headers */,
-				8A4D3B74A719D5AA536388D71A1C2BE5 /* WXMonitor.h in Headers */,
-				866A8F5B1B88DFD75AF0EA19D230CAC8 /* WXNavigationProtocol.h in Headers */,
-				1F2082A52EA21A6C65AE4080D1080039 /* WXNetworkProtocol.h in Headers */,
-				D514246C930271DF8FD7A2BEA7589BE8 /* WXPageEventNotifyEvent.h in Headers */,
-				6DF8EC1250ADEA12AC60A24C2D13E147 /* WXPrerenderManager.h in Headers */,
-				C54EE90543A4D1FFA9999B0A9592A3B2 /* WXRecyclerComponent.h in Headers */,
-				E7B541B1DB7DCFEC70B5330D5925A5F7 /* WXResourceLoader.h in Headers */,
-				960C6653949E1F7983EF1714EF1F1AB4 /* WXResourceRequest.h in Headers */,
-				E95D4381377381025B5A500CC05F8DA4 /* WXResourceRequestHandler.h in Headers */,
-				6E894FCD5112F7542EE944DF6DC7E63E /* WXResourceResponse.h in Headers */,
-				2B89A1790B9E192FA1F35302B33E3C37 /* WXRichText.h in Headers */,
-				D1A725EBA66C99CCF6395B7787F9BCB7 /* WXRootView.h in Headers */,
-				373B3500AB6169AE39912D38C42906F6 /* WXRootViewController.h in Headers */,
-				5FDE0911ED08CB5D6C1E09746FB86444 /* WXScrollerComponent.h in Headers */,
-				AC0F7A1FED11B8DC5BC1404D98952D60 /* WXScrollerProtocol.h in Headers */,
-				9709A5713BE22175C56ADBD0B5CFF3BF /* WXSDKEngine.h in Headers */,
-				74799BBF40D6B60A6B4FCE578893CD5F /* WXSDKError.h in Headers */,
-				C998AA7833689FC689D1D997B55AB5D3 /* WXSDKInstance+Bridge.h in Headers */,
-				FFFF4C2F44C03AA9DA3B31D1DCEB0785 /* WXSDKInstance+DCExtend.h in Headers */,
-				46FBB7FF98226001ED932D8D4BFD91A1 /* WXSDKInstance.h in Headers */,
-				16AAB1D56861D28192A1FDB7C50E2A12 /* WXSDKManager.h in Headers */,
-				D0D92DACA78486C3F481FFED0C9073E2 /* WXTracingManager.h in Headers */,
-				99CAFE38DC8C996DCC7A2E428F9F5D3C /* WXTracingProtocol.h in Headers */,
-				E345FAC37763A3CA7D6A3022B24923B9 /* WXType.h in Headers */,
-				814C897B20D3C2C492827E83DD9CF538 /* WXURLRewriteProtocol.h in Headers */,
-				0E4F1D85475E95156F62AF49FA501537 /* WXUtility.h in Headers */,
-				55C56CCE9738FBE84295E6C1C383B03D /* WXValidateProtocol.h in Headers */,
-				E07002E84E6EEFAC5EAEEDD9F4DC5BED /* WXView.h in Headers */,
-				E511958D92E824066765826E1830853F /* WXVoiceOverModule.h in Headers */,
-				FCCED6EC1DAABF600AB64BB26BA67B09 /* WXWebSocketHandler.h in Headers */,
+				0165BB749F961ACFCD626CEF750388FE /* Pods-UniBoost_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,12 +646,12 @@
 /* Begin PBXNativeTarget section */
 		9150E8EE8C33E9FFF0107422265296B1 /* UniBoost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 24FC0D12EA94D23E871DCBA00F0B861A /* Build configuration list for PBXNativeTarget "UniBoost" */;
+			buildConfigurationList = 9940A72144D010F7EECEC2F8478830E9 /* Build configuration list for PBXNativeTarget "UniBoost" */;
 			buildPhases = (
-				FAFDD90BCBFE1B13FBC9457BE83D3587 /* Headers */,
-				7AD4B63BCF5919250794DFEA95814C4E /* Sources */,
-				16A0C5F011150E1A28FB7B47D4388AF9 /* Frameworks */,
-				9B406487EC1E41A44C842451BF17CAF8 /* Resources */,
+				0098DCADF3727880E382CD90B6152743 /* Headers */,
+				F2BCBE5A1110E12160877E280D54B91A /* Sources */,
+				F11EB06466C50509E5AB920B64EF0094 /* Frameworks */,
+				0473A92BD73886E2C7378EC406BD2D08 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -652,17 +664,17 @@
 		};
 		ABDA2F16503FB52AD0D4C376E1BD4E84 /* Pods-UniBoost_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEFF1539BC593E1278093857AF0C8EC8 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Example" */;
+			buildConfigurationList = BC2C2637F30DB4063E3DAE677E105E81 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Example" */;
 			buildPhases = (
-				C49326EBA9FDD55C02AF435A27B61120 /* Headers */,
-				B65F6B15BE96769CE23B4DB94DB6ED43 /* Sources */,
-				8ACE5A3778E7C215C861883A2DE3DF4A /* Frameworks */,
-				1AD0E8AD0A344CD109549B40954E08FF /* Resources */,
+				8C7C9DF9046B5567B647937FC032831A /* Headers */,
+				AFEED9C9880FDE6A9FFD9EB04DC65E3A /* Sources */,
+				A95BE92AD885DEF4EF62327DA61090BC /* Frameworks */,
+				62C0C3AF7DBBAD413243F6EFEFBFE01C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9119434596069BD1ED18835F74F621AD /* PBXTargetDependency */,
+				A4E74A8772A8469A8FAAACE141DA5BED /* PBXTargetDependency */,
 			);
 			name = "Pods-UniBoost_Example";
 			productName = "Pods-UniBoost_Example";
@@ -671,17 +683,17 @@
 		};
 		E1F21EF7226B6D6950D4D1F15A584122 /* Pods-UniBoost_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E2B7428806CB368B0B9194BBE6B6704 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Tests" */;
+			buildConfigurationList = 1C5867899AA369627544FBBCE72B54B1 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Tests" */;
 			buildPhases = (
-				5BFFA2F02F02EF8DD76618CDA4F495FA /* Headers */,
-				8823C5736976A1627C97B58942A09108 /* Sources */,
-				108D73B9B04E20D633CA978EB777EA4A /* Frameworks */,
-				4349C384FC9EB005623E4DD75616C69B /* Resources */,
+				D8F23F8E8A2F0C4644E1D7F9376C0B01 /* Headers */,
+				A8289934D2AEDF92DE36EF56D2432F56 /* Sources */,
+				9308819CB120B623B6335CB8FE673CAE /* Frameworks */,
+				1E2D63B5236145E76AB133E7AB34FA93 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				06EBDB7309B9D18E85567BE36E8E346A /* PBXTargetDependency */,
+				24482E904C368F713553F8F51130D1A2 /* PBXTargetDependency */,
 			);
 			name = "Pods-UniBoost_Tests";
 			productName = "Pods-UniBoost_Tests";
@@ -718,80 +730,82 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1AD0E8AD0A344CD109549B40954E08FF /* Resources */ = {
+		0473A92BD73886E2C7378EC406BD2D08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4BE09A78DBA98922C33374F86BE76F6 /* __uniappes6.js in Resources */,
+				006E614F91BF24CBFD943B74F32971AB /* PandoraApi.bundle in Resources */,
+				3B23923B401F062CD9667A11039CEBB6 /* TZImagePickerController.bundle in Resources */,
+				B83E34149705D34ED15B0B398E9F7F6F /* uni-jsframework.js in Resources */,
+				0D32175628D8C5B6F4840D7D01BAFC87 /* unincomponents.ttf in Resources */,
+				43EA21E4D93AB8A47CE969EF1C591345 /* weex-polyfill.js in Resources */,
+				7527EF848426F806F5B9E3D6A6351176 /* weexUniJs.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E2D63B5236145E76AB133E7AB34FA93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4349C384FC9EB005623E4DD75616C69B /* Resources */ = {
+		62C0C3AF7DBBAD413243F6EFEFBFE01C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9B406487EC1E41A44C842451BF17CAF8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B980F6ECB6A10F0284CAB839DC0008AE /* __uniappes6.js in Resources */,
-				D296DBE0BD4CC1F7480642C140C92F9C /* PandoraApi.bundle in Resources */,
-				21A8CBB221EDAEFA9283BF2122A0B6D3 /* uni-jsframework.js in Resources */,
-				4FBF3E4B4BC49DB0154FA64EA72FDB55 /* unincomponents.ttf in Resources */,
-				7412DD03AB55BB4B5B7BDBA58F82D823 /* weex-polyfill.js in Resources */,
-				312CB29EC2FA890F19040D99F1AF0128 /* weexUniJs.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7AD4B63BCF5919250794DFEA95814C4E /* Sources */ = {
+		A8289934D2AEDF92DE36EF56D2432F56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6299C71DD03C8F9C7FB27AEF18B16161 /* ReplaceMe.m in Sources */,
-				3274E691EAA4FEE7AA0A64E9F7BCCD75 /* UniBoost-dummy.m in Sources */,
+				D191A1A73E3C7DA79B79952C1E7A50E4 /* Pods-UniBoost_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8823C5736976A1627C97B58942A09108 /* Sources */ = {
+		AFEED9C9880FDE6A9FFD9EB04DC65E3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8A5CCC0A863043B5C1B618DF61EFD97 /* Pods-UniBoost_Tests-dummy.m in Sources */,
+				643B32C51317657F780DE0E57A8798B5 /* Pods-UniBoost_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B65F6B15BE96769CE23B4DB94DB6ED43 /* Sources */ = {
+		F2BCBE5A1110E12160877E280D54B91A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFFBEEFBEF53D7BF2223B60577D5C57E /* Pods-UniBoost_Example-dummy.m in Sources */,
+				E5F952479903A47DE0D2BC93F88E2E01 /* Headers_bak.zip in Sources */,
+				7C56A290FCDD424C9428856D5827A8A9 /* ReplaceMe.m in Sources */,
+				2F9A5F8863B0DD57F436DF883BC92557 /* UniBoost-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		06EBDB7309B9D18E85567BE36E8E346A /* PBXTargetDependency */ = {
+		24482E904C368F713553F8F51130D1A2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-UniBoost_Example";
 			target = ABDA2F16503FB52AD0D4C376E1BD4E84 /* Pods-UniBoost_Example */;
-			targetProxy = 8EE5F77EEA6C944866E4ED59F5815E5C /* PBXContainerItemProxy */;
+			targetProxy = 99DD6BBB351C7136F19A144774F144D2 /* PBXContainerItemProxy */;
 		};
-		9119434596069BD1ED18835F74F621AD /* PBXTargetDependency */ = {
+		A4E74A8772A8469A8FAAACE141DA5BED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = UniBoost;
 			target = 9150E8EE8C33E9FFF0107422265296B1 /* UniBoost */;
-			targetProxy = 24EE6D75F518D25A9A766B2D22B0C40A /* PBXContainerItemProxy */;
+			targetProxy = A9894F0578D82D7118BFA12C5A24CBF5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		04F17E00B01E673046F1997A29E6F6FA /* Debug */ = {
+		0DE8680F8420BA309A5C07A7C26A1AE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 186CE25407820795C48964766F906F9A /* Pods-UniBoost_Example.debug.xcconfig */;
 			buildSettings = {
@@ -824,7 +838,7 @@
 			};
 			name = Debug;
 		};
-		18D7F22BB11064C32C79568DCE0E2902 /* Debug */ = {
+		3D812E58052712ACD297B613597D3B54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9DBAF2F8AE2513186A96DE7CC899D81 /* Pods-UniBoost_Tests.debug.xcconfig */;
 			buildSettings = {
@@ -917,11 +931,10 @@
 			};
 			name = Release;
 		};
-		5E00A9FF702C8377CE3C84F513842CFE /* Release */ = {
+		61CAF538CF90037D17BCF520C8AB5B02 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6CD23FE593CBE5EA07020E25DC57D5BE /* Pods-UniBoost_Tests.release.xcconfig */;
+			baseConfigurationReference = 48FFD9592DE84560373A9F9DC495FA64 /* UniBoost.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -931,25 +944,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-UniBoost_Tests/Pods-UniBoost_Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/UniBoost/UniBoost-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/UniBoost/UniBoost-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-UniBoost_Tests/Pods-UniBoost_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/UniBoost/UniBoost.modulemap";
+				PRODUCT_MODULE_NAME = UniBoost;
+				PRODUCT_NAME = UniBoost;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		7EF7227D9B20A1D549000096ACCB23D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1015,7 +1027,74 @@
 			};
 			name = Debug;
 		};
-		9594C1320638F4F4AC340DD5BADB95FB /* Release */ = {
+		8E930F4A715B398687341812566331A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91DAEF4B80BB162E0FFB129A3F532AC9 /* UniBoost.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/UniBoost/UniBoost-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/UniBoost/UniBoost-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/UniBoost/UniBoost.modulemap";
+				PRODUCT_MODULE_NAME = UniBoost;
+				PRODUCT_NAME = UniBoost;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D32C04C1A3D14FA48C03E99DFEAD20A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CD23FE593CBE5EA07020E25DC57D5BE /* Pods-UniBoost_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-UniBoost_Tests/Pods-UniBoost_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-UniBoost_Tests/Pods-UniBoost_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D823D9C79C750F24B45A0845582DEF28 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9828898CE0E753B959FDC584F89A880 /* Pods-UniBoost_Example.release.xcconfig */;
 			buildSettings = {
@@ -1049,79 +1128,14 @@
 			};
 			name = Release;
 		};
-		C8B782CFDCC714C3FDCE6AF828C59C76 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16B675301711127A3D2AE4C5968A0B2D /* UniBoost.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/UniBoost/UniBoost-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/UniBoost/UniBoost-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/UniBoost/UniBoost.modulemap";
-				PRODUCT_MODULE_NAME = UniBoost;
-				PRODUCT_NAME = UniBoost;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F88317DC9003C3D120E43491E3A24AE3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD472209FE436DD364A5A2F1545A3DD8 /* UniBoost.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/UniBoost/UniBoost-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/UniBoost/UniBoost-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/UniBoost/UniBoost.modulemap";
-				PRODUCT_MODULE_NAME = UniBoost;
-				PRODUCT_NAME = UniBoost;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		24FC0D12EA94D23E871DCBA00F0B861A /* Build configuration list for PBXNativeTarget "UniBoost" */ = {
+		1C5867899AA369627544FBBCE72B54B1 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C8B782CFDCC714C3FDCE6AF828C59C76 /* Debug */,
-				F88317DC9003C3D120E43491E3A24AE3 /* Release */,
+				3D812E58052712ACD297B613597D3B54 /* Debug */,
+				D32C04C1A3D14FA48C03E99DFEAD20A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1135,20 +1149,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E2B7428806CB368B0B9194BBE6B6704 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Tests" */ = {
+		9940A72144D010F7EECEC2F8478830E9 /* Build configuration list for PBXNativeTarget "UniBoost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				18D7F22BB11064C32C79568DCE0E2902 /* Debug */,
-				5E00A9FF702C8377CE3C84F513842CFE /* Release */,
+				61CAF538CF90037D17BCF520C8AB5B02 /* Debug */,
+				8E930F4A715B398687341812566331A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEFF1539BC593E1278093857AF0C8EC8 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Example" */ = {
+		BC2C2637F30DB4063E3DAE677E105E81 /* Build configuration list for PBXNativeTarget "Pods-UniBoost_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				04F17E00B01E673046F1997A29E6F6FA /* Debug */,
-				9594C1320638F4F4AC340DD5BADB95FB /* Release */,
+				0DE8680F8420BA309A5C07A7C26A1AE4 /* Debug */,
+				D823D9C79C750F24B45A0845582DEF28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

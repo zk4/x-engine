@@ -47,7 +47,7 @@
       }
     - (void) preloadUniMP:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          DcloudDTO* dto = [self convert:dict clazz:DcloudDTO.class];
+          UniMPDTO* dto = [self convert:dict clazz:UniMPDTO.class];
           [self _preloadUniMP:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];

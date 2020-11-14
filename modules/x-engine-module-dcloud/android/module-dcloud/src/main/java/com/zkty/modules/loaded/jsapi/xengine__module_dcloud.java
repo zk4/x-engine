@@ -37,7 +37,7 @@
   
   interface xengine__module_dcloud_i {
     public void _openUniMP(DcloudDTO dto, final CompletionHandler<Nullable> handler);
-public void _preloadUniMP(DcloudDTO dto, final CompletionHandler<Nullable> handler);
+public void _preloadUniMP(UniMPDTO dto, final CompletionHandler<Nullable> handler);
 public void _openUniMPWithArg(UniMPDTO dto, final CompletionHandler<Nullable> handler);
   }
   
@@ -64,7 +64,7 @@ public void _openUniMPWithArg(UniMPDTO dto, final CompletionHandler<Nullable> ha
 
     @JavascriptInterface
     final public void preloadUniMP(JSONObject obj, final CompletionHandler<Object> handler) {
-      DcloudDTO data= convert(obj,DcloudDTO.class);
+      UniMPDTO data= convert(obj,UniMPDTO.class);
       _preloadUniMP(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }

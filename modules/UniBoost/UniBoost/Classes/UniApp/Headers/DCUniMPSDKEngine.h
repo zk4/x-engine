@@ -53,7 +53,7 @@ typedef void (^DCUniMPKeepAliveCallback)(id result, BOOL keepAlive);
 #pragma mark - SDK 全局生命周期方法
 /// 初始化 sdk 全局环境
 /// @param options 启动参数
-+ (void)initSDKEnvironmentWihtLaunchOptions:(NSDictionary *)options;
++ (void)initSDKEnvironmentWithLaunchOptions:(NSDictionary *)options;
 
 /// 释放SDK资源
 + (void)destory;

@@ -30,7 +30,7 @@
         - (void) _openUniMP:(DcloudDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-        - (void) _preloadUniMP:(DcloudDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _preloadUniMP:(UniMPDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
         - (void) _openUniMPWithArg:(UniMPDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;

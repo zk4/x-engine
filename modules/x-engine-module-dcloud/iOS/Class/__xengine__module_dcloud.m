@@ -48,12 +48,12 @@
     }
     
 }
-
+ 
 //预加载后打开小程序
-- (void)_preloadUniMP:(DcloudDTO *)dto complete:(void (^)(BOOL))completionHandler {
+- (void)_preloadUniMP:(UniMPDTO *)dto complete:(void (^)(BOOL))completionHandler {
     // 获取配置信息
     if ([self checkUniMPResource:dto.appId]) {
-        DCUniMPConfiguration *configuration = [self getUniMPConfiguration:nil];
+        DCUniMPConfiguration *configuration = [self getUniMPConfiguration:dto];
         __weak __typeof(self)weakSelf = self;
         // 预加载小程序
         [DCUniMPSDKEngine preloadUniMP:dto.appId configuration:configuration completed:^(DCUniMPInstance * _Nullable uniMPInstance, NSError * _Nullable error) {
@@ -133,34 +133,30 @@
     /// 初始化小程序的配置信息
     DCUniMPConfiguration *configuration = [[DCUniMPConfiguration alloc] init];
     
-    if (!dto) {
+//    if (!dto) {
+        
         // 配置启动小程序时传递的参数（参数可以在小程序中通过 plus.runtime.arguments 获取此参数）
-        configuration.arguments =  @{ @"arguments":
-        @{
-              @"token":@"xxxxxx" ,
-              @"refreshtoken":@"xxxxxxxx"
-        }
-        };
-        // 配置小程序启动后直接打开的页面路径 例："pages/component/view/view?a=1&b=2"
-        configuration.redirectPath = nil;
+        configuration.arguments = @{ @"arguments":@"Hello uni microprogram" };
+        // 配置小程序启动后直接打开的页面路径 例：@"pages/component/view/view?action=redirect&password=123456"
+    //    configuration.redirectPath = @"pages/component/view/view?action=redirect&password=123456";
         // 开启后台运行
         configuration.enableBackground = NO;
-        
-    }else{
-        // 配置启动小程序时传递的参数（参数可以在小程序中通过 plus.runtime.arguments 获取此参数）
-        configuration.arguments = dto.arguments;
-        // 配置小程序启动后直接打开的页面路径 例："pages/component/view/view?a=1&b=2"
-        if (![dto.redirectPath isEqualToString:@""]) {
-            configuration.redirectPath = dto.redirectPath;
-        }else{
-            configuration.redirectPath = nil ;
-        }
-        // 开启后台运行
-        configuration.enableBackground = dto.enableBackground;
-        
-        configuration.showAnimated = dto.showAnimated;
-        configuration.hideAnimated = dto.hideAnimated;
-    }
+
+//    }else{
+//        // 配置启动小程序时传递的参数（参数可以在小程序中通过 plus.runtime.arguments 获取此参数）
+//        configuration.arguments = dto.arguments;
+//        // 配置小程序启动后直接打开的页面路径 例："pages/component/view/view?a=1&b=2"
+//        if (![dto.redirectPath isEqualToString:@""]) {
+//            configuration.redirectPath = dto.redirectPath;
+//        }else{
+//            configuration.redirectPath = nil ;
+//        }
+//        // 开启后台运行
+//        configuration.enableBackground = dto.enableBackground;
+//
+//        configuration.showAnimated = dto.showAnimated;
+//        configuration.hideAnimated = dto.hideAnimated;
+//    }
     
     return configuration;
 }
@@ -257,7 +253,7 @@ static __xengine__module_dcloud *instance = nil;
     // 设置 debug YES 会在控制台输出 js log，默认不输出 log，注：需要引入 liblibLog.a 库
     [options setObject:[NSNumber numberWithBool:YES] forKey:@"debug"];
     // 初始化引擎
-    [DCUniMPSDKEngine initSDKEnvironmentWihtLaunchOptions:options];
+    [DCUniMPSDKEngine initSDKEnvironmentWithLaunchOptions:options];
     
     
     //    // 注册 module 注：module的 Name 需要保证唯一， class：为 module 的类名

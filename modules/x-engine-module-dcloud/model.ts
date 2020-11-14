@@ -24,7 +24,7 @@ interface UniMPDTO {
 // 启动小程序
 function openUniMP(
   DcloudDTO:DcloudDTO = {
-    appId:'__UNI__9B75743'
+    appId:'__UNI__11E9B73'
   }){
   window.openUniMP = () => {
     dcloud.openUniMP().then((res) => {
@@ -35,8 +35,11 @@ function openUniMP(
 
 // 预加载后打开小程序
 function preloadUniMP(
-  DcloudDTO:DcloudDTO = {
-    appId:'__UNI__9B75743'
+  UniMPDTO:UniMPDTO = {
+    appId:'__UNI__11E9B73',
+    arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
+    redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
+    enableBackground:false,
   }){
   window.preloadUniMP = () => {
     dcloud.preloadUniMP().then((res) => {
@@ -48,8 +51,8 @@ function preloadUniMP(
 function openUniMPWithArg(
   UniMPDTO:UniMPDTO = {
     appId:'__UNI__9B75743',
-    arguments:{'arguments':'Hello uni microprogram'},
-    redirectPath:'pages/component/view/view',
+    arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
+    redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
     enableBackground:false,
   }){
   window.openUniMPWithArg = () => {

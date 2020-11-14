@@ -103,6 +103,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/weexUniJs.js"
   install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/__uniappes6.js"
   install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/PandoraApi.bundle"
+  install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/TZImagePickerController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/uni-jsframework.js"
@@ -111,6 +112,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/weexUniJs.js"
   install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/__uniappes6.js"
   install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/PandoraApi.bundle"
+  install_resource "${PODS_ROOT}/../../UniBoost/Assets/Resources/TZImagePickerController.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

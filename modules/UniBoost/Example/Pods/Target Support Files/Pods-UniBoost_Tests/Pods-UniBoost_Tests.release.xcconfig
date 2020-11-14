@@ -1,7 +1,7 @@
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/UniBoost" "${PODS_ROOT}/../../UniBoost/SDKs/frameworks"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/UniBoost/UniBoost.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -l"c++" -framework "AVFoundation" -framework "AVKit" -framework "AddressBook" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "CoreText" -framework "GLKit" -framework "JavaScriptCore" -framework "MediaPlayer" -framework "OpenGLES" -framework "QuartzCore" -framework "QuickLook"
+OTHER_LDFLAGS = $(inherited) -l"c++" -framework "AVFoundation" -framework "AVKit" -framework "AddressBook" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "CoreText" -framework "GLKit" -framework "JavaScriptCore" -framework "MediaPlayer" -framework "OpenGLES" -framework "Photos" -framework "QuartzCore" -framework "QuickLook"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

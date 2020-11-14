@@ -15,13 +15,19 @@ function osCheck() {
   {
     "name": "openUniMP",
     "default_args": {
-      "appId": "__UNI__9B75743"
+      "appId": "__UNI__11E9B73"
     }
   },
   {
     "name": "preloadUniMP",
     "default_args": {
-      "appId": "__UNI__9B75743"
+      "appId": "__UNI__11E9B73",
+      "arguments": {
+        "token": "this is token",
+        "refreshtoken": "this is refreshtoken"
+      },
+      "redirectPath": "pages/component/application/application?token=a&refreshtoken=b",
+      "enableBackground": false
     }
   },
   {
@@ -29,9 +35,10 @@ function osCheck() {
     "default_args": {
       "appId": "__UNI__9B75743",
       "arguments": {
-        "arguments": "Hello uni microprogram"
+        "token": "this is token",
+        "refreshtoken": "this is refreshtoken"
       },
-      "redirectPath": "pages/component/view/view",
+      "redirectPath": "pages/component/application/application?token=a&refreshtoken=b",
       "enableBackground": false
     }
   }

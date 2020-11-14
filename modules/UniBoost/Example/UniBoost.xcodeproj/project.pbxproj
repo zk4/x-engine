@@ -268,6 +268,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "陈震";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = B3ML6NNJSH;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -330,6 +333,7 @@
 				"${PODS_ROOT}/../../UniBoost/Assets/Resources/weexUniJs.js",
 				"${PODS_ROOT}/../../UniBoost/Assets/Resources/__uniappes6.js",
 				"${PODS_ROOT}/../../UniBoost/Assets/Resources/PandoraApi.bundle",
+				"${PODS_ROOT}/../../UniBoost/Assets/Resources/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -339,6 +343,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/weexUniJs.js",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/__uniappes6.js",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PandoraApi.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -528,8 +533,14 @@
 			baseConfigurationReference = E183D701D1C1314A94A31BAC /* Pods-UniBoost_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UniBoost/UniBoost-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = "UniBoost/UniBoost-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
@@ -544,6 +555,8 @@
 			baseConfigurationReference = E7582385D5896E2049675577 /* Pods-UniBoost_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UniBoost/UniBoost-Prefix.pch";
 				INFOPLIST_FILE = "UniBoost/UniBoost-Info.plist";

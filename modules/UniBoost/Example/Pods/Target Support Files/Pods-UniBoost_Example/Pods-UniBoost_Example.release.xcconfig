@@ -2,7 +2,7 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/UniBoost"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/UniBoost/UniBoost.framework/Headers"
 LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../UniBoost/SDKs/libraries"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"SDWebImage" -l"c++" -l"coreSupport" -l"libNativeObj" -l"libNavigator" -l"libPDRCore" -l"libStorage" -l"libUI" -l"libWeex" -framework "AVFoundation" -framework "AVKit" -framework "AddressBook" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "CoreText" -framework "GLKit" -framework "JavaScriptCore" -framework "MediaPlayer" -framework "OpenGLES" -framework "QuartzCore" -framework "QuickLook" -framework "UniBoost" -framework "storage"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"coreSupport" -l"libCamera" -l"libIO" -l"libNativeObj" -l"libNativeUI" -l"libNavigator" -l"libPDRCore" -l"libPGInvocation" -l"libStorage" -l"libUI" -l"libWeex" -framework "AVFoundation" -framework "AVKit" -framework "AddressBook" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "CoreText" -framework "GLKit" -framework "JavaScriptCore" -framework "MediaPlayer" -framework "OpenGLES" -framework "Photos" -framework "QuartzCore" -framework "QuickLook" -framework "UniBoost" -framework "storage"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

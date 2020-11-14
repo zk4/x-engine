@@ -56,7 +56,6 @@
     return [[paths lastObject] stringByAppendingPathComponent:@"microapps"];
 }
 
-
 - (void) scanMicroAppsInSandBox{
     NSString * sandbox_microapps_location = [MicroAppLoader microappDirectory];
     NSArray* microapps = [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:false];

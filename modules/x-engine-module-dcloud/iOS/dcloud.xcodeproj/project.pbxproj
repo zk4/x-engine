@@ -32,6 +32,7 @@
 		91828BD8329E1FE3B0E3F0E6 /* libPods-dcloud-dcloudUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC3CFF5E9A9673170BCBFFA /* libPods-dcloud-dcloudUITests.a */; };
 		C93F11612519E39B009A97EA /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93F11602519E39B009A97EA /* SplashView.xib */; };
 		C9C4A6AE2548101D0018D71B /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C4A6AD2548101D0018D71B /* liblibNativeUI.a */; };
+		DD5C5710255E9A8800DB1BB4 /* XEUniCheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5C570E255E9A8800DB1BB4 /* XEUniCheckUtil.m */; };
 		E4CEBC3F48D6CE211ED632E7 /* libPods-dcloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA4EC917E5EC0B8F9B7D14D /* libPods-dcloud.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		C93F11602519E39B009A97EA /* SplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
 		C9C4A6AD2548101D0018D71B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-dcloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud.debug.xcconfig"; path = "Target Support Files/Pods-dcloud/Pods-dcloud.debug.xcconfig"; sourceTree = "<group>"; };
+		DD5C570E255E9A8800DB1BB4 /* XEUniCheckUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEUniCheckUtil.m; sourceTree = "<group>"; };
+		DD5C570F255E9A8800DB1BB4 /* XEUniCheckUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEUniCheckUtil.h; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-dcloud-dcloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud-dcloudUITests.debug.xcconfig"; path = "Target Support Files/Pods-dcloud-dcloudUITests/Pods-dcloud-dcloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,6 +231,8 @@
 				587F74202506737700F515BD /* gen */,
 				587F7419250669A300F515BD /* __xengine__module_dcloud.h */,
 				587F741A250669A300F515BD /* __xengine__module_dcloud.m */,
+				DD5C570F255E9A8800DB1BB4 /* XEUniCheckUtil.h */,
+				DD5C570E255E9A8800DB1BB4 /* XEUniCheckUtil.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD5C5710255E9A8800DB1BB4 /* XEUniCheckUtil.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				587F74262506737800F515BD /* xengine__module_dcloud.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,

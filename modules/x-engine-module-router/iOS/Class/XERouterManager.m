@@ -72,6 +72,7 @@
             __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
             UniMPDTO* d = [UniMPDTO new];
             d.appId = uri;
+            d.redirectPath = path;
             d.arguments = args;
             [dcloud _openUniMPWithArg:d complete:nil];
         }else{

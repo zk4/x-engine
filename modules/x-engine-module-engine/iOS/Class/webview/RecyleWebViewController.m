@@ -192,9 +192,14 @@
         NSArray<WKBackForwardListItem *> *backList = self.webview.backForwardList.backList;
         
         if([preLevelPath isEqualToString:@"/index"]){
-            if(backList.count > 1){
+            if(backList.count > 0){
                 [self.webview goToBackForwardListItem:backList.firstObject];
             }
+//            else{
+//                if([self.webview canGoBack]){
+//                    [self.webview goBack];
+//                }
+//            }
         }else{
             for (NSInteger i = backList.count - 1; i >= 0; i--){
                 WKBackForwardListItem *item = backList[i];

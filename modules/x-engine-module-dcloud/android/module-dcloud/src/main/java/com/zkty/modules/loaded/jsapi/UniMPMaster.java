@@ -39,7 +39,7 @@ public class UniMPMaster {
 
     public static void preload(String appId) {
         Activity context = ActivityUtils.getCurrentActivity();
-        String wgtPath = WgtManager.getInstance().getWgtPath(appId);
+        String wgtPath = WgtManager.getInstance().getAssignedWgtPathById(appId, null);
         DCUniMPSDK.getInstance().releaseWgtToRunPathFromePath(appId, wgtPath, (code, pArgs) -> {
             if (code == 1) {//释放wgt完成
                 try {
@@ -55,29 +55,33 @@ public class UniMPMaster {
     }
 
     public static void startUniApp(String appId, String redirectPath, Map<String, String> params) {
+        startUniApp(appId, redirectPath, params, null);
+    }
+
+    public static void startUniApp(String appId, String redirectPath, Map<String, String> params, String version) {
         Activity context = ActivityUtils.getCurrentActivity();
-        if (DCUniMPSDK.getInstance().isExistsApp(appId)) {
-            try {
-                if (params == null) {
-                    if (redirectPath == null) {
-                        DCUniMPSDK.getInstance().startApp(context, appId);
-                    } else {
-                        DCUniMPSDK.getInstance().startApp(context, appId, redirectPath);
-                    }
-                } else {
-                    JSONObject argument = new JSONObject(params);
-                    if (redirectPath == null) {
-                        DCUniMPSDK.getInstance().startApp(context, appId, argument);
-                    } else {
-                        DCUniMPSDK.getInstance().startApp(context, appId, null, redirectPath, argument);
-                    }
-                }
-                return;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        String wgtPath = WgtManager.getInstance().getWgtPath(appId);
+//        if (DCUniMPSDK.getInstance().isExistsApp(appId)) {
+//            try {
+//                if (params == null) {
+//                    if (redirectPath == null) {
+//                        DCUniMPSDK.getInstance().startApp(context, appId);
+//                    } else {
+//                        DCUniMPSDK.getInstance().startApp(context, appId, redirectPath);
+//                    }
+//                } else {
+//                    JSONObject argument = new JSONObject(params);
+//                    if (redirectPath == null) {
+//                        DCUniMPSDK.getInstance().startApp(context, appId, argument);
+//                    } else {
+//                        DCUniMPSDK.getInstance().startApp(context, appId, null, redirectPath, argument);
+//                    }
+//                }
+//                return;
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+        String wgtPath = WgtManager.getInstance().getAssignedWgtPathById(appId, null);
         if (TextUtils.isEmpty(wgtPath)) return;
         DCUniMPSDK.getInstance().releaseWgtToRunPathFromePath(appId, wgtPath, (code, pArgs) -> {
             if (code == 1) {//释放wgt完成
@@ -108,9 +112,9 @@ public class UniMPMaster {
     }
 
 
-    public static boolean isWgtExisted(String appId) {
+    public static boolean isWgtExisted(String appId, String version) {
         if (TextUtils.isEmpty(appId)) return false;
-        if (DCUniMPSDK.getInstance().isExistsApp(appId)) return true;
-        return WgtManager.getInstance().isWgtExit(appId);
+
+        return WgtManager.getInstance().isWgtExit(appId, version);
     }
 }

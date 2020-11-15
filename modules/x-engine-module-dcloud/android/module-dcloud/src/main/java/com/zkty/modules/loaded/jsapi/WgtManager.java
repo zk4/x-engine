@@ -1,7 +1,6 @@
 package com.zkty.modules.loaded.jsapi;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.zkty.modules.engine.XEngineApplication;
 import com.zkty.modules.engine.utils.FileUtils;
@@ -49,7 +48,7 @@ public class WgtManager {
                         ArrayList<String> apps = new ArrayList<>();
                         for (int i = 0; i < files.length; i++) {                //过滤所有符合微应用命名的zip安装包
                             String item = files[i];
-                            if (item.endsWith("wgt")) {
+                            if (item.endsWith(".wgt")) {
                                 apps.add(item);
                             }
                         }
@@ -59,7 +58,7 @@ public class WgtManager {
                                 String[] segment = apps.get(i).split("\\.");
                                 String appId = segment[0];
                                 try {
-                                    if (!WgtManager.getInstance().isWgtExit(appId)) {
+                                    if (!isWgtExit(appId, "1")) {
                                         InputStream inputStream = XEngineApplication.getApplication().getAssets().open(ASSET_WGTS_DIR + "/" + apps.get(i));
                                         installFormAsset(inputStream, appId);
                                     }
@@ -93,7 +92,7 @@ public class WgtManager {
      *
      * @return
      */
-    public File getResourceRoot() {
+    private File getResourceRoot() {
         File root = null;
         File temp = new File(XEngineApplication.getApplication().getFilesDir(), ROOT);
         if (!temp.exists()) {
@@ -111,7 +110,7 @@ public class WgtManager {
      *
      * @return
      */
-    public File geWgtRoot() {
+    private File getWgtRoot() {
         File temp = null;
         File root = new File(getResourceRoot(), ASSET_WGTS_DIR);
         if (!root.exists()) {
@@ -124,22 +123,65 @@ public class WgtManager {
         return temp;
     }
 
-
     /**
-     * 检查指定wgt是否存在
+     * 获取指定wgt目录，若不存在则创建
      *
-     * @param microAppId
      * @return
      */
-    public boolean isWgtExit(String microAppId) {
+    private File createWgtPath(String appId, String version) {
+        if (TextUtils.isEmpty(version)) version = "1";
+        File root = new File(getWgtRoot(), appId);
+        if (!root.exists()) root.mkdirs();
+
+        File root2 = new File(root, version);
+        if (!root2.exists()) root2.mkdirs();
+        return root2;
+    }
+
+
+    /**
+     * 检查指定wgt是否存在指定版本,若version为空，则不检查version
+     *
+     * @param
+     * @return
+     */
+    public boolean isWgtExit(String appId, String version) {
         boolean exit = false;
-        if (!TextUtils.isEmpty(microAppId)) {
-            File webAppDir = geWgtRoot();
-            if (webAppDir.exists()) {                                           //微应用集合目录是否存在
-                File appDir = new File(webAppDir, microAppId + ".wgt");
-                if (appDir.exists()) {                                          //指定的微应用是否存在
-                    exit = true;
+        if (!TextUtils.isEmpty(appId)) {
+            if (!TextUtils.isEmpty(version)) {
+                File webAppDir = new File(getWgtRoot(), appId);
+                if (webAppDir.exists()) {
+                    File versionDir = new File(webAppDir, version);
+                    if (versionDir.exists()) {
+                        File appDir = new File(versionDir, appId + ".wgt");
+                        if (appDir.exists()) {
+                            exit = true;
+                        }
+                    }
                 }
+            } else {
+
+                File webAppDir = new File(getWgtRoot(), appId);
+                if (webAppDir.exists()) {
+                    File[] versions = webAppDir.listFiles();
+                    if (versions != null) {
+                        int max = 0;
+                        for (File f : versions) {
+                            int temp = Integer.parseInt(f.getName());
+                            if (temp > max) max = temp;
+                        }
+                        if (max > 0) {
+                            File versionDir = new File(webAppDir, String.valueOf(max));
+                            if (versionDir.exists()) {
+                                File appDir = new File(versionDir, appId + ".wgt");
+                                if (appDir.exists()) {
+                                    exit = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
         }
         return exit;
@@ -150,22 +192,48 @@ public class WgtManager {
      * @param appId
      * @return
      */
-    public void installFormAsset(InputStream asset, String appId) {
+    private void installFormAsset(InputStream asset, String appId) {
         String wgtName = appId + ".wgt";
-        FileUtils.saveFile(asset, geWgtRoot(), wgtName); //保存到应用目录中
+        FileUtils.saveFile(asset, createWgtPath(appId, null), wgtName); //保存到应用目录中
     }
 
     /**
-     * 获取wgt本地路径
+     * 获取wgt本地路径,若version为空，返回最高版本
      *
      * @return
      */
-    public String getWgtPath(String appId) {
+    public String getAssignedWgtPathById(String appId, String version) {
         String path = null;
         if (!TextUtils.isEmpty(appId)) {
-            if (isWgtExit(appId)) {
-                File appVersionPath = new File(geWgtRoot(), appId + ".wgt");
-                path = appVersionPath.getPath();
+            if (isWgtExit(appId, version)) {
+                if (TextUtils.isEmpty(version)) {
+                    File webAppDir = new File(getWgtRoot(), appId);
+                    if (webAppDir.exists()) {
+                        File[] versions = webAppDir.listFiles();
+                        if (versions != null) {
+                            int max = 0;
+                            for (File f : versions) {
+                                int temp = Integer.parseInt(f.getName());
+                                if (temp > max) max = temp;
+                            }
+                            if (max > 0) {
+                                File versionDir = new File(webAppDir, String.valueOf(max));
+                                if (versionDir.exists()) {
+                                    File appDir = new File(versionDir, appId + ".wgt");
+                                    if (appDir.exists()) {
+                                        path = appDir.getPath();
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                } else {
+                    File appDir = new File(createWgtPath(appId, version), appId + ".wgt");
+                    if (appDir.exists())
+                        path = appDir.getPath();
+                }
             }
         }
         return path;
@@ -176,10 +244,10 @@ public class WgtManager {
      *
      * @return
      */
-    public String saveUniApp(InputStream inputStream, String microAppId) {
+    public String saveUniApp(InputStream inputStream, String microAppId, String version) {
         String path = null;
         if (inputStream != null && !TextUtils.isEmpty(microAppId)) {
-            File temp = geWgtRoot();
+            File temp = createWgtPath(microAppId, version);
             if (!temp.exists()) {
                 temp.mkdirs();
             }

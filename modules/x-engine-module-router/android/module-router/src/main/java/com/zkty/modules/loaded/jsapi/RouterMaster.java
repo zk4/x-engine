@@ -67,7 +67,7 @@ public class RouterMaster {
                     params = JSON.parseObject(arg, Map.class);
                 }
 
-                UniMPMaster.startUniApp(uri, path, params);
+                UniMPMaster.startUniApp(uri, path, params, microAppVersion);
 
                 break;
             case "1":

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_50"
+    android:layout_height="@dimen/dp_65"
     android:background="@color/white">
 
     <TextView
@@ -15,7 +15,7 @@
     <LinearLayout
         android:id="@+id/ll_actionbar_left"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="@dimen/dp_65"
         android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -24,7 +24,7 @@
             android:id="@+id/iv_actionbar_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_15"
             android:src="@mipmap/icon_back"
             android:visibility="visible" />
 
@@ -113,13 +113,11 @@
     <com.zkty.modules.engine.view.SearchEditView
         android:id="@+id/ll_actionbar_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dp_15"
-        android:layout_marginTop="@dimen/dp_5"
         android:layout_marginEnd="@dimen/dp_15"
-        android:layout_marginBottom="@dimen/dp_5"
         android:layout_toStartOf="@+id/ll_btn_right"
-        android:layout_toEndOf="@+id/ll_actionbar_left"
         android:visibility="gone" />
 
 

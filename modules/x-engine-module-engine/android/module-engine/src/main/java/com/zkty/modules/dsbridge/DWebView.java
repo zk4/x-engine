@@ -274,7 +274,7 @@ public class DWebView extends WebView {
         }
         settings.setAllowFileAccess(false);
         settings.setAppCacheEnabled(false);
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true);
         settings.setAppCachePath(APP_CACHE_DIRNAME);

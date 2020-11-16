@@ -10,7 +10,7 @@
     <com.zkty.modules.engine.view.XEngineNavBar
         android:id="@+id/nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50" />
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:id="@+id/rl_root"

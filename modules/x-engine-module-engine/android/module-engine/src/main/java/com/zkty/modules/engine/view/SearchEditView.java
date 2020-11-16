@@ -165,8 +165,8 @@ public class SearchEditView extends LinearLayout {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setGradientType(GradientDrawable.RECTANGLE);
-        drawable.setCornerRadius(DensityUtils.dipToPixels(mContext, cornerRadius == 0 ? 20 : cornerRadius));
-        drawable.setColor(Color.parseColor(TextUtils.isEmpty(backgroundColor) ? "#F1F1F1" : backgroundColor));
+        drawable.setCornerRadius(DensityUtils.dipToPixels(mContext, cornerRadius == 0 ? 25 : cornerRadius));
+        drawable.setColor(Color.parseColor(TextUtils.isEmpty(backgroundColor) ? "#FAFAFA" : backgroundColor));
         llRoot.setBackground(drawable);
 
     }

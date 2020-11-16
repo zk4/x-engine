@@ -34,4 +34,5 @@
 +(BOOL)copyFileToPath:(NSString *)filePath withAppid:(NSString *)appid{
     return [DCUniMPSDKEngine releaseAppResourceToRunPathWithAppid:appid resourceFilePath:filePath];
 }
+
 @end

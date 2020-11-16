@@ -72,15 +72,9 @@
             __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
             UniMPDTO* d = [UniMPDTO new];
             d.appId = uri;
+            d.redirectPath = path;
             d.arguments = args;
             [dcloud _openUniMPWithArg:d complete:nil];
-        }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
-                                                                object:@{
-                                                                    @"ROUTE_TYPE":@"uni",
-                                                                    @"ROUTE_URI":uri,
-                                                                    @"ROUTE_PATH":[NSString stringWithFormat:@"%@", path],
-            }];
         }
         
     } else if([type isEqual:@"wx"]){

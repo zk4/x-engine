@@ -6,7 +6,7 @@
 @property (nonatomic, copy) NSString *fileUrl;
 @property (nonatomic, copy) NSString *preLevelPath;
 @property (nonatomic, strong) XEngineWebView * webview;
-@property (nonatomic, assign) BOOL isCloseClear;
+//@property (nonatomic, assign) BOOL isCloseClear;
 @property (nonatomic, assign) BOOL isHiddenNavbar;
 
 - (instancetype)initWithUrl:(NSString *)fileUrl;

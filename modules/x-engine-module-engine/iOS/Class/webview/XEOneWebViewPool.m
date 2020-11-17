@@ -50,14 +50,6 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 -(void)resetUrl:(NSString *)url{
     if(self.inSingle || self.inAllSingle){
         [self clearWebView:url];
-//
-//        if(webView && webView.backForwardList.backList.count > 0){
-//
-//            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
-//        }
-//        [webView goBack];
-////        [webView loadUrl:@"about:blank"];
-//        [webView removeFromSuperview];
     }
 }
     
@@ -159,6 +151,7 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     for (xengine__module_BaseModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
+    [webview loadUrl:@"about:blank"];
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     return webview;
 }

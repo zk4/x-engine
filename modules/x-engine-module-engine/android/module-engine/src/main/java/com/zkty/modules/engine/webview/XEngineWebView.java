@@ -51,7 +51,7 @@ public class XEngineWebView extends DWebView {
 
     public void init() {
         getSettings().setJavaScriptEnabled(true);
-        getSettings().setCacheMode(WebSettings.LOAD_CACHE_ONLY);  //设置 缓存模式(true);
+        getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式(true);
         getSettings().setAppCacheEnabled(false);
         getSettings().setSupportZoom(false);
         getSettings().setUseWideViewPort(true);

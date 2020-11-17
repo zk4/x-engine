@@ -70,7 +70,7 @@ import localstorage from './index.js'
   window._testGetPublicStorage = () => {
     localstorage
       .get({
-        key: "key",
+        key: "LLBOrigin",
         isPublic: true,
       })
       .then((res) => {

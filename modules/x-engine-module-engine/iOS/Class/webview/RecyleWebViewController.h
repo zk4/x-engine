@@ -15,7 +15,7 @@
 - (void)forwardUrl:(NSString *)preLevelPath;
 - (void)pop;
 - (void)popUrl:(NSString *)preLevelPath;
-- (void)popToRoot;
+//- (void)popToRoot;
 - (void)setSignleWebView:(XEngineWebView *)webView;
 
 - (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments;

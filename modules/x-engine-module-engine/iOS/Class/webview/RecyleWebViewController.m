@@ -176,12 +176,6 @@
     }
 }
 
-- (void)popToRoot{
-    if (self.webview.backForwardList.backList.count > 0){
-        [self.webview goToBackForwardListItem:self.webview.backForwardList.backList.firstObject];
-    }
-}
-
 - (void)pop{
     [self.webview goBack];
 }
@@ -192,8 +186,8 @@
         NSArray<WKBackForwardListItem *> *backList = self.webview.backForwardList.backList;
         
         if([preLevelPath isEqualToString:@"/index"]){
-            if(backList.count > 0){
-                [self.webview goToBackForwardListItem:backList.firstObject];
+            if(backList.count > 1){
+                [self.webview goToBackForwardListItem:backList[1]];
             }
         }else{
             for (NSInteger i = backList.count - 1; i >= 0; i--){

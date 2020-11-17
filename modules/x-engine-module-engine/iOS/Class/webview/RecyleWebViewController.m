@@ -194,6 +194,7 @@
         if([preLevelPath isEqualToString:@"/index"]){
             if(backList.count > 0){
                 [self.webview goToBackForwardListItem:backList.firstObject];
+                [self.webview goBack];
             }
         }else{
             for (NSInteger i = backList.count - 1; i >= 0; i--){

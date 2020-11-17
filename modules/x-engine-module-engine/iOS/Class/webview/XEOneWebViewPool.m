@@ -49,13 +49,15 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 
 -(void)resetUrl:(NSString *)url{
     if(self.inSingle || self.inAllSingle){
-        XEngineWebView *webView = [self getWebView:url];
-        if(webView && webView.backForwardList.backList.count > 0){
-            
-            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
-        }
-        [webView loadUrl:@"about:blank"];
-        [webView removeFromSuperview];
+        [self clearWebView:url];
+//
+//        if(webView && webView.backForwardList.backList.count > 0){
+//
+//            [webView goToBackForwardListItem:webView.backForwardList.backList.firstObject];
+//        }
+//        [webView goBack];
+////        [webView loadUrl:@"about:blank"];
+//        [webView removeFromSuperview];
     }
 }
     
@@ -69,6 +71,13 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
         return YES;
     }
     return NO;
+}
+
+-(void)clearWebView:(NSString *)url{
+    NSString *key = [self urlToDicKey:url];
+    XEngineWebView *webView = self.webCacheDic[key];
+    [webView removeFromSuperview];
+    [self.webCacheDic removeObjectForKey:key];
 }
 
 - (XEngineWebView *)getWebView:(NSString *)url{

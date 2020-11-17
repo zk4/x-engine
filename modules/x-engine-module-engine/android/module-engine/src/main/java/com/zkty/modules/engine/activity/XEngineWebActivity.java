@@ -309,7 +309,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     }
 
-    private void backUp() {
+    public void backUp() {
         //模拟 KeyEvent.ACTION_DOWN事件,调用onKeyDown
         new Thread(new Runnable() {
             public void run() {

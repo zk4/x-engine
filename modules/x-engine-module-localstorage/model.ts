@@ -142,7 +142,7 @@ function _testGetPublicStorage(storageGetDTO: StorageGetDTO): StorageStatusDTO {
   window._testGetPublicStorage = () => {
     localstorage
       .get({
-        key: "key",
+        key: "LLBOrigin",
         isPublic: true,
       })
       .then((res) => {

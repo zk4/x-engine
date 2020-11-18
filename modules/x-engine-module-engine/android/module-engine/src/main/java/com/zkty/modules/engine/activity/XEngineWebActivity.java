@@ -139,7 +139,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         }
 
         url = TextUtils.isEmpty(mWebView.getOriginalUrl()) ? mWebView.getUrl() : mWebView.getOriginalUrl();
-        xEngineNavBar.setLeftListener(view -> backUp());
+      //  xEngineNavBar.setLeftListener(view -> backUp());
         Log.d(TAG, "onCreate()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
     }
 

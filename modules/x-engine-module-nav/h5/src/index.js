@@ -23,7 +23,7 @@ function osCheck() {
   {
     "name": "setNavLeftBtn",
     "default_args": {
-      "title": "left",
+      "title": "",
       "titleColor": "#000000",
       "titleSize": 16,
       "icon": "",

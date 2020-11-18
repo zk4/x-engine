@@ -15,7 +15,7 @@
 
         <provider
             android:name="io.dcloud.common.util.DCloud_FileProvider"
-            android:authorities="${apk.applicationId}.dc.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -9,6 +9,28 @@
     <color name="text_color_34">#343434</color>
     <color name="color_shadow_start">#09004080</color>
 
+    <color name="tool_bar_color">#303030</color>
+    <color name="bg_color">#303030</color>
+
+    <color name="text_color_white">#FFFFFF</color>
+    <color name="text_bg_gray">#99000000</color>
+
+    <color name="bg_black">#000000</color>
+
+    <string name="image_picker">图片选择器</string>
+    <string name="scanner_image">正在扫描图片..</string>
+    <string name="select_image_max">最多选择%1$d张图片</string>
+    <string name="confirm">确定</string>
+    <string name="confirm_msg">确定（%1$d/%2$d）</string>
+    <string name="image_num">%d张</string>
+    <string name="scanner_image_no_found">没有扫描到图片</string>
+    <string name="all_media">全部</string>
+    <string name="all_video">所有视频</string>
+    <string name="take_photo">拍摄图片</string>
+    <string name="permission_tip">当前没有读取存储卡或摄像头权限</string>
+    <string name="image_select">选择</string>
+    <string name="single_type_choose">不能同时选择图片与视频</string>
+
     <style name="TranTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/fade</item>
@@ -23,6 +45,11 @@
         <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
         <!--用于设置关闭当前Activity时展示的动画-->
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="imageFolderAnimator">
+        <item name="android:windowEnterAnimation">@anim/dialog_slide_show</item>
+        <item name="android:windowExitAnimation">@anim/dialog_slide_dismiss</item>
     </style>
 
 </resources>

@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.core.content.FileProvider;
 
 
+import com.zkty.modules.engine.imp.GlideLoader;
+import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
 
 import java.io.File;
@@ -36,6 +38,8 @@ public class AvatarUtils {
     public static final int AVATAR_GALLERY = 102;
     public static final int RESULT_CODE_CAMERA = 201;
     public static final int RESULT_CODE_PHOTO = 202;
+
+    public static int REQUEST_OBTAIN_PIC = 301;
 
     /**
      * 头像拍照
@@ -189,6 +193,24 @@ public class AvatarUtils {
         albumIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         albumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         context.startActivityForResult(albumIntent, RESULT_CODE_PHOTO);
+    }
+
+    /**
+     * 打开相册
+     *
+     * @param context Activity
+     */
+    public static void startAlbum2(Activity context) {
+        ImagePicker.getInstance()
+                .setTitle("选择图片")//设置标题
+                .showCamera(false)//设置是否显示拍照按钮
+                .showImage(true)//设置是否展示图片
+                .showVideo(false)//设置是否展示视频
+                .filterGif(true)//设置是否过滤gif图片
+                .setMaxCount(3)//设置最大选择图片数目(默认为1，单选)
+                .setSingleType(true)//设置图片视频不能同时选择
+                .setImageLoader(new GlideLoader())//设置自定义图片加载器
+                .start(context, RESULT_CODE_PHOTO);//REQEST_SELECT_IMAGES_CODE为Intent调用的requestCode
     }
 
     /**

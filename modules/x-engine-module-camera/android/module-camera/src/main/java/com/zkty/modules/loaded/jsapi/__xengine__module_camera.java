@@ -31,19 +31,19 @@ import com.zkty.modules.dsbridge.OnReturnValue;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.IApplicationListener;
 import com.zkty.modules.engine.exception.XEngineException;
+import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
 import com.zkty.modules.engine.utils.FileUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.loaded.ClientManager;
 import com.zkty.modules.loaded.EditArgs;
-import com.zkty.modules.loaded.imp.ImagePicker;
+
 import com.zkty.modules.loaded.widget.dialog.BottomDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import module.camera.R;
 
 
 public class __xengine__module_camera extends xengine__module_camera implements IApplicationListener {

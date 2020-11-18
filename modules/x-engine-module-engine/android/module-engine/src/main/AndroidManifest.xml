@@ -17,6 +17,13 @@
             android:name="com.zkty.modules.engine.activity.XEngineWebActivity"
             android:theme="@style/TranTheme" />
 
+        <activity
+            android:name="com.zkty.modules.engine.imp.activity.ImagePickerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zkty.modules.engine.imp.activity.ImagePreActivity"
+            android:screenOrientation="portrait" />
+
 
     </application>
 

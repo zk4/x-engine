@@ -228,7 +228,7 @@
     // 由导航的根vc控制
     [self setupPopGestureRecognizer];
     
-    [self navigationBarStylesToFit];
+//    [self navigationBarStylesToFit];
 }
 
 // 整体调整导航栏样式

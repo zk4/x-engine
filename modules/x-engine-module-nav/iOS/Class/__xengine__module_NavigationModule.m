@@ -463,7 +463,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             NSArray *iconSizeArray = item.iconSize;
             CGSize iconSize = [NavUtil getIconSize:iconSizeArray];
             
-            if (![NavUtil getNoEmptyString:title] && ![NavUtil getNoEmptyString:icon]){
+            if (isRight && (![NavUtil getNoEmptyString:title] && ![NavUtil getNoEmptyString:icon])){
                 [self showErrorAlert:@"title或icon"];
                 continue;;
             }

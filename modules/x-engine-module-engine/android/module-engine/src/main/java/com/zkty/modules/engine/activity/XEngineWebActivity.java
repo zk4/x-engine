@@ -34,6 +34,7 @@ import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebHistoryItem;
 import com.tencent.smtt.sdk.WebView;
+import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.utils.AvatarUtils;
 import com.zkty.modules.engine.utils.DeviceUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
@@ -43,6 +44,7 @@ import com.zkty.modules.engine.view.XEngineNavBar;
 import com.zkty.modules.engine.webview.XEngineWebView;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -139,7 +141,6 @@ public class XEngineWebActivity extends AppCompatActivity {
         }
 
         url = TextUtils.isEmpty(mWebView.getOriginalUrl()) ? mWebView.getUrl() : mWebView.getOriginalUrl();
-      //  xEngineNavBar.setLeftListener(view -> backUp());
         Log.d(TAG, "onCreate()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
     }
 
@@ -506,17 +507,24 @@ public class XEngineWebActivity extends AppCompatActivity {
             Uri[] results = null;
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
-                    String dataString = data.getDataString();
-                    ClipData clipData = data.getClipData();
-                    if (clipData != null) {
-                        results = new Uri[clipData.getItemCount()];
-                        for (int i = 0; i < clipData.getItemCount(); i++) {
-                            ClipData.Item item = clipData.getItemAt(i);
-                            results[i] = item.getUri();
+//                    if (requestCode == AvatarUtils.RESULT_CODE_CAMERA) {
+                        String dataString = data.getDataString();
+                        ClipData clipData = data.getClipData();
+                        if (clipData != null) {
+                            results = new Uri[clipData.getItemCount()];
+                            for (int i = 0; i < clipData.getItemCount(); i++) {
+                                ClipData.Item item = clipData.getItemAt(i);
+                                results[i] = item.getUri();
+                            }
                         }
-                    }
-                    if (dataString != null)
-                        results = new Uri[]{Uri.parse(dataString)};
+                        if (dataString != null)
+                            results = new Uri[]{Uri.parse(dataString)};
+//                    } else if (requestCode == AvatarUtils.RESULT_CODE_PHOTO) {
+//                        ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
+//                        for (int j = 0; j < items.size(); j ++) {
+//                            results[j] = Uri.parse(items.get(j));
+//                        }
+//                    }
                 }
             }
             mUploadCallbackAboveL.onReceiveValue(results);

@@ -19,9 +19,7 @@
 
 
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
-//    NSCharacterSet *encode_set= [NSCharacterSet URLQueryAllowedCharacterSet];
-//    path = [path stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
-    
+
     if(uri.length == 0){
         return;
     }
@@ -49,17 +47,13 @@
         }
         [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:url];
     } else if([type isEqual:@"microapp"]){
-//        int version = 1;
-//        if(args[@"version"]){
-//            version = [[NSString stringWithFormat:@"%@", args[@"version"]] intValue];
-//        }
+
         if([[MicroAppLoader sharedInstance] checkMicroAppVersion:uri version:version]){
             [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
         }else{
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
                                                                 object:@{
-//                                                                    @"ROUTE_NUMBER":[NSString stringWithFormat:@"%d", version],
                                                                     @"ROUTE_TYPE":@"microapp",
                                                                     @"ROUTE_URI":[NSString stringWithFormat:@"%@", uri],
                                                                     @"ROUTE_VERSION":[NSString stringWithFormat:@"%ld", version > 0 ? version : 1],

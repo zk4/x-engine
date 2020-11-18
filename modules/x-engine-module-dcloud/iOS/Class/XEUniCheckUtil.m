@@ -31,6 +31,11 @@
     return [DCUniMPSDKEngine getAppRunPathWithAppid:appId];
 }
 
++(NSDictionary *)getAppInfo:(NSString *)appId{
+    NSDictionary *dic = [DCUniMPSDKEngine getUniMPVersionInfoWithAppid:appId];
+    return dic;
+}
+
 +(BOOL)copyFileToPath:(NSString *)filePath withAppid:(NSString *)appid{
     return [DCUniMPSDKEngine releaseAppResourceToRunPathWithAppid:appid resourceFilePath:filePath];
 }

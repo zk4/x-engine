@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(BOOL)checkUniFile:(NSString *)appId;
 +(NSString *)getUniFilePath:(NSString *)appId;
 +(BOOL)copyFileToPath:(NSString *)filePath withAppid:(NSString *)appid;
++(NSDictionary *)getAppInfo:(NSString *)appId;
 
 @end
 

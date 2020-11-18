@@ -2,6 +2,7 @@ package com.zkty.modules.engine.webview;
 
 import android.content.Context;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -65,7 +66,7 @@ public class XEngineWebView extends DWebView {
         addJavascript();
 
         // loadLocalImg();
-       // setErrorPage();
+        // setErrorPage();
     }
 
     private void loadLocalImg() {
@@ -178,22 +179,15 @@ public class XEngineWebView extends DWebView {
                 parent.removeAllViews();
             }
         }
-        while (canGoBack()) {
-            WebBackForwardList backForwardList = copyBackForwardList();
-            if (backForwardList != null && backForwardList.getSize() != 0) {
-                int currentIndex = backForwardList.getCurrentIndex();
-                WebHistoryItem historyItem =
-                        backForwardList.getItemAtIndex(currentIndex - 1);
-                if (historyItem != null) {
-                    String backPageUrl = historyItem.getOriginalUrl();
-                    if (canGoBack() && !"about:blank".equals(backPageUrl)) {//，可返回,非空白
-                        goBack();
-                    } else {
-                        return;
-                    }
-                }
+        WebBackForwardList backForwardList = copyBackForwardList();
+        if (backForwardList != null && backForwardList.getSize() != 0) {
+            if ("about:blank".equals(backForwardList.getItemAtIndex(0).getOriginalUrl())) {
+                goBackOrForward(-backForwardList.getSize() + 2);
+            } else {
+                goBackOrForward(-backForwardList.getSize() + 1);
             }
         }
+
     }
 
     //回指定页面

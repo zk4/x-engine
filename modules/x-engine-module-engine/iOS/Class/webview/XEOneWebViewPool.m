@@ -17,10 +17,16 @@
 NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgressChangeNotification";
 NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNotification";
 
+@interface XEOneWebViewPoolModel : NSObject
+@property (nonatomic, assign) NSInteger realseCount;
+@property (nonatomic, strong) XEngineWebView *webView;
+@end
+@implementation XEOneWebViewPoolModel
+@end
 @interface XEOneWebViewPool ()
 
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
-@property (nonatomic, strong) NSMutableDictionary<NSString *,XEngineWebView *>* webCacheDic;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, XEOneWebViewPoolModel *>* webCacheDic;
 
 @end
 
@@ -55,11 +61,11 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     
 -(BOOL)checkUrl:(NSString *)url{
     NSString *key = [self urlToDicKey:url];
-    UIView *view = self.webCacheDic[key];
-    if(view == nil){
+    XEOneWebViewPoolModel *model = self.webCacheDic[key];
+    if(model.webView == nil){
         return YES;
     }
-    if(view.superview == nil){
+    if(model.webView.superview == nil){
         return YES;
     }
     return NO;
@@ -67,20 +73,27 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 
 -(void)clearWebView:(NSString *)url{
     NSString *key = [self urlToDicKey:url];
-    XEngineWebView *webView = self.webCacheDic[key];
-    [webView removeFromSuperview];
-    [self.webCacheDic removeObjectForKey:key];
+    XEOneWebViewPoolModel *model = self.webCacheDic[key];
+    model.realseCount -= 1;
+    if(model.realseCount < 1){
+        [model.webView removeFromSuperview];
+        [self.webCacheDic removeObjectForKey:key];
+    }else{
+//        [model.webView goBack];
+    }
 }
 
 - (XEngineWebView *)getWebView:(NSString *)url{
     
     NSString *key = [self urlToDicKey:url];
     XEngineWebView *web;
+    XEOneWebViewPoolModel *model;
     if(self.inAllSingle){
-        web = self.webCacheDic.allValues.firstObject;
+        model = self.webCacheDic.allValues.firstObject;
     } else {
-        web = self.webCacheDic[key];
+        model = self.webCacheDic[key];
     }
+    web = model.webView;
     if (web == nil){
         web = [self createNewWebView:url];
     }
@@ -94,10 +107,17 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     
     if(baseUrl){
         NSString *key = [self urlToDicKey:baseUrl];
-        XEngineWebView *web = self.webCacheDic[key];
-        if (web == nil){
+        XEOneWebViewPoolModel *model = self.webCacheDic[key];
+        XEngineWebView *web;// = model.webView;
+        if (model == nil){
             web = [self createWebView:baseUrl];
-            self.webCacheDic[key] = web;
+            XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
+            model.webView = web;
+            model.realseCount = 1;
+            self.webCacheDic[key] = model;
+        }else{
+            model.realseCount += 1;
+            web = model.webView;
         }
         return web;
     }

@@ -12,7 +12,7 @@
 @interface XEOneWebViewControllerManage ()
 
 @property (nonatomic, strong) XEOneRecyleWebViewController *vc;
-@property (nonatomic, copy) NSString *rootUrl;
+//@property (nonatomic, copy) NSString *rootUrl;
 @property (nonatomic, strong) NSMutableDictionary *animationDic;
 @end
 
@@ -82,7 +82,7 @@
     self = [super init];
     if (self) {
         self.animationDic = [@{} mutableCopy];
-        self.rootUrl = @"";
+//        self.rootUrl = @"";
     }
     return self;
 }
@@ -117,8 +117,9 @@
                          withParams:(NSString *)params{
     
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
+    [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
     if(urlStr){
-        [self setMainUrl:urlStr];
+//        [self setMainUrl:urlStr];
         if(path.length > 0){
             
             urlStr = [NSString stringWithFormat:@"%@%@%@%@", urlStr, ([urlStr hasSuffix:@"index.html"] ? @"#" : @""), ([urlStr hasSuffix:@"/"] || [path hasPrefix:@"/"]) ? @"" : @"/", path];
@@ -137,8 +138,8 @@
                 url = [NSString stringWithFormat:@"%@/index.html", url];
         }
     }
-    self.rootUrl = url;
-    [self createCacheVC];
+//    self.rootUrl = url;
+//    [self createCacheVC];
     return url;
 }
 
@@ -157,14 +158,21 @@
 
 -(NSString *)getUrl:(NSString *)url params:(NSString *)params{
     NSMutableString *toUrl = [[NSMutableString alloc] init];
+    
+    XEOneRecyleWebViewController *web = (XEOneRecyleWebViewController *)[Unity sharedInstance].getCurrentVC;
+    NSRange range = [[web loadUrl] rangeOfString:@"index.html"];
+    NSString *host = [[web loadUrl] substringToIndex:range.location + range.length];
+    
     if ([[url lowercaseString] hasPrefix:@"http"]){
         [toUrl appendString:url];
     } else if (url.length > 0){
-        [toUrl appendFormat:@"%@#%@", self.rootUrl, url];
+        
+        
+        [toUrl appendFormat:@"%@#%@", host, url];
         if(params){
             if([params isKindOfClass:[NSString class]]){
                 NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
-//                123
+
                 [toUrl appendFormat:@"%@%@", range.location == NSNotFound ? @"?" : @"&", params];
             }else if([params isKindOfClass:[NSDictionary class]]){
                 NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
@@ -180,7 +188,7 @@
             }
         }
     } else {
-        [toUrl appendString:self.rootUrl];
+        [toUrl appendString:host];
     }
     return toUrl;
 }
@@ -201,7 +209,7 @@
 
 
 -(void)createCacheVC{
-    [[XEOneWebViewPool sharedInstance] createNewWebView:self.rootUrl];
+//    [[XEOneWebViewPool sharedInstance] createNewWebView:self.rootUrl];
 }
 
 @end

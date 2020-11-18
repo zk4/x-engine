@@ -159,9 +159,9 @@
         [fromeVc setScreenImage:img];
         
         UIView *toView = toVc.view;
-        [toVc setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVc.fileUrl]];
+        [toVc setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVc.loadUrl]];
         
-        [toVc loadFileUrl:toVc.fileUrl];
+        [toVc loadFileUrl:toVc.loadUrl];
         
         toView.layer.shadowColor = [UIColor blackColor].CGColor;
         toView.layer.shadowOffset = CGSizeMake(-3, 0);
@@ -268,7 +268,7 @@
             
             if (!transitionContext.transitionWasCancelled) {
                 
-                [toVC setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVC.fileUrl]];
+                [toVC setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVC.loadUrl]];
                 [fromScreenView removeFromSuperview];
                 [shawView removeFromSuperview];
                 [toViewScreenImageView removeFromSuperview];
@@ -276,7 +276,7 @@
             }else {
                 if([fromVc isKindOfClass:[RecyleWebViewController class]]){
                     RecyleWebViewController *fromWeVC = (RecyleWebViewController *)fromVc;
-                    [fromWeVC forwardUrl:fromWeVC.fileUrl];
+                    [fromWeVC forwardUrl:fromWeVC.loadUrl];
                 }
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [fromScreenView removeFromSuperview];

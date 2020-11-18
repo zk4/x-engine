@@ -84,7 +84,7 @@
                 self.rootPath = fileUrl;
             }
         }
-        self.fileUrl = fileUrl; //file:///var/mobile/Containers/Data/Application/847E166E-778F-470B-BFBC-92F4AE96BB32/Library/microapps/com.times.microapp.AppcNotice.1/index.html#/propertyDetail?id=2252642847045976339
+        self.loadUrl = fileUrl;
         
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
            //           || [fileUrl isEqualToString:self.rootPath]
@@ -98,22 +98,22 @@
             [self.webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
             [self.webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
             self.webview.frame = [UIScreen mainScreen].bounds;
-            if([self.fileUrl hasPrefix:@"http"]){
-                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
+            if([self.loadUrl hasPrefix:@"http"]){
+                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
             }else{
-                if(self.fileUrl.length == 0)
+                if(self.loadUrl.length == 0)
                     return self;
-                if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+                if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
                     
                     NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
                     [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
                     }];
-                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+                    [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{
                     NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
                     [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
                     }];
-                    [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+                    [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
                 }
             }
         }
@@ -156,22 +156,22 @@
 
 - (void)loadFileUrl:(NSString *)url{
     
-    if([self.fileUrl hasPrefix:@"http"]){
-        if([self.fileUrl isEqualToString:self.webview.URL.absoluteString]){
+    if([self.loadUrl hasPrefix:@"http"]){
+        if([self.loadUrl isEqualToString:self.webview.URL.absoluteString]){
             return;
         }
-        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.fileUrl]]];
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
         if([url isEqualToString:self.webview.URL.absoluteString]){
             return;
         }
-        NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
-        }];
-        if([self.fileUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-            [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+//        NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+//        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
+//        }];
+        if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
         }else{
-            [self.webview loadFileURL:[NSURL URLWithString:self.fileUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
         }
     }
 }
@@ -285,24 +285,24 @@
 }
 -(void)goback:(UIButton *)sender{
     
-    if(self.webview.backForwardList.backList.count > 1){
-        
-        if([XEOneWebViewPool sharedInstance].inSingle && self.navigationController.viewControllers.count >= 2){
-            UIViewController *toVc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-            if([toVc isKindOfClass:[RecyleWebViewController class]]){
-                RecyleWebViewController *toWebVc = (RecyleWebViewController *)toVc;
-                NSString *path = [toWebVc.webview.backForwardList.backList.lastObject.URL absoluteString];
-                if([path isEqualToString:toWebVc.fileUrl] || [path isEqualToString:[NSString stringWithFormat:@"%@#/", toWebVc.fileUrl]]){
-                    [self.navigationController popViewControllerAnimated:YES];
-                    return;
-                }
-            }
-        }
-        [self.webview goBack];
-    }else{
+//    if(self.webview.backForwardList.backList.count > 1){
+//
+//        if([XEOneWebViewPool sharedInstance].inSingle && self.navigationController.viewControllers.count >= 2){
+//            UIViewController *toVc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+//            if([toVc isKindOfClass:[RecyleWebViewController class]]){
+//                RecyleWebViewController *toWebVc = (RecyleWebViewController *)toVc;
+//                NSString *path = [self.webview.backForwardList.backList.lastObject.URL absoluteString];
+//                if([path isEqualToString:toWebVc.loadUrl] || [path isEqualToString:[NSString stringWithFormat:@"%@#/", toWebVc.loadUrl]]){
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                    return;
+//                }
+//            }
+//        }
+//        [self.webview goBack];
+//    }else{
         [self.webview goBack];
         [self.navigationController popViewControllerAnimated:YES];
-    }
+//    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -369,7 +369,7 @@
         NSRange range = [parentUrlStr rangeOfString:@"index.html"];
         NSString *parentPath = [parentUrlStr substringToIndex:range.location];
         
-        [[self webview] URL];
+//        [[self webview] URL];
         NSString *selfUrlStr = [[[self webview] URL] absoluteString] ;
         NSRange selfRange = [selfUrlStr rangeOfString:@"index.html"];
         NSString *selfPath = [selfUrlStr substringToIndex:selfRange.location];

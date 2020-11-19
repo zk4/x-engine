@@ -16,7 +16,6 @@ import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,16 +26,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
-import com.jude.swipbackhelper.SwipeBackHelper;
-import com.jude.swipbackhelper.SwipeListener;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebHistoryItem;
 import com.tencent.smtt.sdk.WebView;
-import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.utils.AvatarUtils;
-import com.zkty.modules.engine.utils.DeviceUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.engine.view.CameraDialog;
@@ -44,7 +39,6 @@ import com.zkty.modules.engine.view.XEngineNavBar;
 import com.zkty.modules.engine.webview.XEngineWebView;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -421,7 +415,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         @Override
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
-            if (!TextUtils.isEmpty(webView.getUrl()) && webView.getUrl().startsWith("http") && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
+            if (!TextUtils.isEmpty(webView.getUrl()) && (webView.getUrl().startsWith("https") || webView.getUrl().startsWith("http")) && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
                 xEngineNavBar.setTitle(title, "#FF000000", 16);
             }
         }
@@ -508,17 +502,17 @@ public class XEngineWebActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
 //                    if (requestCode == AvatarUtils.RESULT_CODE_CAMERA) {
-                        String dataString = data.getDataString();
-                        ClipData clipData = data.getClipData();
-                        if (clipData != null) {
-                            results = new Uri[clipData.getItemCount()];
-                            for (int i = 0; i < clipData.getItemCount(); i++) {
-                                ClipData.Item item = clipData.getItemAt(i);
-                                results[i] = item.getUri();
-                            }
+                    String dataString = data.getDataString();
+                    ClipData clipData = data.getClipData();
+                    if (clipData != null) {
+                        results = new Uri[clipData.getItemCount()];
+                        for (int i = 0; i < clipData.getItemCount(); i++) {
+                            ClipData.Item item = clipData.getItemAt(i);
+                            results[i] = item.getUri();
                         }
-                        if (dataString != null)
-                            results = new Uri[]{Uri.parse(dataString)};
+                    }
+                    if (dataString != null)
+                        results = new Uri[]{Uri.parse(dataString)};
 //                    } else if (requestCode == AvatarUtils.RESULT_CODE_PHOTO) {
 //                        ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
 //                        for (int j = 0; j < items.size(); j ++) {

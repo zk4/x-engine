@@ -23,7 +23,9 @@ public class RouterMaster {
         switch (type) {
             case "0":
             case "h5"://h5
-
+                if (!uri.startsWith("https") && !uri.startsWith("http")) {
+                    uri = "https://" + uri;
+                }
                 String url = TextUtils.isEmpty(path) ? uri : uri + "?" + path;
                 XEngineWebActivityManager.sharedInstance().startH5EngineActivity(context, url);
                 break;

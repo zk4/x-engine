@@ -65,7 +65,7 @@ public class XEngineWebView extends DWebView {
         setLayoutParams(params);
         addJavascript();
 
-        // loadLocalImg();
+         loadLocalImg();
         // setErrorPage();
     }
 

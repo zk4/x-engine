@@ -409,7 +409,6 @@ public class XEngineWebActivity extends AppCompatActivity {
 //        return super.dispatchTouchEvent(ev);
 //    }
 
-
     class MyWebChromeClient extends WebChromeClient {
 
         @Override
@@ -417,6 +416,12 @@ public class XEngineWebActivity extends AppCompatActivity {
             super.onReceivedTitle(webView, title);
             if (!TextUtils.isEmpty(webView.getUrl()) && (webView.getUrl().startsWith("https") || webView.getUrl().startsWith("http")) && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
                 xEngineNavBar.setTitle(title, "#FF000000", 16);
+                xEngineNavBar.getLiftIv().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        backUp();
+                    }
+                });
             }
         }
 

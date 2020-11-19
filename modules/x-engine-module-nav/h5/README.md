@@ -1,5 +1,5 @@
 
-version: 0.0.55
+version: 0.0.56
 ``` bash
 npm install @zkty-team/x-engine-module-nav
 ```

@@ -28,10 +28,6 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 *.xcworkspace
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
 lerna-debug.log
 swagger.config.js
 devTools/x-mock/bin/cache/cache

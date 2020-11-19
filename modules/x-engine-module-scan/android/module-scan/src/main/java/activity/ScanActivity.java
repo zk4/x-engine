@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.zkty.modules.engine.utils.ToastUtils;
+
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
 import module.scan.R;
@@ -62,7 +64,7 @@ public class ScanActivity extends AppCompatActivity {
                 if (isDark) {
                     String str = "环境过暗，请打开闪光灯！";
                     if (NotificationManagerCompat.from(ScanActivity.this).areNotificationsEnabled()) {
-                        Toast.makeText(ScanActivity.this, str, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showNormalShortToast(str);
                     } else {
                         hint.setText(str);
                     }
@@ -73,7 +75,7 @@ public class ScanActivity extends AppCompatActivity {
             public void onScanQRCodeOpenCameraError() {
                 String str = "摄像头错误！";
                 if (NotificationManagerCompat.from(ScanActivity.this).areNotificationsEnabled()) {
-                    Toast.makeText(ScanActivity.this, str, Toast.LENGTH_SHORT).show();
+                    ToastUtils.showNormalShortToast(str);
                 } else {
                     hint.setText(str);
                 }

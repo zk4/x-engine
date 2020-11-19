@@ -92,12 +92,10 @@
     [UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].font = [UIFont systemFontOfSize:dto.fontSize];
     NSString * placeHolder = @"";
     if ([NavUtil getNoEmptyString:dto.placeHolder]) {
-        searchBar.placeholder = dto.placeHolder;
-    } else {
-        searchBar.placeholder = nil;
+        placeHolder = dto.placeHolder;
     }
     
-    NSAttributedString * attrString = [[NSAttributedString alloc]initWithString:placeHolder attributes:@{
+    NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{
         NSFontAttributeName:[UIFont systemFontOfSize:dto.fontSize],
     }];
     [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setAttributedPlaceholder:attrString];

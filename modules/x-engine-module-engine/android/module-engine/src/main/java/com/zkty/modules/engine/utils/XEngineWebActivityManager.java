@@ -63,6 +63,9 @@ public class XEngineWebActivityManager {
         String url = TextUtils.isEmpty(path) || "null".equals(path) ? indexUrl : indexUrl + "#" + path;
         url = TextUtils.isEmpty(args) || "null".equals(args) ? url : url + "?" + args;
 
+        if (url != null && url.startsWith("/data")) {
+            url = "file://" + url;
+        }
         intent.putExtra(XEngineWebActivity.URL, url);
         context.startActivity(intent);
 
@@ -77,6 +80,9 @@ public class XEngineWebActivityManager {
         }
         activity.showScreenCapture(true);
         String url = MicroAppLoader.sharedInstance().getFullRouterUrl(router, params);
+        if (url != null && url.startsWith("/data")) {
+            url = "file://" + url;
+        }
 //        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
         Intent intent = new Intent(context, XEngineWebActivity.class);
         intent.putExtra(XEngineWebActivity.URL, url);
@@ -100,11 +106,11 @@ public class XEngineWebActivityManager {
     }
 
     public void clearActivity(XEngineWebActivity activity) {
-        if (getLastActivity() != null) {
-            if (activity.getMicroAppId() != null && !activity.getMicroAppId().equals(getLastActivity().getMicroAppId())) {
-                activity.getXEngineWebView().cleanCache();
-            }
+
+        if (activity.getXEngineWebView().getHistoryCount() == 0) {
+            activity.getXEngineWebView().cleanCache();
         }
+
         activityList.remove(activity);
         if (activityList.isEmpty()) {
             XOneWebViewPool.sharedInstance().cleanWebView();

@@ -287,7 +287,7 @@ public class DWebView extends WebView {
             // add bridge tag in lower android version
             settings.setUserAgentString(settings.getUserAgentString() + " _dsbridge");
         }
-        
+
     }
 
     private String[] parseNamespace(String method) {
@@ -440,11 +440,8 @@ public class DWebView extends WebView {
                     callInfoList = new ArrayList<>();
                     isFirstLoad = false;
                 }
-                String urlTemp = url;
-                if (url != null && url.startsWith("/data")) {
-                    urlTemp = "file://" + url;
-                }
-                DWebView.super.loadUrl(urlTemp);
+
+                DWebView.super.loadUrl(url);
             }
         });
     }
@@ -465,11 +462,8 @@ public class DWebView extends WebView {
                     callInfoList = new ArrayList<>();
                     isFirstLoad = false;
                 }
-                String urlTemp = url;
-                if (url != null && url.startsWith("/data")) {
-                    urlTemp = "file://" + url;
-                }
-                DWebView.super.loadUrl(urlTemp, additionalHttpHeaders);
+
+                DWebView.super.loadUrl(url, additionalHttpHeaders);
             }
         });
     }

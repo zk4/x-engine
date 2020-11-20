@@ -65,7 +65,7 @@ public class XEngineWebView extends DWebView {
         setLayoutParams(params);
         addJavascript();
 
-         loadLocalImg();
+        loadLocalImg();
         // setErrorPage();
     }
 
@@ -126,36 +126,36 @@ public class XEngineWebView extends DWebView {
 
     }
 
-    /**
-     * 回退
-     */
-    public void backUp() {
-        if (XOneWebViewPool.IS_SINGLE) {
-            XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-            activity.showScreenCapture(true);
-            ViewGroup parent = (ViewGroup) getParent();
-            if (parent != null) {
-                parent.removeAllViews();
-            }
-        }
-        if (canGoBack()) {
-            goBack();
-        }
-    }
-
-    //预加载
-    public void preLoad(String url) {
-        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-        if (activity != null) {
-            activity.showScreenCapture(true);
-        }
-        ViewGroup parent = (ViewGroup) getParent();
-        if (parent != null) {
-            parent.removeView(this);
-        }
-        loadUrl(url);
-
-    }
+//    /**
+//     * 回退
+//     */
+//    public void backUp() {
+//        if (XOneWebViewPool.IS_SINGLE) {
+//            XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
+//            activity.showScreenCapture(true);
+//            ViewGroup parent = (ViewGroup) getParent();
+//            if (parent != null) {
+//                parent.removeAllViews();
+//            }
+//        }
+//        if (canGoBack()) {
+//            goBack();
+//        }
+//    }
+//
+//    //预加载
+//    public void preLoad(String url) {
+//        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
+//        if (activity != null) {
+//            activity.showScreenCapture(true);
+//        }
+//        ViewGroup parent = (ViewGroup) getParent();
+//        if (parent != null) {
+//            parent.removeView(this);
+//        }
+//        loadUrl(url);
+//
+//    }
 
     //清缓存
     public void cleanCache() {
@@ -166,6 +166,7 @@ public class XEngineWebView extends DWebView {
         clearCache(true);
         clearHistory();
         loadUrl("about:blank");
+        historyCount = 0;
 
     }
 
@@ -186,6 +187,7 @@ public class XEngineWebView extends DWebView {
             } else {
                 goBackOrForward(-backForwardList.getSize() + 1);
             }
+            historyCount = 1;
         }
 
     }
@@ -248,5 +250,43 @@ public class XEngineWebView extends DWebView {
             ((RelativeLayout) webView.getParent()).removeAllViews();
             ((RelativeLayout) webView.getParent()).addView(layout, lp);
         }
+    }
+
+    /**
+     * webview复用模式。
+     * 此字段代表wevbiew 的历史url数量
+     * 每加载一次+1;
+     * 仅用于微应用跳转间的回退，>0时暂不清理缓存以免出现白屏
+     */
+    private int historyCount = 0;
+    private String currentUrl = null;
+
+    @Override
+    public void loadUrl(String url) {
+        super.loadUrl(url);
+        this.currentUrl = url;
+        historyCount++;
+
+    }
+
+    public void goBack() {
+        super.goBack();
+        historyCount--;
+
+    }
+
+    /**
+     *
+     */
+    public void historyBack() {
+        historyCount--;
+    }
+
+    public int getHistoryCount() {
+        return this.historyCount;
+    }
+
+    public String getCurrentUrl() {
+        return this.currentUrl;
     }
 }

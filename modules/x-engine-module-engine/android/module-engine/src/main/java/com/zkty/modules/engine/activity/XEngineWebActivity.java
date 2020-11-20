@@ -325,47 +325,15 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            WebBackForwardList backForwardList = mWebView.copyBackForwardList();
-            if (backForwardList != null && backForwardList.getSize() != 0) {
-                //当前页面在历史队列中的位置
-                int currentIndex = backForwardList.getCurrentIndex();
-                WebHistoryItem historyItem =
-                        backForwardList.getItemAtIndex(currentIndex - 1);//前一个页面
-                if (historyItem != null) {
-                    String backPageUrl = historyItem.getOriginalUrl();//前一个页面地址
-                    XEngineWebActivity last = XEngineWebActivityManager.sharedInstance().getLastActivity();//前一个activity
-                    //当前页面前面是原生，webview可以返回，且可返回页不是空白，说明页面内进行了路由，应执行goback;
-//                    if (last == null && mWebView.canGoBack() && !"about:blank".equals(backPageUrl)) {//单页面，可返回
-//                        mWebView.goBack();
-//                        return true;
-//                    }
-//                    if (last != null && !last.getWebUrl().equals(backPageUrl)) {
-//                        mWebView.goBack();
-//                        return true;
-//                    }
 
-                    if (mWebView.canGoBack()) {
-
-                        if (last == null) {
-                            if ("about:blank".equals(backPageUrl)) {
-                                finish();
-                            } else {
-                                mWebView.goBack();
-                            }
-                        } else {
-                            if ("about:blank".equals(backPageUrl)) {
-                                finish();
-                            } else if (!TextUtils.isEmpty(last.getWebUrl()) && last.getWebUrl().equals(backPageUrl)) {
-                                finish();
-                            }
-                            mWebView.goBack();
-                        }
-                    } else {
-                        finish();
-                    }
-                    return true;
-                }
+            if (mWebView.canGoBack()) {
+                mWebView.goBack();
+            } else {
+                mWebView.historyBack();
             }
+            finish();
+            return true;
+
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -400,32 +368,15 @@ public class XEngineWebActivity extends AppCompatActivity {
         showScreenCapture(true);
     }
 
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-//            // 判断连续点击事件时间差
-//            if (DeviceUtils.isFastClick()) {
-//                return true;
-//            }
-//        }
-//        return super.dispatchTouchEvent(ev);
-//    }
-
-    private View.OnClickListener mNavLeftImageClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            backUp();
-        }
-    };
 
     class MyWebChromeClient extends WebChromeClient {
 
         @Override
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
-            if (!TextUtils.isEmpty(webView.getUrl()) && (webView.getUrl().startsWith("https") || webView.getUrl().startsWith("http")) && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
-                xEngineNavBar.setTitle(title, "#FF000000", 16);
-                xEngineNavBar.getLiftIv().setOnClickListener(mNavLeftImageClickListener);
+            if (!TextUtils.isEmpty(webView.getUrl()) && webView.getUrl().startsWith("http") && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
+                xEngineNavBar.setLeftTitle(title);
+                xEngineNavBar.getLiftIv().setOnClickListener(view -> backUp());
             }
         }
 

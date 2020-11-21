@@ -48,6 +48,21 @@ public class AvatarUtils {
     public static String headPath;
     public static Uri PHOTO_URI;
     public static String PHOTO_PATH;
+    //android 10 适配
+    private static boolean isAndroidQ = Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q;
+
+    /**
+     * 创建图片地址uri,用于保存拍照后的照片 Android 10以后使用这种方法
+     */
+    private static Uri createImageUri(Context context) {
+        String status = Environment.getExternalStorageState();
+        // 判断是否有SD卡,优先使用SD卡存储,当没有SD卡时使用手机存储
+        if (status.equals(Environment.MEDIA_MOUNTED)) {
+            return context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
+        } else {
+            return context.getContentResolver().insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, new ContentValues());
+        }
+    }
 
     public static void startCameraPicCut(Activity act) {
 
@@ -171,14 +186,19 @@ public class AvatarUtils {
         if (temp.exists()) {
             temp.delete();
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            //添加这一句表示对目标应用临时授权该Uri所代表的文件
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            // 通过FileProvider创建一个content类型的Uri
-            PHOTO_URI = FileProvider.getUriForFile(context, XEngineProvider.getProvider(), temp);
+        //添加这一句表示对目标应用临时授权该Uri所代表的文件
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        if (isAndroidQ) {
+            PHOTO_URI = createImageUri(context);
         } else {
-            PHOTO_URI = Uri.fromFile(temp);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+                // 通过FileProvider创建一个content类型的Uri
+                PHOTO_URI = FileProvider.getUriForFile(context, XEngineProvider.getProvider(), temp);
+            } else {
+                PHOTO_URI = Uri.fromFile(temp);
+            }
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, PHOTO_URI);
         context.startActivityForResult(intent, RESULT_CODE_CAMERA);

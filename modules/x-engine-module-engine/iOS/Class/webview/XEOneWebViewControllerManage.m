@@ -123,7 +123,13 @@
         if(path.length > 0){
             
             urlStr = [NSString stringWithFormat:@"%@%@%@%@", urlStr, ([urlStr hasSuffix:@"index.html"] ? @"#" : @""), ([urlStr hasSuffix:@"/"] || [path hasPrefix:@"/"]) ? @"" : @"/", path];
+            urlStr = [NSString stringWithFormat:@"%@&sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
         }
+//        if(path.length > 0){
+//            path = [NSString stringWithFormat:@"%@&sssxxxDate=%@", path, @([[NSDate date] timeIntervalSince1970])];
+//        }else{
+//            path = [NSString stringWithFormat:@"sssxxxDate=%@", @([[NSDate date] timeIntervalSince1970])];
+//        }
         [self pushWebViewControllerWithUrl:urlStr];
     }
 }

@@ -20,4 +20,6 @@
 - (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments;
 - (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler ;
 
+-(void)goback:(UIButton *)sender;
+
 @end

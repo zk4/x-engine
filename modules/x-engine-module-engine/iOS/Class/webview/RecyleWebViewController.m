@@ -190,19 +190,22 @@
                 [self.webview goToBackForwardListItem:backList[1]];
             }
         }else{
-            for (NSInteger i = backList.count - 1; i >= 0; i--){
-                WKBackForwardListItem *item = backList[i];
+            NSString *nowPath = [self.webview URL].absoluteString;
+            if([nowPath rangeOfString:preLevelPath].location == NSNotFound){
+                for (NSInteger i = backList.count - 1; i >= 0; i--){
+                    WKBackForwardListItem *item = backList[i];
 
-                NSString *itemPath = item.URL.absoluteString;
+                    NSString *itemPath = item.URL.absoluteString;
 
-                if([itemPath rangeOfString:preLevelPath].location != NSNotFound){
-                    
-                    if(i == backList.count - 1){
-                        [self.webview goBack];
-                    }else{
-                        [self.webview goToBackForwardListItem:item];
+                    if([itemPath rangeOfString:preLevelPath].location != NSNotFound){
+                        
+                        if(i == backList.count - 1){
+                            [self.webview goBack];
+                        }else{
+                            [self.webview goToBackForwardListItem:item];
+                        }
+                        return;
                     }
-                    return;
                 }
             }
         }
@@ -362,7 +365,6 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    
     if([self.parentVC isKindOfClass:[RecyleWebViewController class]]){
         RecyleWebViewController *parent = (RecyleWebViewController *)self.parentVC;
         NSString *parentUrlStr = [[[parent webview] URL] absoluteString] ;
@@ -389,8 +391,10 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
-    if(self.navigationController == nil && self.isClearHistory){
-        [[XEOneWebViewPool sharedInstance] resetUrl: self.rootPath];
+    if(self.navigationController == nil){
+        if(self.isClearHistory){
+            [[XEOneWebViewPool sharedInstance] resetUrl: self.rootPath];
+        }
     }
 }
 
@@ -453,3 +457,8 @@
     
 }
 @end
+
+/*
+ file:///var/mobile/Containers/Data/Application/4B0014CD-F84B-4262-BD8F-008209003226/Library/microapps/com.times.microapp.AppbRealEstate.1/index.html#/detail?idr=2243547016846115059&id=%E6%97%B6%E4%BB%A3%E7%B3%96%E6%9E%9C%E4%B8%80%E6%9C%9F%EF%BC%88%E4%BD%9B%E5%B1%B1%EF%BC%89-%E6%97%B6%E4%BB%A3%E7%B3%96%E6%9E%9C%E7%A4%BE%E5%8C%BA%E4%B8%80%E6%9C%9F%EF%BC%88%E5%B9%BF%E5%B7%9E%EF%BC%89-A28-0013&name=%E6%97%B6%E4%BB%A3%E7%B3%96%E6%9E%9C%E4%B8%80%E6%9C%9F%EF%BC%88%E4%BD%9B%E5%B1%B1%EF%BC%89
+ 
+ */

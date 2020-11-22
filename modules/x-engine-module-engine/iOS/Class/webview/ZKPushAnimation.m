@@ -247,7 +247,7 @@
         [toView addSubview:shawView];
         
 //        [toVC popUrl:toVC.fileUrl];
-        [toVC popUrl:toVC.preLevelPath];
+//        [toVC popUrl:toVC.preLevelPath];
         
         [UIView animateWithDuration:self.animationTime
                               delay:0

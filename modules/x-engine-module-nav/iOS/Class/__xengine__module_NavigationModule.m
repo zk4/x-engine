@@ -493,7 +493,12 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
                             [webVC.webview callHandler:eventName arguments:@[@(tag + index)] completionHandler:nil];
                         }
                     }else{
-                        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
+                        if ( [topVC isKindOfClass:[RecyleWebViewController class]] ){
+                            RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
+                            [webVC goback:sender];
+                        }else{
+                            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
+                        }
                     }
                 }
             }];

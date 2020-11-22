@@ -221,6 +221,7 @@
         [containerView addSubview:toView];
         
         RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
+        RecyleWebViewController *fromVC = (RecyleWebViewController *)fromVc;
         
         //获取toView的截屏
         UIImage *toScreenImg = [toVC getScreenImage];
@@ -247,7 +248,7 @@
         [toView addSubview:shawView];
         
 //        [toVC popUrl:toVC.fileUrl];
-//        [toVC popUrl:toVC.preLevelPath];
+        [fromVC popUrl:toVC.preLevelPath];
         
         [UIView animateWithDuration:self.animationTime
                               delay:0

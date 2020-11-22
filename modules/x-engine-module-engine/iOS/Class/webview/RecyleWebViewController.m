@@ -74,6 +74,28 @@
     self = [super init];
     if (self){
         
+        NSRange range = [fileUrl rangeOfString:@"?"];
+        NSMutableString *newFileUrl = [[NSMutableString alloc] init];
+        if(range.location != NSNotFound){
+            [newFileUrl appendString:[fileUrl substringToIndex:range.location + range.length]];
+            
+            NSString *str2 = [fileUrl substringFromIndex:range.location + range.length];
+            NSArray *ary = [str2 componentsSeparatedByString:@"&"];
+            for (int i = 0; i < ary.count; i++) {
+                NSString *item = ary[i];
+                NSArray *itemAry = [item componentsSeparatedByString:@"="];
+                if(itemAry.count > 1){
+                    [newFileUrl appendFormat:@"%@=%@", [self urlEncodedString:itemAry[0]], [self urlEncodedString:itemAry[1]]];
+                }else{
+                    [newFileUrl appendString:[self urlEncodedString:itemAry[0]]];
+                }
+                if(i < ary.count - 1){
+                    [newFileUrl appendString:@"&"];
+                }
+            }
+            fileUrl = newFileUrl;
+        }
+        
         if(rootPath.length > 0){
             self.rootPath = rootPath;
         }else{
@@ -84,6 +106,7 @@
                 self.rootPath = fileUrl;
             }
         }
+       
         self.loadUrl = fileUrl;
         
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
@@ -150,6 +173,18 @@
     return self;
 }
 
+- (NSString *)urlEncodedString:(NSString *)str {
+    
+    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                                                     (__bridge CFStringRef)str,
+                                                                                                                     CFSTR(""),
+                                                                                                                     CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+
+    NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
+    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
+    return [[decodedString stringByAddingPercentEncodingWithAllowedCharacters:set] lowercaseString];
+}
+
 -(void)setWebview:(XEngineWebView *)webview{
     _webview = webview;
 }
@@ -190,25 +225,31 @@
                 [self.webview goToBackForwardListItem:backList[1]];
             }
         }else{
-            NSString *nowPath = [self.webview URL].absoluteString;
-            if([nowPath rangeOfString:preLevelPath].location == NSNotFound){
-                for (NSInteger i = backList.count - 1; i >= 0; i--){
-                    WKBackForwardListItem *item = backList[i];
-
-                    NSString *itemPath = item.URL.absoluteString;
-
-                    if([itemPath rangeOfString:preLevelPath].location != NSNotFound){
-                        
-                        if(i == backList.count - 1){
-                            [self.webview goBack];
-                        }else{
-                            [self.webview goToBackForwardListItem:item];
-                        }
-                        return;
-                    }
-                }
+            if([[[self.webview URL].absoluteString lowercaseString] isEqualToString:[self.loadUrl lowercaseString]]){
+                [self.webview goBack];
             }
         }
+//
+//        else{
+//            NSString *nowPath = [self.webview URL].absoluteString;
+//            if([nowPath rangeOfString:preLevelPath].location == NSNotFound){
+//                for (NSInteger i = backList.count - 1; i >= 0; i--){
+//                    WKBackForwardListItem *item = backList[i];
+//
+//                    NSString *itemPath = item.URL.absoluteString;
+//
+//                    if([itemPath rangeOfString:preLevelPath].location != NSNotFound){
+//
+//                        if(i == backList.count - 1){
+//                            [self.webview goBack];
+//                        }else{
+//                            [self.webview goToBackForwardListItem:item];
+//                        }
+//                        return;
+//                    }
+//                }
+//            }
+//        }
     } else {
         [self.webview goBack];
     }

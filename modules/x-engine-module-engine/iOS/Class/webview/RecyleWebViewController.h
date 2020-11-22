@@ -13,13 +13,10 @@
 - (void)loadFileUrl:(NSString *)url;
 - (void)forwardUrl:(NSString *)preLevelPath;
 - (void)pop;
-- (void)popUrl:(NSString *)preLevelPath;
 
 - (void)setSignleWebView:(XEngineWebView *)webView;
 
 - (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments;
-- (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler ;
-
--(void)goback:(UIButton *)sender;
+- (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^_Nullable)(id  _Nullable value)) completionHandler ;
 
 @end

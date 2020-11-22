@@ -6,7 +6,6 @@
 
 - (void)loadFileUrl:(NSString *)url;
 - (void)forwardUrl:(NSString *)preLevelPath;
-- (void)popUrl:(NSString *)preLevelPath;
 - (void)setSignleWebView:(XEngineWebView *)webView;
 
 

@@ -215,46 +215,6 @@
     [self.webview goBack];
 }
 
-- (void)popUrl:(NSString *)preLevelPath{
-    
-    if (preLevelPath) {
-        NSArray<WKBackForwardListItem *> *backList = self.webview.backForwardList.backList;
-        
-        if([preLevelPath isEqualToString:@"/index"]){
-            if(backList.count > 1){
-                [self.webview goToBackForwardListItem:backList[1]];
-            }
-        }else{
-            if([[[self.webview URL].absoluteString lowercaseString] isEqualToString:[self.loadUrl lowercaseString]]){
-                [self.webview goBack];
-            }
-        }
-//
-//        else{
-//            NSString *nowPath = [self.webview URL].absoluteString;
-//            if([nowPath rangeOfString:preLevelPath].location == NSNotFound){
-//                for (NSInteger i = backList.count - 1; i >= 0; i--){
-//                    WKBackForwardListItem *item = backList[i];
-//
-//                    NSString *itemPath = item.URL.absoluteString;
-//
-//                    if([itemPath rangeOfString:preLevelPath].location != NSNotFound){
-//
-//                        if(i == backList.count - 1){
-//                            [self.webview goBack];
-//                        }else{
-//                            [self.webview goToBackForwardListItem:item];
-//                        }
-//                        return;
-//                    }
-//                }
-//            }
-//        }
-    } else {
-        [self.webview goBack];
-    }
-}
-
 - (void)forwardUrl:(NSString *)preLevelPath{
     
     if (preLevelPath) {
@@ -292,20 +252,19 @@
 }
 
 - (void)setSignleWebView:(XEngineWebView *)webView{
-    //    if(self.webview != webView){
+    //单webViiew时, 将web从之前的vc上移除, 添加到当前vc上.
     [self.webview removeFromSuperview];
     self.webview = webView;
     [self.view addSubview:self.webview];
     [self.view addSubview:self.progresslayer];
     [self.view addSubview:self.imageView404];
-    //        [self.view insertSubview:self.webview atIndex:0];
-    //    }
 }
 
+//执行JS
 -(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments {
     [self runJsFunction:event arguments:arguments completionHandler:nil];
 }
-
+//执行JS
 -(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler {
     if(event.length > 0){
         [self.webview callHandler:event arguments:arguments completionHandler:completionHandler];
@@ -327,27 +286,12 @@
                                      self.imageView404.bounds.size.width,
                                      self.tipLabel.font.lineHeight);
 }
+
 -(void)goback:(UIButton *)sender{
     
-//    if(self.webview.backForwardList.backList.count > 1){
-//
-//        if([XEOneWebViewPool sharedInstance].inSingle && self.navigationController.viewControllers.count >= 2){
-//            UIViewController *toVc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-//            if([toVc isKindOfClass:[RecyleWebViewController class]]){
-//                RecyleWebViewController *toWebVc = (RecyleWebViewController *)toVc;
-//                NSString *path = [self.webview.backForwardList.backList.lastObject.URL absoluteString];
-//                if([path isEqualToString:toWebVc.loadUrl] || [path isEqualToString:[NSString stringWithFormat:@"%@#/", toWebVc.loadUrl]]){
-//                    [self.navigationController popViewControllerAnimated:YES];
-//                    return;
-//                }
-//            }
-//        }
-//        [self.webview goBack];
-//    }else{
-        [self.webview goBack];
-        [self.navigationController popViewControllerAnimated:YES];
-//    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -396,6 +340,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     if(self.navigationController.viewControllers.count > 1){
+        //记录上一级VC
         self.parentVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
     }
     self.progresslayer.alpha = 0;
@@ -406,34 +351,36 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
+    //即将离开页面, 判断上一级VC, 是不是 路由VC
     if([self.parentVC isKindOfClass:[RecyleWebViewController class]]){
+        //判断上一级web的 host
         RecyleWebViewController *parent = (RecyleWebViewController *)self.parentVC;
         NSString *parentUrlStr = [[[parent webview] URL] absoluteString] ;
         NSRange range = [parentUrlStr rangeOfString:@"index.html"];
         NSString *parentPath = [parentUrlStr substringToIndex:range.location];
         
-//        [[self webview] URL];
+        //判断当前的web的 host
         NSString *selfUrlStr = [[[self webview] URL] absoluteString] ;
         NSRange selfRange = [selfUrlStr rangeOfString:@"index.html"];
         NSString *selfPath = [selfUrlStr substringToIndex:selfRange.location];
+        //判断当前微应用, 是否需要退出
         if(![parentPath isEqualToString:selfPath]){
             self.isClearHistory = YES;
         }
     }else{
+        //上一级VC, 不是 路由VC. 即退出微应用了
         self.isClearHistory = YES;
     }
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
+    //判断是否是返回.
     if(self.navigationController == nil){
+        //判断是否需要清理记录
         if(self.isClearHistory){
+            //方法中引用计数减1, 当引用计数为0时, removeFromSuperView
             [[XEOneWebViewPool sharedInstance] resetUrl: self.rootPath];
         }
     }

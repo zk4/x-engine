@@ -232,7 +232,7 @@
                                                  containerView.bounds.size.width,
                                                  toViewScreenImageView.bounds.size.height);
         
-        self.toUrl = toVC.preLevelPath;
+        
         UIView *fromScreenView = [fromVc.view resizableSnapshotViewFromRect:fromVc.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];;
         fromScreenView.layer.shadowColor = [UIColor blackColor].CGColor;
         fromScreenView.layer.shadowOffset = CGSizeMake(-6, 0);
@@ -247,8 +247,7 @@
         shawView.alpha = 0.2;
         [toView addSubview:shawView];
         
-//        [toVC popUrl:toVC.fileUrl];
-        [fromVC popUrl:toVC.preLevelPath];
+        [fromVC pop];
         
         [UIView animateWithDuration:self.animationTime
                               delay:0
@@ -321,12 +320,6 @@
                 [Unity sharedInstance].getCurrentVC.navigationController.delegate = nil;
                 UIGestureRecognizer *gesture = [Unity sharedInstance].getCurrentVC.navigationController.interactivePopGestureRecognizer;
                 gesture.enabled = YES;
-                
-                if([fromVc isKindOfClass:[RecyleWebViewController class]]){
-                    RecyleWebViewController *fromWeVC = (RecyleWebViewController *)fromVc;
-                    [fromWeVC pop];
-                    [fromWeVC.webview removeFromSuperview];
-                }
             }
         }];
     }

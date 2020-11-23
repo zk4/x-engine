@@ -36,7 +36,6 @@
         if(![uri hasPrefix:@"http"]){
             uri = [NSString stringWithFormat:@"https://%@", uri];
         }
-        [[XEOneWebViewControllerManage sharedInstance] setMainUrl:uri];
         NSMutableString *url = [[NSMutableString alloc] initWithString:uri];
         if(path.length > 0){
             if([uri hasPrefix:@"/"]){
@@ -49,7 +48,10 @@
     } else if([type isEqual:@"microapp"]){
 
         if([[MicroAppLoader sharedInstance] checkMicroAppVersion:uri version:version]){
-            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri withPath:path withVersion:version withParams:nil];
+            [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri
+                                                                              withPath:path
+                                                                           withVersion:version
+                                                                            withParams:nil];
         }else{
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"

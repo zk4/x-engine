@@ -10,9 +10,7 @@
 
 - (instancetype)initWithUrl:(NSString *)fileUrl;
 - (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath;
-- (void)loadFileUrl:(NSString *)url;
-- (void)forwardUrl:(NSString *)preLevelPath;
-- (void)pop;
+- (void)loadFileUrl;
 
 - (void)setSignleWebView:(XEngineWebView *)webView;
 

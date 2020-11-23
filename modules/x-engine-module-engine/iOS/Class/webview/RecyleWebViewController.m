@@ -2,14 +2,12 @@
 //  RecyleWebViewController.m
 
 #import "RecyleWebViewController.h"
-#import "micros.h"
 #import <WebKit/WebKit.h>
 #import "XEngineWebView.h"
 #import "xengine__module_BaseModule.h"
 #import "XEOneWebViewPool.h"
-#import "XEOneWebViewControllerManage.h"
-
 #import "MicroAppLoader.h"
+
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, copy) NSString *rootPath;
@@ -110,11 +108,10 @@
         self.loadUrl = fileUrl;
         
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
-           //           || [fileUrl isEqualToString:self.rootPath]
            || ![XEOneWebViewPool sharedInstance].inSingle){
             
             self.isReadyLoading = YES;
-            self.webview = [[XEOneWebViewPool sharedInstance] getWebView:fileUrl];;
+            self.webview = [[XEOneWebViewPool sharedInstance] getWebView];;
             self.webview.configuration.preferences.javaScriptEnabled = YES;
             self.webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
             
@@ -175,85 +172,31 @@
 
 - (NSString *)urlEncodedString:(NSString *)str {
     
-    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-                                                                                                                     (__bridge CFStringRef)str,
-                                                                                                                     CFSTR(""),
-                                                                                                                     CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-
+    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
     NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
     NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
     return [[decodedString stringByAddingPercentEncodingWithAllowedCharacters:set] lowercaseString];
 }
 
--(void)setWebview:(XEngineWebView *)webview{
-    _webview = webview;
-}
-
-- (void)loadFileUrl:(NSString *)url{
+- (void)loadFileUrl{
     
+    if([self.loadUrl isEqualToString:self.webview.URL.absoluteString]){
+        return;
+    }
     if([self.loadUrl hasPrefix:@"http"]){
-        if([self.loadUrl isEqualToString:self.webview.URL.absoluteString]){
-            return;
-        }
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-        if([url isEqualToString:self.webview.URL.absoluteString]){
-            return;
-        }
-//        NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-//        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
-//        }];
         if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl]
+              allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
         }else{
-            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
+            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl]
+              allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
         }
     }
-}
-
-- (void)pop{
-    [self.webview goBack];
-}
-
-- (void)forwardUrl:(NSString *)preLevelPath{
-    
-    if (preLevelPath) {
-        NSArray<WKBackForwardListItem *> *backList = self.webview.backForwardList.forwardList;
-        for (NSInteger i = backList.count - 1; i >= 0; i--){
-            WKBackForwardListItem *item = backList[i];
-            NSURLComponents *itemComponents = [NSURLComponents componentsWithURL:item.URL resolvingAgainstBaseURL:YES];
-            NSString *itemPath = itemComponents.path;
-            NSString *itemFragment = [self framentEmptyAction:itemComponents.fragment];
-            
-            
-            NSURLComponents *finderComponents = [NSURLComponents componentsWithString:preLevelPath];
-            NSString *finderPath = finderComponents.path;
-            NSString *finderFragment = [self framentEmptyAction:finderComponents.fragment];
-            
-            if([itemPath isEqualToString:finderPath]
-               && [itemFragment isEqualToString:finderFragment]){
-                [self.webview goToBackForwardListItem:item];
-                return;
-            }
-        }
-    } else {
-        [self.webview goBack];
-    }
-}
-
--(NSString *)framentEmptyAction:(NSString *)frament{
-    NSString *flag;
-    if( frament == nil || [frament isEqualToString:@"/"] || [frament isEqualToString:@"null"]){
-        flag = @"";
-    } else {
-        flag = frament;
-    }
-    return flag;
 }
 
 - (void)setSignleWebView:(XEngineWebView *)webView{
-    //单webViiew时, 将web从之前的vc上移除, 添加到当前vc上.
-    [self.webview removeFromSuperview];
     self.webview = webView;
     [self.view addSubview:self.webview];
     [self.view addSubview:self.progresslayer];
@@ -333,120 +276,17 @@
     [self.imageView404 addSubview:self.tipLabel];
 }
 
-
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
-    if(self.navigationController.viewControllers.count > 1){
-        //记录上一级VC
-        self.parentVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
-    }
     self.progresslayer.alpha = 0;
-    [[XEOneWebViewControllerManage sharedInstance] createCacheVC];
     [self.view insertSubview:self.webview atIndex:0];
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    
-    //即将离开页面, 判断上一级VC, 是不是 路由VC
-    if([self.parentVC isKindOfClass:[RecyleWebViewController class]]){
-        //判断上一级web的 host
-        RecyleWebViewController *parent = (RecyleWebViewController *)self.parentVC;
-        NSString *parentUrlStr = [[[parent webview] URL] absoluteString] ;
-        NSRange range = [parentUrlStr rangeOfString:@"index.html"];
-        NSString *parentPath = [parentUrlStr substringToIndex:range.location];
-        
-        //判断当前的web的 host
-        NSString *selfUrlStr = [[[self webview] URL] absoluteString] ;
-        NSRange selfRange = [selfUrlStr rangeOfString:@"index.html"];
-        NSString *selfPath = [selfUrlStr substringToIndex:selfRange.location];
-        //判断当前微应用, 是否需要退出
-        if(![parentPath isEqualToString:selfPath]){
-            self.isClearHistory = YES;
-        }
-    }else{
-        //上一级VC, 不是 路由VC. 即退出微应用了
-        self.isClearHistory = YES;
-    }
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
-    //判断是否是返回.
-    if(self.navigationController == nil){
-        //判断是否需要清理记录
-        if(self.isClearHistory){
-            //方法中引用计数减1, 当引用计数为0时, removeFromSuperView
-            [[XEOneWebViewPool sharedInstance] resetUrl: self.rootPath];
-        }
-    }
-}
-
-- (void)reloadData{
-    [self.webview reload];
-}
-
-#pragma mark - Full Screen
-
-- (BOOL)statusBarAppearanceByViewController
-{
-    NSNumber *viewControllerBased = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIViewControllerBasedStatusBarAppearance"];
-    if (viewControllerBased && !viewControllerBased.boolValue)
-    {
-        return NO;
-    }
-    else
-    {
-        return YES;
-    }
-}
-
-#if RotationObservingForVideoEnabled
-- (void)retainStatusBar
-{
-    if (self.statusBarAppearanceByViewController)
-    {
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
-    else
-    {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-    }
-}
-
-#pragma mark iOS 8 Prior
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self.view layoutSubviews];
-    [self retainStatusBar];
-}
-
-#pragma mark ios 8 Later
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
-    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        
-        [self retainStatusBar];
-        
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        //
-    }];
-}
-#endif
-
-- (void)dealloc
-{
+- (void)dealloc{
     
 }
+
 @end
-
-/*
- file:///var/mobile/Containers/Data/Application/4B0014CD-F84B-4262-BD8F-008209003226/Library/microapps/com.times.microapp.AppbRealEstate.1/index.html#/detail?idr=2243547016846115059&id=%E6%97%B6%E4%BB%A3%E7%B3%96%E6%9E%9C%E4%B8%80%E6%9C%9F%EF%BC%88%E4%BD%9B%E5%B1%B1%EF%BC%89-%E6%97%B6%E4%BB%A3%E7%B3%96%E6%9E%9C%E7%A4%BE%E5%8C%BA%E4%B8%80%E6%9C%9F%EF%BC%88%E5%B9%BF%E5%B7%9E%EF%BC%89-A28-0013&name=%E6%97%B6%E4%BB%A3%E7%B3%96%E6%9E%9C%E4%B8%80%E6%9C%9F%EF%BC%88%E4%BD%9B%E5%B1%B1%EF%BC%89
- 
- */

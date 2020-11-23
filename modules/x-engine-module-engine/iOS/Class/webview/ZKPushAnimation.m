@@ -159,21 +159,18 @@
         [fromeVc setScreenImage:img];
         
         UIView *toView = toVc.view;
-        [toVc setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVc.loadUrl]];
+        [toVc setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView]];
         
-        [toVc loadFileUrl:toVc.loadUrl];
+        [toVc loadFileUrl];
         
         toView.layer.shadowColor = [UIColor blackColor].CGColor;
         toView.layer.shadowOffset = CGSizeMake(-3, 0);
         toView.layer.shadowOpacity = 0.2;
         
-        screenView.frame = fromeVc.view.frame;//containerView.bounds;
+        screenView.frame = fromeVc.view.frame;
         [containerView addSubview:screenView];
         [containerView addSubview:toView];
-//        toView.frame = CGRectMake(toView.frame.size.width,
-//                                  fromeVc.navigationController.navigationBar.bounds.size.height,//toView.frame.origin.y,
-//                                  toView.frame.size.width,
-//                                  containerView.bounds.size.height - fromeVc.navigationController.navigationBar.bounds.size.height);//toView.frame.size.height);
+
     toView.frame = CGRectMake(toView.frame.size.width,
                               toView.frame.origin.y,
                               toView.frame.size.width,
@@ -221,7 +218,7 @@
         [containerView addSubview:toView];
         
         RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
-        RecyleWebViewController *fromVC = (RecyleWebViewController *)fromVc;
+//        RecyleWebViewController *fromVC = (RecyleWebViewController *)fromVc;
         
         //获取toView的截屏
         UIImage *toScreenImg = [toVC getScreenImage];
@@ -247,8 +244,6 @@
         shawView.alpha = 0.2;
         [toView addSubview:shawView];
         
-        [fromVC pop];
-        
         [UIView animateWithDuration:self.animationTime
                               delay:0
                             options:UIViewAnimationOptionCurveLinear
@@ -268,30 +263,16 @@
             
             if (!transitionContext.transitionWasCancelled) {
                 
-                [toVC setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView:toVC.loadUrl]];
-                [fromScreenView removeFromSuperview];
-                [shawView removeFromSuperview];
-                [toViewScreenImageView removeFromSuperview];
-                [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-            }else {
-                if([fromVc isKindOfClass:[RecyleWebViewController class]]){
-                    RecyleWebViewController *fromWeVC = (RecyleWebViewController *)fromVc;
-                    [fromWeVC forwardUrl:fromWeVC.loadUrl];
-                }
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[XEOneWebViewPool sharedInstance] clearWebView];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [fromScreenView removeFromSuperview];
                     [shawView removeFromSuperview];
                     [toViewScreenImageView removeFromSuperview];
                     [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
                 });
-                return;
             }
         }];
     } else {
-//        toView.frame = CGRectMake(containerView.bounds.size.width * -0.5,
-//                                  toView.frame.origin.y,
-//                                  toView.bounds.size.width,
-//                                  toView.bounds.size.height);
         toView.frame = CGRectMake(containerView.bounds.size.width * -0.5,
                                   0,
                                   toView.bounds.size.width,

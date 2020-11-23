@@ -16,7 +16,7 @@
 #import "Unity.h"
 #import <x-engine-module-tools/UIViewController+.h>
 #import <x-engine-module-tools/UIColor+HexString.h>
-#import <x-engine-module-engine/MircroAppController.h>
+#import <x-engine-module-engine/RecyleWebViewController.h>
 #import <XEngineWebView.h>
 #import "UIBlockButton.h"
 @interface __xengine__module_UIModule() <UIPickerViewDataSource, UIPickerViewDelegate>

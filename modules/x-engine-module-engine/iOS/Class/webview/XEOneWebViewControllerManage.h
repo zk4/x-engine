@@ -7,15 +7,10 @@
 
 + (instancetype)sharedInstance;
 
-- (void)isSingleWebView:(BOOL)isSingle;
-- (NSString *)setMainUrl:(NSString *)url;
 - (void)setMainAppid:(NSString *)appid withPath:(NSString *)path;
-
-- (NSString *)getUrl:(NSString *)url params:(NSString *)params;
 
 - (UIViewController *)getWebViewControllerWithUrl:(NSString *)url;
 - (UIViewController *)getWebViewControllerWithId:(NSString *)appid;
-- (void)createCacheVC;
 
 
 - (void)pushWebViewControllerWithUrl:(NSString *)url;

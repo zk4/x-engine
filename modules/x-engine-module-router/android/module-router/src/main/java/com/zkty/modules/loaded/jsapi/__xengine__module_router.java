@@ -11,11 +11,7 @@ public class __xengine__module_router extends xengine__module_router {
 
     @Override
     public void _openTargetRouter(RouterOpenAppDTO dto, CompletionHandler<Nullable> handler) {
-
-//        RouterMaster.openTargetRouter(XEngineWebActivityManager.sharedInstance().getCurrent(), dto.type, dto.uri, dto.path, JSON.toJSONString(dto.args), dto.version == null ? null : String.valueOf(dto.version));
         RouterAspect.openTargetRouter(dto.type, dto.uri, dto.path, JSON.toJSONString(dto.args), dto.version == null ? null : String.valueOf(dto.version));
-
-
         handler.complete();
     }
 }

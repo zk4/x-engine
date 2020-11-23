@@ -8,7 +8,6 @@ public class UrlUtils {
         if (TextUtils.isEmpty(url1) || TextUtils.isEmpty(url2)) {
             return false;
         }
-
         if (url1.contains("?")) {
             url1 = url1.substring(0, url1.charAt('?'));
         }

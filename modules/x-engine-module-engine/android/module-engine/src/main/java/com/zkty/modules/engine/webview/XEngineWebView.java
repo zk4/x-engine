@@ -24,6 +24,7 @@ import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.exception.NoModuleIdException;
+import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.Utils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
@@ -183,9 +184,9 @@ public class XEngineWebView extends DWebView {
         WebBackForwardList backForwardList = copyBackForwardList();
         if (backForwardList != null && backForwardList.getSize() != 0) {
             if ("about:blank".equals(backForwardList.getItemAtIndex(0).getOriginalUrl())) {
-                goBackOrForward(-backForwardList.getSize() + 2);
+                goBackOrForward(-backForwardList.getCurrentIndex() + 1);
             } else {
-                goBackOrForward(-backForwardList.getSize() + 1);
+                goBackOrForward(-backForwardList.getCurrentIndex());
             }
             historyCount = 1;
         }
@@ -201,7 +202,7 @@ public class XEngineWebView extends DWebView {
             parent.removeAllViews();
         }
         while (canGoBack()) {
-            if (getOriginalUrl().contains(url)) {
+            if (UrlUtils.equalsWithoutArgs(getOriginalUrl(),url)) {
                 break;
             }
             goBack();

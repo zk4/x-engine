@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 public class RouterAspect {
 
     private final static String APPB_ROUTER_CLASS = "cn.timesneighborhood.app.b.router.RouterWrapper";
-    private final static String APPC_ROUTER_CLASS = "cn.timesneighborhood.app.c.router.RouterManager";
+    private final static String APPC_ROUTER_CLASS = "cn.timesneighborhood.app.c.router.RouterWrapper";
 
     public static void openTargetRouter(String type, String uri, String path, String arg, String version) {
 

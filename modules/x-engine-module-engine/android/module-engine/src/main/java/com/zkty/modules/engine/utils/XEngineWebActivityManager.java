@@ -147,7 +147,7 @@ public class XEngineWebActivityManager {
 
     public void backToHistoryPage(String url) {
         for (int i = activityList.size() - 1; i > 0; i--) {
-            if (activityList.get(i).getWebUrl().contains(url)) {
+            if (UrlUtils.equalsWithoutArgs(activityList.get(i).getWebUrl(), url)) {
                 return;
             }
             activityList.get(i).finish();

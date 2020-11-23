@@ -119,23 +119,14 @@
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
     if(urlStr){
-//        [self setMainUrl:urlStr];
         if(path.length > 0){
-            
             urlStr = [NSString stringWithFormat:@"%@%@%@%@", urlStr, ([urlStr hasSuffix:@"index.html"] ? @"#" : @""), ([urlStr hasSuffix:@"/"] || [path hasPrefix:@"/"]) ? @"" : @"/", path];
-//            urlStr = [NSString stringWithFormat:@"%@&sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             if([urlStr rangeOfString:@"?"].location != NSNotFound){
                 urlStr = [NSString stringWithFormat:@"%@&sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             }else{
                 urlStr = [NSString stringWithFormat:@"%@?sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             }
-
         }
-//        if(path.length > 0){
-//            path = [NSString stringWithFormat:@"%@&sssxxxDate=%@", path, @([[NSDate date] timeIntervalSince1970])];
-//        }else{
-//            path = [NSString stringWithFormat:@"sssxxxDate=%@", @([[NSDate date] timeIntervalSince1970])];
-//        }
         [self pushWebViewControllerWithUrl:urlStr];
     }
 }

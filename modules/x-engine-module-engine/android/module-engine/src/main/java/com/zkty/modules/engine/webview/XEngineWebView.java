@@ -263,6 +263,7 @@ public class XEngineWebView extends DWebView {
 
     @Override
     public void loadUrl(String url) {
+        if (url.startsWith("/data")) url = "file://" + url;
         super.loadUrl(url);
         this.currentUrl = url;
         historyCount++;

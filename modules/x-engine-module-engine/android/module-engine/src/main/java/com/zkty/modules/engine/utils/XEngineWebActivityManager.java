@@ -60,12 +60,17 @@ public class XEngineWebActivityManager {
         Intent intent = new Intent(context, XEngineWebActivity.class);
         intent.putExtra(XEngineWebActivity.INDEX_URL, indexUrl);
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, microAppId);
-        String url = TextUtils.isEmpty(path) || "null".equals(path) ? indexUrl : indexUrl + "#" + path;
+
+        String url = null;
+        if (TextUtils.isEmpty(path) || "null".equals(path)) {
+            url = indexUrl;
+        } else if (path.startsWith("/index")) {
+            url = indexUrl + path.replaceFirst("/index", "");
+        } else {
+            url = indexUrl + "#" + path;
+        }
         url = TextUtils.isEmpty(args) || "null".equals(args) ? url : url + "?" + args;
 
-        if (url != null && url.startsWith("/data")) {
-            url = "file://" + url;
-        }
         intent.putExtra(XEngineWebActivity.URL, url);
         context.startActivity(intent);
 

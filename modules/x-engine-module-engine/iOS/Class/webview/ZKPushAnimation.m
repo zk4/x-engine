@@ -270,6 +270,11 @@
                     [toViewScreenImageView removeFromSuperview];
                     [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
                 });
+            }else{
+                [fromScreenView removeFromSuperview];
+                [shawView removeFromSuperview];
+                [toViewScreenImageView removeFromSuperview];
+                [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             }
         }];
     } else {

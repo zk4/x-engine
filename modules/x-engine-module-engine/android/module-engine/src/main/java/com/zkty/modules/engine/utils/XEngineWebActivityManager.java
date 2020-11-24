@@ -114,6 +114,7 @@ public class XEngineWebActivityManager {
 
         if (activity.getXEngineWebView().getHistoryCount() == 0) {
             activity.getXEngineWebView().cleanCache();
+            XOneWebViewPool.sharedInstance().removeWebView(activity.getXEngineWebView());
         }
 
         activityList.remove(activity);

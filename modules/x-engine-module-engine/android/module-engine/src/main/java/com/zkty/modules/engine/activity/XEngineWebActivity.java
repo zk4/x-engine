@@ -128,6 +128,13 @@ public class XEngineWebActivity extends AppCompatActivity {
         indexUrl = getIntent().getStringExtra(INDEX_URL);
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
 
+        xEngineNavBar.setLeftListener(view -> {
+
+            Log.d(TAG, "原生被调用");
+            backUp();
+        });
+
+
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
         lifecycleListeners = new LinkedHashSet<>();
@@ -226,8 +233,6 @@ public class XEngineWebActivity extends AppCompatActivity {
                     ((ViewGroup) mWebView.getParent()).removeView(mWebView);
                 }
                 ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
-            } else {
-                XOneWebViewPool.sharedInstance().putWebViewBackToPool(mWebView);
             }
         }
 
@@ -307,6 +312,8 @@ public class XEngineWebActivity extends AppCompatActivity {
     }
 
     public void backUp() {
+
+        Log.d(TAG, "backUp()");
         //模拟 KeyEvent.ACTION_DOWN事件,调用onKeyDown
         new Thread(new Runnable() {
             public void run() {
@@ -326,14 +333,22 @@ public class XEngineWebActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-            if (mWebView.canGoBack()) {
-                mWebView.goBack();
+            if (TextUtils.isEmpty(mMicroAppId)) {
+                if (mWebView.canGoBack()) {
+                    mWebView.goBack();
+                    return true;
+                }
             } else {
-                mWebView.historyBack();
-            }
-            finish();
-            return true;
 
+                if (mWebView.canGoBack()) {
+                    mWebView.goBack();
+                } else {
+                    mWebView.historyBack();
+                }
+                finish();
+                return true;
+
+            }
         }
         return super.onKeyDown(keyCode, event);
     }

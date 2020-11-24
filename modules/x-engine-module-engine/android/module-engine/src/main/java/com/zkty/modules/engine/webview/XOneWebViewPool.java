@@ -14,14 +14,17 @@ public class XOneWebViewPool {
 
     public static boolean IS_SINGLE = true;
     public static boolean IS_WEB = false;
+    public static boolean IS_ROUTER = false;
 
-    private static Map<String, XEngineWebView> circleMap;
+
+    private static List<XEngineWebView> circleList;
     private static final byte[] lock = new byte[]{};
     private Context mContext;
 
 
     private XOneWebViewPool() {
-        circleMap = new HashMap<>();
+
+        circleList = new ArrayList<>();
     }
 
     private static volatile XOneWebViewPool instance = null;
@@ -53,35 +56,35 @@ public class XOneWebViewPool {
     public XEngineWebView getUnusedWebViewFromPool(String microAppId) {
         synchronized (lock) {
             XEngineWebView webView = null;
-            if (IS_WEB || IS_SINGLE) {
-                if (TextUtils.isEmpty(microAppId)) {
-                    microAppId = "h5";
-                }
-                if (circleMap.containsKey(microAppId)) {
-                    webView = circleMap.get(microAppId);
-                } else {
-                    webView = new XEngineWebView(mContext);
-                    circleMap.put(microAppId, webView);
-                }
+            if (IS_ROUTER || circleList.size() == 0) {
 
+                webView = new XEngineWebView(mContext);
+                circleList.add(webView);
+
+            } else {
+                webView = circleList.get(circleList.size() - 1);
                 ViewGroup parent = (ViewGroup) webView.getParent();
                 if (parent != null) {
                     parent.removeAllViews();
                 }
-            } else {
-                webView = new XEngineWebView(mContext);
-                circleMap.put("common", webView);
             }
             return webView;
         }
     }
 
     public void cleanWebView() {
-        circleMap.clear();
+        circleList.clear();
+        XOneWebViewPool.IS_ROUTER = false;
+    }
+
+    public void removeWebView(XEngineWebView webView) {
+        if (circleList.contains(webView))
+            circleList.remove(webView);
+
     }
 
     public void putWebViewBackToPool(XEngineWebView webView) {
-        circleMap.put("common", webView);
+
     }
 
 }

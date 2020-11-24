@@ -1,12 +1,17 @@
 package com.zkty.modules.loaded.widget.dialog;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 
 import android.view.LayoutInflater;
 import android.view.View;
 
 import android.widget.TextView;
+
+import com.zkty.modules.engine.utils.Utils;
+import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
 import module.ui.R;
 
@@ -18,9 +23,12 @@ public class CommonDialog extends BaseDialog {
     private TextView cancelTv;
     private TextView confirmTv;
 
+    private Context mContext;
+
 
     public CommonDialog(Context context) {
         super(context);
+        this.mContext = context;
         View content = LayoutInflater.from(context).inflate(R.layout.dialog_common, null);
         titleTv = content.findViewById(R.id.tv_title);
         messageTv = content.findViewById(R.id.tv_content);
@@ -39,6 +47,32 @@ public class CommonDialog extends BaseDialog {
         if (!TextUtils.isEmpty(message)) {
             messageTv.setText(message);
         }
+    }
+
+    public void setContentCanCall(String message) {
+        if (!TextUtils.isEmpty(message)) {
+            messageTv.setText(message);
+        }
+        if (!TextUtils.isEmpty(Utils.getPhoneNumberFormString(message))) {
+            messageTv.setOnClickListener(v -> showBottomDialog(Utils.getPhoneNumberFormString(message)));
+        }
+    }
+
+    private void showBottomDialog(String phone) {
+        String[] sexItem = new String[]{"呼叫  " + phone};
+        BottomDialog bottomDialog = new BottomDialog(mContext);
+        bottomDialog.initDialog(null, null, sexItem, (view, which, l) -> {
+            if (which != -2) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + phone);
+                intent.setData(data);
+                mContext.startActivity(intent);
+            }
+        });
+
+        bottomDialog.showDialog();
+
+
     }
 
     public void setTitle(String message) {
@@ -65,6 +99,7 @@ public class CommonDialog extends BaseDialog {
 
         void onConfirm();
     }
+
 
     private ClickCallback callback;
 

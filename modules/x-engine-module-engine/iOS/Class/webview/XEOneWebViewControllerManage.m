@@ -1,5 +1,5 @@
 #import "XEOneWebViewControllerManage.h"
-#import "XEOneRecyleWebViewController.h"
+#import "RecyleWebViewController.h"
 #import "XEOneWebViewPool.h"
 #import "MicroAppLoader.h"
 #import "Unity.h"
@@ -8,13 +8,6 @@
 
 #import "UINavigationController+Customized.h"
 
-
-@interface XEOneWebViewControllerManage ()
-
-@property (nonatomic, strong) XEOneRecyleWebViewController *vc;
-//@property (nonatomic, copy) NSString *rootUrl;
-@property (nonatomic, strong) NSMutableDictionary *animationDic;
-@end
 
 
 @implementation XEOneWebViewControllerManage
@@ -29,76 +22,14 @@
     return sharedInstance;
 }
 
-
-//+(void)addTestFunc:(Class)class withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
-//
-//    Method origMethod = class_getClassMethod(class, oldSel);
-//    Method altMethod = class_getClassMethod(class, newSel);
-//
-//    if (!origMethod || !altMethod) {
-//        return;
-//    }
-//    Class metaClass = object_getClass(class);
-//    BOOL didAddMethod = class_addMethod(metaClass,
-//                                        oldSel,
-//                                        method_getImplementation(altMethod),
-//                                        method_getTypeEncoding(altMethod));
-//
-//    if (didAddMethod) {
-//        class_replaceMethod(metaClass,
-//                            newSel,
-//                            method_getImplementation(origMethod),
-//                            method_getTypeEncoding(origMethod));
-//    } else {
-//        method_exchangeImplementations(origMethod, altMethod);
-//    }
-//}
-//+(void)addTestInstanceFunc:(Class)class withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
-//
-//    Method origMethod = class_getInstanceMethod(class, oldSel);
-//    Method altMethod = class_getInstanceMethod(class, newSel);
-//    if (!origMethod || !altMethod) {
-//        return;
-//    }
-//    Class metaClass = class;
-//    BOOL didAddMethod = class_addMethod(metaClass,
-//                                        oldSel,
-//                                        method_getImplementation(altMethod),
-//                                        method_getTypeEncoding(altMethod));
-//
-//    if (didAddMethod) {
-//        class_replaceMethod(metaClass,
-//                            newSel,
-//                            method_getImplementation(origMethod),
-//                            method_getTypeEncoding(origMethod));
-//    } else {
-//        method_exchangeImplementations(origMethod, altMethod);
-//    }
-//}
-
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.animationDic = [@{} mutableCopy];
-//        self.rootUrl = @"";
-    }
-    return self;
-}
-
--(void)isSingleWebView:(BOOL)isSingle{
-    
-    [XEOneWebViewPool sharedInstance].inSingle = isSingle;
-}
-
+//http用
 - (void)pushWebViewControllerWithUrl:(NSString *)url{
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
     [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
-
+//nav用
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params{
     
     [Unity sharedInstance].getCurrentVC.hidesBottomBarWhenPushed = YES;
@@ -106,11 +37,12 @@
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
     //
-    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
+    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle
+                                             withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
-
+//route用
 - (void)pushViewControllerWithAppid:(NSString *)appid
                            withPath:(NSString *)path
                         withVersion:(long)version
@@ -119,66 +51,39 @@
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
     if(urlStr){
-//        [self setMainUrl:urlStr];
         if(path.length > 0){
-            
             urlStr = [NSString stringWithFormat:@"%@%@%@%@", urlStr, ([urlStr hasSuffix:@"index.html"] ? @"#" : @""), ([urlStr hasSuffix:@"/"] || [path hasPrefix:@"/"]) ? @"" : @"/", path];
-//            urlStr = [NSString stringWithFormat:@"%@&sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             if([urlStr rangeOfString:@"?"].location != NSNotFound){
                 urlStr = [NSString stringWithFormat:@"%@&sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             }else{
                 urlStr = [NSString stringWithFormat:@"%@?sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             }
-
         }
-//        if(path.length > 0){
-//            path = [NSString stringWithFormat:@"%@&sssxxxDate=%@", path, @([[NSDate date] timeIntervalSince1970])];
-//        }else{
-//            path = [NSString stringWithFormat:@"sssxxxDate=%@", @([[NSDate date] timeIntervalSince1970])];
-//        }
         [self pushWebViewControllerWithUrl:urlStr];
     }
 }
 
--(NSString *)setMainUrl:(NSString *)url{
-    
-    if([url rangeOfString:@".html"].location == NSNotFound){
-        if(![url hasSuffix:@"index.html"] && ![url hasSuffix:@"index.html/"]){
-            if([url hasSuffix:@"/"])
-                url = [NSString stringWithFormat:@"%@index.html", url];
-            else
-                url = [NSString stringWithFormat:@"%@/index.html", url];
-        }
-    }
-//    self.rootUrl = url;
-//    [self createCacheVC];
-    return url;
-}
-
 -(void)setMainAppid:(NSString *)appid withPath:(NSString *)path{
     
-    long version;
-    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0];
+    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:1];
     NSString *fullpath;
     if (path.length > 0){
         fullpath = [NSString stringWithFormat:@"%@%@", toUrl, path];
     } else {
         fullpath = toUrl;
     }
-    [self setMainUrl:fullpath];
 }
 
 -(NSString *)getUrl:(NSString *)url params:(NSString *)params{
     NSMutableString *toUrl = [[NSMutableString alloc] init];
     
-    XEOneRecyleWebViewController *web = (XEOneRecyleWebViewController *)[Unity sharedInstance].getCurrentVC;
+    RecyleWebViewController *web = (RecyleWebViewController *)[Unity sharedInstance].getCurrentVC;
     NSRange range = [[web loadUrl] rangeOfString:@"index.html"];
     NSString *host = [[web loadUrl] substringToIndex:range.location + range.length];
     
     if ([[url lowercaseString] hasPrefix:@"http"]){
         [toUrl appendString:url];
     } else if (url.length > 0){
-        
         
         [toUrl appendFormat:@"%@#%@", host, url];
         if(params){
@@ -207,21 +112,15 @@
 
 -(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
     
-    XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:url withRootPath:nil];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url withRootPath:nil];
     return vc;
 }
 
 -(UIViewController *)getWebViewControllerWithId:(NSString *)appid{
     
-    long version;
-    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0];
-    XEOneRecyleWebViewController *vc = [[XEOneRecyleWebViewController alloc] initWithUrl:toUrl];
+    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:1];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:toUrl];
     return vc;
-}
-
-
--(void)createCacheVC{
-//    [[XEOneWebViewPool sharedInstance] createNewWebView:self.rootUrl];
 }
 
 @end

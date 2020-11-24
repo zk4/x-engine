@@ -17,16 +17,10 @@
 NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgressChangeNotification";
 NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNotification";
 
-@interface XEOneWebViewPoolModel : NSObject
-@property (nonatomic, assign) NSInteger realseCount;
-@property (nonatomic, strong) XEngineWebView *webView;
-@end
-@implementation XEOneWebViewPoolModel
-@end
 @interface XEOneWebViewPool ()
 
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
-@property (nonatomic, strong) NSMutableDictionary<NSString *, XEOneWebViewPoolModel *>* webCacheDic;
+@property (nonatomic, strong) NSMutableArray<XEngineWebView *>* webCacheAry;
 
 @end
 
@@ -46,99 +40,50 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     self = [super init];
     if (self){
         self.wkprocessPool = [[WKProcessPool alloc] init];
-        self.webCacheDic = [@{} mutableCopy];
+        self.webCacheAry = [@[] mutableCopy];
         self.inSingle = YES;
 //        self.inAllSingle = YES;
     }
     return self;
 }
 
--(void)resetUrl:(NSString *)url{
-    if(self.inSingle || self.inAllSingle){
-        [self clearWebView:url];
-    }
-}
     
 -(BOOL)checkUrl:(NSString *)url{
-    NSString *key = [self urlToDicKey:url];
-    XEOneWebViewPoolModel *model = self.webCacheDic[key];
-    if(model.webView == nil){
-        return YES;
-    }
-    if(model.webView.superview == nil){
+    
+    XEngineWebView *web = self.webCacheAry.lastObject;
+    if(web.superview == nil){
         return YES;
     }
     return NO;
 }
 
--(void)clearWebView:(NSString *)url{
-    NSString *key = [self urlToDicKey:url];
-    XEOneWebViewPoolModel *model = self.webCacheDic[key];
-    model.realseCount -= 1;
-    if(model.realseCount < 1){
-        [model.webView removeFromSuperview];
-        [self.webCacheDic removeObjectForKey:key];
+-(void)clearWebView{
+    XEngineWebView *web = self.webCacheAry.lastObject;
+    if([web canGoBack]){
+        [web goBack];
     }else{
-//        [model.webView goBack];
+        [self.webCacheAry removeLastObject];
     }
 }
 
-- (XEngineWebView *)getWebView:(NSString *)url{
+- (XEngineWebView *)getWebView{
     
-    NSString *key = [self urlToDicKey:url];
-    XEngineWebView *web;
-    XEOneWebViewPoolModel *model;
-    if(self.inAllSingle){
-        model = self.webCacheDic.allValues.firstObject;
-    } else {
-        model = self.webCacheDic[key];
-    }
-    web = model.webView;
-    if (web == nil){
-        web = [self createNewWebView:url];
-    }
-    if (!self.inAllSingle && !self.inSingle){
-        [self.webCacheDic removeObjectForKey:key];
-    }
+    XEngineWebView *web = self.webCacheAry.lastObject;
     return web;
 }
 
 - (XEngineWebView *)createNewWebView:(NSString *)baseUrl{
     
     if(baseUrl){
-        NSString *key = [self urlToDicKey:baseUrl];
-        XEOneWebViewPoolModel *model = self.webCacheDic[key];
-        XEngineWebView *web;// = model.webView;
-        if (model == nil){
-            web = [self createWebView:baseUrl];
-            XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
-            model.webView = web;
-            model.realseCount = 1;
-            self.webCacheDic[key] = model;
-        }else{
-            model.realseCount += 1;
-            web = model.webView;
-        }
+        XEngineWebView *web = [self createWebView:baseUrl];
+        [self.webCacheAry addObject:web];
         return web;
     }
     return nil;
 }
 
 -(NSString *)urlToDicKey:(NSString *)url{
-    
-//    NSString *head = @"";
-//    for (NSInteger i = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count - 1; i >= 0; i--) {
-//        UIViewController *vc = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers[i];
-//        if(![vc isKindOfClass:[RecyleWebViewController class]]){
-//
-//            head = [[NSNumber numberWithLongLong:(long long)vc] stringValue];
-//            break;
-//        }
-//    }
-//    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
-//    NSString *ss = [NSString stringWithFormat:@"%@%@://%@", head, components.scheme, components.host];
-//    return ss;
-    
+
     NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
     if([components.scheme isEqualToString:@"file"]){
         NSString *path = components.path;
@@ -171,7 +116,7 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     for (xengine__module_BaseModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
-    [webview loadUrl:@"about:blank"];
+//    [webview loadUrl:@"about:blank"];
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     return webview;
 }

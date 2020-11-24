@@ -175,7 +175,7 @@
     NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
     NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
     NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
-    return [[decodedString stringByAddingPercentEncodingWithAllowedCharacters:set] lowercaseString];
+    return [decodedString stringByAddingPercentEncodingWithAllowedCharacters:set];
 }
 
 - (void)loadFileUrl{

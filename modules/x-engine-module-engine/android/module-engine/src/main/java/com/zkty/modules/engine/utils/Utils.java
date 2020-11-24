@@ -218,4 +218,21 @@ public class Utils {
         }
         return null;
     }
+
+
+    public static String getPhoneNumberFormString(String str) {
+
+        if (TextUtils.isEmpty(str)) return null;
+        String expression = "400-\\d{3}-\\d{4}";
+
+        Pattern pattern = Pattern.compile(expression);
+        Matcher matcher = pattern.matcher(str);
+        if (matcher.find()) {
+            return matcher.group();
+        }
+
+
+        return null;
+
+    }
 }

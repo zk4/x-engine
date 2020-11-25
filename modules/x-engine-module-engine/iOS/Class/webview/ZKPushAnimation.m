@@ -263,7 +263,7 @@
             
             if (!transitionContext.transitionWasCancelled) {
                 
-                [[XEOneWebViewPool sharedInstance] clearWebView];
+                [[XEOneWebViewPool sharedInstance] clearWebView:toVC.loadUrl];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [fromScreenView removeFromSuperview];
                     [shawView removeFromSuperview];

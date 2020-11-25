@@ -9,7 +9,7 @@ target 'camera' do
   #use_frameworks!
 
 		
- pod "GCDWebServer", "~> 3.0"
+ pod "GCDWebServer"
 
 # Pods for XEngineSDK
 # 在开发时,将所有依赖的 module 包放这.包括依赖的依赖

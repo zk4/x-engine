@@ -25,6 +25,7 @@
 //http用
 - (void)pushWebViewControllerWithUrl:(NSString *)url{
     
+    [[XEOneWebViewPool sharedInstance] createNewWebView:url];
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
     [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];

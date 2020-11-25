@@ -57,8 +57,19 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     return NO;
 }
 
--(void)clearWebView{
+- (void)clearWebView:(NSString *)url{
+    
     XEngineWebView *web = self.webCacheAry.lastObject;
+    if(url){
+        NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
+        
+        for (WKBackForwardListItem *item in [ary reverseObjectEnumerator]) {
+            if([item.URL.absoluteString isEqualToString:url]){
+                [web goToBackForwardListItem:item];
+                return;
+            }
+        }
+    }
     if([web canGoBack]){
         [web goBack];
     }else{

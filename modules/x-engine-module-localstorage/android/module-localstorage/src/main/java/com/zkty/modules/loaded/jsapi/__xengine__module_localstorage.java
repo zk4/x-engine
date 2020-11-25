@@ -10,11 +10,13 @@ import com.zkty.modules.loaded.util.SharePreferenceUtils;
 
 import com.zkty.modules.dsbridge.CompletionHandler;
 
+import java.io.File;
+
 public class __xengine__module_localstorage extends xengine__module_localstorage implements IApplicationListener {
 
     @Override
     public void onAppCreate(Context context) {
-        String dir = context.getFilesDir().getAbsolutePath() + "/mmkv";
+        String dir = new File("/data/data/" + context.getPackageName() + "/shared_prefs").getAbsolutePath() + "/mmkv";
         String rootDir = MMKV.initialize(dir);
         Log.d("MMKV", "mmkv root: " + rootDir);
     }

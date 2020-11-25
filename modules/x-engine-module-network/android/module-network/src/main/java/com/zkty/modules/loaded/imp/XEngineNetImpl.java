@@ -109,26 +109,13 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                         stringBuilder.append("&").append(entry.getKey()).append("=").append(entry.getValue());
                     }
                 }
-//                if(header!=null){
-//                    Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
-//                    while (iterator.hasNext()) {
-//                        Map.Entry<String, String> entry = iterator.next();
-//                        builder.addHeader(entry.getKey(), entry.getValue());
-//                    }
-//                }
+
 
                 builder.url(stringBuilder.toString());
                 builder.get();
                 break;
             case POST:
                 if (!TextUtils.isEmpty(json)) {                 //json不为空 按照CONTENT_TYPE_JSON处理
-//                    if (header != null) {
-//                        Iterator<Map.Entry<String, String>> iterator = header.entrySet().iterator();
-//                        while (iterator.hasNext()) {
-//                            Map.Entry<String, String> entry = iterator.next();
-//                            builder.addHeader(entry.getKey(), entry.getValue());
-//                        }
-//                    }
                     RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
                     builder.post(body);
                 } else {                                     //json为空

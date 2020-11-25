@@ -22,7 +22,9 @@ UIKIT_EXTERN NSNotificationName const XEWebViewLoadFailNotification;
 - (BOOL)checkUrl:(NSString *)url;
 - (XEngineWebView *)getWebView; 
 - (XEngineWebView *)createNewWebView:(NSString *)baseUrl;
+- (XEngineWebView *)createWebView:(NSString *)baseUrl;
 - (void)clearWebView;
+
 
 @end
 

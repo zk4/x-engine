@@ -4,6 +4,13 @@ import camera from './index.js'
   window.openImagePicker = () => {
     camera
       .openImagePicker({
+        allowsEditing: true,
+        savePhotosAlbum: false,
+        cameraFlashMode: -1,
+        cameraDevice:'back',
+        multiselect: true,
+        isbase64:true,
+        args:{width:'200',height:'100',quality:'0.5',bytes:'1024'},
         __event__: (res) => {
           //如果获取链接，可以拼接参数，例：'?w=200&h=100&q=0.5&bytes=1024'
 

@@ -32,6 +32,8 @@
 
     public Map<String,String> args;
 
+    public boolean multiselect;
+
     public String __event__;
   }
   

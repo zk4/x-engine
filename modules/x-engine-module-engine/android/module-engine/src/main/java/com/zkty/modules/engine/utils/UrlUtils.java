@@ -8,14 +8,18 @@ public class UrlUtils {
         if (TextUtils.isEmpty(url1) || TextUtils.isEmpty(url2)) {
             return false;
         }
-        if (url1.contains("?")) {
-            url1 = url1.substring(0, url1.charAt('?'));
-        }
-        if (url2.contains("?")) {
-            url2 = url1.substring(0, url2.charAt('?'));
-        }
+        String temp1 = null;
+        String temp2 = null;
+        if (url1.contains("?"))
+            temp1 = url1.substring(0, url1.indexOf("?"));
+        else
+            temp1 = url1;
+
+        if (url2.contains("?"))
+            temp2 = url2.substring(0, url2.indexOf("?"));
+        else temp2 = url2;
 
 
-        return url1.equals(url2);
+        return temp1.endsWith(temp2);
     }
 }

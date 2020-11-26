@@ -44,4 +44,6 @@ Pod::Spec.new do |s|
     s.dependency 'JSONModel'
     s.dependency 'x-engine-module-engine'
     s.dependency "x-engine-module-tools"
+    s.dependency "TZImagePickerController" #iOS8 and later
+
 end

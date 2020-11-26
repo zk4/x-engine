@@ -19,10 +19,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 #import <RecyleWebViewController.h>
-
+#import <TZImagePickerController.h>
 
 typedef void(^CameraResult)(CameraRetDTO *, BOOL);
-@interface __xengine__module_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface __xengine__module_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 @property(nonatomic,strong) GCDWebServer *webServer;
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
@@ -77,10 +77,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 
     } sureHandlers:actionHandlers];
 }
-//- (void)_openImagePicker:(SheetDTO *)dto complete:(void (^)(MoreDTO *, BOOL))completionHandler {
-////    NSLog(@"%@",dto);
-//
-//}
+ 
 
 -(void)chooseCamera:(CameraDTO*)dto{
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -102,16 +99,30 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 }
 
 -(void)choosePhotos:(CameraDTO*)dto{
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerController.delegate = self;
-        if(dto.allowsEditing){
-            imagePickerController.allowsEditing = YES;
+    __weak typeof(self) weakself = self;
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        NSMutableArray * photoarrays=  [NSMutableArray new];
+        NSDictionary* argsDic = dto.args;
+        for(int i =0; i< photos.count; i++){
+             UIImage* image=  [self parseImage:photos[i] Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            [photoarrays addObject: @{
+                @"retImage":[weakself UIImageToBase64Str:image],
+                @"contentType":@"image/png",
+                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
+            }];
+           
         }
-        imagePickerController.sourceType = 0;
-        UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-        [topVC.navigationController presentViewController:imagePickerController animated:YES completion:nil];
+        [weakself sendParamtoWeb:photoarrays];
+        
     }
+     ];
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+
+    [topVC.navigationController presentViewController:imagePickerVc animated:YES completion:nil];
+
+
 }
 
 -(void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -159,17 +170,17 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
                 @"contentType":@"image/png",
                 @"fileName":photoAppendStr
             };
-           [self sendParamtoWeb:paramDic];
+           [self sendParamtoWeb:@[paramDic]];
         }else{
             NSDictionary * argsDic = self.cameraDto.args;
             UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
             
             NSDictionary * paramDic = @{
                 @"retImage":[self UIImageToBase64Str:image],
-                @"contentType":@"image/png",
+                @"contentType":@"image/png", 
                 @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
             };
-            [self sendParamtoWeb:paramDic];
+            [self sendParamtoWeb:@[paramDic]];
         }
         
     }];
@@ -183,28 +194,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
         NSDictionary * argsDic = weakself.cameraDto.args;
         image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
         NSData *imageData = UIImagePNGRepresentation(image);
-
-//        NSData *imageData;
-//        CGFloat width_height_per = image.size.width/image.size.height;
-//        CGFloat width = image.size.width;
-//        CGFloat height = image.size.height;
-//        if (requestData.count) {
-//            NSString * w = [NSString stringWithFormat:@"%@",requestData[@"w"]];
-//            NSString * h = [NSString stringWithFormat:@"%@",requestData[@"h"]];
-//            if ([weakself getNoEmptyString:w])  width = w.floatValue;
-//            if ([weakself getNoEmptyString:h])  height = h.floatValue;
-//            if (![weakself getNoEmptyString:w]) width = height*width_height_per;
-//            if (![weakself getNoEmptyString:h]) height = width/width_height_per;
-//            image= [__xengine__module_camera imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
-//
-//            NSString * quality = [NSString stringWithFormat:@"%@",requestData[@"q"]];
-//            NSString * bytes = [NSString stringWithFormat:@"%@",requestData[@"bytes"]];
-//            imageData = [weakself compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
-//            image = [UIImage imageWithData:imageData];
-//        }else{
-//            imageData = UIImageJPEGRepresentation(image, 1);
-//        }
-        
+ 
         GCDWebServerDataResponse *response;
         //响应
         response = [GCDWebServerDataResponse responseWithStatusCode:200];
@@ -314,12 +304,13 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     NSData *data = UIImagePNGRepresentation(image);
     NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     return encodedImageStr;
-//    return [NSString stringWithFormat:@"data:image/png;base64,%@",encodedImageStr];
-    
 }
 
 -(UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
-    UIImage *image = self.photoImage;
+    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
+}
+
+-(UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
     NSData *imageData;
     CGFloat width_height_per = image.size.width/image.size.height;
     CGFloat width = image.size.width;
@@ -335,19 +326,15 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
     NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
     imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
-    image = [UIImage imageWithData:imageData];
-    return image;
+    return [UIImage imageWithData:imageData];
 }
 
--(void)sendParamtoWeb:(NSDictionary *)param{
+
+-(void)sendParamtoWeb:(id)param{
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     if ([topVC isKindOfClass:RecyleWebViewController.class]) {
         RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-//        CameraRetDTO* d = [CameraRetDTO new];
-//        d.retImage = param[@"retImage"];
-//        d.contentType = param [@"contentType"];
-//        d.fileName = param[@"fileName"];
-        
+ 
         NSData *data = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingFragmentsAllowed error:nil];
         [webVC.webview callHandler:self.event
                          arguments:@[[[NSString alloc] initWithData:data encoding:4]]

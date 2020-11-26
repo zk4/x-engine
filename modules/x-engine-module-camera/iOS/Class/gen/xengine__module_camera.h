@@ -16,7 +16,7 @@
    	@property(nonatomic,copy) NSString* cameraDevice;
    	@property(nonatomic,assign) BOOL isbase64;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
-   	@property(nonatomic,assign) BOOL multiselect;
+   	@property(nonatomic,assign) NSInteger photoCount;
    	@property(nonatomic,strong) NSString* __event__;
 @end
     

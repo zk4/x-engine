@@ -32,7 +32,7 @@
 
     public Map<String,String> args;
 
-    public boolean multiselect;
+    public Integer photoCount;
 
     public String __event__;
   }

@@ -19,13 +19,11 @@ function osCheck() {
       "savePhotosAlbum": false,
       "cameraFlashMode": -1,
       "cameraDevice": "back",
-      "multiselect": false,
+      "photoCount": 1,
       "isbase64": true,
       "args": {
         "width": "200",
-        "height": "100",
-        "quality": "0.5",
-        "bytes": "1024"
+        "quality": "0.5"
       }
     }
   }

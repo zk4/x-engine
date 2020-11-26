@@ -4,7 +4,7 @@
 //
 
 #import "EntryViewController.h"
-#import <MircroAppController.h>
+#import <x-engine-module-router/XERouterManager.h>
 //#import <x-engine-module-tools/UIViewController+.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
@@ -52,9 +52,17 @@
     // 启动 h5 服务器, npm run dev
     // 将下面的 ip 换成你的电脑 ip 即可实时调试
     NSLog(@"%@",[self getIPAddress]);
-    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.3.230:8080/index.html"];
+//    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.1.9:8080/index.html"];
 //    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:@"com.zkty.microapp.camera"];
-    [self.navigationController pushViewController:webLaderVC animated:YES];
+
+    [XERouterManager routerToTarget:@"h5" withUri:@"http://192.168.1.15:8080" withPath:nil withArgs:nil withVersion:0];
+    
+//    [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:@"http://192.168.1.9:8080"
+//                                                                      withPath:@"/"
+//                                                                   withVersion:0
+//                                                                    withParams:nil];
+
+//    [self.navigationController pushViewController:webLaderVC animated:YES];
 }
 
 - (void)viewDidLoad {

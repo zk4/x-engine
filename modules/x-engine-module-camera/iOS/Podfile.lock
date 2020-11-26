@@ -6,15 +6,29 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.5.0)
+  - SDWebImage (5.10.0):
+    - SDWebImage/Core (= 5.10.0)
+  - SDWebImage/Core (5.10.0)
   - SSZipArchive (2.2.3)
+  - TZImagePickerController (3.5.4)
+  - UniBoost (0.1.0)
   - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-dcloud (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
   - x-engine-module-engine (0.0.57):
     - JSONModel
     - Masonry
     - MBProgressHUD
     - MJRefresh
     - SSZipArchive
+  - x-engine-module-nav (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-protocols
   - x-engine-module-protocols (0.0.9)
+  - x-engine-module-router (0.0.57):
+    - WechatOpenSDK
+    - x-engine-module-engine
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
     - WechatOpenSDK
@@ -23,8 +37,14 @@ PODS:
 
 DEPENDENCIES:
   - GCDWebServer (~> 3.0)
+  - SDWebImage
+  - TZImagePickerController
+  - UniBoost (from `../../UniBoost`)
+  - x-engine-module-dcloud (from `../../x-engine-module-dcloud`)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
+  - x-engine-module-nav (from `../../x-engine-module-nav`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
+  - x-engine-module-router (from `../../x-engine-module-router`)
   - x-engine-module-tools (from `../../x-engine-module-tools`)
 
 SPEC REPOS:
@@ -34,14 +54,24 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - SDWebImage
     - SSZipArchive
+    - TZImagePickerController
     - WechatOpenSDK
 
 EXTERNAL SOURCES:
+  UniBoost:
+    :path: "../../UniBoost"
+  x-engine-module-dcloud:
+    :path: "../../x-engine-module-dcloud"
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
+  x-engine-module-nav:
+    :path: "../../x-engine-module-nav"
   x-engine-module-protocols:
     :path: "../../x-engine-module-protocols/"
+  x-engine-module-router:
+    :path: "../../x-engine-module-router"
   x-engine-module-tools:
     :path: "../../x-engine-module-tools"
 
@@ -51,12 +81,18 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  TZImagePickerController: 891421e1fa0d8dfa295388e1f8a8ce2d5152ae88
+  UniBoost: 0f3b7db913ba2762d7eae8056d7f72c32f2f26ae
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
   x-engine-module-engine: 80635cb6faabc526f28064f130380d2fce0fc5e7
+  x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
   x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
+  x-engine-module-router: 1024e6c9ef9ad5776d5147e14333d0e6bf818943
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: 44da2ff672f664e8367776ab14431803c9c05697
+PODFILE CHECKSUM: 89fa7c791758464d5082782fb54a0a289ca50880
 
 COCOAPODS: 1.10.0

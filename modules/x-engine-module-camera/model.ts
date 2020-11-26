@@ -15,6 +15,8 @@ interface CameraDTO {
   isbase64: boolean;
   //裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内;
   args:Map<string,string>;
+  // 图片是否支持多选,默认为 false
+  multiselect: boolean;
   //返回获取图片的地址
   __event__: (string)=>void;
   
@@ -31,6 +33,7 @@ function openImagePicker(
     savePhotosAlbum: false,
     cameraFlashMode: -1,
     cameraDevice:'back',
+    multiselect: false,
     isbase64:true,
     args:{width:'200',height:'100',quality:'0.5',bytes:'1024'},
     __event__:(string)=>{}
@@ -39,6 +42,13 @@ function openImagePicker(
   window.openImagePicker = () => {
     camera
       .openImagePicker({
+        allowsEditing: true,
+        savePhotosAlbum: false,
+        cameraFlashMode: -1,
+        cameraDevice:'back',
+        multiselect: true,
+        isbase64:true,
+        args:{width:'200',height:'100',quality:'0.5',bytes:'1024'},
         __event__: (res) => {
           //如果获取链接，可以拼接参数，例：'?w=200&h=100&q=0.5&bytes=1024'
 

@@ -25,10 +25,13 @@ interface CameraRetDTO {
   retImage: string;
   fileName:string;
   contentType:string;
+  width: string;
+  height: string;
 }
 
 /*
-返回数据有做调整, 0.57 前在反序列字符串后会得到
+  返回数据有做调整, 0.57 前在反序列字符串后会得到一个数组,数组里面有图片的json对象.
+  见 demo
 */
 function openImagePicker(
   cameraDTO: CameraDTO = {
@@ -52,8 +55,8 @@ function openImagePicker(
         photoCount: 5,
         isbase64:true,
         __event__: (res) => {
-            let photos = JSON.parse(res[0]);
-            for(let photo of photos){
+            let jres = JSON.parse(res);
+            for(let photo of jres.data){
             const image         = document.createElement('img')
             if(!photo.width || !photo.height)
               {

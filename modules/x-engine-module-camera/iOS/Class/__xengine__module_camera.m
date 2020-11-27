@@ -103,6 +103,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
 
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        NSMutableDictionary * ret = [NSMutableDictionary new];
         NSMutableArray * photoarrays=  [NSMutableArray new];
         NSDictionary* argsDic = dto.args;
         for(int i =0; i< photos.count; i++){
@@ -116,7 +117,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
             }];
            
         }
-        [weakself sendParamtoWeb:photoarrays];
+        ret[@"data"]=photoarrays;
+        [weakself sendParamtoWeb:ret];
         
     }
      ];
@@ -156,7 +158,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
                 }
             }];
         }
-        
+        NSMutableDictionary * ret = [NSMutableDictionary new];
+
         if (!self.isbase64) {
             if(self.webServer){
                 [self.webServer stop];
@@ -174,7 +177,9 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
                 
                 @"fileName":photoAppendStr
             };
-           [self sendParamtoWeb:@[paramDic]];
+            ret[@"data"]=@[paramDic];
+
+           [self sendParamtoWeb:ret];
         }else{
             NSDictionary * argsDic = self.cameraDto.args;
             UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
@@ -186,7 +191,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
                 @"height":[NSNumber numberWithDouble:image.size.height],
                 @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
             };
-            [self sendParamtoWeb:@[paramDic]];
+            ret[@"data"]=@[paramDic];
+            [self sendParamtoWeb:ret];
         }
         
     }];

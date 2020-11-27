@@ -44,6 +44,10 @@
     public String fileName;
 
     public String contentType;
+
+    public String width;
+
+    public String height;
   }
   
   interface xengine__module_camera_i {

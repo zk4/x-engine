@@ -25,6 +25,8 @@
   	@property(nonatomic,copy) NSString* retImage;
    	@property(nonatomic,copy) NSString* fileName;
    	@property(nonatomic,copy) NSString* contentType;
+   	@property(nonatomic,copy) NSString* width;
+   	@property(nonatomic,copy) NSString* height;
 @end
     
 

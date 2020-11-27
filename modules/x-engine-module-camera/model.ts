@@ -16,7 +16,7 @@ interface CameraDTO {
   //裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内;
   args:Map<string,string>;
   // 图片选择张数
-  photoCount: int;
+  photoCount?: int;
   //返回获取图片的地址
   __event__: (string)=>void;
   
@@ -27,6 +27,9 @@ interface CameraRetDTO {
   contentType:string;
 }
 
+/*
+返回数据有做调整, 0.57 前在反序列字符串后会得到
+*/
 function openImagePicker(
   cameraDTO: CameraDTO = {
     allowsEditing: true,
@@ -52,6 +55,12 @@ function openImagePicker(
             let photos = JSON.parse(res[0]);
             for(let photo of photos){
             const image         = document.createElement('img')
+            if(!photo.width || !photo.height)
+              {
+
+                alert('要返回width,与height',photo);
+              }
+
             image.src           = "data:image/png;base64,  " + photo.retImage;
             image.style.cssText = 'width:100%';
             document.body.appendChild(image);

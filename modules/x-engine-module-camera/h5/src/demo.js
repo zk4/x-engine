@@ -14,6 +14,12 @@ import camera from './index.js'
             let photos = JSON.parse(res[0]);
             for(let photo of photos){
             const image         = document.createElement('img')
+            if(!photo.width || !photo.height)
+              {
+
+                alert('要返回width,与height',photo);
+              }
+
             image.src           = "data:image/png;base64,  " + photo.retImage;
             image.style.cssText = 'width:100%';
             document.body.appendChild(image);

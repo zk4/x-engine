@@ -110,6 +110,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
             [photoarrays addObject: @{
                 @"retImage":[weakself UIImageToBase64Str:image],
                 @"contentType":@"image/png",
+                @"width": [NSNumber numberWithDouble:image.size.width],
+                @"height":[NSNumber numberWithDouble:image.size.height],
                 @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
             }];
            
@@ -168,6 +170,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
             NSDictionary * paramDic = @{
                 @"retImage":[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr],
                 @"contentType":@"image/png",
+                
                 @"fileName":photoAppendStr
             };
            [self sendParamtoWeb:@[paramDic]];
@@ -177,7 +180,9 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
             
             NSDictionary * paramDic = @{
                 @"retImage":[self UIImageToBase64Str:image],
-                @"contentType":@"image/png", 
+                @"contentType":@"image/png",
+                @"width": [NSNumber numberWithDouble:image.size.width],
+                @"height":[NSNumber numberWithDouble:image.size.height],
                 @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
             };
             [self sendParamtoWeb:@[paramDic]];

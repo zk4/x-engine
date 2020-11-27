@@ -9,7 +9,8 @@ npm install @zkty-team/x-engine-module-camera
 ## openImagePicker
 
 
-返回数据有做调整, 0.57 前在反序列字符串后会得到
+  返回数据有做调整, 0.57 前在反序列字符串后会得到一个数组,数组里面有图片的json对象.
+  见 demo
 
 
 **demo**

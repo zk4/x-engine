@@ -11,7 +11,7 @@
 # JS
 
 
-version: 0.0.55
+version: 0.0.57
 ``` bash
 npm install @zkty-team/x-engine-module-dcloud
 ```
@@ -61,7 +61,12 @@ npm install @zkty-team/x-engine-module-dcloud
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| appId | string |  | __UNI__11E9B73 | 小程序appId |
+| appId | string |  | __UNI__9B75743 |  |
+| arguments | Map\<string,string\> |  | {"token":"this is token","refreshtoken":"this is refreshtoken"} | 配置启动小程序时传递的参数 |
+| redirectPath | string |  | pages/component/application/application?token=a&refreshtoken=b |  路径 |
+| enableBackground | bool |  |  |  开启后台运行 |
+| showAnimated | bool | true |  | 是否开启 show 小程序时的动画效果 默认：true |
+| hideAnimated | bool | true |  | 是否开启 hide 时的动画效果 默认：true |
 
 
 ## openUniMPWithArg
@@ -84,9 +89,9 @@ npm install @zkty-team/x-engine-module-dcloud
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| appId | string |  | __UNI__11E9B73 |  |
-| arguments | Map\<string,string\> |  | {"arguments":"Hello uni microprogram"} | 配置启动小程序时传递的参数 |
-| redirectPath | string |  | pages/component/view/view |  路径 |
+| appId | string |  | __UNI__9B75743 |  |
+| arguments | Map\<string,string\> |  | {"token":"this is token","refreshtoken":"this is refreshtoken"} | 配置启动小程序时传递的参数 |
+| redirectPath | string |  | pages/component/application/application?token=a&refreshtoken=b |  路径 |
 | enableBackground | bool |  |  |  开启后台运行 |
 | showAnimated | bool | true |  | 是否开启 show 小程序时的动画效果 默认：true |
 | hideAnimated | bool | true |  | 是否开启 hide 时的动画效果 默认：true |

@@ -11,8 +11,8 @@
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, copy) NSString *rootPath;
-@property (nonatomic, strong) UIViewController *parentVC;
-@property (nonatomic, readwrite) BOOL statusBarHidden;
+@property (nonatomic, assign) BOOL isRootVc;
+//@property (nonatomic, readwrite) BOOL statusBarHidden;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel;
@@ -283,6 +283,24 @@
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     self.progresslayer.alpha = 0;
     [self.view insertSubview:self.webview atIndex:0];
+    
+    if(self.navigationController.viewControllers.count > 1){
+        //记录上一级VC
+        UIViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+        if([vc isKindOfClass:[RecyleWebViewController class]]){
+            self.isRootVc = NO;
+        }else{
+            self.isRootVc = YES;
+        }
+    }
+
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    if(self.navigationController == nil && self.isRootVc){
+        [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
+    }
 }
 
 - (void)dealloc{

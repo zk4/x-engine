@@ -44,7 +44,7 @@
                 [url appendFormat:@"/%@", path];
             }
         }
-        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithUrl:url];
+        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:url];
     } else if([type isEqual:@"microapp"]){
 
         if([[MicroAppLoader sharedInstance] checkMicroAppVersion:uri version:version]){

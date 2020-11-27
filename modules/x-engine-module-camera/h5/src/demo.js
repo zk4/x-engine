@@ -11,16 +11,16 @@ import camera from './index.js'
         photoCount: 5,
         isbase64:true,
         __event__: (res) => {
-            let photos = JSON.parse(res[0]);
-            for(let photo of photos){
-            const image         = document.createElement('img')
+            let resp = JSON.parse(res);
+            alert(res)
+            for(let photo of resp.data){
+            const image = document.createElement('img')
             if(!photo.width || !photo.height)
               {
-
                 alert('要返回width,与height',photo);
               }
 
-            image.src           = "data:image/png;base64,  " + photo.retImage;
+            image.src = "data:image/png;base64,  " + photo.retImage;
             image.style.cssText = 'width:100%';
             document.body.appendChild(image);
             }

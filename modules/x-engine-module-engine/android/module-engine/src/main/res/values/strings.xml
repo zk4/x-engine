@@ -8,6 +8,7 @@
     <color name="transparent">#00000000</color>
     <color name="text_color_34">#343434</color>
     <color name="color_shadow_start">#09004080</color>
+    <color name="color_shadow_card">#08474D60</color>
 
     <color name="tool_bar_color">#303030</color>
     <color name="bg_color">#303030</color>

@@ -9,16 +9,16 @@
     <application>
         <meta-data
             android:name="com.zkty.module.camera"
-            android:value="com.zkty.modules.loaded.jsapi.__xengine__module_camera"></meta-data>
+            android:value="com.zkty.modules.loaded.jsapi.__xengine__module_camera" />
 
 
         <!--图片列表Activity-->
         <activity
             android:name="com.zkty.modules.loaded.imp.activity.ImagePickerActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.zkty.modules.loaded.imp.activity.ImagePreActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
 
         <activity

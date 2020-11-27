@@ -31,8 +31,10 @@ import com.zkty.modules.dsbridge.OnReturnValue;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.IApplicationListener;
 import com.zkty.modules.engine.exception.XEngineException;
+import com.zkty.modules.engine.imp.GlideLoader;
 import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
+import com.zkty.modules.engine.utils.AvatarUtils;
 import com.zkty.modules.engine.utils.FileUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.loaded.ClientManager;
@@ -43,7 +45,8 @@ import com.zkty.modules.loaded.widget.dialog.BottomDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.List;
 
 
 public class __xengine__module_camera extends xengine__module_camera implements IApplicationListener {
@@ -56,9 +59,10 @@ public class __xengine__module_camera extends xengine__module_camera implements 
     private CameraDTO cameraDTO;
     private EditArgs editArgs;
 
-    private static int REQUEST_CAMERA = 10;     //启动相机
-    private static int REQUEST_ALBUM = 11;      //启动相册
-    private static int REQUEST_CROP = 12;       //启动裁剪
+    private static int REQUEST_CAMERA = 0x510;     //启动相机
+    private static int REQUEST_ALBUM = 0x511;      //启动相册
+    private static int REQUEST_ALBUM_MUILTE = 0x513;      //启动相册选取多张
+    private static int REQUEST_CROP = 0x512;       //启动裁剪
 
     private static int PERMISSION_REQUEST_CAMERA = 20;
 
@@ -115,6 +119,9 @@ public class __xengine__module_camera extends xengine__module_camera implements 
             }
             if (cameraDTO.args.containsKey("bytes")) {
                 editArgs.setBytes(cameraDTO.args.get("bytes"));
+            }
+            if (cameraDTO.photoCount != null && !"null".equals(cameraDTO.photoCount)) {
+                editArgs.setPhotoCount(cameraDTO.photoCount);
             }
         }
 
@@ -275,6 +282,12 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                             } else {
                                 throw new XEngineException("XEngineWebView is null!");
                             }
+                        } else if (requestCode == REQUEST_ALBUM_MUILTE) {
+                            ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
+                            if (items != null && items.size() > 0) {
+                                setResult(items);
+                            }
+
                         }
                     }
                 }
@@ -300,16 +313,6 @@ public class __xengine__module_camera extends xengine__module_camera implements 
             showDialog(act);
         }
 
-//        ImagePicker.getInstance()
-//                .setTitle("选择图片")//设置标题
-//                .showCamera(true)//设置是否显示拍照按钮
-//                .showImage(true)//设置是否展示图片
-//                .showVideo(false)//设置是否展示视频
-//                .filterGif(true)//设置是否过滤gif图片
-//                .setMaxCount(1)//设置最大选择图片数目(默认为1，单选)
-//                .setSingleType(true)//设置图片视频不能同时选择
-//                .setImageLoader(new GlideLoader())//设置自定义图片加载器
-//                .start(act, REQUEST_OBTAIN_PIC);//REQEST_SELECT_IMAGES_CODE为Intent调用的requestCode
     }
 
     /**
@@ -387,9 +390,26 @@ public class __xengine__module_camera extends xengine__module_camera implements 
      * @param activity
      */
     private void startAlbum(Activity activity) {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        activity.startActivityForResult(intent, REQUEST_ALBUM);
+
+        if (editArgs != null && editArgs.getPhotoCount() > 1) {
+
+            ImagePicker.getInstance()
+                    .setTitle("选择图片")//设置标题
+                    .showCamera(false)//设置是否显示拍照按钮
+                    .showImage(true)//设置是否展示图片
+                    .showVideo(false)//设置是否展示视频
+                    .filterGif(true)//设置是否过滤gif图片
+                    .setMaxCount(editArgs.getPhotoCount())//设置最大选择图片数目(默认为1，单选)
+                    .setSingleType(true)//设置图片视频不能同时选择
+                    .setImageLoader(new GlideLoader())//设置自定义图片加载器
+                    .start(activity, REQUEST_ALBUM_MUILTE);//REQEST_SELECT_IMAGES_CODE为Intent调用的requestCode
+
+
+        } else {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            activity.startActivityForResult(intent, REQUEST_ALBUM);
+        }
     }
 
     /**
@@ -453,7 +473,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
             CameraRetDTO cameraRetDTO = new CameraRetDTO();
             if (cameraDTO.isbase64) {
                 cameraRetDTO.retImage = ClientManager.imageToBase64(path);
-//                cameraRetDTO.retImage = "data:image/jpeg;base64," + ClientManager.imageToBase64(path);
+//
             } else {
                 cameraRetDTO.retImage = path;
             }
@@ -468,6 +488,40 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                     Log.d(TAG, "result:" + System.currentTimeMillis());
                 }
             });
+        }
+    }
+
+    private void setResult(ArrayList<String> paths) {
+        if (mXEngineWebView != null) {
+
+            List<CameraRetDTO> results = new ArrayList<>();
+            for (int j = 0; j < paths.size(); j++) {
+                BitmapFactory.Options options = new BitmapFactory.Options();
+
+                options.inJustDecodeBounds = true;
+                Bitmap bitmap = BitmapFactory.decodeFile(paths.get(j), options);
+
+                CameraRetDTO cameraRetDTO = new CameraRetDTO();
+
+
+                if (cameraDTO.isbase64) {
+                    cameraRetDTO.retImage = ClientManager.imageToBase64(paths.get(j));
+                } else {
+                    cameraRetDTO.retImage = paths.get(j);
+                }
+                cameraRetDTO.contentType = "image/jpeg";
+                File temp = new File(paths.get(j));
+                if (temp.exists())
+                    cameraRetDTO.fileName = temp.getName();
+
+                results.add(cameraRetDTO);
+                bitmap.recycle();
+                bitmap = null;
+            }
+            HashMap<String, List<CameraRetDTO>> map = new HashMap<>();
+            map.put("data", results);
+
+            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{JSON.toJSONString(map)}, (OnReturnValue<CameraRetDTO>) retValue -> Log.d(TAG, "result:" + System.currentTimeMillis()));
         }
     }
 }

@@ -499,10 +499,11 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                 BitmapFactory.Options options = new BitmapFactory.Options();
 
                 options.inJustDecodeBounds = true;
-                Bitmap bitmap = BitmapFactory.decodeFile(paths.get(j), options);
+                BitmapFactory.decodeFile(paths.get(j), options);
 
                 CameraRetDTO cameraRetDTO = new CameraRetDTO();
-
+                cameraRetDTO.width = String.valueOf(options.outWidth);
+                cameraRetDTO.height = String.valueOf(options.outHeight);
 
                 if (cameraDTO.isbase64) {
                     cameraRetDTO.retImage = ClientManager.imageToBase64(paths.get(j));
@@ -515,8 +516,8 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                     cameraRetDTO.fileName = temp.getName();
 
                 results.add(cameraRetDTO);
-                bitmap.recycle();
-                bitmap = null;
+//                bitmap.recycle();
+//                bitmap = null;
             }
             HashMap<String, List<CameraRetDTO>> map = new HashMap<>();
             map.put("data", results);

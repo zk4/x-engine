@@ -1,15 +1,18 @@
 package com.zkty.modules.engine.utils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
 import com.zkty.modules.engine.XEngineApplication;
 
+import java.util.List;
 import java.util.Locale;
 
 public class DeviceUtils {
@@ -72,5 +75,22 @@ public class DeviceUtils {
         }
         lastClickTime = currentClickTime;
         return flag;
+    }
+
+
+    public static boolean isAppAlive(String str) {
+        ActivityManager am = (ActivityManager) XEngineApplication.getApplication()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
+        boolean isAppRunning = false;
+        //String MY_PKG_NAME = "你的包名";
+        for (ActivityManager.RunningTaskInfo info : list) {
+            if (info.topActivity.getPackageName().equals(str)//如果想要手动输入的话可以str换成<span style="font-family: Arial, Helvetica, sans-serif;">MY_PKG_NAME，下面相同</span>
+                    || info.baseActivity.getPackageName().equals(str)) {
+                isAppRunning = true;
+                break;
+            }
+        }
+        return isAppRunning;
     }
 }

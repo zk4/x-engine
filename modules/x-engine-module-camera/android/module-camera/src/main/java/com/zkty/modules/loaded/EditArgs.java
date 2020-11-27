@@ -8,6 +8,8 @@ public class EditArgs implements Serializable {
     private String quality;
     private String bytes;
 
+    private int photoCount;
+
     public String getWidth() {
         return width;
     }
@@ -38,6 +40,14 @@ public class EditArgs implements Serializable {
 
     public void setBytes(String bytes) {
         this.bytes = bytes;
+    }
+
+    public int getPhotoCount() {
+        return photoCount;
+    }
+
+    public void setPhotoCount(int photoCount) {
+        this.photoCount = photoCount;
     }
 
     @Override

@@ -13,7 +13,7 @@
 - (UIViewController *)getWebViewControllerWithId:(NSString *)appid;
 
 
-- (void)pushWebViewControllerWithUrl:(NSString *)url;
+- (void)pushWebViewControllerWithHttpRouteUrl:(NSString *)url;
 //nav用
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params;
 //route用

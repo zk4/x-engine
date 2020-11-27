@@ -25,6 +25,8 @@ interface CameraRetDTO {
   retImage: string;
   fileName:string;
   contentType:string;
+  width: string;
+  height: string;
 }
 
 /*

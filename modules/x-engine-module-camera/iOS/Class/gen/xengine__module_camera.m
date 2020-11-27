@@ -14,6 +14,7 @@
    	if ([propertyName isEqualToString:@"cameraDevice"]) { return YES; }
    
    
+   	if ([propertyName isEqualToString:@"photoCount"]) { return YES; }
    	return NO;
     }
 @end

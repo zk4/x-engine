@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -19,12 +19,11 @@ function osCheck() {
       "savePhotosAlbum": false,
       "cameraFlashMode": -1,
       "cameraDevice": "back",
+      "photoCount": 1,
       "isbase64": true,
       "args": {
         "width": "200",
-        "height": "100",
-        "quality": "0.5",
-        "bytes": "1024"
+        "quality": "0.5"
       }
     }
   }

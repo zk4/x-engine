@@ -15,6 +15,8 @@ interface CameraDTO {
   isbase64: boolean;
   //裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内;
   args:Map<string,string>;
+  // 图片选择张数
+  photoCount?: int;
   //返回获取图片的地址
   __event__: (string)=>void;
   
@@ -25,36 +27,47 @@ interface CameraRetDTO {
   contentType:string;
 }
 
+/*
+返回数据有做调整, 0.57 前在反序列字符串后会得到
+*/
 function openImagePicker(
   cameraDTO: CameraDTO = {
     allowsEditing: true,
     savePhotosAlbum: false,
     cameraFlashMode: -1,
     cameraDevice:'back',
+    photoCount: 1,
     isbase64:true,
-    args:{width:'200',height:'100',quality:'0.5',bytes:'1024'},
+    args:{width:'200',quality:'0.5'},
     __event__:(string)=>{}
   }
 ):CameraRetDTO {
   window.openImagePicker = () => {
     camera
       .openImagePicker({
+        allowsEditing: true,
+        savePhotosAlbum: false,
+        cameraFlashMode: -1,
+        cameraDevice:'back',
+        photoCount: 5,
+        isbase64:true,
         __event__: (res) => {
-          //如果获取链接，可以拼接参数，例：'?w=200&h=100&q=0.5&bytes=1024'
+            let photos = JSON.parse(res[0]);
+            for(let photo of photos){
+            const image         = document.createElement('img')
+            if(!photo.width || !photo.height)
+              {
 
-          var tag = document.getElementsByClassName('photo')[0];
-          if(tag){
-            // tag.setAttribute('src', res+'?w=200&h=100&q=0.5&bytes=1024');
-            tag.setAttribute('src', res[0]);
-          }else{
-            // document.body.innerHTML += "<img class='photo' style='width: 100%' "+"src="+res+'?w=200&h=100&q=0.5&bytes=1024'+">";
-            document.body.innerHTML += "<img class='photo' style='width: 100%' "+"src="+"'"+res[0]+"'"+">";
-          }
-        },
+                alert('要返回width,与height',photo);
+              }
+
+            image.src           = "data:image/png;base64,  " + photo.retImage;
+            image.style.cssText = 'width:100%';
+            document.body.appendChild(image);
+            }
+
+        }
       })
-      .then((res) => {
-        // document.getElementById("debug_text").innerText = res;
-      });
   };
 }
 

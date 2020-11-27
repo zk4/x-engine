@@ -32,6 +32,9 @@
 
     public Map<String,String> args;
 
+    @Optional
+		public Integer photoCount;
+
     public String __event__;
   }
   

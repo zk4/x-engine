@@ -117,7 +117,7 @@
     
     //1.将base64编码后的字符串『解码』为二进制数据
     
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:self options:0];
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
     
     
     

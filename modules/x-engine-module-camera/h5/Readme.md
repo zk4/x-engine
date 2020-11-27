@@ -26,8 +26,8 @@ npm install @zkty-team/x-engine-module-camera
         photoCount: 5,
         isbase64:true,
         __event__: (res) => {
-            let photos = JSON.parse(res[0]);
-            for(let photo of photos){
+            let jres = JSON.parse(res);
+            for(let photo of jres.data){
             const image         = document.createElement('img')
             if(!photo.width || !photo.height)
               {

@@ -153,7 +153,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
             
             NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
             NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
-            if(filePath && filePath.length>0) [UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
+            if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
+            }
             NSDictionary * paramDic = @{
                 @"retImage":[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr],
                 @"contentType":@"image/png",

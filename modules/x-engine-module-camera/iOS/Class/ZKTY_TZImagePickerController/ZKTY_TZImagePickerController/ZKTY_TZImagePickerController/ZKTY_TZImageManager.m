@@ -18,7 +18,7 @@
 
 @implementation ZKTY_TZImageManager
 
-CGSize AssetGridThumbnailSize;
+CGSize ZKTY_AssetGridThumbnailSize;
 CGFloat ZKTY_TZScreenWidth;
 CGFloat ZKTY_TZScreenScale;
 
@@ -52,7 +52,7 @@ static dispatch_once_t onceToken;
     _columnNumber = columnNumber;
     CGFloat margin = 4;
     CGFloat itemWH = (ZKTY_TZScreenWidth - 2 * margin - 4) / columnNumber - margin;
-    AssetGridThumbnailSize = CGSizeMake(itemWH * ZKTY_TZScreenScale, itemWH * ZKTY_TZScreenScale);
+    ZKTY_AssetGridThumbnailSize = CGSizeMake(itemWH * ZKTY_TZScreenScale, itemWH * ZKTY_TZScreenScale);
 }
 
 - (void)configZKTY_TZScreenWidth {
@@ -374,7 +374,7 @@ static dispatch_once_t onceToken;
 - (PHImageRequestID)getPhotoWithAsset:(PHAsset *)asset photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *photo,NSDictionary *info,BOOL isDegraded))completion progressHandler:(void (^)(double progress, NSError *error, BOOL *stop, NSDictionary *info))progressHandler networkAccessAllowed:(BOOL)networkAccessAllowed {
     CGSize imageSize;
     if (photoWidth < ZKTY_TZScreenWidth && photoWidth < _photoPreviewMaxWidth) {
-        imageSize = AssetGridThumbnailSize;
+        imageSize = ZKTY_AssetGridThumbnailSize;
     } else {
         PHAsset *phAsset = (PHAsset *)asset;
         CGFloat aspectRatio = phAsset.pixelWidth / (CGFloat)phAsset.pixelHeight;

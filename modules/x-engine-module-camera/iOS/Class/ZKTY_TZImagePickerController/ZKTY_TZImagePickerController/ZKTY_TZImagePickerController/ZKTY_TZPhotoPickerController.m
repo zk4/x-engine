@@ -48,8 +48,8 @@
 @property (nonatomic, assign) BOOL isFetchingMedia;
 @end
 
-static CGSize AssetGridThumbnailSize;
-static CGFloat itemMargin = 5;
+static CGSize ZKTY_AssetGridThumbnailSize;
+static CGFloat ZKTY_itemMargin = 5;
 
 @implementation ZKTY_TZPhotoPickerController
 
@@ -179,7 +179,7 @@ static CGFloat itemMargin = 5;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.alwaysBounceHorizontal = NO;
-        _collectionView.contentInset = UIEdgeInsetsMake(itemMargin, itemMargin, itemMargin, itemMargin);
+        _collectionView.contentInset = UIEdgeInsetsMake(ZKTY_itemMargin, ZKTY_itemMargin, ZKTY_itemMargin, ZKTY_itemMargin);
         [self.view addSubview:_collectionView];
         [_collectionView registerClass:[ZKTY_TZAssetCell class] forCellWithReuseIdentifier:@"ZKTY_TZAssetCell"];
         [_collectionView registerClass:[ZKTY_TZAssetCameraCell class] forCellWithReuseIdentifier:@"ZKTY_TZAssetCameraCell"];
@@ -215,7 +215,7 @@ static CGFloat itemMargin = 5;
         scale = 1.0;
     }
     CGSize cellSize = ((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout).itemSize;
-    AssetGridThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
+    ZKTY_AssetGridThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
     
     if (!_models) {
         [self fetchAssetModels];
@@ -361,10 +361,10 @@ static CGFloat itemMargin = 5;
     }
     _collectionView.frame = CGRectMake(0, top, self.view.tz_width, collectionViewHeight);
     _noDataLabel.frame = _collectionView.bounds;
-    CGFloat itemWH = (self.view.tz_width - (self.columnNumber + 1) * itemMargin) / self.columnNumber;
+    CGFloat itemWH = (self.view.tz_width - (self.columnNumber + 1) * ZKTY_itemMargin) / self.columnNumber;
     _layout.itemSize = CGSizeMake(itemWH, itemWH);
-    _layout.minimumInteritemSpacing = itemMargin;
-    _layout.minimumLineSpacing = itemMargin;
+    _layout.minimumInteritemSpacing = ZKTY_itemMargin;
+    _layout.minimumLineSpacing = ZKTY_itemMargin;
     [_collectionView setCollectionViewLayout:_layout];
     if (_offsetItemCount > 0) {
         CGFloat offsetY = _offsetItemCount * (_layout.itemSize.height + _layout.minimumLineSpacing);
@@ -1013,11 +1013,11 @@ static CGFloat itemMargin = 5;
         
         // Update the assets the PHCachingImageManager is caching.
         [[ZKTY_TZImageManager manager].cachingImageManager startCachingImagesForAssets:assetsToStartCaching
-                                                                       targetSize:AssetGridThumbnailSize
+                                                                       targetSize:ZKTY_AssetGridThumbnailSize
                                                                       contentMode:PHImageContentModeAspectFill
                                                                           options:nil];
         [[ZKTY_TZImageManager manager].cachingImageManager stopCachingImagesForAssets:assetsToStopCaching
-                                                                      targetSize:AssetGridThumbnailSize
+                                                                      targetSize:ZKTY_AssetGridThumbnailSize
                                                                      contentMode:PHImageContentModeAspectFill
                                                                          options:nil];
         

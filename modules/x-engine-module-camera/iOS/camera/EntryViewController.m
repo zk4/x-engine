@@ -55,7 +55,7 @@
 //    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.1.9:8080/index.html"];
 //    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:@"com.zkty.microapp.camera"];
 
-    [XERouterManager routerToTarget:@"h5" withUri:@"http://192.168.1.9:8080" withPath:nil withArgs:nil withVersion:0];
+    [XERouterManager routerToTarget:@"h5" withUri:@"http://192.168.1.15:8080" withPath:nil withArgs:nil withVersion:0];
     
 //    [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:@"http://192.168.1.9:8080"
 //                                                                      withPath:@"/"

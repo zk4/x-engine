@@ -19,10 +19,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 #import <RecyleWebViewController.h>
-#import "TZImagePickerController.h"
+#import "ZKTY_TZImagePickerController.h"
 
 typedef void(^CameraResult)(CameraRetDTO *, BOOL);
-@interface __xengine__module_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
+@interface __xengine__module_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
 @property(nonatomic,strong) GCDWebServer *webServer;
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
@@ -100,7 +100,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 
 -(void)choosePhotos:(CameraDTO*)dto{
     __weak typeof(self) weakself = self;
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
 
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         NSMutableDictionary * ret = [NSMutableDictionary new];

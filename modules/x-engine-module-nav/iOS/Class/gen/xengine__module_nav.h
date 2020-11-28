@@ -111,9 +111,6 @@
         - (void) _navigatorBack:(NavNavigatorDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-        - (void) _navigatorRouter:(NavOpenAppDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
         - (void) _setNavSearchBar:(NavSearchBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 

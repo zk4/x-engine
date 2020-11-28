@@ -180,17 +180,10 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                             if (mXEngineWebView != null && items != null) {
                                 String path = items.get(0);                 //原始文件位置
-                                File file = new File(path);
-                                Log.d(TAG, file.getParent() + "---" + file.getName());
 
-//                                mXEngineWebView.callHandler(dto.__event__, new Object[]{path}, new OnReturnValue<Object>() {
-//                                    @Override
-//                                    public void onValue(Object retValue) {
-//
-//                                    }
-//                                });
-
-                                setResult(act, path, editArgs, handler);           //设置数据返回
+                                ArrayList<String> paths = new ArrayList<>();
+                                items.add(path);
+                                setResult(paths);
                             } else {
                                 throw new XEngineException("XEngineWebView is null!");
                             }
@@ -221,14 +214,10 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                                     crop(act, FileProvider.getUriForFile(act, XEngineProvider.getProvider(), out), out.getParentFile(), out.getName(), editArgs);
                                 } else {
                                     if (mXEngineWebView != null) {
-//                                        mXEngineWebView.callHandler(dto.__event__, new Object[]{out.getPath()}, new OnReturnValue<Object>() {
-//                                            @Override
-//                                            public void onValue(Object retValue) {
-//
-//                                            }
-//                                        });
+                                        ArrayList<String> items = new ArrayList<>();
+                                        items.add(out.getPath());
+                                        setResult(items);
 
-                                        setResult(act, out.getPath(), editArgs, handler);           //设置数据返回
                                     } else {
                                         throw new XEngineException("XEngineWebView is null!");
                                     }
@@ -250,13 +239,9 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                                         crop(act, uri, out.getParentFile(), out.getName(), editArgs);
                                     } else {                                    //直接返回
                                         if (mXEngineWebView != null && out.exists()) {
-//                                            mXEngineWebView.callHandler(dto.__event__, new Object[]{out.getPath()}, new OnReturnValue<Object>() {
-//                                                @Override
-//                                                public void onValue(Object retValue) {
-//
-//                                                }
-//                                            });
-                                            setResult(act, out.getPath(), editArgs, handler);           //设置数据返回
+                                            ArrayList<String> items = new ArrayList<>();
+                                            items.add(out.getPath());
+                                            setResult(items);
                                         } else {
                                             throw new XEngineException("XEngineWebView is null!");
                                         }
@@ -278,7 +263,10 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 //                                        Log.d(TAG, "result:" + System.currentTimeMillis());
 //                                    }
 //                                });
-                                setResult(act, path, editArgs, handler);           //设置数据返回
+
+                                ArrayList<String> items = new ArrayList<>();
+                                items.add(path);
+                                setResult(items);           //设置数据返回
                             } else {
                                 throw new XEngineException("XEngineWebView is null!");
                             }
@@ -464,34 +452,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
     }
 
 
-    /**
-     * @param activity
-     * @param path
-     */
-    private void setResult(Activity activity, String path, EditArgs editArgs, final CompletionHandler<CameraRetDTO> handler) {
-        if (mXEngineWebView != null) {
-            CameraRetDTO cameraRetDTO = new CameraRetDTO();
-            if (cameraDTO.isbase64) {
-                cameraRetDTO.retImage = ClientManager.imageToBase64(path);
-//
-            } else {
-                cameraRetDTO.retImage = path;
-            }
-            cameraRetDTO.contentType = "image/jpeg";
-            File temp = new File(path);
-            if (temp.exists())
-                cameraRetDTO.fileName = temp.getName();
-
-            mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{new String[]{JSON.toJSONString(cameraRetDTO)}}, new OnReturnValue<CameraRetDTO>() {
-                @Override
-                public void onValue(CameraRetDTO retValue) {
-                    Log.d(TAG, "result:" + System.currentTimeMillis());
-                }
-            });
-        }
-    }
-
-    private void setResult(ArrayList<String> paths) {
+    private void setResult(List<String> paths) {
         if (mXEngineWebView != null) {
 
             List<CameraRetDTO> results = new ArrayList<>();

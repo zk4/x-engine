@@ -42,8 +42,8 @@ public class XEngineNavBar extends RelativeLayout {
     private View root;
     private TextView titleTv;
     private TextView leftTv, rightTv, menuTv;
-    private ImageView leftIv, rightIv, menuIv;
-    private LinearLayout layoutLeft, layoutRight, layoutMenu;
+    private ImageView leftIv, leftIv2, rightIv, menuIv;
+    private LinearLayout layoutRight, layoutMenu;
     private SearchEditView searchEditView;
     private RecyclerView layoutMore;
 
@@ -66,9 +66,9 @@ public class XEngineNavBar extends RelativeLayout {
         rightTv = root.findViewById(R.id.tv_actionbar_right);
         menuTv = root.findViewById(R.id.tv_actionbar_menu);
         leftIv = root.findViewById(R.id.iv_actionbar_left);
+        leftIv2 = root.findViewById(R.id.iv_actionbar_left_2);
         rightIv = root.findViewById(R.id.iv_actionbar_right);
         menuIv = root.findViewById(R.id.iv_actionbar_menu);
-        layoutLeft = root.findViewById(R.id.ll_actionbar_left);
         layoutRight = root.findViewById(R.id.ll_actionbar_right);
         layoutMenu = root.findViewById(R.id.ll_actionbar_menu);
         searchEditView = root.findViewById(R.id.ll_actionbar_search);
@@ -90,13 +90,18 @@ public class XEngineNavBar extends RelativeLayout {
     public void setNavLeftBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {
         setClickView(true, leftTv, leftIv, title, titleColor, titleSize, icon, iconSize, isBold);
         if (listener != null) {
-            layoutLeft.setOnClickListener(listener);
+            leftIv.setOnClickListener(listener);
         }
 
     }
 
     public void setLeftListener(OnClickListener listener) {
-        layoutLeft.setOnClickListener(listener);
+        leftIv.setOnClickListener(listener);
+    }
+
+    public void setLeft2Listener(OnClickListener listener) {
+        leftIv2.setVisibility(VISIBLE);
+        leftIv2.setOnClickListener(listener);
     }
 
     public void setNavRightBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {

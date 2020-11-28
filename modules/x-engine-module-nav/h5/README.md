@@ -223,29 +223,6 @@ npm install @zkty-team/x-engine-module-nav
 | params | string | true |  | 其余参数 |
 
 
-## navigatorRouter
-
-跳转页面.
-
-**demo**
-``` js
- {
-  window.navigatorRouter = () => {
-    nav.navigatorRouter().then((res) => {});
-  };
-}
-``` 
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| type | string |  |  | 跳转类型 |
-| uri | string |  |  | 跳转目标 |
-| path | string |  |  | 跳转参数 |
-
-
 ## setNavSearchBar
 
 ** demo **

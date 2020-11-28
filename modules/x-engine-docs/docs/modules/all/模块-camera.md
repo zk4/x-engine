@@ -10,7 +10,7 @@
 # JS
 
 
-version: 0.0.57
+version: 0.0.58
 ``` bash
 npm install @zkty-team/x-engine-module-camera
 ```
@@ -20,7 +20,16 @@ npm install @zkty-team/x-engine-module-camera
 ## openImagePicker
 
 
-  返回数据有做调整, 0.57 前在反序列字符串后会得到一个数组,数组里面有图片的json对象.
+  返回数据有做调整, 0.58 后在反序列字符串后会得到一个对象,对象里的 data 有一个数组.里面保存了图片的的json对象序列.
+  data:{
+    [
+      retImage: string;
+      fileName:string;
+      contentType:string;
+      width: string;
+      height: string;
+    ]
+  }
   见 demo
 
 
@@ -40,11 +49,10 @@ npm install @zkty-team/x-engine-module-camera
             let jres = JSON.parse(res);
             for(let photo of jres.data){
             const image         = document.createElement('img')
-            if(!photo.width || !photo.height)
-              {
 
-                alert('要返回width,与height',photo);
-              }
+            if(!photo.width || !photo.height){
+              alert('要返回width,与height',photo);
+            }
 
             image.src           = "data:image/png;base64,  " + photo.retImage;
             image.style.cssText = 'width:100%';

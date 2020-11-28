@@ -19,7 +19,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 #import <RecyleWebViewController.h>
-#import <TZImagePickerController.h>
+#import "TZImagePickerController.h"
 
 typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 @interface __xengine__module_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>

@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <ZBarSDK.h>
+#import <ZBarSDK/ZBarSDK.h>
 #import <x-engine-module-router/XERouterManager.h>
 #import <x-engine-module-engine/Unity.h>
 

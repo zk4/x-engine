@@ -231,12 +231,6 @@ function navigatorBack(arg: NavNavigatorDTO = { url: "" }) {
   };
 }
 
-//跳转页面.
-function navigatorRouter(arg: NavOpenAppDTO = { appid: "" }) {
-  window.navigatorRouter = () => {
-    nav.navigatorRouter().then((res) => {});
-  };
-}
 
 //** demo **
 //``` js

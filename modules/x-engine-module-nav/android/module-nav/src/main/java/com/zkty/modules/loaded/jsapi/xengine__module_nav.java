@@ -133,7 +133,6 @@ public void _setNavRightMenuBtn(NavBtnDTO dto, final CompletionHandler<Nullable>
 public void _setNavRightMoreBtn(NavMoreBtnDTO dto, final CompletionHandler<Nullable> handler);
 public void _navigatorPush(NavNavigatorDTO dto, final CompletionHandler<Nullable> handler);
 public void _navigatorBack(NavNavigatorDTO dto, final CompletionHandler<Nullable> handler);
-public void _navigatorRouter(NavOpenAppDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavSearchBar(NavSearchBarDTO dto, final CompletionHandler<Nullable> handler);
 public void _setSearchBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
@@ -234,20 +233,6 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
     final public void navigatorBack(JSONObject obj, final CompletionHandler<Object> handler) {
       NavNavigatorDTO data= convert(obj,NavNavigatorDTO.class);
       _navigatorBack(data, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void navigatorRouter(JSONObject obj, final CompletionHandler<Object> handler) {
-      NavOpenAppDTO data= convert(obj,NavOpenAppDTO.class);
-      _navigatorRouter(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

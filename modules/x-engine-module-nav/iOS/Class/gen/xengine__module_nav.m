@@ -150,13 +150,6 @@
              completionHandler(nil ,complete);
           }];
       }
-    - (void) navigatorRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NavOpenAppDTO* dto = [self convert:dict clazz:NavOpenAppDTO.class];
-          [self _navigatorRouter:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
-          }];
-      }
     - (void) setNavSearchBar:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           NavSearchBarDTO* dto = [self convert:dict clazz:NavSearchBarDTO.class];

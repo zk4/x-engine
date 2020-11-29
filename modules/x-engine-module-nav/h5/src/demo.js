@@ -59,10 +59,6 @@ import nav from './index.js'
     nav.navigatorBack().then((res) => {});
   };
 
-  window.navigatorRouter = () => {
-    nav.navigatorRouter().then((res) => {});
-  };
-
   window.setNavSearchBar = () => {
     nav
       .setNavSearchBar({

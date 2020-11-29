@@ -65,7 +65,7 @@ ftp://xxx/../index.html
 # JS
 
 
-version: 0.0.57
+version: 0.0.58
 ``` bash
 npm install @zkty-team/x-engine-module-nav
 ```

@@ -21,6 +21,21 @@
 		00DFC70024C843A3006A53EE /* xengine_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FF24C843A3006A53EE /* xengine_config.json */; };
 		36644A9B6347D8F3F465E2F2 /* libPods-camera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64777595404EB1F495371D9F /* libPods-camera.a */; };
 		538009B44D3E4E8C337189A9 /* libPods-camera-cameraUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8D19D09EC03B26C734EC3 /* libPods-camera-cameraUITests.a */; };
+		586F7ED92572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EBB2572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.m */; };
+		586F7EDA2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EBC2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.m */; };
+		586F7EDB2572BA4400CF26A7 /* ZKTY_TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EBF2572BA4400CF26A7 /* ZKTY_TZImageManager.m */; };
+		586F7EDC2572BA4400CF26A7 /* ZKTY_UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EC22572BA4400CF26A7 /* ZKTY_UIView+Layout.m */; };
+		586F7EDD2572BA4400CF26A7 /* ZKTY_TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EC42572BA4400CF26A7 /* ZKTY_TZImagePickerController.m */; };
+		586F7EDE2572BA4400CF26A7 /* ZKTY_TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EC52572BA4400CF26A7 /* ZKTY_TZImageCropManager.m */; };
+		586F7EDF2572BA4400CF26A7 /* ZKTY_TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EC62572BA4400CF26A7 /* ZKTY_TZGifPhotoPreviewController.m */; };
+		586F7EE02572BA4400CF26A7 /* ZKTY_TZImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7EC92572BA4400CF26A7 /* ZKTY_TZImageRequestOperation.m */; };
+		586F7EE12572BA4400CF26A7 /* ZKTY_TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ECB2572BA4400CF26A7 /* ZKTY_TZLocationManager.m */; };
+		586F7EE22572BA4400CF26A7 /* ZKTY_TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ECC2572BA4400CF26A7 /* ZKTY_TZAssetCell.m */; };
+		586F7EE32572BA4400CF26A7 /* ZKTY_TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ED02572BA4400CF26A7 /* ZKTY_TZPhotoPreviewController.m */; };
+		586F7EE42572BA4400CF26A7 /* ZKTY_TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ED12572BA4400CF26A7 /* ZKTY_TZVideoPlayerController.m */; };
+		586F7EE52572BA4400CF26A7 /* ZKTY_TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ED52572BA4400CF26A7 /* ZKTY_TZPhotoPreviewCell.m */; };
+		586F7EE62572BA4400CF26A7 /* ZKTY_TZProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ED72572BA4400CF26A7 /* ZKTY_TZProgressView.m */; };
+		586F7EE72572BA4400CF26A7 /* ZKTY_TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ED82572BA4400CF26A7 /* ZKTY_TZAssetModel.m */; };
 		587F741B250669A300F515BD /* __xengine__module_camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_camera.m */; };
 		587F74262506737800F515BD /* xengine__module_camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_camera.m */; };
 /* End PBXBuildFile section */
@@ -65,6 +80,36 @@
 		00DFC6FF24C843A3006A53EE /* xengine_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xengine_config.json; sourceTree = "<group>"; };
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		586F7EBB2572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZPhotoPickerController.m; sourceTree = "<group>"; };
+		586F7EBC2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKTY_NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
+		586F7EBD2572BA4400CF26A7 /* ZKTY_TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZAssetCell.h; sourceTree = "<group>"; };
+		586F7EBE2572BA4400CF26A7 /* ZKTY_TZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZLocationManager.h; sourceTree = "<group>"; };
+		586F7EBF2572BA4400CF26A7 /* ZKTY_TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZImageManager.m; sourceTree = "<group>"; };
+		586F7EC02572BA4400CF26A7 /* ZKTY_TZVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZVideoPlayerController.h; sourceTree = "<group>"; };
+		586F7EC12572BA4400CF26A7 /* ZKTY_TZPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		586F7EC22572BA4400CF26A7 /* ZKTY_UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKTY_UIView+Layout.m"; sourceTree = "<group>"; };
+		586F7EC32572BA4400CF26A7 /* ZKTY_TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		586F7EC42572BA4400CF26A7 /* ZKTY_TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZImagePickerController.m; sourceTree = "<group>"; };
+		586F7EC52572BA4400CF26A7 /* ZKTY_TZImageCropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZImageCropManager.m; sourceTree = "<group>"; };
+		586F7EC62572BA4400CF26A7 /* ZKTY_TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
+		586F7EC72572BA4400CF26A7 /* ZKTY_TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZAssetModel.h; sourceTree = "<group>"; };
+		586F7EC82572BA4400CF26A7 /* ZKTY_TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZProgressView.h; sourceTree = "<group>"; };
+		586F7EC92572BA4400CF26A7 /* ZKTY_TZImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZImageRequestOperation.m; sourceTree = "<group>"; };
+		586F7ECA2572BA4400CF26A7 /* ZKTY_TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZImageManager.h; sourceTree = "<group>"; };
+		586F7ECB2572BA4400CF26A7 /* ZKTY_TZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZLocationManager.m; sourceTree = "<group>"; };
+		586F7ECC2572BA4400CF26A7 /* ZKTY_TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZAssetCell.m; sourceTree = "<group>"; };
+		586F7ECD2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKTY_NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
+		586F7ECE2572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZPhotoPickerController.h; sourceTree = "<group>"; };
+		586F7ECF2572BA4400CF26A7 /* ZKTY_UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKTY_UIView+Layout.h"; sourceTree = "<group>"; };
+		586F7ED02572BA4400CF26A7 /* ZKTY_TZPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		586F7ED12572BA4400CF26A7 /* ZKTY_TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZVideoPlayerController.m; sourceTree = "<group>"; };
+		586F7ED22572BA4400CF26A7 /* ZKTY_TZGifPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZGifPhotoPreviewController.h; sourceTree = "<group>"; };
+		586F7ED32572BA4400CF26A7 /* ZKTY_TZImageCropManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZImageCropManager.h; sourceTree = "<group>"; };
+		586F7ED42572BA4400CF26A7 /* ZKTY_TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZImagePickerController.h; sourceTree = "<group>"; };
+		586F7ED52572BA4400CF26A7 /* ZKTY_TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		586F7ED62572BA4400CF26A7 /* ZKTY_TZImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZImageRequestOperation.h; sourceTree = "<group>"; };
+		586F7ED72572BA4400CF26A7 /* ZKTY_TZProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZProgressView.m; sourceTree = "<group>"; };
+		586F7ED82572BA4400CF26A7 /* ZKTY_TZAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZAssetModel.m; sourceTree = "<group>"; };
 		587F7419250669A300F515BD /* __xengine__module_camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __xengine__module_camera.h; sourceTree = "<group>"; };
 		587F741A250669A300F515BD /* __xengine__module_camera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_camera.m; sourceTree = "<group>"; };
 		587F74222506737700F515BD /* xengine__module_camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_camera.h; sourceTree = "<group>"; };
@@ -182,6 +227,75 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		586F7EB62572BA4400CF26A7 /* ZKTY_TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				586F7EB72572BA4400CF26A7 /* ZKTY_TZImagePickerController */,
+			);
+			path = ZKTY_TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		586F7EB72572BA4400CF26A7 /* ZKTY_TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				586F7EB82572BA4400CF26A7 /* ScreenShots */,
+				586F7EB92572BA4400CF26A7 /* FLAnimatedImage */,
+				586F7EBA2572BA4400CF26A7 /* ZKTY_TZImagePickerController */,
+			);
+			path = ZKTY_TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		586F7EB82572BA4400CF26A7 /* ScreenShots */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ScreenShots;
+			sourceTree = "<group>";
+		};
+		586F7EB92572BA4400CF26A7 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		586F7EBA2572BA4400CF26A7 /* ZKTY_TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				586F7EBB2572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.m */,
+				586F7EBC2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.m */,
+				586F7EBD2572BA4400CF26A7 /* ZKTY_TZAssetCell.h */,
+				586F7EBE2572BA4400CF26A7 /* ZKTY_TZLocationManager.h */,
+				586F7EBF2572BA4400CF26A7 /* ZKTY_TZImageManager.m */,
+				586F7EC02572BA4400CF26A7 /* ZKTY_TZVideoPlayerController.h */,
+				586F7EC12572BA4400CF26A7 /* ZKTY_TZPhotoPreviewController.h */,
+				586F7EC22572BA4400CF26A7 /* ZKTY_UIView+Layout.m */,
+				586F7EC32572BA4400CF26A7 /* ZKTY_TZPhotoPreviewCell.h */,
+				586F7EC42572BA4400CF26A7 /* ZKTY_TZImagePickerController.m */,
+				586F7EC52572BA4400CF26A7 /* ZKTY_TZImageCropManager.m */,
+				586F7EC62572BA4400CF26A7 /* ZKTY_TZGifPhotoPreviewController.m */,
+				586F7EC72572BA4400CF26A7 /* ZKTY_TZAssetModel.h */,
+				586F7EC82572BA4400CF26A7 /* ZKTY_TZProgressView.h */,
+				586F7EC92572BA4400CF26A7 /* ZKTY_TZImageRequestOperation.m */,
+				586F7ECA2572BA4400CF26A7 /* ZKTY_TZImageManager.h */,
+				586F7ECB2572BA4400CF26A7 /* ZKTY_TZLocationManager.m */,
+				586F7ECC2572BA4400CF26A7 /* ZKTY_TZAssetCell.m */,
+				586F7ECD2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.h */,
+				586F7ECE2572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.h */,
+				586F7ECF2572BA4400CF26A7 /* ZKTY_UIView+Layout.h */,
+				586F7ED02572BA4400CF26A7 /* ZKTY_TZPhotoPreviewController.m */,
+				586F7ED12572BA4400CF26A7 /* ZKTY_TZVideoPlayerController.m */,
+				586F7ED22572BA4400CF26A7 /* ZKTY_TZGifPhotoPreviewController.h */,
+				586F7ED32572BA4400CF26A7 /* ZKTY_TZImageCropManager.h */,
+				586F7ED42572BA4400CF26A7 /* ZKTY_TZImagePickerController.h */,
+				586F7ED52572BA4400CF26A7 /* ZKTY_TZPhotoPreviewCell.m */,
+				586F7ED62572BA4400CF26A7 /* ZKTY_TZImageRequestOperation.h */,
+				586F7ED72572BA4400CF26A7 /* ZKTY_TZProgressView.m */,
+				586F7ED82572BA4400CF26A7 /* ZKTY_TZAssetModel.m */,
+			);
+			path = ZKTY_TZImagePickerController;
+			sourceTree = "<group>";
+		};
 		587F74202506737700F515BD /* gen */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +308,7 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				586F7EB62572BA4400CF26A7 /* ZKTY_TZImagePickerController */,
 				587F74202506737700F515BD /* gen */,
 				587F7419250669A300F515BD /* __xengine__module_camera.h */,
 				587F741A250669A300F515BD /* __xengine__module_camera.m */,
@@ -302,6 +417,10 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"ar-001",
+				"tz-ru",
+				"tz-RU",
 			);
 			mainGroup = 00DFC6A124C83F94006A53EE;
 			productRefGroup = 00DFC6AB24C83F94006A53EE /* Products */;
@@ -467,9 +586,24 @@
 			files = (
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				587F74262506737800F515BD /* xengine__module_camera.m in Sources */,
+				586F7EDF2572BA4400CF26A7 /* ZKTY_TZGifPhotoPreviewController.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
+				586F7EDC2572BA4400CF26A7 /* ZKTY_UIView+Layout.m in Sources */,
 				587F741B250669A300F515BD /* __xengine__module_camera.m in Sources */,
+				586F7ED92572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.m in Sources */,
+				586F7EE22572BA4400CF26A7 /* ZKTY_TZAssetCell.m in Sources */,
+				586F7EDB2572BA4400CF26A7 /* ZKTY_TZImageManager.m in Sources */,
+				586F7EE32572BA4400CF26A7 /* ZKTY_TZPhotoPreviewController.m in Sources */,
+				586F7EE12572BA4400CF26A7 /* ZKTY_TZLocationManager.m in Sources */,
+				586F7EDE2572BA4400CF26A7 /* ZKTY_TZImageCropManager.m in Sources */,
+				586F7EDD2572BA4400CF26A7 /* ZKTY_TZImagePickerController.m in Sources */,
+				586F7EE62572BA4400CF26A7 /* ZKTY_TZProgressView.m in Sources */,
+				586F7EE72572BA4400CF26A7 /* ZKTY_TZAssetModel.m in Sources */,
+				586F7EE42572BA4400CF26A7 /* ZKTY_TZVideoPlayerController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
+				586F7EDA2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.m in Sources */,
+				586F7EE02572BA4400CF26A7 /* ZKTY_TZImageRequestOperation.m in Sources */,
+				586F7EE52572BA4400CF26A7 /* ZKTY_TZPhotoPreviewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +784,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
+				OTHER_CFLAGS = "-DTZPhotoPickerController=TZPhotoPickerController2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkty.xegnine.camera;
 				PRODUCT_NAME = camera;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -673,7 +807,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
+				OTHER_CFLAGS = "-DTZPhotoPickerController=TZPhotoPickerController2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkty.xegnine.camera;
 				PRODUCT_NAME = camera;
 				TARGETED_DEVICE_FAMILY = 1;

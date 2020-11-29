@@ -14,11 +14,10 @@ import camera from './index.js'
             let jres = JSON.parse(res);
             for(let photo of jres.data){
             const image         = document.createElement('img')
-            if(!photo.width || !photo.height)
-              {
 
-                alert('要返回width,与height',photo);
-              }
+            if(!photo.width || !photo.height){
+              alert('要返回width,与height',photo);
+            }
 
             image.src           = "data:image/png;base64,  " + photo.retImage;
             image.style.cssText = 'width:100%';

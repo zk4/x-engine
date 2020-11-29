@@ -10,7 +10,7 @@ target 'scan' do
   #pod 'x-engine-module-engine', :path =>'../node_modules/@zkty-team/x-engine-module-engine'
   module_pods
 
-  pod 'ZBarSDK'
+#  pod 'ZBarSDK'
   pod 'WechatOpenSDK'
   target 'scanUITests' do
     # Pods for testing

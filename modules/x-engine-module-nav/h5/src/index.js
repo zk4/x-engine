@@ -117,12 +117,6 @@ function osCheck() {
     }
   },
   {
-    "name": "navigatorRouter",
-    "default_args": {
-      "appid": ""
-    }
-  },
-  {
     "name": "setNavSearchBar",
     "default_args": {
       "cornerRadius": 5,

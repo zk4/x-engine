@@ -73,7 +73,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     };
     [actionHandlers addObject:cameraHandler];
     [actionHandlers addObject:photoHandler];
-    [[Unity sharedInstance].getCurrentVC showActionSheetWithTitle:@"" message:@"提示" cancelTitle:@"取消" sureTitles:@[@"拍照",@"相册"] cancelHandler:^(UIAlertAction * _Nonnull action) {
+    [[Unity sharedInstance].getCurrentVC showActionSheetWithTitle:@"" message:@"" cancelTitle:@"取消" sureTitles:@[@"拍照",@"相册"] cancelHandler:^(UIAlertAction * _Nonnull action) {
 
     } sureHandlers:actionHandlers];
 }
@@ -227,7 +227,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 }
 
 -(void)showPhotoOrCameraWarnAlert:(NSString *)message{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨" message:message preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }]];

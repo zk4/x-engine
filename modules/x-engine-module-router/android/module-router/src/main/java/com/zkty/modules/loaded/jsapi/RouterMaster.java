@@ -57,7 +57,7 @@ public class RouterMaster {
                 WXLaunchMiniProgram.Req req = new WXLaunchMiniProgram.Req();
                 req.userName = uri; // 填小程序原始id
                 req.path = path;  ////拉起小程序页面的可带参路径，不填默认拉起小程序首页，对于小游戏，可以只传入 query 部分，来实现传参效果，如：传入 "?foo=bar"。
-                req.miniprogramType = WXLaunchMiniProgram.Req.MINIPROGRAM_TYPE_TEST;// 可选打开 开发版，体验版和正式版
+                req.miniprogramType = WXLaunchMiniProgram.Req.MINIPROGRAM_TYPE_PREVIEW;// 可选打开 开发版，体验版和正式版
                 api.sendReq(req);
 
                 break;

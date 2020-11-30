@@ -1,6 +1,8 @@
 package com.zkty.modules.engine.webview;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.AttributeSet;
@@ -31,7 +33,9 @@ import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import module.engine.R;
 
@@ -75,16 +79,35 @@ public class XEngineWebView extends DWebView {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
                 InputStream inputStream = Utils.getLocalImage(s);
+                Log.d("Xenging-url", s);
                 if (inputStream != null) {
                     WebResourceResponse resourceResponse = new WebResourceResponse();
                     resourceResponse.setData(inputStream);
                     return resourceResponse;
                 }
+
                 return super.shouldInterceptRequest(webView, s);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String s) {
+                if (s.contains("tenpay")) {
+                    Log.d("Xenging-url>>>", s);
+                    Map<String, String> webviewHead = new HashMap<>();
+                    webviewHead.put("referer", "http://linli580.com");
+                    webView.loadUrl(s, webviewHead);
+                    return true;
+
+                }
+                if (s.startsWith("weixin://wap/pay?")) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(s));
+                   mContext.startActivity(intent);
+
+                    return true;
+                }
+
                 if (Build.VERSION.SDK_INT < 26) {
                     webView.loadUrl(s);
                     return true;

@@ -458,16 +458,16 @@ public class __xengine__module_camera extends xengine__module_camera implements 
             List<CameraRetDTO> results = new ArrayList<>();
             for (int j = 0; j < paths.size(); j++) {
                 BitmapFactory.Options options = new BitmapFactory.Options();
-
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(paths.get(j), options);
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//                options.inJustDecodeBounds = true;
+                Bitmap bitmap = BitmapFactory.decodeFile(paths.get(j), options);
 
                 CameraRetDTO cameraRetDTO = new CameraRetDTO();
                 cameraRetDTO.width = String.valueOf(options.outWidth);
                 cameraRetDTO.height = String.valueOf(options.outHeight);
 
                 if (cameraDTO.isbase64) {
-                    cameraRetDTO.retImage = ClientManager.imageToBase64(paths.get(j));
+                    cameraRetDTO.retImage = ClientManager.bmpToBase64(bitmap);
                 } else {
                     cameraRetDTO.retImage = paths.get(j);
                 }
@@ -482,7 +482,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
             }
             HashMap<String, List<CameraRetDTO>> map = new HashMap<>();
             map.put("data", results);
-
+            Log.d("camera", JSON.toJSONString(map));
             mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{JSON.toJSONString(map)}, (OnReturnValue<CameraRetDTO>) retValue -> Log.d(TAG, "result:" + System.currentTimeMillis()));
         }
     }

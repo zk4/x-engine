@@ -10,7 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "Prefix.h"
 #import <ZKScanViewController.h>
-#import <MircroAppController.h>
+#import <x-engine-module-router/XERouterManager.h>
 
 @interface ZKMicroAppViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -70,9 +70,10 @@
             [self.scanResultArr addObject:dataDic];
         }
         [self reloadUIView];
-        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:self.searchBar.text];
+//        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:self.searchBar.text];
+        [XERouterManager routerToTarget:@"h5" withUri:self.searchBar.text withPath:nil withArgs:nil withVersion:nil];
         self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:webLaderVC animated:YES];
+//        [self.navigationController pushViewController:webLaderVC animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }
     [self.searchBar resignFirstResponder];
@@ -82,9 +83,11 @@
     ZKScanViewController *vc = [[ZKScanViewController alloc] init];
     __weak typeof(self) weakSelf = self;
     vc.block = ^(NSString *data) {
-        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:data];
+        [XERouterManager routerToTarget:@"h5" withUri:data withPath:nil withArgs:nil withVersion:nil];
+
+//        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:data];
         self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:webLaderVC animated:YES];
+//        [self.navigationController pushViewController:webLaderVC animated:YES];
         self.hidesBottomBarWhenPushed = NO;
         
         self.searchBar.text = data;
@@ -121,9 +124,11 @@
 }
 
 -(void)goWebAction:(UIButton *)sender{
-    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:self.scanResultArr[sender.tag][@"url"]];
+    [XERouterManager routerToTarget:@"h5" withUri:self.scanResultArr[sender.tag][@"url"] withPath:nil withArgs:nil withVersion:nil];
+
+//    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:self.scanResultArr[sender.tag][@"url"]];
     self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:webLaderVC animated:YES];
+//    [self.navigationController pushViewController:webLaderVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 
 }

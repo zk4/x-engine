@@ -4,7 +4,7 @@
 //
 
 #import "EntryViewController.h"
-#import <MircroAppController.h>
+//#import <MircroAppController.h>
 #import <UIViewController+.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
@@ -50,8 +50,8 @@
     // 启动 h5 服务器, npm run dev
     // 将下面的 ip 换成你的电脑 ip 即可实时调试
 //   NSString* url = [NSString stringWithFormat:@"http://0.0.0.0:8000",[self getIPAddress]];
-   MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:8080/index.html"];
-   [self pushViewController:webLaderVC];
+//   MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:8080/index.html"];
+//   [self pushViewController:webLaderVC];
     
 }
 

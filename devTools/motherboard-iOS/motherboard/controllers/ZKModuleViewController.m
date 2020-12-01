@@ -8,7 +8,7 @@
 
 #import "ZKModuleViewController.h"
 #import <XEngineContext.h>
-#import <MircroAppController.h>
+#import <x-engine-module-router/XERouterManager.h>
 #import "UIViewController+.h"
 #import "moduleTableViewCell.h"
 
@@ -134,8 +134,9 @@
     [self pushTestModule:@"com.zkty.module.tzcash"];
 }
 - (void)pushTestModule:(NSString*) appid {
-    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:appid ];
-    [self pushViewController:webLaderVC];
+//    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:appid ];
+//    [self pushViewController:webLaderVC];
+    [XERouterManager routerToTarget:@"microapp" withUri:appid withPath:nil withArgs:nil withVersion:0];
 }
 
 

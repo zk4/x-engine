@@ -7,6 +7,7 @@
   - [模块-api](./docs/modules/all/模块-scan.md)
 - **产品**
   - [微应用](./docs/product/微应用.md)
+  - [微应用最佳开发实践](./docs/product/微应用最佳开发实践.md)
   - [x-cli](./docs/product/x-cli.md)
   - [coge](./docs/product/coge.md)
 - **工程管理**

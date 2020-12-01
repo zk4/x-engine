@@ -319,6 +319,13 @@ public class XEngineNavBar extends RelativeLayout {
         leftTv.setVisibility(VISIBLE);
     }
 
+    public String getLeftTitle() {
+        if (leftTv.getText() != null) {
+            return leftTv.getText().toString();
+        }
+        return null;
+    }
+
     public ImageView getLiftIv() {
         return leftIv;
 

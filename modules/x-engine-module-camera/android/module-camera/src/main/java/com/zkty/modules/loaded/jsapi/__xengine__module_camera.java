@@ -467,7 +467,12 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                 cameraRetDTO.height = String.valueOf(options.outHeight);
 
                 if (cameraDTO.isbase64) {
-                    cameraRetDTO.retImage = ClientManager.bmpToBase64(bitmap);
+                    String ret = ClientManager.imageToBase64(paths.get(j));
+                    if (ret != null) {
+                        cameraRetDTO.retImage = ret;
+                    } else {
+                        cameraRetDTO.retImage = ClientManager.imageToBase64(XEngineWebActivityManager.sharedInstance().getCurrent(), paths.get(j));
+                    }
                 } else {
                     cameraRetDTO.retImage = paths.get(j);
                 }

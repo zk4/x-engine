@@ -43,7 +43,7 @@ public class XEngineNavBar extends RelativeLayout {
     private TextView titleTv;
     private TextView leftTv, rightTv, menuTv;
     private ImageView leftIv, leftIv2, rightIv, menuIv;
-    private LinearLayout layoutRight, layoutMenu;
+    private LinearLayout layoutLeft, layoutRight, layoutMenu;
     private SearchEditView searchEditView;
     private RecyclerView layoutMore;
 
@@ -70,6 +70,7 @@ public class XEngineNavBar extends RelativeLayout {
         rightIv = root.findViewById(R.id.iv_actionbar_right);
         menuIv = root.findViewById(R.id.iv_actionbar_menu);
         layoutRight = root.findViewById(R.id.ll_actionbar_right);
+        layoutLeft = root.findViewById(R.id.ll_actionbar_left);
         layoutMenu = root.findViewById(R.id.ll_actionbar_menu);
         searchEditView = root.findViewById(R.id.ll_actionbar_search);
         layoutMore = root.findViewById(R.id.hl_actionbar_right_more);
@@ -90,18 +91,19 @@ public class XEngineNavBar extends RelativeLayout {
     public void setNavLeftBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {
         setClickView(true, leftTv, leftIv, title, titleColor, titleSize, icon, iconSize, isBold);
         if (listener != null) {
-            leftIv.setOnClickListener(listener);
+            layoutLeft.setOnClickListener(listener);
         }
-
     }
 
     public void setLeftListener(OnClickListener listener) {
-        leftIv.setOnClickListener(listener);
+        layoutLeft.setOnClickListener(listener);
+
     }
 
     public void setLeft2Listener(OnClickListener listener) {
         leftIv2.setVisibility(VISIBLE);
         leftIv2.setOnClickListener(listener);
+
     }
 
     public void setNavRightBtn(String title, String titleColor, Integer titleSize, String icon, List<Double> iconSize, boolean isBold, OnClickListener listener) {
@@ -317,6 +319,13 @@ public class XEngineNavBar extends RelativeLayout {
     public void setLeftTitle(String title) {
         leftTv.setText(title);
         leftTv.setVisibility(VISIBLE);
+    }
+
+    public String getLeftTitle() {
+        if (leftTv.getText() != null) {
+            return leftTv.getText().toString();
+        }
+        return null;
     }
 
     public ImageView getLiftIv() {

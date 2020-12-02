@@ -380,11 +380,18 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     
     if(dto.isAnimation){
-        [UIView animateWithDuration:0.3 animations:^{
-            topVC.navigationItem.titleView.alpha = dto.isHidden ? 0 : 1;
-        }];
+        if(dto.isHidden){
+            [UIView animateWithDuration:0.3 animations:^{
+                topVC.navigationItem.titleView.alpha = 0;
+            } completion:^(BOOL finished) {
+                topVC.navigationItem.titleView = nil;
+            }];
+        }
     }else{
-        topVC.navigationItem.titleView.alpha = dto.isHidden ? 0 : 1;
+        if(dto.isHidden){
+            topVC.navigationItem.titleView = nil;
+        }
+//        topVC.navigationItem.titleView.alpha = dto.isHidden ? 0 : 1;
     }
 }
 

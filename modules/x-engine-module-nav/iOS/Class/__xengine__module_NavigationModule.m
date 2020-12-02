@@ -515,6 +515,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             if(item.__event__){
                 if ([NavUtil getNoEmptyString:icon]) {
                     UIImage * image = [NavUtil getOrignalImage:icon];
+                    if(image == nil){
+                        image = [UIImage imageNamed:icon];
+                    }
                     [itemButton setImage:[NavUtil setImageSize:iconSize image:image] forState:UIControlStateNormal];
                 }
             }else{

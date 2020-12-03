@@ -130,6 +130,7 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     }
 //    [webview loadUrl:@"about:blank"];
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     return webview;
 }
 
@@ -143,6 +144,13 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
         }];
         if (floatNum >= 1 && (!self.inAllSingle && !self.inSingle)) {
             [object removeObserver:self forKeyPath:@"estimatedProgress"];
+        }
+    } else if ([keyPath isEqualToString:@"title"]) {
+        if([change objectForKey:@"new"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:XEWebViewProgressChangeNotification object:@{
+                @"title":[change objectForKey:@"new"],
+                @"webView":object,
+            }];
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

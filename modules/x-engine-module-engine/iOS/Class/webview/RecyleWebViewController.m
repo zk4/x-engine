@@ -28,29 +28,36 @@
 -(void)webViewProgressChange:(NSNotification *)notifi{
     
     NSDictionary *dic = notifi.object;
-    float floatNum = [dic[@"progress"] floatValue];
-    id web = dic[@"webView"];
-    if(web == self.webview){
-        self.progresslayer.alpha = 1;
-        [self.progresslayer setProgress:floatNum animated:YES];
-        if (floatNum == 1) {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.progresslayer.alpha = 0;
-            }];
-            if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
-                [self.webview evaluateJavaScript:@"document.title"
-                               completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-                    if([response isKindOfClass:[NSString class]]){
-                        NSString *title = response;
-                        title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                        if(title.length > 0){
-                            if(self.title.length == 0){
-                                self.title = title;
+    if(dic[@"progress"]){
+        float floatNum = [dic[@"progress"] floatValue];
+        id web = dic[@"webView"];
+        if(web == self.webview){
+            self.progresslayer.alpha = 1;
+            [self.progresslayer setProgress:floatNum animated:YES];
+            if (floatNum == 1) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.progresslayer.alpha = 0;
+                }];
+                if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
+                    [self.webview evaluateJavaScript:@"document.title"
+                                   completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+                        if([response isKindOfClass:[NSString class]]){
+                            NSString *title = response;
+                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                            if(title.length > 0){
+                                if(self.title.length == 0){
+                                    self.title = title;
+                                }
                             }
                         }
-                    }
-                }];
+                    }];
+                }
             }
+        }
+    }
+    if(dic[@"title"]){
+        if([self.loadUrl hasPrefix:@"http"]){
+            self.title = dic[@"title"];
         }
     }
 }
@@ -232,6 +239,19 @@
 
 -(void)goback:(UIButton *)sender{
     
+    if([self.loadUrl hasPrefix:@"http"]){
+        if([self.webview canGoBack]){
+            [self.webview goBack];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+-(void)close:(UIButton *)sender{
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -242,13 +262,27 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"back_arrow" ofType:@"png"];
     if(path){
         UIButton *btn = [[UIButton alloc] init];
-        btn.frame = CGRectMake(0, 0, 44, 0);
+        btn.frame = CGRectMake(0, 0, 34, 0);
         UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:path]]];
         img.userInteractionEnabled = NO;
         img.frame = CGRectMake(4, 6, 22, 22);
         [btn addSubview:img];
         [btn addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        
+        if([self.loadUrl hasPrefix:@"http"]){
+            NSString *closePath = [[NSBundle mainBundle] pathForResource:@"close_black" ofType:@"png"];
+            UIButton *close = [[UIButton alloc] init];
+            close.frame = CGRectMake(0, 0, 34, 0);
+            UIImageView *img2 = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:closePath]]];
+            img2.userInteractionEnabled = NO;
+            img2.frame = CGRectMake(4, 6, 22, 22);
+            [close addSubview:img2];
+            [close addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+            self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:btn], [[UIBarButtonItem alloc] initWithCustomView:close]];
+        }else{
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        }
+        
     }
     
     self.view.backgroundColor = [UIColor whiteColor];

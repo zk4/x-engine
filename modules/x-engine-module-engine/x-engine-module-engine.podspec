@@ -30,22 +30,23 @@ Pod::Spec.new do |s|
 
     s.platform     = :ios, "10.0"
     s.ios.deployment_target = "10.0"
-
+  
     s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-engine.git',
   :tag => s.version.to_s }
-
-
+  
+  
     s.source_files  = "iOS/Class/**/*.{h,m}","iOS/Class/gen/**/*.{h,m,png}"
     s.public_header_files = "iOS/Class/**/*.h","iOS/Class/gen/**/*.h"
-    s.resources = ["iOS/Class/back_arrow.png"]
-
+    s.resources = ["iOS/Class/back_arrow.png", "iOS/Class/close_black.png"]
+  
     s.frameworks  = "CoreServices"
-
+  
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
     s.dependency 'JSONModel'
     s.dependency 'MBProgressHUD'
     s.dependency 'Masonry'
     s.dependency 'MJRefresh'
     s.dependency 'SSZipArchive'
-
+  
 end
+  

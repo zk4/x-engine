@@ -74,6 +74,10 @@ public class SearchEditView extends LinearLayout {
 
     }
 
+    public void setOnSearchClickListener(OnSearchClickListener listener) {
+        this.mSearchClickListener = listener;
+    }
+
     private void initListener() {
 
         etKey.addTextChangedListener(new TextWatcher() {

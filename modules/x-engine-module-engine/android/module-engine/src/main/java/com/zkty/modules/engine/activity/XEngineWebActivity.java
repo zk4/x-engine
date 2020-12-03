@@ -182,6 +182,19 @@ public class XEngineWebActivity extends AppCompatActivity {
                 mUploadMessage.onReceiveValue(uri);
                 mUploadMessage = null;
             }
+        } else if (requestCode == FILECHOOSER_RESULTCODE) {
+            Uri result = data == null || resultCode != RESULT_OK ? null
+                    : data.getData();
+            if (null != mUploadMessage) {
+                mUploadMessage.onReceiveValue(result);
+                mUploadMessage = null;
+            }
+            if (null != mUploadCallbackAboveL) {
+                Uri[] results = new Uri[1];
+                results[0] = result;
+                mUploadCallbackAboveL.onReceiveValue(results);
+                mUploadCallbackAboveL = null;
+            }
         }
 
         if (lifecycleListeners != null) {

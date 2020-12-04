@@ -1,4 +1,4 @@
-package com.zkty.engine.module.YJZDBill;
+package com.zkty.engine.module.yjzdbill;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void YJZDBill(View view) {
+    public void yjzdbill(View view) {
         XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "http://www.baidu.com");
     }
 }

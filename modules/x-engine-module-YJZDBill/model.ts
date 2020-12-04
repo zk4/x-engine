@@ -1,5 +1,5 @@
 // 命名空间
-const moduleID = "com.zkty.module.YJZDBill";
+const moduleID = "com.zkty.module.yjzdbill";
 
 // 支付dto
 interface YJBillDTO {
@@ -57,7 +57,7 @@ function YJBillPayment(
   }
 ):YJBillRetDTO {
   window.YJBillPayment = () => {
-    YJZDBill
+    yjzdbill
       .YJBillPayment({
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -78,7 +78,7 @@ function YJBillRefund(
   }
 ):YJBillRetDTO {
   window.YJBillRefund = () => {
-    YJZDBill
+    yjzdbill
       .YJBillRefund({
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -99,7 +99,7 @@ function YJBillList(
   }
 ){
   window.YJBillList = () => {
-    YJZDBill
+    yjzdbill
       .YJBillList()
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

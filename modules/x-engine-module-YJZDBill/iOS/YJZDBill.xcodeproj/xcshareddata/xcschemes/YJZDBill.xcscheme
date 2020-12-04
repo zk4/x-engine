@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-               BuildableName = "YJZDBill.app"
-               BlueprintName = "YJZDBill"
-               ReferencedContainer = "container:YJZDBill.xcodeproj">
+               BuildableName = "yjzdbill.app"
+               BlueprintName = "yjzdbill"
+               ReferencedContainer = "container:yjzdbill.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00DFC6C424C83F95006A53EE"
-               BuildableName = "YJZDBillTests.xctest"
-               BlueprintName = "YJZDBillTests"
-               ReferencedContainer = "container:YJZDBill.xcodeproj">
+               BuildableName = "yjzdbillTests.xctest"
+               BlueprintName = "yjzdbillTests"
+               ReferencedContainer = "container:yjzdbill.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00DFC6CF24C83F95006A53EE"
-               BuildableName = "YJZDBillUITests.xctest"
-               BlueprintName = "YJZDBillUITests"
-               ReferencedContainer = "container:YJZDBill.xcodeproj">
+               BuildableName = "yjzdbillUITests.xctest"
+               BlueprintName = "yjzdbillUITests"
+               ReferencedContainer = "container:yjzdbill.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-            BuildableName = "YJZDBill.app"
-            BlueprintName = "YJZDBill"
-            ReferencedContainer = "container:YJZDBill.xcodeproj">
+            BuildableName = "yjzdbill.app"
+            BlueprintName = "yjzdbill"
+            ReferencedContainer = "container:yjzdbill.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -89,9 +89,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-            BuildableName = "YJZDBill.app"
-            BlueprintName = "YJZDBill"
-            ReferencedContainer = "container:YJZDBill.xcodeproj">
+            BuildableName = "yjzdbill.app"
+            BlueprintName = "yjzdbill"
+            ReferencedContainer = "container:yjzdbill.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

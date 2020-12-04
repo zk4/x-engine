@@ -13,7 +13,7 @@ version = package['version']
 Pod::Spec.new do |s|
 
 
-    s.name         = "x-engine-module-YJZDBill"
+    s.name         = "x-engine-module-yjzdbill"
     s.version      = version
     s.summary      = package["description"]
 
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
             description
                      DESC
 
-    s.homepage     = "https://github.com/zkty-team/x-engine-module-YJZDBill"
+    s.homepage     = "https://github.com/zkty-team/x-engine-module-yjzdbill"
 
 
    
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "10.0"
     s.ios.deployment_target = "10.0"
 
-    s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-YJZDBill.git',
+    s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-yjzdbill.git',
   :tag => s.version.to_s }
 
 

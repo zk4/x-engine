@@ -1,8 +1,8 @@
 
-import YJZDBill from './index.js'
+import yjzdbill from './index.js'
 
   window.YJBillPayment = () => {
-    YJZDBill
+    yjzdbill
       .YJBillPayment({
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -15,7 +15,7 @@ import YJZDBill from './index.js'
   };
 
   window.YJBillRefund = () => {
-    YJZDBill
+    yjzdbill
       .YJBillRefund({
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -27,7 +27,7 @@ import YJZDBill from './index.js'
   };
 
   window.YJBillList = () => {
-    YJZDBill
+    yjzdbill
       .YJBillList()
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

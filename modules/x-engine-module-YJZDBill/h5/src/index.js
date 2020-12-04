@@ -10,7 +10,7 @@ function osCheck() {
 } 
   else {
 
-    return  xengine.use("com.zkty.module.YJZDBill", 
+    return  xengine.use("com.zkty.module.yjzdbill", 
     [
   {
     "name": "YJBillPayment",

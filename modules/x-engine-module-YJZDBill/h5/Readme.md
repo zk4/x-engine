@@ -1,6 +1,6 @@
 
 `
-com.zkty.module.YJZDBill
+com.zkty.module.yjzdbill
 `
 
 

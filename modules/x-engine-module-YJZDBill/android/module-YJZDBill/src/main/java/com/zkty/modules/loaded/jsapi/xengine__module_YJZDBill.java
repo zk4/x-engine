@@ -51,17 +51,17 @@
     public boolean payType;
   }
   
-  interface xengine__module_YJZDBill_i {
+  interface xengine__module_yjzdbill_i {
     public void _YJBillPayment(YJBillDTO dto, final CompletionHandler<YJBillRetDTO> handler);
 public void _YJBillRefund(YJBillRefundDTO dto, final CompletionHandler<YJBillRetDTO> handler);
 public void _YJBillList(YJBillListDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
-  public abstract class xengine__module_YJZDBill extends xengine__module_BaseModule implements xengine__module_YJZDBill_i {
+  public abstract class xengine__module_yjzdbill extends xengine__module_BaseModule implements xengine__module_yjzdbill_i {
     @Override
     public String moduleId() {
-      return "com.zkty.module.YJZDBill";
+      return "com.zkty.module.yjzdbill";
     }
   
     @JavascriptInterface

@@ -42,7 +42,7 @@
     
 
 
-@protocol xengine__module_YJZDBill_protocol
+@protocol xengine__module_yjzdbill_protocol
        @required 
         - (void) _YJBillPayment:(YJBillDTO*) dto complete:(void (^)(YJBillRetDTO* result,BOOL complete)) completionHandler;
 
@@ -56,6 +56,6 @@
   
 
 
-@interface xengine__module_YJZDBill : xengine__module_BaseModule<xengine__module_YJZDBill_protocol>
+@interface xengine__module_yjzdbill : xengine__module_BaseModule<xengine__module_yjzdbill_protocol>
 @end
 

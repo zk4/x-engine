@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import com.zkty.modules.dsbridge.CompletionHandler;
 
 
-public class __xengine__module_YJZDBill extends xengine__module_YJZDBill {
+public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
 	@Override
 	public void _noArgNoRet(CompletionHandler<Nullable> handler) {

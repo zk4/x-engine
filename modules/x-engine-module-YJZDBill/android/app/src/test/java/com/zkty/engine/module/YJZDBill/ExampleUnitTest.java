@@ -1,4 +1,4 @@
-package com.zkty.engine.module.YJZDBill;
+package com.zkty.engine.module.yjzdbill;
 
 import org.junit.Test;
 

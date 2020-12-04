@@ -1,12 +1,12 @@
 //
-//  xengine__module_YJZDBill.m
-//  YJZDBill
+//  xengine__module_yjzdbill.m
+//  yjzdbill
 //
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
 
 
-#import "__xengine__module_YJZDBill.h"
+#import "__xengine__module_yjzdbill.h"
 #import <XEngineContext.h>
 #import <micros.h>
 #import <UIViewController+.h>
@@ -14,12 +14,12 @@
 #import <RecyleWebViewController.h>
 #import <XEngineWebView.h>
 #import <Unity.h>
-#import <YJZDBill/YJBillPlatform.h>
+#import <yjzdbill/YJBillPlatform.h>
 
-@interface __xengine__module_YJZDBill()
+@interface __xengine__module_yjzdbill()
 @end
 
-@implementation __xengine__module_YJZDBill
+@implementation __xengine__module_yjzdbill
 - (instancetype)init{
     self = [super init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];

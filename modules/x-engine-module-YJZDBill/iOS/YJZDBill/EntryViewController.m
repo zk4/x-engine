@@ -4,8 +4,9 @@
 //
 
 #import "EntryViewController.h"
-#import <MircroAppController.h>
-#import <UIViewController+.h>
+
+#import <x-engine-module-engine/XEOneWebViewControllerManage.h>
+
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 @interface EntryViewController ()
@@ -50,9 +51,8 @@
     // 启动 h5 服务器, npm run dev
     // 将下面的 ip 换成你的电脑 ip 即可实时调试
 //   NSString* url = [NSString stringWithFormat:@"http://0.0.0.0:8000",[self getIPAddress]];
-   MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://192.168.1.62:9111/index.html"];
-   [self pushViewController:webLaderVC];
-    
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.65:9111"];
+
 }
 
 - (void)viewDidLoad {

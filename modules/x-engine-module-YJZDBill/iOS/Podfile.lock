@@ -19,20 +19,22 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
-  - MJRefresh (3.4.3)
+  - MJRefresh (3.5.0)
+  - SSZipArchive (2.2.3)
   - WechatOpenSDK (1.8.5)
-  - x-engine-module-engine (1.0.10):
+  - x-engine-module-engine (0.0.58):
     - JSONModel
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - SSZipArchive
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - AlipaySDK-iOS
   - MJExtension
   - WechatOpenSDK (= 1.8.5)
-  - "x-engine-module-engine (from `../node_modules/@zkty-team/x-engine-module-engine`)"
+  - x-engine-module-engine (from `../../x-engine-module-engine`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -43,11 +45,12 @@ SPEC REPOS:
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - SSZipArchive
     - WechatOpenSDK
 
 EXTERNAL SOURCES:
   x-engine-module-engine:
-    :path: "../node_modules/@zkty-team/x-engine-module-engine"
+    :path: "../../x-engine-module-engine"
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -56,10 +59,11 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
-  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WechatOpenSDK: 9b15110aba1d502456d8e83677357e6437f2e751
-  x-engine-module-engine: bb6baa38f8f9fffa7ade9fa0735b552a0934e7d4
+  x-engine-module-engine: 8ba6e586a17ec766f5b7d24b784570672372652e
 
-PODFILE CHECKSUM: cdd7ea92aca68d19114b5e98f67b8e99bd194114
+PODFILE CHECKSUM: 7cfdb218310911eb26717124575f046c60afc9dc
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

@@ -9,8 +9,7 @@
 #import "__xengine__module_yjzdbill.h"
 #import <XEngineContext.h>
 #import <micros.h>
-#import <UIViewController+.h>
-#import <JSONToDictionary.h>
+ 
 #import <RecyleWebViewController.h>
 #import <XEngineWebView.h>
 #import <Unity.h>

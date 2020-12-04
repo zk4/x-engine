@@ -19,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,8 @@ public class XEngineWebActivity extends AppCompatActivity {
     private RelativeLayout mRoot;
     protected XEngineNavBar xEngineNavBar;
     private ImageView ivScreen;
+
+    private ProgressBar mProgressBar;
 
     public static final String URL = "x_engine_url";
     public static final String MICRO_APP_ID = "micro_app_id";
@@ -124,6 +127,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         xEngineNavBar = findViewById(R.id.nav_bar);
         mRoot = findViewById(R.id.content_root);
         ivScreen = findViewById(R.id.iv_screen);
+        mProgressBar = findViewById(R.id.pb_web_activity);
         mMicroAppId = getIntent().getStringExtra(MICRO_APP_ID);
         indexUrl = getIntent().getStringExtra(INDEX_URL);
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
@@ -397,6 +401,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         showScreenCapture(true);
     }
 
+    private boolean isFirstReceiveTitle = true;
 
     class MyWebChromeClient extends WebChromeClient {
 
@@ -404,13 +409,22 @@ public class XEngineWebActivity extends AppCompatActivity {
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
             if (!TextUtils.isEmpty(webView.getUrl()) && webView.getUrl().startsWith("http") && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
-
-                if (xEngineNavBar.getLeftTitle() == null)
+                if (xEngineNavBar.getLeftTitle() == null || !isFirstReceiveTitle)//初次加载切已被设置title
                     xEngineNavBar.setLeftTitle(title);
-                xEngineNavBar.setLeftListener(view -> backUp());
             }
+            isFirstReceiveTitle = false;
         }
-
+//
+//        @Override
+//        public void onProgressChanged(WebView webView, int i) {
+//
+//            mProgressBar.setVisibility(View.VISIBLE);
+//            mProgressBar.setProgress(i);
+//            if (i == 100) {
+//                mProgressBar.setVisibility(View.GONE);
+//            }
+//            super.onProgressChanged(webView, i);
+//        }
 
         @Override
         public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {

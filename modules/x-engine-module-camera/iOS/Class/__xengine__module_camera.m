@@ -73,7 +73,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     };
     [actionHandlers addObject:cameraHandler];
     [actionHandlers addObject:photoHandler];
-    [[Unity sharedInstance].getCurrentVC showActionSheetWithTitle:@"" message:@"" cancelTitle:@"取消" sureTitles:@[@"拍照",@"相册"] cancelHandler:^(UIAlertAction * _Nonnull action) {
+    [[Unity sharedInstance].getCurrentVC showActionSheetWithTitle:nil message:nil cancelTitle:@"取消" sureTitles:@[@"拍照",@"相册"] cancelHandler:^(UIAlertAction * _Nonnull action) {
 
     } sureHandlers:actionHandlers];
 }

@@ -1,8 +1,7 @@
 
 
 **基座扫描测试**
-<div id='modulename' style='display:none'>router</div>
-<img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
+<div id='modulename' style='display:none'>router</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
 <a id='qrlink' href="about:none">link of QR</a>
 
 统一所有的跳转, router 与 nav 在路由功能有一些重叠的地方. 但 nav 更加关注于微应用内的路由. 而 router 更关注应用间的路由.

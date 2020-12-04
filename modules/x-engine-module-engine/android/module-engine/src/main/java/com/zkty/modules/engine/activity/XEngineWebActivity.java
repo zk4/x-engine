@@ -131,6 +131,9 @@ public class XEngineWebActivity extends AppCompatActivity {
         xEngineNavBar.setLeftListener(view -> {
             backUp();
         });
+        if (TextUtils.isEmpty(mMicroAppId)) {
+            xEngineNavBar.setLeft2Listener(view -> finish());
+        }
 
 
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);

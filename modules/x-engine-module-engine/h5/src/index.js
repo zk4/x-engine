@@ -1,4 +1,4 @@
-import dsbridge from "dsbridge";
+import dsbridge from "./dsbridge";
 const module_names = new Set([]);
 const patch = {}
 
@@ -22,8 +22,8 @@ let xengine = {
   patch   : patch,
   platfrom: platform(),
   hybrid  : true,
-  bridge  :dsbridge,
-  use     :use
+  bridge  : dsbridge,
+  use     : use
 };
 
 function use(ns,funcs){
@@ -51,9 +51,9 @@ function use(ns,funcs){
           const warning_msg = "x-engine 0.1.0 将不再支持 promise,改用参数里的　__ret__做为异步返回值,以支持多次返回.或者直接调用函数同步返回";
           console.error(warning_msg);
           xengine.bridge.call(ns+"."+funcname, args, function (res) {
+            // only resolve once
             resolve(res);
-            if(args['__ret__'])
-            {
+            if(args['__ret__']){
               return args['__ret__'](res)
             }
           })

@@ -15,6 +15,7 @@
 
         <activity
             android:name="com.zkty.modules.engine.activity.XEngineWebActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/TranTheme" />
 
         <activity

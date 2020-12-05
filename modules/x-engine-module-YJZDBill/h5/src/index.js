@@ -5,13 +5,17 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
 
     return  xengine.use("com.zkty.module.yjzdbill", 
     [
+  {
+    "name": "echo",
+    "default_args": null
+  },
   {
     "name": "YJBillPayment",
     "default_args": {

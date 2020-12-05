@@ -1,4 +1,4 @@
-// 命名空间
+//命名空间 
 const moduleID = "com.zkty.module.yjzdbill";
 
 // 支付dto
@@ -15,15 +15,11 @@ interface YJBillDTO {
   appScheme:string;
   //支付业务， 是否是 B端调用，  true为B， false为C
   payType:boolean;
-  // 当前支付状态回调函数
-  __event__: (string)=>void,
 }
 // 退款dto
 interface YJBillRefundDTO {
   //退款订单编号
   refundOrderNo:string;
-  // 当前退款状态回调函数
-  __event__: (string)=>void,
 }
 
 //返回状态dto
@@ -43,6 +39,26 @@ interface YJBillListDTO {
   //支付业务， 是否是 B端调用，  true为B， false为C
   payType:boolean;
 }
+interface ContinousDTO {
+  __event__:(string)=>{}
+}
+function echo(args:ContinousDTO):string{
+  window.echo = () => {
+    yjzdbill
+      .echo({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+      //.then((res) => {
+        //document.getElementById("debug_text").innerText = JSON.stringify(res);
+      //});
+  };
+}
 
 //支付
 function YJBillPayment(
@@ -52,21 +68,17 @@ function YJBillPayment(
     tradeMerCstNo: "8377707718294634760",
     billNo:'022020120416543228724452ba399222',
     appScheme:'zdsdk',
-    payType:false,
-    __event__:(string)=>{}
+    payType:false
   }
 ):YJBillRetDTO {
   window.YJBillPayment = () => {
     yjzdbill
       .YJBillPayment({
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = JSON.stringify(res);
-        },
-      })
-      .then((res) => {
-        console.log(JSON.stringify(res));
+        __ret__:(res)=>{
+                  console.log(JSON.stringify(res));
         document.getElementById("debug_text").innerText = JSON.stringify(res);
-      });
+        }
+      })
   };
 }
 

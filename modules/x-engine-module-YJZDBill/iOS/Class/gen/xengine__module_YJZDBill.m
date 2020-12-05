@@ -13,15 +13,13 @@
    
    
    
-   
    	return NO;
     }
 @end
     
   
 @implementation YJBillRefundDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
     
@@ -40,6 +38,12 @@
     }
 @end
     
+  
+@implementation ContinousDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
 
 
 
@@ -55,6 +59,14 @@
         return @"com.zkty.module.yjzdbill";
     }
     
+    - (void) echo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _echo:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
     - (void) YJBillPayment:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           YJBillDTO* dto = [self convert:dict clazz:YJBillDTO.class];

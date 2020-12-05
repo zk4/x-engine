@@ -8,6 +8,7 @@
 @property (nonatomic, strong) XEngineWebView * webview;
 @property (nonatomic, assign) BOOL isHiddenNavbar;
 
++ (XEngineWebView*) webview;
 - (instancetype)initWithUrl:(NSString *)fileUrl;
 - (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath;
 - (void)loadFileUrl;

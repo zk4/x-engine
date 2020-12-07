@@ -24,14 +24,14 @@ let xengine = {
   hybrid  : true,
   bridge  : dsbridge,
   use     : use,
-  register: register,
-  unregister: unregister
+  broadcastOn: broadcastOn,
+  broadcastOff: broadcastOff
 };
-function unregister(){
+function broadcastOff(){
     xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }
 
-function register(eventcb){
+function broadcastOn(eventcb){
   //use("com.zkty.module.engine","broadcast")
     xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
         return eventcb(res);

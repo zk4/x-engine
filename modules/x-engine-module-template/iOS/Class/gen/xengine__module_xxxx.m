@@ -32,12 +32,6 @@
     }
 @end
     
-  
-@implementation CustomEvent
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
 
 
 
@@ -53,16 +47,15 @@
         return @"com.zkty.module.xxxx";
     }
     
-    - (void) registerEvent:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) broadcastOn:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          CustomEvent* dto = [self convert:dict clazz:CustomEvent.class];
-          [self _registerEvent:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          [self _broadcastOn:^(BOOL complete) {
+                 completionHandler(nil,complete); 
           }];
       }
-    - (void) unregisterEvent:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) broadcastOff:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _unregisterEvent:^(BOOL complete) {
+          [self _broadcastOff:^(BOOL complete) {
                  completionHandler(nil,complete); 
           }];
       }
@@ -76,14 +69,6 @@
 
           ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
           [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) xengine_on_message:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          MsgPayloadDTO* dto = [self convert:dict clazz:MsgPayloadDTO.class];
-          [self _xengine_on_message:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

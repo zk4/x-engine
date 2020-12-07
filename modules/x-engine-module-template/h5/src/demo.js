@@ -3,15 +3,15 @@ import xxxx from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
 
-  window.registerEvent = (...args) => {
-    xengine.register(function(res){
+  window.broadcastOn = (...args) => {
+    xengine.broadcastOn(function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
     })
   };
 
 
-  window.unregisterEvent = () => {
-    xengine.unregister()
+  window.broadcastOff = () => {
+    xengine.broadcastOff()
   };
 
   window.triggerNativeBroadCast = () => {
@@ -30,19 +30,6 @@ import xengine from "@zkty-team/x-engine-module-engine";
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
         return res;
-          }
-        }
-      )
-  };
-
-  window.xengine_on_message = () => {
-    xxxx
-      .xengine_on_message({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-          },
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
           }
         }
       )

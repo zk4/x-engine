@@ -49,16 +49,11 @@
     public String __ret__;
   }
   
-  class CustomEvent {
-    public String eventName;
-  }
-  
   interface xengine__module_xxxx_i {
-    public void _registerEvent(CustomEvent dto, final CompletionHandler<Nullable> handler);
-public void _unregisterEvent(final CompletionHandler<Nullable> handler);
+    public void _broadcastOn(final CompletionHandler<Nullable> handler);
+public void _broadcastOff(final CompletionHandler<Nullable> handler);
 public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
 public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
-public void _xengine_on_message(MsgPayloadDTO dto, final CompletionHandler<String> handler);
 public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _noArgNoRet(final CompletionHandler<Nullable> handler);
 public void _noArgRetPrimitive(final CompletionHandler<String> handler);
@@ -76,9 +71,8 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
     }
   
     @JavascriptInterface
-    final public void registerEvent(JSONObject obj, final CompletionHandler<Object> handler) {
-      CustomEvent data= convert(obj,CustomEvent.class);
-      _registerEvent(data, new CompletionHandler<Nullable>() {
+    final public void broadcastOn(JSONObject obj, final CompletionHandler<Object> handler) {
+      _broadcastOn(new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -90,8 +84,8 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
     }
 
     @JavascriptInterface
-    final public void unregisterEvent(JSONObject obj, final CompletionHandler<Object> handler) {
-      _unregisterEvent(new CompletionHandler<Nullable>() {
+    final public void broadcastOff(JSONObject obj, final CompletionHandler<Object> handler) {
+      _broadcastOff(new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -119,20 +113,6 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
     final public void repeatReturn__ret__(JSONObject obj, final CompletionHandler<Object> handler) {
       ContinousDTO data= convert(obj,ContinousDTO.class);
       _repeatReturn__ret__(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void xengine_on_message(JSONObject obj, final CompletionHandler<Object> handler) {
-      MsgPayloadDTO data= convert(obj,MsgPayloadDTO.class);
-      _xengine_on_message(data, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override

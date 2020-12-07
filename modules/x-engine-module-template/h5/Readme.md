@@ -6,15 +6,15 @@ npm install @zkty-team/x-engine-module-xxxx
 
 
 
-## registerEvent
+## broadcastOn
 
 
 
 **demo**
 ``` js
 {
-  window.registerEvent = (...args) => {
-    xengine.register(function(res){
+  window.broadcastOn = (...args) => {
+    xengine.broadcastOn(function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
     })
   };
@@ -23,22 +23,20 @@ npm install @zkty-team/x-engine-module-xxxx
 ``` 
 
 	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| eventName | string |  | this_is_customEvent |  |
+**无参数**
 
 
-## unregisterEvent
+
+
+## broadcastOff
 
 
 
 **demo**
 ``` js
 {
-  window.unregisterEvent = () => {
-    xengine.unregister()
+  window.broadcastOff = () => {
+    xengine.broadcastOff()
   };
 }
 ``` 
@@ -100,41 +98,6 @@ npm install @zkty-team/x-engine-module-xxxx
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ |  | true |  |  |
-
-
-## xengine_on_message
-
-
-
-**demo**
-``` js
-{
-  window.xengine_on_message = () => {
-    xxxx
-      .xengine_on_message({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-          },
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
-  };
-}
-``` 
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| type | string |  |  |  |
-| args | Map\<string,string\> | true |  |  |
-| sender | string | true |  |  |
-| receiver | Array\<string\> | true |  |  |
-| \_\_event\_\_ |  |  |  |  |
-| \_\_ret\_\_ |  |  |  |  |
 
 
 ## ReturnInPromiseThen

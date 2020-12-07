@@ -25,20 +25,17 @@ interface MsgPayloadDTO{
   __event__: (string)=>void,
   __ret__: (string)=>void
 }
-interface CustomEvent {
-  eventName: string
-}
-function registerEvent(args: CustomEvent={eventName:"this_is_customEvent"}){
-  window.registerEvent = (...args) => {
-    xengine.register(function(res){
+function broadcastOn(){
+  window.broadcastOn = (...args) => {
+    xengine.broadcastOn(function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
     })
   };
 
 }
-function unregisterEvent(){
-  window.unregisterEvent = () => {
-    xengine.unregister()
+function broadcastOff(){
+  window.broadcastOff = () => {
+    xengine.broadcastOff()
   };
 }
 function triggerNativeBroadCast(){
@@ -65,20 +62,6 @@ function repeatReturn__ret__(args:ContinousDTO):string{
   };
 }
 
-function xengine_on_message(args:MsgPayloadDTO):string{
-  window.xengine_on_message = () => {
-    xxxx
-      .xengine_on_message({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-          },
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
-  };
-}
 
 function ReturnInPromiseThen(args:ContinousDTO):string{
   window.ReturnInPromiseThen = () => {

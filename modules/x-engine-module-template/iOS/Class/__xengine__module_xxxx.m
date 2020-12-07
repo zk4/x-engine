@@ -125,12 +125,13 @@
 
  
 
-- (void)_registerEvent:(CustomEvent *)dto complete:(void (^)(BOOL))completionHandler {
+- (void)__broadcastOn:(void (^)(BOOL))completionHandler {
     completionHandler(TRUE);
 }
 
 - (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
-    [self broadcast:@[@"hello"]];
+    [self broadcast:@[@"hello",@"broadcast"]];
+    completionHandler(TRUE);
 }
 
  

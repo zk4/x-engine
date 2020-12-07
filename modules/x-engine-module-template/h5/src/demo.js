@@ -1,21 +1,20 @@
 
 import xxxx from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
-  window.registerEvent = () => {
-    xxxx.registerEvent("this_is_customEvent")
-    xengine.register("this_is_customEvent",function(res){
+
+
+  window.registerEvent = (...args) => {
+    xengine.register(function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
     })
   };
 
-  window.unregisterEvent = () => {
-    xengine.unregister("this_is_customEvent")
-  };
 
+    xengine.unregister()
 
-  window.callRegisterEvent = () => {
+  window.triggerNativeBroadCast = () => {
     xxxx
-      .callRegisterEvent()
+      .triggerNativeBroadCast()
   };
 
 

@@ -126,12 +126,11 @@
  
 
 - (void)_registerEvent:(CustomEvent *)dto complete:(void (^)(BOOL))completionHandler {
-    event = dto.eventName;
     completionHandler(TRUE);
 }
 
-- (void)_callRegisterEvent:(void (^)(BOOL))completionHandler {
-    [self callJS:event args:@[@"hello"] retCB:^(id  _Nullable ret) {
+- (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
+    [self callJS:@"com.zkty.module.engine.broadcast" args:@[@"hello"] retCB:^(id  _Nullable ret) {
         
     }];
 }

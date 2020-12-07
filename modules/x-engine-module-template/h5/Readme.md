@@ -14,8 +14,9 @@ npm install @zkty-team/x-engine-module-xxxx
 ``` js
 {
   window.registerEvent = (...args) => {
-    xxxx
-      .registerEvent(...args)
+    xengine.register(function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+    })
   };
 
 }
@@ -29,16 +30,33 @@ npm install @zkty-team/x-engine-module-xxxx
 | eventName | string |  | this_is_customEvent |  |
 
 
-## callRegisterEvent
+## unregisterEvent
 
 
 
 **demo**
 ``` js
 {
-  window.callRegisterEvent = () => {
+    xengine.unregister()
+}
+``` 
+
+	
+**无参数**
+
+
+
+
+## triggerNativeBroadCast
+
+
+
+**demo**
+``` js
+{
+  window.triggerNativeBroadCast = () => {
     xxxx
-      .callRegisterEvent()
+      .triggerNativeBroadCast()
   };
 
 }

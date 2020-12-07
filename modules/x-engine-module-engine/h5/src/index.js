@@ -27,12 +27,13 @@ let xengine = {
   register: register,
   unregister: unregister
 };
-function unregister(eventName){
-    xengine.bridge.unregister(eventName);
+function unregister(){
+    xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }
 
-function register(eventName,eventcb){
-    xengine.bridge.register(eventName, (res) => {
+function register(eventcb){
+  //use("com.zkty.module.engine","broadcast")
+    xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
         return eventcb(res);
     })
 }
@@ -44,32 +45,32 @@ function use(ns,funcs){
     console.log(ns+ ',注册成功')
 
     let _call = function(funcname,args){
-      if (args.hasOwnProperty('__event__')){
-         let eventcb = args['__event__'];
-         if(!isFunction(eventcb)) throw('__event__ 必须为函数');
-         args['__event__']  = ns+"."+funcname+'.__event__'
-          xengine.bridge.register(args['__event__'], (res) => {
-              return eventcb(res);
-          })
-      }
-      
-      if(funcname.startsWith('sync')){
-        return xengine.bridge.call(ns+"."+funcname,args);
-      }
-      else{
-        let p =new Promise((resolve,reject)=>{
-          const warning_msg = "x-engine 0.1.0 将不再支持 promise,改用参数里的　__ret__做为异步返回值,以支持多次返回.或者直接调用函数同步返回";
-          console.error(warning_msg);
-          xengine.bridge.call(ns+"."+funcname, args, function (res) {
-            // only resolve once
-            resolve(res);
-            if(args['__ret__']){
-              return args['__ret__'](res)
-            }
-          })
-        });
-        return p;
-      }
+        if (args.hasOwnProperty('__event__')){
+           let eventcb = args['__event__'];
+           if(!isFunction(eventcb)) throw('__event__ 必须为函数');
+           args['__event__']  = ns+"."+funcname+'.__event__'
+            xengine.bridge.register(args['__event__'], (res) => {
+                return eventcb(res);
+            })
+        }
+        
+        if(funcname.startsWith('sync')){
+          return xengine.bridge.call(ns+"."+funcname,args);
+        }
+        else{
+          let p =new Promise((resolve,reject)=>{
+            const warning_msg = "x-engine 0.1.0 将不再支持 promise,改用参数里的　__ret__做为异步返回值,以支持多次返回.或者直接调用函数同步返回";
+            console.error(warning_msg);
+            xengine.bridge.call(ns+"."+funcname, args, function (res) {
+              // only resolve once
+              resolve(res);
+              if(args['__ret__']){
+                return args['__ret__'](res)
+              }
+            })
+          });
+          return p;
+        }
     };
 
     return funcs.reduce((acc,cur,i)=>{

@@ -45,7 +45,10 @@
         - (void) _registerEvent:(CustomEvent*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-       - (void) _callRegisterEvent:(void (^)(BOOL complete)) completionHandler;
+       - (void) _unregisterEvent:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _triggerNativeBroadCast:(void (^)(BOOL complete)) completionHandler;
     
       @required 
         - (void) _xengine_on_message:(MsgPayloadDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;

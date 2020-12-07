@@ -30,15 +30,19 @@ interface CustomEvent {
 }
 function registerEvent(args: CustomEvent={eventName:"this_is_customEvent"}){
   window.registerEvent = (...args) => {
-    xxxx
-      .registerEvent(...args)
+    xengine.register(function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+    })
   };
 
 }
-function callRegisterEvent(){
-  window.callRegisterEvent = () => {
+function unregisterEvent(){
+    xengine.unregister()
+}
+function triggerNativeBroadCast(){
+  window.triggerNativeBroadCast = () => {
     xxxx
-      .callRegisterEvent()
+      .triggerNativeBroadCast()
   };
 
 }

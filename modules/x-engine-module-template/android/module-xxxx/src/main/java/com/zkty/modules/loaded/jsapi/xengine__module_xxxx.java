@@ -55,7 +55,8 @@
   
   interface xengine__module_xxxx_i {
     public void _registerEvent(CustomEvent dto, final CompletionHandler<Nullable> handler);
-public void _callRegisterEvent(final CompletionHandler<Nullable> handler);
+public void _unregisterEvent(final CompletionHandler<Nullable> handler);
+public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
 public void _xengine_on_message(MsgPayloadDTO dto, final CompletionHandler<String> handler);
 public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
@@ -89,8 +90,21 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
     }
 
     @JavascriptInterface
-    final public void callRegisterEvent(JSONObject obj, final CompletionHandler<Object> handler) {
-      _callRegisterEvent(new CompletionHandler<Nullable>() {
+    final public void unregisterEvent(JSONObject obj, final CompletionHandler<Object> handler) {
+      _unregisterEvent(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void triggerNativeBroadCast(JSONObject obj, final CompletionHandler<Object> handler) {
+      _triggerNativeBroadCast(new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

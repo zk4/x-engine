@@ -60,9 +60,15 @@
              completionHandler(nil ,complete);
           }];
       }
-    - (void) callRegisterEvent:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) unregisterEvent:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _callRegisterEvent:^(BOOL complete) {
+          [self _unregisterEvent:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) triggerNativeBroadCast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _triggerNativeBroadCast:^(BOOL complete) {
                  completionHandler(nil,complete); 
           }];
       }

@@ -19,7 +19,11 @@ function osCheck() {
     }
   },
   {
-    "name": "callRegisterEvent",
+    "name": "unregisterEvent",
+    "default_args": {}
+  },
+  {
+    "name": "triggerNativeBroadCast",
     "default_args": {}
   },
   {

@@ -27,8 +27,14 @@
     public String __event__;
   }
   
+  class ContinousDTO {
+    public String __event__;
+  }
+  
   interface xengine__module_xxxx_i {
-    public void _noArgNoRet(final CompletionHandler<Nullable> handler);
+    public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
+public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
+public void _noArgNoRet(final CompletionHandler<Nullable> handler);
 public void _noArgRetPrimitive(final CompletionHandler<String> handler);
 public void _noArgRetSheetDTO(final CompletionHandler<SheetDTO> handler);
 public void _haveArgNoRet(SheetDTO dto, final CompletionHandler<Nullable> handler);
@@ -44,6 +50,34 @@ public void _showActionSheet(SheetDTO dto, final CompletionHandler<Nullable> han
       return "com.zkty.module.xxxx";
     }
   
+    @JavascriptInterface
+    final public void repeatReturn__ret__(JSONObject obj, final CompletionHandler<Object> handler) {
+      ContinousDTO data= convert(obj,ContinousDTO.class);
+      _repeatReturn__ret__(data, new CompletionHandler<String>() {
+        @Override
+        public void complete(String retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(String value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void ReturnInPromiseThen(JSONObject obj, final CompletionHandler<Object> handler) {
+      ContinousDTO data= convert(obj,ContinousDTO.class);
+      _ReturnInPromiseThen(data, new CompletionHandler<String>() {
+        @Override
+        public void complete(String retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(String value) { handler.setProgressData(value); }
+      });
+
+    }
+
     @JavascriptInterface
     final public void noArgNoRet(JSONObject obj, final CompletionHandler<Object> handler) {
       _noArgNoRet(new CompletionHandler<Nullable>() {

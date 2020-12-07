@@ -16,6 +16,13 @@
 #import <Unity.h>
 
 @interface __xengine__module_xxxx()
+{
+    NSTimer * timer ;
+    ContinousDTO* adto;
+    void(^hanlder)(id value,BOOL isComplete);
+    int value;
+
+}
 @end
 
 @implementation __xengine__module_xxxx
@@ -74,22 +81,50 @@
 - (void)_noArgRetSheetDTO:(void (^)(SheetDTO *, BOOL))completionHandler {
     
 }
+ 
 
-- (void)_showActionSheet:(SheetDTO *)dto complete:(void (^)(BOOL))completionHandler {
-        NSMutableArray *actionHandlers = [NSMutableArray array];
-        for (int i = 0; i < dto.itemList.count; i++)
-        {
-            ActionHandler handler = ^(UIAlertAction * _Nonnull action){
-                NSLog(@"%d",i);
-                [self callJsByFuncName:dto.__event__ arguments:@[@(i),@(i)] completionHandler:nil];
-            };
-            [actionHandlers addObject:handler];
-        }
-        UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
-    
-        [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {} sureHandlers:actionHandlers];
-        completionHandler(YES);
+- (void)_ReturnInPromiseThen:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+     
 }
+
+-(void)onTimer:t{
+    if(value!=-1){
+
+
+        ContinousDTO* dto= (ContinousDTO*) adto;
+        value--;
+        NSString* v= [NSString stringWithFormat:@"%d",value];
+            [[RecyleWebViewController webview] callHandler:dto.__event__ arguments:v completionHandler:^(id  _Nullable value) {
+                //处理返回值
+                NSLog(@"%@",value);
+            }];
+    }else{
+        hanlder(0,YES);
+        hanlder=nil;
+        [timer invalidate];
+        timer=nil;
+    }
+}
+
+- (void)_repeatReturn__ret__:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    adto=dto;
+    value=10;
+    hanlder=completionHandler;
+    if(hanlder){
+        hanlder(0,YES);
+    }
+    if(timer){
+        [timer invalidate];
+    }
+    timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
+                                              target:self
+                                            selector:@selector(onTimer:)
+                                            userInfo:dto
+                                             repeats:YES];
+
+
+}
+
 
 
 

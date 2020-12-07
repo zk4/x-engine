@@ -15,6 +15,12 @@
     }
 @end
     
+  
+@implementation ContinousDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
 
 
 
@@ -30,6 +36,22 @@
         return @"com.zkty.module.xxxx";
     }
     
+    - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) ReturnInPromiseThen:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _ReturnInPromiseThen:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
     - (void) noArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           [self _noArgNoRet:^(BOOL complete) {

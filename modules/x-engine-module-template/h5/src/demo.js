@@ -1,6 +1,32 @@
 
 import xxxx from './index.js'
 
+  window.repeatReturn__ret__ = () => {
+    xxxx
+      .repeatReturn__ret__({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+  };
+
+  window.echo = () => {
+    xxxx
+      .ReturnInPromiseThen({
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+
     window.noArgNoRet = (...args) => {
     xxxx
       .noArgNoRet(...args)

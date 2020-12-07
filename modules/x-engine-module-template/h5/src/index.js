@@ -13,6 +13,14 @@ function osCheck() {
     return  xengine.use("com.zkty.module.xxxx", 
     [
   {
+    "name": "repeatReturn__ret__",
+    "default_args": null
+  },
+  {
+    "name": "ReturnInPromiseThen",
+    "default_args": null
+  },
+  {
     "name": "noArgNoRet",
     "default_args": {}
   },

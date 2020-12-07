@@ -7,6 +7,7 @@
 #import "JSONModel.h"
 
 @protocol SheetDTO;
+@protocol ContinousDTO;
 
 @interface SheetDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -16,9 +17,20 @@
 @end
     
 
+@interface ContinousDTO: JSONModel
+  	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
 
 @protocol xengine__module_xxxx_protocol
        @required 
+        - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+      @required 
+        - (void) _ReturnInPromiseThen:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+      @required 
        - (void) _noArgNoRet:(void (^)(BOOL complete)) completionHandler;
     
       @required 

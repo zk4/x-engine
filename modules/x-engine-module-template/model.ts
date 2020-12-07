@@ -13,6 +13,39 @@ interface SheetDTO {
   __event__: (index:string)=>void,
 }
 
+interface ContinousDTO {
+  __event__:(string)=>{}
+}
+
+function repeatReturn__ret__(args:ContinousDTO):string{
+  window.repeatReturn__ret__ = () => {
+    xxxx
+      .repeatReturn__ret__({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+  };
+}
+function ReturnInPromiseThen(args:ContinousDTO):string{
+  window.echo = () => {
+    xxxx
+      .ReturnInPromiseThen({
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+
 // 无参数无返回值
 function noArgNoRet(){
     window.noArgNoRet = (...args) => {

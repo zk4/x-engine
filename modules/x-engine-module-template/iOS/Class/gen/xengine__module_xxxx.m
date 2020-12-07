@@ -21,6 +21,17 @@
     }
 @end
     
+  
+@implementation MsgPayloadDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	if ([propertyName isEqualToString:@"args"]) { return YES; }
+   	if ([propertyName isEqualToString:@"sender"]) { return YES; }
+   	if ([propertyName isEqualToString:@"receiver"]) { return YES; }
+   
+   	return NO;
+    }
+@end
+    
 
 
 
@@ -36,6 +47,14 @@
         return @"com.zkty.module.xxxx";
     }
     
+    - (void) xengine_on_message:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          MsgPayloadDTO* dto = [self convert:dict clazz:MsgPayloadDTO.class];
+          [self _xengine_on_message:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
     - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
@@ -92,12 +111,5 @@
             completionHandler(result,complete);
           }];
         
-      }
-    - (void) showActionSheet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
-          [self _showActionSheet:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
-          }];
       }
   @end

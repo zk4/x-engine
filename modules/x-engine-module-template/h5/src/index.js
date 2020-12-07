@@ -13,6 +13,10 @@ function osCheck() {
     return  xengine.use("com.zkty.module.xxxx", 
     [
   {
+    "name": "xengine_on_message",
+    "default_args": null
+  },
+  {
     "name": "repeatReturn__ret__",
     "default_args": null
   },
@@ -48,19 +52,6 @@ function osCheck() {
     "name": "haveArgRetSheetDTO",
     "default_args": {
       "title": "abc"
-    }
-  },
-  {
-    "name": "showActionSheet",
-    "default_args": {
-      "title": "hello",
-      "itemList": [
-        "hello",
-        "world",
-        "he"
-      ],
-      "content": "content",
-      "__event__": null
     }
   }
 ]

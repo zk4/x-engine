@@ -6,6 +6,41 @@ npm install @zkty-team/x-engine-module-xxxx
 
 
 
+## xengine_on_message
+
+
+
+**demo**
+``` js
+{
+  window.xengine_on_message = () => {
+    xxxx
+      .xengine_on_message({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| type | string |  |  |  |
+| args | Map\<string,string\> | true |  |  |
+| sender | string | true |  |  |
+| receiver | Array\<string\> | true |  |  |
+| \_\_event\_\_ |  |  |  |  |
+| \_\_ret\_\_ |  |  |  |  |
+
+
 ## repeatReturn__ret__
 
 
@@ -17,10 +52,12 @@ npm install @zkty-team/x-engine-module-xxxx
     xxxx
       .repeatReturn__ret__({
           __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        return res;
           },
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
+        return res;
           }
         }
       )
@@ -158,9 +195,9 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | hello |  标题 |
-| itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | content |  内容 |
+| title | string |  | abc |  标题 |
+| itemList | Array\<string\> | true |  |  子标题? |
+| content | string | true |  |  内容 |
 | \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
 
 
@@ -186,9 +223,9 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | hello |  标题 |
-| itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | content |  内容 |
+| title | string |  | abc |  标题 |
+| itemList | Array\<string\> | true |  |  子标题? |
+| content | string | true |  |  内容 |
 | \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
 
 
@@ -214,57 +251,9 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | hello |  标题 |
-| itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | content |  内容 |
-| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
-
-
-## showActionSheet
-
-
-系统弹出框： 
-
-**demo** 
-``` js 
-ui.showActionSheet({
-    title: "hello",
-    itemList: ["a", "b", "c"],
-    content: "content",
-    __event__: null,
-  })
-```
-
-
-**demo**
-``` js
-{
-  window.showActionSheet = (...args) => {
-    xxxx
-      .showActionSheet({
-        title: "hello",
-        itemList: ["hello", "world", "he"],
-        content: "content",
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = res;
-        },
-        ...args
-      })
-      .then((res) => {
-        //document.getElementById("debug_text").innerText = res;
-      });
-  };
-}
-``` 
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | hello |  标题 |
-| itemList | Array\<string\> | true | ["hello","world","he"] |  子标题? |
-| content | string | true | content |  内容 |
+| title | string |  | abc |  标题 |
+| itemList | Array\<string\> | true |  |  子标题? |
+| content | string | true |  |  内容 |
 | \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
 
     

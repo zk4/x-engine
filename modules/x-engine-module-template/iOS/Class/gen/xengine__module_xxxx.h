@@ -8,6 +8,7 @@
 
 @protocol SheetDTO;
 @protocol ContinousDTO;
+@protocol MsgPayloadDTO;
 
 @interface SheetDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -22,9 +23,22 @@
 @end
     
 
+@interface MsgPayloadDTO: JSONModel
+  	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
+   	@property(nonatomic,copy) NSString* sender;
+   	@property(nonatomic,strong) NSArray<NSString*>* receiver;
+   	@property(nonatomic,strong) NSString* __event__;
+   	@property(nonatomic,strong) NSString* __ret__;
+@end
+    
+
 
 @protocol xengine__module_xxxx_protocol
        @required 
+        - (void) _xengine_on_message:(MsgPayloadDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+      @required 
         - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
       @required 
@@ -48,9 +62,6 @@
       @required 
         - (void) _haveArgRetSheetDTO:(SheetDTO*) dto complete:(void (^)(SheetDTO* result,BOOL complete)) completionHandler;
 
-      @required 
-        - (void) _showActionSheet:(SheetDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
 @end
   
 

@@ -17,16 +17,40 @@ interface ContinousDTO {
   __event__:(string)=>{}
 }
 
-inteface Message
+interface MsgPayloadDTO{
+  type: string,
+  args?: Map<string,string>;
+  sender?: string,
+  receiver?: Array<string>,
+  __event__: (string)=>void,
+  __ret__: (string)=>void
+}
+function xengine_on_message(args:MsgPayloadDTO):string{
+  window.xengine_on_message = () => {
+    xxxx
+      .xengine_on_message({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+  };
+}
+
 function repeatReturn__ret__(args:ContinousDTO):string{
   window.repeatReturn__ret__ = () => {
     xxxx
       .repeatReturn__ret__({
           __ret__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        return res;
           },
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
+        return res;
           }
         }
       )
@@ -114,52 +138,3 @@ function haveArgRetSheetDTO(arg:SheetDTO={title:"abc"}):SheetDTO {
 }
 
 
-/*
-系统弹出框： 
-
-**demo** 
-``` js 
-ui.showActionSheet({
-    title: "hello",
-    itemList: ["a", "b", "c"],
-    content: "content",
-    __event__: null,
-  })
-```
-*/
-function showActionSheet(
-  sheetDTO: SheetDTO = {
-    title: "hello",
-    itemList: ["hello", "world", "he"],
-    content: "content",
-    __event__: null,
-  }
-){
-  window.showActionSheet = (...args) => {
-    xxxx
-      .showActionSheet({
-        title: "hello",
-        itemList: ["hello", "world", "he"],
-        content: "content",
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = res;
-        },
-        ...args
-      })
-      .then((res) => {
-        //document.getElementById("debug_text").innerText = res;
-      });
-  };
-}
-
-function testHelloButton(){
-    window.testHelloButton=()=>{
-      xxxx.showActionSheet(
-      	{title:"title",itemList:["a","b","c"],content:"content"}
-      )
-      .then(res=>{
-        document.getElementById("debug_text").innerText= res;
-      })
-    }
-
-}

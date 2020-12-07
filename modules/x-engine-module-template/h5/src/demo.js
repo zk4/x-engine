@@ -1,14 +1,29 @@
 
 import xxxx from './index.js'
 
+  window.xengine_on_message = () => {
+    xxxx
+      .xengine_on_message({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+  };
+
   window.repeatReturn__ret__ = () => {
     xxxx
       .repeatReturn__ret__({
           __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        return res;
           },
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
+        return res;
           }
         }
       )
@@ -75,31 +90,5 @@ import xxxx from './index.js'
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });
   };
-
-  window.showActionSheet = (...args) => {
-    xxxx
-      .showActionSheet({
-        title: "hello",
-        itemList: ["hello", "world", "he"],
-        content: "content",
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = res;
-        },
-        ...args
-      })
-      .then((res) => {
-        //document.getElementById("debug_text").innerText = res;
-      });
-  };
-
-    window.testHelloButton=()=>{
-      xxxx.showActionSheet(
-      	{title:"title",itemList:["a","b","c"],content:"content"}
-      )
-      .then(res=>{
-        document.getElementById("debug_text").innerText= res;
-      })
-    }
-
 
     

@@ -28,30 +28,6 @@
 @implementation __xengine__module_xxxx
  
  
-
-//- (void)_hello2:(SheetDTO *)dto complete:(void (^)(MoreDTO*, BOOL))completionHandler {
-//         NSLog(@"%@",dto);
-//
-//    NSMutableArray *actionHandlers = [NSMutableArray array];
-//    for (int i = 0; i < dto.itemList.count; i++)
-//    {
-//        ActionHandler handler = ^(UIAlertAction * _Nonnull action){
-//            NSLog(@"%d",i);
-//            MoreDTO* d = [MoreDTO new];
-//            d.title=[NSString stringWithFormat:@"%d",i];
-//            completionHandler(d, YES);
-//        };
-//        [actionHandlers addObject:handler];
-//    }
-//    UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
-//
-//    [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {
-//
-//    } sureHandlers:actionHandlers];
-//
-//}
-
- 
   
 
 - (void)_abc:(NSString *)dto complete:(void (^)(BOOL))completionHandler {
@@ -91,6 +67,24 @@
 
 -(void)onTimer:t{
     if(value!=-1){
+        ContinousDTO* dto= (ContinousDTO*) adto;
+        value--;
+        NSString* v= [NSString stringWithFormat:@"%d",value];
+        // 主动调用 js
+        [self callJS:dto.__event__ args:v retCB:^(id  _Nullable value) {
+            //处理__event__ 的返回值
+            NSLog(@"%@",value);
+        }];
+    }else{
+        hanlder(0,YES);
+        hanlder=nil;
+        [timer invalidate];
+        timer=nil;
+    }
+}
+
+-(void)sendingMesg{
+    if(value!=-1){
 
 
         ContinousDTO* dto= (ContinousDTO*) adto;
@@ -123,11 +117,14 @@
                                             selector:@selector(onTimer:)
                                             userInfo:dto
                                              repeats:YES];
+}
+ 
 
-
+- (void)_xengine_on_message:(MsgPayloadDTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+     
 }
 
-
+ 
 
 
 

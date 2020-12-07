@@ -31,8 +31,26 @@
     public String __event__;
   }
   
+  class MsgPayloadDTO {
+    public String type;
+
+    @Optional
+		public Map<String,String> args;
+
+    @Optional
+		public String sender;
+
+    @Optional
+		public List<String> receiver;
+
+    public String __event__;
+
+    public String __ret__;
+  }
+  
   interface xengine__module_xxxx_i {
-    public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
+    public void _xengine_on_message(MsgPayloadDTO dto, final CompletionHandler<String> handler);
+public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _noArgNoRet(final CompletionHandler<Nullable> handler);
 public void _noArgRetPrimitive(final CompletionHandler<String> handler);
@@ -40,7 +58,6 @@ public void _noArgRetSheetDTO(final CompletionHandler<SheetDTO> handler);
 public void _haveArgNoRet(SheetDTO dto, final CompletionHandler<Nullable> handler);
 public void _haveArgRetPrimitive(SheetDTO dto, final CompletionHandler<String> handler);
 public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> handler);
-public void _showActionSheet(SheetDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -50,6 +67,20 @@ public void _showActionSheet(SheetDTO dto, final CompletionHandler<Nullable> han
       return "com.zkty.module.xxxx";
     }
   
+    @JavascriptInterface
+    final public void xengine_on_message(JSONObject obj, final CompletionHandler<Object> handler) {
+      MsgPayloadDTO data= convert(obj,MsgPayloadDTO.class);
+      _xengine_on_message(data, new CompletionHandler<String>() {
+        @Override
+        public void complete(String retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(String value) { handler.setProgressData(value); }
+      });
+
+    }
+
     @JavascriptInterface
     final public void repeatReturn__ret__(JSONObject obj, final CompletionHandler<Object> handler) {
       ContinousDTO data= convert(obj,ContinousDTO.class);
@@ -155,20 +186,6 @@ public void _showActionSheet(SheetDTO dto, final CompletionHandler<Nullable> han
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(SheetDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void showActionSheet(JSONObject obj, final CompletionHandler<Object> handler) {
-      SheetDTO data= convert(obj,SheetDTO.class);
-      _showActionSheet(data, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

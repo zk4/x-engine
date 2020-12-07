@@ -1,13 +1,8 @@
-//
-//  __xengine__module_BaseModule.m
-//  UIModule
-
 #import "xengine__module_BaseModule.h"
 #import "Unity.h"
-//#import "UIViewController+.h"
 #import "JSONModel.h"
 #import <objc/message.h>
-//#import "RecyleWebViewController.h"
+#import "RecyleWebViewController.h"
 #import "XEngineWebView.h"
 
 @implementation xengine__module_BaseModule
@@ -117,4 +112,9 @@
 //    [webVC.webview callHandler:event arguments:arguments completionHandler:completionHandler];
 // }
 
+- (void) callJS:(NSString*)__event__ args:(id)args retCB:(void (^)(id  _Nullable ret)) retCB{
+    [[RecyleWebViewController webview] callHandler:__event__ arguments:args completionHandler:^(id  _Nullable value) {
+        retCB(value);
+    }];
+}
 @end

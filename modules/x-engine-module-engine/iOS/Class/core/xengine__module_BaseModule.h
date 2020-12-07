@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) callInternalMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler methodname:(NSString*) name argclass:(Class) argclass;
 
 //- (void) callJsByFuncName:event arguments:(NSArray*)arguments  completionHandler:(void (^)(id  _Nullable value)) completionHandler;
+- (void) callJS:(NSString*)__event__ args:(id)args retCB:(void (^)(id  _Nullable ret)) retCB;
+
 @end
 
 NS_ASSUME_NONNULL_END

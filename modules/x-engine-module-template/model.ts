@@ -17,12 +17,13 @@ interface ContinousDTO {
   __event__:(string)=>{}
 }
 
+inteface Message
 function repeatReturn__ret__(args:ContinousDTO):string{
   window.repeatReturn__ret__ = () => {
     xxxx
       .repeatReturn__ret__({
           __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
           },
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -32,7 +33,7 @@ function repeatReturn__ret__(args:ContinousDTO):string{
   };
 }
 function ReturnInPromiseThen(args:ContinousDTO):string{
-  window.echo = () => {
+  window.ReturnInPromiseThen = () => {
     xxxx
       .ReturnInPromiseThen({
           __event__:function(res){

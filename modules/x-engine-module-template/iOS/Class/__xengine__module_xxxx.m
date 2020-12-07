@@ -84,6 +84,8 @@
  
 
 - (void)_ReturnInPromiseThen:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    
+    completionHandler(@"hello,ret",TRUE);
      
 }
 

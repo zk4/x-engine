@@ -43,7 +43,7 @@ npm install @zkty-team/x-engine-module-xxxx
 **demo**
 ``` js
 {
-  window.echo = () => {
+  window.ReturnInPromiseThen = () => {
     xxxx
       .ReturnInPromiseThen({
           __event__:function(res){

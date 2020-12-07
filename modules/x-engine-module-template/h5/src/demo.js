@@ -14,7 +14,7 @@ import xxxx from './index.js'
       )
   };
 
-  window.echo = () => {
+  window.ReturnInPromiseThen = () => {
     xxxx
       .ReturnInPromiseThen({
           __event__:function(res){

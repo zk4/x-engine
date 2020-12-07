@@ -20,17 +20,25 @@ import xengine from "@zkty-team/x-engine-module-engine";
   };
 
 
-  window.repeatReturn__ret__ = () => {
+  window.repeatReturn__event__ = () => {
     xxxx
-      .repeatReturn__ret__({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-        return res;
-          },
+      .repeatReturn__event__({
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
         return res;
           }
+        }
+      )
+  };
+
+  window.repeatReturn__ret__ = () => {
+    xxxx
+      .repeatReturn__ret__(
+        {
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        return res;
+          },
         }
       )
   };

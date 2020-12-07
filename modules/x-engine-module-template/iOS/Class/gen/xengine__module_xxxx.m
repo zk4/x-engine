@@ -65,6 +65,14 @@
                  completionHandler(nil,complete); 
           }];
       }
+    - (void) repeatReturn__event__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _repeatReturn__event__:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
     - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];

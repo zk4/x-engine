@@ -45,6 +45,9 @@
        - (void) _triggerNativeBroadCast:(void (^)(BOOL complete)) completionHandler;
     
       @required 
+        - (void) _repeatReturn__event__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+      @required 
         - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
       @required 

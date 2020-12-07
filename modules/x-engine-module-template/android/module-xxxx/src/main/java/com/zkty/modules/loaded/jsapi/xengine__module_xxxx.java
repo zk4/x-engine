@@ -53,6 +53,7 @@
     public void _broadcastOn(final CompletionHandler<Nullable> handler);
 public void _broadcastOff(final CompletionHandler<Nullable> handler);
 public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
+public void _repeatReturn__event__(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _noArgNoRet(final CompletionHandler<Nullable> handler);
@@ -105,6 +106,20 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void repeatReturn__event__(JSONObject obj, final CompletionHandler<Object> handler) {
+      ContinousDTO data= convert(obj,ContinousDTO.class);
+      _repeatReturn__event__(data, new CompletionHandler<String>() {
+        @Override
+        public void complete(String retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(String value) { handler.setProgressData(value); }
       });
 
     }

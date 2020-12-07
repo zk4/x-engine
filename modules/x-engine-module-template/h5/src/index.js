@@ -25,6 +25,10 @@ function osCheck() {
     "default_args": {}
   },
   {
+    "name": "repeatReturn__event__",
+    "default_args": null
+  },
+  {
     "name": "repeatReturn__ret__",
     "default_args": null
   },

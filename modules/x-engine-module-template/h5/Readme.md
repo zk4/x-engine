@@ -68,6 +68,34 @@ npm install @zkty-team/x-engine-module-xxxx
 
 
 
+## repeatReturn__event__
+
+
+
+**demo**
+``` js
+{
+  window.repeatReturn__event__ = () => {
+    xxxx
+      .repeatReturn__event__({
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        return res;
+          }
+        }
+      )
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| \_\_event\_\_ |  | true |  |  |
+
+
 ## repeatReturn__ret__
 
 
@@ -77,15 +105,12 @@ npm install @zkty-team/x-engine-module-xxxx
 {
   window.repeatReturn__ret__ = () => {
     xxxx
-      .repeatReturn__ret__({
+      .repeatReturn__ret__(
+        {
           __ret__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
         return res;
           },
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-        return res;
-          }
         }
       )
   };

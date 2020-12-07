@@ -45,18 +45,27 @@ function triggerNativeBroadCast(){
   };
 
 }
-function repeatReturn__ret__(args:ContinousDTO):string{
-  window.repeatReturn__ret__ = () => {
+function repeatReturn__event__(args:ContinousDTO):string{
+  window.repeatReturn__event__ = () => {
     xxxx
-      .repeatReturn__ret__({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-        return res;
-          },
+      .repeatReturn__event__({
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
         return res;
           }
+        }
+      )
+  };
+}
+function repeatReturn__ret__(args:ContinousDTO):string{
+  window.repeatReturn__ret__ = () => {
+    xxxx
+      .repeatReturn__ret__(
+        {
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        return res;
+          },
         }
       )
   };

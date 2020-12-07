@@ -26,6 +26,7 @@ import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.exception.NoModuleIdException;
+import com.zkty.modules.engine.utils.AvatarUtils;
 import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.Utils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
@@ -72,7 +73,10 @@ public class XEngineWebView extends DWebView {
 
         loadLocalImg();
         // setErrorPage();
+
+        saveImg();
     }
+
 
     private void loadLocalImg() {
         setWebViewClient(new WebViewClient() {
@@ -103,7 +107,7 @@ public class XEngineWebView extends DWebView {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(s));
-                   mContext.startActivity(intent);
+                    mContext.startActivity(intent);
 
                     return true;
                 }
@@ -325,4 +329,24 @@ public class XEngineWebView extends DWebView {
     public String getCurrentUrl() {
         return this.currentUrl;
     }
+
+    private void saveImg() {
+
+        setOnLongClickListener(view -> {
+            HitTestResult result = getHitTestResult();
+            switch (result.getType()) {
+
+//                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
+                case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项 base64类型
+
+                    new Thread(() -> AvatarUtils.savePicture(mContext, result.getExtra())).start();
+                    break;
+
+            }
+
+
+            return false;
+        });
+    }
+
 }

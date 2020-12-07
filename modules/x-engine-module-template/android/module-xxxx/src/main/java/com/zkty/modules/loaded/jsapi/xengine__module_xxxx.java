@@ -28,7 +28,8 @@
   }
   
   class ContinousDTO {
-    public String __event__;
+    @Optional
+		public String __event__;
   }
   
   class MsgPayloadDTO {

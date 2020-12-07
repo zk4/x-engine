@@ -70,7 +70,7 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  |  |  |
+| \_\_event\_\_ |  | true |  |  |
 
 
 ## ReturnInPromiseThen
@@ -100,7 +100,7 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  |  |  |
+| \_\_event\_\_ |  | true |  |  |
 
 
 ## noArgNoRet

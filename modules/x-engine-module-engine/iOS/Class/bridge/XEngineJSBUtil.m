@@ -5,18 +5,24 @@
 #import "XEngineJSBUtil.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import "JSONModel.h"
+
 @implementation XEngineJSBUtil
-+ (NSString *)objToJsonString:(id)dict
++ (NSString *)objToJsonString:(id)object
 {
+  
+    if([object respondsToSelector:@selector(toJSONString)]){
+        return [object toJSONString];
+    }
+  
     NSString *jsonString = nil;
     NSError *error;
-  
     
-    if (![NSJSONSerialization isValidJSONObject:dict]) {
+    if (![NSJSONSerialization isValidJSONObject:object]) {
         return @"{}";
     }
     
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:object options:0 error:&error];
     if (! jsonData) {
         return @"{}";
     } else {

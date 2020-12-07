@@ -14,7 +14,7 @@ interface SheetDTO {
 }
 
 interface ContinousDTO {
-  __event__:(string)=>{}
+  __event__?:(string)=>{}
 }
 
 interface MsgPayloadDTO{

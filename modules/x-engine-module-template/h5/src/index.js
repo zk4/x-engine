@@ -27,11 +27,11 @@ function osCheck() {
     "default_args": {}
   },
   {
-    "name": "xengine_on_message",
+    "name": "repeatReturn__ret__",
     "default_args": null
   },
   {
-    "name": "repeatReturn__ret__",
+    "name": "xengine_on_message",
     "default_args": null
   },
   {

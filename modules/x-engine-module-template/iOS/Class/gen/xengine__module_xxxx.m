@@ -72,18 +72,18 @@
                  completionHandler(nil,complete); 
           }];
       }
-    - (void) xengine_on_message:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          MsgPayloadDTO* dto = [self convert:dict clazz:MsgPayloadDTO.class];
-          [self _xengine_on_message:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
     - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
           [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) xengine_on_message:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          MsgPayloadDTO* dto = [self convert:dict clazz:MsgPayloadDTO.class];
+          [self _xengine_on_message:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

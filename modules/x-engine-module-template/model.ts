@@ -37,7 +37,9 @@ function registerEvent(args: CustomEvent={eventName:"this_is_customEvent"}){
 
 }
 function unregisterEvent(){
+  window.unregisterEvent = () => {
     xengine.unregister()
+  };
 }
 function triggerNativeBroadCast(){
   window.triggerNativeBroadCast = () => {
@@ -46,21 +48,6 @@ function triggerNativeBroadCast(){
   };
 
 }
-function xengine_on_message(args:MsgPayloadDTO):string{
-  window.xengine_on_message = () => {
-    xxxx
-      .xengine_on_message({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-          },
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
-  };
-}
-
 function repeatReturn__ret__(args:ContinousDTO):string{
   window.repeatReturn__ret__ = () => {
     xxxx
@@ -77,6 +64,22 @@ function repeatReturn__ret__(args:ContinousDTO):string{
       )
   };
 }
+
+function xengine_on_message(args:MsgPayloadDTO):string{
+  window.xengine_on_message = () => {
+    xxxx
+      .xengine_on_message({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+          }
+        }
+      )
+  };
+}
+
 function ReturnInPromiseThen(args:ContinousDTO):string{
   window.ReturnInPromiseThen = () => {
     xxxx

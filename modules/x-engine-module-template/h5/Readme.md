@@ -37,7 +37,9 @@ npm install @zkty-team/x-engine-module-xxxx
 **demo**
 ``` js
 {
+  window.unregisterEvent = () => {
     xengine.unregister()
+  };
 }
 ``` 
 
@@ -66,6 +68,38 @@ npm install @zkty-team/x-engine-module-xxxx
 **无参数**
 
 
+
+
+## repeatReturn__ret__
+
+
+
+**demo**
+``` js
+{
+  window.repeatReturn__ret__ = () => {
+    xxxx
+      .repeatReturn__ret__({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        return res;
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        return res;
+          }
+        }
+      )
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| \_\_event\_\_ |  | true |  |  |
 
 
 ## xengine_on_message
@@ -101,38 +135,6 @@ npm install @zkty-team/x-engine-module-xxxx
 | receiver | Array\<string\> | true |  |  |
 | \_\_event\_\_ |  |  |  |  |
 | \_\_ret\_\_ |  |  |  |  |
-
-
-## repeatReturn__ret__
-
-
-
-**demo**
-``` js
-{
-  window.repeatReturn__ret__ = () => {
-    xxxx
-      .repeatReturn__ret__({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-        return res;
-          },
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-        return res;
-          }
-        }
-      )
-  };
-}
-``` 
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  | true |  |  |
 
 
 ## ReturnInPromiseThen

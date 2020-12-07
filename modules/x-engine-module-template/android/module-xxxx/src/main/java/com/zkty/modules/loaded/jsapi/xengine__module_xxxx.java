@@ -57,8 +57,8 @@
     public void _registerEvent(CustomEvent dto, final CompletionHandler<Nullable> handler);
 public void _unregisterEvent(final CompletionHandler<Nullable> handler);
 public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
-public void _xengine_on_message(MsgPayloadDTO dto, final CompletionHandler<String> handler);
 public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
+public void _xengine_on_message(MsgPayloadDTO dto, final CompletionHandler<String> handler);
 public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
 public void _noArgNoRet(final CompletionHandler<Nullable> handler);
 public void _noArgRetPrimitive(final CompletionHandler<String> handler);
@@ -116,9 +116,9 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
     }
 
     @JavascriptInterface
-    final public void xengine_on_message(JSONObject obj, final CompletionHandler<Object> handler) {
-      MsgPayloadDTO data= convert(obj,MsgPayloadDTO.class);
-      _xengine_on_message(data, new CompletionHandler<String>() {
+    final public void repeatReturn__ret__(JSONObject obj, final CompletionHandler<Object> handler) {
+      ContinousDTO data= convert(obj,ContinousDTO.class);
+      _repeatReturn__ret__(data, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override
@@ -130,9 +130,9 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
     }
 
     @JavascriptInterface
-    final public void repeatReturn__ret__(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _repeatReturn__ret__(data, new CompletionHandler<String>() {
+    final public void xengine_on_message(JSONObject obj, final CompletionHandler<Object> handler) {
+      MsgPayloadDTO data= convert(obj,MsgPayloadDTO.class);
+      _xengine_on_message(data, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override

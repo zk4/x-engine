@@ -130,9 +130,7 @@
 }
 
 - (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
-    [self callJS:@"com.zkty.module.engine.broadcast" args:@[@"hello"] retCB:^(id  _Nullable ret) {
-        
-    }];
+    [self broadcast:@[@"hello"]];
 }
 
  

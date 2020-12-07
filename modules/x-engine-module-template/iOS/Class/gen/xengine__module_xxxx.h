@@ -51,10 +51,10 @@
        - (void) _triggerNativeBroadCast:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-        - (void) _xengine_on_message:(MsgPayloadDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+        - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+        - (void) _xengine_on_message:(MsgPayloadDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
       @required 
         - (void) _ReturnInPromiseThen:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;

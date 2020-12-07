@@ -107,4 +107,7 @@
         retCB(value);
     }];
 }
+-(void) broadcast:(NSArray*)args{
+    [self callJS:@"com.zkty.module.engine.broadcast" args:args retCB:^(id  _Nullable ret) {}];
+}
 @end

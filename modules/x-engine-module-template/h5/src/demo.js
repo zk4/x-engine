@@ -10,26 +10,15 @@ import xengine from "@zkty-team/x-engine-module-engine";
   };
 
 
+  window.unregisterEvent = () => {
     xengine.unregister()
+  };
 
   window.triggerNativeBroadCast = () => {
     xxxx
       .triggerNativeBroadCast()
   };
 
-
-  window.xengine_on_message = () => {
-    xxxx
-      .xengine_on_message({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
-          },
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
-  };
 
   window.repeatReturn__ret__ = () => {
     xxxx
@@ -41,6 +30,19 @@ import xengine from "@zkty-team/x-engine-module-engine";
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
         return res;
+          }
+        }
+      )
+  };
+
+  window.xengine_on_message = () => {
+    xxxx
+      .xengine_on_message({
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+          },
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
           }
         }
       )

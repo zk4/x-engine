@@ -7,3 +7,4 @@
 - [localstorage](./docs/modules/all/模块-localstorage.md)
 - [network](./docs/modules/all/模块-network.md)
 - [camera](./docs/modules/all/模块-camera.md)
+- [geo](./docs/modules/all/模块-geo.md)

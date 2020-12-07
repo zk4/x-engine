@@ -14,8 +14,7 @@ import glob
 tmplt = """
 
 **基座扫描测试**
-<div id='modulename' style='display:none'>{module_name}</div>
-<img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
+<div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
 <a id='qrlink' href="about:none">link of QR</a>
 
 {root_readme}
@@ -124,7 +123,7 @@ if __name__ == "__main__":
 
     arr = os.listdir("..")
     exclude=['x-engine-module-offline','x-engine-module-protocols']
-    include=['x-engine-module-router','x-engine-module-nav','x-engine-module-localstorage','x-engine-module-scan','x-engine-module-camera','x-engine-module-dcloud','x-engine-module-network','x-engine-module-offline','x-engine-module-device']
+    include=['x-engine-module-router','x-engine-module-nav','x-engine-module-localstorage','x-engine-module-scan','x-engine-module-camera','x-engine-module-dcloud','x-engine-module-geo','x-engine-module-network','x-engine-module-offline','x-engine-module-device']
     for d in arr:
         if d in include:
             # continue

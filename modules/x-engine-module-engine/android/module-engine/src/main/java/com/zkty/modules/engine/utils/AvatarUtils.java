@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 import android.text.TextUtils;
+import android.util.Base64;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -24,6 +25,9 @@ import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.UUID;
 
 /**
@@ -325,6 +329,53 @@ public class AvatarUtils {
         }
         cursor.close();
         return uri;
+    }
+
+
+    public static boolean savePicture(Context context, String base64DataStr) {
+        // 1.去掉base64中的前缀
+        String base64Str = base64DataStr.substring(base64DataStr.indexOf(",") + 1, base64DataStr.length());
+        // 获取手机相册的路径地址
+        String galleryPath = Environment.getExternalStorageDirectory()
+                + File.separator + Environment.DIRECTORY_DCIM
+                + File.separator + "Camera" + File.separator;
+        //创建文件来保存，第二个参数是文件名称，可以根据自己来命名
+        File file = new File(galleryPath, System.currentTimeMillis() + ".png");
+        String fileName = file.toString();
+        // 3. 解析保存图片
+        byte[] data = Base64.decode(base64Str, Base64.DEFAULT);
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] < 0) {
+                data[i] += 256;
+            }
+        }
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream(fileName);
+            os.write(data);
+            os.flush();
+            os.close();
+
+            //通知相册更新
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            context.sendBroadcast(intent);
+            ToastUtils.showThreadToast("保存成功");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ToastUtils.showThreadToast("保存失败，请重试");
+            return false;
+        }finally {
+            if (os!=null) {
+                try {
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }

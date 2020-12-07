@@ -15,6 +15,7 @@ function osCheck() {
   {
     "name": "share",
     "default_args": {
+      "channel": "wexin",
       "type": "link"
     }
   }

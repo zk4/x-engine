@@ -12,7 +12,8 @@
    
    
    
-   
+   	if ([propertyName isEqualToString:@"desc"]) { return YES; }
+   	if ([propertyName isEqualToString:@"imgUrl"]) { return YES; }
    	if ([propertyName isEqualToString:@"dataUrl"]) { return YES; }	return NO;
     }
 @end

@@ -16,9 +16,9 @@ npm install @zkty-team/x-engine-module-yjzdbill
   window.echo = () => {
     yjzdbill
       .echo({
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
-          },
+          //__ret__:function(res){
+        //document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
+          //},
           __event__:function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
           }

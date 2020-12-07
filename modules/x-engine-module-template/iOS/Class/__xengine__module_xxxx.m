@@ -69,9 +69,7 @@
 
     value=10;
     hanlder=completionHandler;
-    if(hanlder){
-        hanlder(0,YES);
-    }
+  
     if(timer){
         [timer invalidate];
     }
@@ -98,10 +96,11 @@
 - (void)_repeatReturn__event__:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
     adto=dto;
     value=10;
-    hanlder=completionHandler;
     if(hanlder){
         hanlder(0,YES);
     }
+    hanlder=completionHandler;
+   
     if(timer){
         [timer invalidate];
     }

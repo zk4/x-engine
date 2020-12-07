@@ -35,7 +35,12 @@ default:
         }
         return JSON.parse(ret || "{}").data
     },
-    
+    unregister:function(jsFunctionName){
+      delete window._dsaf._obs[jsFunctionName]
+      delete window._dsaf[jsFunctionName]
+      delete window._dsf._obs[jsFunctionName]
+      delete window._dsf[jsFunctionName]
+    },
     // js注册供Native调用的方法,如果传入callback,则为异步方法
     register: function(jsFunctionName, receiveParamsFunction, callback) {
         

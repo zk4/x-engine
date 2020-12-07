@@ -21,6 +21,7 @@
     ContinousDTO* adto;
     void(^hanlder)(id value,BOOL isComplete);
     int value;
+    NSString* event;
 
 }
 @end
@@ -67,6 +68,7 @@
 
 -(void)onTimer:t{
     if(value!=-1){
+        
         ContinousDTO* dto= (ContinousDTO*) adto;
         value--;
         NSString* v= [NSString stringWithFormat:@"%d",value];
@@ -112,6 +114,7 @@
     if(timer){
         [timer invalidate];
     }
+
     timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
                                               target:self
                                             selector:@selector(onTimer:)
@@ -120,9 +123,23 @@
 }
  
 
-- (void)_xengine_on_message:(MsgPayloadDTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-     
+ 
+
+- (void)_registerEvent:(CustomEvent *)dto complete:(void (^)(BOOL))completionHandler {
+    event = dto.eventName;
+    completionHandler(TRUE);
 }
+
+- (void)_callRegisterEvent:(void (^)(BOOL))completionHandler {
+    [self callJS:event args:@[@"hello"] retCB:^(id  _Nullable ret) {
+        
+    }];
+}
+
+ 
+ 
+
+
 
  
 

@@ -1,5 +1,23 @@
 
 import xxxx from './index.js'
+import xengine from "@zkty-team/x-engine-module-engine";
+  window.registerEvent = () => {
+    xxxx.registerEvent("this_is_customEvent")
+    xengine.register("this_is_customEvent",function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+    })
+  };
+
+  window.unregisterEvent = () => {
+    xengine.unregister("this_is_customEvent")
+  };
+
+
+  window.callRegisterEvent = () => {
+    xxxx
+      .callRegisterEvent()
+  };
+
 
   window.xengine_on_message = () => {
     xxxx

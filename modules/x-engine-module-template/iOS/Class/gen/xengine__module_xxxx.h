@@ -9,6 +9,7 @@
 @protocol SheetDTO;
 @protocol ContinousDTO;
 @protocol MsgPayloadDTO;
+@protocol CustomEvent;
 
 @interface SheetDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -33,9 +34,20 @@
 @end
     
 
+@interface CustomEvent: JSONModel
+  	@property(nonatomic,copy) NSString* eventName;
+@end
+    
+
 
 @protocol xengine__module_xxxx_protocol
        @required 
+        - (void) _registerEvent:(CustomEvent*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _callRegisterEvent:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
         - (void) _xengine_on_message:(MsgPayloadDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
       @required 

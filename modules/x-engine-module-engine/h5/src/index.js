@@ -23,9 +23,19 @@ let xengine = {
   platfrom: platform(),
   hybrid  : true,
   bridge  : dsbridge,
-  use     : use
+  use     : use,
+  register: register,
+  unregister: unregister
 };
+function unregister(eventName){
+    xengine.bridge.unregister(eventName);
+}
 
+function register(eventName,eventcb){
+    xengine.bridge.register(eventName, (res) => {
+        return eventcb(res);
+    })
+}
 function use(ns,funcs){
     if(module_names.has(ns)){
       throw(ns+ ',注册无效,模块已存在,xengine.use("'+ns+'") 只允许调用一次;')

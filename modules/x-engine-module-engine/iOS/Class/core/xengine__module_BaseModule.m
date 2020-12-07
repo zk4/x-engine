@@ -18,9 +18,6 @@
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
     [ac addAction:action];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
-    
-//    [[Unity sharedInstance].getCurrentVC showAlertWithTitle:@"" message: sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {
-//                   }];
 }
 
 - (BOOL)checkRequiredParam:(id)obj name:(NSString *)name
@@ -93,25 +90,18 @@
                      action(self, sel,dto, completionHandler);
              }else{
                  [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
-//               [[Unity sharedInstance].getCurrentVC showAlertWithTitle:@"" message: sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {}];
-             }
+              }
           }
         }else{
             if( [self respondsToSelector:sel] ) {
                     action(self, sel,nil, completionHandler);
             }else{
                 [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
-//              [[Unity sharedInstance].getCurrentVC showAlertWithTitle:@"" message: sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {}];
-            }
+             }
 
         }
 }
-//- (void) callJsByFuncName:event arguments:(NSArray*)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler{
-//    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-//    RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-//    [webVC.webview callHandler:event arguments:arguments completionHandler:completionHandler];
-// }
-
+ 
 - (void) callJS:(NSString*)__event__ args:(id)args retCB:(void (^)(id  _Nullable ret)) retCB{
     [[RecyleWebViewController webview] callHandler:__event__ arguments:args completionHandler:^(id  _Nullable value) {
         retCB(value);

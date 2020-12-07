@@ -6,6 +6,50 @@ npm install @zkty-team/x-engine-module-xxxx
 
 
 
+## registerEvent
+
+
+
+**demo**
+``` js
+{
+  window.registerEvent = (...args) => {
+    xxxx
+      .registerEvent(...args)
+  };
+
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| eventName | string |  | this_is_customEvent |  |
+
+
+## callRegisterEvent
+
+
+
+**demo**
+``` js
+{
+  window.callRegisterEvent = () => {
+    xxxx
+      .callRegisterEvent()
+  };
+
+}
+``` 
+
+	
+**无参数**
+
+
+
+
 ## xengine_on_message
 
 

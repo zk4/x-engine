@@ -10,7 +10,7 @@
 @implementation XEngineJSBUtil
 + (NSString *)objToJsonString:(id)object
 {
-  
+    
     if([object respondsToSelector:@selector(toJSONString)]){
         return [object toJSONString];
     }

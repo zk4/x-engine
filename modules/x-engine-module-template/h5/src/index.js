@@ -13,6 +13,16 @@ function osCheck() {
     return  xengine.use("com.zkty.module.xxxx", 
     [
   {
+    "name": "registerEvent",
+    "default_args": {
+      "eventName": "this_is_customEvent"
+    }
+  },
+  {
+    "name": "callRegisterEvent",
+    "default_args": {}
+  },
+  {
     "name": "xengine_on_message",
     "default_args": null
   },

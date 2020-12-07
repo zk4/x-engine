@@ -15,10 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)showErrorAlert:(NSString *)errorString;
 
 - (void) onAllModulesInited;
-
-
-
-
 /**
 模块处理优先级，越小越先处理，默认为 0
  */
@@ -28,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) callInternalMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler methodname:(NSString*) name argclass:(Class) argclass;
 
-//- (void) callJsByFuncName:event arguments:(NSArray*)arguments  completionHandler:(void (^)(id  _Nullable value)) completionHandler;
 - (void) callJS:(NSString*)__event__ args:(id)args retCB:(void (^)(id  _Nullable ret)) retCB;
 
 @end

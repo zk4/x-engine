@@ -33,7 +33,8 @@
     @Optional
 		public String dataUrl;
 
-    public String __event__;
+    @Optional
+		public String __event__;
   }
   
   class ShareResDTO {

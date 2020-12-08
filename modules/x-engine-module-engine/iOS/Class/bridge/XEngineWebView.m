@@ -530,7 +530,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
             NSArray *dicArray = [subArray[j] componentsSeparatedByString:@"="];
             [tempDic setObject:dicArray[1] forKey:dicArray[0]];
         }
-        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",navigationAction.request.URL.path];
+        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",[navigationAction.request.URL.path substringFromIndex:1]];
         id share =[[XEngineContext sharedInstance] getModuleByName:moduleName];
         SEL  sel = NSSelectorFromString(@"share:complete:");
         if([share respondsToSelector:sel]){

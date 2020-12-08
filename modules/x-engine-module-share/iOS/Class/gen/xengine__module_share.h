@@ -16,11 +16,14 @@
    	@property(nonatomic,copy) NSString* link;
    	@property(nonatomic,copy) NSString* imgUrl;
    	@property(nonatomic,copy) NSString* dataUrl;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
 @interface ShareResDTO: JSONModel
   	@property(nonatomic,copy) NSString* code;
+   	@property(nonatomic,copy) NSString* errStr;
+   	@property(nonatomic,copy) NSString* type;
 @end
     
 

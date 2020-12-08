@@ -28,10 +28,16 @@
 
     @Optional
 		public String dataUrl;
+
+    public String __event__;
   }
   
   class ShareResDTO {
     public String code;
+
+    public String errStr;
+
+    public String type;
   }
   
   interface xengine__module_share_i {

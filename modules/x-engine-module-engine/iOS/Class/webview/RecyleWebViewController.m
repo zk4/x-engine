@@ -7,6 +7,7 @@
 #import "xengine__module_BaseModule.h"
 #import "XEOneWebViewPool.h"
 #import "MicroAppLoader.h"
+static   XEngineWebView* s_webview;
 
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 
@@ -24,7 +25,9 @@
 @end
 
 @implementation RecyleWebViewController
-
++ (XEngineWebView*) webview{
+    return s_webview;
+}
 -(void)webViewProgressChange:(NSNotification *)notifi{
     
     NSDictionary *dic = notifi.object;
@@ -118,7 +121,9 @@
            || ![XEOneWebViewPool sharedInstance].inSingle){
             
             self.isReadyLoading = YES;
-            self.webview = [[XEOneWebViewPool sharedInstance] getWebView];;
+            self.webview = [[XEOneWebViewPool sharedInstance] getWebView];
+            s_webview=self.webview;
+
             self.webview.configuration.preferences.javaScriptEnabled = YES;
             self.webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
             
@@ -205,6 +210,7 @@
 
 - (void)setSignleWebView:(XEngineWebView *)webView{
     self.webview = webView;
+    s_webview = webView;
     [self.view addSubview:self.webview];
     [self.view addSubview:self.progresslayer];
     [self.view addSubview:self.imageView404];

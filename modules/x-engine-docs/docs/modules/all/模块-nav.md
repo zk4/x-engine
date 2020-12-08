@@ -1,8 +1,7 @@
 
 
 **基座扫描测试**
-<div id='modulename' style='display:none'>nav</div>
-<img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
+<div id='modulename' style='display:none'>nav</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
 <a id='qrlink' href="about:none">link of QR</a>
 
 # 原生导航
@@ -287,29 +286,6 @@ npm install @zkty-team/x-engine-module-nav
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | true |  | 跳转地址 |
 | params | string | true |  | 其余参数 |
-
-
-## navigatorRouter
-
-跳转页面.
-
-**demo**
-``` js
- {
-  window.navigatorRouter = () => {
-    nav.navigatorRouter().then((res) => {});
-  };
-}
-``` 
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| type | string |  |  | 跳转类型 |
-| uri | string |  |  | 跳转目标 |
-| path | string |  |  | 跳转参数 |
 
 
 ## setNavSearchBar

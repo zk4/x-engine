@@ -34,7 +34,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "dsbridge": "^3.1.4"
   },
   "gitHead": "6adf8c2dc26710e6a22ad8f9105ed21031c6481d"
 }

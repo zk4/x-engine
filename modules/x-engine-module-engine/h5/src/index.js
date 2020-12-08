@@ -1,4 +1,4 @@
-import dsbridge from "dsbridge";
+import dsbridge from "./dsbridge";
 const module_names = new Set([]);
 const patch = {}
 
@@ -22,8 +22,8 @@ let xengine = {
   patch   : patch,
   platfrom: platform(),
   hybrid  : true,
-  bridge  :dsbridge,
-  use     :use
+  bridge  : dsbridge,
+  use     : use
 };
 
 function use(ns,funcs){
@@ -38,21 +38,28 @@ function use(ns,funcs){
          let eventcb = args['__event__'];
          if(!isFunction(eventcb)) throw('__event__ 必须为函数');
          args['__event__']  = ns+funcname+'__event__'
-          dsBridge.register(args['__event__'], (res) => {
-              eventcb(res);
+          xengine.bridge.register(args['__event__'], (res) => {
+              return eventcb(res);
           })
       }
-      else  if (args.hasOwnProperty('$xevent')){
-          alert("系统不再支持$xevent,请改为__event__");
-          return;
-      }      // TODO,啥时 reject?
-
-      let p =  new Promise((resolve, reject)=>{
-          dsBridge.call(ns+"."+funcname, args, function (res) {
-            resolve(res)
+      
+      if(funcname.startsWith('sync')){
+        return xengine.bridge.call(ns+"."+funcname,args);
+      }
+      else{
+        let p =new Promise((resolve,reject)=>{
+          const warning_msg = "x-engine 0.1.0 将不再支持 promise,改用参数里的　__ret__做为异步返回值,以支持多次返回.或者直接调用函数同步返回";
+          console.error(warning_msg);
+          xengine.bridge.call(ns+"."+funcname, args, function (res) {
+            // only resolve once
+            resolve(res);
+            if(args['__ret__']){
+              return args['__ret__'](res)
+            }
           })
-      });
-      return p;
+        });
+        return p;
+      }
     };
 
     return funcs.reduce((acc,cur,i)=>{

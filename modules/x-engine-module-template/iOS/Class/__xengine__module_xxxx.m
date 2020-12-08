@@ -140,7 +140,13 @@
 }
 
 - (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
-    [self broadcast:@[@"hello",@"broadcast"]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+
+    NSDate *currentDate = [NSDate date];
+    NSString *dateString = [formatter stringFromDate:currentDate];
+
+    [self broadcast:@[@"hello",@"broadcast",dateString]];
     //要注意. 这里仅是删除 _triggerNativeBroadCast 的回调,而不是删除 broadcast 的回调.
     completionHandler(TRUE);
 }

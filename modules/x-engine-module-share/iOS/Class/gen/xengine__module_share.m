@@ -14,7 +14,7 @@
    
    
    	if ([propertyName isEqualToString:@"dataUrl"]) { return YES; }
-   	return NO;
+   	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
     }
 @end
     

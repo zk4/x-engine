@@ -20,6 +20,6 @@ com.zkty.module.share
 | link | string |  | http://www.baidu.com |  |
 | imgUrl | string |  |  |  |
 | dataUrl | string | true |  |  如果type是music或video，则要提供数据链接，默认为空 |
-| \_\_event\_\_ |  |  | (string)=>string |  |
+| \_\_event\_\_ |  | true | (string)=>string |  |
 
     

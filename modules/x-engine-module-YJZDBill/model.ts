@@ -66,8 +66,8 @@ function YJBillPayment(
     businessCstNo:"000001",
     platMerCstNo: "8377631273379692750",
     tradeMerCstNo: "8377707718294634760",
-    billNo:'022020120416543228724452ba399222',
-    appScheme:'zdsdk',
+    billNo:'01202012081346103822413721356429',
+    appScheme:'x-engine',
     payType:false
   }
 ):YJBillRetDTO {
@@ -106,7 +106,7 @@ function YJBillRefund(
 function YJBillList(
   YJBillListDTO: YJBillListDTO = {
     businessCstNo:"000001",
-    appScheme:'zdsdk',
+    appScheme:'x-engine',
     payType:false
   }
 ){

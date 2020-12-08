@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class PermissionsUtils {
 
-    private static final int mRequestCode = 100;//权限请求码
+    private static final int mRequestCode = 10100;//权限请求码
     public static boolean showSystemSetting = true;
 
 

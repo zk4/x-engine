@@ -2,7 +2,6 @@ package com.zkty.modules.loaded.jsapi;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +15,6 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,7 +30,6 @@ import com.zkty.modules.engine.exception.XEngineException;
 import com.zkty.modules.engine.imp.GlideLoader;
 import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
-import com.zkty.modules.engine.utils.AvatarUtils;
 import com.zkty.modules.engine.utils.FileUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.loaded.ClientManager;

@@ -6,6 +6,8 @@
 #import "AppDelegate.h"
 #import "EntryViewController.h"
 #import <XEngineContext.h>
+#import "WXApi.h"
+#import "__xengine__module_share.h"
 @interface AppDelegate ()
 
 @end
@@ -19,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     [[XEngineContext sharedInstance] start];
     [[XEngineContext sharedInstance]  onApplicationDelegate:NSStringFromSelector(_cmd) arg1:application args:launchOptions];
 
@@ -28,5 +31,14 @@
     
     return YES;
 }
-  
+
+
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+//    [[XEngineContext sharedInstance] onApplicationDelegate:NSStringFromSelector(_cmd) arg1:app args:options];
+    __xengine__module_share * share= [[XEngineContext sharedInstance] getModuleByName:NSStringFromClass(__xengine__module_share.class)];
+   return  [share application:app openURL:url options:options];
+}
+
+
 @end

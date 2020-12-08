@@ -24,7 +24,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
     xxxx
       .repeatReturn__event__({
           __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify(res);
         return res;
           }
         }
@@ -36,7 +36,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       .repeatReturn__ret__(
         {
           __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify("__ret__:"+res);
         return res;
           },
         }
@@ -97,6 +97,16 @@ import xengine from "@zkty-team/x-engine-module-engine";
       .haveArgRetSheetDTO(...args)
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
+      });
+    };
+
+    window.helloworld = (...args) => {
+            console.log("isHybrid",xengine.isHybrid())
+
+    xxxx
+      .helloworld(...args)
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res;
       });
   };
 

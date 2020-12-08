@@ -29,12 +29,7 @@
 @implementation __xengine__module_xxxx
  
  
-  
-
-- (void)_abc:(NSString *)dto complete:(void (^)(BOOL))completionHandler {
-    NSLog(@"%@",dto);
-}
-
+   
 - (void)_haveArgNoRet:(SheetDTO *)dto complete:(void (^)(BOOL))completionHandler {
     
 }
@@ -48,7 +43,9 @@
 }
 
 - (void)_noArgNoRet:(void (^)(BOOL))completionHandler {
-    
+ 
+
+
 }
 
 - (void)_noArgRetPrimitive:(void (^)(NSString *, BOOL))completionHandler {
@@ -131,9 +128,6 @@
     }
 }
  
-
- 
-
 - (void)_broadcastOn:(void (^)(BOOL))completionHandler {
     //要注意. 这里仅是删除 _broadcastOn 的 JS 回调方法.
     completionHandler(TRUE);
@@ -150,12 +144,6 @@
     //要注意. 这里仅是删除 _triggerNativeBroadCast 的回调,而不是删除 broadcast 的回调.
     completionHandler(TRUE);
 }
-
- 
- 
-
-
-
  
 
 

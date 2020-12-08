@@ -79,7 +79,7 @@ npm install @zkty-team/x-engine-module-xxxx
     xxxx
       .repeatReturn__event__({
           __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify(res);
         return res;
           }
         }
@@ -108,7 +108,7 @@ npm install @zkty-team/x-engine-module-xxxx
       .repeatReturn__ret__(
         {
           __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify("__ret__:"+res);
         return res;
           },
         }
@@ -288,6 +288,34 @@ npm install @zkty-team/x-engine-module-xxxx
       .haveArgRetSheetDTO(...args)
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
+      });
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| title | string |  | abc |  标题 |
+| itemList | Array\<string\> | true |  |  子标题? |
+| content | string | true |  |  内容 |
+| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
+
+
+## helloworld
+
+
+
+**demo**
+``` js
+{
+    window.helloworld = (...args) => {
+    xxxx
+      .helloworld(...args)
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res;
       });
   };
 }

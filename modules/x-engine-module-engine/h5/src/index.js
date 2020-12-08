@@ -22,6 +22,7 @@ let xengine = {
   patch   : patch,
   platfrom: platform(),
   hybrid  : true,
+  isHybrid  : isHybrid,
   bridge  : dsbridge,
   use     : use,
   broadcastOn: broadcastOn,

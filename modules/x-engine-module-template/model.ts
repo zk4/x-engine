@@ -31,7 +31,6 @@ function broadcastOn(){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
     })
   };
-
 }
 function broadcastOff(){
   window.broadcastOff = () => {
@@ -147,5 +146,4 @@ function haveArgRetSheetDTO(arg:SheetDTO={title:"abc"}):SheetDTO {
       });
   };
 }
-
 

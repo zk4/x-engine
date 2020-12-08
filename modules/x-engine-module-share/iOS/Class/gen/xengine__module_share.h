@@ -10,10 +10,11 @@
 @protocol ShareResDTO;
 
 @interface ShareReqDTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
+  	@property(nonatomic,copy) NSString* channel;
+   	@property(nonatomic,copy) NSString* type;
    	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,copy) NSString* desc;
    	@property(nonatomic,copy) NSString* link;
+   	@property(nonatomic,copy) NSString* desc;
    	@property(nonatomic,copy) NSString* imgUrl;
    	@property(nonatomic,copy) NSString* dataUrl;
    	@property(nonatomic,strong) NSString* __event__;

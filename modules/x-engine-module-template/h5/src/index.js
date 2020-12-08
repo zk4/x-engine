@@ -13,6 +13,30 @@ function osCheck() {
     return  xengine.use("com.zkty.module.xxxx", 
     [
   {
+    "name": "broadcastOn",
+    "default_args": {}
+  },
+  {
+    "name": "broadcastOff",
+    "default_args": {}
+  },
+  {
+    "name": "triggerNativeBroadCast",
+    "default_args": {}
+  },
+  {
+    "name": "repeatReturn__event__",
+    "default_args": null
+  },
+  {
+    "name": "repeatReturn__ret__",
+    "default_args": null
+  },
+  {
+    "name": "ReturnInPromiseThen",
+    "default_args": null
+  },
+  {
     "name": "noArgNoRet",
     "default_args": {}
   },
@@ -43,16 +67,9 @@ function osCheck() {
     }
   },
   {
-    "name": "showActionSheet",
+    "name": "helloworld",
     "default_args": {
-      "title": "hello",
-      "itemList": [
-        "hello",
-        "world",
-        "he"
-      ],
-      "content": "content",
-      "__event__": null
+      "title": "abc"
     }
   }
 ]

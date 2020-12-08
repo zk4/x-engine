@@ -81,7 +81,6 @@ extern XEngineWebView* s_webview;
         d.billRetStatus=responseObject;
         d.billRetStatusMessage=message;
         completionHandler(d, NO);
-        completionHandler(d, NO);
 
     }];
     

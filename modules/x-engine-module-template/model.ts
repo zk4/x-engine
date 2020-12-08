@@ -13,6 +13,74 @@ interface SheetDTO {
   __event__: (index:string)=>void,
 }
 
+interface ContinousDTO {
+  __event__?:(string)=>{}
+}
+
+interface MsgPayloadDTO{
+  type: string,
+  args?: Map<string,string>;
+  sender?: string,
+  receiver?: Array<string>,
+  __event__: (string)=>void,
+  __ret__: (string)=>void
+}
+function broadcastOn(){
+  window.broadcastOn = (...args) => {
+    xengine.broadcastOn(function(res){
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+    })
+  };
+}
+function broadcastOff(){
+  window.broadcastOff = () => {
+    xengine.broadcastOff()
+  };
+}
+function triggerNativeBroadCast(){
+  window.triggerNativeBroadCast = () => {
+    xxxx
+      .triggerNativeBroadCast()
+  };
+
+}
+function repeatReturn__event__(args:ContinousDTO):string{
+  window.repeatReturn__event__ = () => {
+    xxxx
+      .repeatReturn__event__({
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify(res);
+        return res;
+          }
+        }
+      )
+  };
+}
+function repeatReturn__ret__(args:ContinousDTO):string{
+  window.repeatReturn__ret__ = () => {
+    xxxx
+      .repeatReturn__ret__(
+        {
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify("__ret__:"+res);
+        return res;
+          },
+        }
+      )
+  };
+}
+
+
+function ReturnInPromiseThen(args:ContinousDTO):string{
+  window.ReturnInPromiseThen = () => {
+    xxxx
+      .ReturnInPromiseThen()
+      .then((res) => {
+        document.getElementById("debug_text").innerText ="then 只支持一次性返回"+ JSON.stringify(res);
+      });
+  };
+}
+
 // 无参数无返回值
 function noArgNoRet(){
     window.noArgNoRet = (...args) => {
@@ -79,53 +147,3 @@ function haveArgRetSheetDTO(arg:SheetDTO={title:"abc"}):SheetDTO {
   };
 }
 
-
-/*
-系统弹出框： 
-
-**demo** 
-``` js 
-ui.showActionSheet({
-    title: "hello",
-    itemList: ["a", "b", "c"],
-    content: "content",
-    __event__: null,
-  })
-```
-*/
-function showActionSheet(
-  sheetDTO: SheetDTO = {
-    title: "hello",
-    itemList: ["hello", "world", "he"],
-    content: "content",
-    __event__: null,
-  }
-){
-  window.showActionSheet = (...args) => {
-    xxxx
-      .showActionSheet({
-        title: "hello",
-        itemList: ["hello", "world", "he"],
-        content: "content",
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = res;
-        },
-        ...args
-      })
-      .then((res) => {
-        //document.getElementById("debug_text").innerText = res;
-      });
-  };
-}
-
-function testHelloButton(){
-    window.testHelloButton=()=>{
-      xxxx.showActionSheet(
-      	{title:"title",itemList:["a","b","c"],content:"content"}
-      )
-      .then(res=>{
-        document.getElementById("debug_text").innerText= res;
-      })
-    }
-
-}

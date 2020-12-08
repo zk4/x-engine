@@ -7,6 +7,8 @@
 #import "JSONModel.h"
 
 @protocol SheetDTO;
+@protocol ContinousDTO;
+@protocol MsgPayloadDTO;
 
 @interface SheetDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -16,9 +18,42 @@
 @end
     
 
+@interface ContinousDTO: JSONModel
+  	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
+@interface MsgPayloadDTO: JSONModel
+  	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
+   	@property(nonatomic,copy) NSString* sender;
+   	@property(nonatomic,strong) NSArray<NSString*>* receiver;
+   	@property(nonatomic,strong) NSString* __event__;
+   	@property(nonatomic,strong) NSString* __ret__;
+@end
+    
+
 
 @protocol xengine__module_xxxx_protocol
        @required 
+       - (void) _broadcastOn:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _broadcastOff:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _triggerNativeBroadCast:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+        - (void) _repeatReturn__event__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+      @required 
+        - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+      @required 
+        - (void) _ReturnInPromiseThen:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+      @required 
        - (void) _noArgNoRet:(void (^)(BOOL complete)) completionHandler;
     
       @required 
@@ -37,8 +72,8 @@
         - (void) _haveArgRetSheetDTO:(SheetDTO*) dto complete:(void (^)(SheetDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _showActionSheet:(SheetDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
+        - (void) _helloworld:(SheetDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
 @end
   
 

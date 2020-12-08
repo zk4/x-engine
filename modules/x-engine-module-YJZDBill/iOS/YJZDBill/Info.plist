@@ -31,7 +31,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>zdsdk</string>
+				<string>x-engine</string>
 			</array>
 		</dict>
 	</array>

@@ -1,11 +1,15 @@
 
 import share from './index.js'
 
-    window.share = (...args) => {
+  window.share = () => {
     share
-      .share(...args)
+      .share({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = JSON.stringify(res);
+        },
+      })
       .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res["code"];
+        document.getElementById("debug_text").innerText = res;
       });
   };
 

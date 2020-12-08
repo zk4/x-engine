@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -15,6 +16,7 @@ import android.provider.MediaStore;
 
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -25,6 +27,7 @@ import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,7 +39,7 @@ import java.util.UUID;
  * 功能 头像获取工具类
  * 备注 复制AvatarHepler
  */
-public class AvatarUtils {
+public class ImageUtils {
 
     public static final int AVATAR_TAKE_PHOTO = 100;
     public static final int AVATAR_CUT_PHOTO = 101;
@@ -81,7 +84,7 @@ public class AvatarUtils {
             // 指定调用相机拍照后照片的储存路径
 
             headPath = getImagesFilePath(act) + UUID.randomUUID().toString() + "_original_image.png";
-            new File(AvatarUtils.headPath).deleteOnExit();
+            new File(ImageUtils.headPath).deleteOnExit();
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(headPath)));
             act.startActivityForResult(intent, AVATAR_TAKE_PHOTO);
         } else {
@@ -335,47 +338,96 @@ public class AvatarUtils {
     public static boolean savePicture(Context context, String base64DataStr) {
         // 1.去掉base64中的前缀
         String base64Str = base64DataStr.substring(base64DataStr.indexOf(",") + 1, base64DataStr.length());
-        // 获取手机相册的路径地址
-        String galleryPath = Environment.getExternalStorageDirectory()
-                + File.separator + Environment.DIRECTORY_DCIM
-                + File.separator + "Camera" + File.separator;
-        //创建文件来保存，第二个参数是文件名称，可以根据自己来命名
-        File file = new File(galleryPath, System.currentTimeMillis() + ".png");
-        String fileName = file.toString();
-        // 3. 解析保存图片
-        byte[] data = Base64.decode(base64Str, Base64.DEFAULT);
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] < 0) {
-                data[i] += 256;
-            }
-        }
-        OutputStream os = null;
-        try {
-            os = new FileOutputStream(fileName);
-            os.write(data);
-            os.flush();
-            os.close();
 
-            //通知相册更新
-            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            Uri uri = Uri.fromFile(file);
-            intent.setData(uri);
-            context.sendBroadcast(intent);
-            ToastUtils.showThreadToast("保存成功");
+        byte[] bytes = Base64.decode(base64Str, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg");
+        return true;
+    }
+
+
+    /*
+     * 保存文件，文件名为当前日期
+     */
+    public static boolean saveBitmap(Context context, Bitmap bitmap, String bitName) {
+        String fileName;
+        File file;
+        String brand = Build.BRAND;
+
+        if (brand.equals("xiaomi")) { // 小米手机brand.equals("xiaomi")
+            fileName = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/" + bitName;
+        } else if (brand.equalsIgnoreCase("Huawei")) {
+            fileName = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/" + bitName;
+        } else { // Meizu 、Oppo
+            fileName = Environment.getExternalStorageDirectory().getPath() + "/DCIM/" + bitName;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            saveSignImage(context, bitName, bitmap);
             return true;
+        } else {
+            Log.d("saveBitmap brand", "" + brand);
+            file = new File(fileName);
+        }
+        if (file.exists()) {
+            file.delete();
+        }
+        FileOutputStream out;
+        try {
+            out = new FileOutputStream(file);
+            // 格式为 JPEG，照相机拍出的图片为JPEG格式的，PNG格式的不能显示在相册中
+            if (bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)) {
+                out.flush();
+                out.close();
+                // 插入图库
+                MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), bitName, null);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             ToastUtils.showThreadToast("保存失败，请重试");
             return false;
-        }finally {
-            if (os!=null) {
-                try {
-                    os.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        }
+        ToastUtils.showThreadToast("保存成功");
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileName)));
+        return true;
+    }
+
+
+    //将文件保存到公共的媒体文件夹
+//这里的filepath不是绝对路径，而是某个媒体文件夹下的子路径，和沙盒子文件夹类似
+//这里的filename单纯的指文件名，不包含路径
+    public static void saveSignImage(Context context, String fileName, Bitmap bitmap) {
+        try {
+            //设置保存参数到ContentValues中
+            ContentValues contentValues = new ContentValues();
+            //设置文件名
+            contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
+            //android Q中不再使用DATA字段，而用RELATIVE_PATH代替
+            //RELATIVE_PATH是相对路径不是绝对路径
+            //DCIM是系统文件夹，关于系统文件夹可以到系统自带的文件管理器中查看，不可以写没存在的名字
+            contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, "DCIM/");
+            //contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, "Music/signImage");
+
+            contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/JPEG");
+            //执行insert操作，向系统文件夹中添加文件
+            //EXTERNAL_CONTENT_URI代表外部存储器，该值不变
+            Uri uri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            if (uri != null) {
+                //若生成了uri，则表示该文件添加成功
+                //使用流将内容写入该uri中即可
+                OutputStream outputStream = context.getContentResolver().openOutputStream(uri);
+                if (outputStream != null) {
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
+                    outputStream.flush();
+                    outputStream.close();
+                    ToastUtils.showThreadToast("保存成功");
+
                 }
             }
+        } catch (Exception e) {
+            ToastUtils.showThreadToast("保存失败，请重试");
         }
     }
+
 
 }

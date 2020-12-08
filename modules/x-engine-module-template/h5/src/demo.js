@@ -45,14 +45,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
 
   window.ReturnInPromiseThen = () => {
     xxxx
-      .ReturnInPromiseThen({
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
+      .ReturnInPromiseThen()
       .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText ="then 只支持一次性返回"+ JSON.stringify(res);
       });
   };
 

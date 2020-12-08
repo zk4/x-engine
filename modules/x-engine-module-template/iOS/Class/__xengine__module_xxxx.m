@@ -134,12 +134,14 @@
 
  
 
-- (void)__broadcastOn:(void (^)(BOOL))completionHandler {
+- (void)_broadcastOn:(void (^)(BOOL))completionHandler {
+    //要注意. 这里仅是删除 _broadcastOn 的 JS 回调方法.
     completionHandler(TRUE);
 }
 
 - (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
     [self broadcast:@[@"hello",@"broadcast"]];
+    //要注意. 这里仅是删除 _triggerNativeBroadCast 的回调,而不是删除 broadcast 的回调.
     completionHandler(TRUE);
 }
 

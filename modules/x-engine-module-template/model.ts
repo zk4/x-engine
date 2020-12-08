@@ -50,7 +50,7 @@ function repeatReturn__event__(args:ContinousDTO):string{
     xxxx
       .repeatReturn__event__({
           __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify(res);
         return res;
           }
         }
@@ -63,7 +63,7 @@ function repeatReturn__ret__(args:ContinousDTO):string{
       .repeatReturn__ret__(
         {
           __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify("__ret__:"+res);
         return res;
           },
         }
@@ -75,14 +75,9 @@ function repeatReturn__ret__(args:ContinousDTO):string{
 function ReturnInPromiseThen(args:ContinousDTO):string{
   window.ReturnInPromiseThen = () => {
     xxxx
-      .ReturnInPromiseThen({
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
+      .ReturnInPromiseThen()
       .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText ="then 只支持一次性返回"+ JSON.stringify(res);
       });
   };
 }

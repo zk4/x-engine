@@ -40,24 +40,33 @@
 - (void)_share:(ShareReqDTO *)dto complete:(void (^)(ShareResDTO *, BOOL))completionHandler {
     self.event = dto.__event__;
     if ([self isInstall]) {
-//        if ([dto.type isEqualToString:@"music"] || [dto.type isEqualToString:@"video"]) {
-//            if ([self getNoEmptyString:<#(NSString *)#>]) {
-//                <#statements#>
-//            }
-//        }
+        if ([dto.type isEqualToString:@"music"] || [dto.type isEqualToString:@"video"]) {
+            if (![self getNoEmptyString:dto.dataUrl]) {
+                [MBProgressHUD showToastWithTitle:@"请提供dataUrl" image:nil time:1.0];
+                return;
+            }
+        }
         [WXApi startLogByLevel:WXLogLevelDetail logBlock:^(NSString * _Nonnull log) {
             NSLog(@"////%@", log);
         }];
-        
-        WXWebpageObject *ext = [WXWebpageObject object];
-        ext.webpageUrl = dto.link;
         
         WXMediaMessage *message = [WXMediaMessage message];
           [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imgUrl]]]];
         message.title = dto.title;
         message.description = dto.desc;
-        message.mediaObject = ext;
-        
+        if ([dto.type isEqualToString:@"music"]) {
+            WXMusicObject * ext = [WXMusicObject object];
+            ext.musicUrl = dto.dataUrl;
+            message.mediaObject = ext;
+        }else if ([dto.type isEqualToString:@"video"]){
+            WXVideoObject * ext = [WXVideoObject object];
+            ext.videoUrl = dto.dataUrl;
+            message.mediaObject = ext;
+        }else{
+            WXWebpageObject *ext = [WXWebpageObject object];
+            ext.webpageUrl = dto.link;
+            message.mediaObject = ext;
+        }
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
         req.bText = NO;
         req.message = message;
@@ -96,7 +105,7 @@
             d.code = [NSString stringWithFormat:@"%d",resp.errCode];
             d.errStr = resp.errStr?resp.errStr:@"0";
             d.type = [NSString stringWithFormat:@"%d",resp.errCode];
-            [webVC.webview callHandler:self.event arguments:d completionHandler:^(id  _Nullable value) {}];
+            [webVC.webview callHandler:self.event arguments:d.code completionHandler:^(id  _Nullable value) {}];
         }
 
     }

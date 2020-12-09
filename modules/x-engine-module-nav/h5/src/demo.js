@@ -100,6 +100,15 @@ import nav from './index.js'
       .then((res) => {});
   };
 
+  window.removeHistoryPage = () => {
+    nav
+      .removeHistoryPage({
+        isHidden: {history:[
+        ]},
+      })
+      .then((res) => {});
+  };
+
   window.testSetHidden = () => {
     nav
       .setSearchBarHidden({

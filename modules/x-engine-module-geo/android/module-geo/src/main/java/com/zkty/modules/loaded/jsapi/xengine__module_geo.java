@@ -20,7 +20,7 @@
 		public String type;
   }
   
-  class ContinousDTO {
+  class GeoEventDTO {
     @Optional
 		public String __event__;
   }
@@ -42,12 +42,6 @@
 		public String latitude;
   }
   
-  class GeoReverseResDTO {
-    public String longitude;
-
-    public String latitude;
-  }
-  
   class GeoLocationResDTO {
     public String longitude;
 
@@ -58,8 +52,7 @@
   
   interface xengine__module_geo_i {
     public void _coordinate(GeoReqDTO dto, final CompletionHandler<GeoResDTO> handler);
-public void _locate(final CompletionHandler<GeoReverseResDTO> handler);
-public void _locate__event__(ContinousDTO dto, final CompletionHandler<GeoLocationResDTO> handler);
+public void _locate(GeoEventDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -85,27 +78,14 @@ public void _locate__event__(ContinousDTO dto, final CompletionHandler<GeoLocati
 
     @JavascriptInterface
     final public void locate(JSONObject obj, final CompletionHandler<Object> handler) {
-      _locate(new CompletionHandler<GeoReverseResDTO>() {
+      GeoEventDTO data= convert(obj,GeoEventDTO.class);
+      _locate(data, new CompletionHandler<Nullable>() {
         @Override
-        public void complete(GeoReverseResDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(GeoReverseResDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void locate__event__(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _locate__event__(data, new CompletionHandler<GeoLocationResDTO>() {
-        @Override
-        public void complete(GeoLocationResDTO retValue) { handler.complete(retValue); }
+        public void complete(Nullable retValue) { handler.complete(null); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(GeoLocationResDTO value) { handler.setProgressData(value); }
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

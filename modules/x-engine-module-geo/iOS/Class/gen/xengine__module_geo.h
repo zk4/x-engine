@@ -7,10 +7,9 @@
 #import "JSONModel.h"
 
 @protocol GeoReqDTO;
-@protocol ContinousDTO;
+@protocol GeoEventDTO;
 @protocol GeoResDTO;
 @protocol GeoReverseReqDTO;
-@protocol GeoReverseResDTO;
 @protocol GeoLocationResDTO;
 
 @interface GeoReqDTO: JSONModel
@@ -18,7 +17,7 @@
 @end
     
 
-@interface ContinousDTO: JSONModel
+@interface GeoEventDTO: JSONModel
   	@property(nonatomic,strong) NSString* __event__;
 @end
     
@@ -36,12 +35,6 @@
 @end
     
 
-@interface GeoReverseResDTO: JSONModel
-  	@property(nonatomic,copy) NSString* longitude;
-   	@property(nonatomic,copy) NSString* latitude;
-@end
-    
-
 @interface GeoLocationResDTO: JSONModel
   	@property(nonatomic,copy) NSString* longitude;
    	@property(nonatomic,copy) NSString* latitude;
@@ -55,11 +48,8 @@
         - (void) _coordinate:(GeoReqDTO*) dto complete:(void (^)(GeoResDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _locate:(void (^)(GeoReverseResDTO* result,BOOL complete)) completionHandler;
+        - (void) _locate:(GeoEventDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
-      @required 
-        - (void) _locate__event__:(ContinousDTO*) dto complete:(void (^)(GeoLocationResDTO* result,BOOL complete)) completionHandler;
-
 @end
   
 

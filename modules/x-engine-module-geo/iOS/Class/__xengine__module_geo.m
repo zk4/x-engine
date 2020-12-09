@@ -20,7 +20,7 @@
 
 @interface __xengine__module_geo()<BMKLocationAuthDelegate,BMKLocationManagerDelegate>
 {
-    ContinousDTO* adto;
+    GeoEventDTO* adto;
     void(^hanlder)(id value,BOOL isComplete);
     //    int value;
     NSString* event;
@@ -39,11 +39,9 @@
     
 }
 
-- (void)_locate:(void (^)(GeoReverseResDTO *, BOOL))completionHandler {
-    
-}
+ 
 
-- (void)_locate__event__:(ContinousDTO *)dto complete:(void (^)(GeoLocationResDTO *, BOOL))completionHandler {
+- (void)_locate:(GeoEventDTO *)dto complete:(void (^)(GeoLocationResDTO *, BOOL))completionHandler {
     adto=dto;
     hanlder=completionHandler;
     [self getLocation];

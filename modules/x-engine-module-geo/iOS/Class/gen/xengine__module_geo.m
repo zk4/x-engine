@@ -13,7 +13,7 @@
 @end
     
   
-@implementation ContinousDTO
+@implementation GeoEventDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
     }
 @end
@@ -30,13 +30,6 @@
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"type"]) { return YES; }
    	if ([propertyName isEqualToString:@"longitude"]) { return YES; }
    	if ([propertyName isEqualToString:@"latitude"]) { return YES; }	return NO;
-    }
-@end
-    
-  
-@implementation GeoReverseResDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
     }
 @end
     
@@ -73,16 +66,9 @@
       }
     - (void) locate:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _locate:^(GeoReverseResDTO* result, BOOL complete) {
-            completionHandler(result ,complete);
+          GeoEventDTO* dto = [self convert:dict clazz:GeoEventDTO.class];
+          [self _locate:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
           }];
-      }
-    - (void) locate__event__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
-          [self _locate__event__:dto complete:^(GeoLocationResDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
       }
   @end

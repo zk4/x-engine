@@ -37,37 +37,14 @@ npm install @zkty-team/x-engine-module-geo
 
 **demo**
 ``` js
- {
-    window.locate = (...args) => {
+{
+  window.locate = () => {
     geo
-      .locate(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "hello";
-      });
-  };
-}
-``` 
-
-	
-**无参数**
-
-
-
-
-## locate__event__
-
-
-
-**demo**
-``` js
- {
-  window.locate__event__ = () => {
-    geo
-      .locate__event__({
+      .locate({
           __event__:function(res){
+        //GeoLocationResDTO
         res = JSON.parse(res);
         document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
-        //document.getElementById("debug_text").innerText=res ;
         return res;
           }
         }

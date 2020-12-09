@@ -6,6 +6,10 @@ interface GeoReqDTO {
   type?: string;
 }
 
+interface ContinousDTO {
+  __event__?:(string)=>{}
+}
+
 interface GeoResDTO {
   // 目标地经度
   longitude: string;
@@ -30,6 +34,15 @@ interface GeoReverseResDTO {
   latitude: string;
 }
 
+// 单次定位返回
+interface GeoLocationResDTO {
+  // 目标地经度
+  longitude: string;
+  // 目标地纬度
+  latitude: string;
+  //目标地址描述(精确到city)
+  locationString: string;
+}
 
 function coordinate(arg:GeoReqDTO={title:"wgs84"}):GeoResDTO {
     window.coordinate = (...args) => {
@@ -41,7 +54,7 @@ function coordinate(arg:GeoReqDTO={title:"wgs84"}):GeoResDTO {
   };
 }
 
-function locate(arg:GeoReverseReqDTO):GeoReverseResDTO {
+function locate():GeoReverseResDTO {
     window.locate = (...args) => {
     geo
       .locate(...args)
@@ -51,4 +64,15 @@ function locate(arg:GeoReverseReqDTO):GeoReverseResDTO {
   };
 }
 
-
+function locate__event__(args:ContinousDTO):GeoLocationResDTO {
+  window.locate__event__ = () => {
+    geo
+      .locate__event__({
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
+        return res;
+          }
+        }
+      )
+  };
+}

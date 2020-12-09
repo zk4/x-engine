@@ -19,4 +19,15 @@ import xengine from "@zkty-team/x-engine-module-engine";
       });
   };
 
+  window.locate__event__ = () => {
+    geo
+      .locate__event__({
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
+        return res;
+          }
+        }
+      )
+  };
+
     

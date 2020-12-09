@@ -20,6 +20,10 @@ function osCheck() {
   },
   {
     "name": "locate",
+    "default_args": {}
+  },
+  {
+    "name": "locate__event__",
     "default_args": null
   }
 ]

@@ -399,6 +399,13 @@ public class XEngineWebActivity extends AppCompatActivity {
         showScreenCapture(true);
     }
 
+
+    public void finishWhitNoAnim() {
+        super.finish();
+        overridePendingTransition(0, 0);
+
+    }
+
     private boolean isFirstReceiveTitle = true;
 
     class MyWebChromeClient extends WebChromeClient {

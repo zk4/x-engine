@@ -138,7 +138,11 @@ public class XEngineWebActivityManager {
         activity.showScreenCapture(true);
         for (int i = 0; i < activityList.size(); i++) {
             if (i != 0) {
-                activityList.get(i).finish();
+                if (i == activityList.size() - 1) {
+                    activityList.get(i).finish();
+                } else {
+                    activityList.get(i).finishWhitNoAnim();
+                }
             }
         }
         XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
@@ -151,7 +155,11 @@ public class XEngineWebActivityManager {
             if (UrlUtils.equalsWithoutArgs(activityList.get(i).getWebUrl(), url)) {
                 return;
             }
-            activityList.get(i).finish();
+            if (i == activityList.size() - 1) {
+                activityList.get(i).finish();
+            } else {
+                activityList.get(i).finishWhitNoAnim();
+            }
         }
     }
 

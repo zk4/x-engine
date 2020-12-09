@@ -21,5 +21,8 @@
     return @"com.zkty.module.engine";
 }
  
+- (void) broadcast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+    NSLog(@"hello");
+  }
 @end

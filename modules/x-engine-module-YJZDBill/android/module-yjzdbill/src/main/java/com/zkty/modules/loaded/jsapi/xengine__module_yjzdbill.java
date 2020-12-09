@@ -47,13 +47,8 @@
     public boolean payType;
   }
   
-  class ContinousDTO {
-    public String __event__;
-  }
-  
   interface xengine__module_yjzdbill_i {
-    public void _echo(ContinousDTO dto, final CompletionHandler<String> handler);
-public void _YJBillPayment(YJBillDTO dto, final CompletionHandler<YJBillRetDTO> handler);
+    public void _YJBillPayment(YJBillDTO dto, final CompletionHandler<YJBillRetDTO> handler);
 public void _YJBillRefund(YJBillRefundDTO dto, final CompletionHandler<YJBillRetDTO> handler);
 public void _YJBillList(YJBillListDTO dto, final CompletionHandler<Nullable> handler);
   }
@@ -65,20 +60,6 @@ public void _YJBillList(YJBillListDTO dto, final CompletionHandler<Nullable> han
       return "com.zkty.module.yjzdbill";
     }
   
-    @JavascriptInterface
-    final public void echo(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _echo(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
     @JavascriptInterface
     final public void YJBillPayment(JSONObject obj, final CompletionHandler<Object> handler) {
       YJBillDTO data= convert(obj,YJBillDTO.class);

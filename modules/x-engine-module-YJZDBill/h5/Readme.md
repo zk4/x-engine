@@ -1,5 +1,5 @@
 
-version: 0.0.10
+version: 0.0.59
 ``` bash
 npm install @zkty-team/x-engine-module-yjzdbill
 ```

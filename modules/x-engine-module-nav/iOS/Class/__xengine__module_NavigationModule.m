@@ -563,7 +563,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             
             BOOL isFind = NO;
             for (NSString *url in dto.history) {
-                NSRange range = [item.loadUrl rangeOfString:url];
+                NSRange range = [item.loadUrl rangeOfString:[NSString stringWithFormat:@"%@?", url]];
                 if(range.location != NSNotFound){
                     isFind = YES;
                     break;

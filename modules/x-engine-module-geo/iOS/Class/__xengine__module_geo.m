@@ -16,13 +16,11 @@
 #import <Unity.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import <x-engine-module-engine/XEngineJSBUtil.h>
-//#import "BMKLocationComponent.h"
 
 @interface __xengine__module_geo()<BMKLocationAuthDelegate,BMKLocationManagerDelegate>
 {
     GeoEventDTO* adto;
     void(^hanlder)(id value,BOOL isComplete);
-    //    int value;
     NSString* event;
 }
 
@@ -39,15 +37,13 @@
     
 }
 
- 
-
-- (void)_locate:(GeoEventDTO *)dto complete:(void (^)(GeoLocationResDTO *, BOOL))completionHandler {
+- (void)_locate:(GeoEventDTO *)dto complete:(void (^)(BOOL))completionHandler {
     adto=dto;
-    hanlder=completionHandler;
+    completionHandler(TRUE);
     [self getLocation];
-    
 }
 
+ 
 -(void)getLocation
 {
     [[BMKLocationAuth sharedInstance] checkPermisionWithKey:@"hwj5qKKmwqLipBYjhgX1GtXbp4QdcXIo" authDelegate:self];

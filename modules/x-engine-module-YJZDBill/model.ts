@@ -39,34 +39,10 @@ interface YJBillListDTO {
   //支付业务， 是否是 B端调用，  true为B， false为C
   payType:boolean;
 }
-interface ContinousDTO {
-  __event__:(string)=>{}
-}
-function echo(args:ContinousDTO):string{
-  window.echo = () => {
-    yjzdbill
-      .echo({
-          //__ret__:function(res){
-        //document.getElementById("debug_text").innerText = JSON.stringify("__ret__"+res);
-          //},
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
-      //.then((res) => {
-        //document.getElementById("debug_text").innerText = JSON.stringify(res);
-      //});
-  };
-}
 
 //支付
 function YJBillPayment(
-  YJBillDTO: YJBillDTO = {
-    businessCstNo:"000001",
-    platMerCstNo: "8377631273379692750",
-    tradeMerCstNo: "8377707718294634760",
-    billNo:'01202012081346103822413721356429',
+  args: YJBillDTO = {
     appScheme:'x-engine',
     payType:false
   }
@@ -74,6 +50,12 @@ function YJBillPayment(
   window.YJBillPayment = () => {
     yjzdbill
       .YJBillPayment({
+    businessCstNo:"000001",
+    platMerCstNo: "8377631273379692750",
+    tradeMerCstNo: "8377707718294634760",
+    billNo:'01202012081346103822413721356429',
+    appScheme:'x-engine',
+    payType:false,
         __ret__:(res)=>{
                   console.log(JSON.stringify(res));
         document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -84,14 +66,12 @@ function YJBillPayment(
 
 //退款
 function YJBillRefund(
-  YJBillRefundDTO: YJBillRefundDTO = {
-    refundOrderNo:'RFO1607064781790',
-    __event__:(string)=>{}
-  }
+  args: YJBillRefundDTO 
 ):YJBillRetDTO {
   window.YJBillRefund = () => {
     yjzdbill
       .YJBillRefund({
+        refundOrderNo:'RFO1607064781790',
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },
@@ -104,15 +84,15 @@ function YJBillRefund(
 
 //账单中心
 function YJBillList(
-  YJBillListDTO: YJBillListDTO = {
+  args: YJBillListDTO){
+  window.YJBillList = () => {
+    yjzdbill
+      .YJBillList({
     businessCstNo:"000001",
     appScheme:'x-engine',
     payType:false
-  }
-){
-  window.YJBillList = () => {
-    yjzdbill
-      .YJBillList()
+
+      })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);
       });

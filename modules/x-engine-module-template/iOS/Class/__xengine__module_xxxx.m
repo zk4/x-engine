@@ -110,7 +110,6 @@
 }
 
 -(void)repeat_event:t{
-     
     if(value!=-1){
         ContinousDTO* dto= (ContinousDTO*) adto;
         value--;
@@ -121,8 +120,6 @@
             NSLog(@"%@",value);
         }];
     }else{
-        hanlder(0,YES);
-        hanlder=nil;
         [timer invalidate];
         timer=nil;
     }

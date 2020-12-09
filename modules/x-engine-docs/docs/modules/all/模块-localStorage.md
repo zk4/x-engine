@@ -20,7 +20,7 @@ localstorage 会根据微应用的 appid 自动加入 namespace.
 # JS
 
 
-version: 0.0.58
+version: 0.0.59
 ``` bash
 npm install @zkty-team/x-engine-module-localstorage
 ```

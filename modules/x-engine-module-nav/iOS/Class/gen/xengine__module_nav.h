@@ -14,6 +14,7 @@
 @protocol NavOpenAppDTO;
 @protocol NavSearchBarDTO;
 @protocol NavHiddenBarDTO;
+@protocol NavHistoryDTO;
 
 @interface NavTitleDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -87,6 +88,11 @@
 @end
     
 
+@interface NavHistoryDTO: JSONModel
+  	@property(nonatomic,strong) NSArray<NSString*>* history;
+@end
+    
+
 
 @protocol xengine__module_nav_protocol
        @required 
@@ -118,6 +124,9 @@
     
       @required 
         - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+        - (void) _removeHistoryPage:(NavHistoryDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   

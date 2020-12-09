@@ -125,6 +125,10 @@
     public boolean isAnimation;
   }
   
+  class NavHistoryDTO {
+    public List<String> history;
+  }
+  
   interface xengine__module_nav_i {
     public void _setNavTitle(NavTitleDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavLeftBtn(NavBtnDTO dto, final CompletionHandler<Nullable> handler);
@@ -136,6 +140,7 @@ public void _navigatorBack(NavNavigatorDTO dto, final CompletionHandler<Nullable
 public void _setNavSearchBar(NavSearchBarDTO dto, final CompletionHandler<Nullable> handler);
 public void _setSearchBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
+public void _removeHistoryPage(NavHistoryDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -275,6 +280,20 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
     final public void setNavBarHidden(JSONObject obj, final CompletionHandler<Object> handler) {
       NavHiddenBarDTO data= convert(obj,NavHiddenBarDTO.class);
       _setNavBarHidden(data, new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void removeHistoryPage(JSONObject obj, final CompletionHandler<Object> handler) {
+      NavHistoryDTO data= convert(obj,NavHistoryDTO.class);
+      _removeHistoryPage(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

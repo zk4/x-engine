@@ -15,13 +15,14 @@
 #import <XEngineWebView.h>
 #import <Unity.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
+#import <x-engine-module-engine/XEngineJSBUtil.h>
 //#import "BMKLocationComponent.h"
 
 @interface __xengine__module_geo()<BMKLocationAuthDelegate,BMKLocationManagerDelegate>
 {
     ContinousDTO* adto;
     void(^hanlder)(id value,BOOL isComplete);
-//    int value;
+    //    int value;
     NSString* event;
 }
 
@@ -31,8 +32,8 @@
 @end
 
 @implementation __xengine__module_geo
- 
-  
+
+
 
 - (void)_coordinate:(GeoReqDTO *)dto complete:(void (^)(GeoResDTO *, BOOL))completionHandler {
     
@@ -75,41 +76,41 @@
     
     __weak typeof(self) weakself = self;
     weakself.locationModel = [[GeoLocationResDTO alloc] init];
-
+    
     [_locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
-
-        NSLog(@"hello");
-      [weakself callJS:self->adto.__event__ args:@[@"hello"] retCB:^(id  _Nullable value) {
-                        //处理__event__ 的返回值
-                        NSLog(@"%@",value);
-      }];
-
-//        if (error){
-//                    NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-//        }
-//       if (location) {//得到定位信息，添加annotation
-//                if (location.location) {
-//                    weakself.locationModel.longitude = [NSString stringWithFormat:@"%f",location.location.coordinate.longitude];
-//                    weakself.locationModel.latitude = [NSString stringWithFormat:@"%f",location.location.coordinate.latitude];
-//                }
-//                if (location.rgcData) {
-//                    weakself.locationModel.locationString = [NSString stringWithFormat:@"%@,%@,%@",location.rgcData.country,location.rgcData.province,location.rgcData.city];
-//                }
-//        }
-//        if (weakself.locationModel == nil)
-//        {
-//            self->hanlder(0,YES);
-//            self->hanlder=nil;
-//        }
-//        else
-//        {
-//            ContinousDTO* dto= (ContinousDTO*) self->adto;
-//            NSLog(@"结果777%@==%@==%@",weakself.locationModel.longitude,weakself.locationModel.latitude,weakself.locationModel.locationString);
-//            [weakself callJS:dto.__event__ args:@[weakself.locationModel] retCB:^(id  _Nullable value) {
-//                //处理__event__ 的返回值
-//                NSLog(@"%@",value);
-//            }];
-//        }
+        
+        
+        if (error){
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+        }
+        if (location) {//得到定位信息，添加annotation
+            if (location.location) {
+                weakself.locationModel.longitude = [NSString stringWithFormat:@"%f",location.location.coordinate.longitude];
+                weakself.locationModel.latitude = [NSString stringWithFormat:@"%f",location.location.coordinate.latitude];
+            }
+            if (location.rgcData) {
+                weakself.locationModel.locationString = [NSString stringWithFormat:@"%@,%@,%@",location.rgcData.country,location.rgcData.province,location.rgcData.city];
+            }
+        }
+        if (weakself.locationModel == nil)
+        {
+            self->hanlder(0,YES);
+            self->hanlder=nil;
+        }
+        else
+        {
+            
+            NSLog(@"结果777%@==%@==%@",weakself.locationModel.longitude,weakself.locationModel.latitude,weakself.locationModel.locationString);
+            {
+                // 方法 1. 先转为 jsonstring
+                NSString* jsonstring= [XEngineJSBUtil objToJsonString:weakself.locationModel];
+                
+                [weakself callJS:self->adto.__event__ args:jsonstring retCB:^(id  _Nullable value) {
+                    //处理__event__ 的返回值
+                    NSLog(@"%@",value);
+                }];
+            }
+        }
     }];
 }
 
@@ -122,4 +123,4 @@
 
 
 @end
- 
+

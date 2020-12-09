@@ -23,7 +23,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
     geo
       .locate__event__({
           __event__:function(res){
+        res = JSON.parse(res);
         document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
+        //document.getElementById("debug_text").innerText=res ;
         return res;
           }
         }

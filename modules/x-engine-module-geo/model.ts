@@ -69,6 +69,7 @@ function locate__event__(args:ContinousDTO):GeoLocationResDTO {
     geo
       .locate__event__({
           __event__:function(res){
+        res = JSON.parse(res);
         document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
         return res;
           }

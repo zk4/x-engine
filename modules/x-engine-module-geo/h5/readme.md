@@ -65,7 +65,9 @@ npm install @zkty-team/x-engine-module-geo
     geo
       .locate__event__({
           __event__:function(res){
+        res = JSON.parse(res);
         document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
+        //document.getElementById("debug_text").innerText=res ;
         return res;
           }
         }

@@ -8,6 +8,7 @@
 #import "XEngineCallInfo.h"
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
+#import <XEngineContext.h>
 
 @implementation XEngineWebView
 
@@ -56,6 +57,7 @@
     self = [super initWithFrame:frame configuration: configuration];
     if (self) {
         super.UIDelegate=self;
+        super.navigationDelegate = self;
     }
     // add internal Javascript Object
     XEngineInternalApis *  interalApis= [[XEngineInternalApis alloc] init];
@@ -517,4 +519,25 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }];
 }
 
+// 在发送请求之前，决定是否跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler;{
+//    NSString *strRequest = [navigationAction.request.URL.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    if ([navigationAction.request.URL.scheme isEqualToString:@"x-engine"]) {
+        NSArray *subArray = [navigationAction.request.URL.query componentsSeparatedByString:@"&"];
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc]init];
+        for (int j = 0 ; j < subArray.count; j++){
+            NSArray *dicArray = [subArray[j] componentsSeparatedByString:@"="];
+            [tempDic setObject:dicArray[1] forKey:dicArray[0]];
+        }
+        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",[navigationAction.request.URL.path substringFromIndex:1]];
+        id share =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+        SEL  sel = NSSelectorFromString(@"share:complete:");
+        if([share respondsToSelector:sel]){
+            [share performSelector:sel withObject:tempDic withObject:nil];
+        }
+    }
+    
+     decisionHandler(WKNavigationActionPolicyAllow);
+}
 @end

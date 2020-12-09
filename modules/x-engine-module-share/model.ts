@@ -11,7 +11,7 @@ interface ShareReqDTO {
   imgUrl: string,
   // 如果type是music或video，则要提供数据链接，默认为空
   dataUrl?: string,
-  __event__: (string)=>void,
+  __event__?: (string)=>void,
 
 }
 interface ShareResDTO {

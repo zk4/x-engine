@@ -17,6 +17,7 @@
 #import "WXApi.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <MBProgressHUD+Toast.h>
+#import <WebKit/WebKit.h>
 
 @interface __xengine__module_share()<WXApiDelegate>
 @property (nonatomic,strong)NSString * event;
@@ -32,6 +33,7 @@
         [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString * _Nonnull log) {
             NSLog(@"////%@", log);
         }];
+    
     }
     
     return self;
@@ -78,7 +80,6 @@
     }else{
         [MBProgressHUD showToastWithTitle:@"没有安装微信" image:nil time:1.0];
     }
-    
 }
 
 -(BOOL)isInstall{
@@ -105,7 +106,9 @@
             d.code = [NSString stringWithFormat:@"%d",resp.errCode];
             d.errStr = resp.errStr?resp.errStr:@"0";
             d.type = [NSString stringWithFormat:@"%d",resp.errCode];
-            [webVC.webview callHandler:self.event arguments:d.code completionHandler:^(id  _Nullable value) {}];
+            if (self.event) {
+                [webVC.webview callHandler:self.event arguments:d.code completionHandler:^(id  _Nullable value) {}];
+            }
         }
 
     }
@@ -121,5 +124,6 @@
     }
     return NO;
 }
+
 @end
  

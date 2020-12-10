@@ -1,5 +1,7 @@
 
 import geo from './index.js'
+import xengine from "@zkty-team/x-engine-module-engine";
+
 
     window.coordinate = (...args) => {
     geo

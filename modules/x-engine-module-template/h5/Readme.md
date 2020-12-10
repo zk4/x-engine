@@ -1,5 +1,5 @@
 
-version: 0.0.58
+version: 0.0.59
 ``` bash
 npm install @zkty-team/x-engine-module-xxxx
 ```
@@ -18,7 +18,6 @@ npm install @zkty-team/x-engine-module-xxxx
         document.getElementById("debug_text").innerText = JSON.stringify(res);
     })
   };
-
 }
 ``` 
 
@@ -79,7 +78,7 @@ npm install @zkty-team/x-engine-module-xxxx
     xxxx
       .repeatReturn__event__({
           __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify(res);
         return res;
           }
         }
@@ -108,7 +107,7 @@ npm install @zkty-team/x-engine-module-xxxx
       .repeatReturn__ret__(
         {
           __ret__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify("__ret__:"+res);
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify("__ret__:"+res);
         return res;
           },
         }
@@ -134,14 +133,9 @@ npm install @zkty-team/x-engine-module-xxxx
 {
   window.ReturnInPromiseThen = () => {
     xxxx
-      .ReturnInPromiseThen({
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-          }
-        }
-      )
+      .ReturnInPromiseThen()
       .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText ="then 只支持一次性返回"+ JSON.stringify(res);
       });
   };
 }

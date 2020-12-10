@@ -1,4 +1,14 @@
 
+
+**基座扫描测试**
+<div id='modulename' style='display:none'>yjzdbill</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
+<a id='qrlink' href="about:none">link of QR</a>
+
+
+
+# JS
+
+
 version: 0.0.59
 ``` bash
 npm install @zkty-team/x-engine-module-yjzdbill
@@ -40,8 +50,8 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | platMerCstNo | string |  |  | 预下单平台商户号 |
 | tradeMerCstNo | string |  |  | 预下单交易商户号 |
 | billNo | string |  |  | 业务系统订单号 |
-| appScheme | string | true | x-engine | 当前app注册的appScheme |
-| payType | bool | true |  | 支付业务， 是否是 B端调用，  true为B， false为C |
+| appScheme | string |  | x-engine | 当前app注册的appScheme |
+| payType | bool |  |  | 支付业务， 是否是 B端调用，  true为B， false为C |
 
 
 ## YJBillRefund
@@ -106,3 +116,10 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | payType | bool |  |  | 支付业务， 是否是 B端调用，  true为B， false为C |
 
     
+
+# iOS
+
+
+# android
+
+

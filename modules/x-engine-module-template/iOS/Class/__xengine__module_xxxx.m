@@ -29,12 +29,7 @@
 @implementation __xengine__module_xxxx
  
  
-  
-
-- (void)_abc:(NSString *)dto complete:(void (^)(BOOL))completionHandler {
-    NSLog(@"%@",dto);
-}
-
+   
 - (void)_haveArgNoRet:(SheetDTO *)dto complete:(void (^)(BOOL))completionHandler {
     
 }
@@ -48,7 +43,9 @@
 }
 
 - (void)_noArgNoRet:(void (^)(BOOL))completionHandler {
-    
+ 
+
+
 }
 
 - (void)_noArgRetPrimitive:(void (^)(NSString *, BOOL))completionHandler {
@@ -113,7 +110,6 @@
 }
 
 -(void)repeat_event:t{
-     
     if(value!=-1){
         ContinousDTO* dto= (ContinousDTO*) adto;
         value--;
@@ -124,30 +120,27 @@
             NSLog(@"%@",value);
         }];
     }else{
-        hanlder(0,YES);
-        hanlder=nil;
         [timer invalidate];
         timer=nil;
     }
 }
  
-
- 
-
-- (void)__broadcastOn:(void (^)(BOOL))completionHandler {
+- (void)_broadcastOn:(void (^)(BOOL))completionHandler {
+    //要注意. 这里仅是删除 _broadcastOn 的 JS 回调方法.
     completionHandler(TRUE);
 }
 
 - (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
-    [self broadcast:@[@"hello",@"broadcast"]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+
+    NSDate *currentDate = [NSDate date];
+    NSString *dateString = [formatter stringFromDate:currentDate];
+
+    [self broadcast:@[@"hello",@"broadcast",dateString]];
+    //要注意. 这里仅是删除 _triggerNativeBroadCast 的回调,而不是删除 broadcast 的回调.
     completionHandler(TRUE);
 }
-
- 
- 
-
-
-
  
 
 

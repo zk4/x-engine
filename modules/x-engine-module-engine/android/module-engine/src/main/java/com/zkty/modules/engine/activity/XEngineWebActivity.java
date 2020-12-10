@@ -28,12 +28,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebHistoryItem;
 import com.tencent.smtt.sdk.WebView;
 import com.zkty.modules.engine.imp.ImagePicker;
-import com.zkty.modules.engine.utils.AvatarUtils;
+import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.engine.view.CameraDialog;
@@ -163,24 +161,24 @@ public class XEngineWebActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0) + "----requestCode:" + requestCode + "---resultCode:" + resultCode);
-        if (requestCode == AvatarUtils.RESULT_CODE_PHOTO) {
+        if (requestCode == ImageUtils.RESULT_CODE_PHOTO) {
             if (null == mUploadMessage && null == mUploadCallbackAboveL) return;
             Uri result = data == null ? null : data.getData();
             if (mUploadCallbackAboveL != null) {
                 onActivityResultAboveL(requestCode, resultCode, data);
             } else if (mUploadMessage != null) {
-                result = AvatarUtils.geturi(data, this);
+                result = ImageUtils.geturi(data, this);
                 if (result == null) {
                     return;
                 }
                 mUploadMessage.onReceiveValue(result);
                 mUploadMessage = null;
             }
-        } else if (requestCode == AvatarUtils.RESULT_CODE_CAMERA) {
+        } else if (requestCode == ImageUtils.RESULT_CODE_CAMERA) {
             Uri uri = null;
 
-            AvatarUtils.afterOpenCamera(AvatarUtils.PHOTO_PATH, this);
-            uri = AvatarUtils.PHOTO_URI;
+            ImageUtils.afterOpenCamera(ImageUtils.PHOTO_PATH, this);
+            uri = ImageUtils.PHOTO_URI;
             if (mUploadCallbackAboveL != null) {
                 Uri[] uris = new Uri[1];
                 uris[0] = uri;
@@ -401,6 +399,13 @@ public class XEngineWebActivity extends AppCompatActivity {
         showScreenCapture(true);
     }
 
+
+    public void finishWhitNoAnim() {
+        super.finish();
+        overridePendingTransition(0, 0);
+
+    }
+
     private boolean isFirstReceiveTitle = true;
 
     class MyWebChromeClient extends WebChromeClient {
@@ -436,7 +441,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
             mUploadCallbackAboveL = valueCallback;
             String[] acceptTypes = fileChooserParams.getAcceptTypes();
-            if (acceptTypes.length > 0 && AvatarUtils.isImage(acceptTypes[0])) {
+            if (acceptTypes.length > 0 && ImageUtils.isImage(acceptTypes[0])) {
                 showSelectDialog();
             } else {
                 choseFile();
@@ -459,10 +464,10 @@ public class XEngineWebActivity extends AppCompatActivity {
                 bottomDialog.initDialog(photoKey, (view, which, l) -> {
                     if (which == 1) {
                         // 从手机相册选择
-                        AvatarUtils.startAlbum2(XEngineWebActivity.this);
+                        ImageUtils.startAlbum2(XEngineWebActivity.this);
                     } else if (which == 0) {
                         // 拍照
-                        AvatarUtils.startCamera(XEngineWebActivity.this);
+                        ImageUtils.startCamera(XEngineWebActivity.this);
                     } else if (which == -2) {
                         mUploadCallbackAboveL.onReceiveValue(null);
                         mUploadCallbackAboveL = null;
@@ -502,11 +507,11 @@ public class XEngineWebActivity extends AppCompatActivity {
     }
 
     private void onActivityResultAboveL(int requestCode, int resultCode, Intent data) {
-        if ((requestCode == AvatarUtils.RESULT_CODE_CAMERA || requestCode == AvatarUtils.RESULT_CODE_PHOTO) && mUploadCallbackAboveL != null) {
+        if ((requestCode == ImageUtils.RESULT_CODE_CAMERA || requestCode == ImageUtils.RESULT_CODE_PHOTO) && mUploadCallbackAboveL != null) {
             Uri[] results = null;
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
-                    if (requestCode == AvatarUtils.RESULT_CODE_CAMERA) {
+                    if (requestCode == ImageUtils.RESULT_CODE_CAMERA) {
                         String dataString = data.getDataString();
                         ClipData clipData = data.getClipData();
                         if (clipData != null) {
@@ -518,12 +523,12 @@ public class XEngineWebActivity extends AppCompatActivity {
                         }
                         if (dataString != null)
                             results = new Uri[]{Uri.parse(dataString)};
-                    } else if (requestCode == AvatarUtils.RESULT_CODE_PHOTO) {
+                    } else if (requestCode == ImageUtils.RESULT_CODE_PHOTO) {
 
                         ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
                         results = new Uri[items.size()];
                         for (int j = 0; j < items.size(); j++) {
-                            results[j] = AvatarUtils.getMediaUriFromPath(this, items.get(j));
+                            results[j] = ImageUtils.getMediaUriFromPath(this, items.get(j));
                         }
                     }
                 }

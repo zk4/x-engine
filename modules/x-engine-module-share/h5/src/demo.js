@@ -1,16 +1,15 @@
 
 import share from './index.js'
 
-    window.share = (...args) => {
+  window.share = () => {
     share
       .share({
-        ...args,
-        title:"这是一个测试 title",
-        desc:"this is desc",
-        link: "https://www.baidu.com"
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = JSON.stringify(res);
+        },
       })
       .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res["code"];
+        document.getElementById("debug_text").innerText = res;
       });
   };
 

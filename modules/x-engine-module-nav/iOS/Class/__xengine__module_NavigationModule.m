@@ -553,7 +553,31 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     completionHandler(YES);
 }
 
-
+- (void)_removeHistoryPage:(NavHistoryDTO *)dto complete:(void (^)(BOOL))completionHandler{
+    
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    UINavigationController *nav = topVC.navigationController;
+    NSMutableArray *tempAry = [@[] mutableCopy];
+    for (RecyleWebViewController *item in nav.viewControllers) {
+        if([item isKindOfClass:[RecyleWebViewController class]]){
+            
+            BOOL isFind = NO;
+            for (NSString *url in dto.history) {
+                NSRange range = [item.loadUrl rangeOfString:[NSString stringWithFormat:@"%@?", url]];
+                if(range.location != NSNotFound){
+                    isFind = YES;
+                    break;
+                }
+            }
+            if(isFind){
+                continue;
+            }
+        }
+        [tempAry addObject:item];
+    }
+    nav.viewControllers = tempAry;
+    completionHandler(YES);
+}
 
 @end
 

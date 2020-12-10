@@ -1,10 +1,6 @@
 package com.zkty.modules.engine.webview;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -18,7 +14,6 @@ import com.tencent.smtt.export.external.interfaces.WebResourceError;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebBackForwardList;
-import com.tencent.smtt.sdk.WebHistoryItem;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -26,6 +21,7 @@ import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.exception.NoModuleIdException;
+import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.Utils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
@@ -33,9 +29,7 @@ import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import module.engine.R;
 
@@ -72,7 +66,10 @@ public class XEngineWebView extends DWebView {
 
         loadLocalImg();
         // setErrorPage();
+
+        saveImg();
     }
+
 
     private void loadLocalImg() {
         setWebViewClient(new WebViewClient() {
@@ -89,31 +86,6 @@ public class XEngineWebView extends DWebView {
                 return super.shouldInterceptRequest(webView, s);
             }
 
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-                if (s.contains("tenpay")) {
-                    Log.d("Xenging-url>>>", s);
-                    Map<String, String> webviewHead = new HashMap<>();
-                    webviewHead.put("referer", "http://linli580.com");
-                    webView.loadUrl(s, webviewHead);
-                    return true;
-
-                }
-                if (s.startsWith("weixin://wap/pay?")) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(s));
-                   mContext.startActivity(intent);
-
-                    return true;
-                }
-
-                if (Build.VERSION.SDK_INT < 26) {
-                    webView.loadUrl(s);
-                    return true;
-                }
-                return false;
-            }
         });
     }
 
@@ -150,36 +122,6 @@ public class XEngineWebView extends DWebView {
 
     }
 
-//    /**
-//     * 回退
-//     */
-//    public void backUp() {
-//        if (XOneWebViewPool.IS_SINGLE) {
-//            XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-//            activity.showScreenCapture(true);
-//            ViewGroup parent = (ViewGroup) getParent();
-//            if (parent != null) {
-//                parent.removeAllViews();
-//            }
-//        }
-//        if (canGoBack()) {
-//            goBack();
-//        }
-//    }
-//
-//    //预加载
-//    public void preLoad(String url) {
-//        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-//        if (activity != null) {
-//            activity.showScreenCapture(true);
-//        }
-//        ViewGroup parent = (ViewGroup) getParent();
-//        if (parent != null) {
-//            parent.removeView(this);
-//        }
-//        loadUrl(url);
-//
-//    }
 
     //清缓存
     public void cleanCache() {
@@ -325,4 +267,22 @@ public class XEngineWebView extends DWebView {
     public String getCurrentUrl() {
         return this.currentUrl;
     }
+
+    private void saveImg() {
+
+        setOnLongClickListener(view -> {
+            HitTestResult result = getHitTestResult();
+            switch (result.getType()) {
+
+//                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
+                case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项 base64类型
+
+                    new Thread(() -> ImageUtils.savePicture(mContext, result.getExtra())).start();
+                    break;
+
+            }
+            return false;
+        });
+    }
+
 }

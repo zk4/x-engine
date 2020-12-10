@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void yjzdbill(View view) {
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "http://www.baidu.com");
+        XEngineWebActivityManager.sharedInstance().startMicroEngineActivity(this, "com.zkty.microapp.moduledemo", null, null, "0");
+
     }
 }

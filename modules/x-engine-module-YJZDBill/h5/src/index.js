@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -22,8 +22,8 @@ function osCheck() {
       "businessCstNo": "000001",
       "platMerCstNo": "8377631273379692750",
       "tradeMerCstNo": "8377707718294634760",
-      "billNo": "022020120416543228724452ba399222",
-      "appScheme": "zdsdk",
+      "billNo": "01202012081346103822413721356429",
+      "appScheme": "x-engine",
       "payType": false
     }
   },
@@ -37,7 +37,7 @@ function osCheck() {
     "name": "YJBillList",
     "default_args": {
       "businessCstNo": "000001",
-      "appScheme": "zdsdk",
+      "appScheme": "x-engine",
       "payType": false
     }
   }

@@ -146,6 +146,10 @@ function osCheck() {
   {
     "name": "setNavBarHidden",
     "default_args": null
+  },
+  {
+    "name": "removeHistoryPage",
+    "default_args": null
   }
 ]
 )}}

@@ -14,7 +14,8 @@
     
   
 @implementation GeoEventDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
     }
 @end
     

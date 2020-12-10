@@ -21,6 +21,8 @@
   }
   
   class GeoEventDTO {
+    public String type;
+
     @Optional
 		public String __event__;
   }

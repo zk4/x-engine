@@ -18,7 +18,8 @@
     
 
 @interface GeoEventDTO: JSONModel
-  	@property(nonatomic,strong) NSString* __event__;
+  	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 

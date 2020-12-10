@@ -7,7 +7,8 @@ interface GeoReqDTO {
 }
 
 interface GeoEventDTO {
-  __event__?:(string)=>{}
+  type: string;
+  __event__?:(string)=>{};
 }
 
 interface GeoResDTO {
@@ -36,17 +37,15 @@ interface GeoLocationResDTO {
   locationString: string;
 }
 
-function coordinate(arg:GeoReqDTO={title:"wgs84"}):GeoResDTO {
+function coordinate(arg:GeoReqDTO={type:"wgs84"}):GeoResDTO {
     window.coordinate = (...args) => {
     geo
       .coordinate(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "long,lat:"+res["longitude"]+res["latitude"];
-      });
+ 
   };
 }
 
-function locate(args:GeoEventDTO){
+function locate(args:GeoEventDTO = {type:"wgs84"}){
   window.locate = () => {
     geo
       .locate({

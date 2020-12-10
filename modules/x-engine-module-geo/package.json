@@ -2,6 +2,7 @@
   "name": "@zkty-team/x-engine-module-geo",
   "version": "0.0.59",
   "main": "h5/src/index.js",
+  "description": "geo module",
   "license": "MIT",
   "scripts": {
     "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",

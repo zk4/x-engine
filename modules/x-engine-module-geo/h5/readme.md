@@ -16,9 +16,7 @@ npm install @zkty-team/x-engine-module-geo
     window.coordinate = (...args) => {
     geo
       .coordinate(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "long,lat:"+res["longitude"]+res["latitude"];
-      });
+ 
   };
 }
 ``` 
@@ -28,7 +26,7 @@ npm install @zkty-team/x-engine-module-geo
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| type | string | true |  |  默认为 wgs84 返回 gps 坐标，gcj02 返回国测局坐标 |
+| type | string | true | wgs84 |  默认为 wgs84 返回 gps 坐标，gcj02 返回国测局坐标 |
 
 
 ## locate
@@ -58,6 +56,7 @@ npm install @zkty-team/x-engine-module-geo
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
+| type | string |  | wgs84 |  |
 | \_\_event\_\_ |  | true |  |  |
 
     

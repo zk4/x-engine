@@ -22,7 +22,30 @@ import module.share.R;
 public class ShareMaster {
 
 
-    public static void share(Context context, String type, String title, String desc, String link, String imgUrl, String dataUrl) {
+    public static void share(Context context, String type, String channel, String title, String desc, String link, String imgUrl, String dataUrl) {
+
+
+        switch (channel) {
+            case "wx_friend":
+            case "wx_zone":
+                shareToWx(context, type, channel, title, desc, link, imgUrl, dataUrl);
+                break;
+
+        }
+
+
+    }
+
+    private static void shareToWx(Context context, String type, String channel, String title, String desc, String link, String imgUrl, String dataUrl) {
+
+        int mTargetScene = SendMessageToWX.Req.WXSceneSession;
+        if ("wx_friend".equals(channel)) {
+            mTargetScene = SendMessageToWX.Req.WXSceneSession;
+        } else if ("wx_zone".equals(channel)) {
+            mTargetScene = SendMessageToWX.Req.WXSceneTimeline;
+        }
+
+
         String appId = null;
         try {
             ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
@@ -62,7 +85,7 @@ public class ShareMaster {
                 SendMessageToWX.Req req = new SendMessageToWX.Req();
 //                req.transaction = buildTransaction("music");
                 req.message = msg;
-//                req.scene = mTargetScene;
+                req.scene = mTargetScene;
 //                req.userOpenId = getOpenId();
                 //调用api接口，发送数据到微信
                 api.sendReq(req);
@@ -78,7 +101,7 @@ public class ShareMaster {
 //用 WXVideoObject 对象初始化一个 WXMediaMessage 对象
                 WXMediaMessage msg2 = new WXMediaMessage(video);
                 msg2.title = title;
-                msg2.description =desc;
+                msg2.description = desc;
 //                Bitmap thumbBmp = BitmapFactory.decodeResource(getResources(), R.drawable.send_music_thumb);
 //                msg2.thumbData =Util.bmpToByteArray(thumbBmp,true);
 
@@ -86,7 +109,7 @@ public class ShareMaster {
                 SendMessageToWX.Req req2 = new SendMessageToWX.Req();
 //                req2.transaction = buildTransaction("video");
                 req2.message = msg2;
-//                req2.scene = mTargetScene;
+                req2.scene = mTargetScene;
 //                req2.userOpenId = getOpenId();
 
 //调用api接口，发送数据到微信
@@ -114,15 +137,12 @@ public class ShareMaster {
                 SendMessageToWX.Req req3 = new SendMessageToWX.Req();
 //                req.transaction = buildTransaction("webpage");
                 req3.message = msg3;
-//                req.scene = mTargetScene;
+                req3.scene = mTargetScene;
 //                req.userOpenId = getOpenId();
 
                 //调用api接口，发送数据到微信
                 api.sendReq(req3);
-
-
                 break;
-
 
         }
 

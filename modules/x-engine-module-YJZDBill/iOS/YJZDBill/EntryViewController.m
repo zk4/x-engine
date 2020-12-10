@@ -51,7 +51,7 @@
     // 启动 h5 服务器, npm run dev
     // 将下面的 ip 换成你的电脑 ip 即可实时调试
 //   NSString* url = [NSString stringWithFormat:@"http://0.0.0.0:8000",[self getIPAddress]];
-    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.15:9111"];
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.3.37:9111"];
 
 }
 

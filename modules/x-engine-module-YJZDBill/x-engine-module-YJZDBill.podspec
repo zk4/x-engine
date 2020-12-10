@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
     s.public_header_files = "iOS/Class/**/*.h"
    
     s.frameworks  = "CoreServices"
-    s.resources    = "iOS/ios-sdk/resouce.bundle"
+    s.resources    = "iOS/ios-sdk/*.bundle"
     s.ios.vendored_frameworks = 'iOS/ios-sdk/*.framework'
 
 

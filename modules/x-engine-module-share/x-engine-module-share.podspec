@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
     s.name         = "x-engine-module-share"
     s.version      = version
-    s.summary      = package["description"]
+    s.summary      = "share"
 
      s.description  = <<-DESC
             description

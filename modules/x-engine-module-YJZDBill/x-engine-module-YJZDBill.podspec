@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
     s.name         = "x-engine-module-yjzdbill"
     s.version      = version
-    s.summary      = package["description"]
+    s.summary      = "yjzdbill"
 
      s.description  = <<-DESC
             description

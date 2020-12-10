@@ -23,8 +23,8 @@
 		538009B44D3E4E8C337189A9 /* libPods-yjzdbill-yjzdbillUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8D19D09EC03B26C734EC3 /* libPods-yjzdbill-yjzdbillUITests.a */; };
 		587F741B250669A300F515BD /* __xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_yjzdbill.m */; };
 		587F74262506737800F515BD /* xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_yjzdbill.m */; };
-		C9DCB23D2579E47400FB78BE /* resouce.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9DCB23C2579E47300FB78BE /* resouce.bundle */; };
-		C9DCB23F2579E47E00FB78BE /* yjzdbill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DCB23E2579E47E00FB78BE /* yjzdbill.framework */; };
+		C9B52192257F535400B04732 /* resouce.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9B52190257F535400B04732 /* resouce.bundle */; };
+		C9B52193257F535400B04732 /* YJZDBill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B52191257F535400B04732 /* YJZDBill.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +77,8 @@
 		884143ABEFD722050DDC70A3 /* Pods-yjzdbill-yjzdbillUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.release.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-yjzdbill.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.release.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C9DCB23C2579E47300FB78BE /* resouce.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resouce.bundle; sourceTree = "<group>"; };
-		C9DCB23E2579E47E00FB78BE /* yjzdbill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = yjzdbill.framework; sourceTree = "<group>"; };
+		C9B52190257F535400B04732 /* resouce.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resouce.bundle; sourceTree = "<group>"; };
+		C9B52191257F535400B04732 /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YJZDBill.framework; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-yjzdbill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-yjzdbill-yjzdbillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,7 +90,7 @@
 			files = (
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
 				36644A9B6347D8F3F465E2F2 /* libPods-yjzdbill.a in Frameworks */,
-				C9DCB23F2579E47E00FB78BE /* yjzdbill.framework in Frameworks */,
+				C9B52193257F535400B04732 /* YJZDBill.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,8 +156,8 @@
 		00DFC6E224C84000006A53EE /* yjzdbill */ = {
 			isa = PBXGroup;
 			children = (
-				C9DCB23E2579E47E00FB78BE /* yjzdbill.framework */,
-				C9DCB23C2579E47300FB78BE /* resouce.bundle */,
+				C9B52190257F535400B04732 /* resouce.bundle */,
+				C9B52191257F535400B04732 /* YJZDBill.framework */,
 				0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
@@ -302,7 +302,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "yjzdbill" */;
+			buildConfigurationList = 00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "YJZDBill" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -332,7 +332,7 @@
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
-				C9DCB23D2579E47400FB78BE /* resouce.bundle in Resources */,
+				C9B52192257F535400B04732 /* resouce.bundle in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -775,7 +775,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "yjzdbill" */ = {
+		00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "YJZDBill" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00DFC6D724C83F95006A53EE /* Debug */,

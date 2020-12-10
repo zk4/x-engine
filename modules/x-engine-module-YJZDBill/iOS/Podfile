@@ -7,14 +7,13 @@ load './ModulePods.rb'
 target 'yjzdbill' do
   #use_frameworks!
   # 在开发时,将所有依赖的 module 包放这.包括依赖的依赖，因为我们没有 pod 的库，用的 npm 的库。
-  #pod 'x-engine-module-engine', :path =>'../node_modules/@zkty-team/x-engine-module-engine'
   module_pods
   
-  pod 'WechatOpenSDK','1.8.5'
+  pod 'WechatOpenSDK'
   pod 'AlipaySDK-iOS'
-  pod 'AFNetworking', '~> 3.0'
+  pod 'AFNetworking'
   pod 'MJExtension'
-
+  
   target 'yjzdbillUITests' do
     # Pods for testing
   end

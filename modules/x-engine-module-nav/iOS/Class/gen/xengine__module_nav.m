@@ -86,6 +86,12 @@
     }
 @end
     
+  
+@implementation NavHistoryDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
 
 
 
@@ -168,6 +174,13 @@
 
           NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
           [self _setNavBarHidden:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
+          }];
+      }
+    - (void) removeHistoryPage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          NavHistoryDTO* dto = [self convert:dict clazz:NavHistoryDTO.class];
+          [self _removeHistoryPage:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
       }

@@ -103,6 +103,10 @@ interface NavHiddenBarDTO {
   //是否使用动画效果
   isAnimation: boolean;
 }
+
+interface NavHistoryDTO {
+  history: Array<string>;
+}
 // **demo**
 // ``` js
 // nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
@@ -313,6 +317,17 @@ function setNavBarHidden(arg:NavHiddenBarDTO){
       .setNavBarHidden({
         isHidden: true,
         isAnimation: true,
+      })
+      .then((res) => {});
+  };
+}
+
+function removeHistoryPage(arg:NavHistoryDTO){
+  window.removeHistoryPage = () => {
+    nav
+      .removeHistoryPage({
+        isHidden: {history:[
+        ]},
       })
       .then((res) => {});
   };

@@ -52,9 +52,20 @@
     
     
     __weak typeof(self) weakself = self;
-//    weakself.locationModel = [[GeoLocationResDTO alloc] init];
+    weakself.locationModel = [[GeoLocationResDTO alloc] init];
     NSLog(@"传入参数==%@",geodto.type);
-    weakself.locationManager.coordinateType = BMKLocationCoordinateTypeWGS84;
+    if ([geodto.type isEqualToString:@"WGS84"]){
+        weakself.locationManager.coordinateType = BMKLocationCoordinateTypeWGS84;
+    }
+    else if ([geodto.type isEqualToString:@"GCJ02"]){
+        weakself.locationManager.coordinateType = BMKLocationCoordinateTypeGCJ02;
+    }
+    else if ([geodto.type isEqualToString:@"BMK09MC"]){
+        weakself.locationManager.coordinateType = BMKLocationCoordinateTypeBMK09MC;
+    }
+    else{
+        weakself.locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+    }
     [weakself.locationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
         
         
@@ -67,7 +78,13 @@
                 weakself.locationModel.latitude = [NSString stringWithFormat:@"%f",location.location.coordinate.latitude];
             }
             if (location.rgcData) {
-                weakself.locationModel.locationString = [NSString stringWithFormat:@"%@,%@,%@",location.rgcData.country,location.rgcData.province,location.rgcData.city];
+//                weakself.locationModel.locationString = [NSString stringWithFormat:@"%@,%@,%@",location.rgcData.country,location.rgcData.province,location.rgcData.city];
+                weakself.locationModel.country = location.rgcData.country;
+                weakself.locationModel.province = location.rgcData.province;
+                weakself.locationModel.city = location.rgcData.city;
+                weakself.locationModel.district = location.rgcData.district;
+                weakself.locationModel.town = location.rgcData.town;
+                weakself.locationModel.street = location.rgcData.street;
             }
         }
         if (weakself.locationModel == nil)
@@ -78,7 +95,7 @@
         else
         {
             
-            NSLog(@"结果777%@==%@==%@",weakself.locationModel.longitude,weakself.locationModel.latitude,weakself.locationModel.locationString);
+            NSLog(@"结果777%@==%@==%@",weakself.locationModel.longitude,weakself.locationModel.latitude,weakself.locationModel.street);
             {
                 // 方法 1. 先转为 jsonstring
                 NSString* jsonstring= [XEngineJSBUtil objToJsonString:weakself.locationModel];

@@ -42,7 +42,7 @@ npm install @zkty-team/x-engine-module-geo
           __event__:function(res){
         //GeoLocationResDTO
         res = JSON.parse(res);
-        document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
+        document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["country"]+res["province"]+res["city"]+res["district"]+res["street"];
         return res;
           }
         }

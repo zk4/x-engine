@@ -39,7 +39,12 @@
 @interface GeoLocationResDTO: JSONModel
   	@property(nonatomic,copy) NSString* longitude;
    	@property(nonatomic,copy) NSString* latitude;
-   	@property(nonatomic,copy) NSString* locationString;
+   	@property(nonatomic,copy) NSString* country;
+   	@property(nonatomic,copy) NSString* province;
+   	@property(nonatomic,copy) NSString* city;
+   	@property(nonatomic,copy) NSString* district;
+   	@property(nonatomic,copy) NSString* town;
+   	@property(nonatomic,copy) NSString* street;
 @end
     
 

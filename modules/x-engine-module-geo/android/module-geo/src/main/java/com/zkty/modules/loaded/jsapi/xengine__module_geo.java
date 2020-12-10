@@ -49,7 +49,17 @@
 
     public String latitude;
 
-    public String locationString;
+    public String country;
+
+    public String province;
+
+    public String city;
+
+    public String district;
+
+    public String town;
+
+    public String street;
   }
   
   interface xengine__module_geo_i {

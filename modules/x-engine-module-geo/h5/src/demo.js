@@ -15,7 +15,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
           __event__:function(res){
         //GeoLocationResDTO
         res = JSON.parse(res);
-        document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["locationString"];
+        document.getElementById("debug_text").innerText = "long,lat,locs:"+ res["longitude"]+res["latitude"]+res["country"]+res["province"]+res["city"]+res["district"]+res["street"];
         return res;
           }
         }

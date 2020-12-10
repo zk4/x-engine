@@ -182,7 +182,7 @@ SPEC CHECKSUMS:
   x-engine-module-scan: f55ddd7a78d1e59d8a8cc5a2914e5e25316fa34a
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
   x-engine-module-ui: 62dacd7d9a25a868e874db76dd049c9e0a926b5e
-  x-engine-module-yjzdbill: 462e1f3785047641699e8370f2bd73c047db4248
+  x-engine-module-yjzdbill: 180165a72f53b527072c70a2c829c35224971375
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
 PODFILE CHECKSUM: 8454ef7eebba74fbe50854ebc8088599eea64e2b

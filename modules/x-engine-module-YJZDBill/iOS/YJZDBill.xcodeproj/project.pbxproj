@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */ = {isa = PBXBuildFile; fileRef = 0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */; };
 		003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 003F95D924DA4A6100633E1F /* libc++.tbd */; };
 		00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* iOSTests.m */; };
 		00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6D424C83F95006A53EE /* iOSUITests.m */; };
@@ -23,8 +22,8 @@
 		538009B44D3E4E8C337189A9 /* libPods-yjzdbill-yjzdbillUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8D19D09EC03B26C734EC3 /* libPods-yjzdbill-yjzdbillUITests.a */; };
 		587F741B250669A300F515BD /* __xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_yjzdbill.m */; };
 		587F74262506737800F515BD /* xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_yjzdbill.m */; };
-		C9B52192257F535400B04732 /* resouce.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9B52190257F535400B04732 /* resouce.bundle */; };
-		C9B52193257F535400B04732 /* YJZDBill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B52191257F535400B04732 /* YJZDBill.framework */; };
+		58BD6A352582681C00058183 /* resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 58BD6A332582681C00058183 /* resource.bundle */; };
+		58BD6A362582681C00058183 /* YJZDBill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58BD6A342582681C00058183 /* YJZDBill.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.microapp.moduledemo.0; sourceTree = "<group>"; };
 		003F95D924DA4A6100633E1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		00DFC6AA24C83F94006A53EE /* yjzdbill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yjzdbill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6C524C83F95006A53EE /* yjzdbillTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yjzdbillTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,14 +69,14 @@
 		587F741A250669A300F515BD /* __xengine__module_yjzdbill.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_yjzdbill.m; sourceTree = "<group>"; };
 		587F74222506737700F515BD /* xengine__module_yjzdbill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_yjzdbill.h; sourceTree = "<group>"; };
 		587F74242506737700F515BD /* xengine__module_yjzdbill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__module_yjzdbill.m; sourceTree = "<group>"; };
+		58BD6A332582681C00058183 /* resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = resource.bundle; path = "ios-sdk/resource.bundle"; sourceTree = SOURCE_ROOT; };
+		58BD6A342582681C00058183 /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YJZDBill.framework; path = "ios-sdk/YJZDBill.framework"; sourceTree = SOURCE_ROOT; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		60F8D19D09EC03B26C734EC3 /* libPods-yjzdbill-yjzdbillUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yjzdbill-yjzdbillUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64777595404EB1F495371D9F /* libPods-yjzdbill.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yjzdbill.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		884143ABEFD722050DDC70A3 /* Pods-yjzdbill-yjzdbillUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.release.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-yjzdbill.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.release.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C9B52190257F535400B04732 /* resouce.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resouce.bundle; sourceTree = "<group>"; };
-		C9B52191257F535400B04732 /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YJZDBill.framework; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-yjzdbill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-yjzdbill-yjzdbillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,7 +88,7 @@
 			files = (
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
 				36644A9B6347D8F3F465E2F2 /* libPods-yjzdbill.a in Frameworks */,
-				C9B52193257F535400B04732 /* YJZDBill.framework in Frameworks */,
+				58BD6A362582681C00058183 /* YJZDBill.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,9 +154,8 @@
 		00DFC6E224C84000006A53EE /* yjzdbill */ = {
 			isa = PBXGroup;
 			children = (
-				C9B52190257F535400B04732 /* resouce.bundle */,
-				C9B52191257F535400B04732 /* YJZDBill.framework */,
-				0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */,
+				58BD6A332582681C00058183 /* resource.bundle */,
+				58BD6A342582681C00058183 /* YJZDBill.framework */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
@@ -302,7 +299,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "YJZDBill" */;
+			buildConfigurationList = 00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "yjzdbill" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -328,11 +325,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
-				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				58BD6A352582681C00058183 /* resource.bundle in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
-				C9B52192257F535400B04732 /* resouce.bundle in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,6 +649,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yjzdbill",
+					"$(PROJECT_DIR)/ios-sdk",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/yjzdbill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -679,6 +676,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yjzdbill",
+					"$(PROJECT_DIR)/ios-sdk",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/yjzdbill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -775,7 +773,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "YJZDBill" */ = {
+		00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "yjzdbill" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00DFC6D724C83F95006A53EE /* Debug */,

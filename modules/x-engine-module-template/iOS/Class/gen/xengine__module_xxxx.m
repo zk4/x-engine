@@ -130,12 +130,4 @@
           }];
         
       }
-    - (void) helloworld:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
-          [self _helloworld:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
   @end

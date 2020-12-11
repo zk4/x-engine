@@ -8,9 +8,11 @@ interface ShareReqDTO {
   title: string,
   desc : string,
   link : string,
-  imgUrl: string,
+  imageUrl: string,
   // 如果type是music或video，则要提供数据链接，默认为空
   dataUrl?: string,
+  //wx_zone (朋友圈) wx_friend(好友)
+  channel?: string;
   __event__?: (string)=>void,
 
 }
@@ -27,8 +29,8 @@ function share(
     title:"test",
     desc:"testdesc",
     link:"http://www.baidu.com",
-    imgUrl:"",
-    __event__: (string)=>string,
+    imageUrl:"",
+    channel:"wx_zone"
   }
 ):ShareResDTO {
   window.share = () => {

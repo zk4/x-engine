@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
 
     s.requires_arc = true
 
-    s.author             = { "zkty" => "liuzq7@gmail.com" }
+    s.author             = { "zkty-team" => "liuzq7@gmail.com" }
 
     s.platform     = :ios, "10.0"
     s.ios.deployment_target = "10.0"
@@ -62,8 +62,8 @@ Pod::Spec.new do |s|
   :tag => s.version.to_s }
 
 
-    s.source_files  = "iOS/Class/*.{h,m}"
-    s.public_header_files = "iOS/Class/*.h"
+    s.source_files  = "iOS/Class/**/*.{h,m}"
+    s.public_header_files = "iOS/Class/**/*.h"
    
     s.frameworks  = "CoreServices"
 

@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void geo(View view) {
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "http://www.baidu.com");
+//        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "http://www.baidu.com");
     }
 }

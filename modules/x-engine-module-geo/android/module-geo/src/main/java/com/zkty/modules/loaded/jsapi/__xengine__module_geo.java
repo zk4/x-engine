@@ -31,15 +31,11 @@ public class __xengine__module_geo extends xengine__module_geo {
 
 	@Override
 	public void _locate(GeoEventDTO dto, CompletionHandler<Nullable> handler) {
-		Log.i(TAG,"xxxxx=" + dto.type);
-		Log.d(TAG, "receive object:" + JSONObject.toJSONString(dto));
-		List<GeoEventDTO> geoEventDTOList = new ArrayList<>();
-		if(dto !=null && dto.type.isEmpty()){
+		if(dto != null){
 			strCoorType = dto.type;
 		}else{
-			strCoorType = "BMK09LL";
+			strCoorType="BMK09LL";
 		}
-
 		LocationManager.getLocation(XEngineApplication.getApplication(), true, strCoorType,new LocationManager.LocationCallback() {
 			@Override
 			public void onLocationCallback(BDLocation location) {

@@ -16,19 +16,15 @@
 
   
   class ShareReqDTO {
-    public String channel;
-
     public String type;
 
     public String title;
 
+    public String desc;
+
     public String link;
 
-    @Optional
-		public String desc;
-
-    @Optional
-		public String imgUrl;
+    public String imgUrl;
 
     @Optional
 		public String dataUrl;

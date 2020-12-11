@@ -10,7 +10,6 @@
 @protocol YJBillRefundDTO;
 @protocol YJBillRetDTO;
 @protocol YJBillListDTO;
-@protocol ContinousDTO;
 
 @interface YJBillDTO: JSONModel
   	@property(nonatomic,copy) NSString* businessCstNo;
@@ -40,17 +39,9 @@
 @end
     
 
-@interface ContinousDTO: JSONModel
-  	@property(nonatomic,strong) NSString* __event__;
-@end
-    
-
 
 @protocol xengine__module_yjzdbill_protocol
        @required 
-        - (void) _echo:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
-      @required 
         - (void) _YJBillPayment:(YJBillDTO*) dto complete:(void (^)(YJBillRetDTO* result,BOOL complete)) completionHandler;
 
       @required 

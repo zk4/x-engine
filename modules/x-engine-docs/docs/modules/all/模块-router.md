@@ -125,7 +125,7 @@ args　形如：
 # JS
 
 
-version: 0.0.58
+version: 0.0.59
 ``` bash
 npm install @zkty-team/x-engine-module-router
 ```

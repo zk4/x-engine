@@ -20,6 +20,13 @@
 		public String type;
   }
   
+  class GeoEventDTO {
+    public String type;
+
+    @Optional
+		public String __event__;
+  }
+  
   class GeoResDTO {
     public String longitude;
 
@@ -37,15 +44,27 @@
 		public String latitude;
   }
   
-  class GeoReverseResDTO {
+  class GeoLocationResDTO {
     public String longitude;
 
     public String latitude;
+
+    public String country;
+
+    public String province;
+
+    public String city;
+
+    public String district;
+
+    public String town;
+
+    public String street;
   }
   
   interface xengine__module_geo_i {
     public void _coordinate(GeoReqDTO dto, final CompletionHandler<GeoResDTO> handler);
-public void _locate(GeoReverseReqDTO dto, final CompletionHandler<GeoReverseResDTO> handler);
+public void _locate(GeoEventDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -71,14 +90,14 @@ public void _locate(GeoReverseReqDTO dto, final CompletionHandler<GeoReverseResD
 
     @JavascriptInterface
     final public void locate(JSONObject obj, final CompletionHandler<Object> handler) {
-      GeoReverseReqDTO data= convert(obj,GeoReverseReqDTO.class);
-      _locate(data, new CompletionHandler<GeoReverseResDTO>() {
+      GeoEventDTO data= convert(obj,GeoEventDTO.class);
+      _locate(data, new CompletionHandler<Nullable>() {
         @Override
-        public void complete(GeoReverseResDTO retValue) { handler.complete(retValue); }
+        public void complete(Nullable retValue) { handler.complete(null); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(GeoReverseResDTO value) { handler.setProgressData(value); }
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

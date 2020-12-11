@@ -14,17 +14,13 @@ import org.json.JSONObject;
 
 public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
-    @Override
-    public void _echo(ContinousDTO dto, CompletionHandler<String> handler) {
-
-    }
 
     @Override
     public void _YJBillPayment(YJBillDTO dto, CompletionHandler<YJBillRetDTO> handler) {
 
         BillManager billManager = BillManager.getInstance();
         billManager.init(XEngineApplication.getApplication());
-        billManager.payBills("", dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
+        billManager.payBills(null, dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
             @Override
             public void payRsult(JSONObject jsonObject) {
 

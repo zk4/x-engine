@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void yjzdbill(View view) {
-        XEngineWebActivityManager.sharedInstance().startMicroEngineActivity(this, "com.zkty.microapp.moduledemo", null, null, "0");
-
+        XEngineWebActivityManager.sharedInstance().startH5EngineActivity(this, "http://192.168.1.89:9111");
     }
 }

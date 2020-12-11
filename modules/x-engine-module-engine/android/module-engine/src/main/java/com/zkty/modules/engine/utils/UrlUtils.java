@@ -22,4 +22,32 @@ public class UrlUtils {
 
         return temp1.endsWith(temp2);
     }
+
+
+    public static String getRouterFormPath(String path) {
+
+        if (TextUtils.isEmpty(path)) return null;
+
+        if (path.startsWith("/index"))
+            path = path.replace("/index#", "");
+        if (path.contains("?"))
+            return path.substring(0, path.indexOf("?"));
+        return path;
+
+    }
+
+
+    public static String getRouterFormUrl(String url) {
+
+        if (TextUtils.isEmpty(url)) return null;
+
+
+        if (url.contains("#")) {
+            String path = url.substring(url.indexOf("#") + 1);
+            return getRouterFormPath(path);
+
+        }
+        return null;
+
+    }
 }

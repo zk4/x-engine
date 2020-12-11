@@ -11,6 +11,8 @@ import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +73,12 @@ public class XEngineWebActivityManager {
         }
         url = TextUtils.isEmpty(args) || "null".equals(args) ? url : url + "?" + args;
 
+        String router = UrlUtils.getRouterFormPath(path);
+        if (!TextUtils.isEmpty(router)) {
+            intent.putExtra(XEngineWebActivity.ROUTER, router);
+        }
+
+
         intent.putExtra(XEngineWebActivity.URL, url);
         context.startActivity(intent);
 
@@ -93,6 +101,11 @@ public class XEngineWebActivityManager {
         intent.putExtra(XEngineWebActivity.URL, url);
         intent.putExtra(XEngineWebActivity.INDEX_URL, activity.getIndexUrl());
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, activity.getMicroAppId());
+
+        String router1 = UrlUtils.getRouterFormPath(router);
+        if (!TextUtils.isEmpty(router)) {
+            intent.putExtra(XEngineWebActivity.ROUTER, router1);
+        }
         context.startActivity(intent);
 
     }
@@ -168,6 +181,19 @@ public class XEngineWebActivityManager {
             return null;
         }
         return activityList.get(activityList.size() - 2);
+    }
+
+
+    public void removeHistoryPage(List<String> histories) {
+        //通知activity finish
+        for (String history : histories) {
+            EventBus.getDefault().post(new XEngineMessage(XEngineMessage.MSG_TYPE_PAGE_CLOSE, history));
+        }
+
+
+
+
+
     }
 
 }

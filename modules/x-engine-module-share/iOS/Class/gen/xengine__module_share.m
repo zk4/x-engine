@@ -14,6 +14,7 @@
    
    
    	if ([propertyName isEqualToString:@"dataUrl"]) { return YES; }
+   	if ([propertyName isEqualToString:@"channel"]) { return YES; }
    	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
     }
 @end

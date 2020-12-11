@@ -12,8 +12,8 @@
    
    
    
-   
-   	return NO;
+   	if ([propertyName isEqualToString:@"appScheme"]) { return YES; }
+   	if ([propertyName isEqualToString:@"payType"]) { return YES; }	return NO;
     }
 @end
     

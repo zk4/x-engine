@@ -24,10 +24,13 @@
 
     public String link;
 
-    public String imgUrl;
+    public String imageUrl;
 
     @Optional
 		public String dataUrl;
+
+    @Optional
+		public String channel;
 
     @Optional
 		public String __event__;

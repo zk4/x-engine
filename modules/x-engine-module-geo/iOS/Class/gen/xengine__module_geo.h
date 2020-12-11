@@ -6,33 +6,12 @@
 #import <xengine__module_BaseModule.h>
 #import "JSONModel.h"
 
-@protocol GeoReqDTO;
 @protocol GeoEventDTO;
-@protocol GeoResDTO;
-@protocol GeoReverseReqDTO;
 @protocol GeoLocationResDTO;
-
-@interface GeoReqDTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-@end
-    
 
 @interface GeoEventDTO: JSONModel
   	@property(nonatomic,copy) NSString* type;
    	@property(nonatomic,strong) NSString* __event__;
-@end
-    
-
-@interface GeoResDTO: JSONModel
-  	@property(nonatomic,copy) NSString* longitude;
-   	@property(nonatomic,copy) NSString* latitude;
-@end
-    
-
-@interface GeoReverseReqDTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,copy) NSString* longitude;
-   	@property(nonatomic,copy) NSString* latitude;
 @end
     
 
@@ -51,9 +30,6 @@
 
 @protocol xengine__module_geo_protocol
        @required 
-        - (void) _coordinate:(GeoReqDTO*) dto complete:(void (^)(GeoResDTO* result,BOOL complete)) completionHandler;
-
-      @required 
         - (void) _locate:(GeoEventDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end

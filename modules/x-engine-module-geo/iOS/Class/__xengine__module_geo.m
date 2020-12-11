@@ -27,27 +27,16 @@
 
 @implementation __xengine__module_geo
 
-
-
-- (void)_coordinate:(GeoReqDTO *)dto complete:(void (^)(GeoResDTO *, BOOL))completionHandler {
-    
-}
-
 - (void)_locate:(GeoEventDTO *)dto complete:(void (^)(BOOL))completionHandler {
 //    adto=dto;
     completionHandler(TRUE);
     [self getLocation:dto];
 }
 
-
-
-
-
- 
 -(void)getLocation:(GeoEventDTO *)geodto
 {
     NSString *path = [NSBundle mainBundle].bundlePath;
-    NSLog(@"文件路径:%@",path);
+    NSLog(@"路径==%@",path);
     [[BMKLocationAuth sharedInstance] checkPermisionWithKey:@"hwj5qKKmwqLipBYjhgX1GtXbp4QdcXIo" authDelegate:self];
     
     
@@ -107,11 +96,6 @@
             }
         }
     }];
-}
-
-- (void)onCheckPermissionState:(BMKLocationAuthErrorCode)iError
-{
-    
 }
 
 #pragma mark =======getter========

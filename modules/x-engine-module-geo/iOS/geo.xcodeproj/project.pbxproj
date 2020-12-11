@@ -65,6 +65,15 @@
 		00DFC6FF24C843A3006A53EE /* xengine_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xengine_config.json; sourceTree = "<group>"; };
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		543EF0622580924B00B0D9D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		543EF0642580925500B0D9D8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		543EF0662580927F00B0D9D8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		543EF06B2580929600B0D9D8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		543EF06D258092A700B0D9D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		543EF06F258092B000B0D9D8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		543EF071258092BB00B0D9D8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		543EF073258092C500B0D9D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		543EF078258092D200B0D9D8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		587F7419250669A300F515BD /* __xengine__module_geo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __xengine__module_geo.h; sourceTree = "<group>"; };
 		587F741A250669A300F515BD /* __xengine__module_geo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_geo.m; sourceTree = "<group>"; };
 		587F74222506737700F515BD /* xengine__module_geo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_geo.h; sourceTree = "<group>"; };
@@ -204,6 +213,15 @@
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				543EF078258092D200B0D9D8 /* Accelerate.framework */,
+				543EF073258092C500B0D9D8 /* libz.tbd */,
+				543EF071258092BB00B0D9D8 /* SystemConfiguration.framework */,
+				543EF06F258092B000B0D9D8 /* Security.framework */,
+				543EF06D258092A700B0D9D8 /* QuartzCore.framework */,
+				543EF06B2580929600B0D9D8 /* OpenGLES.framework */,
+				543EF0662580927F00B0D9D8 /* libsqlite3.0.tbd */,
+				543EF0642580925500B0D9D8 /* CoreLocation.framework */,
+				543EF0622580924B00B0D9D8 /* CoreGraphics.framework */,
 				003F95D924DA4A6100633E1F /* libc++.tbd */,
 				64777595404EB1F495371D9F /* libPods-geo.a */,
 				60F8D19D09EC03B26C734EC3 /* libPods-geo-geoUITests.a */,
@@ -642,11 +660,24 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdFrameWork/MapRoute",
+					"$(PROJECT_DIR)/thirdFrameWork/MapBasis",
+					"$(PROJECT_DIR)/thirdFrameWork",
+				);
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/geo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdFrameWork/MapRoute/thirdlibs",
+					"$(PROJECT_DIR)/thirdFrameWork/MapBasis/thirdlibs",
+					"$(PROJECT_DIR)/thirdFrameWork/thirdlibs",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
@@ -664,11 +695,24 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdFrameWork/MapRoute",
+					"$(PROJECT_DIR)/thirdFrameWork/MapBasis",
+					"$(PROJECT_DIR)/thirdFrameWork",
+				);
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/geo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdFrameWork/MapRoute/thirdlibs",
+					"$(PROJECT_DIR)/thirdFrameWork/MapBasis/thirdlibs",
+					"$(PROJECT_DIR)/thirdFrameWork/thirdlibs",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";

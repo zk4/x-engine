@@ -6,10 +6,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.tencent.smtt.sdk.QbSdk;
 import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.webview.WebViewPool;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -79,7 +81,7 @@ public class XEngineContext {
     }
 
     private static void initWebViewPool(Context application) {
-       // WebViewPool.sharedInstance().init(application);
+        // WebViewPool.sharedInstance().init(application);
         XOneWebViewPool.sharedInstance().init(application);
     }
 
@@ -104,8 +106,8 @@ public class XEngineContext {
                 constructor.setAccessible(true);
                 Object object = constructor.newInstance();
                 objects.put(classModule, object);
-                Method methodModule = classModule.getDeclaredMethod("onAllModulesInited");
-                methodModule.setAccessible(true);
+                Method methodModule = classModule.getMethod("onAllModulesInited");
+//                methodModule.setAccessible(true);
                 methodModule.invoke(object);
 
 

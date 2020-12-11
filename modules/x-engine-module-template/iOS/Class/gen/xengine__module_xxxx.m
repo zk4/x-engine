@@ -15,6 +15,23 @@
     }
 @end
     
+  
+@implementation ContinousDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
+    }
+@end
+    
+  
+@implementation MsgPayloadDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	if ([propertyName isEqualToString:@"args"]) { return YES; }
+   	if ([propertyName isEqualToString:@"sender"]) { return YES; }
+   	if ([propertyName isEqualToString:@"receiver"]) { return YES; }
+   
+   	return NO;
+    }
+@end
+    
 
 
 
@@ -30,6 +47,48 @@
         return @"com.zkty.module.xxxx";
     }
     
+    - (void) broadcastOn:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _broadcastOn:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) broadcastOff:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _broadcastOff:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) triggerNativeBroadCast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _triggerNativeBroadCast:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) repeatReturn__event__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _repeatReturn__event__:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) ReturnInPromiseThen:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _ReturnInPromiseThen:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
     - (void) noArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           [self _noArgNoRet:^(BOOL complete) {
@@ -71,11 +130,12 @@
           }];
         
       }
-    - (void) showActionSheet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) helloworld:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
-          [self _showActionSheet:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          [self _helloworld:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
+        
       }
   @end

@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void xxxx(View view) {
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "http://www.baidu.com");
+        XEngineWebActivityManager.sharedInstance().startH5EngineActivity(this, "http://www.baidu.com");
     }
 }

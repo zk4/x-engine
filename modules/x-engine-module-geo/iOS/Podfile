@@ -11,7 +11,7 @@ target 'geo' do
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools/'
   pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols/'
 
-  #module_pods
+#module_pods
 
   target 'geoUITests' do
     # Pods for testing

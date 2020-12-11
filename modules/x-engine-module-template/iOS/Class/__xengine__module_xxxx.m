@@ -16,41 +16,20 @@
 #import <Unity.h>
 
 @interface __xengine__module_xxxx()
+{
+    NSTimer * timer ;
+    ContinousDTO* adto;
+    void(^hanlder)(id value,BOOL isComplete);
+    int value;
+    NSString* event;
+
+}
 @end
 
 @implementation __xengine__module_xxxx
  
  
-
-//- (void)_hello2:(SheetDTO *)dto complete:(void (^)(MoreDTO*, BOOL))completionHandler {
-//         NSLog(@"%@",dto);
-//
-//    NSMutableArray *actionHandlers = [NSMutableArray array];
-//    for (int i = 0; i < dto.itemList.count; i++)
-//    {
-//        ActionHandler handler = ^(UIAlertAction * _Nonnull action){
-//            NSLog(@"%d",i);
-//            MoreDTO* d = [MoreDTO new];
-//            d.title=[NSString stringWithFormat:@"%d",i];
-//            completionHandler(d, YES);
-//        };
-//        [actionHandlers addObject:handler];
-//    }
-//    UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
-//
-//    [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {
-//
-//    } sureHandlers:actionHandlers];
-//
-//}
-
- 
-  
-
-- (void)_abc:(NSString *)dto complete:(void (^)(BOOL))completionHandler {
-    NSLog(@"%@",dto);
-}
-
+   
 - (void)_haveArgNoRet:(SheetDTO *)dto complete:(void (^)(BOOL))completionHandler {
     
 }
@@ -64,7 +43,9 @@
 }
 
 - (void)_noArgNoRet:(void (^)(BOOL))completionHandler {
-    
+ 
+
+
 }
 
 - (void)_noArgRetPrimitive:(void (^)(NSString *, BOOL))completionHandler {
@@ -74,23 +55,93 @@
 - (void)_noArgRetSheetDTO:(void (^)(SheetDTO *, BOOL))completionHandler {
     
 }
+ 
 
-- (void)_showActionSheet:(SheetDTO *)dto complete:(void (^)(BOOL))completionHandler {
-        NSMutableArray *actionHandlers = [NSMutableArray array];
-        for (int i = 0; i < dto.itemList.count; i++)
-        {
-            ActionHandler handler = ^(UIAlertAction * _Nonnull action){
-                NSLog(@"%d",i);
-                [self callJsByFuncName:dto.__event__ arguments:@[@(i),@(i)] completionHandler:nil];
-            };
-            [actionHandlers addObject:handler];
-        }
-        UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
+- (void)_ReturnInPromiseThen:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
     
-        [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {} sureHandlers:actionHandlers];
-        completionHandler(YES);
+    completionHandler(@"hello,ret",TRUE);
+     
+}
+- (void)_repeatReturn__ret__:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+
+    value=10;
+    hanlder=completionHandler;
+  
+    if(timer){
+        [timer invalidate];
+    }
+
+    timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
+                                              target:self
+                                            selector:@selector(repeat_ret:)
+                                            userInfo:nil
+                                             repeats:YES];
+}
+ 
+-(void)repeat_ret:t{
+    if(value!=-1){
+        value--;
+        NSString* v= [NSString stringWithFormat:@"%d",value];
+        hanlder(v,NO);
+    }else{
+        hanlder(0,YES);
+        hanlder=nil;
+        [timer invalidate];
+        timer=nil;
+    }
+}
+- (void)_repeatReturn__event__:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    adto=dto;
+    value=10;
+    if(hanlder){
+        hanlder(0,YES);
+    }
+    hanlder=completionHandler;
+   
+    if(timer){
+        [timer invalidate];
+    }
+
+    timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
+                                              target:self
+                                            selector:@selector(repeat_event:)
+                                            userInfo:dto
+                                             repeats:YES];
 }
 
+-(void)repeat_event:t{
+    if(value!=-1){
+        ContinousDTO* dto= (ContinousDTO*) adto;
+        value--;
+        NSString* v= [NSString stringWithFormat:@"%d",value];
+        // 主动调用 js
+        [self callJS:dto.__event__ args:v retCB:^(id  _Nullable value) {
+            //处理__event__ 的返回值
+            NSLog(@"%@",value);
+        }];
+    }else{
+        [timer invalidate];
+        timer=nil;
+    }
+}
+ 
+- (void)_broadcastOn:(void (^)(BOOL))completionHandler {
+    //要注意. 这里仅是删除 _broadcastOn 的 JS 回调方法.
+    completionHandler(TRUE);
+}
+
+- (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+
+    NSDate *currentDate = [NSDate date];
+    NSString *dateString = [formatter stringFromDate:currentDate];
+
+    [self broadcast:@[@"hello",@"broadcast",dateString]];
+    //要注意. 这里仅是删除 _triggerNativeBroadCast 的回调,而不是删除 broadcast 的回调.
+    completionHandler(TRUE);
+}
+ 
 
 
 

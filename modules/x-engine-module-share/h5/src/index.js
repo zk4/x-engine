@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -19,7 +19,8 @@ function osCheck() {
       "title": "test",
       "desc": "testdesc",
       "link": "http://www.baidu.com",
-      "imgUrl": ""
+      "imageUrl": "",
+      "channel": "wx_zone"
     }
   }
 ]

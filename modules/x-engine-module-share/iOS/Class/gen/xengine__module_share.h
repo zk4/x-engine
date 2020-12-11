@@ -14,8 +14,9 @@
    	@property(nonatomic,copy) NSString* title;
    	@property(nonatomic,copy) NSString* desc;
    	@property(nonatomic,copy) NSString* link;
-   	@property(nonatomic,copy) NSString* imgUrl;
+   	@property(nonatomic,copy) NSString* imageUrl;
    	@property(nonatomic,copy) NSString* dataUrl;
+   	@property(nonatomic,copy) NSString* channel;
    	@property(nonatomic,strong) NSString* __event__;
 @end
     

@@ -53,7 +53,7 @@
         }];
         
         WXMediaMessage *message = [WXMediaMessage message];
-          [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imgUrl]]]];
+          [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageUrl]]]];
         message.title = dto.title;
         message.description = dto.desc;
         if ([dto.type isEqualToString:@"music"]) {
@@ -72,8 +72,14 @@
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
         req.bText = NO;
         req.message = message;
-        req.scene = WXSceneSession;;
-        
+        if ([dto.channel isEqualToString:@"wx_zone"]) {
+            req.scene = WXSceneTimeline;;
+
+        }else if ([dto.channel isEqualToString:@"wx_friend"]){
+            req.scene = WXSceneSession;;
+
+        }
+
         [WXApi sendReq:req completion:^(BOOL success) {
             
         }];

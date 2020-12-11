@@ -12,9 +12,9 @@ interface YJBillDTO {
   //业务系统订单号
   billNo:string;
   //当前app注册的appScheme
-  appScheme:string;
+  appScheme?:string;
   //支付业务， 是否是 B端调用，  true为B， false为C
-  payType:boolean;
+  payType?:boolean;
 }
 // 退款dto
 interface YJBillRefundDTO {

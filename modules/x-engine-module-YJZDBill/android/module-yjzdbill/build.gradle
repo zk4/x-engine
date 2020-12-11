@@ -14,6 +14,10 @@ android {
     }
 
     buildTypes {
+        uat {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -46,7 +50,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     compile project(':module-engine')
 
-    implementation files('libs/bill_pay_1.1.2.aar')
+    compileOnly files('libs/bill_pay_1.1.2.aar')
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'

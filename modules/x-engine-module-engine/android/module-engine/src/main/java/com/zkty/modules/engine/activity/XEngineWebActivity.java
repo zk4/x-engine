@@ -33,15 +33,20 @@ import com.tencent.smtt.sdk.WebView;
 import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
+import com.zkty.modules.engine.utils.XEngineMessage;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.engine.view.CameraDialog;
 import com.zkty.modules.engine.view.XEngineNavBar;
 import com.zkty.modules.engine.webview.XEngineWebView;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import module.engine.R;
@@ -237,6 +242,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         mWebView.setWebChromeClient(mWebChromeClient);
         if (isFirst) {
             isFirst = false;
@@ -260,11 +266,14 @@ public class XEngineWebActivity extends AppCompatActivity {
                 iterator.next().onResume();
             }
         }
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        EventBus.getDefault().unregister(this);
         Log.d(TAG, "onPause()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
@@ -399,6 +408,13 @@ public class XEngineWebActivity extends AppCompatActivity {
         showScreenCapture(true);
     }
 
+
+    public void finishWhitNoAnim() {
+        super.finish();
+        overridePendingTransition(0, 0);
+
+    }
+
     private boolean isFirstReceiveTitle = true;
 
     class MyWebChromeClient extends WebChromeClient {
@@ -531,5 +547,31 @@ public class XEngineWebActivity extends AppCompatActivity {
         }
 
     }
+
+    private void broadcast(List<String> msg) {
+        Log.d(TAG, "发送全局广播：" + msg);
+        mWebView.callHandler("com.zkty.module.engine.broadcast", msg == null ? new Object[]{} : msg.toArray(), retValue -> Log.d(TAG, "broadcast:" + msg));
+    }
+
+    private boolean broadcastAble = true;
+
+    @Subscribe
+    public void onMessageReceive(XEngineMessage xEngineMessage) {
+        if (XEngineMessage.MSG_TYPE_ON.equals(xEngineMessage.getType())) {
+            if (broadcastAble) {
+                broadcast(xEngineMessage.getMsg());
+            }
+
+        } else if (XEngineMessage.MSG_TYPE_OFF.equals(xEngineMessage.getType())) {
+            broadcastAble = false;
+            broadcast(xEngineMessage.getMsg());
+        } else if (XEngineMessage.MSG_TYPE_SCOPE.equals(xEngineMessage.getType())) {
+            broadcastAble = true;
+            broadcast(xEngineMessage.getMsg());
+        }
+
+
+    }
+
 
 }

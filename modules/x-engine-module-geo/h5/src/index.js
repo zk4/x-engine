@@ -15,12 +15,14 @@ function osCheck() {
   {
     "name": "coordinate",
     "default_args": {
-      "title": "wgs84"
+      "type": "wgs84"
     }
   },
   {
     "name": "locate",
-    "default_args": null
+    "default_args": {
+      "type": "wgs84"
+    }
   }
 ]
 )}}

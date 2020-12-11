@@ -35,5 +35,6 @@
   "dependencies": {
     "@zkty-team/x-cli": "^1.0.6",
     "@zkty-team/x-engine-module-engine": "^0.0.59"
-  }
+  },
+  "gitHead": "0651a6f34d36a3a340e345731cc1703c4c69e75e"
 }

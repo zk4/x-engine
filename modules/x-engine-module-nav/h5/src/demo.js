@@ -102,6 +102,15 @@ import xengine from "@zkty-team/x-engine-module-engine";
       .then((res) => {});
   };
 
+  window.removeHistoryPage = () => {
+    nav
+      .removeHistoryPage({
+        isHidden: {history:[
+        ]},
+      })
+      .then((res) => {});
+  };
+
   window.testSetHidden = () => {
     nav
       .setSearchBarHidden({

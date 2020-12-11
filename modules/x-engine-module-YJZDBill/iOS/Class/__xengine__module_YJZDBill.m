@@ -18,7 +18,6 @@ extern XEngineWebView* s_webview;
 @interface __xengine__module_yjzdbill()
 {
     NSTimer * timer ;
-    ContinousDTO* adto;
     void(^hanlder)(id value,BOOL isComplete);
     int value;
 }
@@ -46,25 +45,7 @@ extern XEngineWebView* s_webview;
                                             userInfo:nil
                                              repeats:YES];
 }
-
--(void)onTimer:t{
-    if(value!=-1){
-
-
-        ContinousDTO* dto= (ContinousDTO*) adto;
-        value--;
-        NSString* v= [NSString stringWithFormat:@"%d",value];
-            [[RecyleWebViewController webview] callHandler:dto.__event__ arguments:v completionHandler:^(id  _Nullable value) {
-                //处理返回值
-                NSLog(@"%@",value);
-            }];
-    }else{
-        hanlder(0,YES);
-        hanlder=nil;
-        [timer invalidate];
-        timer=nil;
-    }
-}
+ 
 //支付
 - (void)_YJBillPayment:(YJBillDTO *)dto complete:(void (^)(YJBillRetDTO *, BOOL))completionHandler {
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
@@ -107,27 +88,6 @@ extern XEngineWebView* s_webview;
     //当前app注册的appScheme,请务必填写与plist中注册的一样，否则无法从第三方返回当前app
     [[YJBillPlatform sharedSingleton] billListCurrentViewController:[Unity sharedInstance].getCurrentVC appScheme:dto.appScheme payType:dto.payType OrderInfo:dictM];
 }
-
-- (void)_echo:(ContinousDTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-        adto=dto;
-        value=10;
-        hanlder=completionHandler;
-        if(hanlder){
-            hanlder(0,YES);
-        }
-        if(timer){
-            [timer invalidate];
-        }
-        timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                  target:self
-                                                selector:@selector(onTimer:)
-                                                userInfo:dto
-                                                 repeats:YES];
  
-
-}
-
-
-
 @end
  

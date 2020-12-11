@@ -11,6 +11,6 @@ public class __xengine__module_share extends xengine__module_share {
 
     @Override
     public void _share(ShareReqDTO dto, CompletionHandler<ShareResDTO> handler) {
-        ShareMaster.share(XEngineApplication.getApplication(), dto.type, dto.title, dto.desc, dto.link, dto.imgUrl, dto.dataUrl);
+        ShareMaster.share(XEngineApplication.getApplication(), "", dto.type, dto.title, dto.desc, dto.link, dto.imgUrl, dto.dataUrl);
     }
 }

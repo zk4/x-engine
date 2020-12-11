@@ -22,13 +22,13 @@ import module.share.R;
 public class ShareMaster {
 
 
-    public static void share(Context context, String type, String channel, String title, String desc, String link, String imgUrl, String dataUrl) {
+    public static void share(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl) {
 
 
         switch (channel) {
             case "wx_friend":
             case "wx_zone":
-                shareToWx(context, type, channel, title, desc, link, imgUrl, dataUrl);
+                shareToWx(context, channel, type, title, desc, link, imgUrl, dataUrl);
                 break;
 
         }
@@ -36,7 +36,7 @@ public class ShareMaster {
 
     }
 
-    private static void shareToWx(Context context, String type, String channel, String title, String desc, String link, String imgUrl, String dataUrl) {
+    private static void shareToWx(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl) {
 
         int mTargetScene = SendMessageToWX.Req.WXSceneSession;
         if ("wx_friend".equals(channel)) {

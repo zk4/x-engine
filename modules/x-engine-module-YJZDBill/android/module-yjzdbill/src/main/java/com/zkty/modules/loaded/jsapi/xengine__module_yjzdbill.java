@@ -24,9 +24,11 @@
 
     public String billNo;
 
-    public String appScheme;
+    @Optional
+		public String appScheme;
 
-    public boolean payType;
+    @Optional
+		public boolean payType;
   }
   
   class YJBillRefundDTO {

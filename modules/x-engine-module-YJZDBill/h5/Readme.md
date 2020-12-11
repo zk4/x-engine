@@ -40,8 +40,8 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | platMerCstNo | string |  |  | 预下单平台商户号 |
 | tradeMerCstNo | string |  |  | 预下单交易商户号 |
 | billNo | string |  |  | 业务系统订单号 |
-| appScheme | string |  | x-engine | 当前app注册的appScheme |
-| payType | bool |  |  | 支付业务， 是否是 B端调用，  true为B， false为C |
+| appScheme | string | true | x-engine | 当前app注册的appScheme |
+| payType | bool | true |  | 支付业务， 是否是 B端调用，  true为B， false为C |
 
 
 ## YJBillRefund

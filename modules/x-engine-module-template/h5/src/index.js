@@ -65,12 +65,6 @@ function osCheck() {
     "default_args": {
       "title": "abc"
     }
-  },
-  {
-    "name": "helloworld",
-    "default_args": {
-      "title": "abc"
-    }
   }
 ]
 )}}

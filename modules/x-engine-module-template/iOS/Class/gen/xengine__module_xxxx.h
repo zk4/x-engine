@@ -71,9 +71,6 @@
       @required 
         - (void) _haveArgRetSheetDTO:(SheetDTO*) dto complete:(void (^)(SheetDTO* result,BOOL complete)) completionHandler;
 
-      @required 
-        - (void) _helloworld:(SheetDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
 @end
   
 

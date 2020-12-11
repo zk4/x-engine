@@ -9,7 +9,6 @@ import xengine from "@zkty-team/x-engine-module-engine";
     })
   };
 
-
   window.broadcastOff = () => {
     xengine.broadcastOff()
   };
@@ -97,16 +96,6 @@ import xengine from "@zkty-team/x-engine-module-engine";
       .haveArgRetSheetDTO(...args)
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
-      });
-    };
-
-    window.helloworld = (...args) => {
-            console.log("isHybrid",xengine.isHybrid())
-
-    xxxx
-      .helloworld(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
       });
   };
 

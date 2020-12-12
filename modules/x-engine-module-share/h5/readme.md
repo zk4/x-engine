@@ -1,13 +1,31 @@
 
-`
-com.zkty.module.share
-`
+version: 0.0.60
+``` bash
+npm install @zkty-team/x-engine-module-share
+```
 
 
 
 ## share
 
 
+
+**demo**
+``` js
+ {
+  window.share = () => {
+    share
+      .share({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = JSON.stringify(res);
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**

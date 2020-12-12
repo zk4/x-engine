@@ -58,11 +58,13 @@ extern XEngineWebView* s_webview;
     [[YJBillPlatform sharedSingleton] billPaymentWithOrderInfo:dictM appScheme:dto.appScheme payType:dto.payType payfinishBlock:^(id  _Nonnull responseObject, NSString * _Nonnull message) {
         NSLog(@"%@ -- %@", responseObject, message);
 
-        YJBillRetDTO* d = [YJBillRetDTO new];
-        d.billRetStatus=responseObject;
-        d.billRetStatusMessage=message;
-        completionHandler(d, NO);
-
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+            YJBillRetDTO* d = [YJBillRetDTO new];
+            d.billRetStatus=responseObject;
+            d.billRetStatusMessage=message;
+            completionHandler(d, NO);
+        });
+ 
     }];
     
 }

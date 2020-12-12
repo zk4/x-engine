@@ -17,58 +17,36 @@ Pod::Spec.new do |s|
     s.version      = version
     s.summary      = package["description"]
 
-     s.description  = <<-DESC
+    s.description  = <<-DESC
             description
                      DESC
 
-    s.homepage     = "https://github.com/zkty-team/x-engine-module-geo"
+   s.homepage     = "https://github.com/zkty-team/x-engine-module-geo"
+ 
+   s.license      = { :type => "MIT", :file => "LICENSE" }
+
+   s.requires_arc = true
+
+   s.author             = { "zkty-team" => "liuzq7@gmail.com" }
+
+   s.cocoapods_version      = ">= 1.2.0"
+   s.platform     = :ios, "10.0"
+   s.ios.deployment_target = "10.0"
+
+   s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-geo.git',
+ :tag => s.version.to_s }
 
 
-   
-  #   s.license      = { :type => "MIT", :file => "LICENSE" }
+   s.source_files  = "iOS/Class/**/*.{h,m}"
+   s.public_header_files = "iOS/Class/**/*.h"
+ 
+   s.frameworks  = "CoreServices"
+   s.dependency 'BMKLocationKit'
+   s.dependency 'x-engine-module-engine'
 
-  #   s.requires_arc = true
+   # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
+   # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
+   s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
 
-  #   s.author             = { "zkty-team" => "liuzq7@gmail.com" }
-
-  #   s.cocoapods_version      = ">= 1.2.0"
-  #   s.platform     = :ios, "10.0"
-  #   s.ios.deployment_target = "10.0"
-
-  #   s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-geo.git',
-  # :tag => s.version.to_s }
-
-
-  #   s.source_files  = "iOS/Class/**/*.{h,m}"
-  #   s.public_header_files = "iOS/Class/**/*.h"
-   
-  #   s.frameworks  = "CoreServices"
-
-  #   # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
-  #   # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
-  #   s.dependency "x-engine-module-engine"
-  #   s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
-
-    s.license      = { :type => "MIT", :file => "LICENSE" }
-
-    s.requires_arc = true
-
-    s.author             = { "zkty-team" => "liuzq7@gmail.com" }
-
-    s.platform     = :ios, "10.0"
-    s.ios.deployment_target = "10.0"
-
-    s.source      = { :git => 'https://github.com/zkty-team/x-engine-module-geo.git',
-  :tag => s.version.to_s }
-
-
-    s.source_files  = "iOS/Class/**/*.{h,m}"
-    s.public_header_files = "iOS/Class/**/*.h"
-   
-    s.frameworks  = "CoreServices"
-
-    s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
-    s.dependency 'BMKLocationKit'
 
 end
-

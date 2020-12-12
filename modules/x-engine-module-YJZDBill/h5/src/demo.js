@@ -9,7 +9,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
     businessCstNo:"13631095145",
     platMerCstNo: "1249741882914750465",
     tradeMerCstNo: "1249745434852704256",
-    billNo:"022020121121194010492167117944",
+    billNo:"022020121223334419935012819688",
     appScheme:'x-engine',
     payType:false,
         __ret__:(res)=>{

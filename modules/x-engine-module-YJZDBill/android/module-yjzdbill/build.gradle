@@ -11,6 +11,7 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -43,6 +44,7 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     testImplementation 'junit:junit:4.12'
@@ -50,7 +52,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     compile project(':module-engine')
 
-    compileOnly files('libs/bill_pay_1.1.2.aar')
+    implementation files('libs/BillPaySDK-1.0.8.aar')
+    implementation files('libs/sdllB-1.0.3.aar')
+    implementation files('libs/sdllC-1.0.7.aar')
+
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -67,4 +72,8 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.github.iwgang:countdownview:2.1.3'
+
+//    implementation 'com.rrtx.android:BillPaySDK:1.0.6@aar'
+//    implementation 'com.rrtx.payLib:sdllC:1.0.3@aar'
+//    implementation 'com.rrtx.payLib:sdllB:1.0.3@aar'
 }

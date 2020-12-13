@@ -50,10 +50,10 @@ function YJBillPayment(
   window.YJBillPayment = () => {
     yjzdbill
       .YJBillPayment({
-    businessCstNo:"000001",
-    platMerCstNo: "8377631273379692750",
-    tradeMerCstNo: "8377707718294634760",
-    billNo:'01202012081346103822413721356429',
+    businessCstNo:"13631095145",
+    platMerCstNo: "1249741882914750465",
+    tradeMerCstNo: "1249745434852704256",
+    billNo:"022020121121194010492167117944",
     appScheme:'x-engine',
     payType:false,
         __ret__:(res)=>{

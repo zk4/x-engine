@@ -7,6 +7,7 @@ platform :ios, '11.0'
 target 'motherboard' do
 
   pod 'SDWebImage'
+  pod 'WechatOpenSDK','1.8.5'
   pod 'x-engine-module-engine', :path =>'../../modules/x-engine-module-engine'
   pod 'x-engine-module-protocols', :path =>'../../modules/x-engine-module-protocols/'
   pod 'x-engine-module-router', :path =>'../../modules/x-engine-module-router/'

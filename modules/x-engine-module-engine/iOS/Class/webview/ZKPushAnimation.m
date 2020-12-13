@@ -147,9 +147,9 @@
 -(void)signlePushTo:(id<UIViewControllerContextTransitioning>)transitionContext{
     
     RecyleWebViewController *fromeVc = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    RecyleWebViewController *viewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-//    if([viewController isKindOfClass:[RecyleWebViewController class]]){
-        RecyleWebViewController *toVc = viewController;
+    RecyleWebViewController *toVc = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    if([toVc isKindOfClass:[RecyleWebViewController class]]){
+        
         UIView *containerView = transitionContext.containerView;
         containerView.backgroundColor = [UIColor whiteColor];
         
@@ -170,11 +170,11 @@
         screenView.frame = fromeVc.view.frame;
         [containerView addSubview:screenView];
         [containerView addSubview:toView];
-
-    toView.frame = CGRectMake(toView.frame.size.width,
-                              toView.frame.origin.y,
-                              toView.frame.size.width,
-                              toView.frame.size.height);
+        
+        toView.frame = CGRectMake(toView.frame.size.width,
+                                  toView.frame.origin.y,
+                                  toView.frame.size.width,
+                                  toView.frame.size.height);
         
         UIView *shawView = [[UIView alloc] init];
         shawView.frame = screenView.bounds;
@@ -200,9 +200,32 @@
             [shawView removeFromSuperview];
             [screenView removeFromSuperview];
         }];
-//    } else {
-//
-//    }
+    } else {
+        UIView *containerView = transitionContext.containerView;
+        UIView *toView = toVc.view;
+        toView.layer.shadowColor = [UIColor blackColor].CGColor;
+        toView.layer.shadowOffset = CGSizeMake(-3, 0);
+        toView.layer.shadowOpacity = 0.2;
+        
+        [containerView addSubview:toView];
+        
+        toView.frame = CGRectMake(containerView.frame.size.width,
+                                  toView.frame.origin.y,
+                                  toView.frame.size.width,
+                                  toView.frame.size.height);
+        
+        [UIView animateWithDuration:self.animationTime
+                         animations:^{
+            
+            toView.frame = CGRectMake(0,
+                                      toView.frame.origin.y,
+                                      toView.frame.size.width,
+                                      toView.frame.size.height);
+        } completion:^(BOOL finished) {
+            
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
+    }
 }
 
 -(void)signlePopTo:(id<UIViewControllerContextTransitioning>)transitionContext{
@@ -220,6 +243,10 @@
         RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
 //        RecyleWebViewController *fromVC = (RecyleWebViewController *)fromVc;
         
+        toView.frame = CGRectMake(0,
+                                  CGRectGetMaxY(toVc.navigationController.navigationBar.frame),
+                                  containerView.bounds.size.width,
+                                  containerView.bounds.size.height - CGRectGetMaxY(toVc.navigationController.navigationBar.frame));
         //获取toView的截屏
         UIImage *toScreenImg = [toVC getScreenImage];
         UIImageView *toViewScreenImageView = [[UIImageView alloc] initWithImage:toScreenImg];

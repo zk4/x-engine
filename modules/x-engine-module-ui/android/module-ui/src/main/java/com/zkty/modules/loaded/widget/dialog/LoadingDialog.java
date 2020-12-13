@@ -23,7 +23,7 @@ public class LoadingDialog extends BaseDialog {
 
     public LoadingDialog(Context context) {
         super(context);
-        View content = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
+        View content = LayoutInflater.from(context).inflate(R.layout.dialog_loading_ui, null);
         messageView = (TextView) content.findViewById(R.id.dialog_loading_message);
         mLoadingView = (LoadingView) content.findViewById(R.id.normal_loading_img);
         mSuccessView = (ImageView) content.findViewById(R.id.normal_img);

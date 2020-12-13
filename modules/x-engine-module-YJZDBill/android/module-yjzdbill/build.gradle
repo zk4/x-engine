@@ -52,9 +52,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     compile project(':module-engine')
 
-    compileOnly files('libs/BillPaySDK-1.0.6.aar')
-    compileOnly files('libs/sdllB-1.0.3.aar')
-    compileOnly files('libs/sdllC-1.0.3.aar')
+    implementation files('libs/BillPaySDK-1.0.8.aar')
+    implementation files('libs/sdllB-1.0.3.aar')
+    implementation files('libs/sdllC-1.0.7.aar')
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'

@@ -1,15 +1,13 @@
 
 import yjzdbill from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
 
   window.YJBillPayment = () => {
     yjzdbill
       .YJBillPayment({
     businessCstNo:"13631095145",
-    platMerCstNo: "1249741882914750465",
-    tradeMerCstNo: "1249745434852704256",
-    billNo:"022020121223334419935012819688",
+    platMerCstNo: "1253152026819723265",
+    tradeMerCstNo: "1253159474293014528",
+    billNo:"022020121417334812279073310311",
     appScheme:'x-engine',
     payType:false,
         __ret__:(res)=>{
@@ -22,7 +20,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
   window.YJBillRefund = () => {
     yjzdbill
       .YJBillRefund({
-        refundOrderNo:'RFO1607064781790',
+        refundOrderNo:'RFO16070658578',
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },

@@ -14,31 +14,17 @@ function osCheck() {
     [
   {
     "name": "openUniMP",
-    "default_args": {
-      "appId": "__UNI__11E9B73"
-    }
+    "default_args": null
   },
   {
     "name": "preloadUniMP",
     "default_args": {
-      "appId": "__UNI__11E9B73",
-      "arguments": {
-        "token": "this is token",
-        "refreshtoken": "this is refreshtoken"
-      },
-      "redirectPath": "pages/component/application/application?token=a&refreshtoken=b",
       "enableBackground": false
     }
   },
   {
     "name": "openUniMPWithArg",
     "default_args": {
-      "appId": "__UNI__9B75743",
-      "arguments": {
-        "token": "this is token",
-        "refreshtoken": "this is refreshtoken"
-      },
-      "redirectPath": "pages/component/application/application?token=a&refreshtoken=b",
       "enableBackground": false
     }
   }

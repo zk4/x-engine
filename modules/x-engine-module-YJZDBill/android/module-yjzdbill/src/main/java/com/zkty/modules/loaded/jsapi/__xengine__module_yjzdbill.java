@@ -7,6 +7,7 @@ import com.kapp.sdllpay.PaymentCallback;
 import com.yjlc.module.BillManager;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.XEngineApplication;
+import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,9 +18,20 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
     @Override
     public void _YJBillPayment(YJBillDTO dto, CompletionHandler<YJBillRetDTO> handler) {
+//
+//        dto.platMerCstNo = "1249741882914750465";
+//
+//        dto.billNo = "06202012141619003321701693321701";
+//
+//        dto.businessCstNo = "13660078710";
+//
+//        dto.tradeMerCstNo = "1249745434852704256";
+//
+//        dto.payType = false;
+
 
         BillManager billManager = BillManager.getInstance();
-        billManager.init(XEngineApplication.getApplication());
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent());
         billManager.payBills(null, dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
             @Override
             public void payRsult(JSONObject jsonObject) {
@@ -46,7 +58,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
     public void _YJBillRefund(YJBillRefundDTO dto, CompletionHandler<YJBillRetDTO> handler) {
 
         BillManager billManager = BillManager.getInstance();
-        billManager.init(XEngineApplication.getApplication());
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent());
         billManager.refundBills(dto.refundOrderNo, new PaymentCallback() {
             @Override
             public void paymentResult(JSONObject jsonObject) {
@@ -72,8 +84,8 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
     public void _YJBillList(YJBillListDTO dto, CompletionHandler<Nullable> handler) {
 
         BillManager billManager = BillManager.getInstance();
-        billManager.init(XEngineApplication.getApplication());
-        billManager.queryBills(dto.businessCstNo, "", "", dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c);
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent());
+        billManager.queryBills("", "", dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c);
         handler.complete();
     }
 }

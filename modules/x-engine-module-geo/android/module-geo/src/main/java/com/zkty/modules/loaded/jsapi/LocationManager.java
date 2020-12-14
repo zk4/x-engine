@@ -43,7 +43,7 @@ public class LocationManager {
      * @param autoClose        获取成功后自动停止定位服务
      * @param locationCallback
      */
-    public static void getLocation(Context context, boolean autoClose,String strCoorType, LocationCallback locationCallback) {
+    public static void getLocation(Context context, boolean autoClose, String strCoorType, LocationCallback locationCallback) {
         //定位服务的客户端。宿主程序在客户端声明此类，并调用，目前只支持在主线程中启动
         locationClient = new LocationClient(context);
 //声明LocationClient类实例并配置定位参数

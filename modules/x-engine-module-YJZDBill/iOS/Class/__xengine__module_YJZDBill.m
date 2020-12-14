@@ -41,7 +41,7 @@ static NSString *const billSDKAddress = @"http://xpay-bill-prod-linli.timesgroup
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     //UniversalLink配置
-    [[YJBillPlatform sharedSingleton] setWeChatAppId:@"wx2318e010458e4805" UniversalLink:@"https://m-center-prod-linli.timesgroup.cn"];
+    [[YJBillPlatform sharedSingleton] setWeChatAppId:@"wx2318e010458e4805" UniversalLink:@"https://m-center-uat-linli.timesgroup.cn"];
     //支付收银台地址、账单中心地址配置
     [[YJBillPlatform sharedSingleton] setCashSDKAddress:cashSDKAddress billSDKAddress:billSDKAddress];
 

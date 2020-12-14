@@ -124,6 +124,9 @@
     [DCUniMPSDKEngine setDefaultMenuItems:@[item1,item2]];
     // 设置 delegate
     [DCUniMPSDKEngine setDelegate:self];
+    
+   
+    
 }
 
 
@@ -224,6 +227,17 @@
 - (void)onUniMPEventReceive:(NSString *)event data:(id)data callback:(DCUniMPKeepAliveCallback)callback {
     
     NSLog(@"Receive UniMP event: %@ data: %@",event,data);
+    if([event isEqualToString:@"inspection-detail"]){
+        NSDictionary* data = data[@"data"];
+        long version =[data[@"version"] longValue]?[data[@"version"]  longValue]:1;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+                                                            object:@{
+                                                                @"ROUTE_TYPE":@"uni",
+                                                                @"ROUTE_URI":[NSString stringWithFormat:@"%@", data[@"uri"]],
+                                                                @"ROUTE_VERSION":[NSString stringWithFormat:@"%ld", version > 0 ? version : 1],
+                                                                @"ROUTE_PATH":[NSString stringWithFormat:@"%@", data[@"path"] ],
+                                                            }];
+    }
     
     // 回传数据给小程序
     // DCUniMPKeepAliveCallback 用法请查看定义说明

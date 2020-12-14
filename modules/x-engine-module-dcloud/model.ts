@@ -23,11 +23,11 @@ interface UniMPDTO {
 
 // 启动小程序
 function openUniMP(
-  DcloudDTO:DcloudDTO = {
-    appId:'__UNI__11E9B73'
-  }){
+  DcloudDTO:DcloudDTO){
   window.openUniMP = () => {
-    dcloud.openUniMP().then((res) => {
+    dcloud.openUniMP({
+    appId:'__UNI__1EB976D'
+  }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
@@ -36,13 +36,17 @@ function openUniMP(
 // 预加载后打开小程序
 function preloadUniMP(
   UniMPDTO:UniMPDTO = {
+    enableBackground:false
+  }){
+  window.preloadUniMP = (
+    
+  ) => {
+    dcloud.preloadUniMP({
     appId:'__UNI__11E9B73',
     arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
     redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
     enableBackground:false,
-  }){
-  window.preloadUniMP = () => {
-    dcloud.preloadUniMP().then((res) => {
+  }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
@@ -50,13 +54,15 @@ function preloadUniMP(
 
 function openUniMPWithArg(
   UniMPDTO:UniMPDTO = {
+    enableBackground:false,
+  }){
+  window.openUniMPWithArg = () => {
+    dcloud.openUniMPWithArg({
     appId:'__UNI__9B75743',
     arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
     redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
     enableBackground:false,
-  }){
-  window.openUniMPWithArg = () => {
-    dcloud.openUniMPWithArg().then((res) => {
+  }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };

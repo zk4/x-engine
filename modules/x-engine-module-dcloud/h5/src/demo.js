@@ -4,19 +4,33 @@ import xengine from "@zkty-team/x-engine-module-engine";
 
 
   window.openUniMP = () => {
-    dcloud.openUniMP().then((res) => {
+    dcloud.openUniMP({
+    appId:'__UNI__1EB976D'
+  }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
 
-  window.preloadUniMP = () => {
-    dcloud.preloadUniMP().then((res) => {
+  window.preloadUniMP = (
+    
+  ) => {
+    dcloud.preloadUniMP({
+    appId:'__UNI__11E9B73',
+    arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
+    redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
+    enableBackground:false,
+  }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
 
   window.openUniMPWithArg = () => {
-    dcloud.openUniMPWithArg().then((res) => {
+    dcloud.openUniMPWithArg({
+    appId:'__UNI__9B75743',
+    arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
+    redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
+    enableBackground:false,
+  }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };

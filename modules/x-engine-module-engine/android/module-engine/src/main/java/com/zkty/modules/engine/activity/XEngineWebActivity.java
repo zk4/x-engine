@@ -28,11 +28,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
+import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.XEngineMessage;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.engine.view.CameraDialog;
@@ -64,9 +66,11 @@ public class XEngineWebActivity extends AppCompatActivity {
     public static final String URL = "x_engine_url";
     public static final String MICRO_APP_ID = "micro_app_id";
     public static final String INDEX_URL = "index_url";
+    public static final String ROUTER = "router_path";
     private String url;
     private String indexUrl;
     private String mMicroAppId;
+    private String router;
 
     //    private ArrayList<LifecycleListener> lifecycleListeners;
     private Set<LifecycleListener> lifecycleListeners;
@@ -149,6 +153,10 @@ public class XEngineWebActivity extends AppCompatActivity {
         if (getIntent().hasExtra(URL)) {
             url = getIntent().getStringExtra(URL);
             mWebView.loadUrl(url);
+        }
+
+        if (getIntent().hasExtra(ROUTER)) {
+            router = getIntent().getStringExtra(ROUTER);
         }
 
         url = TextUtils.isEmpty(mWebView.getOriginalUrl()) ? mWebView.getUrl() : mWebView.getOriginalUrl();
@@ -366,10 +374,33 @@ public class XEngineWebActivity extends AppCompatActivity {
             } else {
 
                 if (mWebView.canGoBack()) {
-                    mWebView.goBack();
+
+                    XEngineWebActivity lastActivity = XEngineWebActivityManager.sharedInstance().getLastActivity();
+                    if (lastActivity != null) {
+
+                        if (TextUtils.isEmpty(lastActivity.getRouter())) {
+                            mWebView.goBackToIndexPage();
+                        } else {
+                            WebBackForwardList backForwardList = mWebView.copyBackForwardList();
+                            if (backForwardList != null && backForwardList.getSize() != 0) {
+                                int index = 0;
+                                for (int i = backForwardList.getSize() - 1; i > -1; i--) {
+                                    String url = backForwardList.getItemAtIndex(i).getOriginalUrl();
+                                    if (lastActivity.getRouter().equals(UrlUtils.getRouterFormUrl(url))) {
+                                        break;
+                                    }
+                                    index++;
+                                }
+                                mWebView.goBackOrForward(-index);
+                            }
+                        }
+
+                    }
+
                 } else {
                     mWebView.historyBack();
                 }
+
                 finish();
                 return true;
 
@@ -559,19 +590,25 @@ public class XEngineWebActivity extends AppCompatActivity {
     public void onMessageReceive(XEngineMessage xEngineMessage) {
         if (XEngineMessage.MSG_TYPE_ON.equals(xEngineMessage.getType())) {
             if (broadcastAble) {
-                broadcast(xEngineMessage.getMsg());
+                broadcast(xEngineMessage.getMsgList());
             }
 
         } else if (XEngineMessage.MSG_TYPE_OFF.equals(xEngineMessage.getType())) {
             broadcastAble = false;
-            broadcast(xEngineMessage.getMsg());
+            broadcast(xEngineMessage.getMsgList());
         } else if (XEngineMessage.MSG_TYPE_SCOPE.equals(xEngineMessage.getType())) {
             broadcastAble = true;
-            broadcast(xEngineMessage.getMsg());
+            broadcast(xEngineMessage.getMsgList());
+        } else if (XEngineMessage.MSG_TYPE_PAGE_CLOSE.equals(xEngineMessage.getType())) {
+            if (xEngineMessage.getMsg().equals(router)) {
+                finishWhitNoAnim();
+            }
         }
-
-
     }
 
+
+    public String getRouter() {
+        return router;
+    }
 
 }

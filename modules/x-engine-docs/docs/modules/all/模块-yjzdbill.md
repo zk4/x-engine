@@ -9,7 +9,7 @@
 # JS
 
 
-version: 0.0.59
+version: 0.0.60
 ``` bash
 npm install @zkty-team/x-engine-module-yjzdbill
 ```
@@ -26,10 +26,10 @@ npm install @zkty-team/x-engine-module-yjzdbill
   window.YJBillPayment = () => {
     yjzdbill
       .YJBillPayment({
-    businessCstNo:"000001",
-    platMerCstNo: "8377631273379692750",
-    tradeMerCstNo: "8377707718294634760",
-    billNo:'01202012081346103822413721356429',
+    businessCstNo:"13631095145",
+    platMerCstNo: "1249741882914750465",
+    tradeMerCstNo: "1249745434852704256",
+    billNo:"022020121121194010492167117944",
     appScheme:'x-engine',
     payType:false,
         __ret__:(res)=>{
@@ -50,8 +50,8 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | platMerCstNo | string |  |  | 预下单平台商户号 |
 | tradeMerCstNo | string |  |  | 预下单交易商户号 |
 | billNo | string |  |  | 业务系统订单号 |
-| appScheme | string |  | x-engine | 当前app注册的appScheme |
-| payType | bool |  |  | 支付业务， 是否是 B端调用，  true为B， false为C |
+| appScheme | string | true | x-engine | 当前app注册的appScheme |
+| payType | bool | true |  | 支付业务， 是否是 B端调用，  true为B， false为C |
 
 
 ## YJBillRefund

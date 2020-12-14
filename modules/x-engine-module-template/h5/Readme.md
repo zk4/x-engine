@@ -1,5 +1,5 @@
 
-version: 0.0.58
+version: 0.0.59
 ``` bash
 npm install @zkty-team/x-engine-module-xxxx
 ```
@@ -18,7 +18,6 @@ npm install @zkty-team/x-engine-module-xxxx
         document.getElementById("debug_text").innerText = JSON.stringify(res);
     })
   };
-
 }
 ``` 
 
@@ -288,34 +287,6 @@ npm install @zkty-team/x-engine-module-xxxx
       .haveArgRetSheetDTO(...args)
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
-      });
-  };
-}
-``` 
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | abc |  标题 |
-| itemList | Array\<string\> | true |  |  子标题? |
-| content | string | true |  |  内容 |
-| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
-
-
-## helloworld
-
-
-
-**demo**
-``` js
-{
-    window.helloworld = (...args) => {
-    xxxx
-      .helloworld(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
       });
   };
 }

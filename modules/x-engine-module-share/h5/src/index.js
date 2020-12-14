@@ -19,7 +19,8 @@ function osCheck() {
       "title": "test",
       "desc": "testdesc",
       "link": "http://www.baidu.com",
-      "imgUrl": ""
+      "imageUrl": "",
+      "channel": "wx_zone"
     }
   }
 ]

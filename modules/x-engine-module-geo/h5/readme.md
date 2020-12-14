@@ -1,36 +1,15 @@
 
-version: 0.0.59
+version: 0.0.60
 ``` bash
 npm install @zkty-team/x-engine-module-geo
 ```
 
 
 
-## coordinate
-
-
-
-**demo**
-``` js
- {
-    window.coordinate = (...args) => {
-    geo
-      .coordinate(...args)
- 
-  };
-}
-``` 
-
-	
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| type | string | true | wgs84 |  默认为 wgs84 返回 gps 坐标，gcj02 返回国测局坐标 |
-
-
 ## locate
 
+
+单次定位，返回经纬度和位置信息
 
 
 **demo**
@@ -56,7 +35,7 @@ npm install @zkty-team/x-engine-module-geo
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| type | string |  | wgs84 |  |
+| type | string |  | WGS84 |  默认为 BMK09LL 返回 BMK 坐标，GCJ02 返回国测局坐标,WGS84 返回 gps 坐标,BMK09MC 返回 BMK 坐标 |
 | \_\_event\_\_ |  | true |  |  |
 
     

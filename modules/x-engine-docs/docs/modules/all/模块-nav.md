@@ -4,67 +4,12 @@
 <div id='modulename' style='display:none'>nav</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
 <a id='qrlink' href="about:none">link of QR</a>
 
-# 原生导航
-
-header 用原生的做,这样, 可以一定程度上提高用户体验, 如果页面无响应, 用户可以返回. 不至于只能杀死进程.
-
-注意: 新的路由地址必须唯一.
-
-changed from git subtree 
-
-
-
-![2020-07-13 22.34.15](assets/c7be7afb-5977-4051-a7fb-723bc3c9eb27.gif ':size=20%')
-
- 
-
-
-
-href 说明:
-
-``` js
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                            href                                             │
-├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
-│ protocol │  │        auth         │        host         │           path            │ hash  │
-│          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
-│          │  │                     │   hostname   │ port │ pathname │     search     │       │
-│          │  │                     │              │      │          ├─┬──────────────┤       │
-│          │  │                     │              │      │          │ │    query     │       │
-"  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash "
-│          │  │          │          │   hostname   │ port │          │                │       │
-│          │  │          │          ├──────────────┴──────┤          │                │       │
-│ protocol │  │ username │ password │        host         │          │                │       │
-├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
-│   origin    │                     │       origin        │ pathname │     search     │ hash  │
-├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
-│                                            href                                             │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-
-
-支持以下路由href:
-
-``` 
-file://xxx/../index.html
-http://xxx/../index.html
-https://xxx/../index.html
-ftp://xxx/../index.html
-```
-
-
-
-## 关于vue router
-
-![image-20201028151553890](assets/image-20201028151553890.png)
-
 
 
 # JS
 
 
-version: 0.0.59
+version: 0.0.60
 ``` bash
 npm install @zkty-team/x-engine-module-nav
 ```
@@ -415,6 +360,32 @@ nav
 | --------------------------- | --------- | -------- | --------- |--------- |
 | isHidden | bool |  |  | 是否隐藏navBar |
 | isAnimation | bool |  |  | 是否使用动画效果 |
+
+
+## removeHistoryPage
+
+
+
+**demo**
+``` js
+{
+  window.removeHistoryPage = () => {
+    nav
+      .removeHistoryPage({
+        isHidden: {history:[
+        ]},
+      })
+      .then((res) => {});
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| history | Array\<string\> |  |  |  |
 
     
 

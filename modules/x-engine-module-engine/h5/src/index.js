@@ -38,6 +38,7 @@ function broadcastOn(eventcb){
         return eventcb(res);
     })
 }
+let only_idx=0;
 function use(ns,funcs){
     if(module_names.has(ns)){
       throw(ns+ ',注册无效,模块已存在,xengine.use("'+ns+'") 只允许调用一次;')
@@ -47,9 +48,10 @@ function use(ns,funcs){
 
     let _call = function(funcname,args){
         if (args.hasOwnProperty('__event__')){
+            only_idx++;
            let eventcb = args['__event__'];
            if(!isFunction(eventcb)) throw('__event__ 必须为函数');
-           args['__event__']  = ns+"."+funcname+'.__event__'
+           args['__event__']  = ns+"."+funcname+'.__event__'+only_idx;
             xengine.bridge.register(args['__event__'], (res) => {
                 return eventcb(res);
             })

@@ -225,5 +225,7 @@ public class __xengine__module_nav extends xengine__module_nav {
     @Override
     public void _removeHistoryPage(NavHistoryDTO dto, CompletionHandler<Nullable> handler) {
 
+        XEngineWebActivityManager.sharedInstance().removeHistoryPage(dto.history);
+
     }
 }

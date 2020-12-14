@@ -4,13 +4,12 @@
 <div id='modulename' style='display:none'>scan</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
 <a id='qrlink' href="about:none">link of QR</a>
 
-扫描模块
 
 
 # JS
 
 
-version: 0.0.59
+version: 0.0.60
 ``` bash
 npm install @zkty-team/x-engine-module-scan
 ```

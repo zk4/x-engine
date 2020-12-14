@@ -13,15 +13,9 @@ function osCheck() {
     return  xengine.use("com.zkty.module.geo", 
     [
   {
-    "name": "coordinate",
-    "default_args": {
-      "type": "wgs84"
-    }
-  },
-  {
     "name": "locate",
     "default_args": {
-      "type": "wgs84"
+      "type": "WGS84"
     }
   }
 ]

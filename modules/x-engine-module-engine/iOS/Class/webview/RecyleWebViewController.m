@@ -214,6 +214,7 @@ static   XEngineWebView* s_webview;
     [self.view addSubview:self.webview];
     [self.view addSubview:self.progresslayer];
     [self.view addSubview:self.imageView404];
+    [self drawFrame];
 }
 
 //执行JS
@@ -227,9 +228,21 @@ static   XEngineWebView* s_webview;
     }
 }
 
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    self.webview.frame = self.view.bounds;
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [self drawFrame];
+}
+
+-(void)drawFrame{
+//    if([UIScreen mainScreen].bounds.size.height == self.view.bounds.size.height){
+//        self.webview.frame = CGRectMake(0,
+//                                        CGRectGetMaxY(self.navigationController.navigationBar.frame),
+//                                        self.view.bounds.size.width,
+//                                        self.view.bounds.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame));
+//    }else{
+        self.webview.frame = self.view.bounds;
+//    }
+    
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
     float height = (self.view.bounds.size.width / 375.0) * 200;
     self.imageView404.frame = CGRectMake(0,
@@ -320,6 +333,7 @@ static   XEngineWebView* s_webview;
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     self.progresslayer.alpha = 0;
     [self.view insertSubview:self.webview atIndex:0];

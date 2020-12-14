@@ -17,7 +17,7 @@
                BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
                BuildableName = "yjzdbill.app"
                BlueprintName = "yjzdbill"
-               ReferencedContainer = "container:yjzdbill.xcodeproj">
+               ReferencedContainer = "container:YJZDBill.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "00DFC6C424C83F95006A53EE"
                BuildableName = "yjzdbillTests.xctest"
                BlueprintName = "yjzdbillTests"
-               ReferencedContainer = "container:yjzdbill.xcodeproj">
+               ReferencedContainer = "container:YJZDBill.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "00DFC6CF24C83F95006A53EE"
                BuildableName = "yjzdbillUITests.xctest"
                BlueprintName = "yjzdbillUITests"
-               ReferencedContainer = "container:yjzdbill.xcodeproj">
+               ReferencedContainer = "container:YJZDBill.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -67,14 +67,14 @@
             BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
             BuildableName = "yjzdbill.app"
             BlueprintName = "yjzdbill"
-            ReferencedContainer = "container:yjzdbill.xcodeproj">
+            ReferencedContainer = "container:YJZDBill.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"
             value = "DISABLE"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
@@ -91,7 +91,7 @@
             BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
             BuildableName = "yjzdbill.app"
             BlueprintName = "yjzdbill"
-            ReferencedContainer = "container:yjzdbill.xcodeproj">
+            ReferencedContainer = "container:YJZDBill.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

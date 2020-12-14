@@ -83,6 +83,22 @@ NS_ASSUME_NONNULL_BEGIN
 */
 -(void)payVerification;
 
+/*
+ universalLink地址配置
+ */
+-(void)setWeChatAppId:(NSString *)weChatAppId
+        UniversalLink:(NSString *)universalLink;
+
+/*!
+ * @abstract 地址配置
+ *
+ * @param cashSDKAddress   支付收银台地址
+ * @param billSDKAddress    账单中心地址
+ */
+-(void)setCashSDKAddress:(NSString *)cashSDKAddress
+          billSDKAddress:(NSString *)billSDKAddress;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

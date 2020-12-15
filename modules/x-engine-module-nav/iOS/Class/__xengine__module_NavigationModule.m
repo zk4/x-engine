@@ -482,7 +482,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             itemButton.frame = CGRectMake(0, 0, iconSize.width, iconSize.height);
             itemButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             //iOS 设置button文字过长而显示省略号的解决办法
-//            itemButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+            itemButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
             [itemButton handleControlEvent:UIControlEventTouchUpInside withBlock:^(UIBlockButton *sender){
                 

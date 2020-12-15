@@ -2,6 +2,9 @@ package com.zkty.modules.engine.utils;
 
 import android.text.TextUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UrlUtils {
 
     public static boolean equalsWithoutArgs(String url1, String url2) {
@@ -49,5 +52,37 @@ public class UrlUtils {
         }
         return null;
 
+    }
+
+
+    /**
+     * 解析url
+     *
+     * @param url
+     * @return
+     */
+    public static Map<String, String> parseForParams(String url) {
+        Map<String, String> map = new HashMap();
+        if (url == null) {
+            return map;
+        }
+        url = url.trim();
+        if (url.equals("")) {
+            return map;
+        }
+        if (url.contains("?")) {
+            url = url.substring(url.indexOf("?") + 1);
+        } else {
+            return map;
+        }
+
+        //有参数
+        String[] params = url.split("&");
+        for (String param : params) {
+            String[] keyValue = param.split("=");
+            if (keyValue.length > 1)
+                map.put(keyValue[0], keyValue[1]);
+        }
+        return map;
     }
 }

@@ -19,7 +19,7 @@
 
 
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
-
+    
     if(uri.length == 0){
         return;
     }

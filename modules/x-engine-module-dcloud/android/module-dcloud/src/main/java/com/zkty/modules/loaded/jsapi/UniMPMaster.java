@@ -60,27 +60,6 @@ public class UniMPMaster {
 
     public static void startUniApp(String appId, String redirectPath, Map<String, String> params, String version) {
         Activity context = ActivityUtils.getCurrentActivity();
-//        if (DCUniMPSDK.getInstance().isExistsApp(appId)) {
-//            try {
-//                if (params == null) {
-//                    if (redirectPath == null) {
-//                        DCUniMPSDK.getInstance().startApp(context, appId);
-//                    } else {
-//                        DCUniMPSDK.getInstance().startApp(context, appId, redirectPath);
-//                    }
-//                } else {
-//                    JSONObject argument = new JSONObject(params);
-//                    if (redirectPath == null) {
-//                        DCUniMPSDK.getInstance().startApp(context, appId, argument);
-//                    } else {
-//                        DCUniMPSDK.getInstance().startApp(context, appId, null, redirectPath, argument);
-//                    }
-//                }
-//                return;
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
         String wgtPath = WgtManager.getInstance().getAssignedWgtPathById(appId, null);
         if (TextUtils.isEmpty(wgtPath)) return;
         DCUniMPSDK.getInstance().releaseWgtToRunPathFromePath(appId, wgtPath, (code, pArgs) -> {
@@ -116,5 +95,9 @@ public class UniMPMaster {
         if (TextUtils.isEmpty(appId)) return false;
 
         return WgtManager.getInstance().isWgtExit(appId, version);
+    }
+
+    public static void setOnUniMPEventCallBack(DCUniMPSDK.IOnUniMPEventCallBack callBack) {
+        DCUniMPSDK.getInstance().setOnUniMPEventCallBack(callBack);
     }
 }

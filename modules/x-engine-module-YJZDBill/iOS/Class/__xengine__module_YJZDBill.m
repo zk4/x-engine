@@ -23,17 +23,6 @@ extern XEngineWebView* s_webview;
 }
 @end
 
-#ifdef UAT_ENV
-static NSString *const cashSDKAddress = @"http://xpay-h5-uat.linli.timesgroup.cn:10005/pages/indexSdk.html";
-static NSString *const billSDKAddress = @"http://xpay-bill-uat.linli.timesgroup.cn:10006";
-#elif SIT_ENV
-static NSString *const cashSDKAddress = @"http://xpay-h5-sit.linli.timesgroup.cn:10005";
-static NSString *const billSDKAddress = @"http://xpay-bill-sit.linli.timesgroup.cn:1000";
-#else
-static NSString *const cashSDKAddress = @"http://xpay-h5-prod-linli.timesgroup.cn";
-static NSString *const billSDKAddress = @"http://xpay-bill-prod-linli.timesgroup.cn";
-#endif
-
 
 @implementation __xengine__module_yjzdbill
 - (instancetype)init{
@@ -41,9 +30,7 @@ static NSString *const billSDKAddress = @"http://xpay-bill-prod-linli.timesgroup
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     //UniversalLink配置
-    [[YJBillPlatform sharedSingleton] setWeChatAppId:@"wx2318e010458e4805" UniversalLink:@"https://m-center-uat-linli.timesgroup.cn"];
-    //支付收银台地址、账单中心地址配置
-    [[YJBillPlatform sharedSingleton] setCashSDKAddress:cashSDKAddress billSDKAddress:billSDKAddress];
+    [[YJBillPlatform sharedSingleton] setWeChatAppId:@"wx2318e010458e4805" UniversalLink:@"https://m-center-prod-linli.timesgroup.cn"];
 
     return self;
 }

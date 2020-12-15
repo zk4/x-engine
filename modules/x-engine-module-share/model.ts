@@ -8,7 +8,7 @@ interface ShareReqDTO {
   title: string,
   desc : string,
   link : string,
-  imageUrl: string,
+  imageUrl?: string,
   // 如果type是music或video，则要提供数据链接，默认为空
   dataUrl?: string,
   //wx_zone (朋友圈) wx_friend(好友)

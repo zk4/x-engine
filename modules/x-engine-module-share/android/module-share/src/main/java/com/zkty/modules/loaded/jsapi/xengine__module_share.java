@@ -24,7 +24,8 @@
 
     public String link;
 
-    public String imageUrl;
+    @Optional
+		public String imageUrl;
 
     @Optional
 		public String dataUrl;

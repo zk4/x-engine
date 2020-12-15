@@ -128,4 +128,8 @@
 }
 
 
+- (NSString *)URLDecodedString {
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    return [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
 @end

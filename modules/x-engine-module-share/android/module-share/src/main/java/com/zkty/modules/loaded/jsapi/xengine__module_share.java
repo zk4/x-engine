@@ -24,10 +24,10 @@
 
     public String link;
 
-    public String imageUrl;
+    public String imageurl;
 
     @Optional
-		public String dataUrl;
+		public String dataurl;
 
     @Optional
 		public String channel;

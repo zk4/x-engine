@@ -43,7 +43,7 @@
     self.event = dto.__event__;
     if ([self isInstall]) {
         if ([dto.type isEqualToString:@"music"] || [dto.type isEqualToString:@"video"]) {
-            if (![self getNoEmptyString:dto.dataUrl]) {
+            if (![self getNoEmptyString:dto.dataurl]) {
                 [MBProgressHUD showToastWithTitle:@"请提供dataUrl" image:nil time:1.0];
                 return;
             }
@@ -53,16 +53,16 @@
         }];
         
         WXMediaMessage *message = [WXMediaMessage message];
-          [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageUrl]]]];
+          [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageurl]]]];
         message.title = dto.title;
         message.description = dto.desc;
         if ([dto.type isEqualToString:@"music"]) {
             WXMusicObject * ext = [WXMusicObject object];
-            ext.musicUrl = dto.dataUrl;
+            ext.musicUrl = dto.dataurl;
             message.mediaObject = ext;
         }else if ([dto.type isEqualToString:@"video"]){
             WXVideoObject * ext = [WXVideoObject object];
-            ext.videoUrl = dto.dataUrl;
+            ext.videoUrl = dto.dataurl;
             message.mediaObject = ext;
         }else{
             WXWebpageObject *ext = [WXWebpageObject object];

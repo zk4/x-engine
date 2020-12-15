@@ -524,7 +524,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 //    NSString *strRequest = [navigationAction.request.URL.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     if ([navigationAction.request.URL.scheme isEqualToString:@"x-engine"]) {
-        NSArray *subArray = [navigationAction.request.URL.query componentsSeparatedByString:@"&"];
+        NSString* urlStringUTF8  = [navigationAction.request.URL.query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSArray *subArray = [urlStringUTF8 componentsSeparatedByString:@"&"];
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc]init];
         for (int j = 0 ; j < subArray.count; j++){
             NSArray *dicArray = [subArray[j] componentsSeparatedByString:@"="];

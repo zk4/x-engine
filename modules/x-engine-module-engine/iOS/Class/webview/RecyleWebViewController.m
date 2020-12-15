@@ -21,6 +21,7 @@ static   XEngineWebView* s_webview;
 @property (nonatomic, assign) BOOL isClearHistory;
 
 @property (nonatomic, assign) BOOL isReadyLoading;
+@property (nonatomic, assign) BOOL isSelfGoback;
 
 @end
 
@@ -258,6 +259,7 @@ static   XEngineWebView* s_webview;
 
 -(void)goback:(UIButton *)sender{
     
+    self.isSelfGoback = YES;
     if([self.loadUrl hasPrefix:@"http"]){
         if([self.webview canGoBack]){
             [self.webview goBack];

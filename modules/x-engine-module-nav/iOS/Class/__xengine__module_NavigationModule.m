@@ -479,10 +479,10 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             
             itemButton.tag = BAR_BTN_FLAG + tag + index;
             
-            itemButton.frame = CGRectMake(0, 0, iconSize.width, iconSize.height);
+            
             itemButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             //iOS 设置button文字过长而显示省略号的解决办法
-//            itemButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+            itemButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
             [itemButton handleControlEvent:UIControlEventTouchUpInside withBlock:^(UIBlockButton *sender){
                 
@@ -512,6 +512,8 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
                 [itemButton setTitle:title forState:UIControlStateNormal];
             }
             
+//            itemButton.frame = CGRectMake(0, 0, iconSize.width, iconSize.height);
+            
             if(item.__event__){
                 if ([NavUtil getNoEmptyString:icon]) {
                     UIImage * image = [NavUtil getOrignalImage:icon];
@@ -537,6 +539,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             }else{
                 itemButton.titleLabel.font = [UIFont systemFontOfSize:item.titleSize];
             }
+            [itemButton sizeToFit];
             [barAry addObject:btnItem];
             tag += 1;
         }

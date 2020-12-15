@@ -33,7 +33,20 @@
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
     [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
-    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+    
+//    UIView *vv = [[UIView alloc] init];
+//    [UIApplication sharedApplication].keyWindow
+    if([Unity sharedInstance].getCurrentVC.navigationController){
+        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+    } else {
+        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        if([nav isKindOfClass:[UINavigationController class]]){
+            [nav pushViewController:vc animated:YES];
+        } else {
+            nav = nav.navigationController;
+            [nav pushViewController:vc animated:YES];
+        }
+    }
 }
 //nav用
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params{

@@ -6,71 +6,52 @@
 #import <xengine__module_BaseModule.h>
 #import "JSONModel.h"
 
-@protocol SheetDTO;
-@protocol ContinousDTO;
-@protocol MsgPayloadDTO;
+@protocol YJBillDTO;
+@protocol YJBillRefundDTO;
+@protocol YJBillRetDTO;
+@protocol YJBillListDTO;
 
-@interface SheetDTO: JSONModel
-  	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,strong) NSArray<NSString*>* itemList;
-   	@property(nonatomic,copy) NSString* content;
-   	@property(nonatomic,strong) NSString* __event__;
+@interface YJBillDTO: JSONModel
+  	@property(nonatomic,copy) NSString* businessCstNo;
+   	@property(nonatomic,copy) NSString* platMerCstNo;
+   	@property(nonatomic,copy) NSString* tradeMerCstNo;
+   	@property(nonatomic,copy) NSString* billNo;
+   	@property(nonatomic,copy) NSString* appScheme;
+   	@property(nonatomic,assign) BOOL payType;
 @end
     
 
-@interface ContinousDTO: JSONModel
-  	@property(nonatomic,strong) NSString* __event__;
+@interface YJBillRefundDTO: JSONModel
+  	@property(nonatomic,copy) NSString* refundOrderNo;
 @end
     
 
-@interface MsgPayloadDTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
-   	@property(nonatomic,copy) NSString* sender;
-   	@property(nonatomic,strong) NSArray<NSString*>* receiver;
-   	@property(nonatomic,strong) NSString* __event__;
-   	@property(nonatomic,strong) NSString* __ret__;
+@interface YJBillRetDTO: JSONModel
+  	@property(nonatomic,copy) NSString* billRetStatus;
+   	@property(nonatomic,copy) NSString* billRetStatusMessage;
+@end
+    
+
+@interface YJBillListDTO: JSONModel
+  	@property(nonatomic,copy) NSString* businessCstNo;
+   	@property(nonatomic,copy) NSString* roomNo;
+   	@property(nonatomic,copy) NSString* userRoomNo;
+   	@property(nonatomic,copy) NSString* appScheme;
+   	@property(nonatomic,assign) BOOL payType;
 @end
     
 
 
 @protocol xengine__module_yjzdbill_protocol
        @required 
-       - (void) _broadcastOn:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _broadcastOff:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _triggerNativeBroadCast:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-        - (void) _repeatReturn__event__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+        - (void) _YJBillPayment:(YJBillDTO*) dto complete:(void (^)(YJBillRetDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+        - (void) _YJBillRefund:(YJBillRefundDTO*) dto complete:(void (^)(YJBillRetDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _ReturnInPromiseThen:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
-      @required 
-       - (void) _noArgNoRet:(void (^)(BOOL complete)) completionHandler;
+        - (void) _YJBillList:(YJBillListDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
-      @required 
-        - (void) _noArgRetPrimitive:(void (^)(NSString* result,BOOL complete)) completionHandler;
-    
-      @required 
-        - (void) _noArgRetSheetDTO:(void (^)(SheetDTO* result,BOOL complete)) completionHandler;
-    
-      @required 
-        - (void) _haveArgNoRet:(SheetDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-        - (void) _haveArgRetPrimitive:(SheetDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _haveArgRetSheetDTO:(SheetDTO*) dto complete:(void (^)(SheetDTO* result,BOOL complete)) completionHandler;
-
 @end
   
 

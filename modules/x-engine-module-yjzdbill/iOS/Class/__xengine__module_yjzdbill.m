@@ -9,16 +9,15 @@
 #import "__xengine__module_yjzdbill.h"
 #import <XEngineContext.h>
 #import <micros.h>
-#import <UIViewController+.h>
-#import <JSONToDictionary.h>
 #import <RecyleWebViewController.h>
 #import <XEngineWebView.h>
 #import <Unity.h>
+#import <YJZDBill/YJBillPlatform.h>
 
 @interface __xengine__module_yjzdbill()
 {
     NSTimer * timer ;
-    ContinousDTO* adto;
+//    ContinousDTO* adto;
     void(^hanlder)(id value,BOOL isComplete);
     int value;
     NSString* event;
@@ -27,128 +26,66 @@
 @end
 
 @implementation __xengine__module_yjzdbill
- 
- 
-   
-- (void)_haveArgNoRet:(SheetDTO *)dto complete:(void (^)(BOOL))completionHandler {
+- (instancetype)init{
+    self = [super init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     
+    //UniversalLink配置
+    [[YJBillPlatform sharedSingleton] setWeChatAppId:@"wx2318e010458e4805" UniversalLink:@"https://m-center-prod-linli.timesgroup.cn"];
+
+    return self;
 }
 
-- (void)_haveArgRetPrimitive:(SheetDTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+- (void)didBecomeActive{
+    NSLog(@"========开始查证======");
+    [[YJBillPlatform sharedSingleton] payVerification];
+}
+
+//支付
+- (void)_YJBillPayment:(YJBillDTO *)dto complete:(void (^)(YJBillRetDTO *, BOOL))completionHandler {
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    [dictM setObject:dto.businessCstNo forKey:@"businessCstNo"]; //会员标识
+    [dictM setObject:dto.platMerCstNo forKey:@"platMerCstNo"]; //预下单平台商户号
+    [dictM setObject:dto.tradeMerCstNo forKey:@"tradeMerCstNo"]; //预下单交易商户号
+    [dictM setObject:dto.billNo forKey:@"billNo"]; //业务系统订单号
     
-}
-
-- (void)_haveArgRetSheetDTO:(SheetDTO *)dto complete:(void (^)(SheetDTO *, BOOL))completionHandler {
     
+    [[YJBillPlatform sharedSingleton] billPaymentWithOrderInfo:dictM appScheme:dto.appScheme payType:dto.payType payfinishBlock:^(id  _Nonnull responseObject, NSString * _Nonnull message) {
+        NSLog(@"%@ -- %@", responseObject, message);
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+            YJBillRetDTO* d = [YJBillRetDTO new];
+            d.billRetStatus=responseObject;
+            d.billRetStatusMessage=message;
+            completionHandler(d, NO);
+        });
+        
+    }];
 }
 
-- (void)_noArgNoRet:(void (^)(BOOL))completionHandler {
- 
-
-
+//账单中心
+- (void)_YJBillList:(YJBillListDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    [dictM setObject:dto.businessCstNo forKey:@"businessCstNo"]; //会员标识
+    [dictM setObject:dto.roomNo forKey:@"roomNo"]; //房屋编号
+    [dictM setObject:dto.userRoomNo forKey:@"userRoomNo"]; //人防编号
+    //当前app注册的appScheme,请务必填写与plist中注册的一样，否则无法从第三方返回当前app
+    [[YJBillPlatform sharedSingleton] billListCurrentViewController:[Unity sharedInstance].getCurrentVC appScheme:dto.appScheme payType:dto.payType OrderInfo:dictM];
 }
 
-- (void)_noArgRetPrimitive:(void (^)(NSString *, BOOL))completionHandler {
-    
+//退款
+
+- (void)_YJBillRefund:(YJBillRefundDTO *)dto complete:(void (^)(YJBillRetDTO *, BOOL))completionHandler {
+    NSMutableDictionary *dictM1 = [NSMutableDictionary dictionary];
+    [dictM1 setObject:dto.refundOrderNo forKey:@"refundOrderNo"]; //退款订单编号
+    [[YJBillPlatform sharedSingleton] billRefundWithOrderInfo:dictM1 payfinishBlock:^(id  _Nonnull responseObject, NSString * _Nonnull message) {
+        NSLog(@"%@ %@",responseObject, message);
+        YJBillRetDTO* d = [YJBillRetDTO new];
+        d.billRetStatus=responseObject;
+        d.billRetStatusMessage=message;
+        completionHandler(d, YES);
+    }];
 }
-
-- (void)_noArgRetSheetDTO:(void (^)(SheetDTO *, BOOL))completionHandler {
-    
-}
- 
-
-- (void)_ReturnInPromiseThen:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    
-    completionHandler(@"hello,ret",TRUE);
-     
-}
-- (void)_repeatReturn__ret__:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-
-    value=10;
-    hanlder=completionHandler;
-  
-    if(timer){
-        [timer invalidate];
-    }
-
-    timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
-                                              target:self
-                                            selector:@selector(repeat_ret:)
-                                            userInfo:nil
-                                             repeats:YES];
-}
- 
--(void)repeat_ret:t{
-    if(value!=-1){
-        value--;
-        NSString* v= [NSString stringWithFormat:@"%d",value];
-        hanlder(v,NO);
-    }else{
-        hanlder(0,YES);
-        hanlder=nil;
-        [timer invalidate];
-        timer=nil;
-    }
-}
-- (void)_repeatReturn__event__:(id)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    adto=dto;
-    value=10;
-    if(hanlder){
-        hanlder(0,YES);
-    }
-    hanlder=completionHandler;
-   
-    if(timer){
-        [timer invalidate];
-    }
-
-    timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
-                                              target:self
-                                            selector:@selector(repeat_event:)
-                                            userInfo:dto
-                                             repeats:YES];
-}
-
--(void)repeat_event:t{
-    if(value!=-1){
-        ContinousDTO* dto= (ContinousDTO*) adto;
-        value--;
-        NSString* v= [NSString stringWithFormat:@"%d",value];
-        // 主动调用 js
-        [self callJS:dto.__event__ args:v retCB:^(id  _Nullable value) {
-            //处理__event__ 的返回值
-            NSLog(@"%@",value);
-        }];
-    }else{
-        [timer invalidate];
-        timer=nil;
-    }
-}
- 
-- (void)_broadcastOn:(void (^)(BOOL))completionHandler {
-    //要注意. 这里仅是删除 _broadcastOn 的 JS 回调方法.
-    completionHandler(TRUE);
-}
-
-- (void)_triggerNativeBroadCast:(void (^)(BOOL))completionHandler {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
-
-    NSDate *currentDate = [NSDate date];
-    NSString *dateString = [formatter stringFromDate:currentDate];
-
-    [self broadcast:@[@"hello",@"broadcast",dateString]];
-    //要注意. 这里仅是删除 _triggerNativeBroadCast 的回调,而不是删除 broadcast 的回调.
-    completionHandler(TRUE);
-}
- 
-
-
-
-
-
-
-
 
 @end
  

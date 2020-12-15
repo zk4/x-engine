@@ -11,6 +11,11 @@ abstract_target 'abstract' do
   target 'yjzdbill' do
     #use_frameworks!
     #module_pods
+    pod 'WechatOpenSDK'
+    pod 'AlipaySDK-iOS'
+    pod 'AFNetworking'
+    pod 'MJExtension'
+    
   end
   target 'yjzdbillTests' do
     #use_frameworks!

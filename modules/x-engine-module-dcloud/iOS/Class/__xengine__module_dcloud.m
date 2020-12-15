@@ -228,14 +228,14 @@
     
     NSLog(@"Receive UniMP event: %@ data: %@",event,data);
     if([event isEqualToString:@"inspection-detail"]){
-        NSDictionary* data = data[@"data"];
-        long version =[data[@"version"] longValue]?[data[@"version"]  longValue]:1;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+        NSDictionary* d = data[@"data"];
+        NSString* version =d[@"version"] ? d[@"version"] :@"1";
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
                                                             object:@{
-                                                                @"ROUTE_TYPE":@"uni",
-                                                                @"ROUTE_URI":[NSString stringWithFormat:@"%@", data[@"uri"]],
-                                                                @"ROUTE_VERSION":[NSString stringWithFormat:@"%ld", version > 0 ? version : 1],
-                                                                @"ROUTE_PATH":[NSString stringWithFormat:@"%@", data[@"path"] ],
+                                                                @"ROUTE_TYPE": d[@"type"]? d[@"type"]:@"",
+                                                                @"ROUTE_URI":[NSString stringWithFormat:@"%@", d[@"uri"]],
+                                                                @"ROUTE_VERSION":version,
+                                                                @"ROUTE_PATH":[NSString stringWithFormat:@"%@", d[@"path"] ],
                                                             }];
     }
     

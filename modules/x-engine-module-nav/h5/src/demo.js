@@ -105,8 +105,8 @@ import xengine from "@zkty-team/x-engine-module-engine";
   window.removeHistoryPage = () => {
     nav
       .removeHistoryPage({
-        isHidden: {history:[
-        ]},
+        history:[
+        ],
       })
       .then((res) => {});
   };

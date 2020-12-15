@@ -9,7 +9,7 @@
 # JS
 
 
-version: 0.0.60
+version: 0.0.67
 ``` bash
 npm install @zkty-team/x-engine-module-network
 ```

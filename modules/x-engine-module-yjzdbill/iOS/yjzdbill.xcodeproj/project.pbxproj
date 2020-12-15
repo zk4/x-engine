@@ -45,7 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.microapp.moduledemo.0; sourceTree = "<group>"; };
 		003F95D924DA4A6100633E1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		00DFC6AA24C83F94006A53EE /* yjzdbill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yjzdbill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6C524C83F95006A53EE /* yjzdbillTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yjzdbillTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,7 +167,6 @@
 			children = (
 				C9B9E6A22588ECFF00DE2BAC /* YJZDBill.framework */,
 				C9B9E6A02588ECFB00DE2BAC /* resource.bundle */,
-				0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,

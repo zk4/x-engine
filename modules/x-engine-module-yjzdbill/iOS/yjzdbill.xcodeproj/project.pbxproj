@@ -84,7 +84,6 @@
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C9B9E6A02588ECFB00DE2BAC /* resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = resource.bundle; path = "ios-sdk/resource.bundle"; sourceTree = SOURCE_ROOT; };
 		C9B9E6A22588ECFF00DE2BAC /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YJZDBill.framework; path = "ios-sdk/YJZDBill.framework"; sourceTree = SOURCE_ROOT; };
-		C9B9E6A42588EFE300DE2BAC /* resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = resource.bundle; path = "ios-sdk/resource.bundle"; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-yjzdbill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.debug.xcconfig"; sourceTree = "<group>"; };
 		F425D64FA1A2D2EEEAB4FEFD /* libPods-abstract-yjzdbillTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abstract-yjzdbillTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F625F7C354D7561221903338 /* Pods-yjzdbill-yjzdbillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,7 +122,6 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				C9B9E6A42588EFE300DE2BAC /* resource.bundle */,
 				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* yjzdbill */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,

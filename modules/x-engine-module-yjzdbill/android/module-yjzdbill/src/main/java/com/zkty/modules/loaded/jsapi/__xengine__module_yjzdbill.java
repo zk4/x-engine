@@ -1,144 +1,95 @@
 package com.zkty.modules.loaded.jsapi;
 
 
-import android.util.Log;
-
 import androidx.annotation.Nullable;
 
+
+import com.kapp.sdllpay.PaymentCallback;
+import com.yjlc.module.BillManager;
 import com.zkty.modules.dsbridge.CompletionHandler;
-import com.zkty.modules.dsbridge.OnReturnValue;
-import com.zkty.modules.engine.utils.XEngineMessage;
+import com.zkty.modules.engine.XEngineApplication;
+import com.zkty.modules.engine.utils.XEngineWebActivityManager;
+import com.zkty.modules.loaded.util.SharePreferenceUtils;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
-    @Override
-    public void onAllModulesInited() {
 
-        Log.d("__xengine__module_yjzdbill", "onAllModulesInited()");
-    }
 
     @Override
-    public void _broadcastOn(CompletionHandler<Nullable> handler) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        List<String> msg = new ArrayList<>();
-        msg.add("_broadcastOn:" + df.format(new Date()));
-        EventBus.getDefault().post(new XEngineMessage(XEngineMessage.MSG_TYPE_ON, msg));
+    public void _YJBillPayment(YJBillDTO dto, CompletionHandler<YJBillRetDTO> handler) {
+//
+//        dto.platMerCstNo = "1249741882914750465";
+//
+//        dto.billNo = "06202012141619003321701693321701";
+//
+//        dto.businessCstNo = "13660078710";
+//
+//        dto.tradeMerCstNo = "1249745434852704256";
+//
+//        dto.payType = false;
 
+        String baseUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_base_url", null);
+        BillManager billManager = BillManager.getInstance();
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl);
+        billManager.payBills(null, dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
+            @Override
+            public void payRsult(JSONObject jsonObject) {
 
-    }
+                if (jsonObject.has("status")) {
+                    YJBillRetDTO yjBillRetDTO = new YJBillRetDTO();
+                    try {
+                        yjBillRetDTO.billRetStatus = jsonObject.getString("status");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-    @Override
-    public void _broadcastOff(CompletionHandler<Nullable> handler) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        List<String> msg = new ArrayList<>();
-        msg.add("_broadcastOff:" + df.format(new Date()));
-        EventBus.getDefault().post(new XEngineMessage(XEngineMessage.MSG_TYPE_OFF, msg));
+                    handler.complete(yjBillRetDTO);
 
-    }
-
-    @Override
-    public void _triggerNativeBroadCast(CompletionHandler<Nullable> handler) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        List<String> msg = new ArrayList<>();
-        msg.add("_broadcast:" + df.format(new Date()));
-        EventBus.getDefault().post(new XEngineMessage(XEngineMessage.MSG_TYPE_SCOPE, msg));
-
-    }
-
-    @Override
-    public void _repeatReturn__ret__(ContinousDTO dto, CompletionHandler<String> handler) {
-
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            private int counter = 10;
-
-            public void run() {
-                if (counter > 0) {
-                    handler.setProgressData(String.valueOf(counter));
-                } else {
-                    timer.cancel();
-                    handler.complete();
-                }
-                counter--;
-
-            }
-        };
-        timer.schedule(task, 0L, 1000L);
-
-
-    }
-
-    @Override
-    public void _repeatReturn__event__(ContinousDTO dto, CompletionHandler<String> handler) {
-
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            private int counter = 10;
-
-            public void run() {
-                if (counter > 0) {
-                    mXEngineWebView.callHandler(dto.__event__, new Object[]{counter}, new OnReturnValue<Object>() {
-                        @Override
-                        public void onValue(Object retValue) {
-
-                        }
-                    });
-                } else {
-                    timer.cancel();
-                    handler.complete();
                 }
 
-                counter--;
-
             }
-        };
-        timer.schedule(task, 0L, 1000L);
+        });
 
 
     }
 
     @Override
-    public void _ReturnInPromiseThen(ContinousDTO dto, CompletionHandler<String> handler) {
+    public void _YJBillRefund(YJBillRefundDTO dto, CompletionHandler<YJBillRetDTO> handler) {
+
+        String baseUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_base_url", null);
+        BillManager billManager = BillManager.getInstance();
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl);
+        billManager.refundBills(dto.refundOrderNo, new PaymentCallback() {
+            @Override
+            public void paymentResult(JSONObject jsonObject) {
+                if (jsonObject.has("status")) {
+                    YJBillRetDTO yjBillRetDTO = new YJBillRetDTO();
+                    try {
+                        yjBillRetDTO.billRetStatus = jsonObject.getString("status");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    handler.complete(yjBillRetDTO);
+
+                }
+            }
+        });
+
 
     }
 
     @Override
-    public void _noArgNoRet(CompletionHandler<Nullable> handler) {
+    public void _YJBillList(YJBillListDTO dto, CompletionHandler<Nullable> handler) {
 
+        String baseUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_base_url", null);
+
+        BillManager billManager = BillManager.getInstance();
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl);
+        billManager.queryBills("", "", dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c);
+        handler.complete();
     }
-
-    @Override
-    public void _noArgRetPrimitive(CompletionHandler<String> handler) {
-
-    }
-
-    @Override
-    public void _noArgRetSheetDTO(CompletionHandler<SheetDTO> handler) {
-
-    }
-
-    @Override
-    public void _haveArgNoRet(SheetDTO dto, CompletionHandler<Nullable> handler) {
-
-    }
-
-    @Override
-    public void _haveArgRetPrimitive(SheetDTO dto, CompletionHandler<String> handler) {
-
-    }
-
-    @Override
-    public void _haveArgRetSheetDTO(SheetDTO dto, CompletionHandler<SheetDTO> handler) {
-
-    }
-
 }

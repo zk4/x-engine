@@ -15,53 +15,48 @@
   import androidx.annotation.Nullable;
 
   
-  class SheetDTO {
-    public String title;
+  class YJBillDTO {
+    public String businessCstNo;
+
+    public String platMerCstNo;
+
+    public String tradeMerCstNo;
+
+    public String billNo;
 
     @Optional
-		public List<String> itemList;
+		public String appScheme;
 
     @Optional
-		public String content;
-
-    public String __event__;
+		public boolean payType;
   }
   
-  class ContinousDTO {
-    @Optional
-		public String __event__;
+  class YJBillRefundDTO {
+    public String refundOrderNo;
   }
   
-  class MsgPayloadDTO {
-    public String type;
+  class YJBillRetDTO {
+    public String billRetStatus;
 
-    @Optional
-		public Map<String,String> args;
+    public String billRetStatusMessage;
+  }
+  
+  class YJBillListDTO {
+    public String businessCstNo;
 
-    @Optional
-		public String sender;
+    public String roomNo;
 
-    @Optional
-		public List<String> receiver;
+    public String userRoomNo;
 
-    public String __event__;
+    public String appScheme;
 
-    public String __ret__;
+    public boolean payType;
   }
   
   interface xengine__module_yjzdbill_i {
-    public void _broadcastOn(final CompletionHandler<Nullable> handler);
-public void _broadcastOff(final CompletionHandler<Nullable> handler);
-public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
-public void _repeatReturn__event__(ContinousDTO dto, final CompletionHandler<String> handler);
-public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
-public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
-public void _noArgNoRet(final CompletionHandler<Nullable> handler);
-public void _noArgRetPrimitive(final CompletionHandler<String> handler);
-public void _noArgRetSheetDTO(final CompletionHandler<SheetDTO> handler);
-public void _haveArgNoRet(SheetDTO dto, final CompletionHandler<Nullable> handler);
-public void _haveArgRetPrimitive(SheetDTO dto, final CompletionHandler<String> handler);
-public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> handler);
+    public void _YJBillPayment(YJBillDTO dto, final CompletionHandler<YJBillRetDTO> handler);
+public void _YJBillRefund(YJBillRefundDTO dto, final CompletionHandler<YJBillRetDTO> handler);
+public void _YJBillList(YJBillListDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -72,163 +67,43 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
     }
   
     @JavascriptInterface
-    final public void broadcastOn(JSONObject obj, final CompletionHandler<Object> handler) {
-      _broadcastOn(new CompletionHandler<Nullable>() {
+    final public void YJBillPayment(JSONObject obj, final CompletionHandler<Object> handler) {
+      YJBillDTO data= convert(obj,YJBillDTO.class);
+      _YJBillPayment(data, new CompletionHandler<YJBillRetDTO>() {
+        @Override
+        public void complete(YJBillRetDTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(YJBillRetDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void YJBillRefund(JSONObject obj, final CompletionHandler<Object> handler) {
+      YJBillRefundDTO data= convert(obj,YJBillRefundDTO.class);
+      _YJBillRefund(data, new CompletionHandler<YJBillRetDTO>() {
+        @Override
+        public void complete(YJBillRetDTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(YJBillRetDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void YJBillList(JSONObject obj, final CompletionHandler<Object> handler) {
+      YJBillListDTO data= convert(obj,YJBillListDTO.class);
+      _YJBillList(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void broadcastOff(JSONObject obj, final CompletionHandler<Object> handler) {
-      _broadcastOff(new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void triggerNativeBroadCast(JSONObject obj, final CompletionHandler<Object> handler) {
-      _triggerNativeBroadCast(new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void repeatReturn__event__(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _repeatReturn__event__(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void repeatReturn__ret__(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _repeatReturn__ret__(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void ReturnInPromiseThen(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _ReturnInPromiseThen(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void noArgNoRet(JSONObject obj, final CompletionHandler<Object> handler) {
-      _noArgNoRet(new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void noArgRetPrimitive(JSONObject obj, final CompletionHandler<Object> handler) {
-      _noArgRetPrimitive(new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void noArgRetSheetDTO(JSONObject obj, final CompletionHandler<Object> handler) {
-      _noArgRetSheetDTO(new CompletionHandler<SheetDTO>() {
-        @Override
-        public void complete(SheetDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(SheetDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void haveArgNoRet(JSONObject obj, final CompletionHandler<Object> handler) {
-      SheetDTO data= convert(obj,SheetDTO.class);
-      _haveArgNoRet(data, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void haveArgRetPrimitive(JSONObject obj, final CompletionHandler<Object> handler) {
-      SheetDTO data= convert(obj,SheetDTO.class);
-      _haveArgRetPrimitive(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void haveArgRetSheetDTO(JSONObject obj, final CompletionHandler<Object> handler) {
-      SheetDTO data= convert(obj,SheetDTO.class);
-      _haveArgRetSheetDTO(data, new CompletionHandler<SheetDTO>() {
-        @Override
-        public void complete(SheetDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(SheetDTO value) { handler.setProgressData(value); }
       });
 
     }

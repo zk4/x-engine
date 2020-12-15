@@ -34,6 +34,8 @@
 
 @interface YJBillListDTO: JSONModel
   	@property(nonatomic,copy) NSString* businessCstNo;
+   	@property(nonatomic,copy) NSString* roomNo;
+   	@property(nonatomic,copy) NSString* userRoomNo;
    	@property(nonatomic,copy) NSString* appScheme;
    	@property(nonatomic,assign) BOOL payType;
 @end

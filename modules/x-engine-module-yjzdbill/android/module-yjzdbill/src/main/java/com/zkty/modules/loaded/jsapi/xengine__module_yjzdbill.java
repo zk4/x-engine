@@ -44,6 +44,10 @@
   class YJBillListDTO {
     public String businessCstNo;
 
+    public String roomNo;
+
+    public String userRoomNo;
+
     public String appScheme;
 
     public boolean payType;

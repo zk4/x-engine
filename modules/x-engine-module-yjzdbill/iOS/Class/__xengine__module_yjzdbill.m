@@ -23,17 +23,6 @@ extern XEngineWebView* s_webview;
 }
 @end
 
-#ifdef UAT_ENV
-static NSString *const cashSDKAddress = @"http://xpay-h5-uat.linli.timesgroup.cn:10005";
-static NSString *const billSDKAddress = @"http://xpay-bill-uat.linli.timesgroup.cn:10006";
-#elif SIT_ENV
-static NSString *const cashSDKAddress = @"http://xpay-h5-sit.linli.timesgroup.cn:10005";
-static NSString *const billSDKAddress = @"http://xpay-bill-sit.linli.timesgroup.cn:1000";
-#else
-static NSString *const cashSDKAddress = @"http://xpay-h5-prod-linli.timesgroup.cn";
-static NSString *const billSDKAddress = @"http://xpay-bill-prod-linli.timesgroup.cn";
-#endif
-
 
 @implementation __xengine__module_yjzdbill
 - (instancetype)init{
@@ -42,8 +31,6 @@ static NSString *const billSDKAddress = @"http://xpay-bill-prod-linli.timesgroup
     
     //UniversalLink配置
     [[YJBillPlatform sharedSingleton] setWeChatAppId:@"wx2318e010458e4805" UniversalLink:@"https://m-center-prod-linli.timesgroup.cn"];
-    //支付收银台地址、账单中心地址配置
-    [[YJBillPlatform sharedSingleton] setCashSDKAddress:cashSDKAddress billSDKAddress:billSDKAddress];
 
     return self;
 }
@@ -104,6 +91,8 @@ static NSString *const billSDKAddress = @"http://xpay-bill-prod-linli.timesgroup
 - (void)_YJBillList:(YJBillListDTO *)dto complete:(void (^)(BOOL))completionHandler {
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
     [dictM setObject:dto.businessCstNo forKey:@"businessCstNo"]; //会员标识
+    [dictM setObject:dto.roomNo forKey:@"roomNo"]; //房屋编号
+    [dictM setObject:dto.userRoomNo forKey:@"userRoomNo"]; //人防编号
     //当前app注册的appScheme,请务必填写与plist中注册的一样，否则无法从第三方返回当前app
     [[YJBillPlatform sharedSingleton] billListCurrentViewController:[Unity sharedInstance].getCurrentVC appScheme:dto.appScheme payType:dto.payType OrderInfo:dictM];
 }

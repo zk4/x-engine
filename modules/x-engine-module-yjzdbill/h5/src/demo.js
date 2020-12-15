@@ -7,7 +7,7 @@ import yjzdbill from './index.js'
     businessCstNo:"13631095145",
     platMerCstNo: "1253152026819723265",
     tradeMerCstNo: "1253159474293014528",
-    billNo:"022020121423085212256125614091",
+    billNo:"022020121511175711404131412404",
     appScheme:'x-engine',
     payType:false,
         __ret__:(res)=>{
@@ -34,6 +34,8 @@ import yjzdbill from './index.js'
     yjzdbill
       .YJBillList({
     businessCstNo:"000001",
+    roomNo:'001',
+    userRoomNo:'001',
     appScheme:'x-engine',
     payType:false
 

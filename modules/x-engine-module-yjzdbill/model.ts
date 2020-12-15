@@ -34,6 +34,10 @@ interface YJBillRetDTO {
 interface YJBillListDTO {
   //会员标识
   businessCstNo: string;
+  //房屋编号
+  roomNo:string;
+  //人防编号
+  userRoomNo:string;
   //当前app注册的appScheme
   appScheme:string;
   //支付业务， 是否是 B端调用，  true为B， false为C
@@ -53,7 +57,7 @@ function YJBillPayment(
     businessCstNo:"13631095145",
     platMerCstNo: "1253152026819723265",
     tradeMerCstNo: "1253159474293014528",
-    billNo:"022020121417334812279073310311",
+    billNo:"022020121511175711404131412404",
     appScheme:'x-engine',
     payType:false,
         __ret__:(res)=>{
@@ -89,6 +93,8 @@ function YJBillList(
     yjzdbill
       .YJBillList({
     businessCstNo:"000001",
+    roomNo:'001',
+    userRoomNo:'001',
     appScheme:'x-engine',
     payType:false
 

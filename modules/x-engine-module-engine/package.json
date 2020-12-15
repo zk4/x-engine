@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-engine",
-  "version": "0.0.60",
+  "version": "0.0.66",
   "description": "zkty-team/x-engine-module-engine",
   "main": "h5/src/index.js",
   "scripts": {
@@ -33,5 +33,5 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "gitHead": "58dbe237d6faa3114591ad9eff2b0bfb69ba9abc"
+  "gitHead": "1b1c7b148f74e0411ed2dbe0c805bcba557541da"
 }

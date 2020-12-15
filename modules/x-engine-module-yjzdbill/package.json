@@ -1,8 +1,9 @@
 {
   "name": "@zkty-team/x-engine-module-yjzdbill",
-  "version": "0.0.60",
+  "version": "0.0.66",
   "main": "h5/src/index.js",
   "license": "MIT",
+  "description": "bill",
   "scripts": {
     "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",
     "md": "webpack  --config webpack.md.js",
@@ -36,7 +37,8 @@
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.60"
+    "@zkty-team/x-cli": "^1.0.14",
+    "@zkty-team/x-engine-module-engine": "^0.0.66"
   },
-  "gitHead": "58dbe237d6faa3114591ad9eff2b0bfb69ba9abc"
+  "gitHead": "1b1c7b148f74e0411ed2dbe0c805bcba557541da"
 }

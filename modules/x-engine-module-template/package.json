@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-xxxx",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.62"
+    "@zkty-team/x-engine-module-engine": "^0.0.63"
   },
-  "gitHead": "b54587e8f3e451b2a7bc3b2caa7ed9d9a5c9720c"
+  "gitHead": "663c9cfef54c7717ffb36735bd9cf13df63de7c1"
 }

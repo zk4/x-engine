@@ -1,106 +1,148 @@
-//命名空间 
+// 命名空间
 const moduleID = "com.zkty.module.yjzdbill";
 
-// 支付dto
-interface YJBillDTO {
-  //会员标识
-  businessCstNo: string;
-  //预下单平台商户号
-  platMerCstNo: string;
-  //预下单交易商户号
-  tradeMerCstNo: string;
-  //业务系统订单号
-  billNo:string;
-  //当前app注册的appScheme
-  appScheme?:string;
-  //支付业务， 是否是 B端调用，  true为B， false为C
-  payType?:boolean;
-}
-// 退款dto
-interface YJBillRefundDTO {
-  //退款订单编号
-  refundOrderNo:string;
+// dto
+interface SheetDTO {
+  // 标题
+  title: string;
+  // 子标题?
+  itemList?: Array<string>;
+  // 内容
+  content?: string;
+  // 点击子标题回调函数
+  __event__: (index:string)=>void,
 }
 
-//返回状态dto
-interface YJBillRetDTO {
-  //返回状态
-  billRetStatus: string;
-  //状态信息
-  billRetStatusMessage:string
+interface ContinousDTO {
+  __event__?:(string)=>{}
 }
 
-//账单中心dto
-interface YJBillListDTO {
-  //会员标识
-  businessCstNo: string;
-  //房屋编号
-  roomNo:string;
-  //人防编号
-  userRoomNo:string;
-  //当前app注册的appScheme
-  appScheme:string;
-  //支付业务， 是否是 B端调用，  true为B， false为C
-  payType:boolean;
+interface MsgPayloadDTO{
+  type: string,
+  args?: Map<string,string>;
+  sender?: string,
+  receiver?: Array<string>,
+  __event__: (string)=>void,
+  __ret__: (string)=>void
 }
-
-//支付
-function YJBillPayment(
-  args: YJBillDTO = {
-    appScheme:'x-engine',
-    payType:false
-  }
-):YJBillRetDTO {
-  window.YJBillPayment = () => {
-    yjzdbill
-      .YJBillPayment({
-    businessCstNo:"13631095145",
-    platMerCstNo: "1253152026819723265",
-    tradeMerCstNo: "1253159474293014528",
-    billNo:"022020121511175711404131412404",
-    appScheme:'x-engine',
-    payType:false,
-        __ret__:(res)=>{
-                  console.log(JSON.stringify(res));
+function broadcastOn(){
+  window.broadcastOn = (...args) => {
+    xengine.broadcastOn(function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
+    })
+  };
+}
+function broadcastOff(){
+  window.broadcastOff = () => {
+    xengine.broadcastOff()
+  };
+}
+function triggerNativeBroadCast(){
+  window.triggerNativeBroadCast = () => {
+    yjzdbill
+      .triggerNativeBroadCast()
+  };
+
+}
+function repeatReturn__event__(args:ContinousDTO):string{
+  window.repeatReturn__event__ = () => {
+    yjzdbill
+      .repeatReturn__event__({
+          __event__:function(res){
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify(res);
+        return res;
+          }
         }
-      })
+      )
+  };
+}
+function repeatReturn__ret__(args:ContinousDTO):string{
+  window.repeatReturn__ret__ = () => {
+    yjzdbill
+      .repeatReturn__ret__(
+        {
+          __ret__:function(res){
+        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify("__ret__:"+res);
+        return res;
+          },
+        }
+      )
   };
 }
 
-//退款
-function YJBillRefund(
-  args: YJBillRefundDTO 
-):YJBillRetDTO {
-  window.YJBillRefund = () => {
+
+function ReturnInPromiseThen(args:ContinousDTO):string{
+  window.ReturnInPromiseThen = () => {
     yjzdbill
-      .YJBillRefund({
-        refundOrderNo:'RFO16070658578',
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = JSON.stringify(res);
-        },
-      })
+      .ReturnInPromiseThen()
       .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText ="then 只支持一次性返回"+ JSON.stringify(res);
       });
   };
 }
 
-//账单中心
-function YJBillList(
-  args: YJBillListDTO){
-  window.YJBillList = () => {
+// 无参数无返回值
+function noArgNoRet(){
+    window.noArgNoRet = (...args) => {
     yjzdbill
-      .YJBillList({
-    businessCstNo:"000001",
-    roomNo:'001',
-    userRoomNo:'001',
-    appScheme:'x-engine',
-    payType:false
-
-      })
+      .noArgNoRet(...args)
       .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+        document.getElementById("debug_text").innerText = "ret:"+res;
+      });
+  };
+
+}
+
+// 无参数有 primitive 返回值
+function noArgRetPrimitive():string {
+    window.noArgRetPrimitive = (...args) => {
+    yjzdbill
+      .noArgRetPrimitive(...args)
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res;
+      });
+  };
+}
+
+// 无参数有返回值
+function noArgRetSheetDTO():SheetDTO {
+    window.noArgRetSheetDTO = (...args) => {
+    yjzdbill
+      .noArgRetSheetDTO(...args)
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "title:"+res["title"];
+      });
+  };
+}
+
+function haveArgNoRet(arg:SheetDTO={title:"abc"}){
+    window.haveArgNoRet = (...args) => {
+    yjzdbill
+      .haveArgNoRet(...args)
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res;
+      });
+  };
+}
+
+// have args ret primitive
+function haveArgRetPrimitive(arg:SheetDTO={title:"abc"}):string {
+    window.haveArgRetPrimitive = (...args) => {
+    yjzdbill
+      .haveArgRetPrimitive(...args)
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res;
+      });
+  };
+}
+
+// have args ret Object
+function haveArgRetSheetDTO(arg:SheetDTO={title:"abc"}):SheetDTO {
+    window.haveArgRetSheetDTO = (...args) => {
+    yjzdbill
+      .haveArgRetSheetDTO(...args)
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });
   };
 }

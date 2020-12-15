@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
     s.name         = "x-engine-module-yjzdbill"
     s.version      = version
-    s.summary      = "yjzdbill"
+    s.summary      = package["description"]
 
      s.description  = <<-DESC
             description
@@ -43,18 +43,10 @@ Pod::Spec.new do |s|
     s.public_header_files = "iOS/Class/**/*.h"
    
     s.frameworks  = "CoreServices"
-    s.resources    = "iOS/ios-sdk/*.bundle"
-    s.ios.vendored_frameworks = 'iOS/ios-sdk/*.framework'
-
 
     # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
     # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
     s.dependency "x-engine-module-engine"
-    s.dependency "WechatOpenSDK"
-    s.dependency "AlipaySDK-iOS"
-    s.dependency "AFNetworking"
-    s.dependency "MJExtension"
-
     
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
 end

@@ -7,34 +7,26 @@
 #import <micros.h>
 
 
-@implementation YJBillDTO
+@implementation SheetDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
-   
-   
-   	if ([propertyName isEqualToString:@"appScheme"]) { return YES; }
-   	if ([propertyName isEqualToString:@"payType"]) { return YES; }	return NO;
-    }
-@end
-    
-  
-@implementation YJBillRefundDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation YJBillRetDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	if ([propertyName isEqualToString:@"itemList"]) { return YES; }
+   	if ([propertyName isEqualToString:@"content"]) { return YES; }
    	return NO;
     }
 @end
     
   
-@implementation YJBillListDTO
+@implementation ContinousDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
+    }
+@end
+    
+  
+@implementation MsgPayloadDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
-   
+   	if ([propertyName isEqualToString:@"args"]) { return YES; }
+   	if ([propertyName isEqualToString:@"sender"]) { return YES; }
+   	if ([propertyName isEqualToString:@"receiver"]) { return YES; }
    
    	return NO;
     }
@@ -55,27 +47,87 @@
         return @"com.zkty.module.yjzdbill";
     }
     
-    - (void) YJBillPayment:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) broadcastOn:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          YJBillDTO* dto = [self convert:dict clazz:YJBillDTO.class];
-          [self _YJBillPayment:dto complete:^(YJBillRetDTO* result,  BOOL complete) {
+          [self _broadcastOn:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) broadcastOff:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _broadcastOff:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) triggerNativeBroadCast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _triggerNativeBroadCast:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) repeatReturn__event__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _repeatReturn__event__:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
-    - (void) YJBillRefund:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          YJBillRefundDTO* dto = [self convert:dict clazz:YJBillRefundDTO.class];
-          [self _YJBillRefund:dto complete:^(YJBillRetDTO* result,  BOOL complete) {
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
-    - (void) YJBillList:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) ReturnInPromiseThen:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          YJBillListDTO* dto = [self convert:dict clazz:YJBillListDTO.class];
-          [self _YJBillList:dto complete:^(BOOL complete) {
+          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
+          [self _ReturnInPromiseThen:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) noArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _noArgNoRet:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) noArgRetPrimitive:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _noArgRetPrimitive:^(NSString* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+      }
+    - (void) noArgRetSheetDTO:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _noArgRetSheetDTO:^(SheetDTO* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+      }
+    - (void) haveArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
+          [self _haveArgNoRet:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
+      }
+    - (void) haveArgRetPrimitive:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
+          [self _haveArgRetPrimitive:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) haveArgRetSheetDTO:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
+          [self _haveArgRetSheetDTO:dto complete:^(SheetDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
       }
   @end

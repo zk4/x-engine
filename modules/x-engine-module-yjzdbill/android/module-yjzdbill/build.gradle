@@ -53,9 +53,6 @@ dependencies {
     compile project(':module-engine')
     compile project(':module-localstorage')
 
-//    implementation files('libs/BillPaySDK-3.0.0.aar')
-//    implementation files('libs/sdllB-3.0.0.aar')
-//    implementation files('libs/sdllC-3.0.0.aar')
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'

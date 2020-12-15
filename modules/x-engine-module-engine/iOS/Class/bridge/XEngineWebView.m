@@ -9,7 +9,7 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import <XEngineContext.h>
-
+#import "NSString+Extras.h"
 @implementation XEngineWebView
 
 {
@@ -529,7 +529,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc]init];
         for (int j = 0 ; j < subArray.count; j++){
             NSArray *dicArray = [subArray[j] componentsSeparatedByString:@"="];
-            [tempDic setObject:dicArray[1] forKey:dicArray[0]];
+
+            [tempDic setObject:[dicArray[1] URLDecodedString] forKey:dicArray[0] ];
         }
         NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",[navigationAction.request.URL.path substringFromIndex:1]];
         id share =[[XEngineContext sharedInstance] getModuleByName:moduleName];

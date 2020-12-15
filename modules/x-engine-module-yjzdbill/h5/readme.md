@@ -44,6 +44,8 @@ com.zkty.module.yjzdbill
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | businessCstNo | string |  |  | 会员标识 |
+| roomNo | string |  |  | 房屋编号 |
+| userRoomNo | string |  |  | 人防编号 |
 | appScheme | string |  |  | 当前app注册的appScheme |
 | payType | bool |  |  | 支付业务， 是否是 B端调用，  true为B， false为C |
 

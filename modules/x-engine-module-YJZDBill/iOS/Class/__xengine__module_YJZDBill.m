@@ -91,6 +91,8 @@ extern XEngineWebView* s_webview;
 - (void)_YJBillList:(YJBillListDTO *)dto complete:(void (^)(BOOL))completionHandler {
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
     [dictM setObject:dto.businessCstNo forKey:@"businessCstNo"]; //会员标识
+    [dictM setObject:dto.roomNo forKey:@"roomNo"]; //房屋编号
+    [dictM setObject:dto.userRoomNo forKey:@"userRoomNo"]; //人防编号
     //当前app注册的appScheme,请务必填写与plist中注册的一样，否则无法从第三方返回当前app
     [[YJBillPlatform sharedSingleton] billListCurrentViewController:[Unity sharedInstance].getCurrentVC appScheme:dto.appScheme payType:dto.payType OrderInfo:dictM];
 }

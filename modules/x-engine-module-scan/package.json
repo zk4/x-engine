@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-scan",
-  "version": "0.0.65",
+  "version": "0.0.66",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.0.65"
+    "@zkty-team/x-engine-module-engine": "^0.0.66"
   },
   "gitHead": "1b1c7b148f74e0411ed2dbe0c805bcba557541da"
 }

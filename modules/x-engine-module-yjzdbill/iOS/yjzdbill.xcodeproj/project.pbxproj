@@ -22,7 +22,7 @@
 		538009B44D3E4E8C337189A9 /* libPods-yjzdbill-yjzdbillUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8D19D09EC03B26C734EC3 /* libPods-yjzdbill-yjzdbillUITests.a */; };
 		587F741B250669A300F515BD /* __xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_yjzdbill.m */; };
 		587F74262506737800F515BD /* xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_yjzdbill.m */; };
-		C95C7BA6258772190027FD19 /* YJZDBill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95C7BA5258772190027FD19 /* YJZDBill.framework */; };
+		C9B9E69B2588C68E00DE2BAC /* YJZDBill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B9E69A2588C68E00DE2BAC /* YJZDBill.framework */; };
 		C9F64D662582251F003AF0C9 /* resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9F64D652582251F003AF0C9 /* resource.bundle */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +75,7 @@
 		884143ABEFD722050DDC70A3 /* Pods-yjzdbill-yjzdbillUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.release.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-yjzdbill.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.release.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C95C7BA5258772190027FD19 /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YJZDBill.framework; path = ../../../../../../YJZDBill.framework; sourceTree = "<group>"; };
+		C9B9E69A2588C68E00DE2BAC /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YJZDBill.framework; path = "ios-sdk/YJZDBill.framework"; sourceTree = SOURCE_ROOT; };
 		C9F64D652582251F003AF0C9 /* resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = resource.bundle; path = "ios-sdk/resource.bundle"; sourceTree = SOURCE_ROOT; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-yjzdbill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-yjzdbill-yjzdbillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 			files = (
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
 				36644A9B6347D8F3F465E2F2 /* libPods-yjzdbill.a in Frameworks */,
-				C95C7BA6258772190027FD19 /* YJZDBill.framework in Frameworks */,
+				C9B9E69B2588C68E00DE2BAC /* YJZDBill.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,7 +154,7 @@
 		00DFC6E224C84000006A53EE /* yjzdbill */ = {
 			isa = PBXGroup;
 			children = (
-				C95C7BA5258772190027FD19 /* YJZDBill.framework */,
+				C9B9E69A2588C68E00DE2BAC /* YJZDBill.framework */,
 				C9F64D652582251F003AF0C9 /* resource.bundle */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,

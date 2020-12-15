@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-camera",
-  "version": "0.0.60",
+  "version": "0.0.61",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {

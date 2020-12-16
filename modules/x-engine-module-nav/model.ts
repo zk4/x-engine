@@ -326,8 +326,8 @@ function removeHistoryPage(arg:NavHistoryDTO){
   window.removeHistoryPage = () => {
     nav
       .removeHistoryPage({
-        isHidden: {history:[
-        ]},
+        history:[
+        ],
       })
       .then((res) => {});
   };

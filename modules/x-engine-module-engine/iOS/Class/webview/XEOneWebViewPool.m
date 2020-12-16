@@ -64,7 +64,7 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     if(url){
         NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
         for (WKBackForwardListItem *item in [[ary reverseObjectEnumerator] allObjects]) {
-            if([item.URL.absoluteString isEqualToString:url]
+            if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
                || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
                 [web goToBackForwardListItem:item];
                 return;

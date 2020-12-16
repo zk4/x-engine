@@ -9,33 +9,15 @@
 # JS
 
 
-version: 0.0.60
-``` bash
-npm install @zkty-team/x-engine-module-share
-```
+`
+com.zkty.module.share
+`
 
 
 
 ## share
 
 
-
-**demo**
-``` js
- {
-  window.share = () => {
-    share
-      .share({
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = JSON.stringify(res);
-        },
-      })
-      .then((res) => {
-        document.getElementById("debug_text").innerText = res;
-      });
-  };
-}
-``` 
 
 	
 **参数说明**
@@ -46,8 +28,8 @@ npm install @zkty-team/x-engine-module-share
 | title | string |  | test |  |
 | desc | string |  | testdesc |  |
 | link | string |  | http://www.baidu.com |  |
-| imageUrl | string |  |  |  |
-| dataUrl | string | true |  |  如果type是music或video，则要提供数据链接，默认为空 |
+| imageurl | string |  |  |  |
+| dataurl | string | true |  |  如果type是music或video，则要提供数据链接，默认为空 |
 | channel | string | true | wx_zone | wx_zone (朋友圈) wx_friend(好友) |
 | \_\_event\_\_ |  | true |  |  |
 

@@ -13,58 +13,19 @@ function osCheck() {
     return  xengine.use("com.zkty.module.yjzdbill", 
     [
   {
-    "name": "broadcastOn",
-    "default_args": {}
-  },
-  {
-    "name": "broadcastOff",
-    "default_args": {}
-  },
-  {
-    "name": "triggerNativeBroadCast",
-    "default_args": {}
-  },
-  {
-    "name": "repeatReturn__event__",
-    "default_args": null
-  },
-  {
-    "name": "repeatReturn__ret__",
-    "default_args": null
-  },
-  {
-    "name": "ReturnInPromiseThen",
-    "default_args": null
-  },
-  {
-    "name": "noArgNoRet",
-    "default_args": {}
-  },
-  {
-    "name": "noArgRetPrimitive",
-    "default_args": {}
-  },
-  {
-    "name": "noArgRetSheetDTO",
-    "default_args": {}
-  },
-  {
-    "name": "haveArgNoRet",
+    "name": "YJBillPayment",
     "default_args": {
-      "title": "abc"
+      "appScheme": "x-engine",
+      "payType": false
     }
   },
   {
-    "name": "haveArgRetPrimitive",
-    "default_args": {
-      "title": "abc"
-    }
+    "name": "YJBillRefund",
+    "default_args": null
   },
   {
-    "name": "haveArgRetSheetDTO",
-    "default_args": {
-      "title": "abc"
-    }
+    "name": "YJBillList",
+    "default_args": null
   }
 ]
 )}}

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */ = {isa = PBXBuildFile; fileRef = 0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */; };
 		003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 003F95D924DA4A6100633E1F /* libc++.tbd */; };
 		00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* iOSTests.m */; };
 		00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6D424C83F95006A53EE /* iOSUITests.m */; };
@@ -24,6 +23,8 @@
 		4C8FF21BC1A6241D578AADBE /* libPods-abstract-yjzdbillTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F425D64FA1A2D2EEEAB4FEFD /* libPods-abstract-yjzdbillTests.a */; };
 		587F741B250669A300F515BD /* __xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_yjzdbill.m */; };
 		587F74262506737800F515BD /* xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_yjzdbill.m */; };
+		C9B9E6A12588ECFC00DE2BAC /* resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9B9E6A02588ECFB00DE2BAC /* resource.bundle */; };
+		C9B9E6A32588ECFF00DE2BAC /* YJZDBill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B9E6A22588ECFF00DE2BAC /* YJZDBill.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.microapp.moduledemo.0; sourceTree = "<group>"; };
 		003F95D924DA4A6100633E1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		00DFC6AA24C83F94006A53EE /* yjzdbill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yjzdbill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6C524C83F95006A53EE /* yjzdbillTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yjzdbillTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +82,8 @@
 		9272408DD3356C0889C56BE8 /* Pods-yjzdbill.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.release.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.release.xcconfig"; sourceTree = "<group>"; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-yjzdbillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-yjzdbillUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-yjzdbillUITests/Pods-abstract-yjzdbillUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		C9B9E6A02588ECFB00DE2BAC /* resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = resource.bundle; path = "ios-sdk/resource.bundle"; sourceTree = SOURCE_ROOT; };
+		C9B9E6A22588ECFF00DE2BAC /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YJZDBill.framework; path = "ios-sdk/YJZDBill.framework"; sourceTree = SOURCE_ROOT; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-yjzdbill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.debug.xcconfig"; sourceTree = "<group>"; };
 		F425D64FA1A2D2EEEAB4FEFD /* libPods-abstract-yjzdbillTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abstract-yjzdbillTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F625F7C354D7561221903338 /* Pods-yjzdbill-yjzdbillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill-yjzdbillUITests/Pods-yjzdbill-yjzdbillUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			files = (
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
 				1E337E5F6B1132BEC88164B0 /* libPods-abstract-yjzdbill.a in Frameworks */,
+				C9B9E6A32588ECFF00DE2BAC /* YJZDBill.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +163,8 @@
 		00DFC6E224C84000006A53EE /* yjzdbill */ = {
 			isa = PBXGroup;
 			children = (
-				0036519324CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 */,
+				C9B9E6A22588ECFF00DE2BAC /* YJZDBill.framework */,
+				C9B9E6A02588ECFB00DE2BAC /* resource.bundle */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
@@ -339,9 +343,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
-				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				C9B9E6A12588ECFC00DE2BAC /* resource.bundle in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
 			);
@@ -698,7 +702,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = MQSNCQR864;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/yjzdbill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -707,7 +715,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.timesneighborhood.module.yjzdbill;
 				PRODUCT_NAME = yjzdbill;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -720,7 +728,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = MQSNCQR864;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/yjzdbill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -729,7 +741,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.timesneighborhood.module.yjzdbill;
 				PRODUCT_NAME = yjzdbill;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

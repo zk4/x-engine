@@ -25,7 +25,10 @@ function osCheck() {
   },
   {
     "name": "YJBillList",
-    "default_args": null
+    "default_args": {
+      "appScheme": "x-engine",
+      "payType": false
+    }
   }
 ]
 )}}

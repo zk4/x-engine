@@ -15,7 +15,7 @@ function osCheck() {
   {
     "name": "locate",
     "default_args": {
-      "type": "WGS84"
+      "type": "BMK09LL"
     }
   }
 ]

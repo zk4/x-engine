@@ -48,9 +48,11 @@
 
     public String userRoomNo;
 
-    public String appScheme;
+    @Optional
+		public String appScheme;
 
-    public boolean payType;
+    @Optional
+		public boolean payType;
   }
   
   interface xengine__module_yjzdbill_i {

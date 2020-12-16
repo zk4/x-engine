@@ -21,7 +21,7 @@ target 'dcloud' do
   pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols/'
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools/'
 
-  pod 'UniBoost', :path => '../../UniBoost'
+  pod 'UniBoost', :path => '../../../../UniBoost'
   #pod 'EVReflection'
 
 

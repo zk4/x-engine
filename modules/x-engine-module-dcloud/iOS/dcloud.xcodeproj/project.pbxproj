@@ -27,10 +27,13 @@
 		583488F02512189E007553E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583488EF2512189E007553E2 /* AVFoundation.framework */; };
 		583488F2251218A5007553E2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583488F1251218A5007553E2 /* CoreVideo.framework */; };
 		583488F4251218AD007553E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583488F3251218AD007553E2 /* CoreMedia.framework */; };
-		585AD2D0255FFD0D00E7C3E0 /* __UNI__11E9B73.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 585AD2CF255FFD0D00E7C3E0 /* __UNI__11E9B73.wgt */; };
 		587F741B250669A300F515BD /* __xengine__module_dcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_dcloud.m */; };
 		587F74262506737800F515BD /* xengine__module_dcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_dcloud.m */; };
 		588AA523255BF59200F9DDED /* __UNI__9B75743.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */; };
+		58DF1198258A350000A9DBEB /* __UNI__3E0722D.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 58DF1197258A34FF00A9DBEB /* __UNI__3E0722D.wgt */; };
+		58DF119F258A3A0100A9DBEB /* PresentCustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF119B258A3A0100A9DBEB /* PresentCustomAnimation.m */; };
+		58DF11A0258A3A0100A9DBEB /* DismissCustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF119C258A3A0100A9DBEB /* DismissCustomAnimation.m */; };
+		58DF11A1258A3A0100A9DBEB /* UIViewController+Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF119D258A3A0100A9DBEB /* UIViewController+Hook.m */; };
 		91828BD8329E1FE3B0E3F0E6 /* libPods-dcloud-dcloudUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC3CFF5E9A9673170BCBFFA /* libPods-dcloud-dcloudUITests.a */; };
 		C93F11612519E39B009A97EA /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93F11602519E39B009A97EA /* SplashView.xib */; };
 		DD5C5710255E9A8800DB1BB4 /* XEUniCheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5C570E255E9A8800DB1BB4 /* XEUniCheckUtil.m */; };
@@ -85,12 +88,18 @@
 		583488EF2512189E007553E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		583488F1251218A5007553E2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		583488F3251218AD007553E2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		585AD2CF255FFD0D00E7C3E0 /* __UNI__11E9B73.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; name = __UNI__11E9B73.wgt; path = "../../../../../../../Downloads/baidu/UniMPSDK/UniMPSDK_iOS@2.9.8/HelloUniMPDemo/HelloUniMPDemo/UniMP/Apps/__UNI__11E9B73.wgt"; sourceTree = "<group>"; };
 		587F7419250669A300F515BD /* __xengine__module_dcloud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __xengine__module_dcloud.h; sourceTree = "<group>"; };
 		587F741A250669A300F515BD /* __xengine__module_dcloud.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_dcloud.m; sourceTree = "<group>"; };
 		587F74222506737700F515BD /* xengine__module_dcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_dcloud.h; sourceTree = "<group>"; };
 		587F74242506737700F515BD /* xengine__module_dcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__module_dcloud.m; sourceTree = "<group>"; };
 		588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; name = __UNI__9B75743.wgt; path = ../../../wgt/token_test/__UNI__9B75743.wgt; sourceTree = "<group>"; };
+		58DF1197258A34FF00A9DBEB /* __UNI__3E0722D.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__3E0722D.wgt; sourceTree = "<group>"; };
+		58DF1199258A3A0100A9DBEB /* UIViewController+Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Hook.h"; sourceTree = "<group>"; };
+		58DF119A258A3A0100A9DBEB /* DismissCustomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissCustomAnimation.h; sourceTree = "<group>"; };
+		58DF119B258A3A0100A9DBEB /* PresentCustomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentCustomAnimation.m; sourceTree = "<group>"; };
+		58DF119C258A3A0100A9DBEB /* DismissCustomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissCustomAnimation.m; sourceTree = "<group>"; };
+		58DF119D258A3A0100A9DBEB /* UIViewController+Hook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Hook.m"; sourceTree = "<group>"; };
+		58DF119E258A3A0100A9DBEB /* PresentCustomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentCustomAnimation.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		6AC3CFF5E9A9673170BCBFFA /* libPods-dcloud-dcloudUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dcloud-dcloudUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		884143ABEFD722050DDC70A3 /* Pods-dcloud-dcloudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud-dcloudUITests.release.xcconfig"; path = "Target Support Files/Pods-dcloud-dcloudUITests/Pods-dcloud-dcloudUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,9 +151,9 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				585AD2CF255FFD0D00E7C3E0 /* __UNI__11E9B73.wgt */,
 				582D20D0258759EF00370C38 /* __UNI__1EB976D.wgt */,
 				588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */,
+				58DF1197258A34FF00A9DBEB /* __UNI__3E0722D.wgt */,
 				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* dcloud */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
@@ -232,6 +241,12 @@
 			children = (
 				587F74202506737700F515BD /* gen */,
 				587F7419250669A300F515BD /* __xengine__module_dcloud.h */,
+				58DF119A258A3A0100A9DBEB /* DismissCustomAnimation.h */,
+				58DF119C258A3A0100A9DBEB /* DismissCustomAnimation.m */,
+				58DF119E258A3A0100A9DBEB /* PresentCustomAnimation.h */,
+				58DF119B258A3A0100A9DBEB /* PresentCustomAnimation.m */,
+				58DF1199258A3A0100A9DBEB /* UIViewController+Hook.h */,
+				58DF119D258A3A0100A9DBEB /* UIViewController+Hook.m */,
 				587F741A250669A300F515BD /* __xengine__module_dcloud.m */,
 				DD5C570F255E9A8800DB1BB4 /* XEUniCheckUtil.h */,
 				DD5C570E255E9A8800DB1BB4 /* XEUniCheckUtil.m */,
@@ -366,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				588AA523255BF59200F9DDED /* __UNI__9B75743.wgt in Resources */,
+				58DF1198258A350000A9DBEB /* __UNI__3E0722D.wgt in Resources */,
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
 				C93F11612519E39B009A97EA /* SplashView.xib in Resources */,
 				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,
@@ -374,7 +390,6 @@
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
-				585AD2D0255FFD0D00E7C3E0 /* __UNI__11E9B73.wgt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,10 +529,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58DF11A1258A3A0100A9DBEB /* UIViewController+Hook.m in Sources */,
 				DD5C5710255E9A8800DB1BB4 /* XEUniCheckUtil.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
+				58DF11A0258A3A0100A9DBEB /* DismissCustomAnimation.m in Sources */,
 				587F74262506737800F515BD /* xengine__module_dcloud.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
+				58DF119F258A3A0100A9DBEB /* PresentCustomAnimation.m in Sources */,
 				587F741B250669A300F515BD /* __xengine__module_dcloud.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);

@@ -567,10 +567,14 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             
             BOOL isFind = NO;
             for (NSString *url in dto.history) {
-                NSRange range = [item.loadUrl rangeOfString:[NSString stringWithFormat:@"%@?", url]];
+                NSRange range = [item.loadUrl rangeOfString:url];
                 if(range.location != NSNotFound){
-                    isFind = YES;
-                    break;
+                    if(item.loadUrl.length == (range.location + range.length) ||
+                       [[item.loadUrl substringWithRange:NSMakeRange(range.location + range.length, 1)] isEqualToString:@"/"] ||
+                       [[item.loadUrl substringWithRange:NSMakeRange(range.location + range.length, 1)] isEqualToString:@"?"]){
+                        isFind = YES;
+                        break;
+                    }
                 }
             }
             if(isFind){

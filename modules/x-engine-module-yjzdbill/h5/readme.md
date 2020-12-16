@@ -1,5 +1,5 @@
 
-version: 0.0.60
+version: 0.0.67
 ``` bash
 npm install @zkty-team/x-engine-module-yjzdbill
 ```
@@ -86,9 +86,7 @@ npm install @zkty-team/x-engine-module-yjzdbill
       .YJBillList({
     businessCstNo:"000001",
     roomNo:'001',
-    userRoomNo:'001',
-    appScheme:'x-engine',
-    payType:false
+    userRoomNo:'001'
 
       })
       .then((res) => {
@@ -106,7 +104,7 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | businessCstNo | string |  |  | 会员标识 |
 | roomNo | string |  |  | 房屋编号 |
 | userRoomNo | string |  |  | 人防编号 |
-| appScheme | string |  |  | 当前app注册的appScheme |
-| payType | bool |  |  | 支付业务， 是否是 B端调用，  true为B， false为C |
+| appScheme | string | true | x-engine | 当前app注册的appScheme |
+| payType | bool | true |  | 支付业务， 是否是 B端调用，  true为B， false为C |
 
     

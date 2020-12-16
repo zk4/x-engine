@@ -1,5 +1,5 @@
 
-version: 0.0.60
+version: 0.0.67
 ``` bash
 npm install @zkty-team/x-engine-module-geo
 ```
@@ -35,7 +35,7 @@ npm install @zkty-team/x-engine-module-geo
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| type | string |  | WGS84 |  默认为 BMK09LL 返回 BMK 坐标，GCJ02 返回国测局坐标,WGS84 返回 gps 坐标,BMK09MC 返回 BMK 坐标 |
+| type | string |  | BMK09LL |  默认为 BMK09LL 返回 BMK 坐标，GCJ02 返回国测局坐标,WGS84 返回 gps 坐标,BMK09MC 返回 BMK 坐标 |
 | \_\_event\_\_ |  | true |  |  |
 
     

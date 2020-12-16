@@ -37,9 +37,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       .YJBillList({
     businessCstNo:"000001",
     roomNo:'001',
-    userRoomNo:'001',
-    appScheme:'x-engine',
-    payType:false
+    userRoomNo:'001'
 
       })
       .then((res) => {

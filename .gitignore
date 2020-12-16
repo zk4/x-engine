@@ -34,3 +34,5 @@ devTools/x-mock/bin/cache/cache
 devTools/x-mock/cache
 microApps/navigator-demo/node_modules
 node_modules
+app/App-B-Android/app/bugly
+app/App-B-Android/app/uat

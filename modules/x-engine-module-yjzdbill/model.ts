@@ -39,9 +39,9 @@ interface YJBillListDTO {
   //人防编号
   userRoomNo:string;
   //当前app注册的appScheme
-  appScheme:string;
+  appScheme?:string;
   //支付业务， 是否是 B端调用，  true为B， false为C
-  payType:boolean;
+  payType?:boolean;
 }
 
 //支付
@@ -88,15 +88,16 @@ function YJBillRefund(
 
 //账单中心
 function YJBillList(
-  args: YJBillListDTO){
+  args: YJBillListDTO={
+    appScheme:'x-engine',
+    payType:false
+  }){
   window.YJBillList = () => {
     yjzdbill
       .YJBillList({
     businessCstNo:"000001",
     roomNo:'001',
-    userRoomNo:'001',
-    appScheme:'x-engine',
-    payType:false
+    userRoomNo:'001'
 
       })
       .then((res) => {

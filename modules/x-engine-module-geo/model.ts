@@ -51,7 +51,7 @@ interface GeoLocationResDTO {
 /*
 单次定位，返回经纬度和位置信息
 */
-function locate(args:GeoEventDTO = {type:"WGS84"}){
+function locate(args:GeoEventDTO = {type:"BMK09LL"}){
   window.locate = () => {
     geo
       .locate({

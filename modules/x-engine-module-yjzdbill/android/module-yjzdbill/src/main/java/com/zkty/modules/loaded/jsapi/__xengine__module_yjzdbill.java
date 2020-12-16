@@ -20,16 +20,6 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
     @Override
     public void _YJBillPayment(YJBillDTO dto, CompletionHandler<YJBillRetDTO> handler) {
-//
-//        dto.platMerCstNo = "1249741882914750465";
-//
-//        dto.billNo = "06202012141619003321701693321701";
-//
-//        dto.businessCstNo = "13660078710";
-//
-//        dto.tradeMerCstNo = "1249745434852704256";
-//
-//        dto.payType = false;
 
         String baseUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_base_url", null);
         BillManager billManager = BillManager.getInstance();
@@ -89,7 +79,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
         BillManager billManager = BillManager.getInstance();
         billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl);
-        billManager.queryBills("", "", dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c);
+        billManager.queryBills(dto.userRoomNo, dto.roomNo, dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c);
         handler.complete();
     }
 }

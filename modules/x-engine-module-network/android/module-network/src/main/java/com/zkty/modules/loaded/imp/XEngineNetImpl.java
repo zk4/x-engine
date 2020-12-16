@@ -111,7 +111,7 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                 }
 
 
-                builder.url(stringBuilder.toString());
+                builder.url(stringBuilder.toString().replaceFirst("&",""));
                 builder.get();
                 break;
             case POST:

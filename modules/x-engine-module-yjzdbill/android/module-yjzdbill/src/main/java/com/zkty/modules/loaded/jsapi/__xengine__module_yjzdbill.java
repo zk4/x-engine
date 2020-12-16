@@ -23,8 +23,10 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
     public void _YJBillPayment(YJBillDTO dto, CompletionHandler<YJBillRetDTO> handler) {
 
         String baseUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_base_url", null);
+        String payBUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_pay_b_url", null);
+        String payCUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_pay_c_url", null);
         BillManager billManager = BillManager.getInstance();
-        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl);
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.payBills(null, dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
             @Override
             public void payRsult(JSONObject jsonObject) {
@@ -75,10 +77,11 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
     @Override
     public void _YJBillList(YJBillListDTO dto, CompletionHandler<Nullable> handler) {
-
         String baseUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_base_url", null);
-
+        String payBUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_pay_b_url", null);
+        String payCUrl = (String) SharePreferenceUtils.get(XEngineWebActivityManager.sharedInstance().getCurrent(), true, "bill_pay_c_url", null);
         BillManager billManager = BillManager.getInstance();
+        billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl);
         billManager.queryBills(dto.userRoomNo, dto.roomNo, dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c);
         handler.complete();

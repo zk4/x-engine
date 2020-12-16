@@ -4,6 +4,8 @@
 #import <objc/message.h>
 #import "RecyleWebViewController.h"
 #import "XEngineWebView.h"
+#import <MBProgressHUD.h>
+#import <Unity.h>
 
 @implementation xengine__module_BaseModule
 
@@ -73,7 +75,14 @@
           }
       }
       errStr = [errStr stringByAppendingString:@"参数"];
-      [self showErrorAlert:errStr];
+//      [self showErrorAlert:errStr];
+      MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[Unity sharedInstance].topView animated:YES];
+      hud.animationType = MBProgressHUDAnimationFade;
+      hud.mode = MBProgressHUDModeText;
+      hud.label.text = [NSString stringWithFormat:@"%@不能为空",errStr];
+      hud.label.numberOfLines = 0;
+      [hud hideAnimated:YES afterDelay:2.0];
+      
       #endif
       return nil;
   }

@@ -5,7 +5,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
 
   window.openUniMP = () => {
     dcloud.openUniMP({
-    appId:'__UNI__1EB976D'
+    appId:'__UNI__9B75743'
   }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });

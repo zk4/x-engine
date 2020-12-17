@@ -16,7 +16,7 @@ target 'motherboard' do
   pod 'x-engine-module-dcloud', :path =>'../../modules/x-engine-module-dcloud'
   pod 'Masonry', :path =>'../../app/ios-thirdlib/Masonry'
   pod 'ZBarSDK', :path =>'../../app/ios-thirdlib/ZBarSDK'
-  pod 'UniBoost', :path => '../../modules/UniBoost'
+  pod 'UniBoost', :path => '../../../UniBoost'
   pod 'x-engine-module-camera', :path =>'../../modules/x-engine-module-camera'
   pod 'x-engine-module-device', :path =>'../../modules/x-engine-module-device'
   pod 'x-engine-module-bluetooth', :path =>'../../modules/x-engine-module-bluetooth'

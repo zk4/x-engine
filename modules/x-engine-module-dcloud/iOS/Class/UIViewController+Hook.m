@@ -54,8 +54,8 @@
     
 //    [self hook_presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
+
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
     [self.navigationController setNavigationBarHidden: [self hiddenBarVc: viewController] animated: animated];
 }
 
@@ -64,7 +64,6 @@
     if ([viewController isKindOfClass:NSClassFromString(@"RecyleWebViewController")]) {
         needHideNaivgaionBar = NO;
     }
-    
     return needHideNaivgaionBar;
 }
 

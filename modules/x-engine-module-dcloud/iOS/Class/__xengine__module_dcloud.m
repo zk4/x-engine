@@ -231,7 +231,7 @@
     if([event isEqualToString:@"inspection-detail"]){
         NSDictionary* d = data[@"data"];
         NSString* version =d[@"version"] ? d[@"version"] :@"1";
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
                                                             object:@{
                                                                 @"ROUTE_TYPE": d[@"type"]? d[@"type"]:@"",
                                                                 @"ROUTE_URI":[NSString stringWithFormat:@"%@", d[@"uri"]],
@@ -246,6 +246,7 @@
         callback(@"native callback message",NO);
     }
 }
+
 
 
 #pragma mark application

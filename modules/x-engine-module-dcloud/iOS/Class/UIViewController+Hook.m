@@ -50,7 +50,22 @@
         
     }
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:viewControllerToPresent animated:YES];
+    [Unity sharedInstance].getCurrentVC.navigationController.delegate = self;
+    
 //    [self hook_presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden: [self hiddenBarVc: viewController] animated: animated];
+}
+
+- (BOOL)hiddenBarVc:(UIViewController *)viewController {
+    BOOL needHideNaivgaionBar = YES;
+    if ([viewController isKindOfClass:NSClassFromString(@"RecyleWebViewController")]) {
+        needHideNaivgaionBar = NO;
+    }
+    
+    return needHideNaivgaionBar;
 }
 
 @end

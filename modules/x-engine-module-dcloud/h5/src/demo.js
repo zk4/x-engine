@@ -11,6 +11,14 @@ import xengine from "@zkty-team/x-engine-module-engine";
     });
  };
 
+  window.testopenUniMP = () => {
+    dcloud.openUniMP({
+    appId:'__UNI__3E0722D'
+  }).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+
   window.preloadUniMP = (
     
   ) => {

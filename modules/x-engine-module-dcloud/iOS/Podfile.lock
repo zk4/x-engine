@@ -8,9 +8,9 @@ PODS:
     - SDWebImage/Core (= 5.9.1)
   - SDWebImage/Core (5.9.1)
   - SSZipArchive (2.2.3)
-  - UniBoost (0.1.0)
+  - UniBoost (2.9.8)
   - WechatOpenSDK (1.8.7.1)
-  - x-engine-module-engine (0.0.60):
+  - x-engine-module-engine (0.0.67):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -26,7 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - SDWebImage
-  - UniBoost (from `../../UniBoost`)
+  - UniBoost (from `../../../../UniBoost`)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
   - x-engine-module-tools (from `../../x-engine-module-tools/`)
@@ -45,7 +45,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   UniBoost:
-    :path: "../../UniBoost"
+    :path: "../../../../UniBoost"
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
   x-engine-module-protocols:
@@ -61,12 +61,12 @@ SPEC CHECKSUMS:
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  UniBoost: 0f3b7db913ba2762d7eae8056d7f72c32f2f26ae
+  UniBoost: 23969a45a98f64bda16f8b9c53fb4cb62a9ca696
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
-  x-engine-module-engine: 69b7d4483c4e77ea49739d308f2b0a4d723423d0
+  x-engine-module-engine: be8d6a2818c50ee0f82d29c439b8725afc99607a
   x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: 3ad0eb1b4d91408f7a3870bcc067dedc7f24c449
+PODFILE CHECKSUM: a269ad3ea0f3b82a50551aba84c369d01e8f5565
 
 COCOAPODS: 1.10.0

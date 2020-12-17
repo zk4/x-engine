@@ -47,11 +47,10 @@ platform :ios do
     pgyer(api_key: "576a62a2a1cb4729df3a3413a9d364bb", user_key: "e51db791981eb7771c098ef2f7997266")
     git_commit(path: ".", message: "pgy(ios-c):"+version+" "+info["CFBundleVersion"])
     # ding ding message
-    path = "/Users/zk/git/company/working/dingding.sh" +" Tmotherboard "+version +" " + info["CFBundleVersion"]
+    path = "/Users/zk/git/company/working/dingding.sh" +" motherboard "+version +" " + info["CFBundleVersion"]
     sh(path)
 
   end
    # 发送钉钉通知 (shell脚本)
   #private_lane :send_dingtalk_msg do |options|
-  end
 end

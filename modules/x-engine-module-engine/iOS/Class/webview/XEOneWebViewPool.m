@@ -70,13 +70,14 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
                 return;
             }
         }
-    }else{
+    }
+//    else{
         if([web canGoBack]){
             [web goBack];
         }else{
             [self.webCacheAry removeLastObject];
         }
-    }
+//    }
 }
 
 - (XEngineWebView *)getWebView{

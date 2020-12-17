@@ -28,7 +28,7 @@ PODS:
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
   - SSZipArchive (2.2.3)
-  - UniBoost (0.1.0)
+  - UniBoost (2.9.8)
   - WechatOpenSDK (1.8.5)
   - x-engine-module-bluetooth (0.0.1):
     - x-engine-module-engine
@@ -44,7 +44,7 @@ PODS:
   - x-engine-module-device (0.0.1):
     - x-engine-module-engine
     - x-engine-module-tools
-  - x-engine-module-engine (0.0.60):
+  - x-engine-module-engine (0.0.67):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -53,7 +53,7 @@ PODS:
   - x-engine-module-localstorage (1.0.5):
     - JSONModel
     - x-engine-module-engine
-  - x-engine-module-lope (0.0.60):
+  - x-engine-module-lope (0.0.67):
     - x-engine-module-engine
   - x-engine-module-nav (1.1.1):
     - x-engine-module-engine
@@ -64,10 +64,10 @@ PODS:
     - x-engine-module-protocols
   - x-engine-module-protocols (0.0.9):
     - BMKLocationKit
-  - x-engine-module-router (0.0.60):
+  - x-engine-module-router (0.0.67):
     - WechatOpenSDK
     - x-engine-module-engine
-  - x-engine-module-scan (0.0.60):
+  - x-engine-module-scan (0.0.67):
     - x-engine-module-engine
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
@@ -77,7 +77,7 @@ PODS:
   - x-engine-module-ui (1.1.1):
     - x-engine-module-engine
     - x-engine-module-tools
-  - x-engine-module-yjzdbill (0.0.60):
+  - x-engine-module-yjzdbill (0.0.67):
     - AFNetworking
     - AlipaySDK-iOS
     - MJExtension
@@ -88,7 +88,7 @@ PODS:
 DEPENDENCIES:
   - Masonry (from `../../app/ios-thirdlib/Masonry`)
   - SDWebImage
-  - UniBoost (from `../../modules/UniBoost`)
+  - UniBoost (from `../../../UniBoost`)
   - WechatOpenSDK (= 1.8.5)
   - x-engine-module-bluetooth (from `../../modules/x-engine-module-bluetooth`)
   - x-engine-module-camera (from `../../modules/x-engine-module-camera`)
@@ -125,7 +125,7 @@ EXTERNAL SOURCES:
   Masonry:
     :path: "../../app/ios-thirdlib/Masonry"
   UniBoost:
-    :path: "../../modules/UniBoost"
+    :path: "../../../UniBoost"
   x-engine-module-bluetooth:
     :path: "../../modules/x-engine-module-bluetooth"
   x-engine-module-camera:
@@ -171,25 +171,25 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  UniBoost: 0f3b7db913ba2762d7eae8056d7f72c32f2f26ae
+  UniBoost: 23969a45a98f64bda16f8b9c53fb4cb62a9ca696
   WechatOpenSDK: 9b15110aba1d502456d8e83677357e6437f2e751
   x-engine-module-bluetooth: 84cf85eea4ca9b6d258bc2973ffe124e053fdab8
   x-engine-module-camera: a638443e1ab16d15ce768d5a4e91bf732818e613
   x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
   x-engine-module-device: 5aaea67cf2dc9e6c8e64d4d1a3a0df1696bd9106
-  x-engine-module-engine: 69b7d4483c4e77ea49739d308f2b0a4d723423d0
+  x-engine-module-engine: be8d6a2818c50ee0f82d29c439b8725afc99607a
   x-engine-module-localstorage: 185961699495e0c7de351fa06a086eea10aae9ef
-  x-engine-module-lope: 220a08741a92fc94806c95895353322410350a05
+  x-engine-module-lope: 6acc449179c6033b17ca651cafabfcc36156f5ed
   x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
   x-engine-module-network: c91ab154d7760385096a6299b9d8bbe030091128
   x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
-  x-engine-module-router: a215e3689e7dace576549ee068aed362fb037059
-  x-engine-module-scan: f2b6ff3b38a6add2e355ece56e60feab643dac61
+  x-engine-module-router: 6f00d4e8c548ad1754d76367595f4561405eb2fb
+  x-engine-module-scan: 81062cdfe69c67c08907765e078b32f5db102403
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
   x-engine-module-ui: 62dacd7d9a25a868e874db76dd049c9e0a926b5e
-  x-engine-module-yjzdbill: a958ee5434ec3761c0d0a881b754f7c1667a7f2b
+  x-engine-module-yjzdbill: 9954b470a4f1d8fb123442f1b7262bf8a4a1a184
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: c07218a497519e5f81c1308920c2bdf385e16826
+PODFILE CHECKSUM: 0dc797ad9f749e4ee777feed733d2ed684a5f45f
 
 COCOAPODS: 1.10.0

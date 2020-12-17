@@ -22,6 +22,10 @@
     Method dismissMethod = class_getInstanceMethod([UIViewController class], @selector(dismissViewControllerAnimated:completion:));
     Method hook_dismissMethod = class_getInstanceMethod([UIViewController class], @selector(hook_dismissViewControllerAnimated:completion:));
     method_exchangeImplementations(dismissMethod, hook_dismissMethod);
+    
+    Method RRPresentMethod = class_getInstanceMethod(NSClassFromString(@"RRWebViewController"), @selector(presentViewController:animated:completion:));
+    method_exchangeImplementations(pushMethod, RRPresentMethod);
+
 }
 
 -(void)hook_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion{
@@ -46,7 +50,7 @@
     if ([viewControllerToPresent isKindOfClass:NSClassFromString(@"DCUniMPViewController")]) {
         viewControllerToPresent.transitioningDelegate = self;
         
-}else{
+    }else{
         
     }
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:viewControllerToPresent animated:YES];

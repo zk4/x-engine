@@ -1,8 +1,25 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - AlipaySDK-iOS (15.7.9)
   - BMKLocationKit (2.0.0)
   - JSONModel (1.8.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
+  - MJExtension (3.2.2)
   - MJRefresh (3.4.3)
   - SDWebImage (5.9.1):
     - SDWebImage/Core (= 5.9.1)
@@ -23,6 +40,12 @@ PODS:
     - WechatOpenSDK
     - x-engine-module-engine
     - x-engine-module-protocols
+  - x-engine-module-yjzdbill (0.0.67):
+    - AFNetworking
+    - AlipaySDK-iOS
+    - MJExtension
+    - WechatOpenSDK
+    - x-engine-module-engine
 
 DEPENDENCIES:
   - SDWebImage
@@ -30,6 +53,7 @@ DEPENDENCIES:
   - x-engine-module-engine (from `../../x-engine-module-engine`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
   - x-engine-module-tools (from `../../x-engine-module-tools/`)
+  - x-engine-module-yjzdbill (from `../../x-engine-module-yjzdbill/`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -39,7 +63,10 @@ SPEC REPOS:
     - MJRefresh
     - SSZipArchive
   trunk:
+    - AFNetworking
+    - AlipaySDK-iOS
     - BMKLocationKit
+    - MJExtension
     - SDWebImage
     - WechatOpenSDK
 
@@ -52,12 +79,17 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-module-protocols/"
   x-engine-module-tools:
     :path: "../../x-engine-module-tools/"
+  x-engine-module-yjzdbill:
+    :path: "../../x-engine-module-yjzdbill/"
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AlipaySDK-iOS: 94ff4c0e17c5e7d126b8207596d5033006534c25
   BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
@@ -66,7 +98,8 @@ SPEC CHECKSUMS:
   x-engine-module-engine: be8d6a2818c50ee0f82d29c439b8725afc99607a
   x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+  x-engine-module-yjzdbill: 9954b470a4f1d8fb123442f1b7262bf8a4a1a184
 
-PODFILE CHECKSUM: a269ad3ea0f3b82a50551aba84c369d01e8f5565
+PODFILE CHECKSUM: a01c76ca44d16a67d8b8659b8e92548d7b002192
 
 COCOAPODS: 1.9.3

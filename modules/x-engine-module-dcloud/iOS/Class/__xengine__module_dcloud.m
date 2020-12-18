@@ -247,7 +247,7 @@
         if([module respondsToSelector:sel]){
             
             XEngineCallBack  Cb=  ^(id data, BOOL ret){
-                NSString * retDataStr = [self dicFromObject:data];
+                NSString * retDataStr = [self idFromObject:data];
                 // 回传数据给小程序
                 // DCUniMPKeepAliveCallback 用法请查看定义说明
                 if (callback) {
@@ -294,7 +294,7 @@ static __xengine__module_dcloud *instance = nil;
 }
 
 //runtime model转字典转字符串
-- (NSString *)dicFromObject:(NSObject *)object {
+- (NSString *)idFromObject:(NSObject *)object {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     unsigned int count;
     objc_property_t *propertyList = class_copyPropertyList([object class], &count);
@@ -307,7 +307,7 @@ static __xengine__module_dcloud *instance = nil;
  
         if (value == nil) {
             //null
-            //[dic setObject:[NSNull null] forKey:name];//这行可以注释掉?????
+            [dic setObject:@"" forKey:name];
  
         } else {
             //model

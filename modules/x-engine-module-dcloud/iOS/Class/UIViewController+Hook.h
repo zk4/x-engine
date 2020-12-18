@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController(Hook)<UIViewControllerTransitioningDelegate>
+@interface UIViewController(Hook)<UIViewControllerTransitioningDelegate,UINavigationControllerDelegate>
 
 @end
 

@@ -279,7 +279,7 @@ static   XEngineWebView* s_webview;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"back_arrow" ofType:@"png"];
     if(path){
         UIButton *btn = [[UIButton alloc] init];

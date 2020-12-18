@@ -132,11 +132,6 @@
 
 -(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url withRootPath:nil];
-    if ([url rangeOfString:@"com.zkty.microapp.crm"].location !=NSNotFound) {
-        vc.isHiddenNavbar = YES;
-    }else{
-        vc.isHiddenNavbar = NO;
-    }
     
     return vc;
 }

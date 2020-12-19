@@ -32,6 +32,17 @@ function openUniMP(
     });
  };
 }
+// 启动小程序
+function testopenUniMP(
+  DcloudDTO:DcloudDTO){
+  window.testopenUniMP = () => {
+    dcloud.openUniMP({
+    appId:'__UNI__3E0722D'
+  }).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+}
 
 // 预加载后打开小程序
 function preloadUniMP(

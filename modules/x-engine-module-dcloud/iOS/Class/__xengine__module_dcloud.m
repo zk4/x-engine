@@ -225,12 +225,13 @@
 /// @param data 参数
 /// @param callback 回调方法，回传数据给小程序
 - (void)onUniMPEventReceive:(NSString *)event data:(id)data callback:(DCUniMPKeepAliveCallback)callback {
+    id aaa=   [Unity sharedInstance].getCurrentVC.navigationController;
     
-    NSLog(@"Receive UniMP event: %@ data: %@",event,data);
+    NSLog(@"Receive UniMP event: %@ data: %@",event,aaa);
     if([event isEqualToString:@"inspection-detail"]){
         NSDictionary* d = data[@"data"];
         NSString* version =d[@"version"] ? d[@"version"] :@"1";
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
                                                             object:@{
                                                                 @"ROUTE_TYPE": d[@"type"]? d[@"type"]:@"",
                                                                 @"ROUTE_URI":[NSString stringWithFormat:@"%@", d[@"uri"]],
@@ -245,6 +246,7 @@
         callback(@"native callback message",NO);
     }
 }
+
 
 
 #pragma mark application

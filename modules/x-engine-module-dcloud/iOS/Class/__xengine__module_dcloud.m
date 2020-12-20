@@ -225,11 +225,10 @@
 /// @param data 参数
 /// @param callback 回调方法，回传数据给小程序
 - (void)onUniMPEventReceive:(NSString *)event data:(id)data callback:(DCUniMPKeepAliveCallback)callback {
-    id aaa=   [Unity sharedInstance].getCurrentVC.navigationController;
-    
-    NSLog(@"Receive UniMP event: %@ data: %@",event,aaa);
+    NSDictionary* dataDic = [NSDictionary dictionaryWithObject:data forKey:@"data"];
+    NSDictionary * d = dataDic[@"data"];
+    NSLog(@"Receive UniMP event: %@ data: %@",event,data);
     if([event isEqualToString:@"inspection-detail"]){
-        NSDictionary* d = data[@"data"];
         NSString* version =d[@"version"] ? d[@"version"] :@"1";
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
                                                             object:@{
@@ -238,13 +237,28 @@
                                                                 @"ROUTE_VERSION":version,
                                                                 @"ROUTE_PATH":[NSString stringWithFormat:@"%@", d[@"path"] ],
                                                             }];
+    }else if ([event isEqualToString:@"x-engine-wgt-event"]){
+        
+        NSDictionary * subDataDic = d[@"args"];
+        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",d[@"moduleName"]];
+        id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+        NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",d[@"method"]];
+        SEL  sel = NSSelectorFromString(selectorStr);
+        if([module respondsToSelector:sel]){
+            
+            XEngineCallBack  Cb=  ^(id data, BOOL ret){
+                NSString * retDataStr = [self idFromObject:data];
+                // 回传数据给小程序
+                // DCUniMPKeepAliveCallback 用法请查看定义说明
+                if (callback) {
+                    callback(retDataStr,NO);
+                }
+            };
+            
+            [module performSelector:sel withObject:subDataDic withObject:Cb];
+        }
     }
-    
-    // 回传数据给小程序
-    // DCUniMPKeepAliveCallback 用法请查看定义说明
-    if (callback) {
-        callback(@"native callback message",NO);
-    }
+
 }
 
 
@@ -277,6 +291,34 @@ static __xengine__module_dcloud *instance = nil;
     // 注册 component 注：component 的 Name 需要保证唯一， class：为 component 的类名
     [WXSDKEngine registerComponent:@"testmap" withClass:NSClassFromString(@"TestMapComponent")];
    
+}
+
+//runtime model转字典转字符串
+- (NSString *)idFromObject:(NSObject *)object {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    unsigned int count;
+    objc_property_t *propertyList = class_copyPropertyList([object class], &count);
+ 
+    for (int i = 0; i < count; i++) {
+        objc_property_t property = propertyList[i];
+        const char *cName = property_getName(property);
+        NSString *name = [NSString stringWithUTF8String:cName];
+        NSObject *value = [object valueForKey:name];//valueForKey返回的数字和字符串都是对象
+ 
+        if (value == nil) {
+            //null
+            [dic setObject:@"" forKey:name];
+ 
+        } else {
+            //model
+            [dic setObject:value forKey:name];
+        }
+    }
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    return str;
 }
 
 - (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{

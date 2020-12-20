@@ -29,13 +29,13 @@
 		583488F4251218AD007553E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583488F3251218AD007553E2 /* CoreMedia.framework */; };
 		587F741B250669A300F515BD /* __xengine__module_dcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_dcloud.m */; };
 		587F74262506737800F515BD /* xengine__module_dcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_dcloud.m */; };
-		588AA523255BF59200F9DDED /* __UNI__9B75743.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */; };
 		58DF1198258A350000A9DBEB /* __UNI__3E0722D.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 58DF1197258A34FF00A9DBEB /* __UNI__3E0722D.wgt */; };
 		58DF119F258A3A0100A9DBEB /* PresentCustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF119B258A3A0100A9DBEB /* PresentCustomAnimation.m */; };
 		58DF11A0258A3A0100A9DBEB /* DismissCustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF119C258A3A0100A9DBEB /* DismissCustomAnimation.m */; };
 		58DF11A1258A3A0100A9DBEB /* UIViewController+Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF119D258A3A0100A9DBEB /* UIViewController+Hook.m */; };
 		91828BD8329E1FE3B0E3F0E6 /* libPods-dcloud-dcloudUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC3CFF5E9A9673170BCBFFA /* libPods-dcloud-dcloudUITests.a */; };
 		C93F11612519E39B009A97EA /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93F11602519E39B009A97EA /* SplashView.xib */; };
+		C957FFFB258CAE87004436C5 /* __UNI__9B75743.wgt in Resources */ = {isa = PBXBuildFile; fileRef = C957FFFA258CAE87004436C5 /* __UNI__9B75743.wgt */; };
 		DD5C5710255E9A8800DB1BB4 /* XEUniCheckUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5C570E255E9A8800DB1BB4 /* XEUniCheckUtil.m */; };
 		E4CEBC3F48D6CE211ED632E7 /* libPods-dcloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA4EC917E5EC0B8F9B7D14D /* libPods-dcloud.a */; };
 /* End PBXBuildFile section */
@@ -92,7 +92,6 @@
 		587F741A250669A300F515BD /* __xengine__module_dcloud.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_dcloud.m; sourceTree = "<group>"; };
 		587F74222506737700F515BD /* xengine__module_dcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_dcloud.h; sourceTree = "<group>"; };
 		587F74242506737700F515BD /* xengine__module_dcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__module_dcloud.m; sourceTree = "<group>"; };
-		588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; name = __UNI__9B75743.wgt; path = ../../../wgt/token_test/__UNI__9B75743.wgt; sourceTree = "<group>"; };
 		58DF1197258A34FF00A9DBEB /* __UNI__3E0722D.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__3E0722D.wgt; sourceTree = "<group>"; };
 		58DF1199258A3A0100A9DBEB /* UIViewController+Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Hook.h"; sourceTree = "<group>"; };
 		58DF119A258A3A0100A9DBEB /* DismissCustomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissCustomAnimation.h; sourceTree = "<group>"; };
@@ -107,6 +106,7 @@
 		9272408DD3356C0889C56BE8 /* Pods-dcloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud.release.xcconfig"; path = "Target Support Files/Pods-dcloud/Pods-dcloud.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C93F11602519E39B009A97EA /* SplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
+		C957FFFA258CAE87004436C5 /* __UNI__9B75743.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__9B75743.wgt; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-dcloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dcloud.debug.xcconfig"; path = "Target Support Files/Pods-dcloud/Pods-dcloud.debug.xcconfig"; sourceTree = "<group>"; };
 		DD5C570E255E9A8800DB1BB4 /* XEUniCheckUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEUniCheckUtil.m; sourceTree = "<group>"; };
 		DD5C570F255E9A8800DB1BB4 /* XEUniCheckUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEUniCheckUtil.h; sourceTree = "<group>"; };
@@ -151,8 +151,8 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
+				C957FFFA258CAE87004436C5 /* __UNI__9B75743.wgt */,
 				582D20D0258759EF00370C38 /* __UNI__1EB976D.wgt */,
-				588AA522255BF53F00F9DDED /* __UNI__9B75743.wgt */,
 				58DF1197258A34FF00A9DBEB /* __UNI__3E0722D.wgt */,
 				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* dcloud */,
@@ -380,8 +380,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				588AA523255BF59200F9DDED /* __UNI__9B75743.wgt in Resources */,
 				58DF1198258A350000A9DBEB /* __UNI__3E0722D.wgt in Resources */,
+				C957FFFB258CAE87004436C5 /* __UNI__9B75743.wgt in Resources */,
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
 				C93F11612519E39B009A97EA /* SplashView.xib in Resources */,
 				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,

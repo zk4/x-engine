@@ -229,14 +229,22 @@
     NSDictionary * d = dataDic[@"data"];
     NSLog(@"Receive UniMP event: %@ data: %@",event,data);
     if([event isEqualToString:@"inspection-detail"]){
-        NSString* version =d[@"version"] ? d[@"version"] :@"1";
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
-                                                            object:@{
-                                                                @"ROUTE_TYPE": d[@"type"]? d[@"type"]:@"",
-                                                                @"ROUTE_URI":[NSString stringWithFormat:@"%@", d[@"uri"]],
-                                                                @"ROUTE_VERSION":version,
-                                                                @"ROUTE_PATH":[NSString stringWithFormat:@"%@", d[@"path"] ],
-                                                            }];
+//        NSString* version =d[@"version"] ? d[@"version"] :@"1";
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+//                                                            object:@{
+//                                                                @"ROUTE_TYPE": d[@"type"]? d[@"type"]:@"",
+//                                                                @"ROUTE_URI":[NSString stringWithFormat:@"%@", d[@"uri"]],
+//                                                                @"ROUTE_VERSION":version,
+//                                                                @"ROUTE_PATH":[NSString stringWithFormat:@"%@", d[@"path"] ],
+//                                                            }];
+        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",@"router"];
+        id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+        NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",@"openTargetRouter"];
+        SEL  sel = NSSelectorFromString(selectorStr);
+        if([module respondsToSelector:sel]){
+            [module performSelector:sel withObject:d withObject:nil];
+        }
+        
     }else if ([event isEqualToString:@"x-engine-wgt-event"]){
         
         NSDictionary * subDataDic = d[@"args"];

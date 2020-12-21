@@ -31,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
     [dictM setObject:@"roomNo" forKey:@"roomNo"];
     // 人房编号
     [dictM setObject:@"userRoomNo" forKey:@"userRoomNo"];
+     // 账单状态  0  10  90
+     [dictM setObject:@"userRoomNo" forKey:@"billStatus"];
+     //账单类型 0 1 2 3 4
+     [dictM setObject:@"userRoomNo" forKey:@"billType"];
+
  */
 -(void)billListCurrentViewController:(UIViewController *)vc
                            appScheme:(NSString *)appScheme

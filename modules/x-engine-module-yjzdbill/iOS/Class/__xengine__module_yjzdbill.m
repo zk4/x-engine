@@ -48,8 +48,9 @@
     [dictM setObject:dto.platMerCstNo forKey:@"platMerCstNo"]; //预下单平台商户号
     [dictM setObject:dto.tradeMerCstNo forKey:@"tradeMerCstNo"]; //预下单交易商户号
     [dictM setObject:dto.billNo forKey:@"billNo"]; //业务系统订单号
-        
-    [[YJBillPlatform sharedSingleton] billPaymentWithOrderInfo:dictM appScheme:dto.appScheme payType:dto.payType payfinishBlock:^(id  _Nonnull responseObject, NSString * _Nonnull message) {
+    
+  
+    [[YJBillPlatform sharedSingleton] billPaymentWithOrderInfo:dictM appScheme:dto.appScheme payType:NO payfinishBlock:^(id  _Nonnull responseObject, NSString * _Nonnull message) {
         NSLog(@"%@ -- %@", responseObject, message);
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{

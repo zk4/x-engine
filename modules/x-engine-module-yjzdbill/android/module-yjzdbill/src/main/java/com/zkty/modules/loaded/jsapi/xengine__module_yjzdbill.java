@@ -53,6 +53,12 @@
 
     @Optional
 		public boolean payType;
+
+    @Optional
+		public String billStatus;
+
+    @Optional
+		public String billType;
   }
   
   interface xengine__module_yjzdbill_i {

@@ -23,7 +23,7 @@ PODS:
   - MJRefresh (3.4.3)
   - SSZipArchive (2.2.3)
   - WechatOpenSDK (1.8.7.1)
-  - x-engine-module-engine (0.0.60):
+  - x-engine-module-engine (0.1.1):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -78,7 +78,7 @@ SPEC CHECKSUMS:
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
-  x-engine-module-engine: 69b7d4483c4e77ea49739d308f2b0a4d723423d0
+  x-engine-module-engine: 51255cf43843e081d77e93bf6da1f4bc47d11266
   x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 

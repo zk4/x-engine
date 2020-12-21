@@ -42,6 +42,10 @@ interface YJBillListDTO {
   appScheme?:string;
   //支付业务， 是否是 B端调用，  true为B， false为C
   payType?:boolean;
+  // 账单状态  0  10  90
+  billStatus?:string;
+  //账单类型 0 1 2 3 4
+  billType?:string;
 }
 
 //支付
@@ -97,8 +101,9 @@ function YJBillList(
       .YJBillList({
     businessCstNo:"000001",
     roomNo:'001',
-    userRoomNo:'001'
-
+    userRoomNo:'001',
+    billStatus:'90',
+    billType:'0'
       })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

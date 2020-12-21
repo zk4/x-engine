@@ -69,12 +69,13 @@
     [dictM setObject:dto.businessCstNo forKey:@"businessCstNo"]; //会员标识
     [dictM setObject:dto.roomNo forKey:@"roomNo"]; //房屋编号
     [dictM setObject:dto.userRoomNo forKey:@"userRoomNo"]; //人防编号
+    [dictM setObject:dto.billStatus forKey:@"billStatus"];
+    [dictM setObject:dto.billType forKey:@"billType"];
     //当前app注册的appScheme,请务必填写与plist中注册的一样，否则无法从第三方返回当前app
     [[YJBillPlatform sharedSingleton] billListCurrentViewController:[Unity sharedInstance].getCurrentVC appScheme:dto.appScheme payType:dto.payType OrderInfo:dictM];
 }
 
 //退款
-
 - (void)_YJBillRefund:(YJBillRefundDTO *)dto complete:(void (^)(YJBillRetDTO *, BOOL))completionHandler {
     NSMutableDictionary *dictM1 = [NSMutableDictionary dictionary];
     [dictM1 setObject:dto.refundOrderNo forKey:@"refundOrderNo"]; //退款订单编号

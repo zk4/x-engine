@@ -38,6 +38,8 @@
    	@property(nonatomic,copy) NSString* userRoomNo;
    	@property(nonatomic,copy) NSString* appScheme;
    	@property(nonatomic,assign) BOOL payType;
+   	@property(nonatomic,copy) NSString* billStatus;
+   	@property(nonatomic,copy) NSString* billType;
 @end
     
 

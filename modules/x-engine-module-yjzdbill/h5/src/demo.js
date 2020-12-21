@@ -1,7 +1,5 @@
 
 import yjzdbill from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
 
   window.YJBillPayment = () => {
     yjzdbill
@@ -37,8 +35,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       .YJBillList({
     businessCstNo:"000001",
     roomNo:'001',
-    userRoomNo:'001'
-
+    userRoomNo:'001',
+    billStatus:'90',
+    billType:'0'
       })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

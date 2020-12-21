@@ -71,7 +71,7 @@ dependencies {
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.github.iwgang:countdownview:2.1.3'
 
-    api 'com.rrtx.android:BillPay:1.0.1@aar'
+    api 'com.rrtx.android:BillPay:1.0.2@aar'
     api 'com.rrtx.payLib:sdllC:3.0.5@aar'
     api 'com.rrtx.payLib:sdllB:3.0.2@aar'
 }

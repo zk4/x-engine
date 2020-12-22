@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-geo",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "h5/src/index.js",
   "description": "geo module",
   "license": "MIT",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@zkty-team/x-cli": "^1.0.14",
-    "@zkty-team/x-engine-module-engine": "^0.1.2"
+    "@zkty-team/x-engine-module-engine": "^0.1.3"
   },
   "gitHead": "1b1c7b148f74e0411ed2dbe0c805bcba557541da"
 }

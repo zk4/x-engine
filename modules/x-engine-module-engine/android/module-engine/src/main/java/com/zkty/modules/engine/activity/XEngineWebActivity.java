@@ -317,6 +317,8 @@ public class XEngineWebActivity extends AppCompatActivity {
             lifecycleListeners.clear();
         }
         XEngineWebActivityManager.sharedInstance().clearActivity(this);
+        if (TextUtils.isEmpty(mMicroAppId))
+            mWebView.destroy();
         super.onDestroy();
 //        SwipeBackHelper.onDestroy(this);
 

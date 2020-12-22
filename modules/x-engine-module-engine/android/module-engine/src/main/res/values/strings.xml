@@ -33,7 +33,6 @@
     <string name="single_type_choose">不能同时选择图片与视频</string>
 
     <style name="TranTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/fade</item>
     </style>
 

@@ -227,9 +227,9 @@
 - (void)onUniMPEventReceive:(NSString *)event data:(id)data callback:(DCUniMPKeepAliveCallback)callback {
     NSDictionary* dataDic = [NSDictionary dictionaryWithObject:data forKey:@"data"];
     NSDictionary * d = dataDic[@"data"];
-    NSLog(@"Receive UniMP event: %@ data: %@",event,data);
+    NSLog(@"Receive UniMP event: %@ data: %@",event,d);
     if([event isEqualToString:@"inspection-detail"]){
-//        NSString* version =d[@"version"] ? d[@"version"] :@"1";
+        NSString* version =d[@"version"] ? d[@"version"] :@"1";
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
 //                                                            object:@{
 //                                                                @"ROUTE_TYPE": d[@"type"]? d[@"type"]:@"",
@@ -237,12 +237,16 @@
 //                                                                @"ROUTE_VERSION":version,
 //                                                                @"ROUTE_PATH":[NSString stringWithFormat:@"%@", d[@"path"] ],
 //                                                            }];
+        NSMutableDictionary * mdic= [[NSMutableDictionary alloc]initWithDictionary:d[@"data"]];
+        [mdic setObject:version forKey:@"version"];
         NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",@"router"];
         id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
         NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",@"openTargetRouter"];
         SEL  sel = NSSelectorFromString(selectorStr);
         if([module respondsToSelector:sel]){
-            [module performSelector:sel withObject:d withObject:nil];
+            XEngineCallBack  Cb=  ^(id data, BOOL ret){
+            };
+            [module performSelector:sel withObject:mdic withObject:Cb];
         }
         
     }else if ([event isEqualToString:@"x-engine-wgt-event"]){

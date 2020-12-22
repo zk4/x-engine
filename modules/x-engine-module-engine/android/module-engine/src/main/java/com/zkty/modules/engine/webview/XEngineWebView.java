@@ -22,6 +22,7 @@ import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
@@ -132,7 +133,25 @@ public class XEngineWebView extends DWebView {
                             }
                         }
                         com.alibaba.fastjson.JSONObject jsonObject = JSONObject.parseObject(URLDecoder.decode(args));
-                        SchemeManager.sharedInstance().invoke(moduleName, method, jsonObject);
+
+                        CompletionHandler completionHandler = new CompletionHandler() {
+                            @Override
+                            public void complete(Object retValue) {
+
+                            }
+
+                            @Override
+                            public void complete() {
+
+                            }
+
+                            @Override
+                            public void setProgressData(Object value) {
+
+                            }
+                        };
+
+                        SchemeManager.sharedInstance().invoke(moduleName, method, jsonObject, completionHandler);
 
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -28,7 +28,7 @@ public class SchemeManager {
         return instance;
     }
 
-    public void invoke(String module, String methodName, JSONObject jsonObject) {
+    public void invoke(String module, String methodName, JSONObject jsonObject, CompletionHandler completionHandler) {
 
         String moduleName = "com.zkty.modules.loaded.jsapi.xengine__module_" + module;
         String moduleImplName = "com.zkty.modules.loaded.jsapi.__xengine__module_" + module;
@@ -39,22 +39,7 @@ public class SchemeManager {
             constructor.setAccessible(true);
             Object object = constructor.newInstance();
             Method methodModule = classModule.getMethod(methodName, JSONObject.class, CompletionHandler.class);
-            CompletionHandler completionHandler = new CompletionHandler() {
-                @Override
-                public void complete(Object retValue) {
 
-                }
-
-                @Override
-                public void complete() {
-
-                }
-
-                @Override
-                public void setProgressData(Object value) {
-
-                }
-            };
             methodModule.invoke(object, jsonObject, completionHandler);
 
 

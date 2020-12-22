@@ -42,9 +42,9 @@ interface YJBillListDTO {
   appScheme?:string;
   //支付业务， 是否是 B端调用，  true为B， false为C
   payType?:boolean;
-  // 账单状态  0  10  90
+  // 账单状态（取值为：0-全部  10-待支付  90-已完成）
   billStatus?:string;
-  //账单类型 0 1 2 3 4
+  //账单类型取值为：0-全部 1-物业收费账单,2-月保续费账单,3-停车费账单,4-临时收费账单,5-零售,6-预缴费,7-旅游,8-家政,9-拎包，10-押金
   billType?:string;
 }
 

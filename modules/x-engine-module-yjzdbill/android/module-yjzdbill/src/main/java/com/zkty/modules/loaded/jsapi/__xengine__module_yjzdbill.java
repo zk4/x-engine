@@ -83,7 +83,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
         BillManager billManager = BillManager.getInstance();
         billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.init(XEngineWebActivityManager.sharedInstance().getCurrent(), baseUrl);
-        billManager.queryBills(dto.userRoomNo, dto.roomNo, dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c);
+        billManager.queryBills(dto.userRoomNo, dto.roomNo, dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c,dto.billStatus,dto.billType);
         handler.complete();
     }
 }

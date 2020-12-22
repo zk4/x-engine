@@ -122,7 +122,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
         out = null;
         final XEngineWebActivity act = (XEngineWebActivity) XEngineWebActivityManager.sharedInstance().getCurrent();
-        if (lifeCycleListener == null) {
+        if (act != null) {
             lifeCycleListener = new XEngineWebActivity.LifecycleListener() {
                 @Override
                 public void onCreate() {
@@ -287,8 +287,9 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                     }
                 }
             };
+            act.addLifeCycleListener(lifeCycleListener);
         }
-        act.addLifeCycleListener(lifeCycleListener);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && act.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             act.requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);

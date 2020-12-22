@@ -175,48 +175,6 @@ public class XEngineWebView extends DWebView {
     }
 
 
-    public void setErrorPage() {
-
-        setWebViewClient(new WebViewClient() {
-
-
-            @Override
-            public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-                super.onReceivedError(webView, webResourceRequest, webResourceError);
-
-                if (webResourceRequest.isForMainFrame()) {
-                    webView.loadUrl("about:blank");
-                    setErrorImg(webView);
-                }
-            }
-
-            @Override
-            public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
-                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
-                int stateCode = webResourceResponse.getStatusCode();
-                if (stateCode >= 400) {
-                    webView.loadUrl("about:blank");
-                    setErrorImg(webView);
-                }
-
-            }
-        });
-
-    }
-
-    private void setErrorImg(WebView webView) {
-
-        RelativeLayout layout = new RelativeLayout(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_error_page, null);
-        layout.addView(view);
-        layout.setGravity(Gravity.CENTER);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
-        if (webView.getParent() != null && webView.getParent() instanceof RelativeLayout) {
-            ((RelativeLayout) webView.getParent()).removeAllViews();
-            ((RelativeLayout) webView.getParent()).addView(layout, lp);
-        }
-    }
 
     /**
      * webview复用模式。

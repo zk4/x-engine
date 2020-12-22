@@ -10,6 +10,7 @@
 #import "XEngineContext.h"
 #import "xengine__module_BaseModule.h"
 #import <MicroAppLoader.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "Unity.h"
 #import "RecyleWebViewController.h"
@@ -60,24 +61,30 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 - (void)clearWebView:(NSString *)url{
     
     XEngineWebView *web = self.webCacheAry.lastObject;
-    
-    if(url){
-        NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
-        for (WKBackForwardListItem *item in [[ary reverseObjectEnumerator] allObjects]) {
-            if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
-               || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
-                [web goToBackForwardListItem:item];
-                return;
+    if(web){
+        if(url){
+            NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
+            for (WKBackForwardListItem *item in [[ary reverseObjectEnumerator] allObjects]) {
+                if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
+                   || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
+                    [web goToBackForwardListItem:item];
+                    return;
+                }
             }
         }
-    }
-//    else{
         if([web canGoBack]){
             [web goBack];
         }else{
+            
+            [web loadUrl:@""];
+//            if([AVAudioSession sharedInstance].secondaryAudioShouldBeSilencedHint){
+//                [[AVAudioSession sharedInstance] setActive:YES error:nil];
+//            }
             [self.webCacheAry removeLastObject];
+            [web removeFromSuperview];
+            web = nil;
         }
-//    }
+    }
 }
 
 - (XEngineWebView *)getWebView{

@@ -23,9 +23,9 @@
             android:hardwareAccelerated="true"
             android:process=":io.dcloud.unimp"
             android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme"
+            android:theme="@style/DCloudTheme"
             android:windowSoftInputMode="adjustResize"
-            tools:replace="android:screenOrientation" />
+            tools:replace="android:screenOrientation,android:theme" />
         <activity
             android:name="io.dcloud.feature.sdk.DCUniMPActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"

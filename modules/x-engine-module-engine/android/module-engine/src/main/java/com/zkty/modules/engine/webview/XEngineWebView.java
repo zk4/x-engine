@@ -1,6 +1,9 @@
 package com.zkty.modules.engine.webview;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -10,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.alibaba.fastjson.JSONObject;
+import com.anthonynsimon.url.URL;
 import com.tencent.smtt.export.external.interfaces.WebResourceError;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
@@ -21,6 +26,7 @@ import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.exception.NoModuleIdException;
+import com.zkty.modules.engine.manager.SchemeManager;
 import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.Utils;
@@ -29,7 +35,11 @@ import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.net.URLDecoder;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import module.engine.R;
 
@@ -86,6 +96,59 @@ public class XEngineWebView extends DWebView {
                 return super.shouldInterceptRequest(webView, s);
             }
 
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
+                Log.d("ServeBrowserActivity", "url= " + s);
+                if (s.contains("tenpay")) {
+
+                    Map<String, String> webviewHead = new HashMap<>();
+                    webviewHead.put("referer", "http://linli580.com");
+                    webView.loadUrl(s, webviewHead);
+                    return true;
+                }
+                if (s.startsWith("weixin://wap/pay?")) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(s));
+                    mContext.startActivity(intent);
+                    return true;
+                }
+                if (s.startsWith("x-engine-json://")) {
+
+                    try {
+//                        String sss = "x-engine://share/share?title=title1&desc=desc1&link=link1&imageUrl=imageUrl1&type=wx&dataUrl=dataUrl1";
+                        URL base = URL.parse(s);
+
+                        String moduleName = base.getHost();
+                        String method = base.getPath().replace("/", "");
+
+
+                        Map<String, Collection<String>> params = base.getQueryPairs();
+                        String args = null;
+                        if (params != null && params.size() > 0) {
+
+                            if (params.containsKey("args") && params.get("args") != null && params.get("args").size() > 0) {
+                                args = (String) params.get("args").toArray()[0];
+                            }
+                        }
+                        com.alibaba.fastjson.JSONObject jsonObject = JSONObject.parseObject(URLDecoder.decode(args));
+                        SchemeManager.sharedInstance().invoke(moduleName, method, jsonObject);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    return true;
+                }
+
+
+                if (Build.VERSION.SDK_INT < 26) {
+                    webView.loadUrl(s);
+                    return true;
+                }
+                return false;
+            }
+
         });
     }
 
@@ -133,6 +196,7 @@ public class XEngineWebView extends DWebView {
         clearHistory();
         loadUrl("about:blank");
         historyCount = 0;
+        this.destroy();
 
     }
 
@@ -173,7 +237,6 @@ public class XEngineWebView extends DWebView {
             goBack();
         }
     }
-
 
 
     /**

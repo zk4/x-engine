@@ -122,7 +122,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
         out = null;
         final XEngineWebActivity act = (XEngineWebActivity) XEngineWebActivityManager.sharedInstance().getCurrent();
-        if (act != null) {
+        if (lifeCycleListener == null) {
             lifeCycleListener = new XEngineWebActivity.LifecycleListener() {
                 @Override
                 public void onCreate() {
@@ -156,7 +156,8 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                 @Override
                 public void onDestroy() {
-
+                    act.removeLifeCycleListener(lifeCycleListener);
+                    lifeCycleListener = null;
                 }
 
                 @Override

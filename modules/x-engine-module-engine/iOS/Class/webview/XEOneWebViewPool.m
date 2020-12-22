@@ -60,27 +60,26 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 - (void)clearWebView:(NSString *)url{
     
     XEngineWebView *web = self.webCacheAry.lastObject;
-    
-    if(url){
-        if([web.URL.absoluteString isEqualToString:url]){
-            return;
-        }
-        NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
-        for (WKBackForwardListItem *item in [[ary reverseObjectEnumerator] allObjects]) {
-            if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
-               || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
-                [web goToBackForwardListItem:item];
+    if(web){
+        if(url){
+            if([web.URL.absoluteString isEqualToString:url]){
                 return;
             }
+            NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
+            for (WKBackForwardListItem *item in [[ary reverseObjectEnumerator] allObjects]) {
+                if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
+                   || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
+                    [web goToBackForwardListItem:item];
+                    return;
+                }
+            }
         }
-    }
-//    else{
         if([web canGoBack]){
             [web goBack];
         }else{
             [self.webCacheAry removeLastObject];
         }
-//    }
+    }
 }
 
 - (XEngineWebView *)getWebView{

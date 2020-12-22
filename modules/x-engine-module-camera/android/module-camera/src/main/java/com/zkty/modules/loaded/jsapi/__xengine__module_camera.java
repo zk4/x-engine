@@ -156,7 +156,8 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                 @Override
                 public void onDestroy() {
-
+                    act.removeLifeCycleListener(lifeCycleListener);
+                    lifeCycleListener = null;
                 }
 
                 @Override
@@ -287,8 +288,9 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                     }
                 }
             };
+            act.addLifeCycleListener(lifeCycleListener);
         }
-        act.addLifeCycleListener(lifeCycleListener);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && act.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             act.requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);

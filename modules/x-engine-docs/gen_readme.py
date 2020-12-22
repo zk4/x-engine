@@ -89,7 +89,7 @@ class ReadmeAggregator():
         # print("path",path,"out",out+"/assets/*",join(self.outputDir,"assets"))
         # subprocess.Popen(["cp","-r",out+"/assets/",join(self.outputDir,"assets/") ]).communicate()
     def gen_dist(self):
-        os.system(f"pushd {self.folder_path} &&  yarn md && popd && rm -rdf {self.outputDir}/dist/{self.get_short_module_name()} &&  cp -fr {self.folder_path}/h5/dist {self.outputDir}/dist/{self.get_short_module_name()}")
+        os.system(f"pushd {self.folder_path} &&  yarn md && x-cli model model.ts && popd && rm -rdf {self.outputDir}/dist/{self.get_short_module_name()} &&  cp -fr {self.folder_path}/h5/dist {self.outputDir}/dist/{self.get_short_module_name()}")
 
     def get_short_module_name(self):
         return self.module_short_name
@@ -100,11 +100,11 @@ class ReadmeAggregator():
 
     def gen(self):
         root_readme    = ""#self.gen_root()
+        self.gen_dist()
         h5_readme      = self.gen_h5()
         ios_readme     = self.gen_iOS()
         android_readme = self.gen_android()
         module_name    = self.get_short_module_name()
-        self.gen_dist()
 
         content = tmplt.format(root_readme = root_readme,h5_readme = h5_readme, ios_readme = ios_readme, android_readme = android_readme, module_name=module_name)
         print(self.output_path())

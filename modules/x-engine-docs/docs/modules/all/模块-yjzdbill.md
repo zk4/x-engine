@@ -9,7 +9,7 @@
 # JS
 
 
-version: 0.0.67
+version: 0.1.4
 ``` bash
 npm install @zkty-team/x-engine-module-yjzdbill
 ```
@@ -97,7 +97,6 @@ npm install @zkty-team/x-engine-module-yjzdbill
     businessCstNo:"000001",
     roomNo:'001',
     userRoomNo:'001'
-
       })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -116,6 +115,8 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | userRoomNo | string |  |  | 人防编号 |
 | appScheme | string | true | x-engine | 当前app注册的appScheme |
 | payType | bool | true |  | 支付业务， 是否是 B端调用，  true为B， false为C |
+| billStatus | string | true | 0 |  账单状态  0  10  90 |
+| billType | string | true | 0 | 账单类型 0 1 2 3 4 |
 
     
 

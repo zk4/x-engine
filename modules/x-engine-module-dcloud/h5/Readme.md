@@ -1,13 +1,27 @@
 
-`
-com.zkty.module.dcloud
-`
+version: 0.1.4
+``` bash
+npm install @zkty-team/x-engine-module-dcloud
+```
 
 
 
 ## openUniMP
 
  启动小程序
+
+**demo**
+``` js
+{
+  window.openUniMP = () => {
+    dcloud.openUniMP({
+    appId:'__UNI__9B75743'
+  }).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+}
+``` 
 
 	
 **参数说明**
@@ -20,6 +34,24 @@ com.zkty.module.dcloud
 ## preloadUniMP
 
  预加载后打开小程序
+
+**demo**
+``` js
+{
+  window.preloadUniMP = (
+    
+  ) => {
+    dcloud.preloadUniMP({
+    appId:'__UNI__11E9B73',
+    arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
+    redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
+    enableBackground:false,
+  }).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+}
+``` 
 
 	
 **参数说明**
@@ -37,6 +69,22 @@ com.zkty.module.dcloud
 ## openUniMPWithArg
 
 
+
+**demo**
+``` js
+{
+  window.openUniMPWithArg = () => {
+    dcloud.openUniMPWithArg({
+    appId:'__UNI__9B75743',
+    arguments:{'token':'this is token','refreshtoken':'this is refreshtoken'},
+    redirectPath:'pages/component/application/application?token=a&refreshtoken=b',
+    enableBackground:false,
+  }).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+ };
+}
+``` 
 
 	
 **参数说明**

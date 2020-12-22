@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -27,6 +27,8 @@ function osCheck() {
     "name": "YJBillList",
     "default_args": {
       "appScheme": "x-engine",
+      "billType": "0",
+      "billStatus": "0",
       "payType": false
     }
   }

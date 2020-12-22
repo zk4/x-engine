@@ -94,6 +94,8 @@ function YJBillRefund(
 function YJBillList(
   args: YJBillListDTO={
     appScheme:'x-engine',
+    billType:'0',
+    billStatus:'0',
     payType:false
   }){
   window.YJBillList = () => {
@@ -101,9 +103,7 @@ function YJBillList(
       .YJBillList({
     businessCstNo:"000001",
     roomNo:'001',
-    userRoomNo:'001',
-    billStatus:'90',
-    billType:'0'
+    userRoomNo:'001'
       })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

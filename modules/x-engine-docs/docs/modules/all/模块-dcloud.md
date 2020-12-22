@@ -9,7 +9,7 @@
 # JS
 
 
-version: 0.0.67
+version: 0.1.4
 ``` bash
 npm install @zkty-team/x-engine-module-dcloud
 ```
@@ -25,7 +25,7 @@ npm install @zkty-team/x-engine-module-dcloud
 {
   window.openUniMP = () => {
     dcloud.openUniMP({
-    appId:'__UNI__1EB976D'
+    appId:'__UNI__9B75743'
   }).then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });

@@ -69,8 +69,10 @@
     [dictM setObject:dto.businessCstNo forKey:@"businessCstNo"]; //会员标识
     [dictM setObject:dto.roomNo forKey:@"roomNo"]; //房屋编号
     [dictM setObject:dto.userRoomNo forKey:@"userRoomNo"]; //人防编号
-    [dictM setObject:dto.billStatus forKey:@"billStatus"];
-    [dictM setObject:dto.billType forKey:@"billType"];
+    NSString * billStatus = dto.billStatus? dto.billStatus :@"0";
+    [dictM setObject:billStatus forKey:@"billStatus"];
+    NSString * billType = dto.billType? dto.billType: @"0";
+    [dictM setObject:billType forKey:@"billType"];
     //当前app注册的appScheme,请务必填写与plist中注册的一样，否则无法从第三方返回当前app
     [[YJBillPlatform sharedSingleton] billListCurrentViewController:[Unity sharedInstance].getCurrentVC appScheme:dto.appScheme payType:dto.payType OrderInfo:dictM];
 }

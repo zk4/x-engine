@@ -464,17 +464,17 @@ public class XEngineWebActivity extends AppCompatActivity {
             }
             isFirstReceiveTitle = false;
         }
-//
-//        @Override
-//        public void onProgressChanged(WebView webView, int i) {
-//
-//            mProgressBar.setVisibility(View.VISIBLE);
-//            mProgressBar.setProgress(i);
-//            if (i == 100) {
-//                mProgressBar.setVisibility(View.GONE);
-//            }
-//            super.onProgressChanged(webView, i);
-//        }
+
+        @Override
+        public void onProgressChanged(WebView webView, int i) {
+
+            mProgressBar.setVisibility(View.VISIBLE);
+            mProgressBar.setProgress(i);
+            if (i == 100) {
+                mProgressBar.setVisibility(View.GONE);
+            }
+            super.onProgressChanged(webView, i);
+        }
 
         @Override
         public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {

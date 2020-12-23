@@ -39,10 +39,9 @@
         android:id="@+id/pb_web_activity"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_2"
         android:layout_below="@+id/nav_bar"
-        android:indeterminate="false"
-        android:max="100"
+        android:progressDrawable="@drawable/progress_style"
         android:visibility="gone" />
 
     <ImageView

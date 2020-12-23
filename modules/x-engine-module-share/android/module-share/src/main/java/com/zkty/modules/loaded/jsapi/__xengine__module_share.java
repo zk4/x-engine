@@ -10,5 +10,6 @@ public class __xengine__module_share extends xengine__module_share {
     @Override
     public void _share(ShareReqDTO dto, CompletionHandler<ShareResDTO> handler) {
         ShareMaster.share(ActivityUtils.getCurrentActivity(), dto.channel, dto.type, dto.title, dto.desc, dto.link, dto.imageurl, dto.imageurl);
+        handler.complete();
     }
 }

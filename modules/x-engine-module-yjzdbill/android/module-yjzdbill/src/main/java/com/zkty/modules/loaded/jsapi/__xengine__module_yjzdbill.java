@@ -32,20 +32,27 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
         billManager.payBills(null, dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
             @Override
             public void payRsult(JSONObject jsonObject) {
-                Log.d("_YJBillPayment", "obj = " + jsonObject.toString());
-                if (jsonObject.has("status")) {
-                    YJBillRetDTO yjBillRetDTO = new YJBillRetDTO();
-                    try {
+                Log.d("_YJBillPayment", jsonObject.toString());
+                YJBillRetDTO yjBillRetDTO = new YJBillRetDTO();
+                try {
+                    if (jsonObject.has("status")) {
                         yjBillRetDTO.billRetStatus = jsonObject.getString("status");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    }
+                    if (jsonObject.has("code")) {
+                        yjBillRetDTO.billRetStatus = jsonObject.getString("code");
+                    }
+                    if (jsonObject.has("messge")) {
+                        yjBillRetDTO.billRetStatusMessage = jsonObject.getString("messge");
                     }
 
-                    handler.complete(yjBillRetDTO);
-
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+                handler.complete(yjBillRetDTO);
 
             }
+
+
         });
 
 

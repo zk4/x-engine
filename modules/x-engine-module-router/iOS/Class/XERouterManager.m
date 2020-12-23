@@ -44,7 +44,12 @@
                 [url appendFormat:@"/%@", path];
             }
         }
-        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:url];
+        NSURL * URL = [NSURL URLWithString:url];
+        if ([URL.host isEqualToString:@"apps.apple.com"]){
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
+        }else{
+            [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:url];
+        }
     } else if([type isEqual:@"microapp"]){
 
         if([[MicroAppLoader sharedInstance] checkMicroAppVersion:uri version:version]){

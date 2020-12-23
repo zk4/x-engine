@@ -36,9 +36,9 @@
    
    
    	if ([propertyName isEqualToString:@"appScheme"]) { return YES; }
-   	if ([propertyName isEqualToString:@"payType"]) { return YES; }
-   	if ([propertyName isEqualToString:@"billStatus"]) { return YES; }
-   	if ([propertyName isEqualToString:@"billType"]) { return YES; }	return NO;
+   
+   
+   	return NO;
     }
 @end
     

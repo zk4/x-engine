@@ -317,8 +317,11 @@ public class XEngineWebActivity extends AppCompatActivity {
             lifecycleListeners.clear();
         }
         XEngineWebActivityManager.sharedInstance().clearActivity(this);
-        if (TextUtils.isEmpty(mMicroAppId))
+        if (TextUtils.isEmpty(mMicroAppId)) {
+            XOneWebViewPool.sharedInstance().removeWebView(mWebView);
             mWebView.destroy();
+        }
+
         super.onDestroy();
 //        SwipeBackHelper.onDestroy(this);
 
@@ -386,7 +389,7 @@ public class XEngineWebActivity extends AppCompatActivity {
                             WebBackForwardList backForwardList = mWebView.copyBackForwardList();
                             if (backForwardList != null && backForwardList.getSize() != 0) {
                                 int index = 0;
-                                for (int i = backForwardList.getSize() - 1; i > -1; i--) {
+                                for (int i = backForwardList.getCurrentIndex(); i > -1; i--) {
                                     String url = backForwardList.getItemAtIndex(i).getOriginalUrl();
                                     if (lastActivity.getRouter().equals(UrlUtils.getRouterFormUrl(url))) {
                                         break;

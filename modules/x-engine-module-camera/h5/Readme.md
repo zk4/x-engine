@@ -1,8 +1,7 @@
 
-version: 0.1.4
-``` bash
-npm install @zkty-team/x-engine-module-camera
-```
+`
+com.zkty.module.camera
+`
 
 
 
@@ -22,38 +21,6 @@ npm install @zkty-team/x-engine-module-camera
   见 demo
 
 
-**demo**
-``` js
- {
-  window.openImagePicker = () => {
-    camera
-      .openImagePicker({
-        allowsEditing: true,
-        savePhotosAlbum: false,
-        cameraFlashMode: -1,
-        cameraDevice:'back',
-        photoCount: 5,
-        isbase64:true,
-        __event__: (res) => {
-            let jres = JSON.parse(res);
-            for(let photo of jres.data){
-            const image         = document.createElement('img')
-
-            if(!photo.width || !photo.height){
-              alert('要返回width,与height',photo);
-            }
-
-            image.src           = "data:image/png;base64,  " + photo.retImage;
-            image.style.cssText = 'width:100%';
-            document.body.appendChild(image);
-            }
-
-        }
-      })
-  };
-}
-``` 
-
 	
 **参数说明**
 
@@ -67,5 +34,18 @@ npm install @zkty-team/x-engine-module-camera
 | args | Map\<string,string\> |  | {"width":"200","quality":"0.5"} | 裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内; |
 | photoCount | int | true | 1 |  图片选择张数 |
 | \_\_event\_\_ |  |  | (string)=>{} | 返回获取图片的地址 |
+
+
+## saveImageToAlbum
+
+保存到相册
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| type | string |  | url | url  base64 |
+| imageData | string |  |  |  |
 
     

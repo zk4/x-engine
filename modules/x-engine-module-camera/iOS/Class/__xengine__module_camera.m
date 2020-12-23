@@ -20,6 +20,8 @@
 #import <Photos/Photos.h>
 #import <RecyleWebViewController.h>
 #import "ZKTY_TZImagePickerController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "MBProgressHUD+Toast.h"
 
 typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 @interface __xengine__module_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
@@ -77,7 +79,7 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 
     } sureHandlers:actionHandlers];
 }
- 
+
 
 -(void)chooseCamera:(CameraDTO*)dto{
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -131,7 +133,10 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 
 -(void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error) {
-        NSLog(@"保存失败");
+        [MBProgressHUD showToastWithTitle:@"保存失败" image:nil time:1.0];
+    }else{
+        [MBProgressHUD showToastWithTitle:@"保存成功" image:nil time:1.0];
+
     }
 }
 
@@ -352,6 +357,35 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
                          arguments:@[[[NSString alloc] initWithData:data encoding:4]]
                  completionHandler:^(id  _Nullable value) {}];
     }
+}
+
+//保存图片
+- (void)_saveImageToAlbum:(SaveImageDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+    UIImage * image = [UIImage new];
+    if ([dto.type isEqualToString:@"url"]) {
+        image = [UIImage imageWithData:[NSData
+        dataWithContentsOfURL:[NSURL URLWithString:dto.imageData]]];
+    }else if([dto.type isEqualToString:@"base64"]){
+        if  ([dto.imageData rangeOfString:@"base64,"].location !=NSNotFound) {
+            NSRange range = [dto.imageData rangeOfString:@"base64, "];
+            dto.imageData = [dto.imageData substringFromIndex:range.location+range.length];
+        }
+        NSData * imageData =[[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        image = [UIImage imageWithData:imageData ];
+    }
+    
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusAuthorized){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+            });
+        }
+    }];
 }
 
 @end

@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -25,6 +25,12 @@ function osCheck() {
         "width": "200",
         "quality": "0.5"
       }
+    }
+  },
+  {
+    "name": "saveImageToAlbum",
+    "default_args": {
+      "type": "url"
     }
   }
 ]

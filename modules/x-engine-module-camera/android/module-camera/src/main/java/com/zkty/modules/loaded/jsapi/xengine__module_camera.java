@@ -50,8 +50,15 @@
     public String height;
   }
   
+  class SaveImageDTO {
+    public String type;
+
+    public String imageData;
+  }
+  
   interface xengine__module_camera_i {
     public void _openImagePicker(CameraDTO dto, final CompletionHandler<CameraRetDTO> handler);
+public void _saveImageToAlbum(SaveImageDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -71,6 +78,20 @@
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(CameraRetDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void saveImageToAlbum(JSONObject obj, final CompletionHandler<Object> handler) {
+      SaveImageDTO data= convert(obj,SaveImageDTO.class);
+      _saveImageToAlbum(data, new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

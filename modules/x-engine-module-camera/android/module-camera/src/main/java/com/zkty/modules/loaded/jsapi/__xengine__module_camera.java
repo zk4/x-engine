@@ -30,11 +30,12 @@ import com.zkty.modules.engine.exception.XEngineException;
 import com.zkty.modules.engine.imp.GlideLoader;
 import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
+import com.zkty.modules.engine.utils.ActivityUtils;
 import com.zkty.modules.engine.utils.FileUtils;
+import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.loaded.ClientManager;
 import com.zkty.modules.loaded.EditArgs;
-
 import com.zkty.modules.loaded.widget.dialog.BottomDialog;
 
 import java.io.File;
@@ -457,7 +458,6 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 //                options.inJustDecodeBounds = true;
-                Bitmap bitmap = BitmapFactory.decodeFile(paths.get(j), options);
 
                 CameraRetDTO cameraRetDTO = new CameraRetDTO();
                 cameraRetDTO.width = String.valueOf(options.outWidth);
@@ -487,5 +487,18 @@ public class __xengine__module_camera extends xengine__module_camera implements 
             Log.d("camera", JSON.toJSONString(map));
             mXEngineWebView.callHandler(cameraDTO.__event__, new Object[]{JSON.toJSONString(map)}, (OnReturnValue<CameraRetDTO>) retValue -> Log.d(TAG, "result:" + System.currentTimeMillis()));
         }
+    }
+
+
+    @Override
+    public void _saveImageToAlbum(SaveImageDTO dto, CompletionHandler<Nullable> handler) {
+        Activity activity = ActivityUtils.getCurrentActivity();
+        if ("url".equals(dto.type)) {
+            ImageUtils.savePictureByUrl(activity, dto.imageData);
+        } else {
+            ImageUtils.savePictureByBase64(activity, dto.imageData);
+        }
+
+
     }
 }

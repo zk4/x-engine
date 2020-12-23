@@ -7,17 +7,11 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
-import com.tencent.smtt.export.external.interfaces.WebResourceError;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebSettings;
@@ -43,8 +37,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import module.engine.R;
 
 
 public class XEngineWebView extends DWebView {
@@ -335,7 +327,7 @@ public class XEngineWebView extends DWebView {
 //                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
                 case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项 base64类型
 
-                    new Thread(() -> ImageUtils.savePicture(mContext, result.getExtra())).start();
+                    new Thread(() -> ImageUtils.savePictureByBase64(mContext, result.getExtra())).start();
                     break;
 
             }

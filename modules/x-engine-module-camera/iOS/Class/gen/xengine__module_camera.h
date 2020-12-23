@@ -8,6 +8,7 @@
 
 @protocol CameraDTO;
 @protocol CameraRetDTO;
+@protocol SaveImageDTO;
 
 @interface CameraDTO: JSONModel
   	@property(nonatomic,assign) BOOL allowsEditing;
@@ -30,11 +31,20 @@
 @end
     
 
+@interface SaveImageDTO: JSONModel
+  	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,copy) NSString* imageData;
+@end
+    
+
 
 @protocol xengine__module_camera_protocol
        @required 
         - (void) _openImagePicker:(CameraDTO*) dto complete:(void (^)(CameraRetDTO* result,BOOL complete)) completionHandler;
 
+      @required 
+        - (void) _saveImageToAlbum:(SaveImageDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
 @end
   
 

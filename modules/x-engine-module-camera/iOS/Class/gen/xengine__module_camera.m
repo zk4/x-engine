@@ -29,6 +29,13 @@
     }
 @end
     
+  
+@implementation SaveImageDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
 
 
 
@@ -51,5 +58,12 @@
             completionHandler(result,complete);
           }];
         
+      }
+    - (void) saveImageToAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          SaveImageDTO* dto = [self convert:dict clazz:SaveImageDTO.class];
+          [self _saveImageToAlbum:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
+          }];
       }
   @end

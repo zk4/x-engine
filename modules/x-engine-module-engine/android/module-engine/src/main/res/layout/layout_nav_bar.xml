@@ -15,7 +15,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:textColor="#121212"
-        android:textSize="@dimen/sp_16" />
+        android:textSize="@dimen/sp_24" />
 
     <LinearLayout
         android:id="@+id/ll_actionbar_left"

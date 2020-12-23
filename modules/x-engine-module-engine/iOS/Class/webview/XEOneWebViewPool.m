@@ -77,7 +77,13 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
         if([web canGoBack]){
             [web goBack];
         }else{
+            [web loadUrl:@""];
+//            if([AVAudioSession sharedInstance].secondaryAudioShouldBeSilencedHint){
+//                [[AVAudioSession sharedInstance] setActive:YES error:nil];
+//            }
             [self.webCacheAry removeLastObject];
+            [web removeFromSuperview];
+            web = nil;
         }
     }
 }

@@ -22,16 +22,20 @@ import android.widget.Toast;
 import androidx.core.content.FileProvider;
 
 
+import com.bumptech.glide.Glide;
 import com.zkty.modules.engine.imp.GlideLoader;
 import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.provider.XEngineProvider;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 作者 王磊
@@ -427,6 +431,39 @@ public class ImageUtils {
         } catch (Exception e) {
             ToastUtils.showThreadToast("保存失败，请重试");
         }
+    }
+
+    static byte[] bytes = null;
+
+    public static byte[] getByteByImageUrl(Context context, String url) {
+
+        if (TextUtils.isEmpty(url)) return null;
+
+
+        new Thread() {
+            @Override
+            public void run() {
+                Bitmap bitmap = null;
+                try {
+                    bitmap = Glide.with(context)
+                            .asBitmap()
+                            .load(url)
+                            .into(100, 100).get();
+                    if (bitmap != null) {
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        bytes = stream.toByteArray();
+                    }
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+        return bytes;
+
     }
 
 

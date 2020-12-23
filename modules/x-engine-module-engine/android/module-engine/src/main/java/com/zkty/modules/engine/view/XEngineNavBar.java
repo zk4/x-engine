@@ -328,6 +328,13 @@ public class XEngineNavBar extends RelativeLayout {
         return null;
     }
 
+    public String getTitle() {
+        if (titleTv.getText() != null) {
+            return titleTv.getText().toString();
+        }
+        return null;
+    }
+
     public ImageView getLiftIv() {
         return leftIv;
 

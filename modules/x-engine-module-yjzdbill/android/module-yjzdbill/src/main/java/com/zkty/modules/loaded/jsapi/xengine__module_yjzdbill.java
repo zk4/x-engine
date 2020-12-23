@@ -51,14 +51,11 @@
     @Optional
 		public String appScheme;
 
-    @Optional
-		public boolean payType;
+    public boolean payType;
 
-    @Optional
-		public String billStatus;
+    public String billStatus;
 
-    @Optional
-		public String billType;
+    public String billType;
   }
   
   interface xengine__module_yjzdbill_i {

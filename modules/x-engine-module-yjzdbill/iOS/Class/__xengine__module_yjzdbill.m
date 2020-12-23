@@ -53,7 +53,7 @@
     [[YJBillPlatform sharedSingleton] billPaymentWithOrderInfo:dictM appScheme:dto.appScheme payType:NO payfinishBlock:^(id  _Nonnull responseObject, NSString * _Nonnull message) {
         NSLog(@"%@ -- %@", responseObject, message);
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
             YJBillRetDTO* d = [YJBillRetDTO new];
             d.billRetStatus=responseObject;
             d.billRetStatusMessage=message;

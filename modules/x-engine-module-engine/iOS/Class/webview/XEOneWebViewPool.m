@@ -10,7 +10,6 @@
 #import "XEngineContext.h"
 #import "xengine__module_BaseModule.h"
 #import <MicroAppLoader.h>
-#import <AVFoundation/AVFoundation.h>
 
 #import "Unity.h"
 #import "RecyleWebViewController.h"
@@ -63,6 +62,9 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     XEngineWebView *web = self.webCacheAry.lastObject;
     if(web){
         if(url){
+            if([web.URL.absoluteString isEqualToString:url]){
+                return;
+            }
             NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
             for (WKBackForwardListItem *item in [[ary reverseObjectEnumerator] allObjects]) {
                 if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
@@ -75,14 +77,7 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
         if([web canGoBack]){
             [web goBack];
         }else{
-            
-            [web loadUrl:@""];
-//            if([AVAudioSession sharedInstance].secondaryAudioShouldBeSilencedHint){
-//                [[AVAudioSession sharedInstance] setActive:YES error:nil];
-//            }
             [self.webCacheAry removeLastObject];
-            [web removeFromSuperview];
-            web = nil;
         }
     }
 }

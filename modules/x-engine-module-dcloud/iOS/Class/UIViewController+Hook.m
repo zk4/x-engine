@@ -47,6 +47,11 @@
 }
 
 -(void)hook_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion{
+    if([viewControllerToPresent isKindOfClass:NSClassFromString(@"ZKKeyViewController")]){
+        
+        [self hook_presentViewController:viewControllerToPresent animated:flag completion:completion];
+        return;
+    }
     if ([viewControllerToPresent isKindOfClass:NSClassFromString(@"DCUniMPViewController")]) {
         viewControllerToPresent.transitioningDelegate = self;
         

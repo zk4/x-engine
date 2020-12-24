@@ -9,7 +9,7 @@
 # JS
 
 
-version: 0.1.4
+version: 0.1.5
 ``` bash
 npm install @zkty-team/x-engine-module-camera
 ```
@@ -77,6 +77,31 @@ npm install @zkty-team/x-engine-module-camera
 | args | Map\<string,string\> |  | {"width":"200","quality":"0.5"} | 裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内; |
 | photoCount | int | true | 1 |  图片选择张数 |
 | \_\_event\_\_ |  |  | (string)=>{} | 返回获取图片的地址 |
+
+
+## saveImageToAlbum
+
+保存到相册
+
+**demo**
+``` js
+{
+  window.saveImageToAlbum = () => {
+    camera
+      .saveImageToAlbum({
+        imageData:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034'
+      });
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| type | string |  | url | url  base64 |
+| imageData | string |  |  |  |
 
     
 

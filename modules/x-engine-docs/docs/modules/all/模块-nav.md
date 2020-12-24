@@ -9,7 +9,7 @@
 # JS
 
 
-version: 0.1.4
+version: 0.1.5
 ``` bash
 npm install @zkty-team/x-engine-module-nav
 ```

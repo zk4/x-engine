@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import subprocess
 bashCommand = "git log --pretty=format:%cn||%s||%cr"

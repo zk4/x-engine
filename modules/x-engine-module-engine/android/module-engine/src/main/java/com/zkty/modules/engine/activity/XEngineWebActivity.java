@@ -75,6 +75,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     //    private ArrayList<LifecycleListener> lifecycleListeners;
     private Set<LifecycleListener> lifecycleListeners;
     private boolean isFirst = true;
+    private boolean isResume = false;
     private MyWebChromeClient mWebChromeClient;
     private android.webkit.ValueCallback<Uri> mUploadMessage;
     private android.webkit.ValueCallback<Uri[]> mUploadCallbackAboveL;
@@ -125,7 +126,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
-
+        EventBus.getDefault().register(this);
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white)
@@ -250,7 +251,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
+        isResume = true;
         mWebView.setWebChromeClient(mWebChromeClient);
         if (isFirst) {
             isFirst = false;
@@ -275,13 +276,12 @@ public class XEngineWebActivity extends AppCompatActivity {
             }
         }
 
-        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        EventBus.getDefault().unregister(this);
+        isResume = false;
         Log.d(TAG, "onPause()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
@@ -321,7 +321,7 @@ public class XEngineWebActivity extends AppCompatActivity {
             XOneWebViewPool.sharedInstance().removeWebView(mWebView);
             mWebView.destroy();
         }
-
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
 //        SwipeBackHelper.onDestroy(this);
 
@@ -451,7 +451,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     }
 
-    private boolean isFirstReceiveTitle = true;
+//    private boolean isFirstReceiveTitle = true;
 
     class MyWebChromeClient extends WebChromeClient {
 
@@ -459,10 +459,10 @@ public class XEngineWebActivity extends AppCompatActivity {
         public void onReceivedTitle(WebView webView, String title) {
             super.onReceivedTitle(webView, title);
             if (!TextUtils.isEmpty(webView.getUrl()) && webView.getUrl().startsWith("http") && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
-                if (xEngineNavBar.getTitle() == null || !isFirstReceiveTitle)//初次加载切已被设置title
-                    xEngineNavBar.setTitle(title, null, null);
+//                if (xEngineNavBar.getTitle() == null || !isFirstReceiveTitle)//初次加载切已被设置title
+                xEngineNavBar.setTitle(title, null, null);
             }
-            isFirstReceiveTitle = false;
+//            isFirstReceiveTitle = false;
         }
 
         @Override
@@ -593,15 +593,15 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     @Subscribe
     public void onMessageReceive(XEngineMessage xEngineMessage) {
-        if (XEngineMessage.MSG_TYPE_ON.equals(xEngineMessage.getType())) {
+        if (isResume && XEngineMessage.MSG_TYPE_ON.equals(xEngineMessage.getType())) {
             if (broadcastAble) {
                 broadcast(xEngineMessage.getMsgList());
             }
 
-        } else if (XEngineMessage.MSG_TYPE_OFF.equals(xEngineMessage.getType())) {
+        } else if (isResume && XEngineMessage.MSG_TYPE_OFF.equals(xEngineMessage.getType())) {
             broadcastAble = false;
             broadcast(xEngineMessage.getMsgList());
-        } else if (XEngineMessage.MSG_TYPE_SCOPE.equals(xEngineMessage.getType())) {
+        } else if (isResume && XEngineMessage.MSG_TYPE_SCOPE.equals(xEngineMessage.getType())) {
             broadcastAble = true;
             broadcast(xEngineMessage.getMsgList());
         } else if (XEngineMessage.MSG_TYPE_PAGE_CLOSE.equals(xEngineMessage.getType())) {
@@ -610,7 +610,6 @@ public class XEngineWebActivity extends AppCompatActivity {
             }
         }
     }
-
 
     public String getRouter() {
         return router;

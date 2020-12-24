@@ -4,19 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
-import com.tencent.smtt.export.external.interfaces.WebResourceError;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebSettings;
@@ -37,12 +32,11 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import module.engine.R;
 
 
 public class XEngineWebView extends DWebView {
@@ -126,28 +120,44 @@ public class XEngineWebView extends DWebView {
 
                         Map<String, Collection<String>> params = base.getQueryPairs();
                         String args = null;
+                        String callback = null;
                         if (params != null && params.size() > 0) {
 
                             if (params.containsKey("args") && params.get("args") != null && params.get("args").size() > 0) {
                                 args = (String) params.get("args").toArray()[0];
                             }
+
+                            if (params.containsKey("callback") && params.get("callback") != null && params.get("callback").size() > 0) {
+                                callback = (String) params.get("callback").toArray()[0];
+
+                            }
                         }
-                        com.alibaba.fastjson.JSONObject jsonObject = JSONObject.parseObject(URLDecoder.decode(args));
+
+                        if (callback != null) {
+                            callback = URLDecoder.decode(callback);
+                        }
+
+                        final String callbackUrl = callback;
+
+
+                        JSONObject jsonObject = JSONObject.parseObject(URLDecoder.decode(args));
 
                         CompletionHandler completionHandler = new CompletionHandler() {
                             @Override
                             public void complete(Object retValue) {
-
+                                String callbackTemp = callbackUrl;
+                                callbackTemp = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
+                                if (!TextUtils.isEmpty(callbackTemp)) {
+                                    loadUrl(callbackTemp);
+                                }
                             }
 
                             @Override
                             public void complete() {
-
                             }
 
                             @Override
                             public void setProgressData(Object value) {
-
                             }
                         };
 
@@ -317,7 +327,7 @@ public class XEngineWebView extends DWebView {
 //                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
                 case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项 base64类型
 
-                    new Thread(() -> ImageUtils.savePicture(mContext, result.getExtra())).start();
+                    new Thread(() -> ImageUtils.savePictureByBase64(mContext, result.getExtra())).start();
                     break;
 
             }

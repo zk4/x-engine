@@ -32,7 +32,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -339,7 +341,7 @@ public class ImageUtils {
     }
 
 
-    public static boolean savePicture(Context context, String base64DataStr) {
+    public static boolean savePictureByBase64(Context context, String base64DataStr) {
         // 1.去掉base64中的前缀
         String base64Str = base64DataStr.substring(base64DataStr.indexOf(",") + 1, base64DataStr.length());
 
@@ -347,6 +349,34 @@ public class ImageUtils {
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg");
         return true;
+    }
+
+    public static void savePictureByUrl(Context context, String photoUrls) {
+
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    if (!TextUtils.isEmpty(photoUrls)) {
+                        URL url = new URL(photoUrls);
+                        InputStream inputStream = url.openStream();
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        inputStream.close();
+                        ((Activity) context).runOnUiThread(() -> {
+                            saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg");
+                        });
+                    }
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }.start();
     }
 
 

@@ -47,19 +47,19 @@
 }
 
 -(void)hook_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion{
-    if([viewControllerToPresent isKindOfClass:NSClassFromString(@"ZKKeyViewController")]){
-        
-        [self hook_presentViewController:viewControllerToPresent animated:flag completion:completion];
-        return;
-    }
+//    if([viewControllerToPresent isKindOfClass:NSClassFromString(@"ZKKeyViewController")]){
+//        
+//        
+//        return;
+//    }
     if ([viewControllerToPresent isKindOfClass:NSClassFromString(@"DCUniMPViewController")]) {
         viewControllerToPresent.transitioningDelegate = self;
-        
+        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:viewControllerToPresent animated:YES];
+        [Unity sharedInstance].getCurrentVC.navigationController.delegate = self;
     }else{
-        
+        [self hook_presentViewController:viewControllerToPresent animated:flag completion:completion];
     }
-    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:viewControllerToPresent animated:YES];
-    [Unity sharedInstance].getCurrentVC.navigationController.delegate = self;
+    
     
 //    [self hook_presentViewController:viewControllerToPresent animated:flag completion:completion];
 }

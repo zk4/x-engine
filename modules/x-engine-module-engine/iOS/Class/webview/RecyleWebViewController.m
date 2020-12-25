@@ -350,6 +350,11 @@ static   XEngineWebView* s_webview;
         }
     }
 
+    if([self.loadUrl hasPrefix:@"http"]){
+        if(self.navigationItem.leftBarButtonItems.count > 0){
+            self.navigationItem.leftBarButtonItems.lastObject.title = @"";
+        }
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

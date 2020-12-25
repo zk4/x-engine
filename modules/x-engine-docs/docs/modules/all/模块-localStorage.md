@@ -4,6 +4,17 @@
 <div id='modulename' style='display:none'>localstorage</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
 <a id='qrlink' href="about:none">link of QR</a>
 
+localstorage 会根据微应用的 appid 自动加入 namespace.
+
+也可以向全局写入, 用于应用间的数据共享.
+
+微应用A 无法访问微应用 B的数据.
+
+
+
+
+
+
 
 
 # JS

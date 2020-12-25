@@ -20,6 +20,7 @@ npm install @zkty-team/x-engine-module-camera
 
 
   返回数据有做调整, 0.58 后在反序列字符串后会得到一个对象,对象里的 data 有一个数组.里面保存了图片的的json对象序列.
+  ``` json
   data:{
     [
       retImage: string;
@@ -29,6 +30,7 @@ npm install @zkty-team/x-engine-module-camera
       height: string;
     ]
   }
+  ```
   见 demo
 
 

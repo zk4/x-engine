@@ -12,7 +12,7 @@ for line in lines:
     [name,comment,elapsed] = line.split('||')
     matches = ["fix","feat","feature"]
     if any(x in comment for x in matches) :
-        print(name,comment,elapsed)
+        print(name,comment,elapsed,'\\n')
     if comment.startswith("pgy"):
         timestoEnds-=1
     if timestoEnds==0:

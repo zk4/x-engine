@@ -1,6 +1,7 @@
 package com.zkty.modules.loaded.jsapi;
 
 
+import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import com.kapp.sdllpay.PaymentCallback;
 import com.yjlc.module.BillManager;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.XEngineApplication;
+import com.zkty.modules.engine.utils.ActivityUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 import com.zkty.modules.loaded.util.SharePreferenceUtils;
 
@@ -28,7 +30,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
         String payBUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_b_url", null);
         String payCUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_c_url", null);
         BillManager billManager = BillManager.getInstance();
-        billManager.init(XEngineApplication.getApplication(), baseUrl, dto.payType ? payBUrl : payCUrl);
+        billManager.init(ActivityUtils.getCurrentActivity(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.payBills(null, dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
             @Override
             public void payRsult(JSONObject jsonObject) {
@@ -63,7 +65,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
         String baseUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_base_url", null);
         BillManager billManager = BillManager.getInstance();
-        billManager.init(XEngineApplication.getApplication(), baseUrl);
+        billManager.init(ActivityUtils.getCurrentActivity(), baseUrl);
         billManager.refundBills(dto.refundOrderNo, new PaymentCallback() {
             @Override
             public void paymentResult(JSONObject jsonObject) {
@@ -90,7 +92,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
         String payBUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_b_url", null);
         String payCUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_c_url", null);
         BillManager billManager = BillManager.getInstance();
-        billManager.init(XEngineApplication.getApplication(), baseUrl, dto.payType ? payBUrl : payCUrl);
+        billManager.init(ActivityUtils.getCurrentActivity(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.queryBills(dto.userRoomNo, dto.roomNo, dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, dto.billStatus, dto.billType);
         handler.complete();
     }

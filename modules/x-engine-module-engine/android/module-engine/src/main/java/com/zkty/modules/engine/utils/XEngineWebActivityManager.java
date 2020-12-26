@@ -1,5 +1,6 @@
 package com.zkty.modules.engine.utils;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -7,6 +8,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.zkty.modules.engine.XEngineApplication;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.webview.XOneWebViewPool;
@@ -44,15 +46,27 @@ public class XEngineWebActivityManager {
      * @param url     appid 或url
      */
     public void startH5EngineActivity(Context context, @NonNull String url) {
+        if (context == null) {
+            context = XEngineApplication.getApplication();
+        }
+
         XOneWebViewPool.IS_WEB = true;
 //        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool().preLoad(url);
         Intent intent = new Intent(context, XEngineWebActivity.class);
+        if (context instanceof Application) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
         intent.putExtra(XEngineWebActivity.URL, url);
         context.startActivity(intent);
 
     }
 
     public void startMicroEngineActivity(Context context, @NonNull String microAppId, String path, String args, String version) {
+        if (context == null) {
+            context = XEngineApplication.getApplication();
+        }
+
+
         String indexUrl = null;
         if (TextUtils.isEmpty(version)) {
             indexUrl = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(microAppId);
@@ -60,6 +74,9 @@ public class XEngineWebActivityManager {
             indexUrl = MicroAppLoader.sharedInstance().getMicroAppByMicroAppIdAndVersion(microAppId, version);
         }
         Intent intent = new Intent(context, XEngineWebActivity.class);
+        if (context instanceof Application) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
         intent.putExtra(XEngineWebActivity.INDEX_URL, indexUrl);
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, microAppId);
 

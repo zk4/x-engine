@@ -1,4 +1,6 @@
-统一所有的跳转, router 与 nav 在路由功能有一些重叠的地方. 但 nav 更加关注于微应用内的路由. 而 router 更关注应用间的路由.
+统一所有的跳转, router 与 nav 在路由名称上有所混淆. nav 只用在微应用内部, router 是用于全局路由. 包含了 nav 的功能.
+
+但 router 一定会创建新实例. 如果只在某微应用内部路由.应该只使用nav.一来性能好,二来你能拥有一个统一的状态管理器. 比如 vue 里的 vuex. react 里的 redux. 
 
 
 
@@ -91,11 +93,41 @@ args　形如：
 
 |          | h5   | microApp | wx   | native | uni  |
 | -------- | ---- | -------- | ---- | ------ | ---- |
-| h5       | -    | -        | -    | -      | -    |
+| h5       | 支持 | 支持     | 支持 | 支持   | 支持 |
 | microApp | 支持 | 支持     | 支持 | 支持   | 支持 |
 | wx       | -    | -        | -    | -      | -    |
 | native   | 支持 | 支持     | 支持 | 支持   | 支持 |
-| uni      | -    | -        | -    | -      | -    |
+| uni      | 支持 | 支持     | 支持 | 支持   | 支持 |
+
+h5 与 uni 我们定制了两种调用.
+
+**h5通过 scheme 的方式**
+
+
+x-engine-json://{moduleName}/{method}?args={xxx}&callback={callbackurl}
+
+xxx 为 urlencode 过的　json　**String**
+{callbackurl} 由调用者指定(必须urlencode), 如[https://baidu.com?ret={ret}](https://baidu.com/?ret={ret})
+
+{ret} 将被替换为返回值. {ret} 为 urlencode 过的　json　**String**
+
+在拿到返回值后, 在当前页面打开 {callbackurl}
+
+
+
+**uni 通过 api 方式**
+
+event:x-engine-wgt-event
+
+{
+"moduleName":"moduleName",
+"method":{method},
+"args":{args},
+}
+
+返回值, 统一转成 json string.
+
+
 
 
 

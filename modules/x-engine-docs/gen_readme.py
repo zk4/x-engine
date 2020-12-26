@@ -99,7 +99,7 @@ class ReadmeAggregator():
 
 
     def gen(self):
-        root_readme    = ""#self.gen_root()
+        root_readme    = self.gen_root()
         self.gen_dist()
         h5_readme      = self.gen_h5()
         ios_readme     = self.gen_iOS()

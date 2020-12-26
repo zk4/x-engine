@@ -37,6 +37,7 @@ interface SaveImageDTO {
 
 /*
   返回数据有做调整, 0.58 后在反序列字符串后会得到一个对象,对象里的 data 有一个数组.里面保存了图片的的json对象序列.
+  ``` json
   data:{
     [
       retImage: string;
@@ -46,6 +47,7 @@ interface SaveImageDTO {
       height: string;
     ]
   }
+  ```
   见 demo
 */
 function openImagePicker(
@@ -98,9 +100,6 @@ function saveImageToAlbum(
     camera
       .saveImageToAlbum({
         imageData:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034'
-      })
-      .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
 }

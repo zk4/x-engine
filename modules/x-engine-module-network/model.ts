@@ -81,7 +81,7 @@ interface UploadReponseDTO {
     //返回的请求参数
     request?: UploadRequestDTO;
 }
-
+// ``` js
 // interface UploadReponseDTO {
 //     //返回状态
 //     status: int;
@@ -92,6 +92,7 @@ interface UploadReponseDTO {
 //     //返回结果
 //     data: string
 // }
+// ```
 //发送GET网络请求
 //**demo**
 //``` js

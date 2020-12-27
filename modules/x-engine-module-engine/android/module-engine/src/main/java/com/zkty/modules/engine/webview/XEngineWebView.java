@@ -80,13 +80,13 @@ public class XEngineWebView extends DWebView {
         setWebViewClient(new WebViewClient() {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-                InputStream inputStream = Utils.getLocalImage(s);
-                Log.d("Xenging-url", s);
-                if (inputStream != null) {
-                    WebResourceResponse resourceResponse = new WebResourceResponse();
-                    resourceResponse.setData(inputStream);
-                    return resourceResponse;
-                }
+//                InputStream inputStream = Utils.getLocalImage(s);
+//                Log.d("Xenging-url", s);
+//                if (inputStream != null) {
+//                    WebResourceResponse resourceResponse = new WebResourceResponse();
+//                    resourceResponse.setData(inputStream);
+//                    return resourceResponse;
+//                }
 
                 return super.shouldInterceptRequest(webView, s);
             }

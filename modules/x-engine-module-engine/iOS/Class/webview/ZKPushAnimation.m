@@ -171,10 +171,18 @@
         [containerView addSubview:screenView];
         [containerView addSubview:toView];
         
-        toView.frame = CGRectMake(toView.frame.size.width,
-                                  toView.frame.origin.y,
-                                  toView.frame.size.width,
-                                  toView.frame.size.height);
+        if(toVc.isHiddenNavbar){
+            toView.frame = CGRectMake(toView.frame.size.width,
+                                      containerView.frame.origin.y,
+                                      toView.frame.size.width,
+                                      containerView.frame.size.height);
+        } else {
+            toView.frame = CGRectMake(toView.frame.size.width,
+                                      toView.frame.origin.y,
+                                      toView.frame.size.width,
+                                      toView.frame.size.height);
+        }
+        
         
         UIView *shawView = [[UIView alloc] init];
         shawView.frame = screenView.bounds;

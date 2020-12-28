@@ -26,6 +26,7 @@
   
 @implementation YJBillRetDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
    	return NO;
     }
 @end

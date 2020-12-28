@@ -1,35 +1,13 @@
 
-version: 0.1.4
-``` bash
-npm install @zkty-team/x-engine-module-yjzdbill
-```
+`
+com.zkty.module.yjzdbill
+`
 
 
 
 ## YJBillPayment
 
 支付
-
-**demo**
-``` js
- {
-  window.YJBillPayment = () => {
-    yjzdbill
-      .YJBillPayment({
-    businessCstNo:"13631095145",
-    platMerCstNo: "1253152026819723265",
-    tradeMerCstNo: "1253159474293014528",
-    billNo:"022020121511175711404131412404",
-    appScheme:'x-engine',
-    payType:false,
-        __ret__:(res)=>{
-                  console.log(JSON.stringify(res));
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-        }
-      })
-  };
-}
-``` 
 
 	
 **参数说明**
@@ -48,24 +26,6 @@ npm install @zkty-team/x-engine-module-yjzdbill
 
 退款
 
-**demo**
-``` js
- {
-  window.YJBillRefund = () => {
-    yjzdbill
-      .YJBillRefund({
-        refundOrderNo:'RFO16070658578',
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = JSON.stringify(res);
-        },
-      })
-      .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-      });
-  };
-}
-``` 
-
 	
 **参数说明**
 
@@ -77,23 +37,6 @@ npm install @zkty-team/x-engine-module-yjzdbill
 ## YJBillList
 
 账单中心
-
-**demo**
-``` js
-{
-  window.YJBillList = () => {
-    yjzdbill
-      .YJBillList({
-    businessCstNo:"000001",
-    roomNo:'001',
-    userRoomNo:'001'
-      })
-      .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-      });
-  };
-}
-``` 
 
 	
 **参数说明**

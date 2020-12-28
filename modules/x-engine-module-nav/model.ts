@@ -56,8 +56,8 @@ interface NavNavigatorDTO {
   url?: string;
   //其余参数
   params?: string;
-  // 是否显示navbar
-  showNavbar?: Boolean;
+  // 是否隐藏navbar, 默认 false
+  hideNavbar?: Boolean;
 }
 
 interface NavOpenAppDTO {
@@ -225,13 +225,13 @@ function setNavRightMoreBtn(
 }
 
 //跳转页面.
-function navigatorPush(arg: NavNavigatorDTO = { url: "",showNavbar:true }) {
+function navigatorPush(arg: NavNavigatorDTO = { url: "",hideNavBar:false }) {
   window.navigatorPush = () => {
     nav.navigatorPush().then((res) => {});
   };
 }
 //返回层级. 如果url为空则返回上一级, 堆栈中有对应地址, 则返回该界面
-function navigatorBack(arg: NavNavigatorDTO = { url: "",showNavbar:true }) {
+function navigatorBack(arg: NavNavigatorDTO = { url: "",hideNavBar:false }) {
   window.navigatorBack = () => {
     nav.navigatorBack().then((res) => {});
   };

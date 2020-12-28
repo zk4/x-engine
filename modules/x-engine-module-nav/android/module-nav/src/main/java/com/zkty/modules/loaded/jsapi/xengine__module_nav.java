@@ -82,7 +82,7 @@
 		public String params;
 
     @Optional
-		public Boolean showNavbar;
+		public Boolean hideNavbar;
   }
   
   class NavOpenAppDTO {

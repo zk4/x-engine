@@ -18,7 +18,7 @@ function osCheck() {
       "type": "h5",
       "uri": "http://192.168.10.51:8081/index.html",
       "path": "",
-      "showNavbar": true
+      "hideNavbar": false
     }
   },
   {

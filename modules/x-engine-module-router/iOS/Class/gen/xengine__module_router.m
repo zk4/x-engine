@@ -13,7 +13,7 @@
    
    	if ([propertyName isEqualToString:@"args"]) { return YES; }
    	if ([propertyName isEqualToString:@"version"]) { return YES; }
-   	if ([propertyName isEqualToString:@"showNavbar"]) { return YES; }	return NO;
+   	if ([propertyName isEqualToString:@"hideNavbar"]) { return YES; }	return NO;
     }
 @end
     

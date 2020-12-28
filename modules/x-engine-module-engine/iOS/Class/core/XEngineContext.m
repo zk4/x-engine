@@ -2,8 +2,6 @@
 //  EngineContext.m
 
 #import "XEngineContext.h"
-#import <MBProgressHUD/MBProgressHUD.h>
-//#import <x-engine-module-engine/XEOneWebViewPool.h>
 #import "xengine__module_BaseModule.h"
 #import <objc/message.h>
 @interface XEngineContext ()
@@ -36,8 +34,6 @@
     self.moduleName2MoudleProtocolnames= [[NSMutableDictionary alloc] init];
     [self initModules];
     [self onAllModulesInited];
-    
-//    [XEOneWebViewPool sharedInstance];
 }
 
 - (instancetype)init {

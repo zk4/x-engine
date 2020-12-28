@@ -13,12 +13,12 @@ interface RouterOpenAppDTO {
 
   version?: int;
 
-  // 是否显示 navbar
-  showNavbar?: boolean;
+  // 是否隐藏navbar, 默认 false
+  hideNavbar?: Boolean;
 }
 
 //跳转页面.
-function openTargetRouter(arg: RouterOpenAppDTO = { type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" ,showNavbar:true}) {
+function openTargetRouter(arg: RouterOpenAppDTO = { type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" ,hideNavbar:false}) {
   window.openTargetRouter = () => {
     router
       .openTargetRouter({ type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" })

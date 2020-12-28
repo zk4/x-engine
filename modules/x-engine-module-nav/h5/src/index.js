@@ -108,14 +108,14 @@ function osCheck() {
     "name": "navigatorPush",
     "default_args": {
       "url": "",
-      "showNavbar": true
+      "hideNavBar": false
     }
   },
   {
     "name": "navigatorBack",
     "default_args": {
       "url": "",
-      "showNavbar": true
+      "hideNavBar": false
     }
   },
   {

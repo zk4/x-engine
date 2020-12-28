@@ -50,7 +50,7 @@
 @implementation NavNavigatorDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"url"]) { return YES; }
    	if ([propertyName isEqualToString:@"params"]) { return YES; }
-   	if ([propertyName isEqualToString:@"showNavbar"]) { return YES; }	return NO;
+   	if ([propertyName isEqualToString:@"hideNavbar"]) { return YES; }	return NO;
     }
 @end
     

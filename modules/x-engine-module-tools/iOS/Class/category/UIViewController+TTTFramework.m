@@ -33,7 +33,7 @@
         [self swizzleInstanceSelector:@selector(viewWillDisappear:) withSelector:@selector(uiviewController_viewWillDisappear:)];
         [self swizzleInstanceSelector:@selector(viewDidDisappear:) withSelector:@selector(uiviewController_viewDidDisappear:)];
         
-        [self swizzleInstanceSelector:@selector(preferredStatusBarStyle) withSelector:@selector(uiviewController_preferredStatusBarStyle)];
+//        [self swizzleInstanceSelector:@selector(preferredStatusBarStyle) withSelector:@selector(uiviewController_preferredStatusBarStyle)];
         
         [self swizzleInstanceSelector:@selector(shouldAutorotate) withSelector:@selector(uiviewController_shouldAutorotate)];
         [self swizzleInstanceSelector:@selector(uiviewController_supportedInterfaceOrientations) withSelector:@selector(supportedInterfaceOrientations)];

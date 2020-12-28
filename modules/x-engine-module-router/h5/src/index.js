@@ -17,7 +17,8 @@ function osCheck() {
     "default_args": {
       "type": "h5",
       "uri": "http://192.168.10.51:8081/index.html",
-      "path": ""
+      "path": "",
+      "showNavbar": true
     }
   },
   {

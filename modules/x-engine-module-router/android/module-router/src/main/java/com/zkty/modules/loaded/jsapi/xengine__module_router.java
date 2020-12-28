@@ -27,6 +27,9 @@
 
     @Optional
 		public Integer version;
+
+    @Optional
+		public boolean showNavbar;
   }
   
   interface xengine__module_router_i {

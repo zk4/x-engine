@@ -80,6 +80,9 @@
 
     @Optional
 		public String params;
+
+    @Optional
+		public Boolean showNavbar;
   }
   
   class NavOpenAppDTO {

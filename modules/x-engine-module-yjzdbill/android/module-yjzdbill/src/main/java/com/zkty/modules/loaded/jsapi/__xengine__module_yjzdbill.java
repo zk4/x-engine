@@ -40,8 +40,8 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
                     if (jsonObject.has("status")) {
                         yjBillRetDTO.billRetStatus = jsonObject.getString("status");
                     }
-                    if (jsonObject.has("code")) {
-                        yjBillRetDTO.billRetStatus = jsonObject.getString("code");
+                    if (jsonObject.has("isCancel")) {
+                        yjBillRetDTO.isCancel = "1".equals(jsonObject.getString("isCancel"));
                     }
                     if (jsonObject.has("messge")) {
                         yjBillRetDTO.billRetStatusMessage = jsonObject.getString("messge");

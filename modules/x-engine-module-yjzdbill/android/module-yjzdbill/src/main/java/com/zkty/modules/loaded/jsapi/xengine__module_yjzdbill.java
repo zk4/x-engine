@@ -55,9 +55,9 @@
 		public String appScheme;
 
     public boolean payType;
-
+    @Optional
     public String billStatus;
-
+    @Optional
     public String billType;
   }
   

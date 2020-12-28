@@ -10,6 +10,8 @@
 #import <objc/message.h>
 #import <XEngineContext.h>
 #import "NSString+Extras.h"
+typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
+
 @implementation XEngineWebView
 
 {
@@ -521,25 +523,100 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler;{
-//    NSString *strRequest = [navigationAction.request.URL.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
-    if ([navigationAction.request.URL.scheme isEqualToString:@"x-engine"]) {
-        NSString* urlStringUTF8  = [navigationAction.request.URL.query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSArray *subArray = [urlStringUTF8 componentsSeparatedByString:@"&"];
-        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc]init];
-        for (int j = 0 ; j < subArray.count; j++){
-            NSArray *dicArray = [subArray[j] componentsSeparatedByString:@"="];
+    NSString * urlStr = [navigationAction.request.URL absoluteString];
+    NSRange range;
+    NSURL * URL;
+    NSString *scheme;
+    NSString * subUrlStr;
+    if ([urlStr rangeOfString:@"?"].location !=NSNotFound) {
+        range = [urlStr rangeOfString:@"?"];//匹配得到的下标
+        URL = [NSURL URLWithString:[urlStr substringToIndex:range.location]];
+        scheme = [URL scheme];
+        subUrlStr = [URL absoluteString];
+    }else{
+        URL = [NSURL URLWithString:urlStr];
+        scheme = [URL scheme];
+        subUrlStr = [URL absoluteString];
+    }
 
-            [tempDic setObject:[dicArray[1] URLDecodedString] forKey:dicArray[0] ];
-        }
-        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",[navigationAction.request.URL.path substringFromIndex:1]];
-        id share =[[XEngineContext sharedInstance] getModuleByName:moduleName];
-        SEL  sel = NSSelectorFromString(@"share:complete:");
-        if([share respondsToSelector:sel]){
-            [share performSelector:sel withObject:tempDic withObject:nil];
-        }
+    if ([scheme isEqualToString:@"x-engine-json"]){
+       NSString * argsStr = [urlStr substringFromIndex:range.location+1];
+       NSString * callBackStr = @"";
+       
+       NSDictionary * argsDic = [NSDictionary new];
+       
+       if ([argsStr rangeOfString:@"&"].location !=NSNotFound){
+           NSArray * array = [argsStr componentsSeparatedByString:@"&"];
+           argsStr = [NSString stringWithFormat:@"%@",array[0]];
+           callBackStr = [NSString stringWithFormat:@"%@",array[1]];
+       }
+       argsDic = [self jsonToDictionary:argsStr];
+       if ([callBackStr rangeOfString:@"="].location !=NSNotFound){
+           NSRange range = [callBackStr rangeOfString:@"="];//匹配得到的下标
+           callBackStr= [callBackStr substringFromIndex:range.location+1];
+       }
+       
+       NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",URL.host];
+       id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+       NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];
+       SEL  sel = NSSelectorFromString(selectorStr);
+       if([module respondsToSelector:sel]){
+           XEngineCallBack  Cb=  ^(id data, BOOL ret){
+               if (callBackStr && callBackStr.length !=0) {
+                   NSString * retDataStr = [self idFromObject:data];
+                   NSString * str = [callBackStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                   str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
+                   str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:str] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
+                   [self loadRequest:request];
+               }
+           };
+           [module performSelector:sel withObject:argsDic withObject:Cb];
+       }
+        
     }
     
      decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+-(NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
+    if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
+        NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
+        jsonStr= [jsonStr substringFromIndex:range.location+1];
+    }
+    jsonStr = [jsonStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSError*err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    return dic;
+}
+
+//runtime model转字典转字符串
+- (NSString *)idFromObject:(NSObject *)object {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    unsigned int count;
+    objc_property_t *propertyList = class_copyPropertyList([object class], &count);
+ 
+    for (int i = 0; i < count; i++) {
+        objc_property_t property = propertyList[i];
+        const char *cName = property_getName(property);
+        NSString *name = [NSString stringWithUTF8String:cName];
+        NSObject *value = [object valueForKey:name];//valueForKey返回的数字和字符串都是对象
+ 
+        if (value == nil) {
+            //null
+            [dic setObject:@"" forKey:name];
+ 
+        } else {
+            //model
+            [dic setObject:value forKey:name];
+        }
+    }
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return str;
 }
 @end

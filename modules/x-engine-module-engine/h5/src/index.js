@@ -44,7 +44,7 @@ function use(ns,funcs){
       throw(ns+ ',注册无效,模块已存在,xengine.use("'+ns+'") 只允许调用一次;')
     }
     module_names.add(ns)
-    console.log(ns+ ',注册成功')
+    console.log(ns+ ',js 注册成功')
 
     let _call = function(funcname,args){
         if (args.hasOwnProperty('__event__')){
@@ -63,7 +63,7 @@ function use(ns,funcs){
         else{
           let p =new Promise((resolve,reject)=>{
             const warning_msg = "x-engine 0.1.0 将不再支持 promise,改用参数里的　__ret__做为异步返回值,以支持多次返回.或者直接调用函数同步返回";
-            console.error(warning_msg);
+            console.warn(warning_msg);
             xengine.bridge.call(ns+"."+funcname, args, function (res) {
               // only resolve once
               resolve(res);

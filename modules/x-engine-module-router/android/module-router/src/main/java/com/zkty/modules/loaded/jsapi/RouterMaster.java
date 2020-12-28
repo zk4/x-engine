@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class RouterMaster {
 
-    public static void openTargetRouter(Context context, String type, String uri, String path, String arg, String microAppVersion) {
+    public static void openTargetRouter(Context context, String type, String uri, String path, String arg, String microAppVersion, boolean hideNavBar) {
 
         if (type == null) return;
         switch (type) {
@@ -33,7 +33,7 @@ public class RouterMaster {
             case "microApp":
             case "microapp"://微应用
 
-                XEngineWebActivityManager.sharedInstance().startMicroEngineActivity(context, uri, path, arg, microAppVersion);
+                XEngineWebActivityManager.sharedInstance().startMicroEngineActivity(context, uri, path, arg, microAppVersion, hideNavBar);
                 break;
             case "wx"://微信小程序
                 String appId = null;

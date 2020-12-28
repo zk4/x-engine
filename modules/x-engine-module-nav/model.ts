@@ -57,7 +57,7 @@ interface NavNavigatorDTO {
   //其余参数
   params?: string;
   // 是否隐藏navbar, 默认 false
-  hideNavbar?: Boolean;
+  hideNavbar?: boolean;
 }
 
 interface NavOpenAppDTO {

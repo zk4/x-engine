@@ -55,7 +55,7 @@
 @interface NavNavigatorDTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
    	@property(nonatomic,copy) NSString* params;
-   	@property(nonatomic,strong) Boolean* hideNavbar;
+   	@property(nonatomic,assign) BOOL hideNavbar;
 @end
     
 

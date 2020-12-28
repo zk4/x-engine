@@ -31,6 +31,6 @@ npm install @zkty-team/x-engine-module-router
 | path | string |  |  | 跳转参数 |
 | args | Map\<string,string\> | true |  | 其他参数 |
 | version | int | true |  |  |
-| hideNavbar | Boolean | true |  |  是否隐藏navbar, 默认 false |
+| hideNavbar | bool | true |  |  是否隐藏navbar, 默认 false |
 
     

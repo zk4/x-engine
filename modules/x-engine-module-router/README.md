@@ -32,6 +32,7 @@
   fallback: string,         //(url链接)，maxlength(1024)
   path: string,             // 路径 /abc  /abc?a=1  maxlength(4096)　注意：参数在这传递！
  	version: int,             // 如果是 microapp, version 代表版本号，
+	hideNavbar: boolean,      // 路由目标页是否显示 navbar,默认是 false
 　args: map                 // 保留字段，　
 }
 ````

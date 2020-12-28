@@ -1,7 +1,8 @@
 
-`
-com.zkty.module.nav
-`
+version: 0.1.5
+``` bash
+npm install @zkty-team/x-engine-module-nav
+```
 
 
 
@@ -11,6 +12,15 @@ com.zkty.module.nav
  ``` js
  nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
  ```
+
+**demo**
+``` js
+ {
+  window.setNavTitle = () => {
+    nav.setNavTitle().then((res) => {});
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -25,6 +35,15 @@ com.zkty.module.nav
 ## setNavLeftBtn
 
 
+
+**demo**
+``` js
+ {
+  window.setNavLeftBtn = () => {
+    nav.setNavLeftBtn().then((res) => {});
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -49,6 +68,26 @@ com.zkty.module.nav
 
 
 
+**demo**
+``` js
+ {
+  window.setNavRightBtn = () => {
+    nav
+      .setNavRightBtn({
+        title: "right",
+        titleColor: "#000000",
+        titleSize: 16,
+        icon: "",
+        iconSize: ["20", "20"],
+        __event__: () => {
+          document.getElementById("debug_text").innerText = "ret: click right";
+        },
+      })
+      .then((res) => {});
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -71,6 +110,34 @@ com.zkty.module.nav
 ## setNavRightMenuBtn
 
 
+
+**demo**
+``` js
+ {
+  window.setNavRightMenuBtn = () => {
+    nav
+      .setNavRightMenuBtn({
+        title: "menu",
+        titleColor: "#000000",
+        titleSize: 16,
+        icon: "",
+        iconSize: ["20", "20"],
+        popWidth: "200",
+        showMenuImg: "false",
+        popList: [
+          { icon: "", iconSize: "20", title: "1" },
+          { icon: "", iconSize: "20", title: "2" },
+          { icon: "", iconSize: "20", title: "3" },
+        ],
+        __event__: (r) => {
+          document.getElementById("debug_text").innerText =
+            "ret: click setNavRightMenuBtn: " + r;
+        },
+      })
+      .then((res) => {});
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -95,6 +162,15 @@ com.zkty.module.nav
 
 
 
+**demo**
+``` js
+ {
+  window.setNavRightMoreBtn = () => {
+    nav.setNavRightMoreBtn().then((res) => {});
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -106,6 +182,15 @@ com.zkty.module.nav
 ## navigatorPush
 
 跳转页面.
+
+**demo**
+``` js
+ {
+  window.navigatorPush = () => {
+    nav.navigatorPush().then((res) => {});
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -120,6 +205,15 @@ com.zkty.module.nav
 ## navigatorBack
 
 返回层级. 如果url为空则返回上一级, 堆栈中有对应地址, 则返回该界面
+
+**demo**
+``` js
+ {
+  window.navigatorBack = () => {
+    nav.navigatorBack().then((res) => {});
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -157,6 +251,34 @@ nav
 
 ```
 
+**demo**
+``` js
+ {
+  window.setNavSearchBar = () => {
+    nav
+      .setNavSearchBar({
+        cornerRadius: 5,
+        backgroundColor: "#FF0000",
+        iconSearch: "",
+        iconSearchSize: [20, 20],
+        iconClear: "",
+        iconClearSize: [20, 20],
+        textColor: "#000000",
+        fontSize: 16,
+        placeHolder: "默认文字",
+        placeHolderFontSize: 16,
+        isInput: true,
+        becomeFirstResponder: false,
+        __event__: () => {
+          document.getElementById("debug_text").innerText =
+            "ret: click searchBar";
+        },
+      })
+      .then((res) => {});
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -181,6 +303,20 @@ nav
 
 
 
+**demo**
+``` js
+{
+  window.setSearchBarHidden = () => {
+    nav
+      .setSearchBarHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -194,6 +330,20 @@ nav
 
 
 
+**demo**
+``` js
+{
+  window.setNavBarHidden = () => {
+    nav
+      .setNavBarHidden({
+        isHidden: true,
+        isAnimation: true,
+      })
+      .then((res) => {});
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -206,6 +356,20 @@ nav
 ## removeHistoryPage
 
 
+
+**demo**
+``` js
+{
+  window.removeHistoryPage = () => {
+    nav
+      .removeHistoryPage({
+        history:[
+        ],
+      })
+      .then((res) => {});
+  };
+}
+``` 
 
 	
 **参数说明**

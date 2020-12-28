@@ -320,6 +320,10 @@ function setSearchBarHidden(arg:NavHiddenBarDTO){
   };
 }
 
+/**
+Deprecated
+使用push,或 nav 里 hideNavbar 参数控制状态的显示
+**/
 function setNavBarHidden(arg:NavHiddenBarDTO){
   window.setNavBarHidden = () => {
     nav

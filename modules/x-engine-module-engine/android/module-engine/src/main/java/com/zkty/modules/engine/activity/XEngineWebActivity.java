@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.lihang.ShadowLayout;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
@@ -60,6 +61,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     private RelativeLayout mRoot;
     protected XEngineNavBar xEngineNavBar;
     private ImageView ivScreen;
+    private ShadowLayout navShadow;
 
     private ProgressBar mProgressBar;
 
@@ -135,6 +137,7 @@ public class XEngineWebActivity extends AppCompatActivity {
                 .statusBarDarkFont(true).init();
         mWebChromeClient = new MyWebChromeClient();
         xEngineNavBar = findViewById(R.id.nav_bar);
+        navShadow = findViewById(R.id.nav_shadow);
         mRoot = findViewById(R.id.content_root);
         ivScreen = findViewById(R.id.iv_screen);
         mProgressBar = findViewById(R.id.pb_web_activity);
@@ -143,6 +146,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
         hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
+        navShadow.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
         xEngineNavBar.setLeftListener(view -> {
             backUp();
         });

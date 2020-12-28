@@ -85,6 +85,14 @@
 		public boolean hideNavbar;
   }
   
+  class NavNavigatorBackDTO {
+    @Optional
+		public String url;
+
+    @Optional
+		public boolean hideNavbar;
+  }
+  
   class NavOpenAppDTO {
     public String type;
 
@@ -139,7 +147,7 @@ public void _setNavRightBtn(NavBtnDTO dto, final CompletionHandler<Nullable> han
 public void _setNavRightMenuBtn(NavBtnDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavRightMoreBtn(NavMoreBtnDTO dto, final CompletionHandler<Nullable> handler);
 public void _navigatorPush(NavNavigatorDTO dto, final CompletionHandler<Nullable> handler);
-public void _navigatorBack(NavNavigatorDTO dto, final CompletionHandler<Nullable> handler);
+public void _navigatorBack(NavNavigatorBackDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavSearchBar(NavSearchBarDTO dto, final CompletionHandler<Nullable> handler);
 public void _setSearchBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
@@ -239,7 +247,7 @@ public void _removeHistoryPage(NavHistoryDTO dto, final CompletionHandler<Nullab
 
     @JavascriptInterface
     final public void navigatorBack(JSONObject obj, final CompletionHandler<Object> handler) {
-      NavNavigatorDTO data= convert(obj,NavNavigatorDTO.class);
+      NavNavigatorBackDTO data= convert(obj,NavNavigatorBackDTO.class);
       _navigatorBack(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }

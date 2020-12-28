@@ -11,6 +11,7 @@
 @protocol NavBtnDTO;
 @protocol NavMoreBtnDTO;
 @protocol NavNavigatorDTO;
+@protocol NavNavigatorBackDTO;
 @protocol NavOpenAppDTO;
 @protocol NavSearchBarDTO;
 @protocol NavHiddenBarDTO;
@@ -55,6 +56,12 @@
 @interface NavNavigatorDTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
    	@property(nonatomic,copy) NSString* params;
+   	@property(nonatomic,assign) BOOL hideNavbar;
+@end
+    
+
+@interface NavNavigatorBackDTO: JSONModel
+  	@property(nonatomic,copy) NSString* url;
    	@property(nonatomic,assign) BOOL hideNavbar;
 @end
     
@@ -115,7 +122,7 @@
         - (void) _navigatorPush:(NavNavigatorDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-        - (void) _navigatorBack:(NavNavigatorDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _navigatorBack:(NavNavigatorBackDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
         - (void) _setNavSearchBar:(NavSearchBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;

@@ -119,7 +119,7 @@ public class __xengine__module_nav extends xengine__module_nav {
         XOneWebViewPool.IS_ROUTER = false;
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
-            XEngineWebActivityManager.sharedInstance().navigatorPush(mActivity, dto.url, dto.params);
+            XEngineWebActivityManager.sharedInstance().navigatorPush(mActivity, dto.url, dto.params, dto.hideNavbar);
             handler.complete();
         });
 

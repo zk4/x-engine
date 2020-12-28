@@ -568,8 +568,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                    NSString * str = [callBackStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                    str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
                    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:str] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
+                   str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
+                   NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
                    [self loadRequest:request];
+
                }
            };
            [module performSelector:sel withObject:argsDic withObject:Cb];
@@ -616,7 +618,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return str;
 }
 @end

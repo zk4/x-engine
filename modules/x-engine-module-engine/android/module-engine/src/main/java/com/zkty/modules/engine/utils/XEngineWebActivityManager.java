@@ -61,7 +61,7 @@ public class XEngineWebActivityManager {
 
     }
 
-    public void startMicroEngineActivity(Context context, @NonNull String microAppId, String path, String args, String version) {
+    public void startMicroEngineActivity(Context context, @NonNull String microAppId, String path, String args, String version, boolean hideNavBar) {
         if (context == null) {
             context = XEngineApplication.getApplication();
         }
@@ -79,6 +79,7 @@ public class XEngineWebActivityManager {
         }
         intent.putExtra(XEngineWebActivity.INDEX_URL, indexUrl);
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, microAppId);
+        intent.putExtra(XEngineWebActivity.HIDE_NAV_BAR, hideNavBar);
 
         String url = null;
         if (TextUtils.isEmpty(path) || "null".equals(path)) {
@@ -102,7 +103,7 @@ public class XEngineWebActivityManager {
     }
 
     //应用内路由
-    public void navigatorPush(Context context, @NonNull String router, @NonNull String params) {
+    public void navigatorPush(Context context, @NonNull String router, @NonNull String params, boolean hideNavBar) {
 
         XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
         if (activity == null) {
@@ -118,6 +119,7 @@ public class XEngineWebActivityManager {
         intent.putExtra(XEngineWebActivity.URL, url);
         intent.putExtra(XEngineWebActivity.INDEX_URL, activity.getIndexUrl());
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, activity.getMicroAppId());
+        intent.putExtra(XEngineWebActivity.HIDE_NAV_BAR, hideNavBar);
 
         String router1 = UrlUtils.getRouterFormPath(router);
         if (!TextUtils.isEmpty(router)) {

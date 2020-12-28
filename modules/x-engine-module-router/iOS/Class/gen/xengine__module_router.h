@@ -14,6 +14,7 @@
    	@property(nonatomic,copy) NSString* path;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
    	@property(nonatomic,assign) NSInteger version;
+   	@property(nonatomic,assign) BOOL hideNavbar;
 @end
     
 

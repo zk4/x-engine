@@ -65,12 +65,14 @@ public class XEngineWebActivity extends AppCompatActivity {
 
     public static final String URL = "x_engine_url";
     public static final String MICRO_APP_ID = "micro_app_id";
+    public static final String HIDE_NAV_BAR = "hideNavBar";
     public static final String INDEX_URL = "index_url";
     public static final String ROUTER = "router_path";
     private String url;
     private String indexUrl;
     private String mMicroAppId;
     private String router;
+    private boolean hideNavBar = false;//是否隐藏NavBar
 
     //    private ArrayList<LifecycleListener> lifecycleListeners;
     private Set<LifecycleListener> lifecycleListeners;
@@ -139,7 +141,8 @@ public class XEngineWebActivity extends AppCompatActivity {
         mMicroAppId = getIntent().getStringExtra(MICRO_APP_ID);
         indexUrl = getIntent().getStringExtra(INDEX_URL);
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
-
+        hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
+        xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
         xEngineNavBar.setLeftListener(view -> {
             backUp();
         });

@@ -12,5 +12,5 @@
 @interface XERouterManager : NSObject
 
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version;
-
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version withHiddenNavbar:(BOOL)isHidden;
 @end

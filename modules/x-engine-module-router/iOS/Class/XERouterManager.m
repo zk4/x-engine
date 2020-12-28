@@ -18,6 +18,10 @@
 @implementation XERouterManager
 
 
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
+    [XERouterManager routerToTarget:type withUri:uri withPath:path withArgs:args withVersion:version withHiddenNavbar:NO];
+}
+
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version withHiddenNavbar:(BOOL)isHidden{
     
     if(uri.length == 0){

@@ -40,7 +40,8 @@
 
     public String billRetStatusMessage;
 
-    public boolean isCancel;
+    @Optional
+		public boolean isCancel;
   }
   
   class YJBillListDTO {

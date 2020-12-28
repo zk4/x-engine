@@ -10,7 +10,7 @@
 
 + (XEngineWebView*) webview;
 - (instancetype)initWithUrl:(NSString *)fileUrl;
-- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath;
+- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath withHiddenNavBar:(BOOL)isHidden;
 - (void)loadFileUrl;
 
 - (void)setSignleWebView:(XEngineWebView *)webView;

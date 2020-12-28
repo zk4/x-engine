@@ -21,7 +21,11 @@
                            withPath:(NSString *)path
                         withVersion:(long)version
                          withParams:(NSString *)params;
-
+- (void)pushViewControllerWithAppid:(NSString *)appid
+                           withPath:(NSString *)path
+                        withVersion:(long)version
+                         withParams:(NSString *)params
+                 withIsHiddenNavbar:(BOOL)isHidden;
 @end
 
 

@@ -31,6 +31,11 @@
 //http用
 - (void)pushWebViewControllerWithUrl:(NSString *)url{
     
+    [self pushWebViewControllerWithUrl:url withIsHiddenNavbar:NO];
+}
+
+- (void)pushWebViewControllerWithUrl:(NSString *)url withIsHiddenNavbar:(BOOL)isHidden{
+    
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
     [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     
@@ -68,6 +73,15 @@
                         withVersion:(long)version
                          withParams:(NSString *)params{
     
+    [self pushViewControllerWithAppid:appid withPath:path withVersion:version withParams:params withIsHiddenNavbar:NO];
+}
+
+- (void)pushViewControllerWithAppid:(NSString *)appid
+                           withPath:(NSString *)path
+                        withVersion:(long)version
+                         withParams:(NSString *)params
+                 withIsHiddenNavbar:(BOOL)isHidden{
+    
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
     if(urlStr){
@@ -79,7 +93,7 @@
                 urlStr = [NSString stringWithFormat:@"%@?sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             }
         }
-        [self pushWebViewControllerWithUrl:urlStr];
+        [self pushWebViewControllerWithUrl:urlStr withIsHiddenNavbar:isHidden];
     }
 }
 
@@ -131,8 +145,10 @@
 }
 
 -(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url withRootPath:nil];
-    
+    return [self getWebViewControllerWithUrl:url withHiddenBar:NO];
+}
+-(UIViewController *)getWebViewControllerWithUrl:(NSString *)url withHiddenBar:(BOOL)isHidden{
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url withRootPath:nil withHiddenNavBar:isHidden];
     return vc;
 }
 

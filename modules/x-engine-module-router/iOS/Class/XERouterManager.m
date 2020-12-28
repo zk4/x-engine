@@ -18,7 +18,7 @@
 @implementation XERouterManager
 
 
-+(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
++(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version withHiddenNavbar:(BOOL)isHidden{
     
     if(uri.length == 0){
         return;
@@ -56,7 +56,8 @@
             [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:uri
                                                                               withPath:path
                                                                            withVersion:version
-                                                                            withParams:nil];
+                                                                            withParams:nil
+                                                                    withIsHiddenNavbar:isHidden];
         }else{
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"

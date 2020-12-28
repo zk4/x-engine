@@ -76,13 +76,14 @@ static   XEngineWebView* s_webview;
 }
 
 - (instancetype)initWithUrl:(NSString *) fileUrl{
-    return [self initWithUrl:fileUrl withRootPath:fileUrl];
+    return [self initWithUrl:fileUrl withRootPath:fileUrl withHiddenNavBar:NO];
 }
 
-- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath{
+- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
         
+        self.isHiddenNavbar = isHidden;
         NSRange range = [fileUrl rangeOfString:@"?"];
         NSMutableString *newFileUrl = [[NSMutableString alloc] init];
         if(range.location != NSNotFound){

@@ -60,6 +60,13 @@ interface NavNavigatorDTO {
   hideNavbar?: boolean;
 }
 
+interface NavNavigatorBackDTO{
+  //跳转地址
+  url?: string;
+  // 是否隐藏navbar, 默认 false
+  hideNavbar?: boolean;
+}
+
 interface NavOpenAppDTO {
   //跳转类型
   type: string;
@@ -231,7 +238,7 @@ function navigatorPush(arg: NavNavigatorDTO = { url: "",hideNavBar:false }) {
   };
 }
 //返回层级. 如果url为空则返回上一级, 堆栈中有对应地址, 则返回该界面
-function navigatorBack(arg: NavNavigatorDTO = { url: "",hideNavBar:false }) {
+function navigatorBack(arg: NavNavigatorBackDTO = { url: "",hideNavBar:false }) {
   window.navigatorBack = () => {
     nav.navigatorBack().then((res) => {});
   };

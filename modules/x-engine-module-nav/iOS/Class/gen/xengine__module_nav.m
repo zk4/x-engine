@@ -55,6 +55,13 @@
 @end
     
   
+@implementation NavNavigatorBackDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"url"]) { return YES; }
+   	if ([propertyName isEqualToString:@"hideNavbar"]) { return YES; }	return NO;
+    }
+@end
+    
+  
 @implementation NavOpenAppDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
@@ -152,7 +159,7 @@
       }
     - (void) navigatorBack:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          NavNavigatorDTO* dto = [self convert:dict clazz:NavNavigatorDTO.class];
+          NavNavigatorBackDTO* dto = [self convert:dict clazz:NavNavigatorBackDTO.class];
           [self _navigatorBack:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];

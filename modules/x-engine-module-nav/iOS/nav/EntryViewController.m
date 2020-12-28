@@ -27,7 +27,7 @@
 }
 
 - (IBAction)Action:(id)sender {
-    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.65:8080/index.html"];
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.106:8080"];
 }
 - (NSString *)getIPAddress {
 
@@ -64,7 +64,7 @@
 //    [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:@"com.zkty.module.navpush" withVersion:0 withPath:@"/" withParams:nil forceCreate:TRUE];
 //        [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithAppid:@"dist" withVersion:0 withPath:@"/" withParams:nil forceCreate:TRUE];
 
- 
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.106:8080"];
 
 }
 

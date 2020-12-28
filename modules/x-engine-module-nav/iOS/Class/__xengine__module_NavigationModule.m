@@ -276,7 +276,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 
 
 
-- (void)_navigatorBack:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
+- (void)_navigatorBack:(NavNavigatorBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
     
 //    if ([@"0" isEqualToString:dto.url]){
 //        [[Unity sharedInstance].getCurrentVC.navigationController popToRootViewControllerAnimated:YES];

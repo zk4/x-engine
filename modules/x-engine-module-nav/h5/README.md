@@ -199,7 +199,7 @@ npm install @zkty-team/x-engine-module-nav
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | true |  | 跳转地址 |
 | params | string | true |  | 其余参数 |
-| hideNavbar | Boolean | true |  |  是否隐藏navbar, 默认 false |
+| hideNavbar | bool | true |  |  是否隐藏navbar, 默认 false |
 
 
 ## navigatorBack
@@ -222,7 +222,7 @@ npm install @zkty-team/x-engine-module-nav
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | true |  | 跳转地址 |
 | params | string | true |  | 其余参数 |
-| hideNavbar | Boolean | true |  |  是否隐藏navbar, 默认 false |
+| hideNavbar | bool | true |  |  是否隐藏navbar, 默认 false |
 
 
 ## setNavSearchBar

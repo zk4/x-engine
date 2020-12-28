@@ -29,7 +29,7 @@
 		public Integer version;
 
     @Optional
-		public Boolean hideNavbar;
+		public boolean hideNavbar;
   }
   
   interface xengine__module_router_i {

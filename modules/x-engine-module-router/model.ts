@@ -14,7 +14,7 @@ interface RouterOpenAppDTO {
   version?: int;
 
   // 是否隐藏navbar, 默认 false
-  hideNavbar?: Boolean;
+  hideNavbar?: boolean;
 }
 
 //跳转页面.

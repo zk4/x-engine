@@ -28,6 +28,8 @@ interface YJBillRetDTO {
   billRetStatus: string;
   //状态信息
   billRetStatusMessage:string
+  //用户是否主动取消支付
+  isCancel?:boolean
 }
 
 //账单中心dto

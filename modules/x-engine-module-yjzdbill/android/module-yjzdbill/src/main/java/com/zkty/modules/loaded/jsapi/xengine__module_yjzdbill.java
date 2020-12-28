@@ -39,6 +39,9 @@
     public String billRetStatus;
 
     public String billRetStatusMessage;
+
+    @Optional
+		public boolean isCancel;
   }
   
   class YJBillListDTO {

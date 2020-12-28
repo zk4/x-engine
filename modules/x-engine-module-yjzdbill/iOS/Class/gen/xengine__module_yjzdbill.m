@@ -26,7 +26,8 @@
   
 @implementation YJBillRetDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+   
+   	if ([propertyName isEqualToString:@"isCancel"]) { return YES; }	return NO;
     }
 @end
     

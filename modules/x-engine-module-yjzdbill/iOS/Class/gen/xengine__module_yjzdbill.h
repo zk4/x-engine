@@ -29,6 +29,7 @@
 @interface YJBillRetDTO: JSONModel
   	@property(nonatomic,copy) NSString* billRetStatus;
    	@property(nonatomic,copy) NSString* billRetStatusMessage;
+   	@property(nonatomic,assign) BOOL isCancel;
 @end
     
 

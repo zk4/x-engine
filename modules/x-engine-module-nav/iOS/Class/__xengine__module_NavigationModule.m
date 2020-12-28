@@ -320,7 +320,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
     
-    [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithPath:dto.url withParams:dto.params];
+    [[XEOneWebViewControllerManage sharedInstance] pushViewControllerWithPath:dto.url withParams:dto.params withHiddenNavbar:dto.hideNavbar];
     
     if(completionHandler){
         completionHandler(YES);

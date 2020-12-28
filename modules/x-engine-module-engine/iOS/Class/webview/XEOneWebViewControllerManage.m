@@ -56,11 +56,15 @@
 }
 //nav用
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params{
+    [self pushViewControllerWithPath:path withParams:params withHiddenNavbar:NO];
+}
+
+- (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params withHiddenNavbar:(BOOL)isHidden{
     
     [Unity sharedInstance].getCurrentVC.hidesBottomBarWhenPushed = YES;
     NSString *url = [self getUrl:path params:params];
     
-    UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url];
+    UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url withHiddenBar:isHidden];
     //
     [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle
                                              withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];

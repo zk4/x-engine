@@ -16,6 +16,7 @@
 - (void)pushWebViewControllerWithHttpRouteUrl:(NSString *)url;
 //nav用
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params;
+- (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params withHiddenNavbar:(BOOL)isHidden;
 //route用
 - (void)pushViewControllerWithAppid:(NSString *)appid
                            withPath:(NSString *)path

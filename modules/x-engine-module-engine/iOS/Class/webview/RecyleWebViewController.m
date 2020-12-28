@@ -330,6 +330,8 @@ static   XEngineWebView* s_webview;
     self.tipLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
     self.tipLabel.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel];
+    
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理

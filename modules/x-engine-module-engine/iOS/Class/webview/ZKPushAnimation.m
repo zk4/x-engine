@@ -177,10 +177,21 @@
                                       toView.frame.size.width,
                                       containerView.frame.size.height);
         } else {
-            toView.frame = CGRectMake(toView.frame.size.width,
-                                      toView.frame.origin.y,
-                                      toView.frame.size.width,
-                                      toView.frame.size.height);
+            if(fromeVc.isHiddenNavbar){
+                toView.frame = CGRectMake(toView.frame.size.width,
+                                          CGRectGetMaxY(toVc.navigationController.navigationBar.frame),
+                                          toView.frame.size.width,
+                                          containerView.bounds.size.height - CGRectGetMaxY(toVc.navigationController.navigationBar.frame));
+//                toView.frame = CGRectMake(0,
+//                                          CGRectGetMaxY(toVc.navigationController.navigationBar.frame),
+//                                          containerView.bounds.size.width,
+//                                          containerView.bounds.size.height - CGRectGetMaxY(toVc.navigationController.navigationBar.frame));
+            }else{
+                toView.frame = CGRectMake(toView.frame.size.width,
+                                          toView.frame.origin.y,
+                                          toView.frame.size.width,
+                                          toView.frame.size.height);
+            }
         }
         
         
@@ -251,10 +262,17 @@
         RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
 //        RecyleWebViewController *fromVC = (RecyleWebViewController *)fromVc;
         
-        toView.frame = CGRectMake(0,
-                                  CGRectGetMaxY(toVc.navigationController.navigationBar.frame),
-                                  containerView.bounds.size.width,
-                                  containerView.bounds.size.height - CGRectGetMaxY(toVc.navigationController.navigationBar.frame));
+        if(toVC.isHiddenNavbar){
+            toView.frame = CGRectMake(0,
+                                      0,
+                                      containerView.bounds.size.width,
+                                      containerView.bounds.size.height);
+        }else{
+            toView.frame = CGRectMake(0,
+                                      CGRectGetMaxY(toVc.navigationController.navigationBar.frame),
+                                      containerView.bounds.size.width,
+                                      containerView.bounds.size.height - CGRectGetMaxY(toVc.navigationController.navigationBar.frame));
+        }
         //获取toView的截屏
         UIImage *toScreenImg = [toVC getScreenImage];
         UIImageView *toViewScreenImageView = [[UIImageView alloc] initWithImage:toScreenImg];

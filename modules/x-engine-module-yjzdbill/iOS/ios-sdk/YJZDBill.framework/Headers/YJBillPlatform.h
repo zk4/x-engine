@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param orderInfo   业务参数，目前需要传递会员标识、业务系统订单号、预下单平台商户号
  * @param appScheme  当前app注册的appScheme   C端必传 B端非必填
  * @param payType  支付业务， 是否是 B端调用，  YES为B， NO为C
- * @param payfinishBlock     回调 (responseObject 1 支付成功   2 支付异常，  message；描述)
+ * @param payfinishBlock     回调 (responseObject 1 支付成功   2 支付异常;  isCancel  yes为用户取消支付 no为非用户取消；   message；描述)
  *
  *  示例
  *  NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)billPaymentWithOrderInfo:(NSMutableDictionary*)orderInfo
                       appScheme:(NSString *)appScheme
                         payType:(BOOL)payType
-                 payfinishBlock:(void(^)(id responseObject, NSString *message))payfinishBlock;
+                 payfinishBlock:(void(^)(id responseObject, BOOL isCancel, NSString *message))payfinishBlock;
 
 
 #pragma mark  --  退款

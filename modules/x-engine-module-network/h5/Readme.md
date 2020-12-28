@@ -1,5 +1,5 @@
 
-version: 0.1.4
+version: 0.1.5
 ``` bash
 npm install @zkty-team/x-engine-module-network
 ```
@@ -8,6 +8,7 @@ npm install @zkty-team/x-engine-module-network
 
 ## getRequest
 
+ ``` js
  interface UploadReponseDTO {
      //返回状态
      status: int;
@@ -18,6 +19,7 @@ npm install @zkty-team/x-engine-module-network
      //返回结果
      data: string
  }
+ ```
 发送GET网络请求
 **demo**
 ``` js

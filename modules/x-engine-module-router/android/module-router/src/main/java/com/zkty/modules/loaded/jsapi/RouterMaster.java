@@ -19,7 +19,7 @@ public class RouterMaster {
 
     public static void openTargetRouter(Context context, String type, String uri, String path, String arg, String microAppVersion) {
 
-        if (context == null || type == null) return;
+        if (type == null) return;
         switch (type) {
             case "0":
             case "h5"://h5

@@ -1,4 +1,5 @@
 PODS:
+  - BMKLocationKit (2.0.0)
   - JSONModel (1.8.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
@@ -7,12 +8,12 @@ PODS:
     - SDWebImage/Core (= 5.9.1)
   - SDWebImage/Core (5.9.1)
   - SSZipArchive (2.2.3)
-  - UniBoost (0.1.0)
+  - UniBoost (2.9.8)
   - WechatOpenSDK (1.8.7.1)
   - x-engine-module-dcloud (0.0.1):
     - x-engine-module-engine
     - x-engine-module-tools
-  - x-engine-module-engine (0.0.48):
+  - x-engine-module-engine (0.1.5):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -21,7 +22,8 @@ PODS:
   - x-engine-module-nav (1.1.1):
     - x-engine-module-engine
     - x-engine-module-protocols
-  - x-engine-module-protocols (0.0.9)
+  - x-engine-module-protocols (0.0.9):
+    - BMKLocationKit
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
     - WechatOpenSDK
@@ -30,7 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - SDWebImage
-  - UniBoost (from `../../UniBoost`)
+  - UniBoost (from `../../../../UniBoost`)
   - WechatOpenSDK
   - x-engine-module-dcloud (from `../../x-engine-module-dcloud`)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
@@ -42,6 +44,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - WechatOpenSDK
   trunk:
+    - BMKLocationKit
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -51,7 +54,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   UniBoost:
-    :path: "../../UniBoost"
+    :path: "../../../../UniBoost"
   x-engine-module-dcloud:
     :path: "../../x-engine-module-dcloud"
   x-engine-module-engine:
@@ -64,20 +67,21 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-module-tools"
 
 SPEC CHECKSUMS:
+  BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  UniBoost: 0f3b7db913ba2762d7eae8056d7f72c32f2f26ae
+  UniBoost: 23969a45a98f64bda16f8b9c53fb4cb62a9ca696
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
-  x-engine-module-engine: 28cb67c91abeabc2a31f5c22fd53f8b89d050eca
+  x-engine-module-engine: d4b05001f3dd1a2b281f0e123392229f1e6941c6
   x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
-  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
+  x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: c99f86cceae88a7db936b4854e254deb6f87047a
+PODFILE CHECKSUM: 83e4e1fdf1dae71ba307f56b5f23c9ac57e82b94
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1

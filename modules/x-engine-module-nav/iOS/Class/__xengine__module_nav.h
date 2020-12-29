@@ -11,7 +11,7 @@
 #import <micros.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface __xengine__module_NavigationModule : xengine__module_nav
+@interface __xengine__module_nav : xengine__module_nav
 - (void)navigateHidden:(NSDictionary *)data complate:(XEngineCallBack)completionHandler;
 - (void)navigateShow:(NSDictionary *)data callBlock:(XEngineCallBack)completionHandler;
 @end

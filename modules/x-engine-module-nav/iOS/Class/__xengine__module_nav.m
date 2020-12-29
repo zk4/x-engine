@@ -1,17 +1,12 @@
 //
-//  __xengine__module_NavigationModule.m
 
-#import "__xengine__module_NavigationModule.h"
+#import "__xengine__module_nav.h"
 #import "XEngineContext.h"
 #import "PopoverViewController.h"
-//#import "UINavigationItem+BarButtonItem.h"
 #import "Unity.h"
 #import "UIViewController+Push_Present.h"
 #import "RecyleWebViewController.h"
-//#import "UIViewController+NavigationBar.h"
-//#import "UIViewController+Customized.h"
 #import "UIColor+HexString.h"
-//#import "UIViewController+Loading_Prompt.h"
 #import "JSONToDictionary.h"
 #import "xengine_protocol_network.h"
 #import "micros.h"
@@ -19,21 +14,18 @@
 #import "UIBlockButton.h"
 #import "XEOneWebViewControllerManage.h"
 #import "NavUtil.h"
-
-//#import "WXApi.h"
 #import "NavSearchBar.h"
 
 static const NSUInteger BAR_BTN_FLAG = 10000;
 
-@interface __xengine__module_NavigationModule () <UIPopoverPresentationControllerDelegate,UISearchBarDelegate>
+@interface __xengine__module_nav () <UIPopoverPresentationControllerDelegate,UISearchBarDelegate>
 @property (nonatomic, strong) UIBarButtonItem *rightBarItem; /** rightBarItem */
 @property (nonatomic, strong) UIBarButtonItem *leftBarItem; /** leftBarItem */
-//@property (nonatomic, strong) NSDictionary *itemParam; /** 下拉菜单参数 */
 @property (nonatomic,copy) NSString * isInput;
 @property (nonatomic, weak) id<xengine_protocol_network> network;
 @end
 
-@implementation __xengine__module_NavigationModule
+@implementation __xengine__module_nav
 
 - (NSString *)moduleId {
     
@@ -471,7 +463,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     
     if(dtoNavBarAry.count > 0) {
         
-        __weak __xengine__module_NavigationModule *weakSelf = self;
+        __weak __xengine__module_nav *weakSelf = self;
         int tag = 0;
         for (NavBtnDTO *item in dtoNavBarAry) {
             NSString *title = item.title;

@@ -14,7 +14,7 @@
 #import "micros.h"
 #import "JSONToDictionary.h"
 #import "Unity.h"
-#import <x-engine-module-tools/UIViewController+.h>
+//#import <x-engine-module-tools/UIViewController+.h>
 #import <x-engine-module-tools/UIColor+HexString.h>
 #import <x-engine-module-engine/RecyleWebViewController.h>
 #import <XEngineWebView.h>
@@ -50,14 +50,14 @@
 #pragma mark - Toast
 
  - (void)_hideToast:(void (^)(BOOL))completionHandler {
-     [[Unity sharedInstance].getCurrentVC hideLoading];
+//     [[Unity sharedInstance].getCurrentVC hideLoading];
      
 //     [self hiddenHudToast:[Unity sharedInstance].topView];
  }
 
 
 - (void)_hiddenHudToast:(void (^)(BOOL))completionHandler {
-    [[Unity sharedInstance].getCurrentVC hideLoading];
+//    [[Unity sharedInstance].getCurrentVC hideLoading];
 //    [MBProgressHUD hideHUDForView:[Unity sharedInstance].topView] animated:YES];
 }
 
@@ -75,9 +75,9 @@
             if ([icon isEqualToString:@"success"]) {
                 [MBProgressHUD showToastWithTitle:title image:[UIImage imageNamed:@"toast_success" inAssets:@"xengine-ui"] time:time];
             } else if ([icon isEqualToString:@"loading"]) {
-                [[Unity sharedInstance].getCurrentVC showLoading:title];
+//                [[Unity sharedInstance].getCurrentVC showLoading:title];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[Unity sharedInstance].getCurrentVC hideLoading];
+//                    [[Unity sharedInstance].getCurrentVC hideLoading];
                 });
             } else {
                 [MBProgressHUD showToastWithTitle:title image:nil time:time];
@@ -92,12 +92,12 @@
 - (void)_showLoading:(XETipDTO *)dto complete:(void (^)(BOOL))completionHandler {
     NSString *title = dto.tipContent;
     if ([self checkRequiredParam:title name:@"title"]) {
-        [[Unity sharedInstance].getCurrentVC showLoading:title];
+//        [[Unity sharedInstance].getCurrentVC showLoading:title];
     }
 }
 
 - (void)_hideLoading:(void (^)(BOOL))completionHandler {
-    [[Unity sharedInstance].getCurrentVC hideLoading];
+//    [[Unity sharedInstance].getCurrentVC hideLoading];
 }
 
 
@@ -108,21 +108,21 @@
         NSString *message = dto.tipContent;
         BOOL showCancel = dto.showCancel;
         if (showCancel) {
-            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message cancelTitle:@"取消" sureTitle:@"确定" cancelHandler:^(UIAlertAction * _Nonnull action) {
-                XERetDTO * d = [XERetDTO new];
-                d.content = [NSString stringWithFormat:@"%d",0];
-                completionHandler(d,YES);
-            } sureHandler:^(UIAlertAction * _Nonnull action) {
-                XERetDTO * d = [XERetDTO new];
-                d.content = [NSString stringWithFormat:@"%d",1];
-                completionHandler(d,YES);
-            }];
+//            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message cancelTitle:@"取消" sureTitle:@"确定" cancelHandler:^(UIAlertAction * _Nonnull action) {
+//                XERetDTO * d = [XERetDTO new];
+//                d.content = [NSString stringWithFormat:@"%d",0];
+//                completionHandler(d,YES);
+//            } sureHandler:^(UIAlertAction * _Nonnull action) {
+//                XERetDTO * d = [XERetDTO new];
+//                d.content = [NSString stringWithFormat:@"%d",1];
+//                completionHandler(d,YES);
+//            }];
         } else {
-            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {
-                XERetDTO * d = [XERetDTO new];
-                d.content = [NSString stringWithFormat:@"%d",1];
-                completionHandler(d,YES);
-            }];
+//            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message sureTitle:@"确定" sureHandler:^(UIAlertAction * _Nonnull action) {
+//                XERetDTO * d = [XERetDTO new];
+//                d.content = [NSString stringWithFormat:@"%d",1];
+//                completionHandler(d,YES);
+//            }];
         }
     }
 }
@@ -134,18 +134,18 @@
     NSMutableArray *actionHandlers = [NSMutableArray array];
         for (int i = 0; i < dto.itemList.count; i++)
         {
-            ActionHandler handler = ^(UIAlertAction * _Nonnull action){
-                
-                NSLog(@"%d",i);
-                XERetDTO * d = [XERetDTO new];
-                d.content = [NSString stringWithFormat:@"%d",i];
-                completionHandler(d, YES);
-            };
-            [actionHandlers addObject:handler];
+//            ActionHandler handler = ^(UIAlertAction * _Nonnull action){
+//
+//                NSLog(@"%d",i);
+//                XERetDTO * d = [XERetDTO new];
+//                d.content = [NSString stringWithFormat:@"%d",i];
+//                completionHandler(d, YES);
+//            };
+//            [actionHandlers addObject:handler];
         }
         UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
     
-        [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {} sureHandlers:actionHandlers];
+//        [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {} sureHandlers:actionHandlers];
 }
 
 #pragma mark - PickerView

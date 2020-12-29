@@ -9,7 +9,7 @@
 #import "__xengine__module_camera.h"
 #import <XEngineContext.h>
 #import <x-engine-module-engine/micros.h>
-#import <x-engine-module-tools/UIViewController+.h>
+//#import <x-engine-module-tools/UIViewController+.h>
 #import <x-engine-module-tools/JSONToDictionary.h>
 #import <Unity.h>
 #import <x-engine-module-engine/XEngineWebView.h>
@@ -44,8 +44,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     self.isbase64 = dto.isbase64;
     self.event = dto.__event__;
     __weak typeof(self) weakself = self;
-    NSMutableArray *actionHandlers = [NSMutableArray array];
-    ActionHandler cameraHandler = ^(UIAlertAction * _Nonnull action){
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *pAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [AVCaptureDevice requestAccessForMediaType:
          AVMediaTypeVideo completionHandler:^(BOOL granted) {//相机权限
          if (granted) {
@@ -59,8 +59,10 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
              });
             }
         }];
-    };
-    ActionHandler photoHandler = ^(UIAlertAction * _Nonnull action){
+    }];
+    [alert addAction:pAction];
+    
+    UIAlertAction *xAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized){
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -72,12 +74,9 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
             });
         }
         }];
-    };
-    [actionHandlers addObject:cameraHandler];
-    [actionHandlers addObject:photoHandler];
-    [[Unity sharedInstance].getCurrentVC showActionSheetWithTitle:nil message:nil cancelTitle:@"取消" sureTitles:@[@"拍照",@"相册"] cancelHandler:^(UIAlertAction * _Nonnull action) {
-
-    } sureHandlers:actionHandlers];
+    }];
+    [alert addAction:xAction];
+    [[Unity sharedInstance].getCurrentVC presentViewController:alert animated:YES completion:nil];
 }
 
 

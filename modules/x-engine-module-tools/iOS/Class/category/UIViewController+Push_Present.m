@@ -14,32 +14,32 @@
 @implementation UIViewController (Push_Present)
 
 
-- (void)popToViewControllerLevel:(NSNumber *)level
-{
-    UINavigationController *navigationController = nil;
-    if ([self isKindOfClass:UINavigationController.class]) {
-        navigationController = (UINavigationController *)self;
-    } else if (self.navigationController) {
-        navigationController = self.navigationController;
-    } else {
-        // error
-        return;
-    }
-
-    if (navigationController.viewControllers.count > labs(level.integerValue)) {
-        NSInteger index = (level.integerValue >= 0) ? level.integerValue : (navigationController.viewControllers.count + level.integerValue - 1);
-        if (index >= 0 && navigationController.viewControllers.count > index) {
-            UIViewController *vc = navigationController.viewControllers[index];
-            if (vc) {
-                [navigationController popToViewController:vc animated:YES];
-                return;
-            }
-        }
-    }
-
-    // 回跳一级
-    [navigationController popViewControllerAnimated:YES];
-}
+//- (void)popToViewControllerLevel:(NSNumber *)level
+//{
+//    UINavigationController *navigationController = nil;
+//    if ([self isKindOfClass:UINavigationController.class]) {
+//        navigationController = (UINavigationController *)self;
+//    } else if (self.navigationController) {
+//        navigationController = self.navigationController;
+//    } else {
+//        // error
+//        return;
+//    }
+//
+//    if (navigationController.viewControllers.count > labs(level.integerValue)) {
+//        NSInteger index = (level.integerValue >= 0) ? level.integerValue : (navigationController.viewControllers.count + level.integerValue - 1);
+//        if (index >= 0 && navigationController.viewControllers.count > index) {
+//            UIViewController *vc = navigationController.viewControllers[index];
+//            if (vc) {
+//                [navigationController popToViewController:vc animated:YES];
+//                return;
+//            }
+//        }
+//    }
+//
+//    // 回跳一级
+//    [navigationController popViewControllerAnimated:YES];
+//}
 
 - (BOOL)isExistedViewController:(Class)targetClass
 {

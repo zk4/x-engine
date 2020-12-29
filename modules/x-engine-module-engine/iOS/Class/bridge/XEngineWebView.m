@@ -102,22 +102,28 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
                              initiatedByFrame:frame
                             completionHandler:completionHandler];
         }else{
-            dialogType=3;
-            if(jsDialogBlock){
-                promptHandler=completionHandler;
-            }
-            
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:prompt
-                                  message:@""
-                                  delegate:self
-                                  cancelButtonTitle:dialogTextDic[@"promptCancelBtn"]?dialogTextDic[@"promptCancelBtn"]:@"取消"
-                                  otherButtonTitles:dialogTextDic[@"promptOkBtn"]?dialogTextDic[@"promptOkBtn"]:@"确定",
-                                  nil];
-            [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-            txtName = [alert textFieldAtIndex:0];
-            txtName.text=defaultText;
-            [alert show];
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:prompt
+                                                                           message:@""
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"promptOkBtn"]?dialogTextDic[@"promptOkBtn"]:@"确定"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                if(completionHandler){
+                    if(alert.textFields.count > 0){
+                        completionHandler(alert.textFields.firstObject.text);
+                        return;
+                    }
+                }
+                completionHandler(@"");
+            }];
+            [alert addAction:action];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:dialogTextDic[@"promptCancelBtn"]?dialogTextDic[@"promptCancelBtn"]:@"取消"
+                                                             style:UIAlertActionStyleDestructive
+                                                           handler:nil];
+            [alert addAction:cancel];
+            [alert addTextFieldWithConfigurationHandler:nil];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
         }
     }
 }
@@ -137,17 +143,19 @@ completionHandler:(void (^)(void))completionHandler
                          initiatedByFrame:frame
                         completionHandler:completionHandler];
     }else{
-        dialogType=1;
-        if(jsDialogBlock){
-            alertHandler=completionHandler;
-        }
-        UIAlertView *alertView =
-        [[UIAlertView alloc] initWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
-                                   message:message
-                                  delegate:self
-                         cancelButtonTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
-                         otherButtonTitles:nil,nil];
-        [alertView show];
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
+                                                                       message:message
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+            if(completionHandler){
+                completionHandler();
+            }
+        }];
+        [alert addAction:action];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -164,17 +172,23 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                         initiatedByFrame:frame
                        completionHandler:completionHandler];
     }else{
-        dialogType=2;
-        if(jsDialogBlock){
-            confirmHandler=completionHandler;
-        }
-        UIAlertView *alertView =
-        [[UIAlertView alloc] initWithTitle:dialogTextDic[@"confirmTitle"]?dialogTextDic[@"confirmTitle"]:@"提示"
-                                   message:message
-                                  delegate:self
-                         cancelButtonTitle:dialogTextDic[@"confirmCancelBtn"]?dialogTextDic[@"confirmCancelBtn"]:@"取消"
-                         otherButtonTitles:dialogTextDic[@"confirmOkBtn"]?dialogTextDic[@"confirmOkBtn"]:@"确定", nil];
-        [alertView show];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"confirmTitle"]?dialogTextDic[@"confirmTitle"]:@"提示"
+                                                                       message:message
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"confirmOkBtn"]?dialogTextDic[@"confirmOkBtn"]:@"确定"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+            if(completionHandler){
+                completionHandler(YES);
+            }
+        }];
+        [alert addAction:action];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:dialogTextDic[@"confirmCancelBtn"]?dialogTextDic[@"confirmCancelBtn"]:@"取消"
+                                                         style:UIAlertActionStyleDestructive
+                                                       handler:nil];
+        [alert addAction:cancel];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -233,25 +247,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
         
     }];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(dialogType==1 && alertHandler){
-        alertHandler();
-        alertHandler=nil;
-    }else if(dialogType==2 && confirmHandler){
-        confirmHandler(buttonIndex==1?YES:NO);
-        confirmHandler=nil;
-    }else if(dialogType==3 && promptHandler && txtName) {
-        if(buttonIndex==1){
-            promptHandler([txtName text]);
-        }else{
-            promptHandler(@"");
-        }
-        promptHandler=nil;
-        txtName=nil;
-    }
 }
 
 - (void) evalJavascript:(int) delay{
@@ -565,13 +560,15 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
            XEngineCallBack  Cb=  ^(id data, BOOL ret){
                if (callBackStr && callBackStr.length !=0) {
                    NSString * retDataStr = [self idFromObject:data];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                    NSString * str = [callBackStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                    str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
                    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                    str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
                    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
                    [self loadRequest:request];
-
+#pragma clang diagnostic pop
                }
            };
 #pragma clang diagnostic push
@@ -590,7 +587,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
         jsonStr= [jsonStr substringFromIndex:range.location+1];
     }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     jsonStr = [jsonStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+#pragma clang diagnostic pop
     NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
     NSError*err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];

@@ -130,6 +130,10 @@
 
 - (NSString *)URLDecodedString {
     NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     return [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+#pragma clang diagnostic pop
+    
 }
 @end

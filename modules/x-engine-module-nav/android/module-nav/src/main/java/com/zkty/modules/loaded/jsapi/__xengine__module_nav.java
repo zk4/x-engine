@@ -126,7 +126,7 @@ public class __xengine__module_nav extends xengine__module_nav {
     }
 
     @Override
-    public void _navigatorBack(NavNavigatorDTO dto, CompletionHandler<Nullable> handler) {
+    public void _navigatorBack(NavNavigatorBackDTO dto, CompletionHandler<Nullable> handler) {
 
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
         mActivity.runOnUiThread(() -> {
@@ -228,4 +228,5 @@ public class __xengine__module_nav extends xengine__module_nav {
         XEngineWebActivityManager.sharedInstance().removeHistoryPage(dto.history);
 
     }
+
 }

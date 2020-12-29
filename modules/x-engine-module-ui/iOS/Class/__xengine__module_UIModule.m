@@ -105,7 +105,7 @@
 - (void)_showModal:(XEModalDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
     NSString *title = dto.tipTitle;
     if ( [self checkRequiredParam:title name:@"title"]) {
-        NSString *message = dto.tipContent;
+//        NSString *message = dto.tipContent;
         BOOL showCancel = dto.showCancel;
         if (showCancel) {
 //            [[Unity sharedInstance].getCurrentVC showAlertWithTitle:title message:message cancelTitle:@"取消" sureTitle:@"确定" cancelHandler:^(UIAlertAction * _Nonnull action) {
@@ -131,7 +131,7 @@
 
 #pragma mark - ActionSheet
 - (void)_showActionSheet:(XESheetDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
-    NSMutableArray *actionHandlers = [NSMutableArray array];
+//    NSMutableArray *actionHandlers = [NSMutableArray array];
         for (int i = 0; i < dto.itemList.count; i++)
         {
 //            ActionHandler handler = ^(UIAlertAction * _Nonnull action){
@@ -143,7 +143,7 @@
 //            };
 //            [actionHandlers addObject:handler];
         }
-        UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
+//        UIViewController*  cvc = [Unity sharedInstance].getCurrentVC;
     
 //        [cvc showActionSheetWithTitle:dto.title message:dto.content cancelTitle:@"取消" sureTitles:dto.itemList cancelHandler:^(UIAlertAction * _Nonnull action) {} sureHandlers:actionHandlers];
 }

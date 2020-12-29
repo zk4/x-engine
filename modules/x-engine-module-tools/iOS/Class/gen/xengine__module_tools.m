@@ -61,4 +61,13 @@
           }];
         
       }
-  @end
+
+- (void)_unZipFile:(XEUnZipDTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    
+}
+
+- (void)_zipFile:(XEZipDTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    
+}
+
+@end

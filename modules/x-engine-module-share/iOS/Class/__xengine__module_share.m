@@ -113,7 +113,7 @@
             d.errStr = resp.errStr?resp.errStr:@"0";
             d.type = [NSString stringWithFormat:@"%d",resp.errCode];
             if (self.event) {
-                [webVC.webview callHandler:self.event arguments:d.code completionHandler:^(id  _Nullable value) {}];
+                [webVC.webview callHandler:self.event arguments:@[d.code] completionHandler:^(id  _Nullable value) {}];
             }
         }
 

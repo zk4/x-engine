@@ -4,14 +4,14 @@
 #import "__xengine__module_NavigationModule.h"
 #import "XEngineContext.h"
 #import "PopoverViewController.h"
-#import "UINavigationItem+BarButtonItem.h"
+//#import "UINavigationItem+BarButtonItem.h"
 #import "Unity.h"
 #import "UIViewController+Push_Present.h"
 #import "RecyleWebViewController.h"
-#import "UIViewController+NavigationBar.h"
-#import "UIViewController+Customized.h"
+//#import "UIViewController+NavigationBar.h"
+//#import "UIViewController+Customized.h"
 #import "UIColor+HexString.h"
-#import "UIViewController+Loading_Prompt.h"
+//#import "UIViewController+Loading_Prompt.h"
 #import "JSONToDictionary.h"
 #import "xengine_protocol_network.h"
 #import "micros.h"
@@ -45,15 +45,15 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 }
 
 - (void) downloadImg:(NSString*)url cb:(nullable void (^)(NSURLResponse * response, UIImage * _Nullable img, NSError * _Nullable error)) cb{
-    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-    [topVC showLoading];
+//    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+//    [topVC showLoading];
     NSURL *URL = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     NSURLSessionDownloadTask *downloadTask = [self.network downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
     } completionHandler:^(NSURLResponse *response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        [topVC hideLoading];
+//        [topVC hideLoading];
         if(!error){
             UIImage* responseObject=[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:filePath]];
             cb(response,responseObject,error);
@@ -218,15 +218,25 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     popover.preferredContentSize = CGSizeMake( (menuWidht && ![menuWidht isEqualToString:@""] && ![menuWidht isEqual:[NSNull null]]) ? menuWidht.floatValue:100, itemList.count * 50);
     popover.modalPresentationStyle = UIModalPresentationPopover;
     popover.selectCellBlock = ^(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
-        [topVC dismissAnimated:YES completion:^{
-            RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-            NSString *indexRow = [NSString stringWithFormat:@"%ld",indexPath.item];
-            if ([NavUtil getNoEmptyString:event]){
-                [webVC.webview callHandler:event arguments:@[indexRow] completionHandler:^(id  _Nullable value) {}];
-            }
-        }];
+        if (topVC.navigationController) {
+            [topVC.navigationController dismissViewControllerAnimated:YES completion:^{
+                RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
+                NSString *indexRow = [NSString stringWithFormat:@"%ld",indexPath.item];
+                if ([NavUtil getNoEmptyString:event]){
+                    [webVC.webview callHandler:event arguments:@[indexRow] completionHandler:^(id  _Nullable value) {}];
+                }
+            }];
+        } else {
+            [topVC dismissViewControllerAnimated:YES completion:^{
+                RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
+                NSString *indexRow = [NSString stringWithFormat:@"%ld",indexPath.item];
+                if ([NavUtil getNoEmptyString:event]){
+                    [webVC.webview callHandler:event arguments:@[indexRow] completionHandler:^(id  _Nullable value) {}];
+                }
+            }];
+        }
+
     };
-    
     
     UIPopoverPresentationController *popController = [popover popoverPresentationController];
     popController.canOverlapSourceViewRect = YES;

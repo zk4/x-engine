@@ -9,7 +9,7 @@
 #import "__xengine__module_device.h"
 #import <XEngineContext.h>
 #import <micros.h>
-#import <x-engine-module-tools/UIViewController+.h>
+//#import <x-engine-module-tools/UIViewController+.h>
 #import <x-engine-module-tools/JSONToDictionary.h>
 #import <sys/utsname.h>
 

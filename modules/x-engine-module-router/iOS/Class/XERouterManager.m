@@ -70,6 +70,7 @@
                                                                     @"ROUTE_URI":[NSString stringWithFormat:@"%@", uri],
                                                                     @"ROUTE_VERSION":[NSString stringWithFormat:@"%ld", version > 0 ? version : 1],
                                                                     @"ROUTE_PATH":[NSString stringWithFormat:@"%@", path],
+                                                                    @"hideNavbar":@(isHidden),
             }];
         }
     } else if([type isEqual:@"uni"]){

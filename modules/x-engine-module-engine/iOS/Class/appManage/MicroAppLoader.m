@@ -59,7 +59,8 @@
 - (void) scanMicroAppsInSandBox{
     NSString * sandbox_microapps_location = [MicroAppLoader microappDirectory];
     NSArray* microapps = [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:false];
-    NSArray* microapps2 = [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:YES];
+//    NSArray* microapps2 =
+    [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:YES];
     for (NSString* microapp in microapps){
        NSMutableArray* tokens=[[microapp  componentsSeparatedByString:@"."] mutableCopy];
        NSInteger cur_version =  [[tokens lastObject] intValue];

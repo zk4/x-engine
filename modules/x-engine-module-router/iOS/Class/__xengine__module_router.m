@@ -20,7 +20,7 @@
  
 
 -(void)_openTargetRouter:(RouterOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    [XERouterManager routerToTarget:dto.type withUri:dto.uri withPath:dto.path withArgs:dto.args withVersion:dto.version];
+    [XERouterManager routerToTarget:dto.type withUri:dto.uri withPath:dto.path withArgs:dto.args withVersion:dto.version withHiddenNavbar:dto.hideNavbar];
     completionHandler(YES);
 }
 

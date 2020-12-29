@@ -150,7 +150,7 @@
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     if ([topVC isKindOfClass:RecyleWebViewController.class]){
         RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-        [webVC runJsFunction:self.dto.__event__ arguments:searchBar.text];
+        [webVC runJsFunction:self.dto.__event__ arguments:@[searchBar.text]];
     }
     if ([searchBar isFirstResponder]) {
         [searchBar resignFirstResponder];

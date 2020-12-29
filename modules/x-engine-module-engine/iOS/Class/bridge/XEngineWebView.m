@@ -574,7 +574,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
                }
            };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
            [module performSelector:sel withObject:argsDic withObject:Cb];
+#pragma clang diagnostic pop
        }
         
     }

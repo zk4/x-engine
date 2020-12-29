@@ -72,6 +72,7 @@
 
 
   @implementation xengine__module_network
+
     - (instancetype)init
     {
         self = [super init];
@@ -146,4 +147,37 @@
           }];
         
       }
-  @end
+
+- (void)_deleteRequest:(RequestDTO *)dto complete:(void (^)(ReponseDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_downloadRequest:(DownloadRequestDTO *)dto complete:(void (^)(DownloadReponseDTO *, BOOL))completionHandler {
+        
+}
+
+- (void)_getRequest:(RequestDTO *)dto complete:(void (^)(ReponseDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_headRequest:(RequestDTO *)dto complete:(void (^)(ReponseDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_patchRequest:(RequestDTO *)dto complete:(void (^)(ReponseDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_postRequest:(RequestDTO *)dto complete:(void (^)(ReponseDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_putRequest:(RequestDTO *)dto complete:(void (^)(ReponseDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_uploadRequest:(UploadRequestDTO *)dto complete:(void (^)(UploadReponseDTO *, BOOL))completionHandler {
+    
+}
+
+@end

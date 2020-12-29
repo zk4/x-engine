@@ -192,4 +192,49 @@
              completionHandler(nil ,complete);
           }];
       }
-  @end
+
+- (void)_navigatorBack:(NavNavigatorBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_removeHistoryPage:(NavHistoryDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavLeftBtn:(NavBtnDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavRightBtn:(NavBtnDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavRightMenuBtn:(NavBtnDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavRightMoreBtn:(NavMoreBtnDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavSearchBar:(NavSearchBarDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavTitle:(NavTitleDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setSearchBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+@end

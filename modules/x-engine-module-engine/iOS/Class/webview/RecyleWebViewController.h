@@ -3,19 +3,19 @@
 @class XEngineWebView;
 @interface RecyleWebViewController : UIViewController
 
-@property (nonatomic, copy) NSString *loadUrl;
-@property (nonatomic, copy) NSString *preLevelPath;
-@property (nonatomic, strong) XEngineWebView * webview;
+@property (nonatomic, copy) NSString * _Nullable loadUrl;
+@property (nonatomic, copy) NSString * _Nullable preLevelPath;
+@property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) BOOL isHiddenNavbar;
 
-+ (XEngineWebView*) webview;
-- (instancetype)initWithUrl:(NSString *)fileUrl;
-- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath withHiddenNavBar:(BOOL)isHidden;
++ (XEngineWebView * _Nullable) webview;
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl;
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl withRootPath:(NSString * _Nullable)rootPath withHiddenNavBar:(BOOL)isHidden;
 - (void)loadFileUrl;
 
-- (void)setSignleWebView:(XEngineWebView *)webView;
+- (void)setSignleWebView:(XEngineWebView * _Nullable)webView;
 
-- (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments;
-- (void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^_Nullable)(id  _Nullable value)) completionHandler ;
+- (void)runJsFunction:(NSString * _Nullable)event arguments:(NSArray * _Nullable)arguments;
+- (void)runJsFunction:(NSString * _Nullable)event arguments:(NSArray * _Nullable)arguments completionHandler:(void (^_Nullable)(id  _Nullable value)) completionHandler ;
 
 @end

@@ -176,8 +176,8 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 - (void)addMoreItemBarButtonWithParam:(NSDictionary *)params isLeft:(BOOL)isLeft{
     
     
-    NSString *clickEvent = params[@"__event__"];
-    NSMutableArray *btnAry = [@[] mutableCopy];
+//    NSString *clickEvent = params[@"__event__"];
+    NSMutableArray<NavBtnDTO *> *btnAry = [@[] mutableCopy];
     for (int i = 0; i < params.allKeys.count; i++){
         NSDictionary *item = params[[NSString stringWithFormat:@"%d", i]];
         
@@ -206,7 +206,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
         [btnAry addObject:btn];
     }
     NavMoreBtnDTO *btns = [[NavMoreBtnDTO alloc] init];
-    btns.btns = btnAry;
+    btns.btns = [btnAry copy];
     [self _setNavRightMoreBtn:btns complete:nil];
 }
 
@@ -586,6 +586,16 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
     nav.viewControllers = tempAry;
     completionHandler(YES);
 }
+-(void)navigateHidden:(NSDictionary *)data complate:(XEngineCallBack)completionHandler{
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    [topVC.navigationController setNavigationBarHidden:YES animated:YES];
+    completionHandler(nil, YES);
+}
 
+-(void)navigateShow:(NSDictionary *)data callBlock:(XEngineCallBack)completionHandler{
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    [topVC.navigationController setNavigationBarHidden:NO animated:YES];
+    completionHandler(nil, YES);
+}
 @end
 

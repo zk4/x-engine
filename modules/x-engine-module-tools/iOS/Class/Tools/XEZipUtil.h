@@ -9,15 +9,15 @@
 
 @interface XEZipUtil : NSObject
 
-+(BOOL)unZip:(NSString *)zipPath withToPath:(NSString *)toPath;
++(BOOL)unZip:(NSString *_Nullable)zipPath withToPath:(NSString *_Nullable)toPath;
 
-+(BOOL)unzipFileAtPath:(NSString *)path
-         toDestination:(NSString *)destination
++(BOOL)unzipFileAtPath:(NSString * _Nullable)path
+         toDestination:(NSString * _Nullable)destination
              overwrite:(BOOL)overwrite
-              password:(NSString *)password
-       progressHandler:(void (^)(long entryNumber, long total))progressHandler
-     completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError * _Nullable error))completionHandler;
+              password:(NSString * _Nullable)password
+       progressHandler:(void (^_Nullable)(long entryNumber, long total))progressHandler
+     completionHandler:(void (^_Nullable)(NSString * _Nullable path, BOOL succeeded, NSError * _Nullable error))completionHandler;
 
-+(BOOL)toZip:(NSString *)zipPath withToPath:(NSString *)toPath withProgress:(void(^)(NSUInteger, NSUInteger))progress;
++(BOOL)toZip:(NSString * _Nullable)zipPath withToPath:(NSString * _Nullable)toPath withProgress:(void(^_Nullable)(NSUInteger, NSUInteger))progress;
 
 @end

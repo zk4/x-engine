@@ -33,7 +33,7 @@
 }
 
 - (void)_unZipFile:(XEUnZipDTO *)dto complete:(void (^)(NSString*, BOOL))completionHandler {
-    BOOL r = [XEZipUtil unzipFileAtPath:dto.filePath toDestination:dto.unZipPath overwrite:YES password:nil progressHandler:^(long entryNumber, long total) {
+    [XEZipUtil unzipFileAtPath:dto.filePath toDestination:dto.unZipPath overwrite:YES password:nil progressHandler:^(long entryNumber, long total) {
         UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
         if ([topVC isKindOfClass:[RecyleWebViewController class]]){
             RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
@@ -45,7 +45,7 @@
             RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
             [webVC runJsFunction:dto.__event__ arguments:@[@(1)] completionHandler:nil];
         }
-        completionHandler(r?@"1":@"0", YES);
+        completionHandler(error==nil?@"1":@"0", YES);
     }];
 }
 

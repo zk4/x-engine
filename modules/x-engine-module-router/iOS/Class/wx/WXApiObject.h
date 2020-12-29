@@ -431,12 +431,10 @@ typedef void(^WXCheckULCompletion)(WXULCheckStep step, WXCheckULStepResult* resu
 @interface WXOpenBusinessWebViewReq : BaseReq
 
 /** 网页业务类型
- * @attention
  */
 @property (nonatomic, assign) UInt32 businessType;
 
 /** 网页业务参数
- * @attention
  */
 @property (nonatomic, strong, nullable) NSDictionary *queryInfoDic;
 
@@ -454,7 +452,6 @@ typedef void(^WXCheckULCompletion)(WXULCheckStep step, WXCheckULStepResult* resu
 @property (nonatomic, copy) NSString *result;
 
 /** 网页业务类型
- * @attention
  */
 @property (nonatomic, assign) UInt32 businessType;
 
@@ -1055,7 +1052,7 @@ typedef void(^WXCheckULCompletion)(WXULCheckStep step, WXCheckULStepResult* resu
 @property (nonatomic, copy, nullable) NSString *extInfo;
 
 /** extData数据
- * @note
+ * @ note
  */
 @property (nonatomic, strong, nullable) NSData *extData;
 @end

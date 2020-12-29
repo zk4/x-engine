@@ -26,38 +26,38 @@
 
 - (NSURLSessionDownloadTask*_Nonnull)downloadTaskWithRequest:(NSURLRequest *_Nonnull)request
                                             progress:(nullable void (^)(NSProgress * _Nullable downloadProgress))downloadProgressBlock
-                                                 destination:(nullable NSURL * _Nullable (^)(NSURL *targetPath, NSURLResponse * _Nullable response))destination
+                                                 destination:(nullable NSURL * _Nullable (^)(NSURL * _Nullable targetPath, NSURLResponse * _Nullable response))destination
                                    completionHandler:(nullable void (^)(NSURLResponse * _Nullable response, NSURL * _Nullable filePath, NSError * _Nullable error))completionHandler;
 
-- (void)HEAD:(NSString *)URLString
+- (void)HEAD:(NSString *_Nonnull)URLString
   parameters:(nullable id)parameters
      headers:(nullable NSDictionary <NSString *, NSString *> *)headers
-     success:(nullable void (^)(NSURLSessionDataTask *task))success
-     failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+     success:(nullable void (^)(NSURLSessionDataTask * _Nullable task))success
+     failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure;
 
 
-- (void)PUT:(NSString *)URLString
+- (void)PUT:(NSString *_Nullable)URLString
  parameters:(nullable id)parameters
     headers:(nullable NSDictionary <NSString *, NSString *> *)headers
-    success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-    failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+    success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success
+    failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure;
 
-- (void)PATCH:(NSString *)URLString
+- (void)PATCH:(NSString * _Nullable)URLString
    parameters:(nullable id)parameters
       headers:(nullable NSDictionary <NSString *, NSString *> *)headers
-      success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-      failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+      success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success
+      failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure;
 
-- (void)DELETE:(NSString *)URLString
+- (void)DELETE:(NSString * _Nullable)URLString
     parameters:(nullable id)parameters
        headers:(nullable NSDictionary <NSString *, NSString *> *)headers
-       success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-       failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+       success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success
+       failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure;
 
-- (void)uploadTaskWithRequest:(NSURLRequest *)request
+- (void)uploadTaskWithRequest:(NSURLRequest * _Nullable)request
                      fromData:(nullable NSData *)bodyData
-                     progress:(nullable void (^)(NSProgress *uploadProgress))uploadProgressBlock
-            completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject, NSError * _Nullable error))completionHandler;
+                     progress:(nullable void (^)(NSProgress * _Nullable uploadProgress))uploadProgressBlock
+            completionHandler:(nullable void (^)(NSURLResponse * _Nullable response, id _Nullable responseObject, NSError * _Nullable error))completionHandler;
 @end
 
 #endif

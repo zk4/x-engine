@@ -18,7 +18,7 @@
 #import "DCUniMP.h"
 #import <MicroAppLoader.h>
 
-@interface __xengine__module_dcloud() <UIApplicationDelegate>
+@interface __xengine__module_dcloud() <UIApplicationDelegate, DCUniMPSDKEngineDelegate>
 @property (nonatomic, weak) DCUniMPInstance *uniMPInstance; /**< 保存当前打开的小程序应用的引用 注意：请使用 weak 修辞，否则应在关闭小程序时置为 nil */
 @end
 
@@ -246,7 +246,10 @@
         if([module respondsToSelector:sel]){
             XEngineCallBack  Cb=  ^(id data, BOOL ret){
             };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [module performSelector:sel withObject:mdic withObject:Cb];
+#pragma clang diagnostic pop
         }
         
     }else if ([event isEqualToString:@"x-engine-wgt-event"]){
@@ -266,8 +269,10 @@
                     callback(retDataStr,NO);
                 }
             };
-            
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [module performSelector:sel withObject:subDataDic withObject:Cb];
+#pragma clang diagnostic pop
         }
     }
 

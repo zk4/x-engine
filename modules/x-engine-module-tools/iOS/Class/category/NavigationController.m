@@ -71,12 +71,13 @@
     
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
-    if (self = [self init])
+    id r = [self init];
+    if (r)
     {
         self.customizedEnabled = YES;
         self.viewControllers = @[rootViewController];
     }
-    return self;
+    return r;
 }
     
 - (instancetype)initWithNavigationBarClass:(nullable Class)navigationBarClass toolbarClass:(nullable Class)toolbarClass

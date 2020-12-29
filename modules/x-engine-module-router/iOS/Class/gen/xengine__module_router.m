@@ -39,4 +39,9 @@
              completionHandler(nil ,complete);
           }];
       }
-  @end
+
+- (void)_openTargetRouter:(RouterOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+@end

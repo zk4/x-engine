@@ -36,4 +36,9 @@
              completionHandler(nil ,complete);
           }];
       }
-  @end
+
+- (void)_push:(XEContainerDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+@end

@@ -67,6 +67,7 @@
 
 
   @implementation xengine__module_ui
+
     - (instancetype)init
     {
         self = [super init];
@@ -133,4 +134,36 @@
           }];
         
       }
-  @end
+- (void)_hiddenHudToast:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_hideLoading:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_hideToast:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_showActionSheet:(XESheetDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_showLoading:(XETipDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_showModal:(XEModalDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_showPickerView:(XEPickerDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
+    
+}
+
+- (void)_showToast:(XEToastDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+@end

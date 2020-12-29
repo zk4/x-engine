@@ -12,7 +12,7 @@
 #import "RecyleWebViewController.h"
 #import "XEOneWebViewPool.h"
 
-@interface ZKPushAnimation () <UIViewControllerAnimatedTransitioning>//UINavigationControllerDelegate
+@interface ZKPushAnimation () <UIViewControllerAnimatedTransitioning, UINavigationControllerDelegate>//UINavigationControllerDelegate
 
 @property (nonatomic, assign) float animationTime;
 

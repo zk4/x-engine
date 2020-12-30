@@ -1,8 +1,32 @@
 
-version: 0.0.59
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-xxxx
 ```
+
+
+
+## anonymousType
+
+
+
+**demo**
+``` js
+ {
+      window.anonymousType = (...args) => {
+    xxxx
+      .anonymousType({name:"abc"})
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res["fullname"];
+      });
+  };
+
+}
+``` 
+
+	
+**无参数**
+
 
 
 
@@ -284,7 +308,7 @@ npm install @zkty-team/x-engine-module-xxxx
  {
     window.haveArgRetSheetDTO = (...args) => {
     xxxx
-      .haveArgRetSheetDTO(...args)
+      .haveArgRetSheetDTO({title:"abc"})
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });

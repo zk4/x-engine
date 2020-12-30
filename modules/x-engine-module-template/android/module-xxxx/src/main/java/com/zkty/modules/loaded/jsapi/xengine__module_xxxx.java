@@ -50,7 +50,8 @@
   }
   
   interface xengine__module_xxxx_i {
-    public void _broadcastOn(final CompletionHandler<Nullable> handler);
+    public void _anonymousType(final CompletionHandler<Nullable> handler);
+public void _broadcastOn(final CompletionHandler<Nullable> handler);
 public void _broadcastOff(final CompletionHandler<Nullable> handler);
 public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
 public void _repeatReturn__event__(ContinousDTO dto, final CompletionHandler<String> handler);
@@ -71,6 +72,19 @@ public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> 
       return "com.zkty.module.xxxx";
     }
   
+    @JavascriptInterface
+    final public void anonymousType(JSONObject obj, final CompletionHandler<Object> handler) {
+      _anonymousType(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
     @JavascriptInterface
     final public void broadcastOn(JSONObject obj, final CompletionHandler<Object> handler) {
       _broadcastOn(new CompletionHandler<Nullable>() {

@@ -9,7 +9,7 @@
 #import "__xengine__module_xxxx.h"
 #import <XEngineContext.h>
 #import <micros.h>
-#import <UIViewController+.h>
+
 #import <JSONToDictionary.h>
 #import <RecyleWebViewController.h>
 #import <XEngineWebView.h>
@@ -141,6 +141,19 @@
     //要注意. 这里仅是删除 _triggerNativeBroadCast 的回调,而不是删除 broadcast 的回调.
     completionHandler(TRUE);
 }
+ 
+
+- (void)_broadcastOff:(void (^)(BOOL))completionHandler {
+
+}
+
+- (void)_anonymousType:(_1_com_zkty_module_xxxx_DTO *)dto complete:(void (^)(_0_com_zkty_module_xxxx_DTO *, BOOL))completionHandler {
+    _0_com_zkty_module_xxxx_DTO* ret = [_0_com_zkty_module_xxxx_DTO new];
+    ret.fullname=@"hello";
+    completionHandler(ret,TRUE);
+}
+
+
  
 
 

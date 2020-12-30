@@ -1,5 +1,27 @@
+// model.ts 解析版本
+const parserVersion ="1.0.0"
+
 // 命名空间
 const moduleID = "com.zkty.module.xxxx";
+// JS模块名称
+const JSModule = "@zkty-team/x-engine-module-xxxx";
+
+function anonymousType(arg: {
+  age?: int;
+  name?: string;
+  books?: Array<string>;
+  complexArg?: { a: int; name: string };
+}): { fullname: string } {
+      window.anonymousType = (...args) => {
+    xxxx
+      .anonymousType({name:"abc"})
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res["fullname"];
+      });
+  };
+
+}
+
 
 // dto
 interface SheetDTO {
@@ -137,10 +159,10 @@ function haveArgRetPrimitive(arg:SheetDTO={title:"abc"}):string {
 }
 
 // have args ret Object
-function haveArgRetSheetDTO(arg:SheetDTO={title:"abc"}):SheetDTO {
+function haveArgRetSheetDTO(arg:SheetDTO):SheetDTO {
     window.haveArgRetSheetDTO = (...args) => {
     xxxx
-      .haveArgRetSheetDTO(...args)
+      .haveArgRetSheetDTO({title:"abc"})
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });

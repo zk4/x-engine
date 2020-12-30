@@ -13,6 +13,10 @@ function osCheck() {
     return  xengine.use("com.zkty.module.xxxx", 
     [
   {
+    "name": "anonymousType",
+    "default_args": null
+  },
+  {
     "name": "broadcastOn",
     "default_args": {}
   },
@@ -62,9 +66,7 @@ function osCheck() {
   },
   {
     "name": "haveArgRetSheetDTO",
-    "default_args": {
-      "title": "abc"
-    }
+    "default_args": null
   }
 ]
 )}}

@@ -3,6 +3,15 @@ import xxxx from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
 
+      window.anonymousType = (...args) => {
+    xxxx
+      .anonymousType({name:"abc"})
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+res["fullname"];
+      });
+  };
+
+
   window.broadcastOn = (...args) => {
     xengine.broadcastOn(function(res){
         document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -93,7 +102,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
 
     window.haveArgRetSheetDTO = (...args) => {
     xxxx
-      .haveArgRetSheetDTO(...args)
+      .haveArgRetSheetDTO({title:"abc"})
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });

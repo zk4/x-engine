@@ -186,13 +186,13 @@ static   XEngineWebView* s_webview;
 
 - (NSString *)urlEncodedString:(NSString *)str {
     
-//    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-//    NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\|\n ";
-//    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
-//    return [decodedString stringByAddingPercentEncodingWithAllowedCharacters:set];
+    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
     NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\|\n ";
-    NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
-    return [str stringByAddingPercentEncodingWithAllowedCharacters:set];
+    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
+    return [decodedString stringByAddingPercentEncodingWithAllowedCharacters:set];
+//    NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\|\n ";
+//    NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
+//    return [str stringByAddingPercentEncodingWithAllowedCharacters:set];
 }
 
 - (void)loadFileUrl{

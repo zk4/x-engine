@@ -194,7 +194,7 @@ tabBar高度
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| phoneNumber | string |  | 10086 | 手机号 |
-| messageContent | string |  | 1111111111 | 短信内容 |
+| phoneNumber | string |  |  | 手机号 |
+| messageContent | string |  |  | 短信内容 |
 
     

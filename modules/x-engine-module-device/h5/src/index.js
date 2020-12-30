@@ -76,10 +76,7 @@ function osCheck() {
   },
   {
     "name": "deviceSendMessage",
-    "default_args": {
-      "phoneNumber": "10086",
-      "messageContent": "1111111111"
-    }
+    "default_args": {}
   }
 ]
 )}}

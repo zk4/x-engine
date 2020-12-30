@@ -498,7 +498,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         } else {
             ImageUtils.savePictureByBase64(activity, dto.imageData);
         }
-
+        handler.complete();
 
     }
 }

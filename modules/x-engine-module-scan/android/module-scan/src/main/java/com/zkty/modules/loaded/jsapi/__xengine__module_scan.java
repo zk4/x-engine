@@ -97,5 +97,6 @@ public class __xengine__module_scan extends xengine__module_scan {
         Intent intent = new Intent();
         intent.setClass(xEngineWebActivity.getApplicationContext(), ScanActivity.class);
         xEngineWebActivity.startActivityForResult(intent, REQUEST_CODE);
+        handler.complete();
     }
 }

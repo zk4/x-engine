@@ -38,16 +38,19 @@ public class __xengine__module_dcloud extends xengine__module_dcloud implements 
     @Override
     public void _openUniMP(DcloudDTO dto, CompletionHandler<Nullable> handler) {
         UniMPMaster.startUniApp(dto.appId, null, null);
+        handler.complete();
     }
-    
+
 
     @Override
     public void _preloadUniMP(UniMPDTO dto, CompletionHandler<Nullable> handler) {
         UniMPMaster.preload(dto.appId);
+        handler.complete();
     }
 
     @Override
     public void _openUniMPWithArg(UniMPDTO dto, CompletionHandler<Nullable> handler) {
         UniMPMaster.startUniApp(dto.appId, dto.redirectPath, dto.arguments);
+        handler.complete();
     }
 }

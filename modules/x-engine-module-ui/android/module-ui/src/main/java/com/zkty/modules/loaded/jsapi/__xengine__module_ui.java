@@ -111,6 +111,7 @@ public class __xengine__module_ui extends xengine__module_ui {
 
         });
         bottomDialog.showDialog();
+        handler.complete();
 
     }
 
@@ -173,6 +174,7 @@ public class __xengine__module_ui extends xengine__module_ui {
 
         dateDialog = builder.create();
         dateDialog.show();
+        handler.complete();
 
     }
 
@@ -207,5 +209,6 @@ public class __xengine__module_ui extends xengine__module_ui {
         });
 
         dialog.show();
+        handler.complete();
     }
 }

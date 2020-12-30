@@ -24,12 +24,18 @@
     }
 @end
     
+  
+@implementation DeviceMessageDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
 
 
 
 
   @implementation xengine__module_device
-
     - (instancetype)init
     {
         self = [super init];
@@ -159,64 +165,12 @@
              completionHandler(nil ,complete);
           }];
       }
-- (void)_devicePhoneCall:(DevicePhoneNumDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
+    - (void) deviceSendMessage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_getBatteryLevel:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getNavigationHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getPhoneType:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getPreferredLanguage:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getSafeAreaBottom:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getSafeAreaLeft:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getSafeAreaRight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getSafeAreaTop:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getScreenHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getScreenWidth:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getStatusHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getSystemVersion:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getTabBarHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_getUDID:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    
-}
-
-@end
+          DeviceMessageDTO* dto = [self convert:dict clazz:DeviceMessageDTO.class];
+          [self _deviceSendMessage:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+  @end

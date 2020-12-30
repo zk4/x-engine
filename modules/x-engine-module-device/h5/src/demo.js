@@ -1,7 +1,5 @@
 
 import device from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
 
   window.getPhoneType = () => {
     device
@@ -178,5 +176,10 @@ import xengine from "@zkty-team/x-engine-module-engine";
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
 };
+
+  window.deviceSendMessage = () => {
+    device
+      .deviceSendMessage();
+  };
 
     

@@ -12,8 +12,15 @@
 //#import <x-engine-module-tools/UIViewController+.h>
 #import <x-engine-module-tools/JSONToDictionary.h>
 #import <sys/utsname.h>
+#import <Unity.h>
+#import "AppDelegate.h"
+#import <MessageUI/MessageUI.h>
+#import <RecyleWebViewController.h>
+#import <XEngineWebView.h>
 
-@interface __xengine__module_device()
+
+@interface __xengine__module_device()<MFMessageComposeViewControllerDelegate>
+@property (nonatomic,strong)NSString * ret;
 @end
 
 @implementation __xengine__module_device
@@ -128,6 +135,56 @@
     }];
 }
 
+- (void)_deviceSendMessage:(DeviceMessageDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
+    if( [MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc] init];
+        controller.recipients = @[dto.phoneNumber];//发送短信的号码，数组形式入参
+        controller.navigationBar.tintColor = [UIColor redColor];
+        controller.body = dto.messageContent; //此处的body就是短信将要发生的内容
+        controller.messageComposeDelegate = self;
+        [[Unity sharedInstance].getCurrentVC presentViewController:controller animated:YES completion:nil];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示信息"
+                                                        message:@"该设备不支持短信功能"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+
+
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    NSString * contentStr;
+    switch (result) {
+        case MessageComposeResultSent:
+            //信息传送成功
+            contentStr = @"发送成功";
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+                [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:nil];
+            });
+            break;
+        case MessageComposeResultFailed:
+            //信息传送失败
+            contentStr = @"发送失败";
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+                [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:nil];
+            });
+            break;
+        case MessageComposeResultCancelled:
+            //信息被用户取消传送
+            contentStr = @"取消发送";
+            [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:nil];
+            break;
+        default:
+            break;
+    }
+    
+    
+}
 
 //获取手机型号
 - (NSString *)getDeviceName {

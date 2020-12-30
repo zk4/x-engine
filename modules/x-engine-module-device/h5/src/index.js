@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -72,6 +72,13 @@ function osCheck() {
     "name": "devicePhoneCall",
     "default_args": {
       "phoneNumber": "10086"
+    }
+  },
+  {
+    "name": "deviceSendMessage",
+    "default_args": {
+      "phoneNumber": "10086",
+      "messageContent": "1111111111"
     }
   }
 ]

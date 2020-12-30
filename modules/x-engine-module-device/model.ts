@@ -16,6 +16,13 @@ interface DevicePhoneNumDTO {
   phoneNumber: string;
 }
 
+interface DeviceMessageDTO {
+  //手机号
+  phoneNumber: string;
+  //短信内容
+  messageContent:string;
+}
+
 //设备类型
 function getPhoneType(
   DeviceSheetDTO: DeviceSheetDTO = {
@@ -291,4 +298,17 @@ function devicePhoneCall(arg:DevicePhoneNumDTO={phoneNumber:"10086"}){
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
 };
+}
+
+//发短信
+function deviceSendMessage(
+  DeviceMessageDTO: DeviceMessageDTO = {
+    phoneNumber:"10086",
+    messageContent:"1111111111",
+  }
+):DeviceMoreDTO{
+  window.deviceSendMessage = () => {
+    device
+      .deviceSendMessage();
+  };
 }

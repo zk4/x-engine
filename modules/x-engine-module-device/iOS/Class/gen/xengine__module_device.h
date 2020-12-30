@@ -9,6 +9,7 @@
 @protocol DeviceSheetDTO;
 @protocol DeviceMoreDTO;
 @protocol DevicePhoneNumDTO;
+@protocol DeviceMessageDTO;
 
 @interface DeviceSheetDTO: JSONModel
   	@property(nonatomic,strong) NSString* __event__;
@@ -22,6 +23,12 @@
 
 @interface DevicePhoneNumDTO: JSONModel
   	@property(nonatomic,copy) NSString* phoneNumber;
+@end
+    
+
+@interface DeviceMessageDTO: JSONModel
+  	@property(nonatomic,copy) NSString* phoneNumber;
+   	@property(nonatomic,copy) NSString* messageContent;
 @end
     
 
@@ -72,6 +79,9 @@
       @required 
         - (void) _devicePhoneCall:(DevicePhoneNumDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
+      @required 
+        - (void) _deviceSendMessage:(DeviceMessageDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
+
 @end
   
 

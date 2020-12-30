@@ -517,7 +517,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 // 在发送请求之前，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler;{
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 
     NSString * urlStr = [navigationAction.request.URL absoluteString];
     NSRange range;
@@ -556,6 +556,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
        id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
        NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];
        SEL  sel = NSSelectorFromString(selectorStr);
+        __weak typeof(self)weakSelf = self;
        if([module respondsToSelector:sel]){
            XEngineCallBack  Cb=  ^(id data, BOOL ret){
                if (callBackStr && callBackStr.length !=0) {
@@ -567,7 +568,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                    str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
                    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
-                   [self loadRequest:request];
+                   [weakSelf loadRequest:request];
 #pragma clang diagnostic pop
                }
            };
@@ -576,7 +577,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
            [module performSelector:sel withObject:argsDic withObject:Cb];
 #pragma clang diagnostic pop
        }
-        
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
      decisionHandler(WKNavigationActionPolicyAllow);

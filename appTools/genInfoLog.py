@@ -15,5 +15,6 @@ for line in lines:
         print(name,comment,elapsed,'\\n')
     if comment.startswith("pgy"):
         timestoEnds-=1
+        print('------last version------','\\n')
     if timestoEnds==0:
         break

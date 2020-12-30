@@ -138,6 +138,7 @@ public class __xengine__module_device extends xengine__module_device {
         Uri data = Uri.parse("tel:" + dto.phoneNumber);
         intent.setData(data);
         XEngineWebActivityManager.sharedInstance().getCurrent().startActivity(intent);
+        handler.complete();
     }
 
     @Override
@@ -213,6 +214,7 @@ public class __xengine__module_device extends xengine__module_device {
                 XEngineWebActivityManager.sharedInstance().getCurrent().startActivity(intent);
             }
         }
+        handler.complete();
 
     }
 }

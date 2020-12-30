@@ -13,7 +13,6 @@
 #import <x-engine-module-tools/JSONToDictionary.h>
 #import <sys/utsname.h>
 #import <Unity.h>
-#import "AppDelegate.h"
 #import <MessageUI/MessageUI.h>
 #import <RecyleWebViewController.h>
 #import <XEngineWebView.h>

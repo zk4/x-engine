@@ -7,28 +7,6 @@
 #import <micros.h>
 
 
-@implementation _0_com_zkty_module_xxxx_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation _1_com_zkty_module_xxxx_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"age"]) { return YES; }
-   	if ([propertyName isEqualToString:@"name"]) { return YES; }
-   	if ([propertyName isEqualToString:@"books"]) { return YES; }
-   	if ([propertyName isEqualToString:@"complexArg"]) { return YES; }	return NO;
-    }
-@end
-    
-  
-@implementation _2_com_zkty_module_xxxx_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
 @implementation SheetDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	if ([propertyName isEqualToString:@"itemList"]) { return YES; }
@@ -54,6 +32,38 @@
     }
 @end
     
+  
+@implementation _0_com_zkty_module_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"age"]) { return YES; }
+   	if ([propertyName isEqualToString:@"name"]) { return YES; }
+   	if ([propertyName isEqualToString:@"books"]) { return YES; }
+   	if ([propertyName isEqualToString:@"complexArg"]) { return YES; }	return NO;
+    }
+@end
+    
+  
+@implementation _1_com_zkty_module_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
+  
+@implementation _2_com_zkty_module_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"age"]) { return YES; }
+   	if ([propertyName isEqualToString:@"name"]) { return YES; }
+   	if ([propertyName isEqualToString:@"books"]) { return YES; }
+   	if ([propertyName isEqualToString:@"complexArg"]) { return YES; }	return NO;
+    }
+@end
+    
+  
+@implementation _3_com_zkty_module_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
 
 
 
@@ -69,14 +79,6 @@
         return @"com.zkty.module.xxxx";
     }
     
-    - (void) anonymousType:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          _1_com_zkty_module_xxxx_DTO* dto = [self convert:dict clazz:_1_com_zkty_module_xxxx_DTO.class];
-          [self _anonymousType:dto complete:^(_0_com_zkty_module_xxxx_DTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
     - (void) broadcastOn:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           [self _broadcastOn:^(BOOL complete) {
@@ -156,6 +158,14 @@
 
           SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
           [self _haveArgRetSheetDTO:dto complete:^(SheetDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) anonymousType:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          _2_com_zkty_module_xxxx_DTO* dto = [self convert:dict clazz:_2_com_zkty_module_xxxx_DTO.class];
+          [self _anonymousType:dto complete:^(_0_com_zkty_module_xxxx_DTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

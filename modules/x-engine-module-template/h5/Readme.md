@@ -6,30 +6,6 @@ npm install @zkty-team/x-engine-module-xxxx
 
 
 
-## anonymousType
-
-
-
-**demo**
-``` js
- {
-      window.anonymousType = (...args) => {
-    xxxx
-      .anonymousType({name:"abc"})
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res["fullname"];
-      });
-  };
-
-}
-``` 
-
-	
-**无参数**
-
-
-
-
 ## broadcastOn
 
 
@@ -325,5 +301,34 @@ npm install @zkty-team/x-engine-module-xxxx
 | itemList | Array\<string\> | true |  |  子标题? |
 | content | string | true |  |  内容 |
 | \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
+
+
+## anonymousType
+
+
+
+**demo**
+``` js
+ {
+      window.anonymousType = (...args) => {
+    xxxx
+      .anonymousType({
+  age: 12,
+  name: "zk",
+  books: ["1","2","3"],
+  complexArg: { a: 1, name: "zk2" }
+})
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+JSON.stringify(res);
+      });
+  };
+
+}
+``` 
+
+	
+**无参数**
+
+
 
     

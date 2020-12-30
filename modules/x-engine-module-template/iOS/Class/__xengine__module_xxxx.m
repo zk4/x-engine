@@ -147,11 +147,11 @@
 
 }
 
-- (void)_anonymousType:(_1_com_zkty_module_xxxx_DTO *)dto complete:(void (^)(_0_com_zkty_module_xxxx_DTO *, BOOL))completionHandler {
-    _0_com_zkty_module_xxxx_DTO* ret = [_0_com_zkty_module_xxxx_DTO new];
-    ret.fullname=@"hello";
-    completionHandler(ret,TRUE);
+- (void)_anonymousType:(_2_com_zkty_module_xxxx_DTO *)dto complete:(void (^)(_0_com_zkty_module_xxxx_DTO *, BOOL))completionHandler {
+    completionHandler(dto,TRUE);
 }
+
+ 
 
 
  

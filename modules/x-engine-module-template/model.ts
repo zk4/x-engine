@@ -6,22 +6,6 @@ const moduleID = "com.zkty.module.xxxx";
 // JS模块名称
 const JSModule = "@zkty-team/x-engine-module-xxxx";
 
-function anonymousType(arg: {
-  age?: int;
-  name?: string;
-  books?: Array<string>;
-  complexArg?: { a: int; name: string };
-}): { fullname: string } {
-      window.anonymousType = (...args) => {
-    xxxx
-      .anonymousType({name:"abc"})
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res["fullname"];
-      });
-  };
-
-}
-
 
 // dto
 interface SheetDTO {
@@ -167,5 +151,31 @@ function haveArgRetSheetDTO(arg:SheetDTO):SheetDTO {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });
   };
+}
+
+function anonymousType(arg: {
+  age?: int;
+  name?: string;
+  books?: Array<string>;
+  complexArg?: { a: int; name: string };
+}): {
+  age?: int;
+  name?: string;
+  books?: Array<string>;
+  complexArg?: { a: int; name: string };
+} {
+      window.anonymousType = (...args) => {
+    xxxx
+      .anonymousType({
+  age: 12,
+  name: "zk",
+  books: ["1","2","3"],
+  complexArg: { a: 1, name: "zk2" }
+})
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+JSON.stringify(res);
+      });
+  };
+
 }
 

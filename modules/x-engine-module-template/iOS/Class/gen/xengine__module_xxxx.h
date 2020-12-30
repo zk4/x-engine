@@ -6,31 +6,13 @@
 #import <xengine__module_BaseModule.h>
 #import "JSONModel.h"
 
-@class _0_com_zkty_module_xxxx_DTO;
-@class _1_com_zkty_module_xxxx_DTO;
-@class _2_com_zkty_module_xxxx_DTO;
 @class SheetDTO;
 @class ContinousDTO;
 @class MsgPayloadDTO;
-
-@interface _0_com_zkty_module_xxxx_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* fullname;
-@end
-    
-
-@interface _1_com_zkty_module_xxxx_DTO: JSONModel
-  	@property(nonatomic,assign) NSInteger age;
-   	@property(nonatomic,copy) NSString* name;
-   	@property(nonatomic,strong) NSArray<NSString*>* books;
-   	@property(nonatomic,strong) _2_com_zkty_module_xxxx_DTO* complexArg;
-@end
-    
-
-@interface _2_com_zkty_module_xxxx_DTO: JSONModel
-  	@property(nonatomic,assign) NSInteger a;
-   	@property(nonatomic,copy) NSString* name;
-@end
-    
+@class _0_com_zkty_module_xxxx_DTO;
+@class _1_com_zkty_module_xxxx_DTO;
+@class _2_com_zkty_module_xxxx_DTO;
+@class _3_com_zkty_module_xxxx_DTO;
 
 @interface SheetDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -55,12 +37,37 @@
 @end
     
 
+@interface _0_com_zkty_module_xxxx_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger age;
+   	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,strong) NSArray<NSString*>* books;
+   	@property(nonatomic,strong) _1_com_zkty_module_xxxx_DTO* complexArg;
+@end
+    
+
+@interface _1_com_zkty_module_xxxx_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger a;
+   	@property(nonatomic,copy) NSString* name;
+@end
+    
+
+@interface _2_com_zkty_module_xxxx_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger age;
+   	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,strong) NSArray<NSString*>* books;
+   	@property(nonatomic,strong) _3_com_zkty_module_xxxx_DTO* complexArg;
+@end
+    
+
+@interface _3_com_zkty_module_xxxx_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger a;
+   	@property(nonatomic,copy) NSString* name;
+@end
+    
+
 
 @protocol xengine__module_xxxx_protocol
        @required 
-        - (void) _anonymousType:(_1_com_zkty_module_xxxx_DTO*) dto complete:(void (^)(_0_com_zkty_module_xxxx_DTO* result,BOOL complete)) completionHandler;
-
-      @required 
        - (void) _broadcastOn:(void (^)(BOOL complete)) completionHandler;
     
       @required 
@@ -95,6 +102,9 @@
 
       @required 
         - (void) _haveArgRetSheetDTO:(SheetDTO*) dto complete:(void (^)(SheetDTO* result,BOOL complete)) completionHandler;
+
+      @required 
+        - (void) _anonymousType:(_2_com_zkty_module_xxxx_DTO*) dto complete:(void (^)(_0_com_zkty_module_xxxx_DTO* result,BOOL complete)) completionHandler;
 
 @end
   

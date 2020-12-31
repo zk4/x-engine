@@ -179,7 +179,10 @@ import device from './index.js'
 
   window.deviceSendMessage = () => {
     device
-      .deviceSendMessage();
+      .deviceSendMessage({
+        phoneNumber:"10086",
+        messageContent:"1111111111",
+      });
   };
 
     

@@ -4,7 +4,7 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.4.3)
   - SSZipArchive (2.2.3)
-  - x-engine-module-engine (0.0.58):
+  - x-engine-module-engine (0.1.7):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -35,7 +35,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  x-engine-module-engine: 8ba6e586a17ec766f5b7d24b784570672372652e
+  x-engine-module-engine: d77afd9c989076f32938179c9c17054b924180f2
 
 PODFILE CHECKSUM: c452330e359a9e89cf500d90bca46ced7b9196ba
 

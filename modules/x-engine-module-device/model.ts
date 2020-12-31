@@ -303,12 +303,13 @@ function devicePhoneCall(arg:DevicePhoneNumDTO={phoneNumber:"10086"}){
 //发短信
 function deviceSendMessage(
   DeviceMessageDTO: DeviceMessageDTO = {
-    phoneNumber:"10086",
-    messageContent:"1111111111",
   }
 ):DeviceMoreDTO{
   window.deviceSendMessage = () => {
     device
-      .deviceSendMessage();
+      .deviceSendMessage({
+        phoneNumber:"10086",
+        messageContent:"1111111111",
+      });
   };
 }

@@ -102,10 +102,8 @@ import xengine from "@zkty-team/x-engine-module-engine";
       window.anonymousType = (...args) => {
     xxxx
       .anonymousType({
-  age: 12,
-  name: "zk",
-  books: ["1","2","3"],
-  complexArg: { a: 1, name: "zk2" }
+  age: 14,
+  
 })
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+JSON.stringify(res);

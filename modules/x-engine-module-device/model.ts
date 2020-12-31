@@ -290,10 +290,10 @@ function getTabBarHeight(
 }
 
 //打电话
-function devicePhoneCall(arg:DevicePhoneNumDTO={phoneNumber:"10086"}){
+function devicePhoneCall(arg:DevicePhoneNumDTO){
   window.devicePhoneCall = (...args) => {
   device
-    .devicePhoneCall(...args)
+    .devicePhoneCall({phoneNumber:"10086"})
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });

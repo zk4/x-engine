@@ -1,13 +1,31 @@
 
-`
-com.zkty.module.device
-`
+version: 0.1.7
+``` bash
+npm install @zkty-team/x-engine-module-device
+```
 
 
 
 ## getPhoneType
 
 设备类型
+
+**demo**
+``` js
+ {
+  window.getPhoneType = () => {
+    device
+      .getPhoneType({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -21,6 +39,23 @@ com.zkty.module.device
 
 系统版本
 
+**demo**
+``` js
+{
+  window.getSystemVersion = () => {
+    device
+      .getSystemVersion({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -32,6 +67,23 @@ com.zkty.module.device
 ## getUDID
 
 UDID
+
+**demo**
+``` js
+{
+  window.getUDID = () => {
+    device
+      .getUDID({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -45,6 +97,23 @@ UDID
 
 电池电量
 
+**demo**
+``` js
+{
+  window.getBatteryLevel = () => {
+    device
+      .getBatteryLevel({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -56,6 +125,23 @@ UDID
 ## getPreferredLanguage
 
 当前语言
+
+**demo**
+``` js
+{
+  window.getPreferredLanguage = () => {
+    device
+      .getPreferredLanguage({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -69,6 +155,23 @@ UDID
 
 屏幕宽度
 
+**demo**
+``` js
+{
+  window.getScreenWidth = () => {
+    device
+      .getScreenWidth({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -80,6 +183,23 @@ UDID
 ## getScreenHeight
 
 屏幕高度
+
+**demo**
+``` js
+{
+  window.getScreenHeight = () => {
+    device
+      .getScreenHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -93,6 +213,23 @@ UDID
 
 安全区域上边距
 
+**demo**
+``` js
+{
+  window.getSafeAreaTop = () => {
+    device
+      .getSafeAreaTop({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -104,6 +241,23 @@ UDID
 ## getSafeAreaBottom
 
 安全区域下边距
+
+**demo**
+``` js
+{
+  window.getSafeAreaBottom = () => {
+    device
+      .getSafeAreaBottom({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -117,6 +271,23 @@ UDID
 
 安全区域左边距
 
+**demo**
+``` js
+{
+  window.getSafeAreaLeft = () => {
+    device
+      .getSafeAreaLeft({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -128,6 +299,23 @@ UDID
 ## getSafeAreaRight
 
 安全区域右边距
+
+**demo**
+``` js
+{
+  window.getSafeAreaRight = () => {
+    device
+      .getSafeAreaRight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -141,6 +329,23 @@ UDID
 
 状态栏高度
 
+**demo**
+``` js
+{
+  window.getStatusHeight = () => {
+    device
+      .getStatusHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -152,6 +357,23 @@ UDID
 ## getNavigationHeight
 
 导航条高度
+
+**demo**
+``` js
+{
+  window.getNavigationHeight = () => {
+    device
+      .getNavigationHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -165,6 +387,23 @@ UDID
 
 tabBar高度
 
+**demo**
+``` js
+{
+  window.getTabBarHeight = () => {
+    device
+      .getTabBarHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -177,17 +416,43 @@ tabBar高度
 
 打电话
 
+**demo**
+``` js
+{
+  window.devicePhoneCall = (...args) => {
+  device
+    .devicePhoneCall({phoneNumber:"10086"})
+    .then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+};
+}
+``` 
+
 	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| phoneNumber | string |  | 10086 | 手机号 |
+| phoneNumber | string |  |  | 手机号 |
 
 
 ## deviceSendMessage
 
 发短信
+
+**demo**
+``` js
+{
+  window.deviceSendMessage = () => {
+    device
+      .deviceSendMessage({
+        phoneNumber:"10086",
+        messageContent:"1111111111",
+      });
+  };
+}
+``` 
 
 	
 **参数说明**

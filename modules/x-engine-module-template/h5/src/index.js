@@ -66,7 +66,19 @@ function osCheck() {
   },
   {
     "name": "anonymousType",
-    "default_args": null
+    "default_args": {
+      "age": 12,
+      "name": "zk",
+      "books": [
+        "1",
+        "2",
+        "3"
+      ],
+      "complexArg": {
+        "a": 1,
+        "name": "zk2"
+      }
+    }
   }
 ]
 )}}

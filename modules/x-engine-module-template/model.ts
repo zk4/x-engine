@@ -158,6 +158,11 @@ function anonymousType(arg: {
   name?: string;
   books?: Array<string>;
   complexArg?: { a: int; name: string };
+}={
+  age: 12,
+  name: "zk",
+  books: ["1","2","3"],
+  complexArg: { a: 1, name: "zk2" }
 }): {
   age?: int;
   name?: string;
@@ -167,10 +172,8 @@ function anonymousType(arg: {
       window.anonymousType = (...args) => {
     xxxx
       .anonymousType({
-  age: 12,
-  name: "zk",
-  books: ["1","2","3"],
-  complexArg: { a: 1, name: "zk2" }
+  age: 14,
+  
 })
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+JSON.stringify(res);

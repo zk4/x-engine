@@ -18,7 +18,7 @@
 }
  
 -(void) pushTestModule{
-    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.3.37:9111"];
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.115:9111"];
 }
 
 - (void)viewDidLoad {

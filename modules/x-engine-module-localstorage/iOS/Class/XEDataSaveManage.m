@@ -9,13 +9,44 @@
 #import "XEDataSaveManage.h"
 #import <x-engine-module-engine/MicroAppLoader.h>
 
+@interface XEDataSaveManage ()
+
+@property (nonatomic, strong) NSMutableDictionary *staticDic;
+
+@end
+
 @implementation XEDataSaveManage
+
++(instancetype)instance{
+    static dispatch_once_t onceToken;
+    static XEDataSaveManage *manage;
+    dispatch_once(&onceToken, ^{
+        manage = [[XEDataSaveManage alloc] init];
+    });
+    return manage;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.staticDic = [@{} mutableCopy];
+    }
+    return self;
+}
+
+-(void)setStaticKey:(NSString *)staticKey withStaticValue:(NSString *)value{
+    if(staticKey){
+        self.staticDic[staticKey] = value;
+    }
+}
+
 // 设置
-+ (void)setLocalStorage:(NSString *)key withValue:(NSString *)value withIsPublic:(BOOL)isPublic {
+- (void)setLocalStorage:(NSString *)key withValue:(NSString *)value withIsPublic:(BOOL)isPublic {
     NSUserDefaults *defaults;
     if(isPublic){
         
-        defaults = [NSUserDefaults standardUserDefaults];//[[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        defaults = [NSUserDefaults standardUserDefaults];
     } else {
         
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
@@ -25,11 +56,14 @@
 }
 
 // 获取
-+ (NSString *)getLocalStorage:(NSString *)key withIsPublic:(BOOL)isPublic{
+- (NSString *)getLocalStorage:(NSString *)key withIsPublic:(BOOL)isPublic{
     
     NSUserDefaults *defaults;
     if(isPublic){
-        defaults = [NSUserDefaults standardUserDefaults];//[NSUserDefaults standardUserDefaults] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        if(self.staticDic[key]){
+            return self.staticDic[key];
+        }
+        defaults = [NSUserDefaults standardUserDefaults];
     } else {
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
     }
@@ -41,10 +75,10 @@
 }
 
 // 删除某一个
-+ (void)removeLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic {
+- (void)removeLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic {
     NSUserDefaults *defaults;
     if(isPublic){
-        defaults = [NSUserDefaults standardUserDefaults];//[[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        defaults = [NSUserDefaults standardUserDefaults];
     } else {
         defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];
     }
@@ -53,10 +87,10 @@
 }
 
 // 删除全部
-+ (void)removeLocalStorageAll:(BOOL)isPublic {
+- (void)removeLocalStorageAll:(BOOL)isPublic {
     
     if(isPublic){
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];//[[NSUserDefaults alloc] initWithSuiteName:[[NSBundle mainBundle] bundleIdentifier]];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
     }else{
         NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[MicroAppLoader sharedInstance].nowMicroAppId];

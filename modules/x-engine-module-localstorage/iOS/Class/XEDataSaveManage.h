@@ -12,16 +12,20 @@
 
 @interface XEDataSaveManage : NSObject
 
-+ (void)setLocalStorage:(NSString *)key withValue:(NSString *)value withIsPublic:(BOOL)isPublic;
++(instancetype)instance;
+
+-(void)setStaticKey:(NSString *)staticKey withStaticValue:(NSString *)value;
+
+- (void)setLocalStorage:(NSString *)key withValue:(NSString *)value withIsPublic:(BOOL)isPublic;
 
 // 获取
-+ (NSString *)getLocalStorage:(NSString *)key withIsPublic:(BOOL)isPublic;
+- (NSString *)getLocalStorage:(NSString *)key withIsPublic:(BOOL)isPublic;
 
 // 删除某一个
-+ (void)removeLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic ;
+- (void)removeLocalStorageItem:(NSString *)key withIsPublic:(BOOL)isPublic ;
 
 // 删除全部
-+ (void)removeLocalStorageAll:(BOOL)isPublic;
+- (void)removeLocalStorageAll:(BOOL)isPublic;
 
 //+ (void)setLocalStorage2:(NSString *)key withValue:(NSString *)value withIsPublic:(BOOL)isPublic;
 //+ (NSString *)getLocalStorage2:(NSString *)key withIsPublic:(BOOL)isPublic;

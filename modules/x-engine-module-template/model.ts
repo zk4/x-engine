@@ -6,7 +6,7 @@ const moduleID = "com.zkty.module.xxxx";
 // JS模块名称
 const JSModule = "@zkty-team/x-engine-module-xxxx";
 
-const config = {
+const conf = {
   args: {},
   permissions: {
     X_USER_INFO: "READ",

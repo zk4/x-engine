@@ -61,7 +61,7 @@ static   XEngineWebView* s_webview;
     }
     if(dic[@"title"]){
         if([self.loadUrl hasPrefix:@"http"]){
-//            self.title = dic[@"title"];
+            self.title = dic[@"title"];
         }
     }
 }

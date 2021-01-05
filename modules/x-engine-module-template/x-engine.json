@@ -1,10 +1,26 @@
 {
-  "appname":"",
-  "modules":{
-    "x-engine-module-protocols":{
-      "permission":[
-        "USER_INFO_READ"
-      ]
+  "appname": "",
+  "secrectKey": "",
+  "tabs": [
+    {
+      "text":"",
+      "icon":"",
+      "routerInfo":""
+    },
+    {
+      "text":"",
+      "icon":"",
+      "routerInfo":""
+    },
+    {
+      "text":"",
+      "icon":"",
+      "routerInfo":""
+    },
+    {
+      "text":"",
+      "icon":"",
+      "routerInfo":""
     }
-  }
+  ]
 }

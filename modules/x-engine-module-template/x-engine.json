@@ -1,0 +1,10 @@
+{
+  "appname":"",
+  "modules":{
+    "x-engine-module-protocols":{
+      "permission":[
+        "USER_INFO_READ"
+      ]
+    }
+  }
+}

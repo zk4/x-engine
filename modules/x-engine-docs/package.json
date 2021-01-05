@@ -1,0 +1,19 @@
+{
+  "name": "x-engine-docs",
+  "version": "1.0.0",
+  "description": "![cooltext363596337964428](assets/cooltext363596337964428.png)",
+  "main": ".docsifytopdfrc.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "convert": "node_modules/.bin/docsify-pdf-converter"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "docsify-pdf-converter": "^2.0.7"
+  }
+}

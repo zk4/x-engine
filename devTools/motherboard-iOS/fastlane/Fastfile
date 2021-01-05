@@ -37,18 +37,17 @@ platform :ios do
     )
 
     info = Plist.parse_xml('../motherboard/Info.plist')
-    puts info["CFBundleVersion"]
     version = get_version_number(xcodeproj: xcodeproj)
 
     build_app(
-        scheme: "pgy",
+        scheme: "motherboard",
         export_method: "enterprise"
     )
     pgyer(api_key: "576a62a2a1cb4729df3a3413a9d364bb", user_key: "e51db791981eb7771c098ef2f7997266")
-    git_commit(path: ".", message: "pgy(ios-c):"+version+" "+info["CFBundleVersion"])
+    git_commit(path: ".", message: "pgy(motherboard):"+version)
     # ding ding message
-    path = "/Users/zk/git/company/working/dingding.sh" +" motherboard "+version +" " + info["CFBundleVersion"]
-    sh(path)
+    #path = "/Users/zk/git/company/working/dingding.sh" +" motherboard "+version +" " + info["CFBundleVersion"]
+    #sh(path)
 
   end
    # 发送钉钉通知 (shell脚本)

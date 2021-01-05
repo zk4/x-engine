@@ -5,7 +5,7 @@
 
 #import "EntryViewController.h"
 //#import <MircroAppController.h>
-#import <UIViewController+.h>
+//#import <UIViewController+.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 @interface EntryViewController ()

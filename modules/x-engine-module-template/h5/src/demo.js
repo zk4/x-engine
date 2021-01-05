@@ -93,10 +93,22 @@ import xengine from "@zkty-team/x-engine-module-engine";
 
     window.haveArgRetSheetDTO = (...args) => {
     xxxx
-      .haveArgRetSheetDTO(...args)
+      .haveArgRetSheetDTO({title:"abc"})
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });
   };
+
+      window.anonymousType = (...args) => {
+    xxxx
+      .anonymousType({
+  age: 14,
+  
+})
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+JSON.stringify(res);
+      });
+  };
+
 
     

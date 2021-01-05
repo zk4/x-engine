@@ -63,5 +63,23 @@
             android:windowSoftInputMode="adjustResize"
             tools:replace="android:screenOrientation" />
 
+        <activity
+            android:name="com.dmcbig.mediapicker.PickerActivity"
+
+            android:configChanges="orientation|screenSize"
+
+            android:theme="@style/DeviceDefault.Light"
+
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name="com.dmcbig.mediapicker.PreviewActivity"
+
+            android:configChanges="orientation|screenSize"
+
+            android:theme="@style/DeviceDefault.Light"
+
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
     </application>
 </manifest>

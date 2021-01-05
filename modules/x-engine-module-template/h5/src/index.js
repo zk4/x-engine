@@ -62,8 +62,22 @@ function osCheck() {
   },
   {
     "name": "haveArgRetSheetDTO",
+    "default_args": null
+  },
+  {
+    "name": "anonymousType",
     "default_args": {
-      "title": "abc"
+      "age": 12,
+      "name": "zk",
+      "books": [
+        "1",
+        "2",
+        "3"
+      ],
+      "complexArg": {
+        "a": 1,
+        "name": "zk2"
+      }
     }
   }
 ]

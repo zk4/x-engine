@@ -1,5 +1,5 @@
 
-version: 0.0.59
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-xxxx
 ```
@@ -284,7 +284,7 @@ npm install @zkty-team/x-engine-module-xxxx
  {
     window.haveArgRetSheetDTO = (...args) => {
     xxxx
-      .haveArgRetSheetDTO(...args)
+      .haveArgRetSheetDTO({title:"abc"})
       .then((res) => {
         document.getElementById("debug_text").innerText = "ret:"+res["title"];
       });
@@ -301,5 +301,32 @@ npm install @zkty-team/x-engine-module-xxxx
 | itemList | Array\<string\> | true |  |  子标题? |
 | content | string | true |  |  内容 |
 | \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
+
+
+## anonymousType
+
+
+
+**demo**
+``` js
+ {
+      window.anonymousType = (...args) => {
+    xxxx
+      .anonymousType({
+  age: 14,
+  
+})
+      .then((res) => {
+        document.getElementById("debug_text").innerText = "ret:"+JSON.stringify(res);
+      });
+  };
+
+}
+``` 
+
+	
+**无参数**
+
+
 
     

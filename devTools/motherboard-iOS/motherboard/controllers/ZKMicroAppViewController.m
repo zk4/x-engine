@@ -27,7 +27,7 @@
     _scanResultArr = [[NSMutableArray alloc]init];
     self.title = @"微应用";
     [self setUpUI];
-
+    
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyBoard)];
     tapGesture.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGesture];
@@ -70,10 +70,9 @@
             [self.scanResultArr addObject:dataDic];
         }
         [self reloadUIView];
-//        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:self.searchBar.text];
+        
         [XERouterManager routerToTarget:@"h5" withUri:self.searchBar.text withPath:nil withArgs:nil withVersion:nil];
         self.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:webLaderVC animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }
     [self.searchBar resignFirstResponder];
@@ -84,10 +83,8 @@
     __weak typeof(self) weakSelf = self;
     vc.block = ^(NSString *data) {
         [XERouterManager routerToTarget:@"h5" withUri:data withPath:nil withArgs:nil withVersion:nil];
-
-//        MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:data];
+        
         self.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:webLaderVC animated:YES];
         self.hidesBottomBarWhenPushed = NO;
         
         self.searchBar.text = data;
@@ -125,12 +122,8 @@
 
 -(void)goWebAction:(UIButton *)sender{
     [XERouterManager routerToTarget:@"h5" withUri:self.scanResultArr[sender.tag][@"url"] withPath:nil withArgs:nil withVersion:nil];
-
-//    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:self.scanResultArr[sender.tag][@"url"]];
     self.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:webLaderVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
-
 }
 
 -(void)dismissKeyBoard{
@@ -144,7 +137,7 @@
     self.isCanUseSideBack = NO;
     
     __weak typeof(self) weakself = self;
-
+    
     if([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.delegate=(id)weakself;
     }

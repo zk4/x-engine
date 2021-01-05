@@ -19,7 +19,7 @@ target 'motherboard' do
   pod 'UniBoost', :path => '../../../UniBoost'
   pod 'x-engine-module-camera', :path =>'../../modules/x-engine-module-camera'
   pod 'x-engine-module-device', :path =>'../../modules/x-engine-module-device'
-  pod 'x-engine-module-bluetooth', :path =>'../../modules/x-engine-module-bluetooth'
+  #pod 'x-engine-module-bluetooth', :path =>'../../modules/x-engine-module-bluetooth'
   pod 'x-engine-module-localstorage', :path =>'../../modules/x-engine-module-localstorage'
   pod 'x-engine-module-network', :path =>'../../modules/x-engine-module-network'
   pod 'x-engine-module-ui', :path =>'../../modules/x-engine-module-ui'

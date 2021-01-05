@@ -50,9 +50,4 @@
           }];
         
       }
-
-- (void)_share:(ShareReqDTO *)dto complete:(void (^)(ShareResDTO *, BOOL))completionHandler {
-    
-}
-
-@end
+  @end

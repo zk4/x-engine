@@ -34,6 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.UUID;
@@ -358,25 +359,37 @@ public class ImageUtils {
             public void run() {
                 try {
                     if (!TextUtils.isEmpty(photoUrls)) {
-                        URL url = new URL(photoUrls);
-                        InputStream inputStream = url.openStream();
-                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                        inputStream.close();
+                        Bitmap bitmap = GetImageInputStream(photoUrls);
                         ((Activity) context).runOnUiThread(() -> {
                             saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg");
                         });
                     }
-
-                } catch (IOException e) {
-
-                    e.printStackTrace();
-                } catch (Exception e) {
+                }  catch (Exception e) {
                     e.printStackTrace();
                 }
 
 
             }
         }.start();
+    }
+
+    private static Bitmap GetImageInputStream(String imageurl) {
+        URL url;
+        HttpURLConnection connection = null;
+        Bitmap bitmap = null;
+        try {
+            url = new URL(imageurl);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setConnectTimeout(6000); //超时设置
+            connection.setDoInput(true);
+            connection.setUseCaches(false); //设置不使用缓存
+            InputStream inputStream = connection.getInputStream();
+            bitmap = BitmapFactory.decodeStream(inputStream);
+            inputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
 
@@ -418,10 +431,10 @@ public class ImageUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtils.showThreadToast("保存失败，请重试");
+            ToastUtils.showNormalShortToast("保存失败，请重试");
             return false;
         }
-        ToastUtils.showThreadToast("保存成功");
+        ToastUtils.showNormalShortToast("保存成功");
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileName)));
         return true;
     }
@@ -454,12 +467,12 @@ public class ImageUtils {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
                     outputStream.flush();
                     outputStream.close();
-                    ToastUtils.showThreadToast("保存成功");
+                    ToastUtils.showNormalShortToast("保存成功");
 
                 }
             }
         } catch (Exception e) {
-            ToastUtils.showThreadToast("保存失败，请重试");
+            ToastUtils.showNormalShortToast("保存失败，请重试");
         }
     }
 

@@ -23,6 +23,8 @@ static   XEngineWebView* s_webview;
 @property (nonatomic, assign) BOOL isReadyLoading;
 @property (nonatomic, assign) BOOL isSelfGoback;
 
+@property (nonatomic, copy) NSString *customTiitle;
+
 @end
 
 @implementation RecyleWebViewController
@@ -32,10 +34,11 @@ static   XEngineWebView* s_webview;
 -(void)webViewProgressChange:(NSNotification *)notifi{
     
     NSDictionary *dic = notifi.object;
-    if(dic[@"progress"]){
-        float floatNum = [dic[@"progress"] floatValue];
-        id web = dic[@"webView"];
-        if(web == self.webview){
+    XEngineWebView *web = dic[@"webView"];
+    if(web == self.webview){
+        if(dic[@"progress"]){
+            float floatNum = [dic[@"progress"] floatValue];
+
             self.progresslayer.alpha = 1;
             [self.progresslayer setProgress:floatNum animated:YES];
             if (floatNum == 1) {
@@ -51,6 +54,7 @@ static   XEngineWebView* s_webview;
                             if(title.length > 0){
                                 if(self.title.length == 0){
                                     self.title = title;
+                                    self.customTiitle = self.title;
                                 }
                             }
                         }
@@ -58,10 +62,11 @@ static   XEngineWebView* s_webview;
                 }
             }
         }
-    }
-    if(dic[@"title"]){
-        if([self.loadUrl hasPrefix:@"http"]){
-            self.title = dic[@"title"];
+        if(dic[@"title"]){
+            if([self.loadUrl hasPrefix:@"http"]){
+                self.title = dic[@"title"];
+                self.customTiitle = self.title;
+            }
         }
     }
 }
@@ -139,14 +144,14 @@ static   XEngineWebView* s_webview;
                     return self;
                 if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
                     
-                    NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-                    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
-                    }];
+//                    NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+//                    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
+//                    }];
                     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{
-                    NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-                    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
-                    }];
+//                    NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+//                    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
+//                    }];
                     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
                 }
             }
@@ -341,6 +346,10 @@ static   XEngineWebView* s_webview;
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.title]){
+        self.title = self.customTiitle;
+    }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     self.progresslayer.alpha = 0;

@@ -3,7 +3,6 @@
 #import "XEOneWebViewPool.h"
 #import "MicroAppLoader.h"
 #import "Unity.h"
-#import "ZKPushAnimation.h"
 #import <objc/runtime.h>
 
 #import "UINavigationController+Customized.h"
@@ -37,7 +36,7 @@
 - (void)pushWebViewControllerWithUrl:(NSString *)url withIsHiddenNavbar:(BOOL)isHidden{
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url withHiddenBar:isHidden];
-    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
+//    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     
 //    UIView *vv = [[UIView alloc] init];
 //    [UIApplication sharedApplication].keyWindow
@@ -66,8 +65,8 @@
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url withHiddenBar:isHidden];
     //
-    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle
-                                             withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
+//    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle
+//                                             withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }

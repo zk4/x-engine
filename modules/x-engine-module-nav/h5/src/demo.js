@@ -1,14 +1,18 @@
 
 import nav from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
 
   window.setNavTitle = () => {
-    nav.setNavTitle().then((res) => {});
+    nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
   };
 
   window.setNavLeftBtn = () => {
-    nav.setNavLeftBtn().then((res) => {});
+    nav.setNavLeftBtn({
+      title: "",
+      titleColor: "#000000",
+      titleSize: 16,
+      icon: "",
+      iconSize: ["20", "20"],
+    }).then((res) => {});
   };
 
   window.setNavRightBtn = () => {
@@ -50,15 +54,37 @@ import xengine from "@zkty-team/x-engine-module-engine";
   };
 
   window.setNavRightMoreBtn = () => {
-    nav.setNavRightMoreBtn().then((res) => {});
+    nav.setNavRightMoreBtn({
+      btns: [
+        {
+          title: "right1",
+          titleColor: "#000000",
+          titleSize: 16,
+          iconSize: ["20", "20"],
+        },
+        {
+          title: "",
+          icon: "/assets/search.png",
+          titleColor: "#000000",
+          titleSize: 16,
+          iconSize: ["20", "20"],
+        },
+      ],
+    }).then((res) => {});
   };
 
   window.navigatorPush = () => {
-    nav.navigatorPush().then((res) => {});
+    nav.navigatorPush({
+      url: "",
+      hideNavBar:false
+    }).then((res) => {});
   };
 
   window.navigatorBack = () => {
-    nav.navigatorBack().then((res) => {});
+    nav.navigatorBack({
+      url: "",
+      hideNavBar:false
+    }).then((res) => {});
   };
 
   window.setNavSearchBar = () => {

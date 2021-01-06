@@ -102,6 +102,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
 -(void)choosePhotos:(CameraDTO*)dto{
     __weak typeof(self) weakself = self;
     ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+//    imagePickerVc.allowTakePicture = NO;
+    imagePickerVc.allowTakeVideo = NO;
 
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         NSMutableDictionary * ret = [NSMutableDictionary new];

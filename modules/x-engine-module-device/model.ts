@@ -302,8 +302,7 @@ function devicePhoneCall(arg:DevicePhoneNumDTO){
 
 //发短信
 function deviceSendMessage(
-  DeviceMessageDTO: DeviceMessageDTO = {
-  }
+  DeviceMessageDTO: DeviceMessageDTO
 ):DeviceMoreDTO{
   window.deviceSendMessage = () => {
     device

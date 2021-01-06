@@ -87,21 +87,44 @@
           }];
         
       }
+    - (void) _testRemoveAllPublic:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_get:(StorageGetDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
+          StorageRemoveAllDTO* dto = [self convert:dict clazz:StorageRemoveAllDTO.class];
+          [self __testRemoveAllPublic:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) _testSetPublicStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_remove:(StorageRemoveDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
+          StorageSetDTO* dto = [self convert:dict clazz:StorageSetDTO.class];
+          [self __testSetPublicStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) _testGetPublicStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_removeAll:(StorageRemoveAllDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
+          StorageGetDTO* dto = [self convert:dict clazz:StorageGetDTO.class];
+          [self __testGetPublicStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) _testSetLocalStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_set:(StorageSetDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
+          StorageSetDTO* dto = [self convert:dict clazz:StorageSetDTO.class];
+          [self __testSetLocalStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+    - (void) _testGetLocalStorage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-@end
+          StorageGetDTO* dto = [self convert:dict clazz:StorageGetDTO.class];
+          [self __testGetLocalStorage:dto complete:^(StorageStatusDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+  @end

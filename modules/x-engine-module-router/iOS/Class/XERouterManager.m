@@ -9,7 +9,6 @@
 #import <x-engine-module-engine/Unity.h>
 #import <x-engine-module-engine/XEOneWebViewControllerManage.h>
 #import "WXApi.h"
-#import <ZKPushAnimation.h>
 #import <x-engine-module-dcloud/__xengine__module_dcloud.h>
 #import <XEngineContext.h>
 #import <MicroAppLoader.h>
@@ -32,7 +31,7 @@
         if(ary.count == 2){
             NSString *className = ary[0];
             UIViewController *vc = [[NSClassFromString(className) alloc] init];
-            [[ZKPushAnimation instance] removeAnimationDelegate];
+//            [[ZKPushAnimation instance] removeAnimationDelegate];
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
         }
         return;

@@ -524,6 +524,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSURL * URL;
     NSString *scheme;
     NSString * subUrlStr;
+
+    if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
+       decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    
     if ([urlStr rangeOfString:@"?"].location !=NSNotFound) {
         range = [urlStr rangeOfString:@"?"];//匹配得到的下标
         URL = [NSURL URLWithString:[urlStr substringToIndex:range.location]];
@@ -581,13 +588,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         return;
     }
     
-    if ([urlStr hasSuffix:@"weixin://"] || [urlStr hasSuffix:@"alipay://"]) {
-        decisionHandler(WKNavigationActionPolicyCancel);
-        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL success) {
-            
-        }];
-        return;
-    }
+   
     
      decisionHandler(WKNavigationActionPolicyAllow);
 }

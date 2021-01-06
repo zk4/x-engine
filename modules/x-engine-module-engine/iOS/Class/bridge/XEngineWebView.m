@@ -583,9 +583,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     
     if ([urlStr hasSuffix:@"weixin://"] || [urlStr hasSuffix:@"alipay://"]) {
         decisionHandler(WKNavigationActionPolicyCancel);
-        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL success) {
-            
-        }];
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:nil];
         return;
     }
     

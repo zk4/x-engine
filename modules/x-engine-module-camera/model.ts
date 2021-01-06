@@ -30,7 +30,7 @@ interface CameraRetDTO {
 }
 
 interface SaveImageDTO {
-  //url  base64
+  //url或base64
   type:string;
   imageData: string;
 }
@@ -57,8 +57,6 @@ function openImagePicker(
     cameraFlashMode: -1,
     cameraDevice:'back',
     photoCount: 1,
-    isbase64:true,
-    args:{width:'200',quality:'0.5'},
     __event__:(string)=>{}
   }
 ):CameraRetDTO {
@@ -71,6 +69,7 @@ function openImagePicker(
         cameraDevice:'back',
         photoCount: 5,
         isbase64:true,
+        args:{width:'200',quality:'0.5'},
         __event__: (res) => {
             let jres = JSON.parse(res);
             for(let photo of jres.data){

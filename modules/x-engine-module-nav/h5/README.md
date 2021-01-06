@@ -17,9 +17,9 @@ com.zkty.module.nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | title | 导航条的文字 |
-| titleColor | string |  | #000000 | 16进制的颜色色值 |
-| titleSize | int |  | 16 | 字体大小 |
+| title | string |  |  | 导航条的文字 |
+| titleColor | string |  |  | 16进制的颜色色值 |
+| titleSize | int |  |  | 字体大小 |
 
 
 ## setNavLeftBtn

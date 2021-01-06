@@ -14,27 +14,23 @@ function osCheck() {
     [
   {
     "name": "setNavTitle",
-    "default_args": {
-      "title": "title",
-      "titleColor": "#000000",
-      "titleSize": 16
-    }
+    "default_args": null
   },
   {
     "name": "setNavLeftBtn",
-    "default_args": {}
+    "default_args": null
   },
   {
     "name": "setNavRightBtn",
-    "default_args": {}
+    "default_args": null
   },
   {
     "name": "setNavRightMenuBtn",
-    "default_args": {}
+    "default_args": null
   },
   {
     "name": "setNavRightMoreBtn",
-    "default_args": {}
+    "default_args": null
   },
   {
     "name": "navigatorPush",
@@ -46,7 +42,7 @@ function osCheck() {
   },
   {
     "name": "setNavSearchBar",
-    "default_args": {}
+    "default_args": null
   },
   {
     "name": "setSearchBarHidden",

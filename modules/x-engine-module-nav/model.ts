@@ -121,17 +121,15 @@ interface NavHistoryDTO {
 // nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
 // ```
 function setNavTitle(
-  arg: NavTitleDTO = { title: "title", titleColor: "#000000", titleSize: 16 }
+  arg: NavTitleDTO 
 ) {
   window.setNavTitle = () => {
-    nav.setNavTitle().then((res) => {});
+    nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
   };
 }
 
 function setNavLeftBtn(
-  arg: NavBtnDTO = {
-    
-  }
+  arg: NavBtnDTO 
 ) {
   window.setNavLeftBtn = () => {
     nav.setNavLeftBtn({
@@ -145,8 +143,7 @@ function setNavLeftBtn(
 }
 
 function setNavRightBtn(
-  arg: NavBtnDTO = {
-  }
+  arg: NavBtnDTO 
 ) {
   window.setNavRightBtn = () => {
     nav
@@ -165,8 +162,7 @@ function setNavRightBtn(
 }
 
 function setNavRightMenuBtn(
-  arg: NavBtnDTO = {
-  }
+  arg: NavBtnDTO 
 ) {
   window.setNavRightMenuBtn = () => {
     nav
@@ -193,9 +189,7 @@ function setNavRightMenuBtn(
 }
 
 function setNavRightMoreBtn(
-  arg: NavMoreBtnDTO = {
-   
-  }
+  arg: NavMoreBtnDTO 
 ) {
   window.setNavRightMoreBtn = () => {
     nav.setNavRightMoreBtn({
@@ -263,8 +257,7 @@ function navigatorBack(arg: NavNavigatorBackDTO = { }) {
 //
 //```
 function setNavSearchBar(
-  arg: NavSearchBarDTO = {
-  }
+  arg: NavSearchBarDTO 
 ) {
   window.setNavSearchBar = () => {
     nav

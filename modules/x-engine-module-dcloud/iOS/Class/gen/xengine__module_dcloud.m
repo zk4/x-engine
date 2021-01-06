@@ -59,17 +59,4 @@
              completionHandler(nil ,complete);
           }];
       }
-
-- (void)_openUniMP:(DcloudDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-- (void)_openUniMPWithArg:(UniMPDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-- (void)_preloadUniMP:(UniMPDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-@end
+  @end

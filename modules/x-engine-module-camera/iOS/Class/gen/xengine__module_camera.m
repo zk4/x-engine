@@ -66,13 +66,4 @@
              completionHandler(nil ,complete);
           }];
       }
-
-- (void)_openImagePicker:(CameraDTO *)dto complete:(void (^)(CameraRetDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_saveImageToAlbum:(SaveImageDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-@end
+  @end

@@ -213,7 +213,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
         if (topVC.navigationController) {
             [topVC.navigationController dismissViewControllerAnimated:YES completion:^{
                 RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-                NSString *indexRow = [NSString stringWithFormat:@"%ld",indexPath.item];
+                NSString *indexRow = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
                 if ([NavUtil getNoEmptyString:event]){
                     [webVC.webview callHandler:event arguments:@[indexRow] completionHandler:^(id  _Nullable value) {}];
                 }
@@ -221,7 +221,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
         } else {
             [topVC dismissViewControllerAnimated:YES completion:^{
                 RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-                NSString *indexRow = [NSString stringWithFormat:@"%ld",indexPath.item];
+                NSString *indexRow = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
                 if ([NavUtil getNoEmptyString:event]){
                     [webVC.webview callHandler:event arguments:@[indexRow] completionHandler:^(id  _Nullable value) {}];
                 }

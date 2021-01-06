@@ -190,9 +190,11 @@ static   XEngineWebView* s_webview;
 }
 
 - (NSString *)urlEncodedString:(NSString *)str {
-    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
     NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\|\n ";
+#pragma clang diagnostic pop
     NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
     return [decodedString stringByAddingPercentEncodingWithAllowedCharacters:set];
 //    NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\|\n ";

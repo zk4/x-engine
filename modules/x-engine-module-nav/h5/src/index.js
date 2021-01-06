@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -22,124 +22,31 @@ function osCheck() {
   },
   {
     "name": "setNavLeftBtn",
-    "default_args": {
-      "title": "",
-      "titleColor": "#000000",
-      "titleSize": 16,
-      "icon": "",
-      "iconSize": [
-        "20",
-        "20"
-      ]
-    }
+    "default_args": {}
   },
   {
     "name": "setNavRightBtn",
-    "default_args": {
-      "title": "right",
-      "titleColor": "#000000",
-      "titleSize": 16,
-      "icon": "",
-      "iconSize": [
-        "20",
-        "20"
-      ]
-    }
+    "default_args": {}
   },
   {
     "name": "setNavRightMenuBtn",
-    "default_args": {
-      "title": "menu",
-      "titleColor": "#000000",
-      "titleSize": 16,
-      "icon": "",
-      "iconSize": [
-        "20",
-        "20"
-      ],
-      "popWidth": "200",
-      "showMenuImg": "false",
-      "popList": [
-        {
-          "icon": "",
-          "iconSize": "20",
-          "title": "1"
-        },
-        {
-          "icon": "",
-          "iconSize": "20",
-          "title": "2"
-        },
-        {
-          "icon": "",
-          "iconSize": "20",
-          "title": "3"
-        }
-      ]
-    }
+    "default_args": {}
   },
   {
     "name": "setNavRightMoreBtn",
-    "default_args": {
-      "btns": [
-        {
-          "title": "right1",
-          "titleColor": "#000000",
-          "titleSize": 16,
-          "iconSize": [
-            "20",
-            "20"
-          ]
-        },
-        {
-          "title": "",
-          "icon": "/assets/search.png",
-          "titleColor": "#000000",
-          "titleSize": 16,
-          "iconSize": [
-            "20",
-            "20"
-          ]
-        }
-      ]
-    }
+    "default_args": {}
   },
   {
     "name": "navigatorPush",
-    "default_args": {
-      "url": "",
-      "hideNavBar": false
-    }
+    "default_args": {}
   },
   {
     "name": "navigatorBack",
-    "default_args": {
-      "url": "",
-      "hideNavBar": false
-    }
+    "default_args": {}
   },
   {
     "name": "setNavSearchBar",
-    "default_args": {
-      "cornerRadius": 5,
-      "backgroundColor": "#FF0000",
-      "iconSearch": "",
-      "iconSearchSize": [
-        20,
-        20
-      ],
-      "iconClear": "",
-      "iconClearSize": [
-        20,
-        20
-      ],
-      "textColor": "#000000",
-      "fontSize": 16,
-      "placeHolder": "默认文字",
-      "placeHolderFontSize": 16,
-      "isInput": true,
-      "becomeFirstResponder": false
-    }
+    "default_args": {}
   },
   {
     "name": "setSearchBarHidden",

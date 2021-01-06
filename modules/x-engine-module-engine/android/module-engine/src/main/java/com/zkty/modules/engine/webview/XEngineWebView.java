@@ -24,6 +24,7 @@ import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.exception.NoModuleIdException;
 import com.zkty.modules.engine.manager.SchemeManager;
 import com.zkty.modules.engine.utils.ImageUtils;
+import com.zkty.modules.engine.utils.ToastUtils;
 import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.Utils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
@@ -101,11 +102,22 @@ public class XEngineWebView extends DWebView {
                     webView.loadUrl(s, webviewHead);
                     return true;
                 }
-                if (s.startsWith("weixin://wap/pay?")) {
+                if (s.startsWith("weixin://")) {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(s));
                     mContext.startActivity(intent);
+                    return true;
+                }
+                if (s.startsWith("alipay://") || s.startsWith("alipays://")){
+                    if (Utils.checkAliPayInstalled(mContext)) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(s));
+                        mContext.startActivity(intent);
+                    } else {
+                        ToastUtils.showNormalShortToast("请下载支付宝客户端");
+                    }
                     return true;
                 }
                 if (s.startsWith("x-engine-json://")) {

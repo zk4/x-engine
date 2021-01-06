@@ -1,7 +1,9 @@
 package com.zkty.modules.engine.utils;
 
 import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -248,5 +250,13 @@ public class Utils {
         }
         lastClickTime = currentClickTime;
         return flag;
+    }
+
+    //判断是否安装支付宝app
+    public static boolean checkAliPayInstalled(Context context) {
+        Uri uri = Uri.parse("alipays://platformapi/startApp");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        ComponentName componentName = intent.resolveActivity(context.getPackageManager());
+        return componentName != null;
     }
 }

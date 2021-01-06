@@ -12,18 +12,14 @@ static   XEngineWebView* s_webview;
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, copy) NSString *rootPath;
-@property (nonatomic, assign) BOOL isRootVc;
-//@property (nonatomic, readwrite) BOOL statusBarHidden;
+
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
-@property (nonatomic, strong) UILabel *tipLabel;
-
-@property (nonatomic, assign) BOOL isClearHistory;
-
-@property (nonatomic, assign) BOOL isReadyLoading;
-@property (nonatomic, assign) BOOL isSelfGoback;
+@property (nonatomic, strong) UILabel *tipLabel404;
 
 @property (nonatomic, copy) NSString *customTiitle;
+
+@property (nonatomic, strong) UIView *screenView;
 
 @end
 
@@ -127,7 +123,6 @@ static   XEngineWebView* s_webview;
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
            || ![XEOneWebViewPool sharedInstance].inSingle){
             
-            self.isReadyLoading = YES;
             self.webview = [[XEOneWebViewPool sharedInstance] getWebView];
             s_webview=self.webview;
 
@@ -149,9 +144,6 @@ static   XEngineWebView* s_webview;
 //                    }];
                     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
                 }else{
-//                    NSSet<NSString *> *dataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-//                    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:dataTypes modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
-//                    }];
                     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[MicroAppLoader microappDirectory]]];
                 }
             }
@@ -246,15 +238,8 @@ static   XEngineWebView* s_webview;
 }
 
 -(void)drawFrame{
-//    if([UIScreen mainScreen].bounds.size.height == self.view.bounds.size.height){
-//        self.webview.frame = CGRectMake(0,
-//                                        CGRectGetMaxY(self.navigationController.navigationBar.frame),
-//                                        self.view.bounds.size.width,
-//                                        self.view.bounds.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame));
-//    }else{
-        self.webview.frame = self.view.bounds;
-//    }
-    
+
+    self.webview.frame = self.view.bounds;
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
     float height = (self.view.bounds.size.width / 375.0) * 200;
     self.imageView404.frame = CGRectMake(0,
@@ -262,15 +247,14 @@ static   XEngineWebView* s_webview;
                                          self.view.bounds.size.width,
                                          height);
     
-    self.tipLabel.frame = CGRectMake(0,
+    self.tipLabel404.frame = CGRectMake(0,
                                      CGRectGetHeight(self.imageView404.frame) + 8,
                                      self.imageView404.bounds.size.width,
-                                     self.tipLabel.font.lineHeight);
+                                     self.tipLabel404.font.lineHeight);
 }
 
 -(void)goback:(UIButton *)sender{
     
-    self.isSelfGoback = YES;
     if([self.loadUrl hasPrefix:@"http"]){
         if([self.webview canGoBack]){
             [self.webview goBack];
@@ -289,6 +273,7 @@ static   XEngineWebView* s_webview;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.hidesBottomBarWhenPushed = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"back_arrow" ofType:@"png"];
@@ -334,17 +319,32 @@ static   XEngineWebView* s_webview;
     self.imageView404.hidden = YES;
     [self.view addSubview:self.imageView404];
     
-    self.tipLabel = [[UILabel alloc] init];
-    self.tipLabel.textAlignment = NSTextAlignmentCenter;
-    self.tipLabel.text = @"您访问的页面找不到了";
-    self.tipLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-    self.tipLabel.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
-    [self.imageView404 addSubview:self.tipLabel];
+    self.tipLabel404 = [[UILabel alloc] init];
+    self.tipLabel404.textAlignment = NSTextAlignmentCenter;
+    self.tipLabel404.text = @"您访问的页面找不到了";
+    self.tipLabel404.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+    self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
+    [self.imageView404 addSubview:self.tipLabel404];
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
+    
+    
+    [self setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView]];
+    [self loadFileUrl];
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
+    if(self.screenView){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.screenView removeFromSuperview];
+            self.screenView = nil;
+        });
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
@@ -356,16 +356,6 @@ static   XEngineWebView* s_webview;
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     self.progresslayer.alpha = 0;
     [self.view insertSubview:self.webview atIndex:0];
-    
-    if(self.navigationController.viewControllers.count > 1){
-        //记录上一级VC
-        UIViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-        if([vc isKindOfClass:[RecyleWebViewController class]]){
-            self.isRootVc = NO;
-        }else{
-            self.isRootVc = YES;
-        }
-    }
 
     if([self.loadUrl hasPrefix:@"http"]){
         if(self.navigationItem.leftBarButtonItems.count > 0){
@@ -376,9 +366,17 @@ static   XEngineWebView* s_webview;
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    if(self.navigationController == nil && self.isRootVc){
+    if(self.navigationController == nil){
         [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+    self.screenView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.screenView];
+    self.screenView.frame = self.view.bounds;
 }
 
 - (void)dealloc{

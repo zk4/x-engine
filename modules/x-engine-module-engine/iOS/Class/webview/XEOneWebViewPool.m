@@ -62,28 +62,39 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     XEngineWebView *web = self.webCacheAry.lastObject;
     if(web){
         if(url){
-            if([web.URL.absoluteString isEqualToString:url]){
+            if([[web.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]] ||
+               [[web.URL.absoluteString lowercaseString] isEqualToString:[NSString stringWithFormat:@"%@#/", [url lowercaseString]]] ){
+                
+                if([web canGoBack]){
+                    [web goBack];
+                }else{
+                    [web loadUrl:@""];
+        //            if([AVAudioSession sharedInstance].secondaryAudioShouldBeSilencedHint){
+        //                [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        //            }
+                    [self.webCacheAry removeLastObject];
+                    [web removeFromSuperview];
+                    web = nil;
+                }
                 return;
             }
             NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
-            for (WKBackForwardListItem *item in [[ary reverseObjectEnumerator] allObjects]) {
+            NSArray<WKBackForwardListItem *> *reversAry = [[ary reverseObjectEnumerator] allObjects];
+            for (int i = 0; i < reversAry.count; i++) {
+                WKBackForwardListItem *item = reversAry[i];
                 if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
                    || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
-                    [web goToBackForwardListItem:item];
+                    if(i > 0){
+                        [web goToBackForwardListItem:reversAry[i - 1]];
+                    }else{
+                        [web loadUrl:@""];
+                        [self.webCacheAry removeLastObject];
+                        [web removeFromSuperview];
+                        web = nil;
+                    }
                     return;
                 }
             }
-        }
-        if([web canGoBack]){
-            [web goBack];
-        }else{
-            [web loadUrl:@""];
-//            if([AVAudioSession sharedInstance].secondaryAudioShouldBeSilencedHint){
-//                [[AVAudioSession sharedInstance] setActive:YES error:nil];
-//            }
-            [self.webCacheAry removeLastObject];
-            [web removeFromSuperview];
-            web = nil;
         }
     }
 }

@@ -74,29 +74,28 @@
     UIView *gestureView = gesture.view;
     [gestureView removeGestureRecognizer:self.edgePan];
 }
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    
+
+-(void)addAnimationDelegate{
+    return;
+    UIGestureRecognizer *gesture = [Unity sharedInstance].getCurrentVC.navigationController.interactivePopGestureRecognizer;
+    if([XEOneWebViewPool sharedInstance].inSingle){
+        
+        gesture.enabled = NO;
+        UIView *gestureView = gesture.view;
+        [gestureView addGestureRecognizer:self.edgePan];
+        [Unity sharedInstance].getCurrentVC.navigationController.delegate = self;
+    }else{
+        gesture.enabled = YES;
+    }
 }
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    
-}
+
 - (void)isOpenCustomAnimation:(BOOL)isOpen withFrom:(UIViewController *)fromVc withTo:(UIViewController *)toVc{
     if(
        [fromVc isKindOfClass:[RecyleWebViewController class]]
        &&
        [toVc isKindOfClass:[RecyleWebViewController class]]){
         
-        if(isOpen && [XEOneWebViewPool sharedInstance].inSingle){
-            UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
-            gesture.enabled = NO;
-            UIView *gestureView = gesture.view;
-            [gestureView addGestureRecognizer:self.edgePan];
-        } else {
-            UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
-            gesture.enabled = YES;
-        }
-//        [Unity sharedInstance].getCurrentVC.navigationController.delegate = isOpen ? self : nil;
-        [Unity sharedInstance].getCurrentVC.navigationController.delegate = isOpen ? self : nil;
+        [self addAnimationDelegate];
     }
 }
 - (void)isOpenCustomAnimation:(BOOL)isOpen withNavigationController:(UINavigationController *)navController{
@@ -268,10 +267,17 @@
     
     if([toVc isKindOfClass:[RecyleWebViewController class]]){
         
+        UIView *whiteView = [[UIView alloc] init];
+        whiteView.frame = CGRectMake(-containerView.bounds.size.width * 2,
+                                     0,
+                                     containerView.bounds.size.width * 5,
+                                     containerView.bounds.size.height);
+        [containerView addSubview:whiteView];
+        
         [containerView addSubview:toView];
         
         RecyleWebViewController *toVC = (RecyleWebViewController *)toVc;
-//        RecyleWebViewController *fromVC = (RecyleWebViewController *)fromVc;
+        RecyleWebViewController *fromVC = (RecyleWebViewController *)fromVc;
         
         if(toVC.isHiddenNavbar){
             toView.frame = CGRectMake(0,
@@ -327,7 +333,7 @@
             
             if (!transitionContext.transitionWasCancelled) {
                 
-                [[XEOneWebViewPool sharedInstance] clearWebView:toVC.loadUrl];
+                [[XEOneWebViewPool sharedInstance] clearWebView:fromVC.loadUrl];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [fromScreenView removeFromSuperview];
                     [shawView removeFromSuperview];
@@ -340,6 +346,7 @@
                 [toViewScreenImageView removeFromSuperview];
                 [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             }
+            [whiteView removeFromSuperview];
         }];
     } else {
         toView.frame = CGRectMake(containerView.bounds.size.width * -0.5,
@@ -389,6 +396,7 @@
     progress = MIN(1.0, MAX(0.0, progress));
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.interactivePopTransition = [[UIPercentDrivenInteractiveTransition alloc] init];
+//        self.interactivePopTransition.wantsInteractiveStart = NO;
         self.isTouchActioning = YES;
         [self.lastVc.navigationController popViewControllerAnimated:YES];
     }
@@ -491,6 +499,38 @@
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
         [self removeAnimationDelegate];
     }];
+}
+
+- (void)navigationController:(UINavigationController*)navigationController
+      willShowViewController:(UIViewController*)viewController
+                    animated:(BOOL)animated {
+    
+//    if(viewController == navigationController.topViewController){
+//        [navigationController setNavigationBarHidden:YES animated:YES];
+//    }else{
+        
+        //系统相册继承自 UINavigationController 这个不能隐藏 所有就直接return
+        if ([navigationController isKindOfClass:[UIImagePickerController class]]) {
+            return;
+        }
+//    [navigationController setNavigationBarHidden:NO animated:animated];
+    [self.interactivePopTransition finishInteractiveTransition];
+        //不在本页时，显示真正的navbar
+//        [navigationController setNavigationBarHidden:viewController.navigationController.navigationBarHidden animated:YES];
+    
+        //当不显示本页时，要么就push到下一页，要么就被pop了，那么就将delegate设置为nil，防止出现BAD ACCESS
+        //之前将这段代码放在viewDidDisappear和dealloc中，这两种情况可能已经被pop了，self.navigationController为nil，这里采用手动持有navigationController的引用来解决
+//        if(navigationController.delegate == self){
+            //如果delegate是自己才设置为nil，因为viewWillAppear调用的比此方法较早，其他controller如果设置了delegate就可能会被误伤
+//            navigationController.delegate = nil;
+//    [self removeAnimationDelegate];
+//        }
+//    }
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+       didShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated{
 }
 
 @end

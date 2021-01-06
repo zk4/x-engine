@@ -18,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)isOpenCustomAnimation:(BOOL)isOpen withNavigationController:(UINavigationController *)navController;
 
 - (void)removeAnimationDelegate;
-//- (void)navtionGestreAction:(UINavigationController *)navController;
-//- (void)handleControllerPop:(UIPanGestureRecognizer *)recognizer;
 
 @end
 

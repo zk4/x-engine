@@ -27,6 +27,8 @@
 @property (nonatomic, copy) NSString *fromUrl;
 @property (nonatomic, copy) NSString *toUrl;
 
+@property (nonatomic, strong) UIScreenEdgePanGestureRecognizer *edgePan;
+
 @end
 
 @implementation ZKPushAnimation
@@ -57,8 +59,20 @@
     
 }
 
+-(UIScreenEdgePanGestureRecognizer *)edgePan{
+    if(_edgePan == nil){
+        _edgePan = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleControllerPop:)];
+        _edgePan.edges = UIRectEdgeLeft;
+    }
+    return _edgePan;
+}
+
 -(void)removeAnimationDelegate{
     [Unity sharedInstance].getCurrentVC.navigationController.delegate = nil;
+    UIGestureRecognizer *gesture = [Unity sharedInstance].getCurrentVC.navigationController.interactivePopGestureRecognizer;
+    gesture.enabled = YES;
+    UIView *gestureView = gesture.view;
+    [gestureView removeGestureRecognizer:self.edgePan];
 }
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
@@ -76,10 +90,7 @@
             UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
             gesture.enabled = NO;
             UIView *gestureView = gesture.view;
-            
-            UIScreenEdgePanGestureRecognizer *edgePan = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleControllerPop:)];
-            edgePan.edges = UIRectEdgeLeft;
-            [gestureView addGestureRecognizer:edgePan];
+            [gestureView addGestureRecognizer:self.edgePan];
         } else {
             UIGestureRecognizer *gesture = fromVc.navigationController.interactivePopGestureRecognizer;
             gesture.enabled = YES;
@@ -356,9 +367,7 @@
             [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             if (!transitionContext.transitionWasCancelled) {
                 
-                [Unity sharedInstance].getCurrentVC.navigationController.delegate = nil;
-                UIGestureRecognizer *gesture = [Unity sharedInstance].getCurrentVC.navigationController.interactivePopGestureRecognizer;
-                gesture.enabled = YES;
+                [self removeAnimationDelegate];
             }
         }];
     }
@@ -480,7 +489,7 @@
                                      fromeView.frame.size.height);
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-        [Unity sharedInstance].getCurrentVC.navigationController.delegate = nil;
+        [self removeAnimationDelegate];
     }];
 }
 

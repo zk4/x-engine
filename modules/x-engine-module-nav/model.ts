@@ -130,25 +130,22 @@ function setNavTitle(
 
 function setNavLeftBtn(
   arg: NavBtnDTO = {
-    title: "",
-    titleColor: "#000000",
-    titleSize: 16,
-    icon: "",
-    iconSize: ["20", "20"],
+    
   }
 ) {
   window.setNavLeftBtn = () => {
-    nav.setNavLeftBtn().then((res) => {});
+    nav.setNavLeftBtn({
+      title: "",
+      titleColor: "#000000",
+      titleSize: 16,
+      icon: "",
+      iconSize: ["20", "20"],
+    }).then((res) => {});
   };
 }
 
 function setNavRightBtn(
   arg: NavBtnDTO = {
-    title: "right",
-    titleColor: "#000000",
-    titleSize: 16,
-    icon: "",
-    iconSize: ["20", "20"],
   }
 ) {
   window.setNavRightBtn = () => {
@@ -169,18 +166,6 @@ function setNavRightBtn(
 
 function setNavRightMenuBtn(
   arg: NavBtnDTO = {
-    title: "menu",
-    titleColor: "#000000",
-    titleSize: 16,
-    icon: "",
-    iconSize: ["20", "20"],
-    popWidth: "200",
-    showMenuImg: "false",
-    popList: [
-      { icon: "", iconSize: "20", title: "1" },
-      { icon: "", iconSize: "20", title: "2" },
-      { icon: "", iconSize: "20", title: "3" },
-    ],
   }
 ) {
   window.setNavRightMenuBtn = () => {
@@ -209,38 +194,46 @@ function setNavRightMenuBtn(
 
 function setNavRightMoreBtn(
   arg: NavMoreBtnDTO = {
-    btns: [
-      {
-        title: "right1",
-        titleColor: "#000000",
-        titleSize: 16,
-        iconSize: ["20", "20"],
-      },
-      {
-        title: "",
-        icon: "/assets/search.png",
-        titleColor: "#000000",
-        titleSize: 16,
-        iconSize: ["20", "20"],
-      },
-    ],
+   
   }
 ) {
   window.setNavRightMoreBtn = () => {
-    nav.setNavRightMoreBtn().then((res) => {});
+    nav.setNavRightMoreBtn({
+      btns: [
+        {
+          title: "right1",
+          titleColor: "#000000",
+          titleSize: 16,
+          iconSize: ["20", "20"],
+        },
+        {
+          title: "",
+          icon: "/assets/search.png",
+          titleColor: "#000000",
+          titleSize: 16,
+          iconSize: ["20", "20"],
+        },
+      ],
+    }).then((res) => {});
   };
 }
 
 //跳转页面.
-function navigatorPush(arg: NavNavigatorDTO = { url: "",hideNavBar:false }) {
+function navigatorPush(arg: NavNavigatorDTO = { }) {
   window.navigatorPush = () => {
-    nav.navigatorPush().then((res) => {});
+    nav.navigatorPush({
+      url: "",
+      hideNavBar:false
+    }).then((res) => {});
   };
 }
 //返回层级. 如果url为空则返回上一级, 堆栈中有对应地址, 则返回该界面
-function navigatorBack(arg: NavNavigatorBackDTO = { url: "",hideNavBar:false }) {
+function navigatorBack(arg: NavNavigatorBackDTO = { }) {
   window.navigatorBack = () => {
-    nav.navigatorBack().then((res) => {});
+    nav.navigatorBack({
+      url: "",
+      hideNavBar:false
+    }).then((res) => {});
   };
 }
 
@@ -271,18 +264,6 @@ function navigatorBack(arg: NavNavigatorBackDTO = { url: "",hideNavBar:false }) 
 //```
 function setNavSearchBar(
   arg: NavSearchBarDTO = {
-    cornerRadius: 5,
-    backgroundColor: "#FF0000",
-    iconSearch: "",
-    iconSearchSize: [20, 20],
-    iconClear: "",
-    iconClearSize: [20, 20],
-    textColor: "#000000",
-    fontSize: 16,
-    placeHolder: "默认文字",
-    placeHolderFontSize: 16,
-    isInput: true,
-    becomeFirstResponder: false,
   }
 ) {
   window.setNavSearchBar = () => {

@@ -581,6 +581,14 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         return;
     }
     
+    if ([urlStr hasSuffix:@"weixin://"] || [urlStr hasSuffix:@"alipay://"]) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL success) {
+            
+        }];
+        return;
+    }
+    
      decisionHandler(WKNavigationActionPolicyAllow);
 }
 

@@ -34,9 +34,4 @@
              completionHandler(nil ,complete);
           }];
       }
-
-- (void)_openScanView:(ScanOpenDto *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-@end
+  @end

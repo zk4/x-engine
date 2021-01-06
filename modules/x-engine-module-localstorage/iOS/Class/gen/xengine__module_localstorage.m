@@ -87,21 +87,4 @@
           }];
         
       }
-
-- (void)_get:(StorageGetDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_remove:(StorageRemoveDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_removeAll:(StorageRemoveAllDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_set:(StorageSetDTO *)dto complete:(void (^)(StorageStatusDTO *, BOOL))completionHandler {
-    
-}
-
-@end
+  @end

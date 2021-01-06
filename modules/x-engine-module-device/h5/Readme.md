@@ -32,7 +32,12 @@ npm install @zkty-team/x-engine-module-device
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSystemVersion
@@ -61,7 +66,12 @@ npm install @zkty-team/x-engine-module-device
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getUDID
@@ -90,7 +100,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getBatteryLevel
@@ -119,7 +134,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getPreferredLanguage
@@ -148,7 +168,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getScreenWidth
@@ -177,7 +202,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getScreenHeight
@@ -206,7 +236,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaTop
@@ -235,7 +270,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaBottom
@@ -264,7 +304,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaLeft
@@ -293,7 +338,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaRight
@@ -322,7 +372,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getStatusHeight
@@ -351,7 +406,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getNavigationHeight
@@ -380,7 +440,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getTabBarHeight
@@ -409,7 +474,12 @@ tabBar高度
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## devicePhoneCall
@@ -434,7 +504,12 @@ tabBar高度
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| phoneNumber | string |  |  | 手机号 |
+| phoneNumber | string | 必填 |  | 手机号 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## deviceSendMessage
@@ -459,7 +534,12 @@ tabBar高度
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| phoneNumber | string |  |  | 手机号 |
-| messageContent | string |  |  | 短信内容 |
+| phoneNumber | string | 必填 |  | 手机号 |
+| messageContent | string | 必填 |  | 短信内容 |
+
+**返回值**
+**无参数**
+
+
 
     

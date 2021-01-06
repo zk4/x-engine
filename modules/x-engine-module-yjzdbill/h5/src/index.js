@@ -21,7 +21,7 @@ function osCheck() {
   },
   {
     "name": "YJBillRefund",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "YJBillList",

@@ -525,7 +525,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSString *scheme;
     NSString * subUrlStr;
 
-    if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]) {
+    if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]  || [urlStr hasPrefix:@"alipays://"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
        decisionHandler(WKNavigationActionPolicyCancel);
         return;

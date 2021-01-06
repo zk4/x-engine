@@ -20,7 +20,7 @@ localstorage 会根据微应用的 appid 自动加入 namespace.
 # JS
 
 
-version: 0.1.5
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-localstorage
 ```
@@ -53,9 +53,14 @@ npm install @zkty-team/x-engine-module-localstorage
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| key | string |  | key | 存储设置key值 |
-| value | string |  | value | 存储设置value值 |
-| isPublic | bool |  |  | 是否数据共享 |
+| key | string | 必填 | key | 存储设置key值 |
+| value | string | 必填 | value | 存储设置value值 |
+| isPublic | bool | 必填 |  | 是否数据共享 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## get
@@ -83,8 +88,13 @@ npm install @zkty-team/x-engine-module-localstorage
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| key | string |  | key | 要获取的存储值的key值 |
-| isPublic | bool |  |  | 要获取的存储值是否是共享数据 |
+| key | string | 必填 | key | 要获取的存储值的key值 |
+| isPublic | bool | 必填 |  | 要获取的存储值是否是共享数据 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## remove
@@ -112,8 +122,13 @@ npm install @zkty-team/x-engine-module-localstorage
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| key | string |  | key | 要删除的存储值的key值 |
-| isPublic | bool |  |  | 要删除的存储值是否是共享数据 |
+| key | string | 必填 | key | 要删除的存储值的key值 |
+| isPublic | bool | 必填 |  | 要删除的存储值是否是共享数据 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## removeAll
@@ -140,7 +155,12 @@ npm install @zkty-team/x-engine-module-localstorage
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| isPublic | bool |  |  |  |
+| isPublic | bool | 必填 |  |  |
+
+**返回值**
+**无参数**
+
+
 
     
 

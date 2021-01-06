@@ -14,7 +14,7 @@ function osCheck() {
     [
   {
     "name": "openUniMP",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "preloadUniMP",

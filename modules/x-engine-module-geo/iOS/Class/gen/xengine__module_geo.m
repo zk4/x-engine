@@ -48,9 +48,4 @@
              completionHandler(nil ,complete);
           }];
       }
-
-- (void)_locate:(GeoEventDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-@end
+  @end

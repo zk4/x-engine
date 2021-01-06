@@ -70,7 +70,7 @@ function osCheck() {
   },
   {
     "name": "devicePhoneCall",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "deviceSendMessage",

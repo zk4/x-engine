@@ -10,7 +10,7 @@
 # JS
 
 
-version: 0.1.5
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-device
 ```
@@ -43,7 +43,12 @@ npm install @zkty-team/x-engine-module-device
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSystemVersion
@@ -72,7 +77,12 @@ npm install @zkty-team/x-engine-module-device
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getUDID
@@ -101,7 +111,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getBatteryLevel
@@ -130,7 +145,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getPreferredLanguage
@@ -159,7 +179,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getScreenWidth
@@ -188,7 +213,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getScreenHeight
@@ -217,7 +247,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaTop
@@ -246,7 +281,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaBottom
@@ -275,7 +315,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaLeft
@@ -304,7 +349,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getSafeAreaRight
@@ -333,7 +383,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getStatusHeight
@@ -362,7 +417,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getNavigationHeight
@@ -391,7 +451,12 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## getTabBarHeight
@@ -420,7 +485,12 @@ tabBar高度
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## devicePhoneCall
@@ -432,7 +502,7 @@ tabBar高度
 {
   window.devicePhoneCall = (...args) => {
   device
-    .devicePhoneCall(...args)
+    .devicePhoneCall({phoneNumber:"10086"})
     .then((res) => {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
@@ -445,7 +515,43 @@ tabBar高度
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| phoneNumber | string |  | 10086 | 手机号 |
+| phoneNumber | string | 必填 |  | 手机号 |
+
+**返回值**
+**无参数**
+
+
+
+
+## deviceSendMessage
+
+发短信
+
+**demo**
+``` js
+{
+  window.deviceSendMessage = () => {
+    device
+      .deviceSendMessage({
+        phoneNumber:"10086",
+        messageContent:"1111111111",
+      });
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| phoneNumber | string | 必填 |  | 手机号 |
+| messageContent | string | 必填 |  | 短信内容 |
+
+**返回值**
+**无参数**
+
+
 
     
 

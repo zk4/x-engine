@@ -38,6 +38,7 @@
   fallback: string,         //(url链接)，maxlength(1024)
   path: string,             // 路径 /abc  /abc?a=1  maxlength(4096)　注意：参数在这传递！
  	version: int,             // 如果是 microapp, version 代表版本号，
+	hideNavbar: boolean,      // 路由目标页是否显示 navbar,默认是 false
 　args: map                 // 保留字段，　
 }
 ````
@@ -157,7 +158,7 @@ event:x-engine-wgt-event
 # JS
 
 
-version: 0.1.5
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-router
 ```
@@ -184,12 +185,17 @@ npm install @zkty-team/x-engine-module-router
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| type | string |  | h5 | 跳转类型 |
-| uri | string |  | http://192.168.10.51:8081/index.html | 跳转目标 |
-| path | string |  |  | 跳转参数 |
-| args | Map\<string,string\> | true |  | 其他参数 |
-| version | int | true |  |  |
-| hideNavbar | bool | true |  |  是否隐藏navbar, 默认 false |
+| type | string | 必填 | h5 | 跳转类型 |
+| uri | string | 必填 | http://192.168.10.51:8081/index.html | 跳转目标 |
+| path | string | 必填 |  | 跳转参数 |
+| args | Map\<string,string\> | optional |  | 其他参数 |
+| version | int | optional |  |  |
+| hideNavbar | bool | optional |  |  是否隐藏navbar, 默认 false |
+
+**返回值**
+**无参数**
+
+
 
     
 

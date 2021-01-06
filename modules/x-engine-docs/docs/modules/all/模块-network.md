@@ -32,7 +32,7 @@
 # JS
 
 
-version: 0.1.5
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-network
 ```
@@ -83,10 +83,15 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求url |
-| method | string | true | patch | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求haeders |
-| params | Map\<string,string\> | true |  | 请求params |
+| url | string | 必填 |  | 请求url |
+| method | string | optional | patch | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求haeders |
+| params | Map\<string,string\> | optional |  | 请求params |
+
+**返回值**
+**无参数**
+
+
 
 
 ## postRequest
@@ -129,10 +134,15 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求url |
-| method | string | true | patch | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求haeders |
-| params | Map\<string,string\> | true |  | 请求params |
+| url | string | 必填 |  | 请求url |
+| method | string | optional | patch | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求haeders |
+| params | Map\<string,string\> | optional |  | 请求params |
+
+**返回值**
+**无参数**
+
+
 
 
 ## deleteRequest
@@ -167,10 +177,15 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求url |
-| method | string | true | patch | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求haeders |
-| params | Map\<string,string\> | true |  | 请求params |
+| url | string | 必填 |  | 请求url |
+| method | string | optional | patch | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求haeders |
+| params | Map\<string,string\> | optional |  | 请求params |
+
+**返回值**
+**无参数**
+
+
 
 
 ## headRequest
@@ -205,10 +220,15 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求url |
-| method | string | true | patch | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求haeders |
-| params | Map\<string,string\> | true |  | 请求params |
+| url | string | 必填 |  | 请求url |
+| method | string | optional | patch | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求haeders |
+| params | Map\<string,string\> | optional |  | 请求params |
+
+**返回值**
+**无参数**
+
+
 
 
 ## putRequest
@@ -243,10 +263,15 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求url |
-| method | string | true | patch | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求haeders |
-| params | Map\<string,string\> | true |  | 请求params |
+| url | string | 必填 |  | 请求url |
+| method | string | optional | patch | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求haeders |
+| params | Map\<string,string\> | optional |  | 请求params |
+
+**返回值**
+**无参数**
+
+
 
 
 ## patchRequest
@@ -281,10 +306,15 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求url |
-| method | string | true | patch | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求haeders |
-| params | Map\<string,string\> | true |  | 请求params |
+| url | string | 必填 |  | 请求url |
+| method | string | optional | patch | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求haeders |
+| params | Map\<string,string\> | optional |  | 请求params |
+
+**返回值**
+**无参数**
+
+
 
 
 ## downloadRequest
@@ -343,12 +373,17 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求url |
-| method | string | true | POST | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求haeders |
-| params | Map\<string,string\> | true |  | 请求params |
-| \_\_event\_\_ | string | true |  | progress: (progress:float)=>void |
-| isNeedBase64 | bool |  |  | 是否需要base64的内容 |
+| url | string | 必填 |  | 请求url |
+| method | string | optional | POST | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求haeders |
+| params | Map\<string,string\> | optional |  | 请求params |
+| \_\_event\_\_ | string | optional |  | progress: (progress:float)=>void |
+| isNeedBase64 | bool | 必填 |  | 是否需要base64的内容 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## uploadRequest
@@ -387,14 +422,19 @@ network.getRequest({
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| url | string |  |  | 请求地址 |
-| method | string | true | POST | 请求方法 |
-| headers | Map\<string,string\> | true |  | 请求头 |
-| params | Map\<string,string\> | true |  | 请求参数 |
-| filename | string |  |  | 上传文件名称 |
-| filepath | string | true |  | 上传文件路径 |
-| fileBaseStr | string | true |  | 上传文件的base64 |
-| \_\_event\_\_ | string | true |  | progress: (progress:float)=>void |
+| url | string | 必填 |  | 请求地址 |
+| method | string | optional | POST | 请求方法 |
+| headers | Map\<string,string\> | optional |  | 请求头 |
+| params | Map\<string,string\> | optional |  | 请求参数 |
+| filename | string | 必填 |  | 上传文件名称 |
+| filepath | string | optional |  | 上传文件路径 |
+| fileBaseStr | string | optional |  | 上传文件的base64 |
+| \_\_event\_\_ | string | optional |  | progress: (progress:float)=>void |
+
+**返回值**
+**无参数**
+
+
 
     
 

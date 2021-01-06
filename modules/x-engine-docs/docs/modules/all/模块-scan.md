@@ -10,7 +10,7 @@
 # JS
 
 
-version: 0.1.5
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-scan
 ```
@@ -43,7 +43,12 @@ npm install @zkty-team/x-engine-module-scan
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  |  | (result) => {} | 扫码结果 xx(result) |
+| \_\_event\_\_ | _0_com.zkty.module.scan_DTO | 必填 | (result) => {} | 扫码结果 xx(result) |
+
+**返回值**
+**无参数**
+
+
 
     
 

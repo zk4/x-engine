@@ -1,5 +1,5 @@
 
-version: 0.1.5
+version: 0.1.7
 ``` bash
 npm install @zkty-team/x-engine-module-camera
 ```
@@ -61,14 +61,19 @@ npm install @zkty-team/x-engine-module-camera
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| allowsEditing | bool | true | true | 是否允许编辑 |
-| savePhotosAlbum | bool | true |  | 是否保存图片到相册 |
-| cameraFlashMode | int | true | -1 | 闪光灯模式(-1:关闭状态,0:自动开关状态,1:打开状态),默认:-1 |
-| cameraDevice | string | true | back | 设置前置或后置摄像头(front:前置,back:后置),默认:back |
-| isbase64 | bool |  | true | 图片是否转为Base64,默认:true |
-| args | Map\<string,string\> |  | {"width":"200","quality":"0.5"} | 裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内; |
-| photoCount | int | true | 1 |  图片选择张数 |
-| \_\_event\_\_ |  |  | (string)=>{} | 返回获取图片的地址 |
+| allowsEditing | bool | optional | true | 是否允许编辑 |
+| savePhotosAlbum | bool | optional |  | 是否保存图片到相册 |
+| cameraFlashMode | int | optional | -1 | 闪光灯模式(-1:关闭状态,0:自动开关状态,1:打开状态),默认:-1 |
+| cameraDevice | string | optional | back | 设置前置或后置摄像头(front:前置,back:后置),默认:back |
+| isbase64 | bool | 必填 | true | 图片是否转为Base64,默认:true |
+| args | Map\<string,string\> | 必填 | {"width":"200","quality":"0.5"} | 裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内; |
+| photoCount | int | optional | 1 |  图片选择张数 |
+| \_\_event\_\_ | _0_com.zkty.module.camera_DTO | 必填 | (string)=>{} | 返回获取图片的地址 |
+
+**返回值**
+**无参数**
+
+
 
 
 ## saveImageToAlbum
@@ -92,7 +97,12 @@ npm install @zkty-team/x-engine-module-camera
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| type | string |  | url | url  base64 |
-| imageData | string |  |  |  |
+| type | string | 必填 | url | url  base64 |
+| imageData | string | 必填 |  |  |
+
+**返回值**
+**无参数**
+
+
 
     

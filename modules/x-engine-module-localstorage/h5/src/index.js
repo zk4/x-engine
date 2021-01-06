@@ -48,19 +48,19 @@ function osCheck() {
   },
   {
     "name": "_testSetPublicStorage",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testGetPublicStorage",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testSetLocalStorage",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testGetLocalStorage",
-    "default_args": null
+    "default_args": {}
   }
 ]
 )}}

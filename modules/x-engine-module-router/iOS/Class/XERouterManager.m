@@ -32,7 +32,7 @@
         if(ary.count == 2){
             NSString *className = ary[0];
             UIViewController *vc = [[NSClassFromString(className) alloc] init];
-            [[ZKPushAnimation instance] removeAnimationDelegate];
+//            [[ZKPushAnimation instance] removeAnimationDelegate];
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
         }
         return;

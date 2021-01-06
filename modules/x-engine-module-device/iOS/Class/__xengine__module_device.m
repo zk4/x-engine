@@ -74,30 +74,48 @@
 }
 
 - (void)_getSafeAreaTop:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    NSString * safeAreaTop = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.top];
     DeviceMoreDTO* d = [DeviceMoreDTO new];
-    d.content = safeAreaTop;
+    if (@available(iOS 11.0, *)) {
+        NSString * safeAreaTop = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.top];
+        d.content = safeAreaTop;
+    } else {
+        d.content = @"20";
+    }
     completionHandler(d, YES);
 }
 
 - (void)_getSafeAreaBottom:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    NSString* safeAreaBottom = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.bottom];
     DeviceMoreDTO* d = [DeviceMoreDTO new];
-    d.content = safeAreaBottom;
+    if (@available(iOS 11.0, *)) {
+    NSString* safeAreaBottom = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.bottom];
+    
+        d.content = safeAreaBottom;
+    }else{
+        d.content = @"0";
+    }
     completionHandler(d, YES);
 }
 
 - (void)_getSafeAreaLeft:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    NSString* safeAreaLeft = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.left];
     DeviceMoreDTO* d = [DeviceMoreDTO new];
-    d.content = safeAreaLeft;
+    if (@available(iOS 11.0, *)) {
+        NSString* safeAreaLeft = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.left];
+        d.content = safeAreaLeft;
+    }else{
+        d.content = @"0";
+    }
     completionHandler(d, YES);
 }
 
 - (void)_getSafeAreaRight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-    NSString* safeAreaRight = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.right];
     DeviceMoreDTO* d = [DeviceMoreDTO new];
+    if (@available(iOS 11.0, *)) {
+    NSString* safeAreaRight = [NSString stringWithFormat:@"%.f",[[[UIApplication sharedApplication] delegate] window].safeAreaInsets.right];
+    
     d.content = safeAreaRight;
+    }else{
+        d.content = @"0";
+    }
     completionHandler(d, YES);
 }
 
@@ -144,12 +162,11 @@
         [[Unity sharedInstance].getCurrentVC presentViewController:controller animated:YES completion:nil];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示信息"
-                                                        message:@"该设备不支持短信功能"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示信息" message:@"该设备不支持短信功能" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:action1];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     }
 }
 

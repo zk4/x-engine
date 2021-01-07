@@ -116,7 +116,35 @@
         retCB(value);
     }];
 }
+
 -(void) broadcast:(NSArray*)args{
     [self callJS:@"com.zkty.module.engine.broadcast" args:args retCB:^(id  _Nullable ret) {}];
+}
+
+-(BOOL) isDictionary:(id)item{
+    return [item isKindOfClass:NSDictionary.class] || [item isKindOfClass:NSMutableDictionary.class];
+}
+
+-(void) assign:(NSMutableDictionary*)to :(NSMutableDictionary*) from{
+    [to addEntriesFromDictionary:from];
+}
+
+-(NSMutableDictionary *)mergeDeep:(NSMutableDictionary*)target :(NSMutableArray *)sources{
+    NSMutableDictionary * mutableTaget = [[NSMutableDictionary alloc]initWithDictionary:target];
+    if (!mutableTaget || !sources || sources.count==0) return mutableTaget;
+      NSMutableDictionary* source = [sources lastObject];
+      [sources removeLastObject];
+    if ([self isDictionary:mutableTaget] && [self isDictionary:source]) {
+        for (NSString * key in source) {
+            if ([self isDictionary:[source objectForKey:key]]) {
+                if(!mutableTaget[key]) [self assign:mutableTaget :[@{key:@{}} mutableCopy]];
+                [self mergeDeep:mutableTaget[key] : [@[source[key]] mutableCopy]];
+            }else{
+                [self assign:mutableTaget :[@{key:[source objectForKey:key]} mutableCopy]];
+            }
+        }
+    }
+    return [self mergeDeep:target :sources];
+
 }
 @end

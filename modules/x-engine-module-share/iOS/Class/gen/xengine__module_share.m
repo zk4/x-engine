@@ -43,8 +43,9 @@
     }
     
     - (void) share:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ShareReqDTO* dto = [self convert:dict clazz:ShareReqDTO.class];
+        
+          NSMutableDictionary * dic = [self mergeDeep:dict :defaultDictionary]
+          ShareReqDTO* dto = [self convert:dic clazz:ShareReqDTO.class];
           [self _share:dto complete:^(ShareResDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];

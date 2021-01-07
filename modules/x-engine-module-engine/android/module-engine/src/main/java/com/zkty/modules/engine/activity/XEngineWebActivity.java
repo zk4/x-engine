@@ -34,6 +34,7 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.utils.ImageUtils;
+import com.zkty.modules.engine.utils.KeyBoardUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
 import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.XEngineMessage;
@@ -329,6 +330,7 @@ public class XEngineWebActivity extends AppCompatActivity {
             mWebView.destroy();
         }
         EventBus.getDefault().unregister(this);
+
         super.onDestroy();
 //        SwipeBackHelper.onDestroy(this);
 
@@ -448,12 +450,14 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
+        KeyBoardUtils.closeKeybord(xEngineNavBar, this);
         showScreenCapture(true);
     }
 
 
     public void finishWhitNoAnim() {
         super.finish();
+        KeyBoardUtils.closeKeybord(xEngineNavBar, this);
         overridePendingTransition(0, 0);
 
     }

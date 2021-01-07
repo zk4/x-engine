@@ -276,16 +276,13 @@ static   XEngineWebView* s_webview;
     self.hidesBottomBarWhenPushed = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"back_arrow" ofType:@"png"];
+    UIImage *path = [UIImage imageNamed:@"back_arrow"];
     if(path){
         UIButton *btn = [[UIButton alloc] init];
-        btn.frame = CGRectMake(0, 0, 34, 0);
-        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:path]]];
-        img.userInteractionEnabled = NO;
-        img.frame = CGRectMake(4, 6, 22, 22);
-        [btn addSubview:img];
-        [btn addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setImage:path forState:UIControlStateNormal];
         
+        [btn addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+        [btn sizeToFit];
         if([self.loadUrl hasPrefix:@"http"]){
             NSString *closePath = [[NSBundle mainBundle] pathForResource:@"close_black" ofType:@"png"];
             UIButton *close = [[UIButton alloc] init];

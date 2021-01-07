@@ -27,7 +27,7 @@
 }
 
 - (IBAction)Action:(id)sender {
-    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.106:8080"];
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.65:8080/index.html"];
 }
 - (NSString *)getIPAddress {
 

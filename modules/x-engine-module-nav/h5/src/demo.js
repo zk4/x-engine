@@ -2,7 +2,7 @@
 import nav from './index.js'
 
   window.setNavTitle = () => {
-    nav.setNavTitle().then((res) => {});
+    nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
   };
 
   window.setNavLeftBtn = () => {

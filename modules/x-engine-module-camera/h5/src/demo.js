@@ -1,7 +1,5 @@
 
 import camera from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
 
   window.openImagePicker = () => {
     camera
@@ -12,6 +10,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
         cameraDevice:'back',
         photoCount: 5,
         isbase64:true,
+        args:{width:'200',quality:'0.5'},
         __event__: (res) => {
             let jres = JSON.parse(res);
             for(let photo of jres.data){

@@ -37,11 +37,7 @@ interface StorageStatusDTO {
 }
 
 function set(
-  storageSetDTO: StorageSetDTO = {
-    key: "key",
-    value: "value",
-    isPublic: false,
-  }
+  storageSetDTO: StorageSetDTO 
 ): StorageStatusDTO {
   window.set = () => {
     localstorage
@@ -57,10 +53,7 @@ function set(
 }
 
 function get(
-  storageGetDTO: StorageGetDTO = {
-    key: "key",
-    isPublic: false,
-  }
+  storageGetDTO: StorageGetDTO 
 ): StorageStatusDTO {
   window.get = () => {
     localstorage
@@ -75,10 +68,7 @@ function get(
 }
 
 function remove(
-  storageRemoveDTO: StorageRemoveDTO = {
-    key: "key",
-    isPublic: false,
-  }
+  storageRemoveDTO: StorageRemoveDTO 
 ): StorageStatusDTO {
   window.remove = () => {
     localstorage
@@ -93,9 +83,7 @@ function remove(
 }
 
 function removeAll(
-  storageRemoveAllDTO: StorageRemoveAllDTO = {
-    isPublic: false,
-  }
+  storageRemoveAllDTO: StorageRemoveAllDTO 
 ): StorageStatusDTO {
   window.removeAll = () => {
     localstorage
@@ -109,9 +97,7 @@ function removeAll(
 }
 
 function _testRemoveAllPublic(
-  storageRemoveAllDTO: StorageRemoveAllDTO = {
-    isPublic: true,
-  }
+  storageRemoveAllDTO: StorageRemoveAllDTO 
 ): StorageStatusDTO {
   window._testRemoveAllPublic = () => {
     localstorage

@@ -47,7 +47,8 @@ function testopenUniMP(
 // 预加载后打开小程序
 function preloadUniMP(
   UniMPDTO:UniMPDTO = {
-    enableBackground:false
+    showAnimated:true,
+    hideAnimated:true,
   }){
   window.preloadUniMP = (
     
@@ -65,7 +66,8 @@ function preloadUniMP(
 
 function openUniMPWithArg(
   UniMPDTO:UniMPDTO = {
-    enableBackground:false,
+    showAnimated:true,
+    hideAnimated:true,
   }){
   window.openUniMPWithArg = () => {
     dcloud.openUniMPWithArg({

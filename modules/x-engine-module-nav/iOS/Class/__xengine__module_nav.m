@@ -15,6 +15,7 @@
 #import "XEOneWebViewControllerManage.h"
 #import "NavUtil.h"
 #import "NavSearchBar.h"
+#import <XEOneWebViewPool.h>
 
 static const NSUInteger BAR_BTN_FLAG = 10000;
 
@@ -293,6 +294,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
         if ([vc isKindOfClass:[RecyleWebViewController class]]){
             if ([@"0" isEqualToString:dto.url]){
                 [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:lastVc animated:YES];
+                [[XEOneWebViewPool sharedInstance] clearWebView:nil];
                 return;;
             }
             RecyleWebViewController *webVC = (RecyleWebViewController *)vc;

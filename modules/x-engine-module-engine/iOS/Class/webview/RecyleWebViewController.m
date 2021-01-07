@@ -256,6 +256,19 @@ static   XEngineWebView* s_webview;
 -(void)goback:(UIButton *)sender{
     
     if([self.loadUrl hasPrefix:@"http"]){
+        if(self.navigationController.viewControllers.count > 1){
+            RecyleWebViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+            if([vc isKindOfClass:[RecyleWebViewController class]]){
+                if(self.webview.backForwardList.backList.count > 0){
+                    WKBackForwardListItem *item = self.webview.backForwardList.backList[self.webview.backForwardList.backList.count - 1];
+                    if([[vc.loadUrl lowercaseString] isEqualToString:[item.URL.absoluteString lowercaseString]] ||
+                       [[NSString stringWithFormat:@"%@#/", [vc.loadUrl lowercaseString]] isEqualToString:[item.URL.absoluteString lowercaseString]]){
+                        [self.navigationController popViewControllerAnimated:YES];
+                        return;
+                    }
+                }
+            }
+        }
         if([self.webview canGoBack]){
             [self.webview goBack];
         }else{
@@ -334,6 +347,19 @@ static   XEngineWebView* s_webview;
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
+    
+    if(![self.webview.URL.absoluteString isEqualToString:self.loadUrl] &&
+       ![self.webview.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
+        
+        NSArray<WKBackForwardListItem *> *reversAry = self.webview.backForwardList.backList;
+        for (int i = 0; i < reversAry.count; i++) {
+            WKBackForwardListItem *item = reversAry[i];
+            if([[item.URL.absoluteString lowercaseString] isEqualToString:[self.loadUrl lowercaseString]]
+               || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
+                [self.webview goToBackForwardListItem:item];
+            }
+        }
+    }
     if(self.screenView){
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];

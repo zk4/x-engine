@@ -95,6 +95,11 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
                     return;
                 }
             }
+        }else{
+            [web loadUrl:@""];
+            [self.webCacheAry removeLastObject];
+            [web removeFromSuperview];
+            web = nil;
         }
     }
 }

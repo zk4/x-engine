@@ -1,9 +1,10 @@
-package com.zkty.modules.loaded.util;
+package com.zkty.modules.engine.utils;
 
 import android.app.Application;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
 import com.zkty.modules.engine.XEngineApplication;
 
 /**

@@ -105,6 +105,7 @@ public class XEngineWebView extends DWebView {
                 if (s.startsWith("weixin://")) {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.setData(Uri.parse(s));
                     mContext.startActivity(intent);
                     return true;
@@ -113,6 +114,7 @@ public class XEngineWebView extends DWebView {
                     if (Utils.checkAliPayInstalled(mContext)) {
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.setData(Uri.parse(s));
                         mContext.startActivity(intent);
                     } else {

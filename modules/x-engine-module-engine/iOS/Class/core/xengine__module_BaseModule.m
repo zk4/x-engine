@@ -129,7 +129,7 @@
     [to addEntriesFromDictionary:from];
 }
 
--(NSMutableDictionary *)mergeDeep:(NSMutableDictionary*)target :(NSMutableArray *)sources{
+-(NSMutableDictionary *)mergeDeep:(NSDictionary*)target :(NSMutableArray *)sources{
     NSMutableDictionary * mutableTaget = [[NSMutableDictionary alloc]initWithDictionary:target];
     if (!mutableTaget || !sources || sources.count==0) return mutableTaget;
       NSMutableDictionary* source = [sources lastObject];
@@ -144,7 +144,7 @@
             }
         }
     }
-    return [self mergeDeep:target :sources];
+    return [self mergeDeep:mutableTaget :sources];
 
 }
 @end

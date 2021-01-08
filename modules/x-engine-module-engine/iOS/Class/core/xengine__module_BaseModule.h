@@ -28,7 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void) broadcast:(NSArray*)args;
 
--(NSMutableDictionary *)mergeDeep:(NSMutableDictionary*)target :(NSMutableArray *)sources;
+-(NSDictionary*) mergeDefault:(NSDictionary*) dict defaultString:(NSString*)defaultString;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -6,7 +6,7 @@
 #import "XEngineWebView.h"
 #import <MBProgressHUD.h>
 #import <Unity.h>
-
+#import "XEngineJSBUtil.h"
 @implementation xengine__module_BaseModule
 
 - (NSString *)moduleId {
@@ -125,26 +125,41 @@
     return [item isKindOfClass:NSDictionary.class] || [item isKindOfClass:NSMutableDictionary.class];
 }
 
--(void) assign:(NSMutableDictionary*)to :(NSMutableDictionary*) from{
+-(void) assign:(NSMutableDictionary*)to from:(NSMutableDictionary*) from{
     [to addEntriesFromDictionary:from];
 }
 
--(NSMutableDictionary *)mergeDeep:(NSDictionary*)target :(NSMutableArray *)sources{
-    NSMutableDictionary * mutableTaget = [[NSMutableDictionary alloc]initWithDictionary:target];
-    if (!mutableTaget || !sources || sources.count==0) return mutableTaget;
-      NSMutableDictionary* source = [sources lastObject];
-      [sources removeLastObject];
-    if ([self isDictionary:mutableTaget] && [self isDictionary:source]) {
-        for (NSString * key in source) {
-            if ([self isDictionary:[source objectForKey:key]]) {
-                if(!mutableTaget[key]) [self assign:mutableTaget :[@{key:@{}} mutableCopy]];
-                [self mergeDeep:mutableTaget[key] : [@[source[key]] mutableCopy]];
-            }else{
-                [self assign:mutableTaget :[@{key:[source objectForKey:key]} mutableCopy]];
-            }
-        }
+-(void) _mergeDeep:(NSMutableDictionary*) target  sources:(NSMutableArray*) sources {
+  if (!target || !sources || sources.count==0) return;
+    NSMutableDictionary* source = [sources lastObject];
+    [sources removeLastObject];
+    if ([self isDictionary:target] && [self isDictionary:source]) {
+    for (NSString* key in source) {
+        if ([self isDictionary:[source objectForKey:key]]) {
+          if (!target[key]) [self assign:target from:[@{key:@{}} mutableCopy]];
+          [self _mergeDeep:target[key] sources:[@[source[key]] mutableCopy]];
+      } else {
+          [self assign: target  from:[@{key:[source objectForKey:key]} mutableCopy]];
+      }
     }
-    return [self mergeDeep:mutableTaget :sources];
+  }
 
+    [self _mergeDeep:target sources:sources];
+}
+-(void) mergeDeep:(NSMutableDictionary*) target source:(NSMutableDictionary*) source {
+    if(!source || !target) return;
+    [self _mergeDeep:target sources:[@[source] mutableCopy] ];
+}
+ 
+-(NSDictionary*) mergeDefault:(NSDictionary*)dict defaultString:(NSString*)defaultString{
+    if(!defaultString || defaultString.length==0) return dict;
+    
+    NSDictionary* parsed_dict= [XEngineJSBUtil jsonStringToObject:defaultString];
+    if(!parsed_dict) return dict;
+    
+    NSMutableDictionary* merged_dict=[[NSMutableDictionary alloc]initWithDictionary:parsed_dict];
+    NSMutableDictionary* mutalbeUserDict=[[NSMutableDictionary alloc]initWithDictionary:dict];
+    [self mergeDeep:merged_dict source:mutalbeUserDict];
+    return merged_dict;
 }
 @end

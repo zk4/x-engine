@@ -23,39 +23,39 @@ function osCheck() {
   },
   {
     "name": "_testh5",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testnative",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testmicroapp",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testmicroapp_version1",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testmicroapp_version_not_exist",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testmicroapp_path",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testmicroapp_path_version1",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testmicroapp_path_query",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testuni",
-    "default_args": null
+    "default_args": {}
   }
 ]
 )}}

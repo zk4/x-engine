@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -14,23 +14,23 @@ function osCheck() {
     [
   {
     "name": "setNavTitle",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "setNavLeftBtn",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "setNavRightBtn",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "setNavRightMenuBtn",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "setNavRightMoreBtn",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "navigatorPush",
@@ -42,19 +42,19 @@ function osCheck() {
   },
   {
     "name": "setNavSearchBar",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "setSearchBarHidden",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "setNavBarHidden",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "removeHistoryPage",
-    "default_args": null
+    "default_args": {}
   }
 ]
 )}}

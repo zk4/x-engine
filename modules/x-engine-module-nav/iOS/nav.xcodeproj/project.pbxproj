@@ -23,8 +23,8 @@
 		5831AE8124DC5EBE009B2CDF /* MonkeyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831AE8024DC5EBE009B2CDF /* MonkeyUITests.m */; };
 		5839995A24F954920084AF3E /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5839995724F954920084AF3E /* PopoverViewController.m */; };
 		5839995B24F954920084AF3E /* XEngineNavModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5839995824F954920084AF3E /* XEngineNavModel.m */; };
-		5839995C24F954920084AF3E /* __xengine__module_NavigationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5839995924F954920084AF3E /* __xengine__module_NavigationModule.m */; };
 		588B49512537854100AF6CC4 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 588B494F2537854100AF6CC4 /* Stack.m */; };
+		58F41D3725A847B100DA3C1D /* __xengine__module_nav.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F41D3625A847B100DA3C1D /* __xengine__module_nav.m */; };
 		DD94D143250F8278001ED4FB /* xengine__module_nav.m in Sources */ = {isa = PBXBuildFile; fileRef = DD94D142250F8278001ED4FB /* xengine__module_nav.m */; };
 		DD94D148251068D4001ED4FB /* NavUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD94D147251068D4001ED4FB /* NavUtil.m */; };
 		DD94D14B2510939B001ED4FB /* UITapGestureRecognizer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = DD94D14A2510939B001ED4FB /* UITapGestureRecognizer+Block.m */; };
@@ -67,13 +67,13 @@
 		5831AE8024DC5EBE009B2CDF /* MonkeyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonkeyUITests.m; sourceTree = "<group>"; };
 		5831AE8224DC5EBE009B2CDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5839995424F954920084AF3E /* PopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewController.h; sourceTree = "<group>"; };
-		5839995524F954920084AF3E /* __xengine__module_NavigationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __xengine__module_NavigationModule.h; sourceTree = "<group>"; };
 		5839995624F954920084AF3E /* XEngineNavModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEngineNavModel.h; sourceTree = "<group>"; };
 		5839995724F954920084AF3E /* PopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewController.m; sourceTree = "<group>"; };
 		5839995824F954920084AF3E /* XEngineNavModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEngineNavModel.m; sourceTree = "<group>"; };
-		5839995924F954920084AF3E /* __xengine__module_NavigationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_NavigationModule.m; sourceTree = "<group>"; };
 		588B494F2537854100AF6CC4 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		588B49502537854100AF6CC4 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		58F41D3525A847B100DA3C1D /* __xengine__module_nav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __xengine__module_nav.h; sourceTree = "<group>"; };
+		58F41D3625A847B100DA3C1D /* __xengine__module_nav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_nav.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-nav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nav.release.xcconfig"; path = "Target Support Files/Pods-nav/Pods-nav.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-nav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nav.debug.xcconfig"; path = "Target Support Files/Pods-nav/Pods-nav.debug.xcconfig"; sourceTree = "<group>"; };
 		C6A1862CD39DC1FBBA29ED00 /* libPods-navTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-navTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,10 +182,10 @@
 				DD94D140250F8278001ED4FB /* gen */,
 				5839995424F954920084AF3E /* PopoverViewController.h */,
 				5839995724F954920084AF3E /* PopoverViewController.m */,
-				5839995524F954920084AF3E /* __xengine__module_NavigationModule.h */,
-				5839995924F954920084AF3E /* __xengine__module_NavigationModule.m */,
 				DD94D146251068D4001ED4FB /* NavUtil.h */,
 				DD94D147251068D4001ED4FB /* NavUtil.m */,
+				58F41D3525A847B100DA3C1D /* __xengine__module_nav.h */,
+				58F41D3625A847B100DA3C1D /* __xengine__module_nav.m */,
 				588B49502537854100AF6CC4 /* Stack.h */,
 				588B494F2537854100AF6CC4 /* Stack.m */,
 				DD94D15A251223B0001ED4FB /* NavSearchBar.h */,
@@ -409,13 +409,13 @@
 			files = (
 				588B49512537854100AF6CC4 /* Stack.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
+				58F41D3725A847B100DA3C1D /* __xengine__module_nav.m in Sources */,
 				DD94D14B2510939B001ED4FB /* UITapGestureRecognizer+Block.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				00DFC6F124C84000006A53EE /* ViewController.m in Sources */,
 				5839995A24F954920084AF3E /* PopoverViewController.m in Sources */,
 				5839995B24F954920084AF3E /* XEngineNavModel.m in Sources */,
 				DD94D148251068D4001ED4FB /* NavUtil.m in Sources */,
-				5839995C24F954920084AF3E /* __xengine__module_NavigationModule.m in Sources */,
 				DD94D15C251223B0001ED4FB /* NavSearchBar.m in Sources */,
 				DD94D143250F8278001ED4FB /* xengine__module_nav.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,

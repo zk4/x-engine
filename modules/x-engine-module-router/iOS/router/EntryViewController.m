@@ -4,11 +4,8 @@
 //
 
 #import "EntryViewController.h"
-//#import <MircroAppController.h>
-#import <UIViewController+.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
-#import "ZKPushAnimation.h"
 #import "XERouterManager.h"
 
 @interface EntryViewController ()

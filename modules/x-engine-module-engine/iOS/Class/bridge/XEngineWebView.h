@@ -14,9 +14,9 @@
 - (void)loadUrl: (NSString * _Nonnull) url;
 
 // Call javascript handler
--(void) callHandler:(NSString * _Nonnull) methodName  arguments:(NSArray * _Nullable) args;
+-(void) callHandler:(NSString * _Nonnull) methodName  arguments:(id  _Nullable) args;
 -(void) callHandler:(NSString * _Nonnull) methodName  completionHandler:(void (^ _Nullable)(id _Nullable value))completionHandler;
--(void) callHandler:(NSString * _Nonnull) methodName  arguments:(NSArray * _Nullable) args completionHandler:(void (^ _Nullable)(id _Nullable value))completionHandler;
+-(void) callHandler:(NSString * _Nonnull) methodName  arguments:(id  _Nullable) args completionHandler:(void (^ _Nullable)(id _Nullable value))completionHandler;
 
 // set a listener for javascript closing the current page.
 - (void)setJavascriptCloseWindowListener:(void(^_Nullable)(void))callback;

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-engine",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "zkty-team/x-engine-module-engine",
   "main": "h5/src/index.js",
   "scripts": {

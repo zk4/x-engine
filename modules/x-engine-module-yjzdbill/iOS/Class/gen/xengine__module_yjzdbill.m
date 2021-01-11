@@ -81,17 +81,4 @@
              completionHandler(nil ,complete);
           }];
       }
-
-- (void)_YJBillList:(YJBillListDTO *)dto complete:(void (^)(BOOL))completionHandler {
-        
-}
-
-- (void)_YJBillPayment:(YJBillDTO *)dto complete:(void (^)(YJBillRetDTO *, BOOL))completionHandler {
-        
-}
-
-- (void)_YJBillRefund:(YJBillRefundDTO *)dto complete:(void (^)(YJBillRetDTO *, BOOL))completionHandler {
-    
-}
-
-@end
+  @end

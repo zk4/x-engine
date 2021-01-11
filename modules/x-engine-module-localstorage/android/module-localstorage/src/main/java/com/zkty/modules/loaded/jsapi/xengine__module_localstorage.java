@@ -48,11 +48,6 @@
 public void _get(StorageGetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
 public void _remove(StorageRemoveDTO dto, final CompletionHandler<StorageStatusDTO> handler);
 public void _removeAll(StorageRemoveAllDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void __testRemoveAllPublic(StorageRemoveAllDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void __testSetPublicStorage(StorageSetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void __testGetPublicStorage(StorageGetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void __testSetLocalStorage(StorageSetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
-public void __testGetLocalStorage(StorageGetDTO dto, final CompletionHandler<StorageStatusDTO> handler);
   }
   
   
@@ -108,76 +103,6 @@ public void __testGetLocalStorage(StorageGetDTO dto, final CompletionHandler<Sto
     final public void removeAll(JSONObject obj, final CompletionHandler<Object> handler) {
       StorageRemoveAllDTO data= convert(obj,StorageRemoveAllDTO.class);
       _removeAll(data, new CompletionHandler<StorageStatusDTO>() {
-        @Override
-        public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(StorageStatusDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void _testRemoveAllPublic(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageRemoveAllDTO data= convert(obj,StorageRemoveAllDTO.class);
-      __testRemoveAllPublic(data, new CompletionHandler<StorageStatusDTO>() {
-        @Override
-        public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(StorageStatusDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void _testSetPublicStorage(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageSetDTO data= convert(obj,StorageSetDTO.class);
-      __testSetPublicStorage(data, new CompletionHandler<StorageStatusDTO>() {
-        @Override
-        public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(StorageStatusDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void _testGetPublicStorage(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageGetDTO data= convert(obj,StorageGetDTO.class);
-      __testGetPublicStorage(data, new CompletionHandler<StorageStatusDTO>() {
-        @Override
-        public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(StorageStatusDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void _testSetLocalStorage(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageSetDTO data= convert(obj,StorageSetDTO.class);
-      __testSetLocalStorage(data, new CompletionHandler<StorageStatusDTO>() {
-        @Override
-        public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(StorageStatusDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void _testGetLocalStorage(JSONObject obj, final CompletionHandler<Object> handler) {
-      StorageGetDTO data= convert(obj,StorageGetDTO.class);
-      __testGetLocalStorage(data, new CompletionHandler<StorageStatusDTO>() {
         @Override
         public void complete(StorageStatusDTO retValue) { handler.complete(retValue); }
         @Override

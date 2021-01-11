@@ -101,7 +101,7 @@
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = dto.title;
         message.description = dto.desc;
-        message.thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageurl]];  //兼容旧版本节点的图片，小于32KB，新版本优先
+//        message.thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageurl]];  //兼容旧版本节点的图片，小于32KB，新版本优先
                                   //使用WXMiniProgramObject的hdImageData属性
         message.mediaObject = object;
         SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];

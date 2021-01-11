@@ -22,10 +22,9 @@
 - (void)_openScanView:(ScanOpenDto *)dto complete:(void (^)(BOOL))completionHandler{
     ZKScanViewController *vc = [[ZKScanViewController alloc] init];
     vc.block = ^(NSString *data) {
-//        UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-//        RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-//        [webVC runJsFunction:dto.__event__ arguments:data];
-        [[RecyleWebViewController webview] callHandler:dto.__event__  arguments:data completionHandler:nil];
+        if([RecyleWebViewController webview]){
+            [[RecyleWebViewController webview] callHandler:dto.__event__  arguments:data completionHandler:nil];
+        }
     };
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
     completionHandler(YES);

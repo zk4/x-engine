@@ -372,7 +372,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 
-- (void)callHandler:(NSString *)methodName arguments:(NSArray *)args{
+- (void)callHandler:(NSString *)methodName arguments:(id)args{
     [self callHandler:methodName arguments:args completionHandler:nil];
 }
 
@@ -380,7 +380,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     [self callHandler:methodName arguments:nil completionHandler:completionHandler];
 }
 
--(void)callHandler:(NSString *)methodName arguments:(NSArray *)args completionHandler:(void (^)(id  _Nullable value))completionHandler
+-(void)callHandler:(NSString *)methodName arguments:(id)args completionHandler:(void (^)(id  _Nullable value))completionHandler
 {
     XEngineCallInfo *callInfo=[[XEngineCallInfo alloc] init];
     callInfo.id=[NSNumber numberWithInt: callId++];

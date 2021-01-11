@@ -7,6 +7,7 @@
 #import "JSONModel.h"
 
 @protocol ShareReqDTO;
+@protocol MiniProgramReqDTO;
 @protocol ShareResDTO;
 
 @interface ShareReqDTO: JSONModel
@@ -17,6 +18,17 @@
    	@property(nonatomic,copy) NSString* imageurl;
    	@property(nonatomic,copy) NSString* dataurl;
    	@property(nonatomic,copy) NSString* channel;
+   	@property(nonatomic,strong) NSString* __event__;
+@end
+    
+
+@interface MiniProgramReqDTO: JSONModel
+  	@property(nonatomic,copy) NSString* userName;
+   	@property(nonatomic,copy) NSString* path;
+   	@property(nonatomic,copy) NSString* title;
+   	@property(nonatomic,copy) NSString* desc;
+   	@property(nonatomic,copy) NSString* imageurl;
+   	@property(nonatomic,copy) NSString* link;
    	@property(nonatomic,strong) NSString* __event__;
 @end
     
@@ -32,6 +44,9 @@
 @protocol xengine__module_share_protocol
        @required 
         - (void) _share:(ShareReqDTO*) dto complete:(void (^)(ShareResDTO* result,BOOL complete)) completionHandler;
+
+      @required 
+        - (void) _shareForOpenWXMiniProgram:(MiniProgramReqDTO*) dto complete:(void (^)(ShareResDTO* result,BOOL complete)) completionHandler;
 
 @end
   

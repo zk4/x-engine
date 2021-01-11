@@ -19,7 +19,8 @@ function openScanView(
         },
       })
       .then((res) => {
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
+
+        document.getElementById("debug_text").innerText = typeof(res)+":"+JSON.stringify(res);
       });
   };
 }

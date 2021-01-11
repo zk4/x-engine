@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -16,6 +16,16 @@ function osCheck() {
     "name": "share",
     "default_args": {
       "type": "link"
+    }
+  },
+  {
+    "name": "shareForOpenWXMiniProgram",
+    "default_args": {
+      "userName": "gh_d43f693ca31f",
+      "path": "/pages/media",
+      "title": "title",
+      "desc": "desc",
+      "link": "http://www.baidu.com"
     }
   }
 ]

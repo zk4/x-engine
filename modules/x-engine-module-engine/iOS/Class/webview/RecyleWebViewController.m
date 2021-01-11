@@ -222,13 +222,14 @@ static   XEngineWebView* s_webview;
 }
 
 //执行JS
--(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments {
+-(void)runJsFunction:(NSString *)event arguments:(id)arguments {
     [self runJsFunction:event arguments:arguments completionHandler:nil];
 }
+ 
 //执行JS
--(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler {
+-(void)runJsFunction:(NSString *)event arguments:(id)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler {
     if(event.length > 0){
-        [self.webview callHandler:event arguments:arguments completionHandler:completionHandler];
+        [s_webview callHandler:event arguments:arguments completionHandler:completionHandler];
     }
 }
 

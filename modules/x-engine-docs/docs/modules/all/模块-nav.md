@@ -64,7 +64,7 @@ ftp://xxx/../index.html
 # JS
 
 
-version: 0.1.8
+version: 0.1.10
 ``` bash
 npm install @zkty-team/x-engine-module-nav
 ```
@@ -82,7 +82,7 @@ npm install @zkty-team/x-engine-module-nav
 ``` js
  {
   window.setNavTitle = () => {
-    nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
+    nav.setNavTitle().then((res) => {});
   };
 }
 ``` 
@@ -92,9 +92,9 @@ npm install @zkty-team/x-engine-module-nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 |  | 导航条的文字 |
-| titleColor | string | 必填 |  | 16进制的颜色色值 |
-| titleSize | int | 必填 |  | 字体大小 |
+| title | string | 必填 | title | 导航条的文字 |
+| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
+| titleSize | int | 必填 | 16 | 字体大小 |
 
 
 参数 object  定义
@@ -128,13 +128,7 @@ interface NavTitleDTO {
 ``` js
  {
   window.setNavLeftBtn = () => {
-    nav.setNavLeftBtn({
-      title: "",
-      titleColor: "#000000",
-      titleSize: 16,
-      icon: "",
-      iconSize: ["20", "20"],
-    }).then((res) => {});
+    nav.setNavLeftBtn().then((res) => {});
   };
 }
 ``` 
@@ -144,17 +138,17 @@ interface NavTitleDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 |  | 导航条右边按钮的文字 |
-| titleColor | string | 必填 |  | 16进制的颜色色值 |
-| titleSize | int | 必填 |  | 导航条文字的大小 |
+| title | string | 必填 | menu | 导航条右边按钮的文字 |
+| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
+| titleSize | int | 必填 | 16 | 导航条文字的大小 |
 | titleBig | string | optional |  | 按钮文字粗细  |
 | titleFontName | string | optional |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
 | isBoldFont | bool | optional |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | optional |  | 见下方说明 |
-| iconSize | Array\<double\> | 必填 |  | 图片的宽高 |
-| popList | Array\<Map\<string,string\>\> | optional |  |  |
-| showMenuImg | string | optional |  | 见下方说明 |
-| popWidth | string | optional |  | menu的宽 |
+| iconSize | Array\<double\> | 必填 | ["20","20"] | 图片的宽高 |
+| popList | Array\<Map\<string,string\>\> | optional | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
+| showMenuImg | string | optional | false | 见下方说明 |
+| popWidth | string | optional | 200 | menu的宽 |
 | \_\_event\_\_ | string | optional |  |  |
 
 
@@ -234,17 +228,17 @@ interface NavBtnDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 |  | 导航条右边按钮的文字 |
-| titleColor | string | 必填 |  | 16进制的颜色色值 |
-| titleSize | int | 必填 |  | 导航条文字的大小 |
+| title | string | 必填 | menu | 导航条右边按钮的文字 |
+| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
+| titleSize | int | 必填 | 16 | 导航条文字的大小 |
 | titleBig | string | optional |  | 按钮文字粗细  |
 | titleFontName | string | optional |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
 | isBoldFont | bool | optional |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | optional |  | 见下方说明 |
-| iconSize | Array\<double\> | 必填 |  | 图片的宽高 |
-| popList | Array\<Map\<string,string\>\> | optional |  |  |
-| showMenuImg | string | optional |  | 见下方说明 |
-| popWidth | string | optional |  | menu的宽 |
+| iconSize | Array\<double\> | 必填 | ["20","20"] | 图片的宽高 |
+| popList | Array\<Map\<string,string\>\> | optional | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
+| showMenuImg | string | optional | false | 见下方说明 |
+| popWidth | string | optional | 200 | menu的宽 |
 | \_\_event\_\_ | string | optional |  |  |
 
 
@@ -332,17 +326,17 @@ interface NavBtnDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 |  | 导航条右边按钮的文字 |
-| titleColor | string | 必填 |  | 16进制的颜色色值 |
-| titleSize | int | 必填 |  | 导航条文字的大小 |
+| title | string | 必填 | menu | 导航条右边按钮的文字 |
+| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
+| titleSize | int | 必填 | 16 | 导航条文字的大小 |
 | titleBig | string | optional |  | 按钮文字粗细  |
 | titleFontName | string | optional |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
 | isBoldFont | bool | optional |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | optional |  | 见下方说明 |
-| iconSize | Array\<double\> | 必填 |  | 图片的宽高 |
-| popList | Array\<Map\<string,string\>\> | optional |  |  |
-| showMenuImg | string | optional |  | 见下方说明 |
-| popWidth | string | optional |  | menu的宽 |
+| iconSize | Array\<double\> | 必填 | ["20","20"] | 图片的宽高 |
+| popList | Array\<Map\<string,string\>\> | optional | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
+| showMenuImg | string | optional | false | 见下方说明 |
+| popWidth | string | optional | 200 | menu的宽 |
 | \_\_event\_\_ | string | optional |  |  |
 
 
@@ -401,23 +395,7 @@ interface NavBtnDTO {
 ``` js
  {
   window.setNavRightMoreBtn = () => {
-    nav.setNavRightMoreBtn({
-      btns: [
-        {
-          title: "right1",
-          titleColor: "#000000",
-          titleSize: 16,
-          iconSize: ["20", "20"],
-        },
-        {
-          title: "",
-          icon: "/assets/search.png",
-          titleColor: "#000000",
-          titleSize: 16,
-          iconSize: ["20", "20"],
-        },
-      ],
-    }).then((res) => {});
+    nav.setNavRightMoreBtn().then((res) => {});
   };
 }
 ``` 
@@ -427,7 +405,7 @@ interface NavBtnDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| btns | Array\<NavBtnDTO\> | 必填 |  |  |
+| btns | Array\<NavBtnDTO\> | 必填 | [{"title":"right1","titleColor":"#000000","titleSize":16,"iconSize":["20","20"]},{"title":"","icon":"/assets/search.png","titleColor":"#000000","titleSize":16,"iconSize":["20","20"]}] |  |
 
 
 参数 object  定义
@@ -456,10 +434,7 @@ interface NavMoreBtnDTO {
 ``` js
  {
   window.navigatorPush = () => {
-    nav.navigatorPush({
-      url: "",
-      hideNavBar:false
-    }).then((res) => {});
+    nav.navigatorPush().then((res) => {});
   };
 }
 ``` 
@@ -506,10 +481,7 @@ interface NavNavigatorDTO {
 ``` js
  {
   window.navigatorBack = () => {
-    nav.navigatorBack({
-      url: "",
-      hideNavBar:false
-    }).then((res) => {});
+    nav.navigatorBack().then((res) => {});
   };
 }
 ``` 
@@ -605,17 +577,17 @@ nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| cornerRadius | int | 必填 |  | 搜索框圆角大小 |
-| backgroundColor | string | 必填 |  | 搜索框背景颜色 |
+| cornerRadius | int | 必填 | 5 | 搜索框圆角大小 |
+| backgroundColor | string | 必填 | #FF0000 | 搜索框背景颜色 |
 | iconSearch | string | 必填 |  | 搜索框里搜索图片 |
-| iconSearchSize | Array\<double\> | 必填 |  | 搜索框里搜索图片大小 |
+| iconSearchSize | Array\<double\> | 必填 | [20,20] | 搜索框里搜索图片大小 |
 | iconClear | string | 必填 |  | 搜索框里清空图片 |
-| iconClearSize | Array\<double\> | 必填 |  | 搜索框里清空图片大小 |
-| textColor | string | 必填 |  | 搜索框文本颜色 |
-| fontSize | int | 必填 |  | 搜索框文本字体大小 |
-| placeHolder | string | 必填 |  | 搜索框占位符 |
-| placeHolderFontSize | int | 必填 |  | 搜索框占位符大小 |
-| isInput | bool | 必填 |  | 搜索框是否添加点击事件 |
+| iconClearSize | Array\<double\> | 必填 | [20,20] | 搜索框里清空图片大小 |
+| textColor | string | 必填 | #000000 | 搜索框文本颜色 |
+| fontSize | int | 必填 | 16 | 搜索框文本字体大小 |
+| placeHolder | string | 必填 | 默认文字 | 搜索框占位符 |
+| placeHolderFontSize | int | 必填 | 16 | 搜索框占位符大小 |
+| isInput | bool | 必填 | true | 搜索框是否添加点击事件 |
 | becomeFirstResponder | bool | 必填 |  | 搜索框是否获取焦点 |
 | \_\_event\_\_ | string | optional |  |  |
 

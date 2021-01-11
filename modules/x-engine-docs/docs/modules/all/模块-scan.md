@@ -10,7 +10,7 @@
 # JS
 
 
-version: 0.1.8
+version: 0.1.10
 ``` bash
 npm install @zkty-team/x-engine-module-scan
 ```

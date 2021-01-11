@@ -262,12 +262,18 @@
 
 -(void)setupCamera{
     
-    [AVCapturePhotoSettings photoSettings].flashMode = AVCaptureFlashModeAuto;
+    [AVCapturePhotoSettings photoSettings].flashMode = AVCaptureFlashModeOff;
     self.rederView = [[ZBarReaderView alloc] init];
     self.rederView.tracksSymbols = NO;
     self.rederView.readerDelegate = self;
     self.rederView.frame = self.view.bounds;
     self.rederView.backgroundColor = [UIColor whiteColor];
+//    NSError *err;
+//    [self.rederView.device lockForConfiguration:&err];
+//    if(err == nil){
+//        self.rederView.device.flashMode = AVCaptureFlashModeOff;
+//    }
+//    [self.rederView.device unlockForConfiguration];
     [self.rederView start];
     [self.view insertSubview:self.rederView atIndex:0];
 }

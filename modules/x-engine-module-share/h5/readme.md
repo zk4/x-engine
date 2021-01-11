@@ -33,12 +33,12 @@ com.zkty.module.share
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| userName | string |  | gh_d43f693ca31f |  小程序原始id |
-| path | string |  | /pages/media |  小程序消息title |
-| title | string |  | title |  小程序消息title |
-| desc | string |  | desc |  小程序消息desc |
+| userName | string |  |  |  小程序原始id |
+| path | string |  |  |  小程序页面路径 |
+| title | string |  |  |  小程序消息title |
+| desc | string |  |  |  小程序消息desc |
 | imageurl | string |  |  |  小程序消息封面图片，小于128k |
-| link | string |  | http://www.baidu.com |  兼容低版本的网页链接 |
+| link | string |  |  |  兼容低版本的网页链接 |
 | \_\_event\_\_ |  | true |  |  |
 
     

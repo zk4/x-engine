@@ -88,6 +88,35 @@
     }
 }
 
+- (void)_shareForOpenWXMiniProgram:(MiniProgramReqDTO *)dto complete:(void (^)(ShareResDTO *, BOOL))completionHandler {
+    self.event = dto.__event__;
+    if ([self isInstall]) {
+        WXMiniProgramObject *object = [WXMiniProgramObject object];
+        object.webpageUrl = dto.link;
+        object.userName = dto.userName;
+        object.path = dto.path;
+        object.hdImageData =[NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageurl]];
+    //    object.withShareTicket = withShareTicket;
+        object.miniProgramType = 0;
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = dto.title;
+        message.description = dto.desc;
+        message.thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageurl]];  //兼容旧版本节点的图片，小于32KB，新版本优先
+                                  //使用WXMiniProgramObject的hdImageData属性
+        message.mediaObject = object;
+        SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        req.scene = WXSceneSession;  //目前只支持会话
+        [WXApi sendReq:req completion:^(BOOL success) {
+            
+        }];
+    }else{
+        [MBProgressHUD showToastWithTitle:@"没有安装微信" image:nil time:1.0];
+    }
+}
+
+
 -(BOOL)isInstall{
     return [WXApi isWXAppInstalled];
 }

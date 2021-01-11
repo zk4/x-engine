@@ -397,10 +397,13 @@ static   XEngineWebView* s_webview;
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
-    self.screenView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.screenView];
-    self.screenView.frame = self.view.bounds;
+    if(self.screenView == nil){
+        
+        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+        self.screenView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:self.screenView];
+        self.screenView.frame = self.view.bounds;
+    }
 }
 
 - (void)dealloc{

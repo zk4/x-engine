@@ -58,30 +58,6 @@ public class __xengine__module_localstorage extends xengine__module_localstorage
         handler.complete(statusDTO);
     }
 
-    @Override
-    public void __testRemoveAllPublic(StorageRemoveAllDTO dto, CompletionHandler<StorageStatusDTO> handler) {
-
-    }
-
-    @Override
-    public void __testSetPublicStorage(StorageSetDTO dto, CompletionHandler<StorageStatusDTO> handler) {
-
-    }
-
-    @Override
-    public void __testGetPublicStorage(StorageGetDTO dto, CompletionHandler<StorageStatusDTO> handler) {
-
-    }
-
-    @Override
-    public void __testSetLocalStorage(StorageSetDTO dto, CompletionHandler<StorageStatusDTO> handler) {
-
-    }
-
-    @Override
-    public void __testGetLocalStorage(StorageGetDTO dto, CompletionHandler<StorageStatusDTO> handler) {
-
-    }
 
     @Override
     public String moduleId() {

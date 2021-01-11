@@ -27,10 +27,11 @@ public class __xengine__module_scan extends xengine__module_scan {
     @Override
     public void _openScanView(final ScanOpenDto dto, final CompletionHandler<Nullable> handler) {
         Log.d(TAG, JSONObject.toJSONString(dto));
-
-        XEngineWebActivity xEngineWebActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
-
-        if (lifeCycleListener == null) {
+        REQUEST_CODE++;
+        final XEngineWebActivity xEngineWebActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        Log.d(TAG, "hashCode:" + xEngineWebActivity.hashCode());
+        Log.d(TAG, "REQUEST_CODE:" + REQUEST_CODE);
+//        if (lifeCycleListener == null) {
             lifeCycleListener = new XEngineWebActivity.LifecycleListener() {
                 @Override
                 public void onCreate() {
@@ -69,7 +70,9 @@ public class __xengine__module_scan extends xengine__module_scan {
 
                 @Override
                 public void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+                    Log.d(TAG, "REQUEST_CODE:" + REQUEST_CODE + ",requestCode=" + requestCode);
                     if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
+                        Log.d(TAG, "hashCode..:" + xEngineWebActivity.hashCode());
                         if (intent.hasExtra("result")) {
                             String code = intent.getStringExtra("result");
                             if (!TextUtils.isEmpty(code)) {
@@ -91,7 +94,7 @@ public class __xengine__module_scan extends xengine__module_scan {
 
                 }
             };
-        }
+//        }
         xEngineWebActivity.addLifeCycleListener(lifeCycleListener);
 
         Intent intent = new Intent();

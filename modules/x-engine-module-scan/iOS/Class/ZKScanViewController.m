@@ -274,7 +274,10 @@
     if(err == nil){
         
         [self.rederView.device setTorchMode:AVCaptureTorchModeOff];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         self.rederView.device.flashMode = AVCaptureFlashModeOff;
+#pragma clang diagnostic pop
         [AVCapturePhotoSettings photoSettings].flashMode = AVCaptureFlashModeOff;
     }
     [self.rederView.device unlockForConfiguration];

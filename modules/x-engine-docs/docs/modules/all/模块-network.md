@@ -32,7 +32,7 @@
 # JS
 
 
-version: 0.1.7
+version: 0.1.8
 ``` bash
 npm install @zkty-team/x-engine-module-network
 ```
@@ -88,8 +88,47 @@ network.getRequest({
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
 
+
+参数 object  定义
+``` js
+
+
+interface RequestDTO {
+
+    //请求url
+    url: string;
+    //请求方法
+    method?: string;
+    //请求haeders
+    headers?: Map<string,
+ string>;
+    //请求params
+    params?: Map<string,
+ string>;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface ReponseDTO {
+
+    //返回的数据
+    data: string
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: RequestDTO;
+
+}
+``` 
 
 
 
@@ -139,8 +178,47 @@ network.getRequest({
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
 
+
+参数 object  定义
+``` js
+
+
+interface RequestDTO {
+
+    //请求url
+    url: string;
+    //请求方法
+    method?: string;
+    //请求haeders
+    headers?: Map<string,
+ string>;
+    //请求params
+    params?: Map<string,
+ string>;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface ReponseDTO {
+
+    //返回的数据
+    data: string
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: RequestDTO;
+
+}
+``` 
 
 
 
@@ -182,8 +260,47 @@ network.getRequest({
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
 
+
+参数 object  定义
+``` js
+
+
+interface RequestDTO {
+
+    //请求url
+    url: string;
+    //请求方法
+    method?: string;
+    //请求haeders
+    headers?: Map<string,
+ string>;
+    //请求params
+    params?: Map<string,
+ string>;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface ReponseDTO {
+
+    //返回的数据
+    data: string
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: RequestDTO;
+
+}
+``` 
 
 
 
@@ -225,8 +342,47 @@ network.getRequest({
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
 
+
+参数 object  定义
+``` js
+
+
+interface RequestDTO {
+
+    //请求url
+    url: string;
+    //请求方法
+    method?: string;
+    //请求haeders
+    headers?: Map<string,
+ string>;
+    //请求params
+    params?: Map<string,
+ string>;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface ReponseDTO {
+
+    //返回的数据
+    data: string
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: RequestDTO;
+
+}
+``` 
 
 
 
@@ -268,8 +424,47 @@ network.getRequest({
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
 
+
+参数 object  定义
+``` js
+
+
+interface RequestDTO {
+
+    //请求url
+    url: string;
+    //请求方法
+    method?: string;
+    //请求haeders
+    headers?: Map<string,
+ string>;
+    //请求params
+    params?: Map<string,
+ string>;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface ReponseDTO {
+
+    //返回的数据
+    data: string
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: RequestDTO;
+
+}
+``` 
 
 
 
@@ -311,8 +506,47 @@ network.getRequest({
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
 
+
+参数 object  定义
+``` js
+
+
+interface RequestDTO {
+
+    //请求url
+    url: string;
+    //请求方法
+    method?: string;
+    //请求haeders
+    headers?: Map<string,
+ string>;
+    //请求params
+    params?: Map<string,
+ string>;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface ReponseDTO {
+
+    //返回的数据
+    data: string
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: RequestDTO;
+
+}
+``` 
 
 
 
@@ -380,8 +614,54 @@ network.getRequest({
 | \_\_event\_\_ | string | optional |  | progress: (progress:float)=>void |
 | isNeedBase64 | bool | 必填 |  | 是否需要base64的内容 |
 
+
+参数 object  定义
+``` js
+
+
+// download
+interface DownloadRequestDTO {
+
+    //请求url
+    url: string;
+    //请求方法
+    method?: string;
+    //请求haeders
+    headers?: Map<string,
+ string>;
+    //请求params
+    params?: Map<string,
+ string>;
+    //progress: (progress:float)=>void
+    __event__?: string;
+    //是否需要base64的内容
+    isNeedBase64: boolean;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface DownloadReponseDTO {
+
+    //下载文件的本地路径
+    filePath: string
+    //返回的数据base64
+    base64DataStr?: string
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: DownloadRequestDTO;
+
+}
+``` 
 
 
 
@@ -431,8 +711,56 @@ network.getRequest({
 | fileBaseStr | string | optional |  | 上传文件的base64 |
 | \_\_event\_\_ | string | optional |  | progress: (progress:float)=>void |
 
+
+参数 object  定义
+``` js
+
+
+interface UploadRequestDTO {
+
+    //请求地址
+    url: string;
+    //请求方法
+    method?: string;
+    //请求头
+    headers?: Map<string,
+ string>;
+    //请求参数
+    params?: Map<string,
+ string>;
+    //上传文件名称
+    filename: string;
+    //上传文件路径
+    filepath?: string;
+    //上传文件的base64
+    fileBaseStr?: string;
+
+    //progress: (progress:float)=>void
+    __event__?: string;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+interface UploadReponseDTO {
+
+    //返回的数据
+    data: string;
+    //返回的状态
+    status: int;
+    //返回的头信息
+    headers: Map<string,
+ string>;
+    //返回的请求参数
+    request?: UploadRequestDTO;
+
+}
+``` 
 
 
 

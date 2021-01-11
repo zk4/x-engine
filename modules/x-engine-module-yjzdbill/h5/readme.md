@@ -1,5 +1,5 @@
 
-version: 0.1.7
+version: 0.1.8
 ``` bash
 npm install @zkty-team/x-engine-module-yjzdbill
 ```
@@ -43,8 +43,48 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | appScheme | string | optional | x-engine | 当前app注册的appScheme |
 | payType | bool | optional |  | 支付业务， 是否是 B端调用，  true为B， false为C |
 
+
+参数 object  定义
+``` js
+
+
+// 支付dto
+interface YJBillDTO {
+
+  //会员标识
+  businessCstNo: string;
+  //预下单平台商户号
+  platMerCstNo: string;
+  //预下单交易商户号
+  tradeMerCstNo: string;
+  //业务系统订单号
+  billNo:string;
+  //当前app注册的appScheme
+  appScheme?:string;
+  //支付业务， 是否是 B端调用，  true为B， false为C
+  payType?:boolean;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+//返回状态dto
+interface YJBillRetDTO {
+
+  //返回状态
+  billRetStatus: string;
+  //状态信息
+  billRetStatusMessage:string
+  //用户是否主动取消支付
+  isCancel?:boolean
+
+}
+``` 
 
 
 
@@ -78,8 +118,37 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | --------------------------- | --------- | -------- | --------- |--------- |
 | refundOrderNo | string | 必填 |  | 退款订单编号 |
 
+
+参数 object  定义
+``` js
+
+// 退款dto
+interface YJBillRefundDTO {
+
+  //退款订单编号
+  refundOrderNo:string;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+
+//返回状态dto
+interface YJBillRetDTO {
+
+  //返回状态
+  billRetStatus: string;
+  //状态信息
+  billRetStatusMessage:string
+  //用户是否主动取消支付
+  isCancel?:boolean
+
+}
+``` 
 
 
 
@@ -118,8 +187,43 @@ npm install @zkty-team/x-engine-module-yjzdbill
 | billStatus | string | 必填 | 0 |  账单状态（取值为：0-全部  10-待支付  90-已完成） |
 | billType | string | 必填 | 0 | 账单类型取值为：0-全部 1-物业收费账单,2-月保续费账单,3-停车费账单,4-临时收费账单,5-零售,6-预缴费,7-旅游,8-家政,9-拎包，10-押金 |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+//账单中心dto
+interface YJBillListDTO {
+
+  //会员标识
+  businessCstNo: string;
+  //房屋编号
+  roomNo:string;
+  //人防编号
+  userRoomNo:string;
+  //当前app注册的appScheme
+  appScheme?:string;
+  //支付业务， 是否是 B端调用，  true为B， false为C
+  payType:boolean;
+  // 账单状态（取值为：0-全部  10-待支付  90-已完成）
+  billStatus:string;
+  //账单类型取值为：0-全部 1-物业收费账单,
+2-月保续费账单,
+3-停车费账单,
+4-临时收费账单,
+5-零售,
+6-预缴费,
+7-旅游,
+8-家政,
+9-拎包，10-押金
+  billType:string;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 

@@ -1,5 +1,5 @@
 
-version: 0.1.7
+version: 0.1.8
 ``` bash
 npm install @zkty-team/x-engine-module-geo
 ```
@@ -38,8 +38,34 @@ npm install @zkty-team/x-engine-module-geo
 | type | string | 必填 | BMK09LL |  默认为 BMK09LL 返回 BMK 坐标，GCJ02 返回国测局坐标,WGS84 返回 gps 坐标,BMK09MC 返回 BMK 坐标 |
 | \_\_event\_\_ | _0_com.zkty.module.geo_DTO | optional |  |  |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+// interface GeoReqDTO {
+
+//   // 默认为 WGS84 返回 gps 坐标，GCJ02 返回国测局坐标
+//   type?: string;
+// 
+}
+
+interface GeoEventDTO {
+
+  // 默认为 BMK09LL 返回 BMK 坐标，GCJ02 返回国测局坐标,
+WGS84 返回 gps 坐标,
+BMK09MC 返回 BMK 坐标
+  type: string;
+  __event__?:(string)=>{
+
+};
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 

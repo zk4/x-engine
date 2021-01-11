@@ -10,7 +10,7 @@
 # JS
 
 
-version: 0.1.7
+version: 0.1.8
 ``` bash
 npm install @zkty-team/x-engine-module-device
 ```
@@ -45,8 +45,32 @@ npm install @zkty-team/x-engine-module-device
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -79,8 +103,32 @@ npm install @zkty-team/x-engine-module-device
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -113,8 +161,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -147,8 +219,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -181,8 +277,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -215,8 +335,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -249,8 +393,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -283,8 +451,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -317,8 +509,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -351,8 +567,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -385,8 +625,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -419,8 +683,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -453,8 +741,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -487,8 +799,32 @@ tabBar高度
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -517,8 +853,22 @@ tabBar高度
 | --------------------------- | --------- | -------- | --------- |--------- |
 | phoneNumber | string | 必填 |  | 手机号 |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface DevicePhoneNumDTO {
+
+  //手机号
+  phoneNumber: string;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -548,8 +898,33 @@ tabBar高度
 | phoneNumber | string | 必填 |  | 手机号 |
 | messageContent | string | 必填 |  | 短信内容 |
 
+
+参数 object  定义
+``` js
+
+
+interface DeviceMessageDTO {
+
+  //手机号
+  phoneNumber: string;
+  //短信内容
+  messageContent:string;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 

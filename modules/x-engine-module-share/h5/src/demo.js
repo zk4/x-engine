@@ -1,6 +1,6 @@
 
 import share from './index.js'
- {
+
   window.share = () => {
     share
       .share({
@@ -17,7 +17,7 @@ import share from './index.js'
         document.getElementById("debug_text").innerText = res;
       });
   };
-} {
+
   window.shareForOpenWXMiniProgram = () => {
     share
       .shareForOpenWXMiniProgram({
@@ -26,6 +26,7 @@ import share from './index.js'
         title:"test",
         desc:"testdesc",
         link:"http://www.baidu.com",
+        imageurl:"",
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },
@@ -34,5 +35,5 @@ import share from './index.js'
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
     

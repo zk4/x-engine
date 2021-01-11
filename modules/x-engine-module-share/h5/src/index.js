@@ -20,13 +20,7 @@ function osCheck() {
   },
   {
     "name": "shareForOpenWXMiniProgram",
-    "default_args": {
-      "userName": "gh_d43f693ca31f",
-      "path": "/pages/media",
-      "title": "title",
-      "desc": "desc",
-      "link": "http://www.baidu.com"
-    }
+    "default_args": null
   }
 ]
 )}}

@@ -20,7 +20,7 @@ interface ShareReqDTO {
 interface MiniProgramReqDTO {
    // 小程序原始id
   userName: string, 
-  // 小程序消息title
+  // 小程序页面路径
   path : string, 
   // 小程序消息title
   title: string,
@@ -65,13 +65,7 @@ function share(
 }
 
 function shareForOpenWXMiniProgram(
-  MiniProgramReqDTO: MiniProgramReqDTO = {
-    userName:"gh_d43f693ca31f",
-	path:"/pages/media",
-	title:"title",
-	desc:"desc",
-	link:"http://www.baidu.com",
-  }
+  MiniProgramReqDTO: MiniProgramReqDTO
 ):ShareResDTO {
   window.shareForOpenWXMiniProgram = () => {
     share
@@ -81,6 +75,7 @@ function shareForOpenWXMiniProgram(
         title:"test",
         desc:"testdesc",
         link:"http://www.baidu.com",
+        imageurl:"",
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },

@@ -36,6 +36,23 @@
 		public String __event__;
   }
   
+  class MiniProgramReqDTO {
+    public String userName;
+
+    public String path;
+
+    public String title;
+
+    public String desc;
+
+    public String imageurl;
+
+    public String link;
+
+    @Optional
+		public String __event__;
+  }
+  
   class ShareResDTO {
     public String code;
 
@@ -46,6 +63,7 @@
   
   interface xengine__module_share_i {
     public void _share(ShareReqDTO dto, final CompletionHandler<ShareResDTO> handler);
+public void _shareForOpenWXMiniProgram(MiniProgramReqDTO dto, final CompletionHandler<ShareResDTO> handler);
   }
   
   
@@ -59,6 +77,20 @@
     final public void share(JSONObject obj, final CompletionHandler<Object> handler) {
       ShareReqDTO data= convert(obj,ShareReqDTO.class);
       _share(data, new CompletionHandler<ShareResDTO>() {
+        @Override
+        public void complete(ShareResDTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(ShareResDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void shareForOpenWXMiniProgram(JSONObject obj, final CompletionHandler<Object> handler) {
+      MiniProgramReqDTO data= convert(obj,MiniProgramReqDTO.class);
+      _shareForOpenWXMiniProgram(data, new CompletionHandler<ShareResDTO>() {
         @Override
         public void complete(ShareResDTO retValue) { handler.complete(retValue); }
         @Override

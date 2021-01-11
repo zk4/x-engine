@@ -16,6 +16,24 @@ interface ShareReqDTO {
   __event__?: (string)=>void,
 
 }
+// dto
+interface MiniProgramReqDTO {
+   // 小程序原始id
+  userName: string, 
+  // 小程序消息title
+  path : string, 
+  // 小程序消息title
+  title: string,
+  // 小程序消息desc
+  desc : string,
+  // 小程序消息封面图片，小于128k
+  imageurl: string,
+  // 兼容低版本的网页链接
+  link : string;
+  __event__?: (string)=>void,
+
+}
+
 interface ShareResDTO {
   // todo 
   code: string,
@@ -36,6 +54,33 @@ function share(
         link:"http://www.baidu.com",
         imageurl:"",
         channel:"wx_zone",
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = JSON.stringify(res);
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+
+function shareForOpenWXMiniProgram(
+  MiniProgramReqDTO: MiniProgramReqDTO = {
+    userName:"gh_d43f693ca31f",
+	path:"/pages/media",
+	title:"title",
+	desc:"desc",
+	link:"http://www.baidu.com",
+  }
+):ShareResDTO {
+  window.shareForOpenWXMiniProgram = () => {
+    share
+      .shareForOpenWXMiniProgram({
+		userName:"gh_d43f693ca31f",
+		path:"/pages/media",
+        title:"test",
+        desc:"testdesc",
+        link:"http://www.baidu.com",
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },

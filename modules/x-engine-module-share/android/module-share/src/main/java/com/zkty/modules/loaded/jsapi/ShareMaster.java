@@ -1,42 +1,35 @@
 package com.zkty.modules.loaded.jsapi;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.util.Util;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXMiniProgramObject;
 import com.tencent.mm.opensdk.modelmsg.WXMusicObject;
 import com.tencent.mm.opensdk.modelmsg.WXVideoObject;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.zkty.modules.engine.XEngineApplication;
-import com.zkty.modules.engine.utils.ImageUtils;
 
 import java.io.ByteArrayOutputStream;
-import java.util.concurrent.ExecutionException;
-
-import module.share.R;
 
 
 public class ShareMaster {
 
 
-    public static void share(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl) {
+    public static void share(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl, String userName, String path) {
 
 
         switch (channel) {
             case "wx_friend":
             case "wx_zone":
-                decodeImageAndShareToWx(context, channel, type, title, desc, link, imgUrl, dataUrl);
+                decodeImageAndShareToWx(context, channel, type, title, desc, link, imgUrl, dataUrl, userName, path);
                 break;
 
         }
@@ -44,9 +37,9 @@ public class ShareMaster {
 
     }
 
-    private static void decodeImageAndShareToWx(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl) {
+    private static void decodeImageAndShareToWx(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl, String userName, String path) {
         if (TextUtils.isEmpty(imgUrl)) {
-            shareToWx(context, channel, type, title, desc, link, null, dataUrl);
+            shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path);
         } else {
             new Thread() {
                 @Override
@@ -62,12 +55,12 @@ public class ShareMaster {
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                             byte[] imageByte = stream.toByteArray();
 
-                            ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, imageByte, dataUrl));
+                            ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, imageByte, dataUrl, userName, path));
 
                         }
 
                     } catch (Exception e) {
-                        ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, null, dataUrl));
+                        ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path));
                     }
                 }
             }.start();
@@ -77,7 +70,7 @@ public class ShareMaster {
 
     }
 
-    private static void shareToWx(Context context, String channel, String type, String title, String desc, String link, byte[] thumbBmp, String dataUrl) {
+    private static void shareToWx(Context context, String channel, String type, String title, String desc, String link, byte[] thumbBmp, String dataUrl, String userName, String path) {
 
         int mTargetScene = SendMessageToWX.Req.WXSceneSession;
         if ("wx_friend".equals(channel)) {
@@ -155,10 +148,24 @@ public class ShareMaster {
 
 //调用api接口，发送数据到微信
                 api.sendReq(req2);
+                break;
+            case "miniProgram":
+                WXMiniProgramObject miniProgramObj = new WXMiniProgramObject();
+                miniProgramObj.webpageUrl = link; // 兼容低版本的网页链接
+                miniProgramObj.miniprogramType = WXMiniProgramObject.MINIPTOGRAM_TYPE_RELEASE;// 正式版:0，测试版:1，体验版:2
+                miniProgramObj.userName = userName;     // 小程序原始id
+                miniProgramObj.path = path;            //小程序页面路径；对于小游戏，可以只传入 query 部分，来实现传参效果，如：传入 "?foo=bar"
+                WXMediaMessage msg4 = new WXMediaMessage(miniProgramObj);
+                msg4.title = title;                    // 小程序消息title
+                msg4.description = desc;               // 小程序消息desc
+                msg4.thumbData = thumbBmp;                      // 小程序消息封面图片，小于128k
 
+                SendMessageToWX.Req req4 = new SendMessageToWX.Req();
+                req4.message = msg4;
+                req4.scene = SendMessageToWX.Req.WXSceneSession;  // 目前只支持会话
+                api.sendReq(req4);
 
                 break;
-
 
             case "link":
             default:
@@ -171,7 +178,7 @@ public class ShareMaster {
                 WXMediaMessage msg3 = new WXMediaMessage(webpage);
                 msg3.title = title;
                 msg3.description = desc;
-//                Bitmap thumbBmp = BitmapFactory.decodeResource(getResources(), R.drawable.send_music_thumb);
+
                 msg3.thumbData = thumbBmp;
 
                 //构造一个Req
@@ -179,8 +186,6 @@ public class ShareMaster {
 //                req.transaction = buildTransaction("webpage");
                 req3.message = msg3;
                 req3.scene = mTargetScene;
-//                req.userOpenId = getOpenId();
-
                 //调用api接口，发送数据到微信
                 api.sendReq(req3);
                 break;

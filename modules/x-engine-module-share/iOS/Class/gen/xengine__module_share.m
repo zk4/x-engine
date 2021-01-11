@@ -20,6 +20,18 @@
 @end
     
   
+@implementation MiniProgramReqDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   
+   
+   
+   
+   	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
+    }
+@end
+    
+  
 @implementation ShareResDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
@@ -50,9 +62,12 @@
           }];
         
       }
+    - (void) shareForOpenWXMiniProgram:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_share:(ShareReqDTO *)dto complete:(void (^)(ShareResDTO *, BOOL))completionHandler {
-    
-}
-
-@end
+          MiniProgramReqDTO* dto = [self convert:dict clazz:MiniProgramReqDTO.class];
+          [self _shareForOpenWXMiniProgram:dto complete:^(ShareResDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+  @end

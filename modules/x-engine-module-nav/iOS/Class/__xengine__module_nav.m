@@ -334,7 +334,11 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
 
 - (void)_setNavLeftBtn:(NavBtnDTO *)dto complete:(void (^)(BOOL))completionHandler {
 //    if ([Unity sharedInstance].getCurrentVC.navigationController.viewControllers.count <= 1) {
+    if (dto) {
         [self setBarItems:@[dto] withIsRight:NO withEvent:nil withBeginIndex:0];
+    }else{
+        [self setBarItems:@[] withIsRight:NO withEvent:nil withBeginIndex:0];
+    }
 //    }
     if(completionHandler){
         completionHandler(YES);

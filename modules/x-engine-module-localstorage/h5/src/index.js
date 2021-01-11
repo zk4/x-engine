@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -14,23 +14,23 @@ function osCheck() {
     [
   {
     "name": "set",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "get",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "remove",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "removeAll",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testRemoveAllPublic",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "_testSetPublicStorage",

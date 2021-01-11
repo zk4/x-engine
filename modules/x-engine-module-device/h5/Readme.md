@@ -1,13 +1,31 @@
 
-`
-com.zkty.module.device
-`
+version: 0.1.8
+``` bash
+npm install @zkty-team/x-engine-module-device
+```
 
 
 
 ## getPhoneType
 
 设备类型
+
+**demo**
+``` js
+ {
+  window.getPhoneType = () => {
+    device
+      .getPhoneType({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -16,8 +34,32 @@ com.zkty.module.device
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -26,6 +68,23 @@ com.zkty.module.device
 
 系统版本
 
+**demo**
+``` js
+{
+  window.getSystemVersion = () => {
+    device
+      .getSystemVersion({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -33,8 +92,32 @@ com.zkty.module.device
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -43,6 +126,23 @@ com.zkty.module.device
 
 UDID
 
+**demo**
+``` js
+{
+  window.getUDID = () => {
+    device
+      .getUDID({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -50,8 +150,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -60,6 +184,23 @@ UDID
 
 电池电量
 
+**demo**
+``` js
+{
+  window.getBatteryLevel = () => {
+    device
+      .getBatteryLevel({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -67,8 +208,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -77,6 +242,23 @@ UDID
 
 当前语言
 
+**demo**
+``` js
+{
+  window.getPreferredLanguage = () => {
+    device
+      .getPreferredLanguage({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -84,8 +266,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -94,6 +300,23 @@ UDID
 
 屏幕宽度
 
+**demo**
+``` js
+{
+  window.getScreenWidth = () => {
+    device
+      .getScreenWidth({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -101,8 +324,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -111,6 +358,23 @@ UDID
 
 屏幕高度
 
+**demo**
+``` js
+{
+  window.getScreenHeight = () => {
+    device
+      .getScreenHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -118,8 +382,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -128,6 +416,23 @@ UDID
 
 安全区域上边距
 
+**demo**
+``` js
+{
+  window.getSafeAreaTop = () => {
+    device
+      .getSafeAreaTop({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -135,8 +440,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -145,6 +474,23 @@ UDID
 
 安全区域下边距
 
+**demo**
+``` js
+{
+  window.getSafeAreaBottom = () => {
+    device
+      .getSafeAreaBottom({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -152,8 +498,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -162,6 +532,23 @@ UDID
 
 安全区域左边距
 
+**demo**
+``` js
+{
+  window.getSafeAreaLeft = () => {
+    device
+      .getSafeAreaLeft({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -169,8 +556,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -179,6 +590,23 @@ UDID
 
 安全区域右边距
 
+**demo**
+``` js
+{
+  window.getSafeAreaRight = () => {
+    device
+      .getSafeAreaRight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -186,8 +614,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -196,6 +648,23 @@ UDID
 
 状态栏高度
 
+**demo**
+``` js
+{
+  window.getStatusHeight = () => {
+    device
+      .getStatusHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -203,8 +672,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -213,6 +706,23 @@ UDID
 
 导航条高度
 
+**demo**
+``` js
+{
+  window.getNavigationHeight = () => {
+    device
+      .getNavigationHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -220,8 +730,32 @@ UDID
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -230,6 +764,23 @@ UDID
 
 tabBar高度
 
+**demo**
+``` js
+{
+  window.getTabBarHeight = () => {
+    device
+      .getTabBarHeight({
+        __event__: (res) => {
+          document.getElementById("debug_text").innerText = res;
+        },
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = res;
+      });
+  };
+}
+``` 
+
 	
 **参数说明**
 
@@ -237,8 +788,32 @@ tabBar高度
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
+
+参数 object  定义
+``` js
+
+
+// dto
+interface DeviceSheetDTO {
+
+  //回调方法
+  __event__: (string)=>void;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 
@@ -247,6 +822,19 @@ tabBar高度
 
 打电话
 
+**demo**
+``` js
+{
+  window.devicePhoneCall = (...args) => {
+  device
+    .devicePhoneCall({phoneNumber:"10086"})
+    .then((res) => {
+      document.getElementById("debug_text").innerText = "ret:"+res;
+    });
+};
+}
+``` 
+
 	
 **参数说明**
 
@@ -254,8 +842,22 @@ tabBar高度
 | --------------------------- | --------- | -------- | --------- |--------- |
 | phoneNumber | string | 必填 |  | 手机号 |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface DevicePhoneNumDTO {
+
+  //手机号
+  phoneNumber: string;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -263,6 +865,19 @@ tabBar高度
 ## deviceSendMessage
 
 发短信
+
+**demo**
+``` js
+{
+  window.deviceSendMessage = () => {
+    device
+      .deviceSendMessage({
+        phoneNumber:"10086",
+        messageContent:"1111111111",
+      });
+  };
+}
+``` 
 
 	
 **参数说明**
@@ -272,8 +887,33 @@ tabBar高度
 | phoneNumber | string | 必填 |  | 手机号 |
 | messageContent | string | 必填 |  | 短信内容 |
 
+
+参数 object  定义
+``` js
+
+
+interface DeviceMessageDTO {
+
+  //手机号
+  phoneNumber: string;
+  //短信内容
+  messageContent:string;
+
+}
+``` 
+
+
+---------------------
 **返回值**
-**无参数**
+``` js
+
+interface DeviceMoreDTO {
+
+  //返回值
+  content: string;
+
+}
+``` 
 
 
 

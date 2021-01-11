@@ -1,5 +1,5 @@
 
-version: 0.1.7
+version: 0.1.8
 ``` bash
 npm install @zkty-team/x-engine-module-router
 ```
@@ -33,8 +33,35 @@ npm install @zkty-team/x-engine-module-router
 | version | int | optional |  |  |
 | hideNavbar | bool | optional |  |  是否隐藏navbar, 默认 false |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface RouterOpenAppDTO {
+
+  //跳转类型
+  type: string;
+  //跳转目标
+  uri: string;
+  //跳转参数
+  path: string;
+  //其他参数
+  args?:Map<string,
+ string>;
+
+  version?: int;
+
+  // 是否隐藏navbar,
+ 默认 false
+  hideNavbar?: boolean;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 

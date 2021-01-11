@@ -64,7 +64,7 @@ ftp://xxx/../index.html
 # JS
 
 
-version: 0.1.7
+version: 0.1.8
 ``` bash
 npm install @zkty-team/x-engine-module-nav
 ```
@@ -82,7 +82,7 @@ npm install @zkty-team/x-engine-module-nav
 ``` js
  {
   window.setNavTitle = () => {
-    nav.setNavTitle().then((res) => {});
+    nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
   };
 }
 ``` 
@@ -92,12 +92,30 @@ npm install @zkty-team/x-engine-module-nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 | title | 导航条的文字 |
-| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
-| titleSize | int | 必填 | 16 | 字体大小 |
+| title | string | 必填 |  | 导航条的文字 |
+| titleColor | string | 必填 |  | 16进制的颜色色值 |
+| titleSize | int | 必填 |  | 字体大小 |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavTitleDTO {
+
+  //导航条的文字
+  title: string;
+  //16进制的颜色色值
+  titleColor: string;
+  //字体大小
+  titleSize: int;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -110,7 +128,13 @@ npm install @zkty-team/x-engine-module-nav
 ``` js
  {
   window.setNavLeftBtn = () => {
-    nav.setNavLeftBtn().then((res) => {});
+    nav.setNavLeftBtn({
+      title: "",
+      titleColor: "#000000",
+      titleSize: 16,
+      icon: "",
+      iconSize: ["20", "20"],
+    }).then((res) => {});
   };
 }
 ``` 
@@ -120,21 +144,63 @@ npm install @zkty-team/x-engine-module-nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 | menu | 导航条右边按钮的文字 |
-| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
-| titleSize | int | 必填 | 16 | 导航条文字的大小 |
+| title | string | 必填 |  | 导航条右边按钮的文字 |
+| titleColor | string | 必填 |  | 16进制的颜色色值 |
+| titleSize | int | 必填 |  | 导航条文字的大小 |
 | titleBig | string | optional |  | 按钮文字粗细  |
 | titleFontName | string | optional |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
 | isBoldFont | bool | optional |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | optional |  | 见下方说明 |
-| iconSize | Array\<double\> | 必填 | ["20","20"] | 图片的宽高 |
-| popList | Array\<Map\<string,string\>\> | optional | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
-| showMenuImg | string | optional | false | 见下方说明 |
-| popWidth | string | optional | 200 | menu的宽 |
+| iconSize | Array\<double\> | 必填 |  | 图片的宽高 |
+| popList | Array\<Map\<string,string\>\> | optional |  |  |
+| showMenuImg | string | optional |  | 见下方说明 |
+| popWidth | string | optional |  | menu的宽 |
 | \_\_event\_\_ | string | optional |  |  |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavBtnDTO {
+
+  //导航条右边按钮的文字
+  title: string;
+  //16进制的颜色色值
+  titleColor: string;
+  //导航条文字的大小
+  titleSize: int;
+
+  //按钮文字粗细 
+  titleBig?: string;
+  
+  //设置字体,
+ android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium
+  titleFontName?: string;
+  //在不设置 titleFontName 时,
+ 是否使用系统粗体.
+  isBoldFont?: boolean;
+
+  //见下方说明
+  icon?: string;
+  //图片的宽高
+  iconSize: Array<double>;
+
+  popList?: Array<Map<string,
+ string>>;
+  //见下方说明
+  showMenuImg?: string;
+  //menu的宽
+  popWidth?: string;
+
+  __event__?: string;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -168,21 +234,63 @@ npm install @zkty-team/x-engine-module-nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 | menu | 导航条右边按钮的文字 |
-| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
-| titleSize | int | 必填 | 16 | 导航条文字的大小 |
+| title | string | 必填 |  | 导航条右边按钮的文字 |
+| titleColor | string | 必填 |  | 16进制的颜色色值 |
+| titleSize | int | 必填 |  | 导航条文字的大小 |
 | titleBig | string | optional |  | 按钮文字粗细  |
 | titleFontName | string | optional |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
 | isBoldFont | bool | optional |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | optional |  | 见下方说明 |
-| iconSize | Array\<double\> | 必填 | ["20","20"] | 图片的宽高 |
-| popList | Array\<Map\<string,string\>\> | optional | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
-| showMenuImg | string | optional | false | 见下方说明 |
-| popWidth | string | optional | 200 | menu的宽 |
+| iconSize | Array\<double\> | 必填 |  | 图片的宽高 |
+| popList | Array\<Map\<string,string\>\> | optional |  |  |
+| showMenuImg | string | optional |  | 见下方说明 |
+| popWidth | string | optional |  | menu的宽 |
 | \_\_event\_\_ | string | optional |  |  |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavBtnDTO {
+
+  //导航条右边按钮的文字
+  title: string;
+  //16进制的颜色色值
+  titleColor: string;
+  //导航条文字的大小
+  titleSize: int;
+
+  //按钮文字粗细 
+  titleBig?: string;
+  
+  //设置字体,
+ android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium
+  titleFontName?: string;
+  //在不设置 titleFontName 时,
+ 是否使用系统粗体.
+  isBoldFont?: boolean;
+
+  //见下方说明
+  icon?: string;
+  //图片的宽高
+  iconSize: Array<double>;
+
+  popList?: Array<Map<string,
+ string>>;
+  //见下方说明
+  showMenuImg?: string;
+  //menu的宽
+  popWidth?: string;
+
+  __event__?: string;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -224,21 +332,63 @@ npm install @zkty-team/x-engine-module-nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 | menu | 导航条右边按钮的文字 |
-| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
-| titleSize | int | 必填 | 16 | 导航条文字的大小 |
+| title | string | 必填 |  | 导航条右边按钮的文字 |
+| titleColor | string | 必填 |  | 16进制的颜色色值 |
+| titleSize | int | 必填 |  | 导航条文字的大小 |
 | titleBig | string | optional |  | 按钮文字粗细  |
 | titleFontName | string | optional |  | 设置字体, android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium |
 | isBoldFont | bool | optional |  | 在不设置 titleFontName 时, 是否使用系统粗体. |
 | icon | string | optional |  | 见下方说明 |
-| iconSize | Array\<double\> | 必填 | ["20","20"] | 图片的宽高 |
-| popList | Array\<Map\<string,string\>\> | optional | [{"icon":"","iconSize":"20","title":"1"},{"icon":"","iconSize":"20","title":"2"},{"icon":"","iconSize":"20","title":"3"}] |  |
-| showMenuImg | string | optional | false | 见下方说明 |
-| popWidth | string | optional | 200 | menu的宽 |
+| iconSize | Array\<double\> | 必填 |  | 图片的宽高 |
+| popList | Array\<Map\<string,string\>\> | optional |  |  |
+| showMenuImg | string | optional |  | 见下方说明 |
+| popWidth | string | optional |  | menu的宽 |
 | \_\_event\_\_ | string | optional |  |  |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavBtnDTO {
+
+  //导航条右边按钮的文字
+  title: string;
+  //16进制的颜色色值
+  titleColor: string;
+  //导航条文字的大小
+  titleSize: int;
+
+  //按钮文字粗细 
+  titleBig?: string;
+  
+  //设置字体,
+ android/iOS可能有所差异 PingFangSC-Regular / PingFangSC-Semibold / PingFangSC-Medium
+  titleFontName?: string;
+  //在不设置 titleFontName 时,
+ 是否使用系统粗体.
+  isBoldFont?: boolean;
+
+  //见下方说明
+  icon?: string;
+  //图片的宽高
+  iconSize: Array<double>;
+
+  popList?: Array<Map<string,
+ string>>;
+  //见下方说明
+  showMenuImg?: string;
+  //menu的宽
+  popWidth?: string;
+
+  __event__?: string;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -251,7 +401,23 @@ npm install @zkty-team/x-engine-module-nav
 ``` js
  {
   window.setNavRightMoreBtn = () => {
-    nav.setNavRightMoreBtn().then((res) => {});
+    nav.setNavRightMoreBtn({
+      btns: [
+        {
+          title: "right1",
+          titleColor: "#000000",
+          titleSize: 16,
+          iconSize: ["20", "20"],
+        },
+        {
+          title: "",
+          icon: "/assets/search.png",
+          titleColor: "#000000",
+          titleSize: 16,
+          iconSize: ["20", "20"],
+        },
+      ],
+    }).then((res) => {});
   };
 }
 ``` 
@@ -261,10 +427,23 @@ npm install @zkty-team/x-engine-module-nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| btns | Array\<NavBtnDTO\> | 必填 | [{"title":"right1","titleColor":"#000000","titleSize":16,"iconSize":["20","20"]},{"title":"","icon":"/assets/search.png","titleColor":"#000000","titleSize":16,"iconSize":["20","20"]}] |  |
+| btns | Array\<NavBtnDTO\> | 必填 |  |  |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavMoreBtnDTO {
+
+  btns: Array<NavBtnDTO>;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -277,7 +456,10 @@ npm install @zkty-team/x-engine-module-nav
 ``` js
  {
   window.navigatorPush = () => {
-    nav.navigatorPush().then((res) => {});
+    nav.navigatorPush({
+      url: "",
+      hideNavBar:false
+    }).then((res) => {});
   };
 }
 ``` 
@@ -291,8 +473,27 @@ npm install @zkty-team/x-engine-module-nav
 | params | string | optional |  | 其余参数 |
 | hideNavbar | bool | optional |  |  是否隐藏navbar, 默认 false |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavNavigatorDTO {
+
+  //跳转地址
+  url?: string;
+  //其余参数
+  params?: string;
+  // 是否隐藏navbar,
+ 默认 false
+  hideNavbar?: boolean;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -305,7 +506,10 @@ npm install @zkty-team/x-engine-module-nav
 ``` js
  {
   window.navigatorBack = () => {
-    nav.navigatorBack().then((res) => {});
+    nav.navigatorBack({
+      url: "",
+      hideNavBar:false
+    }).then((res) => {});
   };
 }
 ``` 
@@ -318,8 +522,25 @@ npm install @zkty-team/x-engine-module-nav
 | url | string | optional |  | 跳转地址 |
 | hideNavbar | bool | optional |  |  是否隐藏navbar, 默认 false |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavNavigatorBackDTO{
+
+  //跳转地址
+  url?: string;
+  // 是否隐藏navbar,
+ 默认 false
+  hideNavbar?: boolean;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -384,22 +605,60 @@ nav
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| cornerRadius | int | 必填 | 5 | 搜索框圆角大小 |
-| backgroundColor | string | 必填 | #FF0000 | 搜索框背景颜色 |
+| cornerRadius | int | 必填 |  | 搜索框圆角大小 |
+| backgroundColor | string | 必填 |  | 搜索框背景颜色 |
 | iconSearch | string | 必填 |  | 搜索框里搜索图片 |
-| iconSearchSize | Array\<double\> | 必填 | [20,20] | 搜索框里搜索图片大小 |
+| iconSearchSize | Array\<double\> | 必填 |  | 搜索框里搜索图片大小 |
 | iconClear | string | 必填 |  | 搜索框里清空图片 |
-| iconClearSize | Array\<double\> | 必填 | [20,20] | 搜索框里清空图片大小 |
-| textColor | string | 必填 | #000000 | 搜索框文本颜色 |
-| fontSize | int | 必填 | 16 | 搜索框文本字体大小 |
-| placeHolder | string | 必填 | 默认文字 | 搜索框占位符 |
-| placeHolderFontSize | int | 必填 | 16 | 搜索框占位符大小 |
-| isInput | bool | 必填 | true | 搜索框是否添加点击事件 |
+| iconClearSize | Array\<double\> | 必填 |  | 搜索框里清空图片大小 |
+| textColor | string | 必填 |  | 搜索框文本颜色 |
+| fontSize | int | 必填 |  | 搜索框文本字体大小 |
+| placeHolder | string | 必填 |  | 搜索框占位符 |
+| placeHolderFontSize | int | 必填 |  | 搜索框占位符大小 |
+| isInput | bool | 必填 |  | 搜索框是否添加点击事件 |
 | becomeFirstResponder | bool | 必填 |  | 搜索框是否获取焦点 |
 | \_\_event\_\_ | string | optional |  |  |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavSearchBarDTO {
+
+  //搜索框圆角大小
+  cornerRadius: int;
+  //搜索框背景颜色
+  backgroundColor: string;
+  //搜索框里搜索图片
+  iconSearch: string;
+  //搜索框里搜索图片大小
+  iconSearchSize: Array<double>;
+  //搜索框里清空图片
+  iconClear: string;
+  //搜索框里清空图片大小
+  iconClearSize: Array<double>;
+  //搜索框文本颜色
+  textColor: string;
+  //搜索框文本字体大小
+  fontSize: int;
+  //搜索框占位符
+  placeHolder: string;
+  //搜索框占位符大小
+  placeHolderFontSize: int;
+  //搜索框是否添加点击事件
+  isInput: boolean;
+  //搜索框是否获取焦点
+  becomeFirstResponder: boolean;
+
+  __event__?: string;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -430,8 +689,25 @@ nav
 | isHidden | bool | 必填 |  | 是否隐藏navBar |
 | isAnimation | bool | 必填 |  | 是否使用动画效果 |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavHiddenBarDTO {
+
+
+  //是否隐藏navBar
+  isHidden: boolean;
+  //是否使用动画效果
+  isAnimation: boolean;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -465,8 +741,25 @@ Deprecated
 | isHidden | bool | 必填 |  | 是否隐藏navBar |
 | isAnimation | bool | 必填 |  | 是否使用动画效果 |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavHiddenBarDTO {
+
+
+  //是否隐藏navBar
+  isHidden: boolean;
+  //是否使用动画效果
+  isAnimation: boolean;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 
@@ -496,8 +789,21 @@ Deprecated
 | --------------------------- | --------- | -------- | --------- |--------- |
 | history | Array\<string\> | 必填 |  |  |
 
-**返回值**
-**无参数**
+
+参数 object  定义
+``` js
+
+
+interface NavHistoryDTO {
+
+  history: Array<string>;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
 
 
 

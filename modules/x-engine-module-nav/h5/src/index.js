@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -14,35 +14,132 @@ function osCheck() {
     [
   {
     "name": "setNavTitle",
-    "default_args": null
+    "default_args": {
+      "title": "title",
+      "titleColor": "#000000",
+      "titleSize": 16
+    }
   },
   {
     "name": "setNavLeftBtn",
-    "default_args": null
+    "default_args": {
+      "title": "",
+      "titleColor": "#000000",
+      "titleSize": 16,
+      "icon": "",
+      "iconSize": [
+        "20",
+        "20"
+      ]
+    }
   },
   {
     "name": "setNavRightBtn",
-    "default_args": null
+    "default_args": {
+      "title": "right",
+      "titleColor": "#000000",
+      "titleSize": 16,
+      "icon": "",
+      "iconSize": [
+        "20",
+        "20"
+      ]
+    }
   },
   {
     "name": "setNavRightMenuBtn",
-    "default_args": null
+    "default_args": {
+      "title": "menu",
+      "titleColor": "#000000",
+      "titleSize": 16,
+      "icon": "",
+      "iconSize": [
+        "20",
+        "20"
+      ],
+      "popWidth": "200",
+      "showMenuImg": "false",
+      "popList": [
+        {
+          "icon": "",
+          "iconSize": "20",
+          "title": "1"
+        },
+        {
+          "icon": "",
+          "iconSize": "20",
+          "title": "2"
+        },
+        {
+          "icon": "",
+          "iconSize": "20",
+          "title": "3"
+        }
+      ]
+    }
   },
   {
     "name": "setNavRightMoreBtn",
-    "default_args": null
+    "default_args": {
+      "btns": [
+        {
+          "title": "right1",
+          "titleColor": "#000000",
+          "titleSize": 16,
+          "iconSize": [
+            "20",
+            "20"
+          ]
+        },
+        {
+          "title": "",
+          "icon": "/assets/search.png",
+          "titleColor": "#000000",
+          "titleSize": 16,
+          "iconSize": [
+            "20",
+            "20"
+          ]
+        }
+      ]
+    }
   },
   {
     "name": "navigatorPush",
-    "default_args": {}
+    "default_args": {
+      "url": "",
+      "hideNavBar": false
+    }
   },
   {
     "name": "navigatorBack",
-    "default_args": {}
+    "default_args": {
+      "url": "",
+      "hideNavBar": false
+    }
   },
   {
     "name": "setNavSearchBar",
-    "default_args": null
+    "default_args": {
+      "cornerRadius": 5,
+      "backgroundColor": "#FF0000",
+      "iconSearch": "",
+      "iconSearchSize": [
+        20,
+        20
+      ],
+      "iconClear": "",
+      "iconClearSize": [
+        20,
+        20
+      ],
+      "textColor": "#000000",
+      "fontSize": 16,
+      "placeHolder": "默认文字",
+      "placeHolderFontSize": 16,
+      "isInput": true,
+      "becomeFirstResponder": false
+    }
   },
   {
     "name": "setSearchBarHidden",

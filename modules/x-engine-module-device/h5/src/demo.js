@@ -1,5 +1,7 @@
 
 import device from './index.js'
+import xengine from "@zkty-team/x-engine-module-engine";
+
 
   window.getPhoneType = () => {
     device

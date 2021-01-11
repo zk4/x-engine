@@ -1,18 +1,14 @@
 
 import nav from './index.js'
+import xengine from "@zkty-team/x-engine-module-engine";
+
 
   window.setNavTitle = () => {
-    nav.setNavTitle({ title: "title", titleColor: "#000000", titleSize: 16 }).then((res) => {});
+    nav.setNavTitle().then((res) => {});
   };
 
   window.setNavLeftBtn = () => {
-    nav.setNavLeftBtn({
-      title: "",
-      titleColor: "#000000",
-      titleSize: 16,
-      icon: "",
-      iconSize: ["20", "20"],
-    }).then((res) => {});
+    nav.setNavLeftBtn().then((res) => {});
   };
 
   window.setNavRightBtn = () => {
@@ -54,37 +50,15 @@ import nav from './index.js'
   };
 
   window.setNavRightMoreBtn = () => {
-    nav.setNavRightMoreBtn({
-      btns: [
-        {
-          title: "right1",
-          titleColor: "#000000",
-          titleSize: 16,
-          iconSize: ["20", "20"],
-        },
-        {
-          title: "",
-          icon: "/assets/search.png",
-          titleColor: "#000000",
-          titleSize: 16,
-          iconSize: ["20", "20"],
-        },
-      ],
-    }).then((res) => {});
+    nav.setNavRightMoreBtn().then((res) => {});
   };
 
   window.navigatorPush = () => {
-    nav.navigatorPush({
-      url: "",
-      hideNavBar:false
-    }).then((res) => {});
+    nav.navigatorPush().then((res) => {});
   };
 
   window.navigatorBack = () => {
-    nav.navigatorBack({
-      url: "",
-      hideNavBar:false
-    }).then((res) => {});
+    nav.navigatorBack().then((res) => {});
   };
 
   window.setNavSearchBar = () => {

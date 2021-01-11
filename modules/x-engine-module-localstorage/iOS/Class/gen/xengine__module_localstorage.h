@@ -55,21 +55,6 @@
       @required 
         - (void) _removeAll:(StorageRemoveAllDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
 
-      @required 
-        - (void) __testRemoveAllPublic:(StorageRemoveAllDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) __testSetPublicStorage:(StorageSetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) __testGetPublicStorage:(StorageGetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) __testSetLocalStorage:(StorageSetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) __testGetLocalStorage:(StorageGetDTO*) dto complete:(void (^)(StorageStatusDTO* result,BOOL complete)) completionHandler;
-
 @end
   
 

@@ -222,13 +222,14 @@ static   XEngineWebView* s_webview;
 }
 
 //执行JS
--(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments {
+-(void)runJsFunction:(NSString *)event arguments:(id)arguments {
     [self runJsFunction:event arguments:arguments completionHandler:nil];
 }
+ 
 //执行JS
--(void)runJsFunction:(NSString *)event arguments:(NSArray *)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler {
+-(void)runJsFunction:(NSString *)event arguments:(id)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler {
     if(event.length > 0){
-        [self.webview callHandler:event arguments:arguments completionHandler:completionHandler];
+        [s_webview callHandler:event arguments:arguments completionHandler:completionHandler];
     }
 }
 
@@ -396,10 +397,13 @@ static   XEngineWebView* s_webview;
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
-    self.screenView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.screenView];
-    self.screenView.frame = self.view.bounds;
+    if(self.screenView == nil){
+        
+        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+        self.screenView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:self.screenView];
+        self.screenView.frame = self.view.bounds;
+    }
 }
 
 - (void)dealloc{

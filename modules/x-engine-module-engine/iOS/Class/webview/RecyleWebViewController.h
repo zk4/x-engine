@@ -15,7 +15,7 @@
 
 - (void)setSignleWebView:(XEngineWebView * _Nullable)webView;
 
-- (void)runJsFunction:(NSString * _Nullable)event arguments:(NSArray * _Nullable)arguments;
-- (void)runJsFunction:(NSString * _Nullable)event arguments:(NSArray * _Nullable)arguments completionHandler:(void (^_Nullable)(id  _Nullable value)) completionHandler ;
+- (void)runJsFunction:(NSString * _Nullable)event arguments:(id _Nullable)arguments;
+- (void)runJsFunction:(NSString * _Nullable)event arguments:(id _Nullable)arguments completionHandler:(void (^_Nullable)(id  _Nullable value)) completionHandler ;
 
 @end

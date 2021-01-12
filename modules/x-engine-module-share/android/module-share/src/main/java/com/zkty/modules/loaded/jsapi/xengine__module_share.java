@@ -50,6 +50,9 @@
     public String link;
 
     @Optional
+		public Double miniProgramType;
+
+    @Optional
 		public String __event__;
   }
   

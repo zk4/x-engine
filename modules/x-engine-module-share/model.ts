@@ -30,6 +30,8 @@ interface MiniProgramReqDTO {
   imageurl: string,
   // 兼容低版本的网页链接
   link : string;
+  //小程序版本 0:正式版 1:开发版 2:体验版
+  miniProgramType?:number,
   __event__?: (string)=>void,
 
 }
@@ -65,7 +67,9 @@ function share(
 }
 
 function shareForOpenWXMiniProgram(
-  MiniProgramReqDTO: MiniProgramReqDTO
+  MiniProgramReqDTO: MiniProgramReqDTO = {
+    miniProgramType:0
+  }
 ):ShareResDTO {
   window.shareForOpenWXMiniProgram = () => {
     share
@@ -76,6 +80,7 @@ function shareForOpenWXMiniProgram(
         desc:"testdesc",
         link:"http://www.baidu.com",
         imageurl:"",
+        miniProgramType:2,
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },

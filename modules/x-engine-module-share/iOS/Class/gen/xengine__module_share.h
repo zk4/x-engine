@@ -29,6 +29,7 @@
    	@property(nonatomic,copy) NSString* desc;
    	@property(nonatomic,copy) NSString* imageurl;
    	@property(nonatomic,copy) NSString* link;
+   	@property(nonatomic,strong) NSNumber* miniProgramType;
    	@property(nonatomic,strong) NSString* __event__;
 @end
     

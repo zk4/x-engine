@@ -8,9 +8,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
-import com.zkty.modules.loaded.jsapi.LogUtils;
-import com.zkty.modules.loaded.jsapi.LocationBean;
-
 
 /**
  * 定位获取

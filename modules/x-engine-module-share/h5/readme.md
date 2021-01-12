@@ -39,7 +39,7 @@ com.zkty.module.share
 | desc | string |  |  |  小程序消息desc |
 | imageurl | string |  |  |  小程序消息封面图片，小于128k |
 | link | string |  |  |  兼容低版本的网页链接 |
-| miniProgramType | number | true |  | 小程序版本 0:正式版 1:开发版 2:体验版 默认为0 |
+| miniProgramType | int | true |  | 小程序版本 0:正式版 1:开发版 2:体验版 默认为0 |
 | \_\_event\_\_ |  | true |  |  |
 
     

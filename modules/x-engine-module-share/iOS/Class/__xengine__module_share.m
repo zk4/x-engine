@@ -97,7 +97,7 @@
         object.path = dto.path;
         object.hdImageData =[NSData dataWithContentsOfURL:[NSURL URLWithString:dto.imageurl]];
     //    object.withShareTicket = withShareTicket;
-        object.miniProgramType = [dto.miniProgramType intValue];
+        object.miniProgramType = dto.miniProgramType;
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = dto.title;
         message.description = dto.desc;

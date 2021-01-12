@@ -431,10 +431,10 @@ public class ImageUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtils.showNormalShortToast("保存失败，请重试");
+            ToastUtils.showThreadToast("保存失败，请重试");
             return false;
         }
-        ToastUtils.showNormalShortToast("保存成功");
+        ToastUtils.showThreadToast("保存成功");
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileName)));
         return true;
     }
@@ -467,12 +467,12 @@ public class ImageUtils {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
                     outputStream.flush();
                     outputStream.close();
-                    ToastUtils.showNormalShortToast("保存成功");
+                    ToastUtils.showThreadToast("保存成功");
 
                 }
             }
         } catch (Exception e) {
-            ToastUtils.showNormalShortToast("保存失败，请重试");
+            ToastUtils.showThreadToast("保存失败，请重试");
         }
     }
 

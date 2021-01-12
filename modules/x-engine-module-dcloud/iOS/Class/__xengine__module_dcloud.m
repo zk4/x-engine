@@ -160,7 +160,7 @@
         configuration.showAnimated = dto.showAnimated;
         configuration.hideAnimated = dto.hideAnimated;
     }
-    
+    configuration.openMode = DCUniMPOpenModePush;
     return configuration;
 }
 

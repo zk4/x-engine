@@ -30,7 +30,7 @@ interface MiniProgramReqDTO {
   imageurl: string,
   // 兼容低版本的网页链接
   link : string;
-  //小程序版本 0:正式版 1:开发版 2:体验版
+  //小程序版本 0:正式版 1:开发版 2:体验版 默认为0
   miniProgramType?:number,
   __event__?: (string)=>void,
 

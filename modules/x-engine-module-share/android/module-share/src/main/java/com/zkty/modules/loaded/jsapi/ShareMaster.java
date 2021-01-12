@@ -23,13 +23,13 @@ import java.io.ByteArrayOutputStream;
 public class ShareMaster {
 
 
-    public static void share(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl, String userName, String path) {
+    public static void share(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl, String userName, String path, int miniProgramType) {
 
 
         switch (channel) {
             case "wx_friend":
             case "wx_zone":
-                decodeImageAndShareToWx(context, channel, type, title, desc, link, imgUrl, dataUrl, userName, path);
+                decodeImageAndShareToWx(context, channel, type, title, desc, link, imgUrl, dataUrl, userName, path, miniProgramType);
                 break;
 
         }
@@ -37,9 +37,9 @@ public class ShareMaster {
 
     }
 
-    private static void decodeImageAndShareToWx(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl, String userName, String path) {
+    private static void decodeImageAndShareToWx(Context context, String channel, String type, String title, String desc, String link, String imgUrl, String dataUrl, String userName, String path, int miniProgramType) {
         if (TextUtils.isEmpty(imgUrl)) {
-            shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path);
+            shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path, miniProgramType);
         } else {
             new Thread() {
                 @Override
@@ -55,12 +55,12 @@ public class ShareMaster {
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                             byte[] imageByte = stream.toByteArray();
 
-                            ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, imageByte, dataUrl, userName, path));
+                            ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, imageByte, dataUrl, userName, path, miniProgramType));
 
                         }
 
                     } catch (Exception e) {
-                        ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path));
+                        ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path, miniProgramType));
                     }
                 }
             }.start();
@@ -70,7 +70,7 @@ public class ShareMaster {
 
     }
 
-    private static void shareToWx(Context context, String channel, String type, String title, String desc, String link, byte[] thumbBmp, String dataUrl, String userName, String path) {
+    private static void shareToWx(Context context, String channel, String type, String title, String desc, String link, byte[] thumbBmp, String dataUrl, String userName, String path, int miniProgramType) {
 
         int mTargetScene = SendMessageToWX.Req.WXSceneSession;
         if ("wx_friend".equals(channel)) {
@@ -152,7 +152,7 @@ public class ShareMaster {
             case "miniProgram":
                 WXMiniProgramObject miniProgramObj = new WXMiniProgramObject();
                 miniProgramObj.webpageUrl = link; // 兼容低版本的网页链接
-                miniProgramObj.miniprogramType = WXMiniProgramObject.MINIPTOGRAM_TYPE_RELEASE;// 正式版:0，测试版:1，体验版:2
+                miniProgramObj.miniprogramType = miniProgramType == 0 ? WXMiniProgramObject.MINIPTOGRAM_TYPE_RELEASE : miniProgramType == 1 ? WXMiniProgramObject.MINIPROGRAM_TYPE_TEST : WXMiniProgramObject.MINIPROGRAM_TYPE_PREVIEW;// 正式版:0，测试版:1，体验版:2
                 miniProgramObj.userName = userName;     // 小程序原始id
                 miniProgramObj.path = path;            //小程序页面路径；对于小游戏，可以只传入 query 部分，来实现传参效果，如：传入 "?foo=bar"
                 WXMediaMessage msg4 = new WXMediaMessage(miniProgramObj);

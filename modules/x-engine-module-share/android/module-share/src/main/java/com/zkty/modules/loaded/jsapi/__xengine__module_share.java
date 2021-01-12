@@ -9,13 +9,13 @@ public class __xengine__module_share extends xengine__module_share {
 
     @Override
     public void _share(ShareReqDTO dto, CompletionHandler<ShareResDTO> handler) {
-        ShareMaster.share(ActivityUtils.getCurrentActivity(), dto.channel, dto.type, dto.title, dto.desc, dto.link, dto.imageurl, dto.dataurl, null, null);
+        ShareMaster.share(ActivityUtils.getCurrentActivity(), dto.channel, dto.type, dto.title, dto.desc, dto.link, dto.imageurl, dto.dataurl, null, null, 0);
         handler.complete();
     }
 
     @Override
     public void _shareForOpenWXMiniProgram(MiniProgramReqDTO dto, CompletionHandler<ShareResDTO> handler) {
-        ShareMaster.share(ActivityUtils.getCurrentActivity(), "wx_friend", "miniProgram", dto.title, dto.desc, dto.link, dto.imageurl, null, dto.userName, dto.path);
+        ShareMaster.share(ActivityUtils.getCurrentActivity(), "wx_friend", "miniProgram", dto.title, dto.desc, dto.link, dto.imageurl, null, dto.userName, dto.path, dto.miniProgramType == null ? 0 : dto.miniProgramType);
         handler.complete();
     }
 }

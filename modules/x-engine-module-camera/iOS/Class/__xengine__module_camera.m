@@ -76,6 +76,13 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
         }];
     }];
     [alert addAction:xAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Cancel Action");
+    }];
+//    [cancelAction setValue:[UIColor redColor] forKey:@"titleTextColor"];
+    [alert addAction:cancelAction];
+    
     [[Unity sharedInstance].getCurrentVC presentViewController:alert animated:YES completion:nil];
 }
 

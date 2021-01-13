@@ -29,6 +29,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
         desc:"testdesc",
         link:"http://www.baidu.com",
         imageurl:"",
+        miniProgramType:2,
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },

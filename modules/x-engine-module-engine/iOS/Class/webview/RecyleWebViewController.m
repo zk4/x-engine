@@ -290,6 +290,15 @@ static   XEngineWebView* s_webview;
     self.hidesBottomBarWhenPushed = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
+    if (@available(iOS 13.0, *)) {
+        self.webview.scrollView.automaticallyAdjustsScrollIndicatorInsets = NO;
+    }
+    if (@available(iOS 11.0, *)) {
+        self.webview.scrollView.contentInsetAdjustmentBehavior =  UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
     UIImage *path = [UIImage imageNamed:@"back_arrow"];
     if(path){
         UIButton *btn = [[UIButton alloc] init];

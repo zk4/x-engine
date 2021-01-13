@@ -158,7 +158,7 @@ event:x-engine-wgt-event
 # JS
 
 
-version: 0.1.10
+version: 0.1.11
 ``` bash
 npm install @zkty-team/x-engine-module-router
 ```

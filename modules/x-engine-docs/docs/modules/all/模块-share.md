@@ -9,7 +9,7 @@
 # JS
 
 
-version: 0.1.10
+version: 0.1.11
 ``` bash
 npm install @zkty-team/x-engine-module-share
 ```
@@ -126,6 +126,7 @@ interface ShareResDTO {
         desc:"testdesc",
         link:"http://www.baidu.com",
         imageurl:"",
+        miniProgramType:2,
         __event__: (res) => {
           document.getElementById("debug_text").innerText = JSON.stringify(res);
         },
@@ -148,6 +149,7 @@ interface ShareResDTO {
 | desc | string | 必填 |  |  小程序消息desc |
 | imageurl | string | 必填 |  |  小程序消息封面图片，小于128k |
 | link | string | 必填 |  |  兼容低版本的网页链接 |
+| miniProgramType | int | optional |  | 小程序版本 0:正式版 1:开发版 2:体验版 默认为0 |
 | \_\_event\_\_ | _1_com.zkty.module.share_DTO | optional |  |  |
 
 
@@ -174,6 +176,9 @@ interface MiniProgramReqDTO {
 
   // 兼容低版本的网页链接
   link : string;
+  //小程序版本 0:正式版 1:开发版 2:体验版 默认为0
+  miniProgramType?:int,
+
   __event__?: (string)=>void,
 
 

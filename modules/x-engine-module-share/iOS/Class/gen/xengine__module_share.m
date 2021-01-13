@@ -27,6 +27,7 @@
    
    
    
+   	if ([propertyName isEqualToString:@"miniProgramType"]) { return YES; }
    	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
     }
 @end

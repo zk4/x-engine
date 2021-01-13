@@ -9,7 +9,6 @@
 #import "__xengine__module_dcloud.h"
 #import <XEngineContext.h>
 #import <micros.h>
-//#import <UIViewController+.h>
 #import "JSONToDictionary.h"
 #import <Unity.h>
 #import "DCUniMP.h"
@@ -81,7 +80,6 @@
         DCUniMPConfiguration *configuration = [self getUniMPConfiguration:dto];
         __weak __typeof(self)weakSelf = self;
         // 打开小程序
-//        NSString *uniPath = [[MicroAppLoader uniDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", appId]];
         [DCUniMPSDKEngine openUniMP:dto.appId configuration:configuration completed:^(DCUniMPInstance * _Nullable uniMPInstance, NSError * _Nullable error) {
             if (uniMPInstance) {
                 weakSelf.uniMPInstance = uniMPInstance;
@@ -117,9 +115,6 @@
     
     DCUniMPMenuActionSheetItem *item1 = [[DCUniMPMenuActionSheetItem alloc] initWithTitle:@"将小程序隐藏到后台" identifier:@"enterBackground"];
     DCUniMPMenuActionSheetItem *item2 = [[DCUniMPMenuActionSheetItem alloc] initWithTitle:@"关闭小程序" identifier:@"closeUniMP"];
-    
-    // 运行内置的 __UNI__CBDCE04 小程序，打开下面的注释可以测试原生向小程序发送事件
-//    DCUniMPMenuActionSheetItem *item3 = [[DCUniMPMenuActionSheetItem alloc] initWithTitle:@"SendUniMPEvent" identifier:@"SendUniMPEvent"];
     // 添加到全局配置
     [DCUniMPSDKEngine setDefaultMenuItems:@[item1,item2]];
     // 设置 delegate
@@ -156,11 +151,11 @@
         }
         // 开启后台运行
         configuration.enableBackground = dto.enableBackground;
-
-        configuration.showAnimated = dto.showAnimated;
+        configuration.showAnimated = TRUE;
         configuration.hideAnimated = dto.hideAnimated;
     }
-    
+    configuration.openMode = DCUniMPOpenModePush;
+    configuration.enableGestureClose = TRUE;
     return configuration;
 }
 

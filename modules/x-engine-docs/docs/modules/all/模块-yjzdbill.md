@@ -4,12 +4,16 @@
 <div id='modulename' style='display:none'>yjzdbill</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
 <a id='qrlink' href="about:none">link of QR</a>
 
+## 前置条件
+
+应用在集成此模块前,需要在微信开放平台申请新的微信应用.
+
 
 
 # JS
 
 
-version: 0.1.10
+version: 0.1.11
 ``` bash
 npm install @zkty-team/x-engine-module-yjzdbill
 ```

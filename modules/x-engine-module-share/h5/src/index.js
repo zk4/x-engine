@@ -20,7 +20,9 @@ function osCheck() {
   },
   {
     "name": "shareForOpenWXMiniProgram",
-    "default_args": {}
+    "default_args": {
+      "miniProgramType": 0
+    }
   }
 ]
 )}}

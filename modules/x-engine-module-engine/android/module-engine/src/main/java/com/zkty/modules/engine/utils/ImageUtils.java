@@ -427,7 +427,10 @@ public class ImageUtils {
                 out.flush();
                 out.close();
                 // 插入图库
-                MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), bitName, null);
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
+                values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+                context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
             }
         } catch (Exception e) {
             e.printStackTrace();

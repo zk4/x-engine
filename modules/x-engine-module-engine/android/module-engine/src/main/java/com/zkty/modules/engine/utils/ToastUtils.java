@@ -1,6 +1,7 @@
 package com.zkty.modules.engine.utils;
 
 import android.content.Context;
+import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -104,15 +105,15 @@ public class ToastUtils {
         if (TextUtils.isEmpty(content)) {
             return;
         }
-        Looper.prepare();//给当前线程初始化Looper
-        if (mToast == null) {
-            mToast = Toast.makeText(XEngineApplication.getApplication().getApplicationContext(), content, Toast.LENGTH_SHORT);
-        } else {
-            mToast.cancel();
-            mToast = Toast.makeText(XEngineApplication.getApplication().getApplicationContext(), content, Toast.LENGTH_SHORT);
-        }
-        mToast.show();
-        Looper.loop();
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(() -> {
+            if (mToast != null)
+                mToast.setText(content);
+            else {
+                mToast = Toast.makeText(XEngineApplication.getApplication().getApplicationContext(), content, Toast.LENGTH_SHORT);
+            }
+            mToast.show();
+        });
 
     }
 

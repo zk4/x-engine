@@ -73,16 +73,29 @@
             }];
         }
     } else if([type isEqual:@"uni"]){
-        if([XEUniCheckUtil checkUniFile:uri]){
-            NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
-            __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
-            UniMPDTO* d = [UniMPDTO new];
-            d.appId = uri;
-            d.redirectPath = path;
-            d.arguments = args;
-            [dcloud _openUniMPWithArg:d complete:nil];
+        // fixme 超级恶心. 需要业务端做替换参数 ROUTE_ARGS
+        if(!args){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"BTN_ACTION_NOTIFICATIONNAME"
+                                                                object:@{
+                                                                    @"ROUTE_TYPE":@"uni",
+                                                                    @"ROUTE_URI":[NSString stringWithFormat:@"%@", uri],
+                                                                    @"ROUTE_VERSION":[NSString stringWithFormat:@"%ld", version > 0 ? version : 1],
+                                                                    @"ROUTE_PATH":[NSString stringWithFormat:@"%@", path],
+                                                                    @"hideNavbar":@(isHidden),
+                                                                    @"ROUTE_ARGS":@{}
+                                                                    
+            }];
+        }else {
+            if([XEUniCheckUtil checkUniFile:uri]){
+                NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
+                __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
+                UniMPDTO* d = [UniMPDTO new];
+                d.appId = uri;
+                d.redirectPath = path;
+                d.arguments = args;
+                [dcloud _openUniMPWithArg:d complete:nil];
+            }
         }
-        
     } else if([type isEqual:@"wx"]){
         
         NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"wx_appkey" ofType:@"md"];

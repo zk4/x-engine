@@ -11,10 +11,12 @@ timestoEnds =7
 for line in lines:
     [name,comment,elapsed] = line.split('||')
     matches = ["fix","feat","feature"]
-    if any(x in comment for x in matches) :
+    if any( comment.startswith(x) for x in matches) :
         print(name,comment,elapsed,'\\n')
     if comment.startswith("pgy"):
         timestoEnds-=1
         print('------last version------','\\n')
     if timestoEnds==0:
         break
+
+    

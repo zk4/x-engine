@@ -83,7 +83,6 @@ static   XEngineWebView* s_webview;
 - (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
-        
         self.isHiddenNavbar = isHidden;
         NSRange range = [fileUrl rangeOfString:@"?"];
         NSMutableString *newFileUrl = [[NSMutableString alloc] init];
@@ -119,7 +118,7 @@ static   XEngineWebView* s_webview;
         }
        
         self.loadUrl = fileUrl;
-        
+
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
            || ![XEOneWebViewPool sharedInstance].inSingle){
             
@@ -271,7 +270,12 @@ static   XEngineWebView* s_webview;
             }
         }
         if([self.webview canGoBack]){
-            [self.webview goBack];
+            // fixme 临时解决一下, webview 自己跳转后, 返回问题
+            WKBackForwardList* list = [self.webview backForwardList];
+            if([self.loadUrl hasPrefix:@"http"] && [[list.backItem.URL absoluteString] isEqual:self.loadUrl]){
+                [self.navigationController popViewControllerAnimated:YES];
+            }else
+                [self.webview goBack];
         }else{
             [self.navigationController popViewControllerAnimated:YES];
         }

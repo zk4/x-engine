@@ -63,7 +63,7 @@ public class PageOneFragment extends Fragment {
     void load() {
         if (!TextUtils.isEmpty(et_url.getText())) {
             String url = et_url.getText().toString();
-            RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null);
+            RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null, false);
 
         }
 
@@ -98,7 +98,7 @@ public class PageOneFragment extends Fragment {
                     MicroAppBean bean = new MicroAppBean(url);
                     mList.add(0, bean);
                     mAdapter.notifyDataSetChanged();
-                    RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null);
+                    RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null, false);
                 }
             }
         }
@@ -114,7 +114,7 @@ public class PageOneFragment extends Fragment {
             } else {
 
                 MicroAppBean microAppBean = mList.get(messageEvent.position);
-                RouterMaster.openTargetRouter(getActivity(), "h5", microAppBean.url, null, null, null);
+                RouterMaster.openTargetRouter(getActivity(), "h5", microAppBean.url, null, null, null, false);
 
             }
         }

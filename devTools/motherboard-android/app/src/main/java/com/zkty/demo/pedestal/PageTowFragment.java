@@ -65,10 +65,10 @@ public class PageTowFragment extends Fragment {
 
         }
         if (microAppId != null) {
-            RouterMaster.openTargetRouter(getActivity(), "microapp", microAppId, null, null, null);
+            RouterMaster.openTargetRouter(getActivity(), "microapp", microAppId, null, null, null, false);
 
         } else if (url != null) {
-            RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null);
+            RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null, false);
 
         }
 

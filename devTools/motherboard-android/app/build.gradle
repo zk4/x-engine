@@ -47,7 +47,7 @@ dependencies {
     implementation project(':module-scan')
     implementation project(':module-dcloud')
     implementation project(':module-share')
-    implementation project(':module-yjzdbill')
+//    implementation project(':module-yjzdbill')
 
     //butterknife
     implementation 'com.jakewharton:butterknife:10.2.3'

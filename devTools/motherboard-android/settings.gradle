@@ -24,7 +24,7 @@ include ':module-dcloud'
 project(':module-dcloud').projectDir = new File('../../modules/x-engine-module-dcloud/android/module-dcloud')
 include ':module-share'
 project(':module-share').projectDir = new File('../../modules/x-engine-module-share/android/module-share')
-include ':module-yjzdbill'
-project(':module-yjzdbill').projectDir = new File('../../modules/x-engine-module-yjzdbill/android/module-yjzdbill')
+//include ':module-yjzdbill'
+//project(':module-yjzdbill').projectDir = new File('../../modules/x-engine-module-yjzdbill/android/module-yjzdbill')
 
 

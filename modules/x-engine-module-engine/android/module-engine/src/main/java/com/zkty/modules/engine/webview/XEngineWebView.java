@@ -110,7 +110,7 @@ public class XEngineWebView extends DWebView {
                     mContext.startActivity(intent);
                     return true;
                 }
-                if (s.startsWith("alipay://") || s.startsWith("alipays://")){
+                if (s.startsWith("alipay://") || s.startsWith("alipays://")) {
                     if (Utils.checkAliPayInstalled(mContext)) {
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
@@ -122,7 +122,7 @@ public class XEngineWebView extends DWebView {
                     }
                     return true;
                 }
-                if (s.startsWith("x-engine-json://")) {
+                if (s.startsWith("x-engine-json://") || s.startsWith("x-engine-call://")) {
 
                     try {
 //                        String sss = "x-engine://share/share?title=title1&desc=desc1&link=link1&imageUrl=imageUrl1&type=wx&dataUrl=dataUrl1";

@@ -29,9 +29,6 @@
 - (instancetype)init{
     self = [super init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    //UniversalLink配置
-    [[YJBillPlatform sharedSingleton] setWeChatAppId:@"wx2318e010458e4805" UniversalLink:@"https://m-center-prod-linli.timesgroup.cn"];
 
     return self;
 }

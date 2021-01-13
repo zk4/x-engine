@@ -28,11 +28,11 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        [WXApi registerApp:@"wx2318e010458e4805" universalLink:@"https://m-center-prod-linli.timesgroup.cn"];
-        
-        [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString * _Nonnull log) {
-            NSLog(@"////%@", log);
-        }];
+//        [WXApi registerApp:@"wx2318e010458e4805" universalLink:@"https://m-center-prod-linli.timesgroup.cn"];
+//
+//        [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString * _Nonnull log) {
+//            NSLog(@"////%@", log);
+//        }];
     
     }
     

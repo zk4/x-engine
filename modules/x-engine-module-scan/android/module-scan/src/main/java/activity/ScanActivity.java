@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +35,7 @@ public class ScanActivity extends AppCompatActivity {
 
     private boolean flashStatus = false;
     private ImageView flash;
+    private ImageView mBack;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -47,6 +47,7 @@ public class ScanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_layout);
         zXingView = findViewById(R.id.zxingview);
+        mBack = (ImageView)findViewById(R.id.activity_scan_layout_img);
         hint = findViewById(R.id.hint);
 
         zXingView.setDelegate(new QRCodeView.Delegate() {
@@ -96,6 +97,12 @@ public class ScanActivity extends AppCompatActivity {
                     zXingView.closeFlashlight();
                     flash.setImageResource(R.mipmap.flash_off);
                 }
+            }
+        });
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

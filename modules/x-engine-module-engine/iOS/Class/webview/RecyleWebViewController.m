@@ -376,6 +376,7 @@ static   XEngineWebView* s_webview;
             self.screenView = nil;
         });
     }
+    [self.view insertSubview:self.webview atIndex:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -388,7 +389,7 @@ static   XEngineWebView* s_webview;
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     self.progresslayer.alpha = 0;
-    [self.view insertSubview:self.webview atIndex:0];
+    
 
     if([self.loadUrl hasPrefix:@"http"]){
         if(self.navigationItem.leftBarButtonItems.count > 0){

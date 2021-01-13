@@ -270,7 +270,7 @@ static   XEngineWebView* s_webview;
             }
         }
         if([self.webview canGoBack]){
-            // 临时解决一下, webview 自己跳转后, 返回问题
+            // fixme 临时解决一下, webview 自己跳转后, 返回问题
             WKBackForwardList* list = [self.webview backForwardList];
             if([self.loadUrl hasPrefix:@"http"] && [[list.backItem.URL absoluteString] isEqual:self.loadUrl]){
                 [self.navigationController popViewControllerAnimated:YES];

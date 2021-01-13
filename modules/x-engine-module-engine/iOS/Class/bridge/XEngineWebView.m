@@ -542,7 +542,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         subUrlStr = [URL absoluteString];
     }
 
-    if ([scheme isEqualToString:@"x-engine-json"]){
+    if ([scheme isEqualToString:@"x-engine-json"] || [scheme isEqualToString:@"x-engine-call"]){
        NSString * argsStr = [urlStr substringFromIndex:range.location+1];
        NSString * callBackStr = @"";
        
@@ -559,8 +559,15 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
            callBackStr= [callBackStr substringFromIndex:range.location+1];
        }
        
-       NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",URL.host];
-       id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+        id module;
+        if ([scheme isEqualToString:@"x-engine-call"]) {
+            NSString* moduleId = [NSString stringWithFormat:@"%@",URL.host];
+            module =[[XEngineContext sharedInstance] getModuleById:moduleId];
+        }else{
+            NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",URL.host];
+            module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+        }
+      
        NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];
        SEL  sel = NSSelectorFromString(selectorStr);
         __weak typeof(self)weakSelf = self;

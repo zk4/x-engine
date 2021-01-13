@@ -9,6 +9,8 @@
 @property (nonatomic, strong) NSMutableArray<xengine__module_BaseModule*>* modules;
 @property (nonatomic, strong) NSMutableArray* applicationDelegateModules;
 @property (nonatomic, strong) NSMutableDictionary<NSString*,xengine__module_BaseModule*>* moduleName2Moudle;
+@property (nonatomic, strong) NSMutableDictionary<NSString*,xengine__module_BaseModule*>* moduleId2Moudle;
+
 @property (nonatomic, strong) NSMutableDictionary<NSString*,NSMutableArray*>* moduleName2MoudleProtocolnames;
 
 @end
@@ -31,6 +33,7 @@
     self.modules = [NSMutableArray array];
     self.applicationDelegateModules= [NSMutableArray array];
     self.moduleName2Moudle= [[NSMutableDictionary alloc] init];
+    self.moduleId2Moudle = [[NSMutableDictionary alloc]init];
     self.moduleName2MoudleProtocolnames= [[NSMutableDictionary alloc] init];
     [self initModules];
     [self onAllModulesInited];
@@ -54,6 +57,10 @@
 }
 - (id) getModuleByName:(NSString*) clazzName{
     return [self.moduleName2Moudle objectForKey:clazzName];
+}
+
+-(id)getModuleById:(NSString *)moduleId{
+    return [self.moduleId2Moudle objectForKey:moduleId];
 }
 
 -(NSMutableArray*) getProtocols:(Class) cls{
@@ -81,6 +88,8 @@
         xengine__module_BaseModule * moduleClass = (xengine__module_BaseModule*) rawmoduleClass;
         
         [self.moduleName2Moudle setObject:moduleClass forKey:moduleName];
+        [self.moduleId2Moudle setObject:moduleClass forKey:moduleClass.moduleId];
+
         
         NSMutableArray*  protocols = [self getProtocols:cls];
         [self.moduleName2MoudleProtocolnames setObject:protocols forKey:moduleName];

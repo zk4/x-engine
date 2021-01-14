@@ -19,10 +19,10 @@ def genGitLog():
         if any( comment.startswith(x) for x in matches) :
             comment = comment.replace('\"','')
             comment = comment.replace('/','')
-            ret += "- "+name+comment+" "+ elapsed+'\n'
+            ret += "- "+name +" "+comment+" "+ elapsed+'\n'
         if comment.startswith("pgy"):
             timestoEnds-=1
-            ret += "- "+'------last version------'+'\n'
+            ret += "\n\n "+'------last version------'+'\n'
         if timestoEnds==0:
             break
     return ret
@@ -40,10 +40,8 @@ def sendDingDing(payload:dict,url):
 def getTimeStamp():
     import datetime
     import time
-    dtime = datetime.date.today()
-    unix_time = time.mktime(dtime.timetuple())
-    dtime2 = datetime.datetime.fromtimestamp(unix_time)
-    return dtime2
+    return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')   
+
 
 def doaction(name,version,downloadurl,build):
     text= f"""
@@ -60,9 +58,17 @@ def doaction(name,version,downloadurl,build):
 ![qrcode](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={downloadurl})
 
 **版本信息**
+
+
 **Build**: {build}
+
+
 **编译时间**: {getTimeStamp()}
-**近期git历史**: 
+
+
+**近期git(fix,feat)历史**: 
+
+
 {genGitLog()}  
         """
     text = "\n".join(text.splitlines())
@@ -71,10 +77,9 @@ def doaction(name,version,downloadurl,build):
      "msgtype": "markdown",
      "markdown": {
          "title":title,
-         "markdown": text 
+         "text": text 
      },
     "at": {
-        "atMobiles": [], 
         "isAtAll": False
     }
  }
@@ -83,7 +88,6 @@ def doaction(name,version,downloadurl,build):
     sendDingDing(payload,url)
 
 if __name__ == "__main__":
-    # "/Users/zk/git/company/working/dingding.sh" + " " + name + " " + version + " " + build + " " + " " + url  
     args = sys.argv
     if(len(args)<5):
         print("参数不够 .py <title> <version> <build> <downloadurl>")

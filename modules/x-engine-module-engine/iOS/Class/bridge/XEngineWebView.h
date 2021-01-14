@@ -8,6 +8,7 @@
  
 
 @interface XEngineWebView : WKWebView <WKUIDelegate,WKNavigationDelegate>
+@property (nullable, nonatomic, weak) id <WKNavigationDelegate> DSNavigationDelegate;
 @property (nullable, nonatomic, weak) id <WKUIDelegate> DSUIDelegate;
 @property (nonatomic, assign)  int index;
 

@@ -596,8 +596,18 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     
    
+    if(self.DSNavigationDelegate){
+        [self.DSNavigationDelegate webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:decisionHandler];
+    }else{
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+}
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
     
-     decisionHandler(WKNavigationActionPolicyAllow);
+    if(self.DSNavigationDelegate){
+        [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
+    }
 }
 
 -(NSDictionary *)jsonToDictionary:(NSString * )jsonStr{

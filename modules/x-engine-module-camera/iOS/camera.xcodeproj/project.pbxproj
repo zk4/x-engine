@@ -38,6 +38,7 @@
 		586F7EE72572BA4400CF26A7 /* ZKTY_TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F7ED82572BA4400CF26A7 /* ZKTY_TZAssetModel.m */; };
 		587F741B250669A300F515BD /* __xengine__module_camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_camera.m */; };
 		587F74262506737800F515BD /* xengine__module_camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_camera.m */; };
+		C94D369F25B01BC100847048 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C94D369E25B01BC100847048 /* TZImagePickerController.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		884143ABEFD722050DDC70A3 /* Pods-camera-cameraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camera-cameraUITests.release.xcconfig"; path = "Target Support Files/Pods-camera-cameraUITests/Pods-camera-cameraUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-camera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camera.release.xcconfig"; path = "Target Support Files/Pods-camera/Pods-camera.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		C94D369E25B01BC100847048 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TZImagePickerController.bundle; path = resource/TZImagePickerController.bundle; sourceTree = SOURCE_ROOT; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-camera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camera.debug.xcconfig"; path = "Target Support Files/Pods-camera/Pods-camera.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-camera-cameraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camera-cameraUITests.debug.xcconfig"; path = "Target Support Files/Pods-camera-cameraUITests/Pods-camera-cameraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,41 +229,10 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		586F7EB62572BA4400CF26A7 /* ZKTY_TZImagePickerController */ = {
-			isa = PBXGroup;
-			children = (
-				586F7EB72572BA4400CF26A7 /* ZKTY_TZImagePickerController */,
-			);
-			path = ZKTY_TZImagePickerController;
-			sourceTree = "<group>";
-		};
-		586F7EB72572BA4400CF26A7 /* ZKTY_TZImagePickerController */ = {
-			isa = PBXGroup;
-			children = (
-				586F7EB82572BA4400CF26A7 /* ScreenShots */,
-				586F7EB92572BA4400CF26A7 /* FLAnimatedImage */,
-				586F7EBA2572BA4400CF26A7 /* ZKTY_TZImagePickerController */,
-			);
-			path = ZKTY_TZImagePickerController;
-			sourceTree = "<group>";
-		};
-		586F7EB82572BA4400CF26A7 /* ScreenShots */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ScreenShots;
-			sourceTree = "<group>";
-		};
-		586F7EB92572BA4400CF26A7 /* FLAnimatedImage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FLAnimatedImage;
-			sourceTree = "<group>";
-		};
 		586F7EBA2572BA4400CF26A7 /* ZKTY_TZImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
+				C94D369E25B01BC100847048 /* TZImagePickerController.bundle */,
 				586F7EBB2572BA4400CF26A7 /* ZKTY_TZPhotoPickerController.m */,
 				586F7EBC2572BA4400CF26A7 /* ZKTY_NSBundle+TZImagePicker.m */,
 				586F7EBD2572BA4400CF26A7 /* ZKTY_TZAssetCell.h */,
@@ -293,7 +264,8 @@
 				586F7ED72572BA4400CF26A7 /* ZKTY_TZProgressView.m */,
 				586F7ED82572BA4400CF26A7 /* ZKTY_TZAssetModel.m */,
 			);
-			path = ZKTY_TZImagePickerController;
+			name = ZKTY_TZImagePickerController;
+			path = ZKTY_TZImagePickerController/ZKTY_TZImagePickerController/ZKTY_TZImagePickerController;
 			sourceTree = "<group>";
 		};
 		587F74202506737700F515BD /* gen */ = {
@@ -308,7 +280,7 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				586F7EB62572BA4400CF26A7 /* ZKTY_TZImagePickerController */,
+				586F7EBA2572BA4400CF26A7 /* ZKTY_TZImagePickerController */,
 				587F74202506737700F515BD /* gen */,
 				587F7419250669A300F515BD /* __xengine__module_camera.h */,
 				587F741A250669A300F515BD /* __xengine__module_camera.m */,
@@ -443,6 +415,7 @@
 				0036519424CEF32B0057D976 /* com.zkty.microapp.camera.0 in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				C94D369F25B01BC100847048 /* TZImagePickerController.bundle in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
 			);
@@ -775,7 +748,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = MQSNCQR864;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/camera/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -798,7 +771,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = MQSNCQR864;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/camera/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

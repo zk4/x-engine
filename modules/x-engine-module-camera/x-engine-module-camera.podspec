@@ -36,6 +36,8 @@ Pod::Spec.new do |s|
 
     s.source_files  = "iOS/Class/**/*.{h,m}"
     s.public_header_files = "iOS/Class/**/*.h"
+    s.resources    = "iOS/resource/*.bundle"
+
    
     s.frameworks  = "CoreServices"
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}

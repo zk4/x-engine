@@ -145,6 +145,9 @@
         configuration.arguments = dto.arguments;
         // 配置小程序启动后直接打开的页面路径 例："pages/component/view/view?a=1&b=2"
         if (![dto.redirectPath isEqualToString:@""]) {
+            if([dto.redirectPath  hasPrefix:@"/"]){
+                dto.redirectPath = [dto.redirectPath substringFromIndex:1];
+            }
             configuration.redirectPath = dto.redirectPath;
         }else{
             configuration.redirectPath = nil ;
@@ -152,7 +155,7 @@
         // 开启后台运行
         configuration.enableBackground = dto.enableBackground;
         configuration.showAnimated = TRUE;
-        configuration.hideAnimated = dto.hideAnimated;
+        configuration.hideAnimated = TRUE;
     }
     configuration.openMode = DCUniMPOpenModePush;
     configuration.enableGestureClose = TRUE;

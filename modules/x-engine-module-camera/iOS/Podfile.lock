@@ -1,4 +1,5 @@
 PODS:
+  - BMKLocationKit (2.0.0)
   - GCDWebServer (3.5.4):
     - GCDWebServer/Core (= 3.5.4)
   - GCDWebServer/Core (3.5.4)
@@ -10,12 +11,8 @@ PODS:
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
   - SSZipArchive (2.2.3)
-  - UniBoost (0.1.0)
   - WechatOpenSDK (1.8.7.1)
-  - x-engine-module-dcloud (0.0.1):
-    - x-engine-module-engine
-    - x-engine-module-tools
-  - x-engine-module-engine (0.0.58):
+  - x-engine-module-engine (0.1.11):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -24,10 +21,8 @@ PODS:
   - x-engine-module-nav (1.1.1):
     - x-engine-module-engine
     - x-engine-module-protocols
-  - x-engine-module-protocols (0.0.9)
-  - x-engine-module-router (0.0.58):
-    - WechatOpenSDK
-    - x-engine-module-engine
+  - x-engine-module-protocols (0.0.9):
+    - BMKLocationKit
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
     - WechatOpenSDK
@@ -37,16 +32,14 @@ PODS:
 DEPENDENCIES:
   - GCDWebServer (~> 3.0)
   - SDWebImage
-  - UniBoost (from `../../UniBoost`)
-  - x-engine-module-dcloud (from `../../x-engine-module-dcloud`)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
   - x-engine-module-nav (from `../../x-engine-module-nav`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
-  - x-engine-module-router (from `../../x-engine-module-router`)
   - x-engine-module-tools (from `../../x-engine-module-tools`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - BMKLocationKit
     - GCDWebServer
     - JSONModel
     - Masonry
@@ -57,22 +50,17 @@ SPEC REPOS:
     - WechatOpenSDK
 
 EXTERNAL SOURCES:
-  UniBoost:
-    :path: "../../UniBoost"
-  x-engine-module-dcloud:
-    :path: "../../x-engine-module-dcloud"
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
   x-engine-module-nav:
     :path: "../../x-engine-module-nav"
   x-engine-module-protocols:
     :path: "../../x-engine-module-protocols/"
-  x-engine-module-router:
-    :path: "../../x-engine-module-router"
   x-engine-module-tools:
     :path: "../../x-engine-module-tools"
 
 SPEC CHECKSUMS:
+  BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -80,15 +68,12 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  UniBoost: 0f3b7db913ba2762d7eae8056d7f72c32f2f26ae
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
-  x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
-  x-engine-module-engine: 9075b9841952391c6fd970ab3c00f88cda64b3b8
+  x-engine-module-engine: d0cadace94a7b202df1ea4a099e973e7f96d26d6
   x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
-  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
-  x-engine-module-router: 363e332ed419133d251cfc986f011166abbbe775
+  x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
 
-PODFILE CHECKSUM: 65c4c0ecd4a13387285f5042e7c086f221d35894
+PODFILE CHECKSUM: e854f082c44c8ca09c74dac4f2e3380209c5ca0a
 
 COCOAPODS: 1.10.0

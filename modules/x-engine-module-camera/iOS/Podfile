@@ -19,9 +19,9 @@ target 'camera' do
   #pod 'x-engine-module-microapp', :path =>'../../x-engine-module-microapp'
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
   pod 'x-engine-module-nav', :path =>'../../x-engine-module-nav'
-  pod 'x-engine-module-dcloud', :path =>'../../x-engine-module-dcloud'
-  pod 'x-engine-module-router', :path =>'../../x-engine-module-router'
-  pod 'UniBoost', :path => '../../UniBoost'
+#  pod 'x-engine-module-dcloud', :path =>'../../x-engine-module-dcloud'
+#  pod 'x-engine-module-router', :path =>'../../x-engine-module-router'
+#  pod 'UniBoost', :path => '../../UniBoost'
   target 'cameraUITests' do
     # Pods for testing
   end

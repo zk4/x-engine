@@ -111,6 +111,8 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
 //    imagePickerVc.allowTakePicture = NO;
     imagePickerVc.allowTakeVideo = NO;
+//    imagePickerVc.allowTakePicture = NO;
+    imagePickerVc.allowPickingVideo = NO;
 
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         NSMutableDictionary * ret = [NSMutableDictionary new];

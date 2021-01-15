@@ -160,7 +160,9 @@ public class XEngineWebView extends DWebView {
                             @Override
                             public void complete(Object retValue) {
                                 String callbackTemp = callbackUrl;
-                                callbackTemp = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
+                                if (!TextUtils.isEmpty(callbackTemp)) {
+                                    callbackTemp = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
+                                }
                                 if (!TextUtils.isEmpty(callbackTemp)) {
                                     loadUrl(callbackTemp);
                                 }

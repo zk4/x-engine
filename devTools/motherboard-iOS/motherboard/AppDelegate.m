@@ -27,6 +27,9 @@
 }
   
 - (void)redirectSTD:(int )fd{
+    if(isatty(STDOUT_FILENO)) {
+        return;
+    }
   NSPipe * pipe = [NSPipe pipe] ;
   NSFileHandle *pipeReadHandle = [pipe fileHandleForReading] ;
   dup2([[pipe fileHandleForWriting] fileDescriptor], fd) ;
@@ -41,11 +44,12 @@
 {
     // 有意思, 像 java
     NSLog(@"hello ,world");
-
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     [self redirectSTD:STDOUT_FILENO];
     [self redirectSTD:STDERR_FILENO];
     [[__xengine__module_dcloud shareInstance] application:application didFinishLaunchingWithOptions:launchOptions];

@@ -23,7 +23,6 @@
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        CGFloat navigationHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 88 : 64;
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
         [_tableView  setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         _tableView.showsVerticalScrollIndicator = NO;

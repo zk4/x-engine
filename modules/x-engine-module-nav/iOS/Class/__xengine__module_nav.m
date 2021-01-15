@@ -293,6 +293,9 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
         
         if ([vc isKindOfClass:[RecyleWebViewController class]]){
             if ([@"0" isEqualToString:dto.url]){
+                if(lastVc == nil){
+                    lastVc = vc;
+                }
                 [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:lastVc animated:YES];
                 [[XEOneWebViewPool sharedInstance] clearWebView:nil];
                 return;;

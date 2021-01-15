@@ -520,10 +520,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 
     NSString * urlStr = [navigationAction.request.URL absoluteString];
-    NSRange range;
+    NSRange range = NSMakeRange(0, 0);
     NSURL * URL;
     NSString *scheme;
-    NSString * subUrlStr;
+//    NSString * subUrlStr;
 
     if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]  || [urlStr hasPrefix:@"alipays://"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
@@ -535,18 +535,18 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         range = [urlStr rangeOfString:@"?"];//匹配得到的下标
         URL = [NSURL URLWithString:[urlStr substringToIndex:range.location]];
         scheme = [URL scheme];
-        subUrlStr = [URL absoluteString];
+//        subUrlStr = [URL absoluteString];
     }else{
         URL = [NSURL URLWithString:urlStr];
         scheme = [URL scheme];
-        subUrlStr = [URL absoluteString];
+//        subUrlStr = [URL absoluteString];
     }
 
     if ([scheme isEqualToString:@"x-engine-json"] || [scheme isEqualToString:@"x-engine-call"]){
        NSString * argsStr = [urlStr substringFromIndex:range.location+1];
        NSString * callBackStr = @"";
        
-       NSDictionary * argsDic = [NSDictionary new];
+        NSDictionary * argsDic;// = [NSDictionary new];
        
        if ([argsStr rangeOfString:@"&"].location !=NSNotFound){
            NSArray * array = [argsStr componentsSeparatedByString:@"&"];

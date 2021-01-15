@@ -60,6 +60,7 @@
     NSString *configPath = [[NSBundle mainBundle] pathForResource:@"xengine_config"ofType:@"json"];
     if (!configPath) {
         [self showErrorAlert:@"no xengine_config.json in your project"];
+        return;
     }
     NSData *JSONData = [NSData dataWithContentsOfFile:configPath];
     NSDictionary*dic;

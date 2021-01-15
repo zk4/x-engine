@@ -11,6 +11,7 @@
 #import "EntryViewController.h"
 #import "ZKMicroAppViewController.h"
 #import "ZKModuleViewController.h"
+#import "ZKLogViewController.h"
 @interface ZYDL_TabBarController ()
 
 @end
@@ -27,13 +28,14 @@
     
     [[UITabBarItem appearance] setTitleTextAttributes:dictNormal forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:dictSelected forState:UIControlStateSelected];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupChildVc:[[ZKMicroAppViewController alloc] init] title:@"微应用" image:@"home_nor" selectedImage:@"home_sel"];
     [self setupChildVc:[[ZKModuleViewController alloc] init] title:@"模块" image:@"serve_nor" selectedImage:@"serve_sel"];
-    [self setupChildVc:[[EntryViewController alloc] init] title:@"日志" image:@"shop_nor" selectedImage:@"shop_sel"];
+    [self setupChildVc:[[ZKLogViewController alloc] init] title:@"日志" image:@"shop_nor" selectedImage:@"shop_sel"];
 }
 
 - (void)setupChildVc:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {

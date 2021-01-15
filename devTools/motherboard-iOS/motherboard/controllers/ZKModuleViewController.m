@@ -23,8 +23,7 @@
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        CGFloat navigationHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 88 : 64;
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - navigationHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
         [_tableView  setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.dataSource = self;
@@ -48,6 +47,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([moduleTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
     self.title = @"模块";
+
 }
 
 
@@ -136,7 +136,10 @@
 - (void)pushTestModule:(NSString*) appid {
 //    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:appid ];
 //    [self pushViewController:webLaderVC];
+    self.hidesBottomBarWhenPushed = YES;
     [XERouterManager routerToTarget:@"microapp" withUri:appid withPath:nil withArgs:nil withVersion:0];
+    self.hidesBottomBarWhenPushed = NO;
+
 }
 
 

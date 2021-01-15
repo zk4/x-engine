@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 
+import com.alibaba.fastjson.JSON;
 import com.kapp.sdllpay.PaymentCallback;
 
 import com.yjlc.module.BillManager;
@@ -25,16 +26,16 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
     @Override
     public void _YJBillPayment(YJBillDTO dto, CompletionHandler<YJBillRetDTO> handler) {
-
+        Log.d("_YJBillPayment", "params= " + JSON.toJSONString(dto));
         String baseUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_base_url", null);
         String payBUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_b_url", null);
         String payCUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_c_url", null);
         BillManager billManager = BillManager.getInstance();
-        billManager.init(ActivityUtils.getCurrentActivity(), baseUrl, dto.payType ? payBUrl : payCUrl);
+        billManager.init(XEngineApplication.getApplication(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.payBills(null, dto.billNo, dto.businessCstNo, dto.platMerCstNo, dto.tradeMerCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, new BillManager.BillPaymentCallBack() {
             @Override
             public void payRsult(JSONObject jsonObject) {
-                Log.d("_YJBillPayment", jsonObject.toString());
+                Log.d("_YJBillPayment", "result = " + jsonObject.toString());
                 YJBillRetDTO yjBillRetDTO = new YJBillRetDTO();
                 try {
                     if (jsonObject.has("status")) {
@@ -65,7 +66,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
         String baseUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_base_url", null);
         BillManager billManager = BillManager.getInstance();
-        billManager.init(ActivityUtils.getCurrentActivity(), baseUrl);
+        billManager.init(XEngineApplication.getApplication(), baseUrl);
         billManager.refundBills(dto.refundOrderNo, new PaymentCallback() {
             @Override
             public void paymentResult(JSONObject jsonObject) {
@@ -92,7 +93,7 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
         String payBUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_b_url", null);
         String payCUrl = (String) SharePreferenceUtils.get(XEngineApplication.getApplication(), true, "bill_pay_c_url", null);
         BillManager billManager = BillManager.getInstance();
-        billManager.init(ActivityUtils.getCurrentActivity(), baseUrl, dto.payType ? payBUrl : payCUrl);
+        billManager.init(XEngineApplication.getApplication(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.queryBills(dto.userRoomNo, dto.roomNo, dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, dto.billStatus, dto.billType);
         handler.complete();
     }

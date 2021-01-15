@@ -1,26 +1,5 @@
 {
-  "appname": "",
-  "secrectKey": "",
-  "tabs": [
-    {
-      "text":"",
-      "icon":"",
-      "routerInfo":""
-    },
-    {
-      "text":"",
-      "icon":"",
-      "routerInfo":""
-    },
-    {
-      "text":"",
-      "icon":"",
-      "routerInfo":""
-    },
-    {
-      "text":"",
-      "icon":"",
-      "routerInfo":""
-    }
-  ]
+  "appid":"",
+  "pub_key":"",
+  "digest_method":"md5"
 }

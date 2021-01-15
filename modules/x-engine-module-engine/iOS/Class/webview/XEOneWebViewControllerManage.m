@@ -102,13 +102,13 @@
 
 -(void)setMainAppid:(NSString *)appid withPath:(NSString *)path{
     
-    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:1];
-    NSString *fullpath;
-    if (path.length > 0){
-        fullpath = [NSString stringWithFormat:@"%@%@", toUrl, path];
-    } else {
-        fullpath = toUrl;
-    }
+//    NSString *toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:1];
+//    NSString *fullpath;
+//    if (path.length > 0){
+//        fullpath = [NSString stringWithFormat:@"%@%@", toUrl, path];
+//    } else {
+//        fullpath = toUrl;
+//    }
 }
 
 -(NSString *)getUrl:(NSString *)url params:(NSString *)params{

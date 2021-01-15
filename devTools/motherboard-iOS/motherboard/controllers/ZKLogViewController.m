@@ -17,6 +17,7 @@
     self = [super init];
     if (self) {
         self.textView = [[UITextView alloc]initWithFrame:CGRectMake(0, kNavigationH, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height - kNavigationH - kTabBarH)];
+        self.textView.editable = NO;
         [self.view addSubview:self.textView];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inputTextValueChangedNotificationHandler:) name:@"inputTextValueChangedNotification" object:nil];
     }

@@ -38,7 +38,9 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
                 Log.d("_YJBillPayment", "result = " + jsonObject.toString());
                 YJBillRetDTO yjBillRetDTO = new YJBillRetDTO();
                 try {
-                    if (jsonObject.has("status")) {
+                    if (jsonObject.has("code")) {
+                        yjBillRetDTO.billRetStatus = jsonObject.getString("code");
+                    }else if (jsonObject.has("status")) {
                         yjBillRetDTO.billRetStatus = jsonObject.getString("status");
                     }
                     if (jsonObject.has("isCancel")) {

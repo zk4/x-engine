@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -161,10 +163,9 @@ public class XEngineWebView extends DWebView {
                             public void complete(Object retValue) {
                                 String callbackTemp = callbackUrl;
                                 if (!TextUtils.isEmpty(callbackTemp)) {
-                                    callbackTemp = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
-                                }
-                                if (!TextUtils.isEmpty(callbackTemp)) {
-                                    loadUrl(callbackTemp);
+                                    final String callbackTemp2 = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
+                                    Handler handler = new Handler(Looper.getMainLooper());
+                                    handler.post(() -> webView.loadUrl(callbackTemp2));
                                 }
                             }
 
@@ -343,13 +344,13 @@ public class XEngineWebView extends DWebView {
 //                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
                 case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项  base64类型
 //                    new Thread(() -> {
-                        if (result != null && result.getExtra() != null) {
-                            if (result.getExtra().toLowerCase().startsWith("http")) {
-                                ImageUtils.savePictureByUrl(mContext, result.getExtra());
-                            } else {
-                                ImageUtils.savePictureByBase64(mContext, result.getExtra());
-                            }
+                    if (result != null && result.getExtra() != null) {
+                        if (result.getExtra().toLowerCase().startsWith("http")) {
+                            ImageUtils.savePictureByUrl(mContext, result.getExtra());
+                        } else {
+                            ImageUtils.savePictureByBase64(mContext, result.getExtra());
                         }
+                    }
 //                    }).start();
                     break;
             }

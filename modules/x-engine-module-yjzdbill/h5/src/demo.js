@@ -1,7 +1,5 @@
 
 import yjzdbill from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
 
   window.YJBillPayment = () => {
     yjzdbill
@@ -10,7 +8,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
     platMerCstNo: "1253152026819723265",
     tradeMerCstNo: "1253159474293014528",
     billNo:"022020121511175711404131412404",
-    appScheme:'x-engine',
+    appScheme:'x-engine-c',
     payType:false,
         __ret__:(res)=>{
                   console.log(JSON.stringify(res));

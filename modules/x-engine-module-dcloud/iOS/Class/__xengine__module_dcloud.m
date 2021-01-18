@@ -250,11 +250,19 @@
 #pragma clang diagnostic pop
         }
         
-    }else if ([event isEqualToString:@"x-engine-wgt-event"]){
+    }else if ([event isEqualToString:@"x-engine-wgt-event"] || [event isEqualToString:@"x-engine-wgt-call"]){
         
         NSDictionary * subDataDic = d[@"args"];
-        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",d[@"moduleName"]];
-        id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+//        NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",d[@"moduleName"]];
+//        id module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+        id module;
+        if ([event isEqualToString:@"x-engine-call"]) {
+            NSString* moduleId = [NSString stringWithFormat:@"%@",d[@"moduleId"]];
+            module =[[XEngineContext sharedInstance] getModuleById:moduleId];
+        }else{
+            NSString * moduleName = [NSString stringWithFormat:@"__xengine__module_%@",d[@"moduleName"]];
+            module =[[XEngineContext sharedInstance] getModuleByName:moduleName];
+        }
         NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",d[@"method"]];
         SEL  sel = NSSelectorFromString(selectorStr);
         if([module respondsToSelector:sel]){

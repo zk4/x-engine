@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -21,7 +21,7 @@ function osCheck() {
   },
   {
     "name": "YJBillRefund",
-    "default_args": {}
+    "default_args": null
   },
   {
     "name": "YJBillList",

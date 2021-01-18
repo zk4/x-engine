@@ -40,7 +40,7 @@ interface YJBillListDTO {
   roomNo:string;
   //人防编号
   userRoomNo:string;
-  //当前app注册的appScheme
+  //当前app注册的appScheme appc:x-engine-c appb:x-engine-b
   appScheme?:string;
   //支付业务， 是否是 B端调用，  true为B， false为C
   payType:boolean;
@@ -64,7 +64,7 @@ function YJBillPayment(
     platMerCstNo: "1253152026819723265",
     tradeMerCstNo: "1253159474293014528",
     billNo:"022020121511175711404131412404",
-    appScheme:'x-engine',
+    appScheme:'x-engine-c',
     payType:false,
         __ret__:(res)=>{
                   console.log(JSON.stringify(res));

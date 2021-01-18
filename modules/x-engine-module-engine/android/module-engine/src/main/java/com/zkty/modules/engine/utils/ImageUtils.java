@@ -360,11 +360,9 @@ public class ImageUtils {
                 try {
                     if (!TextUtils.isEmpty(photoUrls)) {
                         Bitmap bitmap = GetImageInputStream(photoUrls);
-                        ((Activity) context).runOnUiThread(() -> {
-                            saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg");
-                        });
+                        saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg");
                     }
-                }  catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

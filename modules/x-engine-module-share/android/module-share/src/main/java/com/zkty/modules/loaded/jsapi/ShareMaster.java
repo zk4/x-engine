@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
@@ -45,6 +47,7 @@ public class ShareMaster {
                 @Override
                 public void run() {
                     Bitmap bitmap = null;
+                    Handler handler = new Handler(Looper.getMainLooper());
                     try {
                         bitmap = Glide.with(context)
                                 .asBitmap()
@@ -55,12 +58,18 @@ public class ShareMaster {
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                             byte[] imageByte = stream.toByteArray();
 
-                            ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, imageByte, dataUrl, userName, path, miniProgramType));
+
+                            handler.post(() -> shareToWx(context, channel, type, title, desc, link, imageByte, dataUrl, userName, path, miniProgramType));
+
+
+//                            ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, imageByte, dataUrl, userName, path, miniProgramType));
 
                         }
 
                     } catch (Exception e) {
-                        ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path, miniProgramType));
+                        handler.post(() -> shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path, miniProgramType));
+
+//                        ((Activity) context).runOnUiThread(() -> shareToWx(context, channel, type, title, desc, link, null, dataUrl, userName, path, miniProgramType));
                     }
                 }
             }.start();

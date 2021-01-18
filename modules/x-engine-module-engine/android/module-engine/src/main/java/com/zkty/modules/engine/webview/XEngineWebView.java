@@ -341,11 +341,17 @@ public class XEngineWebView extends DWebView {
             switch (result.getType()) {
 
 //                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
-                case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项 base64类型
-
-                    new Thread(() -> ImageUtils.savePictureByBase64(mContext, result.getExtra())).start();
+                case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项  base64类型
+//                    new Thread(() -> {
+                        if (result != null && result.getExtra() != null) {
+                            if (result.getExtra().toLowerCase().startsWith("http")) {
+                                ImageUtils.savePictureByUrl(mContext, result.getExtra());
+                            } else {
+                                ImageUtils.savePictureByBase64(mContext, result.getExtra());
+                            }
+                        }
+//                    }).start();
                     break;
-
             }
             return false;
         });

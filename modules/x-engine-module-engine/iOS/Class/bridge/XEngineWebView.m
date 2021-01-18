@@ -543,8 +543,14 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
 
     if ([scheme isEqualToString:@"x-engine-json"] || [scheme isEqualToString:@"x-engine-call"]){
-       NSString * argsStr = [urlStr substringFromIndex:range.location+1];
-       NSString * callBackStr = @"";
+        NSString * argsStr ;
+        if ([urlStr rangeOfString:@"?"].location !=NSNotFound) {
+            argsStr = [urlStr substringFromIndex:range.location+1];
+        }else{
+            decisionHandler(WKNavigationActionPolicyCancel);
+            return;
+        }
+        NSString * callBackStr = @"";
        
         NSDictionary * argsDic;// = [NSDictionary new];
        

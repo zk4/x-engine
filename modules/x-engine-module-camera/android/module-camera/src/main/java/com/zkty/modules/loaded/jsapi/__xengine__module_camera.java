@@ -40,6 +40,7 @@ import com.zkty.modules.loaded.widget.dialog.BottomDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +65,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
 
     private File out;
+    private File outCrop;
 
 
     @Override
@@ -250,9 +252,9 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                         } else if (requestCode == REQUEST_CROP) {                   //裁剪返回
                             Log.d(TAG, "crop:");
 
-                            if (mXEngineWebView != null && out.exists()) {
-                                String path = out.getPath();
-                                Log.d(TAG, "crop:" + path);
+                            if (mXEngineWebView != null && outCrop.exists()) {
+                                String path = outCrop.getPath();
+                                Log.d(TAG, "outCrop:" + path);
 //
 //                                mXEngineWebView.callHandler(dto.__event__, new Object[]{base64}, new OnReturnValue<Object>() {
 //                                    @Override
@@ -407,17 +409,29 @@ public class __xengine__module_camera extends xengine__module_camera implements 
      * @param fileName 裁剪后输出的文件名
      */
     private void crop(Activity activity, Uri uri, File dir, String fileName, EditArgs edit) {
+
+        Log.d(TAG, "uri=" + uri.getPath());
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
 
+        outCrop = new File(dir, System.currentTimeMillis()+".jpg");
+        try {
+            if (outCrop.exists()) {
+                outCrop.delete();
+            }
+            outCrop.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Uri photoUri;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            photoUri = FileProvider.getUriForFile(activity, XEngineProvider.getProvider(), new File(dir, fileName));
+            photoUri = FileProvider.getUriForFile(activity, XEngineProvider.getProvider(), outCrop);
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setClipData(ClipData.newRawUri(MediaStore.EXTRA_OUTPUT, photoUri));
         } else {
-            photoUri = Uri.fromFile(new File(dir, fileName));
+            photoUri = Uri.fromFile(outCrop);
         }
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri); //指定输出的文件路径及文件名

@@ -54,7 +54,7 @@
             d.billRetStatus=responseObject;
             d.billRetStatusMessage=message;
             d.isCancel = isCancel;
-            completionHandler(d, NO);
+            completionHandler(d, YES);
         });
     }];
 }

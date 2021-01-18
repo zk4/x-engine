@@ -217,9 +217,9 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
     __weak typeof(self) weakself = self;
     [_webServer addHandlerForMethod:@"GET" pathRegex:@"^/.*" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
 //        NSDictionary * requestData = [[NSDictionary alloc]initWithDictionary:request.query];
-        UIImage *image = weakself.photoImage;
+        
         NSDictionary * argsDic = weakself.cameraDto.args;
-        image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+        UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
         NSData *imageData = UIImagePNGRepresentation(image);
  
         GCDWebServerDataResponse *response;

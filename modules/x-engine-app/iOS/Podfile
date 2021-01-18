@@ -3,20 +3,17 @@ platform :ios, '11.0'
  
 source 'https://github.com/CocoaPods/Specs.git'
 
-#load './ModulePods.rb'
-abstract_target 'abstract' do
+def shared_pods
   pod 'x-engine-module-engine', :path =>'../../x-engine-module-engine'
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools/'
   pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols/'
+end
   target 'xxxx' do
-    #use_frameworks!
-    #module_pods
+    shared_pods
   end
   target 'xxxxTests' do
-    #use_frameworks!
-    #module_pods
+    shared_pods
   end
   target 'xxxxUITests' do
-    # Pods for testing
+    shared_pods
   end
-end

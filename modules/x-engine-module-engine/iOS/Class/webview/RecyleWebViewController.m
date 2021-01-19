@@ -295,6 +295,11 @@ static   XEngineWebView* s_webview;
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
 
+    if (@available(iOS 11.0, *)) {
+               self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+      } else {
+                 self.edgesForExtendedLayout = UIRectEdgeNone;
+         }
 //    if (@available(iOS 13.0, *)) {
 //        self.webview.scrollView.automaticallyAdjustsScrollIndicatorInsets = NO;
 //    }

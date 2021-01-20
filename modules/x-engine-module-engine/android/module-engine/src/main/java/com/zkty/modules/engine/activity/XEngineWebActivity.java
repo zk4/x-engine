@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -125,17 +127,29 @@ public class XEngineWebActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        SwipeBackHelper.onCreate(this);
+
         setContentView(R.layout.activity_engine_webview);
+
+        hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
+        if (hideNavBar) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            }
+        } else {
+            ImmersionBar.with(this)
+                    .fitsSystemWindows(true)
+                    .statusBarColor(R.color.white)
+                    .statusBarDarkFont(true).init();
+
+        }
+
 
         //关闭 关于文件uri暴露的检测（FileUriExposedException）
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
         EventBus.getDefault().register(this);
-        ImmersionBar.with(this)
-                .fitsSystemWindows(true)
-                .statusBarColor(R.color.white)
-                .statusBarDarkFont(true).init();
         mWebChromeClient = new MyWebChromeClient();
         xEngineNavBar = findViewById(R.id.nav_bar);
         navShadow = findViewById(R.id.nav_shadow);
@@ -145,7 +159,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         mMicroAppId = getIntent().getStringExtra(MICRO_APP_ID);
         indexUrl = getIntent().getStringExtra(INDEX_URL);
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
-        hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
+
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
         navShadow.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
         xEngineNavBar.setLeftListener(view -> {

@@ -1,16 +1,14 @@
 
 import nav from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
-
+ {
   window.setNavTitle = () => {
     nav.setNavTitle().then((res) => {});
   };
-
+} {
   window.setNavLeftBtn = () => {
     nav.setNavLeftBtn().then((res) => {});
   };
-
+} {
   window.setNavRightBtn = () => {
     nav
       .setNavRightBtn({
@@ -25,7 +23,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+} {
   window.setNavRightMenuBtn = () => {
     nav
       .setNavRightMenuBtn({
@@ -48,19 +46,19 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+} {
   window.setNavRightMoreBtn = () => {
     nav.setNavRightMoreBtn().then((res) => {});
   };
-
+} {
   window.navigatorPush = () => {
     nav.navigatorPush().then((res) => {});
   };
-
+} {
   window.navigatorBack = () => {
     nav.navigatorBack().then((res) => {});
   };
-
+} {
   window.setNavSearchBar = () => {
     nav
       .setNavSearchBar({
@@ -83,7 +81,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+}{
   window.setSearchBarHidden = () => {
     nav
       .setSearchBarHidden({
@@ -92,7 +90,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+}{
   window.setNavBarHidden = () => {
     nav
       .setNavBarHidden({
@@ -101,7 +99,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+}{
   window.removeHistoryPage = () => {
     nav
       .removeHistoryPage({
@@ -110,7 +108,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+}{
   window.testSetHidden = () => {
     nav
       .setSearchBarHidden({
@@ -119,5 +117,5 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+}
     

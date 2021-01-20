@@ -83,8 +83,6 @@
 
     @Optional
 		public boolean hideNavbar;
-    @Optional
-    public boolean hideNavBar;
   }
 
   class NavNavigatorBackDTO {
@@ -93,8 +91,6 @@
 
     @Optional
 		public boolean hideNavbar;
-    @Optional
-    public boolean hideNavBar;
   }
 
   class NavOpenAppDTO {

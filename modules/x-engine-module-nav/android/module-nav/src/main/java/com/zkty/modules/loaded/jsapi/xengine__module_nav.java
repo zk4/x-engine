@@ -14,7 +14,7 @@
   import com.zkty.modules.engine.core.xengine__module_BaseModule;
   import androidx.annotation.Nullable;
 
-  
+
   class NavTitleDTO {
     public String title;
 
@@ -22,7 +22,7 @@
 
     public Integer titleSize;
   }
-  
+
   class NavPopItem {
     @Optional
 		public String icon;
@@ -35,7 +35,7 @@
     @Optional
 		public String __event__;
   }
-  
+
   class NavBtnDTO {
     public String title;
 
@@ -69,11 +69,11 @@
     @Optional
 		public String __event__;
   }
-  
+
   class NavMoreBtnDTO {
     public List<NavBtnDTO> btns;
   }
-  
+
   class NavNavigatorDTO {
     @Optional
 		public String url;
@@ -83,16 +83,20 @@
 
     @Optional
 		public boolean hideNavbar;
+    @Optional
+    public boolean hideNavBar;
   }
-  
+
   class NavNavigatorBackDTO {
     @Optional
 		public String url;
 
     @Optional
 		public boolean hideNavbar;
+    @Optional
+    public boolean hideNavBar;
   }
-  
+
   class NavOpenAppDTO {
     public String type;
 
@@ -100,7 +104,7 @@
 
     public String path;
   }
-  
+
   class NavSearchBarDTO {
     public Integer cornerRadius;
 
@@ -129,17 +133,17 @@
     @Optional
 		public String __event__;
   }
-  
+
   class NavHiddenBarDTO {
     public boolean isHidden;
 
     public boolean isAnimation;
   }
-  
+
   class NavHistoryDTO {
     public List<String> history;
   }
-  
+
   interface xengine__module_nav_i {
     public void _setNavTitle(NavTitleDTO dto, final CompletionHandler<Nullable> handler);
 public void _setNavLeftBtn(NavBtnDTO dto, final CompletionHandler<Nullable> handler);
@@ -153,14 +157,14 @@ public void _setSearchBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nul
 public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
 public void _removeHistoryPage(NavHistoryDTO dto, final CompletionHandler<Nullable> handler);
   }
-  
-  
+
+
   public abstract class xengine__module_nav extends xengine__module_BaseModule implements xengine__module_nav_i {
     @Override
     public String moduleId() {
       return "com.zkty.module.nav";
     }
-  
+
     @JavascriptInterface
     final public void setNavTitle(JSONObject obj, final CompletionHandler<Object> handler) {
       NavTitleDTO data= convert(obj,NavTitleDTO.class);

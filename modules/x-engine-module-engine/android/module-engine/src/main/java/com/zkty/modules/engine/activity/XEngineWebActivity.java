@@ -38,6 +38,7 @@ import com.zkty.modules.engine.imp.ImagePicker;
 import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.KeyBoardUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
+import com.zkty.modules.engine.utils.StatusBarUtil;
 import com.zkty.modules.engine.utils.UrlUtils;
 import com.zkty.modules.engine.utils.XEngineMessage;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
@@ -136,6 +137,7 @@ public class XEngineWebActivity extends AppCompatActivity {
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             }
+            StatusBarUtil.setStatusTextColor(true, this);
         } else {
             ImmersionBar.with(this)
                     .fitsSystemWindows(true)

@@ -98,22 +98,27 @@ args　形如：
 
 
 
-|          | h5   | microApp | wx   | native | uni  |
-| -------- | ---- | -------- | ---- | ------ | ---- |
-| h5       | 支持 | 支持     | 支持 | 支持   | 支持 |
-| microApp | 支持 | 支持     | 支持 | 支持   | 支持 |
-| wx       | -    | -        | -    | -      | -    |
-| native   | 支持 | 支持     | 支持 | 支持   | 支持 |
-| uni      | 支持 | 支持     | 支持 | 支持   | 支持 |
+|             | h5     | microApp | wx     | native | uni    |
+| ----------- | ------ | -------- | ------ | ------ | ------ |
+| h5 跳       | 无意义 | 支持     | 支持   | 支持   | 支持   |
+| microApp 跳 | 支持   | 无意义   | 支持   | 支持   | 支持   |
+| wx 跳       | -      | -        | 无意义 | -      | -      |
+| native 跳   | 支持   | 支持     | 支持   | 无意义 | 支持   |
+| uni 跳      | 支持   | 支持     | 支持   | 支持   | 无意义 |
 
-h5 与 uni 我们定制了两种调用.
+
 
 **h5通过 scheme 的方式**
 
+x-engine-call://{moduleId}/{method}?args={xxx}&callback={callbackurl}
 
-x-engine-json://{moduleName}/{method}?args={xxx}&callback={callbackurl}
+```
+window.open(`x-engine-call://${moduleId}/${method}/args=${encodeURIComponent({...})&callback=encodeURIComponent("https://xxx.com/indexhtml?ret={ret}")}`)
+```
 
-xxx 为 urlencode 过的　json　**String**
+
+
+xxx 为 urlencode 过的　json　**String** (使用 encodeURIComponent)
 {callbackurl} 由调用者指定(必须urlencode), 如[https://baidu.com?ret={ret}](https://baidu.com/?ret={ret})
 
 {ret} 将被替换为返回值. {ret} 为 urlencode 过的　json　**String**
@@ -122,17 +127,37 @@ xxx 为 urlencode 过的　json　**String**
 
 
 
+
+
 **uni 通过 api 方式**
 
-event:x-engine-wgt-event
+
+
+event:x-engine-wgt-call
 
 {
-"moduleName":"moduleName",
+"moduleId":"moduleId",
 "method":{method},
 "args":{args},
 }
 
 返回值, 统一转成 json string.
+
+
+
+
+
+> 将弃用
+>
+> event:x-engine-wgt-event
+>
+> {
+> "moduleName":"moduleName",
+> "method":{method},
+> "args":{args},
+> }
+>
+> 返回值, 统一转成 json string.
 
 
 
@@ -158,7 +183,7 @@ event:x-engine-wgt-event
 # JS
 
 
-version: 0.1.11
+version: 0.1.12
 ``` bash
 npm install @zkty-team/x-engine-module-router
 ```

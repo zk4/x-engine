@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -143,15 +143,15 @@ function osCheck() {
   },
   {
     "name": "setSearchBarHidden",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "setNavBarHidden",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "removeHistoryPage",
-    "default_args": null
+    "default_args": {}
   }
 ]
 )}}

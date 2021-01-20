@@ -127,25 +127,29 @@ public class XEngineWebActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        SwipeBackHelper.onCreate(this);
+
+        setContentView(R.layout.activity_engine_webview);
+
         hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
         if (hideNavBar) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             }
+        } else {
+            ImmersionBar.with(this)
+                    .fitsSystemWindows(true)
+                    .statusBarColor(R.color.white)
+                    .statusBarDarkFont(true).init();
+
         }
 
-        setContentView(R.layout.activity_engine_webview);
 
         //关闭 关于文件uri暴露的检测（FileUriExposedException）
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
         EventBus.getDefault().register(this);
-        ImmersionBar.with(this)
-                .fitsSystemWindows(true)
-                .statusBarColor(R.color.white)
-                .statusBarDarkFont(true).init();
         mWebChromeClient = new MyWebChromeClient();
         xEngineNavBar = findViewById(R.id.nav_bar);
         navShadow = findViewById(R.id.nav_shadow);

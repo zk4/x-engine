@@ -61,10 +61,24 @@
     public String billType;
   }
   
+  class WalletDTO {
+    public String platMerCstNo;
+
+    public String businessCstName;
+
+    public String businessCstNo;
+
+    public String businessCstMobileNo;
+
+    @Optional
+		public String appScheme;
+  }
+  
   interface xengine__module_yjzdbill_i {
     public void _YJBillPayment(YJBillDTO dto, final CompletionHandler<YJBillRetDTO> handler);
 public void _YJBillRefund(YJBillRefundDTO dto, final CompletionHandler<YJBillRetDTO> handler);
 public void _YJBillList(YJBillListDTO dto, final CompletionHandler<Nullable> handler);
+public void _callWallet(WalletDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -106,6 +120,20 @@ public void _YJBillList(YJBillListDTO dto, final CompletionHandler<Nullable> han
     final public void YJBillList(JSONObject obj, final CompletionHandler<Object> handler) {
       YJBillListDTO data= convert(obj,YJBillListDTO.class);
       _YJBillList(data, new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void callWallet(JSONObject obj, final CompletionHandler<Object> handler) {
+      WalletDTO data= convert(obj,WalletDTO.class);
+      _callWallet(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

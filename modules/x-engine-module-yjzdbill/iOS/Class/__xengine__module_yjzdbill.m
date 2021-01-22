@@ -13,6 +13,7 @@
 #import <XEngineWebView.h>
 #import <Unity.h>
 #import <YJZDBill/YJBillPlatform.h>
+#import "TZWalletSDK.h"
 
 @interface __xengine__module_yjzdbill()
 {
@@ -83,6 +84,19 @@
         completionHandler(d, YES);
     }];
 }
+
+- (void)_callWallet:(WalletDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    NSMutableDictionary *inf = [NSMutableDictionary dictionary];
+    [inf setObject:dto.platMerCstNo forKey:@"platMerCstNo"];
+    [inf setObject:dto.businessCstName forKey:@"businessCstName"];
+    [inf setObject:dto.businessCstNo forKey:@"businessCstNo"];
+    [inf setObject:dto.businessCstMobileNo forKey:@"businessCstMobileNo"];
+    [[TZWalletSDK shareInstance]callWalletWithInfo:inf withScheme:dto.appScheme finishBlock:^{
+        
+    }];
+}
+
+
 
 @end
  

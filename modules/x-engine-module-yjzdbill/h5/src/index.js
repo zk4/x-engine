@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (false) {
+  if (!xengine.hybrid) {
     return mock;
 } 
   else {
@@ -21,7 +21,7 @@ function osCheck() {
   },
   {
     "name": "YJBillRefund",
-    "default_args": {}
+    "default_args": null
   },
   {
     "name": "YJBillList",
@@ -30,6 +30,12 @@ function osCheck() {
       "billType": "0",
       "billStatus": "0",
       "payType": false
+    }
+  },
+  {
+    "name": "callWallet",
+    "default_args": {
+      "appScheme": "x-engine-c"
     }
   }
 ]

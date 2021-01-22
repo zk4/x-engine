@@ -14,10 +14,10 @@ com.zkty.module.wallet
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| platMerCstNo | string |  |  |  |
-| businessCstName | string |  |  |  |
-| businessCstNo | string |  |  |  |
-| businessCstMobileNo | string |  |  |  |
+| platMerCstNo | string |  |  | 平台商户号 |
+| businessCstName | string |  |  | 个人用户姓名 |
+| businessCstNo | string |  |  | 个人用户业务系统客户号 |
+| businessCstMobileNo | string |  |  | 个人用户手机号 |
 | appScheme | string | true | x-engine-c | 当前app注册的appScheme |
 
     

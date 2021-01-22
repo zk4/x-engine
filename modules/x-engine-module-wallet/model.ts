@@ -17,9 +17,13 @@ const conf = {
 
 //调用钱包dto
 interface WalletDTO {
+  //平台商户号
   platMerCstNo: string;
+  //个人用户姓名
   businessCstName: string;
+  //个人用户业务系统客户号
   businessCstNo: string;
+  //个人用户手机号
   businessCstMobileNo:string;
   //当前app注册的appScheme
   appScheme?:string;

@@ -7,60 +7,12 @@
 #import <micros.h>
 
 
-@implementation SheetDTO
+@implementation WalletDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	if ([propertyName isEqualToString:@"itemList"]) { return YES; }
-   	if ([propertyName isEqualToString:@"content"]) { return YES; }
-   	return NO;
-    }
-@end
-    
-  
-@implementation ContinousDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
-    }
-@end
-    
-  
-@implementation MsgPayloadDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	if ([propertyName isEqualToString:@"args"]) { return YES; }
-   	if ([propertyName isEqualToString:@"sender"]) { return YES; }
-   	if ([propertyName isEqualToString:@"receiver"]) { return YES; }
    
-   	return NO;
-    }
-@end
-    
-  
-@implementation _0_com_zkty_module_wallet_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"age"]) { return YES; }
-   	if ([propertyName isEqualToString:@"name"]) { return YES; }
-   	if ([propertyName isEqualToString:@"books"]) { return YES; }
-   	if ([propertyName isEqualToString:@"complexArg"]) { return YES; }	return NO;
-    }
-@end
-    
-  
-@implementation _1_com_zkty_module_wallet_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
-@implementation _2_com_zkty_module_wallet_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"age"]) { return YES; }
-   	if ([propertyName isEqualToString:@"name"]) { return YES; }
-   	if ([propertyName isEqualToString:@"books"]) { return YES; }
-   	if ([propertyName isEqualToString:@"complexArg"]) { return YES; }	return NO;
-    }
-@end
-    
-  
-@implementation _3_com_zkty_module_wallet_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+   
+   
+   	if ([propertyName isEqualToString:@"appScheme"]) { return YES; }	return NO;
     }
 @end
     
@@ -79,95 +31,11 @@
         return @"com.zkty.module.wallet";
     }
     
-    - (void) broadcastOn:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) callWallet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _broadcastOn:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) broadcastOff:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _broadcastOff:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) triggerNativeBroadCast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _triggerNativeBroadCast:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) repeatReturn__event__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
-          [self _repeatReturn__event__:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
-          [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) ReturnInPromiseThen:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
-          [self _ReturnInPromiseThen:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) noArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _noArgNoRet:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) noArgRetPrimitive:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _noArgRetPrimitive:^(NSString* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-    - (void) noArgRetSheetDTO:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _noArgRetSheetDTO:^(SheetDTO* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-    - (void) haveArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
-          [self _haveArgNoRet:dto complete:^(BOOL complete) {
+          WalletDTO* dto = [self convert:dict clazz:WalletDTO.class];
+          [self _callWallet:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
-      }
-    - (void) haveArgRetPrimitive:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
-          [self _haveArgRetPrimitive:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) haveArgRetSheetDTO:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
-          [self _haveArgRetSheetDTO:dto complete:^(SheetDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) anonymousType:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          _2_com_zkty_module_wallet_DTO* dto = [self convert:dict clazz:_2_com_zkty_module_wallet_DTO.class];
-          [self _anonymousType:dto complete:^(_0_com_zkty_module_wallet_DTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
       }
   @end

@@ -74,4 +74,6 @@ dependencies {
     api 'com.rrtx.android:BillPay:1.0.4@aar'
     api 'com.rrtx.payLib:sdllC:3.0.7@aar'
     api 'com.rrtx.payLib:sdllB:3.0.2@aar'
+
+//    api files('libs/WalletCenterSDK-1.0.0.aar')
 }

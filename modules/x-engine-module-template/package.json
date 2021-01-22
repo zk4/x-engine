@@ -1,6 +1,7 @@
 {
   "name": "@zkty-team/x-engine-module-xxxx",
   "version": "0.1.12",
+  "description": "xxxx",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {

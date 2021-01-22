@@ -11,7 +11,7 @@ import com.alibaba.fastjson.JSON;
 import com.google.gson.JsonObject;
 import com.kapp.sdllpay.PaymentCallback;
 
-import com.kapp.wallet.WalletManager;
+
 import com.yjlc.module.BillManager;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.XEngineApplication;
@@ -104,12 +104,12 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
 
     @Override
     public void _callWallet(WalletDTO dto, CompletionHandler<Nullable> handler) {
-        Log.i("", com.alibaba.fastjson.JSONObject.toJSONString(dto));
-        WalletManager.getInstance().launchWallet("", new com.kapp.wallet.PaymentCallback() {
-            @Override
-            public void paymentResult(JSONObject jsonObject) {
-
-            }
-        });
+//        Log.i("", com.alibaba.fastjson.JSONObject.toJSONString(dto));
+//        WalletManager.getInstance().launchWallet("", new com.kapp.wallet.PaymentCallback() {
+//            @Override
+//            public void paymentResult(JSONObject jsonObject) {
+//
+//            }
+//        });
     }
 }

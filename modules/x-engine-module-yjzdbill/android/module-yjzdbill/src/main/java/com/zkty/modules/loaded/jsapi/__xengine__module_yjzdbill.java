@@ -8,8 +8,11 @@ import androidx.annotation.Nullable;
 
 
 import com.alibaba.fastjson.JSON;
+import com.google.gson.JsonObject;
 import com.kapp.sdllpay.PaymentCallback;
 
+
+import com.kapp.wallet.WalletManager;
 import com.yjlc.module.BillManager;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.XEngineApplication;
@@ -98,5 +101,16 @@ public class __xengine__module_yjzdbill extends xengine__module_yjzdbill {
         billManager.init(XEngineApplication.getApplication(), baseUrl, dto.payType ? payBUrl : payCUrl);
         billManager.queryBills(dto.userRoomNo, dto.roomNo, dto.businessCstNo, dto.payType ? com.yjlc.module.constant.AppConstant.payType_2b : com.yjlc.module.constant.AppConstant.payType_2c, dto.billStatus, dto.billType);
         handler.complete();
+    }
+
+    @Override
+    public void _callWallet(WalletDTO dto, CompletionHandler<Nullable> handler) {
+//        Log.i("", com.alibaba.fastjson.JSONObject.toJSONString(dto));
+//        WalletManager.getInstance().launchWallet(com.alibaba.fastjson.JSONObject.toJSONString(dto), new com.kapp.wallet.PaymentCallback() {
+//            @Override
+//            public void paymentResult(JSONObject jsonObject) {
+//                Log.i("",jsonObject.toString());
+//            }
+//        });
     }
 }

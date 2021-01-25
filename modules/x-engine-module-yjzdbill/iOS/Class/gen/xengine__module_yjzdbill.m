@@ -43,6 +43,16 @@
     }
 @end
     
+  
+@implementation WalletDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   
+   
+   	if ([propertyName isEqualToString:@"appScheme"]) { return YES; }	return NO;
+    }
+@end
+    
 
 
 
@@ -78,6 +88,13 @@
 
           YJBillListDTO* dto = [self convert:dict clazz:YJBillListDTO.class];
           [self _YJBillList:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
+          }];
+      }
+    - (void) callWallet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          WalletDTO* dto = [self convert:dict clazz:WalletDTO.class];
+          [self _callWallet:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
       }

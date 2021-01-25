@@ -24,6 +24,7 @@
 		587F741B250669A300F515BD /* __xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* __xengine__module_yjzdbill.m */; };
 		587F74262506737800F515BD /* xengine__module_yjzdbill.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F74242506737700F515BD /* xengine__module_yjzdbill.m */; };
 		C9B9E6A12588ECFC00DE2BAC /* resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9B9E6A02588ECFB00DE2BAC /* resource.bundle */; };
+		C9E9B87225BAB67E00702829 /* libTZWalletSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E9B87125BAB67E00702829 /* libTZWalletSDK.a */; };
 		C9F7234A258A040A00D4A237 /* YJZDBill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F72349258A040A00D4A237 /* YJZDBill.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,8 @@
 		AA61277E946A43DAD1657AED /* Pods-abstract-yjzdbillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-yjzdbillUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-yjzdbillUITests/Pods-abstract-yjzdbillUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C9B9E6A02588ECFB00DE2BAC /* resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = resource.bundle; path = "ios-sdk/resource.bundle"; sourceTree = SOURCE_ROOT; };
+		C9E9B87125BAB67E00702829 /* libTZWalletSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTZWalletSDK.a; path = "ios-sdk/libTZWalletSDK.a"; sourceTree = SOURCE_ROOT; };
+		C9E9B8BA25BAB84000702829 /* TZWalletSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TZWalletSDK.h; path = Class/TZWalletSDK.h; sourceTree = SOURCE_ROOT; };
 		C9F72349258A040A00D4A237 /* YJZDBill.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YJZDBill.framework; path = "ios-sdk/YJZDBill.framework"; sourceTree = SOURCE_ROOT; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-yjzdbill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yjzdbill.debug.xcconfig"; path = "Target Support Files/Pods-yjzdbill/Pods-yjzdbill.debug.xcconfig"; sourceTree = "<group>"; };
 		F425D64FA1A2D2EEEAB4FEFD /* libPods-abstract-yjzdbillTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abstract-yjzdbillTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +100,7 @@
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
 				1E337E5F6B1132BEC88164B0 /* libPods-abstract-yjzdbill.a in Frameworks */,
 				C9F7234A258A040A00D4A237 /* YJZDBill.framework in Frameworks */,
+				C9E9B87225BAB67E00702829 /* libTZWalletSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +167,7 @@
 		00DFC6E224C84000006A53EE /* yjzdbill */ = {
 			isa = PBXGroup;
 			children = (
+				C9E9B87125BAB67E00702829 /* libTZWalletSDK.a */,
 				C9F72349258A040A00D4A237 /* YJZDBill.framework */,
 				C9B9E6A02588ECFB00DE2BAC /* resource.bundle */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
@@ -216,6 +221,7 @@
 				587F74202506737700F515BD /* gen */,
 				587F7419250669A300F515BD /* __xengine__module_yjzdbill.h */,
 				587F741A250669A300F515BD /* __xengine__module_yjzdbill.m */,
+				C9E9B8BA25BAB84000702829 /* TZWalletSDK.h */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -713,6 +719,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.timesneighborhood.module.yjzdbill;
@@ -738,6 +748,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";

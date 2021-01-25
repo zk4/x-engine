@@ -50,6 +50,21 @@ interface YJBillListDTO {
   billType:string;
 }
 
+//调用钱包dto
+interface WalletDTO {
+  //平台商户号
+  platMerCstNo: string;
+  //个人用户姓名
+  businessCstName: string;
+  //个人用户业务系统客户号
+  businessCstNo: string;
+  //个人用户手机号
+  businessCstMobileNo:string;
+  //当前app注册的appScheme
+  appScheme?:string;
+}
+
+
 //支付
 function YJBillPayment(
   args: YJBillDTO = {
@@ -106,6 +121,27 @@ function YJBillList(
     businessCstNo:"000001",
     roomNo:'001',
     userRoomNo:'001'
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+}
+
+//调用钱包
+function callWallet(
+  args: WalletDTO={
+    appScheme:'x-engine-c',
+    
+  }){
+  window.callWallet = () => {
+    yjzdbill
+      .callWallet({
+        platMerCstNo:"000001",
+        businessCstName:'001',
+        businessCstNo:'001',
+        businessCstMobileNo:"00011",
+        appScheme:"x-engine-c"
       })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

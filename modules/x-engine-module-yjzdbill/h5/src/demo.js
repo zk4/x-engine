@@ -1,7 +1,5 @@
 
 import yjzdbill from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
-
 
   window.YJBillPayment = () => {
     yjzdbill
@@ -38,6 +36,20 @@ import xengine from "@zkty-team/x-engine-module-engine";
     businessCstNo:"000001",
     roomNo:'001',
     userRoomNo:'001'
+      })
+      .then((res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+
+  window.callWallet = () => {
+    yjzdbill
+      .callWallet({
+        platMerCstNo:"000001",
+        businessCstName:'001',
+        businessCstNo:'001',
+        businessCstMobileNo:"00011",
+        appScheme:"x-engine-c"
       })
       .then((res) => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);

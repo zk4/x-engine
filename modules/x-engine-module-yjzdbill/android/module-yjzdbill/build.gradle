@@ -44,7 +44,7 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    provided fileTree(dir: 'libs', include: ['*.aar'])
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     testImplementation 'junit:junit:4.12'
@@ -74,4 +74,6 @@ dependencies {
     api 'com.rrtx.android:BillPay:1.0.4@aar'
     api 'com.rrtx.payLib:sdllC:3.0.7@aar'
     api 'com.rrtx.payLib:sdllB:3.0.2@aar'
+
+    provided files('libs/WalletCenterSDK-1.0.0.aar')
 }

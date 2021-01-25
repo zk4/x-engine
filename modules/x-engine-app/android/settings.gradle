@@ -2,3 +2,25 @@ include ':app'
 include ':module-engine'
 project(':module-engine').projectDir = new File('../../x-engine-module-engine/android/module-engine')
 include ':module-xxxx'
+rootProject.name = "xxxx"
+
+
+include ':module-nav'
+project(':module-nav').projectDir = new File('../../x-engine-module-nav/android/module-nav')
+include ':module-localstorage'
+project(':module-localstorage').projectDir = new File('../../x-engine-module-localstorage/android/module-localstorage')
+include ':module-device'
+project(':module-device').projectDir = new File('../../x-engine-module-device/android/module-device')
+include ':module-camera'
+project(':module-camera').projectDir = new File('../../x-engine-module-camera/android/module-camera')
+include ':module-ui'
+project(':module-ui').projectDir = new File('../../x-engine-module-ui/android/module-ui')
+include ':module-router'
+project(':module-router').projectDir = new File('../../x-engine-module-router/android/module-router')
+include ':module-scan'
+project(':module-scan').projectDir = new File('../../x-engine-module-scan/android/module-scan')
+include ':module-dcloud'
+project(':module-dcloud').projectDir = new File('../../x-engine-module-dcloud/android/module-dcloud')
+include ':module-geo'
+project(':module-geo').projectDir = new File('../../x-engine-module-geo/android/module-geo')
+

@@ -10,6 +10,7 @@
 @protocol YJBillRefundDTO;
 @protocol YJBillRetDTO;
 @protocol YJBillListDTO;
+@protocol WalletDTO;
 
 @interface YJBillDTO: JSONModel
   	@property(nonatomic,copy) NSString* businessCstNo;
@@ -44,6 +45,15 @@
 @end
     
 
+@interface WalletDTO: JSONModel
+  	@property(nonatomic,copy) NSString* platMerCstNo;
+   	@property(nonatomic,copy) NSString* businessCstName;
+   	@property(nonatomic,copy) NSString* businessCstNo;
+   	@property(nonatomic,copy) NSString* businessCstMobileNo;
+   	@property(nonatomic,copy) NSString* appScheme;
+@end
+    
+
 
 @protocol xengine__module_yjzdbill_protocol
        @required 
@@ -54,6 +64,9 @@
 
       @required 
         - (void) _YJBillList:(YJBillListDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+        - (void) _callWallet:(WalletDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   

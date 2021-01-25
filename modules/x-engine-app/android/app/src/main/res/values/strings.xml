@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">x-xxxx</string>
+    <string name="app_name">xxxx</string>
+    <string name="app_name_dev">xxxx_DEV</string>
+    <string name="app_name_uat">xxxx_UAT</string>
 </resources>

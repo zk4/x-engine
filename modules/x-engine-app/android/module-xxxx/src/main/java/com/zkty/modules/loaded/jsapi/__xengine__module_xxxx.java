@@ -141,4 +141,8 @@ public class __xengine__module_xxxx extends xengine__module_xxxx {
 
     }
 
+    @Override
+    public void _anonymousType(CompletionHandler<Nullable> handler) {
+
+    }
 }

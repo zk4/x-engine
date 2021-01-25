@@ -1,4 +1,4 @@
-package com.zkty.engine.module.xxxx;
+package com.zkty.engine.module.xxxx.view;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import com.zkty.engine.module.xxxx.R;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
 public class MainActivity extends AppCompatActivity {

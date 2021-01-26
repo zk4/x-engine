@@ -18,7 +18,7 @@ public class __xengine__module_localstorage extends xengine__module_localstorage
     public void onAppCreate(Context context) {
         String dir = new File("/data/data/" + context.getPackageName() + "/shared_prefs").getAbsolutePath() + "/mmkv";
         String rootDir = MMKV.initialize(dir);
-        Log.d("MMKV", "mmkv root: " + rootDir);
+        Log.d("localstorage", "mmkv init root: " + rootDir);
     }
 
     @Override

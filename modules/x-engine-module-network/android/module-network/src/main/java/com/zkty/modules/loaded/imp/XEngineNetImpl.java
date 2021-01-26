@@ -97,7 +97,7 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
         switch (method) {
             case GET:
                 StringBuilder stringBuilder = new StringBuilder();
-                if (!url.endsWith("?")) {
+                if ((!url.contains("?")) && params != null && params.size() > 0) {
                     stringBuilder.append(url).append("?");
                 } else {
                     stringBuilder.append(url);
@@ -111,7 +111,7 @@ public class XEngineNetImpl implements IXEngineNetProtocol {
                 }
 
 
-                builder.url(stringBuilder.toString().replaceFirst("&",""));
+                builder.url(stringBuilder.toString().replaceFirst("&", ""));
                 builder.get();
                 break;
             case POST:

@@ -79,21 +79,27 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
                 return;
             }
             NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
-            NSArray<WKBackForwardListItem *> *reversAry = [[ary reverseObjectEnumerator] allObjects];
-            for (int i = 0; i < reversAry.count; i++) {
-                WKBackForwardListItem *item = reversAry[i];
-                if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
-                   || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
-                    if(i > 0){
-                        [web goToBackForwardListItem:reversAry[i - 1]];
-                    }else{
-                        [web loadUrl:@""];
-                        [self.webCacheAry removeLastObject];
-                        [web removeFromSuperview];
-                        web = nil;
+            if(ary.count > 0){
+                NSArray<WKBackForwardListItem *> *reversAry = [[ary reverseObjectEnumerator] allObjects];
+                for (int i = 0; i < reversAry.count; i++) {
+                    WKBackForwardListItem *item = reversAry[i];
+                    if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
+                       || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
+                        if(i > 0){
+                            [web goToBackForwardListItem:reversAry[i - 1]];
+                        }else{
+                            [web loadUrl:@""];
+                            [self.webCacheAry removeLastObject];
+                            [web removeFromSuperview];
+                            web = nil;
+                        }
+                        return;
                     }
-                    return;
                 }
+            }else{
+                [web loadUrl:@""];
+                [self.webCacheAry removeLastObject];
+                [web removeFromSuperview];
             }
         }else{
             [web loadUrl:@""];

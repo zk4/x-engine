@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.zkty.modules.engine.utils.ActivityUtils;
 import com.zkty.modules.engine.utils.FileUtils;
+import com.zkty.modules.engine.utils.ToastUtils;
 
 import org.json.JSONObject;
 
@@ -48,7 +49,7 @@ public class UniMPMaster {
                     e.printStackTrace();
                 }
             } else {//释放wgt失败
-                Toast.makeText(context, "小程序启动失败:资源释放失败", Toast.LENGTH_SHORT).show();
+                ToastUtils.showThreadToast("小程序启动失败:资源释放失败");
             }
             return null;
         });
@@ -84,7 +85,7 @@ public class UniMPMaster {
                     e.printStackTrace();
                 }
             } else {//释放wgt失败
-                Toast.makeText(context, "小程序启动失败:资源释放失败", Toast.LENGTH_SHORT).show();
+                ToastUtils.showThreadToast("小程序启动失败:资源释放失败");
             }
             return null;
         });

@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nav_bar"
         android:background="@color/transparent"
-        android:visibility="gone"
         app:hl_angle="90"
         app:hl_endColor="#09004080"
         app:hl_startColor="@color/transparent">

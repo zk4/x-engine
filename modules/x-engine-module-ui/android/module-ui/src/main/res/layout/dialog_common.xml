@@ -37,7 +37,7 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_16"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:minLines="2"
                 android:textColor="#121212"
                 android:textSize="@dimen/sp_18" />

@@ -176,7 +176,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
 
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
-//        navShadow.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
+        navShadow.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
         xEngineNavBar.setLeftListener(view -> {
             backUp();
         });

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import com.zkty.engine.module.xxxx.ConstantValues;
 
 
 /**
@@ -11,12 +12,12 @@ import androidx.fragment.app.Fragment;
  */
 
 public class HomeTabManager {
-    private HomeTabManager instance;
+    private static HomeTabManager instance;
 
-    private HomePageNewFragment homePageFragment;
-    private AppPageFragment appPageFragment;
+    private HomeFragment homePageFragment;
+    private HomeFragment appPageFragment;
 
-    private MePageFragment mePageFragment;
+    private HomeFragment mePageFragment;
 
 
     private Bundle mBundle;
@@ -25,10 +26,10 @@ public class HomeTabManager {
         //no instance
     }
 
-    public static cn.timesneighborhood.app.b.view.fragment.HomeTabManager getInstance() {
+    public static HomeTabManager getInstance() {
         if (instance == null) {
-            synchronized (cn.timesneighborhood.app.b.view.fragment.HomeTabManager.class) {
-                instance = new cn.timesneighborhood.app.b.view.fragment.HomeTabManager();
+            synchronized (HomeTabManager.class) {
+                instance = new HomeTabManager();
             }
         }
         return instance;
@@ -41,7 +42,7 @@ public class HomeTabManager {
             //首页
             case ConstantValues.HOME_INDEX:
                 if (homePageFragment == null) {
-                    homePageFragment = new HomePageNewFragment();
+                    homePageFragment = new HomeFragment();
                 }
                 fragment = homePageFragment;
                 break;
@@ -49,14 +50,14 @@ public class HomeTabManager {
             //应用
             case ConstantValues.APP_INDEX:
                 if (appPageFragment == null) {
-                    appPageFragment = new AppPageFragment();
+                    appPageFragment = new HomeFragment();
                 }
                 fragment = appPageFragment;
                 break;
             //我
             case ConstantValues.ME_INDEX:
                 if (mePageFragment == null) {
-                    mePageFragment = new MePageFragment();
+                    mePageFragment = new HomeFragment();
                 }
                 fragment = mePageFragment;
                 break;

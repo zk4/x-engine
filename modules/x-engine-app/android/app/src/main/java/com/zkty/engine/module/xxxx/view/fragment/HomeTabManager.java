@@ -5,6 +5,10 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import com.zkty.engine.module.xxxx.ConstantValues;
+import com.zkty.modules.engine.fargment.XEngineFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -14,13 +18,8 @@ import com.zkty.engine.module.xxxx.ConstantValues;
 public class HomeTabManager {
     private static HomeTabManager instance;
 
-    private HomeFragment homePageFragment;
-    private HomeFragment appPageFragment;
+    private List<Fragment> fragments = new ArrayList<>();
 
-    private HomeFragment mePageFragment;
-
-
-    private Bundle mBundle;
 
     private HomeTabManager() {
         //no instance
@@ -37,38 +36,11 @@ public class HomeTabManager {
 
 
     public Fragment getFragmentByIndex(int index) {
-        Fragment fragment = null;
-        switch (index) {
-            //首页
-            case ConstantValues.HOME_INDEX:
-                if (homePageFragment == null) {
-                    homePageFragment = new HomeFragment();
-                }
-                fragment = homePageFragment;
-                break;
-
-            //应用
-            case ConstantValues.APP_INDEX:
-                if (appPageFragment == null) {
-                    appPageFragment = new HomeFragment();
-                }
-                fragment = appPageFragment;
-                break;
-            //我
-            case ConstantValues.ME_INDEX:
-                if (mePageFragment == null) {
-                    mePageFragment = new HomeFragment();
-                }
-                fragment = mePageFragment;
-                break;
+        if (fragments.size() <= index) {
+            fragments.add(XEngineFragment.newInstance(index, "h5", "https://www.baidu.com"));
         }
 
-        if (fragment != null) {
-            if (mBundle != null) {
-                fragment.setArguments(mBundle);
-            }
-        }
-        return fragment;
+        return fragments.get(index);
     }
 
 }

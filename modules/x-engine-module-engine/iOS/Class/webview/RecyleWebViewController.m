@@ -7,6 +7,8 @@
 #import "xengine__module_BaseModule.h"
 #import "XEOneWebViewPool.h"
 #import "MicroAppLoader.h"
+#import <Unity.h>
+
 static   XEngineWebView* s_webview;
 
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
@@ -418,9 +420,12 @@ static   XEngineWebView* s_webview;
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 
-//    if(self.navigationController == nil){
-//        [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
-//    }
+    if(self.navigationController == nil){
+        NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
+        if(![ary.lastObject isKindOfClass:[RecyleWebViewController class]]){
+            [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
+        }
+    }
     self.navBarHairlineImageView.hidden = NO;
 }
 

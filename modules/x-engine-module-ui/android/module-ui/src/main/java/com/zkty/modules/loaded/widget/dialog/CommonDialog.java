@@ -110,6 +110,16 @@ public class CommonDialog extends BaseDialog {
     public void setSingleMode() {
         cancelTv.setVisibility(View.GONE);
     }
+    public void setShowCancel() {
+        cancelTv.setVisibility(View.VISIBLE);
+    }
+
+    public void setHideConfirm() {
+        confirmTv.setVisibility(View.GONE);
+    }
+    public void setShowConfirm() {
+        confirmTv.setVisibility(View.VISIBLE);
+    }
 
 
 }

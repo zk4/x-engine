@@ -363,18 +363,25 @@ static   XEngineWebView* s_webview;
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     
-    if(![self.webview.URL.absoluteString isEqualToString:self.loadUrl] &&
-       ![self.webview.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
-        
-        NSArray<WKBackForwardListItem *> *reversAry = self.webview.backForwardList.backList;
-        for (int i = 0; i < reversAry.count; i++) {
-            WKBackForwardListItem *item = reversAry[i];
-            if([[item.URL.absoluteString lowercaseString] isEqualToString:[self.loadUrl lowercaseString]]
-               || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
-                [self.webview goToBackForwardListItem:item];
-            }
-        }
-    }
+    [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
+    
+//    if(![self.webview.URL.absoluteString isEqualToString:self.loadUrl] &&
+//       ![self.webview.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
+//        
+//        BOOL isFind = false;
+//        NSArray<WKBackForwardListItem *> *reversAry = self.webview.backForwardList.backList;
+//        for (int i = 0; i < reversAry.count; i++) {
+//            WKBackForwardListItem *item = reversAry[i];
+//            if([[item.URL.absoluteString lowercaseString] isEqualToString:[self.loadUrl lowercaseString]]
+//               || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
+//                [self.webview goToBackForwardListItem:item];
+//                isFind = true;
+//            }
+//        }
+//        if(!isFind){
+//            
+//        }
+//    }
     if(self.screenView){
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];
@@ -405,9 +412,9 @@ static   XEngineWebView* s_webview;
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    if(self.navigationController == nil){
-        [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
-    }
+//    if(self.navigationController == nil){
+//        [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
+//    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

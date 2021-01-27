@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:replace="android:label">
-        <activity android:name="com.zkty.engine.module.xxxx.view.MainActivity">
+        <activity android:name="com.zkty.engine.module.xxxx.view.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

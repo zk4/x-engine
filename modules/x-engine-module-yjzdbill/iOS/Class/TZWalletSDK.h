@@ -19,11 +19,6 @@
 /*
  调用钱包
  
- platMerCstNo;//平台商户号
- businessCstName;//个人用户姓名
- businessCstNo;//个人用户业务系统客户号
- businessCstMobileNo;//个人用户手机号
- 
  NSMutableDictionary *inf = [NSMutableDictionary dictionary];
  [inf setObject:walletPlatMerCstNoStr forKey:@"platMerCstNo"];
  [inf setObject:walletBusinessCstNameStr forKey:@"businessCstName"];

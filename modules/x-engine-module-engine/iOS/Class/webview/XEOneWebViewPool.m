@@ -115,8 +115,9 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
     
     NSArray *webAry = [[self.webCacheAry reverseObjectEnumerator] allObjects];
     for (XEngineWebView *item in webAry) {
+        
         if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
-           ||[item.URL.absoluteString rangeOfString:[NSString stringWithFormat:@"%@#/", url]].location !=NSNotFound){
+           || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
             return;
         }else{
             WKWebView *web = item;

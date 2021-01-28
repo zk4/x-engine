@@ -233,7 +233,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
 
                                 if (!TextUtils.isEmpty(file)) {
                                     Log.d(TAG, "out:" + out.getPath());
-                                    ClientManager.readPictureDegree(out.getPath());
+
                                     if (cameraDTO.allowsEditing) {              //编辑
                                         crop(act, uri, out.getParentFile(), out.getName(), editArgs);
                                     } else {                                    //直接返回
@@ -478,11 +478,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
                 cameraRetDTO.height = String.valueOf(options.outHeight);
 
                 if (cameraDTO.isbase64) {
-                    int degree = ClientManager.readPictureDegree(paths.get(j));
-                    Bitmap bitmap1 = ClientManager.openImage(paths.get(j));
-                    Bitmap newBitmap = ClientManager.rotaingImageView(degree,bitmap1);
-                    String ret = ClientManager.bmpToBase64(newBitmap);
-//                    String ret = ClientManager.imageToBase64(paths.get(j));
+                    String ret = ClientManager.imageToBase64(paths.get(j));
                     if (ret != null) {
                         cameraRetDTO.retImage = ret;
                     } else {

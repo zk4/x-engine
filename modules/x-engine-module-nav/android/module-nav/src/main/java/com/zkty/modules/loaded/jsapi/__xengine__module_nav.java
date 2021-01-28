@@ -32,6 +32,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     @Override
     public void _setNavTitle(NavTitleDTO dto, CompletionHandler<Nullable> handler) {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setTitle(dto.title, dto.titleColor, dto.titleSize);
         });
@@ -42,6 +46,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     public void _setNavLeftBtn(NavBtnDTO dto, CompletionHandler<Nullable> handler) {
 
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             if (TextUtils.isEmpty(dto.__event__)) {
                 mActivity.getXEngineNavBar().setNavLeftBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, view -> {
@@ -62,6 +70,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     @Override
     public void _setNavRightBtn(NavBtnDTO dto, CompletionHandler<Nullable> handler) {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavRightBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.isBoldFont, view -> {
                 if (DeviceUtils.isFastClick()) return;
@@ -81,7 +93,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     public void _setNavRightMenuBtn(NavBtnDTO dto, CompletionHandler<Nullable> handler) {
 
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
-
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavRightMenuBtn(dto.title, dto.titleColor, dto.titleSize, dto.icon, dto.iconSize, dto.popList, Boolean.parseBoolean(dto.showMenuImg), dto.popWidth, (adapterView, view, i, l) -> {
                 if (DeviceUtils.isFastClick()) return;
@@ -97,7 +112,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     @Override
     public void _setNavRightMoreBtn(NavMoreBtnDTO dto, CompletionHandler<Nullable> handler) {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
-
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             if (DeviceUtils.isFastClick()) return;
             mActivity.getXEngineNavBar().setNavRightMoreBtn(JSON.toJSONString(dto.btns), (adapterView, view, i, l) -> {
@@ -118,6 +136,10 @@ public class __xengine__module_nav extends xengine__module_nav {
         }
         XOneWebViewPool.IS_ROUTER = false;
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             XEngineWebActivityManager.sharedInstance().navigatorPush(mActivity, dto.url, dto.params, dto.hideNavbar);
             handler.complete();
@@ -129,6 +151,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     public void _navigatorBack(NavNavigatorBackDTO dto, CompletionHandler<Nullable> handler) {
 
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             if (dto == null || TextUtils.isEmpty(dto.url)) {
 //                XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mActivity.getMicroAppId()).backUp();
@@ -152,6 +178,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     public void _setNavSearchBar(NavSearchBarDTO dto, CompletionHandler<Nullable> handler) {
 
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             mActivity.getXEngineNavBar().setNavSearchBar(dto.cornerRadius, dto.backgroundColor, dto.iconSearch, dto.iconSearchSize,
                     dto.iconClear, dto.iconClearSize, dto.textColor, dto.fontSize, dto.placeHolder, dto.isInput, dto.becomeFirstResponder, key -> {
@@ -196,6 +226,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     @Override
     public void _setSearchBarHidden(NavHiddenBarDTO dto, CompletionHandler<Nullable> handler) {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             if (mActivity.getXEngineNavBar().getSearchEditView() != null) {
                 if (dto.isAnimation && dto.isHidden) {
@@ -212,6 +246,10 @@ public class __xengine__module_nav extends xengine__module_nav {
     @Override
     public void _setNavBarHidden(NavHiddenBarDTO dto, CompletionHandler<Nullable> handler) {
         XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            handler.complete();
+            return;
+        }
         mActivity.runOnUiThread(() -> {
             if (dto.isAnimation && dto.isHidden) {
                 startAnim(mActivity.getXEngineNavBar());

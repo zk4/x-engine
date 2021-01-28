@@ -2,8 +2,11 @@ package com.zkty.modules.engine.utils;
 
 import android.text.TextUtils;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UrlUtils {
 
@@ -84,5 +87,15 @@ public class UrlUtils {
                 map.put(keyValue[0], keyValue[1]);
         }
         return map;
+    }
+
+    public static boolean isHttpUrl(String urls) {
+        try {
+            URL url = new URL(urls);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

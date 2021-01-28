@@ -1,11 +1,11 @@
 package com.zkty.engine.module.xxxx.view.fragment;
 
-import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import com.zkty.engine.module.xxxx.ConstantValues;
+import com.zkty.modules.engine.core.MicroAppLoader;
 import com.zkty.modules.engine.fargment.XEngineFragment;
+import com.zkty.modules.engine.manager.MicroAppsManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,7 @@ public class HomeTabManager {
     private static HomeTabManager instance;
 
     private List<Fragment> fragments = new ArrayList<>();
+    private String[] microAppIds = new String[]{"com.times.microapp.AppcMin", "com.times.microapp.AppcMine"};
 
 
     private HomeTabManager() {
@@ -37,9 +38,9 @@ public class HomeTabManager {
 
     public Fragment getFragmentByIndex(int index) {
         if (fragments.size() <= index) {
-            fragments.add(XEngineFragment.newInstance(index, "h5", "https://www.baidu.com"));
+            String indexUrl = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(microAppIds[index]);
+            fragments.add(XEngineFragment.newInstance(indexUrl));
         }
-
         return fragments.get(index);
     }
 

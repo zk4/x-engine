@@ -130,7 +130,6 @@ public class XEngineWebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        SwipeBackHelper.onCreate(this);
 
-        setContentView(R.layout.activity_engine_webview);
 
         hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
         if (hideNavBar) {
@@ -144,13 +143,12 @@ public class XEngineWebActivity extends AppCompatActivity {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 window.setStatusBarColor(Color.TRANSPARENT);
                 window.setNavigationBarColor(Color.TRANSPARENT);
-            }
-            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 Window window = getWindow();
                 window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                         WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             }
-            StatusBarUtil.setStatusTextColor(true, this);
+            StatusBarUtil.StatusBarLightMode(this);
         } else {
             ImmersionBar.with(this)
                     .fitsSystemWindows(true)
@@ -159,7 +157,7 @@ public class XEngineWebActivity extends AppCompatActivity {
 
         }
 
-
+        setContentView(R.layout.activity_engine_webview);
         //关闭 关于文件uri暴露的检测（FileUriExposedException）
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());

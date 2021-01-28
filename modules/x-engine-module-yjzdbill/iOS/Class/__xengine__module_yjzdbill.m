@@ -37,6 +37,7 @@
 - (void)didBecomeActive{
     NSLog(@"========开始查证======");
     [[YJBillPlatform sharedSingleton] payVerification];
+    [[TZWalletSDK shareInstance]payVerification];
 }
 
 //支付

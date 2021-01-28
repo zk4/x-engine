@@ -4,27 +4,8 @@
     <string name="app_name_uat">xxxx_UAT</string>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <string-array name="bottom_bar_labels_no_express">
-        <item>首页</item>
-        <item>我的</item>
+        <item>tab1</item>
+        <item>tab2</item>
     </string-array>
 </resources>

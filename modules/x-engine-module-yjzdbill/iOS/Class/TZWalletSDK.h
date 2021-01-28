@@ -13,9 +13,18 @@
  */
 +(instancetype _Nonnull )shareInstance;
 /*
- 钱包地址配置
+ 钱包服务器地址配置
+ */
+-(void)setWalletSDKServer:(NSString *_Nonnull)walletSDKServer;
+/*
+ 钱包页面地址配置
  */
 -(void)setWalletSDKAddress:(NSString *_Nonnull)walletSDKAddress;
+
+/*
+ 微信支付所需要的appid和universalLink地址配置
+ */
+-(void)setWeChatAppId:(NSString *_Nonnull)appid universalLink:(NSString *_Nonnull)universalLink;
 /*
  调用钱包
  
@@ -41,5 +50,11 @@
  finishBlock:回调
  */
 -(void)callWalletWithInfo:(NSMutableDictionary *_Nonnull)info withScheme:(NSString *_Nonnull)appScheme finishBlock:(void(^_Nonnull)(void))finishBlock;
+
+
+/*
+ *第三方支付查证接口
+*/
+-(void)payVerification;
 
 @end

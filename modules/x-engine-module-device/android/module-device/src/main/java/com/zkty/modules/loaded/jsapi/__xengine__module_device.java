@@ -9,6 +9,7 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
@@ -43,6 +44,7 @@ public class __xengine__module_device extends xengine__module_device {
         handler.complete(moreDTO);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void _getBatteryLevel(DeviceSheetDTO dto, CompletionHandler<DeviceMoreDTO> handler) {
         Activity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
@@ -112,7 +114,7 @@ public class __xengine__module_device extends xengine__module_device {
     public void _getStatusHeight(DeviceSheetDTO dto, CompletionHandler<DeviceMoreDTO> handler) {
         Activity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
         DeviceMoreDTO moreDTO = new DeviceMoreDTO();
-        moreDTO.content = String.valueOf(DensityUtils.getStatusBarHeight(activity));
+        moreDTO.content = String.valueOf(DensityUtils.pixelsToDip(activity, DensityUtils.getStatusBarHeight(activity)));
         handler.complete(moreDTO);
     }
 
@@ -120,7 +122,7 @@ public class __xengine__module_device extends xengine__module_device {
     public void _getNavigationHeight(DeviceSheetDTO dto, CompletionHandler<DeviceMoreDTO> handler) {
         Activity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
         DeviceMoreDTO moreDTO = new DeviceMoreDTO();
-        moreDTO.content = String.valueOf(DensityUtils.dipToPixels(activity, 45));
+        moreDTO.content = "65";
         handler.complete(moreDTO);
     }
 
@@ -128,7 +130,7 @@ public class __xengine__module_device extends xengine__module_device {
     public void _getTabBarHeight(DeviceSheetDTO dto, CompletionHandler<DeviceMoreDTO> handler) {
         Activity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
         DeviceMoreDTO moreDTO = new DeviceMoreDTO();
-        moreDTO.content = String.valueOf(DensityUtils.getNavigationBarHeightIfRoom(activity));
+        moreDTO.content = String.valueOf(DensityUtils.pixelsToDip(activity, DensityUtils.getNavigationBarHeightIfRoom(activity)));
         handler.complete(moreDTO);
     }
 

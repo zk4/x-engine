@@ -111,7 +111,7 @@ public class MyTabView extends RelativeLayout {
 
         iv2.setOnClickListener(view1 -> {
             if (null != mTabListener) {
-                mTabListener.onTabSelected(2);
+//                mTabListener.onTabSelected(2);
             }
         });
 

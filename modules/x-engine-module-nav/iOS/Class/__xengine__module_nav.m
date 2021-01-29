@@ -549,7 +549,7 @@ static const NSUInteger BAR_BTN_FLAG = 10000;
             if ([NavUtil getNoEmptyString:item.titleFontName]){
                 itemButton.titleLabel.font = [UIFont fontWithName:item.titleFontName size:item.titleSize];
             }else{
-                itemButton.titleLabel.font = [UIFont systemFontOfSize:item.titleSize];
+                itemButton.titleLabel.font = [UIFont boldSystemFontOfSize:item.titleSize];
             }
             [itemButton sizeToFit];
             [barAry addObject:btnItem];

@@ -39,8 +39,7 @@ public class MyTabView extends RelativeLayout {
             R.color.color_12);
     public int size;
 
-    public TextView textViewNumber;
-
+    private ImageView centerBtn;
 
 
     public interface OnTabSelectedListener {
@@ -75,12 +74,12 @@ public class MyTabView extends RelativeLayout {
 
 
         mLabels = getResources().getTextArray(R.array.bottom_bar_labels_no_express);
-        mDrawableIds = new int[]{R.mipmap.tabbar_button_1_2,
-                R.mipmap.tabbar_button_3_2
-                };
+        mDrawableIds = new int[]{R.mipmap.tabbar_button_1_2, R.mipmap.tabbar_button_2_2, R.mipmap.tabbar_button_3_2,
+                R.mipmap.tabbar_button_4_2
+        };
 
-        disDrawableIds = new int[]{R.mipmap.tabbar_button_1_1,
-                R.mipmap.tabbar_button_3_1};
+        disDrawableIds = new int[]{R.mipmap.tabbar_button_1_1, R.mipmap.tabbar_button_2_1, R.mipmap.tabbar_button_3_1,
+                R.mipmap.tabbar_button_4_1};
 
         size = mLabels.length;
         mCheckedList.clear();
@@ -89,32 +88,38 @@ public class MyTabView extends RelativeLayout {
 
         TextView tv0 = view.findViewById(R.id.tv_tab_0);
         TextView tv1 = view.findViewById(R.id.tv_tab_1);
+        TextView tv2 = view.findViewById(R.id.tv_tab_2);
+        TextView tv3 = view.findViewById(R.id.tv_tab_3);
 
 
         ImageView iv0 = view.findViewById(R.id.iv_tab_0);
         ImageView iv1 = view.findViewById(R.id.iv_tab_1);
-        ImageView iv2 = view.findViewById(R.id.iv_center);
+        ImageView iv2 = view.findViewById(R.id.iv_tab_2);
+        ImageView iv3 = view.findViewById(R.id.iv_tab_3);
+
+        centerBtn = view.findViewById(R.id.iv_center);
 
         LinearLayout ll0 = view.findViewById(R.id.ll_tab_0);
         LinearLayout ll1 = view.findViewById(R.id.ll_tab_1);
+        LinearLayout ll2 = view.findViewById(R.id.ll_tab_2);
+        LinearLayout ll3 = view.findViewById(R.id.ll_tab_3);
 
 
         mCheckedList.add(tv0);
         mCheckedList.add(tv1);
+        mCheckedList.add(tv2);
+        mCheckedList.add(tv3);
 
 
         mImageList.add(iv0);
         mImageList.add(iv1);
+        mImageList.add(iv2);
+        mImageList.add(iv3);
 
         mViewList.add(ll0);
         mViewList.add(ll1);
-
-        iv2.setOnClickListener(view1 -> {
-            if (null != mTabListener) {
-//                mTabListener.onTabSelected(2);
-            }
-        });
-
+        mViewList.add(ll2);
+        mViewList.add(ll3);
 
         for (int i = 0; i < size; i++) {
             final int index = i;
@@ -158,5 +163,8 @@ public class MyTabView extends RelativeLayout {
 
     private OnTabSelectedListener mTabListener;
 
+    public ImageView getCenterBtn() {
+        return this.centerBtn;
+    }
 
 }

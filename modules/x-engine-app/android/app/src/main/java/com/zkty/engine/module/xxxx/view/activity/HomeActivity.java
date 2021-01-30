@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,8 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
 
     @BindView(R.id.tab_widget)
     MyTabView mTabWidget;
+
+    private ImageView mCenterBtn;
 
 
     private FragmentManager mFragmentManager;
@@ -106,8 +109,11 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
         transaction.add(R.id.fl_home_content, mContentFragment);
         transaction.commitAllowingStateLoss();
         setTabsDisplay(mIndex);
+        mCenterBtn = mTabWidget.getCenterBtn();
+        initCenterBtnListener();
 
     }
+
 
     private void getMyTabWidgetHeight() {
         int w = View.MeasureSpec.makeMeasureSpec(0,
@@ -152,8 +158,7 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
     @Override
     protected void onResume() {
         super.onResume();
-
-        Log.d("HomeActivity", BuildConfig.JSON);
+//        Log.d("HomeActivity", BuildConfig.JSON);
     }
 
 
@@ -209,6 +214,11 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+
+    }
+
+    private void initCenterBtnListener() {
+        mCenterBtn.setOnClickListener(v -> ToastUtils.showNormalShortToast("单击"));
 
     }
 

@@ -19,7 +19,7 @@ public class HomeTabManager {
     private static HomeTabManager instance;
 
     private List<Fragment> fragments = new ArrayList<>();
-    private String[] microAppIds = new String[]{"com.times.microapp.AppcMin", "com.times.microapp.AppcMine"};
+    private String[] microAppIds = new String[]{"com.times.microapp.AppcMin", "com.times.microapp.AppcMine", "com.times.microapp.AppcMine", "com.times.microapp.AppcMine"};
 
 
     private HomeTabManager() {

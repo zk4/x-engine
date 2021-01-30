@@ -57,8 +57,6 @@ sequenceDiagram
 	  b->>a: 返回路由例表
 	  a->>a: 用 p0 验证 digest(md5(m1)) 是否合法
     a->>a: 打开  m1.zip
-    
-
 ```
 
 ### 对外接口
@@ -282,15 +280,16 @@ msg://路由 id
 sequenceDiagram
 	  autonumber
     participant a as App 
-    participant q as QR
     participant rs as 路由服务器
+    participant ms as 微应用服务器
    
-    a->>q: 扫码,得到路由 id 
-    loop Healthcheck
-        John->>John: Fight against hypochondria
+    a->>a: 扫码,得到路由 id 
+    a->>rs: 拿路由 id 请求路由信息
+    alt 存在路由信息
+    rs->>a: 
+    else 不存在
     end
-    Note right of John: Rational thoughts<br/>prevail...
-
+    
 ```
 
 

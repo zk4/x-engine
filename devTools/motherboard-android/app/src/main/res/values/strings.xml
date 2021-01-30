@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">基座</string>
+
+    <string-array name="bottom_bar_labels_no_express">
+        <item>微应用</item>
+        <item>模块</item>
+        <item>log</item>
+    </string-array>
+</resources>

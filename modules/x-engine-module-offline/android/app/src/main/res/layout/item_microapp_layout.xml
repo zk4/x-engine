@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="列出本地所有的微应用"
+        android:textColor="@color/default_text_color"
+        android:textSize="14dp"></TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#FFC2C2C2"></View>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+xcodeproj = "motherboard.xcodeproj" 
+require 'plist'
+platform :ios do
+  desc "upload to pgy"
+  lane :pgy do
+
+    teamid = "D98ZZZNWR2"  #alias for ShiDaiLinLiBang Technology Co., Ltd.  
+    app_identifier="com.times.motherboard.base" # The App Identifier
+
+    update_project_team(
+      path: xcodeproj,
+      targets: ['motherboard'],
+      teamid: teamid
+    )
+
+    update_app_identifier(
+      xcodeproj: xcodeproj, # Optional path to xcodeproj, will use the first .xcodeproj if not set
+      plist_path: "./motherboard/Info.plist", # Path to info plist file, relative to xcodeproj
+      app_identifier: app_identifier # The App Identifier
+    )
+
+    info = Plist.parse_xml('../motherboard/Info.plist')
+    version = get_version_number(xcodeproj: xcodeproj)
+
+    build_app(
+        scheme: "motherboard",
+        export_method: "enterprise"
+    )
+    pgyer(api_key: "576a62a2a1cb4729df3a3413a9d364bb", user_key: "e51db791981eb7771c098ef2f7997266")
+    git_commit(path: ".", message: "pgy(motherboard):"+version)
+    # ding ding message
+    #path = "/Users/zk/git/company/working/dingding.sh" +" motherboard "+version +" " + info["CFBundleVersion"]
+    #sh(path)
+
+  end
+   # 发送钉钉通知 (shell脚本)
+  #private_lane :send_dingtalk_msg do |options|
+end

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/iv_main_scan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:padding="5dp"
+            android:src="@mipmap/icon_scan" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_web"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="请输入网址"
+            android:inputType="textUri"
+            android:textColor="@color/ab_color_43"
+            android:textColorHint="@color/color_66"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:onClick="load"
+            android:text="load"
+            android:textColor="@color/ab_color_43"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc normal"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:typeface="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc normal serif"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:typeface="serif" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc normal monospace"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc normal sans"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc bold normal"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc bold serif"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc bold monospace"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="monospace" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc bold sans"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc italic normal"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:typeface="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc italic serif"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:typeface="serif" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc italic monospace"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:typeface="monospace" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="字体ABCabc italic sans"
+            android:textColor="#121212"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:typeface="sans" />
+
+    </LinearLayout>
+</LinearLayout>

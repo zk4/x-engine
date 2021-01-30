@@ -1,0 +1,194 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - AlipaySDK-iOS (15.7.9)
+  - BMKLocationKit (2.0.0)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - JSONModel (1.8.0)
+  - Masonry (1.3.0)
+  - MBProgressHUD (1.2.0)
+  - MJExtension (3.2.2)
+  - MJRefresh (3.5.0)
+  - SDWebImage (5.10.0):
+    - SDWebImage/Core (= 5.10.0)
+  - SDWebImage/Core (5.10.0)
+  - SSZipArchive (2.2.3)
+  - UniBoost (3.0.7)
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-camera (0.0.1):
+    - GCDWebServer (~> 3.0)
+    - JSONModel
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-dcloud (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-device (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-engine (0.1.11):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+  - x-engine-module-localstorage (1.0.5):
+    - JSONModel
+    - x-engine-module-engine
+  - x-engine-module-lope (0.1.11):
+    - x-engine-module-engine
+  - x-engine-module-nav (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-network (0.0.4):
+    - AFNetworking (~> 4.0.0)
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-protocols (0.0.9):
+    - BMKLocationKit
+  - x-engine-module-router (0.1.11):
+    - WechatOpenSDK
+    - x-engine-module-engine
+  - x-engine-module-scan (0.1.11):
+    - x-engine-module-engine
+  - x-engine-module-share (0.1.11):
+    - x-engine-module-engine
+  - x-engine-module-tools (1.0.0):
+    - SSZipArchive
+    - WechatOpenSDK
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-ui (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-yjzdbill (0.1.11):
+    - AFNetworking
+    - AlipaySDK-iOS
+    - MJExtension
+    - WechatOpenSDK
+    - x-engine-module-engine
+  - ZBarSDK (1.5.2)
+
+DEPENDENCIES:
+  - Masonry (from `../../app/ios-thirdlib/Masonry`)
+  - SDWebImage
+  - UniBoost (from `../../../UniBoost`)
+  - WechatOpenSDK (= 1.8.7.1)
+  - x-engine-module-camera (from `../../modules/x-engine-module-camera`)
+  - x-engine-module-dcloud (from `../../modules/x-engine-module-dcloud`)
+  - x-engine-module-device (from `../../modules/x-engine-module-device`)
+  - x-engine-module-engine (from `../../modules/x-engine-module-engine`)
+  - x-engine-module-localstorage (from `../../modules/x-engine-module-localstorage`)
+  - x-engine-module-lope (from `../../modules/x-engine-module-lope`)
+  - x-engine-module-nav (from `../../modules/x-engine-module-nav`)
+  - x-engine-module-network (from `../../modules/x-engine-module-network`)
+  - x-engine-module-protocols (from `../../modules/x-engine-module-protocols/`)
+  - x-engine-module-router (from `../../modules/x-engine-module-router/`)
+  - x-engine-module-scan (from `../../modules/x-engine-module-scan`)
+  - x-engine-module-share (from `../../modules/x-engine-module-share`)
+  - x-engine-module-tools (from `../../modules/x-engine-module-tools/`)
+  - x-engine-module-ui (from `../../modules/x-engine-module-ui`)
+  - x-engine-module-yjzdbill (from `../../modules/x-engine-module-yjzdbill`)
+  - ZBarSDK (from `../../app/ios-thirdlib/ZBarSDK`)
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - AlipaySDK-iOS
+    - BMKLocationKit
+    - GCDWebServer
+    - JSONModel
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - SDWebImage
+    - SSZipArchive
+    - WechatOpenSDK
+
+EXTERNAL SOURCES:
+  Masonry:
+    :path: "../../app/ios-thirdlib/Masonry"
+  UniBoost:
+    :path: "../../../UniBoost"
+  x-engine-module-camera:
+    :path: "../../modules/x-engine-module-camera"
+  x-engine-module-dcloud:
+    :path: "../../modules/x-engine-module-dcloud"
+  x-engine-module-device:
+    :path: "../../modules/x-engine-module-device"
+  x-engine-module-engine:
+    :path: "../../modules/x-engine-module-engine"
+  x-engine-module-localstorage:
+    :path: "../../modules/x-engine-module-localstorage"
+  x-engine-module-lope:
+    :path: "../../modules/x-engine-module-lope"
+  x-engine-module-nav:
+    :path: "../../modules/x-engine-module-nav"
+  x-engine-module-network:
+    :path: "../../modules/x-engine-module-network"
+  x-engine-module-protocols:
+    :path: "../../modules/x-engine-module-protocols/"
+  x-engine-module-router:
+    :path: "../../modules/x-engine-module-router/"
+  x-engine-module-scan:
+    :path: "../../modules/x-engine-module-scan"
+  x-engine-module-share:
+    :path: "../../modules/x-engine-module-share"
+  x-engine-module-tools:
+    :path: "../../modules/x-engine-module-tools/"
+  x-engine-module-ui:
+    :path: "../../modules/x-engine-module-ui"
+  x-engine-module-yjzdbill:
+    :path: "../../modules/x-engine-module-yjzdbill"
+  ZBarSDK:
+    :path: "../../app/ios-thirdlib/ZBarSDK"
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AlipaySDK-iOS: 94ff4c0e17c5e7d126b8207596d5033006534c25
+  BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 6bf7660606c75ec234846166756901ddb5a22128
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  UniBoost: dc3cbe86a18285e477aa69a472d611d1bb18dfb6
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-camera: 310cfca6469908f0d5b9f2e8b64b3d24875bd30e
+  x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
+  x-engine-module-device: 5aaea67cf2dc9e6c8e64d4d1a3a0df1696bd9106
+  x-engine-module-engine: d0cadace94a7b202df1ea4a099e973e7f96d26d6
+  x-engine-module-localstorage: 185961699495e0c7de351fa06a086eea10aae9ef
+  x-engine-module-lope: d558d1670c678aedbbe7a1a87bfd0138bc7ad0cc
+  x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
+  x-engine-module-network: c91ab154d7760385096a6299b9d8bbe030091128
+  x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
+  x-engine-module-router: 6f5d93cac403027755b68013e7aecc190f68d5b0
+  x-engine-module-scan: 16a987d0f9a9fd3a1734d4346d8aaa912075fb69
+  x-engine-module-share: 3bd9bba195de6a524a67a440eb0dca33e846467e
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+  x-engine-module-ui: 62dacd7d9a25a868e874db76dd049c9e0a926b5e
+  x-engine-module-yjzdbill: c62a67bb0ae79470524e91ee686e5f2777535847
+  ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
+
+PODFILE CHECKSUM: 5d4f0548520abe2fd08dbf4c6b125d5aa0ca700d
+
+COCOAPODS: 1.10.0

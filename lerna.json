@@ -1,0 +1,17 @@
+{
+  "packages": [
+    "modules/*"
+  ],
+  "version": "0.1.12",
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ],
+      "verifyAccess": false,
+      "verifyRegistry": false,
+      "message": "chore: publish"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/compress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_common"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="压缩"
+            android:textColor="@color/white"></TextView>
+
+        <TextView
+            android:id="@+id/uncompress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_common"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="解压缩"
+            android:textColor="@color/white"></TextView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

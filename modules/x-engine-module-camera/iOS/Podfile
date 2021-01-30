@@ -1,0 +1,29 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'camera' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  # use_frameworks!
+
+		
+
+  pod "GCDWebServer", "~> 3.0"
+
+# Pods for XEngineSDK
+# 在开发时,将所有依赖的 module 包放这.包括依赖的依赖
+  pod 'SDWebImage'
+  pod 'x-engine-module-engine', :path =>'../../x-engine-module-engine'
+  pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols/'
+  #pod 'x-engine-module-microapp', :path =>'../../x-engine-module-microapp'
+  pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
+  pod 'x-engine-module-nav', :path =>'../../x-engine-module-nav'
+#  pod 'x-engine-module-dcloud', :path =>'../../x-engine-module-dcloud'
+#  pod 'x-engine-module-router', :path =>'../../x-engine-module-router'
+#  pod 'UniBoost', :path => '../../UniBoost'
+  target 'cameraUITests' do
+    # Pods for testing
+  end
+
+end

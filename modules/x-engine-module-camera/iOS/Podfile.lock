@@ -1,0 +1,79 @@
+PODS:
+  - BMKLocationKit (2.0.0)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.5.0)
+  - SDWebImage (5.10.0):
+    - SDWebImage/Core (= 5.10.0)
+  - SDWebImage/Core (5.10.0)
+  - SSZipArchive (2.2.3)
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-engine (0.1.11):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+  - x-engine-module-nav (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-protocols (0.0.9):
+    - BMKLocationKit
+  - x-engine-module-tools (1.0.0):
+    - SSZipArchive
+    - WechatOpenSDK
+    - x-engine-module-engine
+    - x-engine-module-protocols
+
+DEPENDENCIES:
+  - GCDWebServer (~> 3.0)
+  - SDWebImage
+  - x-engine-module-engine (from `../../x-engine-module-engine`)
+  - x-engine-module-nav (from `../../x-engine-module-nav`)
+  - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
+  - x-engine-module-tools (from `../../x-engine-module-tools`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - BMKLocationKit
+    - GCDWebServer
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SDWebImage
+    - SSZipArchive
+    - WechatOpenSDK
+
+EXTERNAL SOURCES:
+  x-engine-module-engine:
+    :path: "../../x-engine-module-engine"
+  x-engine-module-nav:
+    :path: "../../x-engine-module-nav"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols/"
+  x-engine-module-tools:
+    :path: "../../x-engine-module-tools"
+
+SPEC CHECKSUMS:
+  BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-engine: d0cadace94a7b202df1ea4a099e973e7f96d26d6
+  x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
+  x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+
+PODFILE CHECKSUM: e854f082c44c8ca09c74dac4f2e3380209c5ca0a
+
+COCOAPODS: 1.10.0

@@ -215,12 +215,14 @@ data:
        "version": "",
        "name":"name",
        "url": "",
-       "signature":"", // digest(md5(zip))
+       "signature":"", // digest(private_key,md5(zip))
        "method": "",
        ""
    }]
  }
 ```
+
+
 
 
 

@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+
+def jsonFile = file('../../conf/x-engine-module-xxxx.json')
+String json = jsonFile.text.replaceAll("\r\n","").replaceAll("\r","").replaceAll("\n","").replaceAll("\"","'")
+//permissions = json.dependencies["USER_INFO"]
+
+
 def releaseTime() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
@@ -65,6 +71,7 @@ android {
             signingConfig signingConfigs.debug
             buildConfigField 'String', 'ENV', '"DEV"'
             buildConfigField("String", "BuildTime", "\"" + new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("Asia/Shanghai")) + "\"")
+            buildConfigField("String", "JSON", "\""+json+"\"")
         }
         uat {
             minifyEnabled false

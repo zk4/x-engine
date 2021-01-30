@@ -8,6 +8,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -17,7 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.gyf.barlibrary.ImmersionBar;
+import com.zkty.engine.module.xxxx.BuildConfig;
 import com.zkty.engine.module.xxxx.ConstantValues;
 import com.zkty.engine.module.xxxx.R;
 import com.zkty.engine.module.xxxx.dto.MessageEvent;
@@ -27,8 +30,10 @@ import com.zkty.engine.module.xxxx.view.fragment.HomeTabManager;
 import com.zkty.engine.module.xxxx.view.widgets.MyTabView;
 import com.zkty.modules.engine.utils.PermissionsUtils;
 import com.zkty.modules.engine.utils.ToastUtils;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
 
 public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelectedListener {
@@ -148,6 +153,7 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
     protected void onResume() {
         super.onResume();
 
+        Log.d("HomeActivity", BuildConfig.JSON);
     }
 
 
@@ -197,7 +203,6 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
             }
         }
     }
-
 
 
     @Override

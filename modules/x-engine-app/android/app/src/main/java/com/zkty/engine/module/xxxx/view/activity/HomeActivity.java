@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -29,8 +30,10 @@ import com.zkty.engine.module.xxxx.dto.MessageType;
 import com.zkty.engine.module.xxxx.view.base.BaseActivity;
 import com.zkty.engine.module.xxxx.view.fragment.HomeTabManager;
 import com.zkty.engine.module.xxxx.view.widgets.MyTabView;
+import com.zkty.modules.engine.fargment.XEngineFragment;
 import com.zkty.modules.engine.utils.PermissionsUtils;
 import com.zkty.modules.engine.utils.ToastUtils;
+import com.zkty.modules.engine.webview.XEngineWebView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,16 +46,22 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
     MyTabView mTabWidget;
 
     private ImageView mCenterBtn;
+    private XEngineWebView mWebView;
 
 
     private FragmentManager mFragmentManager;
     private Fragment mContentFragment;
+    private XEngineFragment mHomePageFragment;
     private int mIndex = 0;
     private static int CODE_REQUEST_QRCODE = 0x121;
     private static final int REQUEST_PERMISSION_CODE = 100;     //权限申请
     private static final int REQUEST_OP_BLUETOOTH = 102;
 
     private long firstTime = 0;
+
+    private boolean isHomePageScrolled;//首页是否向下滚动过一段距离
+
+    private int mScrollY = 0;
 
 
     private PermissionsUtils permissionsUtils = new PermissionsUtils();
@@ -103,7 +112,8 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
 
         mFragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        mContentFragment = HomeTabManager.getInstance().getFragmentByIndex(ConstantValues.HOME_INDEX);
+        mHomePageFragment = HomeTabManager.getInstance().getFragmentByIndex(0);
+        mContentFragment = mHomePageFragment;
         mTabWidget.removeAllViews();
         mTabWidget.init(this);
         transaction.add(R.id.fl_home_content, mContentFragment);
@@ -111,7 +121,32 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
         setTabsDisplay(mIndex);
         mCenterBtn = mTabWidget.getCenterBtn();
         initCenterBtnListener();
+        initHomePageScrollListener();
 
+    }
+
+    private void initHomePageScrollListener() {
+        mWebView = mHomePageFragment.getWebView();
+        if (mWebView == null) {
+            new Handler().postDelayed(() -> initHomePageScrollListener(), 500);
+            return;
+        }
+        mWebView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            Log.d("initHomePage", "0scrollY=" + scrollY + " ,oldScrollY = " + oldScrollY);
+            if (scrollY == 0) {
+                isHomePageScrolled = false;
+                mTabWidget.changeFirstIcon(false);
+                Log.d("initHomePage", "1scrollY=" + scrollY + " ,oldScrollY = " + oldScrollY);
+
+            } else if (scrollY > 20 && !isHomePageScrolled) {
+                isHomePageScrolled = true;
+                mTabWidget.changeFirstIcon(true);
+                Log.d("initHomePage", "2scrollY=" + scrollY + " ,oldScrollY = " + oldScrollY);
+
+            }
+            mScrollY = scrollY;
+
+        });
     }
 
 
@@ -143,10 +178,17 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
 
     @Override
     public void onTabSelected(int index) {
+        if (mIndex == 0 && index == 0 && isHomePageScrolled && mWebView != null) {
+            runOnUiThread(() -> mWebView.smoothScrollToTop(mScrollY));
+            return;
+        }
+        if (isHomePageScrolled) {
+            mTabWidget.changeFirstIcon(index == 0);
+        }
+
         mIndex = index;
         switchFragment(HomeTabManager.getInstance().getFragmentByIndex(mIndex), mIndex);
         setTabsDisplay(mIndex);
-
 
     }
 

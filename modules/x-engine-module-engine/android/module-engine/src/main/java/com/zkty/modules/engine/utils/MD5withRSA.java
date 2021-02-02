@@ -36,8 +36,9 @@ public class MD5withRSA {
             PublicKey pubKey = keyFactory.generatePublic(keySpec);
             // 加密数据
             Cipher cp = Cipher.getInstance(TRANSFORMATION);
-            cp.init(Cipher.ENCRYPT_MODE, pubKey);
-            result = Base64.encodeToString(cp.doFinal(data), Base64.DEFAULT);
+            cp.init(Cipher.DECRYPT_MODE, pubKey);
+//            result = Base64.encodeToString(cp.doFinal(data), Base64.DEFAULT);
+            result = new String(cp.doFinal(data));
         } catch (Exception e) {
             e.printStackTrace();
         }

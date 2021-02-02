@@ -54,6 +54,7 @@ public class XEngineFragment extends Fragment {
         if (getArguments() != null) {
             mUrl = getArguments().getString(ARG_PARAM_URL);
             mWebView = new XEngineWebView(getActivity());
+            mWebView.setVerticalScrollBarEnabled(false);
             ViewGroup parent = (ViewGroup) mWebView.getParent();
             if (parent != null) {
                 parent.removeAllViews();

@@ -16,6 +16,15 @@
             android:layout_height="match_parent" />
     </RelativeLayout>
 
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_test_icon"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginEnd="@dimen/dp_50"-->
+<!--        android:src="@mipmap/icon_home_app"-->
+<!--        android:layout_marginBottom="@dimen/dp_100"-->
+<!--        android:layout_alignParentBottom="true"/>-->
 
     <com.zkty.engine.module.xxxx.view.widgets.MyTabView
         android:id="@+id/tab_widget"

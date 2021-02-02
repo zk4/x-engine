@@ -136,6 +136,7 @@ dependencies {
     implementation project(':module-router')
     implementation project(':module-scan')
     implementation project(':module-dcloud')
+    implementation project(':module-network')
 
     implementation project(':module-geo')
 

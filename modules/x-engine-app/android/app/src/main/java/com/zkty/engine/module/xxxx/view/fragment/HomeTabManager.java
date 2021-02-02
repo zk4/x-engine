@@ -18,11 +18,18 @@ import java.util.List;
 public class HomeTabManager {
     private static HomeTabManager instance;
 
-    private List<Fragment> fragments = new ArrayList<>();
+    private List<XEngineFragment> fragments = new ArrayList<>();
     private String[] microAppIds = new String[]{"com.times.microapp.AppcMin", "com.times.microapp.AppcMine", "com.times.microapp.AppcMine", "com.times.microapp.AppcMine"};
 
 
     private HomeTabManager() {
+
+        for (String microApp : microAppIds) {
+            String indexUrl = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(microApp);
+            fragments.add(XEngineFragment.newInstance(indexUrl));
+        }
+
+
         //no instance
     }
 
@@ -36,7 +43,7 @@ public class HomeTabManager {
     }
 
 
-    public Fragment getFragmentByIndex(int index) {
+    public XEngineFragment getFragmentByIndex(int index) {
         if (fragments.size() <= index) {
             String indexUrl = MicroAppLoader.sharedInstance().getMicroAppByMicroAppId(microAppIds[index]);
             fragments.add(XEngineFragment.newInstance(indexUrl));

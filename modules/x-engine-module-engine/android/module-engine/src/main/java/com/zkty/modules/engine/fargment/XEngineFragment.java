@@ -26,7 +26,6 @@ public class XEngineFragment extends Fragment {
     private XEngineWebView mWebView;
     private RelativeLayout mRoot;
     private String mUrl;
-   
 
 
     private XEngineFragment() {
@@ -63,6 +62,10 @@ public class XEngineFragment extends Fragment {
             mWebView.loadUrl(mUrl);
         }
 
+    }
+
+    public XEngineWebView getWebView() {
+        return mWebView;
     }
 
 }

@@ -358,4 +358,29 @@ public class XEngineWebView extends DWebView {
         });
     }
 
+    int speed = 100;
+
+    public void smoothScrollToTop(int scrollY) {
+
+
+        if (scrollY < 1) return;
+        if (scrollY < speed) {
+            if (getX5WebViewExtension() != null) {
+                getX5WebViewExtension().scrollTo(0, 0);
+            } else {
+                scrollTo(0, 0);
+            }
+            return;
+        }
+        if (getX5WebViewExtension() != null) {
+            getX5WebViewExtension().scrollTo(0, scrollY - speed);
+        } else {
+            scrollTo(0, scrollY - speed);
+        }
+
+        new Handler().postDelayed(() -> smoothScrollToTop(scrollY - speed), 10);
+
+
+    }
+
 }

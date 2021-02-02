@@ -40,6 +40,8 @@ public class MyTabView extends RelativeLayout {
     public int size;
 
     private ImageView centerBtn;
+    private ImageView iv0;
+    private TextView tv0;
 
 
     public interface OnTabSelectedListener {
@@ -86,13 +88,13 @@ public class MyTabView extends RelativeLayout {
         mImageList.clear();
         mViewList.clear();
 
-        TextView tv0 = view.findViewById(R.id.tv_tab_0);
+        tv0 = view.findViewById(R.id.tv_tab_0);
         TextView tv1 = view.findViewById(R.id.tv_tab_1);
         TextView tv2 = view.findViewById(R.id.tv_tab_2);
         TextView tv3 = view.findViewById(R.id.tv_tab_3);
 
 
-        ImageView iv0 = view.findViewById(R.id.iv_tab_0);
+        iv0 = view.findViewById(R.id.iv_tab_0);
         ImageView iv1 = view.findViewById(R.id.iv_tab_1);
         ImageView iv2 = view.findViewById(R.id.iv_tab_2);
         ImageView iv3 = view.findViewById(R.id.iv_tab_3);
@@ -165,6 +167,14 @@ public class MyTabView extends RelativeLayout {
 
     public ImageView getCenterBtn() {
         return this.centerBtn;
+    }
+
+    public void changeFirstIcon(boolean isScroll) {
+        mDrawableIds[0] = isScroll ? R.mipmap.tabbar_button_1_0 : R.mipmap.tabbar_button_1_2;
+        mLabels = getResources().getTextArray(isScroll ? R.array.bottom_bar_labels_no_express_2 : R.array.bottom_bar_labels_no_express);
+        iv0.setImageResource(mDrawableIds[0]);
+        tv0.setText(mLabels[0]);
+
     }
 
 }

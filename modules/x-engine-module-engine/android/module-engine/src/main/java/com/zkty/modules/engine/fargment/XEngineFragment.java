@@ -21,6 +21,7 @@ import org.greenrobot.eventbus.Subscribe;
 import module.engine.R;
 
 public class XEngineFragment extends Fragment {
+    private String TAG = XEngineFragment.class.getSimpleName();
     private static final String ARG_PARAM_URL = "arg_param_url";
 
     private XEngineWebView mWebView;

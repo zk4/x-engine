@@ -6,32 +6,37 @@ import android.app.Activity;
 
 import android.content.Intent;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.gyf.barlibrary.ImmersionBar;
-import com.zkty.engine.module.xxxx.BuildConfig;
-import com.zkty.engine.module.xxxx.ConstantValues;
 import com.zkty.engine.module.xxxx.R;
 import com.zkty.engine.module.xxxx.dto.MessageEvent;
 import com.zkty.engine.module.xxxx.dto.MessageType;
+import com.zkty.engine.module.xxxx.manager.MicroAppManager;
 import com.zkty.engine.module.xxxx.view.base.BaseActivity;
 import com.zkty.engine.module.xxxx.view.fragment.HomeTabManager;
 import com.zkty.engine.module.xxxx.view.widgets.MyTabView;
 import com.zkty.modules.engine.fargment.XEngineFragment;
+import com.zkty.modules.engine.manager.MicroAppsManager;
 import com.zkty.modules.engine.utils.PermissionsUtils;
+import com.zkty.modules.engine.utils.StatusBarUtil;
 import com.zkty.modules.engine.utils.ToastUtils;
 import com.zkty.modules.engine.webview.XEngineWebView;
 
@@ -39,8 +44,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelectedListener {
+public class HomeActivity extends AppCompatActivity implements MyTabView.OnTabSelectedListener {
 
     @BindView(R.id.tab_widget)
     MyTabView mTabWidget;
@@ -73,6 +80,27 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        StatusBarUtil.StatusBarLightMode(this);
+
+
+        ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         EventBus.getDefault().post(new MessageEvent(MessageType.TYPE_START_HOME_ACTIVITY, null));
         initTab();
         initView();
@@ -105,10 +133,6 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
     }
 
     private void initView() {
-        ImmersionBar.with(this)
-                .fitsSystemWindows(true)
-                .statusBarColor(R.color.white)
-                .statusBarDarkFont(true).init();
 
         mFragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
@@ -192,10 +216,6 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
 
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_home;
-    }
 
     @Override
     protected void onResume() {
@@ -259,10 +279,20 @@ public class HomeActivity extends BaseActivity implements MyTabView.OnTabSelecte
 
     }
 
+//    @OnClick(R.id.iv_test_icon)
+//    void onTest() {
+//        MicroAppManager.getInstance().updateMicroApp();
+//    }
+
     private void initCenterBtnListener() {
         mCenterBtn.setOnClickListener(v -> ToastUtils.showNormalShortToast("单击"));
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
 

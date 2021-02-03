@@ -9,10 +9,10 @@
 #import <x-engine-module-engine/Unity.h>
 #import <x-engine-module-engine/XEOneWebViewControllerManage.h>
 #import "WXApi.h"
-#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
+//#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
 #import <XEngineContext.h>
 #import <MicroAppLoader.h>
-#import <x-engine-module-dcloud/XEUniCheckUtil.h>
+//#import <x-engine-module-dcloud/XEUniCheckUtil.h>
 
 @implementation XERouterManager
 
@@ -86,15 +86,15 @@
                                                                     
             }];
         }else {
-            if([XEUniCheckUtil checkUniFile:uri]){
-                NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
-                __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
-                UniMPDTO* d = [UniMPDTO new];
-                d.appId = uri;
-                d.redirectPath = path;
-                d.arguments = args;
-                [dcloud _openUniMPWithArg:d complete:nil];
-            }
+//            if([XEUniCheckUtil checkUniFile:uri]){
+//                NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
+//                __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
+//                UniMPDTO* d = [UniMPDTO new];
+//                d.appId = uri;
+//                d.redirectPath = path;
+//                d.arguments = args;
+//                [dcloud _openUniMPWithArg:d complete:nil];
+//            }
         }
     } else if([type isEqual:@"wx"]){
         

@@ -1,5 +1,6 @@
 package com.zkty.engine.module.xxxx.network.service;
 
+import com.zkty.engine.module.xxxx.dto.MicroAppInfoBean;
 import com.zkty.engine.module.xxxx.network.callback.ServiceCallback;
 import com.zkty.engine.module.xxxx.network.networkframe.api.CommonApi;
 import com.zkty.engine.module.xxxx.network.networkframe.bean.BaseResp;
@@ -37,6 +38,20 @@ public class CommonEngine {
         RxService.createBasicApi(CommonApi.class, commonService.HOST_OAUTH)
                 .postLogin(grant_type, username, password, clientId, clientSecret, scope)
                 .compose(RxUtil.<BaseResp<TokenBean>>handleRestfullResult())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        responseBean -> {
+                            callback.onSuccess(responseBean);
+                        },
+                        throwable -> commonService.handlerThrowable(throwable, callback)
+                );
+    }
+
+    public void getMicroAppListById(String microId, final ServiceCallback callback) {
+        RxService.createBasicApi(CommonApi.class, commonService.MICRO_SERVE)
+                .getMicroAppListById(microId)
+                .compose(RxUtil.<BaseResp<MicroAppInfoBean>>handleRestfullResult())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

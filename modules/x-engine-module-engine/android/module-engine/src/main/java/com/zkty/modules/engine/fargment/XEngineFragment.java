@@ -21,6 +21,7 @@ import org.greenrobot.eventbus.Subscribe;
 import module.engine.R;
 
 public class XEngineFragment extends Fragment {
+    private String TAG = XEngineFragment.class.getSimpleName();
     private static final String ARG_PARAM_URL = "arg_param_url";
 
     private XEngineWebView mWebView;
@@ -54,6 +55,7 @@ public class XEngineFragment extends Fragment {
         if (getArguments() != null) {
             mUrl = getArguments().getString(ARG_PARAM_URL);
             mWebView = new XEngineWebView(getActivity());
+            mWebView.setVerticalScrollBarEnabled(false);
             ViewGroup parent = (ViewGroup) mWebView.getParent();
             if (parent != null) {
                 parent.removeAllViews();

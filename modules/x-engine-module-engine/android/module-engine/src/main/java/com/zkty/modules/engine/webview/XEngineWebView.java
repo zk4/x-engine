@@ -1,5 +1,6 @@
 package com.zkty.modules.engine.webview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,8 +10,11 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import androidx.annotation.RequiresApi;
 
 import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
@@ -358,7 +362,7 @@ public class XEngineWebView extends DWebView {
         });
     }
 
-    int speed = 100;
+    int speed = 120;
 
     public void smoothScrollToTop(int scrollY) {
 
@@ -378,9 +382,31 @@ public class XEngineWebView extends DWebView {
             scrollTo(0, scrollY - speed);
         }
 
-        new Handler().postDelayed(() -> smoothScrollToTop(scrollY - speed), 10);
+        new Handler().postDelayed(() -> smoothScrollToTop(scrollY - speed), 5);
 
 
     }
 
+    public interface OnScrollListener {
+        void onScrollChange(int scrollX, int scrollY, int oldScrollX, int oldScrollY);
+    }
+
+    private OnScrollListener mScrollListener;
+
+
+    public void setOnScrollListener(OnScrollListener listener) {
+        this.mScrollListener = listener;
+    }
+
+    public OnScrollListener getScrollListener() {
+        return this.mScrollListener;
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        if (mScrollListener != null) {
+            mScrollListener.onScrollChange(l, t, oldl, oldt);
+        }
+    }
 }

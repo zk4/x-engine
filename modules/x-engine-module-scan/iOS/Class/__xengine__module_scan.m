@@ -21,12 +21,14 @@
  
 - (void)_openScanView:(ScanOpenDto *)dto complete:(void (^)(BOOL))completionHandler{
     ZKScanViewController *vc = [[ZKScanViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     vc.block = ^(NSString *data) {
         if([RecyleWebViewController webview]){
             [[RecyleWebViewController webview] callHandler:dto.__event__  arguments:data completionHandler:nil];
         }
     };
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+    vc.hidesBottomBarWhenPushed = NO;
     completionHandler(YES);
 }
 

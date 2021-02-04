@@ -69,6 +69,9 @@ static   XEngineWebView* s_webview;
                 self.customTiitle = self.title;
             }
         }
+        if(dic[@"URL"]){
+            self.loadUrl = [dic[@"URL"] absoluteString];
+        }
     }
 }
 
@@ -152,15 +155,6 @@ static   XEngineWebView* s_webview;
                 }
             }
         }
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(webViewProgressChange:)
-                                                     name:XEWebViewProgressChangeNotification
-                                                   object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(webViewLoadFail:)
-                                                     name:XEWebViewLoadFailNotification
-                                                   object:nil];
         
         if([fileUrl hasPrefix:self.rootPath]){
             
@@ -372,9 +366,8 @@ static   XEngineWebView* s_webview;
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
-    if (![self.loadUrl hasPrefix:@"http"]) {
-        [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
-    }
+    
+    [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
     
 //    if(![self.webview.URL.absoluteString isEqualToString:self.loadUrl] &&
 //       ![self.webview.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
@@ -406,6 +399,16 @@ static   XEngineWebView* s_webview;
     
     [super viewWillAppear:animated];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(webViewProgressChange:)
+                                                 name:XEWebViewProgressChangeNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(webViewLoadFail:)
+                                                 name:XEWebViewLoadFailNotification
+                                               object:nil];
+    
     if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.title]){
         self.title = self.customTiitle;
     }
@@ -431,6 +434,7 @@ static   XEngineWebView* s_webview;
         }
     }
     self.navBarHairlineImageView.hidden = NO;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -458,6 +462,7 @@ static   XEngineWebView* s_webview;
 }
 
 - (void)dealloc{
+
     
 }
 

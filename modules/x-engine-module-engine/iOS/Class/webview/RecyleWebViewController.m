@@ -372,8 +372,9 @@ static   XEngineWebView* s_webview;
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
-    
-    [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
+    if (![self.loadUrl hasPrefix:@"http"]) {
+        [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
+    }
     
 //    if(![self.webview.URL.absoluteString isEqualToString:self.loadUrl] &&
 //       ![self.webview.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){

@@ -19,7 +19,7 @@ app    负责应用的管理(todo)
 可用命令发下
 
 ```
-// 根据 model.ts 生成三端接口雇佣兵
+// 根据 model.ts 生成三端接口
 x-cli model model.ts
 
 // 使用 x-cli 生成模块

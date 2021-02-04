@@ -14,54 +14,21 @@ model  负责模型的生成
 
 module 负责模块的管理
 
-app    负责应用的管理
+app    负责应用的管理(todo)
 
 可用命令发下
 
 ```
-// microap 环境搭建
-x-cli app init <name>
 // 根据 model.ts 生成三端接口雇佣兵
 x-cli model model.ts
+
+// 使用 x-cli 生成模块
+// 需要先安装 coge， 并在 x-engine/modules/x-engine-module-template 文件夹中运行了 coge -r
+x-cli module init wallet x-engine-module-wallet
 ```
 
 
 
-待发布命令如下
-
-```
-
-// 列举当前可用设备
-x-cli app devices
-
-## 模块环境搭建
-x-cli module init 
-
-// 查看线上模块
-x-cli module list
-
-//安装模块
-x-cli module install <xxxx>
-
-//卸载模块
-x-cli module uninstall xxxx@1.0.0
-
-// 升级模块
-x-cli modules update xxxx
-
-
-// 运行 ios 模拟器
-x-cli app run ios:simulator  
-x-cli app run ios
-x-cli app run h5
-x-cli app run android:simulator
-x-cli app run android
-
-x-cli module patch
-x-cli module publish
-```
-
- 
 
 ### model
 

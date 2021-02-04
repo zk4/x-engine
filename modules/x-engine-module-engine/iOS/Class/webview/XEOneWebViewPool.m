@@ -194,6 +194,7 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 //    [webview loadUrl:@"about:blank"];
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    [webview addObserver:self forKeyPath:@"URL" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     return webview;
 }
 
@@ -215,9 +216,25 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
                 @"webView":object,
             }];
         }
+    } else if ([keyPath isEqualToString:@"URL"]) {
+        
+        RecyleWebViewController *vc = (RecyleWebViewController *)[Unity sharedInstance].getCurrentVC;
+        if([vc isKindOfClass:[RecyleWebViewController class]]){
+            NSURL *oldUrl = [change objectForKey:@"old"];
+            if(oldUrl){
+                if([vc.loadUrl isEqualToString:[oldUrl absoluteString]]){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:XEWebViewProgressChangeNotification object:@{
+                        @"URL":[change objectForKey:@"new"],
+                        @"webView":object,
+                    }];
+                }
+            }
+        }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
 @end
+
+//new = "https://shop43191641.m.youzan.com/v2/feature/OwBeWsrl89?oid=59074890";

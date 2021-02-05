@@ -393,6 +393,8 @@ static   XEngineWebView* s_webview;
         });
     }
     [self.view insertSubview:self.webview atIndex:0];
+    
+    self.navBarHairlineImageView.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -422,8 +424,6 @@ static   XEngineWebView* s_webview;
             self.navigationItem.leftBarButtonItems.lastObject.title = @"";
         }
     }
-    
-    self.navBarHairlineImageView.hidden = YES;
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -435,8 +435,9 @@ static   XEngineWebView* s_webview;
             [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
         }
     }
-    self.navBarHairlineImageView.hidden = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    self.navBarHairlineImageView.hidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

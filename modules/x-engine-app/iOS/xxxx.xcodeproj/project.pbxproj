@@ -15,11 +15,14 @@
 		00DFC6F424C84000006A53EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E924C84000006A53EE /* Main.storyboard */; };
 		00DFC6F524C84000006A53EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EB24C84000006A53EE /* main.m */; };
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
-		00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
-		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		00DFC70024C843A3006A53EE /* xengine_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FF24C843A3006A53EE /* xengine_config.json */; };
 		1A81E6B3ACA084AA653283C1 /* libPods-xxxxTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A25103FF41D0DB3DCEBA9E0 /* libPods-xxxxTests.a */; };
 		C8C7381835347B839E90C799 /* libPods-xxxx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C48894A53A7F66C5C7301520 /* libPods-xxxx.a */; };
+		C91F0B1325C9276900DE426E /* firstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B1225C9276900DE426E /* firstViewController.m */; };
+		C91F0B2225C927D400DE426E /* baseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B2125C927D400DE426E /* baseViewController.m */; };
+		C91F0B2E25C93DA700DE426E /* com.times.microapp.AppcMin.0 in Resources */ = {isa = PBXBuildFile; fileRef = C91F0B2D25C93DA700DE426E /* com.times.microapp.AppcMin.0 */; };
+		C96CECE725C794FC002943CC /* ZKTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96CECE625C794FC002943CC /* ZKTabBarViewController.m */; };
+		C96CED0F25C79908002943CC /* ZKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C96CED0E25C79908002943CC /* ZKTabBar.m */; };
 		CD7DF452315AA9F8AB59BFFC /* libPods-xxxxUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38DFB8FFDD336457E4A2E6A /* libPods-xxxxUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -56,9 +59,6 @@
 		00DFC6EB24C84000006A53EE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		00DFC6EC24C84000006A53EE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		00DFC6ED24C84000006A53EE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00DFC6F824C841FD006A53EE /* EntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntryViewController.h; sourceTree = "<group>"; };
-		00DFC6F924C841FD006A53EE /* EntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntryViewController.m; sourceTree = "<group>"; };
-		00DFC6FA24C841FD006A53EE /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryViewController.xib; sourceTree = "<group>"; };
 		00DFC6FF24C843A3006A53EE /* xengine_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xengine_config.json; sourceTree = "<group>"; };
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		23529AFDD9E09F6A16702E3E /* Pods-xxxxUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxxxUITests.debug.xcconfig"; path = "Target Support Files/Pods-xxxxUITests/Pods-xxxxUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +78,15 @@
 		B38DFB8FFDD336457E4A2E6A /* libPods-xxxxUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-xxxxUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C48894A53A7F66C5C7301520 /* libPods-xxxx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-xxxx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91F0B1125C9276900DE426E /* firstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firstViewController.h; sourceTree = "<group>"; };
+		C91F0B1225C9276900DE426E /* firstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = firstViewController.m; sourceTree = "<group>"; };
+		C91F0B2025C927D400DE426E /* baseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseViewController.h; sourceTree = "<group>"; };
+		C91F0B2125C927D400DE426E /* baseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseViewController.m; sourceTree = "<group>"; };
+		C91F0B2D25C93DA700DE426E /* com.times.microapp.AppcMin.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.times.microapp.AppcMin.0; sourceTree = "<group>"; };
+		C96CECE525C794FC002943CC /* ZKTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKTabBarViewController.h; sourceTree = "<group>"; };
+		C96CECE625C794FC002943CC /* ZKTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKTabBarViewController.m; sourceTree = "<group>"; };
+		C96CED0D25C79908002943CC /* ZKTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKTabBar.h; sourceTree = "<group>"; };
+		C96CED0E25C79908002943CC /* ZKTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKTabBar.m; sourceTree = "<group>"; };
 		CC2E8482C6CA230D32748027 /* Pods-xxxxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxxxTests.release.xcconfig"; path = "Target Support Files/Pods-xxxxTests/Pods-xxxxTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-xxxx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxxx.debug.xcconfig"; path = "Target Support Files/Pods-xxxx/Pods-xxxx.debug.xcconfig"; sourceTree = "<group>"; };
 		F625F7C354D7561221903338 /* Pods-xxxx-xxxxUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxxx-xxxxUITests.debug.xcconfig"; path = "Target Support Files/Pods-xxxx-xxxxUITests/Pods-xxxx-xxxxUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +124,6 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* xxxx */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
 				00DFC6D324C83F95006A53EE /* iOSUITests */,
@@ -156,6 +164,9 @@
 		00DFC6E224C84000006A53EE /* xxxx */ = {
 			isa = PBXGroup;
 			children = (
+				C91F0B2D25C93DA700DE426E /* com.times.microapp.AppcMin.0 */,
+				C999348C25C8F2490063E364 /* controllers */,
+				C96CECEE25C79708002943CC /* tabbar */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
@@ -164,9 +175,6 @@
 				00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */,
 				00DFC6EB24C84000006A53EE /* main.m */,
 				00DFC6E924C84000006A53EE /* Main.storyboard */,
-				00DFC6F824C841FD006A53EE /* EntryViewController.h */,
-				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
-				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
 			);
 			path = xxxx;
 			sourceTree = "<group>";
@@ -196,13 +204,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		58E8333F24E1300E008DDFBE /* Class */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Class;
-			sourceTree = "<group>";
-		};
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +213,36 @@
 				B38DFB8FFDD336457E4A2E6A /* libPods-xxxxUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C96CECEE25C79708002943CC /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				C96CED0C25C798C7002943CC /* view */,
+				C96CECE525C794FC002943CC /* ZKTabBarViewController.h */,
+				C96CECE625C794FC002943CC /* ZKTabBarViewController.m */,
+			);
+			path = tabbar;
+			sourceTree = "<group>";
+		};
+		C96CED0C25C798C7002943CC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				C96CED0D25C79908002943CC /* ZKTabBar.h */,
+				C96CED0E25C79908002943CC /* ZKTabBar.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		C999348C25C8F2490063E364 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C91F0B1125C9276900DE426E /* firstViewController.h */,
+				C91F0B1225C9276900DE426E /* firstViewController.m */,
+				C91F0B2025C927D400DE426E /* baseViewController.h */,
+				C91F0B2125C927D400DE426E /* baseViewController.m */,
+			);
+			path = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,9 +356,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
-				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
+				C91F0B2E25C93DA700DE426E /* com.times.microapp.AppcMin.0 in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,9 +521,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91F0B2225C927D400DE426E /* baseViewController.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
-				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
+				C91F0B1325C9276900DE426E /* firstViewController.m in Sources */,
+				C96CECE725C794FC002943CC /* ZKTabBarViewController.m in Sources */,
+				C96CED0F25C79908002943CC /* ZKTabBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,9 +696,11 @@
 			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-xxxx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = D98ZZZNWR2;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xxxx/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -673,8 +709,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linlibang.NeighbourhoodStateTestDP;
 				PRODUCT_NAME = xxxx;
+				PROVISIONING_PROFILE_SPECIFIER = NeighbourhoodStateTestDP;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -684,9 +721,11 @@
 			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-xxxx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = D98ZZZNWR2;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xxxx/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -695,8 +734,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linlibang.NeighbourhoodStateTestDP;
 				PRODUCT_NAME = xxxx;
+				PROVISIONING_PROFILE_SPECIFIER = NeighbourhoodStateTestDP;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

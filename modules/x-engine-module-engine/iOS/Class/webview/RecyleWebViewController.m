@@ -16,8 +16,6 @@ static   XEngineWebView* s_webview;
 
 @property (nonatomic, copy) NSString *rootPath;
 
-@property (nonatomic, strong) UIImageView *navBarHairlineImageView;
-
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
@@ -361,11 +359,6 @@ static   XEngineWebView* s_webview;
     
     [self setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView]];
     [self loadFileUrl];
-    
-    self.navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
-    self.navBarHairlineImageView.hidden = YES;
-    
-    [self.navigationController.navigationBar setLayerShadow:[UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:0.04] offset:CGSizeMake(0,5) radius:10];
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
@@ -429,7 +422,6 @@ static   XEngineWebView* s_webview;
             [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
         }
     }
-    self.navBarHairlineImageView.hidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -441,19 +433,6 @@ static   XEngineWebView* s_webview;
         [self.view addSubview:self.screenView];
         self.screenView.frame = self.view.bounds;
     }
-}
-
-- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
-    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
-        return(UIImageView*)view;
-    }
-    for(UIView*subview in view.subviews) {
-        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
-        if(imageView) {
-            return imageView;
-        }
-    }
-   return nil;
 }
 
 - (void)dealloc{

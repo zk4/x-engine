@@ -422,6 +422,8 @@ static   XEngineWebView* s_webview;
             self.navigationItem.leftBarButtonItems.lastObject.title = @"";
         }
     }
+    
+    self.navBarHairlineImageView.hidden = YES;
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

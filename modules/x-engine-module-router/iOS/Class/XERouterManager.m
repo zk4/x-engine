@@ -36,7 +36,7 @@
         }
         return;
     } else if([type isEqual:@"h5"]){
-        if(![uri hasPrefix:@"http"]){
+        if(![[uri lowercaseString] hasPrefix:@"http"]){
             uri = [NSString stringWithFormat:@"https://%@", uri];
         }
         NSMutableString *url = [[NSMutableString alloc] initWithString:uri];

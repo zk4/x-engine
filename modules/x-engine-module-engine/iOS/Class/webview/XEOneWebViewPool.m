@@ -222,12 +222,13 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
         if([vc isKindOfClass:[RecyleWebViewController class]]){
             NSURL *oldUrl = [change objectForKey:@"old"];
             if(oldUrl && ![oldUrl isKindOfClass:[NSNull class]]){
-                if([vc.loadUrl isEqualToString:[oldUrl absoluteString]]){
+//                if([vc.loadUrl isEqualToString:[oldUrl absoluteString]]
+//                   || [vc.loadUrl isEqualToString:[oldUrl absoluteString]]){
                     [[NSNotificationCenter defaultCenter] postNotificationName:XEWebViewProgressChangeNotification object:@{
                         @"URL":[change objectForKey:@"new"],
                         @"webView":object,
                     }];
-                }
+//                }
             }
         }
     } else {

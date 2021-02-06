@@ -16,13 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:replace="android:label">
-        <activity android:name="com.zkty.engine.module.xxxx.view.activity.HomeActivity">
+        <activity
+            android:name=".view.activity.HomeActivity"
+            android:theme="@style/TranTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".view.MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

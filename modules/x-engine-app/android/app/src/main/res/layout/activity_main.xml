@@ -6,15 +6,11 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <Button
-        android:id="@+id/tv_version"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="20dp"
-        android:text="xxxx"
-        android:onClick="xxxx"
-        android:textColor="#ffffff" />
-
+        android:text="splash"
+        android:textColor="@color/color_12" />
 
 </RelativeLayout>

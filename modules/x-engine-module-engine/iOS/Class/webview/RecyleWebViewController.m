@@ -126,6 +126,11 @@ static   XEngineWebView* s_webview;
         }
        
         self.loadUrl = fileUrl;
+        if([self.loadUrl rangeOfString:@"?"].location == NSNotFound){
+            if(![self.loadUrl hasSuffix:@"/"]){
+                self.loadUrl = [NSString stringWithFormat:@"%@/", self.loadUrl];
+            }
+        }
 
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
            || ![XEOneWebViewPool sharedInstance].inSingle){

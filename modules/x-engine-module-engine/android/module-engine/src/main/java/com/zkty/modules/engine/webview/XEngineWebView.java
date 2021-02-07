@@ -23,6 +23,7 @@ import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
+import com.zkty.modules.engine.dto.PermissionDto;
 import com.zkty.modules.engine.exception.NoModuleIdException;
 import com.zkty.modules.engine.manager.SchemeManager;
 import com.zkty.modules.engine.utils.ImageUtils;
@@ -44,6 +45,7 @@ import java.util.Map;
 
 public class XEngineWebView extends DWebView {
     private Context mContext;
+    private String TAG = XEngineWebView.class.getSimpleName();
 
     public XEngineWebView(Context context) {
         super(context);
@@ -83,20 +85,14 @@ public class XEngineWebView extends DWebView {
         setWebViewClient(new WebViewClient() {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-//                InputStream inputStream = Utils.getLocalImage(s);
-//                Log.d("Xenging-url", s);
-//                if (inputStream != null) {
-//                    WebResourceResponse resourceResponse = new WebResourceResponse();
-//                    resourceResponse.setData(inputStream);
-//                    return resourceResponse;
-//                }
-
+                Log.d(TAG, "request url= " + s);
                 return super.shouldInterceptRequest(webView, s);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-                Log.d("ServeBrowserActivity", "url= " + s);
+                Log.d(TAG, "response url= " + s);
+
                 if (s.contains("tenpay")) {
 
                     Map<String, String> webviewHead = new HashMap<>();
@@ -184,6 +180,13 @@ public class XEngineWebView extends DWebView {
                         e.printStackTrace();
                     }
 
+                    return true;
+                }
+                if (mPermission != null
+                        && mPermission.getPermission() != null
+                        && mPermission.getPermission().getNetwork() != null
+                        && "native".equals(mPermission.getPermission().getNetwork().getMethod())) {
+                    ToastUtils.showThreadToast("网络被禁用，请检查配置");
                     return true;
                 }
 
@@ -381,6 +384,12 @@ public class XEngineWebView extends DWebView {
         new Handler().postDelayed(() -> smoothScrollToTop(scrollY - speed), 10);
 
 
+    }
+
+    private PermissionDto mPermission;
+
+    public void setPermission(PermissionDto mPermission) {
+        this.mPermission = mPermission;
     }
 
 }

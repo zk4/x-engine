@@ -80,6 +80,7 @@ public class XEngineWebActivityManager {
         intent.putExtra(XEngineWebActivity.INDEX_URL, indexUrl);
         intent.putExtra(XEngineWebActivity.MICRO_APP_ID, microAppId);
         intent.putExtra(XEngineWebActivity.HIDE_NAV_BAR, hideNavBar);
+        intent.putExtra(XEngineWebActivity.MICRO_APP_VERSION, version);
 
         String url = null;
         if (TextUtils.isEmpty(path) || "null".equals(path)) {

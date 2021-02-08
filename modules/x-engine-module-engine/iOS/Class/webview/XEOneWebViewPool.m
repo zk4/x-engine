@@ -13,7 +13,8 @@
 
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-
+#import "CustomURLSchemeHandler.h"
+#import "webviewModel.h"
 NSNotificationName const XEWebViewProgressChangeNotification = @"XEWebViewProgressChangeNotification";
 NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNotification";
 
@@ -183,9 +184,20 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 }
 
 -(XEngineWebView *)createWebView:(NSString *)baseUrl{
+    
+    
     NSMutableArray *modules = [[XEngineContext sharedInstance] modules];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
+    CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
+   
+    if (@available(iOS 11.0, *) ) {
+        if ([MicroAppLoader sharedInstance].netmodel.strict) {
+            [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
+            [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
+        }
+    }
+    
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
 //    webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     for (xengine__module_BaseModule *baseModule in modules){

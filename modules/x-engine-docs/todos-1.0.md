@@ -1,3 +1,40 @@
+microapp.json
+
+microapp.json 是微应用里引入的重要配置文件, 将在引擎 1.0.0 版本后使用.
+
+```
+{
+	"id":"com.zkty.microapp.xxx",
+	"version":2,
+	"engine_version":"1.0.0"  //只要大版本不变, 引擎就应该保证向前兼容
+	"router":{
+		"navBar":{
+			"hide": true,  //如果路由配置中定义了 hideNavbar,忽略路由中的定义,使用 microapp.json 里的配置
+		},
+		"statusBar":{
+			"color":"#fff000"
+		}
+	},
+//	"microapp_online_safe_url": "https://www.lahoshow.com/index.html", // 为在线微应用预留,指向在线微应用的入口页
+ 	"sitemap":"./sitemap.json",
+  
+	"permission":{
+		"secrect":["{key}"],
+		"module":{
+			"{modulename}":{
+				"scope":"all"
+			},
+		},
+		"network":{
+			"strict":true, // strict=true  在引擎中,将拦截微应用容器 (webview) 里的网络,并检测是否 host 在白名单内. false 将忽略任何网络检测
+			"white_host_list":["baidu.com"]
+			}
+	}
+}
+```
+
+
+
 
 
 
@@ -46,41 +83,40 @@ sequenceDiagram
 	  b-->>u: 返回结果
 	  
 	  a->>b: 拉取路由例表
-	  b->>a: 返回路由例表
+
 	  a->>a: 	decrpt(debase64(signature),p0) === md5(m1.zip) 是否相等
     a->>a: 打开  m1.zi
 ```
 
 
 
-## 在线流程图
+## 在线流程图 
+
+microapp_online_safe_url 即在线可访问的链接, 
 
 ``` mermaid
 sequenceDiagram
 	  autonumber
     participant s as 微应用服务 
-    participant r as 资源服务
+    participant r as 静态资源服务
     participant b as 业务服务
-	  participant u as 微应用.zip 开发者  
-    participant a as App 开发者
+	  participant u as 微应用提交者
+    participant a as App
 
 
     b-->>s: 创建应用 api
    	s-->>s: 生成 App 公私钥, p0, p1
 		s-->>b: 返回 app id 与公钥
    	a-->>a: embed App 公钥 p0
-   	u->>b: 上传微应用appid+ 包 api
-   	b->>s: 上传微应用appid+ m1.zip包 api
-   	s->>s: 用 p1 对微应用.zip signature=base64(sign(p1,md5(m1.zip))) 值签名 
-	  s-->>r: 提交到资源服务器
-	  s-->>b: 签名成功,返回资源地址
-	  b-->>b: 绑定app id 与 微应用 m1.zip 关系
-	  b-->>u: 返回结果
+   
+   	s->>s: 用 p1 签名 signature=base64(sign(p1,$microapp_online_safe_url)) 
+	  u-->>b: 绑定app id 与 微应用 microapp_online_safe_url 关系
+	 
 	  
 	  a->>b: 拉取路由例表
-	  b->>a: 返回路由例表
-	  a->>a: decrpt(debase64(signature),p0) === md5(m1.zip) 是否相等
-    a->>a: 打开  m1.zip
+	 
+	  a->>a: decrpt(debase64(signature),p0) === $microapp_online_safe_url 是否相等
+    a->>a: 打开 microapp_online_safe_url
 ```
 
 
@@ -337,10 +373,15 @@ if(microappid && version)
 {
    let microapp_json = request 'http://{host}:{port}/{path}/microapp.json'
    if exist(microapp_json && validate(microapp_json)){
-     let sitemap       = read microapp_json[sitemap];
-     let files         = read sitemap.files;
-     let files_content = read files;
-      if microapp_json[signature]==md5(concat files_content){
+     let sitemap_url = read 'http://{host}:{port}/{path}/' + microapp_json[sitemap];
+     let sitemap_content          = request sitemap_url
+     let full_content  =request 'http://{host}:{port}/{path}/index.html'
+     for (url in sitemap_content.urls){
+	     let content = request url;   
+       full_content += content       
+     }
+    
+      if microapp_json[signature] == md5(full_content){
         md5 check passed 
         bind appid.version to security config
       }else{
@@ -354,59 +395,7 @@ if(microappid && version)
 
 
 
-## 数据封装?
-
-所有模块接口按如下格式返回
-
-``` json
-{
-	code:"",
-	data:..,
-	message:""
-}
-```
-
-
-
-code: 0   //代表数据正常
-
-code: 403 //无权限
-
 ## 权限
-
-每个微应用 zip 包里包含 microapp.json
-
-```
-{
-	"id":"com.zkty.microapp.xxx",
-	"version":2,
-	"engine_version":"1.0.0"  //只要大版本不变, 引擎就应该保证向前兼容
-	"router":{
-		"navBar":{
-			"hide": true,  //如果路由配置中定义了 hideNavbar,忽略路由中的定义,使用 microapp.json 里的配置
-		},
-		"statusBar":{
-			"color":"#fff000"
-		}
-	},
-	"microapp_online_safe_url": "https://www.lahoshow.com/index.html", // 为在线微应用预留,指向在线微应用的入口页
-  
-	"permission":{
-		"secrect":["{key}"],
-		"module":{
-			"{modulename}":{
-				"scope":"all"
-			},
-		},
-		"network":{
-			"strict":true, // strict=true  在引擎中,将拦截微应用容器 (webview) 里的网络,并检测是否 host 在白名单内. false 将忽略任何网络检测
-			"white_host_list":["baidu.com"]
-			}
-	}
-}
-```
-
-
 
 
 

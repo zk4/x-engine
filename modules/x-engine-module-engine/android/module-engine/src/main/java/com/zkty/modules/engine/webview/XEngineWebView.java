@@ -27,6 +27,7 @@ import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.DWebView;
 import com.zkty.modules.engine.XEngineContext;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
+import com.zkty.modules.engine.dto.PermissionDto;
 import com.zkty.modules.engine.exception.NoModuleIdException;
 import com.zkty.modules.engine.manager.SchemeManager;
 import com.zkty.modules.engine.utils.ImageUtils;
@@ -48,6 +49,7 @@ import java.util.Map;
 
 public class XEngineWebView extends DWebView {
     private Context mContext;
+    private String TAG = XEngineWebView.class.getSimpleName();
 
     public XEngineWebView(Context context) {
         super(context);
@@ -76,31 +78,54 @@ public class XEngineWebView extends DWebView {
         setLayoutParams(params);
         addJavascript();
 
-        loadLocalImg();
+        setWebViewClient();
         // setErrorPage();
 
-        saveImg();
+        setOnLongClickListener();
     }
 
 
-    private void loadLocalImg() {
+    private void setWebViewClient() {
         setWebViewClient(new WebViewClient() {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-//                InputStream inputStream = Utils.getLocalImage(s);
-//                Log.d("Xenging-url", s);
-//                if (inputStream != null) {
-//                    WebResourceResponse resourceResponse = new WebResourceResponse();
-//                    resourceResponse.setData(inputStream);
-//                    return resourceResponse;
-//                }
+                Log.d(TAG, "request url= " + s);
+                if (!s.startsWith("file")) {
+                    //配置存在，切需要拦截
+                    if (mPermission != null
+                            && mPermission.getPermission() != null
+                            && mPermission.getPermission().getNetwork() != null
+                            && mPermission.getPermission().getNetwork().isStrict()) {
+                        //在白名单内
+                        if (mPermission.getPermission().getNetwork().getWhite_host_list() != null
+                                && mPermission.getPermission().getNetwork().getWhite_host_list().size() > 0) {
+                            try {
+                                URL url = URL.parse(s);
+                                if (url != null) {
+                                    String host = url.getHost();
+                                    if (mPermission.getPermission().getNetwork().getWhite_host_list().contains(host)) {
+                                        return super.shouldInterceptRequest(webView, s);
+                                    }
+                                }
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                        //不在白名单
+                        alertDebugInfo("请求host不在白名单，请检查配置文件");
+                        return new WebResourceResponse();
+                    }
+                }
+
 
                 return super.shouldInterceptRequest(webView, s);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-                Log.d("ServeBrowserActivity", "url= " + s);
+                Log.d(TAG, "response url= " + s);
+
                 if (s.contains("tenpay")) {
 
                     Map<String, String> webviewHead = new HashMap<>();
@@ -190,7 +215,6 @@ public class XEngineWebView extends DWebView {
 
                     return true;
                 }
-
 
                 if (Build.VERSION.SDK_INT < 26) {
                     webView.loadUrl(s);
@@ -339,7 +363,7 @@ public class XEngineWebView extends DWebView {
         return this.currentUrl;
     }
 
-    private void saveImg() {
+    private void setOnLongClickListener() {
 
         setOnLongClickListener(view -> {
             HitTestResult result = getHitTestResult();
@@ -408,5 +432,15 @@ public class XEngineWebView extends DWebView {
         if (mScrollListener != null) {
             mScrollListener.onScrollChange(l, t, oldl, oldt);
         }
+    }
+
+    private PermissionDto mPermission;
+
+    public void setPermission(PermissionDto mPermission) {
+        this.mPermission = mPermission;
+    }
+
+    public PermissionDto getPermission() {
+        return this.mPermission;
     }
 }

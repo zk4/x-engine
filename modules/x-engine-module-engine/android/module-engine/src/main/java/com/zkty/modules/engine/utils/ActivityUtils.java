@@ -1,8 +1,11 @@
 package com.zkty.modules.engine.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Map;
 
 public class ActivityUtils {
@@ -22,7 +25,7 @@ public class ActivityUtils {
                 if (!pausedField.getBoolean(activityRecord)) {
                     Field activityField = activityRecordClass.getDeclaredField("activity");
                     activityField.setAccessible(true);
-                    return  (Activity) activityField.get(activityRecord);
+                    return (Activity) activityField.get(activityRecord);
                 }
             }
         } catch (Exception e) {
@@ -81,4 +84,24 @@ public class ActivityUtils {
 //        }
 //
 //    }
+
+    /**
+     * 判断是否是App的进程
+     *
+     * @param context App上下文
+     * @return true是, false不是
+     */
+    public static boolean isAppProcess(Context context) {
+        int pid = android.os.Process.myPid();
+        String packageName = context.getPackageName();
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> infos = am.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo info : infos) {
+            if (info.pid == pid && info.processName.equals(packageName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

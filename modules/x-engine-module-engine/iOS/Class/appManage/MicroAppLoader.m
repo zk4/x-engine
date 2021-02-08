@@ -6,7 +6,7 @@
 //
 
 #import "MicroAppLoader.h"
-
+#import "webviewModel.h"
 @interface MicroAppLoader()
     @property (nonatomic, strong) NSMutableDictionary *microappId_versionInSandbox;
 @end
@@ -133,5 +133,33 @@
         return _nowMicroAppId;
     }
 }
- 
+
+-(NSDictionary *)getMicroAppJsonToDictionary:(NSString *)microappId version:(long)version{
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
+
+    NSDictionary*dic;
+
+    if(htmlPath.length>0){
+        NSString *configPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld%@", microappId, version,@"/microapp"] ofType:@"json"];
+        if (configPath.length>0) {
+            NSData *JSONData = [NSData dataWithContentsOfFile:configPath];
+            if (JSONData) {
+                dic = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableContainers error:nil];
+                self.netmodel = [[webviewModel alloc]initWithDictionary:dic[@"permission"][@"network"] error:nil];
+            }
+        }else{
+            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:@"No microapp.json in your project" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [errorAlert addAction:sureAction];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
+                
+            }];
+        }
+        
+    }
+    
+    return  dic;
+}
 @end

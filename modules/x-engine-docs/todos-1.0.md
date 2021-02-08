@@ -458,11 +458,15 @@ sequenceDiagram
 sequenceDiagram
 	  autonumber
     participant m as Microapp
+    participant a as App
     participant w as WebView
     participant e as networkProxy
     participant s as Server
+    
+    a->>a: 在打开 microapp 前, 加载 microapp.json, 确认是否有拦截网络的逻辑
+    a->>m: 打开 microapp
     m->>w: send request
-    w->>w: intercept url
+
     alt permission.network.strict==true
     alt url in permission.network.white_host_list:
     w->>e: delegate request

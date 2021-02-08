@@ -63,13 +63,13 @@ static   XEngineWebView* s_webview;
                 }
             }
         }
-        if(dic[@"title"]){
+        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
             if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
                 self.title = dic[@"title"];
                 self.customTiitle = self.title;
             }
         }
-        if(dic[@"URL"]){
+        if(dic[@"URL"] && ![dic[@"URL"] isKindOfClass:[NSNull class]]){
             self.loadUrl = [dic[@"URL"] absoluteString];
         }
     }
@@ -126,7 +126,7 @@ static   XEngineWebView* s_webview;
         }
        
         self.loadUrl = fileUrl;
-        if([self.loadUrl rangeOfString:@"?"].location == NSNotFound){
+        if([self.loadUrl rangeOfString:@"?"].location == NSNotFound && [self.loadUrl rangeOfString:@"//www"].location != NSNotFound){
             if(![self.loadUrl hasSuffix:@"/"]){
                 self.loadUrl = [NSString stringWithFormat:@"%@/", self.loadUrl];
             }

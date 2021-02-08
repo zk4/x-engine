@@ -39,6 +39,7 @@ public class MD5withRSA {
             cp.init(Cipher.DECRYPT_MODE, pubKey);
 //            result = Base64.encodeToString(cp.doFinal(data), Base64.DEFAULT);
             result = new String(cp.doFinal(data));
+
         } catch (Exception e) {
             e.printStackTrace();
         }

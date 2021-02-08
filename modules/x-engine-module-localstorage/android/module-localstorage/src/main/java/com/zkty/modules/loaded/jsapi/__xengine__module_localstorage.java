@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.tencent.mmkv.MMKV;
 import com.zkty.modules.engine.core.IApplicationListener;
+import com.zkty.modules.engine.dto.PermissionDto;
 import com.zkty.modules.engine.utils.ActivityUtils;
 import com.zkty.modules.loaded.util.SharePreferenceUtils;
 
@@ -36,6 +37,20 @@ public class __xengine__module_localstorage extends xengine__module_localstorage
 
     @Override
     public void _get(StorageGetDTO dto, CompletionHandler<StorageStatusDTO> handler) {
+        if (mXEngineWebView != null && mXEngineWebView.getPermission() != null) {
+            PermissionDto permissionDto = mXEngineWebView.getPermission();
+
+            if (permissionDto.getPermission() == null
+                    || permissionDto.getPermission().getSecrect() == null
+                    || permissionDto.getPermission().getSecrect().size() == 0
+                    || !permissionDto.getPermission().getSecrect().contains(dto.key)) {
+                mXEngineWebView.alertDebugInfo(String.format("没有读取%s的权限", dto.key));
+                handler.complete();
+                return;
+            }
+        }
+
+
         String result = (String) SharePreferenceUtils.get(ActivityUtils.getCurrentActivity(), dto.isPublic, dto.key, "");
         StorageStatusDTO statusDTO = new StorageStatusDTO();
         statusDTO.result = result;

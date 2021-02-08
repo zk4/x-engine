@@ -34,6 +34,7 @@ public abstract class xengine__module_BaseModule {
 
     protected XEngineWebView mXEngineWebView;
 
+    //反射赋值，勿删
     public void setXEngineWebView(XEngineWebView mXEngineWebView) {
         this.mXEngineWebView = mXEngineWebView;
     }

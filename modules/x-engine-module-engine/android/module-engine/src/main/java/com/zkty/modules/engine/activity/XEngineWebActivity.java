@@ -506,7 +506,8 @@ public class XEngineWebActivity extends AppCompatActivity {
             super.onReceivedTitle(webView, title);
             if (!TextUtils.isEmpty(webView.getUrl()) && webView.getUrl().startsWith("http") && !TextUtils.isEmpty(title) && xEngineNavBar != null) {
 //                if (xEngineNavBar.getTitle() == null || !isFirstReceiveTitle)//初次加载切已被设置title
-                xEngineNavBar.setTitle(title, null, null);
+//                xEngineNavBar.setTitle(title, null, null);
+                xEngineNavBar.setLeftTitle(title);
             }
 //            isFirstReceiveTitle = false;
         }

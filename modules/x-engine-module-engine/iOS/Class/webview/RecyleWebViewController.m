@@ -382,7 +382,7 @@ static   XEngineWebView* s_webview;
     }
     [self.view insertSubview:self.webview atIndex:0];
     
-    self.navBarHairlineImageView.hidden = YES;
+//    self.navBarHairlineImageView.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{

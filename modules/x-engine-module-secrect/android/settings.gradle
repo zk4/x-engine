@@ -2,3 +2,5 @@ include ':app'
 include ':module-engine'
 project(':module-engine').projectDir = new File('../../x-engine-module-engine/android/module-engine')
 include ':module-secrect'
+include ':module-localstorage'
+project(':module-localstorage').projectDir = new File('../../x-engine-module-localstorage/android/module-localstorage')

@@ -13,19 +13,8 @@ import com.zkty.modules.dsbridge.CompletionHandler;
 
 import java.io.File;
 
-public class __xengine__module_localstorage extends xengine__module_localstorage implements IApplicationListener {
+public class __xengine__module_localstorage extends xengine__module_localstorage {
 
-    @Override
-    public void onAppCreate(Context context) {
-        String dir = new File("/data/data/" + context.getPackageName() + "/shared_prefs").getAbsolutePath() + "/mmkv";
-        String rootDir = MMKV.initialize(dir);
-        Log.d("localstorage", "mmkv init root: " + rootDir);
-    }
-
-    @Override
-    public void onAppLowMemory() {
-
-    }
 
     @Override
     public void _set(StorageSetDTO dto, CompletionHandler<StorageStatusDTO> handler) {
@@ -37,20 +26,6 @@ public class __xengine__module_localstorage extends xengine__module_localstorage
 
     @Override
     public void _get(StorageGetDTO dto, CompletionHandler<StorageStatusDTO> handler) {
-        if (mXEngineWebView != null && mXEngineWebView.getPermission() != null) {
-            PermissionDto permissionDto = mXEngineWebView.getPermission();
-
-            if (permissionDto.getPermission() == null
-                    || permissionDto.getPermission().getSecrect() == null
-                    || permissionDto.getPermission().getSecrect().size() == 0
-                    || !permissionDto.getPermission().getSecrect().contains(dto.key)) {
-                mXEngineWebView.alertDebugInfo(String.format("没有读取%s的权限", dto.key));
-                handler.complete();
-                return;
-            }
-        }
-
-
         String result = (String) SharePreferenceUtils.get(ActivityUtils.getCurrentActivity(), dto.isPublic, dto.key, "");
         StorageStatusDTO statusDTO = new StorageStatusDTO();
         statusDTO.result = result;

@@ -27,6 +27,7 @@
                         withVersion:(long)version
                          withParams:(NSString *)params
                  withIsHiddenNavbar:(BOOL)isHidden;
+
 @end
 
 

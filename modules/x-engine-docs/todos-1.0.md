@@ -1,15 +1,48 @@
-# 引擎引用方式
+microapp.json
 
-旧项目将拆分 monorepo
+microapp.json 是微应用里引入的重要配置文件, 将在引擎 1.0.0 版本后使用.
 
- ![image-20210130104133690](assets/image-20210130104133690.png)
+```
+{
+	"id":"com.zkty.microapp.xxx",
+	"version":2,
+	"engine_version":"1.0.0"  //只要大版本不变, 引擎就应该保证向前兼容
+	"router":{
+		"navBar":{
+			"hide": true,  //如果路由配置中定义了 hideNavbar,忽略路由中的定义,使用 microapp.json 里的配置
+		},
+		"statusBar":{
+			"color":"#fff000"
+		}
+	},
+//	"microapp_online_safe_url": "https://www.lahoshow.com/index.html", // 为在线微应用预留,指向在线微应用的入口页
+ 	"sitemap":"./sitemap.json",
+  
+	"permission":{
+		"secrect":["{key}"],
+		"module":{
+			"{modulename}":{
+				"scope":"all"
+			},
+		},
+		"network":{
+			"strict":true, // strict=true  在引擎中,将拦截微应用容器 (webview) 里的网络,并检测是否 host 在白名单内. false 将忽略任何网络检测
+			"white_host_list":["baidu.com"]
+			}
+	}
+}
+```
+
+
+
+
 
 
 # 服务端
 
 
 
-## 微应用离线管理服务
+## 微应用管理服务
 
 微应用包安全为了防止包被他人篡改. 即便有中间人攻击的情况下.
 
@@ -25,16 +58,12 @@ x-engine-app.json
 
 
 
-```
-digest: 根据安全级别定义,默认 md5 算法
-```
-
-### 流程图
+### 离线包流程图
 
 ``` mermaid
 sequenceDiagram
 	  autonumber
-    participant s as 微应用离线服务 
+    participant s as 微应用服务 
     participant r as 资源服务
     participant b as 业务服务
 	  participant u as 微应用.zip 开发者  
@@ -47,17 +76,50 @@ sequenceDiagram
    	a-->>a: embed App 公钥 p0
    	u->>b: 上传微应用appid+ m1.zip包 api
    	b->>s: 上传微应用appid+ m1.zip包 api
-   	s->>s: 用 p1 对微应用.zip digest(md5(m1.zip)) 值签名 
+   	s->>s: 用 p1 对微应用.zip signature=base64(sign(p1,md5(m1.zip))) 值签名 
 	  s-->>r: 提交到资源服务器
 	  s-->>b: 签名成功,返回资源地址
 	  b-->>b: 绑定app id 与 微应用 m1.zip 关系
 	  b-->>u: 返回结果
 	  
 	  a->>b: 拉取路由例表
-	  b->>a: 返回路由例表
-	  a->>a: 用 p0 验证 digest(md5(m1)) 是否合法
-    a->>a: 打开  m1.zip
+
+	  a->>a: 	decrpt(debase64(signature),p0) === md5(m1.zip) 是否相等
+    a->>a: 打开  m1.zi
 ```
+
+
+
+## 在线流程图 
+
+microapp_online_safe_url 即在线可访问的链接, 
+
+``` mermaid
+sequenceDiagram
+	  autonumber
+    participant s as 微应用服务 
+    participant r as 静态资源服务
+    participant b as 业务服务
+	  participant u as 微应用提交者
+    participant a as App
+
+
+    b-->>s: 创建应用 api
+   	s-->>s: 生成 App 公私钥, p0, p1
+		s-->>b: 返回 app id 与公钥
+   	a-->>a: embed App 公钥 p0
+   
+   	s->>s: 用 p1 签名 signature=base64(sign(p1,$microapp_online_safe_url)) 
+	  u-->>b: 绑定app id 与 微应用 microapp_online_safe_url 关系
+	 
+	  
+	  a->>b: 拉取路由例表
+	 
+	  a->>a: decrpt(debase64(signature),p0) === $microapp_online_safe_url 是否相等
+    a->>a: 打开 microapp_online_safe_url
+```
+
+
 
 ### 对外接口
 
@@ -140,6 +202,7 @@ data:{
 POST  /microapp-service/app/{appid}/microapp
 
 参数
+
 ``` 
 microappId: string, (微应用 id) 例:com.zzzz.moudle.xxx
 name:   string  微应用名称
@@ -213,7 +276,7 @@ data:
        "version": "",
        "name":"name",
        "url": "",
-       "signature":"", // digest(private_key,md5(zip))
+       "signature":base64(sign(private_key,md5(zip))),   
        "method": "",
        ""
    }]
@@ -281,7 +344,6 @@ sequenceDiagram
 	  autonumber
     participant a as App 
     participant rs as 路由服务器
-    participant ms as 微应用服务器
    
     a->>a: 扫码,得到路由 id 
     a->>rs: 拿路由 id 请求路由信息
@@ -311,10 +373,15 @@ if(microappid && version)
 {
    let microapp_json = request 'http://{host}:{port}/{path}/microapp.json'
    if exist(microapp_json && validate(microapp_json)){
-     let sitemap       = read microapp_json[sitemap];
-     let files         = read sitemap.files;
-     let files_content = read files;
-      if microapp_json[signature]==md5(concat files_content){
+     let sitemap_url = read 'http://{host}:{port}/{path}/' + microapp_json[sitemap];
+     let sitemap_content          = request sitemap_url
+     let full_content  =request 'http://{host}:{port}/{path}/index.html'
+     for (url in sitemap_content.urls){
+	     let content = request url;   
+       full_content += content       
+     }
+    
+      if microapp_json[signature] == md5(full_content){
         md5 check passed 
         bind appid.version to security config
       }else{
@@ -328,56 +395,7 @@ if(microappid && version)
 
 
 
-## 数据封装?
-
-所有模块接口按如下格式返回
-
-``` json
-{
-	code:"",
-	data:..,
-	message:""
-}
-```
-
-
-
-code: 0   //代表数据正常
-
-code: 403 //无权限
-
 ## 权限
-
-每个微应用 zip 包里包含 microapp.json
-
-```
-{
-	"id":"com.zkty.microapp.xxx",
-	"version":2,
-	"engine_version":"1.0.0"  //只要大版本不变, 引擎就应该保证向前兼容
-	"router":{
-		"navBar":{
-			"hide": true,  //如果路由配置中定义了 hideNavbar,忽略路由中的定义,使用 microapp.json 里的配置
-		},
-		"statusBar":{
-			"color":"#fff000"
-		}
-	},
-	"sitemap":{ // 为在线微应用预留
-	},
-	"permission":{
-		"secrect":["{key}"],
-		"module":{
-			"{modulename}":{
-				"scope":"all"
-			},
-		},
-		"network":{
-			"method":"native" // native 只允许原生网络, mixed 允许原生网络与 webview 网络
-			}
-	}
-}
-```
 
 
 
@@ -404,8 +422,8 @@ sequenceDiagram
 ```
 
 ### 接口权限
-``` js
 
+``` js
     //PHASE when microapp loaded
     securities[microappId.version] = model(microapp.json)
     ...
@@ -423,25 +441,33 @@ sequenceDiagram
 
 ### 微应用网络权限
 
-网络分为浏览器自带网络, 与转发网络.
+网络分为浏览器自带网络, 与转发网络. 由 microapp.json 里的 network.strict 控制.
 
 ``` mermaid
 sequenceDiagram
 	  autonumber
     participant m as Microapp
+    participant a as App
     participant w as WebView
-    participant e as EngineContext
+    participant e as networkProxy
     participant s as Server
+    
+    a->>a: 在打开 microapp 前, 加载 microapp.json, 确认是否有拦截网络的逻辑
+    a->>m: 打开 microapp
     m->>w: send request
-    w->>w: check if enable
-    alt enabled
-    w->>s: delegate request
-    else disabled
-    w->>e: delegate request call    	
+
+    alt permission.network.strict==true
+    alt url in permission.network.white_host_list:
+    w->>e: delegate request
+	  e->>s: request
+	  else
+	  w->>w: cancel request, alert user "host 不在白名单内"
+	  end
+    else permission.network.strict==false
+  w->>s: request whatever..
     end
 
 ```
-
 
 
 

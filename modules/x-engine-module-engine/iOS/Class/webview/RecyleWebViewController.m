@@ -61,8 +61,8 @@ static   XEngineWebView* s_webview;
                 }
             }
         }
-        if(dic[@"title"]){
-            if([self.loadUrl hasPrefix:@"http"]){
+        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
+            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
                 self.title = dic[@"title"];
                 self.customTiitle = self.title;
             }
@@ -121,6 +121,11 @@ static   XEngineWebView* s_webview;
         }
        
         self.loadUrl = fileUrl;
+//        if([self.loadUrl rangeOfString:@"?"].location == NSNotFound && [self.loadUrl rangeOfString:@"//www"].location != NSNotFound){
+//            if(![self.loadUrl hasSuffix:@"/"]){
+//                self.loadUrl = [NSString stringWithFormat:@"%@/", self.loadUrl];
+//            }
+//        }
 
         if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]
            || ![XEOneWebViewPool sharedInstance].inSingle){
@@ -134,7 +139,7 @@ static   XEngineWebView* s_webview;
             [self.webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
             [self.webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
             self.webview.frame = [UIScreen mainScreen].bounds;
-            if([self.loadUrl hasPrefix:@"http"]){
+            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
                 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
             }else{
                 if(self.loadUrl.length == 0)
@@ -201,7 +206,7 @@ static   XEngineWebView* s_webview;
     if([self.loadUrl isEqualToString:self.webview.URL.absoluteString]){
         return;
     }
-    if([self.loadUrl hasPrefix:@"http"]){
+    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
         if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
@@ -258,7 +263,7 @@ static   XEngineWebView* s_webview;
 
 -(void)goback:(UIButton *)sender{
     
-    if([self.loadUrl hasPrefix:@"http"]){
+    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         if(self.navigationController.viewControllers.count > 1){
             RecyleWebViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
             if([vc isKindOfClass:[RecyleWebViewController class]]){
@@ -314,7 +319,7 @@ static   XEngineWebView* s_webview;
         
         [btn addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
         [btn sizeToFit];
-        if([self.loadUrl hasPrefix:@"http"]){
+        if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
             NSString *closePath = [[NSBundle mainBundle] pathForResource:@"close_black" ofType:@"png"];
             UIButton *close = [[UIButton alloc] init];
             close.frame = CGRectMake(0, 0, 34, 0);
@@ -365,26 +370,10 @@ static   XEngineWebView* s_webview;
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
+    if (![self.loadUrl hasPrefix:@"http"]) {
+        [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
+    }
     
-    [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
-    
-//    if(![self.webview.URL.absoluteString isEqualToString:self.loadUrl] &&
-//       ![self.webview.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
-//        
-//        BOOL isFind = false;
-//        NSArray<WKBackForwardListItem *> *reversAry = self.webview.backForwardList.backList;
-//        for (int i = 0; i < reversAry.count; i++) {
-//            WKBackForwardListItem *item = reversAry[i];
-//            if([[item.URL.absoluteString lowercaseString] isEqualToString:[self.loadUrl lowercaseString]]
-//               || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", self.loadUrl]]){
-//                [self.webview goToBackForwardListItem:item];
-//                isFind = true;
-//            }
-//        }
-//        if(!isFind){
-//            
-//        }
-//    }
     if(self.screenView){
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];
@@ -392,6 +381,8 @@ static   XEngineWebView* s_webview;
         });
     }
     [self.view insertSubview:self.webview atIndex:0];
+    
+    self.navBarHairlineImageView.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -406,7 +397,7 @@ static   XEngineWebView* s_webview;
     self.progresslayer.alpha = 0;
     
 
-    if([self.loadUrl hasPrefix:@"http"]){
+    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         if(self.navigationItem.leftBarButtonItems.count > 0){
             self.navigationItem.leftBarButtonItems.lastObject.title = @"";
         }

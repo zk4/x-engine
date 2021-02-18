@@ -15,6 +15,7 @@ microapp.json 是微应用里引入的重要配置文件, 将在引擎 1.0.0 版
 			"color":"#fff000"
 		}
 	},
+//  怎么更新呢?
 //	"microapp_online_safe_url": "https://www.lahoshow.com/index.html", // 为在线微应用预留,指向在线微应用的入口页
  	"sitemap":"./sitemap.json",
   

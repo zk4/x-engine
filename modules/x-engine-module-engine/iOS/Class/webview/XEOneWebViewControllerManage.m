@@ -89,7 +89,7 @@
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
     if(urlStr){
         if(path.length > 0){
-            if ([path hasPrefix:@"/index"]) {
+            if ([path hasPrefix:@"/index?"]) {
                 NSRange range = NSMakeRange(0, [@"/index" length]);
                path = [path stringByReplacingCharactersInRange:range withString:@""];
             }

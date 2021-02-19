@@ -17,9 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".engine.MainActivity">
 
-        </activity>
         <activity android:name=".engine.HomeActivity">
 
             <intent-filter>

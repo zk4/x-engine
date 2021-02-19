@@ -95,6 +95,10 @@
             }else{
                 urlStr = [NSString stringWithFormat:@"%@?sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
             }
+        }else{
+            urlStr = [NSString stringWithFormat:@"%@%@",
+                      urlStr,
+                      ([urlStr hasSuffix:@"index.html"] ? @"#" : @"")];
         }
         [self pushWebViewControllerWithUrl:urlStr withIsHiddenNavbar:isHidden];
     }

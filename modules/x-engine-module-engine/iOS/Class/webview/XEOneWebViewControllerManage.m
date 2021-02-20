@@ -98,7 +98,7 @@
         }else{
             urlStr = [NSString stringWithFormat:@"%@%@",
                       urlStr,
-                      ([urlStr hasSuffix:@"index.html"] ? @"#" : @"")];
+                      ([urlStr hasSuffix:@"index.html"] ? @"#/" : @"")];
         }
         [self pushWebViewControllerWithUrl:urlStr withIsHiddenNavbar:isHidden];
     }

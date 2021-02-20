@@ -89,6 +89,10 @@
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
     if(urlStr){
         if(path.length > 0){
+            if ([path hasPrefix:@"/index?"]) {
+                NSRange range = NSMakeRange(0, [@"/index" length]);
+               path = [path stringByReplacingCharactersInRange:range withString:@""];
+            }
             urlStr = [NSString stringWithFormat:@"%@%@%@%@", urlStr, ([urlStr hasSuffix:@"index.html"] ? @"#" : @""), ([urlStr hasSuffix:@"/"] || [path hasPrefix:@"/"]) ? @"" : @"/", path];
             if([urlStr rangeOfString:@"?"].location != NSNotFound){
                 urlStr = [NSString stringWithFormat:@"%@&sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];

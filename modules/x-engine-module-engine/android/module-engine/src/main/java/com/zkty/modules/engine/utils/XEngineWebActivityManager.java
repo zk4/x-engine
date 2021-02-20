@@ -45,7 +45,7 @@ public class XEngineWebActivityManager {
      * @param context
      * @param url     appid 或url
      */
-    public void startH5EngineActivity(Context context, @NonNull String url) {
+    public void startH5EngineActivity(Context context, @NonNull String url, boolean hideNavBar) {
         if (context == null) {
             context = XEngineApplication.getApplication();
         }
@@ -57,6 +57,7 @@ public class XEngineWebActivityManager {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         intent.putExtra(XEngineWebActivity.URL, url);
+        intent.putExtra(XEngineWebActivity.HIDE_NAV_BAR, hideNavBar);
         context.startActivity(intent);
 
     }

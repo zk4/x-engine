@@ -14,6 +14,8 @@
 
 
 - (void)pushWebViewControllerWithHttpRouteUrl:(NSString *)url;
+//增加是否显示导航栏
+- (void)pushWebViewControllerWithHttpRouteUrl:(NSString *)url isHiddenNavbar:(BOOL)isHidden;
 //nav用
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params;
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params withHiddenNavbar:(BOOL)isHidden;

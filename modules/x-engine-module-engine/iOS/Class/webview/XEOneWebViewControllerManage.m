@@ -27,6 +27,13 @@
     [[XEOneWebViewPool sharedInstance] createNewWebView:url];
     [self pushWebViewControllerWithUrl:url];
 }
+
+//增加是否显示导航栏
+- (void)pushWebViewControllerWithHttpRouteUrl:(NSString *)url isHiddenNavbar:(BOOL)isHidden{
+    
+    [[XEOneWebViewPool sharedInstance] createNewWebView:url];
+    [self pushWebViewControllerWithUrl:url withIsHiddenNavbar:isHidden];
+}
 //http用
 - (void)pushWebViewControllerWithUrl:(NSString *)url{
     

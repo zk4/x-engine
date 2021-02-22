@@ -9,7 +9,7 @@
 #import "MicroAppLoader.h"
 #import <Unity.h>
 #import "UIView+YYAdd.h"
-
+#import "Masonry.h"
 static   XEngineWebView* s_webview;
 
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
@@ -26,6 +26,7 @@ static   XEngineWebView* s_webview;
 
 @property (nonatomic, strong) UIView *screenView;
 
+@property (nonatomic,strong)UILabel * navTitleLabel;
 @end
 
 @implementation RecyleWebViewController
@@ -53,9 +54,9 @@ static   XEngineWebView* s_webview;
                             NSString *title = response;
                             title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                             if(title.length > 0){
-                                if(self.title.length == 0){
-                                    self.title = title;
-                                    self.customTiitle = self.title;
+                                if(self.navTitleLabel.text.length == 0){
+                                    self.navTitleLabel.text = title;
+                                    self.customTiitle = self.navTitleLabel.text;
                                 }
                             }
                         }
@@ -65,8 +66,8 @@ static   XEngineWebView* s_webview;
         }
         if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
             if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-                self.title = dic[@"title"];
-                self.customTiitle = self.title;
+                self.navTitleLabel.text = dic[@"title"];
+                self.customTiitle = self.navTitleLabel.text;
             }
         }
     }
@@ -371,6 +372,8 @@ static   XEngineWebView* s_webview;
     self.navBarHairlineImageView.hidden = YES;
     
     [self.navigationController.navigationBar setLayerShadow:[UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:0.04] offset:CGSizeMake(0,5) radius:10];
+    
+    self.navigationItem.titleView = self.navTitleLabel;
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
@@ -396,8 +399,10 @@ static   XEngineWebView* s_webview;
     
     [super viewWillAppear:animated];
     
-    if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.title]){
-        self.title = self.customTiitle;
+    
+    
+    if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.navTitleLabel.text]){
+        self.navTitleLabel.text = self.customTiitle;
     }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
@@ -445,6 +450,16 @@ static   XEngineWebView* s_webview;
         }
     }
    return nil;
+}
+
+-(UILabel *)navTitleLabel{
+    if (!_navTitleLabel) {
+        _navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, 44)];
+        _navTitleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:24];
+        _navTitleLabel.textColor = [UIColor colorWithRed:18/255.0 green:18/255.0 blue:18/255.0 alpha:1.0];
+        _navTitleLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _navTitleLabel;
 }
 
 - (void)dealloc{

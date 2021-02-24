@@ -10,13 +10,17 @@ public class XEngineMessage {
 
     public static final String MSG_TYPE_PAGE_CLOSE = "x_engine_msg_type_page_close";//通知某些页面关闭自己
 
+    public static final String TYPE_SHOW_TABBAR = "type_show_tabbar";
+    public static final String TYPE_HIDE_TABBAR = "type_hide_tabbar";
+
     private String type;
 
     private List<String> msgList;
 
     private String msg;
 
-    public XEngineMessage() {
+    public XEngineMessage(String typeShowTabbar) {
+        this.type = typeShowTabbar;
     }
 
     public XEngineMessage(String type, List<String> msgList) {

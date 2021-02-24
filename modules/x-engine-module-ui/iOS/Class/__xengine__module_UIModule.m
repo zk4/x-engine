@@ -245,6 +245,16 @@
     self.pickerTooBarView = pickerToolBarView;
 }
 
+- (void)_hideTabbar:(void (^)(BOOL))completionHandler {
+    
+}
+
+
+- (void)_showTabbar:(void (^)(BOOL))completionHandler {
+    
+}
+
+
 - (void)didClickPickerLeftBtn {
     [self.pickerView removeFromSuperview];
     [self.pickerTooBarView removeFromSuperview];

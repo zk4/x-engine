@@ -199,3 +199,21 @@ function showPickerView(
   };
 }
 
+function hideTabbar() {
+  window.hideTabbar = () => {
+    ui
+      .hideTabbar()
+      .then((res) => {
+      });
+  };
+}
+
+function showTabbar() {
+  window.showTabbar = () => {
+    ui
+      .showTabbar()
+      .then((res) => {
+      });
+  };
+}
+

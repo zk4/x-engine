@@ -8,8 +8,10 @@
 
 #import "EntryViewController.h"
 #import <XEngineContext.h>
-#import <MircroAppController.h>
-#import <UIViewController+.h>
+//#import <MircroAppController.h>
+#import <x-engine-module-engine/XEOneWebViewControllerManage.h>
+
+//#import <UIViewController+.h>
 @interface EntryViewController ()
 
 @end
@@ -26,7 +28,11 @@
 }
 
 - (void)goto2 {
-    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:9111/index.html"  ];
-    [self pushViewController:webLaderVC];
+//    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:9111/index.html"  ];
+//    [self pushViewController:webLaderVC];
 }
+-(void) pushTestModule{
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.107:9111"];
+}
+
 @end

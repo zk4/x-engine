@@ -3,6 +3,7 @@ package com.zkty.modules.loaded.widget.dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.Html;
 import android.text.TextUtils;
 
 import android.view.LayoutInflater;
@@ -51,11 +52,16 @@ public class CommonDialog extends BaseDialog {
 
     public void setContentCanCall(String message) {
         if (!TextUtils.isEmpty(message)) {
-            messageTv.setText(message);
+            String phone = Utils.getPhoneNumberFormString(message);
+            if (!TextUtils.isEmpty(phone)) {
+                message = message.replace(phone, "<font color='#E8374A'>" + phone + "</font>");
+                messageTv.setText(Html.fromHtml(message));
+                messageTv.setOnClickListener(v -> showBottomDialog(phone));
+            } else {
+                messageTv.setText(message);
+            }
         }
-        if (!TextUtils.isEmpty(Utils.getPhoneNumberFormString(message))) {
-            messageTv.setOnClickListener(v -> showBottomDialog(Utils.getPhoneNumberFormString(message)));
-        }
+
     }
 
     private void showBottomDialog(String phone) {
@@ -110,6 +116,7 @@ public class CommonDialog extends BaseDialog {
     public void setSingleMode() {
         cancelTv.setVisibility(View.GONE);
     }
+
     public void setShowCancel() {
         cancelTv.setVisibility(View.VISIBLE);
     }
@@ -117,6 +124,7 @@ public class CommonDialog extends BaseDialog {
     public void setHideConfirm() {
         confirmTv.setVisibility(View.GONE);
     }
+
     public void setShowConfirm() {
         confirmTv.setVisibility(View.VISIBLE);
     }

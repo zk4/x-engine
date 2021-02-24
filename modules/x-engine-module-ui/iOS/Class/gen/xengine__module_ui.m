@@ -67,7 +67,6 @@
 
 
   @implementation xengine__module_ui
-
     - (instancetype)init
     {
         self = [super init];
@@ -134,36 +133,16 @@
           }];
         
       }
-- (void)_hiddenHudToast:(void (^)(BOOL))completionHandler {
-    
-}
+    - (void) hideTabbar:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_hideLoading:(void (^)(BOOL))completionHandler {
-    
-}
+          [self _hideTabbar:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) showTabbar:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-- (void)_hideToast:(void (^)(BOOL))completionHandler {
-    
-}
-
-- (void)_showActionSheet:(XESheetDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_showLoading:(XETipDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-- (void)_showModal:(XEModalDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_showPickerView:(XEPickerDTO *)dto complete:(void (^)(XERetDTO *, BOOL))completionHandler {
-    
-}
-
-- (void)_showToast:(XEToastDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-}
-
-@end
+          [self _showTabbar:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+  @end

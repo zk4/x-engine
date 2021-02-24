@@ -91,6 +91,8 @@ public void _hideLoading(final CompletionHandler<Nullable> handler);
 public void _showModal(XEModalDTO dto, final CompletionHandler<XERetDTO> handler);
 public void _showActionSheet(XESheetDTO dto, final CompletionHandler<XERetDTO> handler);
 public void _showPickerView(XEPickerDTO dto, final CompletionHandler<XERetDTO> handler);
+public void _hideTabbar(final CompletionHandler<Nullable> handler);
+public void _showTabbar(final CompletionHandler<Nullable> handler);
   }
   
   
@@ -205,6 +207,32 @@ public void _showPickerView(XEPickerDTO dto, final CompletionHandler<XERetDTO> h
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(XERetDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void hideTabbar(JSONObject obj, final CompletionHandler<Object> handler) {
+      _hideTabbar(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void showTabbar(JSONObject obj, final CompletionHandler<Object> handler) {
+      _showTabbar(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

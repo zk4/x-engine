@@ -89,6 +89,12 @@
       @required 
         - (void) _showPickerView:(XEPickerDTO*) dto complete:(void (^)(XERetDTO* result,BOOL complete)) completionHandler;
 
+      @required 
+       - (void) _hideTabbar:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _showTabbar:(void (^)(BOOL complete)) completionHandler;
+    
 @end
   
 

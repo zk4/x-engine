@@ -109,6 +109,14 @@ function osCheck() {
         ]
       ]
     }
+  },
+  {
+    "name": "hideTabbar",
+    "default_args": {}
+  },
+  {
+    "name": "showTabbar",
+    "default_args": {}
   }
 ]
 )}}

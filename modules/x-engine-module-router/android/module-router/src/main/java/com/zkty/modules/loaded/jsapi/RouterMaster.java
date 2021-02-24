@@ -27,7 +27,7 @@ public class RouterMaster {
                     uri = "https://" + uri;
                 }
                 String url = TextUtils.isEmpty(path) ? uri : uri + "?" + path;
-                XEngineWebActivityManager.sharedInstance().startH5EngineActivity(context, url);
+                XEngineWebActivityManager.sharedInstance().startH5EngineActivity(context, url, hideNavBar);
                 break;
             case "2":
             case "microApp":

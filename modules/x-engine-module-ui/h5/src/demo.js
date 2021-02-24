@@ -1,6 +1,7 @@
 
 import ui from './index.js'
-//hello
+import xengine from "@zkty-team/x-engine-module-engine";
+
 
   window.showToast = () => {
     ui
@@ -70,6 +71,20 @@ import ui from './index.js'
       .then((res) => {
 
         document.getElementById("debug_text").innerText = JSON.stringify(res);
+      });
+  };
+
+  window.hideTabbar = () => {
+    ui
+      .hideTabbar()
+      .then((res) => {
+      });
+  };
+
+  window.showTabbar = () => {
+    ui
+      .showTabbar()
+      .then((res) => {
       });
   };
 

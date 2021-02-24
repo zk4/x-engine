@@ -51,7 +51,7 @@
         if ([URL.host isEqualToString:@"apps.apple.com"]){
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
         }else{
-        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:url];
+        [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:url isHiddenNavbar:isHidden];
     }
 } else if([type isEqual:@"microapp"]){
 

@@ -45,7 +45,7 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     provided fileTree(dir: 'libs', include: ['*.aar'])
-
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

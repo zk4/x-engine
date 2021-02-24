@@ -1,6 +1,16 @@
-microapp.json
+## 目标 
 
-microapp.json 是微应用里引入的重要配置文件, 将在引擎 1.0.0 版本后使用.
+安全
+
+- 即使通过中间人代理,也无法替换内部微应用
+
+- 即使替换内部微应用,也无法使用微应用
+
+  
+
+## microapp.json
+
+microapp.json 是微应用里引入的重要配置文件,里面有安全的配置, 将在引擎 1.0.0 版本后使用.
 
 ```
 {
@@ -59,7 +69,7 @@ x-engine-app.json
 
 
 
-### 离线包流程图
+### 离线包安全流程图
 
 ``` mermaid
 sequenceDiagram
@@ -91,7 +101,7 @@ sequenceDiagram
 
 
 
-## 在线流程图 
+## 在线微应用安全流程图
 
 microapp_online_safe_url 即在线可访问的链接, 
 
@@ -109,8 +119,8 @@ sequenceDiagram
    	s-->>s: 生成 App 公私钥, p0, p1
 		s-->>b: 返回 app id 与公钥
    	a-->>a: embed App 公钥 p0
-   
-   	s->>s: 用 p1 签名 signature=base64(sign(p1,$microapp_online_safe_url)) 
+    u->>u: 部署微应用到公网服务,链接为 microapp_online_safe_url
+   	s->>s: 用 p1 签名 signature=base64(sign(p1,content(sitemap.json)))
 	  u-->>b: 绑定app id 与 微应用 microapp_online_safe_url 关系
 	 
 	  
@@ -374,20 +384,18 @@ if(microappid && version)
 {
    let microapp_json = request 'http://{host}:{port}/{path}/microapp.json'
    if exist(microapp_json && validate(microapp_json)){
-     let sitemap_url = read 'http://{host}:{port}/{path}/' + microapp_json[sitemap];
-     let sitemap_content          = request sitemap_url
-     let full_content  =request 'http://{host}:{port}/{path}/index.html'
-     for (url in sitemap_content.urls){
-	     let content = request url;   
-       full_content += content       
-     }
-    
-      if microapp_json[signature] == md5(full_content){
-        md5 check passed 
-        bind appid.version to security config
-      }else{
-        exception md5 check failed
-      }
+         let sitemap_url = read 'http://{host}:{port}/{path}/' + microapp_json[sitemap];
+         let sitemap_content          = request sitemap_url
+         let full_content  = ""
+         for (url in sitemap_content.urls){
+           full_content +=  request url       
+         }
+         if microapp_json[signature] == md5(full_content){
+           md5 check passed 
+           bind appid.version to security config
+         }else{
+           exception md5 check failed
+         }
    }  
 }else{
     pure h5 link

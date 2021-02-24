@@ -10,11 +10,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.OnReturnValue;
 import com.zkty.modules.engine.utils.ActivityUtils;
+import com.zkty.modules.engine.utils.XEngineMessage;
 import com.zkty.modules.loaded.widget.dialog.BottomDialog;
 import com.zkty.modules.loaded.widget.dialog.CommonDialog;
 import com.zkty.modules.loaded.widget.dialog.DialogHelper;
 import com.zkty.modules.loaded.widget.pickerview.PickerView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -176,6 +178,16 @@ public class __xengine__module_ui extends xengine__module_ui {
         dateDialog.show();
         handler.complete();
 
+    }
+
+    @Override
+    public void _hideTabbar(CompletionHandler<Nullable> handler) {
+        EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_HIDE_TABBAR));
+    }
+
+    @Override
+    public void _showTabbar(CompletionHandler<Nullable> handler) {
+        EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_SHOW_TABBAR));
     }
 
     @Override

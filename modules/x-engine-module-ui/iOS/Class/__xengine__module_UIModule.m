@@ -18,6 +18,7 @@
 #import <x-engine-module-tools/UIColor+HexString.h>
 #import <x-engine-module-engine/RecyleWebViewController.h>
 #import <XEngineWebView.h>
+#import <x-engine-module-engine/Unity.h>
 #import "UIBlockButton.h"
 @interface __xengine__module_UIModule() <UIPickerViewDataSource, UIPickerViewDelegate>
 @property(nonatomic,strong) NSMutableArray *pickerViewData;
@@ -246,12 +247,14 @@
 }
 
 - (void)_hideTabbar:(void (^)(BOOL))completionHandler {
-    
+    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
+    rootViewController.tabBarController.tabBar.hidden = YES;
 }
 
 
 - (void)_showTabbar:(void (^)(BOOL))completionHandler {
-    
+    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
+    rootViewController.tabBarController.tabBar.hidden = NO;
 }
 
 

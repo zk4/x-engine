@@ -18,7 +18,8 @@
 
 @implementation EntryViewController
 - (IBAction)Action:(id)sender {
-    [self goto2];
+//    [self goto2];
+    [self pushTestModule];
 }
 
 
@@ -32,7 +33,7 @@
 //    [self pushViewController:webLaderVC];
 }
 -(void) pushTestModule{
-    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.1.107:9111"];
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://192.168.18.189:9111"];
 }
 
 @end

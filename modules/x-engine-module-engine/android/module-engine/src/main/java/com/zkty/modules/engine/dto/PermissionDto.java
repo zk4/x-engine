@@ -191,21 +191,25 @@ public class PermissionDto {
 
 
         public static class NetworkBean {
-            /**
-             * method
-             */
-            /**
-             * method : native
-             */
 
-            private String method;
 
-            public String getMethod() {
-                return method;
+            private boolean strict;
+            private List<String> white_host_list;
+
+            public boolean isStrict() {
+                return strict;
             }
 
-            public void setMethod(String method) {
-                this.method = method;
+            public void setStrict(boolean strict) {
+                this.strict = strict;
+            }
+
+            public List<String> getWhite_host_list() {
+                return white_host_list;
+            }
+
+            public void setWhite_host_list(List<String> white_host_list) {
+                this.white_host_list = white_host_list;
             }
         }
     }

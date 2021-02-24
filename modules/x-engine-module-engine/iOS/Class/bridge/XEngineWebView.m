@@ -56,6 +56,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
                                                forMainFrameOnly:YES];
     [configuration.userContentController addUserScript:script];
+    
     self = [super initWithFrame:frame configuration: configuration];
     if (self) {
         super.UIDelegate=self;

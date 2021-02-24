@@ -29,13 +29,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.fastjson.JSON;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lihang.ShadowLayout;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
+import com.zkty.modules.engine.dto.PermissionDto;
 import com.zkty.modules.engine.imp.ImagePicker;
+import com.zkty.modules.engine.manager.MicroAppPermissionManager;
 import com.zkty.modules.engine.utils.ImageUtils;
 import com.zkty.modules.engine.utils.KeyBoardUtils;
 import com.zkty.modules.engine.utils.PermissionsUtils;
@@ -73,12 +76,14 @@ public class XEngineWebActivity extends AppCompatActivity {
     public static final String URL = "x_engine_url";
     public static final String MICRO_APP_ID = "micro_app_id";
     public static final String HIDE_NAV_BAR = "hideNavBar";
+    public static final String MICRO_APP_VERSION = "micro_app_version";
     public static final String INDEX_URL = "index_url";
     public static final String ROUTER = "router_path";
     private String url;
     private String indexUrl;
     private String mMicroAppId;
     private String router;
+    private String version;
     private boolean hideNavBar = false;//是否隐藏NavBar
 
     //    private ArrayList<LifecycleListener> lifecycleListeners;
@@ -171,6 +176,7 @@ public class XEngineWebActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.pb_web_activity);
         mMicroAppId = getIntent().getStringExtra(MICRO_APP_ID);
         indexUrl = getIntent().getStringExtra(INDEX_URL);
+        version = getIntent().getStringExtra(MICRO_APP_VERSION);
         mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(mMicroAppId);
 
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
@@ -180,8 +186,10 @@ public class XEngineWebActivity extends AppCompatActivity {
         });
         if (TextUtils.isEmpty(mMicroAppId)) {
             xEngineNavBar.setLeft2Listener(view -> finish());
+        } else {
+            PermissionDto dto = MicroAppPermissionManager.sharedInstance().getPermission(mMicroAppId, version);
+            mWebView.setPermission(dto);
         }
-
 
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);

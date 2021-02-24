@@ -9,13 +9,12 @@
 #import "MicroAppLoader.h"
 #import <Unity.h>
 #import "UIView+YYAdd.h"
+
 static   XEngineWebView* s_webview;
 
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, copy) NSString *rootPath;
-
-@property (nonatomic, strong) UIImageView *navBarHairlineImageView;
 
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
@@ -25,7 +24,6 @@ static   XEngineWebView* s_webview;
 
 @property (nonatomic, strong) UIView *screenView;
 
-@property (nonatomic,strong)UILabel * navTitleLabel;
 @end
 
 @implementation RecyleWebViewController
@@ -53,9 +51,9 @@ static   XEngineWebView* s_webview;
                             NSString *title = response;
                             title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                             if(title.length > 0){
-                                if(self.navTitleLabel.text.length == 0){
-                                    self.navTitleLabel.text = title;
-                                    self.customTiitle = self.navTitleLabel.text;
+                                if(self.title.length == 0){
+                                    self.title = title;
+                                    self.customTiitle = self.title;
                                 }
                             }
                         }
@@ -65,8 +63,8 @@ static   XEngineWebView* s_webview;
         }
         if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
             if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-                self.navTitleLabel.text = dic[@"title"];
-                self.customTiitle = self.navTitleLabel.text;
+                self.title = dic[@"title"];
+                self.customTiitle = self.title;
             }
         }
     }
@@ -366,13 +364,6 @@ static   XEngineWebView* s_webview;
     
     [self setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView]];
     [self loadFileUrl];
-    
-    self.navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
-    self.navBarHairlineImageView.hidden = YES;
-    
-    [self.navigationController.navigationBar setLayerShadow:[UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:0.04] offset:CGSizeMake(0,5) radius:10];
-    
-    self.navigationItem.titleView = self.navTitleLabel;
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
@@ -391,17 +382,15 @@ static   XEngineWebView* s_webview;
     }
     [self.view insertSubview:self.webview atIndex:0];
     
-    self.navBarHairlineImageView.hidden = YES;
+//    self.navBarHairlineImageView.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     
-    
-    
-    if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.navTitleLabel.text]){
-        self.navTitleLabel.text = self.customTiitle;
+    if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.title]){
+        self.title = self.customTiitle;
     }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
@@ -424,7 +413,6 @@ static   XEngineWebView* s_webview;
             [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
         }
     }
-    self.navBarHairlineImageView.hidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -436,29 +424,6 @@ static   XEngineWebView* s_webview;
         [self.view addSubview:self.screenView];
         self.screenView.frame = self.view.bounds;
     }
-}
-
-- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
-    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
-        return(UIImageView*)view;
-    }
-    for(UIView*subview in view.subviews) {
-        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
-        if(imageView) {
-            return imageView;
-        }
-    }
-   return nil;
-}
-
--(UILabel *)navTitleLabel{
-    if (!_navTitleLabel) {
-        _navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, 44)];
-        _navTitleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:24];
-        _navTitleLabel.textColor = [UIColor colorWithRed:18/255.0 green:18/255.0 blue:18/255.0 alpha:1.0];
-        _navTitleLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _navTitleLabel;
 }
 
 - (void)dealloc{

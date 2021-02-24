@@ -43,6 +43,7 @@
 - (void)pushWebViewControllerWithUrl:(NSString *)url withIsHiddenNavbar:(BOOL)isHidden{
     
     UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:url withHiddenBar:isHidden];
+    vc.hidesBottomBarWhenPushed = YES;
 //    [[ZKPushAnimation instance] isOpenCustomAnimation:[XEOneWebViewPool sharedInstance].inSingle withFrom:[Unity sharedInstance].getCurrentVC withTo:vc];
     
 //    UIView *vv = [[UIView alloc] init];
@@ -59,6 +60,7 @@
             [nav pushViewController:vc animated:YES];
         }
     }
+    vc.hidesBottomBarWhenPushed = NO;
 }
 //nav用
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params{
@@ -81,19 +83,12 @@
 - (void)pushViewControllerWithAppid:(NSString *)appid
                            withPath:(NSString *)path
                         withVersion:(long)version
-                         withParams:(NSString *)params{
-    
-    [self pushViewControllerWithAppid:appid withPath:path withVersion:version withParams:params withIsHiddenNavbar:NO];
-}
-
-- (void)pushViewControllerWithAppid:(NSString *)appid
-                           withPath:(NSString *)path
-                        withVersion:(long)version
                          withParams:(NSString *)params
                  withIsHiddenNavbar:(BOOL)isHidden{
     
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
+
     if(urlStr){
         if(path.length > 0){
             if ([path hasPrefix:@"/index?"]) {
@@ -172,8 +167,12 @@
 
 -(UIViewController *)getWebViewControllerWithId:(NSString *)appid{
     
-    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:1];
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:toUrl];
+//    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:1];
+//    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:toUrl];
+    NSDictionary * dic = [[MicroAppLoader sharedInstance]getMicroAppJsonToDictionary:appid version:0];
+    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0];
+    [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
+    UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:urlStr withHiddenBar:YES];
     return vc;
 }
 

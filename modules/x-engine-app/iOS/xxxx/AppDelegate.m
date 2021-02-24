@@ -4,8 +4,8 @@
 //
 
 #import "AppDelegate.h"
-#import "EntryViewController.h"
 #import <XEngineContext.h>
+#import "ZKTabBarViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -22,9 +22,8 @@
     [[XEngineContext sharedInstance] start];
     [[XEngineContext sharedInstance]  onApplicationDelegate:NSStringFromSelector(_cmd) arg1:application args:launchOptions];
 
-    EntryViewController *homePageVC = [[EntryViewController alloc] init];
-       UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];
-     self.window.rootViewController = nav;
+    ZKTabBarViewController *tabVC = [[ZKTabBarViewController alloc]init];
+    self.window.rootViewController = tabVC;
     
     return YES;
 }

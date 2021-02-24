@@ -22,6 +22,8 @@
 		00DFC70024C843A3006A53EE /* xengine_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FF24C843A3006A53EE /* xengine_config.json */; };
 		8F5DCB13EF4782C1CAA4B6C8 /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D60C9775B981CB996932E /* libPods-ModuleAppTests.a */; };
 		9AF685F29B1CCC9A580C53A3 /* libPods-ModuleApp-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC03E7754E8D1E83762FC45E /* libPods-ModuleApp-ModuleAppUITests.a */; };
+		C9287B2325D10C1000AFFCB5 /* CustomURLSchemeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C9287B2025D10C1000AFFCB5 /* CustomURLSchemeHandler.m */; };
+		C9287B2425D10C1000AFFCB5 /* WKWebView+Custome.m in Sources */ = {isa = PBXBuildFile; fileRef = C9287B2225D10C1000AFFCB5 /* WKWebView+Custome.m */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 		DD0A7B5F25381FEC00107280 /* XEngineContext.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0A7B4925381FEC00107280 /* XEngineContext.m */; };
 		DD0A7B6025381FEC00107280 /* xengine__module_BaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0A7B4C25381FEC00107280 /* xengine__module_BaseModule.m */; };
@@ -82,6 +84,10 @@
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		C9287B1F25D10C1000AFFCB5 /* CustomURLSchemeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomURLSchemeHandler.h; path = "../../../../../../../../x-engine-module-engine/iOS/Class/bridge/CustomURLSchemeHandler.h"; sourceTree = "<group>"; };
+		C9287B2025D10C1000AFFCB5 /* CustomURLSchemeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomURLSchemeHandler.m; path = "../../../../../../../../x-engine-module-engine/iOS/Class/bridge/CustomURLSchemeHandler.m"; sourceTree = "<group>"; };
+		C9287B2125D10C1000AFFCB5 /* WKWebView+Custome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WKWebView+Custome.h"; path = "../../../../../../../../x-engine-module-engine/iOS/Class/bridge/WKWebView+Custome.h"; sourceTree = "<group>"; };
+		C9287B2225D10C1000AFFCB5 /* WKWebView+Custome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WKWebView+Custome.m"; path = "../../../../../../../../x-engine-module-engine/iOS/Class/bridge/WKWebView+Custome.m"; sourceTree = "<group>"; };
 		DC03E7754E8D1E83762FC45E /* libPods-ModuleApp-ModuleAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp-ModuleAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0A7B4725381FEC00107280 /* __xengine__module_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __xengine__module_engine.h; sourceTree = "<group>"; };
 		DD0A7B4925381FEC00107280 /* XEngineContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEngineContext.m; sourceTree = "<group>"; };
@@ -259,6 +265,10 @@
 		DD0A7B4E25381FEC00107280 /* bridge */ = {
 			isa = PBXGroup;
 			children = (
+				C9287B1F25D10C1000AFFCB5 /* CustomURLSchemeHandler.h */,
+				C9287B2025D10C1000AFFCB5 /* CustomURLSchemeHandler.m */,
+				C9287B2125D10C1000AFFCB5 /* WKWebView+Custome.h */,
+				C9287B2225D10C1000AFFCB5 /* WKWebView+Custome.m */,
 				DD0A7B4F25381FEC00107280 /* XEngineBridge.h */,
 				DD0A7B5025381FEC00107280 /* XEngineWebView.h */,
 				DD0A7B5125381FEC00107280 /* XEngineInternalApis.h */,
@@ -541,10 +551,12 @@
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				DD0A7B6D253820D300107280 /* EngineManage.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
+				C9287B2425D10C1000AFFCB5 /* WKWebView+Custome.m in Sources */,
 				DD0A7B6025381FEC00107280 /* xengine__module_BaseModule.m in Sources */,
 				DD0A7B6725381FEC00107280 /* __xengine__module_engine.m in Sources */,
 				DD0A7B6325381FEC00107280 /* XEngineWebView.m in Sources */,
 				DD0A7B6125381FEC00107280 /* UIBlockButton.m in Sources */,
+				C9287B2325D10C1000AFFCB5 /* CustomURLSchemeHandler.m in Sources */,
 				DD0A7B6425381FEC00107280 /* XEngineInternalApis.m in Sources */,
 				DD0A7B6525381FEC00107280 /* XEngineCallInfo.m in Sources */,
 				00DFC6F124C84000006A53EE /* ViewController.m in Sources */,

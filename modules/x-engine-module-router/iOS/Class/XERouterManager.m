@@ -9,13 +9,23 @@
 #import <x-engine-module-engine/Unity.h>
 #import <x-engine-module-engine/XEOneWebViewControllerManage.h>
 #import "WXApi.h"
-#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
+//#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
 #import <XEngineContext.h>
 #import <MicroAppLoader.h>
-#import <x-engine-module-dcloud/XEUniCheckUtil.h>
+//#import <x-engine-module-dcloud/XEUniCheckUtil.h>
 
 @implementation XERouterManager
 
+
++ (instancetype)instance {
+
+    static XERouterManager *util;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        util = [[[self class] alloc] init];
+    });
+    return util;
+}
 
 +(void)routerToTarget:(NSString *)type withUri:(NSString *)uri withPath:(NSString *)path withArgs:(NSDictionary *)args withVersion:(long)version{
     [XERouterManager routerToTarget:type withUri:uri withPath:path withArgs:args withVersion:version withHiddenNavbar:NO];
@@ -85,17 +95,18 @@
                                                                     @"ROUTE_ARGS":@{}
                                                                     
             }];
-        }else {
-            if([XEUniCheckUtil checkUniFile:uri]){
-                NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
-                __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
-                UniMPDTO* d = [UniMPDTO new];
-                d.appId = uri;
-                d.redirectPath = path;
-                d.arguments = args;
-                [dcloud _openUniMPWithArg:d complete:nil];
-            }
         }
+//        else {
+//            if([XEUniCheckUtil checkUniFile:uri]){
+//                NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
+//                __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
+//                UniMPDTO* d = [UniMPDTO new];
+//                d.appId = uri;
+//                d.redirectPath = path;
+//                d.arguments = args;
+//                [dcloud _openUniMPWithArg:d complete:nil];
+//            }
+//        }
     } else if([type isEqual:@"wx"]){
         
         NSString *keyPath = [[NSBundle mainBundle] pathForResource:@"wx_appkey" ofType:@"md"];

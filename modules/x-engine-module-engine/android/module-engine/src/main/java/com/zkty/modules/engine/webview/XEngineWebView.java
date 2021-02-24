@@ -1,5 +1,6 @@
 package com.zkty.modules.engine.webview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,8 +10,11 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import androidx.annotation.RequiresApi;
 
 import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
@@ -74,18 +78,47 @@ public class XEngineWebView extends DWebView {
         setLayoutParams(params);
         addJavascript();
 
-        loadLocalImg();
+        setWebViewClient();
         // setErrorPage();
 
-        saveImg();
+        setOnLongClickListener();
     }
 
 
-    private void loadLocalImg() {
+    private void setWebViewClient() {
         setWebViewClient(new WebViewClient() {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
                 Log.d(TAG, "request url= " + s);
+                if (!s.startsWith("file")) {
+                    //配置存在，切需要拦截
+                    if (mPermission != null
+                            && mPermission.getPermission() != null
+                            && mPermission.getPermission().getNetwork() != null
+                            && mPermission.getPermission().getNetwork().isStrict()) {
+                        //在白名单内
+                        if (mPermission.getPermission().getNetwork().getWhite_host_list() != null
+                                && mPermission.getPermission().getNetwork().getWhite_host_list().size() > 0) {
+                            try {
+                                URL url = URL.parse(s);
+                                if (url != null) {
+                                    String host = url.getHost();
+                                    if (mPermission.getPermission().getNetwork().getWhite_host_list().contains(host)) {
+                                        return super.shouldInterceptRequest(webView, s);
+                                    }
+                                }
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                        //不在白名单
+                        alertDebugInfo("请求host不在白名单，请检查配置文件");
+                        return new WebResourceResponse();
+                    }
+                }
+
+
                 return super.shouldInterceptRequest(webView, s);
             }
 
@@ -182,14 +215,6 @@ public class XEngineWebView extends DWebView {
 
                     return true;
                 }
-                if (mPermission != null
-                        && mPermission.getPermission() != null
-                        && mPermission.getPermission().getNetwork() != null
-                        && "native".equals(mPermission.getPermission().getNetwork().getMethod())) {
-                    ToastUtils.showThreadToast("网络被禁用，请检查配置");
-                    return true;
-                }
-
 
                 if (Build.VERSION.SDK_INT < 26) {
                     webView.loadUrl(s);
@@ -338,7 +363,7 @@ public class XEngineWebView extends DWebView {
         return this.currentUrl;
     }
 
-    private void saveImg() {
+    private void setOnLongClickListener() {
 
         setOnLongClickListener(view -> {
             HitTestResult result = getHitTestResult();
@@ -361,7 +386,7 @@ public class XEngineWebView extends DWebView {
         });
     }
 
-    int speed = 100;
+    int speed = 120;
 
     public void smoothScrollToTop(int scrollY) {
 
@@ -381,9 +406,32 @@ public class XEngineWebView extends DWebView {
             scrollTo(0, scrollY - speed);
         }
 
-        new Handler().postDelayed(() -> smoothScrollToTop(scrollY - speed), 10);
+        new Handler().postDelayed(() -> smoothScrollToTop(scrollY - speed), 5);
 
 
+    }
+
+    public interface OnScrollListener {
+        void onScrollChange(int scrollX, int scrollY, int oldScrollX, int oldScrollY);
+    }
+
+    private OnScrollListener mScrollListener;
+
+
+    public void setOnScrollListener(OnScrollListener listener) {
+        this.mScrollListener = listener;
+    }
+
+    public OnScrollListener getScrollListener() {
+        return this.mScrollListener;
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        if (mScrollListener != null) {
+            mScrollListener.onScrollChange(l, t, oldl, oldt);
+        }
     }
 
     private PermissionDto mPermission;
@@ -392,4 +440,7 @@ public class XEngineWebView extends DWebView {
         this.mPermission = mPermission;
     }
 
+    public PermissionDto getPermission() {
+        return this.mPermission;
+    }
 }

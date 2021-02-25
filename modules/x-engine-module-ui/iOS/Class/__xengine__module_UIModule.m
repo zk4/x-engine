@@ -18,6 +18,7 @@
 #import <x-engine-module-tools/UIColor+HexString.h>
 #import <x-engine-module-engine/RecyleWebViewController.h>
 #import <XEngineWebView.h>
+#import <x-engine-module-engine/Unity.h>
 #import "UIBlockButton.h"
 @interface __xengine__module_UIModule() <UIPickerViewDataSource, UIPickerViewDelegate>
 @property(nonatomic,strong) NSMutableArray *pickerViewData;
@@ -246,12 +247,20 @@
 }
 
 - (void)_hideTabbar:(void (^)(BOOL))completionHandler {
-    
+    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
+    if (!rootViewController.tabBarController.tabBar.isHidden) {
+        rootViewController.tabBarController.tabBar.hidden = YES;
+        rootViewController.view.frame = CGRectMake(rootViewController.view.frame.origin.x, rootViewController.view.frame.origin.y, rootViewController.view.frame.size.width, rootViewController.view.frame.size.height + kBottomSafeHeight + 49);
+    }
 }
 
 
 - (void)_showTabbar:(void (^)(BOOL))completionHandler {
-    
+    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
+    if (rootViewController.tabBarController.tabBar.isHidden) {
+    rootViewController.tabBarController.tabBar.hidden = NO;
+        rootViewController.view.frame = CGRectMake(rootViewController.view.frame.origin.x, rootViewController.view.frame.origin.y, rootViewController.view.frame.size.width, rootViewController.view.frame.size.height - kBottomSafeHeight - 49);
+    }
 }
 
 

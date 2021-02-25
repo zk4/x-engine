@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-ui",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -32,11 +32,11 @@
     "vconsole-webpack-plugin": "^1.5.1",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "dependencies": {
-    "@zkty-team/x-engine-module-engine": "^0.1.12"
+    "@zkty-team/x-engine-module-engine": "^0.1.13"
   },
   "gitHead": "1fea4cec0219638167d1ff9d5670ebe36d44b20c"
 }

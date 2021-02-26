@@ -369,8 +369,8 @@ static   XEngineWebView* s_webview;
     
     self.navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     self.navBarHairlineImageView.hidden = YES;
-    
-    [self.navigationController.navigationBar setLayerShadow:[UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:0.04] offset:CGSizeMake(0,5) radius:10];
+//
+    [self.navigationController.navigationBar setLayerShadow:[UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:1] offset:CGSizeMake(0,5) radius:10];
     
     self.navigationItem.titleView = self.navTitleLabel;
 }

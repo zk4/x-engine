@@ -209,8 +209,9 @@ public class XEngineWebActivityManager {
         for (String history : histories) {
             EventBus.getDefault().post(new XEngineMessage(XEngineMessage.MSG_TYPE_PAGE_CLOSE, history));
         }
-
-
     }
 
+    public List<XEngineWebActivity> getActivityList() {
+        return activityList;
+    }
 }

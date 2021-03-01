@@ -30,9 +30,12 @@ microapp.json 是微应用里引入的重要配置文件,里面有安全的配�
  	"sitemap":"./sitemap.json",
   
 	"permission":{
-		"secrect":["{key}"],
+		"secrect":["accesstoken"],
 		"module":{
-			"{modulename}":{
+			"com.zkty.module.ui":{
+				"scope":"all"
+			},
+			"com.zkty.module.nav":{
 				"scope":"all"
 			},
 		},
@@ -44,9 +47,7 @@ microapp.json 是微应用里引入的重要配置文件,里面有安全的配�
 }
 ```
 
-
-
-
+url
 
 
 # 服务端
@@ -482,3 +483,4 @@ sequenceDiagram
 
 
 
+ 

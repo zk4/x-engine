@@ -51,6 +51,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import module.engine.BuildConfig;
+
 import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 
 
@@ -61,7 +63,7 @@ import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 public class DWebView extends WebView {
     private static final String BRIDGE_NAME = "_dsbridge";
     private static final String LOG_TAG = "dsBridge";
-    private static boolean isDebug = true;
+    private static boolean isDebug = !BuildConfig.BUILD_TYPE.equals("release");
     private Map<String, Object> javaScriptNamespaceInterfaces = new HashMap();
     private String APP_CACHE_DIRNAME;
     int callID = 0;

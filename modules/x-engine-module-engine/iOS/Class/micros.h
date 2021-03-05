@@ -30,8 +30,10 @@
 #define kIOS10                  (kVersion.integerValue == 10)                // iOS10
 #define kIOS11                  (kVersion.integerValue == 11)                // iOS11
 #define kIOS12                  (kVersion.integerValue == 12)                // iOS12
+#define kIOS13                  (kVersion.integerValue == 13)                // iOS13
+#define kIOS14                  (kVersion.integerValue == 14)                // iOS14
 
-#define kStatusBarH             (CGFloat)(kIPHONEX?(44):(20))                // 状态栏高度
+#define kStatusBarH             (CGFloat)(kIPHONEX?(kIOS14?48:44):(20))                // 状态栏高度
 #define kNavigationH            (CGFloat)(kIPHONEX?(88):(64))                // 状态栏和导航栏总高度
 #define kTabBarH                (CGFloat)(kIPHONEX?(49):(49))                // TabBar高度
 #define kBottomSafeHeight       (CGFloat)(kIPHONEX?(34):(0))                 // 底部安全区域远离高度

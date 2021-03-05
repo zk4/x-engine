@@ -247,20 +247,14 @@
 }
 
 - (void)_hideTabbar:(void (^)(BOOL))completionHandler {
-    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
-    if (!rootViewController.tabBarController.tabBar.isHidden) {
-        rootViewController.tabBarController.tabBar.hidden = YES;
-        rootViewController.view.frame = CGRectMake(rootViewController.view.frame.origin.x, rootViewController.view.frame.origin.y, rootViewController.view.frame.size.width, rootViewController.view.frame.size.height + kBottomSafeHeight + 49);
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"isShowTabbar" object:@{@"isshow":@(NO)}];
+    completionHandler(YES);
 }
 
 
 - (void)_showTabbar:(void (^)(BOOL))completionHandler {
-    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
-    if (rootViewController.tabBarController.tabBar.isHidden) {
-    rootViewController.tabBarController.tabBar.hidden = NO;
-        rootViewController.view.frame = CGRectMake(rootViewController.view.frame.origin.x, rootViewController.view.frame.origin.y, rootViewController.view.frame.size.width, rootViewController.view.frame.size.height - kBottomSafeHeight - 49);
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"isShowTabbar" object:@{@"isshow":@(YES)}];
+    completionHandler(YES);
 }
 
 

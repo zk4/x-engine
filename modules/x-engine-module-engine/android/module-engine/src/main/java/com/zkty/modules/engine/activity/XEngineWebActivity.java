@@ -356,6 +356,7 @@ public class XEngineWebActivity extends AppCompatActivity {
             XOneWebViewPool.sharedInstance().removeWebView(mWebView);
             mWebView.destroy();
         }
+        EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_SHOW_TABBAR));
         EventBus.getDefault().unregister(this);
 
         super.onDestroy();

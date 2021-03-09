@@ -418,13 +418,18 @@ static   XEngineWebView* s_webview;
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 
+    NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
     if(self.navigationController == nil){
-        NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
         if(![ary.lastObject isKindOfClass:[RecyleWebViewController class]]){
             [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
         }
     }
     self.navBarHairlineImageView.hidden = NO;
+    
+    // 到了根页面就一定要显示tabbar
+    if (ary.count <= 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"isShowTabbar" object:@{@"isshow":@(YES)}];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

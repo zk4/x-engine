@@ -2,17 +2,33 @@
 
 安全
 
-- 即使通过中间人代理,也无法替换内部微应用
+- 即使通过中间人代理,也无法方便的替换内部微应用     （ssl 探针）
+- 即使替换内部微应用,也无法直接使用微应用          （公钥验证签名）
+- 即使可以使用微应用，也只是当前机主而已       （私钥签名）
 
-- 即使替换内部微应用,也无法使用微应用
+安全应该在 api 级别：由服务器保证
 
-  
+## x-engine-app.json
+
+放于原生项目中
+
+``` json
+{
+  "appid":"",
+  "pub_key":"",
+  "digest_method":"md5" // default, 放微应用里还是 x-engine-app.json 里?
+}
+```
+
+
 
 ## microapp.json
 
+放于 zip 中
+
 microapp.json 是微应用里引入的重要配置文件,里面有安全的配置, 将在引擎 1.0.0 版本后使用.
 
-```
+```json
 {
 	"id":"com.zkty.microapp.xxx",
 	"version":2,
@@ -24,11 +40,7 @@ microapp.json 是微应用里引入的重要配置文件,里面有安全的配�
 		"statusBar":{
 			"color":"#fff000"
 		}
-	},
-//  怎么更新呢?
-//	"microapp_online_safe_url": "https://www.lahoshow.com/index.html", // 为在线微应用预留,指向在线微应用的入口页
- 	"sitemap":"./sitemap.json",
-  
+	},  
 	"permission":{
 		"secrect":["accesstoken"],
 		"module":{
@@ -41,13 +53,36 @@ microapp.json 是微应用里引入的重要配置文件,里面有安全的配�
 		},
 		"network":{
 			"strict":true, // strict=true  在引擎中,将拦截微应用容器 (webview) 里的网络,并检测是否 host 在白名单内. false 将忽略任何网络检测
+			"auto_token": {
+			   enable:false,  // defalut false，是否自动增加 token, 注意，仅当 permission.network.strict 为 true 时，enable 为 true 才有意义
+			  "header_key": “Authorization", //默认的 header key
+				"token_prefix":"Bearer " //token 的前缀，注意有个空格
+		  }
 			"white_host_list":["baidu.com"]
 			}
 	}
 }
 ```
 
-url
+
+
+## sitemap.json
+
+描述了 zip 里的所有文件，注意：sitemap.json 里包含  './sitemap.json' 条目。
+
+```json
+[
+  './index.html'
+  './sitemap.json',
+  './microapp.json',
+  './css/index.css'
+  ...
+]
+```
+
+
+
+
 
 
 # 服务端
@@ -71,6 +106,8 @@ x-engine-app.json
 
 
 ### 离线包安全流程图
+
+#### 带业务服务
 
 ``` mermaid
 sequenceDiagram
@@ -97,14 +134,44 @@ sequenceDiagram
 	  a->>b: 拉取路由例表
 
 	  a->>a: 	decrpt(debase64(signature),p0) === md5(m1.zip) 是否相等
-    a->>a: 打开  m1.zi
+    a->>a: 打开  m1.zip
+```
+
+#### 不带业务服务
+
+``` mermaid
+sequenceDiagram
+	  autonumber
+    participant s as 微应用服务 
+    participant r as 资源服务
+
+	  participant u as 微应用.zip 开发者  
+    participant a as App 开发者
+
+
+    s-->>s: 创建应用 api
+   	s-->>s: 生成 App 公私钥, p0, p1
+
+   	a-->>a: embed App 公钥 p0
+   	u->>s: 上传微应用appid+ m1.zip包 api
+
+   	s-->>s: 用 p1 对微应用.zip signature=base64(sign(p1,md5(m1.zip))) 值签名 
+	  s-->>r: 提交到资源服务器
+	  s-->>u: 返回结果
+	  
+	  a->>s: 拉取路由例表
+
+	  a->>a: 	decrpt(debase64(signature),p0) === md5(m1.zip) 是否相等
+    a->>a: 打开  m1.zip
 ```
 
 
 
-## 在线微应用安全流程图
 
-microapp_online_safe_url 即在线可访问的链接, 
+
+### 在线微应用安全流程图
+
+带业务服务与不带业务服务
 
 ``` mermaid
 sequenceDiagram
@@ -120,22 +187,23 @@ sequenceDiagram
    	s-->>s: 生成 App 公私钥, p0, p1
 		s-->>b: 返回 app id 与公钥
    	a-->>a: embed App 公钥 p0
-    u->>u: 部署微应用到公网服务,链接为 microapp_online_safe_url
-   	s->>s: 用 p1 签名 signature=base64(sign(p1,content(sitemap.json)))
-	  u-->>b: 绑定app id 与 微应用 microapp_online_safe_url 关系
+    u->>u: 部署微应用到公网服务（包含可以请求 sitemap.json)
+    s->>s: 读取 sitemap.json 地址后，下载 sitemap.json 内所有的文件
+    s->>s: 将下载的文件打包成 m1.zip 包，（理论上与直接打包一模一样）
+   	s->>s: 用 p1 对微应用.zip signature=base64(sign(p1,md5(m1.zip))) 值签名 
 	 
 	  
-	  a->>b: 拉取路由例表
-	 
+	  a->>b: 读取 sitemap.json 后，下载 sitemap.json 内所有的文件
+	  a->>a: 将下载的文件打包成 zip 包，（理论上与直接打包一模一样）	 
 	  a->>a: decrpt(debase64(signature),p0) === $microapp_online_safe_url 是否相等
     a->>a: 打开 microapp_online_safe_url
 ```
 
 
 
-### 对外接口
+### 微应用服务对外接口
 
-服务名 offline-service
+服务名 microapp-service
 
 返回封装:
 
@@ -146,10 +214,6 @@ sequenceDiagram
 	data: Array | Object
 }
 ```
-
-
-
-
 
 
 
@@ -234,10 +298,6 @@ file: Binary  (zip 文件)
   } 
 }
 ```
-
-
-
-
 
 
 

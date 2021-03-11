@@ -1,6 +1,23 @@
 {
   "packages": [
-    "modules/*"
+    "modules/x-engine-module-offline",
+    "modules/x-engine-module-bluetooth",
+    "modules/x-engine-module-camera",
+    "modules/x-engine-module-dcloud",
+    "modules/x-engine-module-device",
+    "modules/x-engine-module-engine",
+    "modules/x-engine-module-geo",
+    "modules/x-engine-module-localstorage",
+    "modules/x-engine-module-nav",
+    "modules/x-engine-module-network",
+    "modules/x-engine-module-offline",
+    "modules/x-engine-module-protocols",
+    "modules/x-engine-module-router",
+    "modules/x-engine-module-scan",
+    "modules/x-engine-module-secrect",
+    "modules/x-engine-module-share",
+    "modules/x-engine-module-tools",
+    "modules/x-engine-module-ui"
   ],
   "version": "0.1.12",
   "npmClient": "yarn",

@@ -1,6 +1,0 @@
-framework module YJZDBill {
-  umbrella header "YJZDBill.h"
-
-  export *
-  module * { export * }
-}

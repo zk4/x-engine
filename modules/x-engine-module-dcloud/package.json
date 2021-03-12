@@ -11,12 +11,9 @@
     "patch": "npm version patch"
   },
   "files": [
-    "iOS/Class/*",
-    "iOS/*.md",
     "h5/src/*.js",
     "h5/src/*.md",
     "*.md",
-    "*.podspec",
     "LICENSE"
   ],
   "devDependencies": {

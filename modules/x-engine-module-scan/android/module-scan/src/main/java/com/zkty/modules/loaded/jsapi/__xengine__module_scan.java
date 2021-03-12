@@ -12,7 +12,10 @@ import androidx.annotation.Nullable;
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.OnReturnValue;
+import com.zkty.modules.engine.activity.BaseXEngineActivity;
+import com.zkty.modules.engine.activity.LifecycleListener;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
+import com.zkty.modules.engine.utils.ActivityUtils;
 import com.zkty.modules.engine.utils.XEngineWebActivityManager;
 
 import activity.ScanActivity;
@@ -22,17 +25,17 @@ public class __xengine__module_scan extends xengine__module_scan {
 
 
     private int REQUEST_CODE = 0;
-    private XEngineWebActivity.LifecycleListener lifeCycleListener;
+    private LifecycleListener lifeCycleListener;
 
     @Override
     public void _openScanView(final ScanOpenDto dto, final CompletionHandler<Nullable> handler) {
         Log.d(TAG, JSONObject.toJSONString(dto));
         REQUEST_CODE++;
-        final XEngineWebActivity xEngineWebActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
-        Log.d(TAG, "hashCode:" + xEngineWebActivity.hashCode());
-        Log.d(TAG, "REQUEST_CODE:" + REQUEST_CODE);
+        Activity activity = ActivityUtils.getCurrentActivity();
+        if (activity == null || !(activity instanceof BaseXEngineActivity)) return;
+        final BaseXEngineActivity act = (BaseXEngineActivity) activity;
 //        if (lifeCycleListener == null) {
-        lifeCycleListener = new XEngineWebActivity.LifecycleListener() {
+        lifeCycleListener = new LifecycleListener() {
             @Override
             public void onCreate() {
 
@@ -73,7 +76,6 @@ public class __xengine__module_scan extends xengine__module_scan {
                 Log.d(TAG, "REQUEST_CODE:" + REQUEST_CODE + ",requestCode=" + requestCode);
                 if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
                     REQUEST_CODE++;
-                    Log.d(TAG, "hashCode..:" + xEngineWebActivity.hashCode());
                     if (intent.hasExtra("result")) {
                         String code = intent.getStringExtra("result");
                         if (!TextUtils.isEmpty(code)) {
@@ -96,11 +98,11 @@ public class __xengine__module_scan extends xengine__module_scan {
             }
         };
 //        }
-        xEngineWebActivity.addLifeCycleListener(lifeCycleListener);
+        act.addLifeCycleListener(lifeCycleListener);
 
         Intent intent = new Intent();
-        intent.setClass(xEngineWebActivity.getApplicationContext(), ScanActivity.class);
-        xEngineWebActivity.startActivityForResult(intent, REQUEST_CODE);
+        intent.setClass(act.getApplicationContext(), ScanActivity.class);
+        act.startActivityForResult(intent, REQUEST_CODE);
         handler.complete();
     }
 }

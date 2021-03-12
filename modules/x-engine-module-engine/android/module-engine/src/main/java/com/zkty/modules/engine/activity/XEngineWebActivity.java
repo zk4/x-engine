@@ -62,7 +62,7 @@ import java.util.Set;
 
 import module.engine.R;
 
-public class XEngineWebActivity extends AppCompatActivity {
+public class XEngineWebActivity extends BaseXEngineActivity {
     private static final String TAG = XEngineWebActivity.class.getSimpleName();
 
     protected XEngineWebView mWebView;
@@ -87,7 +87,7 @@ public class XEngineWebActivity extends AppCompatActivity {
     private boolean hideNavBar = false;//是否隐藏NavBar
 
     //    private ArrayList<LifecycleListener> lifecycleListeners;
-    private Set<LifecycleListener> lifecycleListeners;
+
     private boolean isFirst = true;
     private boolean isResume = false;
     private MyWebChromeClient mWebChromeClient;
@@ -96,39 +96,8 @@ public class XEngineWebActivity extends AppCompatActivity {
     private PermissionsUtils permissionsUtils = new PermissionsUtils();
     public static final int FILECHOOSER_RESULTCODE = 10;// 表单的结果回调
 
-    public interface LifecycleListener {
 
-        void onCreate();
 
-        void onStart();
-
-        void onRestart();
-
-        void onResume();
-
-        void onPause();
-
-        void onStop();
-
-        void onDestroy();
-
-        void onActivityResult(int requestCode, int resultCode, @Nullable Intent data);
-
-        void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults);
-    }
-
-    public void addLifeCycleListener(LifecycleListener lifeCycleListener) {
-        if (lifeCycleListener != null)
-            lifecycleListeners.add(lifeCycleListener);
-    }
-
-    public boolean removeLifeCycleListener(LifecycleListener lifeCycleListener) {
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty() && lifecycleListeners.contains(lifeCycleListener)) {
-            return lifecycleListeners.remove(lifeCycleListener);
-        } else {
-            return false;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,7 +173,6 @@ public class XEngineWebActivity extends AppCompatActivity {
         }
 
         url = TextUtils.isEmpty(mWebView.getOriginalUrl()) ? mWebView.getUrl() : mWebView.getOriginalUrl();
-        Log.d(TAG, "onCreate()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
     }
 
 
@@ -217,7 +185,6 @@ public class XEngineWebActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "onActivityResult()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0) + "----requestCode:" + requestCode + "---resultCode:" + resultCode);
         if (requestCode == ImageUtils.RESULT_CODE_PHOTO) {
             if (null == mUploadMessage && null == mUploadCallbackAboveL) return;
             Uri result = data == null ? null : data.getData();
@@ -271,7 +238,6 @@ public class XEngineWebActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-        Log.d(TAG, "onRequestPermissionsResult()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -364,6 +330,7 @@ public class XEngineWebActivity extends AppCompatActivity {
             XOneWebViewPool.sharedInstance().removeWebView(mWebView);
             mWebView.destroy();
         }
+        EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_SHOW_TABBAR));
         EventBus.getDefault().unregister(this);
 
         super.onDestroy();

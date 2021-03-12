@@ -19,7 +19,7 @@
     "modules/x-engine-module-tools",
     "modules/x-engine-module-ui"
   ],
-  "version": "0.1.12",
+  "version": "0.1.13",
   "npmClient": "yarn",
   "command": {
     "publish": {

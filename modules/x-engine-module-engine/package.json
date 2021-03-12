@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-engine",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "zkty-team/x-engine-module-engine",
   "main": "h5/src/index.js",
   "scripts": {
@@ -11,10 +11,8 @@
     "patch": "npm version patch"
   },
   "files": [
-    "iOS/Class/*",
     "h5/src/*.js",
     "*.md",
-    "*.podspec",
     "LICENSE"
   ],
   "keywords": [],

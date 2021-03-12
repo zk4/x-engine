@@ -44,11 +44,11 @@ def getTimeStamp():
 def getBuild():
     import datetime
     import time
-    return datetime.datetime.now().strftime('%Y%m%d')  
+    return datetime.datetime.now().strftime('%Y%m%d%H%M%S')  
 
 def doaction(name,version,downloadurl,build):
     text= f"""
-{name} {version} 已上传
+{name} {version} 安卓版已上传蒲公英
 
 
 蒲公英版为快速验证测试版本。仅供验证! 

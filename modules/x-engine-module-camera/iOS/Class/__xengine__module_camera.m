@@ -366,6 +366,12 @@ typedef void(^CameraResult)(CameraRetDTO *, BOOL);
         [webVC.webview callHandler:self.event
                          arguments:@[[[NSString alloc] initWithData:data encoding:4]]
                  completionHandler:^(id  _Nullable value) {}];
+    }else if([Unity sharedInstance].XXXWeb && [[Unity sharedInstance].XXXWeb isKindOfClass:[XEngineWebView class] ]){
+        XEngineWebView *web = (XEngineWebView *)[Unity sharedInstance].XXXWeb;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingFragmentsAllowed error:nil];
+        [web callHandler:self.event
+               arguments:@[[[NSString alloc] initWithData:data encoding:4]]
+       completionHandler:^(id  _Nullable value) {}];
     }
 }
 

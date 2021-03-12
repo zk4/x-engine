@@ -24,6 +24,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.dsbridge.OnReturnValue;
+import com.zkty.modules.engine.activity.BaseXEngineActivity;
+import com.zkty.modules.engine.activity.LifecycleListener;
 import com.zkty.modules.engine.activity.XEngineWebActivity;
 import com.zkty.modules.engine.core.IApplicationListener;
 import com.zkty.modules.engine.exception.XEngineException;
@@ -50,7 +52,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
     private static final String TAG = "XEngine__module_camera";
 
 
-    private XEngineWebActivity.LifecycleListener lifeCycleListener;
+    private LifecycleListener lifeCycleListener;
     private int REQUEST_OBTAIN_PIC = 1;
 
     private CameraDTO cameraDTO;
@@ -124,9 +126,11 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         }
 
         out = null;
-        final XEngineWebActivity act = (XEngineWebActivity) XEngineWebActivityManager.sharedInstance().getCurrent();
+        Activity activity = ActivityUtils.getCurrentActivity();
+        if (activity == null || !(activity instanceof BaseXEngineActivity)) return;
+        final BaseXEngineActivity act = (BaseXEngineActivity) activity;
         if (lifeCycleListener == null) {
-            lifeCycleListener = new XEngineWebActivity.LifecycleListener() {
+            lifeCycleListener = new LifecycleListener() {
                 @Override
                 public void onCreate() {
 
@@ -415,7 +419,7 @@ public class __xengine__module_camera extends xengine__module_camera implements 
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
 
-        outCrop = new File(dir, System.currentTimeMillis()+".jpg");
+        outCrop = new File(dir, System.currentTimeMillis() + ".jpg");
         try {
             if (outCrop.exists()) {
                 outCrop.delete();

@@ -247,14 +247,14 @@
 }
 
 - (void)_hideTabbar:(void (^)(BOOL))completionHandler {
-    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
-    rootViewController.tabBarController.tabBar.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"isShowTabbar" object:@{@"isshow":@(NO)}];
+    completionHandler(YES);
 }
 
 
 - (void)_showTabbar:(void (^)(BOOL))completionHandler {
-    UIViewController *rootViewController = [[Unity sharedInstance] getCurrentVC];
-    rootViewController.tabBarController.tabBar.hidden = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"isShowTabbar" object:@{@"isshow":@(YES)}];
+    completionHandler(YES);
 }
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-module-geo",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "h5/src/index.js",
   "description": "geo module",
   "license": "MIT",
@@ -12,12 +12,9 @@
     "patch": "npm version patch"
   },
   "files": [
-    "iOS/Class/*",
-    "iOS/*.md",
     "h5/src/*.js",
     "h5/src/*.md",
     "*.md",
-    "*.podspec",
     "LICENSE"
   ],
   "devDependencies": {
@@ -38,7 +35,7 @@
   },
   "dependencies": {
     "@zkty-team/x-cli": "^1.0.14",
-    "@zkty-team/x-engine-module-engine": "^0.1.12"
+    "@zkty-team/x-engine-module-engine": "^0.1.13"
   },
   "gitHead": "1fea4cec0219638167d1ff9d5670ebe36d44b20c"
 }

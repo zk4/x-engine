@@ -15,8 +15,7 @@ target 'router' do
   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
   pod 'x-engine-module-dcloud', :path =>'../../x-engine-module-dcloud'
   pod 'UniBoost', :path => '../../../../UniBoost'
-
-
+  pod 'AFNetworking', '~> 4.0.0'
   pod 'WechatOpenSDK'
 
   target 'routerUITests' do

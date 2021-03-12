@@ -10,6 +10,11 @@
 
 #import "XERouterManager.h"
 
+#import <x-engine-module-dcloud/__xengine__module_dcloud.h>
+#import <x-engine-module-dcloud/XEUniCheckUtil.h>
+#import <XEngineContext.h>
+
+#import "XERouterManager.h"
 @interface EntryViewController ()
 
 @end
@@ -17,7 +22,18 @@
 @implementation EntryViewController
  
 -(void) pushTestModule{
-    [XERouterManager routerToTarget:@"h5" withUri:@"http://192.168.1.119:8080/index.html" withPath:@"/" withArgs:nil withVersion:1];
+//    [XERouterManager routerToTarget:@"uniapp" withUri:@"__UNI__807D551.wgt" withPath:@"/" withArgs:nil withVersion:1];
+    NSString* uri = @"__UNI__807D551";
+    if([XEUniCheckUtil checkUniFile:uri]){
+                 NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);
+                 __xengine__module_dcloud *dcloud = [[XEngineContext sharedInstance] getModuleByName:dcloudname];
+                 UniMPDTO* d = [UniMPDTO new];
+                 d.appId = uri;
+                 d.redirectPath = @"/";
+                 d.arguments = nil;
+                 [dcloud _openUniMPWithArg:d complete:nil];
+             }
+        
 }
 
 - (void)viewDidLoad {

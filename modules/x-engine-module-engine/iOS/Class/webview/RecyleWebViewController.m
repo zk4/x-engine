@@ -8,7 +8,7 @@
 #import "XEOneWebViewPool.h"
 #import "MicroAppLoader.h"
 #import <Unity.h>
-#import "UIView+YYAdd.h"
+
 
 static   XEngineWebView* s_webview;
 

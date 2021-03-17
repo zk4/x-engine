@@ -30,7 +30,7 @@ PODS:
     - JSONModel
     - x-engine-module-engine
     - x-engine-module-tools
-  - x-engine-module-engine (0.1.12):
+  - x-engine-module-engine (0.1.13):
     - JSONModel
     - Masonry
     - MBProgressHUD
@@ -48,10 +48,10 @@ PODS:
     - x-engine-module-protocols
   - x-engine-module-protocols (0.0.9):
     - BMKLocationKit
-  - x-engine-module-router (0.1.12):
+  - x-engine-module-router (0.1.13):
     - WechatOpenSDK
     - x-engine-module-engine
-  - x-engine-module-scan (0.1.12):
+  - x-engine-module-scan (0.1.13):
     - x-engine-module-engine
   - x-engine-module-tools (1.0.0):
     - SSZipArchive
@@ -122,13 +122,13 @@ SPEC CHECKSUMS:
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   x-engine-module-camera: 310cfca6469908f0d5b9f2e8b64b3d24875bd30e
-  x-engine-module-engine: 1f226e469366a657a6399014a14f57df521ba729
+  x-engine-module-engine: f14fcf3ebd3dc29326995662add87bf5cfddedce
   x-engine-module-localstorage: 185961699495e0c7de351fa06a086eea10aae9ef
   x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
   x-engine-module-network: c91ab154d7760385096a6299b9d8bbe030091128
   x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
-  x-engine-module-router: fc9dae00e7f7710b6aaf221eaebd952f26107f82
-  x-engine-module-scan: 9adc58494135948890a1a24d618a0fdbb8e02de4
+  x-engine-module-router: a9f6b321bd6772041628e00b58936f6b47ef2678
+  x-engine-module-scan: 053db9b24416ac87212fa95ccbbc2b7b71116c53
   x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 

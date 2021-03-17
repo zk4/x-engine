@@ -18,22 +18,18 @@
 
 @implementation EntryViewController
 - (IBAction)Action:(id)sender {
-//    [self goto2];
+ 
     [self pushTestModule];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self goto2];
+ 
 }
-
-- (void)goto2 {
-//    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithUrl:@"http://0.0.0.0:9111/index.html"  ];
-//    [self pushViewController:webLaderVC];
-}
+ 
 -(void) pushTestModule{
-    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://10.2.128.54:9111"];
+    [[XEOneWebViewControllerManage sharedInstance] pushWebViewControllerWithHttpRouteUrl:@"http://10.2.128.80:9111"];
 }
 
 @end

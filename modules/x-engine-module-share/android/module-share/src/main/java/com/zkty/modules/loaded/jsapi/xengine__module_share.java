@@ -66,7 +66,7 @@
   
   interface xengine__module_share_i {
     public void _share(ShareReqDTO dto, final CompletionHandler<ShareResDTO> handler);
-public void _shareForOpenWXMiniProgram(MiniProgramReqDTO dto, final CompletionHandler<ShareResDTO> handler);
+    public void _shareForOpenWXMiniProgram(MiniProgramReqDTO dto, final CompletionHandler<ShareResDTO> handler);
   }
   
   

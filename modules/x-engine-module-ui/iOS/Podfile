@@ -7,6 +7,7 @@ target 'ui' do
    pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools/'
    #pod 'x-engine-module-microapp', :path =>'../../x-engine-module-microapp/'
    pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols/'
+   pod 'AFNetworking', '~> 4.0.0'
    
  target 'uiTests' do
     inherit! :search_paths

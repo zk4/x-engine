@@ -15,6 +15,8 @@
 
 @end
 
+// TODO 生命周期通知，应用到后台，通知组件等。。
+// TODO 集成路由 router， 有 UI 才有 router 的意义， 路由的目的地可能是 webview 也可能是原生。
 @implementation XEngineContext
 
 X_MODULE(com.zkty.module.core,XEngineContext)
@@ -89,7 +91,6 @@ X_MODULE(com.zkty.module.core,XEngineContext)
         [self.moduleName2MoudleProtocolnames setObject:protocols forKey:moduleName];
         
 
-        
         [self.modules addObject:moduleClass];
         NSLog(@"moudle found: %@",moduleClass.moduleId);
     }

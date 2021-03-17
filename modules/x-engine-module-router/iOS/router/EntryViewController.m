@@ -23,6 +23,7 @@
  
 -(void) pushTestModule{
 //    [XERouterManager routerToTarget:@"uniapp" withUri:@"__UNI__807D551.wgt" withPath:@"/" withArgs:nil withVersion:1];
+    []
     NSString* uri = @"__UNI__807D551";
     if([XEUniCheckUtil checkUniFile:uri]){
                  NSString *dcloudname = NSStringFromClass(__xengine__module_dcloud.class);

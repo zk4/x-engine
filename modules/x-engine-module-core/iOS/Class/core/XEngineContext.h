@@ -5,8 +5,8 @@
 #import <Foundation/Foundation.h>
 
 #define X_MODULE(moduleid,clz) + (void)load{ \
-    [[XEngineContext sharedInstance] registerModuleId:@ #moduleid clazz:clz.class];\
-}
+    [[XEngineContext sharedInstance] registerModuleId:@#moduleid clazz:clz.class];}\
+- (NSString *)moduleId { return @#moduleid; }
 
 @interface XEngineContext : NSObject
 + (instancetype)sharedInstance;

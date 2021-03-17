@@ -2,5 +2,5 @@
 #import "XEngineContext.h"
 
 @implementation TestModule
-X_MODULE(com.zkty.module.TestModule,TestModule)
+X_MODULE(TestModule)
 @end

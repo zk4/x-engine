@@ -20,6 +20,12 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.4.3)
   - SSZipArchive (2.2.3)
+  - x-engine-module-core (0.1.13):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
   - x-engine-module-engine (0.1.13):
     - JSONModel
     - Masonry
@@ -31,6 +37,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0.0)
+  - x-engine-module-core (from `../../x-engine-module-core`)
   - x-engine-module-engine (from `../../x-engine-module-engine`)
   - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
 
@@ -45,6 +52,8 @@ SPEC REPOS:
     - SSZipArchive
 
 EXTERNAL SOURCES:
+  x-engine-module-core:
+    :path: "../../x-engine-module-core"
   x-engine-module-engine:
     :path: "../../x-engine-module-engine"
   x-engine-module-protocols:
@@ -58,9 +67,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  x-engine-module-core: d0c06ded4c08c02b2475ffc1d6c8c763b283e237
   x-engine-module-engine: f14fcf3ebd3dc29326995662add87bf5cfddedce
   x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
 
-PODFILE CHECKSUM: 8efe4dd3e7003f67b663f9692d185fa51dc71bd8
+PODFILE CHECKSUM: a5f876ca7e4750e7cb07fb253ba60deddcf1ac80
 
 COCOAPODS: 1.10.0

@@ -81,24 +81,32 @@
     
     - (void) broadcastOn:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           [self _broadcastOn:^(BOOL complete) {
                  completionHandler(nil,complete); 
           }];
       }
     - (void) broadcastOff:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           [self _broadcastOff:^(BOOL complete) {
                  completionHandler(nil,complete); 
           }];
       }
     - (void) triggerNativeBroadCast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           [self _triggerNativeBroadCast:^(BOOL complete) {
                  completionHandler(nil,complete); 
           }];
       }
     - (void) repeatReturn__event__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
           [self _repeatReturn__event__:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
@@ -107,6 +115,8 @@
       }
     - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
           [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
@@ -115,6 +125,8 @@
       }
     - (void) ReturnInPromiseThen:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
           [self _ReturnInPromiseThen:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
@@ -123,24 +135,32 @@
       }
     - (void) noArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           [self _noArgNoRet:^(BOOL complete) {
                  completionHandler(nil,complete); 
           }];
       }
     - (void) noArgRetPrimitive:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           [self _noArgRetPrimitive:^(NSString* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
       }
     - (void) noArgRetSheetDTO:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           [self _noArgRetSheetDTO:^(SheetDTO* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
       }
     - (void) haveArgNoRet:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{  \"title\": \"abc\"}"];
+    
           SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
           [self _haveArgNoRet:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
@@ -148,6 +168,8 @@
       }
     - (void) haveArgRetPrimitive:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{  \"title\": \"abc\"}"];
+    
           SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
           [self _haveArgRetPrimitive:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
@@ -156,6 +178,8 @@
       }
     - (void) haveArgRetSheetDTO:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           SheetDTO* dto = [self convert:dict clazz:SheetDTO.class];
           [self _haveArgRetSheetDTO:dto complete:^(SheetDTO* result,  BOOL complete) {
             completionHandler(result,complete);
@@ -164,6 +188,8 @@
       }
     - (void) anonymousType:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{  \"age\": 12,  \"name\": \"zk\",  \"books\": [    \"1\",    \"2\",    \"3\"  ],  \"complexArg\": {    \"a\": 1,    \"name\": \"zk2\"  }}"];
+    
           _2_com_zkty_module_xxxx_DTO* dto = [self convert:dict clazz:_2_com_zkty_module_xxxx_DTO.class];
           [self _anonymousType:dto complete:^(_0_com_zkty_module_xxxx_DTO* result,  BOOL complete) {
             completionHandler(result,complete);

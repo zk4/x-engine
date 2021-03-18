@@ -1,0 +1,11 @@
+{
+    "args":{
+    
+    },
+    "baidukey":"xxxdfsdfsdklfjsdf",
+    "permissions":{
+        "USER_INFO":"READ",
+        "LBS":"READ_WRITE",
+        "PHOTO":"READ"
+    }
+}

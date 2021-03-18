@@ -6,14 +6,15 @@
 #import <xengine__module_BaseModule.h>
 #import "JSONModel.h"
 
-@class SheetDTO;
-@class ContinousDTO;
-@class MsgPayloadDTO;
-@class _0_com_zkty_module_xxxx_DTO;
+@protocol SheetDTO;
+@protocol ContinousDTO;
+@protocol MsgPayloadDTO;
+@protocol _0_com_zkty_module_xxxx_DTO;
+@protocol _1_com_zkty_module_xxxx_DTO;
+@protocol _2_com_zkty_module_xxxx_DTO;
+@protocol _3_com_zkty_module_xxxx_DTO;
 @class _1_com_zkty_module_xxxx_DTO;
-@class _2_com_zkty_module_xxxx_DTO;
 @class _3_com_zkty_module_xxxx_DTO;
-
 @interface SheetDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
    	@property(nonatomic,strong) NSArray<NSString*>* itemList;

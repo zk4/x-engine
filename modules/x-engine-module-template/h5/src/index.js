@@ -26,15 +26,15 @@ function osCheck() {
   },
   {
     "name": "repeatReturn__event__",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "repeatReturn__ret__",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "ReturnInPromiseThen",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "noArgNoRet",
@@ -62,7 +62,7 @@ function osCheck() {
   },
   {
     "name": "haveArgRetSheetDTO",
-    "default_args": null
+    "default_args": {}
   },
   {
     "name": "anonymousType",

@@ -1,5 +1,5 @@
 
-version: 0.1.7
+version: 0.1.13
 ``` bash
 npm install @zkty-team/x-engine-module-xxxx
 ```
@@ -12,17 +12,26 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
+ {
   window.broadcastOn = (...args) => {
-    xengine.broadcastOn(function(res){
-        document.getElementById("debug_text").innerText = JSON.stringify(res);
-    })
+    xengine.broadcastOn(function (res) {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
+    });
   };
 }
 ``` 
 
 	
 **无参数**
+
+
+
+
+参数 object  定义
+
+
+---------------------
+**无返回值**
 
 
 
@@ -33,15 +42,24 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
+ {
   window.broadcastOff = () => {
-    xengine.broadcastOff()
+    xengine.broadcastOff();
   };
 }
 ``` 
 
 	
 **无参数**
+
+
+
+
+参数 object  定义
+
+
+---------------------
+**无返回值**
 
 
 
@@ -52,17 +70,24 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
+ {
   window.triggerNativeBroadCast = () => {
-    xxxx
-      .triggerNativeBroadCast()
+    xxxx.triggerNativeBroadCast();
   };
-
 }
 ``` 
 
 	
 **无参数**
+
+
+
+
+参数 object  定义
+
+
+---------------------
+**无返回值**
 
 
 
@@ -73,16 +98,15 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
+ {
   window.repeatReturn__event__ = () => {
-    xxxx
-      .repeatReturn__event__({
-          __event__:function(res){
-        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify(res);
+    xxxx.repeatReturn__event__({
+      __event__: function (res) {
+        document.getElementById("debug_text").innerText =
+          "支持多次返回" + JSON.stringify(res);
         return res;
-          }
-        }
-      )
+      },
+    });
   };
 }
 ``` 
@@ -92,7 +116,27 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  | true |  |  |
+| \_\_event\_\_ | _1_com.zkty.module.xxxx_DTO | optional |  |  |
+
+
+参数 object  定义
+``` js
+
+
+interface ContinousDTO {
+
+  __event__?: (string) => {
+
+};
+
+}
+``` 
+
+
+---------------------
+**无返回值**
+
+
 
 
 ## repeatReturn__ret__
@@ -101,17 +145,15 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
+ {
   window.repeatReturn__ret__ = () => {
-    xxxx
-      .repeatReturn__ret__(
-        {
-          __ret__:function(res){
-        document.getElementById("debug_text").innerText = "支持多次返回"+ JSON.stringify("__ret__:"+res);
+    xxxx.repeatReturn__ret__({
+      __ret__: function (res) {
+        document.getElementById("debug_text").innerText =
+          "支持多次返回" + JSON.stringify("__ret__:" + res);
         return res;
-          },
-        }
-      )
+      },
+    });
   };
 }
 ``` 
@@ -121,7 +163,27 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  | true |  |  |
+| \_\_event\_\_ | _1_com.zkty.module.xxxx_DTO | optional |  |  |
+
+
+参数 object  定义
+``` js
+
+
+interface ContinousDTO {
+
+  __event__?: (string) => {
+
+};
+
+}
+``` 
+
+
+---------------------
+**无返回值**
+
+
 
 
 ## ReturnInPromiseThen
@@ -130,13 +192,12 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
+ {
   window.ReturnInPromiseThen = () => {
-    xxxx
-      .ReturnInPromiseThen()
-      .then((res) => {
-        document.getElementById("debug_text").innerText ="then 只支持一次性返回"+ JSON.stringify(res);
-      });
+    xxxx.ReturnInPromiseThen().then((res) => {
+      document.getElementById("debug_text").innerText =
+        "then 只支持一次性返回" + JSON.stringify(res);
+    });
   };
 }
 ``` 
@@ -146,7 +207,27 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ |  | true |  |  |
+| \_\_event\_\_ | _1_com.zkty.module.xxxx_DTO | optional |  |  |
+
+
+参数 object  定义
+``` js
+
+
+interface ContinousDTO {
+
+  __event__?: (string) => {
+
+};
+
+}
+``` 
+
+
+---------------------
+**无返回值**
+
+
 
 
 ## noArgNoRet
@@ -155,20 +236,26 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
-    window.noArgNoRet = (...args) => {
-    xxxx
-      .noArgNoRet(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
-      });
+ {
+  window.noArgNoRet = (...args) => {
+    xxxx.noArgNoRet(...args).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:" + res;
+    });
   };
-
 }
 ``` 
 
 	
 **无参数**
+
+
+
+
+参数 object  定义
+
+
+---------------------
+**无返回值**
 
 
 
@@ -180,18 +267,25 @@ npm install @zkty-team/x-engine-module-xxxx
 **demo**
 ``` js
  {
-    window.noArgRetPrimitive = (...args) => {
-    xxxx
-      .noArgRetPrimitive(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
-      });
+  window.noArgRetPrimitive = (...args) => {
+    xxxx.noArgRetPrimitive(...args).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:" + res;
+    });
   };
 }
 ``` 
 
 	
 **无参数**
+
+
+
+
+参数 object  定义
+
+
+---------------------
+**无返回值**
 
 
 
@@ -203,18 +297,42 @@ npm install @zkty-team/x-engine-module-xxxx
 **demo**
 ``` js
  {
-    window.noArgRetSheetDTO = (...args) => {
-    xxxx
-      .noArgRetSheetDTO(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "title:"+res["title"];
-      });
+  window.noArgRetSheetDTO = (...args) => {
+    xxxx.noArgRetSheetDTO(...args).then((res) => {
+      document.getElementById("debug_text").innerText = "title:" + res["title"];
+    });
   };
 }
 ``` 
 
 	
 **无参数**
+
+
+
+
+参数 object  定义
+
+
+---------------------
+**返回值**
+``` js
+
+
+// dto
+interface SheetDTO {
+
+  // 标题
+  title: string;
+  // 子标题?
+  itemList?: Array<string>;
+  // 内容
+  content?: string;
+  // 点击子标题回调函数
+  __event__: (index: string) => void;
+
+}
+``` 
 
 
 
@@ -225,13 +343,11 @@ npm install @zkty-team/x-engine-module-xxxx
 
 **demo**
 ``` js
-{
-    window.haveArgNoRet = (...args) => {
-    xxxx
-      .haveArgNoRet(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
-      });
+ {
+  window.haveArgNoRet = (...args) => {
+    xxxx.haveArgNoRet(...args).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:" + res;
+    });
   };
 }
 ``` 
@@ -241,10 +357,36 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | abc |  标题 |
-| itemList | Array\<string\> | true |  |  子标题? |
-| content | string | true |  |  内容 |
-| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
+| title | string | 必填 | abc |  标题 |
+| itemList | Array\<string\> | optional |  |  子标题? |
+| content | string | optional |  |  内容 |
+| \_\_event\_\_ | _0_com.zkty.module.xxxx_DTO | 必填 |  |  点击子标题回调函数 |
+
+
+参数 object  定义
+``` js
+
+
+// dto
+interface SheetDTO {
+
+  // 标题
+  title: string;
+  // 子标题?
+  itemList?: Array<string>;
+  // 内容
+  content?: string;
+  // 点击子标题回调函数
+  __event__: (index: string) => void;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
+
+
 
 
 ## haveArgRetPrimitive
@@ -254,12 +396,10 @@ npm install @zkty-team/x-engine-module-xxxx
 **demo**
 ``` js
  {
-    window.haveArgRetPrimitive = (...args) => {
-    xxxx
-      .haveArgRetPrimitive(...args)
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res;
-      });
+  window.haveArgRetPrimitive = (...args) => {
+    xxxx.haveArgRetPrimitive(...args).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:" + res;
+    });
   };
 }
 ``` 
@@ -269,10 +409,36 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | abc |  标题 |
-| itemList | Array\<string\> | true |  |  子标题? |
-| content | string | true |  |  内容 |
-| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
+| title | string | 必填 | abc |  标题 |
+| itemList | Array\<string\> | optional |  |  子标题? |
+| content | string | optional |  |  内容 |
+| \_\_event\_\_ | _0_com.zkty.module.xxxx_DTO | 必填 |  |  点击子标题回调函数 |
+
+
+参数 object  定义
+``` js
+
+
+// dto
+interface SheetDTO {
+
+  // 标题
+  title: string;
+  // 子标题?
+  itemList?: Array<string>;
+  // 内容
+  content?: string;
+  // 点击子标题回调函数
+  __event__: (index: string) => void;
+
+}
+``` 
+
+
+---------------------
+**无返回值**
+
+
 
 
 ## haveArgRetSheetDTO
@@ -282,11 +448,83 @@ npm install @zkty-team/x-engine-module-xxxx
 **demo**
 ``` js
  {
-    window.haveArgRetSheetDTO = (...args) => {
+  window.haveArgRetSheetDTO = (...args) => {
+    xxxx.haveArgRetSheetDTO({ title: "abc" }).then((res) => {
+      document.getElementById("debug_text").innerText = "ret:" + res["title"];
+    });
+  };
+}
+``` 
+
+	
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| title | string | 必填 | abc |  标题 |
+| itemList | Array\<string\> | optional |  |  子标题? |
+| content | string | optional |  |  内容 |
+| \_\_event\_\_ | _0_com.zkty.module.xxxx_DTO | 必填 |  |  点击子标题回调函数 |
+
+
+参数 object  定义
+``` js
+
+
+// dto
+interface SheetDTO {
+
+  // 标题
+  title: string;
+  // 子标题?
+  itemList?: Array<string>;
+  // 内容
+  content?: string;
+  // 点击子标题回调函数
+  __event__: (index: string) => void;
+
+}
+``` 
+
+
+---------------------
+**返回值**
+``` js
+
+
+// dto
+interface SheetDTO {
+
+  // 标题
+  title: string;
+  // 子标题?
+  itemList?: Array<string>;
+  // 内容
+  content?: string;
+  // 点击子标题回调函数
+  __event__: (index: string) => void;
+
+}
+``` 
+
+
+
+
+## anonymousType
+
+
+
+**demo**
+``` js
+ {
+  window.anonymousType = (...args) => {
     xxxx
-      .haveArgRetSheetDTO({title:"abc"})
+      .anonymousType({
+        age: 14,
+      })
       .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+res["title"];
+        document.getElementById("debug_text").innerText =
+          "ret:" + JSON.stringify(res);
       });
   };
 }
@@ -297,35 +535,41 @@ npm install @zkty-team/x-engine-module-xxxx
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string |  | abc |  标题 |
-| itemList | Array\<string\> | true |  |  子标题? |
-| content | string | true |  |  内容 |
-| \_\_event\_\_ |  |  |  |  点击子标题回调函数 |
+| age | int | optional | 12 |  |
+| name | string | optional | zk |  |
+| books | Array\<string\> | optional | ["1","2","3"] |  |
+| complexArg | _7_com.zkty.module.xxxx_DTO | optional | {"a":1,"name":"zk2"} |  |
 
 
-## anonymousType
-
-
-
-**demo**
+参数 object  定义
 ``` js
  {
-      window.anonymousType = (...args) => {
-    xxxx
-      .anonymousType({
-  age: 14,
-  
-})
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "ret:"+JSON.stringify(res);
-      });
-  };
 
+    age?: int;
+    name?: string;
+    books?: Array<string>;
+    complexArg?: {
+ a: int; name: string 
+};
+  
 }
 ``` 
 
-	
-**无参数**
+
+---------------------
+**返回值**
+``` js
+ {
+
+  age?: int;
+  name?: string;
+  books?: Array<string>;
+  complexArg?: {
+ a: int; name: string 
+};
+
+}
+``` 
 
 
 

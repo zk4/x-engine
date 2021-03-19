@@ -17,10 +17,19 @@
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		00DFC70024C843A3006A53EE /* xengine_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FF24C843A3006A53EE /* xengine_config.json */; };
 		1A81E6B3ACA084AA653283C1 /* libPods-xxxxTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A25103FF41D0DB3DCEBA9E0 /* libPods-xxxxTests.a */; };
+		A4719EFA2602FB0F00AB42FD /* x-engine-app.json in Resources */ = {isa = PBXBuildFile; fileRef = A4719EF92602FB0F00AB42FD /* x-engine-app.json */; };
+		A4719F1C26032D9700AB42FD /* twoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4719F1B26032D9700AB42FD /* twoViewController.m */; };
+		A4719F2226032DAA00AB42FD /* threeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4719F2126032DAA00AB42FD /* threeViewController.m */; };
+		A4719F5F260333C600AB42FD /* fourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4719F5E260333C600AB42FD /* fourViewController.m */; };
+		A4719F68260335A500AB42FD /* fiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4719F67260335A500AB42FD /* fiveViewController.m */; };
+		A4719F842603420D00AB42FD /* com.times.microapp.App1Min.0 in Resources */ = {isa = PBXBuildFile; fileRef = A4719F802603420D00AB42FD /* com.times.microapp.App1Min.0 */; };
+		A4719F852603420D00AB42FD /* com.times.microapp.App4Min.0 in Resources */ = {isa = PBXBuildFile; fileRef = A4719F812603420D00AB42FD /* com.times.microapp.App4Min.0 */; };
+		A4719F862603420D00AB42FD /* com.times.microapp.App3Min.0 in Resources */ = {isa = PBXBuildFile; fileRef = A4719F822603420D00AB42FD /* com.times.microapp.App3Min.0 */; };
+		A4719F872603420D00AB42FD /* com.times.microapp.App2Min.0 in Resources */ = {isa = PBXBuildFile; fileRef = A4719F832603420D00AB42FD /* com.times.microapp.App2Min.0 */; };
+		A490D42D26049208004EDD95 /* PrintBeautifulLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A490D42C26049208004EDD95 /* PrintBeautifulLog.m */; };
 		C8C7381835347B839E90C799 /* libPods-xxxx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C48894A53A7F66C5C7301520 /* libPods-xxxx.a */; };
 		C91F0B1325C9276900DE426E /* firstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B1225C9276900DE426E /* firstViewController.m */; };
 		C91F0B2225C927D400DE426E /* baseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B2125C927D400DE426E /* baseViewController.m */; };
-		C91F0B2E25C93DA700DE426E /* com.times.microapp.AppcMin.0 in Resources */ = {isa = PBXBuildFile; fileRef = C91F0B2D25C93DA700DE426E /* com.times.microapp.AppcMin.0 */; };
 		C96CECE725C794FC002943CC /* ZKTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96CECE625C794FC002943CC /* ZKTabBarViewController.m */; };
 		C96CED0F25C79908002943CC /* ZKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C96CED0E25C79908002943CC /* ZKTabBar.m */; };
 		CD7DF452315AA9F8AB59BFFC /* libPods-xxxxUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38DFB8FFDD336457E4A2E6A /* libPods-xxxxUITests.a */; };
@@ -74,6 +83,21 @@
 		884143ABEFD722050DDC70A3 /* Pods-xxxx-xxxxUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxxx-xxxxUITests.release.xcconfig"; path = "Target Support Files/Pods-xxxx-xxxxUITests/Pods-xxxx-xxxxUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8A4FCA27E7FE59204E44E83A /* Pods-abstract-xxxxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-xxxxTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-xxxxTests/Pods-abstract-xxxxTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-xxxx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxxx.release.xcconfig"; path = "Target Support Files/Pods-xxxx/Pods-xxxx.release.xcconfig"; sourceTree = "<group>"; };
+		A4719EF92602FB0F00AB42FD /* x-engine-app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "x-engine-app.json"; sourceTree = "<group>"; };
+		A4719F1A26032D9700AB42FD /* twoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = twoViewController.h; sourceTree = "<group>"; };
+		A4719F1B26032D9700AB42FD /* twoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = twoViewController.m; sourceTree = "<group>"; };
+		A4719F2026032DAA00AB42FD /* threeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = threeViewController.h; sourceTree = "<group>"; };
+		A4719F2126032DAA00AB42FD /* threeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = threeViewController.m; sourceTree = "<group>"; };
+		A4719F5D260333C600AB42FD /* fourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fourViewController.h; sourceTree = "<group>"; };
+		A4719F5E260333C600AB42FD /* fourViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fourViewController.m; sourceTree = "<group>"; };
+		A4719F66260335A500AB42FD /* fiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fiveViewController.h; sourceTree = "<group>"; };
+		A4719F67260335A500AB42FD /* fiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fiveViewController.m; sourceTree = "<group>"; };
+		A4719F802603420D00AB42FD /* com.times.microapp.App1Min.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.times.microapp.App1Min.0; sourceTree = "<group>"; };
+		A4719F812603420D00AB42FD /* com.times.microapp.App4Min.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.times.microapp.App4Min.0; sourceTree = "<group>"; };
+		A4719F822603420D00AB42FD /* com.times.microapp.App3Min.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.times.microapp.App3Min.0; sourceTree = "<group>"; };
+		A4719F832603420D00AB42FD /* com.times.microapp.App2Min.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.times.microapp.App2Min.0; sourceTree = "<group>"; };
+		A490D42826049207004EDD95 /* PrintBeautifulLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintBeautifulLog.h; sourceTree = "<group>"; };
+		A490D42C26049208004EDD95 /* PrintBeautifulLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintBeautifulLog.m; sourceTree = "<group>"; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-xxxxUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-xxxxUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-xxxxUITests/Pods-abstract-xxxxUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B38DFB8FFDD336457E4A2E6A /* libPods-xxxxUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-xxxxUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,7 +106,6 @@
 		C91F0B1225C9276900DE426E /* firstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = firstViewController.m; sourceTree = "<group>"; };
 		C91F0B2025C927D400DE426E /* baseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseViewController.h; sourceTree = "<group>"; };
 		C91F0B2125C927D400DE426E /* baseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseViewController.m; sourceTree = "<group>"; };
-		C91F0B2D25C93DA700DE426E /* com.times.microapp.AppcMin.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.times.microapp.AppcMin.0; sourceTree = "<group>"; };
 		C96CECE525C794FC002943CC /* ZKTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKTabBarViewController.h; sourceTree = "<group>"; };
 		C96CECE625C794FC002943CC /* ZKTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKTabBarViewController.m; sourceTree = "<group>"; };
 		C96CED0D25C79908002943CC /* ZKTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKTabBar.h; sourceTree = "<group>"; };
@@ -164,11 +187,17 @@
 		00DFC6E224C84000006A53EE /* xxxx */ = {
 			isa = PBXGroup;
 			children = (
-				C91F0B2D25C93DA700DE426E /* com.times.microapp.AppcMin.0 */,
+				A4719EF92602FB0F00AB42FD /* x-engine-app.json */,
+				A4719F802603420D00AB42FD /* com.times.microapp.App1Min.0 */,
+				A4719F832603420D00AB42FD /* com.times.microapp.App2Min.0 */,
+				A4719F822603420D00AB42FD /* com.times.microapp.App3Min.0 */,
+				A4719F812603420D00AB42FD /* com.times.microapp.App4Min.0 */,
 				C999348C25C8F2490063E364 /* controllers */,
 				C96CECEE25C79708002943CC /* tabbar */,
 				00DFC6FF24C843A3006A53EE /* xengine_config.json */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
+				A490D42826049207004EDD95 /* PrintBeautifulLog.h */,
+				A490D42C26049208004EDD95 /* PrintBeautifulLog.m */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
 				00DFC6E424C84000006A53EE /* Assets.xcassets */,
 				00DFC6ED24C84000006A53EE /* Info.plist */,
@@ -239,6 +268,14 @@
 			children = (
 				C91F0B1125C9276900DE426E /* firstViewController.h */,
 				C91F0B1225C9276900DE426E /* firstViewController.m */,
+				A4719F1A26032D9700AB42FD /* twoViewController.h */,
+				A4719F1B26032D9700AB42FD /* twoViewController.m */,
+				A4719F2026032DAA00AB42FD /* threeViewController.h */,
+				A4719F2126032DAA00AB42FD /* threeViewController.m */,
+				A4719F5D260333C600AB42FD /* fourViewController.h */,
+				A4719F5E260333C600AB42FD /* fourViewController.m */,
+				A4719F66260335A500AB42FD /* fiveViewController.h */,
+				A4719F67260335A500AB42FD /* fiveViewController.m */,
 				C91F0B2025C927D400DE426E /* baseViewController.h */,
 				C91F0B2125C927D400DE426E /* baseViewController.m */,
 			);
@@ -355,10 +392,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4719F862603420D00AB42FD /* com.times.microapp.App3Min.0 in Resources */,
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
+				A4719F852603420D00AB42FD /* com.times.microapp.App4Min.0 in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				A4719F872603420D00AB42FD /* com.times.microapp.App2Min.0 in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
-				C91F0B2E25C93DA700DE426E /* com.times.microapp.AppcMin.0 in Resources */,
+				A4719EFA2602FB0F00AB42FD /* x-engine-app.json in Resources */,
+				A4719F842603420D00AB42FD /* com.times.microapp.App1Min.0 in Resources */,
 				00DFC70024C843A3006A53EE /* xengine_config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,12 +562,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4719F1C26032D9700AB42FD /* twoViewController.m in Sources */,
 				C91F0B2225C927D400DE426E /* baseViewController.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
+				A4719F68260335A500AB42FD /* fiveViewController.m in Sources */,
+				A490D42D26049208004EDD95 /* PrintBeautifulLog.m in Sources */,
 				C91F0B1325C9276900DE426E /* firstViewController.m in Sources */,
+				A4719F5F260333C600AB42FD /* fourViewController.m in Sources */,
 				C96CECE725C794FC002943CC /* ZKTabBarViewController.m in Sources */,
 				C96CED0F25C79908002943CC /* ZKTabBar.m in Sources */,
+				A4719F2226032DAA00AB42FD /* threeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

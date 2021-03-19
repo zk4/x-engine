@@ -184,18 +184,15 @@ NSNotificationName const XEWebViewLoadFailNotification = @"XEWebViewLoadFailNoti
 }
 
 -(XEngineWebView *)createWebView:(NSString *)baseUrl{
-    
-    
     NSMutableArray *modules = [[XEngineContext sharedInstance] modules];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
     CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
-   
     if (@available(iOS 11.0, *) ) {
-        if ([MicroAppLoader sharedInstance].netmodel.strict) {
-            [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
-            [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
-        }
+//        if ([MicroAppLoader sharedInstance].netmodel.strict) {
+        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
+        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
+//        }
     }
     
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];

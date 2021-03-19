@@ -4,15 +4,13 @@
 #import "MicroAppLoader.h"
 #import "Unity.h"
 #import <objc/runtime.h>
-
 #import "UINavigationController+Customized.h"
+#import "AFNetworking.h"
 
-
+static AFHTTPSessionManager *manager ;
 
 @implementation XEOneWebViewControllerManage
-
-+ (instancetype)sharedInstance
-{
++ (instancetype)sharedInstance {
     static XEOneWebViewControllerManage *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -23,7 +21,6 @@
 
 
 - (void)pushWebViewControllerWithHttpRouteUrl:(NSString *)url{
-    
     [[XEOneWebViewPool sharedInstance] createNewWebView:url];
     [self pushWebViewControllerWithUrl:url];
 }
@@ -84,7 +81,7 @@
                            withPath:(NSString *)path
                         withVersion:(long)version
                          withParams:(NSString *)params
-                 withIsHiddenNavbar:(BOOL)isHidden{
+                 withIsHiddenNavbar:(BOOL)isHidden {
     
     NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:version];
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
@@ -121,7 +118,7 @@
 //    }
 }
 
--(NSString *)getUrl:(NSString *)url params:(NSString *)params{
+- (NSString *)getUrl:(NSString *)url params:(NSString *)params{
     NSMutableString *toUrl = [[NSMutableString alloc] init];
     
     RecyleWebViewController *web = (RecyleWebViewController *)[Unity sharedInstance].getCurrentVC;
@@ -157,23 +154,49 @@
     return toUrl;
 }
 
--(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
+- (UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
     return [self getWebViewControllerWithUrl:url withHiddenBar:NO];
 }
--(UIViewController *)getWebViewControllerWithUrl:(NSString *)url withHiddenBar:(BOOL)isHidden{
+
+- (UIViewController *)getWebViewControllerWithUrl:(NSString *)url withHiddenBar:(BOOL)isHidden{
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url withRootPath:nil withHiddenNavBar:isHidden];
     return vc;
 }
 
--(UIViewController *)getWebViewControllerWithId:(NSString *)appid{
+- (UIViewController *)getWebViewControllerWithId:(NSString *)appid {
+    UIViewController *vc = nil;
+    NSString *urlStr = nil;
+    NSDictionary *dic = [NSDictionary dictionary];
+    BOOL isShowNavBar;
     
-//    NSString* toUrl = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:1];
-//    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:toUrl];
-    NSDictionary * dic = [[MicroAppLoader sharedInstance]getMicroAppJsonToDictionary:appid version:0];
-    NSString *urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0];
+    // 0.判断本地有没有该文件, ==0 没有就去走下载流程
+    // 1.判断本地有没有该文件, ==1 直接去打开文件
+    BOOL isHaveMicroApp = [[MicroAppLoader sharedInstance] checkMicroAppVersion:appid version:0];
+    
+    [self getMicroAppJsonInfo];
+    
+    if (isHaveMicroApp == 0)  {
+        NSLog(@"为0");
+        isShowNavBar = [dic[@"router"][@"navBar"][@"hide"] boolValue] == true ? YES : NO;
+    } else {
+        dic = [[MicroAppLoader sharedInstance] getMicroAppJsonToDictionary:appid version:0];
+        urlStr = [[MicroAppLoader sharedInstance] locateMicroAppByMicroappId:appid in_version:0];
+        isShowNavBar = [dic[@"router"][@"navBar"][@"hide"] boolValue] == true ? YES : NO;
+    }
+    
     [[XEOneWebViewPool sharedInstance] createNewWebView:urlStr];
-    UIViewController *vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:urlStr withHiddenBar:YES];
+    vc = [[XEOneWebViewControllerManage sharedInstance] getWebViewControllerWithUrl:urlStr withHiddenBar:isShowNavBar];
     return vc;
+}
+
+- (void)getMicroAppJsonInfo {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSString *requestURL = @"http://10.115.91.41:32749/microapp-service/app/1367750986853076994";
+    [manager GET:requestURL parameters:nil headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }];
 }
 
 @end

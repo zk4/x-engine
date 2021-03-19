@@ -10,7 +10,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MicroAppLoader : NSObject
-
 @property (nonatomic, copy) NSString *nowMicroAppId;
 @property (nonatomic, assign) long nowMicroAppVersion;
 @property (nonatomic, strong) webviewModel * netmodel;

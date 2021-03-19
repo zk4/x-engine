@@ -8,10 +8,11 @@
 #import "MicroAppLoader.h"
 #import "webviewModel.h"
 @interface MicroAppLoader()
-    @property (nonatomic, strong) NSMutableDictionary *microappId_versionInSandbox;
+@property (nonatomic, strong) NSMutableDictionary *microappId_versionInSandbox;
 @end
-@implementation MicroAppLoader
 
+
+@implementation MicroAppLoader
 + (instancetype)sharedInstance{
     static MicroAppLoader *sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -20,6 +21,7 @@
     });
     return sharedInstance;
 }
+
 - (instancetype)init {
     self = [super init];
     self.microappId_versionInSandbox = [[NSMutableDictionary alloc] init];
@@ -59,14 +61,14 @@
 - (void) scanMicroAppsInSandBox{
     NSString * sandbox_microapps_location = [MicroAppLoader microappDirectory];
     NSArray* microapps = [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:false];
-//    NSArray* microapps2 =
+    //    NSArray* microapps2 =
     [MicroAppLoader listFilesInDirectoryAtPath:sandbox_microapps_location deep:YES];
     for (NSString* microapp in microapps){
-       NSMutableArray* tokens=[[microapp  componentsSeparatedByString:@"."] mutableCopy];
-       NSInteger cur_version =  [[tokens lastObject] intValue];
-       [tokens removeLastObject];
-       NSString* appid = [tokens componentsJoinedByString:@"."];
-       NSNumber* old_version = [self.microappId_versionInSandbox objectForKey:appid];
+        NSMutableArray* tokens=[[microapp  componentsSeparatedByString:@"."] mutableCopy];
+        NSInteger cur_version =  [[tokens lastObject] intValue];
+        [tokens removeLastObject];
+        NSString* appid = [tokens componentsJoinedByString:@"."];
+        NSNumber* old_version = [self.microappId_versionInSandbox objectForKey:appid];
         if(!old_version || (old_version && [old_version integerValue] < cur_version)){
             [self.microappId_versionInSandbox setObject:[NSNumber numberWithLong:cur_version] forKey:appid];
         }
@@ -82,50 +84,49 @@
     BOOL isEx = [[NSFileManager defaultManager] fileExistsAtPath:sandbox_microapp_location isDirectory:&isDir];
     
     if(!isEx || !isDir){
-    
-       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
-       if (htmlPath.length > 0) {
-           NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
-           if (htmlPath) {
+        
+        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
+        if (htmlPath.length > 0) {
+            NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
+            if (htmlPath) {
                 return [NSString stringWithFormat:@"file://%@/index.html", htmlPath];
-           }
-       }
+            }
+        }
     }else{
         NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, version];
         return sandbox_microapp_location;
     }
     
-//    BOOL r = [self checkMicroAppVersion:microappId version:version];
-//    if(r){
-//        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, version];
-//        return sandbox_microapp_location;
-//    }else{
-//       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
-//       if (htmlPath) {
-//            return [NSString stringWithFormat:@"file://%@/index.html", htmlPath];
-//       }
-//    }
+    //    BOOL r = [self checkMicroAppVersion:microappId version:version];
+    //    if(r){
+    //        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[MicroAppLoader microappDirectory], microappId, version];
+    //        return sandbox_microapp_location;
+    //    }else{
+    //       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
+    //       if (htmlPath) {
+    //            return [NSString stringWithFormat:@"file://%@/index.html", htmlPath];
+    //       }
+    //    }
     return nil;
 }
 
--(BOOL)checkMicroAppVersion:(NSString *)microappId version:(long)version{
-    
+- (BOOL)checkMicroAppVersion:(NSString *)microappId version:(long)version{
     NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@.%ld", [MicroAppLoader microappDirectory], microappId, version];
     BOOL isDir = false;
     BOOL isEx = [[NSFileManager defaultManager] fileExistsAtPath:sandbox_microapp_location isDirectory:&isDir];
     
     if(!isEx || !isDir){
-    
-       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
-       if (htmlPath.length > 0) {
+        
+        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
+        if (htmlPath.length > 0) {
             return YES;
-       }
+        }
     }else{
         return YES;
     }
     return NO;
 }
- 
+
 -(NSString *)nowMicroAppId{
     if(_nowMicroAppId == nil){
         return @"temp";
@@ -136,16 +137,18 @@
 
 -(NSDictionary *)getMicroAppJsonToDictionary:(NSString *)microappId version:(long)version{
     NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microappId, version] ofType:@""];
-
     NSDictionary*dic;
-
+    
     if(htmlPath.length>0){
         NSString *configPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld%@", microappId, version,@"/microapp"] ofType:@"json"];
         if (configPath.length>0) {
             NSData *JSONData = [NSData dataWithContentsOfFile:configPath];
             if (JSONData) {
                 dic = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableContainers error:nil];
-                self.netmodel = [[webviewModel alloc]initWithDictionary:dic[@"permission"][@"network"] error:nil];
+                self.netmodel = [[webviewModel alloc] initWithDictionary:dic[@"permission"][@"network"] error:nil];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"MICROAPPJSON"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
         }else{
             UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:@"No microapp.json in your project" preferredStyle:UIAlertControllerStyleAlert];
@@ -154,12 +157,10 @@
             }];
             [errorAlert addAction:sureAction];
             [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
-                
             }];
         }
         
     }
-    
     return  dic;
 }
 @end

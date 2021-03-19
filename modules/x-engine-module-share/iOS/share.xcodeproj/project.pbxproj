@@ -644,7 +644,7 @@
 				CODE_SIGN_ENTITLEMENTS = share/share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38467Y5BA2;
+				DEVELOPMENT_TEAM = D98ZZZNWR2;
 				INFOPLIST_FILE = "$(SRCROOT)/share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -653,7 +653,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.timesneighborhood.app.share;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.timesneighborhood.app.share.1;
 				PRODUCT_NAME = share;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -667,7 +667,7 @@
 				CODE_SIGN_ENTITLEMENTS = share/share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38467Y5BA2;
+				DEVELOPMENT_TEAM = D98ZZZNWR2;
 				INFOPLIST_FILE = "$(SRCROOT)/share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -676,7 +676,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.timesneighborhood.app.share;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.timesneighborhood.app.share.1;
 				PRODUCT_NAME = share;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

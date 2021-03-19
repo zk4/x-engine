@@ -7,7 +7,7 @@
 #import <MBProgressHUD.h>
 #import "XEngineJSBUtil.h"
 #import <Unity.h>
-
+#import "XEngineJSBUtil.h"
 @implementation xengine__module_BaseModule
 
 - (NSString *)moduleId {
@@ -117,9 +117,11 @@
         retCB(value);
     }];
 }
+
 -(void) broadcast:(NSArray*)args{
     [self callJS:@"com.zkty.module.engine.broadcast" args:args retCB:^(id  _Nullable ret) {}];
 }
+
 -(BOOL) isDictionary:(id)item{
     return [item isKindOfClass:NSDictionary.class] || [item isKindOfClass:NSMutableDictionary.class];
 }

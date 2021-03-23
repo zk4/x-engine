@@ -47,24 +47,7 @@ NATIVE_MODULE(MicroAppContext)
 - (NSMutableArray *)modules {
     return _modules;
 }
-
-
-
-- (NSMutableArray *)getProtocols:(Class)cls {
-    unsigned count;
-    __unsafe_unretained Protocol **pl = class_copyProtocolList(cls, &count);
-
-    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:count];
-
-    for (unsigned i = 0; i < count; i++) {
-        NSString *name = [NSString stringWithUTF8String:protocol_getName(pl[i])];
-        [ret addObject:name];
-    }
-    free(pl);
-    return ret;
-}
  
-
 - (void)initModules {
     for (Class cls in self.moduleClasses) {
         id rawmoduleClass = [[cls alloc] init];

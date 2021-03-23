@@ -7,18 +7,17 @@
 #import <objc/message.h>
 
 @interface XEngineContext ()
-@property (nonatomic, strong) NSMutableArray<NSString *> *moduleClassNames;
+// 维护通过 load 注册过来的 class
 @property (nonatomic, strong) NSMutableArray<Class> *moduleClasses;
-
+// 实例化后的 modules
 @property (nonatomic, strong) NSMutableArray<aModule *> *modules;
-@property (nonatomic, strong) NSMutableArray *applicationDelegateModules;
+// moduleid 映射的 module
 @property (nonatomic, strong) NSMutableDictionary<NSString *, aModule *> *moduleId2Moudle;
+// module 对应的 protocols
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray *> *moduleId2MoudleProtocolnames;
 
 @end
-
-// DONE 生命周期通知，应用到后台，通知组件等
-// 有生命周期需求，自行在 load 里注册通知，见 + (void) load
+ 
 
 @implementation XEngineContext
 
@@ -41,7 +40,6 @@
         sharedInstance = [[XEngineContext alloc] init];
         sharedInstance.moduleClasses =[NSMutableArray new];
         sharedInstance.modules = [NSMutableArray array];
-        sharedInstance.applicationDelegateModules = [NSMutableArray array];
         sharedInstance.moduleId2Moudle = [[NSMutableDictionary alloc] init];
         sharedInstance.moduleId2MoudleProtocolnames = [[NSMutableDictionary alloc] init];
     });

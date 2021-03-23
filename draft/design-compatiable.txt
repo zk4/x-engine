@@ -1,0 +1,82 @@
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+ 
+package 模块管理 {
+  class EngineContext {
+    + (Set<aModule>) getModules();
+    + (aModule) getModuleById(id:string);
+  }
+  
+  
+  class  aModule {
+    + (string) {abstract}  moduleId;
+    + (void) afterAllMouduleInited();
+
+  }
+}
+package 原生模块(JSI) {
+  class JSIContext extends aModule{
+    + (Set<aodule>) getJSIModules(); 
+  }
+  
+  
+  class  aJSIModule {
+    + (string) {abstract}  JSImoduleId;
+  }
+}
+
+package JSI模块 {
+
+  interface xengine__module_router_protocol {
+    //model.ts自动生成
+    +  (void) {abstract}  _open (...,callback:Func)
+  }
+  abstract class xengine__module_open extends  aJSIModule  implements xengine__module_router_protocol { 
+    //model.ts自动生成
+    + (void) open (...,callback:Func)
+  }
+}
+
+ 
+
+
+package 协议模块 {
+  interface iOpen {    
+  +(NSString*) type;
+  +(void)open:(...);
+ 
+  }
+   interface iOpenManager {    
+  +(void)open:(...);
+   }
+}
+  
+  package 原生模块(Open) {
+ class OpenManagerModule extends aModule implements iOpenManager{    
+    - Openers: Map<string,iOpen>;
+  }
+
+  class OpenH5Module   extends aModule implements iOpen{
+    - (string) moduleId;
+    - (void) open(...);
+  }
+  
+
+}
+  
+package JSI模块(Open){
+
+
+  class __xengine__module_open extends xengine__module_open{
+    - openManager: iOpenManager;
+  }
+  
+ 
+  
+}
+
+EngineContext o--  aModule : aggregation
+ 
+
+@enduml

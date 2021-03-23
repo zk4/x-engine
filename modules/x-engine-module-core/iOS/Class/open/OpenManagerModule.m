@@ -44,7 +44,6 @@ NATIVE_MODULE(OpenManagerModule)
 - (void)open:(nonnull NSString *)type :(nonnull NSString *)uri :(nonnull NSString *)path :(nonnull NSDictionary *)args :(long)version :(BOOL)isHidden {
     id<iOpen> opener = [self.openers objectForKey:type];
     [opener open:type :uri :path :args :version :isHidden];
-    
 }
 
 @end

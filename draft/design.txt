@@ -1,0 +1,82 @@
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+ 
+package 模块管理 {
+  class EngineContext {
+    + (Set<aModule>) getModules();
+    + (aModule) getModuleById(id:string);
+  }
+  
+  
+  class  aModule {
+    + (string) {abstract}  moduleId;
+    + (void) afterAllMouduleInited();
+
+  }
+}
+package 原生模块(MicroApp) {
+  class MicroAppContext extends aModule{
+    + (Set<aModule>) getJSIModules(); 
+  }
+  
+  
+  class  aJSIModule {
+    + (string) {abstract}  JSImoduleId;
+  }
+}
+
+package JSI模块 {
+
+  interface iJSIOpen {
+    //model.ts自动生成
+    +  (void) {abstract}  _open (...,callback:Func)
+  }
+  abstract class aJSIOpenModule extends  aJSIModule  implements iJSIOpen { 
+    //model.ts自动生成
+    + (void) open (...,callback:Func)
+  }
+}
+
+ 
+
+
+package 协议模块 {
+  interface iOpen {    
+  +(NSString*) type;
+  +(void)open:(...);
+ 
+  }
+   interface iOpenManager {    
+  +(void)open:(...);
+   }
+}
+  
+  package 原生模块(Open) {
+ class OpenManagerModule extends aModule implements iOpenManager{    
+    - Openers: Map<string,iOpen>;
+  }
+
+  class OpenH5Module   extends aModule implements iOpen{
+    - (string) moduleId;
+    - (void) open(...);
+  }
+  
+
+}
+  
+package JSI模块(Open){
+
+
+  class JSIOpenModule extends aJSIOpenModule{
+    - openManager: iOpenManager;
+  }
+  
+ 
+  
+}
+
+EngineContext o--  aModule : aggregation
+ 
+
+@enduml

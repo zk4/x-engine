@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,7 +29,6 @@
 		580EB09F2609A6FC00EE0694 /* OpenH5Module.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB07D26092C1200EE0694 /* OpenH5Module.h */; };
 		580EB0A02609A6FC00EE0694 /* MicroAppContext.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0612609287900EE0694 /* MicroAppContext.h */; };
 		580EB0A12609A6FC00EE0694 /* aJSIModule.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB06A2609289900EE0694 /* aJSIModule.h */; };
-		580EB0A22609A6FC00EE0694 /* aModule.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB059260927A800EE0694 /* aModule.h */; };
 		580EB0A32609A6FC00EE0694 /* XEngineContext.h in Sources */ = {isa = PBXBuildFile; fileRef = DD0A7B4B25381FEC00107280 /* XEngineContext.h */; };
 		580EB0B72609AD5C00EE0694 /* OpenNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */; };
 		5820E10225FD3BE90093339D /* JSIOpenModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820E10125FD3BE90093339D /* JSIOpenModule.m */; };
@@ -78,7 +77,6 @@
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1E7D60C9775B981CB996932E /* libPods-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		580EB059260927A800EE0694 /* aModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aModule.h; sourceTree = "<group>"; };
 		580EB05A260927A800EE0694 /* aModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aModule.m; sourceTree = "<group>"; };
 		580EB0612609287900EE0694 /* MicroAppContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicroAppContext.h; sourceTree = "<group>"; };
 		580EB0622609287900EE0694 /* MicroAppContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MicroAppContext.m; sourceTree = "<group>"; };
@@ -92,6 +90,7 @@
 		580EB0882609796600EE0694 /* OpenManagerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenManagerModule.h; sourceTree = "<group>"; };
 		580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenNativeModule.m; sourceTree = "<group>"; };
 		580EB0B62609AD5C00EE0694 /* OpenNativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNativeModule.h; sourceTree = "<group>"; };
+		580EB1642609D9DA00EE0694 /* aModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aModule.h; sourceTree = "<group>"; };
 		5820E10025FD3BE90093339D /* JSIOpenModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSIOpenModule.h; sourceTree = "<group>"; };
 		5820E10125FD3BE90093339D /* JSIOpenModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIOpenModule.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,7 +203,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		580EB05F2609284F00EE0694 /* microapp */ = {
+		580EB05F2609284F00EE0694 /* JSI */ = {
 			isa = PBXGroup;
 			children = (
 				580EB0612609287900EE0694 /* MicroAppContext.h */,
@@ -212,7 +211,7 @@
 				580EB06A2609289900EE0694 /* aJSIModule.h */,
 				580EB06B2609289900EE0694 /* aJSIModule.m */,
 			);
-			path = microapp;
+			path = JSI;
 			sourceTree = "<group>";
 		};
 		580EB0602609285800EE0694 /* open */ = {
@@ -279,7 +278,7 @@
 				580EB0972609A13100EE0694 /* openJSI */,
 				580EB09026097AAC00EE0694 /* protocols */,
 				580EB0602609285800EE0694 /* open */,
-				580EB05F2609284F00EE0694 /* microapp */,
+				580EB05F2609284F00EE0694 /* JSI */,
 				DD0A7B4825381FEC00107280 /* core */,
 			);
 			path = Class;
@@ -289,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				DD0A7B4925381FEC00107280 /* XEngineContext.m */,
-				580EB059260927A800EE0694 /* aModule.h */,
+				580EB1642609D9DA00EE0694 /* aModule.h */,
 				580EB05A260927A800EE0694 /* aModule.m */,
 				DD0A7B4B25381FEC00107280 /* XEngineContext.h */,
 			);
@@ -325,6 +324,7 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
+				6F257DE7A2EF34EB348B74D6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -492,6 +492,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6F257DE7A2EF34EB348B74D6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -507,7 +524,6 @@
 				580EB0A02609A6FC00EE0694 /* MicroAppContext.h in Sources */,
 				580EB0B72609AD5C00EE0694 /* OpenNativeModule.m in Sources */,
 				580EB0A12609A6FC00EE0694 /* aJSIModule.h in Sources */,
-				580EB0A22609A6FC00EE0694 /* aModule.h in Sources */,
 				580EB0A32609A6FC00EE0694 /* XEngineContext.h in Sources */,
 				580EB0632609287900EE0694 /* MicroAppContext.m in Sources */,
 				DD0A7B5F25381FEC00107280 /* XEngineContext.m in Sources */,

@@ -7,6 +7,13 @@ target 'ModuleApp' do
  
  target 'ModuleAppTests' do
     inherit! :search_paths
+    pod 'UniBoost', :path => '../../../../UniBoost'
+    pod 'JSONModel'
+    pod 'MBProgressHUD'
+    pod 'Masonry'
+    pod 'MJRefresh'
+    pod 'SSZipArchive'
+    pod 'WechatOpenSDK'
   end
 
   target 'ModuleAppUITests' do

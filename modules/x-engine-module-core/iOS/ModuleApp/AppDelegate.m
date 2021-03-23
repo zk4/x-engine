@@ -13,6 +13,8 @@
     id<iOpenManager> img = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
     [img open:@"native" :@"hello" :@"hello" :@{} :0 :FALSE];
     [img open:@"h5" :@"hello" :@"hello" :@{} :0 :FALSE];
+    [img open:@"wx" :@"hello" :@"hello" :@{} :0 :FALSE];
+    [img open:@"alipay" :@"hello" :@"hello" :@{} :0 :FALSE];
 
     return YES;
 }

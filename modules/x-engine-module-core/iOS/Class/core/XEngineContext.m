@@ -19,9 +19,12 @@
  
 
 @implementation XEngineContext
-
++ (void) showEngineVersion{
+    NSLog(@"x-engine version: 2.0.0");
+}
 // 在各自对应的模块中重写 + load方法,监听UIApplicationDidFinishLaunchingNotification通知
 + (void)load {
+    [XEngineContext showEngineVersion];
 //    __block id observer =
 //        [[NSNotificationCenter defaultCenter]
 //            addObserverForName:UIApplicationDidFinishLaunchingNotification
@@ -46,6 +49,7 @@
 }
 
 - (void)start {
+ 
     [self initModules];
     [self afterAllNativeModuleInited];
 }

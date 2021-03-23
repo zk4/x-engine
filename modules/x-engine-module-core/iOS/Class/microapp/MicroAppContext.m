@@ -9,8 +9,7 @@
 #import "MicroAppContext.h"
 #import "XEngineContext.h"
 #import "aJSIModule.h"
-#import <UIKit/UIKit.h>
-#import <objc/message.h>
+
 
 @interface MicroAppContext ()
 @property (nonatomic, strong) NSMutableArray<Class> *moduleClasses;

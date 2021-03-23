@@ -3,7 +3,6 @@
 
 #import "XEngineContext.h"
 #import "aModule.h"
-#import <UIKit/UIKit.h>
 #import <objc/message.h>
 
 @interface XEngineContext ()

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString*) JSImoduleId;
 - (int) JSIorder;
 - (void) afterAllJSIModuleInited;
+- (id) convert:(NSDictionary *)param  clazz:(Class)clazz;
+
 @end
 
 NS_ASSUME_NONNULL_END

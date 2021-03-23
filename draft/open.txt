@@ -41,11 +41,13 @@ package JSI—model.ts自动生成 {
 
 package 协议模块 {
   interface iOpen {    
-    + (void) open(...);
+  +(NSString*) type;
+  +(void)open:(...);
+ 
   }
    interface iOpenManager {    
-    + (void) open(...);
-  }
+  +(void)open:(...);
+   }
 }
   
   package 原生模块 {

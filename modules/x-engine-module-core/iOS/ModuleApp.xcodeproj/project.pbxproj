@@ -233,13 +233,13 @@
 			path = protocols;
 			sourceTree = "<group>";
 		};
-		580EB0972609A13100EE0694 /* JSI */ = {
+		580EB0972609A13100EE0694 /* openJSI */ = {
 			isa = PBXGroup;
 			children = (
 				5820E10025FD3BE90093339D /* JSIOpenModule.h */,
 				5820E10125FD3BE90093339D /* JSIOpenModule.m */,
 			);
-			path = JSI;
+			path = openJSI;
 			sourceTree = "<group>";
 		};
 		580EB0B02609AD3500EE0694 /* open.h5 */ = {
@@ -276,7 +276,7 @@
 			children = (
 				580EB0B42609AD5C00EE0694 /* open.native */,
 				580EB0B02609AD3500EE0694 /* open.h5 */,
-				580EB0972609A13100EE0694 /* JSI */,
+				580EB0972609A13100EE0694 /* openJSI */,
 				580EB09026097AAC00EE0694 /* protocols */,
 				580EB0602609285800EE0694 /* open */,
 				580EB05F2609284F00EE0694 /* microapp */,

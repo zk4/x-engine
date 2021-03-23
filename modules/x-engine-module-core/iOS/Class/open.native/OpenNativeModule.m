@@ -28,7 +28,6 @@ NATIVE_MODULE(OpenNativeModule)
 }
 - (void)open:(nonnull NSString *)type :(nonnull NSString *)uri :(nonnull NSString *)path :(nonnull NSDictionary *)args :(long)version :(BOOL)isHidden {
 
-        NSLog(@"open native handled!!");
-
+    NSLog(@"open native handled!!");
 }
 @end

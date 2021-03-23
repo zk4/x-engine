@@ -11,7 +11,7 @@
     [[XEngineContext sharedInstance] start];
     [[MicroAppContext sharedInstance] start];
     id<iOpenManager> img = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
-    [img open:@"h5" :@"hello" :@"hello" :@{} :0 :FALSE];
+    [img open:@"native" :@"hello" :@"hello" :@{} :0 :FALSE];
     
     return YES;
 }

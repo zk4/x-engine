@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "iOpenManager.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol iOpen <iOpenManager>
+@protocol iOpen <NSObject>
 -(NSString*) type;
+-(void)open:(NSString *)type  :(NSString *)uri  :(NSString *)path  :(NSDictionary *)args  :(long)version  :(BOOL)isHidden;
+ 
 @end
 
 NS_ASSUME_NONNULL_END

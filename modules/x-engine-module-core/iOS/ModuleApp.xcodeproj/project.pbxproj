@@ -31,6 +31,7 @@
 		580EB0A12609A6FC00EE0694 /* aJSIModule.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB06A2609289900EE0694 /* aJSIModule.h */; };
 		580EB0A22609A6FC00EE0694 /* aModule.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB059260927A800EE0694 /* aModule.h */; };
 		580EB0A32609A6FC00EE0694 /* XEngineContext.h in Sources */ = {isa = PBXBuildFile; fileRef = DD0A7B4B25381FEC00107280 /* XEngineContext.h */; };
+		580EB0B72609AD5C00EE0694 /* OpenNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */; };
 		5820E10225FD3BE90093339D /* JSIOpenModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820E10125FD3BE90093339D /* JSIOpenModule.m */; };
 		8F5DCB13EF4782C1CAA4B6C8 /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D60C9775B981CB996932E /* libPods-ModuleAppTests.a */; };
 		9AF685F29B1CCC9A580C53A3 /* libPods-ModuleApp-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC03E7754E8D1E83762FC45E /* libPods-ModuleApp-ModuleAppUITests.a */; };
@@ -89,6 +90,8 @@
 		580EB0862609796600EE0694 /* OpenManagerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenManagerModule.m; sourceTree = "<group>"; };
 		580EB0872609796600EE0694 /* iOpenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpenManager.h; sourceTree = "<group>"; };
 		580EB0882609796600EE0694 /* OpenManagerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenManagerModule.h; sourceTree = "<group>"; };
+		580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenNativeModule.m; sourceTree = "<group>"; };
+		580EB0B62609AD5C00EE0694 /* OpenNativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNativeModule.h; sourceTree = "<group>"; };
 		5820E10025FD3BE90093339D /* JSIOpenModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSIOpenModule.h; sourceTree = "<group>"; };
 		5820E10125FD3BE90093339D /* JSIOpenModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIOpenModule.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -215,12 +218,8 @@
 		580EB0602609285800EE0694 /* open */ = {
 			isa = PBXGroup;
 			children = (
-				580EB07126092BB900EE0694 /* iOpen.h */,
-				580EB0872609796600EE0694 /* iOpenManager.h */,
 				580EB0882609796600EE0694 /* OpenManagerModule.h */,
 				580EB0862609796600EE0694 /* OpenManagerModule.m */,
-				580EB07D26092C1200EE0694 /* OpenH5Module.h */,
-				580EB07E26092C1200EE0694 /* OpenH5Module.m */,
 			);
 			path = open;
 			sourceTree = "<group>";
@@ -228,6 +227,8 @@
 		580EB09026097AAC00EE0694 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
+				580EB07126092BB900EE0694 /* iOpen.h */,
+				580EB0872609796600EE0694 /* iOpenManager.h */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -239,6 +240,24 @@
 				5820E10125FD3BE90093339D /* JSIOpenModule.m */,
 			);
 			path = JSI;
+			sourceTree = "<group>";
+		};
+		580EB0B02609AD3500EE0694 /* open.h5 */ = {
+			isa = PBXGroup;
+			children = (
+				580EB07D26092C1200EE0694 /* OpenH5Module.h */,
+				580EB07E26092C1200EE0694 /* OpenH5Module.m */,
+			);
+			path = open.h5;
+			sourceTree = "<group>";
+		};
+		580EB0B42609AD5C00EE0694 /* open.native */ = {
+			isa = PBXGroup;
+			children = (
+				580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */,
+				580EB0B62609AD5C00EE0694 /* OpenNativeModule.h */,
+			);
+			path = open.native;
 			sourceTree = "<group>";
 		};
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
@@ -255,6 +274,8 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				580EB0B42609AD5C00EE0694 /* open.native */,
+				580EB0B02609AD3500EE0694 /* open.h5 */,
 				580EB0972609A13100EE0694 /* JSI */,
 				580EB09026097AAC00EE0694 /* protocols */,
 				580EB0602609285800EE0694 /* open */,
@@ -484,6 +505,7 @@
 				580EB09E2609A6FC00EE0694 /* OpenManagerModule.h in Sources */,
 				580EB09F2609A6FC00EE0694 /* OpenH5Module.h in Sources */,
 				580EB0A02609A6FC00EE0694 /* MicroAppContext.h in Sources */,
+				580EB0B72609AD5C00EE0694 /* OpenNativeModule.m in Sources */,
 				580EB0A12609A6FC00EE0694 /* aJSIModule.h in Sources */,
 				580EB0A22609A6FC00EE0694 /* aModule.h in Sources */,
 				580EB0A32609A6FC00EE0694 /* XEngineContext.h in Sources */,

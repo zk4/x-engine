@@ -27,8 +27,8 @@ NATIVE_MODULE(OpenH5Module)
     return @"h5";
 }
 - (void)open:(nonnull NSString *)type :(nonnull NSString *)uri :(nonnull NSString *)path :(nonnull NSDictionary *)args :(long)version :(BOOL)isHidden {
-    if(type && [type isEqual:@"h5"]){
+
         NSLog(@"open h5 handled!!");
-    }
+
 }
 @end

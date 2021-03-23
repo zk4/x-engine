@@ -28,11 +28,17 @@ package 协议模块 {
     - (string) moduleId;
     - (void) open(...);
   }
-   class OpenLocalH5Module    implements iOpen{
+  
+   class OpenRelativeH5Module extends OpenH5Module  implements iOpen{
+    host:string;
+    port:number;
     - (string) moduleId;
     - (void) open(...);
   }
 }
+ 
+  
+
 
 class ViewController {
 

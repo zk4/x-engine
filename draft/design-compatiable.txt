@@ -61,9 +61,8 @@ package 协议模块 {
     - (string) moduleId;
     - (void) open(...);
   }
-  
-
 }
+
   
 package JSI模块(Open){
 

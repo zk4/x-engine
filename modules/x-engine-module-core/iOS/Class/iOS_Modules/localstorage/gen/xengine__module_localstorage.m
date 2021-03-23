@@ -4,7 +4,8 @@
 
 
 #import "xengine__module_localstorage.h"
- 
+#import "JSIContext.h"
+
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
 
@@ -47,6 +48,8 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
 
   @implementation xengine__module_localstorage
+    JSI_MODULE(xengine__module_localstorage)
+
     - (instancetype)init
     {
         self = [super init];
@@ -54,7 +57,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     }
 
     - (NSString *)moduleId{
-        return @"com.zkty.module.localstorage";
+        return @"com.zkty.jsi.localstorage";
     }
     
     - (void) set:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {

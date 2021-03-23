@@ -8,7 +8,7 @@
 @implementation JSIOpenModule
 JSI_MODULE(JSIOpenModule)
 
-- (NSString*) JSImoduleId{
+- (NSString*) moduleId{
     return @"com.zkty.jsi.open";
 }
 

@@ -15,10 +15,10 @@
 
 @implementation aJSIModule
 
-- (NSString*) JSImoduleId{
+- (NSString*) moduleId{
     mustOverride();
 }
-- (int) JSIorder{
+- (int) order{
     return 0;
 }
 - (void) afterAllJSIModuleInited{

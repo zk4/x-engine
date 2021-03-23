@@ -53,7 +53,7 @@ NATIVE_MODULE(JSIContext)
         aJSIModule *moduleClass = (aJSIModule *)rawmoduleClass;
 
         [self.modules addObject:moduleClass];
-        NSLog(@"moudle found: %@", moduleClass.JSImoduleId);
+        NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
     self.modules = [[self.modules sortedArrayUsingComparator:^(aModule *left, aModule *right) {

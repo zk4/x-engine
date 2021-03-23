@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "aModule.h"
-
+#import "iOpenManager.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenManagerModule : aModule
+@interface OpenManagerModule : aModule <iOpenManager>
 
 @end
 

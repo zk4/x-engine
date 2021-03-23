@@ -10,8 +10,9 @@
 #import "aJSIModule.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestModule : aJSIModule
+@interface JSIOpenModule : aJSIModule
 
 @end
 
 NS_ASSUME_NONNULL_END
+

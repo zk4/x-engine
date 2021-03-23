@@ -8,13 +8,27 @@
 
 #import "OpenH5Module.h"
 #import "XEngineContext.h"
+
+
+
+
 @implementation OpenH5Module
 NATIVE_MODULE(OpenH5Module)
+
+
 - (NSString*) moduleId{
-    return @"com.zkty.module.open.h5";
+    return @"com.zkty.native.open.h5";
 }
 - (int) order{
     return 0;
 }
 
+-(NSString*) type{
+    return @"h5";
+}
+- (void)open:(nonnull NSString *)type :(nonnull NSString *)uri :(nonnull NSString *)path :(nonnull NSDictionary *)args :(long)version :(BOOL)isHidden {
+    if(type && [type isEqual:@"h5"]){
+        NSLog(@"open h5 handled!!");
+    }
+}
 @end

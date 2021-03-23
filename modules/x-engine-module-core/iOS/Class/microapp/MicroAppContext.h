@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MicroAppContext : aModule
 + (instancetype)sharedInstance;
 - (void) registerModuleByClass:(Class)clazz;
+- (void) start;
 @end
 
 NS_ASSUME_NONNULL_END

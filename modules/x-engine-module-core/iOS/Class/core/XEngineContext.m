@@ -49,11 +49,9 @@
 }
 
 - (void)start {
-  
     [self initModules];
-            [[NSNotificationCenter defaultCenter] postNotification:<#(nonnull NSNotification *)#>
-               ];
- }
+    [self afterAllNativeModuleInited];
+}
 
 - (NSMutableArray *)modules {
     return _modules;
@@ -101,6 +99,7 @@
       }
       return NSOrderedSame;
     }] mutableCopy];
+
 }
 
 - (id)getModuleByProtocol:(Protocol *)proto {
@@ -114,7 +113,11 @@
     }
     return nil;
 }
-
+- (void) afterAllNativeModuleInited{
+    for (aModule *module in self.modules) {
+        [module afterAllNativeModuleInited];
+    }
+}
 - (NSMutableArray *)getModulesByProtocol:(Protocol *)proto {
     NSMutableArray *modules = nil;
     NSString *protocoalName = NSStringFromProtocol(proto);

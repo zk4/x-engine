@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "aModule.h"
-
+#import "iOpen.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenH5Module : aModule
+@interface OpenH5Module : aModule <iOpen>
 
 @end
 

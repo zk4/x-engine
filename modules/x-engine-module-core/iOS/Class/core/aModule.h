@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface aModule : NSObject
-    - (NSString*) moduleId;
-    - (int) order;
+- (NSString *)moduleId;
+- (int)order;
+- (void)afterAllNativeModuleInited;
 @end
 
 NS_ASSUME_NONNULL_END

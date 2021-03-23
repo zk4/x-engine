@@ -16,5 +16,5 @@
 - (int) order{
     return 0;
 }
-
+- (void)afterAllNativeModuleInited{}
 @end

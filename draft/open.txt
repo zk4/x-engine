@@ -15,7 +15,7 @@ package 引擎模块 {
 
   }
 }
-package MicroApp {
+package MicroApp原生模块 {
   class MicroAppContext extends aModule{
     + (Set<aModule>) getJSIModules(); 
   }
@@ -51,7 +51,7 @@ package 协议模块 {
 }
   
   package 原生模块 {
- class OpenHubModule extends aModule implements iOpenManager{    
+ class OpenManagerModule extends aModule implements iOpenManager{    
     - Openers: Map<string,iOpen>;
   }
 

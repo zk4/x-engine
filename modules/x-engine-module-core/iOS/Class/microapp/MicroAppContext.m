@@ -37,8 +37,13 @@ NATIVE_MODULE(MicroAppContext)
 }
 - (void)start {
     [self initModules];
+    [self afterAllJSIModuleInited];
 }
-
+- (void) afterAllJSIModuleInited{
+    for (aJSIModule *module in self.modules) {
+        [module afterAllJSIModuleInited];
+    }
+}
 - (NSMutableArray *)modules {
     return _modules;
 }

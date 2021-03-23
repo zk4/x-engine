@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface aJSIModule : NSObject
 - (NSString*) JSImoduleId;
 - (int) JSIorder;
+- (void) afterAllJSIModuleInited;
 @end
 
 NS_ASSUME_NONNULL_END

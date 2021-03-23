@@ -17,5 +17,7 @@
 - (int) JSIorder{
     return 0;
 }
-
+- (void) afterAllJSIModuleInited{
+    
+}
 @end

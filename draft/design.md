@@ -22,17 +22,15 @@ JSI 的实现不需要在原生里复用。（引擎最初版本），通常是�
 
 >  注意 aJSIOpenModule 里的方法应该默认返回 true。
 
-比如 Open 功能，我们可以实现 OpenH5Module，OpenNativeModule，OpenMicroAppModule。 这些都会被扫描。
+比如 Open 功能，我们可以实现 OpenH5Module，OpenNativeModule，OpenMicroAppModule。 
 
-我们约定原生模块的 id 应该以 native 开头。 如 native.com.zkty.module.open
-
-而在 JSIOpenModule 里，在 afterAllNativeMouduleInited 回调生命周期里，可以调用引擎 EngineContext::getNativeModulesByInterface(iOPen);
+在 JSIOpenModule 里，在 afterAllNativeMouduleInited 回调生命周期里，可以调用引擎 EngineContext::getNativeModulesByInterface(iOPen);
 
 即可以拿到 iOpen 的所有实现。将它们填加进 JSIOpenModule 里即可完成动态注入原生模块功能。
 
 而当原生需要这些功能时，
 
-![tmp](assets/tmp-6437612.png)
+![image-20210323131608140](assets/image-20210323131608140.png)
 
 
 

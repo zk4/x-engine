@@ -50,11 +50,7 @@
     [self initModules];
     [self afterAllNativeModuleInited];
 }
-
-- (NSMutableArray *)modules {
-    return _modules;
-}
-
+ 
  
 - (id)getModuleById:(NSString *)moduleId {
     return [self.moduleId2Moudle objectForKey:moduleId];

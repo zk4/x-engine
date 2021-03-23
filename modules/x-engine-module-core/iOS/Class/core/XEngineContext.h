@@ -11,9 +11,7 @@
 @interface XEngineContext : NSObject
 + (instancetype)sharedInstance;
 
-- (NSMutableArray*) modules;
 - (id) getModuleByProtocol:(Protocol *) proto;
-- (id) getModuleByName:(NSString*) clazzName;
 - (id) getModuleById:(NSString*) moduleId;
 - (NSMutableArray*) getModulesByProtocol:(Protocol *) proto;
 - (void) registerModuleByClass:(Class)clazz;

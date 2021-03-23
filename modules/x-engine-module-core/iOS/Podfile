@@ -6,11 +6,6 @@ target 'ModuleApp' do
     #inherit! :search_paths
     #pod 'UniBoost', :path => '../../../../UniBoost'
     pod 'JSONModel'
-    pod 'MBProgressHUD'
-    pod 'Masonry'
-    pod 'MJRefresh'
-    pod 'SSZipArchive'
-    pod 'WechatOpenSDK'
  
  target 'ModuleAppTests' do
   end

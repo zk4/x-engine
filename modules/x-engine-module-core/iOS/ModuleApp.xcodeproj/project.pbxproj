@@ -248,9 +248,9 @@
 				580EB258260A22DC00EE0694 /* localstorage */,
 				A4A695AC2609DC3300074A24 /* open.native */,
 				A4A695AF2609DC3300074A24 /* core */,
-				A4A695B42609DC3300074A24 /* JSI */,
+				A4A695B42609DC3300074A24 /* jsi */,
 				A4A695B92609DC3300074A24 /* open.h5 */,
-				A4A695BC2609DC3300074A24 /* openJSI */,
+				A4A695BC2609DC3300074A24 /* open.jsi */,
 				A4A695BF2609DC3300074A24 /* protocols */,
 				A4A695C22609DC3300074A24 /* open */,
 			);
@@ -277,7 +277,7 @@
 			path = core;
 			sourceTree = "<group>";
 		};
-		A4A695B42609DC3300074A24 /* JSI */ = {
+		A4A695B42609DC3300074A24 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
 				A4A695B62609DC3300074A24 /* aJSIModule.h */,
@@ -285,7 +285,7 @@
 				580EB28A260A247700EE0694 /* JSIContext.h */,
 				580EB289260A247700EE0694 /* JSIContext.m */,
 			);
-			path = JSI;
+			path = jsi;
 			sourceTree = "<group>";
 		};
 		A4A695B92609DC3300074A24 /* open.h5 */ = {
@@ -297,13 +297,13 @@
 			path = open.h5;
 			sourceTree = "<group>";
 		};
-		A4A695BC2609DC3300074A24 /* openJSI */ = {
+		A4A695BC2609DC3300074A24 /* open.jsi */ = {
 			isa = PBXGroup;
 			children = (
 				A4A695BD2609DC3300074A24 /* JSIOpenModule.m */,
 				A4A695BE2609DC3300074A24 /* JSIOpenModule.h */,
 			);
-			path = openJSI;
+			path = open.jsi;
 			sourceTree = "<group>";
 		};
 		A4A695BF2609DC3300074A24 /* protocols */ = {

@@ -1,32 +1,32 @@
 //
-//  MicroAppContext.m
+//  JSIContext.m
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
 //  Copyright © 2021 zk. All rights reserved.
 //
 
-#import "MicroAppContext.h"
+#import "JSIContext.h"
 #import "XEngineContext.h"
 #import "aJSIModule.h"
 
 
-@interface MicroAppContext ()
+@interface JSIContext ()
 @property (nonatomic, strong) NSMutableArray<Class> *moduleClasses;
 @property (nonatomic, strong) NSMutableArray<aJSIModule *> *modules;
 @end
 
-@implementation MicroAppContext
-NATIVE_MODULE(MicroAppContext)
+@implementation JSIContext
+NATIVE_MODULE(JSIContext)
 - (NSString *)moduleId {
     return @"com.zkty.native.context";
 }
 
 + (instancetype)sharedInstance {
-    static MicroAppContext *sharedInstance = nil;
+    static JSIContext *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-      sharedInstance = [[MicroAppContext alloc] init];
+      sharedInstance = [[JSIContext alloc] init];
       sharedInstance.moduleClasses =[NSMutableArray new];
       sharedInstance.modules = [NSMutableArray array];
 

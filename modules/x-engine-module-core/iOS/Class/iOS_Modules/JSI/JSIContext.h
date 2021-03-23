@@ -1,5 +1,5 @@
 //
-//  MicroAppContext.h
+//  JSIContext.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
@@ -10,9 +10,9 @@
 #import "aModule.h"
 NS_ASSUME_NONNULL_BEGIN
 #define JSI_MODULE(clz) + (void)load{ \
-    [[MicroAppContext sharedInstance] registerModuleByClass:clz.class];}\
+    [[JSIContext sharedInstance] registerModuleByClass:clz.class];}\
 
-@interface MicroAppContext : aModule
+@interface JSIContext : aModule
 + (instancetype)sharedInstance;
 - (void) registerModuleByClass:(Class)clazz;
 - (void) start;

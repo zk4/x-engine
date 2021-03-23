@@ -1,5 +1,5 @@
 #import "JSIOpenModule.h"
-#import "MicroAppContext.h"
+#import "JSIContext.h"
 #import "iOpenManager.h"
 #import "XEngineContext.h"
 @interface JSIOpenModule ()

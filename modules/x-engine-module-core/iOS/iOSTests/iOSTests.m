@@ -2,8 +2,8 @@
 //  iOSTests.m
 //  iOSTests
 //
-//  Created by edz on 2020/7/22.
-//  Copyright © 2020 edz. All rights reserved.
+//  Created by zk on 2020/7/22.
+//  Copyright © 2020 zk. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

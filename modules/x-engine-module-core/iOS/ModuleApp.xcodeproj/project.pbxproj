@@ -11,31 +11,27 @@
 		00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* iOSTests.m */; };
 		00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6D424C83F95006A53EE /* iOSUITests.m */; };
 		00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
-		00DFC6F124C84000006A53EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6E524C84000006A53EE /* ViewController.m */; };
 		00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */; };
-		00DFC6F424C84000006A53EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E924C84000006A53EE /* Main.storyboard */; };
 		00DFC6F524C84000006A53EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EB24C84000006A53EE /* main.m */; };
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
-		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
-		580EB05B260927A800EE0694 /* aModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB05A260927A800EE0694 /* aModule.m */; };
-		580EB0632609287900EE0694 /* MicroAppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0622609287900EE0694 /* MicroAppContext.m */; };
-		580EB06C2609289900EE0694 /* aJSIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB06B2609289900EE0694 /* aJSIModule.m */; };
-		580EB07F26092C1200EE0694 /* OpenH5Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB07E26092C1200EE0694 /* OpenH5Module.m */; };
-		580EB0892609796700EE0694 /* OpenManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0862609796600EE0694 /* OpenManagerModule.m */; };
-		580EB09B2609A6FC00EE0694 /* JSIOpenModule.h in Sources */ = {isa = PBXBuildFile; fileRef = 5820E10025FD3BE90093339D /* JSIOpenModule.h */; };
-		580EB09C2609A6FC00EE0694 /* iOpen.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB07126092BB900EE0694 /* iOpen.h */; };
-		580EB09D2609A6FC00EE0694 /* iOpenManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0872609796600EE0694 /* iOpenManager.h */; };
-		580EB09E2609A6FC00EE0694 /* OpenManagerModule.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0882609796600EE0694 /* OpenManagerModule.h */; };
-		580EB09F2609A6FC00EE0694 /* OpenH5Module.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB07D26092C1200EE0694 /* OpenH5Module.h */; };
-		580EB0A02609A6FC00EE0694 /* MicroAppContext.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0612609287900EE0694 /* MicroAppContext.h */; };
-		580EB0A12609A6FC00EE0694 /* aJSIModule.h in Sources */ = {isa = PBXBuildFile; fileRef = 580EB06A2609289900EE0694 /* aJSIModule.h */; };
-		580EB0A32609A6FC00EE0694 /* XEngineContext.h in Sources */ = {isa = PBXBuildFile; fileRef = DD0A7B4B25381FEC00107280 /* XEngineContext.h */; };
-		580EB0B72609AD5C00EE0694 /* OpenNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */; };
-		5820E10225FD3BE90093339D /* JSIOpenModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820E10125FD3BE90093339D /* JSIOpenModule.m */; };
 		8F5DCB13EF4782C1CAA4B6C8 /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D60C9775B981CB996932E /* libPods-ModuleAppTests.a */; };
 		9AF685F29B1CCC9A580C53A3 /* libPods-ModuleApp-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC03E7754E8D1E83762FC45E /* libPods-ModuleApp-ModuleAppUITests.a */; };
+		A4A695C52609DC3300074A24 /* OpenNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695AD2609DC3300074A24 /* OpenNativeModule.m */; };
+		A4A695C62609DC3300074A24 /* XEngineContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B12609DC3300074A24 /* XEngineContext.m */; };
+		A4A695C72609DC3300074A24 /* aModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B22609DC3300074A24 /* aModule.m */; };
+		A4A695C82609DC3300074A24 /* aJSIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B72609DC3300074A24 /* aJSIModule.m */; };
+		A4A695C92609DC3300074A24 /* MicroAppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B82609DC3300074A24 /* MicroAppContext.m */; };
+		A4A695CA2609DC3300074A24 /* OpenH5Module.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695BA2609DC3300074A24 /* OpenH5Module.m */; };
+		A4A695CB2609DC3300074A24 /* JSIOpenModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695BD2609DC3300074A24 /* JSIOpenModule.m */; };
+		A4A695CC2609DC3300074A24 /* OpenManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695C42609DC3300074A24 /* OpenManagerModule.m */; };
+		A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696242609EA4D00074A24 /* MainTabbarController.m */; };
+		A4A696282609EA4D00074A24 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696252609EA4D00074A24 /* MainNavigationController.m */; };
+		A4A696312609F47900074A24 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696302609F47900074A24 /* TwoViewController.m */; };
+		A4A696462609F80000074A24 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696452609F80000074A24 /* OneViewController.m */; };
+		A4A6964C2609F81500074A24 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6964B2609F81500074A24 /* ThreeViewController.m */; };
+		A4A696582609F8A700074A24 /* JumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696572609F8A700074A24 /* JumpViewController.m */; };
+		A4A696642609F96B00074A24 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696632609F96B00074A24 /* MainViewController.m */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
-		DD0A7B5F25381FEC00107280 /* XEngineContext.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0A7B4925381FEC00107280 /* XEngineContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,39 +62,49 @@
 		00DFC6D624C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00DFC6E324C84000006A53EE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00DFC6E424C84000006A53EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		00DFC6E524C84000006A53EE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		00DFC6E824C84000006A53EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		00DFC6EA24C84000006A53EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00DFC6EB24C84000006A53EE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		00DFC6EC24C84000006A53EE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		00DFC6ED24C84000006A53EE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00DFC6EE24C84000006A53EE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		00DFC6FA24C841FD006A53EE /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryViewController.xib; sourceTree = "<group>"; };
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1E7D60C9775B981CB996932E /* libPods-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		580EB05A260927A800EE0694 /* aModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aModule.m; sourceTree = "<group>"; };
-		580EB0612609287900EE0694 /* MicroAppContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicroAppContext.h; sourceTree = "<group>"; };
-		580EB0622609287900EE0694 /* MicroAppContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MicroAppContext.m; sourceTree = "<group>"; };
-		580EB06A2609289900EE0694 /* aJSIModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aJSIModule.h; sourceTree = "<group>"; };
-		580EB06B2609289900EE0694 /* aJSIModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aJSIModule.m; sourceTree = "<group>"; };
-		580EB07126092BB900EE0694 /* iOpen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOpen.h; sourceTree = "<group>"; };
-		580EB07D26092C1200EE0694 /* OpenH5Module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenH5Module.h; sourceTree = "<group>"; };
-		580EB07E26092C1200EE0694 /* OpenH5Module.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenH5Module.m; sourceTree = "<group>"; };
-		580EB0862609796600EE0694 /* OpenManagerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenManagerModule.m; sourceTree = "<group>"; };
-		580EB0872609796600EE0694 /* iOpenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpenManager.h; sourceTree = "<group>"; };
-		580EB0882609796600EE0694 /* OpenManagerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenManagerModule.h; sourceTree = "<group>"; };
-		580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenNativeModule.m; sourceTree = "<group>"; };
-		580EB0B62609AD5C00EE0694 /* OpenNativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNativeModule.h; sourceTree = "<group>"; };
-		580EB1642609D9DA00EE0694 /* aModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aModule.h; sourceTree = "<group>"; };
-		5820E10025FD3BE90093339D /* JSIOpenModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSIOpenModule.h; sourceTree = "<group>"; };
-		5820E10125FD3BE90093339D /* JSIOpenModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIOpenModule.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
+		A4A695AD2609DC3300074A24 /* OpenNativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenNativeModule.m; sourceTree = "<group>"; };
+		A4A695AE2609DC3300074A24 /* OpenNativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNativeModule.h; sourceTree = "<group>"; };
+		A4A695B02609DC3300074A24 /* aModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aModule.h; sourceTree = "<group>"; };
+		A4A695B12609DC3300074A24 /* XEngineContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEngineContext.m; sourceTree = "<group>"; };
+		A4A695B22609DC3300074A24 /* aModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aModule.m; sourceTree = "<group>"; };
+		A4A695B32609DC3300074A24 /* XEngineContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEngineContext.h; sourceTree = "<group>"; };
+		A4A695B52609DC3300074A24 /* MicroAppContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicroAppContext.h; sourceTree = "<group>"; };
+		A4A695B62609DC3300074A24 /* aJSIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aJSIModule.h; sourceTree = "<group>"; };
+		A4A695B72609DC3300074A24 /* aJSIModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aJSIModule.m; sourceTree = "<group>"; };
+		A4A695B82609DC3300074A24 /* MicroAppContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicroAppContext.m; sourceTree = "<group>"; };
+		A4A695BA2609DC3300074A24 /* OpenH5Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenH5Module.m; sourceTree = "<group>"; };
+		A4A695BB2609DC3300074A24 /* OpenH5Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenH5Module.h; sourceTree = "<group>"; };
+		A4A695BD2609DC3300074A24 /* JSIOpenModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIOpenModule.m; sourceTree = "<group>"; };
+		A4A695BE2609DC3300074A24 /* JSIOpenModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIOpenModule.h; sourceTree = "<group>"; };
+		A4A695C02609DC3300074A24 /* iOpen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpen.h; sourceTree = "<group>"; };
+		A4A695C12609DC3300074A24 /* iOpenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpenManager.h; sourceTree = "<group>"; };
+		A4A695C32609DC3300074A24 /* OpenManagerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenManagerModule.h; sourceTree = "<group>"; };
+		A4A695C42609DC3300074A24 /* OpenManagerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenManagerModule.m; sourceTree = "<group>"; };
+		A4A696232609EA4D00074A24 /* MainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
+		A4A696242609EA4D00074A24 /* MainTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabbarController.m; sourceTree = "<group>"; };
+		A4A696252609EA4D00074A24 /* MainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
+		A4A696262609EA4D00074A24 /* MainTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabbarController.h; sourceTree = "<group>"; };
+		A4A6962F2609F47900074A24 /* TwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
+		A4A696302609F47900074A24 /* TwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
+		A4A696442609F80000074A24 /* OneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
+		A4A696452609F80000074A24 /* OneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
+		A4A6964A2609F81500074A24 /* ThreeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreeViewController.h; sourceTree = "<group>"; };
+		A4A6964B2609F81500074A24 /* ThreeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreeViewController.m; sourceTree = "<group>"; };
+		A4A696562609F8A700074A24 /* JumpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
+		A4A696572609F8A700074A24 /* JumpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JumpViewController.m; sourceTree = "<group>"; };
+		A4A696622609F96B00074A24 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		A4A696632609F96B00074A24 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DC03E7754E8D1E83762FC45E /* libPods-ModuleApp-ModuleAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp-ModuleAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD0A7B4925381FEC00107280 /* XEngineContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEngineContext.m; sourceTree = "<group>"; };
-		DD0A7B4B25381FEC00107280 /* XEngineContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEngineContext.h; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		F9A3BC2B46BBF2CB2EAD73CC /* Pods-ModuleAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,10 +188,6 @@
 				00DFC6ED24C84000006A53EE /* Info.plist */,
 				00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */,
 				00DFC6EB24C84000006A53EE /* main.m */,
-				00DFC6E924C84000006A53EE /* Main.storyboard */,
-				00DFC6EE24C84000006A53EE /* ViewController.h */,
-				00DFC6E524C84000006A53EE /* ViewController.m */,
-				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
 			);
 			path = ModuleApp;
 			sourceTree = "<group>";
@@ -203,60 +205,114 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		580EB05F2609284F00EE0694 /* JSI */ = {
+		A4A695AB2609DC3300074A24 /* iOS_Modules */ = {
 			isa = PBXGroup;
 			children = (
-				580EB0612609287900EE0694 /* MicroAppContext.h */,
-				580EB0622609287900EE0694 /* MicroAppContext.m */,
-				580EB06A2609289900EE0694 /* aJSIModule.h */,
-				580EB06B2609289900EE0694 /* aJSIModule.m */,
+				A4A695AC2609DC3300074A24 /* open.native */,
+				A4A695AF2609DC3300074A24 /* core */,
+				A4A695B42609DC3300074A24 /* microapp */,
+				A4A695B92609DC3300074A24 /* open.h5 */,
+				A4A695BC2609DC3300074A24 /* openJSI */,
+				A4A695BF2609DC3300074A24 /* protocols */,
+				A4A695C22609DC3300074A24 /* open */,
 			);
-			path = JSI;
+			path = iOS_Modules;
 			sourceTree = "<group>";
 		};
-		580EB0602609285800EE0694 /* open */ = {
+		A4A695AC2609DC3300074A24 /* open.native */ = {
 			isa = PBXGroup;
 			children = (
-				580EB0882609796600EE0694 /* OpenManagerModule.h */,
-				580EB0862609796600EE0694 /* OpenManagerModule.m */,
+				A4A695AE2609DC3300074A24 /* OpenNativeModule.h */,
+				A4A695AD2609DC3300074A24 /* OpenNativeModule.m */,
 			);
-			path = open;
+			path = open.native;
 			sourceTree = "<group>";
 		};
-		580EB09026097AAC00EE0694 /* protocols */ = {
+		A4A695AF2609DC3300074A24 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				580EB07126092BB900EE0694 /* iOpen.h */,
-				580EB0872609796600EE0694 /* iOpenManager.h */,
+				A4A695B32609DC3300074A24 /* XEngineContext.h */,
+				A4A695B12609DC3300074A24 /* XEngineContext.m */,
+				A4A695B02609DC3300074A24 /* aModule.h */,
+				A4A695B22609DC3300074A24 /* aModule.m */,
 			);
-			path = protocols;
+			path = core;
 			sourceTree = "<group>";
 		};
-		580EB0972609A13100EE0694 /* openJSI */ = {
+		A4A695B42609DC3300074A24 /* microapp */ = {
 			isa = PBXGroup;
 			children = (
-				5820E10025FD3BE90093339D /* JSIOpenModule.h */,
-				5820E10125FD3BE90093339D /* JSIOpenModule.m */,
+				A4A695B52609DC3300074A24 /* MicroAppContext.h */,
+				A4A695B82609DC3300074A24 /* MicroAppContext.m */,
+				A4A695B62609DC3300074A24 /* aJSIModule.h */,
+				A4A695B72609DC3300074A24 /* aJSIModule.m */,
 			);
-			path = openJSI;
+			path = microapp;
 			sourceTree = "<group>";
 		};
-		580EB0B02609AD3500EE0694 /* open.h5 */ = {
+		A4A695B92609DC3300074A24 /* open.h5 */ = {
 			isa = PBXGroup;
 			children = (
-				580EB07D26092C1200EE0694 /* OpenH5Module.h */,
-				580EB07E26092C1200EE0694 /* OpenH5Module.m */,
+				A4A695BA2609DC3300074A24 /* OpenH5Module.m */,
+				A4A695BB2609DC3300074A24 /* OpenH5Module.h */,
 			);
 			path = open.h5;
 			sourceTree = "<group>";
 		};
-		580EB0B42609AD5C00EE0694 /* open.native */ = {
+		A4A695BC2609DC3300074A24 /* openJSI */ = {
 			isa = PBXGroup;
 			children = (
-				580EB0B52609AD5C00EE0694 /* OpenNativeModule.m */,
-				580EB0B62609AD5C00EE0694 /* OpenNativeModule.h */,
+				A4A695BD2609DC3300074A24 /* JSIOpenModule.m */,
+				A4A695BE2609DC3300074A24 /* JSIOpenModule.h */,
 			);
-			path = open.native;
+			path = openJSI;
+			sourceTree = "<group>";
+		};
+		A4A695BF2609DC3300074A24 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A4A695C02609DC3300074A24 /* iOpen.h */,
+				A4A695C12609DC3300074A24 /* iOpenManager.h */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		A4A695C22609DC3300074A24 /* open */ = {
+			isa = PBXGroup;
+			children = (
+				A4A695C32609DC3300074A24 /* OpenManagerModule.h */,
+				A4A695C42609DC3300074A24 /* OpenManagerModule.m */,
+			);
+			path = open;
+			sourceTree = "<group>";
+		};
+		A4A695D02609DC4400074A24 /* iOS_Demo */ = {
+			isa = PBXGroup;
+			children = (
+				A4A696442609F80000074A24 /* OneViewController.h */,
+				A4A696452609F80000074A24 /* OneViewController.m */,
+				A4A6962F2609F47900074A24 /* TwoViewController.h */,
+				A4A696302609F47900074A24 /* TwoViewController.m */,
+				A4A6964A2609F81500074A24 /* ThreeViewController.h */,
+				A4A6964B2609F81500074A24 /* ThreeViewController.m */,
+				A4A696562609F8A700074A24 /* JumpViewController.h */,
+				A4A696572609F8A700074A24 /* JumpViewController.m */,
+				A4A696222609EA4D00074A24 /* Main */,
+			);
+			path = iOS_Demo;
+			sourceTree = "<group>";
+		};
+		A4A696222609EA4D00074A24 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A4A696262609EA4D00074A24 /* MainTabbarController.h */,
+				A4A696242609EA4D00074A24 /* MainTabbarController.m */,
+				A4A696232609EA4D00074A24 /* MainNavigationController.h */,
+				A4A696252609EA4D00074A24 /* MainNavigationController.m */,
+				A4A696622609F96B00074A24 /* MainViewController.h */,
+				A4A696632609F96B00074A24 /* MainViewController.m */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
@@ -273,27 +329,11 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				580EB0B42609AD5C00EE0694 /* open.native */,
-				580EB0B02609AD3500EE0694 /* open.h5 */,
-				580EB0972609A13100EE0694 /* openJSI */,
-				580EB09026097AAC00EE0694 /* protocols */,
-				580EB0602609285800EE0694 /* open */,
-				580EB05F2609284F00EE0694 /* JSI */,
-				DD0A7B4825381FEC00107280 /* core */,
+				A4A695D02609DC4400074A24 /* iOS_Demo */,
+				A4A695AB2609DC3300074A24 /* iOS_Modules */,
 			);
 			path = Class;
 			sourceTree = SOURCE_ROOT;
-		};
-		DD0A7B4825381FEC00107280 /* core */ = {
-			isa = PBXGroup;
-			children = (
-				DD0A7B4925381FEC00107280 /* XEngineContext.m */,
-				580EB1642609D9DA00EE0694 /* aModule.h */,
-				580EB05A260927A800EE0694 /* aModule.m */,
-				DD0A7B4B25381FEC00107280 /* XEngineContext.h */,
-			);
-			path = core;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -324,7 +364,7 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
-				6F257DE7A2EF34EB348B74D6 /* [CP] Copy Pods Resources */,
+				04DBEBF8302B253F11106C05 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -362,7 +402,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1150;
-				ORGANIZATIONNAME = edz;
+				ORGANIZATIONNAME = "zkty-team";
 				TargetAttributes = {
 					00DFC6A924C83F94006A53EE = {
 						CreatedOnToolsVersion = 11.5;
@@ -402,8 +442,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
-				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 			);
@@ -426,6 +464,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		04DBEBF8302B253F11106C05 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0D35607985D032CA76333046 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,23 +547,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6F257DE7A2EF34EB348B74D6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -516,25 +554,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				580EB09B2609A6FC00EE0694 /* JSIOpenModule.h in Sources */,
-				580EB09C2609A6FC00EE0694 /* iOpen.h in Sources */,
-				580EB09D2609A6FC00EE0694 /* iOpenManager.h in Sources */,
-				580EB09E2609A6FC00EE0694 /* OpenManagerModule.h in Sources */,
-				580EB09F2609A6FC00EE0694 /* OpenH5Module.h in Sources */,
-				580EB0A02609A6FC00EE0694 /* MicroAppContext.h in Sources */,
-				580EB0B72609AD5C00EE0694 /* OpenNativeModule.m in Sources */,
-				580EB0A12609A6FC00EE0694 /* aJSIModule.h in Sources */,
-				580EB0A32609A6FC00EE0694 /* XEngineContext.h in Sources */,
-				580EB0632609287900EE0694 /* MicroAppContext.m in Sources */,
-				DD0A7B5F25381FEC00107280 /* XEngineContext.m in Sources */,
-				5820E10225FD3BE90093339D /* JSIOpenModule.m in Sources */,
-				580EB07F26092C1200EE0694 /* OpenH5Module.m in Sources */,
+				A4A695C82609DC3300074A24 /* aJSIModule.m in Sources */,
+				A4A696582609F8A700074A24 /* JumpViewController.m in Sources */,
+				A4A695C62609DC3300074A24 /* XEngineContext.m in Sources */,
+				A4A695C52609DC3300074A24 /* OpenNativeModule.m in Sources */,
+				A4A695CC2609DC3300074A24 /* OpenManagerModule.m in Sources */,
+				A4A695CA2609DC3300074A24 /* OpenH5Module.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
-				580EB06C2609289900EE0694 /* aJSIModule.m in Sources */,
-				580EB05B260927A800EE0694 /* aModule.m in Sources */,
-				00DFC6F124C84000006A53EE /* ViewController.m in Sources */,
+				A4A696642609F96B00074A24 /* MainViewController.m in Sources */,
+				A4A696462609F80000074A24 /* OneViewController.m in Sources */,
+				A4A6964C2609F81500074A24 /* ThreeViewController.m in Sources */,
+				A4A695C92609DC3300074A24 /* MicroAppContext.m in Sources */,
+				A4A696312609F47900074A24 /* TwoViewController.m in Sources */,
+				A4A695C72609DC3300074A24 /* aModule.m in Sources */,
+				A4A695CB2609DC3300074A24 /* JSIOpenModule.m in Sources */,
+				A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
-				580EB0892609796700EE0694 /* OpenManagerModule.m in Sources */,
+				A4A696282609EA4D00074A24 /* MainNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,14 +612,6 @@
 				00DFC6E824C84000006A53EE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		00DFC6E924C84000006A53EE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00DFC6EA24C84000006A53EE /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -706,7 +734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = 2ZE56AMZE7;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -727,7 +755,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = 2ZE56AMZE7;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

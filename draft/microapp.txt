@@ -1,0 +1,48 @@
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+  
+package 原生模块(JSI) {
+  class JSIContext extends aModule{
+    + (Set<aodule>) getJSIModules(); 
+  }
+}
+  
+package 协议模块 {
+  interface iOpen {    
+  +(NSString*) type;
+  +(void)open:(...);
+ 
+  }
+   interface iOpenManager {    
+  +(void)open:(...);
+   }
+}
+  
+  package 原生模块(Open) {
+ class OpenManagerModule implements iOpenManager{    
+    - Openers: Map<string,iOpen>;
+  }
+
+  class OpenH5Module    implements iOpen{
+    - (string) moduleId;
+    - (void) open(...);
+  }
+   class OpenLocalH5Module    implements iOpen{
+    - (string) moduleId;
+    - (void) open(...);
+  }
+}
+
+class ViewController {
+
+}
+class WebView {
+
+}
+ViewController <-- WebView
+ViewController <-- OpenH5Module
+ViewController <-- OpenLocalH5Module
+
+
+@enduml

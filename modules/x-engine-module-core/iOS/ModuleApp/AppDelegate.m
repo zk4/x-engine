@@ -6,9 +6,9 @@
 
 @implementation AppDelegate
 
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//
-//    return YES;
-//}
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[XEngineContext sharedInstance] start];
+    return YES;
+}
  
 @end

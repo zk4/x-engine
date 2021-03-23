@@ -1,16 +1,17 @@
 //
-//  TestModule.h
+//  OpenManagerModule.h
 //  ModuleApp
 //
-//  Created by zk on 2021/3/14.
+//  Created by zk on 2021/3/23.
 //  Copyright © 2021 edz. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "aJSIModule.h"
+#import "aModule.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestModule : aJSIModule
+@interface OpenManagerModule : aModule
 
 @end
 

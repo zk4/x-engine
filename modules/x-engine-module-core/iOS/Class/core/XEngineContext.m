@@ -2,7 +2,7 @@
 //  EngineContext.m
 
 #import "XEngineContext.h"
-#import "xengine__module_BaseModule.h"
+#import "aModule.h"
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
 
@@ -10,9 +10,9 @@
 @property (nonatomic, strong) NSMutableArray<NSString *> *moduleClassNames;
 @property (nonatomic, strong) NSMutableArray<Class> *moduleClasses;
 
-@property (nonatomic, strong) NSMutableArray<xengine__module_BaseModule *> *modules;
+@property (nonatomic, strong) NSMutableArray<aModule *> *modules;
 @property (nonatomic, strong) NSMutableArray *applicationDelegateModules;
-@property (nonatomic, strong) NSMutableDictionary<NSString *, xengine__module_BaseModule *> *moduleId2Moudle;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, aModule *> *moduleId2Moudle;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray *> *moduleId2MoudleProtocolnames;
 
 @end
@@ -20,51 +20,46 @@
 // DONE 生命周期通知，应用到后台，通知组件等
 // 有生命周期需求，自行在 load 里注册通知，见 + (void) load
 
-// TODO 集成路由 router， 有 UI 才有 router 的意义， 路由的目的地可能是 webview 也可能是原生。
 @implementation XEngineContext
 
 // 在各自对应的模块中重写 + load方法,监听UIApplicationDidFinishLaunchingNotification通知
 + (void)load {
-    __block id observer =
-        [[NSNotificationCenter defaultCenter]
-            addObserverForName:UIApplicationDidFinishLaunchingNotification
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      [[XEngineContext sharedInstance] start];
-                      [[NSNotificationCenter defaultCenter] removeObserver:observer];
-                    }];
+//    __block id observer =
+//        [[NSNotificationCenter defaultCenter]
+//            addObserverForName:UIApplicationDidFinishLaunchingNotification
+//                        object:nil
+//                         queue:nil
+//                    usingBlock:^(NSNotification *note) {
+//                      [[XEngineContext sharedInstance] start];
+//                      [[NSNotificationCenter defaultCenter] removeObserver:observer];
+//                    }];
 }
 + (instancetype)sharedInstance {
     static XEngineContext *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-      sharedInstance = [[XEngineContext alloc] init];
+        sharedInstance = [[XEngineContext alloc] init];
+        sharedInstance.moduleClasses =[NSMutableArray new];
+        sharedInstance.modules = [NSMutableArray array];
+        sharedInstance.applicationDelegateModules = [NSMutableArray array];
+        sharedInstance.moduleId2Moudle = [[NSMutableDictionary alloc] init];
+        sharedInstance.moduleId2MoudleProtocolnames = [[NSMutableDictionary alloc] init];
     });
     return sharedInstance;
 }
 
 - (void)start {
-    self.moduleClassNames = [NSMutableArray array];
-    self.modules = [NSMutableArray array];
-    self.applicationDelegateModules = [NSMutableArray array];
-
-    self.moduleId2Moudle = [[NSMutableDictionary alloc] init];
-    self.moduleId2MoudleProtocolnames = [[NSMutableDictionary alloc] init];
+  
     [self initModules];
-    [self onAllModulesInited];
-}
+            [[NSNotificationCenter defaultCenter] postNotification:<#(nonnull NSNotification *)#>
+               ];
+ }
 
 - (NSMutableArray *)modules {
     return _modules;
 }
 
-- (void)onAllModulesInited {
-    for (xengine__module_BaseModule *module in self.modules) {
-        [module onAllModulesInited];
-    }
-}
-
+ 
 - (id)getModuleById:(NSString *)moduleId {
     return [self.moduleId2Moudle objectForKey:moduleId];
 }
@@ -86,7 +81,7 @@
 - (void)initModules {
     for (Class cls in self.moduleClasses) {
         id rawmoduleClass = [[cls alloc] init];
-        xengine__module_BaseModule *moduleClass = (xengine__module_BaseModule *)rawmoduleClass;
+        aModule *moduleClass = (aModule *)rawmoduleClass;
         NSString *moduleId = [moduleClass moduleId];
 
         [self.moduleId2Moudle setObject:moduleClass forKey:moduleClass.moduleId];
@@ -98,7 +93,7 @@
         NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
-    self.modules = [[self.modules sortedArrayUsingComparator:^(xengine__module_BaseModule *left, xengine__module_BaseModule *right) {
+    self.modules = [[self.modules sortedArrayUsingComparator:^(aModule *left, aModule *right) {
       if ([left order] > [right order]) {
           return NSOrderedDescending;
       } else if ([left order] < [right order]) {
@@ -143,6 +138,7 @@ bool startsWith(const char *pre, const char *str) {
 }
 
 - (void)registerModuleByClass:(Class)clazz {
+
     [self.moduleClasses addObject:clazz];
 }
 

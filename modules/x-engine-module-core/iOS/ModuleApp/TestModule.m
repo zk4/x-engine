@@ -1,6 +1,9 @@
 #import "TestModule.h"
-#import "XEngineContext.h"
+#import "MicroAppContext.h"
 
 @implementation TestModule
-X_MODULE(TestModule)
+JSI_MODULE(TestModule)
+- (NSString*) JSImoduleId{
+    return @"com.module.test";
+}
 @end

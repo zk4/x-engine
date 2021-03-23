@@ -1,16 +1,16 @@
 //
-//  TestModule.h
+//  iOpen.h
 //  ModuleApp
 //
-//  Created by zk on 2021/3/14.
+//  Created by zk on 2021/3/23.
 //  Copyright © 2021 edz. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "aJSIModule.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestModule : aJSIModule
+@protocol iOpen <NSObject>
 
 @end
 

@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define X_MODULE(clz) + (void)load{ \
+#define NATIVE_MODULE(clz) + (void)load{ \
     [[XEngineContext sharedInstance] registerModuleByClass:clz.class];}\
 
 

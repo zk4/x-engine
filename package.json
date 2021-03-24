@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zkty-team/monorepo.git"
+    "url": "git+https://github.com/zkty-team/x-engine.git"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

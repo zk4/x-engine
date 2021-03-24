@@ -6,11 +6,11 @@ target 'ModuleApp' do
     #inherit! :search_paths
     #pod 'UniBoost', :path => '../../../../UniBoost'
     pod 'JSONModel'
- 
- target 'ModuleAppTests' do
-  end
 
-  target 'ModuleAppUITests' do
-  end
+end
 
+target 'ModuleAppTests' do
+end
+
+target 'ModuleAppUITests' do
 end

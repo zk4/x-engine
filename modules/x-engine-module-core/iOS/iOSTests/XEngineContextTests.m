@@ -23,35 +23,21 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)test__XEngineContext_registerModuleByClass {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)test不可以注册相同的Native_Module {
+ 
     XCTAssertThrows([[XEngineContext sharedInstance] registerModuleByClass:OpenH5Module.class]);
     [[XEngineContext sharedInstance] start];
-
-
-
+ 
 }
-- (void)test_XEngineContext_getModuleById_openmanager_exist {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-    
+- (void)test获取openmanager_native_Module {
+
     id openmanager= [[XEngineContext sharedInstance] getModuleById:@"com.zkty.native.openmanager"];
     XCTAssert(openmanager,@"应该获得 openmanager");
 }
-- (void)test_XEngineContext_getModuleById_nonexit {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-    
+- (void)test获取不存在的_native_Module {
+
     id openmanager= [[XEngineContext sharedInstance] getModuleById:@"com.zkty.native.openmanager.nonexist"];
     XCTAssert(!openmanager,@"应该获得不到 openmanager.nonexist");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
 }
 
 @end

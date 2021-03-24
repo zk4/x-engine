@@ -1,12 +1,12 @@
 # Uncomment thj next line to define a global platform for your project
 platform :ios, '10.0'
 
+def shared_pods
+    pod 'JSONModel'
+end
 
 target 'ModuleApp' do
-    #inherit! :search_paths
-    #pod 'UniBoost', :path => '../../../../UniBoost'
-    pod 'JSONModel'
-
+  shared_pods
 end
 
 target 'ModuleAppTests' do

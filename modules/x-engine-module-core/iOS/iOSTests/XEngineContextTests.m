@@ -8,11 +8,12 @@
 
 #import <XCTest/XCTest.h>
 #import "XEngineContext.h"
-@interface iOSTests : XCTestCase
+#import "OpenH5Module.h"
+@interface XEngineContextTests : XCTestCase
 
 @end
 
-@implementation iOSTests
+@implementation XEngineContextTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,6 +23,15 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
+- (void)test__XEngineContext_registerModuleByClass {
+    // This is an example of a functional test case.
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
+    XCTAssertThrows([[XEngineContext sharedInstance] registerModuleByClass:OpenH5Module.class]);
+    [[XEngineContext sharedInstance] start];
+
+
+
+}
 - (void)test_XEngineContext_getModuleById_openmanager_exist {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.

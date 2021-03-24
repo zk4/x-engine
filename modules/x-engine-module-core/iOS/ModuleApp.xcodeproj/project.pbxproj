@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0058BFBC24D2B3B30061B72A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0058BFBB24D2B3B30061B72A /* libc++.tbd */; };
-		00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* iOSTests.m */; };
+		00DFC6CA24C83F95006A53EE /* XEngineContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* XEngineContextTests.m */; };
 		00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6D424C83F95006A53EE /* iOSUITests.m */; };
 		00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */; };
@@ -19,6 +19,7 @@
 		580EB261260A22DC00EE0694 /* __xengine__module_localStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB25E260A22DC00EE0694 /* __xengine__module_localStorage.m */; };
 		580EB262260A22DC00EE0694 /* XEDataSaveManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB25F260A22DC00EE0694 /* XEDataSaveManage.m */; };
 		580EB28B260A247700EE0694 /* JSIContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB289260A247700EE0694 /* JSIContext.m */; };
+		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		9AF685F29B1CCC9A580C53A3 /* libPods-ModuleApp-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC03E7754E8D1E83762FC45E /* libPods-ModuleApp-ModuleAppUITests.a */; };
 		A4A695C52609DC3300074A24 /* OpenNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695AD2609DC3300074A24 /* OpenNativeModule.m */; };
 		A4A695C62609DC3300074A24 /* XEngineContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B12609DC3300074A24 /* XEngineContext.m */; };
@@ -59,7 +60,7 @@
 		0058BFBB24D2B3B30061B72A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		00DFC6AA24C83F94006A53EE /* ModuleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModuleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6C524C83F95006A53EE /* ModuleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModuleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00DFC6C924C83F95006A53EE /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
+		00DFC6C924C83F95006A53EE /* XEngineContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XEngineContextTests.m; sourceTree = "<group>"; };
 		00DFC6CB24C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00DFC6D024C83F95006A53EE /* ModuleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModuleAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6D424C83F95006A53EE /* iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSUITests.m; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		580EB25F260A22DC00EE0694 /* XEDataSaveManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEDataSaveManage.m; sourceTree = "<group>"; };
 		580EB289260A247700EE0694 /* JSIContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIContext.m; sourceTree = "<group>"; };
 		580EB28A260A247700EE0694 /* JSIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIContext.h; sourceTree = "<group>"; };
+		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		A4A695AD2609DC3300074A24 /* OpenNativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenNativeModule.m; sourceTree = "<group>"; };
 		A4A695AE2609DC3300074A24 /* OpenNativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNativeModule.h; sourceTree = "<group>"; };
@@ -177,7 +179,8 @@
 		00DFC6C824C83F95006A53EE /* iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				00DFC6C924C83F95006A53EE /* iOSTests.m */,
+				580EB2D2260B385200EE0694 /* JSIContextTests.m */,
+				00DFC6C924C83F95006A53EE /* XEngineContextTests.m */,
 				00DFC6CB24C83F95006A53EE /* Info.plist */,
 			);
 			path = iOSTests;
@@ -602,7 +605,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */,
+				580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */,
+				00DFC6CA24C83F95006A53EE /* XEngineContextTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

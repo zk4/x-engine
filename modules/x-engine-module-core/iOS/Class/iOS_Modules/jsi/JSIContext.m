@@ -12,7 +12,7 @@
 
 
 @interface JSIContext ()
-@property (nonatomic, strong) NSMutableArray<Class> *moduleClasses;
+@property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
 @property (nonatomic, strong) NSMutableArray<aJSIModule *> *modules;
 @end
 
@@ -27,7 +27,7 @@ NATIVE_MODULE(JSIContext)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
       sharedInstance = [[JSIContext alloc] init];
-      sharedInstance.moduleClasses =[NSMutableArray new];
+      sharedInstance.moduleClasses =[NSMutableSet new];
       sharedInstance.modules = [NSMutableArray array];
 
 
@@ -66,6 +66,9 @@ NATIVE_MODULE(JSIContext)
     }] mutableCopy];
 }
 - (void)registerModuleByClass:(Class)cls {
+    if([self.moduleClasses containsObject:cls]){
+        @throw [NSException exceptionWithName:@"重复注册JSI moduleId" reason:@"不允许同名 JSI moduleId" userInfo:nil];
+    }
     [self.moduleClasses addObject:cls];
 }
 @end

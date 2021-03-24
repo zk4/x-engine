@@ -7,7 +7,7 @@
 
 @interface XEngineContext ()
 // 维护通过 load 注册过来的 class
-@property (nonatomic, strong) NSMutableArray<Class> *moduleClasses;
+@property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
 // 实例化后的 modules
 @property (nonatomic, strong) NSMutableArray<aModule *> *modules;
 // moduleid 映射的 module
@@ -40,7 +40,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[XEngineContext alloc] init];
-        sharedInstance.moduleClasses =[NSMutableArray new];
+        sharedInstance.moduleClasses =[NSMutableSet new];
         sharedInstance.modules = [NSMutableArray array];
         sharedInstance.moduleId2Moudle = [[NSMutableDictionary alloc] init];
         sharedInstance.moduleId2MoudleProtocolnames = [[NSMutableDictionary alloc] init];
@@ -138,7 +138,9 @@ bool startsWith(const char *pre, const char *str) {
 }
 
 - (void)registerModuleByClass:(Class)clazz {
-
+    if([self.moduleClasses containsObject:clazz]){
+        @throw [NSException exceptionWithName:@"重复注册native clazz" reason:@"不允许同名 native clazz" userInfo:nil];
+    }
     [self.moduleClasses addObject:clazz];
 }
 

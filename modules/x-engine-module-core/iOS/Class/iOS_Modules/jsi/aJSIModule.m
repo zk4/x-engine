@@ -9,9 +9,9 @@
 #import "JSONModel.h"
 #import "aJSIModule.h"
 #import <objc/message.h>
-
+# ifndef mustOverride
 #define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
-
+#endif
 @implementation aJSIModule
 
 - (NSString *)moduleId {

@@ -8,10 +8,14 @@
 
 #import "aModule.h"
 
+# ifndef mustOverride
+#define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
+#endif
+
 @implementation aModule
 
 - (NSString*) moduleId{
-    return @"";
+    mustOverride();
 }
 - (int) order{
     return 0;

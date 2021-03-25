@@ -8,7 +8,7 @@
 @interface XEngineContext ()
 // 维护通过 load 注册过来的 class
 @property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
-// 实例化后的 modules
+// 实例化后的 modules, 因为 module 有 order，使用 NSMutableArray 维护顺序
 @property (nonatomic, strong) NSMutableArray<aModule *> *modules;
 // moduleid 映射的 module
 @property (nonatomic, strong) NSMutableDictionary<NSString *, aModule *> *moduleId2Moudle;

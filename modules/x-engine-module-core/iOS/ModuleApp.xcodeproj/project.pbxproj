@@ -86,6 +86,10 @@
 		580EB289260A247700EE0694 /* JSIContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIContext.m; sourceTree = "<group>"; };
 		580EB28A260A247700EE0694 /* JSIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIContext.h; sourceTree = "<group>"; };
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
+		58DF3701260C3E3B002C1236 /* aRNModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aRNModule.h; sourceTree = "<group>"; };
+		58DF3702260C3E3B002C1236 /* RNContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNContext.h; sourceTree = "<group>"; };
+		58DF3703260C3E3B002C1236 /* RNContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNContext.m; sourceTree = "<group>"; };
+		58DF3704260C3E3C002C1236 /* aRNModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aRNModule.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A695AD2609DC3300074A24 /* OpenNativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenNativeModule.m; sourceTree = "<group>"; };
@@ -249,9 +253,21 @@
 			path = gen;
 			sourceTree = "<group>";
 		};
+		58DF3700260C3E26002C1236 /* rn */ = {
+			isa = PBXGroup;
+			children = (
+				58DF3701260C3E3B002C1236 /* aRNModule.h */,
+				58DF3704260C3E3C002C1236 /* aRNModule.m */,
+				58DF3702260C3E3B002C1236 /* RNContext.h */,
+				58DF3703260C3E3B002C1236 /* RNContext.m */,
+			);
+			path = rn;
+			sourceTree = "<group>";
+		};
 		A4A695AB2609DC3300074A24 /* iOS_Modules */ = {
 			isa = PBXGroup;
 			children = (
+				58DF3700260C3E26002C1236 /* rn */,
 				580EB258260A22DC00EE0694 /* localstorage */,
 				A4A695AC2609DC3300074A24 /* open.native */,
 				A4A695AF2609DC3300074A24 /* core */,

@@ -1,33 +1,33 @@
 //
-//  MicroAppContext.m
+//  RNContext.m
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
-//  Copyright © 2021 zk. All rights reserved.
+//  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "MicroAppContext.h"
+#import "RNContext.h"
 #import "XEngineContext.h"
-#import "aJSIModule.h"
+#import "aRNModule.h"
 
 
-@interface MicroAppContext ()
-@property (nonatomic, strong) NSMutableArray<Class> *moduleClasses;
-@property (nonatomic, strong) NSMutableArray<aJSIModule *> *modules;
+@interface RNContext ()
+@property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
+@property (nonatomic, strong) NSMutableArray<aRNModule *> *modules;
 @end
 
-@implementation MicroAppContext
-NATIVE_MODULE(MicroAppContext)
+@implementation RNContext
+NATIVE_MODULE(RNContext)
 - (NSString *)moduleId {
-    return @"com.zkty.native.context";
+    return @"com.zkty.rn.context";
 }
 
 + (instancetype)sharedInstance {
-    static MicroAppContext *sharedInstance = nil;
+    static RNContext *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-      sharedInstance = [[MicroAppContext alloc] init];
-      sharedInstance.moduleClasses =[NSMutableArray new];
+      sharedInstance = [[RNContext alloc] init];
+      sharedInstance.moduleClasses =[NSMutableSet new];
       sharedInstance.modules = [NSMutableArray array];
 
 
@@ -39,7 +39,7 @@ NATIVE_MODULE(MicroAppContext)
     [self afterAllJSIModuleInited];
 }
 - (void) afterAllJSIModuleInited{
-    for (aJSIModule *module in self.modules) {
+    for (aRNModule *module in self.modules) {
         [module afterAllJSIModuleInited];
     }
 }
@@ -53,7 +53,7 @@ NATIVE_MODULE(MicroAppContext)
         aJSIModule *moduleClass = (aJSIModule *)rawmoduleClass;
 
         [self.modules addObject:moduleClass];
-        NSLog(@"moudle found: %@", moduleClass.JSImoduleId);
+        NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
     self.modules = [[self.modules sortedArrayUsingComparator:^(aModule *left, aModule *right) {
@@ -66,6 +66,9 @@ NATIVE_MODULE(MicroAppContext)
     }] mutableCopy];
 }
 - (void)registerModuleByClass:(Class)cls {
+    if([self.moduleClasses containsObject:cls]){
+        @throw [NSException exceptionWithName:@"重复注册RN moduleId" reason:@"不允许同名 RN moduleId" userInfo:nil];
+    }
     [self.moduleClasses addObject:cls];
 }
 @end

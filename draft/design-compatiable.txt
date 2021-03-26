@@ -17,14 +17,14 @@ package 模块管理 {
 }
 package 原生模块(JSI) {
   class JSIContext extends aModule{
-    + (Set<aodule>) getJSIModules(); 
+    + (Set<aJSIModule>) getJSIModules(); 
   }
   
   
   class  aJSIModule {
-    + (string) {abstract}  JSImoduleId;
+    + (string) {abstract}  moduleId;
   }
-}
+} 
 
 package JSI模块 {
 
@@ -50,24 +50,41 @@ package 协议模块 {
    interface iOpenManager {    
   +(void)open:(...);
    }
+   interface iContainer {
+      // 生命周期
+   }
 }
   
-  package 原生模块(Open) {
- class OpenManagerModule extends aModule implements iOpenManager{    
+  package 原生模块(OpenManager) {
+ class OpenManagerModule extends aModule implements iOpenManager{  
+    - Stack<iContainer>: containers;
     - Openers: Map<string,iOpen>;
   }
 
+
+  }
+    package 原生模块(Open.H5) {
   class OpenH5Module   extends aModule implements iOpen{
     - (string) moduleId;
     - (void) open(...);
   }
+    }
+    package 原生模块(Open.Native) {
+    class OpenNativeModule   extends aModule implements iOpen{
+    - (string) moduleId;
+    - (void) open(...);
+  }
+   
 }
+package 原生模块(Container){
+class WebViewContainer implements iContainer {}
+}
+
+WebViewContainer --> JSIContext
 
   
 package JSI模块(Open){
-
-
-  class __xengine__module_open extends xengine__module_open{
+class __xengine__module_open extends xengine__module_open{
     - openManager: iOpenManager;
   }
   

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 - (void) registerModuleByClass:(Class)clazz;
 - (void) start;
+- (NSMutableArray *)modules;
 @end
 
 NS_ASSUME_NONNULL_END

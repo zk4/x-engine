@@ -1,5 +1,5 @@
 //
-//  OpenH5Module.h
+//  OpenMicroappModule.m.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
@@ -11,7 +11,7 @@
 #import "iOpen.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenH5Module : aModule <iOpen>
+@interface OpenMicroappModule : aModule <iOpen>
 
 @end
 

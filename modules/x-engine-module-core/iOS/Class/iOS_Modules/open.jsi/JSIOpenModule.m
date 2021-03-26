@@ -9,13 +9,13 @@
 JSI_MODULE(JSIOpenModule)
 
 - (NSString*) moduleId{
-    return @"com.zkty.jsi.open";
+    return @"com.zkty.module.router";
 }
 
 -(void)afterAllJSIModuleInited {
-    NSLog(@"...............");
     self.openerManger = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
-    [self.openerManger open:@"h5" :@"hello" :@"hello" :@{} :0 :FALSE];
-
 }
+- (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    [self.openerManger  open:dict[@"type"] :dict[@"uri"] :dict[@"path"] :dict[@"dict"] :dict[@"version"] :dict[@"hideNavbar"]];
+  }
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "aJSIModule.h"
 NS_ASSUME_NONNULL_BEGIN
+typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
 @interface JSIOpenModule : aJSIModule
 

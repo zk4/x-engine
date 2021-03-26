@@ -1,0 +1,305 @@
+//
+//  WebViewPool.m
+//  x-engine-module-engine
+//
+//  Created by 吕冬剑 on 2020/9/18.
+//
+
+#import "XEOneWebViewPool.h"
+#import "XEngineWebView.h"
+#import "JSIContext.h"
+#import "MicroAppLoader.h"
+#import "aJSIModule.h"
+#import "XEOneWebViewPoolModel.h"
+
+#import "Unity.h"
+#import "RecyleWebViewController.h"
+#import "CustomURLSchemeHandler.h"
+
+
+@interface XEOneWebViewPool ()
+
+@property (nonatomic, strong) WKProcessPool* wkprocessPool;
+@property (nonatomic, strong) NSMutableArray<XEOneWebViewPoolModel *>* webCacheAry;
+//@property (nonatomic, strong) NSMutableDictionary<WKWebView *, XEOneWebViewPoolModel *>* webRecordDic;
+
+@end
+
+@implementation XEOneWebViewPool
+
++ (instancetype)sharedInstance
+{
+    static XEOneWebViewPool *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[XEOneWebViewPool alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self){
+        self.wkprocessPool = [[WKProcessPool alloc] init];
+        self.webCacheAry = [@[] mutableCopy];
+//        self.webRecordDic = [@{} mutableCopy];
+        self.inSingle = YES;
+    }
+    return self;
+}
+
+- (long)nowMicroAppVersion{
+    return self.webCacheAry.lastObject.version;
+}
+
+- (NSString *)nowMicroAppRootPath{
+    
+    return self.webCacheAry.lastObject.appRootPath;
+}
+
+- (NSString *)nowMicroAppId{
+    return self.webCacheAry.lastObject.appId;
+}
+
+- (NSString *)nowMicroAppLoadUrl{
+    return [[[self getWebView] URL] absoluteString];
+}
+    
+-(BOOL)checkUrl:(NSString *)url{
+    
+    XEngineWebView *web = self.webCacheAry.lastObject.webView;
+    if(web.superview == nil){
+        return YES;
+    }
+    return NO;
+}
+
+- (void)clearWebView:(NSString *)url{
+    
+    XEngineWebView *web = self.webCacheAry.lastObject.webView;
+    if(web){
+        if(url){
+            if([[web.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]] ||
+               [[web.URL.absoluteString lowercaseString] isEqualToString:[NSString stringWithFormat:@"%@#/", [url lowercaseString]]] ){
+                
+                if([web canGoBack]){
+                    [web goBack];
+                }else{
+        
+                    [self.webCacheAry removeLastObject];
+                    [self cleanWebView:web];
+                }
+                return;
+            }
+            NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
+            if(ary.count > 0){
+                NSArray<WKBackForwardListItem *> *reversAry = [[ary reverseObjectEnumerator] allObjects];
+                for (int i = 0; i < reversAry.count; i++) {
+                    WKBackForwardListItem *item = reversAry[i];
+                    if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
+                       || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
+                        if(i > 0){
+                            [web goToBackForwardListItem:reversAry[i - 1]];
+                        }else{
+                            
+                            [self.webCacheAry removeLastObject];
+                            [self cleanWebView:web];
+                        }
+                        return;
+                    }
+                }
+            }else{
+                
+                [self.webCacheAry removeLastObject];
+                [self cleanWebView:web];
+            }
+        }else{
+            
+            [self.webCacheAry removeLastObject];
+            [self cleanWebView:web];
+        }
+    }
+}
+
+
+- (void)webViewChangeTo:(NSString *)url{
+    
+    NSArray *webAry = [[self.webCacheAry reverseObjectEnumerator] allObjects];
+    for (XEOneWebViewPoolModel *model in webAry) {
+        XEngineWebView *item = model.webView;
+        if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
+           ||[item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
+            return;
+        }else{
+            WKWebView *web = item;
+            NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
+            if(ary.count > 0){
+                NSArray<WKBackForwardListItem *> *reversAry = [[ary reverseObjectEnumerator] allObjects];
+                for (WKBackForwardListItem *item in reversAry) {
+                    
+                    if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
+                       || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
+                        
+                        [web goToBackForwardListItem:item];
+                        return;
+                    }
+                }
+            }
+        }
+        [self.webCacheAry removeLastObject];
+        [self cleanWebView:item];
+    }
+}
+
+-(void)cleanWebView:(XEngineWebView *)item{
+    //            if([AVAudioSession sharedInstance].secondaryAudioShouldBeSilencedHint){
+    //                [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    //            }
+    [item loadUrl:@""];
+    [item removeFromSuperview];
+    [item removeObserver:self forKeyPath:@"estimatedProgress"];
+    [item removeObserver:self forKeyPath:@"title"];
+    item = nil;
+}
+
+- (XEngineWebView *)getWebView{
+    
+//    return [XEngineProtocolManage instance].webDelegate.lastActionWebView;
+    
+    XEngineWebView *web = self.webCacheAry.lastObject.webView;
+    return web;
+}
+
+- (XEOneWebViewPoolModel *)createNewWebView:(NSString *)baseUrl{
+    
+    if(baseUrl){
+        XEOneWebViewPoolModel *model = [self createWebView:baseUrl];
+        [self.webCacheAry addObject:model];
+        return model;
+    }
+    return nil;
+}
+
+-(NSString *)urlToDicKey:(NSString *)url{
+
+    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
+    if([components.scheme isEqualToString:@"file"]){
+        NSString *path = components.path;
+        
+        
+        if([components.path hasPrefix:[[MicroAppLoader sharedInstance] microappDirectory]]){
+            path = [components.path substringFromIndex:[[MicroAppLoader sharedInstance] microappDirectory].length];
+            NSArray *ary = [path componentsSeparatedByString:@"/"];
+            if(ary.count > 0){
+                path = ary[1];
+            }
+        }else if([components.path hasPrefix:[[NSBundle mainBundle] bundlePath]]){
+            path = [components.path substringFromIndex:[[NSBundle mainBundle] bundlePath].length];
+            NSArray *ary = [path componentsSeparatedByString:@"/"];
+            if(ary.count > 0){
+                path = ary[1];
+            }
+        }
+        return path;
+    }else{
+        NSString *ss = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
+        return ss;
+    }
+}
+
+- (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView{
+
+    for (XEOneWebViewPoolModel *model in self.webCacheAry) {
+        if(model.webView == webView) {
+            return model;
+        }
+    }
+    return nil;
+}
+
+-(XEOneWebViewPoolModel *)createWebView:(NSString *)baseUrl{
+    
+    XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
+    if([baseUrl hasPrefix:@"file://"]){
+        NSString *filePath = [baseUrl substringFromIndex:7];
+        NSString *rootPath;
+        NSString *rootFile;
+        NSString *appId;
+        if([filePath hasPrefix:[[MicroAppLoader sharedInstance] microappDirectory]]){
+            rootFile = [filePath substringFromIndex:[[MicroAppLoader sharedInstance] microappDirectory].length + 1];
+            NSArray *ary = [rootFile pathComponents];
+            if(ary.count > 0){
+                appId = ary.firstObject;
+                rootPath = [[[MicroAppLoader sharedInstance] microappDirectory] stringByAppendingPathComponent:appId];
+            }
+        }else if([filePath hasPrefix:[[NSBundle mainBundle] resourcePath]]){
+            rootFile = [filePath substringFromIndex:[[NSBundle mainBundle] resourcePath].length + 1];
+            NSArray *ary = [rootFile pathComponents];
+            if(ary.count > 0){
+                appId = ary.firstObject;
+                rootPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:appId];
+            }
+        }
+        NSString *profilePath = [rootPath stringByAppendingPathComponent:@"microapp.json"];
+        if([[NSFileManager defaultManager] fileExistsAtPath:profilePath]){
+            NSData *jsonData = [NSData dataWithContentsOfFile:profilePath];
+            NSDictionary *profileDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+            NSDictionary *permission = profileDic[@"permission"];
+            model.secrect = permission[@"secrect"];
+            NSDictionary *network = profileDic[@"network"];
+            model.isStrict = [network[@"strict"] boolValue];
+            model.whiteList = network[@"white_host_list"];
+            
+            NSArray<NSString *> *ary = [appId componentsSeparatedByString:@"."];
+            model.version = [ary.lastObject integerValue];
+            model.appId = [appId substringToIndex:ary.lastObject.length + 1];
+            model.appRootPath = rootPath;
+        }
+    }
+    
+    NSMutableArray *modules = [[JSIContext sharedInstance] modules];
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    configuration.processPool = self.wkprocessPool;
+
+    if (@available(iOS 11.0, *) ) {
+        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
+        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
+        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
+    }
+    XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
+    for (aJSIModule *baseModule in modules){
+        [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
+    }
+    [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    model.webView = webview;
+//    self.webRecordDic[webview] = model;
+    return model;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        
+        float floatNum = [[change objectForKey:@"new"] floatValue];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+            @"progress":@(floatNum),
+            @"webView":object,
+        }];
+        if (floatNum >= 1 && (!self.inAllSingle && !self.inSingle)) {
+            [object removeObserver:self forKeyPath:@"estimatedProgress"];
+        }
+    } else if ([keyPath isEqualToString:@"title"]) {
+        if([change objectForKey:@"new"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+                @"title":[change objectForKey:@"new"],
+                @"webView":object,
+            }];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+@end
+
+

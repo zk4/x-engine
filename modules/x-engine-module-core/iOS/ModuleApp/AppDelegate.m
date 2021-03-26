@@ -12,12 +12,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[XEngineContext sharedInstance] start];
     [[JSIContext sharedInstance] start];
-    id<iOpenManager> img = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
-    [img open:@"native" :@"hello" :@"hello" :@{} :0 :FALSE];
-    [img open:@"h5" :@"hello" :@"hello" :@{} :0 :FALSE];
+//    id<iOpenManager> img = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
+//    [img open:@"h5" :@"com.gm.microapp.mine" :@"hello" :@{} :0 :FALSE];
     
     // 为了看下启动页面图所以延迟1秒
-    [NSThread sleepForTimeInterval:1];
+//    [NSThread sleepForTimeInterval:1];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     

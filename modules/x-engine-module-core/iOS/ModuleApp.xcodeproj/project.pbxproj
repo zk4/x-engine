@@ -273,7 +273,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		580EB258260A22DC00EE0694 /* jsi.localstorage */ = {
+		580EB258260A22DC00EE0694 /* localstorage */ = {
 			isa = PBXGroup;
 			children = (
 				580EB259260A22DC00EE0694 /* XEDataSaveManage.h */,
@@ -282,7 +282,7 @@
 				580EB25E260A22DC00EE0694 /* __xengine__module_localStorage.m */,
 				580EB25F260A22DC00EE0694 /* XEDataSaveManage.m */,
 			);
-			path = jsi.localstorage;
+			path = localstorage;
 			sourceTree = "<group>";
 		};
 		580EB25B260A22DC00EE0694 /* gen */ = {
@@ -294,7 +294,7 @@
 			path = gen;
 			sourceTree = "<group>";
 		};
-		58DF3700260C3E26002C1236 /* native.rn */ = {
+		58DF3700260C3E26002C1236 /* rn */ = {
 			isa = PBXGroup;
 			children = (
 				58DF3701260C3E3B002C1236 /* aRNModule.h */,
@@ -302,7 +302,7 @@
 				58DF3702260C3E3B002C1236 /* RNContext.h */,
 				58DF3703260C3E3B002C1236 /* RNContext.m */,
 			);
-			path = native.rn;
+			path = rn;
 			sourceTree = "<group>";
 		};
 		58DF374A260DC50E002C1236 /* MGJRouter */ = {
@@ -360,17 +360,45 @@
 			path = appManage;
 			sourceTree = "<group>";
 		};
+		58DF37CD260DE9F3002C1236 /* jsi */ = {
+			isa = PBXGroup;
+			children = (
+				A4A695B62609DC3300074A24 /* aJSIModule.h */,
+				A4A695B72609DC3300074A24 /* aJSIModule.m */,
+				580EB28A260A247700EE0694 /* JSIContext.h */,
+				580EB289260A247700EE0694 /* JSIContext.m */,
+			);
+			path = jsi;
+			sourceTree = "<group>";
+		};
+		58DF37D1260DEA1F002C1236 /* jsi */ = {
+			isa = PBXGroup;
+			children = (
+				A4A695BC2609DC3300074A24 /* open */,
+				580EB258260A22DC00EE0694 /* localstorage */,
+			);
+			path = jsi;
+			sourceTree = "<group>";
+		};
+		58DF37DB260DF62C002C1236 /* microapp */ = {
+			isa = PBXGroup;
+			children = (
+				58DF37B7260DE552002C1236 /* appManage */,
+				58DF37A9260DE552002C1236 /* bridge */,
+				58DF3775260DC942002C1236 /* webview */,
+				A4A695BA2609DC3300074A24 /* OpenMicroappModule.m */,
+				A4A695BB2609DC3300074A24 /* OpenMicroappModule.h */,
+			);
+			path = microapp;
+			sourceTree = "<group>";
+		};
 		A4A695AB2609DC3300074A24 /* iOS_Modules */ = {
 			isa = PBXGroup;
 			children = (
-				58DF3700260C3E26002C1236 /* native.rn */,
-				580EB258260A22DC00EE0694 /* jsi.localstorage */,
+				58DF37D1260DEA1F002C1236 /* jsi */,
 				A4A695AF2609DC3300074A24 /* core */,
-				A4A695B42609DC3300074A24 /* native.jsi */,
-				A4A695B92609DC3300074A24 /* native.open.microapp */,
-				A4A695BC2609DC3300074A24 /* jsi.open */,
+				A4A695B42609DC3300074A24 /* native */,
 				A4A695BF2609DC3300074A24 /* protocols */,
-				A4A695C22609DC3300074A24 /* native.open */,
 			);
 			path = iOS_Modules;
 			sourceTree = "<group>";
@@ -386,36 +414,32 @@
 			path = core;
 			sourceTree = "<group>";
 		};
-		A4A695B42609DC3300074A24 /* native.jsi */ = {
+		A4A695B42609DC3300074A24 /* native */ = {
 			isa = PBXGroup;
 			children = (
-				A4A695B62609DC3300074A24 /* aJSIModule.h */,
-				A4A695B72609DC3300074A24 /* aJSIModule.m */,
-				580EB28A260A247700EE0694 /* JSIContext.h */,
-				580EB289260A247700EE0694 /* JSIContext.m */,
+				A4A695B92609DC3300074A24 /* open */,
+				58DF3700260C3E26002C1236 /* rn */,
+				58DF37CD260DE9F3002C1236 /* jsi */,
 			);
-			path = native.jsi;
+			path = native;
 			sourceTree = "<group>";
 		};
-		A4A695B92609DC3300074A24 /* native.open.microapp */ = {
+		A4A695B92609DC3300074A24 /* open */ = {
 			isa = PBXGroup;
 			children = (
-				58DF37B7260DE552002C1236 /* appManage */,
-				58DF37A9260DE552002C1236 /* bridge */,
-				58DF3775260DC942002C1236 /* webview */,
-				A4A695BA2609DC3300074A24 /* OpenMicroappModule.m */,
-				A4A695BB2609DC3300074A24 /* OpenMicroappModule.h */,
+				A4A695C22609DC3300074A24 /* native */,
+				58DF37DB260DF62C002C1236 /* microapp */,
 			);
-			path = native.open.microapp;
+			path = open;
 			sourceTree = "<group>";
 		};
-		A4A695BC2609DC3300074A24 /* jsi.open */ = {
+		A4A695BC2609DC3300074A24 /* open */ = {
 			isa = PBXGroup;
 			children = (
 				A4A695BD2609DC3300074A24 /* JSIOpenModule.m */,
 				A4A695BE2609DC3300074A24 /* JSIOpenModule.h */,
 			);
-			path = jsi.open;
+			path = open;
 			sourceTree = "<group>";
 		};
 		A4A695BF2609DC3300074A24 /* protocols */ = {
@@ -427,14 +451,14 @@
 			path = protocols;
 			sourceTree = "<group>";
 		};
-		A4A695C22609DC3300074A24 /* native.open */ = {
+		A4A695C22609DC3300074A24 /* native */ = {
 			isa = PBXGroup;
 			children = (
 				58DF374A260DC50E002C1236 /* MGJRouter */,
 				A4A695C32609DC3300074A24 /* OpenManagerModule.h */,
 				A4A695C42609DC3300074A24 /* OpenManagerModule.m */,
 			);
-			path = native.open;
+			path = native;
 			sourceTree = "<group>";
 		};
 		A4A695D02609DC4400074A24 /* iOS_Demo */ = {

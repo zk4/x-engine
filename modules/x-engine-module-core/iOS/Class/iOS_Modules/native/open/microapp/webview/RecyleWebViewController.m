@@ -13,9 +13,10 @@
 static   XEngineWebView* s_webview;
 
 /*
- RecyleWebViewController 只应该接收完整的 url，与 webview。不做任务 url 的处理，打不开就打开。
- 由上一层做 url 的处理。如 nav，router 模块或其他原生模块。
- RecyleWebViewController 只负责载着 view 做动画
+ RecyleWebViewController 只应该接收完整的 url，与 webview。
+ 由调用者保证 url 正确。不对 url 的处理，打不开就打不开
+ 调用者如 nav，router 模块或其他原生模块。
+ RecyleWebViewController 只负责载着 view 做转场动画。
  */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
     @property (nonatomic, copy) NSString * _Nullable loadUrl;

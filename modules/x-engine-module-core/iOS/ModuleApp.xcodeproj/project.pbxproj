@@ -16,9 +16,6 @@
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		3346DAE4FD478F462C183047 /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */; };
 		580EB23C260A214900EE0694 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580EB23B260A214900EE0694 /* CoreData.framework */; };
-		580EB260260A22DC00EE0694 /* xengine__module_localstorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB25D260A22DC00EE0694 /* xengine__module_localstorage.m */; };
-		580EB261260A22DC00EE0694 /* __xengine__module_localStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB25E260A22DC00EE0694 /* __xengine__module_localStorage.m */; };
-		580EB262260A22DC00EE0694 /* XEDataSaveManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB25F260A22DC00EE0694 /* XEDataSaveManage.m */; };
 		580EB28B260A247700EE0694 /* JSIContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB289260A247700EE0694 /* JSIContext.m */; };
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		58DF377E260DC942002C1236 /* XEOneWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3777260DC942002C1236 /* XEOneWebViewPool.m */; };
@@ -94,12 +91,6 @@
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		580EB23B260A214900EE0694 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		580EB259260A22DC00EE0694 /* XEDataSaveManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEDataSaveManage.h; sourceTree = "<group>"; };
-		580EB25A260A22DC00EE0694 /* __xengine__module_localStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __xengine__module_localStorage.h; sourceTree = "<group>"; };
-		580EB25C260A22DC00EE0694 /* xengine__module_localstorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_localstorage.h; sourceTree = "<group>"; };
-		580EB25D260A22DC00EE0694 /* xengine__module_localstorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__module_localstorage.m; sourceTree = "<group>"; };
-		580EB25E260A22DC00EE0694 /* __xengine__module_localStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __xengine__module_localStorage.m; sourceTree = "<group>"; };
-		580EB25F260A22DC00EE0694 /* XEDataSaveManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEDataSaveManage.m; sourceTree = "<group>"; };
 		580EB289260A247700EE0694 /* JSIContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIContext.m; sourceTree = "<group>"; };
 		580EB28A260A247700EE0694 /* JSIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIContext.h; sourceTree = "<group>"; };
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
@@ -145,6 +136,7 @@
 		58DF3862260E49A0002C1236 /* OpenManagerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenManagerModule.m; sourceTree = "<group>"; };
 		58DF387C260E53A8002C1236 /* OpenH5Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenH5Module.m; sourceTree = "<group>"; };
 		58DF3886260E53A8002C1236 /* OpenH5Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenH5Module.h; sourceTree = "<group>"; };
+		58DF38AC260E6459002C1236 /* iStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iStorage.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A695B02609DC3300074A24 /* NativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeModule.h; sourceTree = "<group>"; };
@@ -283,25 +275,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		580EB258260A22DC00EE0694 /* localstorage */ = {
-			isa = PBXGroup;
-			children = (
-				580EB25A260A22DC00EE0694 /* __xengine__module_localStorage.h */,
-				580EB25E260A22DC00EE0694 /* __xengine__module_localStorage.m */,
-				580EB25B260A22DC00EE0694 /* gen */,
-			);
-			path = localstorage;
-			sourceTree = "<group>";
-		};
-		580EB25B260A22DC00EE0694 /* gen */ = {
-			isa = PBXGroup;
-			children = (
-				580EB25C260A22DC00EE0694 /* xengine__module_localstorage.h */,
-				580EB25D260A22DC00EE0694 /* xengine__module_localstorage.m */,
-			);
-			path = gen;
-			sourceTree = "<group>";
-		};
 		58DF3700260C3E26002C1236 /* rn */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,7 +344,6 @@
 			children = (
 				58DF37FA260DF843002C1236 /* vue-router */,
 				A4A695BC2609DC3300074A24 /* open */,
-				580EB258260A22DC00EE0694 /* localstorage */,
 			);
 			path = jsi;
 			sourceTree = "<group>";
@@ -424,21 +396,12 @@
 			path = nav;
 			sourceTree = "<group>";
 		};
-		58DF383E260E4318002C1236 /* localstorage */ = {
-			isa = PBXGroup;
-			children = (
-				580EB259260A22DC00EE0694 /* XEDataSaveManage.h */,
-				580EB25F260A22DC00EE0694 /* XEDataSaveManage.m */,
-			);
-			path = localstorage;
-			sourceTree = "<group>";
-		};
 		58DF385D260E49A0002C1236 /* open.manager */ = {
 			isa = PBXGroup;
 			children = (
 				58DF385E260E49A0002C1236 /* OpenManagerModule.h */,
-				58DF385F260E49A0002C1236 /* MGJRouter */,
 				58DF3862260E49A0002C1236 /* OpenManagerModule.m */,
+				58DF385F260E49A0002C1236 /* MGJRouter */,
 			);
 			name = open.manager;
 			path = open/open.manager;
@@ -492,7 +455,6 @@
 			isa = PBXGroup;
 			children = (
 				58DF385D260E49A0002C1236 /* open.manager */,
-				58DF383E260E4318002C1236 /* localstorage */,
 				58DF382D260E3EC2002C1236 /* ui */,
 				A4A695B92609DC3300074A24 /* open */,
 				58DF37CD260DE9F3002C1236 /* jsi */,
@@ -522,6 +484,7 @@
 		A4A695BF2609DC3300074A24 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
+				58DF38AC260E6459002C1236 /* iStorage.h */,
 				A4A695C02609DC3300074A24 /* iOpen.h */,
 				A4A695C12609DC3300074A24 /* iOpenManager.h */,
 			);
@@ -788,7 +751,6 @@
 				A4A696582609F8A700074A24 /* JumpViewController.m in Sources */,
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
 				A4A695C62609DC3300074A24 /* NativeContext.m in Sources */,
-				580EB261260A22DC00EE0694 /* __xengine__module_localStorage.m in Sources */,
 				58DF388F260E53A8002C1236 /* OpenH5Module.m in Sources */,
 				58DF37FD260DF843002C1236 /* JSIVueRouterModule.m in Sources */,
 				A4A695CA2609DC3300074A24 /* OpenMicroappModule.m in Sources */,
@@ -798,7 +760,6 @@
 				58DF3807260DF95B002C1236 /* xengine__module_nav.m in Sources */,
 				58DF3831260E3EE9002C1236 /* NavUtil.m in Sources */,
 				58DF3864260E49A0002C1236 /* OpenManagerModule.m in Sources */,
-				580EB260260A22DC00EE0694 /* xengine__module_localstorage.m in Sources */,
 				A4A696462609F80000074A24 /* OneViewController.m in Sources */,
 				A4A6964C2609F81500074A24 /* ThreeViewController.m in Sources */,
 				A4A696312609F47900074A24 /* TwoViewController.m in Sources */,
@@ -809,7 +770,6 @@
 				58DF37BE260DE552002C1236 /* CustomURLSchemeHandler.m in Sources */,
 				58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */,
 				A4A695CB2609DC3300074A24 /* JSIOpenModule.m in Sources */,
-				580EB262260A22DC00EE0694 /* XEDataSaveManage.m in Sources */,
 				58DF37C1260DE552002C1236 /* XEngineCallInfo.m in Sources */,
 				58DF37BC260DE552002C1236 /* WKWebView+Custome.m in Sources */,
 				A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */,

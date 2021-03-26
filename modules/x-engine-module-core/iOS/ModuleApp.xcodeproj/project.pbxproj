@@ -417,8 +417,8 @@
 		A4A695B42609DC3300074A24 /* native */ = {
 			isa = PBXGroup;
 			children = (
+				A4A695C22609DC3300074A24 /* open.manager */,
 				A4A695B92609DC3300074A24 /* open */,
-				58DF3700260C3E26002C1236 /* rn */,
 				58DF37CD260DE9F3002C1236 /* jsi */,
 			);
 			path = native;
@@ -427,7 +427,7 @@
 		A4A695B92609DC3300074A24 /* open */ = {
 			isa = PBXGroup;
 			children = (
-				A4A695C22609DC3300074A24 /* native */,
+				58DF3700260C3E26002C1236 /* rn */,
 				58DF37DB260DF62C002C1236 /* microapp */,
 			);
 			path = open;
@@ -451,14 +451,14 @@
 			path = protocols;
 			sourceTree = "<group>";
 		};
-		A4A695C22609DC3300074A24 /* native */ = {
+		A4A695C22609DC3300074A24 /* open.manager */ = {
 			isa = PBXGroup;
 			children = (
 				58DF374A260DC50E002C1236 /* MGJRouter */,
 				A4A695C32609DC3300074A24 /* OpenManagerModule.h */,
 				A4A695C42609DC3300074A24 /* OpenManagerModule.m */,
 			);
-			path = native;
+			path = open.manager;
 			sourceTree = "<group>";
 		};
 		A4A695D02609DC4400074A24 /* iOS_Demo */ = {

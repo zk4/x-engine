@@ -38,6 +38,7 @@
 		58DF37C3260DE552002C1236 /* MicroAppLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37BA260DE552002C1236 /* MicroAppLoader.m */; };
 		58DF37FD260DF843002C1236 /* JSIVueRouterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37FB260DF843002C1236 /* JSIVueRouterModule.m */; };
 		58DF3807260DF95B002C1236 /* xengine__module_nav.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3806260DF95B002C1236 /* xengine__module_nav.m */; };
+		58DF3831260E3EE9002C1236 /* NavUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3830260E3EE9002C1236 /* NavUtil.m */; };
 		A4A695C62609DC3300074A24 /* XEngineContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B12609DC3300074A24 /* XEngineContext.m */; };
 		A4A695C72609DC3300074A24 /* aModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B22609DC3300074A24 /* aModule.m */; };
 		A4A695C82609DC3300074A24 /* aJSIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B72609DC3300074A24 /* aJSIModule.m */; };
@@ -139,6 +140,9 @@
 		58DF37FC260DF843002C1236 /* JSIVueRouterModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIVueRouterModule.h; sourceTree = "<group>"; };
 		58DF3805260DF95B002C1236 /* xengine__module_nav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_nav.h; sourceTree = "<group>"; };
 		58DF3806260DF95B002C1236 /* xengine__module_nav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__module_nav.m; sourceTree = "<group>"; };
+		58DF382F260E3EE9002C1236 /* NavUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavUtil.h; sourceTree = "<group>"; };
+		58DF3830260E3EE9002C1236 /* NavUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavUtil.m; sourceTree = "<group>"; };
+		58DF3835260E411E002C1236 /* micros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = micros.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A695B02609DC3300074A24 /* aModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aModule.h; sourceTree = "<group>"; };
@@ -418,6 +422,23 @@
 			path = gen;
 			sourceTree = "<group>";
 		};
+		58DF382D260E3EC2002C1236 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				58DF382E260E3EDA002C1236 /* nav */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		58DF382E260E3EDA002C1236 /* nav */ = {
+			isa = PBXGroup;
+			children = (
+				58DF382F260E3EE9002C1236 /* NavUtil.h */,
+				58DF3830260E3EE9002C1236 /* NavUtil.m */,
+			);
+			path = nav;
+			sourceTree = "<group>";
+		};
 		A4A695AB2609DC3300074A24 /* iOS_Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +457,7 @@
 				A4A695B12609DC3300074A24 /* XEngineContext.m */,
 				A4A695B02609DC3300074A24 /* aModule.h */,
 				A4A695B22609DC3300074A24 /* aModule.m */,
+				58DF3835260E411E002C1236 /* micros.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -443,6 +465,7 @@
 		A4A695B42609DC3300074A24 /* native */ = {
 			isa = PBXGroup;
 			children = (
+				58DF382D260E3EC2002C1236 /* ui */,
 				A4A695C22609DC3300074A24 /* open.manager */,
 				A4A695B92609DC3300074A24 /* open */,
 				58DF37CD260DE9F3002C1236 /* jsi */,
@@ -755,6 +778,7 @@
 				A4A696642609F96B00074A24 /* MainViewController.m in Sources */,
 				58DF37BF260DE552002C1236 /* XEngineWebView.m in Sources */,
 				58DF3807260DF95B002C1236 /* xengine__module_nav.m in Sources */,
+				58DF3831260E3EE9002C1236 /* NavUtil.m in Sources */,
 				580EB260260A22DC00EE0694 /* xengine__module_localstorage.m in Sources */,
 				A4A696462609F80000074A24 /* OneViewController.m in Sources */,
 				A4A6964C2609F81500074A24 /* ThreeViewController.m in Sources */,

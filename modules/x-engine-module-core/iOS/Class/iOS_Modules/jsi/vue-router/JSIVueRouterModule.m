@@ -6,6 +6,7 @@
 #import "RecyleWebViewController.h"
 #import "OpenMicroappModule.h"
 #import "XEOneWebViewPool.h"
+#import "NavUtil.h"
 
 @interface JSIVueRouterModule ()
 
@@ -75,10 +76,28 @@ static NSString* preLevelPath;
     preLevelPath  = dto.url;
     
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:FALSE withHiddenNavBar:dto.hideNavbar];
+    
     [currentVC.navigationController pushViewController:vc animated:YES];
-    if(completionHandler){
-        completionHandler(YES);
-    }
+
+    completionHandler(YES);
+
 }
+
+
+-(void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{
+    
+    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    [topVC.navigationController setNavigationBarHidden:dto.isHidden animated:dto.isAnimation];
+    completionHandler(YES);
+}
+
+
+- (void)_setNavTitle:(NavTitleDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    [NavUtil setNavTitle:dto.title withTitleColor:dto.titleColor withTitleSize:dto.titleSize];
+
+    completionHandler(YES);
+}
+
+
 
 @end

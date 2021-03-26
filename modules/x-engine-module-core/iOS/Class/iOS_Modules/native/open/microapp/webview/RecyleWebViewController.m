@@ -12,9 +12,11 @@
 
 static   XEngineWebView* s_webview;
 
+/*
+ RecyleWebViewController 只应该接收完整的 url，与 webview。不做任务 url 的处理，打不开就打开。
+ 由上一层做 url 的处理。如 nav，router 模块或其他原生模块。
+ */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
-
-
 
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;

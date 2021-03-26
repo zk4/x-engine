@@ -17,11 +17,11 @@ package 模块管理 {
 }
 package 原生模块(JSI) {
   class JSIContext extends NativeModule{
-    + (Set<aJSIModule>) getJSIModules(); 
+    + (Set<JSIModule>) getJSIModules(); 
   }
   
   
-  class  aJSIModule {
+  class  JSIModule {
     + (string) {abstract}  moduleId;
   }
 } 
@@ -32,7 +32,7 @@ package JSI模块 {
     //model.ts自动生成
     +  (void) {abstract}  _open (...,callback:Func)
   }
-  abstract class xengine__module_open extends  aJSIModule  implements xengine__module_router_protocol { 
+  abstract class xengine__module_open extends  JSIModule  implements xengine__module_router_protocol { 
     //model.ts自动生成
     + (void) open (...,callback:Func)
   }

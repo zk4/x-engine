@@ -27,6 +27,7 @@
     self.popDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
     self.navigationController.navigationBar.translucent = NO;  // 不让导航条有穿透效果
+    
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {

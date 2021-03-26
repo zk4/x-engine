@@ -1,7 +1,7 @@
 #import "XEOneWebViewControllerManage.h"
 #import "RecyleWebViewController.h"
 #import "XEOneWebViewPool.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "Unity.h"
 #import <objc/runtime.h>
 #import "MicroAppLoader.h"

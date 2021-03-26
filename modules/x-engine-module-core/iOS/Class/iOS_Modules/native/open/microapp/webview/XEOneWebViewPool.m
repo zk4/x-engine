@@ -9,7 +9,7 @@
 #import "XEngineWebView.h"
 #import "JSIContext.h"
 #import "MicroAppLoader.h"
-#import "aJSIModule.h"
+#import "JSIModule.h"
 #import "XEOneWebViewPoolModel.h"
 
 #import "Unity.h"
@@ -267,7 +267,7 @@
         [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
     }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
-    for (aJSIModule *baseModule in modules){
+    for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];

@@ -7,7 +7,7 @@
 //
 
 #import "OpenMicroappModule.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "MicroAppLoader.h"
 #import "XEOneWebViewPool.h"
 #import "XEOneWebViewPoolModel.h"

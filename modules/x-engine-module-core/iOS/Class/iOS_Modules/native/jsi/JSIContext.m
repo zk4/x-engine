@@ -7,13 +7,13 @@
 //
 
 #import "JSIContext.h"
-#import "XEngineContext.h"
-#import "aJSIModule.h"
+#import "NativeContext.h"
+#import "JSIModule.h"
 
 
 @interface JSIContext ()
 @property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
-@property (nonatomic, strong) NSMutableArray<aJSIModule *> *modules;
+@property (nonatomic, strong) NSMutableArray<JSIModule *> *modules;
 @end
 
 @implementation JSIContext
@@ -39,7 +39,7 @@ NATIVE_MODULE(JSIContext)
     [self afterAllJSIModuleInited];
 }
 - (void) afterAllJSIModuleInited{
-    for (aJSIModule *module in self.modules) {
+    for (JSIModule *module in self.modules) {
         [module afterAllJSIModuleInited];
     }
 }
@@ -50,13 +50,13 @@ NATIVE_MODULE(JSIContext)
 - (void)initModules {
     for (Class cls in self.moduleClasses) {
         id rawmoduleClass = [[cls alloc] init];
-        aJSIModule *moduleClass = (aJSIModule *)rawmoduleClass;
+        JSIModule *moduleClass = (JSIModule *)rawmoduleClass;
 
         [self.modules addObject:moduleClass];
         NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
-    self.modules = [[self.modules sortedArrayUsingComparator:^(aModule *left, aModule *right) {
+    self.modules = [[self.modules sortedArrayUsingComparator:^(NativeModule *left, NativeModule *right) {
       if ([left order] > [right order]) {
           return NSOrderedDescending;
       } else if ([left order] < [right order]) {

@@ -7,13 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "OpenH5Module.h"
-@interface XEngineContextTests : XCTestCase
+@interface NativeContextTests : XCTestCase
 
 @end
 
-@implementation XEngineContextTests
+@implementation NativeContextTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,18 +25,18 @@
 
 - (void)test不可以注册相同的Native_Module {
  
-    XCTAssertThrows([[XEngineContext sharedInstance] registerModuleByClass:OpenH5Module.class]);
-    [[XEngineContext sharedInstance] start];
+    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:OpenH5Module.class]);
+    [[NativeContext sharedInstance] start];
  
 }
 - (void)test获取openmanager_native_Module {
 
-    id openmanager= [[XEngineContext sharedInstance] getModuleById:@"com.zkty.native.openmanager"];
+    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.openmanager"];
     XCTAssert(openmanager,@"应该获得 openmanager");
 }
 - (void)test获取不存在的_native_Module {
 
-    id openmanager= [[XEngineContext sharedInstance] getModuleById:@"com.zkty.native.openmanager.nonexist"];
+    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.openmanager.nonexist"];
     XCTAssert(!openmanager,@"应该获得不到 openmanager.nonexist");
 }
 

@@ -39,9 +39,9 @@
 		58DF37FD260DF843002C1236 /* JSIVueRouterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37FB260DF843002C1236 /* JSIVueRouterModule.m */; };
 		58DF3807260DF95B002C1236 /* xengine__module_nav.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3806260DF95B002C1236 /* xengine__module_nav.m */; };
 		58DF3831260E3EE9002C1236 /* NavUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3830260E3EE9002C1236 /* NavUtil.m */; };
-		A4A695C62609DC3300074A24 /* XEngineContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B12609DC3300074A24 /* XEngineContext.m */; };
-		A4A695C72609DC3300074A24 /* aModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B22609DC3300074A24 /* aModule.m */; };
-		A4A695C82609DC3300074A24 /* aJSIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B72609DC3300074A24 /* aJSIModule.m */; };
+		A4A695C62609DC3300074A24 /* NativeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B12609DC3300074A24 /* NativeContext.m */; };
+		A4A695C72609DC3300074A24 /* NativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B22609DC3300074A24 /* NativeModule.m */; };
+		A4A695C82609DC3300074A24 /* JSIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B72609DC3300074A24 /* JSIModule.m */; };
 		A4A695CA2609DC3300074A24 /* OpenMicroappModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695BA2609DC3300074A24 /* OpenMicroappModule.m */; };
 		A4A695CB2609DC3300074A24 /* JSIOpenModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695BD2609DC3300074A24 /* JSIOpenModule.m */; };
 		A4A695CC2609DC3300074A24 /* OpenManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695C42609DC3300074A24 /* OpenManagerModule.m */; };
@@ -145,12 +145,12 @@
 		58DF3835260E411E002C1236 /* micros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = micros.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A4A695B02609DC3300074A24 /* aModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aModule.h; sourceTree = "<group>"; };
-		A4A695B12609DC3300074A24 /* XEngineContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEngineContext.m; sourceTree = "<group>"; };
-		A4A695B22609DC3300074A24 /* aModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aModule.m; sourceTree = "<group>"; };
-		A4A695B32609DC3300074A24 /* XEngineContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEngineContext.h; sourceTree = "<group>"; };
-		A4A695B62609DC3300074A24 /* aJSIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aJSIModule.h; sourceTree = "<group>"; };
-		A4A695B72609DC3300074A24 /* aJSIModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aJSIModule.m; sourceTree = "<group>"; };
+		A4A695B02609DC3300074A24 /* NativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeModule.h; sourceTree = "<group>"; };
+		A4A695B12609DC3300074A24 /* NativeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeContext.m; sourceTree = "<group>"; };
+		A4A695B22609DC3300074A24 /* NativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeModule.m; sourceTree = "<group>"; };
+		A4A695B32609DC3300074A24 /* NativeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeContext.h; sourceTree = "<group>"; };
+		A4A695B62609DC3300074A24 /* JSIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIModule.h; sourceTree = "<group>"; };
+		A4A695B72609DC3300074A24 /* JSIModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIModule.m; sourceTree = "<group>"; };
 		A4A695BA2609DC3300074A24 /* OpenMicroappModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenMicroappModule.m; sourceTree = "<group>"; };
 		A4A695BB2609DC3300074A24 /* OpenMicroappModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenMicroappModule.h; sourceTree = "<group>"; };
 		A4A695BD2609DC3300074A24 /* JSIOpenModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIOpenModule.m; sourceTree = "<group>"; };
@@ -371,8 +371,8 @@
 		58DF37CD260DE9F3002C1236 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
-				A4A695B62609DC3300074A24 /* aJSIModule.h */,
-				A4A695B72609DC3300074A24 /* aJSIModule.m */,
+				A4A695B62609DC3300074A24 /* JSIModule.h */,
+				A4A695B72609DC3300074A24 /* JSIModule.m */,
 				580EB28A260A247700EE0694 /* JSIContext.h */,
 				580EB289260A247700EE0694 /* JSIContext.m */,
 			);
@@ -460,10 +460,10 @@
 		A4A695AF2609DC3300074A24 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				A4A695B32609DC3300074A24 /* XEngineContext.h */,
-				A4A695B12609DC3300074A24 /* XEngineContext.m */,
-				A4A695B02609DC3300074A24 /* aModule.h */,
-				A4A695B22609DC3300074A24 /* aModule.m */,
+				A4A695B32609DC3300074A24 /* NativeContext.h */,
+				A4A695B12609DC3300074A24 /* NativeContext.m */,
+				A4A695B02609DC3300074A24 /* NativeModule.h */,
+				A4A695B22609DC3300074A24 /* NativeModule.m */,
 				58DF3835260E411E002C1236 /* micros.h */,
 			);
 			path = core;
@@ -773,10 +773,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4A695C82609DC3300074A24 /* aJSIModule.m in Sources */,
+				A4A695C82609DC3300074A24 /* JSIModule.m in Sources */,
 				A4A696582609F8A700074A24 /* JumpViewController.m in Sources */,
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
-				A4A695C62609DC3300074A24 /* XEngineContext.m in Sources */,
+				A4A695C62609DC3300074A24 /* NativeContext.m in Sources */,
 				580EB261260A22DC00EE0694 /* __xengine__module_localStorage.m in Sources */,
 				58DF3780260DC942002C1236 /* XEOneWebViewControllerManage.m in Sources */,
 				58DF37FD260DF843002C1236 /* JSIVueRouterModule.m in Sources */,
@@ -793,7 +793,7 @@
 				A4A696312609F47900074A24 /* TwoViewController.m in Sources */,
 				58DF37C2260DE552002C1236 /* Unity.m in Sources */,
 				58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */,
-				A4A695C72609DC3300074A24 /* aModule.m in Sources */,
+				A4A695C72609DC3300074A24 /* NativeModule.m in Sources */,
 				58DF37BD260DE552002C1236 /* XEngineJSBUtil.m in Sources */,
 				58DF37BE260DE552002C1236 /* CustomURLSchemeHandler.m in Sources */,
 				58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */,

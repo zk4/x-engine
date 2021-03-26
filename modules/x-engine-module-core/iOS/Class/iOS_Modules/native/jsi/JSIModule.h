@@ -1,5 +1,5 @@
 //
-//  aJSIModule.h
+//  JSIModule.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
@@ -11,7 +11,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface aJSIModule : NSObject
+@interface JSIModule : NSObject
 - (NSString*) moduleId;
 - (int) order;
 - (void) afterAllJSIModuleInited;

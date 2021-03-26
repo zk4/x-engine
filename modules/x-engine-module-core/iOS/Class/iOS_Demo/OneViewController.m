@@ -8,7 +8,7 @@
 
 #import "OneViewController.h"
 #import "JumpViewController.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "iOpenManager.h"
 @interface OneViewController ()
 
@@ -33,7 +33,7 @@
 
 - (void)didClickBtn {
 //    [self.navigationController pushViewController:[[JumpViewController alloc ] init] animated:YES];
-    id<iOpenManager> img = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
+    id<iOpenManager> img = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
     [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
 }
 

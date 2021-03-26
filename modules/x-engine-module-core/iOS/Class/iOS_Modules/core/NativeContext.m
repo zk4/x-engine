@@ -5,45 +5,45 @@
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "XEngineContext.h"
-#import "aModule.h"
+#import "NativeContext.h"
+#import "NativeModule.h"
 #import <objc/message.h>
 
-@interface XEngineContext ()
+@interface NativeContext ()
 // 维护通过 load 注册过来的 class
 @property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
 // 实例化后的 modules, 因为 module 有 order，使用 NSMutableArray 维护顺序
-@property (nonatomic, strong) NSMutableArray<aModule *> *modules;
+@property (nonatomic, strong) NSMutableArray<NativeModule *> *modules;
 // moduleid 映射的 module
-@property (nonatomic, strong) NSMutableDictionary<NSString *, aModule *> *moduleId2Moudle;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NativeModule *> *moduleId2Moudle;
 // module 对应的 protocols
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray *> *moduleId2MoudleProtocolnames;
 
 @end
  
 
-@implementation XEngineContext
+@implementation NativeContext
 + (void) showEngineVersion{
     NSLog(@"x-engine version: 2.0.0");
 }
 // 在各自对应的模块中重写 + load方法,监听UIApplicationDidFinishLaunchingNotification通知
 + (void)load {
-    [XEngineContext showEngineVersion];
+    [NativeContext showEngineVersion];
 //    __block id observer =
 //        [[NSNotificationCenter defaultCenter]
 //            addObserverForName:UIApplicationDidFinishLaunchingNotification
 //                        object:nil
 //                         queue:nil
 //                    usingBlock:^(NSNotification *note) {
-//                      [[XEngineContext sharedInstance] start];
+//                      [[NativeContext sharedInstance] start];
 //                      [[NSNotificationCenter defaultCenter] removeObserver:observer];
 //                    }];
 }
 + (instancetype)sharedInstance {
-    static XEngineContext *sharedInstance = nil;
+    static NativeContext *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[XEngineContext alloc] init];
+        sharedInstance = [[NativeContext alloc] init];
         sharedInstance.moduleClasses =[NSMutableSet new];
         sharedInstance.modules = [NSMutableArray array];
         sharedInstance.moduleId2Moudle = [[NSMutableDictionary alloc] init];
@@ -79,7 +79,7 @@
 - (void)initModules {
     for (Class cls in self.moduleClasses) {
         id rawmoduleClass = [[cls alloc] init];
-        aModule *moduleClass = (aModule *)rawmoduleClass;
+        NativeModule *moduleClass = (NativeModule *)rawmoduleClass;
         NSString *moduleId = [moduleClass moduleId];
 
         [self.moduleId2Moudle setObject:moduleClass forKey:moduleClass.moduleId];
@@ -91,7 +91,7 @@
         NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
-    self.modules = [[self.modules sortedArrayUsingComparator:^(aModule *left, aModule *right) {
+    self.modules = [[self.modules sortedArrayUsingComparator:^(NativeModule *left, NativeModule *right) {
       if ([left order] > [right order]) {
           return NSOrderedDescending;
       } else if ([left order] < [right order]) {
@@ -114,7 +114,7 @@
     return nil;
 }
 - (void) afterAllNativeModuleInited{
-    for (aModule *module in self.modules) {
+    for (NativeModule *module in self.modules) {
         [module afterAllNativeModuleInited];
     }
 }

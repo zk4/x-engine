@@ -3,20 +3,20 @@ skinparam componentStyle uml2
 skinparam packageStyle rectangle
  
 package 模块管理 {
-  class EngineContext {
-    + (Set<aModule>) getModules();
-    + (aModule) getModuleById(id:string);
+  class NativeContext {
+    + (Set<NativeModule>) getModules();
+    + (NativeModule) getModuleById(id:string);
   }
   
   
-  class  aModule {
+  class  NativeModule {
     + (string) {abstract}  moduleId;
     + (void) afterAllMouduleInited();
 
   }
 }
 package 原生模块(JSI) {
-  class JSIContext extends aModule{
+  class JSIContext extends NativeModule{
     + (Set<aJSIModule>) getJSIModules(); 
   }
   
@@ -56,7 +56,7 @@ package 协议模块 {
 }
   
   package 原生模块(OpenManager) {
- class OpenManagerModule extends aModule implements iOpenManager{  
+ class OpenManagerModule extends NativeModule implements iOpenManager{  
     - Stack<iContainer>: containers;
     - Openers: Map<string,iOpen>;
   }
@@ -64,13 +64,13 @@ package 协议模块 {
 
   }
     package 原生模块(Open.H5) {
-  class OpenH5Module   extends aModule implements iOpen{
+  class OpenH5Module   extends NativeModule implements iOpen{
     - (string) moduleId;
     - (void) open(...);
   }
     }
     package 原生模块(Open.Native) {
-    class OpenNativeModule   extends aModule implements iOpen{
+    class OpenNativeModule   extends NativeModule implements iOpen{
     - (string) moduleId;
     - (void) open(...);
   }
@@ -92,7 +92,7 @@ class __xengine__module_open extends xengine__module_open{
   
 }
 
-EngineContext o--  aModule : aggregation
+NativeContext o--  NativeModule : aggregation
  
 
 @enduml

@@ -7,7 +7,7 @@
 //
 
 #import "RNContext.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "aRNModule.h"
 
 
@@ -50,13 +50,13 @@ NATIVE_MODULE(RNContext)
 - (void)initModules {
     for (Class cls in self.moduleClasses) {
         id rawmoduleClass = [[cls alloc] init];
-        aJSIModule *moduleClass = (aJSIModule *)rawmoduleClass;
+        JSIModule *moduleClass = (JSIModule *)rawmoduleClass;
 
         [self.modules addObject:moduleClass];
         NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
-    self.modules = [[self.modules sortedArrayUsingComparator:^(aModule *left, aModule *right) {
+    self.modules = [[self.modules sortedArrayUsingComparator:^(NativeModule *left, NativeModule *right) {
       if ([left order] > [right order]) {
           return NSOrderedDescending;
       } else if ([left order] < [right order]) {

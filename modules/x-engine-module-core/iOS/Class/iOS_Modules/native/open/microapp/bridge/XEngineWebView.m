@@ -8,7 +8,7 @@
 #import "XEngineCallInfo.h"
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
-#import "XEngineContext.h"
+#import "NativeContext.h"
 //#import "NSString+Extras.h"
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
@@ -569,9 +569,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id module;
         if ([scheme isEqualToString:@"x-engine-call"]) {
             NSString* moduleId = [NSString stringWithFormat:@"%@",URL.host];
-            module =[[XEngineContext sharedInstance] getModuleById:moduleId];
+            module =[[NativeContext sharedInstance] getModuleById:moduleId];
         }else{
-            module =[[XEngineContext sharedInstance] getModuleById:URL.host];
+            module =[[NativeContext sharedInstance] getModuleById:URL.host];
         }
       
        NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];

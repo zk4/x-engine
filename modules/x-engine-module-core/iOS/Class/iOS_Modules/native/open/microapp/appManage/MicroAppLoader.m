@@ -6,7 +6,7 @@
 //
 
 #import "MicroAppLoader.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 
 @interface MicroAppLoader()
     @property (nonatomic, strong) NSMutableDictionary *microappId_versionInSandbox;

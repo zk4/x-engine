@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "aModule.h"
+#import "NativeModule.h"
 #import "iOpen.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenMicroappModule : aModule <iOpen>
+@interface OpenMicroappModule : NativeModule <iOpen>
 + (NSString * _Nullable) s_microapp_root_url;
 @end
 

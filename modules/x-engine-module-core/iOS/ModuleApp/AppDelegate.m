@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "JSIContext.h"
 #import "iOpenManager.h"
 #import "MainNavigationController.h"
@@ -10,9 +10,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[XEngineContext sharedInstance] start];
+    [[NativeContext sharedInstance] start];
     [[JSIContext sharedInstance] start];
-//    id<iOpenManager> img = [[XEngineContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
+//    id<iOpenManager> img = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
 //    [img open:@"h5" :@"com.gm.microapp.mine" :@"hello" :@{} :0 :FALSE];
     
     // 为了看下启动页面图所以延迟1秒

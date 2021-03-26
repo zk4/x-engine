@@ -9,7 +9,7 @@
 #import "JSIVueRouterModule.h"
 #import "JSIContext.h"
 #import "iOpenManager.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "OpenMicroappModule.h"

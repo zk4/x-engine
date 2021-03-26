@@ -7,7 +7,7 @@
 #import "MicroAppLoader.h"
 #import "XEOneWebViewPool.h"
 #import "XEOneWebViewPoolModel.h"
-#import "aJSIModule.h"
+#import "JSIModule.h"
 #import "Unity.h"
 
 static   XEngineWebView* s_webview;

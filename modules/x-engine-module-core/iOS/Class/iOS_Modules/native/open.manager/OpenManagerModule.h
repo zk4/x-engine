@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "aModule.h"
+#import "NativeModule.h"
 #import "iOpenManager.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenManagerModule : aModule <iOpenManager>
+@interface OpenManagerModule : NativeModule <iOpenManager>
 
 @end
 

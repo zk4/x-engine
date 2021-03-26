@@ -1,5 +1,5 @@
 //
-//  XEngineContext.h
+//  NativeContext.h
 //
 //  Created by zk on 2021/3/23.
 //  Copyright © 2021 zkty-team. All rights reserved.
@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #define NATIVE_MODULE(clz) + (void)load{ \
-    [[XEngineContext sharedInstance] registerModuleByClass:clz.class];}\
+    [[NativeContext sharedInstance] registerModuleByClass:clz.class];}\
 
 
-@interface XEngineContext : NSObject
+@interface NativeContext : NSObject
 + (instancetype)sharedInstance;
 
 - (id) getModuleByProtocol:(Protocol *) proto;

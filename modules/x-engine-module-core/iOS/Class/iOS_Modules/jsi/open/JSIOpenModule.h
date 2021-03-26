@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "aJSIModule.h"
+#import "JSIModule.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSIOpenModule : aJSIModule
+@interface JSIOpenModule : JSIModule
 
 @end
 

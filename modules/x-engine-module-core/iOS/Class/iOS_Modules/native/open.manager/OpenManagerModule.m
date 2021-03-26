@@ -7,7 +7,7 @@
 //
 
 #import "OpenManagerModule.h"
-#import "XEngineContext.h"
+#import "NativeContext.h"
 #import "iOpen.h"
 @interface OpenManagerModule ()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iOpen>> * openers;
@@ -33,7 +33,7 @@ NATIVE_MODULE(OpenManagerModule)
 }
 
 - (void)afterAllNativeModuleInited{
-   NSArray* modules= [[XEngineContext sharedInstance]  getModulesByProtocol:@protocol(iOpen)];
+   NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iOpen)];
     for(id<iOpen> opener in modules){
         [self.openers setObject:opener forKey:[opener type]];
     }

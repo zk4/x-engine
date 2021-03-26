@@ -7,8 +7,11 @@
 //
 
 #import "TwoViewController.h"
+#import "XEngineWebView.h"
+#import "XEOneWebViewPool.h"
 
 @interface TwoViewController ()
+@property (nonatomic, strong) XEngineWebView * _Nullable webview;
 
 @end
 
@@ -17,7 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";
+    // TODO
+    // temp webviewpool 需要重新设计 api
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
     
+    webview.configuration.preferences.javaScriptEnabled = YES;
+    webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+    
+    [webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
+    [webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
+    self.webview=webview;
+    [self.webview loadUrl:@"https://www.baidu.com"];
+    self.webview.frame = [UIScreen mainScreen].bounds;
+    [self.view addSubview:self.webview];
+
 }
 
 /*

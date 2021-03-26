@@ -48,7 +48,6 @@ static NSString* preLevelPath;
                     lastVc = vc;
                 }
                 [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:lastVc animated:YES];
-                [[XEOneWebViewPool sharedInstance] clearWebView:nil];
                 return;;
             }
             RecyleWebViewController *webVC = (RecyleWebViewController *)vc;

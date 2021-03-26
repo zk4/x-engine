@@ -23,7 +23,6 @@
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		58DF377E260DC942002C1236 /* XEOneWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3777260DC942002C1236 /* XEOneWebViewPool.m */; };
 		58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3778260DC942002C1236 /* RecyleWebViewController.m */; };
-		58DF3780260DC942002C1236 /* XEOneWebViewControllerManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3779260DC942002C1236 /* XEOneWebViewControllerManage.m */; };
 		58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */; };
 		58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */; };
 		58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */; };
@@ -111,11 +110,9 @@
 		58DF3776260DC942002C1236 /* XEOneWebViewPoolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEOneWebViewPoolModel.h; sourceTree = "<group>"; };
 		58DF3777260DC942002C1236 /* XEOneWebViewPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEOneWebViewPool.m; sourceTree = "<group>"; };
 		58DF3778260DC942002C1236 /* RecyleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecyleWebViewController.m; sourceTree = "<group>"; };
-		58DF3779260DC942002C1236 /* XEOneWebViewControllerManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEOneWebViewControllerManage.m; sourceTree = "<group>"; };
 		58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEOneWebViewPoolModel.m; sourceTree = "<group>"; };
 		58DF377B260DC942002C1236 /* XEOneWebViewPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEOneWebViewPool.h; sourceTree = "<group>"; };
 		58DF377C260DC942002C1236 /* RecyleWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecyleWebViewController.h; sourceTree = "<group>"; };
-		58DF377D260DC942002C1236 /* XEOneWebViewControllerManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEOneWebViewControllerManage.h; sourceTree = "<group>"; };
 		58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.gm.microapp.home.0; sourceTree = SOURCE_ROOT; };
 		58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.gm.microapp.mine.0; sourceTree = SOURCE_ROOT; };
 		58DF37AA260DE552002C1236 /* XEngineBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEngineBridge.h; sourceTree = "<group>"; };
@@ -320,13 +317,11 @@
 			isa = PBXGroup;
 			children = (
 				58DF3776260DC942002C1236 /* XEOneWebViewPoolModel.h */,
-				58DF3777260DC942002C1236 /* XEOneWebViewPool.m */,
-				58DF3778260DC942002C1236 /* RecyleWebViewController.m */,
-				58DF3779260DC942002C1236 /* XEOneWebViewControllerManage.m */,
 				58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */,
 				58DF377B260DC942002C1236 /* XEOneWebViewPool.h */,
+				58DF3777260DC942002C1236 /* XEOneWebViewPool.m */,
 				58DF377C260DC942002C1236 /* RecyleWebViewController.h */,
-				58DF377D260DC942002C1236 /* XEOneWebViewControllerManage.h */,
+				58DF3778260DC942002C1236 /* RecyleWebViewController.m */,
 			);
 			path = webview;
 			sourceTree = "<group>";
@@ -356,8 +351,6 @@
 			children = (
 				58DF37B8260DE552002C1236 /* MicroAppLoader.h */,
 				58DF37BA260DE552002C1236 /* MicroAppLoader.m */,
-				58DF37B9260DE552002C1236 /* Unity.m */,
-				58DF37BB260DE552002C1236 /* Unity.h */,
 			);
 			path = appManage;
 			sourceTree = "<group>";
@@ -484,6 +477,8 @@
 		A4A695AF2609DC3300074A24 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				58DF37B9260DE552002C1236 /* Unity.m */,
+				58DF37BB260DE552002C1236 /* Unity.h */,
 				A4A695B32609DC3300074A24 /* NativeContext.h */,
 				A4A695B12609DC3300074A24 /* NativeContext.m */,
 				A4A695B02609DC3300074A24 /* NativeModule.h */,
@@ -794,7 +789,6 @@
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
 				A4A695C62609DC3300074A24 /* NativeContext.m in Sources */,
 				580EB261260A22DC00EE0694 /* __xengine__module_localStorage.m in Sources */,
-				58DF3780260DC942002C1236 /* XEOneWebViewControllerManage.m in Sources */,
 				58DF388F260E53A8002C1236 /* OpenH5Module.m in Sources */,
 				58DF37FD260DF843002C1236 /* JSIVueRouterModule.m in Sources */,
 				A4A695CA2609DC3300074A24 /* OpenMicroappModule.m in Sources */,

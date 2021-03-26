@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
 @property (nonatomic, strong) NSMutableArray<XEOneWebViewPoolModel *>* webCacheAry;
-//@property (nonatomic, strong) NSMutableDictionary<WKWebView *, XEOneWebViewPoolModel *>* webRecordDic;
 
 @end
 
@@ -42,134 +41,12 @@
     if (self){
         self.wkprocessPool = [[WKProcessPool alloc] init];
         self.webCacheAry = [@[] mutableCopy];
-//        self.webRecordDic = [@{} mutableCopy];
-        self.inSingle = YES;
+
     }
     return self;
 }
-
-- (long)nowMicroAppVersion{
-    return self.webCacheAry.lastObject.version;
-}
-
-- (NSString *)nowMicroAppRootPath{
-    
-    return self.webCacheAry.lastObject.appRootPath;
-}
-
-- (NSString *)nowMicroAppId{
-    return self.webCacheAry.lastObject.appId;
-}
-
-- (NSString *)nowMicroAppLoadUrl{
-    return [[[self getWebView] URL] absoluteString];
-}
-    
--(BOOL)checkUrl:(NSString *)url{
-    
-    XEngineWebView *web = self.webCacheAry.lastObject.webView;
-    if(web.superview == nil){
-        return YES;
-    }
-    return NO;
-}
-
-- (void)clearWebView:(NSString *)url{
-    
-    XEngineWebView *web = self.webCacheAry.lastObject.webView;
-    if(web){
-        if(url){
-            if([[web.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]] ||
-               [[web.URL.absoluteString lowercaseString] isEqualToString:[NSString stringWithFormat:@"%@#/", [url lowercaseString]]] ){
-                
-                if([web canGoBack]){
-                    [web goBack];
-                }else{
-        
-                    [self.webCacheAry removeLastObject];
-                    [self cleanWebView:web];
-                }
-                return;
-            }
-            NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
-            if(ary.count > 0){
-                NSArray<WKBackForwardListItem *> *reversAry = [[ary reverseObjectEnumerator] allObjects];
-                for (int i = 0; i < reversAry.count; i++) {
-                    WKBackForwardListItem *item = reversAry[i];
-                    if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
-                       || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
-                        if(i > 0){
-                            [web goToBackForwardListItem:reversAry[i - 1]];
-                        }else{
-                            
-                            [self.webCacheAry removeLastObject];
-                            [self cleanWebView:web];
-                        }
-                        return;
-                    }
-                }
-            }else{
-                
-                [self.webCacheAry removeLastObject];
-                [self cleanWebView:web];
-            }
-        }else{
-            
-            [self.webCacheAry removeLastObject];
-            [self cleanWebView:web];
-        }
-    }
-}
-
-
-- (void)webViewChangeTo:(NSString *)url{
-    
-    NSArray *webAry = [[self.webCacheAry reverseObjectEnumerator] allObjects];
-    for (XEOneWebViewPoolModel *model in webAry) {
-        XEngineWebView *item = model.webView;
-        if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
-           ||[item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
-            return;
-        }else{
-            WKWebView *web = item;
-            NSArray<WKBackForwardListItem *> *ary = web.backForwardList.backList;
-            if(ary.count > 0){
-                NSArray<WKBackForwardListItem *> *reversAry = [[ary reverseObjectEnumerator] allObjects];
-                for (WKBackForwardListItem *item in reversAry) {
-                    
-                    if([[item.URL.absoluteString lowercaseString] isEqualToString:[url lowercaseString]]
-                       || [item.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@#/", url]]){
-                        
-                        [web goToBackForwardListItem:item];
-                        return;
-                    }
-                }
-            }
-        }
-        [self.webCacheAry removeLastObject];
-        [self cleanWebView:item];
-    }
-}
-
--(void)cleanWebView:(XEngineWebView *)item{
-    //            if([AVAudioSession sharedInstance].secondaryAudioShouldBeSilencedHint){
-    //                [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    //            }
-    [item loadUrl:@""];
-    [item removeFromSuperview];
-    [item removeObserver:self forKeyPath:@"estimatedProgress"];
-    [item removeObserver:self forKeyPath:@"title"];
-    item = nil;
-}
-
-- (XEngineWebView *)getWebView{
-    
-//    return [XEngineProtocolManage instance].webDelegate.lastActionWebView;
-    
-    XEngineWebView *web = self.webCacheAry.lastObject.webView;
-    return web;
-}
-
+ 
+ 
 - (XEOneWebViewPoolModel *)createNewWebView:(NSString *)baseUrl{
     
     if(baseUrl){
@@ -179,33 +56,7 @@
     }
     return nil;
 }
-
--(NSString *)urlToDicKey:(NSString *)url{
-
-    NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
-    if([components.scheme isEqualToString:@"file"]){
-        NSString *path = components.path;
-        
-        
-        if([components.path hasPrefix:[[MicroAppLoader sharedInstance] microappDirectory]]){
-            path = [components.path substringFromIndex:[[MicroAppLoader sharedInstance] microappDirectory].length];
-            NSArray *ary = [path componentsSeparatedByString:@"/"];
-            if(ary.count > 0){
-                path = ary[1];
-            }
-        }else if([components.path hasPrefix:[[NSBundle mainBundle] bundlePath]]){
-            path = [components.path substringFromIndex:[[NSBundle mainBundle] bundlePath].length];
-            NSArray *ary = [path componentsSeparatedByString:@"/"];
-            if(ary.count > 0){
-                path = ary[1];
-            }
-        }
-        return path;
-    }else{
-        NSString *ss = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
-        return ss;
-    }
-}
+ 
 
 - (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView{
 
@@ -267,6 +118,12 @@
         [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
     }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
+    webview.configuration.preferences.javaScriptEnabled = YES;
+    webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+    
+    [webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
+    [webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
+    
     for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
@@ -276,29 +133,29 @@
 //    self.webRecordDic[webview] = model;
     return model;
 }
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"estimatedProgress"]) {
-        
-        float floatNum = [[change objectForKey:@"new"] floatValue];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-            @"progress":@(floatNum),
-            @"webView":object,
-        }];
-        if (floatNum >= 1 && (!self.inAllSingle && !self.inSingle)) {
-            [object removeObserver:self forKeyPath:@"estimatedProgress"];
-        }
-    } else if ([keyPath isEqualToString:@"title"]) {
-        if([change objectForKey:@"new"]){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-                @"title":[change objectForKey:@"new"],
-                @"webView":object,
-            }];
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
+//
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+//    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+//        
+//        float floatNum = [[change objectForKey:@"new"] floatValue];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+//            @"progress":@(floatNum),
+//            @"webView":object,
+//        }];
+//        if (floatNum >= 1) {
+//            [object removeObserver:self forKeyPath:@"estimatedProgress"];
+//        }
+//    } else if ([keyPath isEqualToString:@"title"]) {
+//        if([change objectForKey:@"new"]){
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+//                @"title":[change objectForKey:@"new"],
+//                @"webView":object,
+//            }];
+//        }
+//    } else {
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//    }
+//}
 
 @end
 

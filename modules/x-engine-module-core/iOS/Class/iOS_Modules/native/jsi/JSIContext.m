@@ -19,7 +19,7 @@
 @implementation JSIContext
 NATIVE_MODULE(JSIContext)
 - (NSString *)moduleId {
-    return @"com.zkty.native.context";
+    return @"com.zkty.native.jsicontext";
 }
 
 + (instancetype)sharedInstance {

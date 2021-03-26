@@ -4,7 +4,6 @@
 #import "RecyleWebViewController.h"
 #import <WebKit/WebKit.h>
 #import "XEngineWebView.h"
-#import "MicroAppLoader.h"
 #import "XEOneWebViewPool.h"
 #import "XEOneWebViewPoolModel.h"
 #import "JSIModule.h"
@@ -97,11 +96,7 @@ static   XEngineWebView* s_webview;
         
         if(newWebView){
             self.webview = [[XEOneWebViewPool sharedInstance] createWebView:fileUrl].webView;
-            self.webview.configuration.preferences.javaScriptEnabled = YES;
-            self.webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
-            
-            [self.webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
-            [self.webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
+         
             self.webview.frame = [UIScreen mainScreen].bounds;
             s_webview = self.webview;
         }else{
@@ -293,18 +288,6 @@ static   XEngineWebView* s_webview;
         }
     }
 }
-
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-
-    if(self.navigationController == nil){
-        NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-        if(![ary.lastObject isKindOfClass:[RecyleWebViewController class]]){
-            [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
-        }
-    }
-}
-
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if(self.screenView == nil){
@@ -314,10 +297,6 @@ static   XEngineWebView* s_webview;
         [self.view addSubview:self.screenView];
         self.screenView.frame = self.view.bounds;
     }
-}
-
-- (void)dealloc{
-    
 }
 
 @end

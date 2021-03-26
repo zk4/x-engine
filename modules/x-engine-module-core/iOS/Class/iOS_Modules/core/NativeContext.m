@@ -26,9 +26,11 @@
 + (void) showEngineVersion{
     NSLog(@"x-engine version: 2.0.0");
 }
-// 在各自对应的模块中重写 + load方法,监听UIApplicationDidFinishLaunchingNotification通知
 + (void)load {
     [NativeContext showEngineVersion];
+    
+// demo
+// 在各自对应的模块中重写 + load方法,监听UIApplicationDidFinishLaunchingNotification通知
 //    __block id observer =
 //        [[NSNotificationCenter defaultCenter]
 //            addObserverForName:UIApplicationDidFinishLaunchingNotification
@@ -38,6 +40,7 @@
 //                      [[NativeContext sharedInstance] start];
 //                      [[NSNotificationCenter defaultCenter] removeObserver:observer];
 //                    }];
+    
 }
 + (instancetype)sharedInstance {
     static NativeContext *sharedInstance = nil;
@@ -53,8 +56,10 @@
 }
 
 - (void)start {
+    printf("%s\n","---必须保证 Native 模块首先初始化。--- start");
     [self initModules];
     [self afterAllNativeModuleInited];
+    printf("%s\n","---必须保证 Native 模块首先初始化。--- end");
 }
  
  

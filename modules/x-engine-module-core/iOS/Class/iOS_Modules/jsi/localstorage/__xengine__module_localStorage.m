@@ -1,6 +1,5 @@
 //
 //  __xengine__module_localstorage.m
-//  AFNetworking
 //
 //  Created by Chenwuzheng on 2020/8/6.
 //

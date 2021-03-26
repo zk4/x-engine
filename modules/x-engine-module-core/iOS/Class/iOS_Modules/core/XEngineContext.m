@@ -53,7 +53,6 @@
 }
 
 - (void)start {
- 
     [self initModules];
     [self afterAllNativeModuleInited];
 }

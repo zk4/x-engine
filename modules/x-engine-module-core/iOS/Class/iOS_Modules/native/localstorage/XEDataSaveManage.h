@@ -3,7 +3,7 @@
 //  ModuleApp
 //
 //  Created by 吕冬剑 on 2020/9/29.
-//  Copyright © 2020 edz. All rights reserved.
+//  Copyright © 2020 @zkty-team. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -27,6 +27,4 @@
 // 删除全部
 - (void)removeLocalStorageAll:(BOOL)isPublic;
 
-//+ (void)setLocalStorage2:(NSString *)key withValue:(NSString *)value withIsPublic:(BOOL)isPublic;
-//+ (NSString *)getLocalStorage2:(NSString *)key withIsPublic:(BOOL)isPublic;
 @end

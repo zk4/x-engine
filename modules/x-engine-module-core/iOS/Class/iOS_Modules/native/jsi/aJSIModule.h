@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
 NS_ASSUME_NONNULL_BEGIN
 

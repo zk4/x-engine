@@ -9,8 +9,8 @@
 @property (nonatomic, assign) BOOL isHiddenNavbar;
 
 + (XEngineWebView * _Nullable) webview;
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl;
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl withRootPath:(NSString * _Nullable)rootPath withHiddenNavBar:(BOOL)isHidden;
+//- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl;
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden;
 - (void)loadFileUrl;
 
 - (void)setSignleWebView:(XEngineWebView * _Nullable)webView;

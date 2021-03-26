@@ -9,6 +9,8 @@
 JSI_MODULE(JSIOpenModule)
 
 - (NSString*) moduleId{
+    // TODO:
+    // should named to com.zkty.jsi.open
     return @"com.zkty.module.router";
 }
 

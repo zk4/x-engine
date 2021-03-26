@@ -33,7 +33,7 @@
 
 - (void)pushWebViewControllerWithUrl:(NSString *)url withIsHiddenNavbar:(BOOL)isHidden{
     
-    UIViewController *vc = [self getWebViewControllerWithUrl:url withHiddenBar:isHidden];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url newWebView:FALSE withHiddenNavBar:isHidden];
     vc.hidesBottomBarWhenPushed = YES;
     if([Unity sharedInstance].getCurrentVC.navigationController){
         [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
@@ -56,9 +56,9 @@
 
 - (void)pushViewControllerWithPath:(NSString *)path withParams:(NSString *)params withHiddenNavbar:(BOOL)isHidden{
     [Unity sharedInstance].getCurrentVC.hidesBottomBarWhenPushed = YES;
-    NSString *url = [self getUrl:path params:params];
+//    NSString *url = [self getUrl:path params:params];
     
-    UIViewController *vc = [self getWebViewControllerWithUrl:url withHiddenBar:isHidden];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:path newWebView:FALSE withHiddenNavBar:isHidden];
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 }
 //route用
@@ -74,11 +74,7 @@
     if(urlStr){
         if(path.length > 0){
             urlStr = [NSString stringWithFormat:@"%@%@%@%@", urlStr, ([urlStr hasSuffix:@"index.html"] ? @"#" : @""), ([urlStr hasSuffix:@"/"] || [path hasPrefix:@"/"]) ? @"" : @"/", path];
-            if([urlStr rangeOfString:@"?"].location != NSNotFound){
-                urlStr = [NSString stringWithFormat:@"%@&sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
-            }else{
-                urlStr = [NSString stringWithFormat:@"%@?sssxxxDate=%@", urlStr, @([[NSDate date] timeIntervalSince1970])];
-            }
+        
         }
         [self pushWebViewControllerWithUrl:urlStr withIsHiddenNavbar:isHidden];
     }
@@ -87,53 +83,48 @@
 //- (void)pushViewControllerWithAppid:(NSString *)appid withPath:(NSString *)path withVersion:(long)version withParams:(NSString *)params {
 //    <#code#>
 //}
+//
+//
+//-(NSString *)getUrl:(NSString *)url params:(NSString *)params{
+//    NSMutableString *toUrl = [[NSMutableString alloc] init];
+//
+//    NSString *nowUrl = [[XEOneWebViewPool sharedInstance] nowMicroAppLoadUrl];
+//
+//    NSRange range = [nowUrl rangeOfString:@"index.html"];
+//    NSString *host = [nowUrl substringToIndex:range.location + range.length];
+//
+//    if ([[url lowercaseString] hasPrefix:@"http"]){
+//        [toUrl appendString:url];
+//    } else if (url.length > 0){
+//
+//        [toUrl appendFormat:@"%@#%@", host, url];
+//        if(params){
+//            if([params isKindOfClass:[NSString class]]){
+//                NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
+//
+//                [toUrl appendFormat:@"%@%@", range.location == NSNotFound ? @"?" : @"&", params];
+//            }else if([params isKindOfClass:[NSDictionary class]]){
+//                NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
+//                if(range.location == NSNotFound){
+//                    [toUrl appendString:@"?"];
+//                } else{
+//                    [toUrl appendString:@"&"];
+//                }
+//                NSDictionary *dic = (NSDictionary *)params;
+//                for (NSString *key in [dic allKeys]) {
+//                    [toUrl appendFormat:@"&%@=%@", key, dic[key]];
+//                }
+//            }
+//        }
+//    } else {
+//        [toUrl appendString:host];
+//    }
+//    return toUrl;
+//}
 
+//-(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
+//    return [self getWebViewControllerWithUrl:url withHiddenBar:NO];
+//}
 
--(NSString *)getUrl:(NSString *)url params:(NSString *)params{
-    NSMutableString *toUrl = [[NSMutableString alloc] init];
-    
-    NSString *nowUrl = [[XEOneWebViewPool sharedInstance] nowMicroAppLoadUrl];
-
-    NSRange range = [nowUrl rangeOfString:@"index.html"];
-    NSString *host = [nowUrl substringToIndex:range.location + range.length];
-    
-    if ([[url lowercaseString] hasPrefix:@"http"]){
-        [toUrl appendString:url];
-    } else if (url.length > 0){
-        
-        [toUrl appendFormat:@"%@#%@", host, url];
-        if(params){
-            if([params isKindOfClass:[NSString class]]){
-                NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
-
-                [toUrl appendFormat:@"%@%@", range.location == NSNotFound ? @"?" : @"&", params];
-            }else if([params isKindOfClass:[NSDictionary class]]){
-                NSRange range = [toUrl rangeOfString:@"?" options:NSBackwardsSearch];
-                if(range.location == NSNotFound){
-                    [toUrl appendString:@"?"];
-                } else{
-                    [toUrl appendString:@"&"];
-                }
-                NSDictionary *dic = (NSDictionary *)params;
-                for (NSString *key in [dic allKeys]) {
-                    [toUrl appendFormat:@"&%@=%@", key, dic[key]];
-                }
-            }
-        }
-    } else {
-        [toUrl appendString:host];
-    }
-    return toUrl;
-}
-
--(UIViewController *)getWebViewControllerWithUrl:(NSString *)url{
-    return [self getWebViewControllerWithUrl:url withHiddenBar:NO];
-}
-
--(UIViewController *)getWebViewControllerWithUrl:(NSString *)url withHiddenBar:(BOOL)isHidden{
-    
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url withRootPath:nil withHiddenNavBar:isHidden];
-    return vc;
-}
-
+ 
 @end

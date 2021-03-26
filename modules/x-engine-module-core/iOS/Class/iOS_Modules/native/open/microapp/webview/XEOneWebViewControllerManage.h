@@ -14,9 +14,9 @@
 //- (void)pushViewControllerWithPath:(NSString *)path
 //                        withParams:(NSString *)params;
 //
-//- (void)pushViewControllerWithPath:(NSString *)path
-//                        withParams:(NSString *)params
-//                  withHiddenNavbar:(BOOL)isHidden;
+- (void)pushViewControllerWithPath:(NSString *)path
+                        withParams:(NSString *)params
+                  withHiddenNavbar:(BOOL)isHidden;
 //
 ////router push MicroApp
 //- (void)pushViewControllerWithAppid:(NSString *)appid

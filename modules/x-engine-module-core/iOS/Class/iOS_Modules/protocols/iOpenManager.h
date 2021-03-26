@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol iOpenManager <NSObject>
 -(void)open:(NSString *)type  :(NSString *)uri  :(NSString *)path  :(NSDictionary *)args  :(long)version  :(BOOL)isHidden;
- 
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,7 +17,7 @@
 @implementation OpenMicroappModule
 NATIVE_MODULE(OpenMicroappModule)
 
-
+static NSString*  s_microapp_root_url;
 - (NSString*) moduleId{
     return @"com.zkty.native.open.microapp";
 }
@@ -29,9 +29,12 @@ NATIVE_MODULE(OpenMicroappModule)
     return @"microapp";
 }
 
++ (NSString * _Nullable) s_microapp_root_url{
+    return s_microapp_root_url;
+}
 -(UIViewController *)getWebViewControllerWithUrl:(NSString *)url withHiddenBar:(BOOL)isHidden{
     
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url withRootPath:nil withHiddenNavBar:isHidden];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:url newWebView:TRUE  withHiddenNavBar:isHidden];
     return vc;
 }
 
@@ -59,7 +62,7 @@ NATIVE_MODULE(OpenMicroappModule)
     NSLog(@"open h5 handled!!");
     
     NSString *urlStr = [[MicroAppLoader sharedInstance] getMicroAppUrlStrPathWith:uri withVersion:version];
-
+    s_microapp_root_url = urlStr;
     if(urlStr){
         // TODO:
         // ensure url correct

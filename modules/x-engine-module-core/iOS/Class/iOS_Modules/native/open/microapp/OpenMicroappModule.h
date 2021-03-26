@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OpenMicroappModule : aModule <iOpen>
-
++ (NSString * _Nullable) s_microapp_root_url;
 @end
 
 NS_ASSUME_NONNULL_END

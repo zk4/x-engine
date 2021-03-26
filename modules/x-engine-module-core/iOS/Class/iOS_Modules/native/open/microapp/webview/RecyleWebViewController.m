@@ -14,7 +14,7 @@ static   XEngineWebView* s_webview;
 
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, copy) NSString *rootPath;
+
 
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
@@ -80,77 +80,32 @@ static   XEngineWebView* s_webview;
         self.imageView404.hidden = NO;
     }
 }
-
-- (instancetype)initWithUrl:(NSString *) fileUrl{
-    return [self initWithUrl:fileUrl withRootPath:fileUrl withHiddenNavBar:NO];
-}
-
-- (instancetype)initWithUrl:(NSString *)fileUrl withRootPath:(NSString *)rootPath withHiddenNavBar:(BOOL)isHidden{
-    
+ 
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
         self.isHiddenNavbar = isHidden;
-        NSRange range = [fileUrl rangeOfString:@"?"];
-        NSMutableString *newFileUrl = [[NSMutableString alloc] init];
-//        if(range.location != NSNotFound){
-//            [newFileUrl appendString:[fileUrl substringToIndex:range.location + range.length]];
-//
-//            NSString *str2 = [fileUrl substringFromIndex:range.location + range.length];
-//            NSArray *ary = [str2 componentsSeparatedByString:@"&"];
-//            for (int i = 0; i < ary.count; i++) {
-//                NSString *item = ary[i];
-//                NSArray *itemAry = [item componentsSeparatedByString:@"="];
-//                if(itemAry.count > 1){
-//                    [newFileUrl appendFormat:@"%@=%@", [self urlEncodedString:itemAry[0]], [self urlEncodedString:itemAry[1]]];
-//                }else{
-//                    [newFileUrl appendString:[self urlEncodedString:itemAry[0]]];
-//                }
-//                if(i < ary.count - 1){
-//                    [newFileUrl appendString:@"&"];
-//                }
-//            }
-//            fileUrl = newFileUrl;
-//        }
-        
-//        if(rootPath.length > 0){
-//            self.rootPath = rootPath;
-//        }else{
-//            NSURLComponents *components = [[NSURLComponents alloc] initWithString:fileUrl];
-//            if(components.host.length > 0){
-//                self.rootPath = [NSString stringWithFormat:@"%@://%@", components.scheme, components.host];
-//            }else{
-//                self.rootPath = fileUrl;
-//            }
-//        }
-       
-        self.loadUrl = fileUrl;
- 
-        
-        if([[XEOneWebViewPool sharedInstance] checkUrl:self.rootPath]){
-            
-            self.webview = [[XEOneWebViewPool sharedInstance] createWebView:fileUrl].webView;
-            s_webview = self.webview;
 
+        if(fileUrl.length == 0)
+            return self;
+        
+        self.loadUrl = fileUrl;
+        
+        if(newWebView){
+            self.webview = [[XEOneWebViewPool sharedInstance] createWebView:fileUrl].webView;
             self.webview.configuration.preferences.javaScriptEnabled = YES;
             self.webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
             
             [self.webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
             [self.webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
             self.webview.frame = [UIScreen mainScreen].bounds;
-            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
-            }else{
-                if(self.loadUrl.length == 0)
-                    return self;
-                if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-                    
-                    [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-                }else{
-                        
-                    [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[MicroAppLoader sharedInstance] microappDirectory]]];
-                }
-            }
+            s_webview = self.webview;
+        }else{
+            self.webview = s_webview;
         }
+
+      
+     
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
                                                      name:@"XEWebViewProgressChangeNotification"
@@ -160,26 +115,8 @@ static   XEngineWebView* s_webview;
                                                  selector:@selector(webViewLoadFail:)
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
-        
-        if(self.rootPath && [fileUrl hasPrefix:self.rootPath]){
-            
-            NSString *interface;
-            NSRange range = [fileUrl rangeOfString:@"index.html"];
-            if(range.location != NSNotFound && range.location + range.length != fileUrl.length){
-                interface = [fileUrl substringFromIndex:range.location + range.length];
-                if([interface hasPrefix:@"#"]){
-                    interface = [interface substringFromIndex:1];
-                }
-            }else{
-                interface = @"/index";
-            }
-            range = [interface rangeOfString:@"?"];
-            if(range.location != NSNotFound){
-                self.preLevelPath = [interface substringToIndex:range.location];
-            } else {
-                self.preLevelPath = interface;
-            }
-        }
+        [self loadFileUrl];
+
     }
     return self;
 }
@@ -192,32 +129,16 @@ static   XEngineWebView* s_webview;
 }
 
 - (void)loadFileUrl{
-    
-    if([self.loadUrl isEqualToString:self.webview.URL.absoluteString]){
-        return;
-    }
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-        if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
-            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl]
-              allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-        }else{
-            [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl]
-              allowingReadAccessToURL:[NSURL fileURLWithPath:[[MicroAppLoader sharedInstance] microappDirectory]]];
-        }
+        
+        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+  
     }
-}
 
-- (void)setSignleWebView:(XEngineWebView *)webView{
-    self.webview = webView;
-    s_webview = webView;
-    [self.view addSubview:self.webview];
-    [self.view addSubview:self.progresslayer];
-    [self.view addSubview:self.imageView404];
-    [self drawFrame];
+     
 }
-
 //执行JS
 -(void)runJsFunction:(NSString *)event arguments:(id)arguments {
     [self runJsFunction:event arguments:arguments completionHandler:nil];
@@ -351,19 +272,13 @@ static   XEngineWebView* s_webview;
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     
-    
-    [self setSignleWebView:(XEngineWebView *)[[XEOneWebViewPool sharedInstance] getWebView]];
-    [self loadFileUrl];
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
-    if (![self.loadUrl hasPrefix:@"http"]) {
-        [[XEOneWebViewPool sharedInstance] webViewChangeTo:self.loadUrl];
-    }
-    
+
     if(self.screenView){
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];
@@ -378,7 +293,8 @@ static   XEngineWebView* s_webview;
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+    [self loadFileUrl];
+
     if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.title]){
         self.title = self.customTiitle;
     }

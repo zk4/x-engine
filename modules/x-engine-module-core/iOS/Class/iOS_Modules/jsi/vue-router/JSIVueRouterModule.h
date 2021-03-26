@@ -1,5 +1,5 @@
 //
-//  TestModule.h
+//  JSIVueRouterModule.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/14.
@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "aJSIModule.h"
+#import "xengine__module_nav.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSIOpenModule : aJSIModule
+
+@interface JSIVueRouterModule : xengine__module_nav
 
 @end
 

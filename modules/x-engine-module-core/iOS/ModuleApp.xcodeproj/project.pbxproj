@@ -361,8 +361,8 @@
 			isa = PBXGroup;
 			children = (
 				58DF37B8260DE552002C1236 /* MicroAppLoader.h */,
-				58DF37B9260DE552002C1236 /* Unity.m */,
 				58DF37BA260DE552002C1236 /* MicroAppLoader.m */,
+				58DF37B9260DE552002C1236 /* Unity.m */,
 				58DF37BB260DE552002C1236 /* Unity.h */,
 			);
 			path = appManage;

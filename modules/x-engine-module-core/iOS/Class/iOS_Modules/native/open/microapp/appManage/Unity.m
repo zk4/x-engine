@@ -29,14 +29,7 @@
 - (id)copyWithZone:(nullable NSZone *)zone{
     return self;
 }
-//+ (NSString *)getAppKey:(NSString *)appSecret MicroApp:(NSString *)microapp
-//{
-//
-//    NSString *key = [NSString stringWithFormat:@"%@%@",appSecret,microapp];
-//
-//    return [key md5HexDigest];
-//}
-//
+
 //获取当前屏幕显示的viewcontroller
 - (UIViewController *)getCurrentVC
 {

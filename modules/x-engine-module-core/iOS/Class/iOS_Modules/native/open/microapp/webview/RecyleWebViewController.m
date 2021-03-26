@@ -15,18 +15,19 @@ static   XEngineWebView* s_webview;
 /*
  RecyleWebViewController 只应该接收完整的 url，与 webview。不做任务 url 的处理，打不开就打开。
  由上一层做 url 的处理。如 nav，router 模块或其他原生模块。
+ RecyleWebViewController 只负责载着 view 做动画
  */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
+    @property (nonatomic, copy) NSString * _Nullable loadUrl;
 
-@property (nonatomic, strong) UIProgressView *progresslayer;
-@property (nonatomic, strong) UIImageView *imageView404;
-@property (nonatomic, strong) UILabel *tipLabel404;
-
-@property (nonatomic, copy) NSString *customTiitle;
-
-@property (nonatomic, strong) UIView *screenView;
-
-@property (nonatomic, strong) UIImageView *navBarHairlineImageView;
+    @property (nonatomic, strong) XEngineWebView * _Nullable webview;
+    @property (nonatomic, assign) BOOL isHiddenNavbar;
+    @property (nonatomic, strong) UIProgressView *progresslayer;
+    @property (nonatomic, strong) UIImageView *imageView404;
+    @property (nonatomic, strong) UILabel *tipLabel404;
+    @property (nonatomic, copy) NSString *customTitle;
+    @property (nonatomic, strong) UIView *screenView;
+    @property (nonatomic, strong) UIImageView *navBarHairlineImageView;
 
 @end
 
@@ -57,7 +58,7 @@ static   XEngineWebView* s_webview;
                             if(title.length > 0){
                                 if(self.title.length == 0){
                                     self.title = title;
-                                    self.customTiitle = self.title;
+                                    self.customTitle = self.title;
                                 }
                             }
                         }
@@ -68,7 +69,7 @@ static   XEngineWebView* s_webview;
         if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
             if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
                 self.title = dic[@"title"];
-                self.customTiitle = self.title;
+                self.customTitle = self.title;
             }
         }
     }
@@ -122,36 +123,16 @@ static   XEngineWebView* s_webview;
     }
     return self;
 }
-
-- (NSString *)urlEncodedString:(NSString *)str {
-    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-    NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\|\n ";
-    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
-    return [decodedString stringByAddingPercentEncodingWithAllowedCharacters:set];
-}
+ 
 
 - (void)loadFileUrl{
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-        
         [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-  
     }
-
-     
-}
-//执行JS
--(void)runJsFunction:(NSString *)event arguments:(id)arguments {
-    [self runJsFunction:event arguments:arguments completionHandler:nil];
 }
  
-//执行JS
--(void)runJsFunction:(NSString *)event arguments:(id)arguments completionHandler:(void (^)(id  _Nullable value)) completionHandler {
-    if(event.length > 0){
-        [s_webview callHandler:event arguments:arguments completionHandler:completionHandler];
-    }
-}
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -297,8 +278,8 @@ static   XEngineWebView* s_webview;
     [super viewWillAppear:animated];
     [self loadFileUrl];
 
-    if(self.customTiitle.length > 0 && ![self.customTiitle isEqualToString: self.title]){
-        self.title = self.customTiitle;
+    if(self.customTitle.length > 0 && ![self.customTitle isEqualToString: self.title]){
+        self.title = self.customTitle;
     }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];

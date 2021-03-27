@@ -31,7 +31,7 @@
 		58DF37C1260DE552002C1236 /* XEngineCallInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37B5260DE552002C1236 /* XEngineCallInfo.m */; };
 		58DF37C2260DE552002C1236 /* Unity.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37B9260DE552002C1236 /* Unity.m */; };
 		58DF37C3260DE552002C1236 /* MicroAppLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37BA260DE552002C1236 /* MicroAppLoader.m */; };
-		58DF37FD260DF843002C1236 /* JSIVueRouterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37FB260DF843002C1236 /* JSIVueRouterModule.m */; };
+		58DF37FD260DF843002C1236 /* JSIOldNavModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37FB260DF843002C1236 /* JSIOldNavModule.m */; };
 		58DF3807260DF95B002C1236 /* xengine__module_nav.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3806260DF95B002C1236 /* xengine__module_nav.m */; };
 		58DF3831260E3EE9002C1236 /* NavUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3830260E3EE9002C1236 /* NavUtil.m */; };
 		58DF3863260E49A0002C1236 /* MGJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3861260E49A0002C1236 /* MGJRouter.m */; };
@@ -126,8 +126,8 @@
 		58DF37B9260DE552002C1236 /* Unity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unity.m; sourceTree = "<group>"; };
 		58DF37BA260DE552002C1236 /* MicroAppLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicroAppLoader.m; sourceTree = "<group>"; };
 		58DF37BB260DE552002C1236 /* Unity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unity.h; sourceTree = "<group>"; };
-		58DF37FB260DF843002C1236 /* JSIVueRouterModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIVueRouterModule.m; sourceTree = "<group>"; };
-		58DF37FC260DF843002C1236 /* JSIVueRouterModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIVueRouterModule.h; sourceTree = "<group>"; };
+		58DF37FB260DF843002C1236 /* JSIOldNavModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIOldNavModule.m; sourceTree = "<group>"; };
+		58DF37FC260DF843002C1236 /* JSIOldNavModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIOldNavModule.h; sourceTree = "<group>"; };
 		58DF3805260DF95B002C1236 /* xengine__module_nav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__module_nav.h; sourceTree = "<group>"; };
 		58DF3806260DF95B002C1236 /* xengine__module_nav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__module_nav.m; sourceTree = "<group>"; };
 		58DF382F260E3EE9002C1236 /* NavUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavUtil.h; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 		58DF37D1260DEA1F002C1236 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
-				58DF37FA260DF843002C1236 /* vue-router */,
+				58DF37FA260DF843002C1236 /* old_nav */,
 				A4A695BC2609DC3300074A24 /* open */,
 			);
 			path = jsi;
@@ -369,16 +369,16 @@
 			path = microapp;
 			sourceTree = "<group>";
 		};
-		58DF37FA260DF843002C1236 /* vue-router */ = {
+		58DF37FA260DF843002C1236 /* old_nav */ = {
 			isa = PBXGroup;
 			children = (
-				58DF37FB260DF843002C1236 /* JSIVueRouterModule.m */,
-				58DF37FC260DF843002C1236 /* JSIVueRouterModule.h */,
+				58DF37FB260DF843002C1236 /* JSIOldNavModule.m */,
+				58DF37FC260DF843002C1236 /* JSIOldNavModule.h */,
 				58DF3804260DF95B002C1236 /* gen */,
 				58DF38DA260F1C09002C1236 /* HistoryModel.h */,
 				58DF38DB260F1C09002C1236 /* HistoryModel.m */,
 			);
-			path = "vue-router";
+			path = old_nav;
 			sourceTree = "<group>";
 		};
 		58DF3804260DF95B002C1236 /* gen */ = {
@@ -776,7 +776,7 @@
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
 				A4A695C62609DC3300074A24 /* NativeContext.m in Sources */,
 				58DF388F260E53A8002C1236 /* OpenH5Module.m in Sources */,
-				58DF37FD260DF843002C1236 /* JSIVueRouterModule.m in Sources */,
+				58DF37FD260DF843002C1236 /* JSIOldNavModule.m in Sources */,
 				A4A695CA2609DC3300074A24 /* OpenMicroappModule.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				A4A696642609F96B00074A24 /* MainViewController.m in Sources */,

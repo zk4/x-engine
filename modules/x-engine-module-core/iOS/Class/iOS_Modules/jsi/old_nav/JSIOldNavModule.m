@@ -1,12 +1,12 @@
 //
-//  JSIVueRouterModule.h
+//  JSIOldNavModule.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/14.
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "JSIVueRouterModule.h"
+#import "JSIOldNavModule.h"
 #import "JSIContext.h"
 #import "iOpenManager.h"
 #import "NativeContext.h"
@@ -18,16 +18,16 @@
 #import "GlobalState.h"
 #import "HistoryModel.h"
 
-@interface JSIVueRouterModule ()
+@interface JSIOldNavModule ()
 /*
  webview: (path,vc)
  */
 
 @end
 
-@implementation JSIVueRouterModule
-JSI_MODULE(JSIVueRouterModule)
-static NSString* preLevelPath;
+@implementation JSIOldNavModule
+JSI_MODULE(JSIOldNavModule)
+
 - (NSString*) moduleId{
     // TODO:
     // should named to com.zkty.jsi.vuerouter
@@ -98,16 +98,7 @@ static NSString* preLevelPath;
 }
 
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
-//
-    //    void* currentWebview= [GlobalState getCurrentWebView];
-    //    id key = (__bridge id _Nullable)((void*)currentWebview);
-    //
-    //    NSMutableArray* history = [self.wv__vc_paths objectForKey:key];
-    //    if(history == nil ){
-    //        [self.wv__vc_paths setObject:[NSMutableArray new] forKey:key];
-    //        history=[self.wv__vc_paths objectForKey:key];
-    //    }
-    
+
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
     RecyleWebViewController* rc= nil;
     if(![currentVC isKindOfClass:RecyleWebViewController.class]){
@@ -116,16 +107,13 @@ static NSString* preLevelPath;
         return;
     }
 
-//    currentVC.hidesBottomBarWhenPushed = YES;
-    // TODO
     rc=(RecyleWebViewController*)currentVC;
 
     NSString* index=[GlobalState s_microapp_root_url];
     
     // TODO  处理 params
     NSString * finalUrl =[NSString stringWithFormat:@"%@#%@?id=100",index,dto.url];
-    preLevelPath  = dto.url;
-    
+ 
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:FALSE withHiddenNavBar:dto.hideNavbar];
     
     [currentVC.navigationController pushViewController:vc animated:YES];

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface JSIVueRouterModule : xengine__module_nav
+@interface JSIOldNavModule : xengine__module_nav
 
 @end
 

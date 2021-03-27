@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#define URL(STRING) ((NSURL*) [NSURL URLWithString: STRING])
 
 @interface NSURL (UQ_URLQuery)
 

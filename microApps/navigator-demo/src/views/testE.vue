@@ -28,6 +28,7 @@
 
 <script>
 import nav from "@zkty-team/x-engine-module-nav";
+import engine from "@zkty-team/x-engine-module-engine";
 export default {
   name: "testE",
   data() {
@@ -39,10 +40,9 @@ export default {
     this.params = this.$route.query.qid;
   },
   methods: {
-    back() {
-      nav.navigatorBack();
+    back(url) {
+      engine.bridge.call('com.zkty.module.nav.navigatorBack',{url},function(res){})
     },
-
     backToB() {
       nav.navigatorBack({
         url: "/testB",
@@ -50,9 +50,11 @@ export default {
     },
 
     backRoot() {
-      nav.navigatorBack({
-        path: "0",
-      });
+      /*nav.navigatorBack({*/
+        /*url: "0",*/
+      /*});*/
+      this.$options.methods.back('0');
+
     },
 
     h5back() {

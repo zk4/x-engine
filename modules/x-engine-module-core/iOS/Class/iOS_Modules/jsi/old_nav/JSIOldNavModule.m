@@ -62,7 +62,6 @@ JSI_MODULE(JSIOldNavModule)
             [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
         }
 
-        
     }
     else if ([@"-1" isEqualToString:dto.url] || [@"" isEqualToString:dto.url]){
         if(histories){

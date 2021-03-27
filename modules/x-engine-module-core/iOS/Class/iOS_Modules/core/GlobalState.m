@@ -53,6 +53,17 @@ static XEngineWebView*  s_showing_webview;
 - (NSMutableArray<HistoryModel*>*) getCurrentWebViewHistories{
     return [self.wv__vc_paths objectForKey:[GlobalState getCurrentWebView]];
 }
+- (void) clearHistory:(XEngineWebView*) key{
+    NSMutableArray *discardedItems = [NSMutableArray array];
+    NSMutableArray* histories = [self.wv__vc_paths objectForKey:key];
+    if(histories){
+        for (HistoryModel *item in histories) {
+            if (!item.vc)
+                [discardedItems addObject:item];
+        }
+    }
+    [histories  removeObjectsInArray:discardedItems];
+}
 - (void)addCurrentWebViewHistory:(HistoryModel *) history_model{
     XEngineWebView* key= [GlobalState getCurrentWebView];
 
@@ -62,6 +73,7 @@ static XEngineWebView*  s_showing_webview;
         [self.wv__vc_paths setObject:histories forKey:key];
     }
     [histories addObject:history_model];
+    [self clearHistory:key];
 }
 
 

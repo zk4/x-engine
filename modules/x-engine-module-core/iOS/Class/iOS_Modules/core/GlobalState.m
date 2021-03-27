@@ -41,10 +41,14 @@ static XEngineWebView*  s_showing_webview;
       s_microapp_root_url=val;
 }
 + (void)setCurrentWebView:(XEngineWebView*) val{
+    if(s_showing_webview)
+        s_showing_webview=nil;
     s_showing_webview=val;
 }
 + (XEngineWebView*)getCurrentWebView{
     return s_showing_webview;
+}
+- (void)deleteWebView:(XEngineWebView *) webview{
 }
 - (NSMutableArray<HistoryModel*>*) getCurrentWebViewHistories{
     return [self.wv__vc_paths objectForKey:[GlobalState getCurrentWebView]];

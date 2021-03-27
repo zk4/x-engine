@@ -34,10 +34,10 @@
 - (void)didClickBtn {
 //    [self.navigationController pushViewController:[[JumpViewController alloc ] init] animated:YES];
     id<iOpenManager> img = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
-    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
+//    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
 //    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
 //      [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
-//    [img open:@"omp" :@"http://10.2.128.80:8080" :@"/" :@{} :0 :TRUE];
+    [img open:@"omp" :@"http://10.2.128.80:8080" :@"/" :@{} :0 :TRUE];
 
 }
 

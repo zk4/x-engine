@@ -6,20 +6,18 @@
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "JSIOpenModule.h"
+#import "JSIOldRouterModule.h"
 #import "JSIContext.h"
 #import "iOpenManager.h"
 #import "NativeContext.h"
  
-@interface JSIOpenModule ()
+@interface JSIOldRouterModule ()
 @property (nonatomic, strong)   id<iOpenManager>  openerManger;
 @end
-@implementation JSIOpenModule
-JSI_MODULE(JSIOpenModule)
+@implementation JSIOldRouterModule
+JSI_MODULE(JSIOldRouterModule)
 
 - (NSString*) moduleId{
-    // TODO:
-    // should named to com.zkty.jsi.open
     return @"com.zkty.module.router";
 }
 

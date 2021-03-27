@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSMutableArray<HistoryModel *> *)getCurrentWebViewHistories;
 - (void)addCurrentWebViewHistory:(HistoryModel *) history;
+- (void)deleteWebView:(XEngineWebView *) webview;
 
 @end
 NS_ASSUME_NONNULL_END

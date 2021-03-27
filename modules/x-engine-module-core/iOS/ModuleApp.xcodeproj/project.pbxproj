@@ -44,7 +44,7 @@
 		A4A695C72609DC3300074A24 /* NativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B22609DC3300074A24 /* NativeModule.m */; };
 		A4A695C82609DC3300074A24 /* JSIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B72609DC3300074A24 /* JSIModule.m */; };
 		A4A695CA2609DC3300074A24 /* OpenMicroappModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695BA2609DC3300074A24 /* OpenMicroappModule.m */; };
-		A4A695CB2609DC3300074A24 /* JSIOpenModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695BD2609DC3300074A24 /* JSIOpenModule.m */; };
+		A4A695CB2609DC3300074A24 /* JSIOldRouterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695BD2609DC3300074A24 /* JSIOldRouterModule.m */; };
 		A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696242609EA4D00074A24 /* MainTabbarController.m */; };
 		A4A696282609EA4D00074A24 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696252609EA4D00074A24 /* MainNavigationController.m */; };
 		A4A696312609F47900074A24 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A696302609F47900074A24 /* TwoViewController.m */; };
@@ -156,8 +156,8 @@
 		A4A695B72609DC3300074A24 /* JSIModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIModule.m; sourceTree = "<group>"; };
 		A4A695BA2609DC3300074A24 /* OpenMicroappModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenMicroappModule.m; sourceTree = "<group>"; };
 		A4A695BB2609DC3300074A24 /* OpenMicroappModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenMicroappModule.h; sourceTree = "<group>"; };
-		A4A695BD2609DC3300074A24 /* JSIOpenModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIOpenModule.m; sourceTree = "<group>"; };
-		A4A695BE2609DC3300074A24 /* JSIOpenModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIOpenModule.h; sourceTree = "<group>"; };
+		A4A695BD2609DC3300074A24 /* JSIOldRouterModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIOldRouterModule.m; sourceTree = "<group>"; };
+		A4A695BE2609DC3300074A24 /* JSIOldRouterModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIOldRouterModule.h; sourceTree = "<group>"; };
 		A4A695C02609DC3300074A24 /* iOpen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpen.h; sourceTree = "<group>"; };
 		A4A695C12609DC3300074A24 /* iOpenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpenManager.h; sourceTree = "<group>"; };
 		A4A696232609EA4D00074A24 /* MainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				58DF37FA260DF843002C1236 /* old_nav */,
-				A4A695BC2609DC3300074A24 /* open */,
+				A4A695BC2609DC3300074A24 /* old_router */,
 			);
 			path = jsi;
 			sourceTree = "<group>";
@@ -495,13 +495,13 @@
 			path = open;
 			sourceTree = "<group>";
 		};
-		A4A695BC2609DC3300074A24 /* open */ = {
+		A4A695BC2609DC3300074A24 /* old_router */ = {
 			isa = PBXGroup;
 			children = (
-				A4A695BD2609DC3300074A24 /* JSIOpenModule.m */,
-				A4A695BE2609DC3300074A24 /* JSIOpenModule.h */,
+				A4A695BD2609DC3300074A24 /* JSIOldRouterModule.m */,
+				A4A695BE2609DC3300074A24 /* JSIOldRouterModule.h */,
 			);
-			path = open;
+			path = old_router;
 			sourceTree = "<group>";
 		};
 		A4A695BF2609DC3300074A24 /* protocols */ = {
@@ -794,7 +794,7 @@
 				58DF37BD260DE552002C1236 /* XEngineJSBUtil.m in Sources */,
 				58DF37BE260DE552002C1236 /* CustomURLSchemeHandler.m in Sources */,
 				58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */,
-				A4A695CB2609DC3300074A24 /* JSIOpenModule.m in Sources */,
+				A4A695CB2609DC3300074A24 /* JSIOldRouterModule.m in Sources */,
 				58DF37C1260DE552002C1236 /* XEngineCallInfo.m in Sources */,
 				58DF37BC260DE552002C1236 /* WKWebView+Custome.m in Sources */,
 				A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */,

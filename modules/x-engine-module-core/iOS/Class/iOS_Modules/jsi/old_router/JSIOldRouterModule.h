@@ -1,5 +1,5 @@
 //
-//  TestModule.h
+//  JSIOldRouterModule.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/14.
@@ -10,7 +10,7 @@
 #import "JSIModule.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSIOpenModule : JSIModule
+@interface JSIOldRouterModule : JSIModule
 
 @end
 

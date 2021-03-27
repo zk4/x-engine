@@ -284,6 +284,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5805B2E2260F969A0029F138 /* lagacy */ = {
+			isa = PBXGroup;
+			children = (
+				58DF37FA260DF843002C1236 /* nav */,
+				A4A695BC2609DC3300074A24 /* router */,
+			);
+			path = lagacy;
+			sourceTree = "<group>";
+		};
 		58DF3700260C3E26002C1236 /* rn */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,8 +360,7 @@
 		58DF37D1260DEA1F002C1236 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
-				58DF37FA260DF843002C1236 /* old_nav */,
-				A4A695BC2609DC3300074A24 /* old_router */,
+				5805B2E2260F969A0029F138 /* lagacy */,
 			);
 			path = jsi;
 			sourceTree = "<group>";
@@ -369,7 +377,7 @@
 			path = microapp;
 			sourceTree = "<group>";
 		};
-		58DF37FA260DF843002C1236 /* old_nav */ = {
+		58DF37FA260DF843002C1236 /* nav */ = {
 			isa = PBXGroup;
 			children = (
 				58DF37FB260DF843002C1236 /* JSIOldNavModule.m */,
@@ -378,7 +386,7 @@
 				58DF38DA260F1C09002C1236 /* HistoryModel.h */,
 				58DF38DB260F1C09002C1236 /* HistoryModel.m */,
 			);
-			path = old_nav;
+			path = nav;
 			sourceTree = "<group>";
 		};
 		58DF3804260DF95B002C1236 /* gen */ = {
@@ -495,13 +503,13 @@
 			path = open;
 			sourceTree = "<group>";
 		};
-		A4A695BC2609DC3300074A24 /* old_router */ = {
+		A4A695BC2609DC3300074A24 /* router */ = {
 			isa = PBXGroup;
 			children = (
 				A4A695BD2609DC3300074A24 /* JSIOldRouterModule.m */,
 				A4A695BE2609DC3300074A24 /* JSIOldRouterModule.h */,
 			);
-			path = old_router;
+			path = router;
 			sourceTree = "<group>";
 		};
 		A4A695BF2609DC3300074A24 /* protocols */ = {

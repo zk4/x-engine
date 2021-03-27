@@ -134,28 +134,28 @@
     return model;
 }
 //
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-//    if ([keyPath isEqualToString:@"estimatedProgress"]) {
-//        
-//        float floatNum = [[change objectForKey:@"new"] floatValue];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-//            @"progress":@(floatNum),
-//            @"webView":object,
-//        }];
-//        if (floatNum >= 1) {
-//            [object removeObserver:self forKeyPath:@"estimatedProgress"];
-//        }
-//    } else if ([keyPath isEqualToString:@"title"]) {
-//        if([change objectForKey:@"new"]){
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-//                @"title":[change objectForKey:@"new"],
-//                @"webView":object,
-//            }];
-//        }
-//    } else {
-//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-//    }
-//}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        
+        float floatNum = [[change objectForKey:@"new"] floatValue];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+            @"progress":@(floatNum),
+            @"webView":object,
+        }];
+        if (floatNum >= 1) {
+            [object removeObserver:self forKeyPath:@"estimatedProgress"];
+        }
+    } else if ([keyPath isEqualToString:@"title"]) {
+        if([change objectForKey:@"new"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+                @"title":[change objectForKey:@"new"],
+                @"webView":object,
+            }];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
 
 @end
 

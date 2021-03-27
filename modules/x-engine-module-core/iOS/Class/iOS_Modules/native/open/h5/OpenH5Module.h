@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OpenH5Module : NativeModule <iOpen>
-+ (NSString * _Nullable) s_microapp_root_url;
+
 @end
 
 NS_ASSUME_NONNULL_END

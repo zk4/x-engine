@@ -10,6 +10,7 @@
 #import "JSIContext.h"
 #import "iOpenManager.h"
 #import "NativeContext.h"
+ 
 @interface JSIOpenModule ()
 @property (nonatomic, strong)   id<iOpenManager>  openerManger;
 @end

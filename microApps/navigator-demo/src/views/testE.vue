@@ -45,7 +45,7 @@ export default {
 
     backToB() {
       nav.navigatorBack({
-        path: "/testB",
+        url: "/testB",
       });
     },
 

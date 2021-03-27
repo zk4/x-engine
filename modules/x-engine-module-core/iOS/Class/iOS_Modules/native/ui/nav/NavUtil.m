@@ -12,6 +12,10 @@
 
 @implementation NavUtil
 
++ (void)setNavBarHidden:(BOOL)isHidden isAnimation:(BOOL)isAnimation {    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+    [topVC.navigationController setNavigationBarHidden:isHidden animated:isAnimation];
+}
+
 + (void)setNavTitle:(NSString *)title withTitleColor:(NSString *)color withTitleSize:(NSInteger)size {
     
 

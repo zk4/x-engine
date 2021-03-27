@@ -1,5 +1,5 @@
 //
-//  OpenMicroappModule.m.h
+//  OpenOmpModule.m.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
@@ -11,7 +11,7 @@
 #import "iOpen.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenMicroappModule : NativeModule <iOpen>
-@end
+@interface OpenOmpModule : NativeModule <iOpen>
+ @end
 
 NS_ASSUME_NONNULL_END

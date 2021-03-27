@@ -7,10 +7,10 @@
 #import "XEOneWebViewPool.h"
 #import "XEOneWebViewPoolModel.h"
 #import "JSIModule.h"
+#import "GlobalState.h"
 #import "Unity.h"
 
-static   XEngineWebView* s_webview;
-
+ 
 /*
  RecyleWebViewController 只应该接收完整的 url，与 webview。
  由调用者保证 url 正确。不对 url 的处理，打不开就打不开
@@ -32,11 +32,9 @@ static   XEngineWebView* s_webview;
 @end
 
 @implementation RecyleWebViewController
-+ (XEngineWebView*) webview{
-    return s_webview;
-}
+ 
 -(void)webViewProgressChange:(NSNotification *)notifi{
-    
+
     NSDictionary *dic = notifi.object;
     XEngineWebView *web = dic[@"webView"];
     if(web == self.webview){
@@ -96,14 +94,13 @@ static   XEngineWebView* s_webview;
         
         if(newWebView){
             self.webview = [[XEOneWebViewPool sharedInstance] createWebView:fileUrl].webView;
-         
             self.webview.frame = [UIScreen mainScreen].bounds;
-            s_webview = self.webview;
-        }else{
-            self.webview = s_webview;
+            
+            [GlobalState setCurrentWebView:self.webview];
+        }else {
+            self.webview= [GlobalState getCurrentWebView];
         }
-
-      
+            
      
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)

@@ -9,6 +9,7 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "NativeContext.h"
+#import "GlobalState.h"
 //#import "NSString+Extras.h"
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
@@ -330,6 +331,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
+                    [GlobalState setCurrentWebView:self];
                     action(JavascriptInterfaceObject, selasyn, arg, completionHandler);
                     break;
                 }

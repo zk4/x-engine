@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-@protocol iOpen <NSObject>
+ @protocol iOpen <NSObject>
 -(NSString*) type;
 -(void)open:(NSString *)type  :(NSString *)uri  :(NSString *)path  :(NSDictionary *)args  :(long)version  :(BOOL)isHidden;
  

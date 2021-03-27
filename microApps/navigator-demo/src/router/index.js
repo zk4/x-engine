@@ -40,12 +40,12 @@ const router = new Router({
 })
 
 // GOOD
-router.beforeEach((to, from, next) => {
-  console.log("to",to,"from",from)
-  nav.navigatorPush({
-    url:to.path
-  })
-  //next()
-})
+//router.beforeEach((to, from, next) => {
+  //console.log("to",to,"from",from)
+  //nav.navigatorPush({
+    //url:to.path
+  //})
+  ////next()
+//})
 
 export default router

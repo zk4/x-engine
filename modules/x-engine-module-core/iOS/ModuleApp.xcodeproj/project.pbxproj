@@ -37,6 +37,9 @@
 		58DF3863260E49A0002C1236 /* MGJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3861260E49A0002C1236 /* MGJRouter.m */; };
 		58DF3864260E49A0002C1236 /* OpenManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3862260E49A0002C1236 /* OpenManagerModule.m */; };
 		58DF388F260E53A8002C1236 /* OpenH5Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF387C260E53A8002C1236 /* OpenH5Module.m */; };
+		58DF38BC260E7195002C1236 /* OpenOmpModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF38BA260E7194002C1236 /* OpenOmpModule.m */; };
+		58DF38D6260E7C91002C1236 /* GlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF38D5260E7C91002C1236 /* GlobalState.m */; };
+		58DF38DC260F1C0A002C1236 /* HistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF38DB260F1C09002C1236 /* HistoryModel.m */; };
 		A4A695C62609DC3300074A24 /* NativeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B12609DC3300074A24 /* NativeContext.m */; };
 		A4A695C72609DC3300074A24 /* NativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B22609DC3300074A24 /* NativeModule.m */; };
 		A4A695C82609DC3300074A24 /* JSIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A695B72609DC3300074A24 /* JSIModule.m */; };
@@ -137,6 +140,12 @@
 		58DF387C260E53A8002C1236 /* OpenH5Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenH5Module.m; sourceTree = "<group>"; };
 		58DF3886260E53A8002C1236 /* OpenH5Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenH5Module.h; sourceTree = "<group>"; };
 		58DF38AC260E6459002C1236 /* iStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iStorage.h; sourceTree = "<group>"; };
+		58DF38BA260E7194002C1236 /* OpenOmpModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOmpModule.m; sourceTree = "<group>"; };
+		58DF38BB260E7194002C1236 /* OpenOmpModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOmpModule.h; sourceTree = "<group>"; };
+		58DF38D4260E7C91002C1236 /* GlobalState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalState.h; sourceTree = "<group>"; };
+		58DF38D5260E7C91002C1236 /* GlobalState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalState.m; sourceTree = "<group>"; };
+		58DF38DA260F1C09002C1236 /* HistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryModel.h; sourceTree = "<group>"; };
+		58DF38DB260F1C09002C1236 /* HistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryModel.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A695B02609DC3300074A24 /* NativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeModule.h; sourceTree = "<group>"; };
@@ -366,6 +375,8 @@
 				58DF37FB260DF843002C1236 /* JSIVueRouterModule.m */,
 				58DF37FC260DF843002C1236 /* JSIVueRouterModule.h */,
 				58DF3804260DF95B002C1236 /* gen */,
+				58DF38DA260F1C09002C1236 /* HistoryModel.h */,
+				58DF38DB260F1C09002C1236 /* HistoryModel.m */,
 			);
 			path = "vue-router";
 			sourceTree = "<group>";
@@ -426,6 +437,15 @@
 			path = Class/iOS_Modules/native/open/h5;
 			sourceTree = SOURCE_ROOT;
 		};
+		58DF38B9260E7194002C1236 /* omp */ = {
+			isa = PBXGroup;
+			children = (
+				58DF38BA260E7194002C1236 /* OpenOmpModule.m */,
+				58DF38BB260E7194002C1236 /* OpenOmpModule.h */,
+			);
+			path = omp;
+			sourceTree = "<group>";
+		};
 		A4A695AB2609DC3300074A24 /* iOS_Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +467,8 @@
 				A4A695B02609DC3300074A24 /* NativeModule.h */,
 				A4A695B22609DC3300074A24 /* NativeModule.m */,
 				58DF3835260E411E002C1236 /* micros.h */,
+				58DF38D4260E7C91002C1236 /* GlobalState.h */,
+				58DF38D5260E7C91002C1236 /* GlobalState.m */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -465,6 +487,7 @@
 		A4A695B92609DC3300074A24 /* open */ = {
 			isa = PBXGroup;
 			children = (
+				58DF38B9260E7194002C1236 /* omp */,
 				58DF3868260E53A7002C1236 /* h5 */,
 				58DF3700260C3E26002C1236 /* rn */,
 				58DF37DB260DF62C002C1236 /* microapp */,
@@ -747,6 +770,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4A695C82609DC3300074A24 /* JSIModule.m in Sources */,
+				58DF38DC260F1C0A002C1236 /* HistoryModel.m in Sources */,
 				58DF3863260E49A0002C1236 /* MGJRouter.m in Sources */,
 				A4A696582609F8A700074A24 /* JumpViewController.m in Sources */,
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
@@ -762,6 +786,7 @@
 				58DF3864260E49A0002C1236 /* OpenManagerModule.m in Sources */,
 				A4A696462609F80000074A24 /* OneViewController.m in Sources */,
 				A4A6964C2609F81500074A24 /* ThreeViewController.m in Sources */,
+				58DF38D6260E7C91002C1236 /* GlobalState.m in Sources */,
 				A4A696312609F47900074A24 /* TwoViewController.m in Sources */,
 				58DF37C2260DE552002C1236 /* Unity.m in Sources */,
 				58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */,
@@ -773,6 +798,7 @@
 				58DF37C1260DE552002C1236 /* XEngineCallInfo.m in Sources */,
 				58DF37BC260DE552002C1236 /* WKWebView+Custome.m in Sources */,
 				A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */,
+				58DF38BC260E7195002C1236 /* OpenOmpModule.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 				58DF37C0260DE552002C1236 /* XEngineInternalApis.m in Sources */,
 				58DF37C3260DE552002C1236 /* MicroAppLoader.m in Sources */,

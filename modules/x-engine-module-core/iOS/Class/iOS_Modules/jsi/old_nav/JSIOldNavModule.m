@@ -83,7 +83,8 @@ JSI_MODULE(JSIOldNavModule)
             for (HistoryModel *hm in [histories reverseObjectEnumerator]){
                 if(hm && [hm.path isEqualToString:dto.url]){
                     [navC popToViewController:hm.vc animated:YES];
-                    [histories removeObjectsInRange:NSMakeRange(histories.count-i, i)];
+                    
+                    [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
                     return;
                 }
                 i++;

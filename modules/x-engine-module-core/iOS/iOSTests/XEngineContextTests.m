@@ -39,5 +39,12 @@
     id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.openmanager.nonexist"];
     XCTAssert(!openmanager,@"应该获得不到 openmanager.nonexist");
 }
+- (void)testDeleteArrayRange {
 
+NSArray *givenArr = @[@1, @2, @3, @4];
+   NSMutableArray *arrM = [NSMutableArray array];
+   [arrM addObjectsFromArray:givenArr];
+   [arrM removeObjectsInRange:NSMakeRange(arrM.count, 0)];
+   NSLog(@"arrM = %@, count = %ld", arrM, arrM.count);
+}
 @end

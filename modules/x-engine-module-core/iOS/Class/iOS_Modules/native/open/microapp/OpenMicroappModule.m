@@ -47,7 +47,7 @@ NATIVE_MODULE(OpenMicroappModule)
         // file://com.zkty.microapp.home
         // https://www.gome.com/index.html
         
-        RecyleWebViewController *vc =   [[RecyleWebViewController alloc] initWithUrl:uri newWebView:TRUE  withHiddenNavBar:isHidden];;
+        RecyleWebViewController *vc =   [[RecyleWebViewController alloc] initWithUrl:urlStr newWebView:TRUE  withHiddenNavBar:isHidden];;
         HistoryModel* hm= [HistoryModel new];
         hm.vc = vc;
         hm.path = path;

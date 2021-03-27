@@ -91,39 +91,7 @@ static NSString* preLevelPath;
         }
 
     }
-    return;
-    BOOL isAction = false;
-  
-    UIViewController *lastVc;
-    for (UIViewController *vc in [ary reverseObjectEnumerator]) {
-        
-        if ([vc isKindOfClass:[RecyleWebViewController class]]){
-            if ([@"0" isEqualToString:dto.url]){
-                if(lastVc == nil){
-                    lastVc = vc;
-                }
-                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:lastVc animated:YES];
-                return;;
-            }
-            RecyleWebViewController *webVC = (RecyleWebViewController *)vc;
-            if (preLevelPath && [preLevelPath isEqualToString:dto.url]){
-                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
-                isAction = YES;
-                break;
-            }
-            else if ([@"/index" isEqualToString:dto.url] && [vc isKindOfClass:[RecyleWebViewController class]]){
-                [[Unity sharedInstance].getCurrentVC.navigationController popToViewController:webVC animated:YES];
-                isAction = YES;
-                break;
-            }
-        }else{
-            lastVc = vc;
-        }
-    }
-    if (!isAction){
-//        [[Unity sharedInstance].getCurrentVC pop];
-        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
-    }
+   
     if(completionHandler){
         completionHandler(YES);
     }

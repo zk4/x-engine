@@ -29,16 +29,17 @@
     }
 
     - (NSString *)moduleId{
-        return @"com.zkty.module.router";
+        return @"com.zkty.jsi.router";
     }
     
     - (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-         dict=[self mergeDefault:dict defaultString:@"{  \"type\": \"h5\",  \"uri\": \"http://192.168.10.51:8081/index.html\",  \"path\": \"\",  \"hideNavbar\": false}"];
     
           RouterOpenAppDTO* dto = [self convert:dict clazz:RouterOpenAppDTO.class];
           [self _openTargetRouter:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
       }
+
+
+
   @end

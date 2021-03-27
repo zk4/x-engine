@@ -12,6 +12,10 @@
       </div>
 
       <div style="margin: 16px;">
+        <van-button type="primary" round block @click="previous">上一页</van-button>
+      </div>
+
+      <div style="margin: 16px;">
         <div>h5内部跳转</div>
       </div>
       <div style="margin: 16px;">
@@ -37,6 +41,9 @@ export default {
         url: "/testB",
         params: "000",
       });
+    },
+    previous(){
+          nav.navigatorBack({url:'-1'});
     },
 
     h5next() {

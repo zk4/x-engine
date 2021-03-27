@@ -7,7 +7,7 @@
       <div>原生跳转</div>
     </div>
     <div style="margin: 16px;">
-      <van-button type="primary" round block @click="back">上一页</van-button>
+      <van-button type="primary" round block @click="goback">上一页</van-button>
     </div>
     <div style="margin: 16px;">
       <van-button type="primary" round block @click="backToB">返回testB页面</van-button>
@@ -49,6 +49,10 @@ export default {
       });
     },
 
+    goback(){
+          nav.navigatorBack({url:'-1'});
+
+    },
     backRoot() {
       /*nav.navigatorBack({*/
         /*url: "0",*/

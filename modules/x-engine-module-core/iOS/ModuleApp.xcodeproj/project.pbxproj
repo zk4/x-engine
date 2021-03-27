@@ -15,6 +15,8 @@
 		00DFC6F524C84000006A53EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EB24C84000006A53EE /* main.m */; };
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		3346DAE4FD478F462C183047 /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */; };
+		5805B2E9260F9B8F0029F138 /* JSIRouterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2E8260F9B8F0029F138 /* JSIRouterModule.m */; };
+		5805B2F0260F9C030029F138 /* xengine__jsi_router.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2EF260F9C030029F138 /* xengine__jsi_router.m */; };
 		580EB23C260A214900EE0694 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580EB23B260A214900EE0694 /* CoreData.framework */; };
 		580EB28B260A247700EE0694 /* JSIContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB289260A247700EE0694 /* JSIContext.m */; };
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
@@ -93,6 +95,10 @@
 		343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5805B2E7260F9B8F0029F138 /* JSIRouterModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIRouterModule.h; sourceTree = "<group>"; };
+		5805B2E8260F9B8F0029F138 /* JSIRouterModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIRouterModule.m; sourceTree = "<group>"; };
+		5805B2EE260F9C030029F138 /* xengine__jsi_router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__jsi_router.h; sourceTree = "<group>"; };
+		5805B2EF260F9C030029F138 /* xengine__jsi_router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__jsi_router.m; sourceTree = "<group>"; };
 		580EB23B260A214900EE0694 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		580EB289260A247700EE0694 /* JSIContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIContext.m; sourceTree = "<group>"; };
 		580EB28A260A247700EE0694 /* JSIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIContext.h; sourceTree = "<group>"; };
@@ -293,6 +299,25 @@
 			path = lagacy;
 			sourceTree = "<group>";
 		};
+		5805B2E6260F9B590029F138 /* router */ = {
+			isa = PBXGroup;
+			children = (
+				5805B2ED260F9C030029F138 /* gen */,
+				5805B2E7260F9B8F0029F138 /* JSIRouterModule.h */,
+				5805B2E8260F9B8F0029F138 /* JSIRouterModule.m */,
+			);
+			path = router;
+			sourceTree = "<group>";
+		};
+		5805B2ED260F9C030029F138 /* gen */ = {
+			isa = PBXGroup;
+			children = (
+				5805B2EE260F9C030029F138 /* xengine__jsi_router.h */,
+				5805B2EF260F9C030029F138 /* xengine__jsi_router.m */,
+			);
+			path = gen;
+			sourceTree = "<group>";
+		};
 		58DF3700260C3E26002C1236 /* rn */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +385,7 @@
 		58DF37D1260DEA1F002C1236 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
+				5805B2E6260F9B590029F138 /* router */,
 				5805B2E2260F969A0029F138 /* lagacy */,
 			);
 			path = jsi;
@@ -780,11 +806,13 @@
 				A4A695C82609DC3300074A24 /* JSIModule.m in Sources */,
 				58DF38DC260F1C0A002C1236 /* HistoryModel.m in Sources */,
 				58DF3863260E49A0002C1236 /* MGJRouter.m in Sources */,
+				5805B2E9260F9B8F0029F138 /* JSIRouterModule.m in Sources */,
 				A4A696582609F8A700074A24 /* JumpViewController.m in Sources */,
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
 				A4A695C62609DC3300074A24 /* NativeContext.m in Sources */,
 				58DF388F260E53A8002C1236 /* OpenH5Module.m in Sources */,
 				58DF37FD260DF843002C1236 /* JSIOldNavModule.m in Sources */,
+				5805B2F0260F9C030029F138 /* xengine__jsi_router.m in Sources */,
 				A4A695CA2609DC3300074A24 /* OpenMicroappModule.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				A4A696642609F96B00074A24 /* MainViewController.m in Sources */,

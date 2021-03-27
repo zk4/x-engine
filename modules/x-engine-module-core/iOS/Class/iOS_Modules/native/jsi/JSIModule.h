@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) afterAllJSIModuleInited;
 
 - (id) convert:(NSDictionary *)param  clazz:(Class)clazz;
-
+-(NSDictionary*) mergeDefault:(NSDictionary*)dict defaultString:(NSString*)defaultString;
 @end
 
 NS_ASSUME_NONNULL_END

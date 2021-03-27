@@ -9,6 +9,7 @@
 #import "JSONModel.h"
 #import "JSIModule.h"
 #import <objc/message.h>
+#import "XEngineJSBUtil.h"
 # ifndef mustOverride
 #define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 #endif
@@ -76,9 +77,52 @@
 //        retCB(value);
 //    }];
 //}
-- (void)broadcast:(NSArray *)args {
-    //    TODO implement this
-    //    [self callJS:@"com.zkty.module.engine.broadcast" args:args retCB:^(id  _Nullable ret) {}];
+//
+//
+//-(void) broadcast:(NSArray*)args{
+//    [self callJS:@"com.zkty.module.engine.broadcast" args:args retCB:^(id  _Nullable ret) {}];
+//}
+
+-(BOOL) isDictionary:(id)item{
+    return [item isKindOfClass:NSDictionary.class] || [item isKindOfClass:NSMutableDictionary.class];
+}
+
+-(void) assign:(NSMutableDictionary*)to from:(NSMutableDictionary*) from{
+    [to addEntriesFromDictionary:from];
+}
+
+-(void) _mergeDeep:(NSMutableDictionary*) target  sources:(NSMutableArray*) sources {
+  if (!target || !sources || sources.count==0) return;
+    NSMutableDictionary* source = [sources lastObject];
+    [sources removeLastObject];
+    if ([self isDictionary:target] && [self isDictionary:source]) {
+    for (NSString* key in source) {
+        if ([self isDictionary:[source objectForKey:key]]) {
+          if (!target[key]) [self assign:target from:[@{key:@{}} mutableCopy]];
+          [self _mergeDeep:target[key] sources:[@[source[key]] mutableCopy]];
+      } else {
+          [self assign: target  from:[@{key:[source objectForKey:key]} mutableCopy]];
+      }
+    }
+  }
+
+    [self _mergeDeep:target sources:sources];
+}
+-(void) mergeDeep:(NSMutableDictionary*) target source:(NSMutableDictionary*) source {
+    if(!source || !target) return;
+    [self _mergeDeep:target sources:[@[source] mutableCopy] ];
+}
+ 
+-(NSDictionary*) mergeDefault:(NSDictionary*)dict defaultString:(NSString*)defaultString{
+    if(!defaultString || defaultString.length==0) return dict;
+    
+    NSDictionary* parsed_dict= [XEngineJSBUtil jsonStringToObject:defaultString];
+    if(!parsed_dict) return dict;
+    
+    NSMutableDictionary* merged_dict=[[NSMutableDictionary alloc]initWithDictionary:parsed_dict];
+    NSMutableDictionary* mutalbeUserDict=[[NSMutableDictionary alloc]initWithDictionary:dict];
+    [self mergeDeep:merged_dict source:mutalbeUserDict];
+    return merged_dict;
 }
 
 @end

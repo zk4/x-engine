@@ -9,7 +9,7 @@
 #import "OneViewController.h"
 #import "JumpViewController.h"
 #import "NativeContext.h"
-#import "iOpenManager.h"
+#import "iDirectManager.h"
 @interface OneViewController ()
 
 @end
@@ -33,11 +33,12 @@
 
 - (void)didClickBtn {
 //    [self.navigationController pushViewController:[[JumpViewController alloc ] init] animated:YES];
-    id<iOpenManager> img = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
+    id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 //    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
 //    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
 //      [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
-    [img open:@"omp" :@"http://192.168.1.15:8080" :@"/" :@{} :0 :TRUE];
+//    [img open:@"omp" :@"http://192.168.1.15:8080" :@"/" :@{} :0 :TRUE];
+    [director push:@"omp" host:@"http://192.168.1.15:8080" path:@"" query:nil hideNavbar:TRUE];
 
 }
 

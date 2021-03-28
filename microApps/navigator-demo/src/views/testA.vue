@@ -49,10 +49,14 @@ export default {
       },function(res){})
     },
     next() {
-      nav.navigatorPush({
-        url: "/testB",
-        params: "000",
-      });
+      engine.bridge.call('com.zkty.jsi.direct.back',{
+      scheme: 'omp',
+      path:'0'
+      },function(res){})
+      /*nav.navigatorPush({*/
+        /*url: "/testB",*/
+        /*params: "000",*/
+      /*});*/
     },
     previous(){
           nav.navigatorBack({url:'-1'});

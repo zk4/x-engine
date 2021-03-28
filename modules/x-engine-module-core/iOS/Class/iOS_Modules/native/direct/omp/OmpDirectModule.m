@@ -81,17 +81,44 @@ NATIVE_MODULE(OmpDirectModule)
 }
 
 - (void)push:(nonnull NSString *)scheme host:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+   
+//    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
+//        // TODO，如果是 tab？ 强制转成 open
+//        NSLog(@"顶层都不是 RecyleWebViewController，还想着 nav？");
+//        return;
+//    }
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
-    RecyleWebViewController* rc= nil;
-    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
-        // TODO，如果是 tab？ 强制转成 open
-        NSLog(@"顶层都不是 RecyleWebViewController，还想着 nav？");
-        return;
-    }
 
-    rc=(RecyleWebViewController*)currentVC;
     if(host){
-        // 打开新的 webview
+        [GlobalState set_s_microapp_root_url:host];
+
+        // input correct
+        // file://com.zkty.microapp.home
+        // https://www.gome.com/index.html
+        
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:host newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        
+        HistoryModel* hm= [HistoryModel new];
+        hm.vc = vc;
+        hm.path = path;
+        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+       
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        if([Unity sharedInstance].getCurrentVC.navigationController){
+            [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+
+        } else {
+            UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+            if([nav isKindOfClass:[UINavigationController class]]){
+                [nav pushViewController:vc animated:YES];
+            } else {
+                nav = nav.navigationController;
+                [nav pushViewController:vc animated:YES];
+            }
+        }
+        vc.hidesBottomBarWhenPushed = NO;
+        
     }else
     {
         NSString* host=[GlobalState s_microapp_root_url];

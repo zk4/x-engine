@@ -12,9 +12,11 @@
 #import "XEOneWebViewPoolModel.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "iOpen.h"
+#import "iDirect.h"
 #import "GlobalState.h"
- 
+@interface OpenOmpModule ()
+@property (nonatomic, strong) id<iDirect>  ompDirect;
+@end
 
 @implementation OpenOmpModule
 NATIVE_MODULE(OpenOmpModule)
@@ -30,14 +32,24 @@ NATIVE_MODULE(OpenOmpModule)
     return @"omp";
 }
  
+- (void)afterAllNativeModuleInited{
+   NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
+    for(id<iDirect> direct in modules){
+        if([[direct scheme] isEqualToString:[self type]]){
+            self.ompDirect = direct;
+        }
+    }
+}
+
  
 - (void)open:(nonnull NSString *)type :(nonnull NSString *)uri :(nonnull NSString *)path :(nonnull NSDictionary *)args :(long)version :(BOOL)isHidden {
 
     NSLog(@"open omp handled!!");
 //    s_microapp_root_url = uri;
-    [GlobalState set_s_microapp_root_url:uri];
 
     if(uri){
+        [GlobalState set_s_microapp_root_url:uri];
+
         // input correct
         // file://com.zkty.microapp.home
         // https://www.gome.com/index.html
@@ -63,7 +75,9 @@ NATIVE_MODULE(OpenOmpModule)
                 [nav pushViewController:vc animated:YES];
             }
         }
-        vc.hidesBottomBarWhenPushed = NO;    }
+        vc.hidesBottomBarWhenPushed = NO;
+        
+    }
  
 }
 

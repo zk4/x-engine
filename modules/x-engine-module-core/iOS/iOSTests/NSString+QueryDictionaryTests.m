@@ -39,8 +39,29 @@ static NSString *const uq_URLReservedChars =  @"￼=,!$&'()*+;@?\r\n\"<>#\t :/";
                         @"http://www.foo.com/#/path?key",
                         @"Did not create correctly formatted URL");
 }
-//
-//
+
+- (void)testNewSchemeVueRouter {
+  NSDictionary *dict = @{@"key":@"value"};
+  XCTAssertEqualObjects([@"x-engine://www.foo.com/#/path"
+                         uq_URLByAppendingQueryDictionary:dict],
+                        @"x-engine://www.foo.com/#/path?key=value",
+                        @"Did not create correctly formatted URL");
+}
+- (void)testNewSchemeVueRouterWithEmptyDict {
+  NSDictionary *dict = @{};
+  XCTAssertEqualObjects([@"x-engine://www.foo.com/#/path"
+                         uq_URLByAppendingQueryDictionary:dict],
+                        @"x-engine://www.foo.com/#/path",
+                        @"Did not create correctly formatted URL");
+}
+- (void)testNewSchemeVueRouterWithOnlyKey {
+    NSDictionary *dict = @{@"key":@""};
+  XCTAssertEqualObjects([@"x-engine://www.foo.com/#/path"
+                         uq_URLByAppendingQueryDictionary:dict],
+                        @"x-engine://www.foo.com/#/path?key",
+                        @"Did not create correctly formatted URL");
+}
+
 - (void)testShouldExtractQueryDictionary {
   NSDictionary *dict = @{@"cat":@"cheese", @"foo":@"bar"};
   XCTAssertEqualObjects(@"http://www.foo.com/?cat=cheese&foo=bar".uq_queryDictionary,
@@ -182,6 +203,12 @@ static NSString *const uq_URLReservedChars =  @"￼=,!$&'()*+;@?\r\n\"<>#\t :/";
   NSString *url = @"http://www.foo.com/?cat=cheese&foo=bar";
     NSString *url2 = [url uq_URLByReplacingQueryWithDictionary:@{ @"tree" : @1}];
   XCTAssertEqualObjects(url2, @"http://www.foo.com/?tree=1");
+}
+
+- (void)testNewScheme {
+  NSString *url = @"x-engine://www.foo.com/?cat=cheese&foo=bar";
+    NSString *url2 = [url uq_URLByReplacingQueryWithDictionary:@{ @"tree" : @1}];
+  XCTAssertEqualObjects(url2, @"x-engine://www.foo.com/?tree=1");
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  JSIRouterModule.h
+//  JSIDirectModule.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/14.
@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "JSIModule.h"
-#import "xengine__jsi_router.h"
+#import "xengine__jsi_direct.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSIRouterModule : xengine__jsi_router
+@interface JSIDirectModule : xengine__jsi_direct
 
 @end
 

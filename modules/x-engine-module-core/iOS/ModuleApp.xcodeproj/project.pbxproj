@@ -15,8 +15,8 @@
 		00DFC6F524C84000006A53EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EB24C84000006A53EE /* main.m */; };
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		3346DAE4FD478F462C183047 /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */; };
-		5805B2E9260F9B8F0029F138 /* JSIRouterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2E8260F9B8F0029F138 /* JSIRouterModule.m */; };
-		5805B2F0260F9C030029F138 /* xengine__jsi_router.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2EF260F9C030029F138 /* xengine__jsi_router.m */; };
+		5805B2E9260F9B8F0029F138 /* JSIDirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2E8260F9B8F0029F138 /* JSIDirectModule.m */; };
+		5805B2F0260F9C030029F138 /* xengine__jsi_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2EF260F9C030029F138 /* xengine__jsi_direct.m */; };
 		5805B30D260FA30F0029F138 /* NSURL+QueryDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B30C260FA30F0029F138 /* NSURL+QueryDictionaryTests.m */; };
 		5805B31D260FA3DD0029F138 /* NSURL+QueryDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B31C260FA3DD0029F138 /* NSURL+QueryDictionary.m */; };
 		5805B322260FAADB0029F138 /* NSString+QueryDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */; };
@@ -99,10 +99,10 @@
 		343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5805B2E7260F9B8F0029F138 /* JSIRouterModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIRouterModule.h; sourceTree = "<group>"; };
-		5805B2E8260F9B8F0029F138 /* JSIRouterModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIRouterModule.m; sourceTree = "<group>"; };
-		5805B2EE260F9C030029F138 /* xengine__jsi_router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__jsi_router.h; sourceTree = "<group>"; };
-		5805B2EF260F9C030029F138 /* xengine__jsi_router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__jsi_router.m; sourceTree = "<group>"; };
+		5805B2E7260F9B8F0029F138 /* JSIDirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIDirectModule.h; sourceTree = "<group>"; };
+		5805B2E8260F9B8F0029F138 /* JSIDirectModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIDirectModule.m; sourceTree = "<group>"; };
+		5805B2EE260F9C030029F138 /* xengine__jsi_direct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__jsi_direct.h; sourceTree = "<group>"; };
+		5805B2EF260F9C030029F138 /* xengine__jsi_direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__jsi_direct.m; sourceTree = "<group>"; };
 		5805B30C260FA30F0029F138 /* NSURL+QueryDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryDictionaryTests.m"; sourceTree = "<group>"; };
 		5805B31B260FA3DD0029F138 /* NSURL+QueryDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryDictionary.h"; sourceTree = "<group>"; };
 		5805B31C260FA3DD0029F138 /* NSURL+QueryDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryDictionary.m"; sourceTree = "<group>"; };
@@ -311,21 +311,21 @@
 			path = lagacy;
 			sourceTree = "<group>";
 		};
-		5805B2E6260F9B590029F138 /* router */ = {
+		5805B2E6260F9B590029F138 /* direct */ = {
 			isa = PBXGroup;
 			children = (
 				5805B2ED260F9C030029F138 /* gen */,
-				5805B2E7260F9B8F0029F138 /* JSIRouterModule.h */,
-				5805B2E8260F9B8F0029F138 /* JSIRouterModule.m */,
+				5805B2E7260F9B8F0029F138 /* JSIDirectModule.h */,
+				5805B2E8260F9B8F0029F138 /* JSIDirectModule.m */,
 			);
-			path = router;
+			path = direct;
 			sourceTree = "<group>";
 		};
 		5805B2ED260F9C030029F138 /* gen */ = {
 			isa = PBXGroup;
 			children = (
-				5805B2EE260F9C030029F138 /* xengine__jsi_router.h */,
-				5805B2EF260F9C030029F138 /* xengine__jsi_router.m */,
+				5805B2EE260F9C030029F138 /* xengine__jsi_direct.h */,
+				5805B2EF260F9C030029F138 /* xengine__jsi_direct.m */,
 			);
 			path = gen;
 			sourceTree = "<group>";
@@ -408,7 +408,7 @@
 		58DF37D1260DEA1F002C1236 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
-				5805B2E6260F9B590029F138 /* router */,
+				5805B2E6260F9B590029F138 /* direct */,
 				5805B2E2260F969A0029F138 /* lagacy */,
 			);
 			path = jsi;
@@ -429,11 +429,9 @@
 		58DF37FA260DF843002C1236 /* nav */ = {
 			isa = PBXGroup;
 			children = (
+				58DF3804260DF95B002C1236 /* gen */,
 				58DF37FB260DF843002C1236 /* JSIOldNavModule.m */,
 				58DF37FC260DF843002C1236 /* JSIOldNavModule.h */,
-				58DF3804260DF95B002C1236 /* gen */,
-				58DF38DA260F1C09002C1236 /* HistoryModel.h */,
-				58DF38DB260F1C09002C1236 /* HistoryModel.m */,
 			);
 			path = nav;
 			sourceTree = "<group>";
@@ -471,8 +469,7 @@
 				58DF3862260E49A0002C1236 /* OpenManagerModule.m */,
 				58DF385F260E49A0002C1236 /* MGJRouter */,
 			);
-			name = open.manager;
-			path = open/open.manager;
+			path = open.manager;
 			sourceTree = "<group>";
 		};
 		58DF385F260E49A0002C1236 /* MGJRouter */ = {
@@ -517,6 +514,8 @@
 		A4A695AF2609DC3300074A24 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				58DF38DA260F1C09002C1236 /* HistoryModel.h */,
+				58DF38DB260F1C09002C1236 /* HistoryModel.m */,
 				5805B31A260FA3DD0029F138 /* NSURL+QueryDictionary */,
 				58DF37B9260DE552002C1236 /* Unity.m */,
 				58DF37BB260DE552002C1236 /* Unity.h */,
@@ -534,7 +533,6 @@
 		A4A695B42609DC3300074A24 /* native */ = {
 			isa = PBXGroup;
 			children = (
-				58DF385D260E49A0002C1236 /* open.manager */,
 				58DF382D260E3EC2002C1236 /* ui */,
 				A4A695B92609DC3300074A24 /* open */,
 				58DF37CD260DE9F3002C1236 /* jsi */,
@@ -545,6 +543,7 @@
 		A4A695B92609DC3300074A24 /* open */ = {
 			isa = PBXGroup;
 			children = (
+				58DF385D260E49A0002C1236 /* open.manager */,
 				58DF38B9260E7194002C1236 /* omp */,
 				58DF3868260E53A7002C1236 /* h5 */,
 				58DF3700260C3E26002C1236 /* rn */,
@@ -830,13 +829,13 @@
 				A4A695C82609DC3300074A24 /* JSIModule.m in Sources */,
 				58DF38DC260F1C0A002C1236 /* HistoryModel.m in Sources */,
 				58DF3863260E49A0002C1236 /* MGJRouter.m in Sources */,
-				5805B2E9260F9B8F0029F138 /* JSIRouterModule.m in Sources */,
+				5805B2E9260F9B8F0029F138 /* JSIDirectModule.m in Sources */,
 				A4A696582609F8A700074A24 /* JumpViewController.m in Sources */,
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
 				A4A695C62609DC3300074A24 /* NativeContext.m in Sources */,
 				58DF388F260E53A8002C1236 /* OpenH5Module.m in Sources */,
 				58DF37FD260DF843002C1236 /* JSIOldNavModule.m in Sources */,
-				5805B2F0260F9C030029F138 /* xengine__jsi_router.m in Sources */,
+				5805B2F0260F9C030029F138 /* xengine__jsi_direct.m in Sources */,
 				A4A695CA2609DC3300074A24 /* OpenMicroappModule.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				A4A696642609F96B00074A24 /* MainViewController.m in Sources */,

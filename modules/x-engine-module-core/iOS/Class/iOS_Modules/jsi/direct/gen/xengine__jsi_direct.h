@@ -6,9 +6,9 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol RouterOpenAppDTO;
+@protocol DirectDTO;
 
-@interface RouterOpenAppDTO: JSONModel
+@interface DirectDTO: JSONModel
   	@property(nonatomic,copy)   NSString* scheme;
    	@property(nonatomic,copy)   NSString* host;
    	@property(nonatomic,copy)   NSString* path;
@@ -19,14 +19,14 @@
     
 
 
-@protocol xengine__jsi_router_protocol
+@protocol xengine__jsi_direct_protocol
        @required 
-        - (void) _push:(RouterOpenAppDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _push:(DirectDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   
 
 
-@interface xengine__jsi_router : JSIModule<xengine__jsi_router_protocol>
+@interface xengine__jsi_direct : JSIModule<xengine__jsi_direct_protocol>
 @end
 

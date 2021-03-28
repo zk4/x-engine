@@ -38,7 +38,7 @@
 //    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
 //      [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
 //    [img open:@"omp" :@"http://192.168.1.15:8080" :@"/" :@{} :0 :TRUE];
-    [director push:@"omp" host:@"http://192.168.1.15:8080" path:@"" query:nil hideNavbar:TRUE];
+    [director push:@"h5" host:@"http://192.168.1.15:8080" path:@"" query:nil hideNavbar:TRUE];
 
 }
 

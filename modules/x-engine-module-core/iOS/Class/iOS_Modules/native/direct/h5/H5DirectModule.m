@@ -15,7 +15,10 @@
 #import "HistoryModel.h"
 #import "GlobalState.h"
  
- 
+@interface H5DirectModule ()
+@property (nonatomic, strong) id<iDirect>  h5Direct;
+@end
+
 @implementation H5DirectModule
 NATIVE_MODULE(H5DirectModule)
 
@@ -30,33 +33,23 @@ NATIVE_MODULE(H5DirectModule)
 -(NSString*) scheme{
     return @"h5";
 }
-//
-//  
-//- (void)open:(nonnull NSString *)type :(nonnull NSString *)uri :(nonnull NSString *)path :(nonnull NSDictionary *)args :(long)version :(BOOL)isHidden {
-//     if(uri){
-//         UIViewController *vc =[[RecyleWebViewController alloc] initWithUrl:uri newWebView:TRUE  withHiddenNavBar:isHidden];
-//         vc.hidesBottomBarWhenPushed = YES;
-//         HistoryModel* hm= [HistoryModel new];
-//         hm.vc = vc;
-//         hm.path = path;
-//         [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
-//        
-//         
-//         if([Unity sharedInstance].getCurrentVC.navigationController){
-//             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
-//
-//         } else {
-//             UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-//             if([nav isKindOfClass:[UINavigationController class]]){
-//                 [nav pushViewController:vc animated:YES];
-//             } else {
-//                 nav = nav.navigationController;
-//                 [nav pushViewController:vc animated:YES];
-//             }
-//         }
-//         vc.hidesBottomBarWhenPushed = NO;
-//         
-//     }
-// 
-//}
+- (void)afterAllNativeModuleInited{
+   NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
+    for(id<iDirect> direct in modules){
+        // 暂时 与 omp 使用相同的逻辑
+        if([[direct scheme] isEqualToString:@"omp"]){
+            self.h5Direct = direct;
+            return;
+        }
+
+    }
+}
+- (void)back: (NSString*) scheme host:(NSString*) host path:(NSString*) path{
+    [self.h5Direct back:scheme host:host path:path];
+}
+// 与 omp 使用相同的配置即可
+- (void)push:(nonnull NSString *)scheme host:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+    [self.h5Direct push:scheme host:host path:path query:query hideNavbar:hideNavbar];
+
+}
 @end

@@ -26,7 +26,7 @@ NATIVE_MODULE(DirectManagerModule)
 }
 
 - (NSString*) moduleId{
-    return @"com.zkty.native.director.manager";
+    return @"com.zkty.native.direct.manager";
 }
 
 - (int) order{

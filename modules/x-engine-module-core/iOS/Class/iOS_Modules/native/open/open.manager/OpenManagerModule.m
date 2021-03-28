@@ -25,7 +25,7 @@ NATIVE_MODULE(OpenManagerModule)
 }
 
 - (NSString*) moduleId{
-    return @"com.zkty.native.openmanager";
+    return @"com.zkty.native.open.manager";
 }
 
 - (int) order{

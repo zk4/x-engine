@@ -24,6 +24,8 @@
 		580EB23C260A214900EE0694 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580EB23B260A214900EE0694 /* CoreData.framework */; };
 		580EB28B260A247700EE0694 /* JSIContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB289260A247700EE0694 /* JSIContext.m */; };
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
+		58D208B32610E6820082ADC3 /* OmpDirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208B22610E6820082ADC3 /* OmpDirectModule.m */; };
+		58D208C22610E83D0082ADC3 /* DirectManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208C12610E83D0082ADC3 /* DirectManagerModule.m */; };
 		58DF377E260DC942002C1236 /* XEOneWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3777260DC942002C1236 /* XEOneWebViewPool.m */; };
 		58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3778260DC942002C1236 /* RecyleWebViewController.m */; };
 		58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */; };
@@ -113,6 +115,12 @@
 		580EB289260A247700EE0694 /* JSIContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIContext.m; sourceTree = "<group>"; };
 		580EB28A260A247700EE0694 /* JSIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIContext.h; sourceTree = "<group>"; };
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
+		58D208B12610E6820082ADC3 /* OmpDirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmpDirectModule.h; sourceTree = "<group>"; };
+		58D208B22610E6820082ADC3 /* OmpDirectModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OmpDirectModule.m; sourceTree = "<group>"; };
+		58D208BA2610E6B10082ADC3 /* iDirect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDirect.h; sourceTree = "<group>"; };
+		58D208BE2610E7F20082ADC3 /* iDirectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDirectManager.h; sourceTree = "<group>"; };
+		58D208C02610E83D0082ADC3 /* DirectManagerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectManagerModule.h; sourceTree = "<group>"; };
+		58D208C12610E83D0082ADC3 /* DirectManagerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectManagerModule.m; sourceTree = "<group>"; };
 		58DF3701260C3E3B002C1236 /* aRNModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aRNModule.h; sourceTree = "<group>"; };
 		58DF3702260C3E3B002C1236 /* RNContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNContext.h; sourceTree = "<group>"; };
 		58DF3703260C3E3B002C1236 /* RNContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNContext.m; sourceTree = "<group>"; };
@@ -341,6 +349,33 @@
 			path = "NSURL+QueryDictionary";
 			sourceTree = "<group>";
 		};
+		58D208B02610E6620082ADC3 /* direct */ = {
+			isa = PBXGroup;
+			children = (
+				58D208C92610EA2B0082ADC3 /* omp */,
+				58D208BF2610E83D0082ADC3 /* direct.manager */,
+			);
+			path = direct;
+			sourceTree = "<group>";
+		};
+		58D208BF2610E83D0082ADC3 /* direct.manager */ = {
+			isa = PBXGroup;
+			children = (
+				58D208C02610E83D0082ADC3 /* DirectManagerModule.h */,
+				58D208C12610E83D0082ADC3 /* DirectManagerModule.m */,
+			);
+			path = direct.manager;
+			sourceTree = "<group>";
+		};
+		58D208C92610EA2B0082ADC3 /* omp */ = {
+			isa = PBXGroup;
+			children = (
+				58D208B12610E6820082ADC3 /* OmpDirectModule.h */,
+				58D208B22610E6820082ADC3 /* OmpDirectModule.m */,
+			);
+			path = omp;
+			sourceTree = "<group>";
+		};
 		58DF3700260C3E26002C1236 /* rn */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +568,7 @@
 		A4A695B42609DC3300074A24 /* native */ = {
 			isa = PBXGroup;
 			children = (
+				58D208B02610E6620082ADC3 /* direct */,
 				58DF382D260E3EC2002C1236 /* ui */,
 				A4A695B92609DC3300074A24 /* open */,
 				58DF37CD260DE9F3002C1236 /* jsi */,
@@ -565,8 +601,10 @@
 			isa = PBXGroup;
 			children = (
 				58DF38AC260E6459002C1236 /* iStorage.h */,
+				58D208BA2610E6B10082ADC3 /* iDirect.h */,
 				A4A695C02609DC3300074A24 /* iOpen.h */,
 				A4A695C12609DC3300074A24 /* iOpenManager.h */,
+				58D208BE2610E7F20082ADC3 /* iDirectManager.h */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -842,12 +880,14 @@
 				58DF37BF260DE552002C1236 /* XEngineWebView.m in Sources */,
 				5805B328260FAC6D0029F138 /* NSString+Router+URLQuery.m in Sources */,
 				58DF3807260DF95B002C1236 /* xengine__module_nav.m in Sources */,
+				58D208C22610E83D0082ADC3 /* DirectManagerModule.m in Sources */,
 				58DF3831260E3EE9002C1236 /* NavUtil.m in Sources */,
 				58DF3864260E49A0002C1236 /* OpenManagerModule.m in Sources */,
 				5805B31D260FA3DD0029F138 /* NSURL+QueryDictionary.m in Sources */,
 				A4A696462609F80000074A24 /* OneViewController.m in Sources */,
 				A4A6964C2609F81500074A24 /* ThreeViewController.m in Sources */,
 				58DF38D6260E7C91002C1236 /* GlobalState.m in Sources */,
+				58D208B32610E6820082ADC3 /* OmpDirectModule.m in Sources */,
 				A4A696312609F47900074A24 /* TwoViewController.m in Sources */,
 				58DF37C2260DE552002C1236 /* Unity.m in Sources */,
 				58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */,

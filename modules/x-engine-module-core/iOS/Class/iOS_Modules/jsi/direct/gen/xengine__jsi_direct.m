@@ -7,12 +7,16 @@
 #import "micros.h"
 
 
-@implementation DirectDTO
+@implementation DirectPushDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
         return YES;
     }
 @end
-    
+@implementation DirectBackDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+        return YES;
+    }
+@end
  
   @implementation xengine__jsi_direct
     - (instancetype)init
@@ -27,7 +31,7 @@
     
     - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     
-        DirectDTO* dto = [self convert:dict clazz:DirectDTO.class];
+        DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
           [self _push:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];

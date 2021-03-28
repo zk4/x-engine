@@ -42,7 +42,11 @@ export default {
   },
   methods: {
     nnext() {
-      engine.bridge.call('com.zkty.jsi.direct.push',{path:'/testB'},function(res){})
+      engine.bridge.call('com.zkty.jsi.direct.push',{
+      scheme: 'omp',
+      path:'/testB'
+
+      },function(res){})
     },
     next() {
       nav.navigatorPush({

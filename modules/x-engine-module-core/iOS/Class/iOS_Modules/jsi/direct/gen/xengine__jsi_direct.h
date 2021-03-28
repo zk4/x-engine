@@ -8,7 +8,7 @@
 
 @protocol DirectDTO;
 
-@interface DirectDTO: JSONModel
+@interface DirectPushDTO: JSONModel
   	@property(nonatomic,copy)   NSString* scheme;
    	@property(nonatomic,copy)   NSString* host;
    	@property(nonatomic,copy)   NSString* path;
@@ -18,10 +18,15 @@
 @end
     
 
+@interface DirectBackDTO: JSONModel
+      @property(nonatomic,copy)   NSString* scheme;
+       @property(nonatomic,copy)   NSString* host;
+       @property(nonatomic,copy)   NSString* path;
+@end
 
 @protocol xengine__jsi_direct_protocol
        @required 
-        - (void) _push:(DirectDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _push:(DirectPushDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   

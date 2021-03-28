@@ -16,11 +16,11 @@
 #import "NativeContext.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "OpenMicroappModule.h"
-#import "XEOneWebViewPool.h"
-#import "NavUtil.h"
+
 #import "GlobalState.h"
 #import "HistoryModel.h"
+#import "NSURL+QueryDictionary.h"
+
 
 @interface JSIRouterModule ()
 @property (nonatomic, strong)   id<iOpenManager>  openerManger;
@@ -98,7 +98,7 @@ JSI_MODULE(JSIRouterModule)
 //    [self.openerManger  open:dict[@"type"] :dict[@"uri"] :dict[@"path"] :dict[@"dict"] :dict[@"version"] :dict[@"hideNavbar"]];
 //  }
 
-- (void)push:(RouterOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
+- (void)_push:(RouterOpenAppDTO *)dto complete:(void (^)(BOOL))completionHandler {
 
 
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
@@ -111,18 +111,23 @@ JSI_MODULE(JSIRouterModule)
 
     rc=(RecyleWebViewController*)currentVC;
 
-    NSString* index=[GlobalState s_microapp_root_url];
-    
-    // TODO  处理 params
-    NSString * finalUrl =[NSString stringWithFormat:@"%@#%@?id=100",index,dto.url];
- 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:FALSE withHiddenNavBar:dto.hideNavbar];
-    
-    [currentVC.navigationController pushViewController:vc animated:YES];
-    HistoryModel* hm= [HistoryModel new];
-    hm.vc = vc;
-    hm.path = dto.url;
-    [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+
+    if(dto.host){
+        // 打开新的 webview
+    }else
+    {
+        NSString* index=[GlobalState s_microapp_root_url];
+        NSString * finalUrl =[NSString stringWithFormat:@"%@#?id=100",index];
+     
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:FALSE withHiddenNavBar:dto.hideNavbar];
+        
+        [currentVC.navigationController pushViewController:vc animated:YES];
+        HistoryModel* hm= [HistoryModel new];
+        hm.vc = vc;
+        hm.path = dto.path;
+        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+    }
+  
     completionHandler(YES);
 
 }

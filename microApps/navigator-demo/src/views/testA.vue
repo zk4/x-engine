@@ -8,6 +8,10 @@
         <div>原生跳转</div>
       </div>
       <div style="margin: 16px;">
+        <van-button type="primary" round block @click="nnext">下一页 route&nav</van-button>
+      </div>
+
+      <div style="margin: 16px;">
         <van-button type="primary" round block @click="next">下一页</van-button>
       </div>
 
@@ -26,6 +30,7 @@
 
 <script>
 import nav from "@zkty-team/x-engine-module-nav";
+import engine from "@zkty-team/x-engine-module-engine";
 export default {
   name: "testA",
   components: {},
@@ -36,6 +41,9 @@ export default {
     };
   },
   methods: {
+    nnext() {
+      engine.bridge.call('com.zkty.jsi.router.push',{path:'/testB'},function(res){})
+    },
     next() {
       nav.navigatorPush({
         url: "/testB",

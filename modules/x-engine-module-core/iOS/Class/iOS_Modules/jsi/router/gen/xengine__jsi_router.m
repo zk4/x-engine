@@ -9,11 +9,7 @@
 
 @implementation RouterOpenAppDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
-   
-   	if ([propertyName isEqualToString:@"args"]) { return YES; }
-   	if ([propertyName isEqualToString:@"version"]) { return YES; }
-   	if ([propertyName isEqualToString:@"hideNavbar"]) { return YES; }	return NO;
+        return YES;
     }
 @end
     
@@ -32,10 +28,10 @@
         return @"com.zkty.jsi.router";
     }
     
-    - (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     
           RouterOpenAppDTO* dto = [self convert:dict clazz:RouterOpenAppDTO.class];
-          [self _openTargetRouter:dto complete:^(BOOL complete) {
+          [self _push:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
       }

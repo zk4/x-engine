@@ -9,19 +9,19 @@
 @protocol RouterOpenAppDTO;
 
 @interface RouterOpenAppDTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,copy) NSString* uri;
-   	@property(nonatomic,copy) NSString* path;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
-   	@property(nonatomic,assign) NSInteger version;
-   	@property(nonatomic,assign) BOOL hideNavbar;
+  	@property(nonatomic,copy)   NSString* scheme;
+   	@property(nonatomic,copy)   NSString* host;
+   	@property(nonatomic,copy)   NSString* path;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
+    @property(nonatomic,assign) BOOL hideNavbar;
+
 @end
     
 
 
 @protocol xengine__jsi_router_protocol
        @required 
-        - (void) _openTargetRouter:(RouterOpenAppDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _push:(RouterOpenAppDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
 @end
   

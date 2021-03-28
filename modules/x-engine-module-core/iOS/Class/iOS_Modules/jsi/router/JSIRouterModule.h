@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "JSIModule.h"
+#import "xengine__jsi_router.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSIRouterModule : JSIModule
+@interface JSIRouterModule : xengine__jsi_router
 
 @end
 

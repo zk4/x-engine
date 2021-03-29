@@ -8,11 +8,10 @@
 
 #import "JSIOldNavModule.h"
 #import "JSIContext.h"
-#import "iOpenManager.h"
 #import "NativeContext.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "OpenMicroappModule.h"
+#import "MicroappDirectModule.h"
 #import "XEOneWebViewPool.h"
 #import "NavUtil.h"
 #import "GlobalState.h"

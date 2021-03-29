@@ -8,7 +8,7 @@
 
 #import "JSIDirectModule.h"
 #import "JSIContext.h"
-#import "iOpenManager.h"
+#import "iDirectManager.h"
 #import "NativeContext.h"
 #import "JSIOldNavModule.h"
 #import "JSIContext.h"

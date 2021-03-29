@@ -8,11 +8,11 @@
 
 #import "JSIOldRouterModule.h"
 #import "JSIContext.h"
-#import "iOpenManager.h"
+#import "iDirectManager.h"
 #import "NativeContext.h"
  
 @interface JSIOldRouterModule ()
-@property (nonatomic, strong)   id<iOpenManager>  openerManger;
+@property (nonatomic, strong)   id<iDirectManager>  directors;
 @end
 @implementation JSIOldRouterModule
 JSI_MODULE(JSIOldRouterModule)
@@ -22,9 +22,11 @@ JSI_MODULE(JSIOldRouterModule)
 }
 
 -(void)afterAllJSIModuleInited {
-    self.openerManger = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
+    self.directors = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 }
 - (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-    [self.openerManger  open:dict[@"type"] :dict[@"uri"] :dict[@"path"] :dict[@"dict"] :dict[@"version"] :dict[@"hideNavbar"]];
+    NSString* scheme = dict[@"type"];
+    [self.directors push:scheme host:dict[@"uri"] path:dict[@"path"] query:dict[@"query"] hideNavbar:dict[@"hideNavbar"]];
+
   }
 @end

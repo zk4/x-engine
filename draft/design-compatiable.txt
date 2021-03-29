@@ -27,52 +27,53 @@ package 原生模块(JSI) {
 } 
 
 package JSI模块 {
-
   interface xengine__module_router_protocol {
     //model.ts自动生成
-    +  (void) {abstract}  _open (...,callback:Func)
+    +  (void) {abstract}  _Direct (...,callback:Func)
   }
-  abstract class xengine__module_open extends  JSIModule  implements xengine__module_router_protocol { 
+
+  abstract class xengine__module_Direct extends  JSIModule  implements xengine__module_router_protocol { 
     //model.ts自动生成
-    + (void) open (...,callback:Func)
+    + (void) Direct (...,callback:Func)
   }
 }
 
- 
-
 
 package 协议模块 {
-  interface iOpen {    
-  +(NSString*) type;
-  +(void)open:(...);
- 
-  }
-   interface iOpenManager {    
-  +(void)open:(...);
+     interface iDirectManager {    
+    +(void)push:(...);
+    +(void)back:(...);
    }
+  interface iDirect {    
+  +(NSString*) scheme;
+  +(void)push:(...);
+   +(void)back:(...);
+  }
+
    interface iContainer {
       // 生命周期
    }
 }
   
-  package 原生模块(OpenManager) {
- class OpenManagerModule extends NativeModule implements iOpenManager{  
-    - Stack<iContainer>: containers;
-    - Openers: Map<string,iOpen>;
+  package 原生模块(DirectManager) {
+ class DirectManagerModule extends NativeModule implements iDirectManager{  
+    - directors: Map<string,iDirect>;
   }
 
 
   }
-    package 原生模块(Open.H5) {
-  class OpenH5Module   extends NativeModule implements iOpen{
+  package 原生模块(Direct.H5) {
+  class DirectH5Module   extends NativeModule implements iDirect{
     - (string) moduleId;
-    - (void) open(...);
+    +(void)push:(...);
+    +(void)back:(...);
   }
     }
-    package 原生模块(Open.Native) {
-    class OpenNativeModule   extends NativeModule implements iOpen{
+    package 原生模块(Direct.Native) {
+    class DirectNativeModule   extends NativeModule implements iDirect{
     - (string) moduleId;
-    - (void) open(...);
+    +(void)push:(...);
+    +(void)back:(...);
   }
    
 }
@@ -83,9 +84,9 @@ class WebViewContainer implements iContainer {}
 WebViewContainer --> JSIContext
 
   
-package JSI模块(Open){
-class __xengine__module_open extends xengine__module_open{
-    - openManager: iOpenManager;
+package JSI模块(Direct){
+class __xengine__module_Direct extends xengine__module_Direct{
+    - DirectManager: iDirectManager;
   }
   
  

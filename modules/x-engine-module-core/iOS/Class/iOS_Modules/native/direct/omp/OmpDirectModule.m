@@ -12,7 +12,7 @@
 #import "XEOneWebViewPoolModel.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "iOpen.h"
+#import "iDirect.h"
 #import "GlobalState.h"
  
 
@@ -27,7 +27,7 @@ NATIVE_MODULE(OmpDirectModule)
 }
  
 
-- (void)back: (NSString*) scheme host:(NSString*) host path:(NSString*) path{
+- (void)back:(NSString*) host path:(NSString*) path{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
 
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
@@ -80,7 +80,7 @@ NATIVE_MODULE(OmpDirectModule)
     }
 }
 
-- (void)push:(nonnull NSString *)scheme host:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+- (void)push:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
    
 //    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
 //        // TODO，如果是 tab？ 强制转成 open
@@ -90,10 +90,15 @@ NATIVE_MODULE(OmpDirectModule)
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
 
     if(host){
-        //TODO 将状态保持到 webview，不要放 GlobalState， GlobalState 不应该存在
+        // TODO 将状态保持到 webview，不要放 GlobalState， GlobalState 不应该存在
         [GlobalState set_s_microapp_root_url:host];
-        
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:host newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        // TODO 统一一个类处理 URL 地址问题
+        NSString * finalUrl = host;
+        if(path && ![path isEqualToString:@"/"]){
+            finalUrl =[NSString stringWithFormat:@"%@/#%@",host,path];
+        }
+
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:TRUE  withHiddenNavBar:hideNavbar];
         
         HistoryModel* hm= [HistoryModel new];
         hm.vc = vc;

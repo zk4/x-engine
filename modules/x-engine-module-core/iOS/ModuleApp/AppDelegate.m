@@ -1,7 +1,6 @@
 #import "AppDelegate.h"
 #import "NativeContext.h"
 #import "JSIContext.h"
-#import "iOpenManager.h"
 #import "MainNavigationController.h"
 #import "MainTabbarController.h"
 @interface AppDelegate ()

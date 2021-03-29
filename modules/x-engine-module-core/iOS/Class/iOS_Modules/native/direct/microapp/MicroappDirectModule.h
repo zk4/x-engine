@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "NativeModule.h"
-#import "iOpen.h"
+#import "iDirect.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenMicroappModule : NativeModule <iOpen>
+@interface MicroappDirectModule : NativeModule <iDirect>
 @end
 
 NS_ASSUME_NONNULL_END

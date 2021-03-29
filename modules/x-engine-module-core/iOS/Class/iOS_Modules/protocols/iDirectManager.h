@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
  @protocol iDirectManager <NSObject>
 
 - (void)push: (NSString*) scheme
-        host:(NSString*) host
+        host:(nullable NSString*) host
         path:(NSString*) path
-        query:(NSDictionary<NSString*,NSString*>*) query
+        query:(nullable NSDictionary<NSString*,NSString*>*) query
   hideNavbar:(BOOL) hideNavbar;
 
-- (void)back: (NSString*) scheme host:(NSString*) host path:(NSString*) path;
+- (void)back: (NSString*) scheme host:(nullable NSString*) host path:(NSString*) path;
 
 @end
 

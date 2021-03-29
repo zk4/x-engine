@@ -15,7 +15,7 @@
     -(XEOneWebViewPoolModel *)createWebView:(NSString *)baseUrl;
     - (XEngineWebView *)getWebView;
     - (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView;
-    - (void) bindingAllJSI:(WKWebView*) webview;
+
 @end
 
 

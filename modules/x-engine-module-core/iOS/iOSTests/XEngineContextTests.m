@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "NativeContext.h"
-#import "OpenH5Module.h"
+#import "H5DirectModule.h"
 @interface NativeContextTests : XCTestCase
 
 @end
@@ -25,14 +25,14 @@
 
 - (void)test不可以注册相同的Native_Module {
  
-    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:OpenH5Module.class]);
+    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:H5DirectModule.class]);
     [[NativeContext sharedInstance] start];
  
 }
-- (void)test获取openmanager_native_Module {
+- (void)test获取directmanager_native_Module {
 
-    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.openmanager"];
-    XCTAssert(openmanager,@"应该获得 openmanager");
+    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.direct.manager"];
+    XCTAssert(openmanager,@"应该获得 direct manager");
 }
 - (void)test获取不存在的_native_Module {
 

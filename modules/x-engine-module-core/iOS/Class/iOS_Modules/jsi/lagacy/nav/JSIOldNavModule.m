@@ -26,8 +26,7 @@
 JSI_MODULE(JSIOldNavModule)
 
 - (NSString*) moduleId{
-    // TODO:
-    // should named to com.zkty.jsi.vuerouter
+
     return @"com.zkty.module.nav";
 }
 

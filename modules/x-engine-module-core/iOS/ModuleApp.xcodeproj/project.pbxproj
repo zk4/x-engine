@@ -28,6 +28,7 @@
 		58D208C22610E83D0082ADC3 /* DirectManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208C12610E83D0082ADC3 /* DirectManagerModule.m */; };
 		58D208D02610F07B0082ADC3 /* H5DirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208CE2610F07B0082ADC3 /* H5DirectModule.m */; };
 		58D2092B261230290082ADC3 /* Broadcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2092A261230290082ADC3 /* Broadcast.m */; };
+		58D2093826123CDC0082ADC3 /* JSIBroadcastModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */; };
 		58DF377E260DC942002C1236 /* XEOneWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3777260DC942002C1236 /* XEOneWebViewPool.m */; };
 		58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3778260DC942002C1236 /* RecyleWebViewController.m */; };
 		58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */; };
@@ -123,6 +124,8 @@
 		58D208CF2610F07B0082ADC3 /* H5DirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5DirectModule.h; sourceTree = "<group>"; };
 		58D20929261230290082ADC3 /* Broadcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Broadcast.h; sourceTree = "<group>"; };
 		58D2092A261230290082ADC3 /* Broadcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Broadcast.m; sourceTree = "<group>"; };
+		58D2093626123CDC0082ADC3 /* JSIBroadcastModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIBroadcastModule.h; sourceTree = "<group>"; };
+		58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIBroadcastModule.m; sourceTree = "<group>"; };
 		58DF3776260DC942002C1236 /* XEOneWebViewPoolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEOneWebViewPoolModel.h; sourceTree = "<group>"; };
 		58DF3777260DC942002C1236 /* XEOneWebViewPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEOneWebViewPool.m; sourceTree = "<group>"; };
 		58DF3778260DC942002C1236 /* RecyleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecyleWebViewController.m; sourceTree = "<group>"; };
@@ -384,6 +387,15 @@
 			path = broadcast;
 			sourceTree = "<group>";
 		};
+		58D2093526123CC90082ADC3 /* broadcast */ = {
+			isa = PBXGroup;
+			children = (
+				58D2093626123CDC0082ADC3 /* JSIBroadcastModule.h */,
+				58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */,
+			);
+			path = broadcast;
+			sourceTree = "<group>";
+		};
 		58DF3775260DC942002C1236 /* webview */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +452,7 @@
 		58DF37D1260DEA1F002C1236 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
+				58D2093526123CC90082ADC3 /* broadcast */,
 				5805B2E6260F9B590029F138 /* direct */,
 				5805B2E2260F969A0029F138 /* legacy */,
 			);
@@ -820,6 +833,7 @@
 				5805B2F0260F9C030029F138 /* xengine__jsi_direct.m in Sources */,
 				A4A695CA2609DC3300074A24 /* MicroappDirectModule.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
+				58D2093826123CDC0082ADC3 /* JSIBroadcastModule.m in Sources */,
 				A4A696642609F96B00074A24 /* MainViewController.m in Sources */,
 				58DF37BF260DE552002C1236 /* XEngineWebView.m in Sources */,
 				5805B328260FAC6D0029F138 /* NSString+Router+URLQuery.m in Sources */,

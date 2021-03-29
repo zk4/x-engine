@@ -20,7 +20,6 @@
 @interface XEOneWebViewPool ()
 
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
-@property (nonatomic, strong) NSMutableArray<XEOneWebViewPoolModel *>* webCacheAry;
 
 @end
 
@@ -45,18 +44,7 @@
     }
     return self;
 }
- 
- 
-- (XEOneWebViewPoolModel *)createNewWebView:(NSString *)baseUrl{
-    
-    if(baseUrl){
-        XEOneWebViewPoolModel *model = [self createWebView:baseUrl];
-        [self.webCacheAry addObject:model];
-        return model;
-    }
-    return nil;
-}
- 
+  
 
 - (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView{
 
@@ -113,9 +101,9 @@
     configuration.processPool = self.wkprocessPool;
 
     if (@available(iOS 11.0, *) ) {
-        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
-        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
-        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
+//        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
+//        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
+//        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
     }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
     webview.configuration.preferences.javaScriptEnabled = YES;
@@ -131,6 +119,7 @@
     [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     model.webView = webview;
 //    self.webRecordDic[webview] = model;
+    [self.webCacheAry addObject:model];
     return model;
 }
 //

@@ -98,14 +98,14 @@
             
             [GlobalState setCurrentWebView:self.webview];
         }else {
-            self.webview= [GlobalState getCurrentWebView];
+            self.webview = [GlobalState getCurrentWebView];
         }
             
         HistoryModel* hm = [HistoryModel new];
-        hm.vc   = self;
-        hm.pathname = pathname;
-        hm.webview = self.webview;
-        hm.host = host;
+        hm.vc            = self;
+        hm.pathname      = pathname;
+        hm.webview       = self.webview;
+        hm.host          = host;
         [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
      
         [[NSNotificationCenter defaultCenter] addObserver:self

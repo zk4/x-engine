@@ -51,7 +51,7 @@ export default {
     next() {
       engine.bridge.call('com.zkty.jsi.direct.back',{
       scheme: 'omp',
-      path:'0'
+      pathname:'0'
       },function(res){})
       /*nav.navigatorPush({*/
         /*url: "/testB",*/

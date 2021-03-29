@@ -10,6 +10,9 @@
       <van-button type="primary" round block @click="openmp">打开新的microapp</van-button>
     </div>
     <div style="margin: 16px;">
+      <van-button type="primary" round block @click="triggerbroad">broadcast</van-button>
+    </div>
+    <div style="margin: 16px;">
       <van-button type="primary" round block @click="next">下一页</van-button>
     </div>
     <div style="margin: 16px;">
@@ -46,8 +49,23 @@ export default {
   mounted() {
     this.nativeStr = this.$route.query.params;
     this.params = this.$route.query.qid;
+    engine.broadcastOn(function(res){
+    console.log(res);
+      engine.bridge.call('com.zkty.jsi.broadcast.trigger',{
+      source: '1',
+      },function(res){
+      })
+      return 1;
+    })
   },
   methods: {
+  triggerbroad(){
+      engine.bridge.call('com.zkty.jsi.broadcast.trigger',{
+      source: '1',
+      },function(res){
+      })
+  
+  },
     openmp(){
       /*engine.bridge.call('com.zkty.jsi.direct.push',{*/
       /*scheme: 'microapp',*/

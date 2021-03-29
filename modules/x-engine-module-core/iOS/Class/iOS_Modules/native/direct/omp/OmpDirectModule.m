@@ -95,7 +95,7 @@ NATIVE_MODULE(OmpDirectModule)
         // TODO 统一一个类处理 URL 地址问题
         NSString * finalUrl = host;
         if(path && ![path isEqualToString:@"/"]){
-            finalUrl =[NSString stringWithFormat:@"%@/#%@",host,path];
+            finalUrl =[NSString stringWithFormat:@"%@#%@",host,path];
         }
 
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:TRUE  withHiddenNavBar:hideNavbar];

@@ -28,5 +28,5 @@ JSI_MODULE(JSIOldRouterModule)
     NSString* scheme = dict[@"type"];
     [self.directors push:scheme host:dict[@"uri"] path:dict[@"path"] query:dict[@"query"] hideNavbar:dict[@"hideNavbar"]];
 
-  }
+}
 @end

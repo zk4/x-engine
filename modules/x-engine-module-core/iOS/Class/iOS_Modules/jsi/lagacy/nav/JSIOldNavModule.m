@@ -16,12 +16,10 @@
 #import "NavUtil.h"
 #import "GlobalState.h"
 #import "HistoryModel.h"
+#import "iDirectManager.h"
 
 @interface JSIOldNavModule ()
-/*
- webview: (path,vc)
- */
-
+    @property (nonatomic, strong)   id<iDirectManager>  directors;
 @end
 
 @implementation JSIOldNavModule
@@ -33,7 +31,9 @@ JSI_MODULE(JSIOldNavModule)
     return @"com.zkty.module.nav";
 }
 
-
+-(void)afterAllJSIModuleInited {
+    self.directors = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+}
 
 
 - (void)_navigatorBack:(NavNavigatorBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
@@ -98,30 +98,9 @@ JSI_MODULE(JSIOldNavModule)
 
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
 
-    UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
-    RecyleWebViewController* rc= nil;
-    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
-        // TODO，如果是 tab？ 强制转成 open
-        NSLog(@"顶层都不是 RecyleWebViewController，还想着 nav？");
-        return;
-    }
-
-    rc=(RecyleWebViewController*)currentVC;
-
-    NSString* index=[GlobalState s_microapp_root_url];
-    
-    // TODO  处理 params
-    NSString * finalUrl =[NSString stringWithFormat:@"%@#%@?id=100",index,dto.url];
- 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:FALSE withHiddenNavBar:dto.hideNavbar];
-    
-    [currentVC.navigationController pushViewController:vc animated:YES];
-    HistoryModel* hm= [HistoryModel new];
-    hm.vc = vc;
-    hm.path = dto.url;
-    [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
-    completionHandler(YES);
-
+//
+    NSString* scheme = @"microapp";
+    [self.directors push:scheme host:nil path:dto.url query:dto.params hideNavbar:dto.hideNavbar];
 }
 
 

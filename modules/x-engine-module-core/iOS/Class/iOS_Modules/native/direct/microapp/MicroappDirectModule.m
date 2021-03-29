@@ -46,9 +46,8 @@ NATIVE_MODULE(MicroappDirectModule)
     [self.microappDirect back:host path:path];
 }
 
-- (void)push:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+- (void)push:(NSString *)host path:(nonnull NSString *)path query:( NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
     NSString *urlStr = [[MicroAppLoader sharedInstance] getMicroAppUrlStrPathWith:host withVersion:0];
-    [GlobalState set_s_microapp_root_url:urlStr];
 
     [self.microappDirect push:urlStr path:path query:query hideNavbar:hideNavbar];
 }

@@ -125,7 +125,7 @@ NATIVE_MODULE(OmpDirectModule)
     {
         NSString* host=[GlobalState s_microapp_root_url];
 
-        NSString * finalUrl =[NSString stringWithFormat:@"%@/#%@",host,path];
+        NSString * finalUrl =[NSString stringWithFormat:@"%@#%@",host,path];
      
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:FALSE withHiddenNavBar:hideNavbar];
         

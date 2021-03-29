@@ -48,7 +48,7 @@ NATIVE_MODULE(DirectManagerModule)
 
 }
 
-- (void)push:(nonnull NSString *)scheme host:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+- (void)push:(nonnull NSString *)scheme host:(NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
     id<iDirect> direct = [self.directors objectForKey:scheme];
     [direct push:host path:path query:query hideNavbar:hideNavbar];
 }

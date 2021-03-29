@@ -40,7 +40,7 @@ JSI_MODULE(JSIDirectModule)
 }
 
 - (void)_push:(DirectPushDTO *)dto complete:(void (^)(BOOL))completionHandler {  
-    [self.directors push:dto.scheme host:dto.host path:dto.path query:dto.query hideNavbar:dto.hideNavbar];
+    [self.directors push:dto.scheme host:dto.host pathname:dto.pathname query:dto.query hideNavbar:dto.hideNavbar];
     completionHandler(YES);
 }
 

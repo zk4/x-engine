@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString*) scheme;
 - (void)push:
         (NSString*) host
-        path:(NSString*) path
+        pathname:(NSString*) pathname
         query:(NSDictionary<NSString*,NSString*>*) query
   hideNavbar:(BOOL) hideNavbar;
 
-- (void)back:(NSString*) host path:(NSString*) path;
+- (void)back:(NSString*) host pathname:(NSString*) pathname;
 
 @end
 

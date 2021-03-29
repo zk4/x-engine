@@ -27,14 +27,14 @@ NATIVE_MODULE(OmpDirectModule)
 }
  
 
-- (void)back:(NSString*) host path:(NSString*) path{
+- (void)back:(NSString*) host pathname:(NSString*) pathname{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
 
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
     NSMutableArray<HistoryModel*>*  histories=
     [[GlobalState sharedInstance] getCurrentWebViewHistories];
 
-    if ([@"0" isEqualToString:path]){
+    if ([@"0" isEqualToString:pathname]){
         for (UIViewController *vc in [ary reverseObjectEnumerator]){
             if (![vc isKindOfClass:[RecyleWebViewController class]]){
                 [navC popToViewController:vc animated:YES];
@@ -43,14 +43,14 @@ NATIVE_MODULE(OmpDirectModule)
             }
         }
     }
-    else if ([@"/index" isEqualToString:path] || [@"/" isEqualToString:path]){
+    else if ([@"/index" isEqualToString:pathname] || [@"/" isEqualToString:pathname]){
         if(histories && histories.count > 0){
             [navC popToViewController:histories[0].vc animated:YES];
             [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
         }
 
     }
-    else if ([@"-1" isEqualToString:path] || [@"" isEqualToString:path]){
+    else if ([@"-1" isEqualToString:pathname] || [@"" isEqualToString:pathname]){
         if(histories){
             if(histories.count > 1)
             {
@@ -67,7 +67,7 @@ NATIVE_MODULE(OmpDirectModule)
         if(histories && histories.count > 1){
             int i = 0;
             for (HistoryModel *hm in [histories reverseObjectEnumerator]){
-                if(hm && [hm.path isEqualToString:path]){
+                if(hm && [hm.pathname isEqualToString:pathname]){
                     [navC popToViewController:hm.vc animated:YES];
                     
                     [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
@@ -80,7 +80,7 @@ NATIVE_MODULE(OmpDirectModule)
     }
 }
 
-- (void)push:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+- (void)push:(nonnull NSString *)host pathname:(nonnull NSString *)pathname query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
    
 //    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
 //        // TODO，如果是 tab？ 强制转成 open
@@ -94,11 +94,11 @@ NATIVE_MODULE(OmpDirectModule)
 //        [GlobalState set_s_microapp_root_url:host];
         // TODO 统一一个类处理 URL 地址问题
         NSString * finalUrl = host;
-        if(path && ![path isEqualToString:@"/"]){
-            finalUrl =[NSString stringWithFormat:@"%@#%@",host,path];
+        if(pathname && ![pathname isEqualToString:@"/"]){
+            finalUrl =[NSString stringWithFormat:@"%@#%@",host,pathname];
         }
 
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host path:path newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:hideNavbar];
         
        
 
@@ -120,9 +120,9 @@ NATIVE_MODULE(OmpDirectModule)
     }else{
         NSString* host=[[GlobalState sharedInstance] getLastHost ];
 
-        NSString * finalUrl =[NSString stringWithFormat:@"%@#%@",host,path];
+        NSString * finalUrl =[NSString stringWithFormat:@"%@#%@",host,pathname];
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host path:path newWebView:FALSE withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:FALSE withHiddenNavBar:hideNavbar];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 

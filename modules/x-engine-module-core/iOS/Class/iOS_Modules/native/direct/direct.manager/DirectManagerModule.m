@@ -40,14 +40,14 @@ NATIVE_MODULE(DirectManagerModule)
     }
 }
 
-- (void)back: (NSString*) scheme host:(NSString*) host path:(NSString*) path{
+- (void)back: (NSString*) scheme host:(NSString*) host pathname:(NSString*) pathname{
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    [direct back:host path:path];
+    [direct back:host pathname:pathname];
 }
 
-- (void)push:(nonnull NSString *)scheme host:(NSString *)host path:(nonnull NSString *)path query:(  NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+- (void)push:(nonnull NSString *)scheme host:(NSString *)host pathname:(nonnull NSString *)pathname query:(  NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    [direct push:host path:path query:query hideNavbar:hideNavbar];
+    [direct push:host pathname:pathname query:query hideNavbar:hideNavbar];
 }
 
 @end

@@ -50,9 +50,7 @@ package 协议模块 {
    +(void)back:(...);
   }
 
-   interface iContainer {
-      // 生命周期
-   }
+ 
 }
   
   package 原生模块(DirectManager) {
@@ -68,20 +66,11 @@ package 协议模块 {
     +(void)push:(...);
     +(void)back:(...);
   }
-    }
-    package 原生模块(Direct.Native) {
-    class DirectNativeModule   extends NativeModule implements iDirect{
-    - (string) moduleId;
-    +(void)push:(...);
-    +(void)back:(...);
-  }
+    
+    
    
 }
-package 原生模块(Container){
-class WebViewContainer implements iContainer {}
-}
-
-WebViewContainer --> JSIContext
+ 
 
   
 package JSI模块(Direct){

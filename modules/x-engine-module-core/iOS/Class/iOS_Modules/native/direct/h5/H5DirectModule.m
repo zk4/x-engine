@@ -44,12 +44,12 @@ NATIVE_MODULE(H5DirectModule)
 
     }
 }
-- (void)back:(NSString*) host path:(NSString*) path{
-    [self.h5Direct back:host path:path];
+- (void)back:(NSString*) host pathname:(NSString*) pathname{
+    [self.h5Direct back:host pathname:pathname];
 }
 
-- (void)push:( NSString *)host path:(nonnull NSString *)path query:( NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
-    [self.h5Direct push:host path:path query:query hideNavbar:hideNavbar];
+- (void)push:( NSString *)host pathname:(nonnull NSString *)pathname query:( NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
+    [self.h5Direct push:host pathname:pathname query:query hideNavbar:hideNavbar];
 
 }
 @end

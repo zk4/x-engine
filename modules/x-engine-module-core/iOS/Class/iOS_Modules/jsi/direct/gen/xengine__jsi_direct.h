@@ -11,7 +11,7 @@
 @interface DirectPushDTO: JSONModel
   	@property(nonatomic,copy)   NSString* scheme;
    	@property(nonatomic,copy)   NSString* host;
-   	@property(nonatomic,copy)   NSString* path;
+   	@property(nonatomic,copy)   NSString* pathname;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
     @property(nonatomic,assign) BOOL hideNavbar;
 

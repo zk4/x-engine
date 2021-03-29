@@ -82,7 +82,7 @@
     }
 }
  
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  path:(NSString * _Nullable)path newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden{
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
         self.isHiddenNavbar = isHidden;
@@ -103,7 +103,7 @@
             
         HistoryModel* hm = [HistoryModel new];
         hm.vc   = self;
-        hm.path = path;
+        hm.pathname = pathname;
         hm.host = host;
         [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
      

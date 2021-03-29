@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HistoryModel : NSObject
     @property (nonatomic, weak) UIViewController *vc;
     @property (nonatomic, copy) NSString *host;
-    @property (nonatomic, copy) NSString *path;
+    @property (nonatomic, copy) NSString *pathname;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -37,60 +37,7 @@ JSI_MODULE(JSIOldNavModule)
 
 
 - (void)_navigatorBack:(NavNavigatorBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
-
-    UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
-
-    NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-    NSMutableArray<HistoryModel*>*  histories=
-    [[GlobalState sharedInstance] getCurrentWebViewHistories];
-
-    if ([@"0" isEqualToString:dto.url]){
-        for (UIViewController *vc in [ary reverseObjectEnumerator]){
-            if (![vc isKindOfClass:[RecyleWebViewController class]]){
-                [navC popToViewController:vc animated:YES];
-                [histories removeAllObjects];
-                return;
-            }
-        }
-      
-    }
-    else if ([@"/index" isEqualToString:dto.url] || [@"/" isEqualToString:dto.url]){
-        if(histories && histories.count > 0){
-            [navC popToViewController:histories[0].vc animated:YES];
-            [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
-        }
-
-    }
-    else if ([@"-1" isEqualToString:dto.url] || [@"" isEqualToString:dto.url]){
-        if(histories){
-            if(histories.count > 1)
-            {
-            [navC popToViewController:histories[histories.count-2].vc animated:YES];
-                [histories removeLastObject];
-            }
-            else if(histories.count ==1){
-                [navC popViewControllerAnimated:YES];
-                [histories removeLastObject];
-            }
-        }
-
-    } else {
-        if(histories && histories.count > 1){
-            int i = 0;
-            for (HistoryModel *hm in [histories reverseObjectEnumerator]){
-                if(hm && [hm.path isEqualToString:dto.url]){
-                    [navC popToViewController:hm.vc animated:YES];
-                    
-                    [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
-                    return;
-                }
-                i++;
-            }
-        }
-
-    }
-   
+    [self.directors back:@"microapp" host:nil path:dto.url];
     if(completionHandler){
         completionHandler(YES);
     }
@@ -98,10 +45,11 @@ JSI_MODULE(JSIOldNavModule)
 
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
 
-//
     NSString* scheme = @"microapp";
     [self.directors push:scheme host:nil path:dto.url query:dto.params hideNavbar:dto.hideNavbar];
-}
+    if(completionHandler){
+        completionHandler(YES);
+    }}
 
 
 -(void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{

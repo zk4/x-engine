@@ -10,10 +10,10 @@
 #import "HistoryModel.h"
 @interface GlobalState()
 @property(nonatomic,strong) NSMapTable<id,NSMutableArray<HistoryModel*>*>* wv__vc_paths;
-
 @end
+
 @implementation GlobalState
-static NSString*  s_microapp_root_url;
+
 static XEngineWebView*  s_showing_webview;
 
 
@@ -34,15 +34,14 @@ static XEngineWebView*  s_showing_webview;
     return sharedInstance;
 }
 
-+ (NSString * _Nullable) s_microapp_root_url{
-    return s_microapp_root_url;
-}
-+ (void) set_s_microapp_root_url:(NSString*)val{
-      s_microapp_root_url=val;
+
+- (NSString*) getLastHost{
+    XEngineWebView* key= [GlobalState getCurrentWebView];
+    NSMutableArray<HistoryModel*>* histories = [self.wv__vc_paths objectForKey:key];
+
+    return [histories lastObject].host;
 }
 + (void)setCurrentWebView:(XEngineWebView*) val{
-    if(s_showing_webview)
-        s_showing_webview=nil;
     s_showing_webview=val;
 }
 + (XEngineWebView*)getCurrentWebView{

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) set_s_microapp_root_url:(NSString*)val;
 + (void)setCurrentWebView:(XEngineWebView*) val;
 + (XEngineWebView*)getCurrentWebView;
-
+- (NSString*) getLastHost;
 - (NSMutableArray<HistoryModel *> *)getCurrentWebViewHistories;
 - (void)addCurrentWebViewHistory:(HistoryModel *) history;
 - (void)deleteWebView:(XEngineWebView *) webview;

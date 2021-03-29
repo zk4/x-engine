@@ -91,21 +91,17 @@ NATIVE_MODULE(OmpDirectModule)
 
     if(host){
         // TODO 将状态保持到 webview，不要放 GlobalState， GlobalState 不应该存在
-        [GlobalState set_s_microapp_root_url:host];
+//        [GlobalState set_s_microapp_root_url:host];
         // TODO 统一一个类处理 URL 地址问题
         NSString * finalUrl = host;
         if(path && ![path isEqualToString:@"/"]){
             finalUrl =[NSString stringWithFormat:@"%@#%@",host,path];
         }
 
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host path:path newWebView:TRUE  withHiddenNavBar:hideNavbar];
         
-        HistoryModel* hm= [HistoryModel new];
-        hm.vc = vc;
-        hm.path = path;
-        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
        
-        
+
         vc.hidesBottomBarWhenPushed = YES;
         if([Unity sharedInstance].getCurrentVC.navigationController){
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
@@ -121,19 +117,15 @@ NATIVE_MODULE(OmpDirectModule)
         }
         vc.hidesBottomBarWhenPushed = NO;
         
-    }else
-    {
-        NSString* host=[GlobalState s_microapp_root_url];
+    }else{
+        NSString* host=[[GlobalState sharedInstance] getLastHost ];
 
         NSString * finalUrl =[NSString stringWithFormat:@"%@#%@",host,path];
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl newWebView:FALSE withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host path:path newWebView:FALSE withHiddenNavBar:hideNavbar];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
-        HistoryModel* hm= [HistoryModel new];
-        hm.vc = vc;
-        hm.path = path;
-        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+
     }
 }
 

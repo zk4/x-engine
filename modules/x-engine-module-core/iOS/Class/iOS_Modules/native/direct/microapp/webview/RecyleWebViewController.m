@@ -82,7 +82,7 @@
     }
 }
  
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden{
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  path:(NSString * _Nullable)path newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
         self.isHiddenNavbar = isHidden;
@@ -101,6 +101,11 @@
             self.webview= [GlobalState getCurrentWebView];
         }
             
+        HistoryModel* hm = [HistoryModel new];
+        hm.vc   = self;
+        hm.path = path;
+        hm.host = host;
+        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
      
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -256,15 +261,14 @@
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
 
     if(self.screenView){
-// 这段话有用，忘了啥用了。。
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//  返回的时候不要急着 remove， 不然会闪历史界面
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.55 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];
             self.screenView = nil;
-//        });
+        });
     }
     [self.view insertSubview:self.webview atIndex:0];
-    
-//    self.navBarHairlineImageView.hidden = YES;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{

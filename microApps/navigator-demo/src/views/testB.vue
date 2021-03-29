@@ -7,6 +7,9 @@
       <div>原生跳转</div>
     </div>
     <div style="margin: 16px;">
+      <van-button type="primary" round block @click="openmp">打开新的microapp</van-button>
+    </div>
+    <div style="margin: 16px;">
       <van-button type="primary" round block @click="next">下一页</van-button>
     </div>
     <div style="margin: 16px;">
@@ -30,6 +33,7 @@
 
 <script>
 import nav from "@zkty-team/x-engine-module-nav";
+import engine from "@zkty-team/x-engine-module-engine";
 export default {
   name: "testB",
   data() {
@@ -44,9 +48,19 @@ export default {
     this.params = this.$route.query.qid;
   },
   methods: {
+    openmp(){
+      engine.bridge.call('com.zkty.jsi.direct.push',{
+      scheme: 'microapp',
+      host:'com.gm.microapp.mine',
+      path:'/',
+      hideNavbar:true,
+      },function(res){})
+
+    },
     next() {
       nav.navigatorPush({
         url: "/testC",
+        hideNavbar: true
       });
     },
     back() {

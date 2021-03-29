@@ -56,6 +56,26 @@ public abstract class xengine__module_BaseModule {
         return object.toJavaObject(tClass);
     }
 
+    //含默认参数，将默认参数合并至js传过来的参数中
+    protected <T> T convert(String defaultJson, JSONObject object, Class<T> tClass) {
+        if (TextUtils.isEmpty(defaultJson)) {
+            return convert(object, tClass);
+        }
+        try {
+            JSONObject defaultObj = JSON.parseObject(defaultJson);
+            if (defaultObj != null) {
+                for (String key : defaultObj.keySet()) {
+                    if (!object.containsKey(key)) {
+                        object.put(key, defaultObj.get(key));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return convert(object, tClass);
+
+    }
 
     protected <T> void callInternalMethod(JSONObject obj, CompletionHandler<String> handler, String methodName, Class<T> tClass) {
         T t = convert(obj, tClass);

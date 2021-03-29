@@ -42,6 +42,7 @@ export default {
     next() {
       nav.navigatorPush({
         url: "/testD",
+        hideNavbar: true
       });
     },
     back() {

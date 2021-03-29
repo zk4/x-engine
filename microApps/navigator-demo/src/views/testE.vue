@@ -7,7 +7,7 @@
       <div>原生跳转</div>
     </div>
     <div style="margin: 16px;">
-      <van-button type="primary" round block @click="back">上一页</van-button>
+      <van-button type="primary" round block @click="goback">上一页</van-button>
     </div>
     <div style="margin: 16px;">
       <van-button type="primary" round block @click="backToB">返回testB页面</van-button>
@@ -28,6 +28,7 @@
 
 <script>
 import nav from "@zkty-team/x-engine-module-nav";
+import engine from "@zkty-team/x-engine-module-engine";
 export default {
   name: "testE",
   data() {
@@ -39,20 +40,25 @@ export default {
     this.params = this.$route.query.qid;
   },
   methods: {
-    back() {
-      nav.navigatorBack();
+    back(url) {
+      engine.bridge.call('com.zkty.module.nav.navigatorBack',{url},function(res){})
     },
-
     backToB() {
       nav.navigatorBack({
-        path: "/testB",
+        url: "/testB",
       });
     },
 
+    goback(){
+          nav.navigatorBack({url:'-1'});
+
+    },
     backRoot() {
-      nav.navigatorBack({
-        path: "0",
-      });
+      /*nav.navigatorBack({*/
+        /*url: "0",*/
+      /*});*/
+      this.$options.methods.back('0');
+
     },
 
     h5back() {

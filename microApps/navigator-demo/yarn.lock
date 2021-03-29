@@ -1374,11 +1374,9 @@
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
 "@zkty-team/x-engine-module-engine@^0.0.41":
-  version "0.0.40"
-  resolved "https://registry.yarnpkg.com/@zkty-team/x-engine-module-engine/-/x-engine-module-engine-0.0.40.tgz#d25a0540deda5fe7a2ea29cc248ccb84c8707667"
-  integrity sha512-QBSQt4fXYChp5JQPzVgXEr81RWxAeXu9G0UjiUfEE/mlvS4Y/wBrkKNeMd5Z0wcLYEQDDwLkOsR14nX11ft+Lw==
-  dependencies:
-    dsbridge "^3.1.4"
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@zkty-team/x-engine-module-engine/-/x-engine-module-engine-0.1.20.tgz#fa8d8248c0a85b28617c9027c1b528830a2310c3"
+  integrity sha512-d/v+BzGijKMz0UngcZVzuoBOjHy93c+/b9mvyO3K1o54g9uBs0DmnPW5asQIkHjXNov5oIGyIICeYGp+Q3KOIQ==
 
 "@zkty-team/x-engine-module-engine@~0.0.1":
   version "0.0.21"

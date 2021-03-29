@@ -8,7 +8,7 @@
 #import "XEOneWebViewPool.h"
 #import "MicroAppLoader.h"
 #import <Unity.h>
-#import "UIView+YYAdd.h"
+
 
 static   XEngineWebView* s_webview;
 
@@ -364,6 +364,7 @@ static   XEngineWebView* s_webview;
     
     [self setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView]];
     [self loadFileUrl];
+<<<<<<< HEAD
 //<<<<<<< HEAD
 //=======
 //
@@ -374,6 +375,9 @@ static   XEngineWebView* s_webview;
 //
 //    self.navigationItem.titleView = self.navTitleLabel;
 //>>>>>>> main_from_times16801
+=======
+ 
+>>>>>>> 9c00c4e54fabcbd9a60d458fc15222a05acea056
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
@@ -423,6 +427,7 @@ static   XEngineWebView* s_webview;
             [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
         }
     }
+<<<<<<< HEAD
 //<<<<<<< HEAD
 //=======
 //    self.navBarHairlineImageView.hidden = NO;
@@ -432,6 +437,8 @@ static   XEngineWebView* s_webview;
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"isShowTabbar" object:@{@"isshow":@(YES)}];
 //    }
 //>>>>>>> main_from_times16801
+=======
+>>>>>>> 9c00c4e54fabcbd9a60d458fc15222a05acea056
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

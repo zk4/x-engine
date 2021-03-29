@@ -48,6 +48,7 @@ export default {
     next() {
       nav.navigatorPush({
         url: "/testE",
+        hideNavbar: true
       });
     },
     back() {
@@ -56,11 +57,13 @@ export default {
     backToMicroHome() {
       nav.navigatorBack({
         url: "/index",
+        hideNavbar: true
       });
     },
     backRoot() {
       nav.navigatorBack({
         url: "0",
+        hideNavbar: true
       });
     },
 

@@ -66,7 +66,7 @@
   
   interface xengine__module_share_i {
     public void _share(ShareReqDTO dto, final CompletionHandler<ShareResDTO> handler);
-public void _shareForOpenWXMiniProgram(MiniProgramReqDTO dto, final CompletionHandler<ShareResDTO> handler);
+    public void _shareForOpenWXMiniProgram(MiniProgramReqDTO dto, final CompletionHandler<ShareResDTO> handler);
   }
   
   
@@ -78,7 +78,8 @@ public void _shareForOpenWXMiniProgram(MiniProgramReqDTO dto, final CompletionHa
   
     @JavascriptInterface
     final public void share(JSONObject obj, final CompletionHandler<Object> handler) {
-      ShareReqDTO data= convert(obj,ShareReqDTO.class);
+      String defaultParams = "{\"title\":\"shareTitle\",\"desc\",\"shareDesc\"}";
+      ShareReqDTO data= convert(defaultParams,obj,ShareReqDTO.class);
       _share(data, new CompletionHandler<ShareResDTO>() {
         @Override
         public void complete(ShareResDTO retValue) { handler.complete(retValue); }

@@ -1,0 +1,88 @@
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+ 
+package 模块管理 {
+  class NativeContext {
+    + (Set<NativeModule>) getModules();
+    + (NativeModule) getModuleById(id:string);
+  }
+  
+  
+  class  NativeModule {
+    + (string) {abstract}  moduleId;
+    + (void) afterAllMouduleInited();
+
+  }
+}
+package 原生模块(JSI) {
+  class JSIContext extends NativeModule{
+    + (Set<JSIModule>) getJSIModules(); 
+  }
+  
+  
+  class  JSIModule {
+    + (string) {abstract}  moduleId;
+  }
+} 
+
+package JSI模块 {
+  interface xengine__module_router_protocol {
+    //model.ts自动生成
+    +  (void) {abstract}  _Direct (...,callback:Func)
+  }
+
+  abstract class xengine__module_Direct extends  JSIModule  implements xengine__module_router_protocol { 
+    //model.ts自动生成
+    + (void) Direct (...,callback:Func)
+  }
+}
+
+
+package 协议模块 {
+     interface iDirectManager {    
+    +(void)push:(...);
+    +(void)back:(...);
+   }
+  interface iDirect {    
+  +(NSString*) scheme;
+  +(void)push:(...);
+   +(void)back:(...);
+  }
+
+ 
+}
+  
+  package 原生模块(DirectManager) {
+ class DirectManagerModule extends NativeModule implements iDirectManager{  
+    - directors: Map<string,iDirect>;
+  }
+
+
+  }
+  package 原生模块(Direct.H5) {
+  class DirectH5Module   extends NativeModule implements iDirect{
+    - (string) moduleId;
+    +(void)push:(...);
+    +(void)back:(...);
+  }
+    
+    
+   
+}
+ 
+
+  
+package JSI模块(Direct){
+class __xengine__module_Direct extends xengine__module_Direct{
+    - DirectManager: iDirectManager;
+  }
+  
+ 
+  
+}
+
+NativeContext o--  NativeModule : aggregation
+ 
+
+@enduml

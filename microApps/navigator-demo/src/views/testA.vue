@@ -44,7 +44,7 @@ export default {
     nnext() {
       engine.bridge.call('com.zkty.jsi.direct.push',{
       scheme: 'omp',
-      path:'/testB'
+      pathname:'/testB'
 
       },function(res){})
     },

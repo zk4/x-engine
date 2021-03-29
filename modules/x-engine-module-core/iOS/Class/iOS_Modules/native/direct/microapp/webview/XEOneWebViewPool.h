@@ -13,7 +13,6 @@
 @interface XEOneWebViewPool: NSObject
     + (instancetype)sharedInstance;
     -(XEOneWebViewPoolModel *)createWebView:(NSString *)baseUrl;
-    - (XEngineWebView *)getWebView;
     - (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView;
 
 @end

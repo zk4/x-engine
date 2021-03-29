@@ -88,10 +88,10 @@ NATIVE_MODULE(OmpDirectModule)
 //        return;
 //    }
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
-
+    
     if(host){
-        // TODO 将状态保持到 webview，不要放 GlobalState， GlobalState 不应该存在
-//        [GlobalState set_s_microapp_root_url:host];
+        // 创建 webview 逻辑
+        
         // TODO 统一一个类处理 URL 地址问题
         NSString * finalUrl = host;
         if(pathname && ![pathname isEqualToString:@"/"]){
@@ -99,14 +99,14 @@ NATIVE_MODULE(OmpDirectModule)
         }
 
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:hideNavbar];
-        
-       
+
 
         vc.hidesBottomBarWhenPushed = YES;
         if([Unity sharedInstance].getCurrentVC.navigationController){
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 
         } else {
+            // webview 内部跳转逻辑
             UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
             if([nav isKindOfClass:[UINavigationController class]]){
                 [nav pushViewController:vc animated:YES];

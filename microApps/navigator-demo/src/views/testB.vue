@@ -49,10 +49,17 @@ export default {
   },
   methods: {
     openmp(){
+      /*engine.bridge.call('com.zkty.jsi.direct.push',{*/
+      /*scheme: 'microapp',*/
+      /*host:'com.gm.microapp.mine',*/
+      /*pathname:'/',*/
+      /*hideNavbar:true,*/
+      /*},function(res){})*/
+
       engine.bridge.call('com.zkty.jsi.direct.push',{
-      scheme: 'microapp',
-      host:'com.gm.microapp.mine',
-      path:'/',
+      scheme: 'omp',
+      host:'http://192.168.1.15:8080',
+      pathname:'/',
       hideNavbar:true,
       },function(res){})
 

@@ -8,11 +8,32 @@
 
 @protocol DirectDTO;
 
+/*
+ ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+ │                                            href                                             │
+ ├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
+ │ protocol │  │        auth         │        host         │           path            │ hash  │
+ │          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
+ │          │  │                     │   hostname   │ port │ pathname │     search     │       │
+ │          │  │                     │              │      │          ├─┬──────────────┤       │
+ │          │  │                     │              │      │          │ │    query     │       │
+ "  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash "
+ │          │  │          │          │   hostname   │ port │          │                │       │
+ │          │  │          │          ├──────────────┴──────┤          │                │       │
+ │ protocol │  │ username │ password │        host         │          │                │       │
+ ├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
+ │   origin    │                     │       origin        │ pathname │     search     │ hash  │
+ ├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
+ │                                            href                                             │
+ └─────────────────────────────────────────────────────────────────────────────────────────────┘
+ 
+ 
+ */
 @interface DirectPushDTO: JSONModel
-  	@property(nonatomic,copy)   NSString* scheme;
-   	@property(nonatomic,copy)   NSString* host;
-   	@property(nonatomic,copy)   NSString* pathname;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
+  	@property(nonatomic,copy)   NSString* scheme;    //microapp , http , https , file
+   	@property(nonatomic,copy)   NSString* host;      //www.baidu.com , com.zkty.microapp.abc
+   	@property(nonatomic,copy)   NSString* pathname;  // /  /testone   /testtwo
+    @property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
     @property(nonatomic,assign) BOOL hideNavbar;
 
 @end

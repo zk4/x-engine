@@ -104,6 +104,7 @@
         HistoryModel* hm = [HistoryModel new];
         hm.vc   = self;
         hm.pathname = pathname;
+        hm.webview = self.webview;
         hm.host = host;
         [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
      

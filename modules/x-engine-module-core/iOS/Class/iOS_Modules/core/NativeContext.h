@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define NATIVE_MODULE(clz) + (void)load{ \
-    [[NativeContext sharedInstance] registerModuleByClass:clz.class];}\
+    [[NativeContext sharedInstance] registerModuleByClass:clz.class];}
 
 
 @interface NativeContext : NSObject

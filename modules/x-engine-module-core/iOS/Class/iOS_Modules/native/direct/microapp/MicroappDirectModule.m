@@ -21,9 +21,10 @@
 @implementation MicroappDirectModule
 NATIVE_MODULE(MicroappDirectModule)
 
- - (NSString*) moduleId{
+- (NSString*) moduleId{
     return @"com.zkty.native.direct.microapp";
 }
+
 - (int) order{
     return 0;
 }
@@ -31,6 +32,7 @@ NATIVE_MODULE(MicroappDirectModule)
 -(NSString*) scheme{
     return @"microapp";
 }
+
 - (void)afterAllNativeModuleInited{
    NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
     for(id<iDirect> direct in modules){
@@ -42,13 +44,14 @@ NATIVE_MODULE(MicroappDirectModule)
 
     }
 }
+
 - (void)back:(NSString*) host path:(NSString*) path{
     [self.microappDirect back:host path:path];
 }
 
 - (void)push:(NSString *)host path:(nonnull NSString *)path query:( NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
     NSString *urlStr = [[MicroAppLoader sharedInstance] getMicroAppUrlStrPathWith:host withVersion:0];
-
     [self.microappDirect push:urlStr path:path query:query hideNavbar:hideNavbar];
 }
+
 @end

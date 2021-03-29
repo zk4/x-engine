@@ -35,10 +35,10 @@
 //    [self.navigationController pushViewController:[[JumpViewController alloc ] init] animated:YES];
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 //    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
-//    [director push:@"microapp" host:@"com.gm.microapp.mine" path:@"/" query:@{}  hideNavbar:TRUE];
+    [director push:@"microapp" host:@"com.gm.microapp.mine" path:@"/" query:@{}  hideNavbar:TRUE];
 //    [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
 //    [img open:@"omp" :@"http://192.168.1.15:8080" :@"/" :@{} :0 :TRUE];
-    [director push:@"omp" host:@"http://10.2.128.80:8080" path:@"/" query:nil hideNavbar:TRUE];
+//    [director push:@"omp" host:@"http://10.2.128.80:8080" path:@"/" query:nil hideNavbar:TRUE];
 
 }
 

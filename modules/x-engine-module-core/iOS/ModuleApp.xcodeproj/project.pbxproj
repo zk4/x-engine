@@ -295,13 +295,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		5805B2E2260F969A0029F138 /* lagacy */ = {
+		5805B2E2260F969A0029F138 /* legacy */ = {
 			isa = PBXGroup;
 			children = (
 				58DF37FA260DF843002C1236 /* nav */,
 				A4A695BC2609DC3300074A24 /* router */,
 			);
-			path = lagacy;
+			path = legacy;
 			sourceTree = "<group>";
 		};
 		5805B2E6260F9B590029F138 /* direct */ = {
@@ -429,7 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				5805B2E6260F9B590029F138 /* direct */,
-				5805B2E2260F969A0029F138 /* lagacy */,
+				5805B2E2260F969A0029F138 /* legacy */,
 			);
 			path = jsi;
 			sourceTree = "<group>";

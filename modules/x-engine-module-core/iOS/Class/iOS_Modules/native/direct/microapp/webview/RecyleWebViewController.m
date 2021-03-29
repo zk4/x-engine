@@ -275,6 +275,8 @@
     
     [super viewWillAppear:animated];
     [self loadFileUrl];
+//    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
+//           completionHandler:nil];
 
     if(self.customTitle.length > 0 && ![self.customTitle isEqualToString: self.title]){
         self.title = self.customTitle;

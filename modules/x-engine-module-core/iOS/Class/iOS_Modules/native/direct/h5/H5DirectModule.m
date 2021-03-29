@@ -47,7 +47,7 @@ NATIVE_MODULE(H5DirectModule)
 - (void)back: (NSString*) scheme host:(NSString*) host path:(NSString*) path{
     [self.h5Direct back:scheme host:host path:path];
 }
-// 与 omp 使用相同的配置即可
+
 - (void)push:(nonnull NSString *)scheme host:(nonnull NSString *)host path:(nonnull NSString *)path query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
     [self.h5Direct push:scheme host:host path:path query:query hideNavbar:hideNavbar];
 

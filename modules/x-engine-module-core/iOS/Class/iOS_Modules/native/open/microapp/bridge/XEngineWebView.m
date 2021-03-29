@@ -353,7 +353,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
             }
             NSLog(@"%@",error);
             
-            [self showErrorAlert:[NSString stringWithFormat:@"%@方法没绑定,如果使用了 x-cli 生成接口,你应该重启你的应用.",method]];
+            [self showErrorAlert:error];
         }while (0);
     }
     return [XEngineJSBUtil objToJsonString:result];

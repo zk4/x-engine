@@ -90,11 +90,8 @@ NATIVE_MODULE(OmpDirectModule)
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
 
     if(host){
+        //TODO 将状态保持到 webview，不要放 GlobalState， GlobalState 不应该存在
         [GlobalState set_s_microapp_root_url:host];
-
-        // input correct
-        // file://com.zkty.microapp.home
-        // https://www.gome.com/index.html
         
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:host newWebView:TRUE  withHiddenNavBar:hideNavbar];
         

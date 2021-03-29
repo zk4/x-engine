@@ -1,0 +1,52 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build && cp -r dist/* ../app/app-c/iOS/GomeZk/com.gm.microapp.mine.*/ ",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@zkty-team/x-engine-module-engine": "^0.1.17",
+    "@zkty-team/x-engine-module-nav": "^0.1.17",
+    "@zkty-team/x-engine-module-router": "^0.1.17",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "vant": "^2.12.10",
+    "vue": "^2.6.11",
+    "vue-route": "^1.5.1",
+    "vue-router": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-import": "^1.13.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^4.1.1",
+    "less-loader": "^5.0.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

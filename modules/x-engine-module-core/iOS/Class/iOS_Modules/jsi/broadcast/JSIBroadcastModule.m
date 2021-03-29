@@ -28,7 +28,5 @@ JSI_MODULE(JSIBroadcastModule)
     {
         NSLog(@"return from 1!!!!!");
     }
-
-
 }
 @end

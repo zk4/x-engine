@@ -1,5 +1,5 @@
 //
-//  OmpDirectModule.h
+//  Native_direct_microapp.m.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
@@ -11,7 +11,7 @@
 #import "iDirect.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OmpDirectModule : NativeModule <iDirect>
- @end
+@interface Native_direct_microapp : NativeModule <iDirect>
+@end
 
 NS_ASSUME_NONNULL_END

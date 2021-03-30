@@ -1,12 +1,12 @@
 //
-//  MicroappDirectModule.m
+//  Native_direct_microapp.m
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "MicroappDirectModule.h"
+#import "Native_direct_microapp.h"
 #import "NativeContext.h"
 #import "MicroAppLoader.h"
 #import "XEOneWebViewPool.h"
@@ -15,11 +15,11 @@
 #import "RecyleWebViewController.h"
 #import "GlobalState.h"
 
-@interface MicroappDirectModule ()
+@interface Native_direct_microapp ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
 @end
-@implementation MicroappDirectModule
-NATIVE_MODULE(MicroappDirectModule)
+@implementation Native_direct_microapp
+NATIVE_MODULE(Native_direct_microapp)
 
 - (NSString*) moduleId{
     return @"com.zkty.native.direct.microapp";

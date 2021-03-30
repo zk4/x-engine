@@ -6,7 +6,7 @@
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "JSIDirectModule.h"
+#import "JSI_Direct.h"
 #import "JSIContext.h"
 #import "iDirectManager.h"
 #import "NativeContext.h"
@@ -23,11 +23,11 @@
 #import "NSString+Router+URLQuery.h"
 
 
-@interface JSIDirectModule ()
+@interface JSI_Direct ()
 @property (nonatomic, strong)   id<iDirectManager>  directors;
 @end
-@implementation JSIDirectModule
-JSI_MODULE(JSIDirectModule)
+@implementation JSI_Direct
+JSI_MODULE(JSI_Direct)
 
  
 -(void)afterAllJSIModuleInited {

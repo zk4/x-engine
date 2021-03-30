@@ -1,5 +1,5 @@
 //
-//  JSIDirectModule.h
+//  JSI_Direct.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/14.
@@ -32,7 +32,7 @@
 #import "xengine_jsi_direct.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSIDirectModule : xengine_jsi_direct
+@interface JSI_Direct : xengine_jsi_direct
 
 @end
 

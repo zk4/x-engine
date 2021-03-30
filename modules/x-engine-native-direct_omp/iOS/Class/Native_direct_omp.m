@@ -1,12 +1,12 @@
 //
-//  OmpDirectModule.m
+//  Native_direct_omp.m
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "OmpDirectModule.h"
+#import "Native_direct_omp.h"
 #import "NativeContext.h"
 #import "XEOneWebViewPool.h"
 #import "XEOneWebViewPoolModel.h"
@@ -16,8 +16,8 @@
 #import "GlobalState.h"
  
 
-@implementation OmpDirectModule
-NATIVE_MODULE(OmpDirectModule)
+@implementation Native_direct_omp
+NATIVE_MODULE(Native_direct_omp)
 
  - (NSString*) moduleId{
     return @"com.zkty.native.direct.omp";

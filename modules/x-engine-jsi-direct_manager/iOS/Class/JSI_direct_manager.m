@@ -1,12 +1,12 @@
 //
-//  JSIDirectModule.h
+//  JSI_direct_manager.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/14.
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "JSI_Direct.h"
+#import "JSI_direct_manager.h"
 #import "JSIContext.h"
 #import "iDirectManager.h"
 #import "NativeContext.h"
@@ -23,11 +23,11 @@
 #import "NSString+Router+URLQuery.h"
 
 
-@interface JSI_Direct ()
+@interface JSI_direct_manager ()
 @property (nonatomic, strong)   id<iDirectManager>  directors;
 @end
-@implementation JSI_Direct
-JSI_MODULE(JSI_Direct)
+@implementation JSI_direct_manager
+JSI_MODULE(JSI_direct_manager)
 
  
 -(void)afterAllJSIModuleInited {

@@ -15,7 +15,7 @@ package 模块管理(core) {
 
   }
 }
-package 原生模块(native/jsi) {
+package 原生模块(jsi) {
   class JSIContext extends NativeModule{
     + (Set<JSIModule>) getJSIModules(); 
   }
@@ -27,20 +27,24 @@ package 原生模块(native/jsi) {
   }
 } 
 
-package JSI模块(jsi/direct/gen) {
-  interface xengine_jsi_direct_protocol {
+package JSI模块(gen) {
+  interface xengine_jsi_direct_manager_protocol {
     //model.ts自动生成
     +  (void) {abstract}  _push (...,callback:Func)
         +  (void) {abstract}  _back (...,callback:Func)
   }
 
-  abstract class xengine_jsi_direct extends  JSIModule  implements xengine_jsi_direct_protocol { 
+  abstract class xengine_jsi_direct_manager extends  JSIModule  implements xengine_jsi_direct_manager_protocol { 
     //model.ts自动生成
     +  (void) {abstract}  _push (...,callback:Func)
     +  (void) {abstract}  _back (...,callback:Func)
   }
 }
-
+class JSI_direct_manager extends  xengine_jsi_direct_manager{
+     - directors: iDirectManager;
+     +  (void) {abstract}  _push (...,callback:Func)
+        +  (void) {abstract}  _back (...,callback:Func)
+}
 
 package 协议模块 {
      interface iDirectManager {    
@@ -56,15 +60,15 @@ package 协议模块 {
  
 }
   
-  package 原生模块(DirectManager) {
- class DirectManagerModule extends NativeModule implements iDirectManager{  
+  package 原生模块(direct.manager) {
+ class Native_direct_manager extends NativeModule implements iDirectManager{  
     - directors: Map<string,iDirect>;
   }
 
 
   }
-  package 原生模块(Direct.H5) {
-  class DirectH5Module   extends NativeModule implements iDirect{
+  package 原生模块(direct.http) {
+  class Native_direct_http   extends NativeModule implements iDirect{
     - (string) moduleId;
     +(void)push:(...);
     +(void)back:(...);

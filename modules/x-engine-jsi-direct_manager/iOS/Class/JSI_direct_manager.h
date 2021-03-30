@@ -29,10 +29,10 @@
  */
 #import <Foundation/Foundation.h>
 #import "JSIModule.h"
-#import "xengine_jsi_direct.h"
+#import "xengine_jsi_direct_manager.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSI_Direct : xengine_jsi_direct
+@interface JSI_direct_manager : xengine_jsi_direct_manager
 
 @end
 

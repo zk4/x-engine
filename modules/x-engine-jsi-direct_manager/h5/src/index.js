@@ -13,32 +13,18 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.direct_manager", 
     [
   {
-    "name": "broadcastOn",
-    "default_args": {},
+    "name": "push",
+    "default_args": {
+      "scheme": "h5",
+      "pathname": "/",
+      "params": {
+        "hideNavbar": true
+      }
+    },
     "decorators": []
   },
   {
-    "name": "broadcastOff",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "triggerNativeBroadCast",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "repeatReturn__event__",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "repeatReturn__ret__",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "ReturnInPromiseThen",
+    "name": "back",
     "default_args": {},
     "decorators": []
   }

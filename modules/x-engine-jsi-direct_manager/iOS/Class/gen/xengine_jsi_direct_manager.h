@@ -10,11 +10,12 @@
 @protocol DirectBackDTO;
 
 @interface DirectPushDTO: JSONModel
-  	@property(nonatomic,copy) NSString* scheme;
+  	@property(nonatomic,copy) NSString* a;
+   	@property(nonatomic,copy) NSString* scheme;
    	@property(nonatomic,copy) NSString* host;
    	@property(nonatomic,copy) NSString* pathname;
-   	@property(nonatomic,strong) NSDictionary<NSString*,id>* query;
-   	@property(nonatomic,strong) NSDictionary<NSString*,id>* params;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* params;
 @end
     
 
@@ -25,7 +26,7 @@
     
 
 
-@protocol xengine_jsi_direct_protocol
+@protocol xengine_jsi_direct_manager_protocol
        @required 
         - (void) _push:(DirectPushDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
@@ -36,6 +37,6 @@
   
 
 
-@interface xengine_jsi_direct : JSIModule<xengine_jsi_direct_protocol>
+@interface xengine_jsi_direct_manager : JSIModule<xengine_jsi_direct_manager_protocol>
 @end
 

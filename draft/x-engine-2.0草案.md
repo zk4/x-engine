@@ -3,21 +3,28 @@
 ### 引擎
 
 - 基础架构重构 (谢飞，陈武峥)
+
 - 规范 URL 解析  (刘正青，谢飞，陈武峥)
+
 - 使用 protocol 来实现 direct 模块，统一 router 与 nav (刘正青，谢飞，陈武峥)
+
+- h5 页面生命周期告知，页面进入与离开
+
+- vue-router 有没有更快的路由方法？不使用 loadurl
+
+  
 
 ### 工具
 
 - x-cli 封装同步代码的生成 （刘正青）
-- js 调用原生层，原生调用模块层。 原生由 x-cli 生成。（刘正青）
 
-### 前端
+### h5 端
 
 - 最佳本地 h5 规范
   - 带 microapp.json 功能
   - 更底层的 jsi api 调用，不再需要安装 npm 包
 
-### 规范
+### 风格
 
 - iOS 基于 xcode 的自动 indent
 - android 方案 (谢飞)
@@ -34,7 +41,7 @@
 
 - 可测试
 
-  ![image-20210329182802473](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210329182802473.png)
+  ![image-20210331015750155](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210331015750155.png)
 
 上图解释：
 
@@ -46,106 +53,48 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
 
 
 
-#### 文件夹组织形式
+### 父子模块
 
-```
-├── core
-│   ├── NativeContext.h
-│   ├── NativeContext.m
-│   ├── NativeModule.h
-│   ├── NativeModule.m
-├── jsi
-│   ├── direct
-│   │   ├── JSIDirectModule.h
-│   │   ├── JSIDirectModule.m
-│   │   └── gen
-│   │       ├── xengine__jsi_direct.h
-│   │       └── xengine__jsi_direct.m
-│   └── legacy
-│       ├── nav
-│       │   ├── JSIOldNavModule.h
-│       │   ├── JSIOldNavModule.m
-│       │   └── gen
-│       │       ├── xengine__module_nav.h
-│       │       └── xengine__module_nav.m
-│       └── router
-│           ├── JSIOldRouterModule.h
-│           └── JSIOldRouterModule.m
-│           └── gen
-│               ├── xengine__module_router.h
-│               └── xengine__module_router.m
-├── native
-│   ├── direct
-│   │   ├── direct.manager
-│   │   │   ├── DirectManagerModule.h
-│   │   │   └── DirectManagerModule.m
-│   │   ├── h5
-│   │   │   ├── H5DirectModule.h
-│   │   │   └── H5DirectModule.m
-│   │   ├── microapp
-│   │   │   ├── MicroappDirectModule.h
-│   │   │   ├── MicroappDirectModule.m
-│   │   └── omp
-│   │       ├── OmpDirectModule.h
-│   │       └── OmpDirectModule.m
-│   ├── jsi
-│   │   ├── JSIContext.h
-│   │   ├── JSIContext.m
-│   │   ├── JSIModule.h
-│   │   └── JSIModule.m
-│   ├── open
-│   │   ├── h5
-│   │   │   ├── OpenH5Module.h
-│   │   │   └── OpenH5Module.m
-│   │   ├── omp
-│   │   │   ├── OpenOmpModule.h
-│   │   │   └── OpenOmpModule.m
-│   │   ├── open.manager
-│   │   │   ├── OpenManagerModule.h
-│   │   │   └── OpenManagerModule.m
-│   └── ui
-│       └── nav
-│           ├── NavUtil.h
-│           └── NavUtil.m
-└── protocols
-    ├── iDirect.h
-    ├── iDirectManager.h
-    └── iStorage.h
+比如 direct 是子模块， directManager 是父模块。父模块管理子模块。 
 
-```
-
-
-
-### direct 模块
+#### direct 模块
 
 增加 direct 的 native 与 jsi 模块，统一原来的 Router 与 Nav。 逻辑上一样。 
 
 - Router 与 Nav 的本质区别是 host 从哪来。 而 host 的我们可以自己缓存在某地。
 - Router 与 nav 将在以后不再使用，只为兼容。
 
-以下为 direct 通用数据结构
+以下为 directManager 通用数据结构
 
 - 规范字段,(oc 举例)
 
   ``` objective-c
+  // scheme 形如
+  // 1. omp     使用(protocol)  http:  协议，webview 带原生 api 功能
+  // 2. omps    使用(protocol) https:  协议，webview 带原生 api 功能
+  // 3. http    普通(protocol)  http:  协议，webview 不带原生 api 功能
+  // 4. https   普通(protocol) https:  协议，webview 不带原生 api 功能
+  // 5. microapp 普通(protocol) file:  协议，打开本地微应用文件
   @interface DirectPushDTO: JSONModel
     	@property(nonatomic,copy)   NSString* scheme;
      	@property(nonatomic,copy)   NSString* host;
      	@property(nonatomic,copy)   NSString* pathname;
      	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;  
-      @property(nonatomic,strong) NSDictionary<NSString*,NSString*>* params; // 为 vue-router 兼容，
-      @property(nonatomic,assign) BOOL hideNavbar;
+      @property(nonatomic,strong) NSDictionary<NSString*,NSString*>* params; // 为 vue-router 兼容
   @end
       
   
   @interface DirectBackDTO: JSONModel
-      @property(nonatomic,copy)   NSString* scheme;
-      @property(nonatomic,copy)   NSString* host;
+    @property(nonatomic,copy)   NSString* scheme;
+      @property(nonatomic,copy)   NSString* host;  //以备日后使用
       @property(nonatomic,copy)   NSString* pathname;
   @end
   ```
-
   
+
+
+
+详见 x-engine-protocols 
 
 ### 规范 URL 解析
 
@@ -190,44 +139,94 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
 
 ## 开发方式
 
+### 引擎开发
 
+1. 生成 native 模块项目：
 
-1. 生成 jsi 模块项目：
-
-    - 找到模板 x-engine-jsi-template,  执行
+    - 链接模板源 x-engine-native-template,  执行
 
         ```
+        // 安装 coge
+        python3 -m pip install coge
+        
+        // 在 x-engine-native-template 目录执行
         coge -r
-        //检验
+
+        //执行以下命令， 出现 coge x-engine-native-template @:app，则成功链接模板源
         coge
-        // 出现 coge  x-engine-jsi-template @:app
-        ```
-
         
-
+        // 生成项目
+        coge x-engine-native-template module-xxxx:jsi-ui xxxx:ui @:x-engine-native-ui -w
         ```
-        coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
-        ```
-
         
+        
+2. （可选）编写接口
 
-2. 编写 model.ts 
 
-3. 生成代码
+3. （可选）生成 jsi 模块项目：
 
-   使用 x-cli version >= 1.7.0
+    - 1. 链接模板源 x-engine-jsi-template,  执行
 
-   ```
-   sudo npm install @zkty-team@x-cli -g
-   ```
+        ```
+      // 在 x-engine-jsi-template 目录执行
+      coge -r
+      
+      //执行以下命令， 出现 coge  x-engine-jsi-template @:app，则成功链接模板源
+      coge
 
-   在生成的模块项目下执行
+      // 生成项目
+coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
+        ```
+      
+        
+      
+    - 2. 编写 model.ts 
 
-   ```
-   x-cli model model.ts  -t 2
-   ```
+    - 3. 生成代码
 
-   
+       使用 x-cli version >= 1.7.0
+
+        ```
+        sudo npm install @zkty-team@x-cli -g
+        ```
+
+    	在生成的模块项目下执行
+
+        ```
+        x-cli model model.ts  -t 2
+        ```
+
+### 业务开发
+
+####  原生
+
+- 链接模板源 x-engine-app,  执行
+
+  ```
+  // 安装 coge
+  python3 -m pip install coge
+  
+  // 在 x-engine-app 目录执行
+  coge -r
+  
+  //执行以下命令， 出现 coge x-engine-app @:app，则成功链接模板源
+  coge
+  
+  // 生成项目
+  coge x-engine-app app:<你的项目名> @:<你的项目名> -w
+  ```
+
+
+> 注意生成项目后引用的模块的路径。 保持 x-engine 与 gome_business 在同一级. 忽略 gome_business 里的 x-engine， 将弃用
+>
+> - x-engine
+> - gome_business
+>   - x-engine (弃用)
+> - times_business
+
+#### microapp / omp 
+
+@陈武峥
 
 ## 注意事项
 
@@ -287,7 +286,9 @@ $route.query 为 search=a#hash
 
    https://www.baidu.com/wrongpage.html  → location: https://www.baidu.com/correctpage.html
 
+### nav & router 怎么办？
 
+使用 nav 与 router 的 JSI 调用 direct 模块做兼容处理。
 
 
 

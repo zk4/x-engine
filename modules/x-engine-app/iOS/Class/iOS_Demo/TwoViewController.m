@@ -45,6 +45,7 @@
     [self.view addSubview:vc.view];
 
     vc.view.frame = self.view.frame;
+    
 
 }
 

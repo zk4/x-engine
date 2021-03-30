@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "NativeContext.h"
-#import "H5DirectModule.h"
+#import "DirectManagerModule.h"
 @interface NativeContextTests : XCTestCase
 
 @end
@@ -25,7 +25,7 @@
 
 - (void)test不可以注册相同的Native_Module {
  
-    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:H5DirectModule.class]);
+    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:DirectManagerModule.class]);
     [[NativeContext sharedInstance] start];
  
 }

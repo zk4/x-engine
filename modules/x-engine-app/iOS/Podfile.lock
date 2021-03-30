@@ -12,6 +12,10 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-broadcast (0.1.13):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-core (0.1.13):
     - x-engine-native-protocols
   - x-engine-native-direct_http (0.1.13):
@@ -43,6 +47,7 @@ DEPENDENCIES:
   - x-engine-jsi-direct_manager (from `../../x-engine-jsi-direct_manager`)
   - x-engine-jsi-legacy (from `../../x-engine-jsi-legacy`)
   - x-engine-jsi-ui (from `../../x-engine-jsi-ui`)
+  - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-direct_http (from `../../x-engine-native-direct_http`)
   - x-engine-native-direct_manager (from `../../x-engine-native-direct_manager`)
@@ -63,6 +68,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-legacy"
   x-engine-jsi-ui:
     :path: "../../x-engine-jsi-ui"
+  x-engine-native-broadcast:
+    :path: "../../x-engine-native-broadcast"
   x-engine-native-core:
     :path: "../../x-engine-native-core"
   x-engine-native-direct_http:
@@ -85,6 +92,7 @@ SPEC CHECKSUMS:
   x-engine-jsi-direct_manager: d8f15dbe1e30991930e204df91b4560cee1a3ba8
   x-engine-jsi-legacy: c6add91d5426ffc532e78015e1f5a30dd3ce46b1
   x-engine-jsi-ui: 64c934a15a630a55a29ad810ee208b7c3eebdd25
+  x-engine-native-broadcast: 0eddefaa3690781a83b3b8cabb6ba864938befcb
   x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
   x-engine-native-direct_http: c2397f9a6408ca81b778c6655a25b7eefa0d3409
   x-engine-native-direct_manager: 4e54241cd45f917d56495517d43339b1a3304763
@@ -94,6 +102,6 @@ SPEC CHECKSUMS:
   x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86
   x-engine-native-ui: e78d93aeba0c16c6cff9a9352f8da92ca2903878
 
-PODFILE CHECKSUM: d2d54778d4cdaf80c7b32a54445ea1ac73a42631
+PODFILE CHECKSUM: ddadef642ac98afdcea17298757b412a639b67b2
 
 COCOAPODS: 1.10.0

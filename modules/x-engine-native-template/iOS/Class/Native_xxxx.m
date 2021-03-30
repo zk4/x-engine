@@ -16,18 +16,16 @@ NATIVE_MODULE(Native_xxxx)
 
 @implementation Native_xxxx
  
-  
+ - (NSString*) moduleId{
+    return @"com.zkty.native.xxxx";
+}
+
+- (int) order{
+    return 0;
+}
+
+- (void)afterAllNativeModuleInited{
+} 
  
-
-
- 
-
-
-
-
-
-
-
-
 @end
  

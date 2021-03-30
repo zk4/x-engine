@@ -93,10 +93,13 @@ export default {
 
     },
     next() {
-      nav.navigatorPush({
-        url: "/testC",
-        hideNavbar: true
-      });
+      engine.bridge.call('com.zkty.jsi.direct.push',{
+      scheme: 'omp',
+      pathname:'/testC',
+      params:{
+        hideNavbar:true,
+      }
+      },function(res){})
     },
     back() {
       nav.navigatorBack();

@@ -7,9 +7,6 @@
       <div style="margin: 16px;">
         <div>原生跳转</div>
       </div>
-      <div style="margin: 16px;">
-        <van-button type="primary" round block @click="nnext">下一页 route&nav</van-button>
-      </div>
 
       <div style="margin: 16px;">
         <van-button type="primary" round block @click="next">下一页</van-button>
@@ -41,17 +38,10 @@ export default {
     };
   },
   methods: {
-    nnext() {
+    next() {
       engine.bridge.call('com.zkty.jsi.direct.push',{
       scheme: 'omp',
       pathname:'/testB'
-
-      },function(res){})
-    },
-    next() {
-      engine.bridge.call('com.zkty.jsi.direct.back',{
-      scheme: 'omp',
-      pathname:'0'
       },function(res){})
       /*nav.navigatorPush({*/
         /*url: "/testB",*/
@@ -59,7 +49,10 @@ export default {
       /*});*/
     },
     previous(){
-          nav.navigatorBack({url:'-1'});
+      engine.bridge.call('com.zkty.jsi.direct.back',{
+      scheme: 'omp',
+      pathname:'0'
+      },function(res){})
     },
 
     h5next() {

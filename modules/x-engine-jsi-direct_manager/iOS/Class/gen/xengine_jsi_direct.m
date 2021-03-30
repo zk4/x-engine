@@ -56,4 +56,12 @@
              completionHandler(nil ,complete);
           }];
       }
-  @end
+- (void)_back:(DirectBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
+     
+}
+
+- (void)_push:(DirectPushDTO *)dto complete:(void (^)(BOOL))completionHandler {
+     
+}
+
+@end

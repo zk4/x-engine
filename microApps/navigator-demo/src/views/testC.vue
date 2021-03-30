@@ -36,14 +36,25 @@ export default {
     };
   },
   mounted() {
-    this.params = this.$route.query.qid;
+    /*this.params = this.$route.query.qid;*/
   },
   methods: {
     next() {
-      nav.navigatorPush({
-        url: "/testD",
-        hideNavbar: true
-      });
+      engine.bridge.call('com.zkty.jsi.direct.push',{
+      scheme: 'omp',
+      pathname:'/testC',
+      params:{
+        hideNavbar:true,
+      }
+      },function(res){})
+
+      engine.bridge.call('com.zkty.jsi.direct.push',{
+      scheme:'omp',
+      pathname:'/testD',
+      params:{
+        hideNavbar:true,
+      }
+      },function(res){})
     },
     back() {
       nav.navigatorBack();

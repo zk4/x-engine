@@ -28,7 +28,7 @@
 //    [director push:@"omp" host:@"10.2.128.80:8082" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];
     ///TODO: 统一一个类处理 URL 地址问题
     NSString* protocol= @"http:";
-    NSString* host = @"10.2.128.89:8080";
+    NSString* host = @"192.168.1.15:8080";
     NSString* pathname = @"/";
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
     if(pathname && ![pathname isEqualToString:@"/"]){

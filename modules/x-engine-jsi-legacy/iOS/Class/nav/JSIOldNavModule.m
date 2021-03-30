@@ -48,7 +48,8 @@ JSI_MODULE(JSIOldNavModule)
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
 
     NSString* scheme = @"microapp";
-    [self.directors push:scheme host:nil pathname:dto.url query:dto.params params:nil];
+    /// TODO: convert dto.params to dictionary
+    [self.directors push:scheme host:nil pathname:dto.url query:nil params:nil];
     if(completionHandler){
         completionHandler(YES);
     }}

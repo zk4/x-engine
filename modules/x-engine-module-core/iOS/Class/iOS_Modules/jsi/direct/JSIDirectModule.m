@@ -35,6 +35,7 @@ JSI_MODULE(JSIDirectModule)
 }
 
 - (void)_back:(DirectBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    [self.directors back:dto.scheme host:nil pathname:dto.pathname];
     completionHandler(YES);
   
 }

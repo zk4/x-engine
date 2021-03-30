@@ -190,18 +190,35 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
 
 ## 开发方式
 
+
+
 1. 生成 jsi 模块项目：
 
-coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
+    - 找到模板 x-engine-jsi-template,  执行
+
+        ```
+        coge -r
+        //检验
+        coge
+        // 出现 coge  x-engine-jsi-template @:app
+        ```
+
+        
+
+        ```
+        coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
+        ```
+
+        
 
 2. 编写 model.ts 
 
 3. 生成代码
 
-   使用 x-cli version >= 1.6.0
+   使用 x-cli version >= 1.7.0
 
    ```
-   npm install @zkty-team@x-cli
+   sudo npm install @zkty-team@x-cli -g
    ```
 
    在生成的模块项目下执行

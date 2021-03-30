@@ -26,8 +26,6 @@
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 
     [director push:@"omp" host:@"10.2.128.80:8082" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];
-
-
 }
 
 /*

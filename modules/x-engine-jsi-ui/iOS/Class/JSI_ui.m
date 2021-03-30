@@ -1,33 +1,26 @@
 //
-//  JSIUIModule.m
-//  ModuleApp
+//  JSI_ui.m
+//  ui
 //
-//  Created by cwz on 2021/3/30.
-//  Copyright © 2021 zkty-team. All rights reserved.
-//
+//  Created by zk on 2020/9/7.
+//  Copyright © 2020 edz. All rights reserved.
 
-#import "JSIUIModule.h"
+
+#import "JSI_ui.h"
 #import "JSIContext.h"
-#import "iDirectManager.h"
 #import "NativeContext.h"
 #import "iUI.h"
 
-@interface JSIUIModule ()
+@interface JSI_ui ()
 @property (nonatomic, strong) id<iUI> ui;
 @end
 
-@implementation JSIUIModule
-
-JSI_MODULE(JSIUIModule)
-
-- (NSString*) moduleId{
-    return @"com.zkty.jsi.ui";
-}
-
+@implementation JSI_ui
+JSI_MODULE(JSI_ui)
+  
 - (void)afterAllJSIModuleInited {
     self.ui = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iUI)];
 }
-
 
 -(void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{
     [self.ui setNavBarHidden:dto.isHidden isAnimation:dto.isAnimation];
@@ -39,4 +32,6 @@ JSI_MODULE(JSIUIModule)
     [self.ui setNavTitle:dto.title withTitleColor:dto.titleColor withTitleSize:dto.titleSize];
     completionHandler(YES);
 }
+
 @end
+ 

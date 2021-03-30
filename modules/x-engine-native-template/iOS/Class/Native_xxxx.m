@@ -10,12 +10,12 @@
 #import "NativeContext.h"
 
 @interface Native_xxxx()
-NATIVE_MODULE(Native_xxxx)
 { }
 @end
 
 @implementation Native_xxxx
- 
+NATIVE_MODULE(Native_xxxx)
+
  - (NSString*) moduleId{
     return @"com.zkty.native.xxxx";
 }

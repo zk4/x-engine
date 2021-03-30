@@ -11,6 +11,7 @@
 #import "XEOneWebViewPool.h"
 #import "NativeContext.h"
 #import "iDirectManager.h"
+#import "RecyleWebViewController.h"
 @interface TwoViewController ()
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 
@@ -21,12 +22,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";
-    // TODO
+
     // temp webviewpool 需要重新设计 api
-    id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+//    id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+//
+//    [director push:@"omp" host:@"10.2.128.80:8082" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];
+    ///TODO: 统一一个类处理 URL 地址问题
+    NSString* protocol= @"http:";
+    NSString* host = @"10.2.128.89:8080";
+    NSString* pathname = @"/";
+    NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
+    if(pathname && ![pathname isEqualToString:@"/"]){
+        finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
+    }
 
-    [director push:@"omp" host:@"10.2.128.80:8082" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:@"1"];
 
+
+
+    vc.view.backgroundColor = [UIColor redColor];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+
+    vc.view.frame = self.view.frame;
 
 }
 

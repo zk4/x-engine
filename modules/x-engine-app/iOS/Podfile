@@ -2,8 +2,8 @@
 platform :ios, '10.0'
 
 def shared_pods
-  pod 'x-engine-module-core', :path =>'../../x-engine-module-core'
-  pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols'
+  pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
+  pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
   pod 'JSONModel'
 end
 

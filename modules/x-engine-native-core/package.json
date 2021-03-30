@@ -1,0 +1,35 @@
+{
+  "name": "@zkty-team/x-engine-native-core",
+  "version": "0.1.13",
+  "description": "zkty-team/x-engine-native-core",
+  "main": "h5/src/index.js",
+  "scripts": {
+    "xpublish": "find . -name .DS_Store -print0 | xargs -0 rm && git commit -am 'before publish' && npm run patch && npm publish --access public",
+    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 ",
+    "build": "webpack  --config webpack.prod.js",
+    "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",
+    "patch": "npm version patch"
+  },
+  "files": [
+    "h5/src/*.js",
+    "*.md",
+    "LICENSE"
+  ],
+  "keywords": [],
+  "author": "zk",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "vconsole-webpack-plugin": "^1.5.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "gitHead": "1fea4cec0219638167d1ff9d5670ebe36d44b20c"
+}

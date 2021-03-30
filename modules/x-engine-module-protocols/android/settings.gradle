@@ -1,3 +1,0 @@
-include ':module-protocols'
-include ':app'
-rootProject.name = "Protocol"

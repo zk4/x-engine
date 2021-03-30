@@ -1,29 +1,40 @@
 //
-//  NavUtil.m
-//  nav
-//
-//  Created by 吕冬剑 on 2020/9/15.
-//  Copyright © 2020 @zkty-team. All rights reserved.
-//
+//  NativeUIModule.m
 
-#import "NavUtil.h"
+
+
+#import "NativeUIModule.h"
+#import "NativeContext.h"
 #import "Unity.h"
-#import "micros.h"
 
-@implementation NavUtil
 
-+ (void)setNavBarHidden:(BOOL)isHidden isAnimation:(BOOL)isAnimation {    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
+@interface NativeUIModule ()
+
+@end
+@implementation NativeUIModule
+NATIVE_MODULE(NativeUIModule)
+
+
+- (NSString*) moduleId{
+    return @"com.zkty.native.ui";
+}
+
+- (int) order{
+    return 0;
+}
+
+- (void)setNavBarHidden:(BOOL)isHidden isAnimation:(BOOL)isAnimation {    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     [topVC.navigationController setNavigationBarHidden:isHidden animated:isAnimation];
 }
 
-+ (void)setNavTitle:(NSString *)title withTitleColor:(NSString *)color withTitleSize:(NSInteger)size {
+- (void)setNavTitle:(NSString *)title withTitleColor:(NSString *)color withTitleSize:(NSInteger)size {
     
 
     UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     topVC.title = title;
     UIColor *rgbColor;
     if (color && 0 != color.length ){
-        rgbColor = [NavUtil colorFromHexCode:color];
+        rgbColor = [NativeUIModule colorFromHexCode:color];
     }
     if (rgbColor == nil){
         rgbColor = [UIColor blackColor];

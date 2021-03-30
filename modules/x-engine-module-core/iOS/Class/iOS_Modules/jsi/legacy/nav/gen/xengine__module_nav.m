@@ -6,7 +6,7 @@
 #import "xengine__module_nav.h"
  
 
-@implementation NavTitleDTO
+@implementation NavTitleDTO2
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
    	return NO;
@@ -87,7 +87,7 @@
 @end
     
   
-@implementation NavHiddenBarDTO
+@implementation NavHiddenBarDTO2
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
@@ -116,7 +116,7 @@
     
     - (void) setNavTitle:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          NavTitleDTO* dto = [self convert:dict clazz:NavTitleDTO.class];
+        NavTitleDTO2* dto = [self convert:dict clazz:NavTitleDTO2.class];
           [self _setNavTitle:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
@@ -172,14 +172,14 @@
       }
     - (void) setSearchBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
+          NavHiddenBarDTO2* dto = [self convert:dict clazz:NavHiddenBarDTO2.class];
           [self _setSearchBarHidden:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
       }
     - (void) setNavBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
+          NavHiddenBarDTO2* dto = [self convert:dict clazz:NavHiddenBarDTO2.class];
           [self _setNavBarHidden:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];

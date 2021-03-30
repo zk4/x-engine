@@ -6,7 +6,7 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol NavTitleDTO;
+@protocol NavTitleDTO2;
 @protocol NavPopItem;
 @protocol NavBtnDTO;
 @protocol NavMoreBtnDTO;
@@ -17,7 +17,7 @@
 @protocol NavHiddenBarDTO;
 @protocol NavHistoryDTO;
 
-@interface NavTitleDTO: JSONModel
+@interface NavTitleDTO2: JSONModel
   	@property(nonatomic,copy) NSString* title;
    	@property(nonatomic,copy) NSString* titleColor;
    	@property(nonatomic,assign) NSInteger titleSize;
@@ -90,7 +90,7 @@
 @end
     
 
-@interface NavHiddenBarDTO: JSONModel
+@interface NavHiddenBarDTO2: JSONModel
   	@property(nonatomic,assign) BOOL isHidden;
    	@property(nonatomic,assign) BOOL isAnimation;
 @end
@@ -104,7 +104,7 @@
 
 @protocol xengine__module_nav_protocol
        @required 
-        - (void) _setNavTitle:(NavTitleDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _setNavTitle:(NavTitleDTO2*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
         - (void) _setNavLeftBtn:(NavBtnDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
@@ -127,11 +127,11 @@
       @required 
         - (void) _setNavSearchBar:(NavSearchBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
-      @required 
-        - (void) _setSearchBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+      @required
+        - (void) _setSearchBarHidden:(NavHiddenBarDTO2*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-        - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _setNavBarHidden:(NavHiddenBarDTO2*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
         - (void) _removeHistoryPage:(NavHistoryDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;

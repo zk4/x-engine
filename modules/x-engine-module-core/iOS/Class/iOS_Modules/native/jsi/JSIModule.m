@@ -99,7 +99,7 @@
     for (NSString* key in source) {
         if ([self isDictionary:[source objectForKey:key]]) {
           if (!target[key]) [self assign:target from:[@{key:@{}} mutableCopy]];
-          [self _mergeDeep:target[key] sources:[@[source[key]] mutableCopy]];
+          [self _mergeDeep:[target[key] mutableCopy]  sources:[@[source[key]] mutableCopy]];
       } else {
           [self assign: target  from:[@{key:[source objectForKey:key]} mutableCopy]];
       }
@@ -124,5 +124,6 @@
     [self mergeDeep:merged_dict source:mutalbeUserDict];
     return merged_dict;
 }
+
 
 @end

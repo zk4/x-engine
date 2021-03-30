@@ -80,25 +80,30 @@ NATIVE_MODULE(OmpDirectModule)
     }
 }
 
-- (void)push:(nonnull NSString *)host pathname:(nonnull NSString *)pathname query:(nonnull NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
-   
+- (void)push:(NSString*) protocol  // 强制 protocol，非必须
+        host:(NSString*) host
+        pathname:(NSString*) pathname
+        query:(NSDictionary<NSString*,NSString*>*) query
+        params:(NSDictionary<NSString*,NSString*>*) params {
+    
 //    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
 //        // TODO，如果是 tab？ 强制转成 open
 //        NSLog(@"顶层都不是 RecyleWebViewController，还想着 nav？");
 //        return;
 //    }
+    if(!protocol){
+        protocol = [self protocol];
+    }
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
     
     if(host){
-        // 创建 webview 逻辑
-        
         // TODO 统一一个类处理 URL 地址问题
-        NSString * finalUrl = host;
+        NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
         if(pathname && ![pathname isEqualToString:@"/"]){
-            finalUrl =[NSString stringWithFormat:@"%@#%@",host,pathname];
+            finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
         }
 
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:params[@"hideNavbar"]];
 
 
         vc.hidesBottomBarWhenPushed = YES;
@@ -120,9 +125,12 @@ NATIVE_MODULE(OmpDirectModule)
     }else{
         NSString* host=[[GlobalState sharedInstance] getLastHost ];
 
-        NSString * finalUrl =[NSString stringWithFormat:@"%@#%@",host,pathname];
+        NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
+        if(pathname && ![pathname isEqualToString:@"/"]){
+            finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
+        }
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:FALSE withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:FALSE withHiddenNavBar:params[@"hideNavbar"]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 
@@ -132,5 +140,7 @@ NATIVE_MODULE(OmpDirectModule)
 - (nonnull NSString *)scheme {
     return @"omp";
 }
-
+- (nonnull NSString *)protocol {
+    return @"http:";
+}
 @end

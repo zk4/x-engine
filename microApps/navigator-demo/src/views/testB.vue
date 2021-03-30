@@ -74,17 +74,18 @@ export default {
   
   },
     openmp(){
-      /*engine.bridge.call('com.zkty.jsi.direct.push',{*/
-      /*scheme: 'microapp',*/
-      /*host:'com.gm.microapp.mine',*/
-      /*pathname:'/',*/
-      /*hideNavbar:true,*/
-      /*},function(res){})*/
-
       engine.bridge.call('com.zkty.jsi.direct.push',{
-      host:'http://10.2.128.80:8080',
+      scheme: 'microapp',
+      host:'com.gm.microapp.mine',
+      pathname:'/',
       hideNavbar:true,
       },function(res){})
+
+      /*engine.bridge.call('com.zkty.jsi.direct.push',{*/
+      /*scheme:"omp",*/
+      /*host:'10.2.128.80:8080',*/
+      /*hideNavbar:true,*/
+      /*},function(res){})*/
 
     },
     next() {

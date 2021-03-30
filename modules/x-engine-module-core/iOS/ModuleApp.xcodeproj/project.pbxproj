@@ -25,7 +25,6 @@
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		58D208B32610E6820082ADC3 /* OmpDirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208B22610E6820082ADC3 /* OmpDirectModule.m */; };
 		58D208C22610E83D0082ADC3 /* DirectManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208C12610E83D0082ADC3 /* DirectManagerModule.m */; };
-		58D208D02610F07B0082ADC3 /* H5DirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208CE2610F07B0082ADC3 /* H5DirectModule.m */; };
 		58D2092B261230290082ADC3 /* Broadcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2092A261230290082ADC3 /* Broadcast.m */; };
 		58D2093826123CDC0082ADC3 /* JSIBroadcastModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */; };
 		58D209442612F4260082ADC3 /* xengine_jsi_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D209422612F4260082ADC3 /* xengine_jsi_direct.m */; };
@@ -118,8 +117,6 @@
 		58D208BE2610E7F20082ADC3 /* iDirectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDirectManager.h; sourceTree = "<group>"; };
 		58D208C02610E83D0082ADC3 /* DirectManagerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectManagerModule.h; sourceTree = "<group>"; };
 		58D208C12610E83D0082ADC3 /* DirectManagerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectManagerModule.m; sourceTree = "<group>"; };
-		58D208CE2610F07B0082ADC3 /* H5DirectModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5DirectModule.m; sourceTree = "<group>"; };
-		58D208CF2610F07B0082ADC3 /* H5DirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5DirectModule.h; sourceTree = "<group>"; };
 		58D20929261230290082ADC3 /* Broadcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Broadcast.h; sourceTree = "<group>"; };
 		58D2092A261230290082ADC3 /* Broadcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Broadcast.m; sourceTree = "<group>"; };
 		58D2093626123CDC0082ADC3 /* JSIBroadcastModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIBroadcastModule.h; sourceTree = "<group>"; };
@@ -344,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				58DF37DB260DF62C002C1236 /* microapp */,
-				58D208CD2610F06D0082ADC3 /* h5 */,
 				58D208C92610EA2B0082ADC3 /* omp */,
 				58D208BF2610E83D0082ADC3 /* direct.manager */,
 			);
@@ -367,15 +363,6 @@
 				58D208B22610E6820082ADC3 /* OmpDirectModule.m */,
 			);
 			path = omp;
-			sourceTree = "<group>";
-		};
-		58D208CD2610F06D0082ADC3 /* h5 */ = {
-			isa = PBXGroup;
-			children = (
-				58D208CF2610F07B0082ADC3 /* H5DirectModule.h */,
-				58D208CE2610F07B0082ADC3 /* H5DirectModule.m */,
-			);
-			path = h5;
 			sourceTree = "<group>";
 		};
 		58D20928261230290082ADC3 /* broadcast */ = {
@@ -822,7 +809,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58D208D02610F07B0082ADC3 /* H5DirectModule.m in Sources */,
 				A4A695C82609DC3300074A24 /* JSIModule.m in Sources */,
 				58DF38DC260F1C0A002C1236 /* HistoryModel.m in Sources */,
 				5805B2E9260F9B8F0029F138 /* JSIDirectModule.m in Sources */,

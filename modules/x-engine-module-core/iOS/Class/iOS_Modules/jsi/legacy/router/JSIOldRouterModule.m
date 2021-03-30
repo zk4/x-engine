@@ -26,7 +26,7 @@ JSI_MODULE(JSIOldRouterModule)
 }
 - (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     NSString* scheme = dict[@"type"];
-    [self.directors push:scheme host:dict[@"uri"] pathname:dict[@"path"] query:dict[@"query"] hideNavbar:dict[@"hideNavbar"]];
+    [self.directors push:scheme host:dict[@"uri"] pathname:dict[@"path"] query:dict[@"query"] params:dict];
 
 }
 @end

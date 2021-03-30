@@ -28,7 +28,9 @@ NATIVE_MODULE(MicroappDirectModule)
 - (int) order{
     return 0;
 }
-
+- (nonnull NSString *)protocol {
+    return @"file:";
+}
 -(NSString*) scheme{
     return @"microapp";
 }
@@ -41,7 +43,6 @@ NATIVE_MODULE(MicroappDirectModule)
             self.microappDirect = direct;
             return;
         }
-
     }
 }
 
@@ -49,9 +50,13 @@ NATIVE_MODULE(MicroappDirectModule)
     [self.microappDirect back:host pathname:pathname];
 }
 
-- (void)push:(NSString *)host pathname:(nonnull NSString *)pathname query:( NSDictionary<NSString *,NSString *> *)query hideNavbar:(BOOL)hideNavbar {
-    NSString *urlStr = [[MicroAppLoader sharedInstance] getMicroAppUrlStrPathWith:host withVersion:0];
-    [self.microappDirect push:urlStr pathname:pathname query:query hideNavbar:hideNavbar];
+- (void)push:(NSString*) protocol  // 强制 protocol，非必须
+        host:(NSString*) host
+        pathname:(NSString*) pathname
+        query:(NSDictionary<NSString*,NSString*>*) query
+        params:(NSDictionary<NSString*,NSString*>*) params {
+    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:0];
+    [self.microappDirect push:[self protocol] host:localhost pathname:pathname query:query params:params];
 }
 
 @end

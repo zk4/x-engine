@@ -35,15 +35,19 @@ NATIVE_MODULE(Native_direct_omp)
     [[GlobalState sharedInstance] getCurrentWebViewHistories];
 
     if ([@"0" isEqualToString:pathname]){
+        int i =0;
         for (UIViewController *vc in [ary reverseObjectEnumerator]){
             if (![vc isKindOfClass:[RecyleWebViewController class]]){
                 [navC popToViewController:vc animated:YES];
-                [histories removeAllObjects];
+                // 当 i=0 时，也就当前页就不是 RecyleWebViewController，判断现在就是在 tab 页上，不应该清空 histories
+                if(i>0)
+                    [histories removeAllObjects];
                 return;
             }
+            i++;
         }
     }
-    else if ([@"/index" isEqualToString:pathname] || [@"/" isEqualToString:pathname]){
+    else if ([@"/" isEqualToString:pathname]){
         if(histories && histories.count > 0){
             [navC popToViewController:histories[0].vc animated:YES];
             [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
@@ -103,7 +107,7 @@ NATIVE_MODULE(Native_direct_omp)
             finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
         }
 
-        id hideNavbar  = params[@"hideNavbar"];
+        BOOL hideNavbar  = [params[@"hideNavbar"] boolValue];
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:hideNavbar];
 
 
@@ -125,13 +129,13 @@ NATIVE_MODULE(Native_direct_omp)
         
     }else{
         NSString* host=[[GlobalState sharedInstance] getLastHost ];
-
+        NSAssert(host!=nil, @"host 不可为 nil");
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
         if(pathname && ![pathname isEqualToString:@"/"]){
             finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
         }
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:FALSE withHiddenNavBar:params[@"hideNavbar"]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:FALSE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 

@@ -2,9 +2,9 @@
 const parserVersion = "1.0.0";
 
 // 命名空间
-const moduleID = "com.zkty.jsi.ui";
+const moduleID = "com.zkty.jsi.jsi";
 // JS模块名称
-const JSModule = "@zkty-team/x-engine-jsi-ui";
+const JSModule = "@zkty-team/x-engine-jsi-jsi";
 
 const conf = {
   args: {},
@@ -53,12 +53,12 @@ function broadcastOff() {
 }
 function triggerNativeBroadCast() {
   window.triggerNativeBroadCast = () => {
-    ui.triggerNativeBroadCast();
+    jsi.triggerNativeBroadCast();
   };
 }
 function repeatReturn__event__(args: ContinousDTO): string {
   window.repeatReturn__event__ = () => {
-    ui.repeatReturn__event__({
+    jsi.repeatReturn__event__({
       __event__: function (res) {
         document.getElementById("debug_text").innerText =
           "支持多次返回" + JSON.stringify(res);
@@ -69,7 +69,7 @@ function repeatReturn__event__(args: ContinousDTO): string {
 }
 function repeatReturn__ret__(args: ContinousDTO): string {
   window.repeatReturn__ret__ = () => {
-    ui.repeatReturn__ret__({
+    jsi.repeatReturn__ret__({
       __ret__: function (res) {
         document.getElementById("debug_text").innerText =
           "支持多次返回" + JSON.stringify("__ret__:" + res);
@@ -81,7 +81,7 @@ function repeatReturn__ret__(args: ContinousDTO): string {
 
 function ReturnInPromiseThen(args: ContinousDTO): string {
   window.ReturnInPromiseThen = () => {
-    ui.ReturnInPromiseThen().then((res) => {
+    jsi.ReturnInPromiseThen().then((res) => {
       document.getElementById("debug_text").innerText =
         "then 只支持一次性返回" + JSON.stringify(res);
     });

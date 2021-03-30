@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="20dp"
-        android:text="ui"
-        android:onClick="ui"
+        android:text="jsi"
+        android:onClick="jsi"
         android:textColor="#ffffff" />
 
 

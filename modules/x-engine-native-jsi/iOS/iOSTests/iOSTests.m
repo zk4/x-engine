@@ -5,7 +5,7 @@
 
 #import <XCTest/XCTest.h>
 #import <x-engine-module-engine/XEngineJSBUtil.h>
-#import "xengine__module_ui.h"
+#import "xengine__module_jsi.h"
 @interface iOSTests : XCTestCase
 
 @end

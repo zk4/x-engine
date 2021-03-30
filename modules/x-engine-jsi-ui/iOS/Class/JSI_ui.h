@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <micros.h>
 #import "xengine_jsi_ui.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@class SheetDTO;
+
 @interface JSI_ui : xengine_jsi_ui
  
  @end

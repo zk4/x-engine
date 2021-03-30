@@ -49,4 +49,12 @@
              completionHandler(nil ,complete);
           }];
       }
-  @end
+- (void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+- (void)_setNavTitle:(NavTitleDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
+@end

@@ -1,7 +1,7 @@
 {
-  "name": "@zkty-team/x-engine-jsi-ui",
+  "name": "@zkty-team/x-engine-jsi-jsi",
   "version": "0.1.13",
-  "description": "ui",
+  "description": "jsi",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {

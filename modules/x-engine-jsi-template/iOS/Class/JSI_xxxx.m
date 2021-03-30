@@ -7,33 +7,17 @@
 
 
 #import "JSI_xxxx.h"
-#import <x-engine-module-core/JSIContext.h>
+#import "JSIContext.h"
+#import "NativeContext.h"
 
 @interface JSI_xxxx()
-{
-    NSTimer * timer ;
-    ContinousDTO* adto;
-    void(^hanlder)(id value,BOOL isComplete);
-    int value;
-    NSString* event;
-
-}
 @end
 
 @implementation JSI_xxxx
- 
-  
- 
+JSI_MODULE(JSI_xxxx)
 
-
- 
-
-
-
-
-
-
-
+- (void)afterAllJSIModuleInited {
+}
 
 @end
  

@@ -7,15 +7,15 @@ abstract_target 'abstract' do
   pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
   pod 'JSONModel'
-  target 'ui' do
+  target 'jsi' do
     #use_frameworks!
     #module_pods
   end
-  target 'uiTests' do
+  target 'jsiTests' do
     #use_frameworks!
     #module_pods
   end
-  target 'uiUITests' do
+  target 'jsiUITests' do
     # Pods for testing
   end
 end

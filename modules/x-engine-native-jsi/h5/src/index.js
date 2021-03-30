@@ -10,7 +10,7 @@ function osCheck() {
 } 
   else {
 
-    return  xengine.use("com.zkty.jsi.ui", 
+    return  xengine.use("com.zkty.jsi.jsi", 
     [
   {
     "name": "broadcastOn",

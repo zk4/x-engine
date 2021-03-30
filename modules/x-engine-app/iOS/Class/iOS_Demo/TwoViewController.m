@@ -22,8 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";
-
-    // temp webviewpool 需要重新设计 api
+    ///TODO:  webviewpool 需要重新设计 api
 //    id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 //
 //    [director push:@"omp" host:@"10.2.128.80:8082" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];

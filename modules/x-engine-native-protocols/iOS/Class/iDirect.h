@@ -22,10 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString*) protocol;
 
 - (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        host:(NSString*) host
+        host:(nullable NSString*) host
         pathname:(NSString*) pathname
-        query:(NSDictionary<NSString*,id>*) query
-      params:(NSDictionary<NSString*,id>*) params;
+        query:(nullable NSDictionary<NSString*,id>*) query
+      params:(nullable NSDictionary<NSString*,id>*) params;
 
 
 

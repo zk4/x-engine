@@ -22,7 +22,7 @@
 NATIVE_MODULE(Native_direct_microapp)
 
 - (NSString*) moduleId{
-    return @"com.zkty.native.direct.microapp";
+    return @"com.zkty.native.direct_microapp";
 }
 
 - (int) order{

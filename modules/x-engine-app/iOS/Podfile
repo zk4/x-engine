@@ -8,7 +8,7 @@ def shared_pods
   # native
   pod 'x-engine-native-jsi', :path =>'../../x-engine-native-jsi'
   pod 'x-engine-native-ui', :path =>'../../x-engine-native-ui'
-  pod 'x-engine-native-direct_manager', :path =>'../../x-engine-native-direct_manager'
+  pod 'x-engine-native-direct', :path =>'../../x-engine-native-direct'
   pod 'x-engine-native-direct_http', :path =>'../../x-engine-native-direct_http'
   pod 'x-engine-native-direct_omp', :path =>'../../x-engine-native-direct_omp'
   pod 'x-engine-native-direct_microapp', :path =>'../../x-engine-native-direct_microapp'

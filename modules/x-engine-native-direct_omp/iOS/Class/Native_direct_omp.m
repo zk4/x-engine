@@ -20,7 +20,7 @@
 NATIVE_MODULE(Native_direct_omp)
 
  - (NSString*) moduleId{
-    return @"com.zkty.native.direct.omp";
+    return @"com.zkty.native.direct_omp";
 }
 - (int) order{
     return 0;

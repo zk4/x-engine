@@ -52,7 +52,6 @@ NATIVE_MODULE(DirectManagerModule)
         params:(NSDictionary<NSString*,NSString*>*) params {
     id<iDirect> direct = [self.directors objectForKey:scheme];
     [direct push:[direct protocol] host:host pathname:pathname query:query params:params];
-
 }
 
 @end

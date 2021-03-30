@@ -38,7 +38,11 @@
 //    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
 //    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@"/" query:@{}  hideNavbar:TRUE];
 //    [director push:@"http" host:@"www.baidu.com" pathname:@"/" query:nil params:@{@"hideNavbar":@TRUE}];
+<<<<<<< HEAD:modules/x-engine-app/iOS/Class/iOS_Demo/OneViewController.m
 
+=======
+    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"/" query:nil params:@{@"hideNavbar":@TRUE}];
+>>>>>>> df975c70507be91532dc5ba880e27358b204c344:modules/x-engine-module-core/iOS/Class/iOS_Demo/OneViewController.m
 //    [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
 //
     [director push:@"omp" host:@"10.2.128.80:8082" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];

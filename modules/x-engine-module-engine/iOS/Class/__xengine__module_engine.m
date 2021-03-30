@@ -22,7 +22,6 @@
 }
  
 - (void) broadcast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
     NSLog(@"hello");
   }
 @end

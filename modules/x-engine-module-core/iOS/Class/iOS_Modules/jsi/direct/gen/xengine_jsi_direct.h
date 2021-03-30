@@ -20,7 +20,7 @@
 
 @interface DirectBackDTO: JSONModel
   	@property(nonatomic,copy) NSString* scheme;
-   	@property(nonatomic,copy) NSString* path;
+   	@property(nonatomic,copy) NSString* pathname;
 @end
     
 

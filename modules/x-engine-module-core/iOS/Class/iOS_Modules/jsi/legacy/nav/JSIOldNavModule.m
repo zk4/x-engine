@@ -13,13 +13,16 @@
 #import "RecyleWebViewController.h"
 #import "MicroappDirectModule.h"
 #import "XEOneWebViewPool.h"
-#import "NavUtil.h"
 #import "GlobalState.h"
 #import "HistoryModel.h"
 #import "iDirectManager.h"
+#import "iUI.h"
+
 
 @interface JSIOldNavModule ()
     @property (nonatomic, strong)   id<iDirectManager>  directors;
+    @property (nonatomic, strong)   id<iUI>  ui;
+    
 @end
 
 @implementation JSIOldNavModule
@@ -32,6 +35,7 @@ JSI_MODULE(JSIOldNavModule)
 
 -(void)afterAllJSIModuleInited {
     self.directors = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+    self.ui = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iUI)];
 }
 
 
@@ -51,14 +55,15 @@ JSI_MODULE(JSIOldNavModule)
     }}
 
 
--(void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler{
-    [NavUtil setNavBarHidden:dto.isHidden isAnimation:dto.isAnimation];
+-(void)_setNavBarHidden:(NavHiddenBarDTO2 *)dto complete:(void (^)(BOOL))completionHandler{
+    [self.ui setNavBarHidden:dto.isHidden isAnimation:dto.isAnimation];
     completionHandler(YES);
 }
 
 
-- (void)_setNavTitle:(NavTitleDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    [NavUtil setNavTitle:dto.title withTitleColor:dto.titleColor withTitleSize:dto.titleSize];
+- (void)_setNavTitle:(NavTitleDTO2 *)dto complete:(void (^)(BOOL))completionHandler {
+
+    [self.ui setNavTitle:dto.title withTitleColor:dto.titleColor withTitleSize:dto.titleSize];
     completionHandler(YES);
 }
 

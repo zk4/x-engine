@@ -364,7 +364,20 @@ static   XEngineWebView* s_webview;
     
     [self setSignleWebView:[[XEOneWebViewPool sharedInstance] getWebView]];
     [self loadFileUrl];
+<<<<<<< HEAD
+//<<<<<<< HEAD
+//=======
+//
+//    self.navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+//    self.navBarHairlineImageView.hidden = YES;
+////
+//    [self.navigationController.navigationBar setLayerShadow:[UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:0.04] offset:CGSizeMake(0,5) radius:10];
+//
+//    self.navigationItem.titleView = self.navTitleLabel;
+//>>>>>>> main_from_times16801
+=======
  
+>>>>>>> 9c00c4e54fabcbd9a60d458fc15222a05acea056
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
@@ -414,6 +427,18 @@ static   XEngineWebView* s_webview;
             [[XEOneWebViewPool sharedInstance] clearWebView:self.loadUrl];
         }
     }
+<<<<<<< HEAD
+//<<<<<<< HEAD
+//=======
+//    self.navBarHairlineImageView.hidden = NO;
+//
+//    // 到了根页面就一定要显示tabbar
+//    if (ary.count <= 1) {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"isShowTabbar" object:@{@"isshow":@(YES)}];
+//    }
+//>>>>>>> main_from_times16801
+=======
+>>>>>>> 9c00c4e54fabcbd9a60d458fc15222a05acea056
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

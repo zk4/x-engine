@@ -272,11 +272,28 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
           return [NSString stringWithFormat:@"%@",obj ];
       }
 }
--(NSString *)call:(NSString*) method :(NSString*) argStr
-{
-    NSArray *nameStr=[XEngineJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 
-    id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[nameStr[0]];
+- (NSString *)call:(NSString*)method :(NSString*) argStr {
+    NSArray *nameStr=[XEngineJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+    NSString *reviceModuleName = nameStr[0];
+    NSDictionary *microAppDict = [[NSUserDefaults standardUserDefaults] objectForKey:@"MICROAPPJSON"];
+    NSDictionary *permissionDict = microAppDict[@"permission"];
+    NSDictionary *moduleDict = permissionDict[@"module"];
+    NSArray *array = moduleDict.allKeys;
+    BOOL isHave = [array containsObject:reviceModuleName];
+    
+    if (![reviceModuleName isEqualToString:@"_dsb"]) {
+        if (isHave == 0) {
+            NSString *str = [NSString stringWithFormat:@"%@模块没有使用权限", reviceModuleName];
+            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:str preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            }];
+            [errorAlert addAction:sureAction];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
+            return nil;
+        }
+    }
+    id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[reviceModuleName];
     NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result =[NSMutableDictionary dictionaryWithDictionary:@{@"code":@-1,@"data":@""}];
     if(!JavascriptInterfaceObject){

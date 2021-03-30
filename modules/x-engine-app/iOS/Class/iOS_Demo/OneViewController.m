@@ -35,16 +35,12 @@
 - (void)didClickBtn {
 //    [self.navigationController pushViewController:[[JumpViewController alloc ] init] animated:YES];
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-//    [img open:@"microapp" :@"com.gm.microapp.mine" :@"/" :@{} :0 :TRUE];
-//    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@"/" query:@{}  hideNavbar:TRUE];
+
+    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@"/" query:nil  params:nil];
 //    [director push:@"http" host:@"www.baidu.com" pathname:@"/" query:nil params:@{@"hideNavbar":@TRUE}];
- 
-//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"/" query:nil 
-//    [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
-//
-//    [director push:@"omp" host:@"10.2.128.80:8080" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];
+//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"/" query:nil
 //    [director push:@"omp" host:@"192.168.1.15:8080" pathname:@"/" query:nil params:@{@"hideNavbar":@YES}];
-    [director push:@"omp" host:@"192.168.1.15:9111" pathname:@"/" query:nil params:@{@"hideNavbar":@NO}];
+//    [director push:@"omp" host:@"192.168.1.15:9111" pathname:@"/" query:nil params:@{@"hideNavbar":@NO}];
 
 }
 

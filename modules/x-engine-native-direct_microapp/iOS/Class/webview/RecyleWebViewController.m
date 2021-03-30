@@ -262,6 +262,9 @@
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     
+    /// FIXED: 侧滑时，如果并没有滑走，不应该在 viewWillAppear 里 loadFileUrl
+    [self loadFileUrl];
+
     if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -276,7 +279,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    [self loadFileUrl];
     //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
     //           completionHandler:nil];
     

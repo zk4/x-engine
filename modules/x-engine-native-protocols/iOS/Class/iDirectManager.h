@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
         host:(nullable NSString*) host
         pathname:(NSString*) pathname
         query:(nullable NSDictionary<NSString*,NSString*>*) query
-        params:(NSDictionary<NSString*,NSString*>*) params;
+        params:(nullable NSDictionary<NSString*,NSString*>*) params;
 
 - (void)back: (NSString*) scheme host:(nullable NSString*) host                    pathname:(NSString*) pathname;
 

@@ -47,29 +47,29 @@
                 [UIView animateWithDuration:0.3 animations:^{
                     self.progresslayer.alpha = 0;
                 }];
-                if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
-                    [self.webview evaluateJavaScript:@"document.title"
-                                   completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-                        if([response isKindOfClass:[NSString class]]){
-                            NSString *title = response;
-                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                            if(title.length > 0){
-                                if(self.title.length == 0){
-                                    self.title = title;
-                                    self.customTitle = self.title;
-                                }
-                            }
-                        }
-                    }];
-                }
+//                if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
+//                    [self.webview evaluateJavaScript:@"document.title"
+//                                   completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+//                        if([response isKindOfClass:[NSString class]]){
+//                            NSString *title = response;
+//                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//                            if(title.length > 0){
+//                                if(self.title.length == 0){
+//                                    self.title = title;
+//                                    self.customTitle = self.title;
+//                                }
+//                            }
+//                        }
+//                    }];
+//                }
             }
         }
-        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
-            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-                self.title = dic[@"title"];
-                self.customTitle = self.title;
-            }
-        }
+//        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
+//            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
+//                self.title = dic[@"title"];
+//                self.customTitle = self.title;
+//            }
+//        }
     }
 }
 
@@ -279,19 +279,19 @@
     //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
     //           completionHandler:nil];
     
-    if(self.customTitle.length > 0 && ![self.customTitle isEqualToString: self.title]){
-        self.title = self.customTitle;
-    }
+//    if(self.customTitle.length > 0 && ![self.customTitle isEqualToString: self.title]){
+//        self.title = self.customTitle;
+//    }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     self.progresslayer.alpha = 0;
     
     
-    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-        if(self.navigationItem.leftBarButtonItems.count > 0){
-            self.navigationItem.leftBarButtonItems.lastObject.title = @"";
-        }
-    }
+//    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
+//        if(self.navigationItem.leftBarButtonItems.count > 0){
+//            self.navigationItem.leftBarButtonItems.lastObject.title = @"";
+//        }
+//    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

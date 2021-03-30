@@ -28,6 +28,7 @@
 		58D2092B261230290082ADC3 /* Broadcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2092A261230290082ADC3 /* Broadcast.m */; };
 		58D2093826123CDC0082ADC3 /* JSIBroadcastModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */; };
 		58D209442612F4260082ADC3 /* xengine_jsi_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D209422612F4260082ADC3 /* xengine_jsi_direct.m */; };
+		58D2095426131E120082ADC3 /* HTTPDirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2095226131E120082ADC3 /* HTTPDirectModule.m */; };
 		58DF377E260DC942002C1236 /* XEOneWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3777260DC942002C1236 /* XEOneWebViewPool.m */; };
 		58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3778260DC942002C1236 /* RecyleWebViewController.m */; };
 		58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */; };
@@ -123,6 +124,8 @@
 		58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIBroadcastModule.m; sourceTree = "<group>"; };
 		58D209422612F4260082ADC3 /* xengine_jsi_direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine_jsi_direct.m; sourceTree = "<group>"; };
 		58D209432612F4260082ADC3 /* xengine_jsi_direct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine_jsi_direct.h; sourceTree = "<group>"; };
+		58D2095226131E120082ADC3 /* HTTPDirectModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDirectModule.m; sourceTree = "<group>"; };
+		58D2095326131E120082ADC3 /* HTTPDirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDirectModule.h; sourceTree = "<group>"; };
 		58DF3776260DC942002C1236 /* XEOneWebViewPoolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEOneWebViewPoolModel.h; sourceTree = "<group>"; };
 		58DF3777260DC942002C1236 /* XEOneWebViewPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEOneWebViewPool.m; sourceTree = "<group>"; };
 		58DF3778260DC942002C1236 /* RecyleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecyleWebViewController.m; sourceTree = "<group>"; };
@@ -340,6 +343,7 @@
 		58D208B02610E6620082ADC3 /* direct */ = {
 			isa = PBXGroup;
 			children = (
+				58D2095126131E120082ADC3 /* http */,
 				58DF37DB260DF62C002C1236 /* microapp */,
 				58D208C92610EA2B0082ADC3 /* omp */,
 				58D208BF2610E83D0082ADC3 /* direct.manager */,
@@ -382,6 +386,16 @@
 			);
 			path = broadcast;
 			sourceTree = "<group>";
+		};
+		58D2095126131E120082ADC3 /* http */ = {
+			isa = PBXGroup;
+			children = (
+				58D2095226131E120082ADC3 /* HTTPDirectModule.m */,
+				58D2095326131E120082ADC3 /* HTTPDirectModule.h */,
+			);
+			name = http;
+			path = Class/iOS_Modules/native/direct/http;
+			sourceTree = SOURCE_ROOT;
 		};
 		58DF3775260DC942002C1236 /* webview */ = {
 			isa = PBXGroup;
@@ -842,6 +856,7 @@
 				A4A695CB2609DC3300074A24 /* JSIOldRouterModule.m in Sources */,
 				58DF37C1260DE552002C1236 /* XEngineCallInfo.m in Sources */,
 				58DF37BC260DE552002C1236 /* WKWebView+Custome.m in Sources */,
+				58D2095426131E120082ADC3 /* HTTPDirectModule.m in Sources */,
 				A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 				58DF37C0260DE552002C1236 /* XEngineInternalApis.m in Sources */,

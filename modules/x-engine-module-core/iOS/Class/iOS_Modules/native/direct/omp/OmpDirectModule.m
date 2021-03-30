@@ -83,8 +83,8 @@ NATIVE_MODULE(OmpDirectModule)
 - (void)push:(NSString*) protocol  // 强制 protocol，非必须
         host:(NSString*) host
         pathname:(NSString*) pathname
-        query:(NSDictionary<NSString*,NSString*>*) query
-        params:(NSDictionary<NSString*,NSString*>*) params {
+        query:(NSDictionary<NSString*,id>*) query
+        params:(NSDictionary<NSString*,id>*) params {
     
 //    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
 //        // TODO，如果是 tab？ 强制转成 open
@@ -103,7 +103,8 @@ NATIVE_MODULE(OmpDirectModule)
             finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
         }
 
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:params[@"hideNavbar"]];
+        id hideNavbar  = params[@"hideNavbar"];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:hideNavbar];
 
 
         vc.hidesBottomBarWhenPushed = YES;

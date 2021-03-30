@@ -13,8 +13,8 @@
   	@property(nonatomic,copy) NSString* scheme;
    	@property(nonatomic,copy) NSString* host;
    	@property(nonatomic,copy) NSString* pathname;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* params;
+   	@property(nonatomic,strong) NSDictionary<NSString*,id>* query;
+   	@property(nonatomic,strong) NSDictionary<NSString*,id>* params;
 @end
     
 

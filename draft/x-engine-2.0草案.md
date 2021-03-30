@@ -144,7 +144,6 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
       @property(nonatomic,copy)   NSString* pathname;
   @end
   ```
-```
 
   
 
@@ -189,9 +188,37 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
 
  
 
+## 开发方式
 
+1. 生成 jsi 模块项目：
+
+coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
+
+2. 编写 model.ts 
+
+3. 生成代码
+
+   使用 x-cli version >= 1.6.0
+
+   ```
+   npm install @zkty-team@x-cli
+   ```
+
+   在生成的模块项目下执行
+
+   ```
+   x-cli model model.ts  -t 2
+   ```
+
+   
 
 ## 注意事项
+
+### model.ts
+
+如果 model.ts 里没有定义 dto，只是使用了字典，字典里value 严禁使用 bool 值或者数字。 只允许字符串。
+
+
 
 ### vue-route  里 query 与 hash
 
@@ -250,5 +277,3 @@ https://www.ruanyifeng.com/blog/2011/03/url_hash.html
 
 
 
-
-```

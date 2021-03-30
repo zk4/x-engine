@@ -21,7 +21,7 @@
 @property (nonatomic, copy) NSString * _Nullable loadUrl;
 
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
-@property (nonatomic, assign) BOOL isHiddenNavbar;
+@property (nonatomic, assign) Boolean isHiddenNavbar;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
@@ -82,10 +82,10 @@
     }
 }
 
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden{
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname newWebView:(int)newWebView withHiddenNavBar:(NSString*)isHidden{
     self = [super init];
     if (self){
-        self.isHiddenNavbar = isHidden;
+        self.isHiddenNavbar = [isHidden isEqualToString:@"1"]?TRUE:FALSE;
         
         if(fileUrl.length == 0)
             return self;

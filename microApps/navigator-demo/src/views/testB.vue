@@ -78,8 +78,12 @@ export default {
       scheme: 'microapp',
       host:'com.gm.microapp.mine',
       pathname:'/',
-      hideNavbar:true,
+      params:{
+        hideNavbar:"0",
+        hello:"0"
+      }
       },function(res){})
+
 
       /*engine.bridge.call('com.zkty.jsi.direct.push',{*/
       /*scheme:"omp",*/

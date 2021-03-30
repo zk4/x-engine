@@ -53,8 +53,8 @@ NATIVE_MODULE(MicroappDirectModule)
 - (void)push:(NSString*) protocol  // 强制 protocol，非必须
         host:(NSString*) host
         pathname:(NSString*) pathname
-        query:(NSDictionary<NSString*,NSString*>*) query
-        params:(NSDictionary<NSString*,NSString*>*) params {
+        query:(NSDictionary<NSString*,id>*) query
+        params:(NSDictionary<NSString*,id>*) params  {
     NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:0];
     [self.microappDirect push:[self protocol] host:localhost pathname:pathname query:query params:params];
 }

@@ -27,6 +27,7 @@
 
 
   @implementation xengine_jsi_direct
+
     - (instancetype)init
     {
         self = [super init];
@@ -39,7 +40,7 @@
     
     - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"h5\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
+//          dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"h5\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": \"1\"  }}"];
     
           DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
           [self _push:dto complete:^(BOOL complete) {

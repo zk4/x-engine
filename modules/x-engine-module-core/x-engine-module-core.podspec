@@ -42,11 +42,7 @@ Pod::Spec.new do |s|
     s.frameworks  = "CoreServices"
   
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
-    s.dependency 'JSONModel'
-    s.dependency 'MBProgressHUD'
-    s.dependency 'Masonry'
-    s.dependency 'MJRefresh'
-    s.dependency 'SSZipArchive'
+    s.dependency 'x-engine-module-protocols'
   
 end
   

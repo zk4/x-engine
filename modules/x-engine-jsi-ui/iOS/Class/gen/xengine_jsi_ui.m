@@ -37,6 +37,8 @@
     
     - (void) setNavTitle:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{  \"titleSize\": 16}"];
+    
           NavTitleDTO* dto = [self convert:dict clazz:NavTitleDTO.class];
           [self _setNavTitle:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
@@ -44,6 +46,8 @@
       }
     - (void) setNavBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
           NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
           [self _setNavBarHidden:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);

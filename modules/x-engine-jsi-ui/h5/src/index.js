@@ -15,7 +15,6 @@ function osCheck() {
   {
     "name": "setNavTitle",
     "default_args": {
-      "titleColor": "#000000",
       "titleSize": 16
     },
     "decorators": []

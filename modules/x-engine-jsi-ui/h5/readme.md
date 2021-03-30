@@ -16,6 +16,7 @@ npm install @zkty-team/x-engine-jsi-ui
 **demo**
 ``` js
     title: "title",
+    titleColor: "#000000"
 ``` 
 
 	
@@ -24,7 +25,7 @@ npm install @zkty-team/x-engine-jsi-ui
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | title | string | 必填 |  | 导航条的文字 |
-| titleColor | string | 必填 | #000000 | 16进制的颜色色值 |
+| titleColor | string | 必填 |  | 16进制的颜色色值 |
 | titleSize | int | 必填 | 16 | 字体大小 |
 
 

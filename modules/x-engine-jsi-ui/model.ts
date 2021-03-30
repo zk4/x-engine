@@ -32,10 +32,11 @@ interface NavHiddenBarDTO {
 }
 
 function setNavTitle(
-  arg: NavTitleDTO = { titleColor: "#000000", titleSize: 16 }
+  arg: NavTitleDTO = {titleSize: 16 }
 ) {
   xengine.api("com.zkty.jsi.ui", "setNavTitle", {
     title: "title",
+    titleColor: "#000000"
   });
 }
 

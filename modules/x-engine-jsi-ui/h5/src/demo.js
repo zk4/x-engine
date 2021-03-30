@@ -6,6 +6,7 @@ window.setNavTitle = () => {
 
   xengine.api("com.zkty.jsi.ui", "setNavTitle", {
     title: "title",
+    titleColor: "#000000"
   });
 }
 window.setNavBarHidden = () => {

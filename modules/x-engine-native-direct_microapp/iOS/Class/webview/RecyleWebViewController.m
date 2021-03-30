@@ -93,7 +93,8 @@
         self.loadUrl = fileUrl;
         
         if(newWebView){
-            self.webview = [[XEOneWebViewPool sharedInstance] createWebView:fileUrl].webView;
+            self.webview = [[XEOneWebViewPool sharedInstance] createWebView].webView;
+            [self.webview loadUrl:self.loadUrl];
             self.webview.frame = [UIScreen mainScreen].bounds;
             
             [GlobalState setCurrentWebView:self.webview];

@@ -32,11 +32,10 @@
         finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
     }
 
-    /// TODO: withHiddenNavBar 应该动态传入
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:TRUE];
 
 
-
+    /// TODO:  背景没有生效
     vc.view.backgroundColor = [UIColor redColor];
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];

@@ -56,45 +56,47 @@
     return nil;
 }
 ///TODO:  webviewpool 需要重新设计 api, baseUrl 没有意义
--(XEOneWebViewPoolModel *)createWebView:(NSString *)baseUrl{
+-(XEOneWebViewPoolModel *)createWebView{
     
     XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
-    if([baseUrl hasPrefix:@"file://"]){
-        NSString *filePath = [baseUrl substringFromIndex:7];
-        NSString *rootPath;
-        NSString *rootFile;
-        NSString *appId;
-        if([filePath hasPrefix:[[MicroAppLoader sharedInstance] microappDirectory]]){
-            rootFile = [filePath substringFromIndex:[[MicroAppLoader sharedInstance] microappDirectory].length + 1];
-            NSArray *ary = [rootFile pathComponents];
-            if(ary.count > 0){
-                appId = ary.firstObject;
-                rootPath = [[[MicroAppLoader sharedInstance] microappDirectory] stringByAppendingPathComponent:appId];
-            }
-        }else if([filePath hasPrefix:[[NSBundle mainBundle] resourcePath]]){
-            rootFile = [filePath substringFromIndex:[[NSBundle mainBundle] resourcePath].length + 1];
-            NSArray *ary = [rootFile pathComponents];
-            if(ary.count > 0){
-                appId = ary.firstObject;
-                rootPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:appId];
-            }
-        }
-        NSString *profilePath = [rootPath stringByAppendingPathComponent:@"microapp.json"];
-        if([[NSFileManager defaultManager] fileExistsAtPath:profilePath]){
-            NSData *jsonData = [NSData dataWithContentsOfFile:profilePath];
-            NSDictionary *profileDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
-            NSDictionary *permission = profileDic[@"permission"];
-            model.secrect = permission[@"secrect"];
-            NSDictionary *network = profileDic[@"network"];
-            model.isStrict = [network[@"strict"] boolValue];
-            model.whiteList = network[@"white_host_list"];
-            
-            NSArray<NSString *> *ary = [appId componentsSeparatedByString:@"."];
-            model.version = [ary.lastObject integerValue];
-            model.appId = [appId substringToIndex:ary.lastObject.length + 1];
-            model.appRootPath = rootPath;
-        }
-    }
+    
+/// TODO: 这里为什么会有这种逻辑？
+//    if([baseUrl hasPrefix:@"file://"]){
+//        NSString *filePath = [baseUrl substringFromIndex:7];
+//        NSString *rootPath;
+//        NSString *rootFile;
+//        NSString *appId;
+//        if([filePath hasPrefix:[[MicroAppLoader sharedInstance] microappDirectory]]){
+//            rootFile = [filePath substringFromIndex:[[MicroAppLoader sharedInstance] microappDirectory].length + 1];
+//            NSArray *ary = [rootFile pathComponents];
+//            if(ary.count > 0){
+//                appId = ary.firstObject;
+//                rootPath = [[[MicroAppLoader sharedInstance] microappDirectory] stringByAppendingPathComponent:appId];
+//            }
+//        }else if([filePath hasPrefix:[[NSBundle mainBundle] resourcePath]]){
+//            rootFile = [filePath substringFromIndex:[[NSBundle mainBundle] resourcePath].length + 1];
+//            NSArray *ary = [rootFile pathComponents];
+//            if(ary.count > 0){
+//                appId = ary.firstObject;
+//                rootPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:appId];
+//            }
+//        }
+//        NSString *profilePath = [rootPath stringByAppendingPathComponent:@"microapp.json"];
+//        if([[NSFileManager defaultManager] fileExistsAtPath:profilePath]){
+//            NSData *jsonData = [NSData dataWithContentsOfFile:profilePath];
+//            NSDictionary *profileDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+//            NSDictionary *permission = profileDic[@"permission"];
+//            model.secrect = permission[@"secrect"];
+//            NSDictionary *network = profileDic[@"network"];
+//            model.isStrict = [network[@"strict"] boolValue];
+//            model.whiteList = network[@"white_host_list"];
+//
+//            NSArray<NSString *> *ary = [appId componentsSeparatedByString:@"."];
+//            model.version = [ary.lastObject integerValue];
+//            model.appId = [appId substringToIndex:ary.lastObject.length + 1];
+//            model.appRootPath = rootPath;
+//        }
+//    }
     
     NSMutableArray *modules = [[JSIContext sharedInstance] modules];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];

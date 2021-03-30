@@ -82,10 +82,10 @@
     }
 }
 
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname newWebView:(int)newWebView withHiddenNavBar:(NSString*)isHidden{
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
-        self.isHiddenNavbar = [isHidden isEqualToString:@"1"]?TRUE:FALSE;
+        self.isHiddenNavbar = isHidden;
         
         if(fileUrl.length == 0)
             return self;

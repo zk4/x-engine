@@ -35,7 +35,8 @@
         finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
     }
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:@"1"];
+    /// TODO: withHiddenNavBar 应该动态传入
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:TRUE];
 
 
 

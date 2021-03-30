@@ -1,27 +1,33 @@
 //
-//  NativeUIModule.m
+//  Native_ui.m
+//  ui
+//
+//  Created by zk on 2020/9/7.
+//  Copyright © 2020 edz. All rights reserved.
 
 
-
-#import "NativeUIModule.h"
+#import "Native_ui.h"
 #import "NativeContext.h"
 #import "Unity.h"
 
-
-@interface NativeUIModule ()
-
+@interface Native_ui()
+{ }
 @end
-@implementation NativeUIModule
-NATIVE_MODULE(NativeUIModule)
 
+@implementation Native_ui
+NATIVE_MODULE(Native_ui)
 
-- (NSString*) moduleId{
+ - (NSString*) moduleId{
     return @"com.zkty.native.ui";
 }
 
 - (int) order{
     return 0;
 }
+
+- (void)afterAllNativeModuleInited{
+}
+
 
 - (void)setNavBarHidden:(BOOL)isHidden isAnimation:(BOOL)isAnimation {    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
     [topVC.navigationController setNavigationBarHidden:isHidden animated:isAnimation];
@@ -34,7 +40,7 @@ NATIVE_MODULE(NativeUIModule)
     topVC.title = title;
     UIColor *rgbColor;
     if (color && 0 != color.length ){
-        rgbColor = [NativeUIModule colorFromHexCode:color];
+        rgbColor = [Native_ui colorFromHexCode:color];
     }
     if (rgbColor == nil){
         rgbColor = [UIColor blackColor];
@@ -70,8 +76,6 @@ NATIVE_MODULE(NativeUIModule)
     
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
-  
-
  
-
 @end
+ 

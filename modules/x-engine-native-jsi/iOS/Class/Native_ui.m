@@ -1,23 +1,23 @@
 //
-//  Native_xxxx.m
-//  xxxx
+//  Native_ui.m
+//  ui
 //
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
 
 
-#import "Native_xxxx.h"
+#import "Native_ui.h"
 #import "NativeContext.h"
 
-@interface Native_xxxx()
+@interface Native_ui()
+NATIVE_MODULE(Native_ui)
 { }
 @end
 
-@implementation Native_xxxx
-NATIVE_MODULE(Native_xxxx)
-
+@implementation Native_ui
+ 
  - (NSString*) moduleId{
-    return @"com.zkty.native.xxxx";
+    return @"com.zkty.native.ui";
 }
 
 - (int) order{

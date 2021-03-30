@@ -1,37 +1,18 @@
-# Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
- 
-source 'https://github.com/CocoaPods/Specs.git'
+# Uncomment thj next line to define a global platform for your project
+platform :ios, '10.0'
 
 def shared_pods
-  pod 'MBProgressHUD'
-      pod 'AFNetworking'
-      pod 'MJExtension'
-      
-      pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools'
-      pod 'x-engine-module-engine', :path =>'../../x-engine-module-engine'
-      pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols'
-      
-      pod 'x-engine-module-router', :path =>'../../x-engine-module-router'
-      pod 'x-engine-module-nav', :path =>'../../x-engine-module-nav'
-      pod 'x-engine-module-network', :path =>'../../x-engine-module-network'
-      pod 'x-engine-module-localstorage', :path =>'../../x-engine-module-localStorage'
-      pod 'x-engine-module-camera', :path =>'../../x-engine-module-camera'
-      pod 'x-engine-module-scan', :path =>'../../x-engine-module-scan'
-      
-      pod 'ZBarSDK', :path =>'../ios-thirdlib/ZBarSDK'
-
-
-
-  
-
+  pod 'x-engine-module-core', :path =>'../../x-engine-module-core'
+  pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols'
+  pod 'JSONModel'
 end
-  target 'xxxx' do
-    shared_pods
-  end
-  target 'xxxxTests' do
-    shared_pods
-  end
-  target 'xxxxUITests' do
-    shared_pods
-  end
+
+target 'ModuleApp' do
+  shared_pods
+end
+
+target 'ModuleAppTests' do
+end
+
+target 'ModuleAppUITests' do
+end

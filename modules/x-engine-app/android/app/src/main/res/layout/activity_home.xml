@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/fl_home_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
-
-<!--    <ImageView-->
-<!--        android:id="@+id/iv_test_icon"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_marginEnd="@dimen/dp_50"-->
-<!--        android:src="@mipmap/icon_home_app"-->
-<!--        android:layout_marginBottom="@dimen/dp_100"-->
-<!--        android:layout_alignParentBottom="true"/>-->
-
-    <com.zkty.engine.module.xxxx.view.widgets.MyTabView
-        android:id="@+id/tab_widget"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#00000000" />
+        android:onClick="nextPage"
+        android:padding="10dp"
+        android:text="next page"
+        android:textColor="@color/colorBlue"
+        android:visibility="visible" />
 
 </RelativeLayout>

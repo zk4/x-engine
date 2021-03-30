@@ -1,173 +1,57 @@
 apply plugin: 'com.android.application'
 
-
-def jsonFile = file('../../conf/x-engine-module-xxxx.json')
-String json = jsonFile.text.replaceAll("\r\n","").replaceAll("\r","").replaceAll("\n","").replaceAll("\"","'")
-//permissions = json.dependencies["USER_INFO"]
-
-
-def releaseTime() {
-    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
-}
-
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
-
     defaultConfig {
-        applicationId "cn.xxxx"
-        minSdkVersion 21
-        targetSdkVersion 29
+        applicationId "com.zkty.modules.engine"
+        minSdkVersion 19
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
-        }
-
-        packagingOptions {
-            //解决编译时com.android.builder.merge.DuplicateRelativeFileException: More than one file was found with OS independent path 'META-INF/rxjava.properties'这个错误
-            exclude 'META-INF/rxjava.properties'
+            abiFilters"armeabi","armeabi-v7a","x86","mips"
         }
     }
-
-    signingConfigs {
-        debug {
-            keyAlias 'times'
-            keyPassword 't123456'
-            storeFile file("keystore.jks")
-            storePassword 't123456'
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-        uat {
-            keyAlias 'times'
-            keyPassword 't123456'
-            storeFile file("keystore.jks")
-            storePassword 't123456'
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-        release {
-            keyAlias 'times'
-            keyPassword 't123456'
-            storeFile file("keystore.jks")
-            storePassword 't123456'
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-
-    }
-
     buildTypes {
-
-
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [app_name: "@string/app_name_dev"]
-            signingConfig signingConfigs.debug
-            buildConfigField 'String', 'ENV', '"DEV"'
-            buildConfigField("String", "BuildTime", "\"" + new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("Asia/Shanghai")) + "\"")
-            buildConfigField("String", "JSON", "\""+json+"\"")
-        }
-        uat {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [app_name: "@string/app_name_uat"]
-            signingConfig signingConfigs.uat
-            buildConfigField 'String', 'ENV', '"UAT"'
-            buildConfigField("String", "BuildTime", "\"" + new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("Asia/Shanghai")) + "\"")
-        }
-
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [app_name: "@string/app_name"]
-            signingConfig signingConfigs.release
-            buildConfigField 'String', 'ENV', '"PROD"'
-            buildConfigField("String", "BuildTime", "\"" + new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("Asia/Shanghai")) + "\"")
-        }
-
-
-        android.applicationVariants.all { variant ->
-            variant.outputs.all {
-                outputFileName = "appb_v${defaultConfig.versionName}_${variant.buildType.name + "_" + releaseTime()}.apk"
-            }
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //这里修改apk文件名
+                outputFileName = "x-engine_v${variant.versionName}_${releaseTime()}.apk"
+            }
+    }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a', 'x86_64'
+            universalApk true
+        }
+    }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+}
 
-    packagingOptions {
-        doNotStrip '*/mips/*.so'
-        doNotStrip '*/mips64/*.so'
-    }
-
-    dataBinding {
-        enabled true
-    }
+static def releaseTime() {
+    return new Date().format("yyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation fileTree(include: ['*.aar'], dir: 'libs')
-
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    implementation 'com.google.android.material:material:1.2.1'
-
     implementation project(':module-engine')
-    implementation project(':module-nav')
-    implementation project(':module-localstorage')
-    implementation project(':module-device')
-    implementation project(':module-camera')
-    implementation project(':module-ui')
-    implementation project(':module-router')
-    implementation project(':module-scan')
-    implementation project(':module-dcloud')
-    implementation project(':module-network')
-
-    implementation project(':module-geo')
-
-    //butterknife
-    implementation 'com.jakewharton:butterknife:10.2.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
-
-    implementation 'jp.wasabeef:glide-transformations:4.3.0'
-    implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
-
-    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.2.0'
-    uatImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.2.0'
-    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:3.2.0'
-
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-
-    //下拉刷新
-    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
-    implementation 'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
-
-    // FlycoTabLayout
-    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
-
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
-    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
-    // RxJava
-    implementation 'io.reactivex:rxjava:1.3.0'
-    implementation 'io.reactivex:rxandroid:1.2.1'
-
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

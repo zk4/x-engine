@@ -50,14 +50,16 @@ export default {
   mounted() {
     this.nativeStr = this.$route.query.params;
     this.params = this.$route.query.qid;
+
     engine.broadcastOn(function(res){
     console.log(res);
       engine.bridge.call('com.zkty.jsi.broadcast.trigger',{
-      source: '1',
+      source: '3',
       },function(res){
       })
       return 1;
     })
+
     setInterval(()=>{
       a++;
       console.log(a);
@@ -80,9 +82,7 @@ export default {
       /*},function(res){})*/
 
       engine.bridge.call('com.zkty.jsi.direct.push',{
-      scheme: 'omp',
-      host:'http://192.168.1.15:8080',
-      pathname:'/',
+      host:'http://10.2.128.80:8080',
       hideNavbar:true,
       },function(res){})
 

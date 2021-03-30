@@ -39,8 +39,8 @@
 //    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@"/" query:@{}  hideNavbar:TRUE];
 //    [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
 
-//    [director push:@"omp" host:@"http://10.2.128.89:8081" pathname:@"/" query:nil hideNavbar:TRUE];
-    [director push:@"omp" host:@"http://192.168.1.15:8080" pathname:@"/" query:nil hideNavbar:TRUE];
+    [director push:@"omp" host:@"http://10.2.128.80:8082" pathname:@"/" query:nil hideNavbar:TRUE];
+//    [director push:@"omp" host:@"http://192.168.1.15:8080" pathname:@"/" query:nil hideNavbar:TRUE];
 
 }
 

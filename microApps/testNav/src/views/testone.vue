@@ -66,6 +66,7 @@ export default {
   mounted() { },
   methods: {
   triggerbroad(){
+
       engine.bridge.call('com.zkty.jsi.broadcast.trigger',{
       source: '2',
       },function(){

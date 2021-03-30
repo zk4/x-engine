@@ -16,7 +16,7 @@ def shared_pods
 
   # jsi
   pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'
-  pod 'x-engine-jsi-direct_manager', :path =>'../../x-engine-jsi-direct_manager'
+  pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
 
   # legacy jsi
   pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'

@@ -6,53 +6,32 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol SheetDTO;
-@protocol ContinousDTO;
-@protocol MsgPayloadDTO;
+@protocol DirectPushDTO;
+@protocol DirectBackDTO;
 
-@interface SheetDTO: JSONModel
-  	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,strong) NSArray<NSString*>* itemList;
-   	@property(nonatomic,copy) NSString* content;
-   	@property(nonatomic,strong) NSString* __event__;
+@interface DirectPushDTO: JSONModel
+  	@property(nonatomic,copy) NSString* scheme;
+   	@property(nonatomic,copy) NSString* host;
+   	@property(nonatomic,copy) NSString* pathname;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* params;
 @end
     
 
-@interface ContinousDTO: JSONModel
-  	@property(nonatomic,strong) NSString* __event__;
-@end
-    
-
-@interface MsgPayloadDTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
-   	@property(nonatomic,copy) NSString* sender;
-   	@property(nonatomic,strong) NSArray<NSString*>* receiver;
-   	@property(nonatomic,strong) NSString* __event__;
-   	@property(nonatomic,strong) NSString* __ret__;
+@interface DirectBackDTO: JSONModel
+  	@property(nonatomic,copy) NSString* scheme;
+   	@property(nonatomic,copy) NSString* pathname;
 @end
     
 
 
 @protocol xengine_jsi_direct_protocol
        @required 
-       - (void) _broadcastOn:(void (^)(BOOL complete)) completionHandler;
+        - (void) _push:(DirectPushDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
       @required 
-       - (void) _broadcastOff:(void (^)(BOOL complete)) completionHandler;
+        - (void) _back:(DirectBackDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
     
-      @required 
-       - (void) _triggerNativeBroadCast:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-        - (void) _repeatReturn__event__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _repeatReturn__ret__:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _ReturnInPromiseThen:(ContinousDTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
 @end
   
 

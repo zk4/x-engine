@@ -2,46 +2,20 @@
 import direct from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.push = () => {
 
-  window.broadcastOn = (...args) => {
-    xengine.broadcastOn(function (res) {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
-    });
-  };
+   engine.api('com.zkty.jsi.direct','push',{
+    scheme: 'omp',
+    host: "10.2.128.80:8082",
+    pathname:'/'
+  })
+}
+window.back = () => {
 
-  window.broadcastOff = () => {
-    xengine.broadcastOff();
-  };
-
-  window.triggerNativeBroadCast = () => {
-    direct.triggerNativeBroadCast();
-  };
-
-  window.repeatReturn__event__ = () => {
-    direct.repeatReturn__event__({
-      __event__: function (res) {
-        document.getElementById("debug_text").innerText =
-          "支持多次返回" + JSON.stringify(res);
-        return res;
-      },
-    });
-  };
-
-  window.repeatReturn__ret__ = () => {
-    direct.repeatReturn__ret__({
-      __ret__: function (res) {
-        document.getElementById("debug_text").innerText =
-          "支持多次返回" + JSON.stringify("__ret__:" + res);
-        return res;
-      },
-    });
-  };
-
-  window.ReturnInPromiseThen = () => {
-    direct.ReturnInPromiseThen().then((res) => {
-      document.getElementById("debug_text").innerText =
-        "then 只支持一次性返回" + JSON.stringify(res);
-    });
-  };
+    engine.api('com.zkty.jsi.direct','back',{
+     scheme: 'omp',
+     path:'-1'
+   }
+}
 
     

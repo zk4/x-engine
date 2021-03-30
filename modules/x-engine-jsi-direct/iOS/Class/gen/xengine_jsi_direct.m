@@ -6,27 +6,18 @@
 #import "xengine_jsi_direct.h"
 
 
-@implementation SheetDTO
+@implementation DirectPushDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	if ([propertyName isEqualToString:@"itemList"]) { return YES; }
-   	if ([propertyName isEqualToString:@"content"]) { return YES; }
-   	return NO;
-    }
-@end
-    
-  
-@implementation ContinousDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"__event__"]) { return YES; }	return NO;
-    }
-@end
-    
-  
-@implementation MsgPayloadDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	if ([propertyName isEqualToString:@"args"]) { return YES; }
-   	if ([propertyName isEqualToString:@"sender"]) { return YES; }
-   	if ([propertyName isEqualToString:@"receiver"]) { return YES; }
+   	if ([propertyName isEqualToString:@"host"]) { return YES; }
    
+   	if ([propertyName isEqualToString:@"query"]) { return YES; }
+   	if ([propertyName isEqualToString:@"params"]) { return YES; }	return NO;
+    }
+@end
+    
+  
+@implementation DirectBackDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
 @end
@@ -46,46 +37,22 @@
         return @"com.zkty.jsi.direct";
     }
     
-    - (void) broadcastOn:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _broadcastOn:^(BOOL complete) {
-                 completionHandler(nil,complete); 
+          dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"omp\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
+    
+          DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
+          [self _push:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
           }];
       }
-    - (void) broadcastOff:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) back:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _broadcastOff:^(BOOL complete) {
-                 completionHandler(nil,complete); 
+          dict=[self mergeDefault:dict defaultString:@"{}"];
+    
+          DirectBackDTO* dto = [self convert:dict clazz:DirectBackDTO.class];
+          [self _back:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
           }];
-      }
-    - (void) triggerNativeBroadCast:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _triggerNativeBroadCast:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) repeatReturn__event__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
-          [self _repeatReturn__event__:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) repeatReturn__ret__:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
-          [self _repeatReturn__ret__:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) ReturnInPromiseThen:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          ContinousDTO* dto = [self convert:dict clazz:ContinousDTO.class];
-          [self _ReturnInPromiseThen:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
       }
   @end

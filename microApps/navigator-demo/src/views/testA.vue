@@ -44,14 +44,14 @@ export default {
     nnext() {
       engine.bridge.call('com.zkty.jsi.direct.push',{
       scheme: 'omp',
-      path:'/testB'
+      pathname:'/testB'
 
       },function(res){})
     },
     next() {
       engine.bridge.call('com.zkty.jsi.direct.back',{
       scheme: 'omp',
-      path:'0'
+      pathname:'0'
       },function(res){})
       /*nav.navigatorPush({*/
         /*url: "/testB",*/

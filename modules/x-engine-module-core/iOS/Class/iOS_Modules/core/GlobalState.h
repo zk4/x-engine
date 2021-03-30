@@ -15,8 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GlobalState : NSObject
 + (instancetype)sharedInstance;
 
-+ (NSString * _Nullable) s_microapp_root_url;
-+ (void) set_s_microapp_root_url:(NSString*)val;
+
 + (void)setCurrentWebView:(XEngineWebView*) val;
 + (XEngineWebView*)getCurrentWebView;
 - (NSString*) getLastHost;

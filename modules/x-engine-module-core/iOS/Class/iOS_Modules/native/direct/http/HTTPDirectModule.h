@@ -1,5 +1,5 @@
 //
-//  H5DirectModule.m.h
+//  HTTPDirectModule.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
@@ -11,8 +11,7 @@
 #import "iDirect.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface H5DirectModule : NativeModule <iDirect>
-
-@end
+@interface HTTPDirectModule : NativeModule <iDirect>
+ @end
 
 NS_ASSUME_NONNULL_END

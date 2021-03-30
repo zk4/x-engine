@@ -1,12 +1,12 @@
 //
-//  MicroappDirectModule.m
+//  HTTPDirectModule.m
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "MicroappDirectModule.h"
+#import "HTTPDirectModule.h"
 #import "NativeContext.h"
 #import "MicroAppLoader.h"
 #import "XEOneWebViewPool.h"
@@ -15,24 +15,24 @@
 #import "RecyleWebViewController.h"
 #import "GlobalState.h"
 
-@interface MicroappDirectModule ()
+@interface HTTPDirectModule ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
 @end
-@implementation MicroappDirectModule
-NATIVE_MODULE(MicroappDirectModule)
+@implementation HTTPDirectModule
+NATIVE_MODULE(HTTPDirectModule)
 
 - (NSString*) moduleId{
-    return @"com.zkty.native.direct.microapp";
+    return @"com.zkty.native.direct.http";
 }
 
 - (int) order{
     return 0;
 }
 - (nonnull NSString *)protocol {
-    return @"file:";
+    return @"http:";
 }
 -(NSString*) scheme{
-    return @"microapp";
+    return @"http";
 }
 
 - (void)afterAllNativeModuleInited{
@@ -55,8 +55,7 @@ NATIVE_MODULE(MicroappDirectModule)
         pathname:(NSString*) pathname
         query:(NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,NSString*>*) params {
-    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:0];
-    [self.microappDirect push:[self protocol] host:localhost pathname:pathname query:query params:params];
+     [self.microappDirect push:[self protocol] host:host pathname:pathname query:query params:params];
 }
 
 @end

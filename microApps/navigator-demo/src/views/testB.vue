@@ -10,6 +10,9 @@
       <van-button type="primary" round block @click="openmp">打开新的microapp</van-button>
     </div>
     <div style="margin: 16px;">
+      <van-button type="primary" round block @click="triggerbroad">broadcast</van-button>
+    </div>
+    <div style="margin: 16px;">
       <van-button type="primary" round block @click="next">下一页</van-button>
     </div>
     <div style="margin: 16px;">
@@ -34,6 +37,7 @@
 <script>
 import nav from "@zkty-team/x-engine-module-nav";
 import engine from "@zkty-team/x-engine-module-engine";
+var a= 1
 export default {
   name: "testB",
   data() {
@@ -46,15 +50,42 @@ export default {
   mounted() {
     this.nativeStr = this.$route.query.params;
     this.params = this.$route.query.qid;
+
+    engine.broadcastOn(function(res){
+    console.log(res);
+      engine.bridge.call('com.zkty.jsi.broadcast.trigger',{
+      source: '3',
+      },function(res){
+      })
+      return 1;
+    })
+
+    setInterval(()=>{
+      a++;
+      console.log(a);
+    },1000);
   },
   methods: {
+  triggerbroad(){
+      engine.bridge.call('com.zkty.jsi.broadcast.trigger',{
+      source: '1',
+      },function(res){
+      })
+  
+  },
     openmp(){
       engine.bridge.call('com.zkty.jsi.direct.push',{
       scheme: 'microapp',
       host:'com.gm.microapp.mine',
-      path:'/',
+      pathname:'/',
       hideNavbar:true,
       },function(res){})
+
+      /*engine.bridge.call('com.zkty.jsi.direct.push',{*/
+      /*scheme:"omp",*/
+      /*host:'10.2.128.80:8080',*/
+      /*hideNavbar:true,*/
+      /*},function(res){})*/
 
     },
     next() {

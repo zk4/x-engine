@@ -6,12 +6,33 @@
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
+/*
+ ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+ │                                            href                                             │
+ ├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
+ │ protocol │  │        auth         │        host         │           path            │ hash  │
+ │          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
+ │          │  │                     │   hostname   │ port │ pathname │     search     │       │
+ │          │  │                     │              │      │          ├─┬──────────────┤       │
+ │          │  │                     │              │      │          │ │    query     │       │
+ "  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash "
+ │          │  │          │          │   hostname   │ port │          │                │       │
+ │          │  │          │          ├──────────────┴──────┤          │                │       │
+ │ protocol │  │ username │ password │        host         │          │                │       │
+ ├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
+ │   origin    │                     │       origin        │ pathname │     search     │ hash  │
+ ├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
+ │                                            href                                             │
+ └─────────────────────────────────────────────────────────────────────────────────────────────┘
+ 
+ 
+ */
 #import <Foundation/Foundation.h>
 #import "JSIModule.h"
-#import "xengine__jsi_direct.h"
+#import "xengine_jsi_direct.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSIDirectModule : xengine__jsi_direct
+@interface JSIDirectModule : xengine_jsi_direct
 
 @end
 

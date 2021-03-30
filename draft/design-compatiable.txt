@@ -2,7 +2,7 @@
 skinparam componentStyle uml2
 skinparam packageStyle rectangle
  
-package 模块管理 {
+package 模块管理(core) {
   class NativeContext {
     + (Set<NativeModule>) getModules();
     + (NativeModule) getModuleById(id:string);
@@ -15,26 +15,29 @@ package 模块管理 {
 
   }
 }
-package 原生模块(JSI) {
+package 原生模块(native/jsi) {
   class JSIContext extends NativeModule{
     + (Set<JSIModule>) getJSIModules(); 
   }
   
   
   class  JSIModule {
+
     + (string) {abstract}  moduleId;
   }
 } 
 
-package JSI模块 {
-  interface xengine__module_router_protocol {
+package JSI模块(jsi/direct/gen) {
+  interface xengine_jsi_direct_protocol {
     //model.ts自动生成
-    +  (void) {abstract}  _Direct (...,callback:Func)
+    +  (void) {abstract}  _push (...,callback:Func)
+        +  (void) {abstract}  _back (...,callback:Func)
   }
 
-  abstract class xengine__module_Direct extends  JSIModule  implements xengine__module_router_protocol { 
+  abstract class xengine_jsi_direct extends  JSIModule  implements xengine_jsi_direct_protocol { 
     //model.ts自动生成
-    + (void) Direct (...,callback:Func)
+    +  (void) {abstract}  _push (...,callback:Func)
+    +  (void) {abstract}  _back (...,callback:Func)
   }
 }
 
@@ -71,16 +74,7 @@ package 协议模块 {
    
 }
  
-
-  
-package JSI模块(Direct){
-class __xengine__module_Direct extends xengine__module_Direct{
-    - DirectManager: iDirectManager;
-  }
-  
  
-  
-}
 
 NativeContext o--  NativeModule : aggregation
  

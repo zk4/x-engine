@@ -25,9 +25,27 @@ let xengine = {
   isHybrid  : isHybrid,
   bridge  : dsbridge,
   use     : use,
+  api     : api,
   broadcastOn: broadcastOn,
   broadcastOff: broadcastOff
 };
+
+function api(jsimoduleId,funcname,args,cb){
+  // 保证是异步方法
+  if(!cb){
+    cb=()=>{}
+  }
+  if (args.hasOwnProperty('__event__')){
+      only_idx++;
+     let eventcb = args['__event__'];
+     if(!isFunction(eventcb)) throw('__event__ 必须为函数');
+     args['__event__']  = ns+"."+funcname+'.__event__'+only_idx;
+      xengine.bridge.register(args['__event__'], (res) => {
+          return eventcb(res);
+      })
+  }
+  dsbridge.call(jsimoduleId+"."+funcname,args,cb)
+}
 function broadcastOff(){
     xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }

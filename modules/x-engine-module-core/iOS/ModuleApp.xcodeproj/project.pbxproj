@@ -16,7 +16,6 @@
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		3346DAE4FD478F462C183047 /* libPods-ModuleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */; };
 		5805B2E9260F9B8F0029F138 /* JSIDirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2E8260F9B8F0029F138 /* JSIDirectModule.m */; };
-		5805B2F0260F9C030029F138 /* xengine__jsi_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B2EF260F9C030029F138 /* xengine__jsi_direct.m */; };
 		5805B30D260FA30F0029F138 /* NSURL+QueryDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B30C260FA30F0029F138 /* NSURL+QueryDictionaryTests.m */; };
 		5805B31D260FA3DD0029F138 /* NSURL+QueryDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B31C260FA3DD0029F138 /* NSURL+QueryDictionary.m */; };
 		5805B322260FAADB0029F138 /* NSString+QueryDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */; };
@@ -26,7 +25,10 @@
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		58D208B32610E6820082ADC3 /* OmpDirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208B22610E6820082ADC3 /* OmpDirectModule.m */; };
 		58D208C22610E83D0082ADC3 /* DirectManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208C12610E83D0082ADC3 /* DirectManagerModule.m */; };
-		58D208D02610F07B0082ADC3 /* H5DirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D208CE2610F07B0082ADC3 /* H5DirectModule.m */; };
+		58D2092B261230290082ADC3 /* Broadcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2092A261230290082ADC3 /* Broadcast.m */; };
+		58D2093826123CDC0082ADC3 /* JSIBroadcastModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */; };
+		58D209442612F4260082ADC3 /* xengine_jsi_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D209422612F4260082ADC3 /* xengine_jsi_direct.m */; };
+		58D2095426131E120082ADC3 /* HTTPDirectModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2095226131E120082ADC3 /* HTTPDirectModule.m */; };
 		58DF377E260DC942002C1236 /* XEOneWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3777260DC942002C1236 /* XEOneWebViewPool.m */; };
 		58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3778260DC942002C1236 /* RecyleWebViewController.m */; };
 		58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */; };
@@ -100,8 +102,6 @@
 		52784685DCF411FA837CF77C /* libPods-ModuleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5805B2E7260F9B8F0029F138 /* JSIDirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIDirectModule.h; sourceTree = "<group>"; };
 		5805B2E8260F9B8F0029F138 /* JSIDirectModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIDirectModule.m; sourceTree = "<group>"; };
-		5805B2EE260F9C030029F138 /* xengine__jsi_direct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine__jsi_direct.h; sourceTree = "<group>"; };
-		5805B2EF260F9C030029F138 /* xengine__jsi_direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine__jsi_direct.m; sourceTree = "<group>"; };
 		5805B30C260FA30F0029F138 /* NSURL+QueryDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryDictionaryTests.m"; sourceTree = "<group>"; };
 		5805B31B260FA3DD0029F138 /* NSURL+QueryDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryDictionary.h"; sourceTree = "<group>"; };
 		5805B31C260FA3DD0029F138 /* NSURL+QueryDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryDictionary.m"; sourceTree = "<group>"; };
@@ -118,8 +118,14 @@
 		58D208BE2610E7F20082ADC3 /* iDirectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDirectManager.h; sourceTree = "<group>"; };
 		58D208C02610E83D0082ADC3 /* DirectManagerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectManagerModule.h; sourceTree = "<group>"; };
 		58D208C12610E83D0082ADC3 /* DirectManagerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectManagerModule.m; sourceTree = "<group>"; };
-		58D208CE2610F07B0082ADC3 /* H5DirectModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5DirectModule.m; sourceTree = "<group>"; };
-		58D208CF2610F07B0082ADC3 /* H5DirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5DirectModule.h; sourceTree = "<group>"; };
+		58D20929261230290082ADC3 /* Broadcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Broadcast.h; sourceTree = "<group>"; };
+		58D2092A261230290082ADC3 /* Broadcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Broadcast.m; sourceTree = "<group>"; };
+		58D2093626123CDC0082ADC3 /* JSIBroadcastModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSIBroadcastModule.h; sourceTree = "<group>"; };
+		58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSIBroadcastModule.m; sourceTree = "<group>"; };
+		58D209422612F4260082ADC3 /* xengine_jsi_direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine_jsi_direct.m; sourceTree = "<group>"; };
+		58D209432612F4260082ADC3 /* xengine_jsi_direct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine_jsi_direct.h; sourceTree = "<group>"; };
+		58D2095226131E120082ADC3 /* HTTPDirectModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDirectModule.m; sourceTree = "<group>"; };
+		58D2095326131E120082ADC3 /* HTTPDirectModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDirectModule.h; sourceTree = "<group>"; };
 		58DF3776260DC942002C1236 /* XEOneWebViewPoolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEOneWebViewPoolModel.h; sourceTree = "<group>"; };
 		58DF3777260DC942002C1236 /* XEOneWebViewPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEOneWebViewPool.m; sourceTree = "<group>"; };
 		58DF3778260DC942002C1236 /* RecyleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecyleWebViewController.m; sourceTree = "<group>"; };
@@ -317,8 +323,8 @@
 		5805B2ED260F9C030029F138 /* gen */ = {
 			isa = PBXGroup;
 			children = (
-				5805B2EE260F9C030029F138 /* xengine__jsi_direct.h */,
-				5805B2EF260F9C030029F138 /* xengine__jsi_direct.m */,
+				58D209432612F4260082ADC3 /* xengine_jsi_direct.h */,
+				58D209422612F4260082ADC3 /* xengine_jsi_direct.m */,
 			);
 			path = gen;
 			sourceTree = "<group>";
@@ -337,8 +343,8 @@
 		58D208B02610E6620082ADC3 /* direct */ = {
 			isa = PBXGroup;
 			children = (
+				58D2095126131E120082ADC3 /* http */,
 				58DF37DB260DF62C002C1236 /* microapp */,
-				58D208CD2610F06D0082ADC3 /* h5 */,
 				58D208C92610EA2B0082ADC3 /* omp */,
 				58D208BF2610E83D0082ADC3 /* direct.manager */,
 			);
@@ -363,14 +369,33 @@
 			path = omp;
 			sourceTree = "<group>";
 		};
-		58D208CD2610F06D0082ADC3 /* h5 */ = {
+		58D20928261230290082ADC3 /* broadcast */ = {
 			isa = PBXGroup;
 			children = (
-				58D208CF2610F07B0082ADC3 /* H5DirectModule.h */,
-				58D208CE2610F07B0082ADC3 /* H5DirectModule.m */,
+				58D20929261230290082ADC3 /* Broadcast.h */,
+				58D2092A261230290082ADC3 /* Broadcast.m */,
 			);
-			path = h5;
+			path = broadcast;
 			sourceTree = "<group>";
+		};
+		58D2093526123CC90082ADC3 /* broadcast */ = {
+			isa = PBXGroup;
+			children = (
+				58D2093626123CDC0082ADC3 /* JSIBroadcastModule.h */,
+				58D2093726123CDC0082ADC3 /* JSIBroadcastModule.m */,
+			);
+			path = broadcast;
+			sourceTree = "<group>";
+		};
+		58D2095126131E120082ADC3 /* http */ = {
+			isa = PBXGroup;
+			children = (
+				58D2095226131E120082ADC3 /* HTTPDirectModule.m */,
+				58D2095326131E120082ADC3 /* HTTPDirectModule.h */,
+			);
+			name = http;
+			path = Class/iOS_Modules/native/direct/http;
+			sourceTree = SOURCE_ROOT;
 		};
 		58DF3775260DC942002C1236 /* webview */ = {
 			isa = PBXGroup;
@@ -428,6 +453,7 @@
 		58DF37D1260DEA1F002C1236 /* jsi */ = {
 			isa = PBXGroup;
 			children = (
+				58D2093526123CC90082ADC3 /* broadcast */,
 				5805B2E6260F9B590029F138 /* direct */,
 				5805B2E2260F969A0029F138 /* legacy */,
 			);
@@ -515,6 +541,7 @@
 		A4A695B42609DC3300074A24 /* native */ = {
 			isa = PBXGroup;
 			children = (
+				58D20928261230290082ADC3 /* broadcast */,
 				58D208B02610E6620082ADC3 /* direct */,
 				58DF382D260E3EC2002C1236 /* ui */,
 				58DF37CD260DE9F3002C1236 /* jsi */,
@@ -796,20 +823,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58D208D02610F07B0082ADC3 /* H5DirectModule.m in Sources */,
 				A4A695C82609DC3300074A24 /* JSIModule.m in Sources */,
 				58DF38DC260F1C0A002C1236 /* HistoryModel.m in Sources */,
 				5805B2E9260F9B8F0029F138 /* JSIDirectModule.m in Sources */,
+				58D209442612F4260082ADC3 /* xengine_jsi_direct.m in Sources */,
 				A4A696582609F8A700074A24 /* JumpViewController.m in Sources */,
 				580EB28B260A247700EE0694 /* JSIContext.m in Sources */,
 				A4A695C62609DC3300074A24 /* NativeContext.m in Sources */,
 				58DF37FD260DF843002C1236 /* JSIOldNavModule.m in Sources */,
-				5805B2F0260F9C030029F138 /* xengine__jsi_direct.m in Sources */,
 				A4A695CA2609DC3300074A24 /* MicroappDirectModule.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
+				58D2093826123CDC0082ADC3 /* JSIBroadcastModule.m in Sources */,
 				A4A696642609F96B00074A24 /* MainViewController.m in Sources */,
 				58DF37BF260DE552002C1236 /* XEngineWebView.m in Sources */,
 				5805B328260FAC6D0029F138 /* NSString+Router+URLQuery.m in Sources */,
+				58D2092B261230290082ADC3 /* Broadcast.m in Sources */,
 				58DF3807260DF95B002C1236 /* xengine__module_nav.m in Sources */,
 				58D208C22610E83D0082ADC3 /* DirectManagerModule.m in Sources */,
 				58DF3831260E3EE9002C1236 /* NavUtil.m in Sources */,
@@ -828,6 +856,7 @@
 				A4A695CB2609DC3300074A24 /* JSIOldRouterModule.m in Sources */,
 				58DF37C1260DE552002C1236 /* XEngineCallInfo.m in Sources */,
 				58DF37BC260DE552002C1236 /* WKWebView+Custome.m in Sources */,
+				58D2095426131E120082ADC3 /* HTTPDirectModule.m in Sources */,
 				A4A696272609EA4D00074A24 /* MainTabbarController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 				58DF37C0260DE552002C1236 /* XEngineInternalApis.m in Sources */,

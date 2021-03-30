@@ -77,7 +77,7 @@
     }
 }
 
--(NSString *)getMicroAppUrlStrPathWith:(NSString *)microAppId withVersion:(long)version{
+-(NSString *)getMicroAppHost:(NSString *)microAppId withVersion:(long)version{
  
     
     NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@.%ld", [self microappDirectory], microAppId, version];
@@ -90,11 +90,11 @@
        if (htmlPath.length > 0) {
            NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microAppId, version] ofType:@""];
            if (htmlPath) {
-                return [NSString stringWithFormat:@"file://%@/index.html", htmlPath];
+                return [NSString stringWithFormat:@"%@/index.html", htmlPath];
            }
        }
     }else{
-        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"file://%@/%@.%ld/index.html",[self microappDirectory], microAppId, version];
+        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@.%ld/index.html",[self microappDirectory], microAppId, version];
         return sandbox_microapp_location;
     }
     return nil;

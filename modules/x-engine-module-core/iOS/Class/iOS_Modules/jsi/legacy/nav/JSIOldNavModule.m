@@ -45,7 +45,7 @@ JSI_MODULE(JSIOldNavModule)
 - (void)_navigatorPush:(NavNavigatorDTO *)dto complete:(void (^)(BOOL))completionHandler {
 
     NSString* scheme = @"microapp";
-    [self.directors push:scheme host:nil pathname:dto.url query:dto.params hideNavbar:dto.hideNavbar];
+    [self.directors push:scheme host:nil pathname:dto.url query:dto.params params:nil];
     if(completionHandler){
         completionHandler(YES);
     }}

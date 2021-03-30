@@ -10,7 +10,7 @@
 #import "GlobalState.h"
 #import "Unity.h"
 
- 
+
 /*
  RecyleWebViewController 只应该接收完整的 url，与 webview。
  由调用者保证 url 正确。不对 url 的处理，打不开就打不开
@@ -18,29 +18,29 @@
  RecyleWebViewController 只负责载着 view 做转场动画。
  */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
-    @property (nonatomic, copy) NSString * _Nullable loadUrl;
+@property (nonatomic, copy) NSString * _Nullable loadUrl;
 
-    @property (nonatomic, strong) XEngineWebView * _Nullable webview;
-    @property (nonatomic, assign) BOOL isHiddenNavbar;
-    @property (nonatomic, strong) UIProgressView *progresslayer;
-    @property (nonatomic, strong) UIImageView *imageView404;
-    @property (nonatomic, strong) UILabel *tipLabel404;
-    @property (nonatomic, copy) NSString *customTitle;
-    @property (nonatomic, strong) UIView *screenView;
-    @property (nonatomic, strong) UIImageView *navBarHairlineImageView;
+@property (nonatomic, strong) XEngineWebView * _Nullable webview;
+@property (nonatomic, assign) BOOL isHiddenNavbar;
+@property (nonatomic, strong) UIProgressView *progresslayer;
+@property (nonatomic, strong) UIImageView *imageView404;
+@property (nonatomic, strong) UILabel *tipLabel404;
+@property (nonatomic, copy) NSString *customTitle;
+@property (nonatomic, strong) UIView *screenView;
+@property (nonatomic, strong) UIImageView *navBarHairlineImageView;
 
 @end
 
 @implementation RecyleWebViewController
- 
--(void)webViewProgressChange:(NSNotification *)notifi{
 
+-(void)webViewProgressChange:(NSNotification *)notifi{
+    
     NSDictionary *dic = notifi.object;
     XEngineWebView *web = dic[@"webView"];
     if(web == self.webview){
         if(dic[@"progress"]){
             float floatNum = [dic[@"progress"] floatValue];
-
+            
             self.progresslayer.alpha = 1;
             [self.progresslayer setProgress:floatNum animated:YES];
             if (floatNum == 1) {
@@ -81,12 +81,12 @@
         self.imageView404.hidden = NO;
     }
 }
- 
+
 - (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname newWebView:(Boolean)newWebView withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
         self.isHiddenNavbar = isHidden;
-
+        
         if(fileUrl.length == 0)
             return self;
         
@@ -98,15 +98,16 @@
             
             [GlobalState setCurrentWebView:self.webview];
         }else {
-            self.webview= [GlobalState getCurrentWebView];
+            self.webview = [GlobalState getCurrentWebView];
         }
-            
+        
         HistoryModel* hm = [HistoryModel new];
-        hm.vc   = self;
-        hm.pathname = pathname;
-        hm.host = host;
+        hm.vc            = self;
+        hm.pathname      = pathname;
+        hm.webview       = self.webview;
+        hm.host          = host;
         [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
-     
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
                                                      name:@"XEWebViewProgressChangeNotification"
@@ -117,11 +118,11 @@
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
         [self loadFileUrl];
-
+        
     }
     return self;
 }
- 
+
 
 - (void)loadFileUrl{
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
@@ -130,7 +131,7 @@
         [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
     }
 }
- 
+
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -138,7 +139,7 @@
 }
 
 -(void)drawFrame{
-
+    
     self.webview.frame = self.view.bounds;
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
     float height = (self.view.bounds.size.width / 375.0) * 200;
@@ -148,9 +149,9 @@
                                          height);
     
     self.tipLabel404.frame = CGRectMake(0,
-                                     CGRectGetHeight(self.imageView404.frame) + 8,
-                                     self.imageView404.bounds.size.width,
-                                     self.tipLabel404.font.lineHeight);
+                                        CGRectGetHeight(self.imageView404.frame) + 8,
+                                        self.imageView404.bounds.size.width,
+                                        self.tipLabel404.font.lineHeight);
 }
 
 -(void)goback:(UIButton *)sender{
@@ -259,25 +260,25 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
-
+    
     if(self.screenView){
-//  返回的时候不要急着 remove， 不然会闪历史界面
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.55 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //  返回的时候不要急着 remove， 不然会闪历史界面
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];
             self.screenView = nil;
-        });
+            });
     }
     [self.view insertSubview:self.webview atIndex:0];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     [self loadFileUrl];
-//    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
-//           completionHandler:nil];
-
+    //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
+    //           completionHandler:nil];
+    
     if(self.customTitle.length > 0 && ![self.customTitle isEqualToString: self.title]){
         self.title = self.customTitle;
     }
@@ -285,7 +286,7 @@
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
     self.progresslayer.alpha = 0;
     
-
+    
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         if(self.navigationItem.leftBarButtonItems.count > 0){
             self.navigationItem.leftBarButtonItems.lastObject.title = @"";

@@ -11,9 +11,10 @@
 
 
 @interface XEOneWebViewPool: NSObject
+@property (nonatomic, strong) NSMutableArray<XEOneWebViewPoolModel *>* webCacheAry;
+
     + (instancetype)sharedInstance;
     -(XEOneWebViewPoolModel *)createWebView:(NSString *)baseUrl;
-    - (XEngineWebView *)getWebView;
     - (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView;
 
 @end

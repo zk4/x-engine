@@ -1,15 +1,15 @@
 //
-//  JSI_xxxx.m
-//  xxxx
+//  JSI_direct.m
+//  direct
 //
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
 
 
-#import "JSI_xxxx.h"
-#import <x-engine-module-core/JSIContext.h>
+#import "JSI_direct.h"
+#import "JSIContext.h"
 
-@interface JSI_xxxx()
+@interface JSI_direct()
 {
     NSTimer * timer ;
     ContinousDTO* adto;
@@ -20,7 +20,7 @@
 }
 @end
 
-@implementation JSI_xxxx
+@implementation JSI_direct
  
   
  

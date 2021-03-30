@@ -34,7 +34,7 @@
     
 
 
-@protocol xengine_jsi_xxxx_protocol
+@protocol xengine_jsi_direct_protocol
        @required 
        - (void) _broadcastOn:(void (^)(BOOL complete)) completionHandler;
     
@@ -57,6 +57,6 @@
   
 
 
-@interface xengine_jsi_xxxx : JSIModule<xengine_jsi_xxxx_protocol>
+@interface xengine_jsi_direct : JSIModule<xengine_jsi_direct_protocol>
 @end
 

@@ -10,6 +10,7 @@
 #import "JSIModule.h"
 #import <objc/message.h>
 #import "XEngineJSBUtil.h"
+#import "Unity.h"
 # ifndef mustOverride
 #define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 #endif
@@ -24,13 +25,22 @@
 - (void)afterAllJSIModuleInited {
 }
 
+- (void)showErrorAlert:(NSString *)errorString
+{
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:action];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+}
+
+
 - (id)convert:(NSDictionary *)param clazz:(Class)clazz {
     NSError *err;
     id dto = [clazz class];
-
+    
     dto = [[dto alloc] initWithDictionary:param error:&err];
     if (err) {
-#ifdef DEBUG
+        
         NSArray *errArr = err.userInfo[@"kJSONModelMissingKeys"];
         NSString *errStr = [NSString stringWithFormat:@"%@", errArr[0]];
         if (errArr.count > 1) {
@@ -38,9 +48,10 @@
                 errStr = [errStr stringByAppendingFormat:@"、%@", errArr[i]];
             }
         }
-        errStr = [errStr stringByAppendingString:@"参数"];
-//TODO show error
-#endif
+        errStr = [NSString stringWithFormat:@"检查参数(不能为空或类型不对): %@",errStr];
+        [self showErrorAlert: errStr];
+
+ 
         return nil;
     }
     return dto;
@@ -55,18 +66,17 @@
             if ([self respondsToSelector:sel]) {
                 action(self, sel, dto, completionHandler);
             } else {
-                //                 [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
-                //TODO show error
-
+                         [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
+ 
             }
         }
     } else {
         if ([self respondsToSelector:sel]) {
             action(self, sel, nil, completionHandler);
         } else {
-            //                [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
-            //TODO show error
+                            [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
 
+            
         }
     }
 }
@@ -92,27 +102,27 @@
 }
 
 -(void) _mergeDeep:(NSMutableDictionary*) target  sources:(NSMutableArray*) sources {
-  if (!target || !sources || sources.count==0) return;
+    if (!target || !sources || sources.count==0) return;
     NSMutableDictionary* source = [sources lastObject];
     [sources removeLastObject];
     if ([self isDictionary:target] && [self isDictionary:source]) {
-    for (NSString* key in source) {
-        if ([self isDictionary:[source objectForKey:key]]) {
-          if (!target[key]) [self assign:target from:[@{key:@{}} mutableCopy]];
-          [self _mergeDeep:[target[key] mutableCopy]  sources:[@[source[key]] mutableCopy]];
-      } else {
-          [self assign: target  from:[@{key:[source objectForKey:key]} mutableCopy]];
-      }
+        for (NSString* key in source) {
+            if ([self isDictionary:[source objectForKey:key]]) {
+                if (!target[key]) [self assign:target from:[@{key:@{}} mutableCopy]];
+                [self _mergeDeep:[target[key] mutableCopy]  sources:[@[source[key]] mutableCopy]];
+            } else {
+                [self assign: target  from:[@{key:[source objectForKey:key]} mutableCopy]];
+            }
+        }
     }
-  }
-
+    
     [self _mergeDeep:target sources:sources];
 }
 -(void) mergeDeep:(NSMutableDictionary*) target source:(NSMutableDictionary*) source {
     if(!source || !target) return;
     [self _mergeDeep:target sources:[@[source] mutableCopy] ];
 }
- 
+
 -(NSDictionary*) mergeDefault:(NSDictionary*)dict defaultString:(NSString*)defaultString{
     if(!defaultString || defaultString.length==0) return dict;
     

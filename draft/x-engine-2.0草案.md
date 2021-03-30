@@ -12,6 +12,8 @@
 
 - vue-router 有没有更快的路由方法？不使用 loadurl
 
+- broadcast 增加数据结构
+
   
 
 ### 工具

@@ -84,24 +84,19 @@ NATIVE_MODULE(Native_direct_omp)
     }
 }
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
+- (void)push:(NSString*) protocol  // 强制指定 protocol，非必须，
         host:(NSString*) host
         pathname:(NSString*) pathname
         query:(NSDictionary<NSString*,id>*) query
         params:(NSDictionary<NSString*,id>*) params {
     
-//    if(![currentVC isKindOfClass:RecyleWebViewController.class]){
-//        // TODO，如果是 tab？ 强制转成 open
-//        NSLog(@"顶层都不是 RecyleWebViewController，还想着 nav？");
-//        return;
-//    }
     if(!protocol){
         protocol = [self protocol];
     }
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
     
     if(host){
-        // TODO 统一一个类处理 URL 地址问题
+        /// TODO: 统一一个类处理 URL 地址问题
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
         if(pathname && ![pathname isEqualToString:@"/"]){
             finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];

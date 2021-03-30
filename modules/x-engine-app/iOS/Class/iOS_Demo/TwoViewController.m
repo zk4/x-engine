@@ -22,10 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";
-    ///TODO:  webviewpool 需要重新设计 api
-//    id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-//
-//    [director push:@"omp" host:@"10.2.128.80:8082" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];
+
     ///TODO: 统一一个类处理 URL 地址问题
     NSString* protocol= @"http:";
     NSString* host = @"192.168.1.15:8080";

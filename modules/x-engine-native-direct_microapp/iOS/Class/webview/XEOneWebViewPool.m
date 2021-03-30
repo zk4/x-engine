@@ -55,7 +55,7 @@
     }
     return nil;
 }
-
+///TODO:  webviewpool 需要重新设计 api, baseUrl 没有意义
 -(XEOneWebViewPoolModel *)createWebView:(NSString *)baseUrl{
     
     XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
@@ -118,7 +118,6 @@
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     model.webView = webview;
-//    self.webRecordDic[webview] = model;
     [self.webCacheAry addObject:model];
     return model;
 }

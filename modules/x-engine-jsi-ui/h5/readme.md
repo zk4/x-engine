@@ -15,11 +15,7 @@ npm install @zkty-team/x-engine-jsi-ui
 
 **demo**
 ``` js
-
-    engine.api('com.zkty.jsi.ui','setNavTitle',{
-      title: 'title'
-    })
-
+    title: "title",
 ``` 
 
 	
@@ -61,15 +57,10 @@ interface NavTitleDTO {
 
 **demo**
 ``` js
-  
-    engine.api('com.zkty.jsi.ui','setNavBarHidden',{
-      //是否隐藏navBar
-      isHidden: boolean,
-      //是否使用动画效果
-      isAnimation: boolean
-}
-
-    })
+    //是否隐藏navBar
+    isHidden: true,
+    //是否使用动画效果
+    isAnimation: true,
 ``` 
 
 	
@@ -84,10 +75,8 @@ interface NavTitleDTO {
 参数 object  定义
 ``` js
 
- 
-      
-interface NavHiddenBarDTO {
 
+interface NavHiddenBarDTO {
 
   //是否隐藏navBar
   isHidden: boolean;

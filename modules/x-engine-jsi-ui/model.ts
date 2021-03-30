@@ -23,42 +23,38 @@ interface NavTitleDTO {
   //字体大小
   titleSize: int;
 }
- 
-      
-interface NavHiddenBarDTO {
 
+interface NavHiddenBarDTO {
   //是否隐藏navBar
   isHidden: boolean;
   //是否使用动画效果
   isAnimation: boolean;
 }
- 
+
 function setNavTitle(
-  arg: NavTitleDTO = {titleColor: "#000000", titleSize: 16 }
+  arg: NavTitleDTO = { titleColor: "#000000", titleSize: 16 }
 ) {
-  window.setNavTitle = () => {
-
-    engine.api('com.zkty.jsi.ui','setNavTitle',{
-      title: 'title'
-    })
-
-  };
+  xengine.api("com.zkty.jsi.ui", "setNavTitle", {
+    title: "title",
+  });
 }
-
-
 
 //使用push,或 nav 里 hideNavbar 参数控制状态的显示
-function setNavBarHidden(arg:NavHiddenBarDTO){
-  window.setNavBarHidden = () => {
-  
-    engine.api('com.zkty.jsi.ui','setNavBarHidden',{
-      //是否隐藏navBar
-      isHidden: boolean,
-      //是否使用动画效果
-      isAnimation: boolean
+function setNavBarHidden(arg: NavHiddenBarDTO) {
+  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+    //是否隐藏navBar
+    isHidden: true,
+    //是否使用动画效果
+    isAnimation: true,
+  });
 }
 
-    })
-
-  };
+function test_setNavBarShow(arg: NavHiddenBarDTO) {
+  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+    //是否隐藏navBar
+    isHidden: false,
+    //是否使用动画效果
+    isAnimation: true,
+  });
 }
+

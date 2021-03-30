@@ -43,7 +43,8 @@
 //    [img open:@"h5" :@"https://www.baidu.com" :@"/" :@{} :0 :TRUE];
 //
 //    [director push:@"omp" host:@"10.2.128.80:8080" pathname:@"/" query:nil params:@{@"hideNavbar":@"hello"}];
-    [director push:@"omp" host:@"192.168.1.15:8080" pathname:@"/" query:nil params:@{@"hideNavbar":@YES}];
+//    [director push:@"omp" host:@"192.168.1.15:8080" pathname:@"/" query:nil params:@{@"hideNavbar":@YES}];
+    [director push:@"omp" host:@"192.168.1.15:9111" pathname:@"/" query:nil params:@{@"hideNavbar":@NO}];
 
 }
 

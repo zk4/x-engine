@@ -37,6 +37,7 @@
 <script>
 import nav from "@zkty-team/x-engine-module-nav";
 import engine from "@zkty-team/x-engine-module-engine";
+var a= 1
 export default {
   name: "testB",
   data() {
@@ -57,6 +58,10 @@ export default {
       })
       return 1;
     })
+    setInterval(()=>{
+      a++;
+      console.log(a);
+    },1000);
   },
   methods: {
   triggerbroad(){

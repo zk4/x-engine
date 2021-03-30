@@ -56,7 +56,7 @@
 
 <script>
 import nativeNav from "@zkty-team/x-engine-module-nav"
-import nativeRouter from "@zkty-team/x-engine-module-router"
+/*import nativeRouter from "@zkty-team/x-engine-module-router"*/
 import engine from "@zkty-team/x-engine-module-engine"
 export default {
   data() {
@@ -80,12 +80,18 @@ export default {
     },
     // 原生跳转
     handlerNaviteNextPage() {
-      nativeRouter.openTargetRouter({
-        type: "microapp",
+      engine.bridge.call('com.zkty.jsi.direct.push',{
+        scheme: "microapp",
         uri: "com.gm.microapp.mine",
-        path: encodeURI(`/testtwo`),
+        pathname: "/testtwo",
         hideNavbar: true,
-      })
+      },function(){})
+      /*nativeRouter.openTargetRouter({*/
+        /*type: "microapp",*/
+        /*uri: "com.gm.microapp.mine",*/
+        /*path: encodeURI(`/testtwo`),*/
+        /*hideNavbar: true,*/
+      /*})*/
     },
     // 显示原生导航条
     handlerShowNav() {

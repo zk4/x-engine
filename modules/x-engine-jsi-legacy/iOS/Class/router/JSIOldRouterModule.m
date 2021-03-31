@@ -47,14 +47,12 @@ static NSString *const kSlash               = @"/";
     NSString* raw_url = [NSString stringWithFormat:@"%@%@",host,    dict[@"path"]];
     
     // URL encode
-    NSCharacterSet *encode_set= [NSCharacterSet URLQueryAllowedCharacterSet];
-
-     NSString *urlString_encode = [raw_url stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
-
+    NSCharacterSet *encode_set= [NSCharacterSet URLQueryAllowedCharacterSet];
+    NSString *urlString_encode =[raw_url stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
     NSURL * url = [NSURL URLWithString:urlString_encode];
-
+    
     ret[@"host"]=url.host;
-
+    
     NSArray* pathArray = [dict[@"path"] componentsSeparatedByString:kQueryBegin];
     ret[@"pathname"]=pathArray.count>0?pathArray[0]:kSlash;
     
@@ -64,7 +62,7 @@ static NSString *const kSlash               = @"/";
     if([dict[@"hideNavbar"] boolValue]){
         ret[@"params"] = @{@"hideNavbar":@TRUE};
     }
-
+    
     return ret;
 }
 

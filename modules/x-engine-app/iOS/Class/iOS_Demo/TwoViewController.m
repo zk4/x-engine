@@ -12,6 +12,7 @@
 #import "NativeContext.h"
 #import "iDirectManager.h"
 #import "RecyleWebViewController.h"
+#import "MicroAppLoader.h"
 @interface TwoViewController ()
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 
@@ -24,13 +25,16 @@
     self.navigationItem.title = @"模块2";
 
     ///TODO: 统一一个类处理 URL 地址问题
-    NSString* protocol= @"http:";
-    NSString* host = @"192.168.1.15:8080";
+    NSString* protocol= @"file:";
+    NSString* host = @"com.gm.microapp.mine";
     NSString* pathname = @"/";
-    NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
-    if(pathname && ![pathname isEqualToString:@"/"]){
-        finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
-    }
+    
+//    NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
+//    if(pathname && ![pathname isEqualToString:@"/"]){
+//        finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
+//    }
+    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:0];
+    NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
 
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:TRUE];
 

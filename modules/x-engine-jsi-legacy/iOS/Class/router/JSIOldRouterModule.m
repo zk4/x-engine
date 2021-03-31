@@ -69,7 +69,7 @@ static NSString *const kSlash               = @"/";
 }
 
 - (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-    NSString* scheme = dict[@"type"];
-    [self.directors push:scheme host:dict[@"uri"] pathname:dict[@"path"] query:dict[@"query"] params:@{@"hideNavbar":dict[@"hideNavbar"]}];
+    NSDictionary* directDTO = [JSIOldRouterModule convertRouter2JSIModel:dict];
+    [self.directors push:directDTO[@"scheme"] host:directDTO[@"host"] pathname:directDTO[@"pathname"] query:directDTO[@"query"] params:directDTO[@"params"]];
 }
 @end

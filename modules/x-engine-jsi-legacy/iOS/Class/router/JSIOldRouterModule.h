@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSIOldRouterModule : JSIModule
-
++ (NSDictionary*) convertRouter2JSIModel:(NSDictionary*) dict;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -101,7 +101,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 
         BOOL hideNavbar  = [params[@"hideNavbar"] boolValue];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
 
 
         vc.hidesBottomBarWhenPushed = YES;
@@ -126,7 +126,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname newWebView:FALSE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:fragment newWebView:FALSE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 

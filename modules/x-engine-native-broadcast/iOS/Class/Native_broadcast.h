@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface Native_broadcast : NativeModule
- 
+- (void)broadcast:(NSString*) payload;
 @end
 
 NS_ASSUME_NONNULL_END

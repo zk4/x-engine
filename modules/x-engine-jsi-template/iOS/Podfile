@@ -10,7 +10,7 @@ abstract_target 'abstract' do
   pod 'x-engine-native-direct_microapp', :path =>'../../x-engine-native-direct_microapp'
 
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
-  pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
+  pod 'x-engine-native-direct', :path =>'../../x-engine-native-direct'
 
 
   target 'xxxx' do

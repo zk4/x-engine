@@ -15,47 +15,23 @@
   import androidx.annotation.Nullable;
 
   
-  class SheetDTO {
+  class NavTitleDTO {
     public String title;
 
-    @Optional
-		public List<String> itemList;
+    public String titleColor;
 
-    @Optional
-		public String content;
-
-    public String __event__;
+    public Integer titleSize;
   }
   
-  class ContinousDTO {
-    @Optional
-		public String __event__;
-  }
-  
-  class MsgPayloadDTO {
-    public String type;
+  class NavHiddenBarDTO {
+    public boolean isHidden;
 
-    @Optional
-		public Map<String,String> args;
-
-    @Optional
-		public String sender;
-
-    @Optional
-		public List<String> receiver;
-
-    public String __event__;
-
-    public String __ret__;
+    public boolean isAnimation;
   }
   
   interface xengine__jsi_xxxx_i {
-    public void _broadcastOn(final CompletionHandler<Nullable> handler);
-public void _broadcastOff(final CompletionHandler<Nullable> handler);
-public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
-public void _repeatReturn__event__(ContinousDTO dto, final CompletionHandler<String> handler);
-public void _repeatReturn__ret__(ContinousDTO dto, final CompletionHandler<String> handler);
-public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<String> handler);
+    public void _setNavTitle(NavTitleDTO dto, final CompletionHandler<Nullable> handler);
+public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -66,8 +42,9 @@ public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<Strin
     }
   
     @JavascriptInterface
-    final public void broadcastOn(JSONObject obj, final CompletionHandler<Object> handler) {
-      _broadcastOn(new CompletionHandler<Nullable>() {
+    final public void setNavTitle(JSONObject obj, final CompletionHandler<Object> handler) {
+      NavTitleDTO data= convert(obj,NavTitleDTO.class);
+      _setNavTitle(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -79,69 +56,15 @@ public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<Strin
     }
 
     @JavascriptInterface
-    final public void broadcastOff(JSONObject obj, final CompletionHandler<Object> handler) {
-      _broadcastOff(new CompletionHandler<Nullable>() {
+    final public void setNavBarHidden(JSONObject obj, final CompletionHandler<Object> handler) {
+      NavHiddenBarDTO data= convert(obj,NavHiddenBarDTO.class);
+      _setNavBarHidden(data, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void triggerNativeBroadCast(JSONObject obj, final CompletionHandler<Object> handler) {
-      _triggerNativeBroadCast(new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void repeatReturn__event__(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _repeatReturn__event__(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void repeatReturn__ret__(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _repeatReturn__ret__(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void ReturnInPromiseThen(JSONObject obj, final CompletionHandler<Object> handler) {
-      ContinousDTO data= convert(obj,ContinousDTO.class);
-      _ReturnInPromiseThen(data, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
       });
 
     }

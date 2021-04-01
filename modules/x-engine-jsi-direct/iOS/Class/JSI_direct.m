@@ -11,11 +11,7 @@
 #import "JSI_direct.h"
 #import "JSIContext.h"
 #import "iDirectManager.h"
-#import "Unity.h"
-
-#import "NSURL+QueryDictionary.h"
-#import "NSString+Router+URLQuery.h"
-
+ 
 
 @interface JSI_direct ()
 @property (nonatomic, strong)   id<iDirectManager>  directors;

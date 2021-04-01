@@ -15,76 +15,47 @@ const conf = {
   },
 };
 
-// dto
-interface SheetDTO {
-  // 标题
+interface NavTitleDTO {
+  //导航条的文字
   title: string;
-  // 子标题?
-  itemList?: Array<string>;
-  // 内容
-  content?: string;
-  // 点击子标题回调函数
-  __event__: (index: string) => void;
+  //16进制的颜色色值
+  titleColor: string;
+  //字体大小
+  titleSize: int;
 }
 
-interface ContinousDTO {
-  __event__?: (string) => {};
+interface NavHiddenBarDTO {
+  //是否隐藏navBar
+  isHidden: boolean;
+  //是否使用动画效果
+  isAnimation: boolean;
 }
 
-interface MsgPayloadDTO {
-  type: string;
-  args?: Map<string, string>;
-  sender?: string;
-  receiver?: Array<string>;
-  __event__: (string) => void;
-  __ret__: (string) => void;
-}
-function broadcastOn() {
-  window.broadcastOn = (...args) => {
-    xengine.broadcastOn(function (res) {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
-    });
-  };
-}
-function broadcastOff() {
-  window.broadcastOff = () => {
-    xengine.broadcastOff();
-  };
-}
-function triggerNativeBroadCast() {
-  window.triggerNativeBroadCast = () => {
-    xxxx.triggerNativeBroadCast();
-  };
-}
-function repeatReturn__event__(args: ContinousDTO): string {
-  window.repeatReturn__event__ = () => {
-    xxxx.repeatReturn__event__({
-      __event__: function (res) {
-        document.getElementById("debug_text").innerText =
-          "支持多次返回" + JSON.stringify(res);
-        return res;
-      },
-    });
-  };
-}
-function repeatReturn__ret__(args: ContinousDTO): string {
-  window.repeatReturn__ret__ = () => {
-    xxxx.repeatReturn__ret__({
-      __ret__: function (res) {
-        document.getElementById("debug_text").innerText =
-          "支持多次返回" + JSON.stringify("__ret__:" + res);
-        return res;
-      },
-    });
-  };
+function setNavTitle(
+  arg: NavTitleDTO = {titleSize: 16 }
+) {
+  xengine.api("com.zkty.jsi.ui", "setNavTitle", {
+    title: "title",
+    titleColor: "#000000"
+  });
 }
 
-function ReturnInPromiseThen(args: ContinousDTO): string {
-  window.ReturnInPromiseThen = () => {
-    xxxx.ReturnInPromiseThen().then((res) => {
-      document.getElementById("debug_text").innerText =
-        "then 只支持一次性返回" + JSON.stringify(res);
-    });
-  };
+//使用push,或 nav 里 hideNavbar 参数控制状态的显示
+function setNavBarHidden(arg: NavHiddenBarDTO) {
+  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+    //是否隐藏navBar
+    isHidden: true,
+    //是否使用动画效果
+    isAnimation: true,
+  });
+}
+
+function test_setNavBarShow(arg: NavHiddenBarDTO) {
+  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+    //是否隐藏navBar
+    isHidden: false,
+    //是否使用动画效果
+    isAnimation: true,
+  });
 }
 

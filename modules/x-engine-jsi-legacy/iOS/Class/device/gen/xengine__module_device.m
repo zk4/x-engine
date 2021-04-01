@@ -8,26 +8,26 @@
 
 
 @implementation DeviceSheetDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return YES;
     }
 @end
     
   
 @implementation DeviceMoreDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return YES;
     }
 @end
     
   
 @implementation DevicePhoneNumDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return YES;
     }
 @end
     
   
 @implementation DeviceMessageDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+   	return YES;
     }
 @end
     

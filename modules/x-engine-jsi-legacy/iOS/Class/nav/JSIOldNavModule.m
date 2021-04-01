@@ -49,7 +49,7 @@ JSI_MODULE(JSIOldNavModule)
 
     NSString* scheme = @"microapp";
     /// TODO: convert dto.params to dictionary
-    [self.directors push:scheme host:nil pathname:dto.url query:nil params:nil];
+    [self.directors push:scheme host:nil pathname:dto.url query:nil params:@{@"hideNavbar":[NSNumber numberWithBool:dto.hideNavbar] }];
     if(completionHandler){
         completionHandler(YES);
     }}

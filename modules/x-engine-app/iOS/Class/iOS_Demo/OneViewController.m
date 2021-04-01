@@ -35,7 +35,6 @@
 - (void)didClickBtn {
 //    [self.navigationController pushViewController:[[JumpViewController alloc ] init] animated:YES];
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-
 //    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@"/" query:nil  params:nil];
 //    [director push:@"http" host:@"www.baidu.com" pathname:@"/" query:nil params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"/" query:nil

@@ -8,12 +8,12 @@
 
 #import <XCTest/XCTest.h>
 #import "NativeContext.h"
-#import "Native_direct_manager.h"
-@interface NativeContextTests : XCTestCase
+#import "Native_direct.h"
+@interface XEngineContextTests : XCTestCase
 
 @end
 
-@implementation NativeContextTests
+@implementation XEngineContextTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,13 +25,13 @@
 
 - (void)test不可以注册相同的Native_Module {
  
-    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:Native_direct_manager.class]);
+    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:Native_direct.class]);
     [[NativeContext sharedInstance] start];
  
 }
 - (void)test获取directmanager_native_Module {
 
-    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.direct.manager"];
+    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.direct"];
     XCTAssert(openmanager,@"应该获得 direct manager");
 }
 - (void)test获取不存在的_native_Module {

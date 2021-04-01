@@ -19,6 +19,7 @@
 		5805B322260FAADB0029F138 /* NSString+QueryDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */; };
 		580EB23C260A214900EE0694 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580EB23B260A214900EE0694 /* CoreData.framework */; };
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
+		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
 		58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BBF26138BEF0082ADC3 /* OneViewController.m */; };
 		58D20BCF26138BEF0082ADC3 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC126138BEF0082ADC3 /* ThreeViewController.m */; };
 		58D20BD026138BEF0082ADC3 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC226138BEF0082ADC3 /* TwoViewController.m */; };
@@ -73,6 +74,7 @@
 		5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QueryDictionaryTests.m"; sourceTree = "<group>"; };
 		580EB23B260A214900EE0694 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
+		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
 		58D20BBF26138BEF0082ADC3 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		58D20BC026138BEF0082ADC3 /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
 		58D20BC126138BEF0082ADC3 /* ThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeViewController.m; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */,
 				5805B30C260FA30F0029F138 /* NSURL+QueryDictionaryTests.m */,
 				00DFC6C924C83F95006A53EE /* XEngineContextTests.m */,
+				58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */,
 				00DFC6CB24C83F95006A53EE /* Info.plist */,
 			);
 			path = iOSTests;
@@ -475,6 +478,7 @@
 			files = (
 				5805B322260FAADB0029F138 /* NSString+QueryDictionaryTests.m in Sources */,
 				580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */,
+				58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */,
 				00DFC6CA24C83F95006A53EE /* XEngineContextTests.m in Sources */,
 				5805B30D260FA30F0029F138 /* NSURL+QueryDictionaryTests.m in Sources */,
 			);

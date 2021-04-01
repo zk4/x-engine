@@ -45,17 +45,18 @@ NATIVE_MODULE(Native_direct_http)
     }
 }
 
-- (void)back:(NSString*) host pathname:(NSString*) pathname{
-    [self.microappDirect back:host pathname:pathname];
+- (void)back:(NSString*) host fragment:(NSString*) fragment{
+    [self.microappDirect back:host fragment:fragment];
 }
 
 - (void)push:(NSString*) protocol  // 强制 protocol，非必须
         host:(NSString*) host
         pathname:(NSString*) pathname
+        fragment:(NSString*) fragment
         query:(NSDictionary<NSString*,id>*) query
         params:(NSDictionary<NSString*,id>*) params
 {
-     [self.microappDirect push:[self protocol] host:host pathname:pathname query:query params:params];
+    [self.microappDirect push:[self protocol] host:host pathname:pathname fragment:fragment  query:query params:params];
 }
 
 @end

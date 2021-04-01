@@ -20,10 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)push: (NSString*) scheme
         host:(nullable NSString*) host
         pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
         params:(nullable NSDictionary<NSString*,id>*) params;
 
-- (void)back: (NSString*) scheme host:(nullable NSString*) host                    pathname:(NSString*) pathname;
+- (void)back: (NSString*) scheme host:(nullable NSString*) host                    fragment:(NSString*) fragment;
 
 @end
 

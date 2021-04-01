@@ -39,18 +39,19 @@ NATIVE_MODULE(Native_direct)
     }
 }
 
-- (void)back: (NSString*) scheme host:(NSString*) host pathname:(NSString*) pathname{
+- (void)back: (NSString*) scheme host:(NSString*) host fragment:(NSString*) fragment{
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    [direct back:host pathname:pathname];
+    [direct back:host fragment:fragment];
 }
 
 - (void)push: (NSString*) scheme
         host:(nullable NSString*) host
         pathname:(NSString*) pathname
+        fragment:(NSString*) fragment
         query:(nullable NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,NSString*>*) params {
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    [direct push:[direct protocol] host:host pathname:pathname query:query params:params];
+    [direct push:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
 }
 
 @end

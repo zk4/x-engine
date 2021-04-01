@@ -35,13 +35,13 @@ JSI_MODULE(JSI_direct)
 }
 
 - (void)_back:(DirectBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    [self.directors back:dto.scheme host:nil pathname:dto.pathname];
+    [self.directors back:dto.scheme host:nil fragment:dto.fragment];
     completionHandler(YES);
   
 }
 
 - (void)_push:(DirectPushDTO *)dto complete:(void (^)(BOOL))completionHandler {  
-    [self.directors push:dto.scheme host:dto.host pathname:dto.pathname query:dto.query params:dto.params];
+    [self.directors push:dto.scheme host:dto.host pathname:dto.pathname fragment:dto.fragment query:dto.query params:dto.params];
     completionHandler(YES);
 }
 

@@ -39,7 +39,7 @@ JSI_MODULE(JSIOldNavModule)
 
 
 - (void)_navigatorBack:(NavNavigatorBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    [self.directors back:@"microapp" host:nil pathname:dto.url];
+    [self.directors back:@"microapp" host:nil fragment:dto.url];
     if(completionHandler){
         completionHandler(YES);
     }
@@ -49,7 +49,7 @@ JSI_MODULE(JSIOldNavModule)
 
     NSString* scheme = @"microapp";
     /// TODO: convert dto.params to dictionary
-    [self.directors push:scheme host:nil pathname:dto.url query:nil params:@{@"hideNavbar":[NSNumber numberWithBool:dto.hideNavbar] }];
+    [self.directors push:scheme host:nil pathname:@"" fragment:dto.url query:nil params:@{@"hideNavbar":[NSNumber numberWithBool:dto.hideNavbar] }];
     if(completionHandler){
         completionHandler(YES);
     }}

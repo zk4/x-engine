@@ -46,18 +46,19 @@ NATIVE_MODULE(Native_direct_microapp)
     }
 }
 
-- (void)back:(NSString*) host pathname:(NSString*) pathname{
-    [self.microappDirect back:host pathname:pathname];
+- (void)back:(NSString*) host fragment:(NSString*) fragment{
+    [self.microappDirect back:host fragment:fragment];
 }
 
 - (void)push:(NSString*) protocol  // 强制 protocol，非必须
         host:(NSString*) host
         pathname:(NSString*) pathname
+        fragment:(NSString*) fragment
         query:(NSDictionary<NSString*,id>*) query
         params:(NSDictionary<NSString*,id>*) params  {
     /// TODO:  version 放哪呢？
     NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:1];
-    [self.microappDirect push:[self protocol] host:localhost pathname:pathname query:query params:params];
+    [self.microappDirect push:[self protocol] host:localhost pathname:pathname fragment:fragment query:query params:params];
 }
 
 @end

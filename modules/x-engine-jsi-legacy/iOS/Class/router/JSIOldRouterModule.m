@@ -87,12 +87,16 @@ static NSString *const kSlash               = @"/";
     }else{
         ret[@"host"]=url.host;
     }
-
-    if(url.fragment)
-        ret[@"pathname"]=url.fragment;
+    // https://tools.ietf.org/html/rfc3986#page-22
+    if(url.path && url.path.length != 0 )
+        ret[@"pathname"]=url.path;
     else
-        ret[@"pathname"]=@"/";
-
+        ret[@"pathname"]=@"";
+    
+    if(url.fragment)
+        ret[@"fragment"]=url.fragment;
+    else
+        ret[@"fragment"]=@"/";
 
     ret[@"query"]= url.uq_queryDictionary;
 
@@ -100,12 +104,12 @@ static NSString *const kSlash               = @"/";
     if(dict[@"hideNavbar"]){
         ret[@"params"] = @{@"hideNavbar":dict[@"hideNavbar"]};
     }
-    
+
     return ret;
 }
 
 - (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     NSDictionary* directDTO = [JSIOldRouterModule convertRouter2JSIModel:dict];
-    [self.directors push:directDTO[@"scheme"] host:directDTO[@"host"] pathname:directDTO[@"pathname"] query:directDTO[@"query"] params:directDTO[@"params"]];
+    [self.directors push:directDTO[@"scheme"] host:directDTO[@"host"] pathname:directDTO[@"pathname"] fragment:directDTO[@"fragment"] query:directDTO[@"query"] params:directDTO[@"params"]];
 }
 @end

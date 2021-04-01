@@ -19,17 +19,19 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString*) scheme;
 
 // 注意 protocol 带:, 形如 http: https:
+// fragment 一定以 / 开头
 -(NSString*) protocol;
 
 - (void)push:(NSString*) protocol  // 强制 protocol，非必须
         host:(nullable NSString*) host
         pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
         params:(nullable NSDictionary<NSString*,id>*) params;
 
 
 
-- (void)back:(NSString*) host pathname:(NSString*) pathname;
+- (void)back:(NSString*) host fragment:(NSString*) fragment;
 
 @end
 

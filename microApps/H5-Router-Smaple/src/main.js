@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import Button from 'vant/lib/button';
 import 'vant/lib/button/style';
+import Button from 'vant/lib/button';
+import { Skeleton } from 'vant';
 
+Vue.use(Skeleton);
+Vue.use(Skeleton);
 Vue.use(Button);
 Vue.config.productionTip = false
 

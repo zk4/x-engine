@@ -24,6 +24,16 @@ const routes = [{
         path: '/testfour',
         name: 'testfour',
         component: () => import('../views/testfour.vue')
+    },
+    {
+        path: '/navHeader',
+        name: 'navHeader',
+        component: () => import('../views/navHeader.vue')
+    },
+    {
+        path: '/skeleton',
+        name: 'skeleton',
+        component: () => import('../views/skeleton.vue')
     }
 ];
 

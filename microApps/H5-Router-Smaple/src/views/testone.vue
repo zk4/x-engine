@@ -12,7 +12,9 @@
       color="#7232dd"
       @click="handlerOpenMicroApp"
     >跳转其他微应用</van-button>
-    <van-button type="danger" size="large" round color="#322144" @click="handlerOpenBaidu">打开百度</van-button>
+    <van-button type="danger" size="large" round color="#322144" @click="handlerOpenBaidu">百度</van-button>
+    <van-button type="danger" size="large" round color="#dda0dd" @click="handlerSkeleton">骨架屏</van-button>
+    <van-button type="danger" size="large" round color="#2695e3" @click="handlerNavigator">前端定制navigator</van-button>
   </div>
 </template>
 
@@ -96,6 +98,7 @@ export default {
             scheme: "microapp",
             host: "com.gm.microapp.mine",
             pathname: "",
+            fragment:"",
             params: {
               hideNavbar: true,
             },
@@ -115,7 +118,8 @@ export default {
           {
             scheme: "http",
             host: "www.baidu.com",
-            pathname: "/",
+            fragment:"/",
+            pathname: "",
             params: {
               hideNavbar: true,
             },
@@ -128,6 +132,18 @@ export default {
         alert("请在app端测试该功能.")
       }
     },
+
+    handlerSkeleton () {
+      this.$router.push({
+        path:"/skeleton"
+      })
+    },
+
+    handlerNavigator()  {
+      this.$router.push({
+        path:"/navHeader"
+      })
+    }
   },
 }
 </script>

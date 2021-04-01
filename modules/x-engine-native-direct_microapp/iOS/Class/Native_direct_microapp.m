@@ -9,7 +9,7 @@
 #import "Native_direct_microapp.h"
 #import "NativeContext.h"
 #import "MicroAppLoader.h"
-#import "XEOneWebViewPool.h"
+#import "WebViewFactory.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "GlobalState.h"

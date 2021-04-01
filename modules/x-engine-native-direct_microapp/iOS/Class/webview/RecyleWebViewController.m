@@ -4,7 +4,7 @@
 #import "RecyleWebViewController.h"
 #import <WebKit/WebKit.h>
 #import "XEngineWebView.h"
-#import "XEOneWebViewPool.h"
+#import "WebViewFactory.h"
 #import "JSIModule.h"
 #import "GlobalState.h"
 #import "Unity.h"
@@ -92,7 +92,7 @@
         self.loadUrl = fileUrl;
         
         if(newWebView){
-            self.webview = [[XEOneWebViewPool sharedInstance] createWebView];
+            self.webview = [[WebViewFactory sharedInstance] createWebView];
             [self.webview loadUrl:self.loadUrl];
             self.webview.frame = [UIScreen mainScreen].bounds;
             

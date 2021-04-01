@@ -9,7 +9,7 @@
 
 
 
-@interface XEOneWebViewPool: NSObject
+@interface WebViewFactory: NSObject
     @property (nonatomic, weak) NSMutableArray<XEngineWebView*>* webviews;
     + (instancetype)sharedInstance;
     -(XEngineWebView *)createWebView;

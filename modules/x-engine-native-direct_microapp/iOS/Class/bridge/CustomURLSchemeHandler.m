@@ -8,7 +8,7 @@
 
 #import "CustomURLSchemeHandler.h"
 #import <WebKit/WebKit.h>
-#import "XEOneWebViewPool.h"
+#import "WebViewFactory.h"
 static NSString const*SchemeKey = @"SchemeKey";
 static NSString const*TaskKey = @"TaskKey";
 API_AVAILABLE(ios(11.0))
@@ -28,7 +28,7 @@ API_AVAILABLE(ios(11.0))
 }
 - (void)webView:(WKWebView *)webView startURLSchemeTask:(id <WKURLSchemeTask>)urlSchemeTask API_AVAILABLE(ios(11.0)){
 //    NSURLRequest *request = urlSchemeTask.request;
-//    XEOneWebViewPoolModel *model = [[XEOneWebViewPool sharedInstance] getModelWithWeb:webView];
+//    WebViewFactoryModel *model = [[WebViewFactory sharedInstance] getModelWithWeb:webView];
 //    if(![model checkHavStr:request.URL.absoluteString withInAry:model.whiteList]){
 //        
 //        __weak typeof(self)weakSelf = self;

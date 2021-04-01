@@ -9,7 +9,7 @@
 #import "Native_broadcast.h"
 #import "NativeContext.h"
 #import "GlobalState.h"
-#import "XEOneWebViewPool.h"
+#import "WebViewFactory.h"
 #import "NativeContext.h"
 @interface Native_broadcast()
 { }
@@ -30,7 +30,7 @@ NATIVE_MODULE(Native_broadcast)
 }
 
 - (void)broadcast:(NSString*) payload{
-     for (XEngineWebView* wv in [XEOneWebViewPool sharedInstance].webviews){
+     for (XEngineWebView* wv in [WebViewFactory sharedInstance].webviews){
         [wv callHandler:@"com.zkty.module.engine.broadcast" arguments:payload completionHandler:^(id  _Nullable value) {
             NSLog(@"js return value %@",value);
         }];

@@ -8,7 +8,7 @@
 
 #import "TwoViewController.h"
 #import "XEngineWebView.h"
-#import "XEOneWebViewPool.h"
+#import "WebViewFactory.h"
 #import "NativeContext.h"
 #import "iDirectManager.h"
 #import "RecyleWebViewController.h"

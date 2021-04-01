@@ -1,11 +1,9 @@
 //
 //  WebViewPool.m
 //  x-engine-module-engine
-//
-//  Created by 吕冬剑 on 2020/9/18.
-//
 
-#import "XEOneWebViewPool.h"
+
+#import "WebViewFactory.h"
 #import "XEngineWebView.h"
 #import "JSIContext.h"
 #import "MicroAppLoader.h"
@@ -16,19 +14,19 @@
 #import "CustomURLSchemeHandler.h"
 
 
-@interface XEOneWebViewPool ()
+@interface WebViewFactory ()
 
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
 @end
 
-@implementation XEOneWebViewPool
+@implementation WebViewFactory
 
 + (instancetype)sharedInstance
 {
-    static XEOneWebViewPool *sharedInstance = nil;
+    static WebViewFactory *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[XEOneWebViewPool alloc] init];
+        sharedInstance = [[WebViewFactory alloc] init];
     });
     return sharedInstance;
 }
@@ -44,9 +42,9 @@
 }
 //
 //
-//- (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView{
+//- (WebViewFactoryModel *)getModelWithWeb:(WKWebView *)webView{
 //
-//    for (XEOneWebViewPoolModel *model in self.webCacheAry) {
+//    for (WebViewFactoryModel *model in self.webCacheAry) {
 //        if(model.webView == webView) {
 //            return model;
 //        }
@@ -56,7 +54,7 @@
 ///TODO:  webviewpool 需要重新设计 api, baseUrl 没有意义
 -(XEngineWebView *)createWebView{
     
-//    XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
+//    WebViewFactoryModel *model = [[WebViewFactoryModel alloc] init];
     
 /// TODO: 这里为什么会有这种逻辑？
 //    if([baseUrl hasPrefix:@"file://"]){

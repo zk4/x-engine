@@ -110,6 +110,9 @@ static NSString *const kSlash               = @"/";
 
 - (void) openTargetRouter:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     NSDictionary* directDTO = [JSIOldRouterModule convertRouter2JSIModel:dict];
+
+    if(!directDTO[@"host"])return;
+    
     [self.directors push:directDTO[@"scheme"] host:directDTO[@"host"] pathname:directDTO[@"pathname"] fragment:directDTO[@"fragment"] query:directDTO[@"query"] params:directDTO[@"params"]];
 }
 @end

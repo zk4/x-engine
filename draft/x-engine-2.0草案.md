@@ -19,6 +19,8 @@
   
   
   
+  
+  
 
 ### 工具
 
@@ -29,6 +31,7 @@
 - 最佳本地 h5 规范
   - 带 microapp.json 功能
   - 更底层的 jsi api 调用，不再需要安装 npm 包
+- 最佳 vite 模板
 
 ### 风格
 
@@ -165,7 +168,7 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
         coge x-engine-native-template module-xxxx:jsi-ui xxxx:ui @:x-engine-native-ui -w
         ```
         
-        
+    
 2. （可选）编写接口
 
 

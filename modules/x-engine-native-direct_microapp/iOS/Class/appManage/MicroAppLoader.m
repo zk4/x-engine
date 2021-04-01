@@ -77,27 +77,33 @@
     }
 }
 
--(NSString *)getMicroAppHost:(NSString *)microAppId withVersion:(long)version{
+-(NSString *)getMicroAppHost:(NSString *) moduleIdVersion{
  
     
-    NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@.%ld", [self microappDirectory], microAppId, version];
+    NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@", [self microappDirectory], moduleIdVersion];
     BOOL isDir = false;
     BOOL isEx = [[NSFileManager defaultManager] fileExistsAtPath:sandbox_microapp_location isDirectory:&isDir];
     
     if(!isEx || !isDir){
     
-       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microAppId, version] ofType:@""];
+       NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@", moduleIdVersion] ofType:@""];
        if (htmlPath.length > 0) {
-           NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.%ld", microAppId, version] ofType:@""];
+           NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@", moduleIdVersion] ofType:@""];
            if (htmlPath) {
                 return [NSString stringWithFormat:@"%@/index.html", htmlPath];
            }
        }
     }else{
-        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@.%ld/index.html",[self microappDirectory], microAppId, version];
+        NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@/index.html",[self microappDirectory], moduleIdVersion];
         return sandbox_microapp_location;
     }
     return nil;
+}
+
+ 
+
+-(NSString *)getMicroAppHost:(NSString *)microAppId withVersion:(long)version{
+    return [self getMicroAppHost:[NSString stringWithFormat:@"%@.%ld", microAppId, version]];
 }
 
  

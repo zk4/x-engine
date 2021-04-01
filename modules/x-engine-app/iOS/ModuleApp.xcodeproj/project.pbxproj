@@ -19,6 +19,7 @@
 		5805B322260FAADB0029F138 /* NSString+QueryDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */; };
 		580EB23C260A214900EE0694 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580EB23B260A214900EE0694 /* CoreData.framework */; };
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
+		583CCAAD26158D52000DFF1F /* com.gm.microapp.mine.1 in Resources */ = {isa = PBXBuildFile; fileRef = 583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */; };
 		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
 		58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BBF26138BEF0082ADC3 /* OneViewController.m */; };
 		58D20BCF26138BEF0082ADC3 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC126138BEF0082ADC3 /* ThreeViewController.m */; };
@@ -74,6 +75,7 @@
 		5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QueryDictionaryTests.m"; sourceTree = "<group>"; };
 		580EB23B260A214900EE0694 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
+		583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = com.gm.microapp.mine.1; path = Class/com.gm.microapp.mine.1; sourceTree = SOURCE_ROOT; };
 		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
 		58D20BBF26138BEF0082ADC3 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		58D20BC026138BEF0082ADC3 /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */,
 				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
 				58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */,
 				58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */,
@@ -364,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				583CCAAD26158D52000DFF1F /* com.gm.microapp.mine.1 in Resources */,
 				58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */,
 				58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
@@ -729,8 +733,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iOS;
+				TEST_TARGET_NAME = ModuleApp;
 			};
 			name = Debug;
 		};
@@ -748,8 +753,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iOS;
+				TEST_TARGET_NAME = ModuleApp;
 			};
 			name = Release;
 		};

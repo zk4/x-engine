@@ -55,7 +55,8 @@ NATIVE_MODULE(Native_direct_microapp)
         pathname:(NSString*) pathname
         query:(NSDictionary<NSString*,id>*) query
         params:(NSDictionary<NSString*,id>*) params  {
-    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:0];
+    /// TODO:  version 放哪呢？
+    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:1];
     [self.microappDirect push:[self protocol] host:localhost pathname:pathname query:query params:params];
 }
 

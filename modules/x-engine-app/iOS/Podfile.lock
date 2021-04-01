@@ -29,6 +29,7 @@ PODS:
   - x-engine-native-direct_microapp (0.1.13):
     - JSONModel
     - x-engine-native-core
+    - x-engine-native-jsi
     - x-engine-native-protocols
   - x-engine-native-direct_omp (0.1.13):
     - JSONModel
@@ -96,7 +97,7 @@ SPEC CHECKSUMS:
   x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
   x-engine-native-direct: f829e3c6b1f75cd72287b98826d1571c3d3af9d7
   x-engine-native-direct_http: c2397f9a6408ca81b778c6655a25b7eefa0d3409
-  x-engine-native-direct_microapp: 82141bdf6ac12ea6a50bfff48dc4095ce09bad6c
+  x-engine-native-direct_microapp: 068665229d1d7e02c60f24039e4a4d398a1cd7f3
   x-engine-native-direct_omp: 47c673a295c7c8138268511ec415d8dd3d35e269
   x-engine-native-jsi: 9d97926ef2b00e1915deefcf6dcd92ff677d44f4
   x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86

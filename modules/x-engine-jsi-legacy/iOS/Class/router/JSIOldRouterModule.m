@@ -31,36 +31,74 @@ static NSString *const kQueryBegin          = @"?";
 static NSString *const kFragmentBegin       = @"#";
 static NSString *const kSlash               = @"/";
 
++ (NSString*)SPAUrl2StandardUrl:(NSString*)raw {
+    int questionMark = -1;
+    int hashtagMark = -1;
+
+    for (int i=0;i< raw.length;i++){
+        char cc= [raw characterAtIndex:i];
+
+        if(cc == '#' && hashtagMark == -1){
+            hashtagMark=i;
+        }
+        else if(cc == '?' && questionMark == -1){
+            questionMark=i;
+        }
+    }
+    if(questionMark != -1 && hashtagMark != -1){
+        NSString* sub1= [raw substringToIndex:hashtagMark];
+        NSString* sub2= [raw substringWithRange:NSMakeRange(hashtagMark, questionMark-hashtagMark)];
+        NSString* sub3=[ [raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
+    }
+    return raw;
+}
+// 区分 vue 的 url
+// 与标准的 rfc url
 + (NSDictionary*) convertRouter2JSIModel:(NSDictionary*) dict{
     NSMutableDictionary* ret= [NSMutableDictionary new];
     ret[@"scheme"] =dict[@"type"];
     
     NSString* host= dict[@"uri"];
+    NSString* url_need_check = @"";
     
     if([dict[@"type"] isEqualToString:@"microapp"]){
-        // 要注意，本地 file 协议从标准上， host 应为 ""，
-        // 但是 pathname 需要做路由路径，将 index.html 文件位置指定为 host
-        // 将 microapp id 做成虚拟 host
-        host=[NSString stringWithFormat:@"http://%@",host];
+        // 一定是非标 url
+        // microapp id，应该组装成 http://, 以供 NSURL 标准化
+        url_need_check = [NSString stringWithFormat:@"http://%@#%@",host, dict[@"path"]];
     }
-    
-    NSString* raw_url = [NSString stringWithFormat:@"%@%@",host,    dict[@"path"]];
-    
-    // URL encode
-    NSCharacterSet *encode_set= [NSCharacterSet URLQueryAllowedCharacterSet];
-    NSString *urlString_encode =[raw_url stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
-    NSURL * url = [NSURL URLWithString:urlString_encode];
-    
-    ret[@"host"]=url.host;
-    
-    NSArray* pathArray = [dict[@"path"] componentsSeparatedByString:kQueryBegin];
-    ret[@"pathname"]=pathArray.count>0?pathArray[0]:kSlash;
-    
+    else{
+        // 其他的直接拼接
+        // 可能是普通 url
+        // 也可能是非标 url
+        if([host containsString:@"#"])
+            url_need_check = [NSString stringWithFormat:@"%@%@",host, dict[@"path"]];
+        else
+            url_need_check = [NSString stringWithFormat:@"%@#%@",host, dict[@"path"]];
+
+    }
+    // 全部转化为标准 url
+    NSString* standard_url = [JSIOldRouterModule SPAUrl2StandardUrl:url_need_check];
+
+    NSURL * url = [NSURL URLWithString:standard_url];
+ 
+    if(url.port){
+        ret[@"host"]=[NSString stringWithFormat:@"%@:%@" , url.host, url.port];
+    }else{
+        ret[@"host"]=url.host;
+    }
+
+    if(url.fragment)
+        ret[@"pathname"]=url.fragment;
+    else
+        ret[@"pathname"]=@"/";
+
+
     ret[@"query"]= url.uq_queryDictionary;
+
     
-    
-    if([dict[@"hideNavbar"] boolValue]){
-        ret[@"params"] = @{@"hideNavbar":@TRUE};
+    if(dict[@"hideNavbar"]){
+        ret[@"params"] = @{@"hideNavbar":dict[@"hideNavbar"]};
     }
     
     return ret;

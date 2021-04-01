@@ -281,7 +281,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result =[NSMutableDictionary dictionaryWithDictionary:@{@"code":@-1,@"data":@""}];
     if(!JavascriptInterfaceObject){
-        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge  called, but can't find %@ , please check your code!",@"nameSpace"]];
+        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge  called, but can't find %@ 模块, please check your code!",nameStr[0]]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     }else{
         method=nameStr[1];

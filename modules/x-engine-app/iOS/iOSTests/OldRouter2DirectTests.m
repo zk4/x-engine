@@ -124,4 +124,38 @@
 //    NSString* url2 = @"http://com.gm.microapp.mine.0/index.html#/testA?a=2&b=2";
    XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
+
+// 性能测试，基准线
+// http://xietao3.com/2018/12/TestingTutorial/
+- (void)testMyFunction2_WallClockTime {
+    [self measureMetrics:[self class].defaultPerformanceMetrics automaticallyStartMeasuring:NO forBlock:^{
+
+        // Do setup work that needs to be done for every iteration but you don't want to measure before the call to -startMeasuring
+//        SetupSomething();
+        [self startMeasuring];
+
+        // Do that thing you want to measure.
+//        MyFunction();
+        [self stopMeasuring];
+
+        // Do teardown work that needs to be done for every iteration but you don't want to measure after the call to -stopMeasuring
+//        TeardownSomething();
+    }];
+}
+
+- (void) testAcutual {
+    
+    NSDictionary*  oldnavdto= @{
+        @"hideNavbar" : @"true",
+        @"path" : @"",
+        @"type" : @"omp",
+        @"uri" : @"http://10.115.91.40:30599/app-vue/app/index.html#/mall2/orderlist?selectedIndex=a"
+    };
+
+    NSDictionary*  should= @{@"scheme":@"omp",@"host":@"10.115.91.40:30599",@"pathname":@"/mall2/orderlist",@"params":@{ @"hideNavbar":@"true"},@"query":@{@"selectedIndex":@"a"}};
+
+     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
+    
+    
+}
 @end

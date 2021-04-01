@@ -10,7 +10,6 @@
 #import "JSIContext.h"
 #import "MicroAppLoader.h"
 #import "JSIModule.h"
-#import "XEOneWebViewPoolModel.h"
 
 #import "Unity.h"
 #import "RecyleWebViewController.h"
@@ -20,7 +19,6 @@
 @interface XEOneWebViewPool ()
 
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
-
 @end
 
 @implementation XEOneWebViewPool
@@ -39,26 +37,26 @@
     self = [super init];
     if (self){
         self.wkprocessPool = [[WKProcessPool alloc] init];
-        self.webCacheAry = [@[] mutableCopy];
+        self.webviews = [@[] mutableCopy];
 
     }
     return self;
 }
-  
-
-- (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView{
-
-    for (XEOneWebViewPoolModel *model in self.webCacheAry) {
-        if(model.webView == webView) {
-            return model;
-        }
-    }
-    return nil;
-}
+//
+//
+//- (XEOneWebViewPoolModel *)getModelWithWeb:(WKWebView *)webView{
+//
+//    for (XEOneWebViewPoolModel *model in self.webCacheAry) {
+//        if(model.webView == webView) {
+//            return model;
+//        }
+//    }
+//    return nil;
+//}
 ///TODO:  webviewpool 需要重新设计 api, baseUrl 没有意义
--(XEOneWebViewPoolModel *)createWebView{
+-(XEngineWebView *)createWebView{
     
-    XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
+//    XEOneWebViewPoolModel *model = [[XEOneWebViewPoolModel alloc] init];
     
 /// TODO: 这里为什么会有这种逻辑？
 //    if([baseUrl hasPrefix:@"file://"]){
@@ -119,9 +117,9 @@
     }
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
-    model.webView = webview;
-    [self.webCacheAry addObject:model];
-    return model;
+//    model.webView = webview;
+    [self.webviews addObject:webview];
+    return webview;
 }
 //
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

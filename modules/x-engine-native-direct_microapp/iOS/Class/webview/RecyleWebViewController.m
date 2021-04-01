@@ -5,7 +5,6 @@
 #import <WebKit/WebKit.h>
 #import "XEngineWebView.h"
 #import "XEOneWebViewPool.h"
-#import "XEOneWebViewPoolModel.h"
 #import "JSIModule.h"
 #import "GlobalState.h"
 #import "Unity.h"
@@ -93,7 +92,7 @@
         self.loadUrl = fileUrl;
         
         if(newWebView){
-            self.webview = [[XEOneWebViewPool sharedInstance] createWebView].webView;
+            self.webview = [[XEOneWebViewPool sharedInstance] createWebView];
             [self.webview loadUrl:self.loadUrl];
             self.webview.frame = [UIScreen mainScreen].bounds;
             
@@ -252,7 +251,7 @@
     self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel404];
     
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     
 }
 
@@ -280,20 +279,12 @@
     [super viewWillAppear:animated];
     //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
     //           completionHandler:nil];
-    
-//    if(self.customTitle.length > 0 && ![self.customTitle isEqualToString: self.title]){
-//        self.title = self.customTitle;
-//    }
+
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.progresslayer.alpha = 0;
     
     
-//    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-//        if(self.navigationItem.leftBarButtonItems.count > 0){
-//            self.navigationItem.leftBarButtonItems.lastObject.title = @"";
-//        }
-//    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

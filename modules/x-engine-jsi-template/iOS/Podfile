@@ -10,7 +10,9 @@ abstract_target 'abstract' do
   pod 'x-engine-native-direct_microapp', :path =>'../../x-engine-native-direct_microapp'
 
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
-  pod 'JSONModel'
+  pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
+
+
   target 'xxxx' do
     #use_frameworks!
     #module_pods

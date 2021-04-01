@@ -6,19 +6,13 @@
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
+
+#import "NativeContext.h"
 #import "JSI_direct.h"
 #import "JSIContext.h"
 #import "iDirectManager.h"
-#import "NativeContext.h"
-#import "JSIOldNavModule.h"
-#import "JSIContext.h"
-#import "iDirectManager.h"
-#import "NativeContext.h"
 #import "Unity.h"
-#import "RecyleWebViewController.h"
 
-#import "GlobalState.h"
-#import "HistoryModel.h"
 #import "NSURL+QueryDictionary.h"
 #import "NSString+Router+URLQuery.h"
 

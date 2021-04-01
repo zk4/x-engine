@@ -1,29 +1,52 @@
 PODS:
   - JSONModel (1.8.0)
-  - x-engine-module-core (0.1.13):
-    - x-engine-module-protocols
-  - x-engine-module-protocols (0.0.9)
+  - x-engine-native-core (0.1.13):
+    - x-engine-native-protocols
+  - x-engine-native-direct_microapp (0.1.13):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi
+    - x-engine-native-protocols
+  - x-engine-native-direct_omp (0.1.13):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-jsi (0.1.13):
+    - x-engine-native-core
+  - x-engine-native-protocols (0.0.9)
 
 DEPENDENCIES:
   - JSONModel
-  - x-engine-module-core (from `../../x-engine-module-core`)
-  - x-engine-module-protocols (from `../../x-engine-module-protocols`)
+  - x-engine-native-core (from `../../x-engine-native-core`)
+  - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `../../x-engine-native-jsi`)
+  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JSONModel
 
 EXTERNAL SOURCES:
-  x-engine-module-core:
-    :path: "../../x-engine-module-core"
-  x-engine-module-protocols:
-    :path: "../../x-engine-module-protocols"
+  x-engine-native-core:
+    :path: "../../x-engine-native-core"
+  x-engine-native-direct_microapp:
+    :path: "../../x-engine-native-direct_microapp"
+  x-engine-native-direct_omp:
+    :path: "../../x-engine-native-direct_omp"
+  x-engine-native-jsi:
+    :path: "../../x-engine-native-jsi"
+  x-engine-native-protocols:
+    :path: "../../x-engine-native-protocols"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
-  x-engine-module-core: 8b96932572889dbc286b02df841e2a69a873e363
-  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
+  x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
+  x-engine-native-direct_microapp: 068665229d1d7e02c60f24039e4a4d398a1cd7f3
+  x-engine-native-direct_omp: 47c673a295c7c8138268511ec415d8dd3d35e269
+  x-engine-native-jsi: 9d97926ef2b00e1915deefcf6dcd92ff677d44f4
+  x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86
 
-PODFILE CHECKSUM: 2de8fee3912b5eec0ff9d5832369ee701f0d7e63
+PODFILE CHECKSUM: 6a2c2828e4945700438431818bb5fe2d1acb27f1
 
 COCOAPODS: 1.10.0

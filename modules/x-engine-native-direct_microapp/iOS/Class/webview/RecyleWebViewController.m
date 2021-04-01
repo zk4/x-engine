@@ -86,7 +86,7 @@
     self = [super init];
     if (self){
         self.isHiddenNavbar = isHidden;
-        
+//        self.view.backgroundColor  = [UIColor whiteColor];
         if(fileUrl.length == 0)
             return self;
         
@@ -194,7 +194,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hidesBottomBarWhenPushed = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -260,7 +259,7 @@
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     
     /// FIXED: 侧滑时，如果并没有滑走，不应该在 viewWillAppear 里 loadFileUrl
     [self loadFileUrl];
@@ -286,7 +285,7 @@
 //        self.title = self.customTitle;
 //    }
     
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:YES];
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.progresslayer.alpha = 0;
     
     

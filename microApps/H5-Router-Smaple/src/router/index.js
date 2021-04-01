@@ -1,9 +1,10 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import XEngine from "@zkty-team/x-engine-module-engine"
-import ZKTYRouter from './zkty_router'
+import ZKTYRouter from "@zkty-team/vue-router"
 
 Vue.use(VueRouter);
+ZKTYRouter(VueRouter, 'omp');
+
 const routes = [{
         path: "/",
         name: "testone",
@@ -32,7 +33,4 @@ const router = new VueRouter({
     routes
 });
 
-
-ZKTYRouter.zktyRouter(VueRouter, XEngine, 'omp');
- 
 export default router;

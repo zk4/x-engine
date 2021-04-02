@@ -337,7 +337,6 @@
 					};
 					00DFC6CF24C83F95006A53EE = {
 						CreatedOnToolsVersion = 11.5;
-						TestTargetID = 00DFC6A924C83F94006A53EE;
 					};
 				};
 			};
@@ -735,7 +734,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ModuleApp;
 			};
 			name = Debug;
 		};
@@ -755,7 +753,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ModuleApp;
 			};
 			name = Release;
 		};

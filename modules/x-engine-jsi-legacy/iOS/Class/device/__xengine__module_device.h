@@ -10,7 +10,7 @@
 #import "xengine__module_device.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@class SheetDTO;
+
 @interface __xengine__module_device : xengine__module_device 
  
  @end

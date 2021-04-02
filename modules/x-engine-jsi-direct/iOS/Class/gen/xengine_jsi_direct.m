@@ -55,4 +55,15 @@
              completionHandler(nil ,complete);
           }];
       }
+- (id) push:(NSDictionary*) dict {
+      dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"omp\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
+
+      DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
+        return [self _push:dto ];
+  }
+- (id) back:(NSDictionary*) dict {
+      dict=[self mergeDefault:dict defaultString:@"{}"];
+      DirectBackDTO* dto = [self convert:dict clazz:DirectBackDTO.class];
+      return [self _back:dto];
+  }
   @end

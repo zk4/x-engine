@@ -11,7 +11,7 @@
 #import "NativeContext.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "XEOneWebViewPool.h"
+#import "WebViewFactory.h"
 #import "GlobalState.h"
 #import "HistoryModel.h"
 #import "iDirectManager.h"

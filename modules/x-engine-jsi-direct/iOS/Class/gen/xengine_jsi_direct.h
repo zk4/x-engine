@@ -32,7 +32,11 @@
     
       @required 
         - (void) _back:(DirectBackDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
+        @required
+    - (id) _push:(DirectPushDTO*) dto;
+
+        @required
+    - (id) _back:(DirectBackDTO*) dto;
 @end
   
 

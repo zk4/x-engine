@@ -6,22 +6,12 @@
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
+
+#import "NativeContext.h"
 #import "JSI_direct.h"
 #import "JSIContext.h"
 #import "iDirectManager.h"
-#import "NativeContext.h"
-#import "JSIOldNavModule.h"
-#import "JSIContext.h"
-#import "iDirectManager.h"
-#import "NativeContext.h"
-#import "Unity.h"
-#import "RecyleWebViewController.h"
-
-#import "GlobalState.h"
-#import "HistoryModel.h"
-#import "NSURL+QueryDictionary.h"
-#import "NSString+Router+URLQuery.h"
-
+ 
 
 @interface JSI_direct ()
 @property (nonatomic, strong)   id<iDirectManager>  directors;
@@ -43,6 +33,16 @@ JSI_MODULE(JSI_direct)
 - (void)_push:(DirectPushDTO *)dto complete:(void (^)(BOOL))completionHandler {  
     [self.directors push:dto.scheme host:dto.host pathname:dto.pathname fragment:dto.fragment query:dto.query params:dto.params];
     completionHandler(YES);
+}
+
+- (id)_back:(DirectBackDTO *)dto{
+     [self.directors back:dto.scheme host:nil fragment:dto.fragment];
+    return @"";
+}
+
+- (id)_push:(DirectPushDTO *)dto {
+    [self.directors push:dto.scheme host:dto.host pathname:dto.pathname fragment:dto.fragment query:dto.query params:dto.params];
+    return @"";
 }
 
 

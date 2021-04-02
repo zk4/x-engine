@@ -2,46 +2,30 @@
 import xxxx from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.setNavTitle = () => {
 
-  window.broadcastOn = (...args) => {
-    xengine.broadcastOn(function (res) {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
-    });
-  };
+  xengine.api("com.zkty.jsi.ui", "setNavTitle", {
+    title: "title",
+    titleColor: "#000000"
+  });
+}
+window.setNavBarHidden = () => {
 
-  window.broadcastOff = () => {
-    xengine.broadcastOff();
-  };
+  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+    //是否隐藏navBar
+    isHidden: true,
+    //是否使用动画效果
+    isAnimation: true,
+  });
+}
+window.test_setNavBarShow = () => {
 
-  window.triggerNativeBroadCast = () => {
-    xxxx.triggerNativeBroadCast();
-  };
-
-  window.repeatReturn__event__ = () => {
-    xxxx.repeatReturn__event__({
-      __event__: function (res) {
-        document.getElementById("debug_text").innerText =
-          "支持多次返回" + JSON.stringify(res);
-        return res;
-      },
-    });
-  };
-
-  window.repeatReturn__ret__ = () => {
-    xxxx.repeatReturn__ret__({
-      __ret__: function (res) {
-        document.getElementById("debug_text").innerText =
-          "支持多次返回" + JSON.stringify("__ret__:" + res);
-        return res;
-      },
-    });
-  };
-
-  window.ReturnInPromiseThen = () => {
-    xxxx.ReturnInPromiseThen().then((res) => {
-      document.getElementById("debug_text").innerText =
-        "then 只支持一次性返回" + JSON.stringify(res);
-    });
-  };
+  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+    //是否隐藏navBar
+    isHidden: false,
+    //是否使用动画效果
+    isAnimation: true,
+  });
+}
 
     

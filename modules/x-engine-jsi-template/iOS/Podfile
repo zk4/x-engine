@@ -5,8 +5,14 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 abstract_target 'abstract' do
   pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
+  pod 'x-engine-native-jsi', :path =>'../../x-engine-native-jsi'
+  pod 'x-engine-native-direct_omp', :path =>'../../x-engine-native-direct_omp'
+  pod 'x-engine-native-direct_microapp', :path =>'../../x-engine-native-direct_microapp'
+
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
-  pod 'JSONModel'
+  pod 'x-engine-native-direct', :path =>'../../x-engine-native-direct'
+
+
   target 'xxxx' do
     #use_frameworks!
     #module_pods

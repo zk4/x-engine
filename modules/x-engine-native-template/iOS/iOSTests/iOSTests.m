@@ -4,8 +4,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <x-engine-module-engine/XEngineJSBUtil.h>
-#import "xengine__module_xxxx.h"
 @interface iOSTests : XCTestCase
 
 @end
@@ -23,10 +21,21 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    
-    ContinousDTO * d= [ContinousDTO new];
-    NSString* s=[XEngineJSBUtil objToJsonString:d];
-    NSLog(@"%@",s);
+    NSDictionary*  raw= @{
+        @"hideNavbar" : @"true",
+        @"path" : @"",
+        @"type" : @"omp",
+        @"uri" : @"http://10.115.91.40:30599/app-vue/app/index.html#/mall2/orderlist?selectedIndex=a"
+    };
+
+    NSDictionary*  should= @{
+        @"hideNavbar" : @"true",
+        @"path" : @"",
+        @"type" : @"omp",
+        @"uri" : @"http://10.115.91.40:30599/app-vue/app/index.html#/mall2/orderlist?selectedIndex=a"
+    };
+
+     XCTAssertEqualObjects(raw,should, @"should equal");
     
     
 }

@@ -19,5 +19,13 @@ JSI_MODULE(JSI_xxxx)
 - (void)afterAllJSIModuleInited {
 }
 
+- (void)_setNavBarHidden:(NavHiddenBarDTO *)dto complete:(void (^)(BOOL))completionHandler { 
+    <#code#>
+}
+
+- (void)_setNavTitle:(NavTitleDTO *)dto complete:(void (^)(BOOL))completionHandler { 
+    <#code#>
+}
+
 @end
  

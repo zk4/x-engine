@@ -8,8 +8,7 @@
 
 #import "Native_direct_omp.h"
 #import "NativeContext.h"
-#import "XEOneWebViewPool.h"
-#import "XEOneWebViewPoolModel.h"
+#import "WebViewFactory.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "iDirect.h"
@@ -27,14 +26,14 @@ NATIVE_MODULE(Native_direct_omp)
 }
  
 
-- (void)back:(NSString*) host pathname:(NSString*) pathname{
+- (void)back:(NSString*) host fragment:(NSString*) fragment{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
 
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
     NSMutableArray<HistoryModel*>*  histories=
     [[GlobalState sharedInstance] getCurrentWebViewHistories];
 
-    if ([@"0" isEqualToString:pathname]){
+    if ([@"0" isEqualToString:fragment]){
         int i =0;
         for (UIViewController *vc in [ary reverseObjectEnumerator]){
             if (![vc isKindOfClass:[RecyleWebViewController class]]){
@@ -47,14 +46,14 @@ NATIVE_MODULE(Native_direct_omp)
             i++;
         }
     }
-    else if ([@"/" isEqualToString:pathname]){
+    else if ([@"/" isEqualToString:fragment]){
         if(histories && histories.count > 0){
             [navC popToViewController:histories[0].vc animated:YES];
             [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
         }
 
     }
-    else if ([@"-1" isEqualToString:pathname] || [@"" isEqualToString:pathname]){
+    else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
         if(histories){
             if(histories.count > 1)
             {
@@ -71,7 +70,7 @@ NATIVE_MODULE(Native_direct_omp)
         if(histories && histories.count > 1){
             int i = 0;
             for (HistoryModel *hm in [histories reverseObjectEnumerator]){
-                if(hm && [hm.pathname isEqualToString:pathname]){
+                if(hm && [hm.fragment isEqualToString:fragment]){
                     [navC popToViewController:hm.vc animated:YES];
                     
                     [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
@@ -101,7 +100,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 
         BOOL hideNavbar  = [params[@"hideNavbar"] boolValue];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
 
 
         vc.hidesBottomBarWhenPushed = YES;
@@ -126,7 +125,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:fragment newWebView:FALSE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:FALSE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 

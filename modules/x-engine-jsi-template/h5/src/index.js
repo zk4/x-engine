@@ -13,32 +13,14 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.xxxx", 
     [
   {
-    "name": "broadcastOn",
-    "default_args": {},
+    "name": "setNavTitle",
+    "default_args": {
+      "titleSize": 16
+    },
     "decorators": []
   },
   {
-    "name": "broadcastOff",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "triggerNativeBroadCast",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "repeatReturn__event__",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "repeatReturn__ret__",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "ReturnInPromiseThen",
+    "name": "setNavBarHidden",
     "default_args": {},
     "decorators": []
   }

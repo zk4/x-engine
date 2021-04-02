@@ -1,0 +1,22 @@
+{
+  "name": "@zkty-team/vue-router",
+  "version": "0.0.8",
+  "description": "重写VueRouter的push和go方法",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@zkty-team/x-engine-module-engine": "^0.1.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zkty-team/ZKTYRouter.git"
+  },
+  "author": "Cwz.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zkty-team/ZKTYRouter/issues"
+  },
+  "homepage": "https://github.com/zkty-team/ZKTYRouter#readme"
+}

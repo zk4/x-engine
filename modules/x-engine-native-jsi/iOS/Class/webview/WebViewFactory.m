@@ -6,7 +6,6 @@
 #import "WebViewFactory.h"
 #import "XEngineWebView.h"
 #import "JSIContext.h"
-#import "MicroAppLoader.h"
 #import "JSIModule.h"
 
 #import "Unity.h"

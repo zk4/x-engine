@@ -11,6 +11,7 @@
 @property (nullable, nonatomic, weak) id <WKNavigationDelegate> DSNavigationDelegate;
 @property (nullable, nonatomic, weak) id <WKUIDelegate> DSUIDelegate;
 @property (nonatomic, assign)  int index;
+@property (nonatomic, strong) UIActivityIndicatorView * _Nullable indicatorView;
 
 - (void)loadUrl: (NSString * _Nonnull) url;
 

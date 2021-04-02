@@ -39,6 +39,11 @@ const routes = [{
         path: '/skeleton',
         name: 'skeleton',
         component: () => import('../views/skeleton.vue')
+    },
+    {
+        path: '/gifView',
+        name: 'gifView',
+        component: () => import('../views/gifView.vue')
     }
 ];
 

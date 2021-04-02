@@ -5,9 +5,12 @@
       @clickRightButton="handlerHeaderRightBtn"
       :reviceTitle="navHeader1"
     />
-
-    <div class="navHeader1-class">
-      <van-button type="primary" size="large" round @click="handlerNoHaderPage">跳至没有Header页面</van-button>
+    <div v-if="isShowContent">
+      <img class="img-class" src="../static/image/gif.gif" alt />
+      <div>加载数据中.......</div>
+    </div>
+    <div v-else>
+        我是数据回来之后的内容
     </div>
   </div>
 </template>
@@ -20,13 +23,13 @@ export default {
   },
   data() {
     return {
-      skeletonShow: true,
+      isShowContent: true,
     }
   },
   mounted() {
     setTimeout(() => {
-      this.skeletonShow = false
-    }, 50000)
+      this.isShowContent = false
+    }, 3000)
   },
   methods: {
     handlerHeaderBack() {
@@ -47,5 +50,8 @@ export default {
 <style>
 .navHeader1-class {
   margin-top: 200px;
+}
+.img-class {
+  width: 100%;
 }
 </style>

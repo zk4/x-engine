@@ -11,8 +11,6 @@ function intercept(VueRouter, scheme) {
                 params: {
                     hideNavbar: true
                 }
-            }, function (res) {
-                console.log('res :>> ', res);
             })
         } else {
             return originalRouterPush.call(this, location);
@@ -29,8 +27,6 @@ function intercept(VueRouter, scheme) {
                 params: {
                     hideNavbar: true
                 }
-            }, function (res) {
-                console.log('res :>> ', res);
             })
         } else {
             return originalRouterGo.call(this, location);

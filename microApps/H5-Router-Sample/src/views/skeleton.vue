@@ -7,7 +7,7 @@
     />
     <div class="skeleton-class" v-show="skeletonShow">
       <van-skeleton title avatar round animate :row="3" />
-      <div style="margin-top:30px;">待做 骨架屏</div>
+      <div style="margin-top:30px;">骨架屏</div>
     </div>
   </div>
 </template>
@@ -34,6 +34,11 @@ export default {
     },
     handlerHeaderRightBtn() {
       alert("点击的了右上角按钮")
+    },
+    handlerNextpage() {
+      this.$router.push({
+        path: "/navHeader",
+      })
     },
   },
 }

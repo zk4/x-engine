@@ -85,7 +85,6 @@
     self = [super init];
     if (self){
         self.isHiddenNavbar = isHidden;
-//        self.view.backgroundColor  = [UIColor whiteColor];
         if(fileUrl.length == 0)
             return self;
         

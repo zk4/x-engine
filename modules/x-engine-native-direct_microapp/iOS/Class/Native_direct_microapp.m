@@ -55,7 +55,7 @@ NATIVE_MODULE(Native_direct_microapp)
         fragment:(NSString*) fragment
         query:(NSDictionary<NSString*,id>*) query
         params:(NSDictionary<NSString*,id>*) params  {
-    /// TODO:  version 放哪呢？
+
     long version =0;
     if (params && params[@"version"]){
         version= [params[@"version"] longValue] ;

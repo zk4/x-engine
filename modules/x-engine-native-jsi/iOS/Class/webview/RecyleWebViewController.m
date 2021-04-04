@@ -81,7 +81,7 @@
     }
 }
 
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment webview:(XEngineWebView*)webview withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
         self.isHiddenNavbar = isHidden;
@@ -90,15 +90,8 @@
         
         self.loadUrl = fileUrl;
         
-        if(newWebView){
-            self.webview = [[WebViewFactory sharedInstance] createWebView];
-            [self.webview loadUrl:self.loadUrl];
-            self.webview.frame = [UIScreen mainScreen].bounds;
-            
-            [GlobalState setCurrentWebView:self.webview];
-        }else {
-            self.webview = [GlobalState getCurrentWebView];
-        }
+        self.webview= webview;
+
         
         HistoryModel* hm = [HistoryModel new];
         hm.vc            = self;

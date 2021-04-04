@@ -103,6 +103,7 @@
 //        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
     }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
+    webview.frame = [UIScreen mainScreen].bounds;
     webview.configuration.preferences.javaScriptEnabled = YES;
     webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
     

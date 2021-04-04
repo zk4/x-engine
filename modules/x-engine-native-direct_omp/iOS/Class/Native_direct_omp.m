@@ -98,9 +98,13 @@ NATIVE_MODULE(Native_direct_omp)
     if(host){
         /// TODO: 统一一个类处理 URL 地址问题
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
+   
+        XEngineWebView* webview = [[WebViewFactory sharedInstance] createWebView];
+        [GlobalState setCurrentWebView:webview];
 
+       
         BOOL hideNavbar  = [params[@"hideNavbar"] boolValue];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment webview:webview  withHiddenNavBar:hideNavbar];
 
 
         vc.hidesBottomBarWhenPushed = YES;
@@ -123,9 +127,9 @@ NATIVE_MODULE(Native_direct_omp)
         NSString* host=[[GlobalState sharedInstance] getLastHost ];
         NSAssert(host!=nil, @"host 不可为 nil");
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
-
+        ;
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:FALSE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment webview:[GlobalState getCurrentWebView] withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 

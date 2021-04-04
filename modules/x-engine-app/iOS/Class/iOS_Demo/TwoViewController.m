@@ -35,8 +35,9 @@
 //    }
     NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:0];
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
+    XEngineWebView* webview = [[WebViewFactory sharedInstance] createWebView];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment webview:webview  withHiddenNavBar:TRUE];
   
 
 

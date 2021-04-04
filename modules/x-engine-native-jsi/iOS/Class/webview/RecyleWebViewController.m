@@ -181,7 +181,7 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+ 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hidesBottomBarWhenPushed = YES;
@@ -253,7 +253,7 @@
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     
     /// FIXED: 侧滑时，如果并没有滑走，不应该在 viewWillAppear 里 loadFileUrl
-    [self loadFileUrl];
+//    [self loadFileUrl];
 
     if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
@@ -264,6 +264,16 @@
     }
     [self.view insertSubview:self.webview atIndex:0];
     
+}
+- (void)didMoveToParentViewController:(UIViewController*)parent
+{
+    [super didMoveToParentViewController:parent];
+    if(!parent){
+        if([self.webview canGoBack])
+            [self.webview goBack];
+//        else
+//            [self.web pop];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{

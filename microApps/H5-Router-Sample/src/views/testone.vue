@@ -4,6 +4,21 @@
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
     <van-button type="info" size="large" round @click="handlerShowNav">显示导航条</van-button>
     <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
+    <van-button type="warning" size="large" round @click="handlerChangeNavTitle">修改导航条文字</van-button>
     <van-button type="danger" size="large" round @click="handlerHiddenNav">隐藏导航条</van-button>
     <van-button
       type="danger"
@@ -14,7 +29,6 @@
     >跳转其他微应用</van-button>
     <van-button type="danger" size="large" round color="#322144" @click="handlerOpenBaidu">百度</van-button>
     <van-button type="danger" size="large" round color="#dda0dd" @click="handlerSkeleton">骨架屏</van-button>
-    <van-button type="danger" size="large" round color="#dda0dd" @click="handlerGIF">GIF进入页面</van-button>
     <van-button type="danger" size="large" round color="#2695e3" @click="handlerNavigator">前端定制navigator</van-button>
   </div>
 </template>
@@ -139,14 +153,10 @@ export default {
         path:"/skeleton"
       })
     },
-    handlerGIF() {
+
+    handlerNavigator()  {
       this.$router.push({
-        path:"/gifView"
-      })
-    },
-    handlerNavigator() {
-      this.$router.push({
-        path:"/navHeader1"
+        path:"/navHeader"
       })
     }
   },

@@ -5,10 +5,19 @@
         ref="leftButton"
         class="content-item"
         :style="{lineheight: lineheight+'px'}"
-        @click="handlerHeaderBack"
+        @click="leftButton"
       >back</div>
-      <div ref="canterButton" class="content-item" :style="{lineheight: lineheight+'px'}">title</div>
-      <div ref="rightButton" class="content-item" :style="{lineheight: lineheight+'px'}">fun</div>
+      <div
+        ref="canterButton"
+        class="content-item"
+        :style="{lineheight: lineheight+'px'}"
+      >{{reviceTitle}}</div>
+      <div
+        ref="rightButton"
+        class="content-item"
+        :style="{lineheight: lineheight+'px'}"
+        @click="rightButton"
+      >fun</div>
     </div>
   </div>
 </template>
@@ -21,15 +30,24 @@ export default {
       lineheight: "",
     }
   },
+  props: {
+    reviceTitle: {
+      type: String,
+      default: "",
+    },
+  },
   created() {
     device.getNavigationHeight({}).then((res) => {
       this.$refs.navWrapper.style.cssText = `height: ${res.content}px;`
     })
   },
   methods: {
-    handlerHeaderBack() {
-      this.$emit("back")
+    leftButton() {
+      this.$emit("clickLeftButton")
     },
+    rightButton() {
+      this.$emit("clickRightButton")
+    }
   },
 }
 </script>

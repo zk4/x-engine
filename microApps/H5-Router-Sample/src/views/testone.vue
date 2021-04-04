@@ -14,6 +14,7 @@
     >跳转其他微应用</van-button>
     <van-button type="danger" size="large" round color="#322144" @click="handlerOpenBaidu">百度</van-button>
     <van-button type="danger" size="large" round color="#dda0dd" @click="handlerSkeleton">骨架屏</van-button>
+    <van-button type="danger" size="large" round color="#dda0dd" @click="handlerGIF">GIF进入页面</van-button>
     <van-button type="danger" size="large" round color="#2695e3" @click="handlerNavigator">前端定制navigator</van-button>
   </div>
 </template>
@@ -138,10 +139,14 @@ export default {
         path:"/skeleton"
       })
     },
-
-    handlerNavigator()  {
+    handlerGIF() {
       this.$router.push({
-        path:"/navHeader"
+        path:"/gifView"
+      })
+    },
+    handlerNavigator() {
+      this.$router.push({
+        path:"/navHeader1"
       })
     }
   },

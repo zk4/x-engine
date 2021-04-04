@@ -1,9 +1,13 @@
 <template>
   <div>
-    <HEADER @back="handlerHeaderBack" />
+    <HEADER
+      @clickLeftButton="handlerHeaderBack"
+      @clickRightButton="handlerHeaderRightBtn"
+      :reviceTitle="测试"
+    />
     <div class="skeleton-class" v-show="skeletonShow">
       <van-skeleton title avatar round animate :row="3" />
-      <div style="margin-top:30px;">待做 骨架屏</div>
+      <div style="margin-top:30px;">骨架屏</div>
     </div>
   </div>
 </template>
@@ -26,7 +30,15 @@ export default {
   },
   methods: {
     handlerHeaderBack() {
-      this.$router.go('/')
+      this.$router.go("/")
+    },
+    handlerHeaderRightBtn() {
+      alert("点击的了右上角按钮")
+    },
+    handlerNextpage() {
+      this.$router.push({
+        path: "/navHeader",
+      })
     },
   },
 }

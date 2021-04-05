@@ -127,8 +127,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSString* host=[[GlobalState sharedInstance] getLastHost ];
         NSAssert(host!=nil, @"host 不可为 nil");
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
-        ;
-     
+        
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment webview:[GlobalState getCurrentWebView] withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];

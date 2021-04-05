@@ -269,10 +269,25 @@
 {
     [super didMoveToParentViewController:parent];
     if(!parent){
-        if([self.webview canGoBack])
-            [self.webview goBack];
-//        else
-//            [self.web pop];
+        if([self.webview canGoBack]){
+            [self.webview stopLoading];
+            WKBackForwardList* wfl= [self.webview backForwardList];
+            NSArray<WKBackForwardListItem *> * bl = [wfl backList];
+            NSLog(@"-------------------------start");
+            int i = 0;
+            for(WKBackForwardListItem* current in bl){
+                NSLog(@"%d:%@",i,[current URL]);
+                i++;
+            }
+
+            NSLog(@"-------------------------end");
+
+            [self.webview goToBackForwardListItem:[wfl backItem]];
+        }
+        
+       
+        
+        
     }
 }
 

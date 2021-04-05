@@ -10,7 +10,9 @@
 
 - [ ] h5 页面生命周期告知，页面进入与离开
 
-- [ ] vue-router 有没有更快的路由方法？不使用 loadurl
+- [x] vue-router 有没有更快的路由方法？
+
+  不使用 loadurl，使用 webview 的 goback
 
 - [ ] broadcast 增加数据结构
 
@@ -20,7 +22,13 @@
 
 - [ ] 打开不存在页面会卡死。
 
-- [ ] 参考 dcloud api
+- [ ] 参考 dcloud api，设计路由 api
+
+- [ ] nav 到下一页闪画面的问题
+
+- [ ] x-cli 增加 sync 方法生成
+
+- [ ] 模块读取配置 
 
 - [ ] 带 microapp.json 功能
 
@@ -131,6 +139,16 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
 - host 包含端口，如果port 是 80，host 可省略端口
 
 ![image-20210330114053584](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210330114053584.png)
+
+
+
+### nav 到下一页闪画面的问题
+
+原始现象： 打开下一页时， 会闪上一页的画面。
+
+原因： 
+
+
 
 
 

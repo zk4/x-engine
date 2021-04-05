@@ -12,7 +12,7 @@
 
 - [x] vue-router 有没有更快的路由方法？
 
-  不使用 loadurl，使用 webview 的 goback
+  feature/webview_back不使用 loadurl，使用 webview 的 goback
 
 - [ ] broadcast 增加数据结构
 
@@ -148,7 +148,11 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
 
 原因： 
 
+方案？：
 
+在push 到下一 vc 前，先在当前 vc 加载页面。push 一个空的过来。
+
+![image-20210406011220427](assets/image-20210406011220427.png)
 
 
 

@@ -15,9 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GlobalState : NSObject
 + (instancetype)sharedInstance;
 
-
 + (void)setCurrentWebView:(XEngineWebView*) val;
 + (XEngineWebView*)getCurrentWebView;
+
++ (void)setBackApiCalled:(int) val;
++ (int)getBackApiCalled;
+
 - (NSString*) getLastHost;
 - (NSMutableArray<HistoryModel *> *)getCurrentWebViewHistories;
 - (void)addCurrentWebViewHistory:(HistoryModel *) history;

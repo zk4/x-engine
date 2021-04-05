@@ -32,6 +32,11 @@ NATIVE_MODULE(Native_direct_omp)
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
     NSMutableArray<HistoryModel*>*  histories=
     [[GlobalState sharedInstance] getCurrentWebViewHistories];
+    XEngineWebView* webview =[GlobalState getCurrentWebView];
+    if(!webview){
+        NSLog(@"返回?，webview 都不存在");
+    }
+    [GlobalState setBackApiCalled:1];
 
     if ([@"0" isEqualToString:fragment]){
         int i =0;
@@ -41,13 +46,18 @@ NATIVE_MODULE(Native_direct_omp)
                 // 当 i=0 时，也就当前页就不是 RecyleWebViewController，判断现在就是在 tab 页上，不应该清空 histories
                 if(i>0)
                     [histories removeAllObjects];
-                return;
+                break;
             }
             i++;
         }
     }
     else if ([@"/" isEqualToString:fragment]){
         if(histories && histories.count > 0){
+            // 要与手势区分开来
+            // handle webview
+            NSArray<WKBackForwardListItem *> * bl = [ [webview backForwardList] backList];
+            [webview goToBackForwardListItem:bl.firstObject];
+
             [navC popToViewController:histories[0].vc animated:YES];
             [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
         }
@@ -55,6 +65,12 @@ NATIVE_MODULE(Native_direct_omp)
     }
     else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
         if(histories){
+            // 要与手势区分开来
+            // handle webview
+            if([webview canGoBack]){
+                [webview goBack];
+            }
+            
             if(histories.count > 1)
             {
             [navC popToViewController:histories[histories.count-2].vc animated:YES];
@@ -67,20 +83,34 @@ NATIVE_MODULE(Native_direct_omp)
         }
 
     } else {
+        // 处理具体的名字，形如 /abc /bcd
+        // TODO: else 应该更加具体，用正则判断
+        
+        
         if(histories && histories.count > 1){
-            int i = 0;
+            unsigned long i = 0;
             for (HistoryModel *hm in [histories reverseObjectEnumerator]){
                 if(hm && [hm.fragment isEqualToString:fragment]){
-                    [navC popToViewController:hm.vc animated:YES];
-                    
-                    [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
-                    return;
+                    i = histories.count - i-1;
+                    break;
                 }
                 i++;
             }
+            
+            [navC popToViewController:histories[i].vc animated:YES];
+            [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
+
+            // 要与手势区分开来
+            // handle webview
+            WKBackForwardList* wfl= [webview backForwardList];
+            NSArray<WKBackForwardListItem *> * bl = [wfl backList];
+            WKBackForwardListItem* backtoItem = [bl objectAtIndex:i];
+            [webview goToBackForwardListItem:backtoItem];
+            
         }
 
     }
+    [GlobalState setBackApiCalled:0];
 }
 
 - (void)push:(NSString*) protocol  // 强制指定 protocol，非必须，

@@ -15,8 +15,14 @@
 @implementation GlobalState
 
 static XEngineWebView*  s_showing_webview;
+static int s_backapi_called=0;
 
-
++ (void)setBackApiCalled:(int) val{
+    s_backapi_called= val;
+}
++ (int)getBackApiCalled{
+    return s_backapi_called;
+}
 - (instancetype)init {
    self = [super init];
    self.wv__vc_paths = [NSMapTable new];

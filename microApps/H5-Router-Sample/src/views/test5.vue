@@ -1,26 +1,15 @@
 <template>
   <div class="testfour-class">
-    <div style="marginTop:50px">第4页</div>
-    <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
+    <div style="marginTop:50px">第5页</div>
     <van-button type="primary" size="large" round @click="handlerBack">上一页</van-button>
     <van-button type="info" size="large" round @click="handlerBackTwoPage">返回第二页</van-button>
     <van-button type="danger" size="large" round @click="handlerBackIndex">返回首页</van-button>
-    <van-button type="danger" size="large" round @click="goToNative">返回原生页</van-button>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    goToNative(){
-      this.$router.go("0")
-
-    },
-    handlerPush() {
-      this.$router.push({
-        path: "/test5",
-      })
-    },
     handlerBack() {
       this.$router.go(-1)
     },

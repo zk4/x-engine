@@ -257,6 +257,7 @@
 
     if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
+
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];
             self.screenView = nil;
@@ -268,26 +269,11 @@
 - (void)didMoveToParentViewController:(UIViewController*)parent
 {
     [super didMoveToParentViewController:parent];
-    if(!parent){
+    int apicalled = [GlobalState getBackApiCalled];
+    if(!parent && !apicalled){
         if([self.webview canGoBack]){
-            [self.webview stopLoading];
-            WKBackForwardList* wfl= [self.webview backForwardList];
-            NSArray<WKBackForwardListItem *> * bl = [wfl backList];
-            NSLog(@"-------------------------start");
-            int i = 0;
-            for(WKBackForwardListItem* current in bl){
-                NSLog(@"%d:%@",i,[current URL]);
-                i++;
-            }
-
-            NSLog(@"-------------------------end");
-
-            [self.webview goToBackForwardListItem:[wfl backItem]];
+             [self.webview goBack];
         }
-        
-       
-        
-        
     }
 }
 

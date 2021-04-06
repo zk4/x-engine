@@ -26,6 +26,10 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-direct_https (0.1.13):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-direct_microapp (0.1.13):
     - JSONModel
     - x-engine-native-core
@@ -52,6 +56,7 @@ DEPENDENCIES:
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-direct (from `../../x-engine-native-direct`)
   - x-engine-native-direct_http (from `../../x-engine-native-direct_http`)
+  - x-engine-native-direct_https (from `../../x-engine-native-direct_https`)
   - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
   - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
@@ -77,6 +82,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-direct"
   x-engine-native-direct_http:
     :path: "../../x-engine-native-direct_http"
+  x-engine-native-direct_https:
+    :path: "../../x-engine-native-direct_https"
   x-engine-native-direct_microapp:
     :path: "../../x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
@@ -97,12 +104,13 @@ SPEC CHECKSUMS:
   x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
   x-engine-native-direct: f829e3c6b1f75cd72287b98826d1571c3d3af9d7
   x-engine-native-direct_http: c2397f9a6408ca81b778c6655a25b7eefa0d3409
+  x-engine-native-direct_https: 9a44bd15ae10223ebd52b92753cb07d73b744716
   x-engine-native-direct_microapp: 068665229d1d7e02c60f24039e4a4d398a1cd7f3
   x-engine-native-direct_omp: 47c673a295c7c8138268511ec415d8dd3d35e269
   x-engine-native-jsi: 9d97926ef2b00e1915deefcf6dcd92ff677d44f4
   x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86
   x-engine-native-ui: e78d93aeba0c16c6cff9a9352f8da92ca2903878
 
-PODFILE CHECKSUM: f66b563a0e8c6da5cd8dca561094d43b203dad5f
+PODFILE CHECKSUM: da4729d396d0a493613f44daa2d7fbbaf5a201e2
 
 COCOAPODS: 1.10.1

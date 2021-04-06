@@ -11,7 +11,7 @@
       @click="handlerOpenMicroApp"
     >跳转其他微应用</van-button>
     <van-button type="danger" size="large" round color="#322144" @click="handlerOpenBaidu">跳转http 百度</van-button>
-    <van-button size="large" round color="#dda0dd" @click="handlerOpenYoutube">跳转https youtube</van-button>
+    <van-button size="large" round color="#dda0dd" @click="handlerOpenYoutube">跳转https youtube 需翻墙</van-button>
   </div>
 </template>
 

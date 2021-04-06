@@ -1,0 +1,29 @@
+PODS:
+  - JSONModel (1.8.0)
+  - x-engine-module-core (0.1.13):
+    - x-engine-module-protocols
+  - x-engine-module-protocols (0.0.9)
+
+DEPENDENCIES:
+  - JSONModel
+  - x-engine-module-core (from `../../x-engine-module-core`)
+  - x-engine-module-protocols (from `../../x-engine-module-protocols`)
+
+SPEC REPOS:
+  httpss://github.com/CocoaPods/Specs.git:
+    - JSONModel
+
+EXTERNAL SOURCES:
+  x-engine-module-core:
+    :path: "../../x-engine-module-core"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols"
+
+SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  x-engine-module-core: 8b96932572889dbc286b02df841e2a69a873e363
+  x-engine-module-protocols: d899ad7b91d04ff591505eaaa4a710aaad65d5db
+
+PODFILE CHECKSUM: 2de8fee3912b5eec0ff9d5832369ee701f0d7e63
+
+COCOAPODS: 1.10.0

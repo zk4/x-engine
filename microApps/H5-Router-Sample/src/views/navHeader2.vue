@@ -43,7 +43,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.skeletonShow = false
-    }, 50000)
+    }, 2000)
   },
   methods: {
     handlerNoHaderPage() {

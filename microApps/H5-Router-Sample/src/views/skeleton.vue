@@ -3,27 +3,35 @@
     <HEADER
       @clickLeftButton="handlerHeaderBack"
       @clickRightButton="handlerHeaderRightBtn"
-      :reviceTitle="测试"
+      :reviceNavTitle=navTitle
     />
-    <div class="skeleton-class" v-show="skeletonShow">
-      <van-skeleton title avatar round animate :row="3" />
-      <div style="margin-top:30px;">骨架屏</div>
+    <div :style="{marginTop:navigatorHeight+'px'}">
+      <div style="margin-top:30px;" v-show="skeletonShow">
+        <van-skeleton title avatar round animate :row="3" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import HEADER from "../components/Header/index"
+import device from "@zkty-team/x-engine-module-device"
 export default {
   components: {
     HEADER,
   },
   data() {
     return {
+      navTitle:'骨架屏',
       skeletonShow: true,
+      navigatorHeight: "",
     }
   },
   mounted() {
+    // 导航条高度
+    device.getNavigationHeight({}).then((res) => {
+      this.navigatorHeight = res.content
+    })
     setTimeout(() => {
       this.skeletonShow = false
     }, 50000)

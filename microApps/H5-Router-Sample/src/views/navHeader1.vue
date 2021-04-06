@@ -3,7 +3,6 @@
     <HEADER
       @clickLeftButton="handlerHeaderBack"
       @clickRightButton="handlerHeaderRightBtn"
-      :reviceTitle="navHeader1"
     />
 
     <div class="navHeader1-class">

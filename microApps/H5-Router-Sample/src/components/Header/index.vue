@@ -1,23 +1,23 @@
 <template>
   <div class="navigator-class">
-    <div ref="navWrapper" class="contentWrapper" :style="{height: lineheight+'px'}">
+    <div ref="navWrapper" class="navWrapper" :style="{height: lineheight+'px'}">
       <div
         ref="leftButton"
-        class="content-item"
+        class="content-item-left"
         :style="{lineheight: lineheight+'px'}"
         @click="leftButton"
-      >back</div>
+      >{{reviceLeftTitle}}</div>
       <div
         ref="canterButton"
-        class="content-item"
+        class="content-item-center"
         :style="{lineheight: lineheight+'px'}"
-      >{{reviceTitle}}</div>
+      >{{reviceNavTitle}}</div>
       <div
         ref="rightButton"
-        class="content-item"
+        class="content-item-right"
         :style="{lineheight: lineheight+'px'}"
         @click="rightButton"
-      >fun</div>
+      >{{reviceRightTitle}}</div>
     </div>
   </div>
 </template>
@@ -28,26 +28,64 @@ export default {
   data() {
     return {
       lineheight: "",
+      statusHeigt: "",
     }
   },
   props: {
-    reviceTitle: {
+    reviceLeftTitle: {
       type: String,
-      default: "",
+      default: "< 返回",
+      require: true,
+    },
+    reviceNavTitle: {
+      type: String,
+      default: "title",
+      require: true,
+    },
+    reviceRightTitle: {
+      type: String,
+      default: "right",
+      require: true,
     },
   },
+
   created() {
-    device.getNavigationHeight({}).then((res) => {
-      this.$refs.navWrapper.style.cssText = `height: ${res.content}px;`
-    })
+    if (this.isPhoneType().isiPhone) {
+      device.getNavigationHeight({}).then((navRes) => {
+        this.lineheight = navRes.content
+        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`
+      })
+    } else if (this.isPhoneType.isAndroid) {
+      alert("android")
+      // device.getStatusHeight({}).then((statusRes) => {
+      // this.statusHeigt = statusRes.content;
+      // this.$refs.navWrapper.style.cssText = `height: ${statusRes.content}px;`
+      // this.$refs.navWrapper.style.cssText = `height: ${this.statusHeigt + navRes.content}px;`
+      // })
+      
+      device.getNavigationHeight({}).then((navRes) => {
+        this.lineheight = navRes.content
+        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`
+      })
+    }
   },
   methods: {
+    isPhoneType() {
+      let deviceType = {
+        userAgent: navigator.userAgent.toLowerCase(),
+        isAndroid: Boolean(navigator.userAgent.match(/android/gi)),
+        isiPhone: Boolean(navigator.userAgent.match(/iphone|ipod/gi)),
+        // isIpad: Boolean(navigator.userAgent.match(/ipad/gi)),
+        // isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/gi)),
+      }
+      return deviceType
+    },
     leftButton() {
       this.$emit("clickLeftButton")
     },
     rightButton() {
       this.$emit("clickRightButton")
-    }
+    },
   },
 }
 </script>
@@ -56,18 +94,34 @@ export default {
 .navigator-class {
   width: 100%;
   background-color: orange;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
 }
 
-.contentWrapper {
+.navWrapper {
   display: flex;
   flex-direction: row;
+  background-color: orange;
   color: white;
   justify-content: space-between;
   padding: 0 25px;
+  font-weight: 600;
 }
 
-.contentWrapper > .content-item {
+.content-item-left {
+  flex: 1;
+  text-align: left;
   margin-top: 15%;
-  align-items: center;
+}
+.content-item-center {
+  flex: 1;
+  text-align: center;
+  margin-top: 15%;
+}
+.content-item-right {
+  flex: 1;
+  text-align: right;
+  margin-top: 15%;
 }
 </style>

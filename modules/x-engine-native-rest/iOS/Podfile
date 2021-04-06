@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+abstract_target 'abstract' do
+  pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
+  pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
+  pod 'AFNetworking', '~> 4.0.0'
+  target 'rest' do
+    #use_frameworks!
+    #module_pods
+  end
+  target 'restTests' do
+    #use_frameworks!
+    #module_pods
+  end
+  target 'restUITests' do
+    # Pods for testing
+  end
+end

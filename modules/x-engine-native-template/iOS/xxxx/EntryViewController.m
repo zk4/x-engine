@@ -5,7 +5,6 @@
 
 #import "EntryViewController.h"
 #import "NativeContext.h"
-#import "iDirectManager.h"
  
 @interface EntryViewController ()
 

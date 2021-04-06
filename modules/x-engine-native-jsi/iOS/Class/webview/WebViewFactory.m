@@ -6,7 +6,6 @@
 #import "WebViewFactory.h"
 #import "XEngineWebView.h"
 #import "JSIContext.h"
-#import "MicroAppLoader.h"
 #import "JSIModule.h"
 
 #import "Unity.h"
@@ -115,7 +114,6 @@
     }
     [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
-//    model.webView = webview;
     [self.webviews addObject:webview];
     return webview;
 }

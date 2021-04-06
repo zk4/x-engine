@@ -1,0 +1,16 @@
+.PHONY: h5 dev push push-to-pods  x
+dev:
+	watchexec --exts ts 'x-cli model model.ts -t 2' 
+
+h5:
+	cd h5 && npm run dev
+
+server:
+	kitty @ launch --title model.ts --keep-focus
+	kitty @ send-text --match title:model.ts cd $$(pwd)  \\x0d make dev  \\x0d
+	kitty @ launch --title h5 --keep-focus
+	kitty @ send-text --match title:h5 cd $$(pwd)/h5  \\x0d npm run dev  \\x0d
+
+x: server
+	cd iOS && open *.xcworkspace || open *.xcodeproj
+

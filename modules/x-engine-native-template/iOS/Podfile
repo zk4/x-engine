@@ -6,7 +6,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 abstract_target 'abstract' do
   pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
-  pod 'JSONModel'
   target 'xxxx' do
     #use_frameworks!
     #module_pods

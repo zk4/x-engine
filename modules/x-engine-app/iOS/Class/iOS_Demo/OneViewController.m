@@ -39,7 +39,9 @@
 //    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"http" host:@"www.baidu.com" pathname:@"/" query:nil params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"/" query:nil
-      [director push:@"omp" host:@"192.168.1.15:8082" pathname:@"" fragment:@"/" query:nil  params:@{@"hideNavbar":@YES}];
+//      [director push:@"omp" host:@"192.168.1.15:8082" pathname:@"" fragment:@"/" query:nil  params:@{@"hideNavbar":@YES}];
+    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"" fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+    
 //    [director push:@"omp" host:@"192.168.1.15:9111" pathname:@"/" query:nil params:@{@"hideNavbar":@NO}];
     
 //    [director push:@"omp" host:@"10.2.128.80:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];

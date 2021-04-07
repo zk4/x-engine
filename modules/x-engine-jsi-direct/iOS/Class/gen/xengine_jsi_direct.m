@@ -10,6 +10,7 @@
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	if ([propertyName isEqualToString:@"host"]) { return YES; }
    
+   
    	if ([propertyName isEqualToString:@"query"]) { return YES; }
    	if ([propertyName isEqualToString:@"params"]) { return YES; }	return NO;
     }

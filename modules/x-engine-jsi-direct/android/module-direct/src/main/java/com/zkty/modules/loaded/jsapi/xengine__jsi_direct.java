@@ -23,6 +23,8 @@
 
     public String pathname;
 
+    public String fragment;
+
     @Optional
 		public Map<String,String> query;
 
@@ -33,7 +35,7 @@
   class DirectBackDTO {
     public String scheme;
 
-    public String pathname;
+    public String fragment;
   }
   
   interface xengine__jsi_direct_i {

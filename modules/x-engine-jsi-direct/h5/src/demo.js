@@ -8,7 +8,8 @@ window.push = () => {
   engine.api('com.zkty.jsi.direct', 'push',{
     scheme: 'omp',
     host: "10.2.128.80:8082",
-    pathname:'/'
+    pathname:'',
+    fragment:''
   })
 
   // 跳转microapp
@@ -39,7 +40,7 @@ window.back = () => {
 
     engine.api('com.zkty.jsi.direct','back',{
      scheme: 'omp',
-     path:'-1'
+     fragment:'-1'
    }
 }
 

@@ -1,1 +1,1 @@
-include ':app', ':module-engine'
+include ':app', ':native-core'

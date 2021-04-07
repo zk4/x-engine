@@ -47,7 +47,7 @@ static def releaseTime() {
 }
 
 dependencies {
-    implementation project(':module-engine')
+    implementation project(':native-core')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

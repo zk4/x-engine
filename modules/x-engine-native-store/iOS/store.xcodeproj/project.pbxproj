@@ -62,6 +62,7 @@
 		38E983932615F6E8007F6BDF /* Native_store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Native_store.h; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		58F8674C261DBC6000E61F24 /* iStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iStore.h; sourceTree = "<group>"; };
+		58F8676D261DD5D500E61F24 /* serialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = serialization.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-store.release.xcconfig"; path = "Target Support Files/Pods-abstract-store/Pods-abstract-store.release.xcconfig"; sourceTree = "<group>"; };
 		72641C340A39E3023A427808 /* Pods-abstract-storeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-storeUITests.release.xcconfig"; path = "Target Support Files/Pods-abstract-storeUITests/Pods-abstract-storeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				58F8674C261DBC6000E61F24 /* iStore.h */,
+				58F8676D261DD5D500E61F24 /* serialization.h */,
 				38E983932615F6E8007F6BDF /* Native_store.h */,
 				38E983922615F6E8007F6BDF /* Native_store.m */,
 			);

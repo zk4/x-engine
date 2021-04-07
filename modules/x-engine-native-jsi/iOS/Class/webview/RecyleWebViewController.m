@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
+@property (nonatomic, assign) Boolean newWebview;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
@@ -84,10 +85,11 @@
 - (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
     self = [super init];
     if (self){
-        self.isHiddenNavbar = isHidden;
         if(fileUrl.length == 0)
             return self;
         
+        self.isHiddenNavbar = isHidden;
+        self.newWebview = newWebView;
         self.loadUrl = fileUrl;
         
         if(newWebView){
@@ -287,8 +289,8 @@
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if(self.screenView == nil){
-        
+    if(!self.newWebview && self.screenView == nil){
+
         self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
         self.screenView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.screenView];

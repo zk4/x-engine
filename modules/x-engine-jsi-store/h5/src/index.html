@@ -1,0 +1,74 @@
+
+  <!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <title>Module_xxxx</title>
+    <script type="text/javascript">
+
+    </script>
+
+    <style>
+      * {
+          -webkit-touch-callout: none;
+          /*系统默认菜单被禁用*/
+          -webkit-user-select: none;
+          /*webkit浏览器*/
+          -khtml-user-select: none;
+          /*早期浏览器*/
+          -moz-user-select: none;
+          /*火狐*/
+          -ms-user-select: none;
+          /*IE10*/
+          user-select: none;
+      }
+
+      input {
+          -webkit-user-select: auto;
+          /*webkit浏览器*/
+      }
+
+      textarea {
+          -webkit-user-select: auto;
+          /*webkit浏览器*/
+      }
+
+      #debug_text{
+          margin: 0 auto;
+          width: 90%;
+          height: 144px;
+          border: 1px solid #f7f7f7;
+          background-color: #f7f7f7;
+          margin-bottom: 10px;
+          display: block;
+          font-size: 20px;
+      }
+
+      .button-class {
+          margin: 0 auto;
+          width: 90%;
+          height: 44px;
+          border: 1px solid #f7f7f7;
+          background-color: #f7f7f7;
+          text-align: center;
+          line-height: 44px;
+          margin-bottom: 10px;
+          display: block;
+          border-radius: 50px;
+          font-size: 20px;
+      }
+    </style>
+
+</head>
+
+<body>
+    <!-- 示例 -->
+    <button class="button-class" onclick="get()">get</button><button class="button-class" onclick="set()">set</button><button class="button-class" onclick="test_setObject()">test_setObject</button><button class="button-class" onclick="test_getObject()">test_getObject</button><button class="button-class" onclick="test_setObject_sync()">test_setObject_sync</button><button class="button-class" onclick="test_getObject_sync()">test_getObject_sync</button><button class="button-class" onclick="test_setNil()">test_setNil</button><button class="button-class" onclick="test_getNil()">test_getNil</button>
+    <textarea id="debug_text"></textarea>
+</body>
+
+</html>

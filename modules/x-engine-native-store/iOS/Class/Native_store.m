@@ -40,7 +40,7 @@ NATIVE_MODULE(Native_store)
      queue:nil
      usingBlock:^(NSNotification *note) {
         JCStrongSelf(self)
-        [self readFromDisk];
+        [self readFromDisk:FALSE];
     }];
     [[NSNotificationCenter defaultCenter]
      addObserverForName:UIApplicationDidEnterBackgroundNotification

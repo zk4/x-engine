@@ -14,7 +14,9 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      navHeader:'123'
+    }
   },
   methods: {
     handlerPushRouter() {

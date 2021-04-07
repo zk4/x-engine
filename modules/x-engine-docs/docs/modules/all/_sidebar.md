@@ -8,6 +8,7 @@
 - [router](./docs/modules/all/模块-router.md)
 - [localstorage](./docs/modules/all/模块-localstorage.md)
 - [network](./docs/modules/all/模块-network.md)
-- [yjzdbill](./docs/modules/all/模块-yjzdbill.md)
+- [ui](./docs/modules/all/模块-ui.md)
+- [direct](./docs/modules/all/模块-direct.md)
 - [camera](./docs/modules/all/模块-camera.md)
 - [geo](./docs/modules/all/模块-geo.md)

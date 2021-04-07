@@ -30,8 +30,8 @@ interface DirectPushDTO {
 
   // 其他参数（做兼容用）
   params?:Map<string, string>;
-
 }
+
 interface DirectBackDTO {
   // scheme 类型：由原生类实现
   // 当前可用:
@@ -51,23 +51,42 @@ interface DirectBackDTO {
 }
 
 
-
-// rfc 规范
-// ![image-20210330114053584](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210330114053584.png)
-// scheme 形如 omp, omps 
-// pathname 形如 /  /abc
-
 function push(arg: DirectPushDTO = {scheme:'omp',pathname:'/',params:{'hideNavbar':true}}) {
-   engine.api('com.zkty.jsi.direct','push',{
+  // 跳转omp
+  engine.api('com.zkty.jsi.direct', 'push',{
     scheme: 'omp',
     host: "10.2.128.80:8082",
     pathname:'',
     fragment:''
   })
+
+  // 跳转microapp
+  engine.api('com.zkty.jsi.direct', 'push', {
+    scheme: "microapp",
+    host: "com.gm.microapp.mine",
+    pathname: "",
+    fragment: "",
+  })
+
+  // 跳转http
+  engine.api('com.zkty.jsi.direct', 'push', {  
+    scheme: "http",  
+    host: "www.baidu.com",  
+    fragment: "/",  
+    pathname: "",  
+  })
+
+  // 跳转https
+  engine.api('com.zkty.jsi.direct', 'push', {  
+    scheme: "https",  
+    host: "www.youtube.com",  
+    fragment: "",  
+    pathname: "",  
+  })  
 }
 
 
-function back(arg: DirectBackDTO  ) {
+function back(arg: DirectBackDTO) {
     engine.api('com.zkty.jsi.direct','back',{
      scheme: 'omp',
      fragment:'-1'

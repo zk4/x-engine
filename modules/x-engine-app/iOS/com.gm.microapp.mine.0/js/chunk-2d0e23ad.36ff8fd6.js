@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0e23ad"],{"7e8a":function(e,n,t){"use strict";t.r(n);var u=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[e._v("头像页面")])},a=[],c={},l=c,r=t("2877"),s=Object(r["a"])(l,u,a,!1,null,null,null);n["default"]=s.exports}}]);

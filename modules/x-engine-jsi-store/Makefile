@@ -1,6 +1,6 @@
 .PHONY: h5 dev push push-to-pods  x
 dev:
-	watchexec --exts ts 'x-cli model model.ts' 
+	watchexec --exts ts 'x-cli model model.ts -t 2'  
 
 h5:
 	cd h5 && npm run dev

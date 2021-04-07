@@ -27,9 +27,17 @@ let xengine = {
   use     : use,
   api     : api,
   broadcastOn: broadcastOn,
-  broadcastOff: broadcastOff
+  broadcastOff: broadcastOff,
+  assert : xassert
 };
 
+function xassert(targetID,expression){
+    if(expression){
+      document.getElementById(targetID).style.backgroundColor = 'green';
+    }else{
+      document.getElementById(targetID).style.backgroundColor = 'red';
+    }
+}
 function api(jsimoduleId,funcname,args,cb){
   if (args.hasOwnProperty('__event__')){
       only_idx++;

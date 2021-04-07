@@ -80,3 +80,25 @@ function test_getNil(arg: { key: string }): string {
   });
 }
 
+//test
+
+function test_setAssertChangeColor(arg: ZKStoreEntryDTO) {
+  xengine.api(
+    "com.zkty.jsi.store",
+    "set",
+    {
+      key: "str",
+      val: "hello",
+    },
+    (res) => {}
+  );
+}
+
+function test_getAssertTrue(arg: { key: string }): string {
+  xengine.api("com.zkty.jsi.store", "get", { key: "str" }, (val) => {
+    xengine.assert('test_getAssertTrue',val === 'hello')
+    document.getElementById("debug_text").innerText = "为 nil";
+  });
+}
+
+

@@ -20,8 +20,11 @@ interface DirectPushDTO {
   // 2. 如果有特殊端口，也必须带上
   host?: string;
   // 要注意：
-  // 一定要以 / 开头
   pathname: string;
+  
+  // 要注意：
+  // 一定要以 / 开头
+  fragment: string;
   // query 参数
   query?:Map<string, string>;
 
@@ -44,7 +47,7 @@ interface DirectBackDTO {
   // 一些特殊字段：
   // -1 回上一页
   // 0  回头历史中的原生页
-  pathname: string;
+  fragment: string;
 }
 
 
@@ -58,7 +61,8 @@ function push(arg: DirectPushDTO = {scheme:'omp',pathname:'/',params:{'hideNavba
    engine.api('com.zkty.jsi.direct','push',{
     scheme: 'omp',
     host: "10.2.128.80:8082",
-    pathname:'/'
+    pathname:'',
+    fragment:''
   })
 }
 
@@ -66,7 +70,7 @@ function push(arg: DirectPushDTO = {scheme:'omp',pathname:'/',params:{'hideNavba
 function back(arg: DirectBackDTO  ) {
     engine.api('com.zkty.jsi.direct','back',{
      scheme: 'omp',
-     path:'-1'
+     fragment:'-1'
    }
 }
  

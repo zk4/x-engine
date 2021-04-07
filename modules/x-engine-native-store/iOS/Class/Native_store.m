@@ -9,7 +9,7 @@
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 
-#define X_ENGINE_STORE_KEY @"x-engine-store"
+#define X_ENGINE_STORE_KEY @"@@x-engine-store"
 #define JCWeakSelf(type) __weak typeof(type) weak##type = type;
 #define JCStrongSelf(type) __strong typeof(type) type = weak##type;
 
@@ -32,27 +32,26 @@ NATIVE_MODULE(Native_store)
     if (self) {
         _store = [NSMutableDictionary new];
     }
-
+    
     JCWeakSelf(self)
     [[NSNotificationCenter defaultCenter]
-        addObserverForName:UIApplicationDidFinishLaunchingNotification
-                    object:nil
-                     queue:nil
-                usingBlock:^(NSNotification *note) {
-                  JCStrongSelf(self)
-                  [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
-                }];
+     addObserverForName:UIApplicationDidFinishLaunchingNotification
+     object:nil
+     queue:nil
+     usingBlock:^(NSNotification *note) {
+        JCStrongSelf(self)
+        [self readFromDisk];
+    }];
     [[NSNotificationCenter defaultCenter]
-        addObserverForName:UIApplicationDidEnterBackgroundNotification
-                    object:nil
-                     queue:nil
-                usingBlock:^(NSNotification *note) {
-                  NSLog(@"save ");
-                  JCStrongSelf(self)
-                  [[NSUserDefaults standardUserDefaults] setObject:self.store   forKey:X_ENGINE_STORE_KEY];
-                  [[NSUserDefaults standardUserDefaults] synchronize];
-                }];
-
+     addObserverForName:UIApplicationDidEnterBackgroundNotification
+     object:nil
+     queue:nil
+     usingBlock:^(NSNotification *note) {
+        NSLog(@"save ");
+        JCStrongSelf(self)
+        [self saveTodisk];
+    }];
+    
     return self;
 }
 
@@ -65,6 +64,16 @@ NATIVE_MODULE(Native_store)
 
 - (void)set:(NSString *)key val:(id)val {
     [_store setObject:val forKey:key];
+}
+- (void) saveTodisk{
+    [[NSUserDefaults standardUserDefaults] setObject:self.store   forKey:X_ENGINE_STORE_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (void) readFromDisk:(BOOL)merge{
+    if(!merge){
+        [self.store removeAllObjects];
+    }
+    [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
 }
 
 @end

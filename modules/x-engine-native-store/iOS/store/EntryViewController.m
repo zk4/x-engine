@@ -24,7 +24,7 @@
     [self pushTestModule];
     id<iStore> store =  XENP(iStore);
 //    [store set:@"haha" val:@"yes"];
-//    [store set:@"hahag" val:@"no"];
+//    [store set:@"hahag" val:@"fuck disk"];
 
    id a =[store get:@"hahag" ];
     NSLog(@"%@",a);

@@ -10,9 +10,9 @@
 #define istore_h
 
 @protocol iStore <NSObject>
-- (id) get:(NSString*) key;
-- (void) set:(NSString*) key val:(id)val;
-
-@end
+- (id)get:(NSString *)key;
+- (void)set:(NSString *)key val:(id)val;
+- (void)saveTodisk;
+- (void)readFromDisk:(BOOL)merge;@end
 
 #endif /* istore_h */

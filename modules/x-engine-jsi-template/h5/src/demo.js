@@ -4,14 +4,14 @@ import xengine from "@zkty-team/x-engine-module-engine";
 
 window.setNavTitle = () => {
 
-  xengine.api("com.zkty.jsi.ui", "setNavTitle", {
+  xengine.api("com.zkty.jsi.xxxx", "setNavTitle", {
     title: "title",
     titleColor: "#000000"
   });
 }
 window.setNavBarHidden = () => {
 
-  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+  xengine.api("com.zkty.jsi.xxxx", "setNavBarHidden", {
     //是否隐藏navBar
     isHidden: true,
     //是否使用动画效果
@@ -20,7 +20,7 @@ window.setNavBarHidden = () => {
 }
 window.test_setNavBarShow = () => {
 
-  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
+  xengine.api("com.zkty.jsi.xxxx", "setNavBarHidden", {
     //是否隐藏navBar
     isHidden: false,
     //是否使用动画效果

@@ -125,7 +125,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 
      
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:FALSE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 

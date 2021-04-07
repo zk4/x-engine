@@ -2,24 +2,31 @@
 
 ### 引擎
 
-- 基础架构重构 (谢飞，陈武峥)
+- [x] 基础架构重构 (谢飞，陈武峥)
 
-- 规范 URL 解析  (刘正青，谢飞，陈武峥)
+- [x] 规范 URL 解析  (刘正青，谢飞，陈武峥)
 
-- 使用 protocol 来实现 direct 模块，统一 router 与 nav (刘正青，谢飞，陈武峥)
+- [x] 使用 protocol 来实现 direct 模块，统一 router 与 nav (刘正青，谢飞，陈武峥)
 
-- h5 页面生命周期告知，页面进入与离开
+- [ ] h5 页面生命周期告知，页面进入与离开
 
-- vue-router 有没有更快的路由方法？不使用 loadurl
+- [ ] vue-router 有没有更快的路由方法？不使用 loadurl
 
-- broadcast 增加数据结构
+- [ ] broadcast 增加数据结构
 
-- mergeDict 写测试
+- [ ] mergeDict 写测试
 
-- 代理 webview 缓存，现在每次都做了 304 请求。
+- [ ] 代理 webview 缓存，现在每次都做了 304 请求。
 
-- 打开不存在页面会卡死。
+- [ ] 打开不存在页面会卡死。
 
+- [ ] 参考 dcloud api
+
+- [ ] 带 microapp.json 功能
+
+  - [ ] 安全
+  - [ ] 网络
+  
   
   
   
@@ -28,22 +35,23 @@
 
 ### 工具
 
-- x-cli 封装同步代码的生成 （刘正青）
+- [ ] x-cli 封装同步代码的生成 （刘正青）
 
 ### h5 端
 
-- 最佳本地 h5 规范
-  - 打包成一个文件
-  - 带 microapp.json 功能
-  - 更底层的 jsi api 调用，不再需要安装 npm 包
-  - 秒开第一页
-  - navbar 示例
-- 最佳 vite 模板
+- [ ] 最佳本地 h5 规范 4.7 号 完成
+  - [x] 打包成一个文件
+  - [ ] 带 microapp.json
+  - [x] 更底层的 jsi api 调用，不再需要安装 npm 包
+  - [ ] 秒开第一页（骨架屏）
+  - [ ] navbar 示例
+  - [ ] 打开另一个微应用示例
+- [ ] 最佳 vite 模板
 
 ### 风格
 
-- iOS 基于 xcode 的自动 indent
-- android 方案 (谢飞)
+- [ ] iOS 基于 xcode 的自动 indent
+- [ ] android 方案 (谢飞)
 
 
 
@@ -57,7 +65,7 @@
 
 - 可测试
 
-  ![image-20210331015750155](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210331015750155.png)
+  ![image-20210402141338188](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210402141338188.png)
 
 上图解释：
 
@@ -144,10 +152,17 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
 一直都可以直接通过 namespace.methodname， args  的形式调用，只需要安装 engine 包即可。
 
 ```
-  engine.bridge.call('com.zkty.jsi.direct.push',{
+	//async
+	engine.api('com.zkty.jsi.direct','push',{
     scheme: 'omp',
     pathname:'0'
   },function(res){
+  })
+  
+  //sync
+  let ret = engine.api('com.zkty.jsi.direct','push',{
+    scheme: 'omp',
+    pathname:'0'
   })
 ```
 

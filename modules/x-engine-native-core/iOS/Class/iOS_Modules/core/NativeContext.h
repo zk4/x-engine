@@ -11,6 +11,8 @@
 #define NATIVE_MODULE(clz) + (void)load{ \
     [[NativeContext sharedInstance] registerModuleByClass:clz.class];}
 
+// x-engine native module protocols
+#define XENP(proto) [[NativeContext sharedInstance] getModuleByProtocol:@protocol(proto)]
 
 @interface NativeContext : NSObject
 + (instancetype)sharedInstance;

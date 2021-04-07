@@ -7,33 +7,63 @@ ZKTYRouter(VueRouter, 'omp');
 
 const routes = [{
         path: "/",
-        name: "testone",
-        component: () => import('../views/testone.vue'),
+        name: "Home",
+        component: () => import('../views/Home.vue'),
+    },
+    {
+        path: '/testone',
+        name: 'testone',
+        component: () => import('../views/jumpRouter/testone.vue')
     },
     {
         path: '/testtwo',
         name: 'testtwo',
-        component: () => import('../views/testtwo.vue')
+        component: () => import('../views/jumpRouter/testtwo.vue')
     },
     {
         path: '/testthree',
         name: 'testthree',
-        component: () => import('../views/testthree.vue')
+        component: () => import('../views/jumpRouter/testthree.vue')
     },
     {
         path: '/testfour',
         name: 'testfour',
-        component: () => import('../views/testfour.vue')
+        component: () => import('../views/jumpRouter/testfour.vue')
     },
     {
-        path: '/navHeader',
-        name: 'navHeader',
-        component: () => import('../views/navHeader.vue')
+        path: '/navigation',
+        name: 'navigation',
+        component: () => import('../views/setNavigation/navigation.vue')
+    },
+    {
+        path: '/customLayout',
+        name: 'customLayout',
+        component: () => import('../views/customLayout/customLayout.vue')
+    },
+    {
+        path: '/navHeader1',
+        name: 'navHeader1',
+        component: () => import('../views/navHeader1.vue')
+    },
+    {
+        path: '/navHeader2',
+        name: 'navHeader2',
+        component: () => import('../views/navHeader2.vue')
     },
     {
         path: '/skeleton',
         name: 'skeleton',
         component: () => import('../views/skeleton.vue')
+    },
+    {
+        path: '/gifView',
+        name: 'gifView',
+        component: () => import('../views/gifView.vue')
+    },
+    {
+        path: '/refreshData',
+        name: 'refreshData',
+        component: () => import('../views/refreshData/refreshData.vue')
     }
 ];
 

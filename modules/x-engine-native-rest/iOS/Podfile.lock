@@ -1,0 +1,47 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - JSONModel (1.8.0)
+  - x-engine-native-core (0.1.13):
+    - x-engine-native-protocols
+  - x-engine-native-protocols (0.0.9)
+
+DEPENDENCIES:
+  - AFNetworking (~> 4.0.0)
+  - JSONModel
+  - x-engine-native-core (from `../../x-engine-native-core`)
+  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - JSONModel
+
+EXTERNAL SOURCES:
+  x-engine-native-core:
+    :path: "../../x-engine-native-core"
+  x-engine-native-protocols:
+    :path: "../../x-engine-native-protocols"
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
+  x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86
+
+PODFILE CHECKSUM: ab1ad26057ab2d33a1d928b95bcc169b947aefab
+
+COCOAPODS: 1.10.0

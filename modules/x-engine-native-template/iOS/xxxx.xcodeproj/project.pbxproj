@@ -11,8 +11,6 @@
 		00DFC6CA24C83F95006A53EE /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* iOSTests.m */; };
 		00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6D424C83F95006A53EE /* iOSUITests.m */; };
 		00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
-		00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */; };
-		00DFC6F424C84000006A53EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E924C84000006A53EE /* Main.storyboard */; };
 		00DFC6F524C84000006A53EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EB24C84000006A53EE /* main.m */; };
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
@@ -51,8 +49,6 @@
 		00DFC6D624C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00DFC6E324C84000006A53EE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00DFC6E424C84000006A53EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		00DFC6E824C84000006A53EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		00DFC6EA24C84000006A53EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00DFC6EB24C84000006A53EE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		00DFC6EC24C84000006A53EE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		00DFC6ED24C84000006A53EE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,9 +153,7 @@
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
 				00DFC6E424C84000006A53EE /* Assets.xcassets */,
 				00DFC6ED24C84000006A53EE /* Info.plist */,
-				00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */,
 				00DFC6EB24C84000006A53EE /* main.m */,
-				00DFC6E924C84000006A53EE /* Main.storyboard */,
 				00DFC6F824C841FD006A53EE /* EntryViewController.h */,
 				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
 				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
@@ -316,10 +310,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
-				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,25 +476,6 @@
 			targetProxy = 00DFC6D124C83F95006A53EE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		00DFC6E724C84000006A53EE /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00DFC6E824C84000006A53EE /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		00DFC6E924C84000006A53EE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00DFC6EA24C84000006A53EE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00DFC6D724C83F95006A53EE /* Debug */ = {

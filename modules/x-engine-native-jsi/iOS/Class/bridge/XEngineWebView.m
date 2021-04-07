@@ -67,6 +67,10 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     XEngineInternalApis *  interalApis= [[XEngineInternalApis alloc] init];
     interalApis.webview=self;
     [self addJavascriptObject:interalApis namespace:@"_dsb"];
+    
+    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
     return self;
 }
 
@@ -104,7 +108,7 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
                              initiatedByFrame:frame
                             completionHandler:completionHandler];
         }else{
-
+            
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:prompt
                                                                            message:@""
                                                                     preferredStyle:UIAlertControllerStyleAlert];
@@ -145,7 +149,7 @@ completionHandler:(void (^)(void))completionHandler
                          initiatedByFrame:frame
                         completionHandler:completionHandler];
     }else{
-
+        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
                                                                        message:message
                                                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -168,7 +172,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         completionHandler(YES);
     }
     if( self.DSUIDelegate&& [self.DSUIDelegate respondsToSelector:
-                            @selector(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:)])
+                             @selector(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:)])
     {
         return[self.DSUIDelegate webView:webView runJavaScriptConfirmPanelWithMessage:message
                         initiatedByFrame:frame
@@ -213,8 +217,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     if( self.DSUIDelegate
        && [self.DSUIDelegate respondsToSelector:
            @selector(webView:shouldPreviewElement:)]){
-           return [self.DSUIDelegate webView:webView shouldPreviewElement:elementInfo];
-       }
+        return [self.DSUIDelegate webView:webView shouldPreviewElement:elementInfo];
+    }
     return NO;
 }
 
@@ -266,17 +270,17 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 -(id) convertDict:(id) obj {
     SEL selector = NSSelectorFromString(@"toDictionary");
-      if([obj respondsToSelector:selector]){
-          id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
-           return   action(obj, selector);
-      }else {
-          return [NSString stringWithFormat:@"%@",obj ];
-      }
+    if([obj respondsToSelector:selector]){
+        id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
+        return   action(obj, selector);
+    }else {
+        return [NSString stringWithFormat:@"%@",obj ];
+    }
 }
 -(NSString *)call:(NSString*) method :(NSString*) argStr
 {
     NSArray *nameStr=[XEngineJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-
+    
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[nameStr[0]];
     NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result =[NSMutableDictionary dictionaryWithDictionary:@{@"code":@-1,@"data":@""}];
@@ -305,7 +309,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                         if(value!=nil){
                             result[@"data"]=[self convertDict:value];
                         }
-             
+                        
                         value=[XEngineJSBUtil objToJsonString:result];
                         value =[value stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
                         
@@ -409,7 +413,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void) dispatchJavascriptCall:(XEngineCallInfo*) info{
     NSString * json=[XEngineJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
-                                               @"data":[XEngineJSBUtil objToJsonString: info.args]}];
+                                                      @"data":[XEngineJSBUtil objToJsonString: info.args]}];
     [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
            completionHandler:nil];
 }
@@ -519,113 +523,36 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }];
 }
 
-// 在发送请求之前，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 
-    NSString * urlStr = [navigationAction.request.URL absoluteString];
-    NSRange range = NSMakeRange(0, 0);
-    NSURL * URL;
-    NSString *scheme;
-//    NSString * subUrlStr;
-
-    if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]  || [urlStr hasPrefix:@"alipays://"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
-       decisionHandler(WKNavigationActionPolicyCancel);
-        return;
-    }
-    
-    if ([urlStr rangeOfString:@"?"].location !=NSNotFound) {
-        range = [urlStr rangeOfString:@"?"];//匹配得到的下标
-        URL = [NSURL URLWithString:[urlStr substringToIndex:range.location]];
-        scheme = [URL scheme];
-//        subUrlStr = [URL absoluteString];
-    }else{
-        URL = [NSURL URLWithString:urlStr];
-        scheme = [URL scheme];
-//        subUrlStr = [URL absoluteString];
-    }
-
-    if ([scheme isEqualToString:@"x-engine-json"] || [scheme isEqualToString:@"x-engine-call"]){
-        NSString * argsStr ;
-        if ([urlStr rangeOfString:@"?"].location !=NSNotFound) {
-            argsStr = [urlStr substringFromIndex:range.location+1];
-        }else{
-            decisionHandler(WKNavigationActionPolicyCancel);
-            return;
-        }
-        NSString * callBackStr = @"";
-       
-        NSDictionary * argsDic;// = [NSDictionary new];
-       
-       if ([argsStr rangeOfString:@"&"].location !=NSNotFound){
-           NSArray * array = [argsStr componentsSeparatedByString:@"&"];
-           argsStr = [NSString stringWithFormat:@"%@",array[0]];
-           callBackStr = [NSString stringWithFormat:@"%@",array[1]];
-       }
-       argsDic = [self jsonToDictionary:argsStr];
-       if ([callBackStr rangeOfString:@"="].location !=NSNotFound){
-           NSRange range = [callBackStr rangeOfString:@"="];//匹配得到的下标
-           callBackStr= [callBackStr substringFromIndex:range.location+1];
-       }
-       
-        id module;
-        if ([scheme isEqualToString:@"x-engine-call"]) {
-            NSString* moduleId = [NSString stringWithFormat:@"%@",URL.host];
-            module =[[NativeContext sharedInstance] getModuleById:moduleId];
-        }else{
-            module =[[NativeContext sharedInstance] getModuleById:URL.host];
-        }
-      
-       NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];
-       SEL  sel = NSSelectorFromString(selectorStr);
-        __weak typeof(self)weakSelf = self;
-       if([module respondsToSelector:sel]){
-           XEngineCallBack  Cb=  ^(id data, BOOL ret){
-               if (callBackStr && callBackStr.length !=0) {
-                   NSString * retDataStr = [self idFromObject:data];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                   NSString * str = [callBackStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                   str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
-                   str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                   str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
-                   NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
-                   [weakSelf loadRequest:request];
-#pragma clang diagnostic pop
-               }
-           };
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-           [module performSelector:sel withObject:argsDic withObject:Cb];
-#pragma clang diagnostic pop
-       }
-        decisionHandler(WKNavigationActionPolicyCancel);
-        return;
-    }
-    
-   
-    if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:decidePolicyForNavigationAction:decisionHandler:)]){
-        [self.DSNavigationDelegate webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:decisionHandler];
-    }else{
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
-}
-
+#pragma mark - <WKWebView cycleLife>
+// 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    
+    [self.indicatorView startAnimating];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
         [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
     }
 }
 
+// 页面加载完成后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    
+    [self.indicatorView stopAnimating];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
 }
 
--(NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
+// 当内容开始返回时调用
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
+    NSLog(@"内容开始返回:%s",__FUNCTION__);
+}
+
+// 页面加载失败时调用
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [self.indicatorView stopAnimating];
+    NSLog(@"%@",error.debugDescription);
+}
+
+- (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
     if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
         NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
         jsonStr= [jsonStr substringFromIndex:range.location+1];
@@ -640,28 +567,125 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     return dic;
 }
 
+// 接收到服务器跳转请求之后调用
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{}
+
+// 在收到响应后，决定是否跳转
+//- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
+//    NSLog(@"%@",navigationResponse.response.URL.absoluteString);
+    //允许跳转
+//    decisionHandler(WKNavigationResponsePolicyAllow);
+    //不允许跳转
+    //decisionHandler(WKNavigationResponsePolicyCancel);
+//}
+
+// 在发送请求之前，决定是否跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSString * urlStr = [navigationAction.request.URL absoluteString];
+    NSRange range = NSMakeRange(0, 0);
+    NSURL * URL;
+    NSString *scheme;
+//    NSString * subUrlStr;
+    if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]  || [urlStr hasPrefix:@"alipays://"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    if ([urlStr rangeOfString:@"?"].location !=NSNotFound) {
+        range = [urlStr rangeOfString:@"?"];//匹配得到的下标
+        URL = [NSURL URLWithString:[urlStr substringToIndex:range.location]];
+        scheme = [URL scheme];
+        //        subUrlStr = [URL absoluteString];
+    } else {
+        URL = [NSURL URLWithString:urlStr];
+        scheme = [URL scheme];
+        //        subUrlStr = [URL absoluteString];
+    }
+    if ([scheme isEqualToString:@"x-engine-json"] || [scheme isEqualToString:@"x-engine-call"]){
+        NSString * argsStr ;
+        if ([urlStr rangeOfString:@"?"].location !=NSNotFound) {
+            argsStr = [urlStr substringFromIndex:range.location+1];
+        }else{
+            decisionHandler(WKNavigationActionPolicyCancel);
+            return;
+        }
+        NSString * callBackStr = @"";
+        
+        NSDictionary * argsDic;// = [NSDictionary new];
+        
+        if ([argsStr rangeOfString:@"&"].location !=NSNotFound){
+            NSArray * array = [argsStr componentsSeparatedByString:@"&"];
+            argsStr = [NSString stringWithFormat:@"%@",array[0]];
+            callBackStr = [NSString stringWithFormat:@"%@",array[1]];
+        }
+        argsDic = [self jsonToDictionary:argsStr];
+        if ([callBackStr rangeOfString:@"="].location !=NSNotFound){
+            NSRange range = [callBackStr rangeOfString:@"="];//匹配得到的下标
+            callBackStr= [callBackStr substringFromIndex:range.location+1];
+        }
+        
+        id module;
+        if ([scheme isEqualToString:@"x-engine-call"]) {
+            NSString* moduleId = [NSString stringWithFormat:@"%@",URL.host];
+            module =[[NativeContext sharedInstance] getModuleById:moduleId];
+        }else{
+            module =[[NativeContext sharedInstance] getModuleById:URL.host];
+        }
+        
+        NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];
+        SEL  sel = NSSelectorFromString(selectorStr);
+        __weak typeof(self)weakSelf = self;
+        if([module respondsToSelector:sel]){
+            XEngineCallBack  Cb=  ^(id data, BOOL ret){
+                if (callBackStr && callBackStr.length !=0) {
+                    NSString * retDataStr = [self idFromObject:data];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+                    NSString * str = [callBackStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                    str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
+                    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                    str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
+                    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
+                    [weakSelf loadRequest:request];
+#pragma clang diagnostic pop
+                }
+            };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [module performSelector:sel withObject:argsDic withObject:Cb];
+#pragma clang diagnostic pop
+        }
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:decidePolicyForNavigationAction:decisionHandler:)]) {
+        [self.DSNavigationDelegate webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:decisionHandler];
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+}
+
 //runtime model转字典转字符串
 - (NSString *)idFromObject:(NSObject *)object {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     unsigned int count;
     objc_property_t *propertyList = class_copyPropertyList([object class], &count);
- 
+    
     for (int i = 0; i < count; i++) {
         objc_property_t property = propertyList[i];
         const char *cName = property_getName(property);
         NSString *name = [NSString stringWithUTF8String:cName];
         NSObject *value = [object valueForKey:name];//valueForKey返回的数字和字符串都是对象
- 
+        
         if (value == nil) {
             //null
             [dic setObject:@"" forKey:name];
- 
+            
         } else {
             //model
             [dic setObject:value forKey:name];
         }
     }
-    
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return str;

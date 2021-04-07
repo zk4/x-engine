@@ -1,35 +1,43 @@
 <template>
   <div class="navigator-class">
-    <div ref="navWrapper" class="navWrapper" :style="{height: lineheight+'px'}">
-      <div
-        ref="leftButton"
-        class="content-item-left"
-        :style="{lineheight: lineheight+'px'}"
-        @click="leftButton"
-      >{{reviceLeftTitle}}</div>
-      <div
-        ref="canterButton"
-        class="content-item-center"
-        :style="{lineheight: lineheight+'px'}"
-      >{{reviceNavTitle}}</div>
-      <div
-        ref="rightButton"
-        class="content-item-right"
-        :style="{lineheight: lineheight+'px'}"
-        @click="rightButton"
-      >{{reviceRightTitle}}</div>
+    <div ref="navWrapper" class="navWrapper" :style="{ height: lineheight + 'px' }">
+      <div class="title-wrapper">
+        <div
+          ref="leftButton"
+          class="content-item-left"
+          :style="{ lineheight: lineheight + 'px' }"
+          @click="leftButton"
+        >
+          {{ reviceLeftTitle }}
+        </div>
+        <div
+          ref="canterButton"
+          class="content-item-center"
+          :style="{ lineheight: lineheight + 'px' }"
+        >
+          {{ reviceNavTitle }}
+        </div>
+        <div
+          ref="rightButton"
+          class="content-item-right"
+          :style="{ lineheight: lineheight + 'px' }"
+          @click="rightButton"
+        >
+          {{ reviceRightTitle }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import device from "@zkty-team/x-engine-module-device"
+import device from "@zkty-team/x-engine-module-device";
 export default {
   data() {
     return {
       lineheight: "",
       statusHeigt: "",
-    }
+    };
   },
   props: {
     reviceLeftTitle: {
@@ -52,21 +60,21 @@ export default {
   created() {
     if (this.isPhoneType().isiPhone) {
       device.getNavigationHeight({}).then((navRes) => {
-        this.lineheight = navRes.content
-        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`
-      })
+        this.lineheight = navRes.content;
+        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`;
+      });
     } else if (this.isPhoneType.isAndroid) {
-      alert("android")
+      alert("android");
       // device.getStatusHeight({}).then((statusRes) => {
       // this.statusHeigt = statusRes.content;
       // this.$refs.navWrapper.style.cssText = `height: ${statusRes.content}px;`
       // this.$refs.navWrapper.style.cssText = `height: ${this.statusHeigt + navRes.content}px;`
       // })
-      
+
       device.getNavigationHeight({}).then((navRes) => {
-        this.lineheight = navRes.content
-        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`
-      })
+        this.lineheight = navRes.content;
+        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`;
+      });
     }
   },
   methods: {
@@ -77,17 +85,17 @@ export default {
         isiPhone: Boolean(navigator.userAgent.match(/iphone|ipod/gi)),
         // isIpad: Boolean(navigator.userAgent.match(/ipad/gi)),
         // isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/gi)),
-      }
-      return deviceType
+      };
+      return deviceType;
     },
     leftButton() {
-      this.$emit("clickLeftButton")
+      this.$emit("clickLeftButton");
     },
     rightButton() {
-      this.$emit("clickRightButton")
+      this.$emit("clickRightButton");
     },
   },
-}
+};
 </script>
 
 <style>
@@ -100,28 +108,28 @@ export default {
 }
 
 .navWrapper {
-  display: flex;
-  flex-direction: row;
+ 
   background-color: orange;
   color: white;
-  justify-content: space-between;
-  padding: 0 25px;
   font-weight: 600;
+  position: relative;
 }
-
+.title-wrapper{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  bottom: 10px;
+  left: 25px;
+  right: 25px;
+}
 .content-item-left {
-  flex: 1;
   text-align: left;
-  margin-top: 15%;
 }
 .content-item-center {
-  flex: 1;
   text-align: center;
-  margin-top: 15%;
 }
 .content-item-right {
-  flex: 1;
   text-align: right;
-  margin-top: 15%;
 }
 </style>

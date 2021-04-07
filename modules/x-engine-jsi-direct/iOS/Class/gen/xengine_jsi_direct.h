@@ -13,7 +13,6 @@
   	@property(nonatomic,copy) NSString* scheme;
    	@property(nonatomic,copy) NSString* host;
    	@property(nonatomic,copy) NSString* pathname;
-    @property(nonatomic,copy) NSString* fragment;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* query;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* params;
 @end
@@ -21,7 +20,7 @@
 
 @interface DirectBackDTO: JSONModel
   	@property(nonatomic,copy) NSString* scheme;
-   	@property(nonatomic,copy) NSString* fragment;
+   	@property(nonatomic,copy) NSString* pathname;
 @end
     
 
@@ -32,11 +31,7 @@
     
       @required 
         - (void) _back:(DirectBackDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-        @required
-    - (id) _push:(DirectPushDTO*) dto;
-
-        @required
-    - (id) _back:(DirectBackDTO*) dto;
+    
 @end
   
 

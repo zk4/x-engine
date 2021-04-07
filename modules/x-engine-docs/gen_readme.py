@@ -20,7 +20,6 @@ tmplt = """
 {root_readme}
 
 # JS
-
 {h5_readme}
 
 # iOS
@@ -125,7 +124,7 @@ if __name__ == "__main__":
 
     arr = os.listdir("..")
     exclude=['x-engine-module-offline','x-engine-module-protocols']
-    include=['x-engine-module-router','x-engine-module-nav','x-engine-module-localstorage','x-engine-module-scan','x-engine-module-camera','x-engine-module-dcloud','x-engine-module-geo','x-engine-module-network','x-engine-module-offline','x-engine-module-device','x-engine-module-share','x-engine-module-yjzdbill','x-engine-module-secrect']
+    include=['x-engine-module-router','x-engine-module-nav','x-engine-module-localstorage','x-engine-module-scan','x-engine-module-camera','x-engine-module-dcloud','x-engine-module-geo','x-engine-module-network','x-engine-module-offline','x-engine-module-device','x-engine-module-share','x-engine-module-yjzdbill','x-engine-module-secrect', 'x-engine-jsi-ui', 'x-engine-jsi-direct']
     # include=['x-engine-module-yjzdbill','x-engine-module-geo']
     for d in arr:
         if d in include:

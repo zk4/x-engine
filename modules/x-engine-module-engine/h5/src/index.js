@@ -31,10 +31,6 @@ let xengine = {
 };
 
 function api(jsimoduleId,funcname,args,cb){
-  // 保证是异步方法
-  if(!cb){
-    cb=()=>{}
-  }
   if (args.hasOwnProperty('__event__')){
       only_idx++;
      let eventcb = args['__event__'];
@@ -44,7 +40,7 @@ function api(jsimoduleId,funcname,args,cb){
           return eventcb(res);
       })
   }
-  dsbridge.call(jsimoduleId+"."+funcname,args,cb)
+  return dsbridge.call(jsimoduleId+"."+funcname,args,cb)
 }
 function broadcastOff(){
     xengine.bridge.unregister("com.zkty.module.engine.broadcast");

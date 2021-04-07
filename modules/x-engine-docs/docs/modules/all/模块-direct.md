@@ -56,7 +56,7 @@ this.$router.push({
 this.$router.go(-1)
 
 // 回退两个页面
-this.$router.go(-1)
+this.$router.go(-2)
 
 // 返回指定页面
 this.$router.go('/path') 

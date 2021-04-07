@@ -22,8 +22,8 @@
 - (void)testSetNumber {
 
     [_store set:@"a" val:@1];
-    NSInteger a= [_store get:@"a"];
-    XCTAssertEqual(1,a, @"should equal");
+    id a= [_store get:@"a"];
+    XCTAssertEqual(1,[a intValue], @"should equal");
 }
 - (void)testSetDictionary {
     NSDictionary* dict= @{@"a":@"",@"b":[NSNull null],@"dd":@{

@@ -5,7 +5,7 @@
 
 #import "EntryViewController.h"
 #import "NativeContext.h"
- 
+#import "Native_store.h"
 @interface EntryViewController ()
 
 @end
@@ -22,6 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self pushTestModule];
+   id<iStore> store =  XENP(iStore);
+//[store set:@"haha" val:@"yes"];
+
+   id a =[store get:@"haha" ];
+    NSLog(@"%@",a);
+
 
 }
 

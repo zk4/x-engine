@@ -21,6 +21,9 @@
 /// @param val 任意 Object 类型
 - (void)set:(NSString *)key val:(id)val;
 
+/// 删除键
+- (void) del:(NSString*)key;
+
 /// api 存档
 /// 默认在 UIApplicationDidEnterBackgroundNotification 时，会进行持久化
 - (void)saveTodisk;

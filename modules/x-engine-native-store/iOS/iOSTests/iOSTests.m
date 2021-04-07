@@ -20,6 +20,14 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
+- (void)testDel {
+
+    [_store set:@"a" val:@1];
+    [_store del:@"a"];
+   id a= [_store get:@"a"];
+    XCTAssertEqualObjects(nil,a, @"should equal");
+}
+
 - (void)testSetNumber {
 
     [_store set:@"a" val:@1];

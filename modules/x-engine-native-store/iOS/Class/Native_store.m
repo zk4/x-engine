@@ -64,6 +64,11 @@ NATIVE_MODULE(Native_store)
 - (void)set:(NSString *)key val:(id)val {
     [_store setObject:val forKey:key];
 }
+
+- (void) del:(NSString*)key{
+     [_store removeObjectForKey:key];
+}
+
 - (void) saveTodisk{
     [[NSUserDefaults standardUserDefaults] setObject:self.store   forKey:X_ENGINE_STORE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -74,6 +79,7 @@ NATIVE_MODULE(Native_store)
     }
     [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
 }
+
 
 @end
 

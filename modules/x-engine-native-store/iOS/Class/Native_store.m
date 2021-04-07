@@ -14,7 +14,7 @@
 #define JCStrongSelf(type) __strong typeof(type) type = weak##type;
 
 @interface Native_store ()
-@property (nonatomic, strong) NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *store;
+@property (nonatomic, strong)   NSMutableDictionary<NSString *, id> * store;
 @end
 
 @implementation Native_store
@@ -30,37 +30,26 @@ NATIVE_MODULE(Native_store)
 - (instancetype)init {
     self = [super init];
     if (self) {
-        NSMutableDictionary<NSString *, id> *data = [NSMutableDictionary new];
-        [data setValue:@"init" forKey:@"init"];
         _store = [NSMutableDictionary new];
-        [_store setValue:data forKey:X_ENGINE_STORE_KEY];
     }
 
     JCWeakSelf(self)
-        __block NSMutableDictionary<NSString *, id> *_data;
-    _data = [_store objectForKey:X_ENGINE_STORE_KEY];
     [[NSNotificationCenter defaultCenter]
         addObserverForName:UIApplicationDidFinishLaunchingNotification
                     object:nil
                      queue:nil
                 usingBlock:^(NSNotification *note) {
-                  /// TODO: read store to memory  from sandbox
                   JCStrongSelf(self)
-                      NSLog(@" read %@", [_store objectForKey:X_ENGINE_STORE_KEY]);
-
-                  [_data addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
-
-                  NSLog(@"");
+                  [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
                 }];
-
     [[NSNotificationCenter defaultCenter]
         addObserverForName:UIApplicationDidEnterBackgroundNotification
                     object:nil
                      queue:nil
                 usingBlock:^(NSNotification *note) {
-                  /// TODO: read store to memory  from sandbox
                   NSLog(@"save ");
-                  [[NSUserDefaults standardUserDefaults] setObject:[_store objectForKey:X_ENGINE_STORE_KEY] forKey:X_ENGINE_STORE_KEY];
+                  JCStrongSelf(self)
+                  [[NSUserDefaults standardUserDefaults] setObject:self.store   forKey:X_ENGINE_STORE_KEY];
                   [[NSUserDefaults standardUserDefaults] synchronize];
                 }];
 
@@ -71,11 +60,15 @@ NATIVE_MODULE(Native_store)
 }
 
 - (id)get:(NSString *)key {
-    return [[_store objectForKey:X_ENGINE_STORE_KEY] objectForKey:key];
+    return [_store objectForKey:key];
 }
 
 - (void)set:(NSString *)key val:(id)val {
-    [[_store objectForKey:X_ENGINE_STORE_KEY] setObject:val forKey:key];
+    [_store setObject:val forKey:key];
 }
 
 @end
+
+#undef X_ENGINE_STORE_KEY
+#undef JCWeakSelf
+#undef JCStrongSelf

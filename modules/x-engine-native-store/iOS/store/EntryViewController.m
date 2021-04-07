@@ -22,10 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self pushTestModule];
-   id<iStore> store =  XENP(iStore);
-//[store set:@"haha" val:@"yes"];
+    id<iStore> store =  XENP(iStore);
+//    [store set:@"haha" val:@"yes"];
+//    [store set:@"hahag" val:@"no"];
 
-   id a =[store get:@"haha" ];
+   id a =[store get:@"hahag" ];
     NSLog(@"%@",a);
 
 

@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
 
 
     s.name         = "x-engine-native-protocols"
-    s.version      = "0.0.9"
-    s.summary      = "summary of x-engine-native-protocols"
+    s.version      = "1.0.0"
+    s.summary      = "x-engine-native-protocols"
 
      s.description  = <<-DESC
             description

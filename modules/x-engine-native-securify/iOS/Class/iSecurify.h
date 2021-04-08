@@ -16,11 +16,11 @@
 
 /// 判断模块是否可用
 /// @param moduleName 模块名称
-- (void)judgeModuleIsAvaliableWithModuleName:(NSString *)moduleName;
+- (BOOL)judgeModuleIsAvailableWithModuleName:(NSString *)moduleName;
 
 /// 判断网络白名单
 /// @param hostName host名称
-- (void)judgeNetworkIsAvaliableWithHostName:(NSString *)hostName;
+- (void)judgeNetworkIsAvailableWithHostName:(NSString *)hostName;
 
 
 @end

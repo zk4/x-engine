@@ -6,6 +6,8 @@
 //
 
 #import "MicroAppLoader.h"
+#import "NativeContext.h"
+#import "iSecurify.h"
 
 
 @interface MicroAppLoader()
@@ -77,10 +79,9 @@
 //    }
 //}
 
--(NSString *)getMicroAppHost:(NSString *) moduleIdVersion{
- 
-    
+- (NSString *)getMicroAppHost:(NSString *) moduleIdVersion {
     NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@", [self microappDirectory], moduleIdVersion];
+    
     BOOL isDir = false;
     BOOL isEx = [[NSFileManager defaultManager] fileExistsAtPath:sandbox_microapp_location isDirectory:&isDir];
     
@@ -89,12 +90,29 @@
        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@", moduleIdVersion] ofType:@""];
        if (htmlPath.length > 0) {
            NSString *htmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@", moduleIdVersion] ofType:@""];
+           
+//           // 获取对应microappsjson
+//           NSString *microappJson = [NSString stringWithFormat:@"%@/microapp.json", htmlPath];
+//           if([[NSFileManager defaultManager] fileExistsAtPath:microappJson]){
+//               NSString *jsonString = [NSString stringWithContentsOfFile:microappJson encoding:NSUTF8StringEncoding error:nil];
+//               id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+//               [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
+//           } else {
+//               UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"mircoapp.json 不存在" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//               UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                   [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
+//               }];
+//               [errorAlert addAction:sureAction];
+//               [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
+//           }
+           
            if (htmlPath) {
                 return [NSString stringWithFormat:@"%@/index.html", htmlPath];
            }
        }
     }else{
         NSString * sandbox_microapp_location = [NSString stringWithFormat:@"%@/%@/index.html",[self microappDirectory], moduleIdVersion];
+        NSLog(@"%@", sandbox_microapp_location);
         return sandbox_microapp_location;
     }
     return nil;
@@ -124,6 +142,37 @@
     }
     return NO;
 }
- 
- 
+
+
+#pragma mark - < json->dic / dic->json >
+/**
+ *  JSON字符串转NSDictionary
+ *  @param jsonString JSON字符串
+ *  @return NSDictionary
+ */
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(error) {
+        NSLog(@"json解析失败：%@",error);
+        return nil;
+    }
+    return dic;
+}
+/**
+ *  字典转JSON字符串
+ *  @param dic 字典
+ *  @return JSON字符串
+ */
+- (NSString*)dictionaryToJson:(NSDictionary *)dic{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+
 @end

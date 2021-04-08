@@ -8,6 +8,8 @@
 #import "JSIModule.h"
 #import "GlobalState.h"
 #import "Unity.h"
+#import "iSecurify.h"
+#import "NativeContext.h"
 
 
 /*
@@ -74,9 +76,9 @@
 }
 
 -(void)webViewLoadFail:(NSNotification *)notifi{
-    
     NSDictionary *dic = notifi.object;
     id web = dic[@"webView"];
+    
     if(web == self.webview){
         self.imageView404.hidden = NO;
     }
@@ -100,6 +102,21 @@
             [GlobalState setCurrentWebView:self.webview];
         }else {
             self.webview = [GlobalState getCurrentWebView];
+        }
+        
+        // 获取microapp的path
+        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
+        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
+            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
+            id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
+        } else {
+            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
+            }];
+            [errorAlert addAction:sureAction];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
         }
         
         HistoryModel* hm = [HistoryModel new];
@@ -296,6 +313,37 @@
         [self.view addSubview:self.screenView];
         self.screenView.frame = self.view.bounds;
     }
+}
+
+
+#pragma mark - < json->dic / dic->json >
+/**
+ *  JSON字符串转NSDictionary
+ *  @param jsonString JSON字符串
+ *  @return NSDictionary
+ */
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(error) {
+        NSLog(@"json解析失败：%@",error);
+        return nil;
+    }
+    return dic;
+}
+/**
+ *  字典转JSON字符串
+ *  @param dic 字典
+ *  @return JSON字符串
+ */
+- (NSString*)dictionaryToJson:(NSDictionary *)dic{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 @end

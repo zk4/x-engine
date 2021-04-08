@@ -1,0 +1,66 @@
+PODS:
+  - JSONModel (1.8.0)
+  - x-engine-native-core (0.1.13):
+    - x-engine-native-protocols
+  - x-engine-native-direct (0.1.13):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_microapp (0.1.13):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi
+    - x-engine-native-protocols
+  - x-engine-native-direct_omp (0.1.13):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-jsi (0.1.13):
+    - x-engine-native-core
+  - x-engine-native-protocols (0.0.9)
+  - x-engine-native-store (0.1.13):
+    - x-engine-native-core
+    - x-engine-native-protocols
+
+DEPENDENCIES:
+  - x-engine-native-core (from `../../x-engine-native-core`)
+  - x-engine-native-direct (from `../../x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `../../x-engine-native-jsi`)
+  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - x-engine-native-store (from `../../x-engine-native-store`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JSONModel
+
+EXTERNAL SOURCES:
+  x-engine-native-core:
+    :path: "../../x-engine-native-core"
+  x-engine-native-direct:
+    :path: "../../x-engine-native-direct"
+  x-engine-native-direct_microapp:
+    :path: "../../x-engine-native-direct_microapp"
+  x-engine-native-direct_omp:
+    :path: "../../x-engine-native-direct_omp"
+  x-engine-native-jsi:
+    :path: "../../x-engine-native-jsi"
+  x-engine-native-protocols:
+    :path: "../../x-engine-native-protocols"
+  x-engine-native-store:
+    :path: "../../x-engine-native-store"
+
+SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
+  x-engine-native-direct: f829e3c6b1f75cd72287b98826d1571c3d3af9d7
+  x-engine-native-direct_microapp: 068665229d1d7e02c60f24039e4a4d398a1cd7f3
+  x-engine-native-direct_omp: 47c673a295c7c8138268511ec415d8dd3d35e269
+  x-engine-native-jsi: 9d97926ef2b00e1915deefcf6dcd92ff677d44f4
+  x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86
+  x-engine-native-store: f2548ec658df82390b2927399e8f8d7cd92932b8
+
+PODFILE CHECKSUM: 02f93acd144ecb1afd94ffa5748093bbc73a9441
+
+COCOAPODS: 1.10.1

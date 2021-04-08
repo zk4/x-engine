@@ -1,49 +1,51 @@
 
 
-JSI Id: com.zkty.jsi.ui
+#### JSI Id: com.zkty.jsi.ui
 
-version: 0.1.13
+- 安装方式
+
 ``` bash
 npm install @zkty-team/x-engine-jsi-ui
 ```
 
 
+---
+
 
 ## setNavTitle
 
-
+设置原生导航条文字
 
 **demo**
-``` js
-    title: "title",
-    titleColor: "#000000"
-``` 
 
-	
+``` javascript
+XEngine.bridge.call("com.zkty.jsi.ui.setNavTitle",{
+	title: "title",
+	titleColor: "#000000",
+	titleSize: 16,
+}
+```
+
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | title | string | 必填 |  | 导航条的文字 |
-| titleColor | string | 必填 |  | 16进制的颜色色值 |
+| titleColor | string | 必填 | "#000" | 16进制的颜色色值 |
 | titleSize | int | 必填 | 16 | 字体大小 |
 
 
 参数 object  定义
 ``` js
-
-
 interface NavTitleDTO {
-
   //导航条的文字
   title: string;
   //16进制的颜色色值
   titleColor: string;
   //字体大小
   titleSize: int;
-
 }
-``` 
+```
 
 
 ---------------------
@@ -54,38 +56,33 @@ interface NavTitleDTO {
 
 ## setNavBarHidden
 
-使用push,或 nav 里 hideNavbar 参数控制状态的显示
+设置原生导航条的显示和隐藏
 
 **demo**
 ``` js
-    //是否隐藏navBar
-    isHidden: true,
-    //是否使用动画效果
-    isAnimation: true,
-``` 
+XEngine.bridge.call("com.zkty.jsi.ui.setNavBarHidden", {
+	isHidden: true,
+	isAnimation: true
+}
+```
 
-	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| isHidden | bool | 必填 |  | 是否隐藏navBar |
-| isAnimation | bool | 必填 |  | 是否使用动画效果 |
+| isHidden | bool | 必填 | true | 是否隐藏原生导航条 |
+| isAnimation | bool | 必填 | true | 是否使用动画效果 |
 
 
 参数 object  定义
-``` js
-
-
+``` javascript
 interface NavHiddenBarDTO {
-
   //是否隐藏navBar
   isHidden: boolean;
   //是否使用动画效果
   isAnimation: boolean;
-
-}
-``` 
+}		
+```
 
 
 ---------------------
@@ -93,4 +90,4 @@ interface NavHiddenBarDTO {
 
 
 
-    
+​    

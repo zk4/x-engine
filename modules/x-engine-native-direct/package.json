@@ -1,5 +1,5 @@
 {
-  "name": "@zkty-team/x-engine-jsi-direct",
+  "name": "@zkty-team/x-engine-native-direct",
   "version": "0.1.13",
   "description": "direct",
   "main": "h5/src/index.js",

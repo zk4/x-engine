@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     handlerHeaderBack() {
-      this.$router.go("/")
+      this.$router.go(-1)
     },
     handlerHeaderRightBtn() {
       alert("点击的了右上角按钮")

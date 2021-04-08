@@ -1,0 +1,28 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+abstract_target 'abstract' do
+  pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
+  pod 'x-engine-native-jsi', :path =>'../../x-engine-native-jsi'
+  pod 'x-engine-native-direct_omp', :path =>'../../x-engine-native-direct_omp'
+  pod 'x-engine-native-direct_microapp', :path =>'../../x-engine-native-direct_microapp'
+  pod 'x-engine-native-store', :path =>'../../x-engine-native-store'
+
+  pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
+  pod 'x-engine-native-direct', :path =>'../../x-engine-native-direct'
+
+
+  target 'store' do
+    #use_frameworks!
+    #module_pods
+  end
+  target 'storeTests' do
+    #use_frameworks!
+    #module_pods
+  end
+  target 'storeUITests' do
+    # Pods for testing
+  end
+end

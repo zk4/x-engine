@@ -10,6 +10,7 @@
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	if ([propertyName isEqualToString:@"host"]) { return YES; }
    
+   
    	if ([propertyName isEqualToString:@"query"]) { return YES; }
    	if ([propertyName isEqualToString:@"params"]) { return YES; }	return NO;
     }
@@ -39,8 +40,6 @@
     
     - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"omp\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
-    
           DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
           [self _push:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
@@ -48,22 +47,9 @@
       }
     - (void) back:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
           DirectBackDTO* dto = [self convert:dict clazz:DirectBackDTO.class];
           [self _back:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
       }
-- (id) push:(NSDictionary*) dict {
-      dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"omp\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
-
-      DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
-        return [self _push:dto ];
-  }
-- (id) back:(NSDictionary*) dict {
-      dict=[self mergeDefault:dict defaultString:@"{}"];
-      DirectBackDTO* dto = [self convert:dict clazz:DirectBackDTO.class];
-      return [self _back:dto];
-  }
   @end

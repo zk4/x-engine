@@ -37,7 +37,7 @@ export default {
   props: {
     reviceLeftTitle: {
       type: String,
-      default: "< 返回",
+      default: "back",
       require: true,
     },
     reviceNavTitle: {

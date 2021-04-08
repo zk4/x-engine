@@ -43,12 +43,11 @@ NATIVE_MODULE(Native_securify)
 /// @param jsonDict json数据
 - (void)saveMicroAppJsonWithJson:(NSDictionary *)jsonDict {
     [_microAppJsonData setObject:jsonDict forKey:X_ENGINE_MICROAPP_JSON];
-//    [[NSUserDefaults standardUserDefaults] setObject:jsonDict forKey:X_ENGINE_MICROAPP_JSON];
 }
 
 /// 判断模块是否可用
 /// @param moduleName 模块名称
-- (void)judgeModuleIsAvaliableWithModuleName:(NSString *)moduleName {
+- (BOOL)judgeModuleIsAvailableWithModuleName:(NSString *)moduleName {
     NSDictionary *resultDict = [self getMicroAppJsonDataWithKeyName:X_ENGINE_MICROAPP_JSON];
     NSDictionary *modulesDict = resultDict[@"permission"][@"module"];
     NSArray *keyArray = modulesDict.allKeys;
@@ -62,13 +61,15 @@ NATIVE_MODULE(Native_securify)
             }];
             [errorAlert addAction:sureAction];
             [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
+            return NO;
         }
     }
+    return YES;
 }
 
 /// 判断网络白名单
 /// @param hostName host名称
-- (void)judgeNetworkIsAvaliableWithHostName:(NSString *)hostName {
+- (void)judgeNetworkIsAvailableWithHostName:(NSString *)hostName {
     NSDictionary *resultDict = [self getMicroAppJsonDataWithKeyName:X_ENGINE_MICROAPP_JSON];
     NSDictionary *permissionDict = resultDict[@"permission"];
     BOOL isStrict = [permissionDict[@"network"][@"strict"] boolValue];

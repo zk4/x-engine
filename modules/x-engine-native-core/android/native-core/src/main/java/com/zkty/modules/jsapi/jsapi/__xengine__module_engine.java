@@ -1,4 +1,4 @@
-package com.zkty.modules.loaded.jsapi;
+package com.zkty.modules.jsapi.jsapi;
 
 import android.content.Context;
 import android.util.Log;

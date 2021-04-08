@@ -20,7 +20,7 @@ function isHybrid(){
 }
 let xengine = {
   patch   : patch,
-  platfrom: platform(),
+  platform: platform(),
   hybrid  : true,
   isHybrid  : isHybrid,
   bridge  : dsbridge,

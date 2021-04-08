@@ -23,7 +23,7 @@ public abstract class JSIModule {
 
     protected abstract void afterAllJSIModuleInited();
 
-    protected <T> T convert(JSONObject object, Class<T> tClass) {
+    private <T> T convert(JSONObject object, Class<T> tClass) {
         Field[] fields = tClass.getDeclaredFields();
         StringBuilder builder = new StringBuilder();
         for (final Field field : fields) {

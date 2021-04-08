@@ -7,37 +7,32 @@
           class="content-item-left"
           :style="{ lineheight: lineheight + 'px' }"
           @click="leftButton"
-        >
-          {{ reviceLeftTitle }}
-        </div>
+        >{{ reviceLeftTitle }}</div>
         <div
           ref="canterButton"
           class="content-item-center"
           :style="{ lineheight: lineheight + 'px' }"
-        >
-          {{ reviceNavTitle }}
-        </div>
+        >{{ reviceNavTitle }}</div>
         <div
           ref="rightButton"
           class="content-item-right"
           :style="{ lineheight: lineheight + 'px' }"
           @click="rightButton"
-        >
-          {{ reviceRightTitle }}
-        </div>
+        >{{ reviceRightTitle }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import device from "@zkty-team/x-engine-module-device";
+import device from "@zkty-team/x-engine-module-device"
+import XEngine from "@zkty-team/x-engine-module-engine"
 export default {
   data() {
     return {
       lineheight: "",
       statusHeigt: "",
-    };
+    }
   },
   props: {
     reviceLeftTitle: {
@@ -56,46 +51,45 @@ export default {
       require: true,
     },
   },
-
-  created() {
-    if (this.isPhoneType().isiPhone) {
-      device.getNavigationHeight({}).then((navRes) => {
-        this.lineheight = navRes.content;
-        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`;
-      });
-    } else if (this.isPhoneType.isAndroid) {
-      alert("android");
-      // device.getStatusHeight({}).then((statusRes) => {
-      // this.statusHeigt = statusRes.content;
-      // this.$refs.navWrapper.style.cssText = `height: ${statusRes.content}px;`
-      // this.$refs.navWrapper.style.cssText = `height: ${this.statusHeigt + navRes.content}px;`
-      // })
-
-      device.getNavigationHeight({}).then((navRes) => {
-        this.lineheight = navRes.content;
-        this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`;
-      });
+  mounted() {
+    if (XEngine.isHybrid()) {
+      if (this.isPhoneType().isiPhone) {
+        device.getNavigationHeight({}).then((navRes) => {
+          this.lineheight = navRes.content
+          this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`
+        })
+      } else if (this.isPhoneType().isAndroid) {
+        device.getStatusHeight({}).then((statusRes) => {
+          device.getNavigationHeight({}).then((navRes) => {
+            let height = Number(navRes.content) + Number(statusRes.content)
+            this.lineheight = height
+            this.$refs.navWrapper.style.cssText = `height: ${height}px;`
+          })
+        })
+      }
+    } else {
+      const height = 64
+      this.lineheight = height
+      this.$refs.navWrapper.style.cssText = `height: ${height}px;`
     }
   },
   methods: {
     isPhoneType() {
+      let userAgent = navigator.userAgent
       let deviceType = {
-        userAgent: navigator.userAgent.toLowerCase(),
-        isAndroid: Boolean(navigator.userAgent.match(/android/gi)),
-        isiPhone: Boolean(navigator.userAgent.match(/iphone|ipod/gi)),
-        // isIpad: Boolean(navigator.userAgent.match(/ipad/gi)),
-        // isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/gi)),
-      };
-      return deviceType;
+        isAndroid: userAgent.indexOf("Android") > -1 || userAgent.indexOf("Adr") > -1,
+        isiPhone: !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      }
+      return deviceType
     },
     leftButton() {
-      this.$emit("clickLeftButton");
+      this.$emit("clickLeftButton")
     },
     rightButton() {
-      this.$emit("clickRightButton");
+      this.$emit("clickRightButton")
     },
   },
-};
+}
 </script>
 
 <style>
@@ -108,13 +102,12 @@ export default {
 }
 
 .navWrapper {
- 
   background-color: orange;
   color: white;
   font-weight: 600;
   position: relative;
 }
-.title-wrapper{
+.title-wrapper {
   position: absolute;
   display: flex;
   flex-direction: row;

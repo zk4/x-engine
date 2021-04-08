@@ -47,11 +47,19 @@ static def releaseTime() {
 }
 
 dependencies {
-    implementation project(':module-engine')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation project(':native-core')
+    implementation project(':native-protocols')
+    implementation project(':native-direct')
+    implementation project(':native-direct_http')
+    implementation project(':native-direct_https')
+    implementation project(':native-direct_microapp')
+    implementation project(':native-direct_omp')
+    implementation project(':native-jsi')
 }

@@ -22,8 +22,6 @@ public class MicroAppsManager {
     private static final String ROOT = "x-engine-dir";
     private static final String ASSET_APPS_DIR = "moduleApps";
 
-    public static final String DEFAULT_BASE_URL = "";
-    public static final String DEFAULT_APP_SECRET = "";
 
     /**
      * 微应用集合目录结构

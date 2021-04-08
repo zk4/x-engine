@@ -1,4 +1,4 @@
 include ':app'
-include ':module-engine'
-project(':module-engine').projectDir = new File('../../x-engine-module-engine/android/module-engine')
-include ':jsi-direct'
+include ':native-core'
+project(':native-core').projectDir = new File('../../x-engine-native-core/android/native-core')
+include ':native-direct'

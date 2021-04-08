@@ -1,1 +1,26 @@
-include ':app', ':module-engine'
+rootProject.name = "Engine-2.0"
+include ':app'
+
+include ':native-core'
+project(':native-core').projectDir = new File('../../x-engine-native-core/android/native-core')
+
+include ':native-direct'
+project(':native-direct').projectDir = new File('../../x-engine-native-direct/android/native-direct')
+
+include ':native-protocols'
+project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
+
+include ':native-direct_http'
+project(':native-direct_http').projectDir = new File('../../x-engine-native-direct_http/android/native-direct_http')
+
+include ':native-direct_https'
+project(':native-direct_https').projectDir = new File('../../x-engine-native-direct_https/android/native-direct_https')
+
+include ':native-direct_omp'
+project(':native-direct_omp').projectDir = new File('../../x-engine-native-direct_omp/android/native-direct_omp')
+
+include ':native-direct_microapp'
+project(':native-direct_microapp').projectDir = new File('../../x-engine-native-direct_microapp/android/native-direct_microapp')
+
+include ':native-jsi'
+project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')

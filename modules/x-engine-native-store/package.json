@@ -1,5 +1,5 @@
 {
-  "name": "@zkty-team/x-engine-jsi-store",
+  "name": "@zkty-team/x-engine-native-store",
   "version": "0.1.13",
   "description": "store",
   "main": "h5/src/index.js",

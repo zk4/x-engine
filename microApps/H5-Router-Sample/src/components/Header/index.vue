@@ -74,14 +74,6 @@ export default {
     }
   },
   methods: {
-    isPhoneType() {
-      let userAgent = navigator.userAgent
-      let deviceType = {
-        isAndroid: userAgent.indexOf("Android") > -1 || userAgent.indexOf("Adr") > -1,
-        isiPhone: !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-      }
-      return deviceType
-    },
     leftButton() {
       this.$emit("clickLeftButton")
     },

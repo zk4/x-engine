@@ -53,12 +53,12 @@ export default {
   },
   mounted() {
     if (XEngine.isHybrid()) {
-      if (this.isPhoneType().isiPhone) {
+      if (XEngine.platform.isPhone) {
         device.getNavigationHeight({}).then((navRes) => {
           this.lineheight = navRes.content
           this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`
         })
-      } else if (this.isPhoneType().isAndroid) {
+      } else if (XEngine.platform.isAndroid) {
         device.getStatusHeight({}).then((statusRes) => {
           device.getNavigationHeight({}).then((navRes) => {
             let height = Number(navRes.content) + Number(statusRes.content)
@@ -67,7 +67,7 @@ export default {
           })
         })
       }
-    } else {
+    } else if (XEngine.platform.isPc){
       const height = 64
       this.lineheight = height
       this.$refs.navWrapper.style.cssText = `height: ${height}px;`

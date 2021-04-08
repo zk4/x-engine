@@ -3,8 +3,6 @@ const parserVersion = "1.0.0";
 
 // 命名空间
 const moduleID = "com.zkty.jsi.xxxx";
-// JS模块名称
-const JSModule = "@zkty-team/x-engine-jsi-xxxx";
 
 const conf = {
   args: {},
@@ -24,38 +22,17 @@ interface NavTitleDTO {
   titleSize: int;
 }
 
-interface NavHiddenBarDTO {
-  //是否隐藏navBar
-  isHidden: boolean;
-  //是否使用动画效果
-  isAnimation: boolean;
-}
-
-function setNavTitle(
-  arg: NavTitleDTO = {titleSize: 16 }
-) {
-  xengine.api("com.zkty.jsi.ui", "setNavTitle", {
+function setNavTitle(arg: NavTitleDTO = { titleSize: 16 }) {
+  xengine.api("com.zkty.jsi.xxxx", "setNavTitle", {
     title: "title",
-    titleColor: "#000000"
+    titleColor: "#000000",
   });
 }
 
-//使用push,或 nav 里 hideNavbar 参数控制状态的显示
-function setNavBarHidden(arg: NavHiddenBarDTO) {
-  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
-    //是否隐藏navBar
-    isHidden: true,
-    //是否使用动画效果
-    isAnimation: true,
-  });
-}
-
-function test_setNavBarShow(arg: NavHiddenBarDTO) {
-  xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
-    //是否隐藏navBar
-    isHidden: false,
-    //是否使用动画效果
-    isAnimation: true,
-  });
+function setNavTitleAsyc(arg: NavTitleDTO = { titleSize: 16 }) {
+  xengine.api("com.zkty.jsi.xxxx", "setNavTitleAsyc", {
+    title: "title",
+    titleColor: "#000000",
+  },(res)=>{});
 }
 

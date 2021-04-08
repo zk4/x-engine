@@ -27,14 +27,18 @@ let xengine = {
   use     : use,
   api     : api,
   broadcastOn: broadcastOn,
-  broadcastOff: broadcastOff
+  broadcastOff: broadcastOff,
+  assert : xassert
 };
 
+function xassert(targetID,expression){
+    if(expression){
+      document.getElementById(targetID).style.backgroundColor = 'green';
+    }else{
+      document.getElementById(targetID).style.backgroundColor = 'red';
+    }
+}
 function api(jsimoduleId,funcname,args,cb){
-  // 保证是异步方法
-  if(!cb){
-    cb=()=>{}
-  }
   if (args.hasOwnProperty('__event__')){
       only_idx++;
      let eventcb = args['__event__'];
@@ -44,7 +48,7 @@ function api(jsimoduleId,funcname,args,cb){
           return eventcb(res);
       })
   }
-  dsbridge.call(jsimoduleId+"."+funcname,args,cb)
+  return dsbridge.call(jsimoduleId+"."+funcname,args,cb)
 }
 function broadcastOff(){
     xengine.bridge.unregister("com.zkty.module.engine.broadcast");

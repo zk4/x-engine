@@ -17,7 +17,7 @@ export default {
       this.$router.go('/testtwo')
     },
     handlerBackIndex() {
-      this.$router.go("/")
+      this.$router.go(0)
     },
   },
 }

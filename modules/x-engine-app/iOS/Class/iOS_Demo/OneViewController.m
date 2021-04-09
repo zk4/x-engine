@@ -10,6 +10,7 @@
 #import "JumpViewController.h"
 #import "NativeContext.h"
 #import "iDirectManager.h"
+#import "iSecurify.h"
 @interface OneViewController ()
 
 @end
@@ -49,7 +50,5 @@
     
 //    [director push:@"omp" host:@"10.2.128.80:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 
-
 }
-
 @end

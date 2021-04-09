@@ -1,0 +1,14 @@
+{
+  "name": "x-engine-core",
+  "version": "1.0.2",
+  "description": "连接原生native和js之间的重要模块",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "x-engine-core"
+  ],
+  "author": "Cwz.",
+  "license": "ISC"
+}

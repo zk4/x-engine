@@ -14,7 +14,7 @@ export default {
       this.$router.go(-1)
     },
     handlerBackTwoPage() {
-      this.$router.go('/testtwo')
+      this.$router.go(-2)
     },
     handlerBackIndex() {
       this.$router.go("/")

@@ -1,9 +1,9 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import ZKTYRouter from "@zkty-team/vue-router"
+import XEngineRouter from "x-engine-router"
 
 Vue.use(VueRouter);
-ZKTYRouter(VueRouter, 'omp');
+XEngineRouter(VueRouter, 'omp');
 
 const routes = [{
         path: "/",

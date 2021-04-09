@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 
-+ (void)setCurrentWebView:(XEngineWebView*) val;
+//+ (void)setCurrentWebView:(XEngineWebView*) val;
 + (XEngineWebView*)getCurrentWebView;
 - (NSString*) getLastHost;
 - (NSMutableArray<HistoryModel *> *)getCurrentWebViewHistories;

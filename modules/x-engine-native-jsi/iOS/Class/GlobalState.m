@@ -8,18 +8,19 @@
 
 #import "GlobalState.h"
 #import "HistoryModel.h"
+#import "WebViewFactory.h"
 @interface GlobalState()
 @property(nonatomic,strong) NSMapTable<id,NSMutableArray<HistoryModel*>*>* wv__vc_paths;
 @end
 
 @implementation GlobalState
 
-static XEngineWebView*  s_showing_webview;
+
 
 
 - (instancetype)init {
    self = [super init];
-   self.wv__vc_paths = [NSMapTable new];
+   self.wv__vc_paths = [[NSMapTable alloc] initWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory capacity:2];
    return self;
 }
 
@@ -41,11 +42,12 @@ static XEngineWebView*  s_showing_webview;
 
     return [histories lastObject].host;
 }
-+ (void)setCurrentWebView:(XEngineWebView*) val{
-    s_showing_webview=val;
-}
+
 + (XEngineWebView*)getCurrentWebView{
-    return s_showing_webview;
+    NSPointerArray* webviews =  [WebViewFactory sharedInstance].webviews;
+    [webviews addPointer:NULL];
+    [webviews compact];
+    return [[webviews allObjects] lastObject];
 }
 - (void)deleteWebView:(XEngineWebView *) webview{
 }

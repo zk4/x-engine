@@ -7,11 +7,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.BatteryManager;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.zkty.modules.engine.XEngineApplication;
+import com.zkty.modules.nativ.core.XEngineApplication;
 
 import java.util.List;
 import java.util.Locale;

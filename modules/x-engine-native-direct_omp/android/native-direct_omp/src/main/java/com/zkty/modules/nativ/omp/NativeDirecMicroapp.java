@@ -1,11 +1,15 @@
 package com.zkty.modules.nativ.omp;
 
+import android.app.Activity;
 import android.text.TextUtils;
 
 import com.zkty.engine.nativ.protocol.IDirect;
-import com.zkty.modules.engine.core.MicroAppLoader;
+import com.zkty.modules.nativ.core.XEngineApplication;
+import com.zkty.modules.engine.exception.XEngineException;
 import com.zkty.modules.nativ.core.NativeContext;
 import com.zkty.modules.nativ.core.NativeModule;
+import com.zkty.modules.nativ.jsi.view.XEngineWebActivity;
+import com.zkty.modules.nativ.jsi.view.XEngineWebActivityManager;
 
 import java.util.List;
 import java.util.Map;
@@ -49,15 +53,20 @@ public class NativeDirecMicroapp extends NativeModule implements IDirect {
 
     @Override
     public void push(String protocol, String host, String pathname, String fragment, Map<String, Object> query, Map<String, Object> params) {
-       if (TextUtils.isEmpty(protocol)){
-           protocol = protocol();
-       }
+        if (TextUtils.isEmpty(protocol)) {
+            protocol = protocol();
+        }
+        Activity currentActivity = XEngineApplication.getCurrentActivity();
 
 
+        if (TextUtils.isEmpty(host)) {
+            if (!(currentActivity instanceof XEngineWebActivity)) {
+                throw new XEngineException("host 不可为 null");
+            }
+        }
 
-
-
-
+        boolean hideNavbar = params != null && params.containsKey("hideNavbar") && Boolean.parseBoolean(String.valueOf(params.get("hideNavbar")));
+        XEngineWebActivityManager.sharedInstance().startXEngineActivity(currentActivity, protocol, host, pathname, fragment, hideNavbar);
     }
 
     @Override

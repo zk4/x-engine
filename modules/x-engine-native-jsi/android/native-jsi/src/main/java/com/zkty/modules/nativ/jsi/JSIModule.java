@@ -4,9 +4,9 @@ import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.engine.annotation.Optional;
 import com.zkty.modules.engine.exception.XEngineException;
+import com.zkty.modules.nativ.jsi.bridge.CompletionHandler;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -23,7 +23,7 @@ public abstract class JSIModule {
 
     protected abstract void afterAllJSIModuleInited();
 
-    private <T> T convert(JSONObject object, Class<T> tClass) {
+    protected  <T> T convert(JSONObject object, Class<T> tClass) {
         Field[] fields = tClass.getDeclaredFields();
         StringBuilder builder = new StringBuilder();
         for (final Field field : fields) {
@@ -39,7 +39,27 @@ public abstract class JSIModule {
         return object.toJavaObject(tClass);
     }
 
-    protected <T> T convert(String defaultJson, JSONObject object, Class<T> tClass) {
+    protected JSONObject mergeDefault(JSONObject object, String defaultJson) {
+        if (!TextUtils.isEmpty(defaultJson)) {
+
+            try {
+                JSONObject defaultObj = JSON.parseObject(defaultJson);
+                if (defaultObj != null) {
+                    for (String key : defaultObj.keySet()) {
+                        if (!object.containsKey(key)) {
+                            object.put(key, defaultObj.get(key));
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return object;
+
+    }
+
+    private  <T> T convert(String defaultJson, JSONObject object, Class<T> tClass) {
         if (TextUtils.isEmpty(defaultJson)) {
             return convert(object, tClass);
         }

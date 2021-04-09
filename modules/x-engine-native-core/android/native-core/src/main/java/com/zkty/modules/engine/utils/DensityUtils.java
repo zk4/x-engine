@@ -1,6 +1,7 @@
 package com.zkty.modules.engine.utils;
 
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -15,7 +16,7 @@ import android.view.DisplayCutout;
 import android.view.View;
 import android.view.WindowManager;
 
-import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Method;
@@ -145,7 +146,7 @@ public class DensityUtils {
 
     public static float getActionBarHeight(Context context) {
         if (context instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) context).getSupportActionBar();
+            androidx.appcompat.app.ActionBar actionBar = ((AppCompatActivity) context).getSupportActionBar();
             if (actionBar != null && actionBar.isShowing()) {
                 TypedArray actionbarSizeTypedArray = context.obtainStyledAttributes(new int[]{
                         android.R.attr.actionBarSize

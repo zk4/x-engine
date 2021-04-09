@@ -1,10 +1,9 @@
 package com.zkty.modules.nativ.microapp;
 
-import android.nfc.tech.MifareClassic;
-
 import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.modules.nativ.core.NativeContext;
 import com.zkty.modules.nativ.core.NativeModule;
+import com.zkty.modules.nativ.jsi.view.MicroAppLoader;
 
 import java.util.List;
 import java.util.Map;

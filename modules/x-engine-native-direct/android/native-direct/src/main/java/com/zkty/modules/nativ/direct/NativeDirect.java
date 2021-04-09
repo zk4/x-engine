@@ -1,5 +1,7 @@
 package com.zkty.modules.nativ.direct;
 
+import android.util.Log;
+
 import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.engine.nativ.protocol.IDirectManager;
 import com.zkty.modules.nativ.core.NativeContext;
@@ -11,8 +13,17 @@ import java.util.Map;
 
 
 public class NativeDirect extends NativeModule implements IDirectManager {
+    private static int j = 1;
+
+    static {
+        j = 2;
+        System.out.println("reg native clazz NativeDirect : ");
+        NativeContext.registerModuleByClass(NativeDirect.class);
+    }
+
     {
         directors = new HashMap<>();
+
     }
 
     private Map<String, IDirect> directors;

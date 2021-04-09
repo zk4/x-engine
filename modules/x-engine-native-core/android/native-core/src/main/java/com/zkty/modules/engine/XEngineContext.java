@@ -7,11 +7,6 @@ import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.tencent.smtt.sdk.QbSdk;
-import com.zkty.modules.engine.core.MicroAppLoader;
-import com.zkty.modules.engine.webview.WebViewPool;
-import com.zkty.modules.engine.webview.XOneWebViewPool;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -28,8 +23,6 @@ public class XEngineContext {
         initX5(application);
         initModulesForQuick(application);
         onAllModulesInited();
-        initWebViewPool(application);
-        initMicroAppLoader(application);
     }
 
 
@@ -67,27 +60,20 @@ public class XEngineContext {
 
 
     public static void initX5(Context application) {
-        QbSdk.initX5Environment(application.getApplicationContext(), new QbSdk.PreInitCallback() {
-            @Override
-            public void onCoreInitFinished() {
-                Log.d("initX5", "onCoreInitFinished");
-            }
-
-            @Override
-            public void onViewInitFinished(boolean b) {
-                Log.d("initX5", "onViewInitFinished: " + b);
-            }
-        });
+//        QbSdk.initX5Environment(application.getApplicationContext(), new QbSdk.PreInitCallback() {
+//            @Override
+//            public void onCoreInitFinished() {
+//                Log.d("initX5", "onCoreInitFinished");
+//            }
+//
+//            @Override
+//            public void onViewInitFinished(boolean b) {
+//                Log.d("initX5", "onViewInitFinished: " + b);
+//            }
+//        });
     }
 
-    private static void initWebViewPool(Context application) {
-        // WebViewPool.sharedInstance().init(application);
-        XOneWebViewPool.sharedInstance().init(application);
-    }
 
-    private static void initMicroAppLoader(Application application) {
-        MicroAppLoader.sharedInstance().init(application);
-    }
 
     public static List<String> getModules() {
         return modules;

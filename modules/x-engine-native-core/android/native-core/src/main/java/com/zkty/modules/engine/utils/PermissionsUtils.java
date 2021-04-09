@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.zkty.modules.engine.XEngineApplication;
+import com.zkty.modules.nativ.core.XEngineApplication;
 
 import java.util.ArrayList;
 import java.util.List;

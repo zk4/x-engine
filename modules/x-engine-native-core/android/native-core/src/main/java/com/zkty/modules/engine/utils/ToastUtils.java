@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.zkty.modules.engine.XEngineApplication;
+import com.zkty.modules.nativ.core.XEngineApplication;
 
 public class ToastUtils {
 

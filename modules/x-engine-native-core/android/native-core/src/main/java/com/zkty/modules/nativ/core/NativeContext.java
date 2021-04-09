@@ -16,7 +16,7 @@ public class NativeContext {
 
     private String TAG = NativeContext.class.getSimpleName();
 
-    private List<Class> moduleClasses;
+    private static List<Class> moduleClasses = new ArrayList<>();
     private List<NativeModule> modules;
     private Map<String, NativeModule> moduleId2Module;
     private Map<String, List<String>> moduleId2ModuleProtocolNames;
@@ -25,7 +25,6 @@ public class NativeContext {
 
 
     private NativeContext() {
-        moduleClasses = new ArrayList<>();
         modules = new ArrayList<>();
         moduleId2Module = new HashMap();
         moduleId2ModuleProtocolNames = new HashMap<>();
@@ -97,11 +96,12 @@ public class NativeContext {
         return modules;
     }
 
-    public void registerModuleByClass(Class clazz) {
+    public static void registerModuleByClass(Class clazz) {
         if (moduleClasses.contains(clazz)) {
             throw new XEngineException("重复注册native clazz:" + clazz);
         }
         moduleClasses.add(clazz);
+        Log.d("NativeContext", "reg native clazz success : " + clazz);
     }
 
     private <T> List<String> getProtocols(Class<T> clazz) {

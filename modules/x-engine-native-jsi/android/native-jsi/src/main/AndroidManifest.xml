@@ -1,14 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="module.xxxx">
+    package="nativ.jsi">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <application>
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
 
-        <meta-data
-            android:name="com.zkty.module.xxxx"
-            android:value="com.zkty.modules.loaded.jsapi.__xengine__module_xxxx" />
+        <activity
+            android:name="com.zkty.modules.nativ.jsi.view.XEngineWebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranTheme" />
+
+
     </application>
 </manifest>

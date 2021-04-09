@@ -26,7 +26,7 @@
 
 <script>
 import device from "@zkty-team/x-engine-module-device"
-import XEngine from "@zkty-team/x-engine-module-engine"
+import XEngine from "x-engine-core"
 export default {
   data() {
     return {

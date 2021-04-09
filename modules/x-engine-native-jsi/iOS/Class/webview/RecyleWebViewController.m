@@ -8,6 +8,8 @@
 #import "JSIModule.h"
 #import "GlobalState.h"
 #import "Unity.h"
+#import "iSecurify.h"
+#import "NativeContext.h"
 
 
 /*
@@ -18,7 +20,6 @@
  */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 @property (nonatomic, copy) NSString * _Nullable loadUrl;
-
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
 @property (nonatomic, assign) Boolean newWebview;
@@ -74,9 +75,9 @@
 }
 
 -(void)webViewLoadFail:(NSNotification *)notifi{
-    
     NSDictionary *dic = notifi.object;
     id web = dic[@"webView"];
+    
     if(web == self.webview){
         self.imageView404.hidden = NO;
     }
@@ -102,6 +103,24 @@
             self.webview = [GlobalState getCurrentWebView];
         }
         
+        
+        // 存microapp.json 但是存哪里更合适
+        // 最后的url会有什么区别, 有几种方式
+#warning: 下面这段放哪里合适  这是个问题
+        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
+        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
+            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
+            id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
+        } else {
+            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
+            }];
+            [errorAlert addAction:sureAction];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
+        }
+        
         HistoryModel* hm = [HistoryModel new];
         hm.vc            = self;
         hm.fragment      = fragment;
@@ -125,7 +144,7 @@
 }
 
 
-- (void)loadFileUrl{
+- (void)loadFileUrl {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
@@ -134,13 +153,12 @@
 }
 
 
--(void)viewDidLayoutSubviews{
+- (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self drawFrame];
 }
 
--(void)drawFrame{
-    
+- (void)drawFrame{
     self.webview.frame = self.view.bounds;
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
     float height = (self.view.bounds.size.width / 375.0) * 200;
@@ -155,8 +173,7 @@
                                         self.tipLabel404.font.lineHeight);
 }
 
--(void)goback:(UIButton *)sender{
-    
+- (void)goback:(UIButton *)sender {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         if(self.navigationController.viewControllers.count > 1){
             RecyleWebViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
@@ -222,10 +239,9 @@
             [close addSubview:img2];
             [close addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
             self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:btn], [[UIBarButtonItem alloc] initWithCustomView:close]];
-        }else{
+        } else {
             self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
         }
-        
     }
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -263,7 +279,6 @@
     
     /// FIXED: 侧滑时，如果并没有滑走，不应该在 viewWillAppear 里 loadFileUrl
 //    [self loadFileUrl];
-
     if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -275,27 +290,55 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
     //           completionHandler:nil];
-
-    
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.progresslayer.alpha = 0;
     
     
 }
--(void)viewWillDisappear:(BOOL)animated{
+
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if(!self.newWebview && self.screenView == nil){
-
         self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
         self.screenView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.screenView];
         self.screenView.frame = self.view.bounds;
     }
+}
+
+
+#pragma mark - < json->dic / dic->json >
+/**
+ *  JSON字符串转NSDictionary
+ *  @param jsonString JSON字符串
+ *  @return NSDictionary
+ */
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(error) {
+        NSLog(@"json解析失败：%@",error);
+        return nil;
+    }
+    return dic;
+}
+/**
+ *  字典转JSON字符串
+ *  @param dic 字典
+ *  @return JSON字符串
+ */
+- (NSString*)dictionaryToJson:(NSDictionary *)dic{
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 @end

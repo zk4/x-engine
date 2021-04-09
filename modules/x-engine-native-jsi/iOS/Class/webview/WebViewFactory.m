@@ -98,9 +98,9 @@
     configuration.processPool = self.wkprocessPool;
 
     if (@available(iOS 11.0, *) ) {
-//        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
-//        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
-//        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
+        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
+        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
+        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
     }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
     webview.configuration.preferences.javaScriptEnabled = YES;

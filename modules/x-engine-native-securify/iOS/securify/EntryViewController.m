@@ -18,10 +18,10 @@
 
 // 2. 模仿点击某个按钮，判断模块是否可用通过
 - (void)pushTestModule{
-    [self.securify judgeModuleIsAvaliableWithModuleName:@"com.zkty.jsi.direct"];
+    BOOL isAvailable = [self.securify judgeModuleIsAvailableWithModuleName:@"com.zkty.jsi.direct"];
+    NSLog(@"%@", isAvailable ? @"YES" : @"NO");
     NSLog(@"你调用的模块全都好使, 好屌");
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

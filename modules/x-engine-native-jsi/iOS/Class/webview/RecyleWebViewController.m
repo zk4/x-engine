@@ -110,14 +110,15 @@
             NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
             id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
             [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
-        } else {
-            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
-            }];
-            [errorAlert addAction:sureAction];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
         }
+//        } else {
+//            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
+//            }];
+//            [errorAlert addAction:sureAction];
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
+//        }
         
         HistoryModel* hm = [HistoryModel new];
         hm.vc            = self;

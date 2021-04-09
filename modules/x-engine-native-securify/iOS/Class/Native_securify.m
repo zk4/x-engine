@@ -69,7 +69,7 @@ NATIVE_MODULE(Native_securify)
 
 /// 判断网络白名单
 /// @param hostName host名称
-- (void)judgeNetworkIsAvailableWithHostName:(NSString *)hostName {
+- (BOOL)judgeNetworkIsAvailableWithHostName:(NSString *)hostName {
     NSDictionary *resultDict = [self getMicroAppJsonDataWithKeyName:X_ENGINE_MICROAPP_JSON];
     NSDictionary *permissionDict = resultDict[@"permission"];
     BOOL isStrict = [permissionDict[@"network"][@"strict"] boolValue];
@@ -77,26 +77,23 @@ NATIVE_MODULE(Native_securify)
         NSArray *whiteHostArr = permissionDict[@"network"][@"white_host_list"];
         BOOL isContainsHost = [whiteHostArr containsObject:hostName];
         if (isContainsHost == 1) {
-//            NSURLSessionDataTask * task = [manager dataTaskWithRequest:urlSchemeTask.request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
-//            } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
-//            } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-//                [urlSchemeTask didReceiveResponse:response];
-//                [urlSchemeTask didReceiveData:responseObject];
-//                [urlSchemeTask didFinish];
-//            }];
-//            [task resume];
+            return YES;
         } else {
-            [self promptWithMessage:[NSString stringWithFormat:@"%@不在白名单内", hostName]];
+            return NO;
         }
+    } else {
+        return YES;
     }
 }
 
-/// 获取json数据 仅供本页面使用
+#pragma mark - private fcuntion
+/// 获取json数据
+/// @param keyName keyname
 - (NSMutableDictionary *)getMicroAppJsonDataWithKeyName:(NSString *)keyName{
     return [_microAppJsonData objectForKey:keyName];
 }
 
-/// 提示
+/// private fcuntion 提示
 /// @param message 提示内容
 - (void)promptWithMessage:(NSString *)message  {
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];

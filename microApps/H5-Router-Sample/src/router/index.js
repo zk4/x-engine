@@ -1,9 +1,9 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import ZKTYRouter from "@zkty-team/vue-router"
+import XEngineRouter from "x-engine-router"
 
 Vue.use(VueRouter);
-ZKTYRouter(VueRouter, 'omp');
+XEngineRouter(VueRouter, 'microapp');
 
 const routes = [{
         path: "/",
@@ -64,6 +64,11 @@ const routes = [{
         path: '/refreshData',
         name: 'refreshData',
         component: () => import('../views/refreshData/refreshData.vue')
+    },
+    {
+        path: '/network',
+        name: 'network',
+        component: () => import('../views/network.vue')
     }
 ];
 

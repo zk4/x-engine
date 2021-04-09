@@ -20,7 +20,6 @@
  */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
 @property (nonatomic, copy) NSString * _Nullable loadUrl;
-
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
 @property (nonatomic, assign) Boolean newWebview;
@@ -104,16 +103,18 @@
             self.webview = [GlobalState getCurrentWebView];
         }
         
-        // 获取microapp的path
-        /// TODO: 不能直接替换
+        
+        // 存microapp.json 但是存哪里更合适
+        // 最后的url会有什么区别, 有几种方式
+#warning: 下面这段放哪里合适  这是个问题
         NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
         if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
             NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
             id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
             [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
         } else {
-            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"microapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
             }];
             [errorAlert addAction:sureAction];
@@ -143,7 +144,7 @@
 }
 
 
-- (void)loadFileUrl{
+- (void)loadFileUrl {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
@@ -152,13 +153,12 @@
 }
 
 
--(void)viewDidLayoutSubviews{
+- (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self drawFrame];
 }
 
--(void)drawFrame{
-    
+- (void)drawFrame{
     self.webview.frame = self.view.bounds;
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
     float height = (self.view.bounds.size.width / 375.0) * 200;
@@ -173,8 +173,7 @@
                                         self.tipLabel404.font.lineHeight);
 }
 
--(void)goback:(UIButton *)sender{
-    
+- (void)goback:(UIButton *)sender {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         if(self.navigationController.viewControllers.count > 1){
             RecyleWebViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
@@ -240,10 +239,9 @@
             [close addSubview:img2];
             [close addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
             self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:btn], [[UIBarButtonItem alloc] initWithCustomView:close]];
-        }else{
+        } else {
             self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
         }
-        
     }
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -281,7 +279,6 @@
     
     /// FIXED: 侧滑时，如果并没有滑走，不应该在 viewWillAppear 里 loadFileUrl
 //    [self loadFileUrl];
-
     if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -293,22 +290,19 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
     //           completionHandler:nil];
-
-    
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.progresslayer.alpha = 0;
     
     
 }
--(void)viewWillDisappear:(BOOL)animated{
+
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if(!self.newWebview && self.screenView == nil){
-
         self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
         self.screenView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.screenView];

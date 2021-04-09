@@ -43,11 +43,12 @@ export default {
     // microapp
     handlerOpenMicroApp() {
       if (XEngine.isHybrid()) {
-        XEngine.bridge.call(
-          "com.zkty.jsi.direct.push",
+        XEngine.api(
+          "com.zkty.jsi.direct",
+          "push",
           {
             scheme: "microapp",
-            host: "com.gm.microapp.mine",
+            host: "com.gm.microapp.home",
             pathname: "",
             fragment: "",
             params: {
@@ -55,7 +56,7 @@ export default {
             },
           },
           function (res) {
-            console.log("res :>> " + res)
+            console.log("res :>> ", res)
           }
         )
       } else {
@@ -64,15 +65,22 @@ export default {
     },
     handlerOpenBaidu() {
       if (XEngine.isHybrid()) {
-        XEngine.bridge.call("com.zkty.jsi.direct.push", {
-          scheme: "http",
-          host: "www.baidu.com",
-          fragment: "/",
-          pathname: "",
-          params: {
-            hideNavbar: true,
+        XEngine.api(
+          "com.zkty.jsi.direct",
+          "push",
+          {
+            scheme: "http",
+            host: "www.baidu.com",
+            pathname: "",
+            fragment: "",
+            params: {
+              hideNavbar: true,
+            },
           },
-        })
+          function (res) {
+            console.log("res :>> ", res)
+          }
+        )
       } else {
         alert("请在app端测试该功能.")
       }
@@ -80,19 +88,20 @@ export default {
     // https
     handlerOpenYoutube() {
       if (XEngine.isHybrid()) {
-        XEngine.bridge.call(
-          "com.zkty.jsi.direct.push",
+        XEngine.api(
+          "com.zkty.jsi.direct",
+          "push",
           {
             scheme: "https",
             host: "www.youtube.com",
-            fragment: "",
             pathname: "",
+            fragment: "",
             params: {
               hideNavbar: true,
             },
           },
           function (res) {
-            console.log("res :>> " + res)
+            console.log("res :>> ", res)
           }
         )
       } else {

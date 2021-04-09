@@ -282,12 +282,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (NSString *)call:(NSString*) method :(NSString*) argStr {
     NSArray *nameStr=[XEngineJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     
+    // 判断是否有microapp.json文件
     id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
     BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:nameStr[0]];
     if (!isAvailable) {
         return nil;
     }
-//
+    
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[nameStr[0]];
     NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result =[NSMutableDictionary dictionaryWithDictionary:@{@"code":@-1,@"data":@""}];

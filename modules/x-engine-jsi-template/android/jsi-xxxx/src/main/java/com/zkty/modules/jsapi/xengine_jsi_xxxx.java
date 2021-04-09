@@ -1,4 +1,4 @@
-package com.zkty.modules.jsapi;
+package com.zkty.jsi;
 
 import android.webkit.JavascriptInterface;
 
@@ -29,7 +29,7 @@ public abstract class xengine_jsi_xxxx extends JSIModule implements xengine_jsi_
 
     @JavascriptInterface
     public <T> T getSyn(JSONObject dto) {
-        String defaultStr = "{\"key\":\"xx\"}";
+        String defaultStr = ;
         StorageDTO storageDTO = convert(defaultStr, dto, StorageDTO.class);
         return _getSyn(storageDTO);
     }

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (XEngineWebView*)getCurrentWebView;
 - (NSString*) getLastHost;
 - (NSMutableArray<HistoryModel *> *)getCurrentWebViewHistories;
+- (NSMutableArray<HistoryModel *> *)getCurrentHostHistories;
 - (void)addCurrentWebViewHistory:(HistoryModel *) history;
 - (void)deleteWebView:(XEngineWebView *) webview;
 

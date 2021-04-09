@@ -14,7 +14,7 @@
 #import "iDirect.h"
 #import "GlobalState.h"
  
-
+#define  ONE_PAGE_ONE_WEBVIEW TRUE
 @implementation Native_direct_omp
 NATIVE_MODULE(Native_direct_omp)
 
@@ -30,8 +30,16 @@ NATIVE_MODULE(Native_direct_omp)
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
 
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-    NSMutableArray<HistoryModel*>*  histories=
-    [[GlobalState sharedInstance] getCurrentWebViewHistories];
+    NSMutableArray<HistoryModel*>*  histories= nil;
+    if(ONE_PAGE_ONE_WEBVIEW){
+        histories = [[GlobalState sharedInstance] getCurrentHostHistories];
+    }else{
+        histories = [[GlobalState sharedInstance] getCurrentWebViewHistories];
+
+    }
+    BOOL isMinusHistory = [fragment rangeOfString:@"^-\\d+$" options:NSRegularExpressionSearch].location != NSNotFound;
+    
+    BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
 
     if ([@"0" isEqualToString:fragment]){
         int i =0;
@@ -53,6 +61,7 @@ NATIVE_MODULE(Native_direct_omp)
         }
 
     }
+   
     else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
         if(histories){
             if(histories.count > 1)
@@ -66,7 +75,21 @@ NATIVE_MODULE(Native_direct_omp)
             }
         }
 
-    } else {
+    } else if(isMinusHistory){
+        if(histories){
+            int minusHistory = [fragment intValue];
+            if(minusHistory+histories.count<0){
+                /// TODO: alert
+                NSLog(@"没有这么历史给你退.");
+            }
+
+            [navC popToViewController:histories[histories.count-1+minusHistory].vc animated:YES];
+                [histories removeObjectsInRange:NSMakeRange(histories.count+minusHistory,  -minusHistory)];
+
+          
+        }
+    }
+    else if (isNamedHistory){
         if(histories && histories.count > 1){
             int i = 0;
             for (HistoryModel *hm in [histories reverseObjectEnumerator]){
@@ -80,6 +103,9 @@ NATIVE_MODULE(Native_direct_omp)
             }
         }
 
+    }else {
+        /// TODO: alert
+        NSLog(@"what the fuck? %@",fragment);
     }
 }
 
@@ -123,7 +149,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSAssert(host!=nil, @"host 不可为 nil");
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         
         [currentVC.navigationController pushViewController:vc animated:YES];
 

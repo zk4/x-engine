@@ -43,6 +43,7 @@ Pod::Spec.new do |s|
     # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
     # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
     s.dependency "x-engine-native-core"
+    s.dependency "x-engine-native-protocols"
 
     
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}

@@ -108,7 +108,6 @@ NATIVE_MODULE(Native_direct_omp)
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
 
         } else {
-            // webview 内部跳转逻辑
             UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
             if([nav isKindOfClass:[UINavigationController class]]){
                 [nav pushViewController:vc animated:YES];

@@ -105,13 +105,14 @@
         }
         
         // 获取microapp的path
+        /// TODO: 不能直接替换
         NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
         if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
             NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
             id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
             [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
         } else {
-            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"microapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
             }];

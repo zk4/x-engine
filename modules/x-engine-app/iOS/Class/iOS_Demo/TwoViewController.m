@@ -37,8 +37,6 @@
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
 
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE];
-  
-
 
     /// TODO:  背景没有生效
     vc.view.backgroundColor = [UIColor redColor];

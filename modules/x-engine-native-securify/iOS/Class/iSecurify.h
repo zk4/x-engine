@@ -20,8 +20,6 @@
 
 /// 判断网络白名单
 /// @param hostName host名称
-- (void)judgeNetworkIsAvailableWithHostName:(NSString *)hostName;
-
-
+- (BOOL)judgeNetworkIsAvailableWithHostName:(NSString *)hostName;
 @end
 #endif /* iSecurify_h */

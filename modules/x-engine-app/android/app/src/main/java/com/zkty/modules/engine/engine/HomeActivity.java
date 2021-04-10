@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zkty.modules.engine.R;
-import com.zkty.modules.nativ.jsi.view.MicroAppLoader;
-import com.zkty.modules.nativ.jsi.view.XEngineWebActivityManager;
-import com.zkty.modules.nativ.jsi.webview.XEngineWebView;
+import com.zkty.nativ.jsi.view.MicroAppLoader;
+import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.jsi.webview.XEngineWebView;
 
 public class HomeActivity extends AppCompatActivity {
     private XEngineWebView mWebview;
@@ -25,9 +24,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void nextPage(View view) {
-        String protocol = "file://";
+        String protocol = "file:";
         String host = MicroAppLoader.sharedInstance().getMicroAppHost("com.gm.microapp.home", 0);
-        String pathname = "";
+        String pathname = "/index.html";
         String fragment = "";
 
 

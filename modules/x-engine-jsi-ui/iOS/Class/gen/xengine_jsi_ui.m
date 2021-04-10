@@ -46,8 +46,6 @@
       }
     - (void) setNavBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
           NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
           [self _setNavBarHidden:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);

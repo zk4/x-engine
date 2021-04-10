@@ -24,3 +24,6 @@ project(':native-direct_microapp').projectDir = new File('../../x-engine-native-
 
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
+
+include ':jsi-direct'
+project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')

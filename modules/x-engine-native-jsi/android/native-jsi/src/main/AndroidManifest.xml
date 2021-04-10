@@ -12,9 +12,15 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.zkty.modules.nativ.jsi.view.XEngineWebActivity"
+            android:name="com.zkty.nativ.jsi.view.XEngineWebActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranTheme" />
+
+
+
+            <meta-data
+                android:name="com.zkty.native.jsi"
+                android:value="com.zkty.nativ.jsi.JSIContext" />
 
 
     </application>

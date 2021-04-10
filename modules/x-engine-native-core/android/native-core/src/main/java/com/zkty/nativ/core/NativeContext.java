@@ -1,10 +1,13 @@
-package com.zkty.modules.nativ.core;
+package com.zkty.nativ.core;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.util.ServiceLoader;
-import com.zkty.modules.engine.exception.XEngineException;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +24,7 @@ public class NativeContext {
     private Map<String, NativeModule> moduleId2Module;
     private Map<String, List<String>> moduleId2ModuleProtocolNames;
 
+    private static HashMap<Class, Object> objects;
     private Context mContext;
 
 
@@ -45,6 +49,7 @@ public class NativeContext {
 
     public void init(Context context) {
         this.mContext = context;
+        initModulesForQuick(context);
         initModules();
         afterAllNativeModuleInited();
     }
@@ -70,8 +75,8 @@ public class NativeContext {
         return moduleId2Module.get(moduleId);
     }
 
-    public NativeModule getModuleByProtocol(Protocol proto) {
-        String protocolName = proto.getClass().getName();
+    public NativeModule getModuleByProtocol(Class proto) {
+        String protocolName = proto.getName();
         for (Map.Entry<String, List<String>> entry : moduleId2ModuleProtocolNames.entrySet()) {
 
             if (entry.getValue().contains(protocolName)) {
@@ -81,9 +86,9 @@ public class NativeContext {
         return null;
     }
 
-    public List<NativeModule> getModulesByProtocol(Protocol proto) {
+    public List<NativeModule> getModulesByProtocol(Class proto) {
         List<NativeModule> modules = null;
-        String protocolName = proto.getClass().getName();
+        String protocolName = proto.getName();
         for (Map.Entry<String, List<String>> entry : moduleId2ModuleProtocolNames.entrySet()) {
 
             if (entry.getValue().contains(protocolName)) {
@@ -96,19 +101,19 @@ public class NativeContext {
         return modules;
     }
 
-    public static void registerModuleByClass(Class clazz) {
+    private void registerModuleByClass(Class clazz) {
         if (moduleClasses.contains(clazz)) {
-            throw new XEngineException("重复注册native clazz:" + clazz);
+            return;
         }
         moduleClasses.add(clazz);
         Log.d("NativeContext", "reg native clazz success : " + clazz);
     }
 
     private <T> List<String> getProtocols(Class<T> clazz) {
+        Class[] clazzs = clazz.getInterfaces();
         List<String> ret = new ArrayList<>();
-        Set<T> set = ServiceLoader.load(clazz, Thread.currentThread().getContextClassLoader());
-        for (T t : set) {
-            ret.add(t.getClass().getName());
+        for (Class cla : clazzs) {
+            ret.add(cla.getName());
         }
         return ret;
     }
@@ -119,4 +124,39 @@ public class NativeContext {
         }
     }
 
+    /**
+     * 快速注册模块实现
+     *
+     * @param context
+     */
+    private void initModulesForQuick(Context context) {
+
+        long start = System.currentTimeMillis();
+        try {
+            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            if (appInfo.metaData != null) {
+                for (String key : appInfo.metaData.keySet()) {
+                    if (!TextUtils.isEmpty(key) && key.startsWith("com.zkty.native")) {
+                        String value = appInfo.metaData.getString(key);
+                        Log.d(TAG, "Id:" + key + "----" + "Class:" + value);
+                        if (!TextUtils.isEmpty(value) && value.startsWith("com.zkty.nativ")) {      //过滤
+                            try {
+                                Class c = Class.forName(value);
+                                moduleClasses.add(c);
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                }
+            }
+            Log.d(TAG, String.format("注册模块耗时 %d ms, 加载模块个数 %d 个", System.currentTimeMillis() - start, moduleClasses.size()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
+

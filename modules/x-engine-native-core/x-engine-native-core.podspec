@@ -5,16 +5,13 @@
 #  To learn more about Podspec attributes see https://guides.cocoapods.org/syntax/podspec.html
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
-require "json"
-package = JSON.parse(File.read(File.join(__dir__, "package.json")))
-version = package['version']
 
 Pod::Spec.new do |s|
 
 
     s.name         = "x-engine-native-core"
-    s.version      = version
-    s.summary      = package["description"]
+    s.version      = "1.0.0"
+    s.summary      = "x-engine-native-core"
 
     s.description  = <<-DESC
             description

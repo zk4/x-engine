@@ -1,8 +1,0 @@
-{
-  "args": {},
-  "permissions": {
-    "X_USER_INFO": "READ",
-    "X_LBS": "READ_WRITE",
-    "X_PHOTO": "READ"
-  }
-}

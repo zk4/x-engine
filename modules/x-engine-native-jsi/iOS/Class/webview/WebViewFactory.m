@@ -34,69 +34,17 @@
     self = [super init];
     if (self){
         self.wkprocessPool = [[WKProcessPool alloc] init];
-        self.webviews = [@[] mutableCopy];
-
+        self.webviews = [[NSPointerArray alloc] initWithOptions:NSPointerFunctionsWeakMemory];
+        
     }
     return self;
 }
-//
-//
-//- (WebViewFactoryModel *)getModelWithWeb:(WKWebView *)webView{
-//
-//    for (WebViewFactoryModel *model in self.webCacheAry) {
-//        if(model.webView == webView) {
-//            return model;
-//        }
-//    }
-//    return nil;
-//}
-///TODO:  webviewpool 需要重新设计 api, baseUrl 没有意义
+
 -(XEngineWebView *)createWebView{
-    
-//    WebViewFactoryModel *model = [[WebViewFactoryModel alloc] init];
-    
-/// TODO: 这里为什么会有这种逻辑？
-//    if([baseUrl hasPrefix:@"file://"]){
-//        NSString *filePath = [baseUrl substringFromIndex:7];
-//        NSString *rootPath;
-//        NSString *rootFile;
-//        NSString *appId;
-//        if([filePath hasPrefix:[[MicroAppLoader sharedInstance] microappDirectory]]){
-//            rootFile = [filePath substringFromIndex:[[MicroAppLoader sharedInstance] microappDirectory].length + 1];
-//            NSArray *ary = [rootFile pathComponents];
-//            if(ary.count > 0){
-//                appId = ary.firstObject;
-//                rootPath = [[[MicroAppLoader sharedInstance] microappDirectory] stringByAppendingPathComponent:appId];
-//            }
-//        }else if([filePath hasPrefix:[[NSBundle mainBundle] resourcePath]]){
-//            rootFile = [filePath substringFromIndex:[[NSBundle mainBundle] resourcePath].length + 1];
-//            NSArray *ary = [rootFile pathComponents];
-//            if(ary.count > 0){
-//                appId = ary.firstObject;
-//                rootPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:appId];
-//            }
-//        }
-//        NSString *profilePath = [rootPath stringByAppendingPathComponent:@"microapp.json"];
-//        if([[NSFileManager defaultManager] fileExistsAtPath:profilePath]){
-//            NSData *jsonData = [NSData dataWithContentsOfFile:profilePath];
-//            NSDictionary *profileDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
-//            NSDictionary *permission = profileDic[@"permission"];
-//            model.secrect = permission[@"secrect"];
-//            NSDictionary *network = profileDic[@"network"];
-//            model.isStrict = [network[@"strict"] boolValue];
-//            model.whiteList = network[@"white_host_list"];
-//
-//            NSArray<NSString *> *ary = [appId componentsSeparatedByString:@"."];
-//            model.version = [ary.lastObject integerValue];
-//            model.appId = [appId substringToIndex:ary.lastObject.length + 1];
-//            model.appRootPath = rootPath;
-//        }
-//    }
-    
     NSMutableArray *modules = [[JSIContext sharedInstance] modules];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
-
+    
     if (@available(iOS 11.0, *) ) {
         CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
         [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
@@ -112,34 +60,42 @@
     for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
-    [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
-    [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
-    [self.webviews addObject:webview];
+//    [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+//    [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    // apple bug, compact 之前必须加个 NULL
+    [self.webviews addPointer:NULL];
+    [self.webviews compact];
+    
+    [self.webviews addPointer:(__bridge void * _Nullable)(webview)];
+    printf("retain count =%ld\n",CFGetRetainCount((__bridge CFTypeRef)([[self.webviews allObjects] firstObject])));
+
+
     return webview;
 }
+
+/// TODO: 为什么 estimatedProgress 在这??
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+//    if ([keyPath isEqualToString:@"estimatedProgress"]) {
 //
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"estimatedProgress"]) {
-        
-        float floatNum = [[change objectForKey:@"new"] floatValue];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-            @"progress":@(floatNum),
-            @"webView":object,
-        }];
-        if (floatNum >= 1) {
-            [object removeObserver:self forKeyPath:@"estimatedProgress"];
-        }
-    } else if ([keyPath isEqualToString:@"title"]) {
-        if([change objectForKey:@"new"]){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-                @"title":[change objectForKey:@"new"],
-                @"webView":object,
-            }];
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
+//        float floatNum = [[change objectForKey:@"new"] floatValue];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+//            @"progress":@(floatNum),
+//            @"webView":object,
+//        }];
+//        if (floatNum >= 1) {
+//            [object removeObserver:self forKeyPath:@"estimatedProgress"];
+//        }
+//    } else if ([keyPath isEqualToString:@"title"]) {
+//        if([change objectForKey:@"new"]){
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+//                @"title":[change objectForKey:@"new"],
+//                @"webView":object,
+//            }];
+//        }
+//    } else {
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//    }
+//}
 
 @end
 

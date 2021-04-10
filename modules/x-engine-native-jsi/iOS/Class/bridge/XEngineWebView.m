@@ -11,7 +11,8 @@
 #import "NativeContext.h"
 #import "GlobalState.h"
 #import "iSecurify.h"
-//#import "NSString+Extras.h"
+
+
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
 @implementation XEngineWebView
@@ -31,6 +32,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     UITextField *txtName;
     UInt64 lastCallTime ;
     NSString *jsCache;
+    NSString *moduleId;
     bool isPending;
     bool isDebug;
 }
@@ -69,7 +71,13 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     interalApis.webview=self;
     [self addJavascriptObject:interalApis namespace:@"_dsb"];
     
-    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    if (@available(iOS 13.0, *)) {
+        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    } else {
+        // Fallback on earlier versions
+        /// TODO: 上面的函数只支持iOS 13.0,保持低版本兼容 @cwz
+        
+    }
     self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
     return self;
@@ -281,24 +289,33 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (NSString *)call:(NSString*) method :(NSString*) argStr {
     NSArray *nameStr=[XEngineJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-    
-    // 判断是否有microapp.json文件
-    id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-    BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:nameStr[0]];
-    if (!isAvailable) {
+    if(nameStr.count<2){
+        NSLog(@"JS 参数有错,%@",nameStr);
         return nil;
     }
+    NSString*  modulename = nameStr[0];
+    NSString* methodname = nameStr[1];
+    if(![@"_dsb" isEqual:modulename]){
+        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
+        // 判断是否有microapp.json文件
+        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+        
+        BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:modulename];
+        if (!isAvailable) {
+            return nil;
+        }
+    }
     
-    id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[nameStr[0]];
+    id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[modulename];
     NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result =[NSMutableDictionary dictionaryWithDictionary:@{@"code":@-1,@"data":@""}];
     if(!JavascriptInterfaceObject){
-        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge  called, but can't find %@ 模块, please check your code!",nameStr[0]]];
+        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge  called, but can't find %@ 模块, please check your code!",modulename]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     }else{
-        method=nameStr[1];
-        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:method class:[JavascriptInterfaceObject class]];
-        NSString *methodTwo = [XEngineJSBUtil methodByNameArg:2 selName:method class:[JavascriptInterfaceObject class]];
+
+        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:methodname class:[JavascriptInterfaceObject class]];
+        NSString *methodTwo = [XEngineJSBUtil methodByNameArg:2 selName:methodname class:[JavascriptInterfaceObject class]];
         SEL sel=NSSelectorFromString(methodOne);
         SEL selasyn=NSSelectorFromString(methodTwo);
         NSDictionary * args=[XEngineJSBUtil jsonStringToObject:argStr];
@@ -343,7 +360,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
-                    [GlobalState setCurrentWebView:self];
+//                    [GlobalState setCurrentWebView:self];
                     action(JavascriptInterfaceObject, selasyn, arg, completionHandler);
                     break;
                 }
@@ -565,10 +582,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
         jsonStr= [jsonStr substringFromIndex:range.location+1];
     }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    jsonStr = [jsonStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-#pragma clang diagnostic pop
+
+    jsonStr = [jsonStr stringByRemovingPercentEncoding];
+
     NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
     NSError*err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
@@ -578,14 +594,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 // 接收到服务器跳转请求之后调用
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{}
 
-// 在收到响应后，决定是否跳转
-//- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
-//    NSLog(@"%@",navigationResponse.response.URL.absoluteString);
-    //允许跳转
-//    decisionHandler(WKNavigationResponsePolicyAllow);
-    //不允许跳转
-    //decisionHandler(WKNavigationResponsePolicyCancel);
-//}
 
 // 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
@@ -593,7 +601,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSRange range = NSMakeRange(0, 0);
     NSURL * URL;
     NSString *scheme;
-//    NSString * subUrlStr;
+    
     if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]  || [urlStr hasPrefix:@"alipays://"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -647,21 +655,21 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
             XEngineCallBack  Cb=  ^(id data, BOOL ret){
                 if (callBackStr && callBackStr.length !=0) {
                     NSString * retDataStr = [self idFromObject:data];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                    NSString * str = [callBackStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+
+                    NSString * str = [callBackStr stringByRemovingPercentEncoding];
                     str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
-                    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                    str = [str stringByRemovingPercentEncoding];
                     str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
                     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
                     [weakSelf loadRequest:request];
-#pragma clang diagnostic pop
+
                 }
             };
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
+
             [module performSelector:sel withObject:argsDic withObject:Cb];
-#pragma clang diagnostic pop
+
         }
         decisionHandler(WKNavigationActionPolicyCancel);
         return;

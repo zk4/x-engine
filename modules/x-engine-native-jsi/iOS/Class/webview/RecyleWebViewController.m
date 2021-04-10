@@ -98,7 +98,7 @@
             [self.webview loadUrl:self.loadUrl];
             self.webview.frame = [UIScreen mainScreen].bounds;
             
-            [GlobalState setCurrentWebView:self.webview];
+//            [GlobalState setCurrentWebView:self.webview];
         }else {
             self.webview = [GlobalState getCurrentWebView];
         }

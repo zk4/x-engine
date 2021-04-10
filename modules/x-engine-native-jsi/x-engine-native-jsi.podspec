@@ -6,16 +6,12 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
-require "json"
-package = JSON.parse(File.read(File.join(__dir__, "package.json")))
-version = package['version']
-
 Pod::Spec.new do |s|
 
 
     s.name         = "x-engine-native-jsi"
-    s.version      = version
-    s.summary      = package["description"]
+    s.version      = "1.0.0"
+    s.summary      = "x-engine-native-jsi"
 
      s.description  = <<-DESC
             description
@@ -47,6 +43,7 @@ Pod::Spec.new do |s|
     # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
     # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
     s.dependency "x-engine-native-core"
+    s.dependency "x-engine-native-protocols"
 
     
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}

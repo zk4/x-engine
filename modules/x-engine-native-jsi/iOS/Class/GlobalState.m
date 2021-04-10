@@ -8,18 +8,19 @@
 
 #import "GlobalState.h"
 #import "HistoryModel.h"
+#import "WebViewFactory.h"
 @interface GlobalState()
-@property(nonatomic,strong) NSMapTable<id,NSMutableArray<HistoryModel*>*>* wv__vc_paths;
+@property(nonatomic,strong) NSMutableArray<HistoryModel*>* histories;
 @end
 
 @implementation GlobalState
 
-static XEngineWebView*  s_showing_webview;
+
 
 
 - (instancetype)init {
    self = [super init];
-   self.wv__vc_paths = [NSMapTable new];
+   self.histories = [[NSMutableArray alloc]  init];
    return self;
 }
 
@@ -36,43 +37,54 @@ static XEngineWebView*  s_showing_webview;
 
 
 - (NSString*) getLastHost{
-    XEngineWebView* key= [GlobalState getCurrentWebView];
-    NSMutableArray<HistoryModel*>* histories = [self.wv__vc_paths objectForKey:key];
+     return [_histories lastObject].host;
+}
 
-    return [histories lastObject].host;
-}
-+ (void)setCurrentWebView:(XEngineWebView*) val{
-    s_showing_webview=val;
-}
 + (XEngineWebView*)getCurrentWebView{
-    return s_showing_webview;
-}
-- (void)deleteWebView:(XEngineWebView *) webview{
+    NSPointerArray* webviews =  [WebViewFactory sharedInstance].webviews;
+    [webviews addPointer:NULL];
+    [webviews compact];
+    return [[webviews allObjects] lastObject];
 }
 - (NSMutableArray<HistoryModel*>*) getCurrentWebViewHistories{
-    return [self.wv__vc_paths objectForKey:[GlobalState getCurrentWebView]];
-}
-- (void) clearHistory:(XEngineWebView*) key{
-    NSMutableArray *discardedItems = [NSMutableArray array];
-    NSMutableArray* histories = [self.wv__vc_paths objectForKey:key];
-    if(histories){
-        for (HistoryModel *item in histories) {
-            if (!item.vc)
-                [discardedItems addObject:item];
+   [self clearHistory];
+
+   XEngineWebView* lastwebview =  [_histories lastObject].webview;
+    NSMutableArray* ret = [NSMutableArray new];
+    if(lastwebview){
+        for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
+            if(lastwebview == hm.webview)
+                [ret insertObject:hm atIndex:0];
         }
     }
-    [histories  removeObjectsInArray:discardedItems];
+    return ret;
 }
-- (void)addCurrentWebViewHistory:(HistoryModel *) history_model{
-    XEngineWebView* key= [GlobalState getCurrentWebView];
+- (NSMutableArray<HistoryModel *> *)getCurrentHostHistories{
+    [self clearHistory];
 
-    NSMutableArray* histories = [self.wv__vc_paths objectForKey:key];
-    if(histories == nil ){
-        histories=[NSMutableArray new];
-        [self.wv__vc_paths setObject:histories forKey:key];
+    NSString* host =  [_histories lastObject].host;
+     NSMutableArray* ret = [NSMutableArray new];
+     if(host){
+         for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
+             if(host == hm.host)
+                 [ret insertObject:hm atIndex:0];
+         }
+     }
+     return ret;
+    
+}
+- (void) clearHistory{
+    NSMutableArray *discardedItems = [NSMutableArray array];
+    for (HistoryModel *item in _histories) {
+        if (!item.vc)
+            [discardedItems addObject:item];
     }
-    [histories addObject:history_model];
-    [self clearHistory:key];
+    [_histories  removeObjectsInArray:discardedItems];
+}
+
+- (void)addCurrentWebViewHistory:(HistoryModel *) history_model{
+    [_histories addObject:history_model];
+    [self clearHistory];
 }
 
 

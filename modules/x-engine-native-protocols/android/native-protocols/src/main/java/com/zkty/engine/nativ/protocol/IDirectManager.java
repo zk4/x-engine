@@ -1,6 +1,6 @@
 package com.zkty.engine.nativ.protocol;
 
-import com.zkty.modules.nativ.core.Protocol;
+import com.zkty.nativ.core.Protocol;
 
 import java.util.Map;
 

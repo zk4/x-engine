@@ -62,4 +62,5 @@ dependencies {
     implementation project(':native-direct_microapp')
     implementation project(':native-direct_omp')
     implementation project(':native-jsi')
+    implementation project(':jsi-direct')
 }

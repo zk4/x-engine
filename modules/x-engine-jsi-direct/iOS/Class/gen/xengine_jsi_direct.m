@@ -40,6 +40,8 @@
     
     - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"omp\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
+    
           DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
           [self _push:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);

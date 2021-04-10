@@ -1,11 +1,10 @@
-package com.zkty.jsi;
+package com.zkty.modules.jsapi;
 
 import android.webkit.JavascriptInterface;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.zkty.modules.dsbridge.CompletionHandler;
 import com.zkty.modules.nativ.jsi.JSIModule;
+import com.zkty.modules.nativ.jsi.bridge.CompletionHandler;
 
 class StorageDTO {
     String key;
@@ -29,15 +28,17 @@ public abstract class xengine_jsi_xxxx extends JSIModule implements xengine_jsi_
 
     @JavascriptInterface
     public <T> T getSyn(JSONObject dto) {
-        String defaultStr = ;
-        StorageDTO storageDTO = convert(defaultStr, dto, StorageDTO.class);
+        String defaultStr = "{\"key\":\"xx\"}";
+        dto = mergeDefault(dto, defaultStr);
+        StorageDTO storageDTO = convert(dto, StorageDTO.class);
         return _getSyn(storageDTO);
     }
 
     @JavascriptInterface
     public <T> void getAsyn(JSONObject dto, CompletionHandler<T> handler) {
         String defaultStr = "{}";
-        StorageDTO storageDTO = convert(defaultStr, dto, StorageDTO.class);
+        dto = mergeDefault(dto, defaultStr);
+        StorageDTO storageDTO = convert(dto, StorageDTO.class);
         _getAsyn(storageDTO, new CompletionHandler<T>() {
 
             @Override

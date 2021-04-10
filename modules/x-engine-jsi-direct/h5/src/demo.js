@@ -3,7 +3,7 @@ import direct from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
 window.push = () => {
-
+ {
   // 跳转omp
   engine.api('com.zkty.jsi.direct', 'push',{
     scheme: 'omp',
@@ -35,13 +35,15 @@ window.push = () => {
     fragment: "",  
     pathname: "",  
   })  
-}
-window.back = () => {
-
+}}
+ document.getElementById("push").click()
+    window.back = () => {
+ {
     engine.api('com.zkty.jsi.direct','back',{
      scheme: 'omp',
      fragment:'-1'
    }
-}
-
+}}
+ document.getElementById("back").click()
+    
     

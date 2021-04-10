@@ -100,7 +100,7 @@
             
 //            [GlobalState setCurrentWebView:self.webview];
         }else {
-            self.webview = [GlobalState getCurrentWebView];
+            self.webview = [[GlobalState sharedInstance] getCurrentWebView];
         }
         
         

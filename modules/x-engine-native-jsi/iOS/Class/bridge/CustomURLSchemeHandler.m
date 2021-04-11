@@ -24,37 +24,41 @@ API_AVAILABLE(ios(11.0))
     
     // 判断有没有白名单
     id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-    BOOL isAvailable = [securify judgeNetworkIsAvailableWithHostName:urlSchemeTask.request.URL.host];
-    if (!isAvailable) {
-        NSString *msg = [NSString stringWithFormat:@"%@不在白名单内", urlSchemeTask.request.URL.host];
-        [self promptWithMessage:msg];
-    } else {
-        __weak typeof(self)weakSelf = self;
-        NSURLSessionDataTask * task = [[NSURLSession sharedSession] dataTaskWithRequest:urlSchemeTask.request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            __strong CustomURLSchemeHandler *strongSelf = weakSelf;
-            if(strongSelf){
-                id <WKURLSchemeTask> delegate;
-                NSDictionary *dic;
-                @synchronized (self) {
-                    dic = strongSelf.dic[urlSchemeTask.request.URL];
-                }
-                delegate = dic[SchemeKey];
-                if(error){
-                    [delegate didFailWithError:error];
-                }else{
-                    [delegate didReceiveResponse:response];
-                    [delegate didReceiveData:data];
-                    [delegate didFinish];
-                }
-                strongSelf.dic[urlSchemeTask.request] = nil;
-            }
-        }];
-        self.dic[urlSchemeTask.request.URL] = @{
-            SchemeKey:urlSchemeTask,
-            TaskKey:task,
-        };
-        [task resume];
+    if(securify){
+        BOOL isAvailable = [securify judgeNetworkIsAvailableWithHostName:urlSchemeTask.request.URL.host];
+        if (!isAvailable) {
+            NSString *msg = [NSString stringWithFormat:@"%@不在白名单内", urlSchemeTask.request.URL.host];
+            [self promptWithMessage:msg];
+            return;
+        }
     }
+
+        __weak typeof(self)weakSelf = self;
+    NSURLSessionDataTask * task = [[NSURLSession sharedSession] dataTaskWithRequest:urlSchemeTask.request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __strong CustomURLSchemeHandler *strongSelf = weakSelf;
+        if(strongSelf){
+            id <WKURLSchemeTask> delegate;
+            NSDictionary *dic;
+            @synchronized (self) {
+                dic = strongSelf.dic[urlSchemeTask.request.URL];
+            }
+            delegate = dic[SchemeKey];
+            if(error){
+                [delegate didFailWithError:error];
+            }else{
+                [delegate didReceiveResponse:response];
+                [delegate didReceiveData:data];
+                [delegate didFinish];
+            }
+            strongSelf.dic[urlSchemeTask.request] = nil;
+        }
+    }];
+    self.dic[urlSchemeTask.request.URL] = @{
+        SchemeKey:urlSchemeTask,
+        TaskKey:task,
+    };
+    [task resume];
+
 }
 
 - (void)webView:(WKWebView *)webVie stopURLSchemeTask:(nonnull id<WKURLSchemeTask>)urlSchemeTask API_AVAILABLE(ios(11.0)) {

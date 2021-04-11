@@ -43,9 +43,6 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0)
-  - x-engine-native-securify (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-ui (1.0.0):
     - JSONModel
     - x-engine-native-core
@@ -65,7 +62,6 @@ DEPENDENCIES:
   - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
-  - x-engine-native-securify (from `../../x-engine-native-securify`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
 
 SPEC REPOS:
@@ -97,8 +93,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-jsi"
   x-engine-native-protocols:
     :path: "../../x-engine-native-protocols"
-  x-engine-native-securify:
-    :path: "../../x-engine-native-securify"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
 
@@ -116,9 +110,8 @@ SPEC CHECKSUMS:
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
   x-engine-native-jsi: 0408dfee0c7822614990e6fc1c512569eff1abb5
   x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
-  x-engine-native-securify: 006bfcb3132be2ef2c7923a631c77e871dd935f2
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
-PODFILE CHECKSUM: e0012352efa689a3c806f2fdc596b8d0902cfad5
+PODFILE CHECKSUM: 3ffa8f98128f8656c6770ef2598609ad8648ef80
 
 COCOAPODS: 1.10.0

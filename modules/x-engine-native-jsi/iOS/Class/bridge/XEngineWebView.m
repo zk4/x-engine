@@ -299,10 +299,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
         // 判断是否有microapp.json文件
         id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-        
-        BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:modulename];
-        if (!isAvailable) {
-            return nil;
+        if(securify){
+            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:modulename];
+            if (!isAvailable) {
+                return nil;
+            }
+            
         }
     }
     

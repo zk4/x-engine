@@ -107,20 +107,20 @@
         // 存microapp.json 但是存哪里更合适
         // 最后的url会有什么区别, 有几种方式
 #warning: 下面这段放哪里合适  这是个问题
-        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
-        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
-            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
-            id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
-        } else {
-            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
-            }];
-            [errorAlert addAction:sureAction];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
-        }
-        
+//        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
+//        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
+//            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
+//            id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+//            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
+//        } else {
+//            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
+//            }];
+//            [errorAlert addAction:sureAction];
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
+//        }
+//        
         HistoryModel* hm = [HistoryModel new];
         hm.vc            = self;
         hm.fragment      = fragment;

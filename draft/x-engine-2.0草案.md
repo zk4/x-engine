@@ -35,7 +35,7 @@
 
 ### 工具
 
-- [ ] x-cli 封装同步代码的生成 （刘正青）
+- [x] x-cli 封装同步代码的生成 （刘正青）
 
 ### h5 端
 
@@ -49,6 +49,8 @@
 - [ ] 最佳 vite 模板
 
 ### 风格
+
+- [ ] git 流程提交按 gitlab flow 流程运行.如果是在 github 里,按 github flow 运行.
 
 - [ ] iOS 基于 xcode 的自动 indent
 - [ ] android 方案 (谢飞)

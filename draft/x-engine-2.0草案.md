@@ -24,8 +24,8 @@
 
 - [ ] 带 microapp.json 功能
 
-  - [ ] 安全
-  - [ ] 网络
+  - [ ] 安全 feature/security
+  - [ ] 网络 feature/security
   
   
   
@@ -46,6 +46,8 @@
   - [ ] 秒开第一页（骨架屏）
   - [ ] navbar 示例
   - [ ] 打开另一个微应用示例
+  - [ ] 
+- [ ] 不同的webview间通信vuex,通过 postmessage? 或者通过原生中转.
 - [ ] 最佳 vite 模板
 
 ### 风格

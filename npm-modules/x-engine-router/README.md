@@ -1,4 +1,4 @@
-# x-engine-router
+# @zkty-team/x-engine-router
 
 - 重写VueRouter的push, 拦截vue跳转
 - 重写VueRouter的go, 拦截vue跳转
@@ -6,14 +6,14 @@
 - 通过npm安装包
 
 ```
-npm install x-engine-router
+npm install @zkty-team/x-engine-router
 ```
 
 
 - 使用方式
 
 ```javascript
-import xxx from 'x-engine-router'
+import xxx from '@zkty-team/x-engine-router'
 // router.index
 // 参数1: VueRouter实例
 // 参数2: scheme tip: 

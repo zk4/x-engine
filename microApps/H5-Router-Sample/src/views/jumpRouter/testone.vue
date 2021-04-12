@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-module-engine"
+import XEngine from "@zkty-team/x-engine-core"
 export default {
   data() {
     return {}

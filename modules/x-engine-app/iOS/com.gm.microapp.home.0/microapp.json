@@ -16,11 +16,25 @@
       "module":{
           "com.zkty.module.router":{
               "scope":"all"
+          },
+          "com.zkty.module.scan":{
+              "scope":"all"
+          },
+          "com.zkty.jsi.direct":{
+              "scope":"all"
+          },
+          "com.zkty.jsi.ui":{
+              "scope":"all"
           }
       },
       "network":{
           "strict":true,
-          "white_host_list":["baidu.com","souhu.com.cn"]
-          }
+          "white_host_list":[
+              "bjgc11.gos.gomedc.com",
+              "10.115.91.39",
+              "10.115.91.52",
+              "img.yzcdn.cn"
+            ]
+      }
   }
 }

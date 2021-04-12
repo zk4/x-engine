@@ -26,6 +26,8 @@ NATIVE_MODULE(Native_xxxx)
 
 - (void)afterAllNativeModuleInited{
 } 
- 
+-(NSString*) test{
+    return @"test";
+}
 @end
  

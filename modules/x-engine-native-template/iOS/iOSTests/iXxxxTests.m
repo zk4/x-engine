@@ -4,14 +4,17 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "iXxxx.h"
+#import "Native_xxxx.h"
 @interface iOSTests : XCTestCase
-
+@property(nonatomic,strong) id<iXxxx> xxxx;
 @end
 
 @implementation iOSTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    _xxxx = [Native_xxxx new];
 }
 
 - (void)tearDown {
@@ -21,21 +24,11 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    NSDictionary*  raw= @{
-        @"hideNavbar" : @"true",
-        @"path" : @"",
-        @"type" : @"omp",
-        @"uri" : @"http://10.115.91.40:30599/app-vue/app/index.html#/mall2/orderlist?selectedIndex=a"
-    };
+    NSString* output = [_xxxx test];
 
-    NSDictionary*  should= @{
-        @"hideNavbar" : @"true",
-        @"path" : @"",
-        @"type" : @"omp",
-        @"uri" : @"http://10.115.91.40:30599/app-vue/app/index.html#/mall2/orderlist?selectedIndex=a"
-    };
+    NSString*  should= @"test";
 
-     XCTAssertEqualObjects(raw,should, @"should equal");
+     XCTAssertEqualObjects(output,should, @"should equal");
     
     
 }

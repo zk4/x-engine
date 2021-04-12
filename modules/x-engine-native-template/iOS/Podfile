@@ -3,18 +3,21 @@ platform :ios, '11.0'
  
 source 'https://github.com/CocoaPods/Specs.git'
 
-abstract_target 'abstract' do
+def shared_pods
   pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
-  target 'xxxx' do
-    #use_frameworks!
-    #module_pods
-  end
-  target 'xxxxTests' do
-    #use_frameworks!
-    #module_pods
-  end
-  target 'xxxxUITests' do
-    # Pods for testing
-  end
+end
+
+target 'xxxx' do
+  #use_frameworks!
+  shared_pods
+end
+target 'xxxxTests' do
+  #use_frameworks!
+  shared_pods
+end
+target 'xxxxUITests' do
+  # Pods for testing
+  shared_pods
+
 end

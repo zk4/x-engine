@@ -19,26 +19,24 @@
  RecyleWebViewController 只负责载着 view 做转场动画。
  */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate>
-@property (nonatomic, copy) NSString * _Nullable loadUrl;
+@property (nonatomic, copy)   NSString * _Nullable loadUrl;
+@property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
 @property (nonatomic, assign) Boolean newWebview;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
-@property (nonatomic, copy) NSString *customTitle;
 @property (nonatomic, strong) UIView *screenView;
 @property (nonatomic, strong) UIImageView *navBarHairlineImageView;
-
 @end
 
 @implementation RecyleWebViewController
-
--(void)webViewProgressChange:(NSNotification *)notifi{
-    
+- (void)webViewProgressChange:(NSNotification *)notifi{
     NSDictionary *dic = notifi.object;
     XEngineWebView *web = dic[@"webView"];
     if(web == self.webview){
+        self.webview.allowsBackForwardNavigationGestures = YES;
         if(dic[@"progress"]){
             float floatNum = [dic[@"progress"] floatValue];
             
@@ -48,33 +46,33 @@
                 [UIView animateWithDuration:0.3 animations:^{
                     self.progresslayer.alpha = 0;
                 }];
-//                if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
-//                    [self.webview evaluateJavaScript:@"document.title"
-//                                   completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-//                        if([response isKindOfClass:[NSString class]]){
-//                            NSString *title = response;
-//                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//                            if(title.length > 0){
-//                                if(self.title.length == 0){
-//                                    self.title = title;
-//                                    self.customTitle = self.title;
-//                                }
-//                            }
-//                        }
-//                    }];
-//                }
+                //                if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
+                //                    [self.webview evaluateJavaScript:@"document.title"
+                //                                   completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+                //                        if([response isKindOfClass:[NSString class]]){
+                //                            NSString *title = response;
+                //                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                //                            if(title.length > 0){
+                //                                if(self.title.length == 0){
+                //                                    self.title = title;
+                //                                    self.customTitle = self.title;
+                //                                }
+                //                            }
+                //                        }
+                //                    }];
+                //                }
             }
         }
-//        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
-//            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-//                self.title = dic[@"title"];
-//                self.customTitle = self.title;
-//            }
-//        }
+        //        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
+        //            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
+        //                self.title = dic[@"title"];
+        //                self.customTitle = self.title;
+        //            }
+        //        }
     }
 }
 
--(void)webViewLoadFail:(NSNotification *)notifi{
+- (void)webViewLoadFail:(NSNotification *)notifi{
     NSDictionary *dic = notifi.object;
     id web = dic[@"webView"];
     
@@ -98,16 +96,20 @@
             [self.webview loadUrl:self.loadUrl];
             self.webview.frame = [UIScreen mainScreen].bounds;
             
-//            [GlobalState setCurrentWebView:self.webview];
+            //            [GlobalState setCurrentWebView:self.webview];
         } else {
             self.webview = [GlobalState getCurrentWebView];
         }
         
         
+        NSLog(@"hosthost%@", host);
+        
         // 存microapp.json 但是存哪里更合适
         // 最后的url会有什么区别, 有几种方式
 #warning: 下面这段放哪里合适  这是个问题
-        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
+        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+        
+        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
         BOOL isHaveMicroAppJson = [securify judgeLocationIsHaveMicroAppJsonWithPath:microappPath];
         if (isHaveMicroAppJson) {
             NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
@@ -136,7 +138,6 @@
     return self;
 }
 
-
 - (void)loadFileUrl {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
@@ -145,27 +146,7 @@
     }
 }
 
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    [self drawFrame];
-}
-
-- (void)drawFrame{
-    self.webview.frame = self.view.bounds;
-    self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
-    float height = (self.view.bounds.size.width / 375.0) * 200;
-    self.imageView404.frame = CGRectMake(0,
-                                         (self.view.bounds.size.height - height) * 0.5,
-                                         self.view.bounds.size.width,
-                                         height);
-    
-    self.tipLabel404.frame = CGRectMake(0,
-                                        CGRectGetHeight(self.imageView404.frame) + 8,
-                                        self.imageView404.bounds.size.width,
-                                        self.tipLabel404.font.lineHeight);
-}
-
+#pragma mark - <callback>
 - (void)goback:(UIButton *)sender {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         if(self.navigationController.viewControllers.count > 1){
@@ -196,16 +177,19 @@
     }
 }
 
--(void)close:(UIButton *)sender{
-    
+- (void)close:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - <life cycle>
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupUI];
+}
+
+- (void)setupUI {
     self.hidesBottomBarWhenPushed = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     if (@available(iOS 11.0, *)) {
         self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -215,72 +199,32 @@
     if (@available(iOS 13.0, *)) {
         self.webview.scrollView.automaticallyAdjustsScrollIndicatorInsets = NO;
     }
-    UIImage *path = [UIImage imageNamed:@"back_arrow"];
-    if(path){
-        UIButton *btn = [[UIButton alloc] init];
-        [btn setImage:path forState:UIControlStateNormal];
-        
-        [btn addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
-        [btn sizeToFit];
-        if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-            NSString *closePath = [[NSBundle mainBundle] pathForResource:@"close_black" ofType:@"png"];
-            UIButton *close = [[UIButton alloc] init];
-            close.frame = CGRectMake(0, 0, 34, 0);
-            UIImageView *img2 = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:closePath]]];
-            img2.userInteractionEnabled = NO;
-            img2.frame = CGRectMake(4, 6, 22, 22);
-            [close addSubview:img2];
-            [close addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
-            self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:btn], [[UIBarButtonItem alloc] initWithCustomView:close]];
-        } else {
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        }
-    }
-    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     [self.view addSubview:self.webview];
-    
-    self.progresslayer = [[UIProgressView alloc] init];
-    self.progresslayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.5);
-    self.progresslayer.progressTintColor = [UIColor orangeColor];
-    [self.view addSubview:self.progresslayer];
-    
-    self.imageView404 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"web404"]];
-    self.imageView404.layer.masksToBounds = NO;
-    self.imageView404.hidden = YES;
-    [self.view addSubview:self.imageView404];
-    
-    self.tipLabel404 = [[UILabel alloc] init];
-    self.tipLabel404.textAlignment = NSTextAlignmentCenter;
-    self.tipLabel404.text = @"您访问的页面找不到了";
-    self.tipLabel404.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-    self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
-    [self.imageView404 addSubview:self.tipLabel404];
-    
+    [self setupBackButton];
+    [self setupProgressLayer];
+    [self setup404];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    
     /// FIXED: 侧滑时，如果并没有滑走，不应该在 viewWillAppear 里 loadFileUrl
-//    [self loadFileUrl];
+    //    [self loadFileUrl];
     if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];
             self.screenView = nil;
-            });
+        });
     }
     [self.view insertSubview:self.webview atIndex:0];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -289,8 +233,6 @@
     //           completionHandler:nil];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.progresslayer.alpha = 0;
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -303,8 +245,65 @@
     }
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self drawFrame];
+}
 
-#pragma mark - < json->dic / dic->json >
+- (void)drawFrame{
+    self.webview.frame = self.view.bounds;
+    self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
+    float height = (self.view.bounds.size.width / 375.0) * 200;
+    self.imageView404.frame = CGRectMake(0, (self.view.bounds.size.height - height) * 0.5, self.view.bounds.size.width, height);
+    self.tipLabel404.frame = CGRectMake(0, CGRectGetHeight(self.imageView404.frame) + 8, self.imageView404.bounds.size.width, self.tipLabel404.font.lineHeight);
+}
+
+#pragma mark - <ui>
+- (void)setupBackButton {
+    UIButton *backButton = [[UIButton alloc] init];
+    [backButton setImage: [UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton sizeToFit];
+    
+    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
+        NSString *closePath = [[NSBundle mainBundle] pathForResource:@"close_black" ofType:@"png"];
+        UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 34, 0)];
+        UIImageView *img2 = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:closePath]]];
+        img2.userInteractionEnabled = NO;
+        img2.frame = CGRectMake(4, 6, 22, 22);
+        [closeButton addSubview:img2];
+        [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItems = @[
+            [[UIBarButtonItem alloc] initWithCustomView:backButton],
+            [[UIBarButtonItem alloc] initWithCustomView:closeButton]
+        ];
+    } else {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    }
+}
+
+- (void)setupProgressLayer  {
+    self.progresslayer = [[UIProgressView alloc] init];
+    self.progresslayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.5);
+    self.progresslayer.progressTintColor = [UIColor orangeColor];
+    [self.view addSubview:self.progresslayer];
+}
+
+- (void)setup404 {
+    self.imageView404 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"web404"]];
+    self.imageView404.layer.masksToBounds = NO;
+    self.imageView404.hidden = YES;
+    [self.view addSubview:self.imageView404];
+    
+    self.tipLabel404 = [[UILabel alloc] init];
+    self.tipLabel404.textAlignment = NSTextAlignmentCenter;
+    self.tipLabel404.text = @"您访问的页面找不到了";
+    self.tipLabel404.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+    self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
+    [self.imageView404 addSubview:self.tipLabel404];
+}
+
+#pragma mark - < utils --> json->dic / dic->json >
 /**
  *  JSON字符串转NSDictionary
  *  @param jsonString JSON字符串

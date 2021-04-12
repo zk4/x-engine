@@ -33,28 +33,15 @@
 }
 
 - (void)didClickBtn {
-//    [self.navigationController pushViewController:[[JumpViewController alloc ] init] animated:YES];
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
     
-    /*
-    1 将com.gm.microapp.mine.0的microapp.json文件拖出项目后 可以测试无法打开应用的提示
-    2 将com.gm.microapp.mine.0的microapp.json文件中的com.zkty.jsi.direct模块去掉，可以测试没有该模块的提示
-    3 将com.gm.microapp.mine.0的microapp.json文件中的network的www.fastmock.site域名去掉后，在模拟器上点网络请求，会报不包含该域名,添加上可以请求到数据 为userinfo:null
-    */
+    // 本地com.gm.microapp.mine包
     [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    
+
+    // cwz 远程
 //    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
     
-//    [director push:@"http" host:@"www.baidu.com" pathname:@"/" query:nil params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"/" query:nil
-//      [director push:@"omp" host:@"192.168.1.15:8082" pathname:@"" fragment:@"/" query:nil  params:@{@"hideNavbar":@YES}];
-//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@"" fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp" host:@"10.2.128.73:8080" pathname:@"" fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    
-//    [director push:@"omp" host:@"192.168.1.15:9111" pathname:@"/" query:nil params:@{@"hideNavbar":@NO}];
-    
-//    [director push:@"omp" host:@"10.2.128.80:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    
-
+    // zk4 远程 请替换host
+//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 }
 @end

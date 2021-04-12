@@ -19,6 +19,7 @@
 		5805B322260FAADB0029F138 /* NSString+QueryDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */; };
 		580EB23C260A214900EE0694 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580EB23B260A214900EE0694 /* CoreData.framework */; };
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
+		58209E612624A54A00843DB5 /* Url2direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58209E602624A54A00843DB5 /* Url2direct.m */; };
 		583CCAAD26158D52000DFF1F /* com.gm.microapp.mine.1 in Resources */ = {isa = PBXBuildFile; fileRef = 583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */; };
 		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
 		58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BBF26138BEF0082ADC3 /* OneViewController.m */; };
@@ -77,6 +78,7 @@
 		5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QueryDictionaryTests.m"; sourceTree = "<group>"; };
 		580EB23B260A214900EE0694 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
+		58209E602624A54A00843DB5 /* Url2direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Url2direct.m; sourceTree = "<group>"; };
 		583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = com.gm.microapp.mine.1; path = Class/com.gm.microapp.mine.1; sourceTree = SOURCE_ROOT; };
 		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
 		58D20BBF26138BEF0082ADC3 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				580EB2D2260B385200EE0694 /* JSIContextTests.m */,
 				5805B321260FAADB0029F138 /* NSString+QueryDictionaryTests.m */,
+				58209E602624A54A00843DB5 /* Url2direct.m */,
 				5805B30C260FA30F0029F138 /* NSURL+QueryDictionaryTests.m */,
 				58F6FD542620D46B00A482EF /* RegexTests.m */,
 				00DFC6C924C83F95006A53EE /* XEngineContextTests.m */,
@@ -492,6 +495,7 @@
 				58F6FD552620D46B00A482EF /* RegexTests.m in Sources */,
 				00DFC6CA24C83F95006A53EE /* XEngineContextTests.m in Sources */,
 				5805B30D260FA30F0029F138 /* NSURL+QueryDictionaryTests.m in Sources */,
+				58209E612624A54A00843DB5 /* Url2direct.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +653,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZE56AMZE7;
+				DEVELOPMENT_TEAM = MQSNCQR864;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -670,7 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZE56AMZE7;
+				DEVELOPMENT_TEAM = MQSNCQR864;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

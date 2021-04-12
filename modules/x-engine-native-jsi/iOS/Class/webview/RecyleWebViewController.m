@@ -45,29 +45,9 @@
                 [UIView animateWithDuration:0.3 animations:^{
                     self.progresslayer.alpha = 0;
                 }];
-                //                if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
-                //                    [self.webview evaluateJavaScript:@"document.title"
-                //                                   completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-                //                        if([response isKindOfClass:[NSString class]]){
-                //                            NSString *title = response;
-                //                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                //                            if(title.length > 0){
-                //                                if(self.title.length == 0){
-                //                                    self.title = title;
-                //                                    self.customTitle = self.title;
-                //                                }
-                //                            }
-                //                        }
-                //                    }];
-                //                }
+      
             }
         }
-        //        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
-        //            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-        //                self.title = dic[@"title"];
-        //                self.customTitle = self.title;
-        //            }
-        //        }
     }
 }
 
@@ -79,8 +59,7 @@
         self.imageView404.hidden = NO;
     }
 }
-
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
@@ -117,13 +96,15 @@
 //            [errorAlert addAction:sureAction];
 //            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
 //        }
-//        
+//
 
         HistoryModel* hm = [HistoryModel new];
         hm.vc            = self;
         hm.fragment      = fragment;
         hm.webview       = self.webview;
         hm.host          = host;
+        hm.onTab         = isOnTab;
+
         [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -139,6 +120,9 @@
         
     }
     return self;
+}
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
+    return [self initWithUrl:fileUrl host:host fragment:fragment newWebView:newWebView withHiddenNavBar:isHidden onTab:FALSE];
 }
 
 - (void)loadFileUrl {

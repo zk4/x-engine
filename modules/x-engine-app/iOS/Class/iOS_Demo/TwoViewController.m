@@ -36,7 +36,7 @@
     NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:microappid withVersion:0];
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE onTab:TRUE];
 
     /// TODO:  背景没有生效
     vc.view.backgroundColor = [UIColor redColor];

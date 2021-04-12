@@ -8,10 +8,6 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-jsi-ui (0.1.13):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-broadcast (1.0.0):
     - JSONModel
     - x-engine-native-core
@@ -52,7 +48,6 @@ DEPENDENCIES:
   - JSONModel
   - x-engine-jsi-direct (from `../../x-engine-jsi-direct`)
   - x-engine-jsi-legacy (from `../../x-engine-jsi-legacy`)
-  - x-engine-jsi-ui (from `../../x-engine-jsi-ui`)
   - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-direct (from `../../x-engine-native-direct`)
@@ -73,8 +68,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-direct"
   x-engine-jsi-legacy:
     :path: "../../x-engine-jsi-legacy"
-  x-engine-jsi-ui:
-    :path: "../../x-engine-jsi-ui"
   x-engine-native-broadcast:
     :path: "../../x-engine-native-broadcast"
   x-engine-native-core:
@@ -100,7 +93,6 @@ SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   x-engine-jsi-direct: 576d2f25bc1d0c87e02a4ddf1469d955a9bed82e
   x-engine-jsi-legacy: c6add91d5426ffc532e78015e1f5a30dd3ce46b1
-  x-engine-jsi-ui: 64c934a15a630a55a29ad810ee208b7c3eebdd25
   x-engine-native-broadcast: 57857dfba89a219b998728cf0c95045b1ad946e5
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
@@ -112,6 +104,6 @@ SPEC CHECKSUMS:
   x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
-PODFILE CHECKSUM: 3ffa8f98128f8656c6770ef2598609ad8648ef80
+PODFILE CHECKSUM: 1493f8fae9453917f14b7f6e7c63536d58d2e8ee
 
 COCOAPODS: 1.10.0

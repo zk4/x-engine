@@ -3,7 +3,7 @@ import VueRouter from "vue-router"
 import XEngineRouter from "x-engine-router"
 
 Vue.use(VueRouter);
-XEngineRouter(VueRouter, 'microapp');
+XEngineRouter(VueRouter, 'omp');
 
 const routes = [{
         path: "/",

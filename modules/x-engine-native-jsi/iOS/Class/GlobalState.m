@@ -80,8 +80,8 @@
 }
 
 - (void)addCurrentWebViewHistory:(HistoryModel *) history_model{
-    [_histories addObject:history_model];
     [self clearHistory];
+    [_histories addObject:history_model];
 }
 
 

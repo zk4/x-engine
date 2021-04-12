@@ -26,17 +26,17 @@
 
     ///TODO: 统一一个类处理 URL 地址问题
     NSString* protocol= @"file:";
-    NSString* host = @"com.gm.microapp.mine";
+    NSString* microappid = @"com.gm.microapp.mine";
     NSString* fragment = @"/";
     
 //    NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
 //    if(pathname && ![pathname isEqualToString:@"/"]){
 //        finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
 //    }
-    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:0];
+    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:microappid withVersion:0];
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE];
 
     /// TODO:  背景没有生效
     vc.view.backgroundColor = [UIColor redColor];

@@ -41,8 +41,9 @@
     2 将com.gm.microapp.mine.0的microapp.json文件中的com.zkty.jsi.direct模块去掉，可以测试没有该模块的提示
     3 将com.gm.microapp.mine.0的microapp.json文件中的network的www.fastmock.site域名去掉后，在模拟器上点网络请求，会报不包含该域名,添加上可以请求到数据 为userinfo:null
     */
-    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    
+//    [director push:@"omp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+    [director push:@"omp" host:@"192.168.1.15:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+
 //    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
     
 //    [director push:@"http" host:@"www.baidu.com" pathname:@"/" query:nil params:@{@"hideNavbar":@TRUE}];

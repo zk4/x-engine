@@ -18,7 +18,7 @@
  调用者如 nav，router 模块或其他原生模块。
  RecyleWebViewController 只负责载着 view 做转场动画。
  */
-@interface RecyleWebViewController () <UIGestureRecognizerDelegate>
+@interface RecyleWebViewController () <UIGestureRecognizerDelegate, WKNavigationDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
@@ -36,7 +36,6 @@
     NSDictionary *dic = notifi.object;
     XEngineWebView *web = dic[@"webView"];
     if(web == self.webview){
-        self.webview.allowsBackForwardNavigationGestures = YES;
         if(dic[@"progress"]){
             float floatNum = [dic[@"progress"] floatValue];
             
@@ -86,7 +85,8 @@
     if (self){
         if(fileUrl.length == 0)
             return self;
-        
+        self.webview.allowsBackForwardNavigationGestures = YES;
+        self.webview.navigationDelegate = self;
         self.isHiddenNavbar = isHidden;
         self.newWebview = newWebView;
         self.loadUrl = fileUrl;
@@ -101,14 +101,10 @@
             self.webview = [GlobalState getCurrentWebView];
         }
         
-        
-        NSLog(@"hosthost%@", host);
-        
         // 存microapp.json 但是存哪里更合适
         // 最后的url会有什么区别, 有几种方式
 #warning: 下面这段放哪里合适  这是个问题
         id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-        
         NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
         BOOL isHaveMicroAppJson = [securify judgeLocationIsHaveMicroAppJsonWithPath:microappPath];
         if (isHaveMicroAppJson) {
@@ -189,16 +185,21 @@
 
 - (void)setupUI {
     self.hidesBottomBarWhenPushed = YES;
+    
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    if (@available(iOS 11.0, *)) {
-        self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = false;
-    }
-    if (@available(iOS 13.0, *)) {
-        self.webview.scrollView.automaticallyAdjustsScrollIndicatorInsets = NO;
-    }
+    
+//    if (@available(iOS 11.0, *)) {
+//        self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//    } else {
+//        self.automaticallyAdjustsScrollViewInsets = false;
+//    }
+     
+//    if (@available(iOS 13.0, *)) {
+//        self.webview.scrollView.automaticallyAdjustsScrollIndicatorInsets = NO;
+//    }
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;

@@ -1,4 +1,4 @@
-import XEngine from 'x-engine-core'
+import XEngine from '@zkty-team/x-engine-core'
 
 function intercept(VueRouter, scheme) {
     const originalRouterPush = VueRouter.prototype.push;

@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@zkty-team/x-engine-module-device": "^0.1.20",
+    "@zkty-team/x-engine-core": "^1.0.0",
+    "@zkty-team/x-engine-router": "^1.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "less": "^4.1.1",
@@ -17,9 +19,7 @@
     "vue": "^2.6.11",
     "vue-route": "^1.5.1",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2",
-    "x-engine-core": "^1.0.2",
-    "x-engine-router": "^1.0.4"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

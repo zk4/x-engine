@@ -293,31 +293,36 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         NSLog(@"JS 参数有错,%@",nameStr);
         return nil;
     }
-    NSString*  modulename = nameStr[0];
-    NSString* methodname = nameStr[1];
-    if(![@"_dsb" isEqual:modulename]){
+    NSString* moduleName = nameStr[0];
+    NSString* methodName = nameStr[1];
+    if(![@"_dsb" isEqual:moduleName]){
         /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
         // 判断是否有microapp.json文件
         id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+
         if(securify){
-            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:modulename];
+            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
             if (!isAvailable) {
                 return nil;
             }
             
         }
     }
-    
-    id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[modulename];
-    NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
-    NSMutableDictionary*result =[NSMutableDictionary dictionaryWithDictionary:@{@"code":@-1,@"data":@""}];
+ 
+    id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[moduleName];
+    NSString *error = [NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
+    NSMutableDictionary*result = [NSMutableDictionary dictionaryWithDictionary:
+                                  @{
+                                      @"code":@-1,
+                                      @"data":@""
+                                  }];
     if(!JavascriptInterfaceObject){
-        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge  called, but can't find %@ 模块, please check your code!",modulename]];
+//        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge called, but can't find %@ 模块, please check your code!",modulename]];
+        [self showErrorAlert:[NSString stringWithFormat:@"没有找到原生%@模块, 请联系原生开发人员", moduleName]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
-    }else{
-
-        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:methodname class:[JavascriptInterfaceObject class]];
-        NSString *methodTwo = [XEngineJSBUtil methodByNameArg:2 selName:methodname class:[JavascriptInterfaceObject class]];
+    } else {
+        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:methodName class:[JavascriptInterfaceObject class]];
+        NSString *methodTwo = [XEngineJSBUtil methodByNameArg:2 selName:methodName class:[JavascriptInterfaceObject class]];
         SEL sel=NSSelectorFromString(methodOne);
         SEL selasyn=NSSelectorFromString(methodTwo);
         NSDictionary * args=[XEngineJSBUtil jsonStringToObject:argStr];
@@ -336,17 +341,14 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                         if(value!=nil){
                             result[@"data"]=[self convertDict:value];
                         }
-                        
-                        value=[XEngineJSBUtil objToJsonString:result];
-                        value =[value stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-                        
-                        if(complete){
+                        value = [XEngineJSBUtil objToJsonString:result];
+                        value = [value stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+                        if(complete) {
                             del=[@"delete window." stringByAppendingString:cb];
                         }
-                        NSString*js=[NSString stringWithFormat:@"try {%@(JSON.parse(decodeURIComponent(\"%@\")).data);%@; } catch(e){};",cb,(value == nil) ? @"" : value,del];
+                        NSString *js = [NSString stringWithFormat:@"try {%@(JSON.parse(decodeURIComponent(\"%@\")).data);%@; } catch(e){};",cb,(value == nil) ? @"" : value,del];
                         __strong typeof(self) strongSelf = weakSelf;
-                        @synchronized(self)
-                        {
+                        @synchronized(self) {
                             UInt64  t=[[NSDate date] timeIntervalSince1970]*1000;
                             self->jsCache=[self->jsCache stringByAppendingString:js];
                             if(t-self->lastCallTime<50){
@@ -358,7 +360,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                                 [strongSelf evalJavascript:0];
                             }
                         }
-                        
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
@@ -376,14 +377,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                 }
                 break;
             }
-            
-            NSString*js = [error stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            NSString *js = [error stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
             if(isDebug){
-                js=[NSString stringWithFormat:@"window.alert(decodeURIComponent(\"%@\"));",js];
+                js = [NSString stringWithFormat:@"window.alert(decodeURIComponent(\"%@\"));",js];
                 [self evaluateJavaScript :js completionHandler:nil];
             }
             NSLog(@"%@",error);
-            
             [self showErrorAlert:error];
         }while (0);
     }
@@ -576,7 +575,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.indicatorView stopAnimating];
-    NSLog(@"%@",error.debugDescription);
+    NSLog(@"didFailProvisionalNavigation==>\n%@",error.debugDescription);
 }
 
 - (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{

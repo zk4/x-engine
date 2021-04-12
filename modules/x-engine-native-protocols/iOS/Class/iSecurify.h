@@ -10,6 +10,10 @@
 #define iSecurify_h
 
 @protocol iSecurify <NSObject>
+/// 判断本地是否有microapp.json文件
+/// @param path 路径
+- (BOOL)judgeLocationIsHaveMicroAppJsonWithPath:(NSString *)path;
+
 /// 保存microapp.json数据
 /// @param jsonDict json数据
 - (void)saveMicroAppJsonWithJson:(NSDictionary *)jsonDict;

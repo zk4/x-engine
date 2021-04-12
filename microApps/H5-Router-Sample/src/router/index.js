@@ -1,6 +1,6 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import XEngineRouter from "x-engine-router"
+import XEngineRouter from "@zkty-team/x-engine-router"
 
 Vue.use(VueRouter);
 XEngineRouter(VueRouter, 'microapp');
@@ -15,6 +15,7 @@ const routes = [{
         name: 'testone',
         component: () => import('../views/jumpRouter/testone.vue')
     },
+    
     {
         path: '/testtwo',
         name: 'testtwo',

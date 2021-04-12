@@ -301,6 +301,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
         
         BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:modulename];
+        NSLog(@"%@", modulename);
         if (!isAvailable) {
             return nil;
         }
@@ -310,7 +311,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result =[NSMutableDictionary dictionaryWithDictionary:@{@"code":@-1,@"data":@""}];
     if(!JavascriptInterfaceObject){
-        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge  called, but can't find %@ 模块, please check your code!",modulename]];
+//        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge called, but can't find %@ 模块, please check your code!",modulename]];
+        [self showErrorAlert:[NSString stringWithFormat:@"没有找到原生%@模块, 请联系原生开发人员", modulename]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     }else{
 

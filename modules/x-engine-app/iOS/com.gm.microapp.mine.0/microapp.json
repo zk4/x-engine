@@ -19,6 +19,12 @@
             },
             "com.zkty.jsi.direct":{
                 "scope":"all"
+            },
+            "com.zkty.jsi.ui":{
+                "scope":"all"
+            },
+            "com.zkty.module.device":{
+                "scope":"all"
             }
         },
         "network":{

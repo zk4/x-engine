@@ -11,7 +11,6 @@ public class MicroAppLoader {
     private static final String TAG = MicroAppLoader.class.getSimpleName();
     private static String currentIndexPath;//F://xxxx.xxxx.xxx.0/index.html
     private static String currentRootPath;//F://xxxx.xxxx.xxx.0
-    private Context mContext;
     private String currentMicroAppId;
 
     private MicroAppLoader() {
@@ -28,22 +27,13 @@ public class MicroAppLoader {
         return instance;
     }
 
-    public void init(Application context) {
-        this.mContext = context;
-    }
-
-
-
 
     public String getMicroAppHost(String host, long version) {
-
         this.currentMicroAppId = host;
         currentRootPath = MicroAppsInstall.sharedInstance().getMicroAppPath(host, version);
         currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
-        return currentRootPath;
+        return currentIndexPath;
     }
-
-
 
 
     /**
@@ -55,9 +45,8 @@ public class MicroAppLoader {
         this.currentMicroAppId = microAppId;
         currentRootPath = MicroAppsInstall.sharedInstance().getMicroAppPath(microAppId, version);
         currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
-        return currentRootPath;
+        return currentIndexPath;
     }
-
 
 
     public String getCurrentIndexPath() {

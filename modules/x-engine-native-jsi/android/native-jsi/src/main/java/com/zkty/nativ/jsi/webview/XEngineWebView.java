@@ -20,10 +20,13 @@ import com.tencent.smtt.sdk.WebViewClient;
 
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.core.utils.Utils;
+import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.DWebView;
 import com.zkty.nativ.jsi.exception.NoModuleIdException;
+import com.zkty.nativ.jsi.exception.XEngineException;
+import com.zkty.nativ.jsi.utils.ImageUtils;
 import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.jsi.view.XEngineWebActivity;
@@ -31,6 +34,7 @@ import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +43,9 @@ import java.util.Map;
 public class XEngineWebView extends DWebView {
     private Context mContext;
     private String TAG = XEngineWebView.class.getSimpleName();
+
+    //自定义webview 历史记录
+    private List<HistoryModel> historyModels;
 
     public XEngineWebView(Context context) {
         super(context);
@@ -53,6 +60,7 @@ public class XEngineWebView extends DWebView {
     }
 
     public void init() {
+        historyModels = new ArrayList<>();
         getSettings().setJavaScriptEnabled(true);
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式(true);
         getSettings().setAppCacheEnabled(false);
@@ -220,31 +228,6 @@ public class XEngineWebView extends DWebView {
         for (JSIModule object : modules) {
             String tag = object.moduleId();
             addJavascriptObject(object, tag);
-//            try {
-//                Class<?> classModule = Class.forName(module);
-//                Constructor<?> constructor = classModule.getDeclaredConstructor();
-//                constructor.setAccessible(true);
-//                Object object = constructor.newInstance();
-//                Method methodModule = classModule.getMethod("moduleId");
-//                methodModule.setAccessible(true);
-//                String tag = (String) methodModule.invoke(object);
-//                try {
-//                    Method setXEngineWebView = classModule.getMethod("setXEngineWebView", XEngineWebView.class);
-//                    setXEngineWebView.setAccessible(true);
-//                    setXEngineWebView.invoke(object, this);
-//                } catch (Exception e) {
-//                    Log.d("ZKWebView", e.toString());
-//                }
-//                if (tag == null) {
-//                    throw new NoModuleIdException("module: " + module + " moduleId cannot be null");
-//                } else {
-//                    addJavascriptObject(object, tag);
-//                    Log.d("ZKWebView", "module_id = " + tag);
-//                }
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-
         }
 
     }
@@ -259,58 +242,67 @@ public class XEngineWebView extends DWebView {
         clearCache(true);
         clearHistory();
         loadUrl("about:blank");
-        historyCount = 0;
         this.destroy();
 
     }
 
     //回微应用首页
-    public void goBackToIndexPage() {
-        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-        if (activity != null) {
-            activity.showScreenCapture(true);
-            ViewGroup parent = (ViewGroup) getParent();
-            if (parent != null) {
-                parent.removeAllViews();
-            }
-        }
-        WebBackForwardList backForwardList = copyBackForwardList();
-        if (backForwardList != null && backForwardList.getSize() != 0) {
-            if ("about:blank".equals(backForwardList.getItemAtIndex(0).getOriginalUrl())) {
-                goBackOrForward(-backForwardList.getCurrentIndex() + 1);
-            } else {
-                goBackOrForward(-backForwardList.getCurrentIndex());
-            }
-            historyCount = 1;
-        }
-
-    }
+//    public void goBackToIndexPage() {
+//        XEngineWebView webView = XOneWebViewPool.sharedInstance().getFirstWebView();
+//        if (webView == null) return;
+//
+//        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
+//        activity.showScreenCapture(true);
+//
+//        if (webView.getHistoryModels().size() > 1) {
+//            webView.getHistoryModels().subList(0, 1);
+//            String url = getUrlByHistoryModel(webView.getHistoryModels().get(0));
+//            webView.loadUrl(url);
+//        } else {
+//            throw new XEngineException("当前已是微应用首页");
+//        }
+//
+//
+//    }
 
     //回指定页面
-    public void backToPage(String url) {
-        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-        activity.showScreenCapture(true);
-        ViewGroup parent = (ViewGroup) getParent();
-        if (parent != null) {
-            parent.removeAllViews();
-        }
-        while (canGoBack()) {
-            if (UrlUtils.equalsWithoutArgs(getOriginalUrl(), url)) {
-                break;
-            }
-            goBack();
+//    public void backToPage(String host, String fragment) {
+//
+//        XEngineWebView webView = XOneWebViewPool.sharedInstance().getWebViewFromPool(host);
+//        if (webView == null) return;
+//
+//        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
+//        activity.showScreenCapture(true);
+//
+//        ViewGroup parent = (ViewGroup) webView.getParent();
+//        if (parent != null) {
+//            parent.removeAllViews();
+//        }
+//
+//
+//
+//    }
+
+    public void goBack() {
+        super.goBack();
+        if (historyModels.size() > 1) {
+            historyModels.remove(historyModels.size() - 1);
+        } else {
+            historyModels.clear();
+            XOneWebViewPool.sharedInstance().removeWebView(this);
         }
     }
 
 
-    /**
-     * webview复用模式。
-     * 此字段代表wevbiew 的历史url数量
-     * 每加载一次+1;
-     * 仅用于微应用跳转间的回退，>0时暂不清理缓存以免出现白屏
-     */
-    private int historyCount = 0;
-    private String currentUrl = null;
+    public void loadUrl(HistoryModel model) {
+        String url = getUrlByHistoryModel(model);
+        loadUrl(url);
+        historyModels.add(model);
+    }
+
+    public List<HistoryModel> getHistoryModels() {
+        return this.historyModels;
+    }
 
     @Override
     public void loadUrl(String url) {
@@ -327,31 +319,10 @@ public class XEngineWebView extends DWebView {
 
         Log.d("DWebView", "url=" + url);
         super.loadUrl(url);
-        this.currentUrl = url;
-        historyCount++;
+
 
     }
 
-    public void goBack() {
-        super.goBack();
-        historyCount--;
-
-    }
-
-    /**
-     *
-     */
-    public void historyBack() {
-        historyCount--;
-    }
-
-    public int getHistoryCount() {
-        return this.historyCount;
-    }
-
-    public String getCurrentUrl() {
-        return this.currentUrl;
-    }
 
     private void setOnLongClickListener() {
 
@@ -364,9 +335,9 @@ public class XEngineWebView extends DWebView {
 //                    new Thread(() -> {
                     if (result != null && result.getExtra() != null) {
                         if (result.getExtra().toLowerCase().startsWith("http")) {
-//                            ImageUtils.savePictureByUrl(mContext, result.getExtra());
+                            ImageUtils.savePictureByUrl(mContext, result.getExtra());
                         } else {
-//                            ImageUtils.savePictureByBase64(mContext, result.getExtra());
+                            ImageUtils.savePictureByBase64(mContext, result.getExtra());
                         }
                     }
 //                    }).start();
@@ -379,7 +350,6 @@ public class XEngineWebView extends DWebView {
     int speed = 120;
 
     public void smoothScrollToTop(int scrollY) {
-
 
         if (scrollY < 1) return;
         if (scrollY < speed) {
@@ -433,4 +403,9 @@ public class XEngineWebView extends DWebView {
     public PermissionDto getPermission() {
         return this.mPermission;
     }
+
+    private String getUrlByHistoryModel(HistoryModel model) {
+        return String.format("%s//%s%s#%s", model.protocol, model.host, model.pathname, model.fragment);
+    }
+
 }

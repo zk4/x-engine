@@ -303,6 +303,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         if(securify){
             BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
             if (!isAvailable) {
+                /// TODO: 挪到 security 模块里.
+                [self showErrorAlert:@"%@模块未在 microapp.json 里注册, 请联系原生开发人员"];
                 return nil;
             }
             

@@ -296,19 +296,17 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSString *moduleName = nameStr[0];
     NSString *methodName = nameStr[1];
     if(![@"_dsb" isEqual:moduleName]){
-//        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
-//        // 判断是否有microapp.json文件
-//        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-//
-//        BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
-//        NSLog(@"%@", moduleName);
-//        if (!isAvailable) {
-//            return nil;
-//        }
+        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
+        // 判断是否有microapp.json文件
+        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+        BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
+        if (!isAvailable) {
+            return nil;
+        }
     } else {
         return nil;
     }
-    
+
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[moduleName];
     NSString *error = [NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result = [NSMutableDictionary dictionaryWithDictionary:

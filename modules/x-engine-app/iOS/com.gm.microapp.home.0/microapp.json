@@ -20,9 +20,6 @@
           "com.zkty.module.scan":{
               "scope":"all"
           },
-          "com.zkty.jsi.direct":{
-              "scope":"all"
-          },
           "com.zkty.jsi.ui":{
               "scope":"all"
           }

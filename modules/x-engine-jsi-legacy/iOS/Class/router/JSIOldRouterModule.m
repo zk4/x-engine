@@ -41,7 +41,8 @@ static NSString *const kSlash               = @"/";
         if(cc == '#' && hashtagMark == -1){
             hashtagMark=i;
         }
-        else if(cc == '?' && questionMark == -1){
+        // 仅当找到 hashtag 后才再找?, 不然不是 SPA url
+        if(hashtagMark != -1 && cc == '?' && questionMark == -1){
             questionMark=i;
         }
     }

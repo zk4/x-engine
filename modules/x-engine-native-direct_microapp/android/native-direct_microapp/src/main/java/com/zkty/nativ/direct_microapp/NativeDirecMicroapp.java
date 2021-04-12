@@ -1,5 +1,7 @@
 package com.zkty.nativ.direct_microapp;
 
+import android.text.TextUtils;
+
 import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
@@ -52,9 +54,10 @@ public class NativeDirecMicroapp extends NativeModule implements IDirect {
             if (params != null && params.containsKey("version")) {
                 version = Long.parseLong(String.valueOf(params.get("version")));
             }
-            String localhoset = MicroAppLoader.sharedInstance().getMicroAppHost(host, version);
+            if (!TextUtils.isEmpty(host))
+                host = MicroAppLoader.sharedInstance().getMicroAppHost(host, version);
 
-            microappDirect.push(protocol(), localhoset, pathname, fragment, query, params);
+            microappDirect.push(protocol(), host, pathname, fragment, query, params);
         }
     }
 

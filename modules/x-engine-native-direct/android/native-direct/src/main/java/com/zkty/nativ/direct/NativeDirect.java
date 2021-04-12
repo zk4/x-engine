@@ -33,7 +33,7 @@ public class NativeDirect extends NativeModule implements IDirectManager {
 
     @Override
     public void afterAllNativeModuleInited() {
-        List<NativeModule> modules = NativeContext.sharedInstance().getModulesByProtocol(IDirectManager.class);
+        List<NativeModule> modules = NativeContext.sharedInstance().getModulesByProtocol(IDirect.class);
         for (NativeModule iDirect : modules) {
             if (iDirect instanceof IDirect) {
                 directors.put(((IDirect) iDirect).scheme(), (IDirect) iDirect);

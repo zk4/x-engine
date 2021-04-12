@@ -3,7 +3,12 @@ import VueRouter from "vue-router"
 import XEngineRouter from "@zkty-team/x-engine-router"
 
 Vue.use(VueRouter);
-XEngineRouter(VueRouter, 'microapp');
+
+if (process.env.NODE_ENV == 'development') {
+    XEngineRouter(VueRouter, 'omp');    
+} else {
+    XEngineRouter(VueRouter, 'microapp');
+}
 
 const routes = [{
         path: "/",

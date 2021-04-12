@@ -190,11 +190,11 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-//    if (@available(iOS 11.0, *)) {
-//        self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//    } else {
-//        self.automaticallyAdjustsScrollViewInsets = false;
-//    }
+    if (@available(iOS 11.0, *)) {
+        self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
      
 //    if (@available(iOS 13.0, *)) {
 //        self.webview.scrollView.automaticallyAdjustsScrollIndicatorInsets = NO;

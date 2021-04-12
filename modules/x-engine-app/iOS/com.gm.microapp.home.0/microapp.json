@@ -22,6 +22,9 @@
           },
           "com.zkty.jsi.ui":{
               "scope":"all"
+          },
+          "com.zkty.jsi.direct":{
+              "scope":"all"
           }
       },
       "network":{

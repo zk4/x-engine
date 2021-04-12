@@ -573,7 +573,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.indicatorView stopAnimating];
-    NSLog(@"%@",error.debugDescription);
+    NSLog(@"didFailProvisionalNavigation==>\n%@",error.debugDescription);
 }
 
 - (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{

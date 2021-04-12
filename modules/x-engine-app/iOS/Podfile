@@ -7,6 +7,7 @@ def shared_pods
   
   # native
   pod 'x-engine-native-jsi', :path =>'../../x-engine-native-jsi'
+#  pod 'x-engine-module-scan', :path =>'../../x-engine-module-scan'
   pod 'x-engine-native-ui', :path =>'../../x-engine-native-ui'
   pod 'x-engine-native-direct', :path =>'../../x-engine-native-direct'
   pod 'x-engine-native-direct_http', :path =>'../../x-engine-native-direct_http'
@@ -17,7 +18,7 @@ def shared_pods
   pod 'x-engine-native-securify', :path =>'../../x-engine-native-securify'
 
   # jsi
-  pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'
+#  pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'
   pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
 
   # legacy jsi

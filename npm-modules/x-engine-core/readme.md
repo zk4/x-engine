@@ -2,7 +2,7 @@
 
 
 ``` bash
-npm install x-engine-core
+npm install @zkty-team/x-engine-core
 ```
 
 ---

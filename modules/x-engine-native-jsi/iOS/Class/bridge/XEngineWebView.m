@@ -301,10 +301,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
         BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
         if (!isAvailable) {
-            return nil;
+            [self showErrorAlert:@"%@模块不可用, 请联系原生开发人员"];
         }
-    } else {
-        return nil;
     }
 
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[moduleName];
@@ -319,7 +317,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         [self showErrorAlert:[NSString stringWithFormat:@"没有找到原生%@模块, 请联系原生开发人员", moduleName]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     } else {
-        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:moduleName class:[JavascriptInterfaceObject class]];
+        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:methodName class:[JavascriptInterfaceObject class]];
         NSString *methodTwo = [XEngineJSBUtil methodByNameArg:2 selName:methodName class:[JavascriptInterfaceObject class]];
         SEL sel=NSSelectorFromString(methodOne);
         SEL selasyn=NSSelectorFromString(methodTwo);

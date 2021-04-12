@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.jsi.HistoryModel;
+import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
 import com.zkty.nativ.jsi.webview.XOneWebViewPool;
 
@@ -85,11 +86,6 @@ public class XEngineWebActivityManager {
 
     public void clearActivity(XEngineWebActivity activity) {
 
-        if (activity.getXEngineWebView().getHistoryCount() == 0) {
-            activity.getXEngineWebView().cleanCache();
-            XOneWebViewPool.sharedInstance().removeWebView(activity.getXEngineWebView());
-        }
-
         activityList.remove(activity);
         if (activityList.isEmpty()) {
             XOneWebViewPool.sharedInstance().cleanWebView();
@@ -118,38 +114,47 @@ public class XEngineWebActivityManager {
                 }
             }
         }
-        XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
-
-//        XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(current.getMicroAppId()).goBackToIndexPage();
     }
 
-    public void backToHistoryPage(String url) {
-//        for (int i = activityList.size() - 1; i > 0; i--) {
-//            if (UrlUtils.equalsWithoutArgs(activityList.get(i).getWebUrl(), url)) {
-//                return;
-//            }
-//            if (i == activityList.size() - 1) {
-//                activityList.get(i).finish();
-//            } else {
-//                activityList.get(i).finishWhitNoAnim();
-//            }
-//        }
-    }
+    public void backToHistoryPage(int index) {
 
-    public XEngineWebActivity getLastActivity() {
-        if (activityList.size() < 2) {
-            return null;
+        if (Math.abs(index) > activityList.size()) {
+            throw new XEngineException("error：返回数大于历史数量！");
         }
-        return activityList.get(activityList.size() - 2);
+        for (int i = activityList.size() - 1; i >= 0; i--) {
+
+            if (i == activityList.size() - 1) {
+                activityList.get(i).finish();
+            } else if (i >= activityList.size() + index) {
+                activityList.get(i).finishWhitNoAnim();
+            }
+
+        }
+
     }
 
+    public void backToHistoryPage(String fragment) {
+        int index = -1;
 
-    public void removeHistoryPage(List<String> histories) {
-        //通知activity finish
-        for (String history : histories) {
-            EventBus.getDefault().post(new XEngineMessage(XEngineMessage.MSG_TYPE_PAGE_CLOSE, history));
+        for (int i = activityList.size() - 1; i >= 0; i--) {
+            if (fragment.equals(activityList.get(i).getHistoryModel().fragment)) {
+                index = i;
+            }
+        }
+        if (index > -1) {
+            for (int i = activityList.size() - 1; i > index; i--) {
+
+                if (i == activityList.size() - 1) {
+                    activityList.get(i).finish();
+                } else if (i > index) {
+                    activityList.get(i).finishWhitNoAnim();
+                }
+            }
+        } else {
+            throw new XEngineException("error：没有此历史页面！");
         }
     }
+
 
     public List<XEngineWebActivity> getActivityList() {
         return activityList;

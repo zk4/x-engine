@@ -8,14 +8,17 @@ import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.jsi.exception.XEngineException;
+import com.zkty.nativ.jsi.view.MicroAppLoader;
 import com.zkty.nativ.jsi.view.XEngineWebActivity;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.jsi.webview.XOneWebViewPool;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class NativeDirectOmp extends NativeModule implements IDirect {
-    private IDirect microappDirect;
+
 
     @Override
     public String moduleId() {
@@ -29,15 +32,7 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
 
     @Override
     public void afterAllNativeModuleInited() {
-        List<NativeModule> modules = NativeContext.sharedInstance().getModulesByProtocol(IDirect.class);
 
-        for (NativeModule iDirect : modules) {
-            if (iDirect instanceof IDirect) {
-                if ("omp".equals(((IDirect) iDirect).scheme())) {
-                    this.microappDirect = (IDirect) iDirect;
-                }
-            }
-        }
     }
 
 
@@ -71,8 +66,30 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
 
     @Override
     public void back(String host, String fragment) {
-        if (microappDirect != null)
-            microappDirect.back(host, fragment);
+        XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        if (mActivity == null) {
+            return;
+        }
+        boolean isMinusHistory = Pattern.compile("^-\\d+$").matcher(fragment).matches();
+        boolean isNamedHistory = Pattern.compile("^/\\w+$").matcher(fragment).matches();
+
+        mActivity.runOnUiThread(() -> {
+            if (TextUtils.isEmpty(fragment) || "-1".equals(fragment)) {
+                mActivity.backUp();
+            } else if ("0".equals(fragment)) {
+                XEngineWebActivityManager.sharedInstance().exitAllXWebPage();
+            } else if ("/".equals(fragment)) {
+                XEngineWebActivityManager.sharedInstance().backToIndexPage();
+            } else if (isMinusHistory) {// -2
+                XEngineWebActivityManager.sharedInstance().backToHistoryPage(Integer.parseInt(fragment));
+            } else if (isNamedHistory) {// /pageA
+                XEngineWebActivityManager.sharedInstance().backToHistoryPage(fragment);
+            }else {
+                throw new XEngineException("fragment 格式错误");
+            }
+        });
+
+
     }
 
 

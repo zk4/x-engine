@@ -1,0 +1,60 @@
+PODS:
+  - JSONModel (1.8.0)
+  - x-engine-native-core (1.0.0):
+    - x-engine-native-protocols
+  - x-engine-native-direct (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_microapp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi
+    - x-engine-native-protocols
+  - x-engine-native-direct_omp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-jsi (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-protocols (1.0.0)
+
+DEPENDENCIES:
+  - x-engine-native-core (from `../../x-engine-native-core`)
+  - x-engine-native-direct (from `../../x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `../../x-engine-native-jsi`)
+  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+
+SPEC REPOS:
+  trunk:
+    - JSONModel
+
+EXTERNAL SOURCES:
+  x-engine-native-core:
+    :path: "../../x-engine-native-core"
+  x-engine-native-direct:
+    :path: "../../x-engine-native-direct"
+  x-engine-native-direct_microapp:
+    :path: "../../x-engine-native-direct_microapp"
+  x-engine-native-direct_omp:
+    :path: "../../x-engine-native-direct_omp"
+  x-engine-native-jsi:
+    :path: "../../x-engine-native-jsi"
+  x-engine-native-protocols:
+    :path: "../../x-engine-native-protocols"
+
+SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
+  x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
+  x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
+  x-engine-native-jsi: 0408dfee0c7822614990e6fc1c512569eff1abb5
+  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
+
+PODFILE CHECKSUM: 0254ee55ecf158101493edf023f5769c6ea03f3e
+
+COCOAPODS: 1.10.1

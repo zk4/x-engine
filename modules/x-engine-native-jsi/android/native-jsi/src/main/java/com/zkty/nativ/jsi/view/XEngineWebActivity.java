@@ -41,7 +41,7 @@ import com.zkty.nativ.jsi.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
-import com.zkty.nativ.jsi.webview.XOneWebViewPool;
+import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -128,7 +128,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         historyModel = (HistoryModel) getIntent().getSerializableExtra(HISTORYMODEL);
 
-        mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
+        mWebView = XWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
 
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 
@@ -241,7 +241,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             new Handler().postDelayed(() ->
                             showScreenCapture(false)
                     , 400);
-            mWebView = XOneWebViewPool.sharedInstance().getLastWebView();
+            mWebView = XWebViewPool.sharedInstance().getLastWebView();
             if (mWebView != null) {
 
                 if (mWebView.getParent() != null) {

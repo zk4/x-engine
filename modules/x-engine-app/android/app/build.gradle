@@ -59,6 +59,7 @@ dependencies {
     implementation project(':native-store')
     implementation project(':native-camera')
     implementation project(':native-ui')
+    implementation project(':native-broadcast')
 
 
     implementation project(':native-direct')

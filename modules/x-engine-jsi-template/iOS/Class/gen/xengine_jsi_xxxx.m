@@ -39,10 +39,16 @@
           dict=[self mergeDefault:dict defaultString:@"{  \"titleSize\": 16}"];
           NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
       return [self _syncMethod:dto];
-    }
+        }
+  
+  - (NSString*) syncStringMethod:(NSDictionary*) dict {
+      NSString* dto = [self convert:dict clazz:NSString.class];
+      return [self _syncStringMethod:dto];
+        }
   
   - (id) syncMethod1:(NSDictionary*) dict {
-  return [self _syncMethod1];
+   [self _syncMethod1];
+              return nil;
     }
     - (void) asyncMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 

@@ -33,5 +33,11 @@ JSI_MODULE(JSI_xxxx)
     NSLog(@"hello");
 }
 
+- (NSString *)_syncStringMethod:(NSString *)dto {
+    NSLog(@"%@",dto);
+    return @"native";
+}
+
+
 
 @end

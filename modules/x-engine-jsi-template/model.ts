@@ -25,6 +25,9 @@ interface NamedDTO {
 function syncMethod(arg: NamedDTO = { titleSize: 16 }): string {}
 
 @sync
+function syncStringMethod(arg: string): string {}
+
+@sync
 function syncMethod1() {}
 
 @async
@@ -33,7 +36,11 @@ function asyncMethod(
 ): string {}
 
 // test function
-function test_syncMethod(arg: NamedDTO = { titleSize: 16 }) {
+function test_syncStringMethod() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "syncStringMethod", "1111111");
+  document.getElementById("debug_text").innerText = typeof val + ":" + val;
+}
+function test_syncMethod() {
   let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod", {
     title: "title",
     titleSize: 12,
@@ -45,7 +52,7 @@ function test_syncMethod1() {
   let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod1");
 }
 
-function test_asyncMethod(arg: { name: string } = { name: "default value" }) {
+function test_asyncMethod() {
   xengine.api("com.zkty.jsi.xxxx", "asyncMethod", {}, (val) => {
     document.getElementById("debug_text").innerText = typeof val + ":" + val;
   });

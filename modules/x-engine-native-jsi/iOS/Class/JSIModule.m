@@ -50,8 +50,8 @@
         }
         errStr = [NSString stringWithFormat:@"检查参数(不能为空或类型不对): %@",errStr];
         [self showErrorAlert: errStr];
-
- 
+        
+        
         return nil;
     }
     return dto;
@@ -66,73 +66,69 @@
             if ([self respondsToSelector:sel]) {
                 action(self, sel, dto, completionHandler);
             } else {
-                         [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
- 
+                [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
+                
             }
         }
     } else {
         if ([self respondsToSelector:sel]) {
             action(self, sel, nil, completionHandler);
         } else {
-                            [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
-
+            [self showErrorAlert:[NSString stringWithFormat:@"%@.%@ 未实现",[self moduleId],[NSString stringWithFormat:@"%@:", name]]];
+            
             
         }
     }
 }
-///TODO: implement this somewhere else
+- (NSMutableDictionary*) merge:(NSMutableDictionary*) dest defaultDict:(NSMutableDictionary*) dv {
+    if(!dv) return dest;
+    if(!dest) return dv;
+    // 转换为 mutable 再说
+    dest = [dest mutableCopy];
+    dv = [dv mutableCopy];
+    NSMutableDictionary* final = [@{} mutableCopy];
+    // 遍历 dest 的 key
+    for(NSString* destKey in [dest allKeys]){
+        id value = [dest objectForKey:destKey];
 
-//- (void) callJS:(NSString*)__event__ args:(id)args retCB:(void (^)(id  _Nullable ret)) retCB{
-//    [[RecyleWebViewController webview] callHandler:__event__ arguments:args completionHandler:^(id  _Nullable value) {
-//        retCB(value);
-//    }];
-//}
-//
-//
-//-(void) broadcast:(NSArray*)args{
-//    [self callJS:@"com.zkty.module.engine.broadcast" args:args retCB:^(id  _Nullable ret) {}];
-//}
-
--(BOOL) isDictionary:(id)item{
-    return [item isKindOfClass:NSDictionary.class] || [item isKindOfClass:NSMutableDictionary.class];
-}
-
--(void) assign:(NSMutableDictionary*)to from:(NSMutableDictionary*) from{
-    [to addEntriesFromDictionary:from];
-}
-
--(void) _mergeDeep:(NSMutableDictionary*) target  sources:(NSMutableArray*) sources {
-    if (!target || !sources || sources.count==0) return;
-    NSMutableDictionary* source = [sources lastObject];
-    [sources removeLastObject];
-    if ([self isDictionary:target] && [self isDictionary:source]) {
-        for (NSString* key in source) {
-            if ([self isDictionary:[source objectForKey:key]]) {
-                if (!target[key]) [self assign:target from:[@{key:@{}} mutableCopy]];
-                [self _mergeDeep:[target[key] mutableCopy]  sources:[@[source[key]] mutableCopy]];
-            } else {
-                [self assign: target  from:[@{key:[source objectForKey:key]} mutableCopy]];
+        // default 里没有的相同 key
+        if(![[dv allKeys] containsObject:destKey]){
+            //    如果 value 是普通值或 array , 以 dest 里的值为准
+            if(![value isKindOfClass:NSDictionary.class]) continue;
+                
+            //    如果 value 是 dictionary,以 dest 为准
+            if(![value isKindOfClass:NSDictionary.class]){
+                value = dest[destKey];
             }
+            
+            //    如果 value 是 nil?
+            //    oc 不允许,滚蛋
+        }
+        // default 里有相同的 key
+        else {
+            //    如果 value 是 dict 调用 value=merge(dest[key],default[key])
+            if([value isKindOfClass:NSDictionary.class])
+            value = [self merge:dest[destKey] defaultDict:dv[destKey]];
+            else
+            value = dest[destKey];
+
+            //    其他,使用 dest
+        }
+        [final setObject:value forKey:destKey];
+    }
+    // 处理 dest 里没有但 default 里有的 key
+    // 以 default 里的值为准, 不关心类型
+    for(NSString* defaultKey in [dv allKeys]){
+        if(![[dest allKeys] containsObject:defaultKey]){
+            [final setObject:dv[defaultKey] forKey:defaultKey];
         }
     }
-    
-    [self _mergeDeep:target sources:sources];
+    return final;
 }
--(void) mergeDeep:(NSMutableDictionary*) target source:(NSMutableDictionary*) source {
-    if(!source || !target) return;
-    [self _mergeDeep:target sources:[@[source] mutableCopy] ];
-}
-
--(NSDictionary*) mergeDefault:(NSDictionary*)dict defaultString:(NSString*)defaultString{
+-(NSMutableDictionary*) mergeDefault:(NSMutableDictionary*)dict defaultString:(NSString*)defaultString{
     if(!defaultString || defaultString.length==0) return dict;
-    
     NSDictionary* parsed_dict= [XEngineJSBUtil jsonStringToObject:defaultString];
-    if(!parsed_dict) return dict;
-    
-    NSMutableDictionary* merged_dict=[[NSMutableDictionary alloc]initWithDictionary:parsed_dict];
-    NSMutableDictionary* mutalbeUserDict=[[NSMutableDictionary alloc]initWithDictionary:dict];
-    [self mergeDeep:merged_dict source:mutalbeUserDict];
-    return merged_dict;
+    return [self merge:dict defaultDict:parsed_dict];
 }
 
 

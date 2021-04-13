@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 处理 tab 历史
 - (void)setCurrentTabVC:(UIViewController*) vc;
-- (HistoryModel*)getCurrentTab;
 - (void)addCurrentTab:(HistoryModel *) history_model;
 
 @end

@@ -40,7 +40,12 @@
 }
 
 - (NSString*) getLastHost{
-    return [_histories lastObject].host;
+    NSString* host = [_histories lastObject].host;
+    /// 那就是在 tab 上了.
+    if(!host){
+        host =[[GlobalState sharedInstance] getCurrentTab].host;
+    }
+    return host;
 }
 
 - (XEngineWebView*)getCurrentWebView{

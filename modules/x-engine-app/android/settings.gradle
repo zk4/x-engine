@@ -7,6 +7,9 @@ project(':native-core').projectDir = new File('../../x-engine-native-core/androi
 include ':native-direct'
 project(':native-direct').projectDir = new File('../../x-engine-native-direct/android/native-direct')
 
+include ':native-store'
+project(':native-store').projectDir = new File('../../x-engine-native-store/android/native-store')
+
 include ':native-protocols'
 project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
 
@@ -27,3 +30,6 @@ project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/
 
 include ':jsi-direct'
 project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')
+
+include ':jsi-store'
+project(':jsi-store').projectDir = new File('../../x-engine-jsi-store/android/jsi-store')

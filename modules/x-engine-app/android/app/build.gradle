@@ -56,6 +56,7 @@ dependencies {
 
     implementation project(':native-core')
     implementation project(':native-protocols')
+    implementation project(':native-store')
     implementation project(':native-direct')
     implementation project(':native-direct_http')
     implementation project(':native-direct_https')
@@ -63,4 +64,5 @@ dependencies {
     implementation project(':native-direct_omp')
     implementation project(':native-jsi')
     implementation project(':jsi-direct')
+    implementation project(':jsi-store')
 }

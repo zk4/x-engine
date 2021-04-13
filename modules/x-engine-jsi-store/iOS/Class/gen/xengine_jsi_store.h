@@ -30,7 +30,8 @@
       @required 
         - (void) _set:(ZKStoreEntryDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
        @required 
-       - (id) _set:(ZKStoreEntryDTO*)dto;    
+       - (id) _set:(ZKStoreEntryDTO*)dto;
+    
 @end
   
 

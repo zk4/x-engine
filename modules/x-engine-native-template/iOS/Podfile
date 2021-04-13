@@ -6,11 +6,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 # 在环境变量里指向 x-engine 本地路径
 # export X_ENGINE_ROOT=/Users/zk/git/company/working/x-engine
 
-X_ENGINE_ROOT=ENV['X_ENGINE_ROOT'] || '../..'
+X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 
 def shared_pods
-  pod 'x-engine-native-core', :path => X_ENGINE_ROOT+'/modules/x-engine-native-core'
-  pod 'x-engine-native-protocols', :path => X_ENGINE_ROOT+'/modules/x-engine-native-protocols'
+  pod 'x-engine-native-core', :path => X_ENGINE_ROOT+'/x-engine-native-core'
+  pod 'x-engine-native-protocols', :path => X_ENGINE_ROOT+'/x-engine-native-protocols'
 end
 
 target 'xxxx' do

@@ -10,6 +10,9 @@ project(':native-direct').projectDir = new File('../../x-engine-native-direct/an
 include ':native-store'
 project(':native-store').projectDir = new File('../../x-engine-native-store/android/native-store')
 
+include ':native-ui'
+project(':native-ui').projectDir = new File('../../x-engine-native-ui/android/native-ui')
+
 include ':native-camera'
 project(':native-camera').projectDir = new File('../../x-engine-native-camera/android/native-camera')
 

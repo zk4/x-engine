@@ -13,8 +13,8 @@ public class XEngineMessage {
     public static final String TYPE_SHOW_TABBAR = "type_show_tabbar";
     public static final String TYPE_HIDE_TABBAR = "type_hide_tabbar";
 
-    public static final String TYPE_ON_UNI_OPEN = "type_on_uni_open";
-    public static final String TYPE_ON_UNI_OPEN_FAIL = "type_on_uni_open_fail";
+    public static final String MSG_TYPE_LOGIN = "x_engine_msg_type_login";//登录
+    public static final String MSG_TYPE_LOGOUT = "x_engine_msg_type_loginout";//退出登录
 
     private String type;
 

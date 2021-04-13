@@ -58,6 +58,7 @@ dependencies {
     implementation project(':native-protocols')
     implementation project(':native-store')
     implementation project(':native-camera')
+    implementation project(':native-ui')
 
 
     implementation project(':native-direct')

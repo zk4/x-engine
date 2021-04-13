@@ -1,7 +1,5 @@
 package com.zkty.nativ.jsi.view;
 
-import android.app.Application;
-import android.content.Context;
 
 import java.util.Locale;
 

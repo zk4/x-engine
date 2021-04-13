@@ -93,16 +93,7 @@
 
         // default 里没有的相同 key
         if(![[dv allKeys] containsObject:destKey]){
-            //    如果 value 是普通值或 array , 以 dest 里的值为准
-            if(![value isKindOfClass:NSDictionary.class]) continue;
-                
-            //    如果 value 是 dictionary,以 dest 为准
-            if(![value isKindOfClass:NSDictionary.class]){
                 value = dest[destKey];
-            }
-            
-            //    如果 value 是 nil?
-            //    oc 不允许,滚蛋
         }
         // default 里有相同的 key
         else {

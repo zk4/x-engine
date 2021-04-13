@@ -18,7 +18,7 @@
 
 - [ ] 代理 webview 缓存，现在每次都做了 304 请求。
 
-- [ ] 打开不存在页面会卡死。
+- [x] 打开不存在页面会卡死。
 
 - [ ] 参考 dcloud api
 
@@ -54,7 +54,7 @@
 
 - [ ] git 流程提交按 gitlab flow 流程运行.如果是在 github 里,按 github flow 运行.
 
-- [ ] iOS 基于 xcode 的自动 indent
+- [x] iOS 基于 xcode 的自动 indent
 - [ ] android 方案 (谢飞)
 
 
@@ -181,12 +181,14 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
     - 链接模板源 x-engine-native-template,  执行
 
         ```
+        // iOS:在环境变量里将 X_ENGINE_ROOT_MODULES 指向  x-engine 目录
+        
         // 安装 coge
         python3 -m pip install coge
         
-        // 在 x-engine-native-template 目录执行
+    // 在 x-engine-native-template 目录执行
         coge -r
-
+        
         //执行以下命令， 出现 coge x-engine-native-template @:app，则成功链接模板源
         coge
         
@@ -194,7 +196,7 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
         coge x-engine-native-template module-xxxx:jsi-ui xxxx:ui @:x-engine-native-ui -w
         ```
         
-    
+
 2. （可选）编写接口
 
 

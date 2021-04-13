@@ -48,5 +48,6 @@ dependencies {
     api 'org.greenrobot:eventbus:3.1.1'
     api 'com.tencent:mmkv-static:1.2.4'
     api 'com.github.bumptech.glide:glide:4.9.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
 
 }

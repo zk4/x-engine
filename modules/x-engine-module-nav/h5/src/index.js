@@ -18,7 +18,8 @@ function osCheck() {
       "title": "title",
       "titleColor": "#000000",
       "titleSize": 16
-    }
+    },
+    "decorators": []
   },
   {
     "name": "setNavLeftBtn",
@@ -31,7 +32,8 @@ function osCheck() {
         "20",
         "20"
       ]
-    }
+    },
+    "decorators": []
   },
   {
     "name": "setNavRightBtn",
@@ -44,7 +46,8 @@ function osCheck() {
         "20",
         "20"
       ]
-    }
+    },
+    "decorators": []
   },
   {
     "name": "setNavRightMenuBtn",
@@ -76,7 +79,8 @@ function osCheck() {
           "title": "3"
         }
       ]
-    }
+    },
+    "decorators": []
   },
   {
     "name": "setNavRightMoreBtn",
@@ -102,21 +106,24 @@ function osCheck() {
           ]
         }
       ]
-    }
+    },
+    "decorators": []
   },
   {
     "name": "navigatorPush",
     "default_args": {
       "url": "",
       "hideNavbar": false
-    }
+    },
+    "decorators": []
   },
   {
     "name": "navigatorBack",
     "default_args": {
       "url": "",
       "hideNavbar": false
-    }
+    },
+    "decorators": []
   },
   {
     "name": "setNavSearchBar",
@@ -139,19 +146,23 @@ function osCheck() {
       "placeHolderFontSize": 16,
       "isInput": true,
       "becomeFirstResponder": false
-    }
+    },
+    "decorators": []
   },
   {
     "name": "setSearchBarHidden",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "setNavBarHidden",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "removeHistoryPage",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

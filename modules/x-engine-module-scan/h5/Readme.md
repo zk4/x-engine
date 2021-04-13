@@ -1,8 +1,8 @@
 
-version: 0.1.12
-``` bash
-npm install @zkty-team/x-engine-module-scan
-```
+
+JSI Id: com.zkty.module.scan
+
+version: 0.1.13
 
 
 
@@ -12,7 +12,7 @@ npm install @zkty-team/x-engine-module-scan
 
 **demo**
 ``` js
- {
+
   window.openScanView = (...args) => {
     scan
       .openScanView({
@@ -25,7 +25,7 @@ npm install @zkty-team/x-engine-module-scan
         document.getElementById("debug_text").innerText = typeof(res)+":"+JSON.stringify(res);
       });
   };
-}
+
 ``` 
 
 	
@@ -34,19 +34,6 @@ npm install @zkty-team/x-engine-module-scan
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.scan_DTO | 必填 | (result) => {} | 扫码结果 xx(result) |
-
-
-参数 object  定义
-``` js
-
-
-interface ScanOpenDto {
-
-  //扫码结果 xx(result)
-  __event__: (index: string) => void;
-
-}
-``` 
 
 
 ---------------------

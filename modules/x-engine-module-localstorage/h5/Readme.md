@@ -1,8 +1,8 @@
 
-version: 0.1.12
-``` bash
-npm install @zkty-team/x-engine-module-localstorage
-```
+
+JSI Id: com.zkty.module.localstorage
+
+version: 0.1.13
 
 
 
@@ -12,7 +12,7 @@ npm install @zkty-team/x-engine-module-localstorage
 
 **demo**
 ``` js
- {
+
   window.set = () => {
     localstorage
       .set({
@@ -24,7 +24,7 @@ npm install @zkty-team/x-engine-module-localstorage
         document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
-}
+
 ``` 
 
 	
@@ -35,24 +35,6 @@ npm install @zkty-team/x-engine-module-localstorage
 | key | string | 必填 |  | 存储设置key值 |
 | value | string | 必填 |  | 存储设置value值 |
 | isPublic | bool | 必填 |  | 是否数据共享 |
-
-
-参数 object  定义
-``` js
-
-
-// dto set
-interface StorageSetDTO {
-
-  //存储设置key值
-  key: string;
-  //存储设置value值
-  value: string;
-  //是否数据共享
-  isPublic: boolean;
-
-}
-``` 
 
 
 ---------------------
@@ -77,7 +59,7 @@ interface StorageStatusDTO {
 
 **demo**
 ``` js
- {
+
   window.get = () => {
     localstorage
       .get({
@@ -88,7 +70,7 @@ interface StorageStatusDTO {
         document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
-}
+
 ``` 
 
 	
@@ -98,22 +80,6 @@ interface StorageStatusDTO {
 | --------------------------- | --------- | -------- | --------- |--------- |
 | key | string | 必填 |  | 要获取的存储值的key值 |
 | isPublic | bool | 必填 |  | 要获取的存储值是否是共享数据 |
-
-
-参数 object  定义
-``` js
-
-
-// dto get
-interface StorageGetDTO {
-
-  //要获取的存储值的key值
-  key: string;
-  //要获取的存储值是否是共享数据
-  isPublic: boolean;
-
-}
-``` 
 
 
 ---------------------
@@ -138,7 +104,7 @@ interface StorageStatusDTO {
 
 **demo**
 ``` js
- {
+
   window.remove = () => {
     localstorage
       .remove({
@@ -149,7 +115,7 @@ interface StorageStatusDTO {
         document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
-}
+
 ``` 
 
 	
@@ -159,22 +125,6 @@ interface StorageStatusDTO {
 | --------------------------- | --------- | -------- | --------- |--------- |
 | key | string | 必填 |  | 要删除的存储值的key值 |
 | isPublic | bool | 必填 |  | 要删除的存储值是否是共享数据 |
-
-
-参数 object  定义
-``` js
-
-
-// dto remove
-interface StorageRemoveDTO {
-
-  //要删除的存储值的key值
-  key: string;
-  //要删除的存储值是否是共享数据
-  isPublic: boolean;
-
-}
-``` 
 
 
 ---------------------
@@ -199,7 +149,7 @@ interface StorageStatusDTO {
 
 **demo**
 ``` js
- {
+
   window.removeAll = () => {
     localstorage
       .removeAll({
@@ -209,7 +159,7 @@ interface StorageStatusDTO {
         document.getElementById("debug_text").innerText = JSON.stringify(res);
       });
   };
-}
+
 ``` 
 
 	
@@ -218,18 +168,6 @@ interface StorageStatusDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | isPublic | bool | 必填 |  |  |
-
-
-参数 object  定义
-``` js
-
-
-interface StorageRemoveAllDTO {
-
-  isPublic: boolean;
-
-}
-``` 
 
 
 ---------------------

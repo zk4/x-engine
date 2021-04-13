@@ -1,8 +1,8 @@
 
-version: 0.1.12
-``` bash
-npm install @zkty-team/x-engine-module-device
-```
+
+JSI Id: com.zkty.module.device
+
+version: 0.1.13
 
 
 
@@ -12,7 +12,7 @@ npm install @zkty-team/x-engine-module-device
 
 **demo**
 ``` js
- {
+
   window.getPhoneType = () => {
     device
       .getPhoneType({
@@ -24,7 +24,7 @@ npm install @zkty-team/x-engine-module-device
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -33,20 +33,6 @@ npm install @zkty-team/x-engine-module-device
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -70,7 +56,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getSystemVersion = () => {
     device
       .getSystemVersion({
@@ -82,7 +68,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -91,20 +77,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -128,7 +100,7 @@ UDID
 
 **demo**
 ``` js
-{
+
   window.getUDID = () => {
     device
       .getUDID({
@@ -140,7 +112,7 @@ UDID
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -149,20 +121,6 @@ UDID
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -186,7 +144,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getBatteryLevel = () => {
     device
       .getBatteryLevel({
@@ -198,7 +156,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -207,20 +165,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -244,7 +188,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getPreferredLanguage = () => {
     device
       .getPreferredLanguage({
@@ -256,7 +200,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -265,20 +209,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -302,7 +232,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getScreenWidth = () => {
     device
       .getScreenWidth({
@@ -314,7 +244,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -323,20 +253,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -360,7 +276,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getScreenHeight = () => {
     device
       .getScreenHeight({
@@ -372,7 +288,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -381,20 +297,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -418,7 +320,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getSafeAreaTop = () => {
     device
       .getSafeAreaTop({
@@ -430,7 +332,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -439,20 +341,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -476,7 +364,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getSafeAreaBottom = () => {
     device
       .getSafeAreaBottom({
@@ -488,7 +376,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -497,20 +385,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -534,7 +408,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getSafeAreaLeft = () => {
     device
       .getSafeAreaLeft({
@@ -546,7 +420,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -555,20 +429,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -592,7 +452,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getSafeAreaRight = () => {
     device
       .getSafeAreaRight({
@@ -604,7 +464,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -613,20 +473,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -650,7 +496,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getStatusHeight = () => {
     device
       .getStatusHeight({
@@ -662,7 +508,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -671,20 +517,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -708,7 +540,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.getNavigationHeight = () => {
     device
       .getNavigationHeight({
@@ -720,7 +552,7 @@ interface DeviceMoreDTO {
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -729,20 +561,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -766,7 +584,7 @@ tabBar高度
 
 **demo**
 ``` js
-{
+
   window.getTabBarHeight = () => {
     device
       .getTabBarHeight({
@@ -778,7 +596,7 @@ tabBar高度
         document.getElementById("debug_text").innerText = res;
       });
   };
-}
+
 ``` 
 
 	
@@ -787,20 +605,6 @@ tabBar高度
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DeviceSheetDTO {
-
-  //回调方法
-  __event__: (string)=>void;
-
-}
-``` 
 
 
 ---------------------
@@ -824,7 +628,7 @@ interface DeviceMoreDTO {
 
 **demo**
 ``` js
-{
+
   window.devicePhoneCall = (...args) => {
   device
     .devicePhoneCall({phoneNumber:"10086"})
@@ -832,7 +636,7 @@ interface DeviceMoreDTO {
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
 };
-}
+
 ``` 
 
 	
@@ -841,19 +645,6 @@ interface DeviceMoreDTO {
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | phoneNumber | string | 必填 |  | 手机号 |
-
-
-参数 object  定义
-``` js
-
-
-interface DevicePhoneNumDTO {
-
-  //手机号
-  phoneNumber: string;
-
-}
-``` 
 
 
 ---------------------
@@ -868,7 +659,7 @@ interface DevicePhoneNumDTO {
 
 **demo**
 ``` js
-{
+
   window.deviceSendMessage = () => {
     device
       .deviceSendMessage({
@@ -876,7 +667,7 @@ interface DevicePhoneNumDTO {
         messageContent:"1111111111",
       });
   };
-}
+
 ``` 
 
 	
@@ -886,21 +677,6 @@ interface DevicePhoneNumDTO {
 | --------------------------- | --------- | -------- | --------- |--------- |
 | phoneNumber | string | 必填 |  | 手机号 |
 | messageContent | string | 必填 |  | 短信内容 |
-
-
-参数 object  定义
-``` js
-
-
-interface DeviceMessageDTO {
-
-  //手机号
-  phoneNumber: string;
-  //短信内容
-  messageContent:string;
-
-}
-``` 
 
 
 ---------------------

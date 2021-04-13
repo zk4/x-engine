@@ -20,13 +20,11 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-
-import com.zkty.nativ.jsi.utils.DensityUtils;
+import com.zkty.nativ.core.utils.DensityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
 
 import nativ.jsi.R;
 

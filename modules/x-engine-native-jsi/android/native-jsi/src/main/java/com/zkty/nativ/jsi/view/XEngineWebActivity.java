@@ -30,17 +30,15 @@ import androidx.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 
 
 import com.zkty.nativ.jsi.HistoryModel;
-import com.zkty.nativ.jsi.utils.ImageUtils;
+import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
 import com.zkty.nativ.jsi.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
-import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XOneWebViewPool;

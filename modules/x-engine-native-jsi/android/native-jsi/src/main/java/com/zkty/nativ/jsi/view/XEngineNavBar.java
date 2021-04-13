@@ -18,8 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
-import com.zkty.nativ.jsi.utils.DensityUtils;
+import com.zkty.nativ.core.utils.DensityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;

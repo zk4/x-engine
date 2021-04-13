@@ -13,16 +13,22 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.xxxx", 
     [
   {
-    "name": "setNavTitle",
+    "name": "syncMethod",
     "default_args": {
       "titleSize": 16
     },
-    "decorators": []
+    "decorators": [
+      "sync"
+    ]
   },
   {
-    "name": "setNavBarHidden",
-    "default_args": {},
-    "decorators": []
+    "name": "asyncMethod",
+    "default_args": {
+      "name": "default value"
+    },
+    "decorators": [
+      "async"
+    ]
   }
 ]
 )}}

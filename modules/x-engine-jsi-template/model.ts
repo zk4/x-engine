@@ -13,26 +13,35 @@ const conf = {
   },
 };
 
-interface NavTitleDTO {
-  //导航条的文字
+interface NamedDTO {
+  //文字
   title: string;
-  //16进制的颜色色值
-  titleColor: string;
-  //字体大小
+  //大小
   titleSize: int;
 }
 
-function setNavTitle(arg: NavTitleDTO = { titleSize: 16 }) {
-  xengine.api("com.zkty.jsi.xxxx", "setNavTitle", {
+// method defined
+@sync
+function syncMethod(arg: NamedDTO = { titleSize: 16 }):string {}
+
+@async
+function asyncMethod(arg: {name:string}={name:"default value"}):string {}
+
+
+// test function
+function test_syncMethod(arg: NamedDTO = { titleSize: 16 }){
+  let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod", {
     title: "title",
-    titleColor: "#000000",
+    titleSize: 12,
   });
+  document.getElementById("debug_text").innerText = typeof val + ":" + val;
 }
 
-function setNavTitleAsyc(arg: NavTitleDTO = { titleSize: 16 }) {
-  xengine.api("com.zkty.jsi.xxxx", "setNavTitleAsyc", {
-    title: "title",
-    titleColor: "#000000",
-  },(res)=>{});
+function test_asyncMethod(arg: {name:string}={name:"default value"}) {
+  xengine.api("com.zkty.jsi.xxxx", "asyncMethod", {
+  },(val)=>{
+        document.getElementById("debug_text").innerText = typeof val + ":" + val;
+
+  });
 }
 

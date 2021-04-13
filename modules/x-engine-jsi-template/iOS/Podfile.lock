@@ -21,12 +21,12 @@ PODS:
   - x-engine-native-protocols (1.0.0)
 
 DEPENDENCIES:
-  - x-engine-native-core (from `../../x-engine-native-core`)
-  - x-engine-native-direct (from `../../x-engine-native-direct`)
-  - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
-  - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
-  - x-engine-native-jsi (from `../../x-engine-native-jsi`)
-  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -34,17 +34,17 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "../../x-engine-native-core"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
   x-engine-native-direct:
-    :path: "../../x-engine-native-direct"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct"
   x-engine-native-direct_microapp:
-    :path: "../../x-engine-native-direct_microapp"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
-    :path: "../../x-engine-native-direct_omp"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp"
   x-engine-native-jsi:
-    :path: "../../x-engine-native-jsi"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
-    :path: "../../x-engine-native-protocols"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -57,4 +57,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 653701e313c6de346ae244bb5d001b3b1ce16957
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

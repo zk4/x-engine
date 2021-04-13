@@ -6,30 +6,28 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol NavTitleDTO;
-@protocol NavHiddenBarDTO;
+@protocol NamedDTO;
+@protocol _0_com_zkty_jsi_xxxx_DTO;
 
-@interface NavTitleDTO: JSONModel
+@interface NamedDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,copy) NSString* titleColor;
    	@property(nonatomic,assign) NSInteger titleSize;
 @end
     
 
-@interface NavHiddenBarDTO: JSONModel
-  	@property(nonatomic,assign) BOOL isHidden;
-   	@property(nonatomic,assign) BOOL isAnimation;
+@interface _0_com_zkty_jsi_xxxx_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* name;
 @end
     
 
 
 @protocol xengine_jsi_xxxx_protocol
        @required 
-        - (void) _setNavTitle:(NavTitleDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+       - (NSString*) _syncMethod:(NamedDTO*)dto;
     
       @required 
-        - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
+        - (void) _asyncMethod:(_0_com_zkty_jsi_xxxx_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
 @end
   
 

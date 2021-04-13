@@ -6,17 +6,15 @@
 #import "xengine_jsi_xxxx.h"
 
 
-@implementation NavTitleDTO
+@implementation NamedDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
    	return NO;
     }
 @end
     
   
-@implementation NavHiddenBarDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+@implementation _0_com_zkty_jsi_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
     
@@ -35,22 +33,21 @@
         return @"com.zkty.jsi.xxxx";
     }
     
-    - (void) setNavTitle:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+  
+  - (NSString*) syncMethod:(NSDictionary*) dict {
 
           dict=[self mergeDefault:dict defaultString:@"{  \"titleSize\": 16}"];
-    
-          NavTitleDTO* dto = [self convert:dict clazz:NavTitleDTO.class];
-          [self _setNavTitle:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
-          }];
-      }
-    - (void) setNavBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+          NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
+      return [self _syncMethod:dto];
+    }
+    - (void) asyncMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{}"];
+          dict=[self mergeDefault:dict defaultString:@"{  \"name\": \"default value\"}"];
     
-          NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
-          [self _setNavBarHidden:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          _0_com_zkty_jsi_xxxx_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_xxxx_DTO.class];
+          [self _asyncMethod:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
+        
       }
   @end

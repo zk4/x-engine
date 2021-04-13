@@ -181,11 +181,13 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
     - 链接模板源 x-engine-native-template,  执行
 
         ```
-        // iOS:在环境变量里将 X_ENGINE_ROOT_MODULES 指向  x-engine 目录
+        // iOS:在环境变量里将 X_ENGINE_ROOT_MODULES 指向  x-engine/modules 目录
         
         // 安装 coge
         python3 -m pip install coge
         
+        ```
+
     // 在 x-engine-native-template 目录执行
         coge -r
         
@@ -195,7 +197,6 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
         // 生成项目
         coge x-engine-native-template module-xxxx:jsi-ui xxxx:ui @:x-engine-native-ui -w
         ```
-        
 
 2. （可选）编写接口
 
@@ -261,7 +262,7 @@ coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
 >   - x-engine (弃用)
 > - times_business
 
-#### microapp / omp 
+#### microapp / omp
 
 @陈武峥
 

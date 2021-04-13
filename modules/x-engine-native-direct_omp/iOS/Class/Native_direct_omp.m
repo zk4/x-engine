@@ -65,13 +65,8 @@ NATIVE_MODULE(Native_direct_omp)
     else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
         if(histories){
             if(histories.count > 1)
-            {
-                /// TODO: 这样解决并不是很优雅. wait for fix
-                if(histories[histories.count-2].onTab){
-                    [navC popToRootViewControllerAnimated:YES];
-                }else{
-                    [navC popToViewController:histories[histories.count-2].vc animated:YES];
-                }
+            {                
+                [navC popToViewController:histories[histories.count-2].vc animated:YES];
                 [histories removeLastObject];
             }
             else if(histories.count ==1){
@@ -151,6 +146,9 @@ NATIVE_MODULE(Native_direct_omp)
         
     }else{
         NSString* host=[[GlobalState sharedInstance] getLastHost ];
+        if(!host){
+            host =[[GlobalState sharedInstance] getCurrentTab].host;
+        }
         NSAssert(host!=nil, @"host 不可为 nil");
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 

@@ -86,7 +86,7 @@
     // 转换为 mutable 再说
     NSMutableDictionary* dest = [const_dest mutableCopy];
     NSMutableDictionary*dv = [const_dv mutableCopy];
-    NSMutableDictionary* final = [@{} mutableCopy];
+    NSMutableDictionary* final = [NSMutableDictionary new];
     // 遍历 dest 的 key
     for(NSString* destKey in [dest allKeys]){
         id value = [dest objectForKey:destKey];
@@ -97,13 +97,17 @@
         }
         // default 里有相同的 key
         else {
-            //    如果 value 是 dict 调用 value=merge(dest[key],default[key])
-            if([value isKindOfClass:NSDictionary.class])
-            value = [self merge:dest[destKey] defaultDict:dv[destKey]];
-            else
-            value = dest[destKey];
-
-            //    其他,使用 dest
+            //  如果 value 是 dict 调用 value=merge(dest[key],default[key])
+            //  现在仅处理了 dict 的 merge 情况,
+            //  数组 不处理, 用不到.
+            //  set 不处理, json 里没有.
+            if([value isKindOfClass:NSDictionary.class]){
+                value = [self merge:dest[destKey] defaultDict:dv[destKey]];
+            }
+            else{
+            //  其他,使用 dest
+                value = dest[destKey];
+            }
         }
         [final setObject:value forKey:destKey];
     }

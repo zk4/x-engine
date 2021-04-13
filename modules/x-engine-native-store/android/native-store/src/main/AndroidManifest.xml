@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="module.xxxx">
+    package="nativ.store">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -8,7 +8,7 @@
     <application>
 
         <meta-data
-            android:name="com.zkty.module.xxxx"
-            android:value="com.zkty.modules.loaded.jsapi.__xengine__module_xxxx" />
+            android:name="com.zkty.native.store"
+            android:value="com.zkty.nativ.store.NativeStore" />
     </application>
 </manifest>

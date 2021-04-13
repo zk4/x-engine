@@ -9,6 +9,6 @@
 #ifndef iBroadcast_h
 #define iBroadcast_h
 @protocol iBroadcast <NSObject>
--(NSString*) test;
+-(void) broadcast:(NSString*) payload;
 @end
 #endif /* iBroadcast_h */

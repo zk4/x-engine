@@ -49,7 +49,7 @@
     public String __ret__;
   }
   
-  interface xengine__jsi_xxxx_i {
+  interface xengine__jsi_broadcast_i {
     public void _broadcastOn(final CompletionHandler<Nullable> handler);
 public void _broadcastOff(final CompletionHandler<Nullable> handler);
 public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
@@ -59,10 +59,10 @@ public void _ReturnInPromiseThen(ContinousDTO dto, final CompletionHandler<Strin
   }
   
   
-  public abstract class xengine__jsi_xxxx extends xengine__module_BaseModule implements xengine__jsi_xxxx_i {
+  public abstract class xengine__jsi_broadcast extends xengine__module_BaseModule implements xengine__jsi_broadcast_i {
     @Override
     public String moduleId() {
-      return "com.zkty.jsi.xxxx";
+      return "com.zkty.jsi.broadcast";
     }
   
     @JavascriptInterface

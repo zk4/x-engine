@@ -49,7 +49,7 @@
     public String __ret__;
   }
   
-  class _0_com_zkty_module_xxxx_DTO {
+  class _0_com_zkty_module_broadcast_DTO {
     @Optional
 		public Integer age;
 
@@ -60,16 +60,16 @@
 		public List<String> books;
 
     @Optional
-		public _1_com_zkty_module_xxxx_DTO complexArg;
+		public _1_com_zkty_module_broadcast_DTO complexArg;
   }
   
-  class _1_com_zkty_module_xxxx_DTO {
+  class _1_com_zkty_module_broadcast_DTO {
     public Integer a;
 
     public String name;
   }
   
-  class _2_com_zkty_module_xxxx_DTO {
+  class _2_com_zkty_module_broadcast_DTO {
     @Optional
 		public Integer age;
 
@@ -80,16 +80,16 @@
 		public List<String> books;
 
     @Optional
-		public _3_com_zkty_module_xxxx_DTO complexArg;
+		public _3_com_zkty_module_broadcast_DTO complexArg;
   }
   
-  class _3_com_zkty_module_xxxx_DTO {
+  class _3_com_zkty_module_broadcast_DTO {
     public Integer a;
 
     public String name;
   }
   
-  interface xengine__module_xxxx_i {
+  interface xengine__module_broadcast_i {
     public void _broadcastOn(final CompletionHandler<Nullable> handler);
 public void _broadcastOff(final CompletionHandler<Nullable> handler);
 public void _triggerNativeBroadCast(final CompletionHandler<Nullable> handler);
@@ -102,14 +102,14 @@ public void _noArgRetSheetDTO(final CompletionHandler<SheetDTO> handler);
 public void _haveArgNoRet(SheetDTO dto, final CompletionHandler<Nullable> handler);
 public void _haveArgRetPrimitive(SheetDTO dto, final CompletionHandler<String> handler);
 public void _haveArgRetSheetDTO(SheetDTO dto, final CompletionHandler<SheetDTO> handler);
-public void _anonymousType(_2_com_zkty_module_xxxx_DTO dto, final CompletionHandler<_0_com_zkty_module_xxxx_DTO> handler);
+public void _anonymousType(_2_com_zkty_module_broadcast_DTO dto, final CompletionHandler<_0_com_zkty_module_broadcast_DTO> handler);
   }
   
   
-  public abstract class xengine__module_xxxx extends xengine__module_BaseModule implements xengine__module_xxxx_i {
+  public abstract class xengine__module_broadcast extends xengine__module_BaseModule implements xengine__module_broadcast_i {
     @Override
     public String moduleId() {
-      return "com.zkty.module.xxxx";
+      return "com.zkty.module.broadcast";
     }
   
     @JavascriptInterface
@@ -276,14 +276,14 @@ public void _anonymousType(_2_com_zkty_module_xxxx_DTO dto, final CompletionHand
 
     @JavascriptInterface
     final public void anonymousType(JSONObject obj, final CompletionHandler<Object> handler) {
-      _2_com_zkty_module_xxxx_DTO data= convert(obj,_2_com_zkty_module_xxxx_DTO.class);
-      _anonymousType(data, new CompletionHandler<_0_com_zkty_module_xxxx_DTO>() {
+      _2_com_zkty_module_broadcast_DTO data= convert(obj,_2_com_zkty_module_broadcast_DTO.class);
+      _anonymousType(data, new CompletionHandler<_0_com_zkty_module_broadcast_DTO>() {
         @Override
-        public void complete(_0_com_zkty_module_xxxx_DTO retValue) { handler.complete(retValue); }
+        public void complete(_0_com_zkty_module_broadcast_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_0_com_zkty_module_xxxx_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(_0_com_zkty_module_broadcast_DTO value) { handler.setProgressData(value); }
       });
 
     }

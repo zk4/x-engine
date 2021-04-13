@@ -4,16 +4,17 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <x-engine-module-engine/XEngineJSBUtil.h>
-#import "xengine__module_broadcast.h"
+#import "iBroadcast.h"
+#import "Native_broadcast.h"
 @interface iOSTests : XCTestCase
-
+@property(nonatomic,strong) id<iBroadcast> broadcast;
 @end
 
 @implementation iOSTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    _broadcast = [Native_broadcast new];
 }
 
 - (void)tearDown {
@@ -23,10 +24,11 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    
-    ContinousDTO * d= [ContinousDTO new];
-    NSString* s=[XEngineJSBUtil objToJsonString:d];
-    NSLog(@"%@",s);
+    NSString* output = [_broadcast test];
+
+    NSString*  should= @"test";
+
+     XCTAssertEqualObjects(output,should, @"should equal");
     
     
 }

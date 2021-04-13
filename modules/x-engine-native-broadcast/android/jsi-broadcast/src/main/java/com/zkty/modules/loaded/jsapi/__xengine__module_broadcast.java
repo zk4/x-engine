@@ -19,11 +19,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class __xengine__module_xxxx extends xengine__module_xxxx {
+public class __xengine__module_broadcast extends xengine__module_broadcast {
     @Override
     public void onAllModulesInited() {
 
-        Log.d("__xengine__module_xxxx", "onAllModulesInited()");
+        Log.d("__xengine__module_broadcast", "onAllModulesInited()");
     }
 
     @Override

@@ -30,9 +30,9 @@ API_AVAILABLE(ios(11.0))
 }
 - (void)webView:(WKWebView *)webView startURLSchemeTask:(id <WKURLSchemeTask>)urlSchemeTask API_AVAILABLE(ios(11.0)){
     NSURLRequest *request = urlSchemeTask.request;
-    /// TODO: 网络拦截位置
-    BOOL security_on = YES;
-    if(!security_on){
+//    /// TODO: 网络拦截位置
+//    BOOL security_on = YES;
+//    if(!security_on){
         __weak typeof(self)weakSelf = self;
         NSURLSessionDataTask * task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             __strong CustomURLSchemeHandler *strongSelf = weakSelf;
@@ -58,13 +58,13 @@ API_AVAILABLE(ios(11.0))
             TaskKey:task,
         };
         [task resume];
-    }else{
-        UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@不在白名单内",request.URL.host] preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-        [errorAlert addAction:sureAction];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:nil];
-        [urlSchemeTask didFailWithError:[[NSError alloc] init]];
-    }
+//    }else{
+//        UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@不在白名单内",request.URL.host] preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+//        [errorAlert addAction:sureAction];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:nil];
+//        [urlSchemeTask didFailWithError:[[NSError alloc] init]];
+//    }
  
 }
 

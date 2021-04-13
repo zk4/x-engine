@@ -14,67 +14,83 @@ function osCheck() {
     [
   {
     "name": "getPhoneType",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getSystemVersion",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getUDID",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getBatteryLevel",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getPreferredLanguage",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getScreenWidth",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getScreenHeight",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getSafeAreaTop",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getSafeAreaBottom",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getSafeAreaLeft",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getSafeAreaRight",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getStatusHeight",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getNavigationHeight",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "getTabBarHeight",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "devicePhoneCall",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "deviceSendMessage",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

@@ -17,42 +17,48 @@ function osCheck() {
     "default_args": {
       "url": "",
       "method": "get"
-    }
+    },
+    "decorators": []
   },
   {
     "name": "postRequest",
     "default_args": {
       "url": "",
       "method": "post"
-    }
+    },
+    "decorators": []
   },
   {
     "name": "deleteRequest",
     "default_args": {
       "url": "",
       "method": "delete"
-    }
+    },
+    "decorators": []
   },
   {
     "name": "headRequest",
     "default_args": {
       "url": "",
       "method": "head"
-    }
+    },
+    "decorators": []
   },
   {
     "name": "putRequest",
     "default_args": {
       "url": "",
       "method": "put"
-    }
+    },
+    "decorators": []
   },
   {
     "name": "patchRequest",
     "default_args": {
       "url": "",
       "method": "patch"
-    }
+    },
+    "decorators": []
   },
   {
     "name": "downloadRequest",
@@ -60,14 +66,16 @@ function osCheck() {
       "url": "",
       "method": "POST",
       "isNeedBase64": false
-    }
+    },
+    "decorators": []
   },
   {
     "name": "uploadRequest",
     "default_args": {
       "url": "",
       "method": "POST"
-    }
+    },
+    "decorators": []
   }
 ]
 )}}

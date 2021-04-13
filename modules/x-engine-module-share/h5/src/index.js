@@ -16,13 +16,15 @@ function osCheck() {
     "name": "share",
     "default_args": {
       "type": "link"
-    }
+    },
+    "decorators": []
   },
   {
     "name": "shareForOpenWXMiniProgram",
     "default_args": {
       "miniProgramType": 0
-    }
+    },
+    "decorators": []
   }
 ]
 )}}

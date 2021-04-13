@@ -2,6 +2,7 @@
 import geo from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.locate = () => {
 
   window.locate = () => {
     geo
@@ -15,5 +16,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
         }
       )
   };
-
+}
+ document.getElementById("locate").click()
+    
     

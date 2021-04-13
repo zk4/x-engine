@@ -2,6 +2,7 @@
 import scan from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.openScanView = () => {
 
   window.openScanView = (...args) => {
     scan
@@ -15,5 +16,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = typeof(res)+":"+JSON.stringify(res);
       });
   };
-
+}
+ document.getElementById("openScanView").click()
+    
     

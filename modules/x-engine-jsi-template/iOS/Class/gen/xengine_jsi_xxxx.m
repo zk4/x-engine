@@ -40,6 +40,10 @@
           NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
       return [self _syncMethod:dto];
     }
+  
+  - (id) syncMethod1:(NSDictionary*) dict {
+  return [self _syncMethod1];
+    }
     - (void) asyncMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           dict=[self mergeDefault:dict defaultString:@"{  \"name\": \"default value\"}"];

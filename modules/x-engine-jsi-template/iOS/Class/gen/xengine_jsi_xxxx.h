@@ -26,6 +26,9 @@
        - (NSString*) _syncMethod:(NamedDTO*)dto;
     
       @required 
+       - (id) _syncMethod1;
+    
+      @required 
         - (void) _asyncMethod:(_0_com_zkty_jsi_xxxx_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
 @end

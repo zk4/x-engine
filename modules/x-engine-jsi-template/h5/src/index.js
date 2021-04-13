@@ -22,6 +22,13 @@ function osCheck() {
     ]
   },
   {
+    "name": "syncMethod1",
+    "default_args": {},
+    "decorators": [
+      "sync"
+    ]
+  },
+  {
     "name": "asyncMethod",
     "default_args": {
       "name": "default value"

@@ -22,26 +22,32 @@ interface NamedDTO {
 
 // method defined
 @sync
-function syncMethod(arg: NamedDTO = { titleSize: 16 }):string {}
+function syncMethod(arg: NamedDTO = { titleSize: 16 }): string {}
+
+@sync
+function syncMethod1() {}
 
 @async
-function asyncMethod(arg: {name:string}={name:"default value"}):string {}
-
+function asyncMethod(
+  arg: /*匿名参数*/ { name: string } = { name: "default value" } /*默认参数*/
+): string {}
 
 // test function
-function test_syncMethod(arg: NamedDTO = { titleSize: 16 }){
+function test_syncMethod(arg: NamedDTO = { titleSize: 16 }) {
   let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod", {
     title: "title",
     titleSize: 12,
   });
   document.getElementById("debug_text").innerText = typeof val + ":" + val;
 }
+// test function
+function test_syncMethod1() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod1");
+}
 
-function test_asyncMethod(arg: {name:string}={name:"default value"}) {
-  xengine.api("com.zkty.jsi.xxxx", "asyncMethod", {
-  },(val)=>{
-        document.getElementById("debug_text").innerText = typeof val + ":" + val;
-
+function test_asyncMethod(arg: { name: string } = { name: "default value" }) {
+  xengine.api("com.zkty.jsi.xxxx", "asyncMethod", {}, (val) => {
+    document.getElementById("debug_text").innerText = typeof val + ":" + val;
   });
 }
 

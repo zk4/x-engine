@@ -29,4 +29,9 @@ JSI_MODULE(JSI_xxxx)
     return [NSString stringWithFormat:@"from native hello:%@", dto.title];
 }
 
+- (void)_syncMethod1 {
+    NSLog(@"hello");
+}
+
+
 @end

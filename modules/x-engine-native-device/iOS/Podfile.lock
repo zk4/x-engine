@@ -1,0 +1,22 @@
+PODS:
+  - x-engine-native-core (1.0.0):
+    - x-engine-native-protocols
+  - x-engine-native-protocols (1.0.0)
+
+DEPENDENCIES:
+  - x-engine-native-core (from `../../x-engine-native-core`)
+  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+
+EXTERNAL SOURCES:
+  x-engine-native-core:
+    :path: "../../x-engine-native-core"
+  x-engine-native-protocols:
+    :path: "../../x-engine-native-protocols"
+
+SPEC CHECKSUMS:
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
+
+PODFILE CHECKSUM: bd67a613b0101dc5c55b29dee81ef19d21261b14
+
+COCOAPODS: 1.10.1

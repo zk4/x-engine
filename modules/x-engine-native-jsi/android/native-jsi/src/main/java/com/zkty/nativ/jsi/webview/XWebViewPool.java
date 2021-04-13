@@ -1,35 +1,36 @@
 package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class XOneWebViewPool {
-    //多WebView模式
+public class XWebViewPool {
+    //多WebView模式:每个页面一个webview
+    //单微博View模式：每个微应用一个webview
     public static boolean IS_MULTI_MODE = true;
 
-
+    //微应用webview
     private static List<XEngineWebView> circleList;
+    //tab 上的webview ，一般不会被清理
     private static List<XEngineWebView> tabWebViewList;
     private static final byte[] lock = new byte[]{};
     private Context mContext;
 
 
-    private XOneWebViewPool() {
+    private XWebViewPool() {
         circleList = new ArrayList<>();
         tabWebViewList = new ArrayList<>();
     }
 
-    private static volatile XOneWebViewPool instance = null;
+    private static volatile XWebViewPool instance = null;
 
-    public static XOneWebViewPool sharedInstance() {
+    public static XWebViewPool sharedInstance() {
         if (instance == null) {
-            synchronized (XOneWebViewPool.class) {
+            synchronized (XWebViewPool.class) {
                 if (instance == null) {
-                    instance = new XOneWebViewPool();
+                    instance = new XWebViewPool();
                 }
             }
         }

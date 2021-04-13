@@ -11,7 +11,7 @@ import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.jsi.view.MicroAppsInstall;
-import com.zkty.nativ.jsi.webview.XOneWebViewPool;
+import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class JSIContext extends NativeModule {
     }
 
     private void initWebView() {
-        XOneWebViewPool.sharedInstance().init(XEngineApplication.getApplication());
+        XWebViewPool.sharedInstance().init(XEngineApplication.getApplication());
         MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
         QbSdk.initX5Environment(XEngineApplication.getApplication(), new QbSdk.PreInitCallback() {
             @Override

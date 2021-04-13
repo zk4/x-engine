@@ -280,7 +280,7 @@ public class XEngineWebView extends DWebView {
             historyModels.remove(historyModels.size() - 1);
         } else {
             historyModels.clear();
-            XOneWebViewPool.sharedInstance().removeWebView(this);
+            XWebViewPool.sharedInstance().removeWebView(this);
         }
     }
 

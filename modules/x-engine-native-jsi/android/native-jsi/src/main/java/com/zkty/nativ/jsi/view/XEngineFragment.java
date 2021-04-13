@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.zkty.nativ.jsi.webview.XEngineWebView;
+import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import nativ.jsi.R;
 
@@ -20,21 +21,18 @@ import nativ.jsi.R;
 public class XEngineFragment extends Fragment {
     private String TAG = XEngineFragment.class.getSimpleName();
     private static final String ARG_PARAM_URL = "arg_param_url";
-    private static final String ARG_PARAM_MICROAPPID = "arg_param_microappid";
+    private static final String ARG_PARAM_INDEX = "arg_param_index";
 
     private XEngineWebView mWebView;
     private RelativeLayout mRoot;
     private String mUrl;
-    private String mMicroAppId;
-
-
     private XEngineFragment() {
     }
 
-    public static XEngineFragment newInstance(String microAppId, String uri) {
+    public static XEngineFragment newInstance(int index, String uri) {
         XEngineFragment fragment = new XEngineFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_MICROAPPID, microAppId);
+        args.putInt(ARG_PARAM_INDEX, index);
         args.putString(ARG_PARAM_URL, uri);
         fragment.setArguments(args);
         return fragment;
@@ -53,12 +51,8 @@ public class XEngineFragment extends Fragment {
         mRoot = view.findViewById(R.id.rl_root);
         if (getArguments() != null) {
             mUrl = getArguments().getString(ARG_PARAM_URL);
-            mMicroAppId = getArguments().getString(ARG_PARAM_MICROAPPID);
-            mWebView = new XEngineWebView(getActivity());
-            ViewGroup parent = (ViewGroup) mWebView.getParent();
-            if (parent != null) {
-                parent.removeAllViews();
-            }
+            int index = getArguments().getInt(ARG_PARAM_INDEX);
+            mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
             mRoot.addView(mWebView, 0);
 //            PermissionDto dto = MicroAppPermissionManager.sharedInstance().getPermission(mMicroAppId, "0");
 //            mWebView.setPermission(dto);

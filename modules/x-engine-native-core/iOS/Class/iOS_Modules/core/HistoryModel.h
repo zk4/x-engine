@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     @property (nonatomic, copy) NSString *host;
     @property (nonatomic, copy) NSString *fragment;
+    @property (nonatomic, assign) BOOL onTab;
+
 @end
 
 NS_ASSUME_NONNULL_END

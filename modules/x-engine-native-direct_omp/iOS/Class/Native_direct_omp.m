@@ -46,7 +46,7 @@ NATIVE_MODULE(Native_direct_omp)
         for (UIViewController *vc in [ary reverseObjectEnumerator]){
             if (![vc isKindOfClass:[RecyleWebViewController class]]){
                 [navC popToViewController:vc animated:YES];
-                // 当 i=0 时，也就当前页就不是 RecyleWebViewController，判断现在就是在 tab 页上，不应该清空 histories
+                // 当 i=0 时，也就当前页就不是 RecyleWebViewController，判断现在就是在 tab 页上
                 if(i>0)
                     [histories removeAllObjects];
                 return;
@@ -66,7 +66,12 @@ NATIVE_MODULE(Native_direct_omp)
         if(histories){
             if(histories.count > 1)
             {
-            [navC popToViewController:histories[histories.count-2].vc animated:YES];
+                /// TODO: 这样解决并不是很优雅. wait for fix
+                if(histories[histories.count-2].onTab){
+                    [navC popToRootViewControllerAnimated:YES];
+                }else{
+                    [navC popToViewController:histories[histories.count-2].vc animated:YES];
+                }
                 [histories removeLastObject];
             }
             else if(histories.count ==1){

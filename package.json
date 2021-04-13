@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "x-engine",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "scripts": {
     "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",
     "build": "webpack  --config webpack.prod.js",

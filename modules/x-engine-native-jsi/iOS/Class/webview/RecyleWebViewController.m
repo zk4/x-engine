@@ -12,10 +12,10 @@
 #import "NativeContext.h"
 
 
+/// TODO: webview refactor
 /*
  RecyleWebViewController 只应该接收完整的 url，与 webview。
  由调用者保证 url 正确。不对 url 的处理，打不开就打不开
- 调用者如 nav，router 模块或其他原生模块。
  RecyleWebViewController 只负责载着 view 做转场动画。
  */
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate, WKNavigationDelegate>
@@ -45,29 +45,9 @@
                 [UIView animateWithDuration:0.3 animations:^{
                     self.progresslayer.alpha = 0;
                 }];
-                //                if(![self.webview.URL.absoluteString hasPrefix:@"file:///"]){
-                //                    [self.webview evaluateJavaScript:@"document.title"
-                //                                   completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-                //                        if([response isKindOfClass:[NSString class]]){
-                //                            NSString *title = response;
-                //                            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                //                            if(title.length > 0){
-                //                                if(self.title.length == 0){
-                //                                    self.title = title;
-                //                                    self.customTitle = self.title;
-                //                                }
-                //                            }
-                //                        }
-                //                    }];
-                //                }
+      
             }
         }
-        //        if(dic[@"title"] && ![dic[@"title"] isKindOfClass:[NSNull class]]){
-        //            if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-        //                self.title = dic[@"title"];
-        //                self.customTitle = self.title;
-        //            }
-        //        }
     }
 }
 
@@ -79,8 +59,7 @@
         self.imageView404.hidden = NO;
     }
 }
-
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
@@ -96,27 +75,36 @@
             [self.webview loadUrl:self.loadUrl];
             self.webview.frame = [UIScreen mainScreen].bounds;
             
-            //            [GlobalState setCurrentWebView:self.webview];
-        } else {
-            self.webview = [GlobalState getCurrentWebView];
-        }
+         }else {
+            self.webview = [[GlobalState sharedInstance] getCurrentWebView];
+       }
         
         // 存microapp.json 但是存哪里更合适
         // 最后的url会有什么区别, 有几种方式
 #warning: 下面这段放哪里合适  这是个问题
-        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
-        BOOL isHaveMicroAppJson = [securify judgeLocationIsHaveMicroAppJsonWithPath:microappPath];
-        if (isHaveMicroAppJson) {
-            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
-            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
-        }
-        
+
+//        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
+//        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
+//            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
+//            id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+//            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
+//        } else {
+//            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
+//            }];
+//            [errorAlert addAction:sureAction];
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
+//        }
+//
+
         HistoryModel* hm = [HistoryModel new];
         hm.vc            = self;
         hm.fragment      = fragment;
         hm.webview       = self.webview;
         hm.host          = host;
+        hm.onTab         = isOnTab;
+
         [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -132,6 +120,9 @@
         
     }
     return self;
+}
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
+    return [self initWithUrl:fileUrl host:host fragment:fragment newWebView:newWebView withHiddenNavBar:isHidden onTab:FALSE];
 }
 
 - (void)loadFileUrl {

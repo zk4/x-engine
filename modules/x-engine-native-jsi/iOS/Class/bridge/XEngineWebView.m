@@ -293,20 +293,24 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         NSLog(@"JS 参数有错,%@",nameStr);
         return nil;
     }
-    NSString *moduleName = nameStr[0];
-    NSString *methodName = nameStr[1];
-    if(![@"_dsb" isEqual:moduleName]){
-        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
-        // 判断是否有microapp.json文件
-        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-        BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
-        if (!isAvailable) {
-            return nil;
-        }
-    } else {
-        return nil;
-    }
-
+    NSString* moduleName = nameStr[0];
+    NSString* methodName = nameStr[1];
+//    if(![@"_dsb" isEqual:moduleName]){
+//        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
+//        // 判断是否有microapp.json文件
+//        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+//
+//        if(securify){
+//            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
+//            if (!isAvailable) {
+//                /// TODO: 挪到 security 模块里.
+//                [self showErrorAlert:@"%@模块未在 microapp.json 里注册, 请联系原生开发人员"];
+//                return nil;
+//            }
+//            
+//        }
+//    }
+ 
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[moduleName];
     NSString *error = [NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result = [NSMutableDictionary dictionaryWithDictionary:
@@ -319,7 +323,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         [self showErrorAlert:[NSString stringWithFormat:@"没有找到原生%@模块, 请联系原生开发人员", moduleName]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     } else {
-        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:moduleName class:[JavascriptInterfaceObject class]];
+        NSString *methodOne = [XEngineJSBUtil methodByNameArg:1 selName:methodName class:[JavascriptInterfaceObject class]];
         NSString *methodTwo = [XEngineJSBUtil methodByNameArg:2 selName:methodName class:[JavascriptInterfaceObject class]];
         SEL sel=NSSelectorFromString(methodOne);
         SEL selasyn=NSSelectorFromString(methodTwo);

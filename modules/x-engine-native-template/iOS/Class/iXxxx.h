@@ -1,13 +1,14 @@
 //
-//  ixxxx.h
-//  xxxx
+//  iXxxx.h
+//  Xxxx
 //
 //  Created by zk on 2021/4/3.
 //  Copyright © 2021 zk. All rights reserved.
 //
 
-#ifndef ixxxx_h
-#define ixxxx_h
-
-
-#endif /* ixxxx_h */
+#ifndef iXxxx_h
+#define iXxxx_h
+@protocol iXxxx <NSObject>
+-(NSString*) test;
+@end
+#endif /* iXxxx_h */

@@ -12,12 +12,12 @@ version: 0.1.13
 
 **demo**
 ``` js
- {
+
   xengine.api("com.zkty.jsi.ui", "setNavTitle", {
     title: "title",
     titleColor: "#000000"
   });
-}
+
 ``` 
 
 	
@@ -42,14 +42,14 @@ version: 0.1.13
 
 **demo**
 ``` js
- {
+
   xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
     //是否隐藏navBar
     isHidden: true,
     //是否使用动画效果
     isAnimation: true,
   });
-}
+
 ``` 
 
 	

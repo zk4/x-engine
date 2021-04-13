@@ -13,13 +13,14 @@ public class XOneWebViewPool {
 
 
     private static List<XEngineWebView> circleList;
+    private static List<XEngineWebView> tabWebViewList;
     private static final byte[] lock = new byte[]{};
     private Context mContext;
 
 
     private XOneWebViewPool() {
-
         circleList = new ArrayList<>();
+        tabWebViewList = new ArrayList<>();
     }
 
     private static volatile XOneWebViewPool instance = null;
@@ -92,6 +93,38 @@ public class XOneWebViewPool {
         }
         return null;
     }
+
+
+    public List<XEngineWebView> getWebViews() {
+        return circleList;
+    }
+
+    public void initTabWebView(int count) {
+        tabWebViewList.clear();
+        for (int i = 0; i < count; i++) {
+            tabWebViewList.add(new XEngineWebView(mContext));
+
+        }
+    }
+
+    //获取tab上的webview(分开管理，不被回收)
+    public XEngineWebView getTabWebViewByIndex(int index) {
+        if (tabWebViewList.size() <= index) {
+            initTabWebView(index + 1);
+        }
+        XEngineWebView webView = tabWebViewList.get(index);
+        ViewGroup parent = (ViewGroup) webView.getParent();
+        if (parent != null) {
+            parent.removeAllViews();
+        }
+
+        return webView;
+    }
+
+    public List<XEngineWebView> getTabWebViewList() {
+        return tabWebViewList;
+    }
+
 
     //返回第一个webview 并清除其他
 //    public XEngineWebView getFirstWebView() {

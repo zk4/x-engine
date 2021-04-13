@@ -16,6 +16,9 @@ project(':native-ui').projectDir = new File('../../x-engine-native-ui/android/na
 include ':native-camera'
 project(':native-camera').projectDir = new File('../../x-engine-native-camera/android/native-camera')
 
+include ':native-broadcast'
+project(':native-broadcast').projectDir = new File('../../x-engine-native-broadcast/android/native-broadcast')
+
 include ':native-protocols'
 project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
 

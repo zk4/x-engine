@@ -1,39 +1,18 @@
 
-version: 0.1.12
-``` bash
-npm install @zkty-team/x-engine-module-network
-```
+
+JSI Id: com.zkty.module.network
+
+version: 0.1.13
 
 
 
 ## getRequest
 
- ``` js
- interface UploadReponseDTO {
-     //返回状态
-     status: int;
-     //返回头
-     headers: Map<string, string>;
-     //返回请求体
-     request?: UploadRequestDTO;
-     //返回结果
-     data: string
- }
- ```
-发送GET网络请求
-**demo**
-``` js
-network.getRequest({
-   url: 'https://api.mocki.io/v1/b043df5a',
-   method: 'get',
-}).then((res) => {
-  console.log(res)
-});
- ```
+ ``` js<br> interface UploadReponseDTO {<br>     //返回状态<br>     status: int;<br>     //返回头<br>     headers: Map<string, string>;<br>     //返回请求体<br>     request?: UploadRequestDTO;<br>     //返回结果<br>     data: string<br> }<br> ```<br>发送GET网络请求<br>**demo**<br>``` js<br>network.getRequest({<br>   url: 'https://api.mocki.io/v1/b043df5a',<br>   method: 'get',<br>}).then((res) => {<br>  console.log(res)<br>});<br> ```
 
 **demo**
 ``` js
- {
+
     window.getRequest = () => {
         network.getRequest({
             url: 'https://api.mocki.io/v1/b043df5a',
@@ -42,7 +21,7 @@ network.getRequest({
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-}
+
 ``` 
 
 	
@@ -54,27 +33,6 @@ network.getRequest({
 | method | string | optional | patch | 请求方法 |
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
-
-
-参数 object  定义
-``` js
-
-
-interface RequestDTO {
-
-    //请求url
-    url: string;
-    //请求方法
-    method?: string;
-    //请求haeders
-    headers?: Map<string,
- string>;
-    //请求params
-    params?: Map<string,
- string>;
-
-}
-``` 
 
 
 ---------------------
@@ -102,24 +60,11 @@ interface ReponseDTO {
 
 ## postRequest
 
-发送POST网络请求 
- **demo**
- ``` js
- network.postRequest({
-    url: 'http://lihong.utools.club/api/user/login',
-    method: 'post',
-    params: {
-      username: 'admin',
-      passwork: 'e10adc3949ba59abbe56e057f20f883e'
-    }
- }).then((res) => {
-   console.log(res)
- });
- ```
+发送POST网络请求 <br> **demo**<br> ``` js<br> network.postRequest({<br>    url: 'http://lihong.utools.club/api/user/login',<br>    method: 'post',<br>    params: {<br>      username: 'admin',<br>      passwork: 'e10adc3949ba59abbe56e057f20f883e'<br>    }<br> }).then((res) => {<br>   console.log(res)<br> });<br> ```
 
 **demo**
 ``` js
- {
+
     window.postRequest = () => {
         network.postRequest({
             url: 'http://lihong.utools.club/api/user/login',
@@ -132,7 +77,7 @@ interface ReponseDTO {
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-}
+
 ``` 
 
 	
@@ -144,27 +89,6 @@ interface ReponseDTO {
 | method | string | optional | patch | 请求方法 |
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
-
-
-参数 object  定义
-``` js
-
-
-interface RequestDTO {
-
-    //请求url
-    url: string;
-    //请求方法
-    method?: string;
-    //请求haeders
-    headers?: Map<string,
- string>;
-    //请求params
-    params?: Map<string,
- string>;
-
-}
-``` 
 
 
 ---------------------
@@ -192,20 +116,11 @@ interface ReponseDTO {
 
 ## deleteRequest
 
-发送DELETE网络请求 
- **demo**
- ``` js
- network.deleteRequest({
-    url: 'https://api.mocki.io/v1/b043df5a',
-    method: 'delete',
- }).then((res) => {
-   console.log(res)
- });
- ```
+发送DELETE网络请求 <br> **demo**<br> ``` js<br> network.deleteRequest({<br>    url: 'https://api.mocki.io/v1/b043df5a',<br>    method: 'delete',<br> }).then((res) => {<br>   console.log(res)<br> });<br> ```
 
 **demo**
 ``` js
- {
+
     window.deleteRequest = () => {
         network.deleteRequest({
             url: 'https://api.mocki.io/v1/b043df5a',
@@ -214,7 +129,7 @@ interface ReponseDTO {
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-}
+
 ``` 
 
 	
@@ -226,27 +141,6 @@ interface ReponseDTO {
 | method | string | optional | patch | 请求方法 |
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
-
-
-参数 object  定义
-``` js
-
-
-interface RequestDTO {
-
-    //请求url
-    url: string;
-    //请求方法
-    method?: string;
-    //请求haeders
-    headers?: Map<string,
- string>;
-    //请求params
-    params?: Map<string,
- string>;
-
-}
-``` 
 
 
 ---------------------
@@ -274,20 +168,11 @@ interface ReponseDTO {
 
 ## headRequest
 
-发送HEAD网络请求 
- **demo**
- ``` js
- network.headRequest({
-    url: 'https://api.mocki.io/v1/b043df5a',
-    method: 'head',
- }).then((res) => {
-   console.log(res)
- });
- ```
+发送HEAD网络请求 <br> **demo**<br> ``` js<br> network.headRequest({<br>    url: 'https://api.mocki.io/v1/b043df5a',<br>    method: 'head',<br> }).then((res) => {<br>   console.log(res)<br> });<br> ```
 
 **demo**
 ``` js
- {
+
     window.headRequest = () => {
         network.headRequest({
             url: 'https://api.mocki.io/v1/b043df5a',
@@ -296,7 +181,7 @@ interface ReponseDTO {
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-}
+
 ``` 
 
 	
@@ -308,27 +193,6 @@ interface ReponseDTO {
 | method | string | optional | patch | 请求方法 |
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
-
-
-参数 object  定义
-``` js
-
-
-interface RequestDTO {
-
-    //请求url
-    url: string;
-    //请求方法
-    method?: string;
-    //请求haeders
-    headers?: Map<string,
- string>;
-    //请求params
-    params?: Map<string,
- string>;
-
-}
-``` 
 
 
 ---------------------
@@ -356,20 +220,11 @@ interface ReponseDTO {
 
 ## putRequest
 
-发送PUT网络请求 
- **demo**
- ``` js
- network.putRequest({
-    url: 'https://api.mocki.io/v1/b043df5a',
-    method: 'put',
- }).then((res) => {
-   console.log(res)
- });
- ```
+发送PUT网络请求 <br> **demo**<br> ``` js<br> network.putRequest({<br>    url: 'https://api.mocki.io/v1/b043df5a',<br>    method: 'put',<br> }).then((res) => {<br>   console.log(res)<br> });<br> ```
 
 **demo**
 ``` js
- {
+
     window.putRequest = () => {
         network.putRequest({
             url: 'https://api.mocki.io/v1/b043df5a',
@@ -378,7 +233,7 @@ interface ReponseDTO {
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-}
+
 ``` 
 
 	
@@ -390,27 +245,6 @@ interface ReponseDTO {
 | method | string | optional | patch | 请求方法 |
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
-
-
-参数 object  定义
-``` js
-
-
-interface RequestDTO {
-
-    //请求url
-    url: string;
-    //请求方法
-    method?: string;
-    //请求haeders
-    headers?: Map<string,
- string>;
-    //请求params
-    params?: Map<string,
- string>;
-
-}
-``` 
 
 
 ---------------------
@@ -438,20 +272,11 @@ interface ReponseDTO {
 
 ## patchRequest
 
-发送PATCH网络请求
- **demo**
- ``` js
- network.patchRequest({
-    url: 'https://api.mocki.io/v1/b043df5a',
-    method: 'patch',
- }).then((res) => {
-   console.log(res)
- });
- ```
+发送PATCH网络请求<br> **demo**<br> ``` js<br> network.patchRequest({<br>    url: 'https://api.mocki.io/v1/b043df5a',<br>    method: 'patch',<br> }).then((res) => {<br>   console.log(res)<br> });<br> ```
 
 **demo**
 ``` js
- {
+
     window.patchRequest = () => {
         network.patchRequest({
             url: 'https://api.mocki.io/v1/b043df5a',
@@ -460,7 +285,7 @@ interface ReponseDTO {
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-}
+
 ``` 
 
 	
@@ -472,27 +297,6 @@ interface ReponseDTO {
 | method | string | optional | patch | 请求方法 |
 | headers | Map\<string,string\> | optional |  | 请求haeders |
 | params | Map\<string,string\> | optional |  | 请求params |
-
-
-参数 object  定义
-``` js
-
-
-interface RequestDTO {
-
-    //请求url
-    url: string;
-    //请求方法
-    method?: string;
-    //请求haeders
-    headers?: Map<string,
- string>;
-    //请求params
-    params?: Map<string,
- string>;
-
-}
-``` 
 
 
 ---------------------
@@ -520,30 +324,11 @@ interface ReponseDTO {
 
 ## downloadRequest
 
- interface DownloadReponseDTO {
-     //返回的数据
-     data: string
-     //返回的状态
-     status: int;
-     //返回的头信息
-     headers: Map<string, string>;
-     //返回的请求参数
-     request?: RequestDTO;
- }
-发送下载请求
- **demo**
- ``` js
- network.downloadRequest({
-    url: 'http://lihong.utools.club/api/excel/downLoadExcel?tableId=0104',
-    method: 'download',
- }).then((res) => {
-   console.log(res)
- }); 
- ``` 
+ interface DownloadReponseDTO {<br>     //返回的数据<br>     data: string<br>     //返回的状态<br>     status: int;<br>     //返回的头信息<br>     headers: Map<string, string>;<br>     //返回的请求参数<br>     request?: RequestDTO;<br> }<br>发送下载请求<br> **demo**<br> ``` js<br> network.downloadRequest({<br>    url: 'http://lihong.utools.club/api/excel/downLoadExcel?tableId=0104',<br>    method: 'download',<br> }).then((res) => {<br>   console.log(res)<br> }); <br> ``` 
 
 **demo**
 ``` js
- {
+
     window.downloadRequest = () => {
         network.downloadRequest({
             url: 'http://httpbin.org/image/jpeg',
@@ -566,7 +351,7 @@ interface ReponseDTO {
             });
         });
     };
-}
+
 ``` 
 
 	
@@ -580,32 +365,6 @@ interface ReponseDTO {
 | params | Map\<string,string\> | optional |  | 请求params |
 | \_\_event\_\_ | string | optional |  | progress: (progress:float)=>void |
 | isNeedBase64 | bool | 必填 |  | 是否需要base64的内容 |
-
-
-参数 object  定义
-``` js
-
-
-// download
-interface DownloadRequestDTO {
-
-    //请求url
-    url: string;
-    //请求方法
-    method?: string;
-    //请求haeders
-    headers?: Map<string,
- string>;
-    //请求params
-    params?: Map<string,
- string>;
-    //progress: (progress:float)=>void
-    __event__?: string;
-    //是否需要base64的内容
-    isNeedBase64: boolean;
-
-}
-``` 
 
 
 ---------------------
@@ -635,22 +394,11 @@ interface DownloadReponseDTO {
 
 ## uploadRequest
 
-发送上传请求
- **demo**
- ``` js
- network.uploadRequest({
-    url: 'http://letonglexue.com/api/util/upload',
-    method: 'upload',
-    filename: 'custom.png',
-    filepath: '',
- }).then((res) => {
-    console.log(res)
- });
- ```
+发送上传请求<br> **demo**<br> ``` js<br> network.uploadRequest({<br>    url: 'http://letonglexue.com/api/util/upload',<br>    method: 'upload',<br>    filename: 'custom.png',<br>    filepath: '',<br> }).then((res) => {<br>    console.log(res)<br> });<br> ```
 
 **demo**
 ``` js
- {
+
     window.uploadRequest = () => {
         network.uploadRequest({
             url: 'http://httpbin.org/post',
@@ -661,7 +409,7 @@ interface DownloadReponseDTO {
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-}
+
 ``` 
 
 	
@@ -677,36 +425,6 @@ interface DownloadReponseDTO {
 | filepath | string | optional |  | 上传文件路径 |
 | fileBaseStr | string | optional |  | 上传文件的base64 |
 | \_\_event\_\_ | string | optional |  | progress: (progress:float)=>void |
-
-
-参数 object  定义
-``` js
-
-
-interface UploadRequestDTO {
-
-    //请求地址
-    url: string;
-    //请求方法
-    method?: string;
-    //请求头
-    headers?: Map<string,
- string>;
-    //请求参数
-    params?: Map<string,
- string>;
-    //上传文件名称
-    filename: string;
-    //上传文件路径
-    filepath?: string;
-    //上传文件的base64
-    fileBaseStr?: string;
-
-    //progress: (progress:float)=>void
-    __event__?: string;
-
-}
-``` 
 
 
 ---------------------

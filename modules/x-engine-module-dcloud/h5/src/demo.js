@@ -2,6 +2,7 @@
 import dcloud from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.openUniMP = () => {
 
   window.openUniMP = () => {
     dcloud.openUniMP({
@@ -10,6 +11,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
+}
+ document.getElementById("openUniMP").click()
+    window.testopenUniMP = () => {
 
   window.testopenUniMP = () => {
     dcloud.openUniMP({
@@ -18,6 +22,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
+}
+ document.getElementById("testopenUniMP").click()
+    window.preloadUniMP = () => {
 
   window.preloadUniMP = (
     
@@ -31,6 +38,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
+}
+ document.getElementById("preloadUniMP").click()
+    window.openUniMPWithArg = () => {
 
   window.openUniMPWithArg = () => {
     dcloud.openUniMPWithArg({
@@ -42,5 +52,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
-
+}
+ document.getElementById("openUniMPWithArg").click()
+    
     

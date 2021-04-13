@@ -2,14 +2,21 @@
 import nav from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.setNavTitle = () => {
 
   window.setNavTitle = () => {
     nav.setNavTitle().then((res) => {});
   };
+}
+ document.getElementById("setNavTitle").click()
+    window.setNavLeftBtn = () => {
 
   window.setNavLeftBtn = () => {
     nav.setNavLeftBtn().then((res) => {});
   };
+}
+ document.getElementById("setNavLeftBtn").click()
+    window.setNavRightBtn = () => {
 
   window.setNavRightBtn = () => {
     nav
@@ -25,6 +32,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
+}
+ document.getElementById("setNavRightBtn").click()
+    window.setNavRightMenuBtn = () => {
 
   window.setNavRightMenuBtn = () => {
     nav
@@ -48,18 +58,30 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
+}
+ document.getElementById("setNavRightMenuBtn").click()
+    window.setNavRightMoreBtn = () => {
 
   window.setNavRightMoreBtn = () => {
     nav.setNavRightMoreBtn().then((res) => {});
   };
+}
+ document.getElementById("setNavRightMoreBtn").click()
+    window.navigatorPush = () => {
 
   window.navigatorPush = () => {
     nav.navigatorPush().then((res) => {});
   };
+}
+ document.getElementById("navigatorPush").click()
+    window.navigatorBack = () => {
 
   window.navigatorBack = () => {
     nav.navigatorBack().then((res) => {});
   };
+}
+ document.getElementById("navigatorBack").click()
+    window.setNavSearchBar = () => {
 
   window.setNavSearchBar = () => {
     nav
@@ -83,6 +105,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
+}
+ document.getElementById("setNavSearchBar").click()
+    window.setSearchBarHidden = () => {
 
   window.setSearchBarHidden = () => {
     nav
@@ -92,6 +117,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
+}
+ document.getElementById("setSearchBarHidden").click()
+    window.setNavBarHidden = () => {
 
   window.setNavBarHidden = () => {
     nav
@@ -101,6 +129,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
+}
+ document.getElementById("setNavBarHidden").click()
+    window.removeHistoryPage = () => {
 
   window.removeHistoryPage = () => {
     nav
@@ -110,6 +141,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
+}
+ document.getElementById("removeHistoryPage").click()
+    window.testSetHidden = () => {
 
   window.testSetHidden = () => {
     nav
@@ -119,5 +153,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
       })
       .then((res) => {});
   };
-
+}
+ document.getElementById("testSetHidden").click()
+    
     

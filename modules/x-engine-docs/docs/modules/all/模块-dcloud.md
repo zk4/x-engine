@@ -9,10 +9,10 @@
 
 # JS
 
-version: 0.1.12
-``` bash
-npm install @zkty-team/x-engine-module-dcloud
-```
+
+JSI Id: com.zkty.module.dcloud
+
+version: 0.1.13
 
 
 
@@ -22,7 +22,7 @@ npm install @zkty-team/x-engine-module-dcloud
 
 **demo**
 ``` js
-{
+
   window.openUniMP = () => {
     dcloud.openUniMP({
     appId:'__UNI__9B75743'
@@ -30,7 +30,7 @@ npm install @zkty-team/x-engine-module-dcloud
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
-}
+
 ``` 
 
 	
@@ -39,20 +39,6 @@ npm install @zkty-team/x-engine-module-dcloud
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | appId | string | 必填 |  | 小程序appId |
-
-
-参数 object  定义
-``` js
-
-
-// dto
-interface DcloudDTO{
-
-  //小程序appId
-  appId:string;
-
-}
-``` 
 
 
 ---------------------
@@ -67,7 +53,7 @@ interface DcloudDTO{
 
 **demo**
 ``` js
-{
+
   window.preloadUniMP = (
     
   ) => {
@@ -80,7 +66,7 @@ interface DcloudDTO{
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
-}
+
 ``` 
 
 	
@@ -94,29 +80,6 @@ interface DcloudDTO{
 | enableBackground | bool | 必填 |  |  开启后台运行 |
 | showAnimated | bool | optional | true | 是否开启 show 小程序时的动画效果 默认：true |
 | hideAnimated | bool | optional | true | 是否开启 hide 时的动画效果 默认：true |
-
-
-参数 object  定义
-``` js
-
-
-interface UniMPDTO {
-
-  appId:string;
-  //配置启动小程序时传递的参数
-  arguments: Map<string,
-string>;
-  // 路径
-  redirectPath: string;
-  // 开启后台运行
-  enableBackground: boolean;
-  //是否开启 show 小程序时的动画效果 默认：true
-  showAnimated?:boolean;
-  //是否开启 hide 时的动画效果 默认：true
-  hideAnimated?:boolean;
-
-}
-``` 
 
 
 ---------------------
@@ -131,7 +94,7 @@ string>;
 
 **demo**
 ``` js
-{
+
   window.openUniMPWithArg = () => {
     dcloud.openUniMPWithArg({
     appId:'__UNI__9B75743',
@@ -142,7 +105,7 @@ string>;
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
  };
-}
+
 ``` 
 
 	
@@ -156,29 +119,6 @@ string>;
 | enableBackground | bool | 必填 |  |  开启后台运行 |
 | showAnimated | bool | optional | true | 是否开启 show 小程序时的动画效果 默认：true |
 | hideAnimated | bool | optional | true | 是否开启 hide 时的动画效果 默认：true |
-
-
-参数 object  定义
-``` js
-
-
-interface UniMPDTO {
-
-  appId:string;
-  //配置启动小程序时传递的参数
-  arguments: Map<string,
-string>;
-  // 路径
-  redirectPath: string;
-  // 开启后台运行
-  enableBackground: boolean;
-  //是否开启 show 小程序时的动画效果 默认：true
-  showAnimated?:boolean;
-  //是否开启 hide 时的动画效果 默认：true
-  hideAnimated?:boolean;
-
-}
-``` 
 
 
 ---------------------

@@ -569,6 +569,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
 }
 
+- (void)dealloc {
+    [self.indicatorView stopAnimating];
+}
+
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
     NSLog(@"内容开始返回:%s",__FUNCTION__);

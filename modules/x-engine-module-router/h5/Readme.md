@@ -1,8 +1,8 @@
 
-version: 0.1.12
-``` bash
-npm install @zkty-team/x-engine-module-router
-```
+
+JSI Id: com.zkty.module.router
+
+version: 0.1.13
 
 
 
@@ -12,13 +12,13 @@ npm install @zkty-team/x-engine-module-router
 
 **demo**
 ``` js
- {
+
   window.openTargetRouter = () => {
     router
       .openTargetRouter({ type: "h5", uri:"http://192.168.10.51:8081/index.html", path:"" })
       .then((res) => { });
   };
-}
+
 ``` 
 
 	
@@ -32,32 +32,6 @@ npm install @zkty-team/x-engine-module-router
 | args | Map\<string,string\> | optional |  | 其他参数 |
 | version | int | optional |  |  |
 | hideNavbar | bool | optional |  |  是否隐藏navbar, 默认 false |
-
-
-参数 object  定义
-``` js
-
-
-interface RouterOpenAppDTO {
-
-  //跳转类型
-  type: string;
-  //跳转目标
-  uri: string;
-  //跳转参数
-  path: string;
-  //其他参数
-  args?:Map<string,
- string>;
-
-  version?: int;
-
-  // 是否隐藏navbar,
- 默认 false
-  hideNavbar?: boolean;
-
-}
-``` 
 
 
 ---------------------

@@ -2,6 +2,7 @@
 import share from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.share = () => {
 
   window.share = () => {
     share
@@ -19,6 +20,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("share").click()
+    window.shareForOpenWXMiniProgram = () => {
 
   window.shareForOpenWXMiniProgram = () => {
     share
@@ -38,5 +42,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
-
+}
+ document.getElementById("shareForOpenWXMiniProgram").click()
+    
     

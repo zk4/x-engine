@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSIOldRouterModule : JSIModule
++ (NSString*)SPAUrl2StandardUrl:(NSString*)raw;
 + (NSDictionary*) convertRouter2JSIModel:(NSDictionary*) dict;
 @end
 

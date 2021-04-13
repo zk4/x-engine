@@ -1,18 +1,15 @@
 package com.zkty.nativ.jsi;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-
 import com.tencent.smtt.sdk.QbSdk;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.webview.XOneWebViewPool;
 
@@ -22,7 +19,7 @@ import java.util.List;
 public class JSIContext extends NativeModule {
     private List<Class> moduleClasses;
     private List<JSIModule> modules;
-    private String TAG = NativeModule.class.getSimpleName();
+    private String TAG = JSIContext.class.getSimpleName();
 
     @Override
     public String moduleId() {

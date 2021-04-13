@@ -35,7 +35,6 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 
 
-
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.utils.ImageUtils;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
@@ -54,7 +53,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import nativ.jsi.R;
-
 
 public class XEngineWebActivity extends BaseXEngineActivity {
     private static final String TAG = XEngineWebActivity.class.getSimpleName();
@@ -132,7 +130,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         historyModel = (HistoryModel) getIntent().getSerializableExtra(HISTORYMODEL);
 
-        mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool();
+        mWebView = XOneWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
 
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 
@@ -148,7 +146,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         XEngineWebActivityManager.sharedInstance().addActivity(this);
         lifecycleListeners = new LinkedHashSet<>();
 
-        mWebView.loadUrl(getFullUrl(historyModel));
+        mWebView.loadUrl(historyModel);
 
     }
 
@@ -245,12 +243,15 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             new Handler().postDelayed(() ->
                             showScreenCapture(false)
                     , 400);
-            if (XOneWebViewPool.IS_SINGLE) {
+            mWebView = XOneWebViewPool.sharedInstance().getLastWebView();
+            if (mWebView != null) {
+
                 if (mWebView.getParent() != null) {
                     ((ViewGroup) mWebView.getParent()).removeView(mWebView);
                 }
                 ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
             }
+
         }
 
         super.onResume();
@@ -303,6 +304,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             lifecycleListeners.clear();
         }
         XEngineWebActivityManager.sharedInstance().clearActivity(this);
+        mWebView.goBack();
         EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_SHOW_TABBAR));
         EventBus.getDefault().unregister(this);
 
@@ -342,48 +344,48 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-//            if (TextUtils.isEmpty(mMicroAppId)) {
-//                if (mWebView.canGoBack()) {
-//                    mWebView.goBack();
-//                    return true;
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//
+////            if (TextUtils.isEmpty(mMicroAppId)) {
+////                if (mWebView.canGoBack()) {
+////                    mWebView.goBack();
+////                    return true;
+////                }
+////            } else {
+//
+//            if (mWebView.canGoBack()) {
+//
+//                XEngineWebActivity lastActivity = XEngineWebActivityManager.sharedInstance().getLastActivity();
+//                if (lastActivity != null) {
+//
+//                    if (TextUtils.isEmpty(lastActivity.getHistoryModel().fragment)) {
+//                        mWebView.goBackToIndexPage();
+//                    } else {
+//                        WebBackForwardList backForwardList = mWebView.copyBackForwardList();
+//                        if (backForwardList != null && backForwardList.getSize() != 0) {
+//                            int index = 0;
+//                            for (int i = backForwardList.getCurrentIndex(); i > -1; i--) {
+//                                String url = backForwardList.getItemAtIndex(i).getOriginalUrl();
+//                                if (lastActivity.getHistoryModel().fragment.equals(UrlUtils.getRouterFormUrl(url))) {
+//                                    break;
+//                                }
+//                                index++;
+//                            }
+//                            mWebView.goBackOrForward(-index);
+//                        }
+//                    }
+//
 //                }
+//
 //            } else {
-
-            if (mWebView.canGoBack()) {
-
-                XEngineWebActivity lastActivity = XEngineWebActivityManager.sharedInstance().getLastActivity();
-                if (lastActivity != null) {
-
-                    if (TextUtils.isEmpty(lastActivity.getHistoryModel().fragment)) {
-                        mWebView.goBackToIndexPage();
-                    } else {
-                        WebBackForwardList backForwardList = mWebView.copyBackForwardList();
-                        if (backForwardList != null && backForwardList.getSize() != 0) {
-                            int index = 0;
-                            for (int i = backForwardList.getCurrentIndex(); i > -1; i--) {
-                                String url = backForwardList.getItemAtIndex(i).getOriginalUrl();
-                                if (lastActivity.getHistoryModel().fragment.equals(UrlUtils.getRouterFormUrl(url))) {
-                                    break;
-                                }
-                                index++;
-                            }
-                            mWebView.goBackOrForward(-index);
-                        }
-                    }
-
-                }
-
-            } else {
-                mWebView.historyBack();
-            }
-
-            finish();
-            return true;
-
+////                mWebView.historyBack();
 //            }
-        }
+//
+//            finish();
+//            return true;
+//
+////            }
+//        }
         return super.onKeyDown(keyCode, event);
     }
 
@@ -585,12 +587,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 //            }
         }
     }
-
-    private String getFullUrl(HistoryModel model) {
-
-        return String.format("%s//%s%s#%s", model.protocol, model.host, model.pathname, model.fragment);
-    }
-
 
     public HistoryModel getHistoryModel() {
         return historyModel;

@@ -1,16 +1,15 @@
 package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class XOneWebViewPool {
-
-    public static boolean IS_SINGLE = true;
-    public static boolean IS_WEB = false;
-    public static boolean IS_ROUTER = false;
+    //多WebView模式
+    public static boolean IS_MULTI_MODE = true;
 
 
     private static List<XEngineWebView> circleList;
@@ -42,26 +41,34 @@ public class XOneWebViewPool {
      */
     public void init(Context context) {
         this.mContext = context;
+    }
 
+    public void setMultiMode(boolean mode) {
+        this.IS_MULTI_MODE = mode;
     }
 
 
     /**
      * 获取webview
      */
-    public XEngineWebView getUnusedWebViewFromPool() {
+    public XEngineWebView getUnusedWebViewFromPool(String host) {
         synchronized (lock) {
             XEngineWebView webView = null;
-            if (IS_ROUTER || circleList.size() == 0) {
+            if (IS_MULTI_MODE || circleList.size() == 0) {
 
                 webView = new XEngineWebView(mContext);
                 circleList.add(webView);
 
             } else {
                 webView = circleList.get(circleList.size() - 1);
-                ViewGroup parent = (ViewGroup) webView.getParent();
-                if (parent != null) {
-                    parent.removeAllViews();
+                if (!host.equals(circleList.get(circleList.size() - 1).getHistoryModels().get(0).host)) {
+                    webView = new XEngineWebView(mContext);
+                    circleList.add(webView);
+                } else {
+                    ViewGroup parent = (ViewGroup) webView.getParent();
+                    if (parent != null) {
+                        parent.removeAllViews();
+                    }
                 }
             }
             return webView;
@@ -70,7 +77,6 @@ public class XOneWebViewPool {
 
     public void cleanWebView() {
         circleList.clear();
-        XOneWebViewPool.IS_ROUTER = false;
     }
 
     public void removeWebView(XEngineWebView webView) {
@@ -79,8 +85,49 @@ public class XOneWebViewPool {
 
     }
 
-    public void putWebViewBackToPool(XEngineWebView webView) {
-
+    //返回最后一个webview 并清除其他
+    public XEngineWebView getLastWebView() {
+        if (circleList.size() > 0) {
+            return circleList.get(circleList.size() - 1);
+        }
+        return null;
     }
+
+    //返回第一个webview 并清除其他
+//    public XEngineWebView getFirstWebView() {
+//        if (circleList.size() > 0) {
+//            circleList.subList(0, 1);
+//            return circleList.get(0);
+//        }
+//        return null;
+//    }
+//
+//    //返回指定host webview 并清除其后面的
+//    public XEngineWebView getWebViewFromPool(String host) {
+//        if (TextUtils.isEmpty(host)) {
+//            return circleList.get(circleList.size() - 1);
+//        }
+//
+//
+//        int index = -1;
+//        for (int i = circleList.size() - 1; i > -1; i--) {
+//            if (circleList.get(i).getHistoryModels().get(0).host.equals(host)) {
+//                index = i;
+//                break;
+//            }
+//        }
+//        if (index == circleList.size() - 1) {
+//            return circleList.get(circleList.size() - 1);
+//        }
+//        if (index > -1) {
+//
+//            circleList.subList(0, index + 1);
+//            return circleList.get(circleList.size() - 1);
+//
+//        } else {
+//            return null;
+//        }
+//
+//    }
 
 }

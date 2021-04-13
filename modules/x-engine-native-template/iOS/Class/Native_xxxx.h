@@ -7,9 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "NativeModule.h"
-
+#import "iXxxx.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_xxxx : NativeModule
+@interface Native_xxxx : NativeModule <iXxxx>
  
 @end
 

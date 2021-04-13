@@ -15,13 +15,10 @@
 
 @implementation GlobalState
 
-
-
-
 - (instancetype)init {
-   self = [super init];
-   self.histories = [[NSMutableArray alloc]  init];
-   return self;
+    self = [super init];
+    self.histories = [[NSMutableArray alloc]  init];
+    return self;
 }
 
 
@@ -30,26 +27,26 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[super allocWithZone:NULL] init];
-
+        
     });
     return sharedInstance;
 }
 
 
 - (NSString*) getLastHost{
-     return [_histories lastObject].host;
+    return [_histories lastObject].host;
 }
 
-+ (XEngineWebView*)getCurrentWebView{
+- (XEngineWebView*)getCurrentWebView{
     NSPointerArray* webviews =  [WebViewFactory sharedInstance].webviews;
     [webviews addPointer:NULL];
     [webviews compact];
     return [[webviews allObjects] lastObject];
 }
 - (NSMutableArray<HistoryModel*>*) getCurrentWebViewHistories{
-   [self clearHistory];
-
-   XEngineWebView* lastwebview =  [_histories lastObject].webview;
+    [self clearHistory];
+    
+    XEngineWebView* lastwebview =  [_histories lastObject].webview;
     NSMutableArray* ret = [NSMutableArray new];
     if(lastwebview){
         for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
@@ -61,16 +58,16 @@
 }
 - (NSMutableArray<HistoryModel *> *)getCurrentHostHistories{
     [self clearHistory];
-
+    
     NSString* host =  [_histories lastObject].host;
-     NSMutableArray* ret = [NSMutableArray new];
-     if(host){
-         for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
-             if(host == hm.host)
-                 [ret insertObject:hm atIndex:0];
-         }
-     }
-     return ret;
+    NSMutableArray* ret = [NSMutableArray new];
+    if(host){
+        for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
+            if(host == hm.host)
+                [ret insertObject:hm atIndex:0];
+        }
+    }
+    return ret;
     
 }
 - (void) clearHistory{
@@ -83,8 +80,8 @@
 }
 
 - (void)addCurrentWebViewHistory:(HistoryModel *) history_model{
-    [_histories addObject:history_model];
     [self clearHistory];
+    [_histories addObject:history_model];
 }
 
 

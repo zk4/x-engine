@@ -1,10 +1,11 @@
-package com.zkty.modules.jsapi;
+package com.zkty.jsi.xxxx;
 
 import android.webkit.JavascriptInterface;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zkty.modules.nativ.jsi.JSIModule;
-import com.zkty.modules.nativ.jsi.bridge.CompletionHandler;
+import com.zkty.nativ.jsi.JSIModule;
+import com.zkty.nativ.jsi.bridge.CompletionHandler;
+
 
 class StorageDTO {
     String key;

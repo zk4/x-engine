@@ -8,7 +8,7 @@
     <application>
 
         <meta-data
-            android:name="com.zkty.module.xxxx"
-            android:value="com.zkty.modules.loaded.jsapi.__xengine__module_xxxx" />
+            android:name="com.zkty.native.xxxx"
+            android:value="com.zkty.nativ.xxxx.Nativexxxx" />
     </application>
 </manifest>

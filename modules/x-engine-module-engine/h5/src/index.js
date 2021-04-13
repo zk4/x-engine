@@ -43,9 +43,9 @@ function xassert(targetID, expression) {
   }
 }
 function api(jsimoduleId, funcname, args, cb) {
-  if (args.hasOwnProperty("__event__")) {
-    only_idx++;
-    if (args) {
+  if (args) {
+    if (args.hasOwnProperty("__event__")) {
+      only_idx++;
       let eventcb = args["__event__"];
       if (!isFunction(eventcb)) throw "__event__ 必须为函数";
       args["__event__"] = ns + "." + funcname + ".__event__" + only_idx;
@@ -59,7 +59,6 @@ function api(jsimoduleId, funcname, args, cb) {
   // aysnc 会通过 cb 传递
   // sync 通过 return 返回
   return dsbridge.call(jsimoduleId + "." + funcname, args, cb);
-
 }
 function broadcastOff() {
   xengine.bridge.unregister("com.zkty.module.engine.broadcast");

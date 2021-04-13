@@ -9,7 +9,6 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-broadcast (1.0.0):
-    - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-core (1.0.0):
@@ -93,7 +92,7 @@ SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   x-engine-jsi-direct: 576d2f25bc1d0c87e02a4ddf1469d955a9bed82e
   x-engine-jsi-legacy: c6add91d5426ffc532e78015e1f5a30dd3ce46b1
-  x-engine-native-broadcast: 57857dfba89a219b998728cf0c95045b1ad946e5
+  x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
   x-engine-native-direct_http: 0a8c48c42b87664030ec554515c2edf6e879aab0
@@ -104,6 +103,6 @@ SPEC CHECKSUMS:
   x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
-PODFILE CHECKSUM: 1493f8fae9453917f14b7f6e7c63536d58d2e8ee
+PODFILE CHECKSUM: 55a9451d448ae6a227197157f5e8835e8796670a
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

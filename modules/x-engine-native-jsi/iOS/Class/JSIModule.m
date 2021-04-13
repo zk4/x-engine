@@ -80,12 +80,12 @@
         }
     }
 }
-- (NSMutableDictionary*) merge:(NSMutableDictionary*) dest defaultDict:(NSMutableDictionary*) dv {
-    if(!dv) return dest;
-    if(!dest) return dv;
+- (NSDictionary*) merge:(NSDictionary*) const_dest defaultDict:(NSDictionary*) const_dv {
+    if(!const_dv) return const_dest;
+    if(!const_dest) return const_dv;
     // 转换为 mutable 再说
-    dest = [dest mutableCopy];
-    dv = [dv mutableCopy];
+    NSMutableDictionary* dest = [const_dest mutableCopy];
+    NSMutableDictionary*dv = [const_dv mutableCopy];
     NSMutableDictionary* final = [@{} mutableCopy];
     // 遍历 dest 的 key
     for(NSString* destKey in [dest allKeys]){
@@ -116,7 +116,7 @@
     }
     return final;
 }
--(NSMutableDictionary*) mergeDefault:(NSMutableDictionary*)dict defaultString:(NSString*)defaultString{
+-(NSDictionary*) mergeDefault:(NSDictionary*)dict defaultString:(NSString*)defaultString{
     if(!defaultString || defaultString.length==0) return dict;
     NSDictionary* parsed_dict= [XEngineJSBUtil jsonStringToObject:defaultString];
     return [self merge:dict defaultDict:parsed_dict];

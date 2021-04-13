@@ -193,25 +193,25 @@
     XCTAssertEqualObjects(should,actual, @"should equal");
 }
 -(void)testMergeWithDepthArg4 {
-    NSMutableDictionary* defaultDict = [@{  @"nested":@{
+    NSDictionary* defaultDict = @{  @"nested":@{
                                                     @"nested":@{
                                                             @"a":@"b"
                                                     },
                                                     
-    }} mutableCopy];
-    NSMutableDictionary* srcDict = [@{@"nested":@{
+    }};
+    NSDictionary* srcDict = @{@"nested":@{
                                               @"nested":@{
                                                       @"a":@"222"
                                               },
                                               
-    }} mutableCopy];
-    NSMutableDictionary*  target=[_jsm merge:srcDict defaultDict:defaultDict];
+    }} ;
+    NSDictionary*  target=[_jsm merge:srcDict defaultDict:defaultDict];
     
-    NSMutableDictionary*  should= [@{ @"nested":@{
+    NSDictionary*  should= @{ @"nested":@{
                                               @"nested":@{
                                                       @"a":@"222"
                                               },
-    }} mutableCopy];
+    }} ;
     
     XCTAssertEqualObjects(should,target, @"should equal");
 }

@@ -62,31 +62,7 @@ NATIVE_MODULE(Native_device)
     return @"send message";
 }
 
-- (NSString *)getDeviceInfo {
-    NSString *systemName = [UIDevice currentDevice].systemName;
-    
-    NSString *systemVersion = [UIDevice currentDevice].systemVersion;
-    
-    NSArray *languageArray = [NSLocale preferredLanguages];
-    NSString *language = [languageArray objectAtIndex:0];
-    
-    NSString *UUID = [[UIDevice currentDevice] identifierForVendor].UUIDString;
-    
-    
-    NSString *res = [NSString stringWithFormat:@"%@, %@, %@, %@", systemName, systemVersion, language, UUID];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:systemName forKey:@"type"];
-    [dict setValue:systemVersion forKey:@"systemVersion"];
-    [dict setValue:language forKey:@"language"];
-    [dict setValue:UUID forKey:@"UUID"];
-    
-    NSLog(@"%@", dict);
-    
-    return [NSString stringWithFormat:@"%@", res];
-}
-
-- (NSMutableDictionary *)getDeviceInfo1 {
+- (NSMutableDictionary *)getDeviceInfo {
     NSString *systemName = [UIDevice currentDevice].systemName;
     NSString *systemVersion = [UIDevice currentDevice].systemVersion;
     NSArray *languageArray = [NSLocale preferredLanguages];

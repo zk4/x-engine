@@ -6,12 +6,12 @@
 export default {
 
     
-    getPhoneType(args={},userPromise){
+    test_getStatusHeight(args={},userPromise){
       if(userPromise){
         return userPromise()
       }else{
         return new Promise((resolve, reject)=>{
-          alert("getPhoneType no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
+          alert("test_getStatusHeight no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
           resolve(null);
         });
       }
@@ -19,194 +19,12 @@ export default {
     }
     ,
     
-    getSystemVersion(args={},userPromise){
+    test_getNavHeight(args={},userPromise){
       if(userPromise){
         return userPromise()
       }else{
         return new Promise((resolve, reject)=>{
-          alert("getSystemVersion no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getUDID(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getUDID no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getBatteryLevel(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getBatteryLevel no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getPreferredLanguage(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getPreferredLanguage no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getScreenWidth(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getScreenWidth no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getScreenHeight(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getScreenHeight no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getSafeAreaTop(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getSafeAreaTop no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getSafeAreaBottom(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getSafeAreaBottom no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getSafeAreaLeft(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getSafeAreaLeft no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getSafeAreaRight(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getSafeAreaRight no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getStatusHeight(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getStatusHeight no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getNavigationHeight(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getNavigationHeight no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    getTabBarHeight(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("getTabBarHeight no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    devicePhoneCall(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("devicePhoneCall no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-
-    }
-    ,
-    
-    deviceSendMessage(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          alert("deviceSendMessage no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
+          alert("test_getNavHeight no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
           resolve(null);
         });
       }

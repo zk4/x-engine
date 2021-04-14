@@ -53,14 +53,6 @@
   return [self _getTabbarHeight];
     }
   
-  - (NSString*) getSystemVersion:(NSDictionary*) dict {
-  return [self _getSystemVersion];
-    }
-  
-  - (NSString*) getUUID:(NSDictionary*) dict {
-  return [self _getUUID];
-    }
-  
   - (NSString*) callPhone:(NSDictionary*) dict {
       phoneDto* dto = [self convert:dict clazz:phoneDto.class];
       return [self _callPhone:dto];
@@ -70,50 +62,10 @@
       phoneDto* dto = [self convert:dict clazz:phoneDto.class];
       return [self _sendMessage:dto];
         }
-  
-  - (NSString*) getDeviceInfo:(NSDictionary*) dict {
-  return [self _getDeviceInfo];
-    }
-    - (void) getDeviceInfo1:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) getDeviceInfo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _getDeviceInfo1:^(DeviceDTO* result, BOOL complete) {
+          [self _getDeviceInfo:^(DeviceDTO* result, BOOL complete) {
             completionHandler(result ,complete);
-          }];
-      }
-    - (void) text_getScreenHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getScreenHeight:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_getTabbarHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getTabbarHeight:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_callPhone:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_callPhone:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_sendMsg:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_sendMsg:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_getDeviceInfo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getDeviceInfo:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_getDeviceInfo1:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getDeviceInfo1:^(BOOL complete) {
-                 completionHandler(nil,complete); 
           }];
       }
   @end

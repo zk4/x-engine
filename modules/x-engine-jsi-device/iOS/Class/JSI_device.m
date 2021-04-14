@@ -46,17 +46,13 @@ JSI_MODULE(JSI_device)
     return [self.device sendMsgWithPhoneNum:dto.phoneNum withMsg:dto.phoneMsg];
 }
 
-- (NSString *)_getDeviceInfo {
-    return [self.device getDeviceInfo];
-}
-
-- (DeviceDTO *)_getDeviceInfo1 {
-    NSMutableDictionary *dict = [self.device getDeviceInfo1];
+- (void)_getDeviceInfo:(void (^)(DeviceDTO *, BOOL))completionHandler {
+    NSMutableDictionary *dict = [self.device getDeviceInfo];
     DeviceDTO *dto = [[DeviceDTO alloc] init];
     dto.UUID = dict[@"UUID"];
     dto.type = dict[@"type"];
     dto.language = dict[@"language"];
     dto.systemVersion = dict[@"systemVersion"];
-    return dto;
+    completionHandler(dto, true);
 }
 @end

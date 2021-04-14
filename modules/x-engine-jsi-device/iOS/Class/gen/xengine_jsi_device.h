@@ -8,6 +8,8 @@
 
 @protocol phoneDto;
 @protocol DeviceDTO;
+@class phoneDto;
+@class DeviceDTO;
 
 @interface phoneDto: JSONModel
   	@property(nonatomic,copy) NSString* phoneNum;
@@ -38,40 +40,13 @@
        - (NSString*) _getTabbarHeight;
     
       @required 
-       - (NSString*) _getSystemVersion;
-    
-      @required 
-       - (NSString*) _getUUID;
-    
-      @required 
        - (NSString*) _callPhone:(phoneDto*)dto;
     
       @required 
        - (NSString*) _sendMessage:(phoneDto*)dto;
     
       @required 
-       - (NSString*) _getDeviceInfo;
-    
-      @required 
-        - (void) _getDeviceInfo1:(void (^)(DeviceDTO* result,BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _text_getScreenHeight:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _text_getTabbarHeight:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _text_callPhone:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _text_sendMsg:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _text_getDeviceInfo:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-       - (void) _text_getDeviceInfo1:(void (^)(BOOL complete)) completionHandler;
+        - (void) _getDeviceInfo:(void (^)(DeviceDTO* result,BOOL complete)) completionHandler;
     
 @end
   

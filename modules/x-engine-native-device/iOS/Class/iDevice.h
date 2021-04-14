@@ -18,7 +18,6 @@
 - (NSString *)getTabbarHeight;
 - (NSString *)callPhone:(NSString *)phoneNum;
 - (NSString *)sendMsgWithPhoneNum:(NSString *)phoneNum withMsg:(NSString *)phoneMsg;
-- (NSString *)getDeviceInfo;
-- (NSMutableDictionary *)getDeviceInfo1;
+- (NSMutableDictionary *)getDeviceInfo;
 @end
 #endif /* iDevice_h */

@@ -11,6 +11,8 @@ import com.zkty.nativ.jsi.exception.XEngineException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class JSIModule {
 
@@ -23,7 +25,7 @@ public abstract class JSIModule {
 
     protected abstract void afterAllJSIModuleInited();
 
-    protected  <T> T convert(JSONObject object, Class<T> tClass) {
+    protected <T> T convert(JSONObject object, Class<T> tClass) {
         Field[] fields = tClass.getDeclaredFields();
         StringBuilder builder = new StringBuilder();
         for (final Field field : fields) {
@@ -40,26 +42,48 @@ public abstract class JSIModule {
     }
 
     protected JSONObject mergeDefault(JSONObject object, String defaultJson) {
-        if (!TextUtils.isEmpty(defaultJson)) {
+        try {
+            if (object == null || object.isEmpty()) return JSONObject.parseObject(defaultJson);
+            if (TextUtils.isEmpty(defaultJson) || JSONObject.parseObject(defaultJson).isEmpty())
+                return object;
+            return merge(object, JSONObject.parseObject(defaultJson));
 
-            try {
-                JSONObject defaultObj = JSON.parseObject(defaultJson);
-                if (defaultObj != null) {
-                    for (String key : defaultObj.keySet()) {
-                        if (!object.containsKey(key)) {
-                            object.put(key, defaultObj.get(key));
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            return object;
         }
-        return object;
-
     }
 
-    private  <T> T convert(String defaultJson, JSONObject object, Class<T> tClass) {
+    private JSONObject merge(JSONObject const_dest, JSONObject const_dv) {
+        if (const_dest == null || const_dest.isEmpty()) return const_dv;
+        if (const_dv == null || const_dv.isEmpty()) return const_dest;
+
+        JSONObject result = new JSONObject();
+
+        for (Map.Entry<String, Object> entry : const_dest.entrySet()) {
+            Object value = entry.getValue();
+            // default 里有的相同 key
+            if (const_dv.containsKey(entry.getKey())) {
+                //  如果 value 是 dict 调用 value=merge(dest[key],default[key])
+                //  现在仅处理了 dict 的 merge 情况,
+                //  数组 不处理, 用不到.
+                //  set 不处理, json 里没有.
+                if (value instanceof JSONObject) {
+                    value = merge((JSONObject) entry.getValue(), (JSONObject) const_dv.get(entry.getKey()));
+                }
+            }
+            result.put(entry.getKey(), value);
+        }
+        // 处理 dest 里没有但 default 里有的 key
+        // 以 default 里的值为准, 不关心类型
+        for (Map.Entry<String, Object> entry : const_dv.entrySet()) {
+            if (!const_dest.containsKey(entry.getKey())) {
+                result.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return result;
+    }
+
+    private <T> T convert(String defaultJson, JSONObject object, Class<T> tClass) {
         if (TextUtils.isEmpty(defaultJson)) {
             return convert(object, tClass);
         }

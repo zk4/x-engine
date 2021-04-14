@@ -38,14 +38,14 @@
        - (void) _simpleMethod;
     
       @required 
-        - (void) _nestedObject:(void (^)(_0_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
+        - (void) _nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
        @required 
-       - (_0_com_zkty_jsi_xxxx_DTO*) _nestedObject;
+       - (_0_com_zkty_jsi_xxxx_DTO*) _nestedAnonymousObject;
     
       @required 
-        - (void) _nestedNamedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
+        - (void) _namedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
        @required 
-       - (NamedDTO*) _nestedNamedObject;
+       - (NamedDTO*) _namedObject;
     
 @end
   

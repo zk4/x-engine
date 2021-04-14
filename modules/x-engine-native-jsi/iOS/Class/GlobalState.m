@@ -40,6 +40,7 @@
 }
 
 - (NSString*) getLastHost{
+    [self clearHistory];
     NSString* host = [_histories lastObject].host;
     /// 那就是在 tab 上了.
     if(!host){

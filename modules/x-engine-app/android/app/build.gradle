@@ -60,6 +60,7 @@ dependencies {
     implementation project(':native-camera')
     implementation project(':native-ui')
     implementation project(':native-broadcast')
+    implementation project(':native-device')
 
 
     implementation project(':native-direct')
@@ -70,4 +71,5 @@ dependencies {
     implementation project(':native-jsi')
     implementation project(':jsi-direct')
     implementation project(':jsi-store')
+    implementation project(':jsi-device')
 }

@@ -13,6 +13,9 @@ project(':native-store').projectDir = new File('../../x-engine-native-store/andr
 include ':native-ui'
 project(':native-ui').projectDir = new File('../../x-engine-native-ui/android/native-ui')
 
+include ':native-device'
+project(':native-device').projectDir = new File('../../x-engine-native-device/android/native-device')
+
 include ':native-camera'
 project(':native-camera').projectDir = new File('../../x-engine-native-camera/android/native-camera')
 
@@ -42,3 +45,6 @@ project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/
 
 include ':jsi-store'
 project(':jsi-store').projectDir = new File('../../x-engine-jsi-store/android/jsi-store')
+
+include ':jsi-device'
+project(':jsi-device').projectDir = new File('../../x-engine-jsi-device/android/jsi-device')

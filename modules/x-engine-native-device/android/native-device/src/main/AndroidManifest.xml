@@ -9,6 +9,6 @@
 
         <meta-data
             android:name="com.zkty.native.device"
-            android:value="com.zkty.nativ.device.Nativedevice" />
+            android:value="com.zkty.nativ.device.NativeDevice" />
     </application>
 </manifest>

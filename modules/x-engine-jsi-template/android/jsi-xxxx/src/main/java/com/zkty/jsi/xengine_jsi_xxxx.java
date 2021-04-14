@@ -33,6 +33,7 @@
   
   interface xengine_jsi_xxxx_protocol {
     public void _simpleMethod(final CompletionHandler<Nullable> handler);    void _simpleMethod();
+public void _simpleArgMethod(String dto, final CompletionHandler<String> handler);    String _simpleArgMethod(String dto);
 public void _nestedAnonymousObject(final CompletionHandler<_0_com_zkty_jsi_xxxx_DTO> handler);    _0_com_zkty_jsi_xxxx_DTO _nestedAnonymousObject();
 public void _namedObject(final CompletionHandler<NamedDTO> handler);    NamedDTO _namedObject();
   }
@@ -61,6 +62,26 @@ public void _namedObject(final CompletionHandler<NamedDTO> handler);    NamedDTO
           
           _simpleMethod();
           return null;
+        }
+        
+
+    @JavascriptInterface
+    final public void simpleArgMethod(JSONObject obj, final CompletionHandler<Object> handler) {
+      String data= convert(obj,String.class);
+      _simpleArgMethod(data, new CompletionHandler<String>() {
+        @Override
+        public void complete(String retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(String value) { handler.setProgressData(value); }
+      });
+
+    }
+        @JavascriptInterface
+        public String simpleArgMethod(JSONObject jsonobj) {
+          String data= convert(obj,String.class);
+          return _simpleArgMethod(dto);
         }
         
 

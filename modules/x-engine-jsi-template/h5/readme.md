@@ -7,36 +7,34 @@ version: 0.1.13
 
 
 ## simpleMethod
+`async` `sync`
 
 
 
-**demo**
-
-	
 **无参数**
-
-
-
-
----------------------
 **无返回值**
 
 
 
+## simpleArgMethod
+`async` `sync`
 
-## nestedObject
 
 
-
-**demo**
-
-	
 **无参数**
+**返回值**
+``` js
+string
+``` 
 
 
 
+## nestedAnonymousObject
+`async` `sync`
 
----------------------
+
+
+**无参数**
 **返回值**
 ``` js
  {
@@ -48,20 +46,12 @@ version: 0.1.13
 
 
 
+## namedObject
+`sync` `async`
 
-## nestedNamedObject
 
 
-
-**demo**
-
-	
 **无参数**
-
-
-
-
----------------------
 **返回值**
 ``` js
 
@@ -75,7 +65,6 @@ interface NamedDTO {
 
 }
 ``` 
-
 
 
     

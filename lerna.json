@@ -2,7 +2,8 @@
   "packages": [
     "npm-modules/x-engine-core",
     "npm-modules/x-engine-router",
-    "modules/x-engine-jsi-*"
+    "modules/x-engine-jsi-*",
+    "microApps/H5-Router-Sample"
   ],
   "version": "0.1.13",
   "npmClient": "yarn",

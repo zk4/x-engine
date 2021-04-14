@@ -10,5 +10,9 @@
     "x-engine-core"
   ],
   "author": "Cwz.",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-plugin-vue": "^7.9.0"
+  }
 }

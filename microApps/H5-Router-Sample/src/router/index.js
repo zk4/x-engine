@@ -75,6 +75,16 @@ const routes = [{
         path: '/network',
         name: 'network',
         component: () => import('../views/network.vue')
+    },
+    {
+        path: '/modulesIntroduce',
+        name: 'modulesIntroduce',
+        component: () => import('../views/modulesIntroduce.vue')
+    },
+    {
+        path: '/testVueX',
+        name: 'testVueX',
+        component: () => import('../views/testVueX.vue')
     }
 ];
 

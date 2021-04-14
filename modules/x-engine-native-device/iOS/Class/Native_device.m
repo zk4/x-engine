@@ -31,8 +31,8 @@ NATIVE_MODULE(Native_device)
 }
 
 - (NSString *)getNavigationHeight {
-    NSString *heightStr = [NSString stringWithFormat:@"%.2f",
-                           [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.navigationBar.frame.size.height];
+    CGFloat navigationHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 88 : 64;
+    NSString *heightStr = [NSString stringWithFormat:@"%.f",navigationHeight];
     return heightStr;
     
 }
@@ -44,7 +44,8 @@ NATIVE_MODULE(Native_device)
 
 
 - (NSString *)getTabbarHeight {
-    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [UIApplication sharedApplication].keyWindow.rootViewController.tabBarController.tabBar.frame.size.height];
+    CGFloat tabBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49;
+    NSString *heightStr = [NSString stringWithFormat:@"%.f",tabBarHeight];
     return heightStr;
 }
 

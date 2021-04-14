@@ -13,102 +13,42 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.device", 
     [
   {
-    "name": "getStatusBarHeight",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "getNavigationHeight",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "getScreenHeight",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "getTabbarHeight",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "getSystemVersion",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "getUUID",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "callPhone",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "sendMessage",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "getDeviceInfo",
-    "default_args": {},
-    "decorators": [
-      "sync"
-    ]
-  },
-  {
-    "name": "getDeviceInfo1",
-    "default_args": {},
-    "decorators": [
-      "async"
-    ]
-  },
-  {
-    "name": "text_getScreenHeight",
+    "name": "test_getStatusHeight",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "text_getTabbarHeight",
+    "name": "test_getNavHeight",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "text_callPhone",
+    "name": "test_getScreenHeight",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "text_sendMsg",
+    "name": "test_getTabbarHeight",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "text_getDeviceInfo",
+    "name": "test_callPhone",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "text_getDeviceInfo1",
+    "name": "test_sendMsg",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_getDeviceInfo",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_getDeviceInfo1",
     "default_args": {},
     "decorators": []
   }

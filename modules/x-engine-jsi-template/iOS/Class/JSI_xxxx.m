@@ -19,30 +19,21 @@ JSI_MODULE(JSI_xxxx)
 - (void)afterAllJSIModuleInited {
 }
 
-  
-
-- (_0_com_zkty_jsi_xxxx_DTO *)_nestedObject {
-    _0_com_zkty_jsi_xxxx_DTO * ret =[_0_com_zkty_jsi_xxxx_DTO new];
-    ret.a=@"hello";
-    ret.i =[_1_com_zkty_jsi_xxxx_DTO new];
-    ret.i.n1=@"world";
-    return ret;
-}
-
+   
  
 
 - (void)_simpleMethod:(void (^)(BOOL))completionHandler {
-    NSLog(@"hello,_syncMethod1");
+    NSLog(@"hello,_simpleMethod");
 }
 
 - (void)_simpleMethod {
-    NSLog(@"hello,同步方法");
+    NSLog(@"hello,_simpleMethod");
     
 }
 
 - (NamedDTO *)_namedObject {
     NamedDTO* ret = [NamedDTO new];
-    ret.title=@"hello";
+    ret.title=@"_namedObject sync";
     ret.titleSize=10000;
     return ret;
 }
@@ -50,7 +41,7 @@ JSI_MODULE(JSI_xxxx)
 
 - (void)_namedObject:(void (^)(NamedDTO *, BOOL))completionHandler {
     NamedDTO* ret = [NamedDTO new];
-    ret.title=@"hello";
+    ret.title=@"_namedObject async";
     ret.titleSize=10000;
     completionHandler(ret,TRUE);
 }
@@ -60,7 +51,7 @@ JSI_MODULE(JSI_xxxx)
     _0_com_zkty_jsi_xxxx_DTO * ret =[_0_com_zkty_jsi_xxxx_DTO new];
     ret.a=@"hello";
     ret.i =[_1_com_zkty_jsi_xxxx_DTO new];
-    ret.i.n1=@"world";
+    ret.i.n1=@"_nestedAnonymousObject sync";
     return ret;
 }
 
@@ -69,7 +60,7 @@ JSI_MODULE(JSI_xxxx)
     _0_com_zkty_jsi_xxxx_DTO * ret =[_0_com_zkty_jsi_xxxx_DTO new];
     ret.a=@"hello";
     ret.i =[_1_com_zkty_jsi_xxxx_DTO new];
-    ret.i.n1=@"world";
+    ret.i.n1=@"_nestedAnonymousObject async";
     completionHandler(ret,TRUE);
 }
 

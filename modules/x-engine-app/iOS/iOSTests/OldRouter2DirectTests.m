@@ -39,8 +39,7 @@
     
     NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.gm.microapp.mine" ,@"pathname":@"",@"fragment":@"/abc",@"query":@{@"a":@"b",@"c":@"abc"},@"params":@{@"hideNavbar":@TRUE}};
     
-    NSDictionary* converted = [JSIOldRouterModule convertRouter2JSIModel:oldnavdto];
-    XCTAssertEqualObjects(should,[JSIOldRouterModule convertRouter2JSIModel:oldnavdto], @"should equal");
+     XCTAssertEqualObjects(should,[JSIOldRouterModule convertRouter2JSIModel:oldnavdto], @"should equal");
 }
 - (void)testMicroappWithPathQuery_数字问题 {
     NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.gm.microapp.mine",@"path":@"/abc?a=b&c=3",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};

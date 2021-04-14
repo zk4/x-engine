@@ -66,12 +66,7 @@ NATIVE_MODULE(Native_direct_omp)
         if(histories){
             if(histories.count > 1)
             {
-                /// TODO: 这样解决并不是很优雅. wait for fix
-                if(histories[histories.count-2].onTab){
-                    [navC popToRootViewControllerAnimated:YES];
-                }else{
-                    [navC popToViewController:histories[histories.count-2].vc animated:YES];
-                }
+                [navC popToViewController:histories[histories.count-2].vc animated:YES];
                 [histories removeLastObject];
             }
             else if(histories.count ==1){
@@ -85,7 +80,7 @@ NATIVE_MODULE(Native_direct_omp)
             int minusHistory = [fragment intValue];
             if(minusHistory+histories.count<0){
                 /// TODO: alert
-                NSLog(@"没有这么历史给你退.");
+                NSLog(@"没有历史给你退.");
             }
 
             [navC popToViewController:histories[histories.count-1+minusHistory].vc animated:YES];
@@ -150,7 +145,8 @@ NATIVE_MODULE(Native_direct_omp)
         vc.hidesBottomBarWhenPushed = NO;
         
     }else{
-        NSString* host=[[GlobalState sharedInstance] getLastHost ];
+        NSString* host=[[GlobalState sharedInstance] getLastHost];
+    
         NSAssert(host!=nil, @"host 不可为 nil");
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
 

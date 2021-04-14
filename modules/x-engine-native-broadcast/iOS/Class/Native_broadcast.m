@@ -28,10 +28,6 @@ NATIVE_MODULE(Native_broadcast)
 - (void)afterAllNativeModuleInited{
 } 
 
--(NSString*) test{
-    return @"test";
-}
-
 - (void)broadcast:(NSString*) payload{
     for (XEngineWebView* wv in [WebViewFactory sharedInstance].webviews){
         [wv callHandler:@"com.zkty.module.engine.broadcast" arguments:payload completionHandler:^(id  _Nullable value) {

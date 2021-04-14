@@ -34,7 +34,9 @@ target 'ModuleApp' do
 end
 
 target 'ModuleAppTests' do
+  shared_pods
 end
 
 target 'ModuleAppUITests' do
+  shared_pods
 end

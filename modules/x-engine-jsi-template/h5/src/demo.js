@@ -10,20 +10,20 @@ window.test_同步无返回 = () => {
  document.getElementById("test_同步无返回").click()
       window.test_同步返回命名对象 = () => {
 
-  let val = xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {});
+  let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
   document.getElementById("debug_text").innerText =typeof val + ":" + val.title + "," + val.titleSize;
 }
  document.getElementById("test_同步返回命名对象").click()
       window.test_同步返回匿名嵌套对象 = () => {
 
-  let val = xengine.api("com.zkty.jsi.xxxx", "nestedObject", {});
+  let val = xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {});
   document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
 
 }
  document.getElementById("test_同步返回匿名嵌套对象").click()
       window.test_异步返回命名对象 = () => {
 
-  xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {}, (val) => {
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {}, (val) => {
     document.getElementById("debug_text").innerText =
     typeof val + ":" + val.title + "," + val.titleSize;
   });
@@ -31,7 +31,7 @@ window.test_同步无返回 = () => {
  document.getElementById("test_异步返回命名对象").click()
       window.test_异步返回命名对象 = () => {
 
-  xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {},
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {},
   (val)=>
   {
     document.getElementById("debug_text").innerText =
@@ -42,7 +42,7 @@ window.test_同步无返回 = () => {
  document.getElementById("test_异步返回命名对象").click()
       window.test_异步返回匿名嵌套对象 = () => {
 
-  xengine.api("com.zkty.jsi.xxxx", "nestedObject", {},
+  xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {},
   (val)=>
   {
     document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;

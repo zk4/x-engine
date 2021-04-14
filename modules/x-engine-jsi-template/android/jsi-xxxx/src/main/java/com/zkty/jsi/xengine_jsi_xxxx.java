@@ -33,8 +33,8 @@
   
   interface xengine_jsi_xxxx_protocol {
     public void _simpleMethod(final CompletionHandler<Nullable> handler);    void _simpleMethod();
-public void _nestedObject(final CompletionHandler<_0_com_zkty_jsi_xxxx_DTO> handler);    _0_com_zkty_jsi_xxxx_DTO _nestedObject();
-public void _nestedNamedObject(final CompletionHandler<NamedDTO> handler);    NamedDTO _nestedNamedObject();
+public void _nestedAnonymousObject(final CompletionHandler<_0_com_zkty_jsi_xxxx_DTO> handler);    _0_com_zkty_jsi_xxxx_DTO _nestedAnonymousObject();
+public void _namedObject(final CompletionHandler<NamedDTO> handler);    NamedDTO _namedObject();
   }
   
   
@@ -65,8 +65,8 @@ public void _nestedNamedObject(final CompletionHandler<NamedDTO> handler);    Na
         
 
     @JavascriptInterface
-    final public void nestedObject(JSONObject obj, final CompletionHandler<Object> handler) {
-      _nestedObject(new CompletionHandler<_0_com_zkty_jsi_xxxx_DTO>() {
+    final public void nestedAnonymousObject(JSONObject obj, final CompletionHandler<Object> handler) {
+      _nestedAnonymousObject(new CompletionHandler<_0_com_zkty_jsi_xxxx_DTO>() {
         @Override
         public void complete(_0_com_zkty_jsi_xxxx_DTO retValue) { handler.complete(retValue); }
         @Override
@@ -77,15 +77,15 @@ public void _nestedNamedObject(final CompletionHandler<NamedDTO> handler);    Na
 
     }
         @JavascriptInterface
-        public _0_com_zkty_jsi_xxxx_DTO nestedObject(JSONObject jsonobj) {
+        public _0_com_zkty_jsi_xxxx_DTO nestedAnonymousObject(JSONObject jsonobj) {
           
-          return _nestedObject();
+          return _nestedAnonymousObject();
         }
         
 
     @JavascriptInterface
-    final public void nestedNamedObject(JSONObject obj, final CompletionHandler<Object> handler) {
-      _nestedNamedObject(new CompletionHandler<NamedDTO>() {
+    final public void namedObject(JSONObject obj, final CompletionHandler<Object> handler) {
+      _namedObject(new CompletionHandler<NamedDTO>() {
         @Override
         public void complete(NamedDTO retValue) { handler.complete(retValue); }
         @Override
@@ -96,9 +96,9 @@ public void _nestedNamedObject(final CompletionHandler<NamedDTO> handler);    Na
 
     }
         @JavascriptInterface
-        public NamedDTO nestedNamedObject(JSONObject jsonobj) {
+        public NamedDTO namedObject(JSONObject jsonobj) {
           
-          return _nestedNamedObject();
+          return _namedObject();
         }
         
   }

@@ -50,22 +50,22 @@
    [self _simpleMethod];
               return nil;
     }
-    - (void) nestedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _nestedObject:^(_0_com_zkty_jsi_xxxx_DTO* result, BOOL complete) {
+          [self _nestedAnonymousObject:^(_0_com_zkty_jsi_xxxx_DTO* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
       }
-  - (_0_com_zkty_jsi_xxxx_DTO*) nestedObject:(NSDictionary*) dict {
-  return [self _nestedObject];
+  - (_0_com_zkty_jsi_xxxx_DTO*) nestedAnonymousObject:(NSDictionary*) dict {
+  return [self _nestedAnonymousObject];
     }
-    - (void) nestedNamedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) namedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _nestedNamedObject:^(NamedDTO* result, BOOL complete) {
+          [self _namedObject:^(NamedDTO* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
       }
-  - (NamedDTO*) nestedNamedObject:(NSDictionary*) dict {
-  return [self _nestedNamedObject];
+  - (NamedDTO*) namedObject:(NSDictionary*) dict {
+  return [self _namedObject];
     }
   @end

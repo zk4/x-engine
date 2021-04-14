@@ -27,11 +27,11 @@ function simpleMethod() {}
 
 @sync
 @async
-function nestedObject(): { a: string; i: { n1: string } } {}
+function nestedAnonymousObject(): { a: string; i: { n1: string } } {}
 
 @async
 @sync
-function nestedNamedObject(): NamedDTO {}
+function namedObject(): NamedDTO {}
 
 
 // test function
@@ -41,25 +41,25 @@ function test_同步无返回(){
 }
 
 function test_同步返回命名对象() {
-  let val = xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {});
+  let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
   document.getElementById("debug_text").innerText =typeof val + ":" + val.title + "," + val.titleSize;
 }
 
 function test_同步返回匿名嵌套对象() {
-  let val = xengine.api("com.zkty.jsi.xxxx", "nestedObject", {});
+  let val = xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {});
   document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
 
 }
 
 function test_异步返回命名对象() {
-  xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {}, (val) => {
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {}, (val) => {
     document.getElementById("debug_text").innerText =
     typeof val + ":" + val.title + "," + val.titleSize;
   });
 }
 
 function test_异步返回命名对象() {
-  xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {},
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {},
   (val)=>
   {
     document.getElementById("debug_text").innerText =
@@ -69,7 +69,7 @@ function test_异步返回命名对象() {
 }
 
 function test_异步返回匿名嵌套对象() {
-  xengine.api("com.zkty.jsi.xxxx", "nestedObject", {},
+  xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {},
   (val)=>
   {
     document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;

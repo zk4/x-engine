@@ -10,7 +10,6 @@
 #import "NativeContext.h"
 
 @interface Native_device()
-{ }
 @end
 
 @implementation Native_device
@@ -25,9 +24,13 @@ NATIVE_MODULE(Native_device)
 }
 
 - (void)afterAllNativeModuleInited{
-} 
--(NSString*) test{
-    return @"test";
 }
+
+
+
+- (NSString*) getNavigationHeight {
+    return @"hello";
+}
+
 @end
  

@@ -184,17 +184,8 @@ window.getPhoneType = () => {
  document.getElementById("getStatusHeight").click()
     window.getNavigationHeight = () => {
 
-  window.getNavigationHeight = () => {
-    device
-      .getNavigationHeight({
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = res;
-        },
-      })
-      .then((res) => {
-        document.getElementById("debug_text").innerText = res;
-      });
-  };
+ let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight", {});
+document.getElementById("debug_text").innerText = val;
 }
  document.getElementById("getNavigationHeight").click()
     window.getTabBarHeight = () => {

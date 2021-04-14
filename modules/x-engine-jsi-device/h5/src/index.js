@@ -75,7 +75,9 @@ function osCheck() {
   {
     "name": "getNavigationHeight",
     "default_args": {},
-    "decorators": []
+    "decorators": [
+      "sync"
+    ]
   },
   {
     "name": "getTabBarHeight",

@@ -30,6 +30,12 @@
     }
 @end
     
+  
+@implementation _0_com_zkty_jsi_device_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
 
 
 
@@ -165,16 +171,10 @@
           }];
         
       }
-    - (void) getNavigationHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getNavigationHeight:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
+  
+  - (_0_com_zkty_jsi_device_DTO*) getNavigationHeight:(NSDictionary*) dict {
+  return [self _getNavigationHeight];
+    }
     - (void) getTabBarHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           dict=[self mergeDefault:dict defaultString:@"{}"];

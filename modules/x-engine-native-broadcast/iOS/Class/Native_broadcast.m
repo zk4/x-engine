@@ -8,6 +8,7 @@
 
 #import "Native_broadcast.h"
 #import "NativeContext.h"
+#import "WebViewFactory.h"
 
 @interface Native_broadcast()
 { }

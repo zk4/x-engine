@@ -18,6 +18,8 @@
 		037077DA0CF9AB0139DD4CB0 /* libPods-deviceUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8350D989E9DC64C10250A7DE /* libPods-deviceUITests.a */; };
 		38E983942615F6E8007F6BDF /* Native_device.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_device.m */; };
 		8DE2BE0D911D179E746F70B9 /* libPods-deviceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6766A91E76375D29D7BBF318 /* libPods-deviceTests.a */; };
+		A472D24B2625D02A00348A70 /* DeviceSheetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A472D2472625D02A00348A70 /* DeviceSheetModel.m */; };
+		A472D24C2625D02A00348A70 /* DeviceMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A472D2482625D02A00348A70 /* DeviceMoreModel.m */; };
 		EE1E8D9093AC7168C6D0E863 /* libPods-device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9BE71C3752AAE7FEAFE2CF /* libPods-device.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,10 @@
 		8A4FCA27E7FE59204E44E83A /* Pods-abstract-deviceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-deviceTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-deviceTests/Pods-abstract-deviceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-device.release.xcconfig"; path = "Target Support Files/Pods-device/Pods-device.release.xcconfig"; sourceTree = "<group>"; };
 		9B9BE71C3752AAE7FEAFE2CF /* libPods-device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A472D2472625D02A00348A70 /* DeviceSheetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSheetModel.m; sourceTree = "<group>"; };
+		A472D2482625D02A00348A70 /* DeviceMoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMoreModel.m; sourceTree = "<group>"; };
+		A472D2492625D02A00348A70 /* DeviceSheetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSheetModel.h; sourceTree = "<group>"; };
+		A472D24A2625D02A00348A70 /* DeviceMoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMoreModel.h; sourceTree = "<group>"; };
 		A5D13A8E4F88C6229E85D0A4 /* Pods-deviceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deviceTests.debug.xcconfig"; path = "Target Support Files/Pods-deviceTests/Pods-deviceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-deviceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-deviceUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-deviceUITests/Pods-abstract-deviceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9328813DA9AD9B20D713E0 /* Pods-deviceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deviceUITests.debug.xcconfig"; path = "Target Support Files/Pods-deviceUITests/Pods-deviceUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,10 +201,22 @@
 			isa = PBXGroup;
 			children = (
 				581FAF352624CC1A00ED7DCC /* iDevice.h */,
+				A472D2462625D02A00348A70 /* Model */,
 				38E983932615F6E8007F6BDF /* Native_device.h */,
 				38E983922615F6E8007F6BDF /* Native_device.m */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		A472D2462625D02A00348A70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A472D2492625D02A00348A70 /* DeviceSheetModel.h */,
+				A472D2472625D02A00348A70 /* DeviceSheetModel.m */,
+				A472D24A2625D02A00348A70 /* DeviceMoreModel.h */,
+				A472D2482625D02A00348A70 /* DeviceMoreModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
@@ -449,9 +467,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A472D24B2625D02A00348A70 /* DeviceSheetModel.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_device.m in Sources */,
+				A472D24C2625D02A00348A70 /* DeviceMoreModel.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@
 @protocol DeviceMoreDTO;
 @protocol DevicePhoneNumDTO;
 @protocol DeviceMessageDTO;
+@protocol _0_com_zkty_jsi_device_DTO;
 
 @interface DeviceSheetDTO: JSONModel
   	@property(nonatomic,strong) NSString* __event__;
@@ -29,6 +30,11 @@
 @interface DeviceMessageDTO: JSONModel
   	@property(nonatomic,copy) NSString* phoneNumber;
    	@property(nonatomic,copy) NSString* messageContent;
+@end
+    
+
+@interface _0_com_zkty_jsi_device_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* height;
 @end
     
 
@@ -71,8 +77,8 @@
         - (void) _getStatusHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _getNavigationHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
+       - (_0_com_zkty_jsi_device_DTO*) _getNavigationHeight;
+    
       @required 
         - (void) _getTabBarHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
 

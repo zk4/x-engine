@@ -15,11 +15,13 @@ def shared_pods
   pod 'x-engine-native-direct_omp', :path =>'../../x-engine-native-direct_omp'
   pod 'x-engine-native-direct_microapp', :path =>'../../x-engine-native-direct_microapp'
   pod 'x-engine-native-broadcast', :path =>'../../x-engine-native-broadcast'
+  pod 'x-engine-native-device', :path =>'../../x-engine-native-device'
   #pod 'x-engine-native-securify', :path =>'../../x-engine-native-securify'
 
   # jsi
 #  pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'
   pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
+  pod 'x-engine-jsi-device', :path =>'../../x-engine-jsi-device'
 
   # legacy jsi
   pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'

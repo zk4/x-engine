@@ -7,7 +7,7 @@
 #import "JSONModel.h"
 
 @protocol ZKStoreEntryDTO;
-@protocol _0_com_zkty_jsi_store_DTO;
+@class ZKStoreEntryDTO;
 
 @interface ZKStoreEntryDTO: JSONModel
   	@property(nonatomic,copy) NSString* key;
@@ -15,22 +15,17 @@
 @end
     
 
-@interface _0_com_zkty_jsi_store_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* key;
-@end
-    
-
 
 @protocol xengine_jsi_store_protocol
        @required 
-        - (void) _get:(_0_com_zkty_jsi_store_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+        - (void) _get:(NSString*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
    @required 
-       - (NSString*) _get:(_0_com_zkty_jsi_store_DTO*)dto;
+       - (NSString*) _get:(NSString*)dto;
     
       @required 
         - (void) _set:(ZKStoreEntryDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
        @required 
-       - (id) _set:(ZKStoreEntryDTO*)dto;
+       - (void) _set:(ZKStoreEntryDTO*)dto;
     
 @end
   

@@ -20,7 +20,7 @@ interface ZKStoreEntryDTO {
 }
 @async
 @sync
-function get(arg: { key: string }): string {}
+function get(arg: string): string {}
 
 @sync
 @async
@@ -41,8 +41,8 @@ function test_setObject(arg: ZKStoreEntryDTO) {
     }
   );
 }
-function test_getObject(arg: { key: string }): string {
-  xengine.api("com.zkty.jsi.store", "get", { key: "obj" }, (val) => {
+function test_getObject(arg: string ): string {
+  xengine.api("com.zkty.jsi.store", "get", "obj" , (val) => {
     document.getElementById("debug_text").innerText = typeof val + ":" + val;
   });
 }

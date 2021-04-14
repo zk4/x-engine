@@ -33,6 +33,10 @@
     public String messageContent;
   }
   
+  class _0_com_zkty_jsi_device_DTO {
+    public String height;
+  }
+  
   interface xengine_jsi_device_protocol {
     public void _getPhoneType(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
 public void _getSystemVersion(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
@@ -46,7 +50,7 @@ public void _getSafeAreaBottom(DeviceSheetDTO dto, final CompletionHandler<Devic
 public void _getSafeAreaLeft(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
 public void _getSafeAreaRight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
 public void _getStatusHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getNavigationHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
+    _0_com_zkty_jsi_device_DTO _getNavigationHeight();
 public void _getTabBarHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
 public void _devicePhoneCall(DevicePhoneNumDTO dto, final CompletionHandler<Nullable> handler);
 public void _deviceSendMessage(DeviceMessageDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
@@ -252,20 +256,11 @@ public void _deviceSendMessage(DeviceMessageDTO dto, final CompletionHandler<Dev
     }
 
     @JavascriptInterface
-    final public void getNavigationHeight(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getNavigationHeight(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
+    public _0_com_zkty_jsi_device_DTO getNavigationHeight(JSONObject jsonobj) {
+        
+        return _getNavigationHeight();
     }
+    
 
     @JavascriptInterface
     final public void getTabBarHeight(JSONObject obj, final CompletionHandler<Object> handler) {

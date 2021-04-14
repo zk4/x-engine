@@ -264,22 +264,10 @@ function getStatusHeight(
 }
 
 //导航条高度
-function getNavigationHeight(
-  DeviceSheetDTO: DeviceSheetDTO = {
-    __event__: (string)=>{},
-  }
-):DeviceMoreDTO{
-  window.getNavigationHeight = () => {
-    device
-      .getNavigationHeight({
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = res;
-        },
-      })
-      .then((res) => {
-        document.getElementById("debug_text").innerText = res;
-      });
-  };
+@sync
+function getNavigationHeight():{height:string}{
+ let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight", {});
+document.getElementById("debug_text").innerText = val;
 }
 
 //tabBar高度

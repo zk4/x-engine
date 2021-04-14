@@ -541,37 +541,22 @@ interface DeviceMoreDTO {
 **demo**
 ``` js
 
-  window.getNavigationHeight = () => {
-    device
-      .getNavigationHeight({
-        __event__: (res) => {
-          document.getElementById("debug_text").innerText = res;
-        },
-      })
-      .then((res) => {
-        document.getElementById("debug_text").innerText = res;
-      });
-  };
+ let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight", {});
+document.getElementById("debug_text").innerText = val;
 
 ``` 
 
 	
-**参数说明**
+**无参数**
 
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
+
 
 
 ---------------------
 **返回值**
 ``` js
-
-interface DeviceMoreDTO {
-
-  //返回值
-  content: string;
-
+{
+height:string
 }
 ``` 
 

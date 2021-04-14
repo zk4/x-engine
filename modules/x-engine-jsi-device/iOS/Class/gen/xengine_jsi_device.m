@@ -6,26 +6,17 @@
 #import "xengine_jsi_device.h"
 
 
-@implementation DeviceSheetDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation DeviceMoreDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation DevicePhoneNumDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation DeviceMessageDTO
+@implementation phoneDto
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
+  
+@implementation DeviceDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   
    	return NO;
     }
 @end
@@ -45,159 +36,84 @@
         return @"com.zkty.jsi.device";
     }
     
-    - (void) getPhoneType:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+  
+  - (NSString*) getStatusBarHeight:(NSDictionary*) dict {
+  return [self _getStatusBarHeight];
+    }
+  
+  - (NSString*) getNavigationHeight:(NSDictionary*) dict {
+  return [self _getNavigationHeight];
+    }
+  
+  - (NSString*) getScreenHeight:(NSDictionary*) dict {
+  return [self _getScreenHeight];
+    }
+  
+  - (NSString*) getTabbarHeight:(NSDictionary*) dict {
+  return [self _getTabbarHeight];
+    }
+  
+  - (NSString*) getSystemVersion:(NSDictionary*) dict {
+  return [self _getSystemVersion];
+    }
+  
+  - (NSString*) getUUID:(NSDictionary*) dict {
+  return [self _getUUID];
+    }
+  
+  - (NSString*) callPhone:(NSDictionary*) dict {
+      phoneDto* dto = [self convert:dict clazz:phoneDto.class];
+      return [self _callPhone:dto];
+        }
+  
+  - (NSString*) sendMessage:(NSDictionary*) dict {
+      phoneDto* dto = [self convert:dict clazz:phoneDto.class];
+      return [self _sendMessage:dto];
+        }
+  
+  - (NSString*) getDeviceInfo:(NSDictionary*) dict {
+  return [self _getDeviceInfo];
+    }
+    - (void) getDeviceInfo1:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getPhoneType:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getSystemVersion:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getSystemVersion:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getUDID:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getUDID:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getBatteryLevel:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getBatteryLevel:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getPreferredLanguage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getPreferredLanguage:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getScreenWidth:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getScreenWidth:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getScreenHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getScreenHeight:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getSafeAreaTop:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getSafeAreaTop:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getSafeAreaBottom:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getSafeAreaBottom:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getSafeAreaLeft:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getSafeAreaLeft:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getSafeAreaRight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getSafeAreaRight:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getStatusHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getStatusHeight:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getNavigationHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getNavigationHeight:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) getTabBarHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          DeviceSheetDTO* dto = [self convert:dict clazz:DeviceSheetDTO.class];
-          [self _getTabBarHeight:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-    - (void) devicePhoneCall:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          DevicePhoneNumDTO* dto = [self convert:dict clazz:DevicePhoneNumDTO.class];
-          [self _devicePhoneCall:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          [self _getDeviceInfo1:^(DeviceDTO* result, BOOL complete) {
+            completionHandler(result ,complete);
           }];
       }
-    - (void) deviceSendMessage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) text_getScreenHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          DeviceMessageDTO* dto = [self convert:dict clazz:DeviceMessageDTO.class];
-          [self _deviceSendMessage:dto complete:^(DeviceMoreDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
+          [self _text_getScreenHeight:^(BOOL complete) {
+                 completionHandler(nil,complete); 
           }];
-        
+      }
+    - (void) text_getTabbarHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _text_getTabbarHeight:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) text_callPhone:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _text_callPhone:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) text_sendMsg:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _text_sendMsg:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) text_getDeviceInfo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _text_getDeviceInfo:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+    - (void) text_getDeviceInfo1:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _text_getDeviceInfo1:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
       }
   @end

@@ -37,7 +37,9 @@
 - (id)convert:(NSDictionary *)param clazz:(Class)clazz {
     NSError *err;
     id dto = [clazz class];
-    
+    if([param isKindOfClass:NSString.class]){
+        return param;
+    }
     dto = [[dto alloc] initWithDictionary:param error:&err];
     if (err) {
         

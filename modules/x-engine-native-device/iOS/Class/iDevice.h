@@ -8,7 +8,17 @@
 
 #ifndef iDevice_h
 #define iDevice_h
+
+@class DeviceSheetModel, DeviceMoreModel;
+
 @protocol iDevice <NSObject>
--(NSString*) test;
+- (NSString *)getStatusHeight;
+- (NSString *)getNavigationHeight;
+- (NSString *)getScreenHeight;
+- (NSString *)getTabbarHeight;
+- (NSString *)callPhone:(NSString *)phoneNum;
+- (NSString *)sendMsgWithPhoneNum:(NSString *)phoneNum withMsg:(NSString *)phoneMsg;
+- (NSString *)getDeviceInfo;
+- (NSMutableDictionary *)getDeviceInfo1;
 @end
 #endif /* iDevice_h */

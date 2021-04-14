@@ -1,24 +1,25 @@
 PODS:
   - JSONModel (1.8.0)
-  - x-engine-native-core (0.1.13):
+  - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
-  - x-engine-native-direct (0.1.13):
+  - x-engine-native-direct (1.0.0):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-direct_microapp (0.1.13):
+  - x-engine-native-direct_microapp (1.0.0):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-jsi
     - x-engine-native-protocols
-  - x-engine-native-direct_omp (0.1.13):
+  - x-engine-native-direct_omp (1.0.0):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-jsi (0.1.13):
+  - x-engine-native-jsi (1.0.0):
     - x-engine-native-core
-  - x-engine-native-protocols (0.0.9)
-  - x-engine-native-ui (0.1.13):
+    - x-engine-native-protocols
+  - x-engine-native-protocols (1.0.0)
+  - x-engine-native-ui (1.0.0):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
@@ -55,14 +56,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
-  x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
-  x-engine-native-direct: f829e3c6b1f75cd72287b98826d1571c3d3af9d7
-  x-engine-native-direct_microapp: 068665229d1d7e02c60f24039e4a4d398a1cd7f3
-  x-engine-native-direct_omp: 47c673a295c7c8138268511ec415d8dd3d35e269
-  x-engine-native-jsi: 9d97926ef2b00e1915deefcf6dcd92ff677d44f4
-  x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86
-  x-engine-native-ui: e78d93aeba0c16c6cff9a9352f8da92ca2903878
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
+  x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
+  x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
+  x-engine-native-jsi: 0408dfee0c7822614990e6fc1c512569eff1abb5
+  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
+  x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
 PODFILE CHECKSUM: def3e9483236c30920c50642f261cda43e554d72
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

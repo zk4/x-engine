@@ -14,6 +14,13 @@
     
   
 @implementation _0_com_zkty_jsi_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
+  
+@implementation _1_com_zkty_jsi_xxxx_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
@@ -33,25 +40,32 @@
         return @"com.zkty.jsi.xxxx";
     }
     
-  
-  - (NSString*) syncMethod:(NSDictionary*) dict {
+    - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{  \"titleSize\": 16}"];
-          NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-      return [self _syncMethod:dto];
-    }
-  
-  - (id) syncMethod1:(NSDictionary*) dict {
-  return [self _syncMethod1];
-    }
-    - (void) asyncMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          dict=[self mergeDefault:dict defaultString:@"{  \"name\": \"default value\"}"];
-    
-          _0_com_zkty_jsi_xxxx_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_xxxx_DTO.class];
-          [self _asyncMethod:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
+          [self _simpleMethod:^(BOOL complete) {
+                 completionHandler(nil,complete); 
           }];
-        
       }
+  - (id) simpleMethod:(NSDictionary*) dict {
+   [self _simpleMethod];
+              return nil;
+    }
+    - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _nestedAnonymousObject:^(_0_com_zkty_jsi_xxxx_DTO* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+      }
+  - (_0_com_zkty_jsi_xxxx_DTO*) nestedAnonymousObject:(NSDictionary*) dict {
+  return [self _nestedAnonymousObject];
+    }
+    - (void) namedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _namedObject:^(NamedDTO* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+      }
+  - (NamedDTO*) namedObject:(NSDictionary*) dict {
+  return [self _namedObject];
+    }
   @end

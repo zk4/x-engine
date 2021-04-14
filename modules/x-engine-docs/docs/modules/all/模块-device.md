@@ -6,11 +6,10 @@
 
 
 
-
 # JS
 
 
-JSI Id: com.zkty.module.device
+JSI Id: com.zkty.jsi.device
 
 version: 0.1.13
 
@@ -42,7 +41,7 @@ version: 0.1.13
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -86,7 +85,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -130,7 +129,7 @@ UDID
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -174,7 +173,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -218,7 +217,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -262,7 +261,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -306,7 +305,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -350,7 +349,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -394,7 +393,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -438,7 +437,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -482,7 +481,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -526,7 +525,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -570,7 +569,7 @@ interface DeviceMoreDTO {
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------
@@ -614,7 +613,7 @@ tabBar高度
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| \_\_event\_\_ | _0_com.zkty.module.device_DTO | 必填 | (string)=>{} | 回调方法 |
+| \_\_event\_\_ | _0_com.zkty.jsi.device_DTO | 必填 | (string)=>{} | 回调方法 |
 
 
 ---------------------

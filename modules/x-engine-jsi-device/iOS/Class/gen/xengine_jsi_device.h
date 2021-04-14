@@ -6,88 +6,73 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol DeviceSheetDTO;
-@protocol DeviceMoreDTO;
-@protocol DevicePhoneNumDTO;
-@protocol DeviceMessageDTO;
-@protocol _0_com_zkty_jsi_device_DTO;
+@protocol phoneDto;
+@protocol DeviceDTO;
 
-@interface DeviceSheetDTO: JSONModel
-  	@property(nonatomic,strong) NSString* __event__;
+@interface phoneDto: JSONModel
+  	@property(nonatomic,copy) NSString* phoneNum;
+   	@property(nonatomic,copy) NSString* phoneMsg;
 @end
     
 
-@interface DeviceMoreDTO: JSONModel
-  	@property(nonatomic,copy) NSString* content;
-@end
-    
-
-@interface DevicePhoneNumDTO: JSONModel
-  	@property(nonatomic,copy) NSString* phoneNumber;
-@end
-    
-
-@interface DeviceMessageDTO: JSONModel
-  	@property(nonatomic,copy) NSString* phoneNumber;
-   	@property(nonatomic,copy) NSString* messageContent;
-@end
-    
-
-@interface _0_com_zkty_jsi_device_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* height;
+@interface DeviceDTO: JSONModel
+  	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,copy) NSString* systemVersion;
+   	@property(nonatomic,copy) NSString* language;
+   	@property(nonatomic,copy) NSString* UUID;
 @end
     
 
 
 @protocol xengine_jsi_device_protocol
        @required 
-        - (void) _getPhoneType:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getSystemVersion:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getUDID:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getBatteryLevel:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getPreferredLanguage:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getScreenWidth:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getScreenHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getSafeAreaTop:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getSafeAreaBottom:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getSafeAreaLeft:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getSafeAreaRight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _getStatusHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-       - (_0_com_zkty_jsi_device_DTO*) _getNavigationHeight;
+       - (NSString*) _getStatusBarHeight;
     
       @required 
-        - (void) _getTabBarHeight:(DeviceSheetDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
-      @required 
-        - (void) _devicePhoneCall:(DevicePhoneNumDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+       - (NSString*) _getNavigationHeight;
     
       @required 
-        - (void) _deviceSendMessage:(DeviceMessageDTO*) dto complete:(void (^)(DeviceMoreDTO* result,BOOL complete)) completionHandler;
-
+       - (NSString*) _getScreenHeight;
+    
+      @required 
+       - (NSString*) _getTabbarHeight;
+    
+      @required 
+       - (NSString*) _getSystemVersion;
+    
+      @required 
+       - (NSString*) _getUUID;
+    
+      @required 
+       - (NSString*) _callPhone:(phoneDto*)dto;
+    
+      @required 
+       - (NSString*) _sendMessage:(phoneDto*)dto;
+    
+      @required 
+       - (NSString*) _getDeviceInfo;
+    
+      @required 
+        - (void) _getDeviceInfo1:(void (^)(DeviceDTO* result,BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _text_getScreenHeight:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _text_getTabbarHeight:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _text_callPhone:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _text_sendMsg:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _text_getDeviceInfo:(void (^)(BOOL complete)) completionHandler;
+    
+      @required 
+       - (void) _text_getDeviceInfo1:(void (^)(BOOL complete)) completionHandler;
+    
 @end
   
 

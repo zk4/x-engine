@@ -47,6 +47,7 @@ function test_syncMethod() {
   });
   document.getElementById("debug_text").innerText = typeof val + ":" + val;
 }
+
 // test function
 function test_syncMethod1() {
   let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod1");

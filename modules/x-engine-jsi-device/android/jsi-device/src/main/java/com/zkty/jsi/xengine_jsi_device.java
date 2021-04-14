@@ -15,45 +15,39 @@
   import androidx.annotation.Nullable;
 
   
-  class DeviceSheetDTO {
-    public String __event__;
-  }
-  
-  class DeviceMoreDTO {
-    public String content;
-  }
-  
-  class DevicePhoneNumDTO {
-    public String phoneNumber;
-  }
-  
-  class DeviceMessageDTO {
-    public String phoneNumber;
+  class phoneDto {
+    public String phoneNum;
 
-    public String messageContent;
+    public String phoneMsg;
   }
   
-  class _0_com_zkty_jsi_device_DTO {
-    public String height;
+  class DeviceDTO {
+    public String type;
+
+    public String systemVersion;
+
+    public String language;
+
+    public String UUID;
   }
   
   interface xengine_jsi_device_protocol {
-    public void _getPhoneType(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getSystemVersion(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getUDID(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getBatteryLevel(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getPreferredLanguage(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getScreenWidth(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getScreenHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getSafeAreaTop(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getSafeAreaBottom(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getSafeAreaLeft(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getSafeAreaRight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _getStatusHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-    _0_com_zkty_jsi_device_DTO _getNavigationHeight();
-public void _getTabBarHeight(DeviceSheetDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
-public void _devicePhoneCall(DevicePhoneNumDTO dto, final CompletionHandler<Nullable> handler);
-public void _deviceSendMessage(DeviceMessageDTO dto, final CompletionHandler<DeviceMoreDTO> handler);
+        String _getStatusBarHeight();
+    String _getNavigationHeight();
+    String _getScreenHeight();
+    String _getTabbarHeight();
+    String _getSystemVersion();
+    String _getUUID();
+    String _callPhone(phoneDto dto);
+    String _sendMessage(phoneDto dto);
+    String _getDeviceInfo();
+public void _getDeviceInfo1(final CompletionHandler<DeviceDTO> handler);
+public void _text_getScreenHeight(final CompletionHandler<Nullable> handler);
+public void _text_getTabbarHeight(final CompletionHandler<Nullable> handler);
+public void _text_callPhone(final CompletionHandler<Nullable> handler);
+public void _text_sendMsg(final CompletionHandler<Nullable> handler);
+public void _text_getDeviceInfo(final CompletionHandler<Nullable> handler);
+public void _text_getDeviceInfo1(final CompletionHandler<Nullable> handler);
   }
   
   
@@ -63,225 +57,85 @@ public void _deviceSendMessage(DeviceMessageDTO dto, final CompletionHandler<Dev
       return "com.zkty.jsi.device";
     }
   
-    @JavascriptInterface
-    final public void getPhoneType(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getPhoneType(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getSystemVersion(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getSystemVersion(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getUDID(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getUDID(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getBatteryLevel(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getBatteryLevel(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getPreferredLanguage(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getPreferredLanguage(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getScreenWidth(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getScreenWidth(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getScreenHeight(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getScreenHeight(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getSafeAreaTop(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getSafeAreaTop(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getSafeAreaBottom(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getSafeAreaBottom(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getSafeAreaLeft(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getSafeAreaLeft(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getSafeAreaRight(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getSafeAreaRight(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    final public void getStatusHeight(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getStatusHeight(data, new CompletionHandler<DeviceMoreDTO>() {
-        @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-
-    @JavascriptInterface
-    public _0_com_zkty_jsi_device_DTO getNavigationHeight(JSONObject jsonobj) {
+        @JavascriptInterface
+        public String getStatusBarHeight(JSONObject jsonobj) {
+          
+          return _getStatusBarHeight();
+        }
         
-        return _getNavigationHeight();
-    }
-    
+
+        @JavascriptInterface
+        public String getNavigationHeight(JSONObject jsonobj) {
+          
+          return _getNavigationHeight();
+        }
+        
+
+        @JavascriptInterface
+        public String getScreenHeight(JSONObject jsonobj) {
+          
+          return _getScreenHeight();
+        }
+        
+
+        @JavascriptInterface
+        public String getTabbarHeight(JSONObject jsonobj) {
+          
+          return _getTabbarHeight();
+        }
+        
+
+        @JavascriptInterface
+        public String getSystemVersion(JSONObject jsonobj) {
+          
+          return _getSystemVersion();
+        }
+        
+
+        @JavascriptInterface
+        public String getUUID(JSONObject jsonobj) {
+          
+          return _getUUID();
+        }
+        
+
+        @JavascriptInterface
+        public String callPhone(JSONObject jsonobj) {
+          phoneDto data= convert(obj,phoneDto.class);
+          return _callPhone(dto);
+        }
+        
+
+        @JavascriptInterface
+        public String sendMessage(JSONObject jsonobj) {
+          phoneDto data= convert(obj,phoneDto.class);
+          return _sendMessage(dto);
+        }
+        
+
+        @JavascriptInterface
+        public String getDeviceInfo(JSONObject jsonobj) {
+          
+          return _getDeviceInfo();
+        }
+        
 
     @JavascriptInterface
-    final public void getTabBarHeight(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{}";
-      obj = mergeDefault(obj, defaultStr);
-      DeviceSheetDTO data= convert(obj,DeviceSheetDTO.class);
-      _getTabBarHeight(data, new CompletionHandler<DeviceMoreDTO>() {
+    final public void getDeviceInfo1(JSONObject obj, final CompletionHandler<Object> handler) {
+      _getDeviceInfo1(new CompletionHandler<DeviceDTO>() {
         @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
+        public void complete(DeviceDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
+        public void setProgressData(DeviceDTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
-    final public void devicePhoneCall(JSONObject obj, final CompletionHandler<Object> handler) {
-      DevicePhoneNumDTO data= convert(obj,DevicePhoneNumDTO.class);
-      _devicePhoneCall(data, new CompletionHandler<Nullable>() {
+    final public void text_getScreenHeight(JSONObject obj, final CompletionHandler<Object> handler) {
+      _text_getScreenHeight(new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -293,15 +147,66 @@ public void _deviceSendMessage(DeviceMessageDTO dto, final CompletionHandler<Dev
     }
 
     @JavascriptInterface
-    final public void deviceSendMessage(JSONObject obj, final CompletionHandler<Object> handler) {
-      DeviceMessageDTO data= convert(obj,DeviceMessageDTO.class);
-      _deviceSendMessage(data, new CompletionHandler<DeviceMoreDTO>() {
+    final public void text_getTabbarHeight(JSONObject obj, final CompletionHandler<Object> handler) {
+      _text_getTabbarHeight(new CompletionHandler<Nullable>() {
         @Override
-        public void complete(DeviceMoreDTO retValue) { handler.complete(retValue); }
+        public void complete(Nullable retValue) { handler.complete(null); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(DeviceMoreDTO value) { handler.setProgressData(value); }
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void text_callPhone(JSONObject obj, final CompletionHandler<Object> handler) {
+      _text_callPhone(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void text_sendMsg(JSONObject obj, final CompletionHandler<Object> handler) {
+      _text_sendMsg(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void text_getDeviceInfo(JSONObject obj, final CompletionHandler<Object> handler) {
+      _text_getDeviceInfo(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void text_getDeviceInfo1(JSONObject obj, final CompletionHandler<Object> handler) {
+      _text_getDeviceInfo1(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

@@ -22,79 +22,41 @@ JSI_MODULE(JSI_device)
     self.device = XENP(iDevice);
 }
 
-
-
-//- (void)_devicePhoneCall:(DevicePhoneNumDTO *)dto complete:(void (^)(BOOL))completionHandler {
-//
-//}
-//
-//- (void)_deviceSendMessage:(DeviceMessageDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getBatteryLevel:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getNavigationHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//    DeviceMoreDTO* ret = [DeviceMoreDTO new];
-//    ret.content = [self.device getNavigationHeight];
-//    completionHandler(ret,TRUE);
-//}
-
-//
-//- (void)_getPhoneType:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getPreferredLanguage:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getSafeAreaBottom:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getSafeAreaLeft:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getSafeAreaRight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getSafeAreaTop:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getScreenHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getScreenWidth:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getStatusHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getSystemVersion:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getTabBarHeight:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
-//
-//- (void)_getUDID:(DeviceSheetDTO *)dto complete:(void (^)(DeviceMoreDTO *, BOOL))completionHandler {
-//
-//}
- 
-- (_0_com_zkty_jsi_device_DTO *)_getNavigationHeight {
-    _0_com_zkty_jsi_device_DTO * ret =[_0_com_zkty_jsi_device_DTO new];
-    ret.height =@"hello";
-    return ret;
+- (NSString *)_getNavigationHeight {
+    return [self.device getNavigationHeight];
 }
 
+- (NSString *)_getScreenHeight {
+    return [self.device getScreenHeight];
+}
+
+- (NSString *)_getStatusBarHeight {
+    return [self.device getStatusHeight];
+}
+
+- (NSString *)_getTabbarHeight {
+    return [self.device getTabbarHeight];
+}
+
+- (NSString *)_callPhone:(phoneDto *)dto {
+    return[self.device callPhone:dto.phoneNum];
+}
+
+- (NSString *)_sendMessage:(phoneDto *)dto {
+    return [self.device sendMsgWithPhoneNum:dto.phoneNum withMsg:dto.phoneMsg];
+}
+
+- (NSString *)_getDeviceInfo {
+    return [self.device getDeviceInfo];
+}
+
+- (DeviceDTO *)_getDeviceInfo1 {
+    NSMutableDictionary *dict = [self.device getDeviceInfo1];
+    DeviceDTO *dto = [[DeviceDTO alloc] init];
+    dto.UUID = dict[@"UUID"];
+    dto.type = dict[@"type"];
+    dto.language = dict[@"language"];
+    dto.systemVersion = dict[@"systemVersion"];
+    return dto;
+}
 @end

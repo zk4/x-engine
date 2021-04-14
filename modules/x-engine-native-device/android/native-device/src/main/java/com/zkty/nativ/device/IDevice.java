@@ -2,15 +2,23 @@ package com.zkty.nativ.device;
 
 public interface IDevice {
 
-    String getSystemModel();
+    String getStatusBarHeight();
+
+    String getNavigationHeight();
+
+    String getScreenHeight();
+
+    String getTabbarHeight();
 
     String getSystemVersion();
 
-    String getSystemLanguage();
+    String getUDID();
 
-    int getBatteryLevel();
+    String callPhone(String phone);
 
-    float getStatusBarHeight();
+    String sendMessage(String phone, String msg);
+
+    String getDeviceInfo();
 
 
 }

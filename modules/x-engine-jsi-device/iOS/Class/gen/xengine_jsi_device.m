@@ -57,8 +57,8 @@
   return [self _getSystemVersion];
     }
   
-  - (NSString*) getUUID:(NSDictionary*) dict {
-  return [self _getUUID];
+  - (NSString*) getUDID:(NSDictionary*) dict {
+  return [self _getUDID];
     }
   
   - (NSString*) callPhone:(NSDictionary*) dict {
@@ -78,42 +78,6 @@
 
           [self _getDeviceInfo1:^(DeviceDTO* result, BOOL complete) {
             completionHandler(result ,complete);
-          }];
-      }
-    - (void) text_getScreenHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getScreenHeight:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_getTabbarHeight:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getTabbarHeight:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_callPhone:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_callPhone:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_sendMsg:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_sendMsg:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_getDeviceInfo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getDeviceInfo:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-    - (void) text_getDeviceInfo1:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _text_getDeviceInfo1:^(BOOL complete) {
-                 completionHandler(nil,complete); 
           }];
       }
   @end

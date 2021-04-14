@@ -96,9 +96,9 @@ version: 0.1.13
 
 
 
-## getUUID
+## getUDID
 
- 获取iOS设备的UUID
+ 获取iOS设备的UDID
 
 **demo**
 
@@ -190,6 +190,8 @@ version: 0.1.13
 **返回值**
 ``` js
 
+
+// 设备模型
 interface DeviceDTO {
 
   // 设备类型
@@ -198,160 +200,11 @@ interface DeviceDTO {
   systemVersion: string;
   // 设备类型
   language: string;
-  // 设备版本
-  UUID: string;
+  // 设备号
+  UDID: string;
 
 }
 ``` 
-
-
-
-
-## text_getScreenHeight
-
-
-
-**demo**
-``` js
-
-  let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-
-``` 
-
-	
-**无参数**
-
-
-
-
----------------------
-**无返回值**
-
-
-
-
-## text_getTabbarHeight
-
-
-
-**demo**
-``` js
-
-  let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-
-``` 
-
-	
-**无参数**
-
-
-
-
----------------------
-**无返回值**
-
-
-
-
-## text_callPhone
-
-
-
-**demo**
-``` js
-
-  xengine.api("com.zkty.jsi.device", "callPhone", {
-    phoneNum: "18637369306",
-    phoneMsg: ''
-  });
-
-``` 
-
-	
-**无参数**
-
-
-
-
----------------------
-**无返回值**
-
-
-
-
-## text_sendMsg
-
-
-
-**demo**
-``` js
-
-  xengine.api("com.zkty.jsi.device", "sendMessage", {
-    phoneNum: "18637369306",
-    phoneMsg: '你好'
-  });
-
-``` 
-
-	
-**无参数**
-
-
-
-
----------------------
-**无返回值**
-
-
-
-
-## text_getDeviceInfo
-
-
-
-**demo**
-``` js
-
-  let val = xengine.api("com.zkty.jsi.device", "getDeviceInfo");
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-
-``` 
-
-	
-**无参数**
-
-
-
-
----------------------
-**无返回值**
-
-
-
-
-## text_getDeviceInfo1
-
-
-
-**demo**
-``` js
-
-  xengine.api("com.zkty.jsi.device", "getDeviceInfo1", {}, (val) => {
-   document.getElementById("debug_text").innerText = typeof val + ":" + val;
-  });
-
-``` 
-
-	
-**无参数**
-
-
-
-
----------------------
-**无返回值**
 
 
 

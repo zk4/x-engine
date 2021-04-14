@@ -8,6 +8,10 @@
 
 @protocol NamedDTO;
 @protocol _0_com_zkty_jsi_xxxx_DTO;
+@protocol _1_com_zkty_jsi_xxxx_DTO;
+@class NamedDTO;
+@class _0_com_zkty_jsi_xxxx_DTO;
+@class _1_com_zkty_jsi_xxxx_DTO;
 
 @interface NamedDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -16,24 +20,33 @@
     
 
 @interface _0_com_zkty_jsi_xxxx_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* name;
+  	@property(nonatomic,copy) NSString* a;
+   	@property(nonatomic,strong) _1_com_zkty_jsi_xxxx_DTO* i;
+@end
+    
+
+@interface _1_com_zkty_jsi_xxxx_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* n1;
 @end
     
 
 
 @protocol xengine_jsi_xxxx_protocol
        @required 
-       - (NSString*) _syncMethod:(NamedDTO*)dto;
+       - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
+       @required 
+       - (void) _simpleMethod;
     
       @required 
-       - (NSString*) _syncStringMethod:(NSString*)dto;
+        - (void) _nestedObject:(void (^)(_0_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
+       @required 
+       - (_0_com_zkty_jsi_xxxx_DTO*) _nestedObject;
     
       @required 
-       - (void) _syncMethod1;
+        - (void) _nestedNamedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
+       @required 
+       - (NamedDTO*) _nestedNamedObject;
     
-      @required 
-        - (void) _asyncMethod:(_0_com_zkty_jsi_xxxx_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
 @end
   
 

@@ -14,6 +14,13 @@
     
   
 @implementation _0_com_zkty_jsi_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
+  
+@implementation _1_com_zkty_jsi_xxxx_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
@@ -33,31 +40,32 @@
         return @"com.zkty.jsi.xxxx";
     }
     
-  
-  - (NSString*) syncMethod:(NSDictionary*) dict {
+    - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{  \"titleSize\": 16}"];
-          NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-      return [self _syncMethod:dto];
-        }
-  
-  - (NSString*) syncStringMethod:(NSDictionary*) dict {
-      NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _syncStringMethod:dto];
-        }
-  
-  - (id) syncMethod1:(NSDictionary*) dict {
-   [self _syncMethod1];
+          [self _simpleMethod:^(BOOL complete) {
+                 completionHandler(nil,complete); 
+          }];
+      }
+  - (id) simpleMethod:(NSDictionary*) dict {
+   [self _simpleMethod];
               return nil;
     }
-    - (void) asyncMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) nestedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{  \"name\": \"default value\"}"];
-    
-          _0_com_zkty_jsi_xxxx_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_xxxx_DTO.class];
-          [self _asyncMethod:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
+          [self _nestedObject:^(_0_com_zkty_jsi_xxxx_DTO* result, BOOL complete) {
+            completionHandler(result ,complete);
           }];
-        
       }
+  - (_0_com_zkty_jsi_xxxx_DTO*) nestedObject:(NSDictionary*) dict {
+  return [self _nestedObject];
+    }
+    - (void) nestedNamedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _nestedNamedObject:^(NamedDTO* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+      }
+  - (NamedDTO*) nestedNamedObject:(NSDictionary*) dict {
+  return [self _nestedNamedObject];
+    }
   @end

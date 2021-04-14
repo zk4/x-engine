@@ -22,14 +22,19 @@
   }
   
   class _0_com_zkty_jsi_xxxx_DTO {
-    public String name;
+    public String a;
+
+    public _1_com_zkty_jsi_xxxx_DTO i;
+  }
+  
+  class _1_com_zkty_jsi_xxxx_DTO {
+    public String n1;
   }
   
   interface xengine_jsi_xxxx_protocol {
-        String _syncMethod(NamedDTO dto);
-    String _syncStringMethod(String dto);
-    void _syncMethod1();
-public void _asyncMethod(_0_com_zkty_jsi_xxxx_DTO dto, final CompletionHandler<String> handler);
+    public void _simpleMethod(final CompletionHandler<Nullable> handler);    void _simpleMethod();
+public void _nestedObject(final CompletionHandler<_0_com_zkty_jsi_xxxx_DTO> handler);    _0_com_zkty_jsi_xxxx_DTO _nestedObject();
+public void _nestedNamedObject(final CompletionHandler<NamedDTO> handler);    NamedDTO _nestedNamedObject();
   }
   
   
@@ -39,45 +44,63 @@ public void _asyncMethod(_0_com_zkty_jsi_xxxx_DTO dto, final CompletionHandler<S
       return "com.zkty.jsi.xxxx";
     }
   
-        @JavascriptInterface
-        public String syncMethod(JSONObject jsonobj) {
-          String defaultStr = "{  \"titleSize\": 16}";
-      obj = mergeDefault(obj, defaultStr);
-      NamedDTO data= convert(obj,NamedDTO.class);
-          return _syncMethod(dto);
-        }
-        
+    @JavascriptInterface
+    final public void simpleMethod(JSONObject obj, final CompletionHandler<Object> handler) {
+      _simpleMethod(new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
 
+    }
         @JavascriptInterface
-        public String syncStringMethod(JSONObject jsonobj) {
-          String data= convert(obj,String.class);
-          return _syncStringMethod(dto);
-        }
-        
-
-        @JavascriptInterface
-        public Object syncMethod1(JSONObject jsonobj) {
+        public Object simpleMethod(JSONObject jsonobj) {
           
-          _syncMethod1();
+          _simpleMethod();
           return null;
         }
         
 
     @JavascriptInterface
-    final public void asyncMethod(JSONObject obj, final CompletionHandler<Object> handler) {
-      String defaultStr = "{  \"name\": \"default value\"}";
-      obj = mergeDefault(obj, defaultStr);
-      _0_com_zkty_jsi_xxxx_DTO data= convert(obj,_0_com_zkty_jsi_xxxx_DTO.class);
-      _asyncMethod(data, new CompletionHandler<String>() {
+    final public void nestedObject(JSONObject obj, final CompletionHandler<Object> handler) {
+      _nestedObject(new CompletionHandler<_0_com_zkty_jsi_xxxx_DTO>() {
         @Override
-        public void complete(String retValue) { handler.complete(retValue); }
+        public void complete(_0_com_zkty_jsi_xxxx_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
+        public void setProgressData(_0_com_zkty_jsi_xxxx_DTO value) { handler.setProgressData(value); }
       });
 
     }
+        @JavascriptInterface
+        public _0_com_zkty_jsi_xxxx_DTO nestedObject(JSONObject jsonobj) {
+          
+          return _nestedObject();
+        }
+        
+
+    @JavascriptInterface
+    final public void nestedNamedObject(JSONObject obj, final CompletionHandler<Object> handler) {
+      _nestedNamedObject(new CompletionHandler<NamedDTO>() {
+        @Override
+        public void complete(NamedDTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(NamedDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+        @JavascriptInterface
+        public NamedDTO nestedNamedObject(JSONObject jsonobj) {
+          
+          return _nestedNamedObject();
+        }
+        
   }
   
 

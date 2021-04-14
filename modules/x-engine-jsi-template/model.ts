@@ -20,41 +20,67 @@ interface NamedDTO {
   titleSize: int;
 }
 
-// method defined
-@sync
-function syncMethod(arg: NamedDTO = { titleSize: 16 }): string {}
 
 @sync
-function syncStringMethod(arg: string): string {}
+@async
+function simpleMethod() {}
 
 @sync
-function syncMethod1() {}
+@async
+function nestedObject(): { a: string; i: { n1: string } } {}
 
 @async
-function asyncMethod(
-  arg: /*匿名参数*/ { name: string } = { name: "default value" } /*默认参数*/
-): string {}
+@sync
+function nestedNamedObject(): NamedDTO {}
+
 
 // test function
-function test_syncStringMethod() {
-  let val = xengine.api("com.zkty.jsi.xxxx", "syncStringMethod", "1111111");
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-}
-function test_syncMethod() {
-  let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod", {
-    title: "title",
-    titleSize: 12,
-  });
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-}
-// test function
-function test_syncMethod1() {
-  let val = xengine.api("com.zkty.jsi.xxxx", "syncMethod1");
+function test_同步无返回(){
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleMethod");
+  document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
 }
 
-function test_asyncMethod() {
-  xengine.api("com.zkty.jsi.xxxx", "asyncMethod", {}, (val) => {
-    document.getElementById("debug_text").innerText = typeof val + ":" + val;
+function test_同步返回命名对象() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.title + "," + val.titleSize;
+}
+
+function test_同步返回匿名嵌套对象() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "nestedObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
+
+}
+
+function test_异步返回命名对象() {
+  xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {}, (val) => {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
   });
 }
 
+function test_异步返回命名对象() {
+  xengine.api("com.zkty.jsi.xxxx", "nestedNamedObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
+  }
+  );
+}
+
+function test_异步返回匿名嵌套对象() {
+  xengine.api("com.zkty.jsi.xxxx", "nestedObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
+  }
+  );
+}
+  
+  
+  
+  
+  
+  
+  
+  

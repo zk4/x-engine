@@ -1,3 +1,5 @@
+#ifndef icamera_h
+#define icamera_h
 //
 //  icamera.h
 //  camera
@@ -7,11 +9,9 @@
 //
 
 #import "JSONModel.h"
-#ifndef icamera_h
-#define icamera_h
 
 
-@interface CameraDTO: JSONModel
+@interface CameraParamsDTO: JSONModel
        @property(nonatomic,assign) BOOL allowsEditing;
        @property(nonatomic,assign) BOOL savePhotosAlbum;
        @property(nonatomic,assign) NSInteger cameraFlashMode;
@@ -20,22 +20,8 @@
        @property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
        @property(nonatomic,assign) NSInteger photoCount;
 @end
-    
-
-@implementation CameraDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {    if ([propertyName isEqualToString:@"allowsEditing"]) { return YES; }
-       if ([propertyName isEqualToString:@"savePhotosAlbum"]) { return YES; }
-       if ([propertyName isEqualToString:@"cameraFlashMode"]) { return YES; }
-       if ([propertyName isEqualToString:@"cameraDevice"]) { return YES; }
-   
-   
-       if ([propertyName isEqualToString:@"photoCount"]) { return YES; }
-       return NO;
-    }
-@end
-
-
-@interface CameraRetDTO: JSONModel
+     
+@interface CameraResultDTO: JSONModel
       @property(nonatomic,copy) NSString* retImage;
        @property(nonatomic,copy) NSString* fileName;
        @property(nonatomic,copy) NSString* contentType;
@@ -43,17 +29,12 @@
        @property(nonatomic,copy) NSString* height;
 @end
 
-
-@implementation CameraRetDTO
-  + (BOOL)propertyIsOptional:(NSString *)propertyName {
-     return NO;
-  }
-@end
+ 
 
 @protocol iCamera <NSObject>
 
 @required
- - (void) openImagePicker:(CameraDTO*) dto succeccful:(void (^)(CameraRetDTO* result)) succeccful;
+ - (void) openImagePicker:(CameraParamsDTO*) dto success:(void (^)(CameraResultDTO* result))success;
 
 @end
 

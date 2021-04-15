@@ -7,9 +7,8 @@ version: 0.1.13
 
 
 ## getStatusBarHeight
-
- 获取状态栏高度
-
+`sync`
+> 获取状态栏高度
 **demo**
 ``` js
 
@@ -19,127 +18,89 @@ version: 0.1.13
   }
 ``` 
 
-	
 **无参数**
-
-
-
-
----------------------
-**无返回值**
-
+**返回值**
+``` js
+string
+``` 
 
 
 
 ## getNavigationHeight
+`sync`
+> 获取导航条高度
 
- 获取导航条高度
-
-**demo**
-
-	
 **无参数**
-
-
-
-
----------------------
-**无返回值**
-
+**返回值**
+``` js
+string
+``` 
 
 
 
 ## getScreenHeight
+`sync`
+> 获取屏幕高度
 
- 获取屏幕高度
-
-**demo**
-
-	
 **无参数**
-
-
-
-
----------------------
-**无返回值**
-
+**返回值**
+``` js
+string
+``` 
 
 
 
 ## getTabbarHeight
+`sync`
+> 获取tabBar高度
 
- 获取tabBar高度
-
-**demo**
-
-	
 **无参数**
-
-
-
-
----------------------
-**无返回值**
-
+**返回值**
+``` js
+string
+``` 
 
 
 
 ## callPhone
+`sync`
+> 打电话
 
- 打电话
-
-**demo**
-
-	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| phoneNum | string | 必填 |  |  设备类型 |
-| phoneMsg | string | 必填 |  |  设备版本 |
-
-
----------------------
-**无返回值**
-
+| phoneNum | string | 必填 |  | 设备类型 |
+| phoneMsg | string | 必填 |  | 设备版本 |
+**返回值**
+``` js
+string
+``` 
 
 
 
 ## sendMessage
+`sync`
+> 发短信
 
- 发短信
-
-**demo**
-
-	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| phoneNum | string | 必填 |  |  设备类型 |
-| phoneMsg | string | 必填 |  |  设备版本 |
-
-
----------------------
-**无返回值**
-
+| phoneNum | string | 必填 |  | 设备类型 |
+| phoneMsg | string | 必填 |  | 设备版本 |
+**返回值**
+``` js
+string
+``` 
 
 
 
 ## getDeviceInfo
+`async`
+> 获取设备信息
 
- 获取设备信息
-
-**demo**
-
-	
 **无参数**
-
-
-
-
----------------------
 **返回值**
 ``` js
 
@@ -158,7 +119,6 @@ interface DeviceDTO {
 
 }
 ``` 
-
 
 
     

@@ -42,12 +42,6 @@ export default {
     handlerSyncJIAN() {
       this.$store.commit("jian")
     },
-    // handlerAsyncJIA() {
-    //   this.$store.dispatch("jia")
-    // },
-    // handlerAsyncJIAN() {
-    //   this.$store.dispatch("jian")
-    // },
     handlerNextPage() {
       this.$router.push({
         path: "/skeleton",

@@ -4,7 +4,6 @@
     <div>result:</div>
     <div>{{content}}</div>
   </div>
-  
 </template>
 
 <script>
@@ -12,10 +11,11 @@ import server from "../utils/ajax"
 export default {
   data() {
     return {
-        content:''
+      content: "",
     }
   },
   mounted() {
+    this.handlerNetwork();
   },
   methods: {
     handlerNetwork() {

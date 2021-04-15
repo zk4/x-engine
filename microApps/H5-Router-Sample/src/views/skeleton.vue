@@ -16,6 +16,21 @@
     </div>
 
     <div class="content">store中的count为:{{$store.state.count}}</div>
+
+    <div class="operating">
+      <van-button
+        color="linear-gradient(to right, #4bb0ff, #6149f6)"
+        size="large"
+        round
+        @click="handlerSyncJIA"
+      >sync加</van-button>
+      <van-button
+        color="linear-gradient(to right, #ff6034, #ee0a24)"
+        size="large"
+        round
+        @click="handlerSyncJIAN"
+      >async减</van-button>
+    </div>
   </div>
 </template>
 
@@ -52,6 +67,12 @@ export default {
         path: "/navHeader",
       })
     },
+    handlerSyncJIA() {
+      this.$store.commit("jia")
+    },
+    handlerSyncJIAN() {
+      this.$store.commit("jian")
+    },
   },
 }
 </script>
@@ -59,5 +80,21 @@ export default {
 <style>
 .skeleton-class {
   margin-top: 20px;
+}
+
+.content {
+  background: gray;
+  border-radius: 20px;
+  margin-top: 200px;
+  margin: 50px;
+  height: 200px;
+  color: white;
+  line-height: 200px;
+}
+
+.operating {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
 }
 </style>

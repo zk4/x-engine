@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jsi.camera">
+
+    <meta-data
+        android:name="com.zkty.jsi.camera"
+        android:value="com.zkty.jsi.camera.JSI_camera" />
+
+</manifest>

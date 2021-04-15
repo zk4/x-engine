@@ -19,8 +19,8 @@ interface CameraDTO {
   photoCount?: int;
   //返回获取图片的地址
   __event__: (string)=>void;
-  
 }
+
 interface CameraRetDTO {
   retImage: string;
   fileName:string;

@@ -5,7 +5,7 @@
 import xengine from "@zkty-team/x-engine-module-engine";
 import mock from "./mock";
 function osCheck() {
-  if (!xengine.hybrid) {
+  if (false) {
     return mock;
 } 
   else {
@@ -14,7 +14,8 @@ function osCheck() {
     [
   {
     "name": "get",
-    "default_args": null
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

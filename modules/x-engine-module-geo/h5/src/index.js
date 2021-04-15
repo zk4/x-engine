@@ -16,7 +16,8 @@ function osCheck() {
     "name": "locate",
     "default_args": {
       "type": "BMK09LL"
-    }
+    },
+    "decorators": []
   }
 ]
 )}}

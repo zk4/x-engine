@@ -7,15 +7,12 @@
 //
 
 #import "TwoViewController.h"
-#import "XEngineWebView.h"
-#import "WebViewFactory.h"
-#import "NativeContext.h"
-#import "iDirectManager.h"
+
 #import "RecyleWebViewController.h"
 #import "MicroAppLoader.h"
-@interface TwoViewController ()
-@property (nonatomic, strong) XEngineWebView * _Nullable webview;
+#import <GlobalState.h>
 
+@interface TwoViewController ()
 @end
 
 @implementation TwoViewController
@@ -38,16 +35,14 @@
 
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE onTab:TRUE];
 
-    /// TODO:  背景没有生效
-    vc.view.backgroundColor = [UIColor redColor];
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
-
     vc.view.frame = self.view.frame;
-    
-
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"............");
+}
 /*
 #pragma mark - Navigation
 

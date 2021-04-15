@@ -14,39 +14,48 @@ function osCheck() {
     [
   {
     "name": "set",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "get",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "remove",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "removeAll",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "_testRemoveAllPublic",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "_testSetPublicStorage",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "_testGetPublicStorage",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "_testSetLocalStorage",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "_testGetLocalStorage",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

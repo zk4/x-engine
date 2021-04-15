@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import HEADER from "../components/Header/index"
+import HEADER from "../components/Header/index";
 export default {
   components: {
     HEADER,

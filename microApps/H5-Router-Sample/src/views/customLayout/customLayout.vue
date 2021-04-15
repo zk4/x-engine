@@ -3,8 +3,8 @@
     <HEADER
       @clickLeftButton="handlerHeaderBack"
       @clickRightButton="handlerHeaderRightBtn"
-      :reviceNavTitle=navTitle
-      :reviceRightTitle=navRightTitle
+      :reviceNavTitle="navTitle"
+      :reviceRightTitle="navRightTitle"
     />
     <div class="box-class">
       <div class="error-class">
@@ -33,15 +33,15 @@
       <br />
       <span
         style="color:orange"
-      >7. 需要调用@zkty-team/x-engine-module-device的getNavigationHeight()方法拿到导航条在不同手机上的高度给予div的margin-top; 如红色div。即可解决该问题</span>
+      >7. 需要调用@zkty-team/x-engine-core的getNavigationHeight()方法拿到导航条在不同手机上的高度给予div的margin-top; 如红色div。即可解决该问题</span>
       <br />8. 详见代码...
     </div>
   </div>
 </template>
 
 <script>
-import device from "@zkty-team/x-engine-module-device"
-import HEADER from "@/components/Header/index"
+import HEADER from "@/components/Header/index";
+import XEngine from "@zkty-team/x-engine-core";
 export default {
   components: {
     HEADER,
@@ -49,24 +49,24 @@ export default {
   data() {
     return {
       navigatorHeight: "",
-      navTitle:'layout',
+      navTitle: "layout",
       navRightTitle: "屏幕高度",
     }
   },
   mounted() {
-    // 导航条高度
-    device.getNavigationHeight({}).then((res) => {
-      this.navigatorHeight = res.content
-    })
+    let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
+    this.navigatorHeight = navheight;
   },
   methods: {
     handlerHeaderBack() {
       this.$router.go(-1)
     },
     handlerHeaderRightBtn() {
-      device.getScreenHeight({}).then((res) => {
-        alert("屏幕整体高度为: ==>" + res.content + "px")
-      })
+      let screenHeight = XEngine.api(
+        "com.zkty.jsi.device",
+        "getScreenHeight"
+      )
+      alert("屏幕整体高度为: ==>" + screenHeight + "px");
     },
   },
 }

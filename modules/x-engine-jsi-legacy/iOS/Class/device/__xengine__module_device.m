@@ -203,7 +203,6 @@ JSI_MODULE(__xengine__module_device)
 
 //获取手机型号
 - (NSString *)getDeviceName {
-    NSString* padType = @"";
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
@@ -248,151 +247,151 @@ JSI_MODULE(__xengine__module_device)
     if ([deviceString isEqualToString:@"iPod5,1"])      return @"iPod Touch (5 Gen)";
 
     if ([deviceString isEqualToString:@"iPad1,1"]){
-//        padType = @"ipad";
+
         return @"iPad";
     }
     if ([deviceString isEqualToString:@"iPad1,2"]){
-//        padType = @"ipad";
+
         return @"iPad 3G";
     }
     if ([deviceString isEqualToString:@"iPad2,1"]){
-//        padType = @"ipad";
+
         return @"iPad 2 (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad2,2"]){
-//        padType = @"ipad";
+
         return @"iPad 2";
     }
     if ([deviceString isEqualToString:@"iPad2,3"]){
-//        padType = @"ipad";
+
         return @"iPad 2 (CDMA)";
     }
     if ([deviceString isEqualToString:@"iPad2,4"]){
-//        padType = @"ipad";
+
         return @"iPad 2";
     }
     if ([deviceString isEqualToString:@"iPad2,5"]){
-//        padType = @"ipad";
+
         return @"iPad Mini (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad2,6"]){
-//        padType = @"ipad";
+
         return @"iPad Mini";
     }
     if ([deviceString isEqualToString:@"iPad2,7"]){
-//        padType = @"ipad";
+
         return @"iPad Mini (GSM+CDMA)";
     }
     if ([deviceString isEqualToString:@"iPad3,1"]){
-//        padType = @"ipad";
+
         return @"iPad 3 (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad3,2"]){
-//        padType = @"ipad";
+
         return @"iPad 3 (GSM+CDMA)";
     }
     if ([deviceString isEqualToString:@"iPad3,3"]){
-//        padType = @"ipad";
+
         return @"iPad 3";
     }
     if ([deviceString isEqualToString:@"iPad3,4"]){
-//        padType = @"ipad";
+
         return @"iPad 4 (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad3,5"]){
-//        padType = @"ipad";
+
         return @"iPad 4";
     }
     if ([deviceString isEqualToString:@"iPad3,6"]){
-//        padType = @"ipad";
+
         return @"iPad 4 (GSM+CDMA)";
     }
     if ([deviceString isEqualToString:@"iPad4,1"]){
-//        padType = @"ipad";
+
         return @"iPad Air (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad4,2"]){
-//        padType = @"ipad";
+
         return @"iPad Air (Cellular)";
     }
     if ([deviceString isEqualToString:@"iPad4,4"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 2 (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad4,5"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 2 (Cellular)";
     }
     if ([deviceString isEqualToString:@"iPad4,6"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 2";
     }
     if ([deviceString isEqualToString:@"iPad4,7"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 3";
     }
     if ([deviceString isEqualToString:@"iPad4,8"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 3";
     }
     if ([deviceString isEqualToString:@"iPad4,9"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 3";
     }
     if ([deviceString isEqualToString:@"iPad5,1"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 4 (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad5,2"]){
-//        padType = @"ipad";
+
         return @"iPad Mini 4 (LTE)";
     }
     if ([deviceString isEqualToString:@"iPad5,3"]){
-//        padType = @"ipad";
+
         return @"iPad Air 2";
     }
     if ([deviceString isEqualToString:@"iPad5,4"]){
-//        padType = @"ipad";
+
         return @"iPad Air 2";
     }
     if ([deviceString isEqualToString:@"iPad6,3"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 9.7";
     }
     if ([deviceString isEqualToString:@"iPad6,4"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 9.7";
     }
     if ([deviceString isEqualToString:@"iPad6,7"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 12.9";
     }
     if ([deviceString isEqualToString:@"iPad6,8"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 12.9";
     }
     if ([deviceString isEqualToString:@"iPad6,11"]){
-//        padType = @"ipad";
+
         return @"iPad 5 (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad6,12"]){
-//        padType = @"ipad";
+
         return @"iPad 5 (Cellular)";
     }
     if ([deviceString isEqualToString:@"iPad7,1"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 12.9 inch 2nd gen (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad7,2"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 12.9 inch 2nd gen (Cellular)";
     }
     if ([deviceString isEqualToString:@"iPad7,3"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 10.5 inch (WiFi)";
     }
     if ([deviceString isEqualToString:@"iPad7,4"]){
-//        padType = @"ipad";
+
         return @"iPad Pro 10.5 inch (Cellular)";
     }
 

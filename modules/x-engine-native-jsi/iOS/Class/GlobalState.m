@@ -11,6 +11,8 @@
 #import "WebViewFactory.h"
 @interface GlobalState()
 @property(nonatomic,strong) NSMutableArray<HistoryModel*>* histories;
+@property(nonatomic,weak)   UIViewController* current_tab_vc;
+@property(nonatomic,strong) NSMutableArray<HistoryModel*>* tab_vcs;
 @end
 
 @implementation GlobalState
@@ -18,6 +20,7 @@
 - (instancetype)init {
     self = [super init];
     self.histories = [[NSMutableArray alloc]  init];
+    self.tab_vcs = [[NSMutableArray alloc]  init];
     return self;
 }
 
@@ -32,9 +35,18 @@
     return sharedInstance;
 }
 
+- (void)setCurrentTabVC:(UIViewController*) vc{
+    _current_tab_vc = vc;
+}
 
 - (NSString*) getLastHost{
-    return [_histories lastObject].host;
+    [self clearHistory];
+    NSString* host = [_histories lastObject].host;
+    /// 那就是在 tab 上了.
+    if(!host){
+        host =[[GlobalState sharedInstance] getCurrentTab].host;
+    }
+    return host;
 }
 
 - (XEngineWebView*)getCurrentWebView{
@@ -83,7 +95,16 @@
     [self clearHistory];
     [_histories addObject:history_model];
 }
-
+- (HistoryModel*)getCurrentTab{
+    for (HistoryModel *item in _tab_vcs) {
+        if (item.vc== _current_tab_vc)
+            return item;
+    }
+    @throw [NSException exceptionWithName:@"what the fuck" reason:@"不允许出现这种情况" userInfo:nil];
+}
+- (void)addCurrentTab:(HistoryModel *) history_model{
+    [_tab_vcs addObject:history_model];
+}
 
 @end
 

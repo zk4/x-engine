@@ -7,5 +7,6 @@ publish:
 
 # 重新 link
 install:
+	lerna clean
 	rm -rdf node_modules
 	yarn install

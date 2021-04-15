@@ -1,31 +1,54 @@
 
 import xxxx from './index.js'
-import xengine from "@zkty-team/x-engine-module-engine";
+import xengine from "@zkty-team/x-engine-core";
 
-window.setNavTitle = () => {
+window.test_同步无返回 = () => {
 
-  xengine.api("com.zkty.jsi.xxxx", "setNavTitle", {
-    title: "title",
-    titleColor: "#000000"
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleMethod");
+  document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
+}
+ document.getElementById("test_同步无返回").click()
+      window.test_同步返回命名对象 = () => {
+
+  let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.title + "," + val.titleSize;
+}
+ document.getElementById("test_同步返回命名对象").click()
+      window.test_同步返回匿名嵌套对象 = () => {
+
+  let val = xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
+
+}
+ document.getElementById("test_同步返回匿名嵌套对象").click()
+      window.test_异步返回命名对象 = () => {
+
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {}, (val) => {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
   });
 }
-window.setNavBarHidden = () => {
+ document.getElementById("test_异步返回命名对象").click()
+      window.test_异步返回命名对象 = () => {
 
-  xengine.api("com.zkty.jsi.xxxx", "setNavBarHidden", {
-    //是否隐藏navBar
-    isHidden: true,
-    //是否使用动画效果
-    isAnimation: true,
-  });
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
+  }
+  );
 }
-window.test_setNavBarShow = () => {
+ document.getElementById("test_异步返回命名对象").click()
+      window.test_异步返回匿名嵌套对象 = () => {
 
-  xengine.api("com.zkty.jsi.xxxx", "setNavBarHidden", {
-    //是否隐藏navBar
-    isHidden: false,
-    //是否使用动画效果
-    isAnimation: true,
-  });
+  xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
+  }
+  );
 }
-
+ document.getElementById("test_异步返回匿名嵌套对象").click()
+      
     

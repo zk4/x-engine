@@ -6,29 +6,46 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol NavTitleDTO;
-@protocol NavHiddenBarDTO;
+@protocol NamedDTO;
+@protocol _0_com_zkty_jsi_xxxx_DTO;
+@protocol _1_com_zkty_jsi_xxxx_DTO;
+@class NamedDTO;
+@class _0_com_zkty_jsi_xxxx_DTO;
+@class _1_com_zkty_jsi_xxxx_DTO;
 
-@interface NavTitleDTO: JSONModel
+@interface NamedDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,copy) NSString* titleColor;
    	@property(nonatomic,assign) NSInteger titleSize;
 @end
     
 
-@interface NavHiddenBarDTO: JSONModel
-  	@property(nonatomic,assign) BOOL isHidden;
-   	@property(nonatomic,assign) BOOL isAnimation;
+@interface _0_com_zkty_jsi_xxxx_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* a;
+   	@property(nonatomic,strong) _1_com_zkty_jsi_xxxx_DTO* i;
+@end
+    
+
+@interface _1_com_zkty_jsi_xxxx_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* n1;
 @end
     
 
 
 @protocol xengine_jsi_xxxx_protocol
        @required 
-        - (void) _setNavTitle:(NavTitleDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+       - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
+       @required 
+       - (void) _simpleMethod;
     
       @required 
-        - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+        - (void) _nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
+       @required 
+       - (_0_com_zkty_jsi_xxxx_DTO*) _nestedAnonymousObject;
+    
+      @required 
+        - (void) _namedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
+       @required 
+       - (NamedDTO*) _namedObject;
     
 @end
   

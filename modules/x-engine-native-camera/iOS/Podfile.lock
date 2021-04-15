@@ -1,16 +1,21 @@
 PODS:
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
   - JSONModel (1.8.0)
-  - x-engine-native-core (0.1.13):
+  - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
-  - x-engine-native-protocols (0.0.9)
+  - x-engine-native-protocols (1.0.0)
 
 DEPENDENCIES:
+  - GCDWebServer (~> 3.0)
   - JSONModel
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - GCDWebServer
     - JSONModel
 
 EXTERNAL SOURCES:
@@ -20,10 +25,11 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-protocols"
 
 SPEC CHECKSUMS:
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
-  x-engine-native-core: 8ddae543a8206a1e7187707e2ac0ecbae18e50ef
-  x-engine-native-protocols: df03152506d3670c19e595aca760203e1d541a86
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
 
-PODFILE CHECKSUM: c6b7b182fc8510858d94b057a15ef0453b4df5b0
+PODFILE CHECKSUM: 66273f6474d7ece85e998695c4baa0c8b9d70335
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

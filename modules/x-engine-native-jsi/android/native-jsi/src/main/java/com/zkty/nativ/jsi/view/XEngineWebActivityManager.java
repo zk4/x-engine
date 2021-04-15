@@ -10,10 +10,7 @@ import androidx.annotation.NonNull;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.exception.XEngineException;
-import com.zkty.nativ.jsi.utils.XEngineMessage;
-import com.zkty.nativ.jsi.webview.XOneWebViewPool;
-
-import org.greenrobot.eventbus.EventBus;
+import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,14 +85,14 @@ public class XEngineWebActivityManager {
 
         activityList.remove(activity);
         if (activityList.isEmpty()) {
-            XOneWebViewPool.sharedInstance().cleanWebView();
+            XWebViewPool.sharedInstance().cleanWebView();
         }
     }
 
     public void exitAllXWebPage() {
         XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
         current.showScreenCapture(true);
-        XOneWebViewPool.sharedInstance().cleanWebView();
+        XWebViewPool.sharedInstance().cleanWebView();
 
         for (XEngineWebActivity activity : activityList) {
             activity.finish();

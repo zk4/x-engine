@@ -7,10 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import "NativeModule.h"
-
+#import "iBroadcast.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_broadcast : NativeModule
-- (void)broadcast:(NSString*) payload;
+@interface Native_broadcast : NativeModule <iBroadcast>
+ 
 @end
 
 NS_ASSUME_NONNULL_END

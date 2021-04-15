@@ -21,5 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableArray<HistoryModel *> *)getCurrentHostHistories;
 - (void)addCurrentWebViewHistory:(HistoryModel *) history;
 
+// 处理 tab 历史
+- (void)setCurrentTabVC:(UIViewController*) vc;
+- (void)addCurrentTab:(HistoryModel *) history_model;
+
 @end
 NS_ASSUME_NONNULL_END

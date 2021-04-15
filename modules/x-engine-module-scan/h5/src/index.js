@@ -14,7 +14,8 @@ function osCheck() {
     [
   {
     "name": "openScanView",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

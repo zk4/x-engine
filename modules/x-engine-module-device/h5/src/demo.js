@@ -2,6 +2,7 @@
 import device from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.getPhoneType = () => {
 
   window.getPhoneType = () => {
     device
@@ -14,6 +15,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getPhoneType").click()
+    window.getSystemVersion = () => {
 
   window.getSystemVersion = () => {
     device
@@ -26,6 +30,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getSystemVersion").click()
+    window.getUDID = () => {
 
   window.getUDID = () => {
     device
@@ -38,6 +45,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getUDID").click()
+    window.getBatteryLevel = () => {
 
   window.getBatteryLevel = () => {
     device
@@ -50,6 +60,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getBatteryLevel").click()
+    window.getPreferredLanguage = () => {
 
   window.getPreferredLanguage = () => {
     device
@@ -62,6 +75,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getPreferredLanguage").click()
+    window.getScreenWidth = () => {
 
   window.getScreenWidth = () => {
     device
@@ -74,6 +90,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getScreenWidth").click()
+    window.getScreenHeight = () => {
 
   window.getScreenHeight = () => {
     device
@@ -86,6 +105,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getScreenHeight").click()
+    window.getSafeAreaTop = () => {
 
   window.getSafeAreaTop = () => {
     device
@@ -98,6 +120,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getSafeAreaTop").click()
+    window.getSafeAreaBottom = () => {
 
   window.getSafeAreaBottom = () => {
     device
@@ -110,6 +135,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getSafeAreaBottom").click()
+    window.getSafeAreaLeft = () => {
 
   window.getSafeAreaLeft = () => {
     device
@@ -122,6 +150,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getSafeAreaLeft").click()
+    window.getSafeAreaRight = () => {
 
   window.getSafeAreaRight = () => {
     device
@@ -134,6 +165,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getSafeAreaRight").click()
+    window.getStatusHeight = () => {
 
   window.getStatusHeight = () => {
     device
@@ -146,6 +180,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getStatusHeight").click()
+    window.getNavigationHeight = () => {
 
   window.getNavigationHeight = () => {
     device
@@ -158,6 +195,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getNavigationHeight").click()
+    window.getTabBarHeight = () => {
 
   window.getTabBarHeight = () => {
     device
@@ -170,6 +210,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         document.getElementById("debug_text").innerText = res;
       });
   };
+}
+ document.getElementById("getTabBarHeight").click()
+    window.devicePhoneCall = () => {
 
   window.devicePhoneCall = (...args) => {
   device
@@ -178,6 +221,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
       document.getElementById("debug_text").innerText = "ret:"+res;
     });
 };
+}
+ document.getElementById("devicePhoneCall").click()
+    window.deviceSendMessage = () => {
 
   window.deviceSendMessage = () => {
     device
@@ -186,5 +232,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
         messageContent:"1111111111",
       });
   };
-
+}
+ document.getElementById("deviceSendMessage").click()
+    
     

@@ -1,6 +1,12 @@
 <template>
   <div class="testone-class">
     <div style="marginTop:50px">Home</div>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="handlerIntroduce"
+    >Module Introduce</van-button>
     <van-button type="primary" size="large" round @click="handlerPushRouter">router跳转</van-button>
     <van-button type="info" size="large" round @click="handlerSetNav">设置导航条</van-button>
     <van-button type="danger" size="large" color="#7232dd" round @click="handlerSkeleton">骨架屏</van-button>
@@ -19,6 +25,12 @@
       round
       @click="handlerNetwork"
     >网络请求</van-button>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="handlerVueX"
+    >VueX</van-button>
   </div>
 </template>
 
@@ -76,6 +88,16 @@ export default {
     handlerNetwork() {
       this.$router.push({
         path: "/network",
+      })
+    },
+    handlerVueX() {
+      this.$router.push({
+        path: "/testVueX",
+      })
+    },
+    handlerIntroduce() {
+      this.$router.push({
+        path: "/modulesIntroduce",
       })
     },
   },

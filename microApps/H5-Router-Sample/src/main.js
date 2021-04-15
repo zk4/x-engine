@@ -8,6 +8,7 @@ import { List } from 'vant';
 import { Cell, CellGroup } from 'vant';
 import { Loading } from 'vant';
 import { PullRefresh } from 'vant';
+import store from './store'
 
 Vue.use(PullRefresh);
 Vue.use(Loading);
@@ -18,7 +19,9 @@ Vue.use(Skeleton);
 Vue.use(Button);
 Vue.config.productionTip = false
 
+Vue.prototype.$store = store
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

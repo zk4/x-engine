@@ -375,7 +375,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                 ret=action(JavascriptInterfaceObject,sel,arg);
                 [result setValue:@0 forKey:@"code"];
                 if(ret!=nil){
-                    [result setValue:ret forKey:@"data"];
+                    [result setValue:[self convertDict:ret] forKey:@"data"];
                 }
                 break;
             }
@@ -567,6 +567,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
+}
+
+- (void)dealloc {
+    [self.indicatorView stopAnimating];
 }
 
 // 当内容开始返回时调用

@@ -20,13 +20,15 @@ function osCheck() {
       "cameraFlashMode": -1,
       "cameraDevice": "back",
       "photoCount": 1
-    }
+    },
+    "decorators": []
   },
   {
     "name": "saveImageToAlbum",
     "default_args": {
       "type": "url"
-    }
+    },
+    "decorators": []
   }
 ]
 )}}

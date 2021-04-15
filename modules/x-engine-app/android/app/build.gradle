@@ -57,6 +57,12 @@ dependencies {
     implementation project(':native-core')
     implementation project(':native-protocols')
     implementation project(':native-store')
+    implementation project(':native-camera')
+    implementation project(':native-ui')
+    implementation project(':native-broadcast')
+    implementation project(':native-device')
+
+
     implementation project(':native-direct')
     implementation project(':native-direct_http')
     implementation project(':native-direct_https')
@@ -65,4 +71,5 @@ dependencies {
     implementation project(':native-jsi')
     implementation project(':jsi-direct')
     implementation project(':jsi-store')
+    implementation project(':jsi-device')
 }

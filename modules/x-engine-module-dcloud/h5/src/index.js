@@ -14,21 +14,24 @@ function osCheck() {
     [
   {
     "name": "openUniMP",
-    "default_args": {}
+    "default_args": {},
+    "decorators": []
   },
   {
     "name": "preloadUniMP",
     "default_args": {
       "showAnimated": true,
       "hideAnimated": true
-    }
+    },
+    "decorators": []
   },
   {
     "name": "openUniMPWithArg",
     "default_args": {
       "showAnimated": true,
       "hideAnimated": true
-    }
+    },
+    "decorators": []
   }
 ]
 )}}

@@ -13,26 +13,74 @@ const conf = {
   },
 };
 
-interface NavTitleDTO {
-  //导航条的文字
+interface NamedDTO {
+  //文字
   title: string;
-  //16进制的颜色色值
-  titleColor: string;
-  //字体大小
+  //大小
   titleSize: int;
 }
 
-function setNavTitle(arg: NavTitleDTO = { titleSize: 16 }) {
-  xengine.api("com.zkty.jsi.xxxx", "setNavTitle", {
-    title: "title",
-    titleColor: "#000000",
+
+@sync
+@async
+function simpleMethod() {}
+
+@sync
+@async
+function nestedAnonymousObject(): { a: string; i: { n1: string } } {}
+
+@async
+@sync
+function namedObject(): NamedDTO {}
+
+
+// test function
+function test_同步无返回(){
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleMethod");
+  document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
+}
+
+function test_同步返回命名对象() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.title + "," + val.titleSize;
+}
+
+function test_同步返回匿名嵌套对象() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
+
+}
+
+function test_异步返回命名对象() {
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {}, (val) => {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
   });
 }
 
-function setNavTitleAsyc(arg: NavTitleDTO = { titleSize: 16 }) {
-  xengine.api("com.zkty.jsi.xxxx", "setNavTitleAsyc", {
-    title: "title",
-    titleColor: "#000000",
-  },(res)=>{});
+function test_异步返回命名对象() {
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
+  }
+  );
 }
 
+function test_异步返回匿名嵌套对象() {
+  xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
+  }
+  );
+}
+  
+  
+  
+  
+  
+  
+  
+  

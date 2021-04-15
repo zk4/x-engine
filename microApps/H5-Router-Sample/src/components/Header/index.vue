@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import device from "@zkty-team/x-engine-module-device"
+// import device from "@zkty-team/x-engine-module-device"
 import XEngine from "@zkty-team/x-engine-core"
 export default {
   data() {
@@ -54,20 +54,26 @@ export default {
   mounted() {
     if (XEngine.isHybrid()) {
       if (XEngine.platform.isPhone) {
-        device.getNavigationHeight({}).then((navRes) => {
-          this.lineheight = navRes.content
-          this.$refs.navWrapper.style.cssText = `height: ${navRes.content}px;`
-        })
+        let navheight = XEngine.api(
+          "com.zkty.jsi.device",
+          "getNavigationHeight"
+        )
+        this.lineheight = navheight
+        this.$refs.navWrapper.style.cssText = `height: ${navheight}px;`
       } else if (XEngine.platform.isAndroid) {
-        device.getStatusHeight({}).then((statusRes) => {
-          device.getNavigationHeight({}).then((navRes) => {
-            let height = Number(navRes.content) + Number(statusRes.content)
-            this.lineheight = height
-            this.$refs.navWrapper.style.cssText = `height: ${height}px;`
-          })
-        })
+        let statusBarHeight = XEngine.api(
+          "com.zkty.jsi.device",
+          "getStatusBarHeight"
+        )
+        let navheight = XEngine.api(
+          "com.zkty.jsi.device",
+          "getNavigationHeight"
+        )
+        let height = Number(statusBarHeight) + Number(navheight)
+        this.lineheight = height
+        this.$refs.navWrapper.style.cssText = `height: ${height}px;`
       }
-    } else if (XEngine.platform.isPc){
+    } else if (XEngine.platform.isPc) {
       const height = 64
       this.lineheight = height
       this.$refs.navWrapper.style.cssText = `height: ${height}px;`

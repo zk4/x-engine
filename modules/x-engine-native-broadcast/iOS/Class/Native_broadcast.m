@@ -8,9 +8,8 @@
 
 #import "Native_broadcast.h"
 #import "NativeContext.h"
-#import "GlobalState.h"
 #import "WebViewFactory.h"
-#import "NativeContext.h"
+
 @interface Native_broadcast()
 { }
 @end
@@ -27,7 +26,7 @@ NATIVE_MODULE(Native_broadcast)
 }
 
 - (void)afterAllNativeModuleInited{
-}
+} 
 
 - (void)broadcast:(NSString*) payload{
     for (XEngineWebView* wv in [WebViewFactory sharedInstance].webviews){

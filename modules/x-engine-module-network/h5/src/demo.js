@@ -2,6 +2,7 @@
 import network from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.getRequest = () => {
 
     window.getRequest = () => {
         network.getRequest({
@@ -11,6 +12,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
+}
+ document.getElementById("getRequest").click()
+    window.postRequest = () => {
 
     window.postRequest = () => {
         network.postRequest({
@@ -24,6 +28,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
+}
+ document.getElementById("postRequest").click()
+    window.deleteRequest = () => {
 
     window.deleteRequest = () => {
         network.deleteRequest({
@@ -33,6 +40,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
+}
+ document.getElementById("deleteRequest").click()
+    window.headRequest = () => {
 
     window.headRequest = () => {
         network.headRequest({
@@ -42,6 +52,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
+}
+ document.getElementById("headRequest").click()
+    window.putRequest = () => {
 
     window.putRequest = () => {
         network.putRequest({
@@ -51,6 +64,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
+}
+ document.getElementById("putRequest").click()
+    window.patchRequest = () => {
 
     window.patchRequest = () => {
         network.patchRequest({
@@ -60,6 +76,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
+}
+ document.getElementById("patchRequest").click()
+    window.downloadRequest = () => {
 
     window.downloadRequest = () => {
         network.downloadRequest({
@@ -83,6 +102,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
             });
         });
     };
+}
+ document.getElementById("downloadRequest").click()
+    window.uploadRequest = () => {
 
     window.uploadRequest = () => {
         network.uploadRequest({
@@ -94,5 +116,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
             document.getElementById("debug_text").innerText = JSON.stringify(res);
         });
     };
-
+}
+ document.getElementById("uploadRequest").click()
+    
     

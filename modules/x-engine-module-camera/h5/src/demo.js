@@ -2,6 +2,7 @@
 import camera from './index.js'
 import xengine from "@zkty-team/x-engine-module-engine";
 
+window.openImagePicker = () => {
 
   window.openImagePicker = () => {
     camera
@@ -30,6 +31,9 @@ import xengine from "@zkty-team/x-engine-module-engine";
         }
       })
   };
+}
+ document.getElementById("openImagePicker").click()
+    window.saveImageToAlbum = () => {
 
   window.saveImageToAlbum = () => {
     camera
@@ -37,5 +41,7 @@ import xengine from "@zkty-team/x-engine-module-engine";
         imageData:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034'
       });
   };
-
+}
+ document.getElementById("saveImageToAlbum").click()
+    
     

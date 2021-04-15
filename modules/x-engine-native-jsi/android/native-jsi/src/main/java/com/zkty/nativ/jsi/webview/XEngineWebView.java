@@ -12,8 +12,6 @@ import android.widget.LinearLayout;
 
 import com.anthonynsimon.url.URL;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
-import com.tencent.smtt.sdk.JsContext;
-import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -24,16 +22,9 @@ import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.DWebView;
-import com.zkty.nativ.jsi.exception.NoModuleIdException;
-import com.zkty.nativ.jsi.exception.XEngineException;
-import com.zkty.nativ.jsi.utils.ImageUtils;
-import com.zkty.nativ.jsi.utils.UrlUtils;
+import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.jsi.view.PermissionDto;
-import com.zkty.nativ.jsi.view.XEngineWebActivity;
-import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -289,7 +280,7 @@ public class XEngineWebView extends DWebView {
             historyModels.remove(historyModels.size() - 1);
         } else {
             historyModels.clear();
-            XOneWebViewPool.sharedInstance().removeWebView(this);
+            XWebViewPool.sharedInstance().removeWebView(this);
         }
     }
 

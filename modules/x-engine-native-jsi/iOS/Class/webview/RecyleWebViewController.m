@@ -24,6 +24,7 @@
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
 @property (nonatomic, assign) Boolean newWebview;
+@property (nonatomic, assign) Boolean isOnTab;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
@@ -69,6 +70,7 @@
         self.isHiddenNavbar = isHidden;
         self.newWebview = newWebView;
         self.loadUrl = fileUrl;
+        self.isOnTab   = isOnTab;
         
         if(newWebView){
             self.webview = [[WebViewFactory sharedInstance] createWebView];
@@ -97,15 +99,20 @@
 //            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
 //        }
 //
-
+        // 如果是在 tab 上,则不受 history 管理.
+        // 不然会出现这种情况,如果4 个 tab 上全是微应用.
+        // 则会有 4 个永远不会消失的 history.
         HistoryModel* hm = [HistoryModel new];
         hm.vc            = self;
         hm.fragment      = fragment;
         hm.webview       = self.webview;
         hm.host          = host;
         hm.onTab         = isOnTab;
-
-        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+        if(!isOnTab){
+            [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+        }else{
+            [[GlobalState sharedInstance] addCurrentTab:hm];
+        }
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -206,10 +213,13 @@
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    if(self.isOnTab){
+        [[GlobalState sharedInstance] setCurrentTabVC:self];
+    }
+
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    /// FIXED: 侧滑时，如果并没有滑走，不应该在 viewWillAppear 里 loadFileUrl
-    //    [self loadFileUrl];
-    if(self.screenView){
+     if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.screenView removeFromSuperview];

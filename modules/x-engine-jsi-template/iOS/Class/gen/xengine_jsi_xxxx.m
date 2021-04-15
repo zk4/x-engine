@@ -6,17 +6,22 @@
 #import "xengine_jsi_xxxx.h"
 
 
-@implementation NavTitleDTO
+@implementation NamedDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
    	return NO;
     }
 @end
     
   
-@implementation NavHiddenBarDTO
+@implementation _0_com_zkty_jsi_xxxx_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
+    }
+@end
+    
+  
+@implementation _1_com_zkty_jsi_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
     
@@ -35,22 +40,32 @@
         return @"com.zkty.jsi.xxxx";
     }
     
-    - (void) setNavTitle:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{  \"titleSize\": 16}"];
-    
-          NavTitleDTO* dto = [self convert:dict clazz:NavTitleDTO.class];
-          [self _setNavTitle:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          [self _simpleMethod:^(BOOL complete) {
+                 completionHandler(nil,complete); 
           }];
       }
-    - (void) setNavBarHidden:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+  - (id) simpleMethod:(NSDictionary*) dict {
+   [self _simpleMethod];
+              return nil;
+    }
+    - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          dict=[self mergeDefault:dict defaultString:@"{}"];
-    
-          NavHiddenBarDTO* dto = [self convert:dict clazz:NavHiddenBarDTO.class];
-          [self _setNavBarHidden:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          [self _nestedAnonymousObject:^(_0_com_zkty_jsi_xxxx_DTO* result, BOOL complete) {
+            completionHandler(result ,complete);
           }];
       }
+  - (_0_com_zkty_jsi_xxxx_DTO*) nestedAnonymousObject:(NSDictionary*) dict {
+  return [self _nestedAnonymousObject];
+    }
+    - (void) namedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _namedObject:^(NamedDTO* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+      }
+  - (NamedDTO*) namedObject:(NSDictionary*) dict {
+  return [self _namedObject];
+    }
   @end

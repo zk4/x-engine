@@ -1,6 +1,9 @@
 
 import secrect from './index.js'
- {
+import xengine from "@zkty-team/x-engine-module-engine";
+
+window.get = () => {
+
   window.get = () => {
     secrect
       .get({
@@ -11,4 +14,6 @@ import secrect from './index.js'
       });
   };
 }
+ document.getElementById("get").click()
+    
     

@@ -35,7 +35,8 @@
 
 @protocol iCamera <NSObject>
 @required
-- (void)openImagePicker:(CameraParamsDTO*) dto success:(void (^)(CameraResultDTO* result))success;
+//- (void)openImagePicker:(CameraParamsDTO*) dto success:(void (^)(CameraResultDTO* result))success;
+- (void)openImagePicker:(CameraParamsDTO*) dto success:(void (^)(NSString* result))success;
 
 - (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto;
 @end

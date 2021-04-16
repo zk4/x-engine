@@ -14,16 +14,19 @@ window.test_openImagePicker = () => {
       cameraDevice: "back",
       photoCount: 5,
       args: { bytes: "100" },
-      isbase64: true,
-      __event__: (ret) => {},
+      isbase64: true
     },
-    (val) => {
-      let retImage = val.retImage;
-      let contentType = val.contentType;
-      const image = document.createElement("img");
-      image.src = "data:" + contentType + ";base64,  " + retImage;
-      image.style.cssText = "width:100%";
-      document.body.appendChild(image);
+    (res) => {
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        const image = document.createElement("img");
+        if (!photo.width || !photo.height) {
+          alert("要返回width,与height", photo);
+        }
+        image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        image.style.cssText = "width:100%";
+        document.body.appendChild(image);
+      }
     }
   );
 }

@@ -16,6 +16,11 @@ function osCheck() {
     "name": "test_openImagePicker",
     "default_args": {},
     "decorators": []
+  },
+  {
+    "name": "test_saveImageToPhotoAlbum",
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

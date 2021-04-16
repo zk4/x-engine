@@ -14,13 +14,12 @@
 #import "GCDWebServerDataResponse.h"
 #import "GCDWebServerURLEncodedFormRequest.h"
 
-typedef void (^PhotoCallBack)(CameraResultDTO*);
+typedef void (^PhotoCallBack)(NSString *);
 @interface Native_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
 @property(nonatomic,strong) GCDWebServer *webServer;
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
 @property(nonatomic,strong) UIImage * photoImage;
-//@property(nonatomic,copy)   NSString * event;
 @property(nonatomic,assign) BOOL isbase64;
 @property(nonatomic,strong) CameraParamsDTO * cameraDto;
 @property(nonatomic,copy) PhotoCallBack callback;
@@ -29,7 +28,7 @@ typedef void (^PhotoCallBack)(CameraResultDTO*);
 @implementation Native_camera
 NATIVE_MODULE(Native_camera)
 
- - (NSString*) moduleId{
+- (NSString*) moduleId{
     return @"com.zkty.native.camera";
 }
 
@@ -37,11 +36,10 @@ NATIVE_MODULE(Native_camera)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited{
-    
-}
+- (void)afterAllNativeModuleInited {}
 
-- (void)openImagePicker:(CameraParamsDTO *)dto success:(void (^)(CameraResultDTO *))success {
+// 打开提示框
+- (void)openImagePicker:(CameraParamsDTO *)dto success:(void (^)(NSString *))success {
     self.callback = success;
     self.cameraDto = dto;
     self.allowsEditing = dto.allowsEditing;
@@ -53,15 +51,15 @@ NATIVE_MODULE(Native_camera)
     UIAlertAction *pAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [AVCaptureDevice requestAccessForMediaType:
          AVMediaTypeVideo completionHandler:^(BOOL granted) {//相机权限
-         if (granted) {
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 [weakself chooseCamera:dto];
-             });
-         }
-         else{
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 [weakself showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许问你的相机"];
-             });
+            if (granted) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakself chooseCamera:dto];
+                });
+            }
+            else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakself showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许问你的相机"];
+                });
             }
         }];
     }];
@@ -69,15 +67,15 @@ NATIVE_MODULE(Native_camera)
     
     UIAlertAction *xAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusAuthorized){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself choosePhotos:dto];
-            });
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
-            });
-        }
+            if (status == PHAuthorizationStatusAuthorized){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakself choosePhotos:dto];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakself showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+                });
+            }
         }];
     }];
     
@@ -89,106 +87,6 @@ NATIVE_MODULE(Native_camera)
     [alert addAction:cancelAction];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
-
-
-#pragma UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    __weak typeof(self) weakself = self;
-    [picker dismissViewControllerAnimated:YES completion:^{
-        if(weakself.allowsEditing){
-            weakself.photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        }else{
-            weakself.photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-        }
-        if(weakself.savePhotosAlbum){
-            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                if (status == PHAuthorizationStatusAuthorized){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UIImageWriteToSavedPhotosAlbum(weakself.photoImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-                    });
-                }else{
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
-                    });
-                }
-            }];
-        }
-        NSMutableDictionary * ret = [NSMutableDictionary new];
-
-        if (!self.isbase64) {
-            if(self.webServer){
-                [self.webServer stop];
-            }
-            weakself.webServer = [[GCDWebServer alloc] init];
-            [self startServer];
-            
-            NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
-            NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
-            if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
-            }
-            NSDictionary * paramDic = @{
-                @"retImage":[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr],
-                @"contentType":@"image/png",
-                @"fileName":photoAppendStr
-            };
-            ret[@"data"]=@[paramDic];
-
-           [self sendParamtoWeb:ret];
-        }else{
-            NSDictionary * argsDic = self.cameraDto.args;
-            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-            
-            NSDictionary * paramDic = @{
-                @"retImage":[self UIImageToBase64Str:image],
-                @"contentType":@"image/png",
-                @"width": [NSNumber numberWithDouble:image.size.width],
-                @"height":[NSNumber numberWithDouble:image.size.height],
-                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
-            };
-            ret[@"data"]=@[paramDic];
-            [self sendParamtoWeb:ret];
-        }
-    }];
-}
-
-- (void)startServer {
-    __weak typeof(self) weakself = self;
-    [_webServer addHandlerForMethod:@"GET" pathRegex:@"^/.*" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
-//        NSDictionary * requestData = [[NSDictionary alloc]initWithDictionary:request.query];
-        
-        NSDictionary * argsDic = weakself.cameraDto.args;
-        UIImage *image = [weakself cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-        NSData *imageData = UIImagePNGRepresentation(image);
- 
-        GCDWebServerDataResponse *response;
-        //响应
-        response = [GCDWebServerDataResponse responseWithStatusCode:200];
-        //响应头设置，跨域请求需要设置，只允许设置的域名或者ip才能跨域访问本接口）
-        [response setValue:@"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
-        [response setValue:@"Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method" forAdditionalHeader:@"Access-Control-Allow-Headers"];
-        [response setValue:@"GET, POST, OPTIONS, PATCH, PUT, DELETE" forAdditionalHeader:@"Access-Control-Allow-Methods"];
-        [response setValue:@"GET, POST, PATCH, OPTIONS, PUT, DELETE" forAdditionalHeader:@"Allow"];
-
-        //设置options的实效性（我设置了12个小时=43200秒）
-        [response setValue:@"43200" forAdditionalHeader:@"Access-Control-max-age"];
-        response = [GCDWebServerDataResponse responseWithData:imageData contentType:@"image"];
-        return response;
-    }];
-   
-    [_webServer startWithPort:18129 bonjourName:@"GCD Web Server"];
-}
-
-
-- (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    if (error) {
-//        [MBProgressHUD showToastWithTitle:@"保存失败" image:nil time:1.0];
-        NSLog(@"保存成功");
-    } else {
-//        [MBProgressHUD showToastWithTitle:@"保存成功" image:nil time:1.0];
-        NSLog(@"保存失败");
-    }
-}
-
 
 #pragma 调起相机
 - (void)chooseCamera:(CameraParamsDTO *)dto {
@@ -212,7 +110,6 @@ NATIVE_MODULE(Native_camera)
 #pragma 调起相册
 - (void)choosePhotos:(CameraParamsDTO*)dto {
     __weak typeof(self) weakself = self;
-    
     ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
@@ -220,8 +117,8 @@ NATIVE_MODULE(Native_camera)
         NSMutableDictionary * ret = [NSMutableDictionary new];
         NSMutableArray * photoarrays=  [NSMutableArray new];
         NSDictionary* argsDic = dto.args;
-        for(int i =0; i< photos.count; i++){
-             UIImage* image=  [self parseImage:photos[i] Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+        for(int i = 0; i< photos.count; i++){
+            UIImage* image=  [self parseImage:photos[i] Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
             [photoarrays addObject: @{
                 @"retImage":[weakself UIImageToBase64Str:image],
                 @"contentType":@"image/png",
@@ -234,51 +131,153 @@ NATIVE_MODULE(Native_camera)
         [weakself sendParamtoWeb:ret];
     }];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:imagePickerVc animated:YES completion:nil];
+}
 
+#pragma UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    __weak typeof(self) weakself = self;
+    [picker dismissViewControllerAnimated:YES completion:^{
+        if(weakself.allowsEditing){
+            weakself.photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        }else{
+            weakself.photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        }
+        if(weakself.savePhotosAlbum){
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                if (status == PHAuthorizationStatusAuthorized){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIImageWriteToSavedPhotosAlbum(weakself.photoImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+                    });
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+                    });
+                }
+            }];
+        }
+        NSMutableDictionary *ret = [NSMutableDictionary new];
+        if (!self.isbase64) {
+            if(self.webServer){
+                [self.webServer stop];
+            }
+            weakself.webServer = [[GCDWebServer alloc] init];
+            [self startServer];
+            
+            NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
+            NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
+            if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
+            }
+            NSDictionary * paramDic = @{
+                @"retImage":[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr],
+                @"contentType":@"image/png",
+                @"fileName":photoAppendStr
+            };
+            ret[@"data"] = @[paramDic];
+            [self sendParamtoWeb:ret];
+        } else {
+            NSDictionary * argsDic = self.cameraDto.args;
+            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            NSDictionary * paramDic = @{
+                @"retImage":[self UIImageToBase64Str:image],
+                @"contentType":@"image/png",
+                @"width": [NSNumber numberWithDouble:image.size.width],
+                @"height":[NSNumber numberWithDouble:image.size.height],
+                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
+            };
+            ret[@"data"] = @[paramDic];
+            [self sendParamtoWeb:ret];
+        }
+    }];
+}
+
+- (void)sendParamtoWeb:(id)params {
+    NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingFragmentsAllowed error:nil];
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    self.callback(dataString);
+}
+
+#pragma 保存图片
+- (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto {
+    UIImage * image = [UIImage new];
+    if ([dto.type isEqualToString:@"url"]) {
+        image = [UIImage imageWithData:[NSData
+                                        dataWithContentsOfURL:[NSURL URLWithString:dto.imageData]]];
+    }else if([dto.type isEqualToString:@"base64"]){
+        if  ([dto.imageData rangeOfString:@"base64,"].location !=NSNotFound) {
+            NSRange range = [dto.imageData rangeOfString:@"base64, "];
+            dto.imageData = [dto.imageData substringFromIndex:range.location+range.length];
+        }
+        NSData * imageData =[[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        image = [UIImage imageWithData:imageData ];
+    }
+    
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusAuthorized){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+            });
+        }
+    }];
+}
+
+- (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存失败" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+        [alert addAction:enter];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功,请前往相册查看" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+        [alert addAction:enter];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+#pragma utils
+- (void)startServer {
+    __weak typeof(self) weakself = self;
+    [_webServer addHandlerForMethod:@"GET" pathRegex:@"^/.*" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
+        //        NSDictionary * requestData = [[NSDictionary alloc]initWithDictionary:request.query];
+        
+        NSDictionary * argsDic = weakself.cameraDto.args;
+        UIImage *image = [weakself cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+        NSData *imageData = UIImagePNGRepresentation(image);
+        
+        GCDWebServerDataResponse *response;
+        //响应
+        response = [GCDWebServerDataResponse responseWithStatusCode:200];
+        //响应头设置，跨域请求需要设置，只允许设置的域名或者ip才能跨域访问本接口）
+        [response setValue:@"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+        [response setValue:@"Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method" forAdditionalHeader:@"Access-Control-Allow-Headers"];
+        [response setValue:@"GET, POST, OPTIONS, PATCH, PUT, DELETE" forAdditionalHeader:@"Access-Control-Allow-Methods"];
+        [response setValue:@"GET, POST, PATCH, OPTIONS, PUT, DELETE" forAdditionalHeader:@"Allow"];
+        
+        //设置options的实效性（我设置了12个小时=43200秒）
+        [response setValue:@"43200" forAdditionalHeader:@"Access-Control-max-age"];
+        response = [GCDWebServerDataResponse responseWithData:imageData contentType:@"image"];
+        return response;
+    }];
+    
+    [_webServer startWithPort:18129 bonjourName:@"GCD Web Server"];
 }
 
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&err];
-    if(err)
-    {
+                                                               options:NSJSONReadingMutableContainers
+                                                                 error:&err];
+    if(err) {
         NSLog(@"%@",err);
         return nil;
     }
     return dic;
-}
-
-
-- (void)sendParamtoWeb:(id)params {
-    NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingFragmentsAllowed error:nil];
-    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *dict =  [self convert2DictionaryWithJSONString:dataString];
-    CameraResultDTO *model = [CameraResultDTO new];
-    model.retImage = dict[@"data"][0][@"retImage"];
-    model.fileName = dict[@"data"][0][@"fileName"];
-    model.contentType = dict[@"data"][0][@"contentType"];
-    model.height = dict[@"data"][0][@"height"];
-    model.width = dict[@"data"][0][@"width"];
-    self.callback(model);
-    
-//    UIViewController *topVC = [Unity sharedInstance].getCurrentVC;
-//    if ([topVC isKindOfClass:RecyleWebViewController.class]) {
-//        RecyleWebViewController *webVC = (RecyleWebViewController *)topVC;
-//
-//        NSData *data = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingFragmentsAllowed error:nil];
-//        [webVC.webview callHandler:self.event
-//                         arguments:@[[[NSString alloc] initWithData:data encoding:4]]
-//                 completionHandler:^(id  _Nullable value) {}];
-//    }else if([Unity sharedInstance].XXXWeb && [[Unity sharedInstance].XXXWeb isKindOfClass:[XEngineWebView class] ]){
-//        XEngineWebView *web = (XEngineWebView *)[Unity sharedInstance].XXXWeb;
-//        NSData *data = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingFragmentsAllowed error:nil];
-//        [web callHandler:self.event
-//               arguments:@[[[NSString alloc] initWithData:data encoding:4]]
-//       completionHandler:^(id  _Nullable value) {}];
-//    }
 }
 
 - (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
@@ -293,7 +292,7 @@ NATIVE_MODULE(Native_camera)
     if (![self getNoEmptyString:w]) width = height*width_height_per;
     if (![self getNoEmptyString:h]) height = width/width_height_per;
     image= [self imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
-
+    
     NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
     NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
     imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
@@ -404,7 +403,7 @@ NATIVE_MODULE(Native_camera)
         // 视图是被presented出来的
         rootVC = [rootVC presentedViewController];
     }
-
+    
     if ([rootVC isKindOfClass:[UITabBarController class]]) {
         // 根视图为UITabBarController
         currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
@@ -412,12 +411,11 @@ NATIVE_MODULE(Native_camera)
         // 根视图为UINavigationController
         UINavigationController *nav = (UINavigationController *)rootVC;
         currentVC = [self getCurrentVCFrom:[nav topViewController]];
-//        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
+        //        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
     } else {
         // 根视图为非导航类
         currentVC = rootVC;
     }
-    
     return currentVC;
 }
 

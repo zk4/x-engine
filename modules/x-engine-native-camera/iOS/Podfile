@@ -7,7 +7,7 @@ abstract_target 'abstract' do
   pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
   pod 'JSONModel'
-  pod "GCDWebServer", "~> 3.0"
+  pod "GCDWebServer", "~> 3.0"	
   target 'camera' do
     #use_frameworks!
     #module_pods

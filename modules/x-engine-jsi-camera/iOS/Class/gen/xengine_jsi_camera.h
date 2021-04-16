@@ -8,23 +8,10 @@
 
 @protocol _0_com_zkty_jsi_camera_DTO;
 @protocol _1_com_zkty_jsi_camera_DTO;
-@protocol _2_com_zkty_jsi_camera_DTO;
-@protocol _3_com_zkty_jsi_camera_DTO;
 @class _0_com_zkty_jsi_camera_DTO;
 @class _1_com_zkty_jsi_camera_DTO;
-@class _2_com_zkty_jsi_camera_DTO;
-@class _3_com_zkty_jsi_camera_DTO;
 
 @interface _0_com_zkty_jsi_camera_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* retImage;
-   	@property(nonatomic,copy) NSString* fileName;
-   	@property(nonatomic,copy) NSString* contentType;
-   	@property(nonatomic,copy) NSString* width;
-   	@property(nonatomic,copy) NSString* height;
-@end
-    
-
-@interface _1_com_zkty_jsi_camera_DTO: JSONModel
   	@property(nonatomic,assign) BOOL allowsEditing;
    	@property(nonatomic,assign) BOOL savePhotosAlbum;
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
@@ -32,20 +19,10 @@
    	@property(nonatomic,assign) BOOL isbase64;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
    	@property(nonatomic,assign) NSInteger photoCount;
-   	@property(nonatomic,strong) NSString* __event__;
 @end
     
 
-@interface _2_com_zkty_jsi_camera_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* retImage;
-   	@property(nonatomic,copy) NSString* fileName;
-   	@property(nonatomic,copy) NSString* contentType;
-   	@property(nonatomic,copy) NSString* width;
-   	@property(nonatomic,copy) NSString* height;
-@end
-    
-
-@interface _3_com_zkty_jsi_camera_DTO: JSONModel
+@interface _1_com_zkty_jsi_camera_DTO: JSONModel
   	@property(nonatomic,copy) NSString* type;
    	@property(nonatomic,copy) NSString* imageData;
 @end
@@ -54,11 +31,11 @@
 
 @protocol xengine_jsi_camera_protocol
        @required 
-        - (void) _openImagePicker:(_1_com_zkty_jsi_camera_DTO*) dto complete:(void (^)(_0_com_zkty_jsi_camera_DTO* result,BOOL complete)) completionHandler;
+        - (void) _openImagePicker:(_0_com_zkty_jsi_camera_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _saveImageToPhotoAlbum:(_3_com_zkty_jsi_camera_DTO*) dto complete:(void (^)(_2_com_zkty_jsi_camera_DTO* result,BOOL complete)) completionHandler;
-
+       - (void) _saveImageToPhotoAlbum:(_1_com_zkty_jsi_camera_DTO*)dto;
+    
 @end
   
 

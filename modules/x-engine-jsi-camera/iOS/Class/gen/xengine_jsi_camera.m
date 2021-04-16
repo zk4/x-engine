@@ -7,39 +7,18 @@
 
 
 @implementation _0_com_zkty_jsi_camera_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
-   
-   
-   	return NO;
-    }
-@end
-    
-  
-@implementation _1_com_zkty_jsi_camera_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"allowsEditing"]) { return YES; }
    	if ([propertyName isEqualToString:@"savePhotosAlbum"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraFlashMode"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraDevice"]) { return YES; }
    
    
-   	if ([propertyName isEqualToString:@"photoCount"]) { return YES; }
-   	return NO;
+   	if ([propertyName isEqualToString:@"photoCount"]) { return YES; }	return NO;
     }
 @end
     
   
-@implementation _2_com_zkty_jsi_camera_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
-   
-   
-   	return NO;
-    }
-@end
-    
-  
-@implementation _3_com_zkty_jsi_camera_DTO
+@implementation _1_com_zkty_jsi_camera_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
@@ -62,18 +41,15 @@
     
     - (void) openImagePicker:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _1_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_1_com_zkty_jsi_camera_DTO.class];
-          [self _openImagePicker:dto complete:^(_0_com_zkty_jsi_camera_DTO* result,  BOOL complete) {
+          _0_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_camera_DTO.class];
+          [self _openImagePicker:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
-    - (void) saveImageToPhotoAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          _3_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_camera_DTO.class];
-          [self _saveImageToPhotoAlbum:dto complete:^(_2_com_zkty_jsi_camera_DTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
+  
+  - (void) saveImageToPhotoAlbum:(NSDictionary*) dict {
+      _1_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_1_com_zkty_jsi_camera_DTO.class];
+      return [self _saveImageToPhotoAlbum:dto];
+        }
   @end

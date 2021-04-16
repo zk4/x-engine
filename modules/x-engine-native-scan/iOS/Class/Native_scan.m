@@ -28,35 +28,13 @@ NATIVE_MODULE(Native_scan)
 - (void)afterAllNativeModuleInited{}
 
 
-- (void)openScanView:(void (^)(NSString *))completionHandler {
-//    ScanViewController *scanVC = [[ScanViewController alloc] init];
-//    [[self getCurrentVC].navigationController pushViewController:scanVC animated:YES];
-//    scanVC.callBack = ^NSString *(NSString * _Nullable result) {
-//        completionHandler(result);
-//    };
+- (void)openScanView:(void (^)(NSString * res))completionHandler {
+    ScanViewController *scanVC = [[ScanViewController alloc] init];
+    [[self getCurrentVC].navigationController pushViewController:scanVC animated:YES];
+    scanVC.callBack = ^(NSString * _Nullable result) {
+        completionHandler(result);
+    };
 }
-
-//- (void)openScanView {
-//    ScanViewController *scanVC = [[ScanViewController alloc] init];
-//    [[self getCurrentVC].navigationController pushViewController:scanVC animated:YES];
-//
-//    scanVC.callBack = ^NSString *(NSString * _Nullable result) {
-//        NSLog(@"%@", result);
-//        return result;
-//    };
-//    return str;
-//}
-
-//- (NSString *)openScanView {
-//    ScanViewController *scanVC = [[ScanViewController alloc] init];
-//    [[self getCurrentVC].navigationController pushViewController:scanVC animated:YES];
-//
-//    scanVC.callBack = ^NSString *(NSString * _Nullable result) {
-//        NSLog(@"%@", result);
-//        return result;
-//    };
-//    return str;
-//}
 
 //获取当前屏幕显示的viewcontroller
 - (UIViewController *)getCurrentVC {

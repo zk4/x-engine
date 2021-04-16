@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-typedef NSString *(^ScanCallback)(NSString* _Nullable result);
+typedef void(^ScanCallback)(NSString* _Nullable result);
 
 @interface ScanViewController : UIViewController
 @property (nonatomic, copy) ScanCallback callBack;

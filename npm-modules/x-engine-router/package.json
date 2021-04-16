@@ -1,0 +1,17 @@
+{
+  "name": "@zkty-team/x-engine-router",
+  "version": "1.0.0",
+  "description": "重写vue-router的push和go方法, 以拦截路由跳转",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "x-engine-router"
+  ],
+  "author": "Cwz.",
+  "license": "ISC",
+  "dependencies": {
+    "@zkty-team/x-engine-core": "^1.0.0"
+  }
+}

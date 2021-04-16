@@ -9,8 +9,6 @@
 #ifndef iScan_h
 #define iScan_h
 @protocol iScan <NSObject>
-- (void)openScanView:(void (^)(NSString *, BOOL))completionHandler;
-
-- (void)textValueFunction:(void(^)(NSString * infor))inforBlock;
+- (void)openScanView:(void (^)(NSString * res))completionHandler;
 @end
 #endif /* iScan_h */

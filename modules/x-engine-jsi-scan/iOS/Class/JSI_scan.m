@@ -22,16 +22,9 @@ JSI_MODULE(JSI_scan)
     self.scan = XENP(iScan);
 }
 
-- (void)textValueFunction:(void(^)(NSString * infor))inforBlock{
-    if (inforBlock) {
-        inforBlock(@"无返回值的block");
-    }
-}
-
-
 - (void)_openScanView:(void (^)(NSString *, BOOL))completionHandler {
-//    [self.scan openScanView:^(NSString * resString) {
-//        completionHandler(resString, TRUE);
-//    }];
+    [self.scan openScanView:^(NSString * res) {
+        completionHandler(res, true);
+    }];
 }
 @end

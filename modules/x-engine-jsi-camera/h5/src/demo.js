@@ -18,14 +18,27 @@ window.test_openImagePicker = () => {
       __event__: (ret) => {},
     },
     (val) => {
-        const image         = document.createElement('img')
-        image.src           = "data:image/png;base64,  " + val.retImage;
-        image.style.cssText = 'width:100%';
-        document.body.appendChild(image);
-
+      let retImage = val.retImage;
+      let contentType = val.contentType;
+      const image = document.createElement("img");
+      image.src = "data:" + contentType + ";base64,  " + retImage;
+      image.style.cssText = "width:100%";
+      document.body.appendChild(image);
     }
   );
 }
  document.getElementById("test_openImagePicker").click()
+      window.test_saveImageToPhotoAlbum = () => {
+
+  xengine.api(
+    "com.zkty.jsi.camera",
+    "saveImageToPhotoAlbum",
+    {
+      type: "url",
+      imageData:
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
+    });
+}
+ document.getElementById("test_saveImageToPhotoAlbum").click()
       
     

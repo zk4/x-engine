@@ -178,18 +178,6 @@ NATIVE_MODULE(Native_camera)
     [_webServer startWithPort:18129 bonjourName:@"GCD Web Server"];
 }
 
-
-- (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    if (error) {
-//        [MBProgressHUD showToastWithTitle:@"保存失败" image:nil time:1.0];
-        NSLog(@"保存成功");
-    } else {
-//        [MBProgressHUD showToastWithTitle:@"保存成功" image:nil time:1.0];
-        NSLog(@"保存失败");
-    }
-}
-
-
 #pragma 调起相机
 - (void)chooseCamera:(CameraParamsDTO *)dto {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -234,7 +222,49 @@ NATIVE_MODULE(Native_camera)
         [weakself sendParamtoWeb:ret];
     }];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:imagePickerVc animated:YES completion:nil];
+}
 
+#pragma 保存图片
+- (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto {
+    UIImage * image = [UIImage new];
+    if ([dto.type isEqualToString:@"url"]) {
+        image = [UIImage imageWithData:[NSData
+        dataWithContentsOfURL:[NSURL URLWithString:dto.imageData]]];
+    }else if([dto.type isEqualToString:@"base64"]){
+        if  ([dto.imageData rangeOfString:@"base64,"].location !=NSNotFound) {
+            NSRange range = [dto.imageData rangeOfString:@"base64, "];
+            dto.imageData = [dto.imageData substringFromIndex:range.location+range.length];
+        }
+        NSData * imageData =[[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        image = [UIImage imageWithData:imageData ];
+    }
+    
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusAuthorized){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+            });
+        }
+    }];
+}
+
+- (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存失败" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+               [alert addAction:enter];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功,请前往相册查看" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+               [alert addAction:enter];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{

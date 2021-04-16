@@ -38,7 +38,7 @@ version: 0.1.13
 
 
 ## saveImageToPhotoAlbum
-`async`
+`sync`
 > 保存到相册
 
 **参数说明**
@@ -49,15 +49,7 @@ version: 0.1.13
 | imageData | string | 必填 |  |  |
 **返回值**
 ``` js
-   {
-
-  retImage: string;
-  fileName: string;
-  contentType: string;
-  width: string;
-  height: string;
-
-}
+void
 ``` 
 
 

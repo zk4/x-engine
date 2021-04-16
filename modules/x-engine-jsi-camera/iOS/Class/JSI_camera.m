@@ -23,6 +23,7 @@ JSI_MODULE(JSI_camera)
 }
 
 - (void)_openImagePicker:(_1_com_zkty_jsi_camera_DTO *)dto complete:(void (^)(_0_com_zkty_jsi_camera_DTO *, BOOL))completionHandler {
+    
     CameraParamsDTO *model = [CameraParamsDTO new];
     model.allowsEditing = dto.allowsEditing;
     model.savePhotosAlbum = dto.savePhotosAlbum;
@@ -39,12 +40,14 @@ JSI_MODULE(JSI_camera)
         model.contentType = result.contentType;
         model.width = result.width;
         model.height = result.height;
-        NSLog(@"%@", model);
         completionHandler(model, TRUE);
     }];
 }
 
-- (void)_saveImageToPhotoAlbum:(_2_com_zkty_jsi_camera_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
- 
+- (void)_saveImageToPhotoAlbum:(_2_com_zkty_jsi_camera_DTO *)dto {
+    SaveImageDTO *model = [SaveImageDTO new];
+    model.type = dto.type;
+    model.imageData = dto.imageData;    
+    [self.camera saveImageToPhotoAlbum:model];
 }
 @end

@@ -51,18 +51,6 @@
   }
   
   class _2_com_zkty_jsi_camera_DTO {
-    public String retImage;
-
-    public String fileName;
-
-    public String contentType;
-
-    public String width;
-
-    public String height;
-  }
-  
-  class _3_com_zkty_jsi_camera_DTO {
     public String type;
 
     public String imageData;
@@ -70,7 +58,7 @@
   
   interface xengine_jsi_camera_protocol {
     public void _openImagePicker(_1_com_zkty_jsi_camera_DTO dto, final CompletionHandler<_0_com_zkty_jsi_camera_DTO> handler);
-public void _saveImageToPhotoAlbum(_3_com_zkty_jsi_camera_DTO dto, final CompletionHandler<_2_com_zkty_jsi_camera_DTO> handler);
+    void _saveImageToPhotoAlbum(_2_com_zkty_jsi_camera_DTO dto);
   }
   
   
@@ -94,19 +82,13 @@ public void _saveImageToPhotoAlbum(_3_com_zkty_jsi_camera_DTO dto, final Complet
 
     }
 
-    @JavascriptInterface
-    final public void saveImageToPhotoAlbum(JSONObject obj, final CompletionHandler<Object> handler) {
-      _3_com_zkty_jsi_camera_DTO data= convert(obj,_3_com_zkty_jsi_camera_DTO.class);
-      _saveImageToPhotoAlbum(data, new CompletionHandler<_2_com_zkty_jsi_camera_DTO>() {
-        @Override
-        public void complete(_2_com_zkty_jsi_camera_DTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(_2_com_zkty_jsi_camera_DTO value) { handler.setProgressData(value); }
-      });
-
-    }
+        @JavascriptInterface
+        public Object saveImageToPhotoAlbum(JSONObject jsonobj) {
+          _2_com_zkty_jsi_camera_DTO data= convert(obj,_2_com_zkty_jsi_camera_DTO.class);
+          _saveImageToPhotoAlbum(dto);
+          return null;
+        }
+        
   }
   
 

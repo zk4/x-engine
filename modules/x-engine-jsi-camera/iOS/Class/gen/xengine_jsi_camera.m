@@ -31,16 +31,6 @@
   
 @implementation _2_com_zkty_jsi_camera_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   
-   
-   
-   	return NO;
-    }
-@end
-    
-  
-@implementation _3_com_zkty_jsi_camera_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
 @end
@@ -68,12 +58,9 @@
           }];
         
       }
-    - (void) saveImageToPhotoAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          _3_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_camera_DTO.class];
-          [self _saveImageToPhotoAlbum:dto complete:^(_2_com_zkty_jsi_camera_DTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
+  
+  - (void) saveImageToPhotoAlbum:(NSDictionary*) dict {
+      _2_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_2_com_zkty_jsi_camera_DTO.class];
+      return [self _saveImageToPhotoAlbum:dto];
+        }
   @end

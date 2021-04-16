@@ -13,9 +13,5 @@
   "license": "ISC",
   "dependencies": {
     "@zkty-team/x-engine-core": "^1.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^7.24.0",
-    "eslint-plugin-vue": "^7.9.0"
   }
 }

@@ -5,6 +5,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void camera(View view) {
-//        XEngineWebActivityManager.sharedInstance().startH5EngineActivity(this, "http://www.baidu.com");
+
+        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "omp","10.2.128.89:9111","","/",true);
     }
 }

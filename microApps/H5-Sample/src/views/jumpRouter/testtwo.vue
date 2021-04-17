@@ -22,6 +22,11 @@ export default {
     return {
     }
   },
+  mounted() {
+    alert(JSON.stringify(window.location))
+    alert(JSON.stringify(window.location.href))
+    alert(JSON.stringify(this.$route.query))
+  },
   methods: {
     handlerPush() {
       this.$router.push({

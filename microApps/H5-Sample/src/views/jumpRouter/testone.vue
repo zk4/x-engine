@@ -28,6 +28,7 @@ export default {
         query: {
           id: 1,
           age: 18,
+          name:'中文'
         },
       })
     },

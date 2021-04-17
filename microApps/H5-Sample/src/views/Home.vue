@@ -45,19 +45,11 @@ export default {
     handlerPushRouter() {
       this.$router.push({
         path: "/testone",
-        query: {
-          id: 1,
-          age: 18,
-        },
       })
     },
     handlerSetNav() {
       this.$router.push({
         path: "/navigation",
-        query: {
-          id: 1,
-          age: 18,
-        },
       })
     },
     handlerSkeleton() {

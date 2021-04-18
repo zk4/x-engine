@@ -5,7 +5,7 @@ import XEngineRouter from "@zkty-team/x-engine-router"
 Vue.use(VueRouter);
 
 if (process.env.NODE_ENV == 'development') {
-    XEngineRouter(VueRouter, 'omp');    
+    XEngineRouter(VueRouter, 'omp');
 } else {
     XEngineRouter(VueRouter, 'microapp');
 }
@@ -20,7 +20,7 @@ const routes = [{
         name: 'testone',
         component: () => import('../views/jumpRouter/testone.vue')
     },
-    
+
     {
         path: '/testtwo',
         name: 'testtwo',
@@ -85,6 +85,16 @@ const routes = [{
         path: '/testVueX',
         name: 'testVueX',
         component: () => import('../views/testVueX.vue')
+    },
+    {
+        path: '/photo',
+        name: 'photo',
+        component: () => import('../views/photo.vue')
+    },
+    {
+        path: '/scan',
+        name: 'scan',
+        component: () => import('../views/scan.vue')
     }
 ];
 

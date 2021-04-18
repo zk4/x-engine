@@ -31,6 +31,18 @@
       round
       @click="handlerVueX"
     >VueX</van-button>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="handlerPhoto"
+    >拍照选择相册</van-button>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="hanlderScan"
+    >扫码</van-button>
   </div>
 </template>
 
@@ -92,6 +104,17 @@ export default {
         path: "/modulesIntroduce",
       })
     },
+    handlerPhoto() {
+      this.$router.push({
+        path: "/photo",
+      })
+    },
+    hanlderScan() {
+      this.$router.push({
+        path: "/scan",
+      })
+    }
+    
   },
 }
 </script>

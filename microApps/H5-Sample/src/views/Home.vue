@@ -1,6 +1,5 @@
 <template>
   <div class="testone-class">
-    <div style="marginTop:50px">Home</div>
     <van-button
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
       size="large"
@@ -51,6 +50,7 @@ export default {
   data() {
     return {
       navHeader: "123",
+      navigatorHeight: '',
     }
   },
   methods: {
@@ -120,7 +120,7 @@ export default {
 
 <style scoped>
 .testone-class {
-  margin: 20px;
+  margin: 0 20px 20px 20px;
 }
 .van-button {
   margin-top: 10px;

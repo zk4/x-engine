@@ -212,7 +212,7 @@
 
 - (void)readerViewDidStart: (ZBarReaderView*) readerView{}
 
-- (void) readerView: (ZBarReaderView*) readerView
+- (void)readerView: (ZBarReaderView*) readerView
    didStopWithError: (NSError*) error{
 }
 

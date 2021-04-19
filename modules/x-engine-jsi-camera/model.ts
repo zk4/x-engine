@@ -62,23 +62,29 @@ function openImagePicker(arg: {
 }
 
 // 保存到相册
-@sync
+@async
 function saveImageToPhotoAlbum(arg: {
   //url或base64
   type: string;
   // 图片数据
   imageData: string;
-}): void {
+}): string {
   // 保存图片至相册
   function test_saveImageToPhotoAlbum() {
-    xengine.api("com.zkty.jsi.camera", "saveImageToPhotoAlbum", {
-      type: "url",
-      imageData:
-        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
-    });
+    xengine.api(
+      "com.zkty.jsi.camera",
+      "saveImageToPhotoAlbum",
+      {
+        type: "url",
+        imageData:
+          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
+      },
+      (res) => {
+        document.getElementById("debug_text").innerText = JSON.stringify(res);
+      }
+    );
   }
 }
 
 document.getElementById("test_openImagePicker").click();
-
 document.getElementById("test_saveImageToPhotoAlbum").click();

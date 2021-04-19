@@ -36,10 +36,18 @@ JSI_MODULE(JSI_camera)
     }];
 }
 
-- (void)_saveImageToPhotoAlbum:(_1_com_zkty_jsi_camera_DTO *)dto {
+- (void)_saveImageToPhotoAlbum:(_1_com_zkty_jsi_camera_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
     SaveImageDTO *model = [SaveImageDTO new];
     model.type = dto.type;
     model.imageData = dto.imageData;
-    [self.camera saveImageToPhotoAlbum:model];
+    //    [self.camera saveImageToPhotoAlbum:model];
+    
+//    [self.camera saveImageToPhotoAlbum:model success:^(NSString *result) {
+//        completionHandler(result, TRUE);
+//    }];
+    
+    [self.camera saveImageToPhotoAlbum:model saveSuccess:^(NSString *result) {
+        completionHandler(result, TRUE);
+    }];
 }
 @end

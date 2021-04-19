@@ -40,12 +40,6 @@ JSI_MODULE(JSI_camera)
     SaveImageDTO *model = [SaveImageDTO new];
     model.type = dto.type;
     model.imageData = dto.imageData;
-    //    [self.camera saveImageToPhotoAlbum:model];
-    
-//    [self.camera saveImageToPhotoAlbum:model success:^(NSString *result) {
-//        completionHandler(result, TRUE);
-//    }];
-    
     [self.camera saveImageToPhotoAlbum:model saveSuccess:^(NSString *result) {
         completionHandler(result, TRUE);
     }];

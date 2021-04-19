@@ -37,7 +37,7 @@ export default {
         },
         (res) => {
           let obj = JSON.parse(res)
-          alert(JSON.stringify(obj));
+          alert(JSON.stringify(obj))
           for (let photo of obj.data) {
             const image = document.createElement("img")
             if (!photo.width || !photo.height) {
@@ -52,11 +52,18 @@ export default {
       )
     },
     handlerSavePhotoToAlbum() {
-      xengine.api("com.zkty.jsi.camera", "saveImageToPhotoAlbum", {
-        type: "url",
-        imageData:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201209%2F08%2F20120908134318_YVAwx.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1621332181&t=b8faabde36c3881b2e47aaf8d3f71891",
-      })
+      xengine.api(
+        "com.zkty.jsi.camera",
+        "saveImageToPhotoAlbum",
+        {
+          type: "url",
+          imageData:
+            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201209%2F08%2F20120908134318_YVAwx.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1621332181&t=b8faabde36c3881b2e47aaf8d3f71891",
+        },
+        (res) => {
+          console.log(res)
+        }
+      )
     },
   },
 }

@@ -11,11 +11,12 @@
 
 <script>
 export default {
-    methods: {
-        hanlderScan() {
-            alert('scanalert');
-        }
-    },}
+  methods: {
+    hanlderScan() {
+      alert("scanalert")
+    },
+  },
+}
 </script>
 
 <style>

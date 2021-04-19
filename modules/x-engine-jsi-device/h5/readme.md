@@ -16,6 +16,7 @@ version: 0.1.13
     let val = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
     document.getElementById("debug_text").innerText = typeof val + ":" + val;
   }
+
 ``` 
 
 **无参数**
@@ -29,6 +30,15 @@ string
 ## getNavigationHeight
 `sync`
 > 获取导航条高度
+**demo**
+``` js
+
+  function test_getNavHeight() {
+    let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
+    document.getElementById("debug_text").innerText = typeof val + ":" + val;
+  }
+
+``` 
 
 **无参数**
 **返回值**
@@ -41,6 +51,15 @@ string
 ## getScreenHeight
 `sync`
 > 获取屏幕高度
+**demo**
+``` js
+
+  function test_getScreenHeight() {
+    let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
+    document.getElementById("debug_text").innerText = typeof val + ":" + val;
+  }
+
+``` 
 
 **无参数**
 **返回值**
@@ -53,6 +72,15 @@ string
 ## getTabbarHeight
 `sync`
 > 获取tabBar高度
+**demo**
+``` js
+
+  function test_getTabbarHeight() {
+    let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");
+    document.getElementById("debug_text").innerText = typeof val + ":" + val;
+  }
+
+``` 
 
 **无参数**
 **返回值**
@@ -65,6 +93,17 @@ string
 ## callPhone
 `sync`
 > 打电话
+**demo**
+``` js
+
+  function test_callPhone() {
+    xengine.api("com.zkty.jsi.device", "callPhone", {
+      phoneNum: "18637369306",
+      phoneMsg: "",
+    });
+  }
+
+``` 
 
 **参数说明**
 
@@ -82,6 +121,17 @@ string
 ## sendMessage
 `sync`
 > 发短信
+**demo**
+``` js
+
+  function test_sendMsg() {
+    xengine.api("com.zkty.jsi.device", "sendMessage", {
+      phoneNum: "18637369306",
+      phoneMsg: "你好",
+    });
+  }
+
+``` 
 
 **参数说明**
 
@@ -99,6 +149,16 @@ string
 ## getDeviceInfo
 `async`
 > 获取设备信息
+**demo**
+``` js
+
+  function test_getDeviceInfo() {
+    xengine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(val);
+    });
+  }
+
+``` 
 
 **无参数**
 **返回值**

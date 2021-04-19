@@ -15,6 +15,7 @@
 #import "GCDWebServerURLEncodedFormRequest.h"
 
 typedef void (^PhotoCallBack)(NSString *);
+typedef void (^SaveCallBack)(NSString *);
 @interface Native_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
 @property(nonatomic,strong) GCDWebServer *webServer;
 @property(nonatomic,assign) BOOL allowsEditing;
@@ -23,6 +24,7 @@ typedef void (^PhotoCallBack)(NSString *);
 @property(nonatomic,assign) BOOL isbase64;
 @property(nonatomic,strong) CameraParamsDTO * cameraDto;
 @property(nonatomic,copy) PhotoCallBack callback;
+@property(nonatomic,copy) SaveCallBack saveCallback;
 @end
 
 @implementation Native_camera
@@ -193,16 +195,19 @@ NATIVE_MODULE(Native_camera)
 - (void)sendParamtoWeb:(id)params {
     NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingFragmentsAllowed error:nil];
     NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    self.callback(dataString);
+    if(self.callback) {
+        self.callback(dataString);
+    }
 }
 
 #pragma 保存图片
-- (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto {
+- (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto saveSuccess:(void (^)(NSString *))success {
+    self.saveCallback = success;
     UIImage * image = [UIImage new];
     if ([dto.type isEqualToString:@"url"]) {
         image = [UIImage imageWithData:[NSData
                                         dataWithContentsOfURL:[NSURL URLWithString:dto.imageData]]];
-    }else if([dto.type isEqualToString:@"base64"]){
+    } else if([dto.type isEqualToString:@"base64"]){
         if  ([dto.imageData rangeOfString:@"base64,"].location !=NSNotFound) {
             NSRange range = [dto.imageData rangeOfString:@"base64, "];
             dto.imageData = [dto.imageData substringFromIndex:range.location+range.length];
@@ -226,13 +231,14 @@ NATIVE_MODULE(Native_camera)
 
 - (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error) {
+        _saveCallback(@"save error");
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存失败" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
         [alert addAction:enter];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     } else {
+        _saveCallback(@"save success");
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功,请前往相册查看" preferredStyle:UIAlertControllerStyleAlert];
-        
         UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
         [alert addAction:enter];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];

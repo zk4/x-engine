@@ -47,9 +47,12 @@
           }];
         
       }
-  
-  - (void) saveImageToPhotoAlbum:(NSDictionary*) dict {
-      _1_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_1_com_zkty_jsi_camera_DTO.class];
-      return [self _saveImageToPhotoAlbum:dto];
-        }
+    - (void) saveImageToPhotoAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          _1_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_1_com_zkty_jsi_camera_DTO.class];
+          [self _saveImageToPhotoAlbum:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
   @end

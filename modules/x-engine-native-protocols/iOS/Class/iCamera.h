@@ -37,7 +37,7 @@
 @required
 - (void)openImagePicker:(CameraParamsDTO*) dto success:(void (^)(NSString* result))success;
 
-- (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto;
+- (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto saveSuccess:(void (^)(NSString* result))success;
 @end
 
 #endif /* icamera_h */

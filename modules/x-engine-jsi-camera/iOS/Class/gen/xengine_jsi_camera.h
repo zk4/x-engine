@@ -34,8 +34,8 @@
         - (void) _openImagePicker:(_0_com_zkty_jsi_camera_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
       @required 
-       - (void) _saveImageToPhotoAlbum:(_1_com_zkty_jsi_camera_DTO*)dto;
-    
+        - (void) _saveImageToPhotoAlbum:(_1_com_zkty_jsi_camera_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
 @end
   
 

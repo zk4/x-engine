@@ -19,6 +19,7 @@ Vue.use(Skeleton);
 Vue.use(Button);
 Vue.config.productionTip = false
 
+
 Vue.prototype.$store = store
 new Vue({
   router,

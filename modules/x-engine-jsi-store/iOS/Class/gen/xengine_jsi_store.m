@@ -44,7 +44,7 @@
   - (NSString*) get:(NSDictionary*) dict {
       _0_com_zkty_jsi_store_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_store_DTO.class];
       return [self _get:dto];
-    }
+        }
     - (void) set:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           ZKStoreEntryDTO* dto = [self convert:dict clazz:ZKStoreEntryDTO.class];
@@ -54,6 +54,7 @@
       }
   - (id) set:(NSDictionary*) dict {
       ZKStoreEntryDTO* dto = [self convert:dict clazz:ZKStoreEntryDTO.class];
-      return [self _set:dto];
-    }
+      [self _set:dto];
+                 return nil;
+        }
   @end

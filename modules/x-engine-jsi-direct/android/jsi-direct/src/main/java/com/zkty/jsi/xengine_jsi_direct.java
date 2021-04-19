@@ -10,9 +10,10 @@
   import android.webkit.JavascriptInterface;
   import com.alibaba.fastjson.JSON;
   import com.alibaba.fastjson.JSONObject;
-  import com.zkty.modules.nativ.jsi.bridge.CompletionHandler;
-  import com.zkty.modules.nativ.jsi.JSIModule;
+  import com.zkty.nativ.jsi.bridge.CompletionHandler;
+  import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
+  import com.zkty.nativ.jsi.annotation.Optional;
 
   
   class DirectPushDTO {
@@ -26,10 +27,10 @@
     public String fragment;
 
     @Optional
-		public Map<String,String> query;
+		public Map<String,Object> query;
 
     @Optional
-		public Map<String,String> params;
+		public Map<String,Object> params;
   }
   
   class DirectBackDTO {
@@ -51,11 +52,11 @@ public void _back(DirectBackDTO dto, final CompletionHandler<Nullable> handler);
     }
   
     @JavascriptInterface
-    final public void push(JSONObject obj, final CompletionHandler<Object> handler) {
+    final public void push(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       String defaultStr = "{  \"scheme\": \"omp\",  \"pathname\": \"/\",  \"params\": {    \"hideNavbar\": true  }}";
-      obj = mergeDefault(obj, defaultStr);
-      DirectPushDTO data= convert(obj,DirectPushDTO.class);
-      _push(data, new CompletionHandler<Nullable>() {
+      jsonobj = mergeDefault(jsonobj, defaultStr);
+      DirectPushDTO dto= convert(jsonobj,DirectPushDTO.class);
+      _push(dto, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -67,9 +68,9 @@ public void _back(DirectBackDTO dto, final CompletionHandler<Nullable> handler);
     }
 
     @JavascriptInterface
-    final public void back(JSONObject obj, final CompletionHandler<Object> handler) {
-      DirectBackDTO data= convert(obj,DirectBackDTO.class);
-      _back(data, new CompletionHandler<Nullable>() {
+    final public void back(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      DirectBackDTO dto= convert(jsonobj,DirectBackDTO.class);
+      _back(dto, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

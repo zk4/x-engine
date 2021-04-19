@@ -1,4 +1,4 @@
-package com.zkty.jsi.direct;
+package com.zkty.jsi;
 
 import androidx.annotation.Nullable;
 

@@ -10,9 +10,10 @@
   import android.webkit.JavascriptInterface;
   import com.alibaba.fastjson.JSON;
   import com.alibaba.fastjson.JSONObject;
-  import com.zkty.modules.nativ.jsi.bridge.CompletionHandler;
-  import com.zkty.modules.nativ.jsi.JSIModule;
+  import com.zkty.nativ.jsi.bridge.CompletionHandler;
+  import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
+  import com.zkty.nativ.jsi.annotation.Optional;
 
   
   class _0_com_zkty_jsi_camera_DTO {
@@ -55,9 +56,9 @@ public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_camera_DTO dto, final Complet
     }
   
     @JavascriptInterface
-    final public void openImagePicker(JSONObject obj, final CompletionHandler<Object> handler) {
-      _0_com_zkty_jsi_camera_DTO data= convert(obj,_0_com_zkty_jsi_camera_DTO.class);
-      _openImagePicker(data, new CompletionHandler<String>() {
+    final public void openImagePicker(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _0_com_zkty_jsi_camera_DTO dto= convert(jsonobj,_0_com_zkty_jsi_camera_DTO.class);
+      _openImagePicker(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override
@@ -69,9 +70,9 @@ public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_camera_DTO dto, final Complet
     }
 
     @JavascriptInterface
-    final public void saveImageToPhotoAlbum(JSONObject obj, final CompletionHandler<Object> handler) {
-      _1_com_zkty_jsi_camera_DTO data= convert(obj,_1_com_zkty_jsi_camera_DTO.class);
-      _saveImageToPhotoAlbum(data, new CompletionHandler<String>() {
+    final public void saveImageToPhotoAlbum(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _1_com_zkty_jsi_camera_DTO dto= convert(jsonobj,_1_com_zkty_jsi_camera_DTO.class);
+      _saveImageToPhotoAlbum(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override

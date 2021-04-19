@@ -9,6 +9,6 @@
 
         <meta-data
             android:name="com.zkty.jsi.direct"
-            android:value="com.zkty.jsi.direct.JSI_direct" />
+            android:value="com.zkty.jsi.JSI_direct" />
     </application>
 </manifest>

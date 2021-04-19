@@ -10,9 +10,10 @@
   import android.webkit.JavascriptInterface;
   import com.alibaba.fastjson.JSON;
   import com.alibaba.fastjson.JSONObject;
-  import com.zkty.modules.nativ.jsi.bridge.CompletionHandler;
-  import com.zkty.modules.nativ.jsi.JSIModule;
+  import com.zkty.nativ.jsi.bridge.CompletionHandler;
+  import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
+  import com.zkty.nativ.jsi.annotation.Optional;
 
   
   class ZKStoreEntryDTO {
@@ -38,9 +39,9 @@ public void _set(ZKStoreEntryDTO dto, final CompletionHandler<Nullable> handler)
     }
   
     @JavascriptInterface
-    final public void get(JSONObject obj, final CompletionHandler<Object> handler) {
-      _0_com_zkty_jsi_store_DTO data= convert(obj,_0_com_zkty_jsi_store_DTO.class);
-      _get(data, new CompletionHandler<String>() {
+    final public void get(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _0_com_zkty_jsi_store_DTO dto= convert(jsonobj,_0_com_zkty_jsi_store_DTO.class);
+      _get(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override
@@ -52,15 +53,15 @@ public void _set(ZKStoreEntryDTO dto, final CompletionHandler<Nullable> handler)
     }
         @JavascriptInterface
         public String get(JSONObject jsonobj) {
-          _0_com_zkty_jsi_store_DTO data= convert(obj,_0_com_zkty_jsi_store_DTO.class);
+          _0_com_zkty_jsi_store_DTO dto= convert(jsonobj,_0_com_zkty_jsi_store_DTO.class);
           return _get(dto);
         }
         
 
     @JavascriptInterface
-    final public void set(JSONObject obj, final CompletionHandler<Object> handler) {
-      ZKStoreEntryDTO data= convert(obj,ZKStoreEntryDTO.class);
-      _set(data, new CompletionHandler<Nullable>() {
+    final public void set(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      ZKStoreEntryDTO dto= convert(jsonobj,ZKStoreEntryDTO.class);
+      _set(dto, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -72,7 +73,7 @@ public void _set(ZKStoreEntryDTO dto, final CompletionHandler<Nullable> handler)
     }
         @JavascriptInterface
         public Object set(JSONObject jsonobj) {
-          ZKStoreEntryDTO data= convert(obj,ZKStoreEntryDTO.class);
+          ZKStoreEntryDTO dto= convert(jsonobj,ZKStoreEntryDTO.class);
           _set(dto);
           return null;
         }

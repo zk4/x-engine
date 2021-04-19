@@ -10,9 +10,10 @@
   import android.webkit.JavascriptInterface;
   import com.alibaba.fastjson.JSON;
   import com.alibaba.fastjson.JSONObject;
-  import com.zkty.modules.nativ.jsi.bridge.CompletionHandler;
-  import com.zkty.modules.nativ.jsi.JSIModule;
+  import com.zkty.nativ.jsi.bridge.CompletionHandler;
+  import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
+  import com.zkty.nativ.jsi.annotation.Optional;
 
   
   
@@ -28,7 +29,7 @@
     }
   
     @JavascriptInterface
-    final public void openScanView(JSONObject obj, final CompletionHandler<Object> handler) {
+    final public void openScanView(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       _openScanView(new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }

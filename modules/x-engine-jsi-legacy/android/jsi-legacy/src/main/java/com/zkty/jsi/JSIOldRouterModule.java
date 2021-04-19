@@ -1,4 +1,4 @@
-package com.zkty.jsi.legacy.router;
+package com.zkty.jsi;
 
 import android.text.TextUtils;
 import android.webkit.JavascriptInterface;

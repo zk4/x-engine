@@ -1,4 +1,4 @@
-package com.zkty.jsi.scan;
+package com.zkty.jsi;
 
 
 import com.zkty.nativ.core.NativeContext;

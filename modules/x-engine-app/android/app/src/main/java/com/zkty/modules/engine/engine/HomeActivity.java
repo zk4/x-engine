@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void nextPage(View view) {
         String protocol = "file:";
-        String host = MicroAppLoader.sharedInstance().getMicroAppHost("com.zkty.module.device", 0);
+        String host = MicroAppLoader.sharedInstance().getMicroAppHost("com.gm.microapp.mine", 0);
         String pathname = "";
         String fragment = "";
 

@@ -48,3 +48,6 @@ project(':jsi-store').projectDir = new File('../../x-engine-jsi-store/android/js
 
 include ':jsi-device'
 project(':jsi-device').projectDir = new File('../../x-engine-jsi-device/android/jsi-device')
+
+include ':jsi-legacy'
+project(':jsi-legacy').projectDir = new File('../../x-engine-jsi-legacy/android/jsi-legacy')

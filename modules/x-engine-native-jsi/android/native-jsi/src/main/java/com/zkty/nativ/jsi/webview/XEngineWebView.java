@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -396,6 +397,13 @@ public class XEngineWebView extends DWebView {
     }
 
     private String getUrlByHistoryModel(HistoryModel model) {
+        if (TextUtils.isEmpty(model.pathname) && TextUtils.isEmpty(model.fragment))
+            return String.format("%s//%s", model.protocol, model.host);
+        if (TextUtils.isEmpty(model.pathname))
+            return String.format("%s//%s#%s", model.protocol, model.host, model.fragment);
+        if (TextUtils.isEmpty(model.fragment))
+            return String.format("%s//%s%s", model.protocol, model.host, model.pathname);
+
         return String.format("%s//%s%s#%s", model.protocol, model.host, model.pathname, model.fragment);
     }
 

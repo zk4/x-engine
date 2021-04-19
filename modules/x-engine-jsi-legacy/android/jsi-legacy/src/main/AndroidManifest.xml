@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="module.xxxx">
+    package="jsi.legacy">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -8,7 +8,20 @@
     <application>
 
         <meta-data
-            android:name="com.zkty.module.xxxx"
-            android:value="com.zkty.modules.loaded.jsapi.__xengine__module_xxxx" />
+            android:name="com.zkty.jsi.legacy.router"
+            android:value="com.zkty.jsi.legacy.router.JSIOldRouterModule" />
+
+        <meta-data
+            android:name="com.zkty.jsi.legacy.nav"
+            android:value="com.zkty.jsi.legacy.nav.JSIOldNavModule" />
+
+        <meta-data
+            android:name="com.zkty.jsi.legacy.localstorage"
+            android:value="com.zkty.jsi.legacy.localstorage.JSIOldLocalstorageModule" />
+        <meta-data
+            android:name="com.zkty.jsi.legacy.device"
+            android:value="com.zkty.jsi.legacy.device.JSIOldDeviceModule" />
+
+
     </application>
 </manifest>

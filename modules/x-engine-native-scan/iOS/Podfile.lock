@@ -1,29 +1,34 @@
 PODS:
+  - JSONModel (1.8.0)
   - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
-  - x-engine-native-protocols (1.0.0)
-  - ZBarSDK (1.3.1)
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
+  - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
-  - ZBarSDK
+  - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - ZBarSDK
+    - JSONModel
 
 EXTERNAL SOURCES:
   x-engine-native-core:
     :path: "../../x-engine-native-core"
   x-engine-native-protocols:
     :path: "../../x-engine-native-protocols"
+  ZBarSDK:
+    :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
 SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
-  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
-  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 7239f5541742e3312f22329cb63a5963d55946a7
+PODFILE CHECKSUM: 1c580ed652dbf0d4b5514392b991e8cf5e1c4c97
 
 COCOAPODS: 1.10.1

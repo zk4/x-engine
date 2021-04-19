@@ -8,14 +8,14 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-jsi', :path =>X_ENGINE_MODULES+'/x-engine-native-jsi'
+  pod 'ZBarSDK', :path =>X_ENGINE_MODULES+'/x-engine-native-scan/iOS/ZBarSDK'
   pod 'x-engine-native-scan', :path =>X_ENGINE_MODULES+'/x-engine-native-scan'
   pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
   pod 'x-engine-native-direct_microapp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
 
   pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
   pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
-  
-  pod "ZBarSDK"
+ 
 end
 
 target 'scan' do

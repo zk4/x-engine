@@ -9,18 +9,18 @@
 
         <meta-data
             android:name="com.zkty.jsi.legacy.router"
-            android:value="com.zkty.jsi.legacy.router.JSIOldRouterModule" />
+            android:value="com.zkty.jsi.JSIOldRouterModule" />
 
         <meta-data
             android:name="com.zkty.jsi.legacy.nav"
-            android:value="com.zkty.jsi.legacy.nav.JSIOldNavModule" />
+            android:value="com.zkty.jsi.JSIOldNavModule" />
 
         <meta-data
             android:name="com.zkty.jsi.legacy.localstorage"
-            android:value="com.zkty.jsi.legacy.localstorage.JSIOldLocalstorageModule" />
+            android:value="com.zkty.jsi.JSIOldLocalstorageModule" />
         <meta-data
             android:name="com.zkty.jsi.legacy.device"
-            android:value="com.zkty.jsi.legacy.device.JSIOldDeviceModule" />
+            android:value="com.zkty.jsi.JSIOldDeviceModule" />
 
 
     </application>

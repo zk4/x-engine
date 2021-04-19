@@ -1,4 +1,4 @@
-package com.zkty.jsi.legacy.nav;
+package com.zkty.jsi;
 
 import android.webkit.JavascriptInterface;
 

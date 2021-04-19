@@ -1,4 +1,4 @@
-package com.zkty.jsi.store;
+package com.zkty.jsi;
 
 import androidx.annotation.Nullable;
 
@@ -37,8 +37,10 @@ public class JSI_store extends xengine_jsi_store {
     }
 
     @Override
-    public Object _set(ZKStoreEntryDTO dto) {
+    public void  _set(ZKStoreEntryDTO dto) {
         iStore.set(dto.key, dto.val);
-        return null;
+
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.zkty.jsi.xxxx;
+package com.zkty.jsi;
 
 
 import com.zkty.jsi.xengine_jsi_xxxx;

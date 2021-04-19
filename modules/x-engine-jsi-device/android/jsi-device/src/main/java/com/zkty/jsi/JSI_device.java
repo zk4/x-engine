@@ -1,4 +1,4 @@
-package com.zkty.jsi.device;
+package com.zkty.jsi;
 
 import com.alibaba.fastjson.JSON;
 import com.zkty.nativ.core.NativeContext;
@@ -40,15 +40,6 @@ public class JSI_device extends xengine_jsi_device {
         return iDevice.getTabbarHeight();
     }
 
-    @Override
-    public String _getSystemVersion() {
-        return iDevice.getSystemVersion();
-    }
-
-    @Override
-    public String _getUDID() {
-        return iDevice.getUDID();
-    }
 
     @Override
     public String _callPhone(phoneDto dto) {
@@ -60,16 +51,12 @@ public class JSI_device extends xengine_jsi_device {
         return iDevice.sendMessage(dto.phoneNum, dto.phoneMsg);
     }
 
-    @Override
-    public String _getDeviceInfo() {
-        return iDevice.getDeviceInfo();
-    }
 
     @Override
-    public void _getDeviceInfo1(CompletionHandler<DeviceDTO> handler) {
+    public void _getDeviceInfo(CompletionHandler<DeviceDTO> handler) {
         String json = iDevice.getDeviceInfo();
         handler.complete(JSON.parseObject(json, DeviceDTO.class));
-
     }
+
 
 }

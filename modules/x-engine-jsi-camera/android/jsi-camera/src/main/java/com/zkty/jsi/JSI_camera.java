@@ -1,4 +1,4 @@
-package com.zkty.jsi.camera;
+package com.zkty.jsi;
 
 
 import com.zkty.nativ.camera.CameraDTO;

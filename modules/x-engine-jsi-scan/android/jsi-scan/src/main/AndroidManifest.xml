@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jsi.scan">
+
+    <application>
+        <meta-data
+            android:name="com.zkty.jsi.scan"
+            android:value="com.zkty.jsi.scan.JSI_scan" />
+    </application>
+
+
+</manifest>

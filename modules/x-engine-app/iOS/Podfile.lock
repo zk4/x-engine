@@ -1,5 +1,11 @@
 PODS:
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
   - JSONModel (1.8.0)
+  - x-engine-jsi-camera (0.1.13):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-jsi-device (0.1.13):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -11,11 +17,19 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-jsi-scan (0.1.13):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-jsi-ui (0.1.13):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-broadcast (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-camera (1.0.0):
+    - GCDWebServer
+    - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-core (1.0.0):
@@ -45,21 +59,31 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-jsi (1.0.0):
+    - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-protocols (1.0.0)
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
+  - x-engine-native-scan (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+    - ZBarSDK
   - x-engine-native-ui (1.0.0):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
   - JSONModel
+  - x-engine-jsi-camera (from `../../x-engine-jsi-camera`)
   - x-engine-jsi-device (from `../../x-engine-jsi-device`)
   - x-engine-jsi-direct (from `../../x-engine-jsi-direct`)
   - x-engine-jsi-legacy (from `../../x-engine-jsi-legacy`)
+  - x-engine-jsi-scan (from `../../x-engine-jsi-scan`)
   - x-engine-jsi-ui (from `../../x-engine-jsi-ui`)
   - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
+  - x-engine-native-camera (from `../../x-engine-native-camera`)
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-device (from `../../x-engine-native-device`)
   - x-engine-native-direct (from `../../x-engine-native-direct`)
@@ -69,23 +93,32 @@ DEPENDENCIES:
   - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - x-engine-native-scan (from `../../x-engine-native-scan`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
+  - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
   trunk:
+    - GCDWebServer
     - JSONModel
 
 EXTERNAL SOURCES:
+  x-engine-jsi-camera:
+    :path: "../../x-engine-jsi-camera"
   x-engine-jsi-device:
     :path: "../../x-engine-jsi-device"
   x-engine-jsi-direct:
     :path: "../../x-engine-jsi-direct"
   x-engine-jsi-legacy:
     :path: "../../x-engine-jsi-legacy"
+  x-engine-jsi-scan:
+    :path: "../../x-engine-jsi-scan"
   x-engine-jsi-ui:
     :path: "../../x-engine-jsi-ui"
   x-engine-native-broadcast:
     :path: "../../x-engine-native-broadcast"
+  x-engine-native-camera:
+    :path: "../../x-engine-native-camera"
   x-engine-native-core:
     :path: "../../x-engine-native-core"
   x-engine-native-device:
@@ -104,16 +137,24 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-jsi"
   x-engine-native-protocols:
     :path: "../../x-engine-native-protocols"
+  x-engine-native-scan:
+    :path: "../../x-engine-native-scan"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
+  ZBarSDK:
+    :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
 SPEC CHECKSUMS:
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  x-engine-jsi-camera: 54c1c94282a948bf673e36f5fb77e89d99eaf6f4
   x-engine-jsi-device: 38155c0d3b842b5ab08a19d8858af88c3690d3b8
   x-engine-jsi-direct: 576d2f25bc1d0c87e02a4ddf1469d955a9bed82e
   x-engine-jsi-legacy: c6add91d5426ffc532e78015e1f5a30dd3ce46b1
+  x-engine-jsi-scan: e76f94f5ad36e3cfa5d3ed6d53e410643000710f
   x-engine-jsi-ui: 64c934a15a630a55a29ad810ee208b7c3eebdd25
   x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
+  x-engine-native-camera: 06050cc692cf66e5cc8d91e736544d3c9c483bed
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-device: 05280cc3d26c9e4f917ac4a5e5b38aa23122e978
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
@@ -121,10 +162,12 @@ SPEC CHECKSUMS:
   x-engine-native-direct_https: 2bcc4661bb2d6247baebfd950f169c00a0573665
   x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
-  x-engine-native-jsi: 0408dfee0c7822614990e6fc1c512569eff1abb5
-  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
+  x-engine-native-jsi: 92a9a72a45029df1ca8e61e0166e3731e672f523
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
+  ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 809a248c76461f5bf9a4444923826b16f5c327d7
+PODFILE CHECKSUM: f082cf77a90ff3951aa6677512125fcdb4f81d1d
 
 COCOAPODS: 1.10.1

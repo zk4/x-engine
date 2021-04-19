@@ -43,6 +43,6 @@
     "npm-modules/x-engine-core",
     "npm-modules/x-engine-router",
     "modules/x-engine-jsi-*",
-    "microApps/H5-Router-Sample"
+    "microApps/H5-Sample"
   ]
 }

@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
     arr = os.listdir("..")
     exclude=[]
-    include= ['x-engine-jsi-device', 'x-engine-jsi-direct', 'x-engine-jsi-store', 'x-engine-jsi-ui']
+    include= ['x-engine-jsi-device', 'x-engine-jsi-direct', 'x-engine-jsi-store', 'x-engine-jsi-ui', 'x-engine-jsi-camera', 'x-engine-jsi-scan']
     for d in arr:
         if d in include:
             # continue

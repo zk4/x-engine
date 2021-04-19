@@ -39,7 +39,7 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
 
     @Override
     public String protocol() {
-        return "https:";
+        return "http:";
     }
 
     @Override

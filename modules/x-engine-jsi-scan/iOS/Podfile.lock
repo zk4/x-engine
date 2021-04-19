@@ -1,0 +1,75 @@
+PODS:
+  - JSONModel (1.8.0)
+  - x-engine-native-core (1.0.0):
+    - x-engine-native-protocols
+  - x-engine-native-direct (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_microapp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi
+    - x-engine-native-protocols
+  - x-engine-native-direct_omp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-jsi (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
+  - x-engine-native-scan (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+    - ZBarSDK
+  - ZBarSDK (1.5.2)
+
+DEPENDENCIES:
+  - x-engine-native-core (from `../../x-engine-native-core`)
+  - x-engine-native-direct (from `../../x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `../../x-engine-native-jsi`)
+  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - x-engine-native-scan (from `../../x-engine-native-scan`)
+  - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JSONModel
+
+EXTERNAL SOURCES:
+  x-engine-native-core:
+    :path: "../../x-engine-native-core"
+  x-engine-native-direct:
+    :path: "../../x-engine-native-direct"
+  x-engine-native-direct_microapp:
+    :path: "../../x-engine-native-direct_microapp"
+  x-engine-native-direct_omp:
+    :path: "../../x-engine-native-direct_omp"
+  x-engine-native-jsi:
+    :path: "../../x-engine-native-jsi"
+  x-engine-native-protocols:
+    :path: "../../x-engine-native-protocols"
+  x-engine-native-scan:
+    :path: "../../x-engine-native-scan"
+  ZBarSDK:
+    :path: "../../x-engine-native-scan/iOS/ZBarSDK"
+
+SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
+  x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
+  x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
+  x-engine-native-jsi: 92a9a72a45029df1ca8e61e0166e3731e672f523
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
+  ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
+
+PODFILE CHECKSUM: d8f646989b910fa0cce666f175f876829b272d42
+
+COCOAPODS: 1.10.1

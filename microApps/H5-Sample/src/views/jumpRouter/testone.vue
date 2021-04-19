@@ -43,7 +43,7 @@ export default {
     // https
     // microapp
     handlerOpenMicroApp() {
-      if (XEngine.isHybrid()) {
+      // if (XEngine.isHybrid()) {
         XEngine.api(
           "com.zkty.jsi.direct",
           "push",
@@ -60,12 +60,12 @@ export default {
             console.log("res :>> ", res)
           }
         )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+      // } else {
+      //   alert("请在app端测试该功能.")
+      // }
     },
     handlerOpenBaidu() {
-      if (XEngine.isHybrid()) {
+      // if (XEngine.isHybrid()) {
         XEngine.api(
           "com.zkty.jsi.direct",
           "push",
@@ -82,13 +82,13 @@ export default {
             console.log("res :>> ", res)
           }
         )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+      // } else {
+      //   alert("请在app端测试该功能.")
+      // }
     },
     // https
     handlerOpenYoutube() {
-      if (XEngine.isHybrid()) {
+      // if (XEngine.isHybrid()) {
         XEngine.api(
           "com.zkty.jsi.direct",
           "push",
@@ -105,9 +105,9 @@ export default {
             console.log("res :>> ", res)
           }
         )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+      // } else {
+      //   alert("请在app端测试该功能.")
+      // }
     },
   },
 }

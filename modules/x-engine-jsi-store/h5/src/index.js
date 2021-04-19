@@ -13,42 +13,12 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.store", 
     [
   {
-    "name": "test_setObject",
-    "default_args": {},
-    "decorators": []
-  },
-  {
     "name": "test_getObject",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "test_setObject_sync",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_getObject_sync",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_setNil",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_getNil",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_setAssertChangeColor",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_getAssertTrue",
+    "name": "test_setObject",
     "default_args": {},
     "decorators": []
   }

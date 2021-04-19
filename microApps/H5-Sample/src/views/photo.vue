@@ -7,7 +7,7 @@
       round
       @click="hanlderOpenAlert"
     >弹出拍照或选择相册的原生alert</van-button>
-    
+
     <van-button
       class="btn-class"
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
@@ -37,6 +37,7 @@ export default {
         },
         (res) => {
           let obj = JSON.parse(res)
+          alert(JSON.stringify(obj));
           for (let photo of obj.data) {
             const image = document.createElement("img")
             if (!photo.width || !photo.height) {

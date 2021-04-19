@@ -14,11 +14,11 @@ const conf = {
 };
 
 @async
-// 打开扫码页面
-function openScanView(): string {}
-
-function test_openScanView() {
-  xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
-    document.getElementById("debug_text").innerText = JSON.stringify(val);
-  });
+function // 打开扫码页面
+openScanView(): string {
+  function test_openScanView() {
+    xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(val);
+    });
+  }
 }

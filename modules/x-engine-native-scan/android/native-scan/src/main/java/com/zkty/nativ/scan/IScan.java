@@ -1,5 +1,5 @@
 package com.zkty.nativ.scan;
 
-public interface Iscan {
+public interface IScan {
     void openScanView(CallBack callBack);
 }

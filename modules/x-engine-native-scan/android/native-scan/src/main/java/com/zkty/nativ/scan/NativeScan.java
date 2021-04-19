@@ -8,18 +8,13 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.alibaba.fastjson.JSONObject;
-import com.tencent.mmkv.MMKV;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.jsi.bridge.OnReturnValue;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.scan.activity.ScanActivity;
 
-import java.io.File;
-
-public class Nativescan extends NativeModule implements Iscan {
+public class NativeScan extends NativeModule implements IScan {
 
     private static final String TAG = "xengine__module_scan";
 

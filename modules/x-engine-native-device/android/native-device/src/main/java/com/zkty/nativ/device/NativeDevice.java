@@ -26,7 +26,7 @@ public class NativeDevice extends NativeModule implements IDevice {
 
     @Override
     public String getStatusBarHeight() {
-        return String.valueOf(DensityUtils.getStatusBarHeight(XEngineApplication.getApplication()));
+        return String.valueOf(DensityUtils.pixelsToDip(XEngineApplication.getApplication(), DensityUtils.getStatusBarHeight(XEngineApplication.getApplication())));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.zkty.jsi.xxxx;
+package com.zkty.jsi;
 
 import android.webkit.JavascriptInterface;
 

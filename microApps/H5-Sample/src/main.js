@@ -9,7 +9,6 @@ import { Cell, CellGroup } from 'vant';
 import { Loading } from 'vant';
 import { PullRefresh } from 'vant';
 import store from './store'
-
 Vue.use(PullRefresh);
 Vue.use(Loading);
 Vue.use(Cell);

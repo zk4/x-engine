@@ -13,6 +13,10 @@
       round
       @click="handlerBack"
     >上一页</van-button>
+
+    <div>id ==> {{id}}</div>
+    <div>age ==> {{age}}</div>
+    <div>name ==> {{name}}</div>
   </div>
 </template>
 
@@ -20,7 +24,15 @@
 export default {
   data() {
     return {
+      id: "",
+      age:'',
+      name: ""
     }
+  },
+  mounted() {
+    this.id = this.$route.query.id;
+    this.age = this.$route.query.age;
+    this.name = this.$route.query.name;
   },
   methods: {
     handlerPush() {

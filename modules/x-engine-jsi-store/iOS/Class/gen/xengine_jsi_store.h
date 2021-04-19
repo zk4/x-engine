@@ -8,6 +8,8 @@
 
 @protocol ZKStoreEntryDTO;
 @protocol _0_com_zkty_jsi_store_DTO;
+@class ZKStoreEntryDTO;
+@class _0_com_zkty_jsi_store_DTO;
 
 @interface ZKStoreEntryDTO: JSONModel
   	@property(nonatomic,copy) NSString* key;
@@ -30,7 +32,7 @@
       @required 
         - (void) _set:(ZKStoreEntryDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
        @required 
-       - (id) _set:(ZKStoreEntryDTO*)dto;
+       - (void) _set:(ZKStoreEntryDTO*)dto;
     
 @end
   

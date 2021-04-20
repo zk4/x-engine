@@ -13,27 +13,52 @@ if (process.env.NODE_ENV == 'development') {
 const routes = [{
         path: "/",
         name: "Home",
+        meta: {
+            title: "首页",
+            customBgcImg: require('@/static/image/navBgc.jpeg')
+        },
         component: () => import('../views/Home.vue'),
+    },
+    {
+        path: '/modulesIntroduce',
+        name: 'modulesIntroduce',
+        component: () => import('../views/modulesIntroduce.vue')
     },
     {
         path: '/testone',
         name: 'testone',
+        meta: {
+            title: "第一页"
+
+        },
         component: () => import('../views/jumpRouter/testone.vue')
     },
-
     {
         path: '/testtwo',
         name: 'testtwo',
+        meta: {
+            title: "第二页",
+            type: '0'
+        },
         component: () => import('../views/jumpRouter/testtwo.vue')
     },
     {
         path: '/testthree',
         name: 'testthree',
+        meta: {
+            title: "第三页",
+            type: '/index'
+        },
         component: () => import('../views/jumpRouter/testthree.vue')
     },
     {
         path: '/testfour',
         name: 'testfour',
+        meta: {
+            title: "第四页",
+            type: "0"
+
+        },
         component: () => import('../views/jumpRouter/testfour.vue')
     },
     {
@@ -75,11 +100,6 @@ const routes = [{
         path: '/network',
         name: 'network',
         component: () => import('../views/network.vue')
-    },
-    {
-        path: '/modulesIntroduce',
-        name: 'modulesIntroduce',
-        component: () => import('../views/modulesIntroduce.vue')
     },
     {
         path: '/testVueX',

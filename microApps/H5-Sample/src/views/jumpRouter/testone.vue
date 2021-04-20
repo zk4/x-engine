@@ -1,5 +1,5 @@
 <template>
-  <div class="testone-class" :style="{marginTop:navigatorHeight+'px'}">
+  <div class="testone-class">
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
     <van-button type="info" size="large" round @click="handlerBack">上一页</van-button>
     <van-button
@@ -15,17 +15,9 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-core"
 export default {
   data() {
-    return {
-      navTitle: "第一页",
-      navigatorHeight: "",
-    }
-  },
-  created() {
-    let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight")
-    this.navigatorHeight = navheight
+    return {}
   },
   methods: {
     handlerPush() {
@@ -35,6 +27,7 @@ export default {
           id: 1,
           age: 18,
           name: "中文",
+          changeNavTitle: "上个页面修改的文字",
         },
       })
     },
@@ -49,8 +42,7 @@ export default {
     // https
     // microapp
     handlerOpenMicroApp() {
-      // if (XEngine.isHybrid()) {
-      XEngine.api(
+      this.engine.api(
         "com.zkty.jsi.direct",
         "push",
         {
@@ -66,13 +58,9 @@ export default {
           console.log("res :>> ", res)
         }
       )
-      // } else {
-      //   alert("请在app端测试该功能.")
-      // }
     },
     handlerOpenBaidu() {
-      // if (XEngine.isHybrid()) {
-      XEngine.api(
+      this.engine.api(
         "com.zkty.jsi.direct",
         "push",
         {
@@ -88,14 +76,10 @@ export default {
           console.log("res :>> ", res)
         }
       )
-      // } else {
-      //   alert("请在app端测试该功能.")
-      // }
     },
     // https
     handlerOpenYoutube() {
-      // if (XEngine.isHybrid()) {
-      XEngine.api(
+      this.engine.api(
         "com.zkty.jsi.direct",
         "push",
         {
@@ -111,9 +95,6 @@ export default {
           console.log("res :>> ", res)
         }
       )
-      // } else {
-      //   alert("请在app端测试该功能.")
-      // }
     },
   },
 }
@@ -121,7 +102,7 @@ export default {
 
 <style scoped>
 .testone-class {
-  margin: 20px;
+  margin: 0 20px;
 }
 .van-button {
   margin-top: 10px;

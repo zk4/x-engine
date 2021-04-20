@@ -1,16 +1,6 @@
 <template>
   <div>
-    <HEADER
-      @clickLeftButton="handlerHeaderBack"
-      @clickRightButton="handlerHeaderRightBtn"
-      :reviceNavTitle="navTitle"
-      :reviceRightTitle="navRightTitle"
-    />
     <div class="box-class">
-      <div class="error-class">
-        <div>width:100px;</div>
-        <div>height:200px;</div>
-      </div>
       <div class="ok-class" :style="{marginTop:navigatorHeight+'px'}">
         <div>width:100px;</div>
         <div>height:200px;</div>
@@ -40,22 +30,14 @@
 </template>
 
 <script>
-import HEADER from "@/components/Header/index";
 import XEngine from "@zkty-team/x-engine-core";
 export default {
-  components: {
-    HEADER,
-  },
   data() {
     return {
       navigatorHeight: "",
       navTitle: "layout",
       navRightTitle: "屏幕高度",
     }
-  },
-  mounted() {
-    let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
-    this.navigatorHeight = navheight;
   },
   methods: {
     handlerHeaderBack() {

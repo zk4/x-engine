@@ -1,10 +1,5 @@
 <template>
   <div>
-    <HEADER
-      @clickLeftButton="handlerHeaderBack"
-      @clickRightButton="handlerHeaderRightBtn"
-    />
-
     <div class="navHeader1-class">
       <van-button type="primary" size="large" round @click="handlerNoHaderPage">跳至没有Header页面</van-button>
     </div>
@@ -12,10 +7,8 @@
 </template>
 
 <script>
-import HEADER from "../components/Header/index";
 export default {
   components: {
-    HEADER,
   },
   data() {
     return {
@@ -28,9 +21,6 @@ export default {
     }, 50000)
   },
   methods: {
-    handlerHeaderBack() {
-      this.$router.go(-1)
-    },
     handlerHeaderRightBtn() {
       alert("点击的了右上角按钮")
     },

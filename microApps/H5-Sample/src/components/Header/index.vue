@@ -2,8 +2,9 @@
   <div
     class="navigator-class"
     :style="style"
-    :class="[bgImage != '' ? 'text-white bg-img' : 'none-bg', bgColor]"
+    :class="[bgImage==''?'text-black':'text-white img-mode']"
   >
+    <slot name="leftSlot"></slot>
     <div class="title-wrapper">
       <div
         class="content-item-left"
@@ -11,7 +12,9 @@
         @click="handlerLeftButton"
       >
         <slot name="left">
-          <span class="content-item-left-span">{{ title }}</span>
+          <div
+            :class="[bgImage==''?'content-item-left-span-black': 'content-item-left-span-white']"
+          >{{ title }}</div>
         </slot>
       </div>
 
@@ -27,37 +30,44 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-core"
 export default {
   data() {
     return {
-      lineheight: "",
-      statusHeigt: "",
+      lineheight: ""
     }
   },
   computed: {
     style() {
       var navigationBar = this.lineheight
-      var bgImage = this.bgImage
       var style = `height:${navigationBar}px;`
       if (this.bgImage) {
-        style = `${style}background-image:url(${bgImage});`
+        style = `${style}background-image:url(${this.bgImage});`
+      } else if (this.bgColor) {
+        style = `${style}background:${this.bgColor};`
       }
       return style
     },
   },
   props: {
+    isShowHeader: {
+      type: Boolean,
+      default: false,
+    },
     bgColor: {
       type: String,
       default: "",
     },
-    textColor: {
-      type: String,
-      default: "#000",
-    },
     title: {
       type: String,
       default: "返回",
+    },
+    titleColor: {
+      type: String,
+      default: "#000",
+    },
+    titleSize: {
+      type: Number,
+      default: 16,
     },
     bgImage: {
       type: String,
@@ -65,31 +75,28 @@ export default {
     },
   },
   mounted() {
-    if (XEngine.isHybrid()) {
-      if (XEngine.platform.isPhone) {
-        let navheight = XEngine.api(
+    if (this.engine.isHybrid()) {
+      if (this.engine.platform.isPhone) {
+        let navheight = this.engine.api(
           "com.zkty.jsi.device",
           "getNavigationHeight"
         )
         this.lineheight = navheight
-        this.$refs.navWrapper.style.cssText = `height: ${navheight}px;`
-      } else if (XEngine.platform.isAndroid) {
-        let statusBarHeight = XEngine.api(
+      } else if (this.engine.platform.isAndroid) {
+        let statusBarHeight = this.engine.api(
           "com.zkty.jsi.device",
           "getStatusBarHeight"
         )
-        let navheight = XEngine.api(
+        let navheight = this.engine.api(
           "com.zkty.jsi.device",
           "getNavigationHeight"
         )
         let height = Number(statusBarHeight) + Number(navheight)
         this.lineheight = height
-        this.$refs.navWrapper.style.cssText = `height: ${height}px;`
       }
-    } else if (XEngine.platform.isPc) {
+    } else if (this.engine.platform.isPc) {
       const height = 64
       this.lineheight = height
-      // this.$refs.navWrapper.style.cssText = `height: ${height}px;`
     }
   },
   methods: {
@@ -102,16 +109,11 @@ export default {
 
 <style>
 .navigator-class {
-  width: 100%;
-  position: fixed;
   top: 0;
+  width: 100%;
   z-index: 9999;
-  border-bottom: 1px solid gainsboro;
-}
-
-.navWrapper {
-  font-weight: 600;
-  position: relative;
+  position: fixed;
+  
 }
 
 .title-wrapper {
@@ -130,27 +132,40 @@ export default {
   text-align: center;
 }
 
-.content-item-left-span {
+.content-item-left-span-white {
   padding-left: 20px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
-.content-item-left-span::before {
+.content-item-left-span-white::before {
+  left: 0px;
   content: "";
-  position: absolute;
-  border-left: 1px solid black;
-  border-top: 1px solid black;
+  top: 8px;
   width: 10px;
   height: 10px;
-  top: 5px;
-  left: 0;
+  position: absolute;
   transform: rotate(-45deg);
+  border-left: 2px solid white;
+  border-top: 2px solid white;
 }
 
-.content-item-left img {
-  width: 15px;
-  height: 23px;
-  margin-right: 8px;
-  text-align: left;
+.content-item-left-span-black {
+  padding-left: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.content-item-left-span-black::before {
+  left: 0px;
+  content: "";
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  transform: rotate(-45deg);
+  border-left: 2px solid black;
+  border-top: 2px solid black;
 }
 
 .content-item-center {
@@ -161,10 +176,15 @@ export default {
   text-align: right;
 }
 
-.none-bg {
-  background-color: #fff;
-}
 .text-white {
   color: #fff;
+}
+
+.text-black {
+  color: #000;
+}
+
+.img-mode {
+  background-size: 100% 100%;
 }
 </style>

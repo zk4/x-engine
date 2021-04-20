@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <HEADER ref="globalHeader" @leftButton="handlerBack" :title="navTitle" :bgImage="bgImg"></HEADER>
+    <HEADER
+      v-if="!isShowHeader"
+      :title="navTitle"
+      :bgImage="bgImg"
+      :bgColor="bgColor"
+      @leftButton="handlerBack"
+    ></HEADER>
     <router-view :style="style" />
   </div>
 </template>
@@ -14,9 +20,11 @@ export default {
   },
   data() {
     return {
-      navigatorHeight: this.headerHeight,
       navTitle: "app",
       bgImg: "",
+      bgColor: "",
+      isShowHeader: false,
+      navigatorHeight: this.headerHeight,
     }
   },
   computed: {
@@ -26,21 +34,51 @@ export default {
     },
   },
   methods: {
+    // 返回
     handlerBack() {
-      if (this.$route.meta.type) {
-        this.$router.go(this.$route.meta.type)
+      // 返回指定页面
+      if (this.$route.meta.backPath != undefined) {
+        var path = this.$route.meta.backPath
+        this.$router.go(path)
       } else {
+        // 返回上一页
         this.$router.go(-1)
       }
     },
   },
+
   watch: {
     $route(to) {
-      this.navTitle = to.meta.title
+      // 文字
+      if (to.meta.title) {
+        if (to.query.changeNavTitle) {
+          this.navTitle = to.query.changeNavTitle
+        } else {
+          this.navTitle = to.meta.title
+        }
+      } else {
+        this.navTitle = ""
+      }
+
+      // 图片
       if (to.meta.customBgcImg) {
         this.bgImg = to.meta.customBgcImg
       } else {
         this.bgImg = ""
+      }
+
+      // 背景色
+      if (to.meta.bgColor) {
+        this.bgColor = to.meta.bgColor
+      } else {
+        this.bgColor = ""
+      }
+
+      // 是否显示header
+      if (to.meta.isShowHeader == undefined) {
+        this.isShowHeader = false
+      } else {
+        this.isShowHeader = to.meta.isShowHeader
       }
     },
   },
@@ -55,6 +93,21 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-.content {
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

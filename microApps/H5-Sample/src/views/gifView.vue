@@ -1,10 +1,5 @@
 <template>
   <div>
-    <HEADER
-      @clickLeftButton="handlerHeaderBack"
-      @clickRightButton="handlerHeaderRightBtn"
-      :reviceTitle="navHeader1"
-    />
     <div v-if="isShowContent">
       <img class="img-class" src="../static/image/gif.gif" alt />
       <div>加载数据中.......</div>
@@ -68,11 +63,7 @@
 </template>
 
 <script>
-import HEADER from "../components/Header/index"
 export default {
-  components: {
-    HEADER,
-  },
   data() {
     return {
       isShowContent: true,

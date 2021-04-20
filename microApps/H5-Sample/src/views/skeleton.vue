@@ -1,10 +1,5 @@
 <template>
   <div>
-    <HEADER
-      @clickLeftButton="handlerHeaderBack"
-      @clickRightButton="handlerHeaderRightBtn"
-      :reviceNavTitle="navTitle"
-    />
     <div :style="{marginTop:navigatorHeight+'px'}">
       <div style="margin-top:30px;" v-show="skeletonShow">
         <van-skeleton title avatar round animate :row="3" />
@@ -35,22 +30,14 @@
 </template>
 
 <script>
-import HEADER from "../components/Header/index"
-import XEngine from "@zkty-team/x-engine-core"
 export default {
-  components: {
-    HEADER,
-  },
   data() {
     return {
       navTitle: "骨架屏",
       skeletonShow: true,
-      navigatorHeight: "",
     }
   },
   mounted() {
-    let navHeight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight")
-    this.navigatorHeight = navHeight
     setTimeout(() => {
       this.skeletonShow = false
     }, 3000)

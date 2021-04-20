@@ -79,5 +79,11 @@ public class JSIOldDeviceModule extends JSIModule {
             handler.complete();
         }
     }
-
+    @JavascriptInterface
+    public void getPhoneType(JSONObject obj, final CompletionHandler<Object> handler) {
+        if (iDevice != null) {
+//            iDevice.sendMessage(obj.getString("phoneNumber"), obj.getString("messageContent"));
+            handler.complete("ANDROID");
+        }
+    }
 }

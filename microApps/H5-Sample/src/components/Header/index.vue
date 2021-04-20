@@ -61,14 +61,6 @@ export default {
       type: String,
       default: "返回",
     },
-    titleColor: {
-      type: String,
-      default: "#000",
-    },
-    titleSize: {
-      type: Number,
-      default: 16,
-    },
     bgImage: {
       type: String,
       default: "",

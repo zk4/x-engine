@@ -19,6 +19,9 @@ project(':native-device').projectDir = new File('../../x-engine-native-device/an
 include ':native-camera'
 project(':native-camera').projectDir = new File('../../x-engine-native-camera/android/native-camera')
 
+include ':native-scan'
+project(':native-scan').projectDir = new File('../../x-engine-native-scan/android/native-scan')
+
 include ':native-broadcast'
 project(':native-broadcast').projectDir = new File('../../x-engine-native-broadcast/android/native-broadcast')
 
@@ -48,3 +51,12 @@ project(':jsi-store').projectDir = new File('../../x-engine-jsi-store/android/js
 
 include ':jsi-device'
 project(':jsi-device').projectDir = new File('../../x-engine-jsi-device/android/jsi-device')
+
+include ':jsi-legacy'
+project(':jsi-legacy').projectDir = new File('../../x-engine-jsi-legacy/android/jsi-legacy')
+
+include ':jsi-camera'
+project(':jsi-camera').projectDir = new File('../../x-engine-jsi-camera/android/jsi-camera')
+
+include ':jsi-scan'
+project(':jsi-scan').projectDir = new File('../../x-engine-jsi-scan/android/jsi-scan')

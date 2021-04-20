@@ -1,4 +1,6 @@
 - [device](./docs/modules/all/模块-device.md)
+- [scan](./docs/modules/all/模块-scan.md)
 - [store](./docs/modules/all/模块-store.md)
 - [ui](./docs/modules/all/模块-ui.md)
 - [direct](./docs/modules/all/模块-direct.md)
+- [camera](./docs/modules/all/模块-camera.md)

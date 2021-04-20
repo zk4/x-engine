@@ -21,7 +21,8 @@ import com.zkty.nativ.core.utils.ToastUtils;
 
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
-import module.scan.R;
+import nativ.scan.R;
+
 
 public class ScanActivity extends AppCompatActivity {
     private static final String TAG = ScanActivity.class.getSimpleName();

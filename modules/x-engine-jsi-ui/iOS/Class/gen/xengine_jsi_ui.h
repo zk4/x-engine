@@ -8,6 +8,8 @@
 
 @protocol NavTitleDTO;
 @protocol NavHiddenBarDTO;
+@class NavTitleDTO;
+@class NavHiddenBarDTO;
 
 @interface NavTitleDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -15,14 +17,14 @@
    	@property(nonatomic,assign) NSInteger titleSize;
 @end
     
-    
+
 @interface NavHiddenBarDTO: JSONModel
   	@property(nonatomic,assign) BOOL isHidden;
    	@property(nonatomic,assign) BOOL isAnimation;
 @end
     
-    
-    
+
+
 @protocol xengine_jsi_ui_protocol
        @required 
         - (void) _setNavTitle:(NavTitleDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;

@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     handlerShowNav() {
-      if (XEngine.isHybrid()) {
+      // if (XEngine.isHybrid()) {
         XEngine.bridge.call(
           "com.zkty.jsi.ui.setNavBarHidden",
           {
@@ -26,12 +26,12 @@ export default {
             console.log("res :>> ", res)
           }
         )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+      // } else {
+      //   alert("请在app端测试该功能.")
+      // }
     },
     handlerChangeNavTitle() {
-      if (XEngine.isHybrid()) {
+      // if (XEngine.isHybrid()) {
         XEngine.bridge.call(
           "com.zkty.jsi.ui.setNavTitle",
           {
@@ -43,9 +43,9 @@ export default {
             console.log("res :>> ", res)
           }
         )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+      // } else {
+      //   alert("请在app端测试该功能.")
+      // }
     },
     handlerHiddenNav() {
       if (XEngine.isHybrid()) {

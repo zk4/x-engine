@@ -18,7 +18,7 @@
 
 ```javascript
 安装方式:
-npm install @zkty-team/vue-router	
+npm install @zkty-team/x-engine-router
 ```
 
 
@@ -27,7 +27,7 @@ npm install @zkty-team/vue-router
 ```javascript
 import Vue from "vue"
 import VueRouter from "vue-router"
-import ZKTYRouter from "@zkty-team/vue-router"
+import XEngineRouter from " @zkty-team/x-engine-router"
 
 // 参数1: 传入VueRouter实例
 // 参数2: scheme
@@ -41,7 +41,11 @@ import ZKTYRouter from "@zkty-team/vue-router"
       - 打开https的地址
     - microapp  
 	    - 打开原生应用内部的微应用
-ZKTYRouter(VueRouter, 'omp');
+if (process.env.NODE_ENV == 'development') {
+    XEngineRouter(VueRouter, 'omp');    
+} else {
+    XEngineRouter(VueRouter, 'microapp');
+}
 ```
 
 - 在页面中使用
@@ -80,12 +84,11 @@ version: 0.1.13
 
 
 ## push
-
-
+`sync`,`async`
 
 **demo**
 ``` js
- {
+
   // 跳转omp
   engine.api('com.zkty.jsi.direct', 'push',{
     scheme: 'omp',
@@ -117,54 +120,43 @@ version: 0.1.13
     fragment: "",  
     pathname: "",  
   })  
-}
+
 ``` 
 
-	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| scheme | string | 必填 | omp |  scheme 类型：由原生类实现<br> 当前可用:<br> 1. omp 使用 http 协议，webview 带原生 api 功能<br> 2. omps 使用 https 协议，webview 带原生 api 功能<br> 3. http 普通 webview<br> 4. https 普通 webview<br> 5. microapp 使用 file 协议，打开本地微应用文件 |
-| host | string | optional |  |  形如  192.168.1.15:8080 <br> 要注意：<br> 1. 不需要协议名。 <br> 2. 如果有特殊端口，也必须带上 |
-| pathname | string | 必填 | / |  要注意： |
-| fragment | string | 必填 |  |  要注意：<br> 一定要以 / 开头 |
-| query | Map\<string,string\> | optional |  |  query 参数 |
-| params | Map\<string,string\> | optional | {"hideNavbar":true} |  其他参数（做兼容用） |
-
-
----------------------
+| scheme | string | 必填 | omp | scheme 类型：由原生类实现<br>当前可用:<br>1. omp 使用 http 协议，webview 带原生 api 功能<br>2. omps 使用 https 协议，webview 带原生 api 功能<br>3. http 普通 webview<br>4. https 普通 webview<br>5. microapp 使用 file 协议，打开本地微应用文件 |
+| host | string | optional |  | 形如  192.168.1.15:8080<br>要注意：<br>1. 不需要协议名。<br>2. 如果有特殊端口，也必须带上 |
+| pathname | string | 必填 | / | 要注意： |
+| fragment | string | 必填 |  | 要注意：<br>一定要以 / 开头 |
+| query | Map\<string,string\> | optional |  | query 参数 |
+| params | Map\<string,string\> | optional | {"hideNavbar":true} | 其他参数（做兼容用） |
 **无返回值**
-
 
 
 
 ## back
-
-
+`sync`,`async`
 
 **demo**
 ``` js
- {
+
     engine.api('com.zkty.jsi.direct','back',{
      scheme: 'omp',
      fragment:'-1'
    }
-}
+
 ``` 
 
-	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| scheme | string | 必填 |  |  scheme 类型：由原生类实现<br> 当前可用:<br> 1. omp 使用 http 协议，webview 带原生 api 功能<br> 2. omps 使用 https 协议，webview 带原生 api 功能<br> 3. http 普通 webview<br> 4. https 普通 webview<br> 5. microapp 使用 file 协议，打开本地微应用文件 |
-| fragment | string | 必填 |  |  要注意：<br> / 回头当前应用的首页<br> 标准路由一定要以 / 开头<br> 一些特殊字段：<br> -1 回上一页<br> 0  回头历史中的原生页 |
-
-
----------------------
+| scheme | string | 必填 |  | scheme 类型：由原生类实现<br>当前可用:<br>1. omp 使用 http 协议，webview 带原生 api 功能<br>2. omps 使用 https 协议，webview 带原生 api 功能<br>3. http 普通 webview<br>4. https 普通 webview<br>5. microapp 使用 file 协议，打开本地微应用文件 |
+| fragment | string | 必填 |  | 要注意：<br>/ 回头当前应用的首页<br>标准路由一定要以 / 开头<br>一些特殊字段：<br>-1 回上一页<br>0  回头历史中的原生页 |
 **无返回值**
-
 
 
     

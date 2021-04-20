@@ -17,8 +17,7 @@ version: 0.1.13
 
 
 ## setNavTitle
-
-
+`sync`,`async`
 
 **demo**
 ``` js
@@ -30,7 +29,6 @@ version: 0.1.13
 
 ``` 
 
-	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
@@ -38,18 +36,13 @@ version: 0.1.13
 | title | string | 必填 |  | 导航条的文字 |
 | titleColor | string | 必填 |  | 16进制的颜色色值 |
 | titleSize | int | 必填 | 16 | 字体大小 |
-
-
----------------------
 **无返回值**
 
 
 
-
 ## setNavBarHidden
-
-使用push,或 nav 里 hideNavbar 参数控制状态的显示
-
+`sync`,`async`
+> 使用push,或 nav 里 hideNavbar 参数控制状态的显示
 **demo**
 ``` js
 
@@ -62,18 +55,13 @@ version: 0.1.13
 
 ``` 
 
-	
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | isHidden | bool | 必填 |  | 是否隐藏navBar |
 | isAnimation | bool | 必填 |  | 是否使用动画效果 |
-
-
----------------------
 **无返回值**
-
 
 
     

@@ -4,7 +4,7 @@
     <application>
         <meta-data
             android:name="com.zkty.jsi.scan"
-            android:value="com.zkty.jsi.scan.JSI_scan" />
+            android:value="com.zkty.jsi.JSI_scan" />
     </application>
 
 

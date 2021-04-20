@@ -1,6 +1,5 @@
 <template>
   <div class="testone-class">
-    <div style="marginTop:50px">Home</div>
     <van-button
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
       size="large"
@@ -9,28 +8,8 @@
     >Module Introduce</van-button>
     <van-button type="primary" size="large" round @click="handlerPushRouter">router跳转</van-button>
     <van-button type="info" size="large" round @click="handlerSetNav">设置导航条</van-button>
-    <van-button type="danger" size="large" color="#7232dd" round @click="handlerSkeleton">骨架屏</van-button>
-    <van-button type="warning" size="large" round @click="handlerGIF">GIF进入页面</van-button>
     <van-button type="danger" size="large" round @click="handlerNavigator">前端定制navigator</van-button>
     <van-button size="large" round color="#aaa0dd" @click="handlerCustomLayout">layout</van-button>
-    <van-button
-      color="linear-gradient(to right, #4bb0ff, #6149f6)"
-      size="large"
-      round
-      @click="handlerRefreshData"
-    >刷新数据</van-button>
-    <van-button
-      color="linear-gradient(to right, #4bb0ff, #6149f6)"
-      size="large"
-      round
-      @click="handlerNetwork"
-    >网络请求</van-button>
-    <van-button
-      color="linear-gradient(to right, #4bb0ff, #6149f6)"
-      size="large"
-      round
-      @click="handlerVueX"
-    >VueX</van-button>
     <van-button
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
       size="large"
@@ -43,6 +22,26 @@
       round
       @click="hanlderScan"
     >扫码</van-button>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="handlerRefreshData"
+    >刷新数据</van-button>
+    <van-button type="danger" size="large" color="#7232dd" round @click="handlerSkeleton">骨架屏</van-button>
+    <van-button type="warning" size="large" round @click="handlerGIF">GIF进入页面</van-button>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="handlerNetwork"
+    >网络请求</van-button>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="handlerVueX"
+    >VueX</van-button>
   </div>
 </template>
 
@@ -51,6 +50,7 @@ export default {
   data() {
     return {
       navHeader: "123",
+      navigatorHeight: '',
     }
   },
   methods: {
@@ -113,15 +113,14 @@ export default {
       this.$router.push({
         path: "/scan",
       })
-    }
-    
+    },
   },
 }
 </script>
 
 <style scoped>
 .testone-class {
-  margin: 20px;
+  margin: 0 20px 20px 20px;
 }
 .van-button {
   margin-top: 10px;

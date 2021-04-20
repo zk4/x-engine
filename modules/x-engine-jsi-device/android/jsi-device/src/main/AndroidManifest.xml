@@ -4,7 +4,7 @@
     <application>
         <meta-data
             android:name="com.zkty.jsi.device"
-            android:value="com.zkty.jsi.device.JSI_device" />
+            android:value="com.zkty.jsi.JSI_device" />
     </application>
 
 </manifest>

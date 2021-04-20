@@ -8,6 +8,8 @@
 
 @protocol DirectPushDTO;
 @protocol DirectBackDTO;
+@class DirectPushDTO;
+@class DirectBackDTO;
 
 @interface DirectPushDTO: JSONModel
   	@property(nonatomic,copy) NSString* scheme;

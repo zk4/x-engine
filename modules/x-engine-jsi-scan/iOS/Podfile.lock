@@ -16,13 +16,16 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-jsi (1.0.0):
+    - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-protocols (1.0.0)
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
   - x-engine-native-scan (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
-  - ZBarSDK (1.3.1)
+    - ZBarSDK
+  - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
   - x-engine-native-core (from `../../x-engine-native-core`)
@@ -32,12 +35,11 @@ DEPENDENCIES:
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
   - x-engine-native-scan (from `../../x-engine-native-scan`)
-  - ZBarSDK
+  - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JSONModel
-    - ZBarSDK
 
 EXTERNAL SOURCES:
   x-engine-native-core:
@@ -54,6 +56,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-protocols"
   x-engine-native-scan:
     :path: "../../x-engine-native-scan"
+  ZBarSDK:
+    :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -61,11 +65,11 @@ SPEC CHECKSUMS:
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
   x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
-  x-engine-native-jsi: 0408dfee0c7822614990e6fc1c512569eff1abb5
-  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
-  x-engine-native-scan: 71b1d7e02a06ab5e843fca6146569e0ef5f6867d
-  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
+  x-engine-native-jsi: 92a9a72a45029df1ca8e61e0166e3731e672f523
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
+  ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: b6f0dc2b80a47c01ba8ec5afec12ca5f223223b2
+PODFILE CHECKSUM: d8f646989b910fa0cce666f175f876829b272d42
 
 COCOAPODS: 1.10.1

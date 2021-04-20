@@ -10,6 +10,6 @@
 
         <meta-data
             android:name="com.zkty.jsi.store"
-            android:value="com.zkty.jsi.store.JSI_store" />
+            android:value="com.zkty.jsi.JSI_store" />
     </application>
 </manifest>

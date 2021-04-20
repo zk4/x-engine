@@ -11,7 +11,7 @@ const conf = {
     X_LBS: "READ_WRITE",
     X_PHOTO: "READ",
   },
-}
+};
 
 // 电话模型
 interface phoneDto {
@@ -39,58 +39,58 @@ function getStatusBarHeight(): string {
   function test_getStatusHeight() {
     let val = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
     document.getElementById("debug_text").innerText = typeof val + ":" + val;
-  }}
+  }
+}
 // 获取导航条高度
 @sync
-function getNavigationHeight(): string {}
+function getNavigationHeight(): string {
+  function test_getNavHeight() {
+    let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
+    document.getElementById("debug_text").innerText = typeof val + ":" + val;
+  }
+}
 // 获取屏幕高度
 @sync
-function getScreenHeight(): string {}
+function getScreenHeight(): string {
+  function test_getScreenHeight() {
+    let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
+    document.getElementById("debug_text").innerText = typeof val + ":" + val;
+  }
+}
 // 获取tabBar高度
 @sync
-function getTabbarHeight(): string {}
+function getTabbarHeight(): string {
+  function test_getTabbarHeight() {
+    let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");
+    document.getElementById("debug_text").innerText = typeof val + ":" + val;
+  }
+}
 // 打电话
 @sync
-function callPhone(arg: phoneDto): string {}
+function callPhone(arg: phoneDto): string {
+  function test_callPhone() {
+    xengine.api("com.zkty.jsi.device", "callPhone", {
+      phoneNum: "18637369306",
+      phoneMsg: "",
+    });
+  }
+}
 // 发短信
 @sync
-function sendMessage(arg: phoneDto): string {}
+function sendMessage(arg: phoneDto): string {
+  function test_sendMsg() {
+    xengine.api("com.zkty.jsi.device", "sendMessage", {
+      phoneNum: "18637369306",
+      phoneMsg: "你好",
+    });
+  }
+}
 // 获取设备信息
 @async
-function getDeviceInfo(): DeviceDTO {}
-
-
-function test_getNavHeight() {
-  let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-}
-
-function test_getScreenHeight() {
-  let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-}
-
-function test_getTabbarHeight() {
-  let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");
-  document.getElementById("debug_text").innerText = typeof val + ":" + val;
-}
-
-function test_callPhone() {
-  xengine.api("com.zkty.jsi.device", "callPhone", {
-    phoneNum: "18637369306",
-    phoneMsg: ''
-  });
-}
-
-function test_sendMsg() {
-  xengine.api("com.zkty.jsi.device", "sendMessage", {
-    phoneNum: "18637369306",
-    phoneMsg: '你好'
-  });
-}
-
-function test_getDeviceInfo () {
-  xengine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
-   document.getElementById("debug_text").innerText = JSON.stringify(val);
-  });
+function getDeviceInfo(): DeviceDTO {
+  function test_getDeviceInfo() {
+    xengine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(val);
+    });
+  }
 }

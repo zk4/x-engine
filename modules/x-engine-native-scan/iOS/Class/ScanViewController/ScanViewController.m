@@ -162,18 +162,21 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    
     [super viewWillDisappear:animated];
     [self.rederView stop];
     [timer setFireDate:[NSDate distantFuture]];
 }
 
 - (void)animation {
-//    if(_line.top >= (self.windowRect.origin.y + self.windowRect.size.height) - 2){
-//        _line.top = self.windowRect.origin.y;
-//    } else {
-//        _line.top = _line.top + self.windowRect.size.height / 200;
-//    }
+    if(_line.frame.origin.y >= (self.windowRect.origin.y + self.windowRect.size.height) - 2){
+        CGRect frame = _line.frame;
+        frame.origin.y = self.windowRect.origin.y;
+        _line.frame = frame;
+    } else {
+        CGRect frame = _line.frame;
+        frame.origin.y = _line.frame.origin.y + self.windowRect.size.height / 200;
+        _line.frame = frame;
+    }
 }
 
 - (void)setCropRect:(CGRect)cropRect{
@@ -212,7 +215,7 @@
 
 - (void)readerViewDidStart: (ZBarReaderView*) readerView{}
 
-- (void) readerView: (ZBarReaderView*) readerView
+- (void)readerView: (ZBarReaderView*) readerView
    didStopWithError: (NSError*) error{
 }
 

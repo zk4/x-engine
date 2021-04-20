@@ -10,6 +10,7 @@ import { Loading } from 'vant';
 import { PullRefresh } from 'vant';
 import store from './store'
 
+
 Vue.use(PullRefresh);
 Vue.use(Loading);
 Vue.use(Cell);
@@ -18,6 +19,12 @@ Vue.use(List);
 Vue.use(Skeleton);
 Vue.use(Button);
 Vue.config.productionTip = false
+
+
+import engine from "@zkty-team/x-engine-core"
+Vue.prototype.engine = engine;
+Vue.prototype.headerHeight = engine.api("com.zkty.jsi.device", "getNavigationHeight")
+
 
 Vue.prototype.$store = store
 new Vue({

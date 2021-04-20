@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@zkty-team/x-engine-core": "^1.0.0",
+    "@zkty-team/x-engine-header": "^1.0.9",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "less": "^4.1.1",

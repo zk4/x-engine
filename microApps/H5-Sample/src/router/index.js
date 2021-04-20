@@ -32,7 +32,8 @@ const routes = [{
         path: '/testone',
         name: 'testone',
         meta: {
-            title: "第一页"
+            title: "第一页",
+            customBgcImg: require('@/static/image/navBJ.png')
         },
         component: () => import('../views/jumpRouter/testone.vue')
     },

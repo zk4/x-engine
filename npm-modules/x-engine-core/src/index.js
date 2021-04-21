@@ -42,6 +42,7 @@ function xassert(targetID, expression) {
     document.getElementById(targetID).style.backgroundColor = "red";
   }
 }
+
 function api(jsimoduleId, funcname, args, cb) {
   if (args) {
     if (args.hasOwnProperty("__event__")) {
@@ -60,6 +61,7 @@ function api(jsimoduleId, funcname, args, cb) {
   // sync 通过 return 返回
   return dsbridge.call(jsimoduleId + "." + funcname, args, cb);
 }
+
 function broadcastOff() {
   xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }
@@ -71,6 +73,7 @@ function broadcastOn(eventcb) {
   });
 }
 let only_idx = 0;
+
 function use(ns, funcs) {
   if (module_names.has(ns)) {
     throw ns + ',注册无效,模块已存在,xengine.use("' + ns + '") 只允许调用一次;';
@@ -111,7 +114,10 @@ function use(ns, funcs) {
   return funcs.reduce((acc, cur, i) => {
     if (isObject(cur)) {
       acc[cur.name] = (args) =>
-        _call(cur.name, { ...cur.default_args, ...args });
+        _call(cur.name, {
+          ...cur.default_args,
+          ...args
+        });
     } else if (isString(cur)) {
       acc[cur] = (args) => _call(cur, args);
     } else {
@@ -138,9 +144,9 @@ function platform() {
     isFireFox = /(?:Firefox)/.test(ua),
     isChrome = /(?:Chrome|CriOS)/.test(ua),
     isTablet =
-      /(?:iPad|PlayBook)/.test(ua) ||
-      (isAndroid && !/(?:Mobile)/.test(ua)) ||
-      (isFireFox && /(?:Tablet)/.test(ua)),
+    /(?:iPad|PlayBook)/.test(ua) ||
+    (isAndroid && !/(?:Mobile)/.test(ua)) ||
+    (isFireFox && /(?:Tablet)/.test(ua)),
     isPhone = /(?:iPhone)/.test(ua) && !isTablet,
     isPc = !isPhone && !isAndroid && !isSymbian;
   return {
@@ -227,4 +233,3 @@ patch.disableDoubleTapScroll = function (ms) {
   }
 };
 export default xengine;
-

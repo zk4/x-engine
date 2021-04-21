@@ -2,9 +2,9 @@
   <div
     class="navigator-class"
     :style="style"
-    :class="[bgImage==''?'text-black':'text-white img-mode']"
+    :class="[bgImage==''?'text-black no-bg':'text-white img-mode']"
+    v-if="!isShowHeader"
   >
-    <slot name="leftSlot"></slot>
     <div class="title-wrapper">
       <div
         class="content-item-left"
@@ -14,7 +14,7 @@
         <slot name="left">
           <div
             :class="[bgImage==''?'content-item-left-span-black': 'content-item-left-span-white']"
-          >{{ title }}</div>
+          >{{ navTitle }}</div>
         </slot>
       </div>
 
@@ -30,10 +30,16 @@
 </template>
 
 <script>
+import XEngine from "@zkty-team/x-engine-core"
 export default {
+  name: "ZKTY-Header",
   data() {
     return {
-      lineheight: ""
+      lineheight: "",
+      bgColor: "",
+      navTitle: "",
+      bgImage: "",
+      isShowHeader: false,
     }
   },
   computed: {
@@ -48,60 +54,79 @@ export default {
       return style
     },
   },
-  props: {
-    isShowHeader: {
-      type: Boolean,
-      default: false,
-    },
-    bgColor: {
-      type: String,
-      default: "",
-    },
-    title: {
-      type: String,
-      default: "返回",
-    },
-    titleColor: {
-      type: String,
-      default: "#000",
-    },
-    titleSize: {
-      type: Number,
-      default: 16,
-    },
-    bgImage: {
-      type: String,
-      default: "",
-    },
-  },
   mounted() {
-    if (this.engine.isHybrid()) {
-      if (this.engine.platform.isPhone) {
-        let navheight = this.engine.api(
+    if (XEngine.isHybrid()) {
+      if (XEngine.platform.isPhone) {
+        let navheight = XEngine.api(
           "com.zkty.jsi.device",
           "getNavigationHeight"
         )
         this.lineheight = navheight
-      } else if (this.engine.platform.isAndroid) {
-        let statusBarHeight = this.engine.api(
+      } else if (XEngine.platform.isAndroid) {
+        let statusBarHeight = XEngine.api(
           "com.zkty.jsi.device",
           "getStatusBarHeight"
         )
-        let navheight = this.engine.api(
+        let navheight = XEngine.api(
           "com.zkty.jsi.device",
           "getNavigationHeight"
         )
         let height = Number(statusBarHeight) + Number(navheight)
         this.lineheight = height
       }
-    } else if (this.engine.platform.isPc) {
+    } else if (XEngine.platform.isPc) {
+      const height = 64
+      this.lineheight = height
+    } else {
       const height = 64
       this.lineheight = height
     }
   },
   methods: {
     handlerLeftButton() {
-      this.$emit("leftButton")
+      // 返回指定页面
+      if (this.$route.meta.backPath != undefined) {
+        var path = this.$route.meta.backPath
+        this.$router.go(path)
+      } else {
+        // 返回上一页
+        this.$router.go(-1)
+      }
+    },
+  },
+  watch: {
+    $route(to) {
+      // 文字
+      if (to.meta.hasOwnProperty('title')) {
+        if (to.query.hasOwnProperty("changeNavTitle")) {
+          this.navTitle = to.query.changeNavTitle
+        } else {
+          this.navTitle = to.meta.title
+        }
+      } else  {
+        this.navTitle = "请在router配置title信息"
+      }
+
+      // 图片
+      if (to.meta.customBgcImg) {
+        this.bgImage = to.meta.customBgcImg
+      } else {
+        this.bgImage = ""
+      }
+
+      // 背景色
+      if (to.meta.bgColor) {
+        this.bgColor = to.meta.bgColor
+      } else {
+        this.bgColor = ""
+      }
+
+      // 是否显示header
+      if (to.meta.isShowHeader == undefined) {
+        this.isShowHeader = false
+      } else {
+        this.isShowHeader = to.meta.isShowHeader
+      }
     },
   },
 }
@@ -111,9 +136,8 @@ export default {
 .navigator-class {
   top: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 999;
   position: fixed;
-  
 }
 
 .title-wrapper {
@@ -186,5 +210,9 @@ export default {
 
 .img-mode {
   background-size: 100% 100%;
+}
+
+.no-bg {
+  background-color: #fff;
 }
 </style>

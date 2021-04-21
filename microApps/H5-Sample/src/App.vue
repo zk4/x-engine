@@ -1,85 +1,28 @@
 <template>
   <div id="app">
-    <HEADER
-      v-if="!isShowHeader"
-      :title="navTitle"
-      :bgImage="bgImg"
-      :bgColor="bgColor"
-      @leftButton="handlerBack"
-    ></HEADER>
+    <ZKTY-Header />
     <router-view :style="style" />
   </div>
 </template>
 
 <script>
-import HEADER from "@/components/Header/index"
 export default {
   name: "App",
-  components: {
-    HEADER,
-  },
   data() {
     return {
-      navTitle: "app",
-      bgImg: "",
-      bgColor: "",
       isShowHeader: false,
       navigatorHeight: this.headerHeight,
     }
   },
   computed: {
     style() {
-      var style = `margin-top:${this.navigatorHeight}px;`
+      let style
+      if (this.$engine.isHybrid()) {
+        style = `margin-top:${this.$navigatorHeight}px;`
+      } else {
+        style = `margin-top:${64}px;`
+      }
       return style
-    },
-  },
-  methods: {
-    // 返回
-    handlerBack() {
-      // 返回指定页面
-      if (this.$route.meta.backPath != undefined) {
-        var path = this.$route.meta.backPath
-        this.$router.go(path)
-      } else {
-        // 返回上一页
-        this.$router.go(-1)
-      }
-    },
-  },
-
-  watch: {
-    $route(to) {
-      // 文字
-      if (to.meta.title) {
-        if (to.query.changeNavTitle) {
-          this.navTitle = to.query.changeNavTitle
-        } else {
-          this.navTitle = to.meta.title
-        }
-      } else {
-        this.navTitle = ""
-      }
-
-      // 图片
-      if (to.meta.customBgcImg) {
-        this.bgImg = to.meta.customBgcImg
-      } else {
-        this.bgImg = ""
-      }
-
-      // 背景色
-      if (to.meta.bgColor) {
-        this.bgColor = to.meta.bgColor
-      } else {
-        this.bgColor = ""
-      }
-
-      // 是否显示header
-      if (to.meta.isShowHeader == undefined) {
-        this.isShowHeader = false
-      } else {
-        this.isShowHeader = to.meta.isShowHeader
-      }
     },
   },
 }

@@ -23,7 +23,7 @@
 export default {
   methods: {
     hanlderOpenAlert() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.camera",
         "openImagePicker",
         {
@@ -52,7 +52,7 @@ export default {
       )
     },
     handlerSavePhotoToAlbum() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.camera",
         "saveImageToPhotoAlbum",
         {

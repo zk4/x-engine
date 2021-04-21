@@ -32,7 +32,8 @@ const routes = [{
         path: '/testone',
         name: 'testone',
         meta: {
-            title: "第一页"
+            title: "第一页",
+            customBgcImg: require('@/static/image/navBJ.png')
         },
         component: () => import('../views/jumpRouter/testone.vue')
     },
@@ -99,6 +100,7 @@ const routes = [{
         name: 'refreshData',
         meta: {
             title: "刷新数据",
+            bgColor: "#a81f24"
         },
         component: () => import('../views/refreshData/refreshData.vue')
     },

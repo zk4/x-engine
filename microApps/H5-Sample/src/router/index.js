@@ -41,7 +41,8 @@ const routes = [{
         path: '/testtwo',
         name: 'testtwo',
         meta: {
-            title: "第二页"
+            title: "第二页",
+            bgColor: "transparent"
         },
         component: () => import('../views/jumpRouter/testtwo.vue')
     },

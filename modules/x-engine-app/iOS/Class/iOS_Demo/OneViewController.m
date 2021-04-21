@@ -40,8 +40,8 @@
 
 //     cwz 远程
 //    [director push:@"omp" host:@"10.2.129.112:8081" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp" host:@"192.168.3.12:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+    [director push:@"omp" host:@"192.168.3.12:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
     
     // zk4 远程 请替换host
 //    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];

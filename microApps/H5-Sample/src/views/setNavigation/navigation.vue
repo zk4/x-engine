@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     handlerShowNav() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.ui.setNavBarHidden",
         {
           isHidden: false,
@@ -26,7 +26,7 @@ export default {
       )
     },
     handlerChangeNavTitle() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.ui.setNavTitle",
         {
           title: "哦哦哦",
@@ -39,7 +39,7 @@ export default {
       )
     },
     handlerHiddenNav() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.ui.setNavBarHidden",
         {
           isHidden: true,

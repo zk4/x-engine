@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     hanlderScan() {
-      this.engine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
+      this.$engine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
         this.result = val
       })
     },

@@ -30,9 +30,8 @@ Vue.use(Skeleton);
 Vue.use(Button);
 Vue.config.productionTip = false
 
-
 import engine from "@zkty-team/x-engine-core"
-Vue.prototype.engine = engine;
+Vue.prototype.$engine = engine;
 // 原生手机状态栏高度
 Vue.prototype.$statusHeight = engine.api("com.zkty.jsi.device", "getStatusBarHeight");
 // 原生手机导航条高度
@@ -50,8 +49,8 @@ engine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
   Vue.prototype.$tabbarHeight = val
 });
 
-import ZKTYHeader from '@zkty-team/x-engine-header';
-import "@zkty-team/x-engine-header/lib/ZKTYHeader.css"
+import ZKTYHeader from '@zkty-team/x-engine-ui';
+import "@zkty-team/x-engine-ui/lib/ZKTYHeader.css"
 Vue.use(ZKTYHeader);
 
 

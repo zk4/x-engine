@@ -42,7 +42,7 @@ export default {
     // https
     // microapp
     handlerOpenMicroApp() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.direct",
         "push",
         {
@@ -60,7 +60,7 @@ export default {
       )
     },
     handlerOpenBaidu() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.direct",
         "push",
         {
@@ -79,7 +79,7 @@ export default {
     },
     // https
     handlerOpenYoutube() {
-      this.engine.api(
+      this.$engine.api(
         "com.zkty.jsi.direct",
         "push",
         {

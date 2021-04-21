@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ZKTY-Header />
-    <router-view :style="style"/>
+    <router-view :style="style" />
   </div>
 </template>
 
@@ -16,7 +16,12 @@ export default {
   },
   computed: {
     style() {
-      var style = `margin-top:${this.$navigatorHeight}px;`
+      let style
+      if (this.$engine.isHybrid()) {
+        style = `margin-top:${this.$navigatorHeight}px;`
+      } else {
+        style = `margin-top:${64}px;`
+      }
       return style
     },
   },

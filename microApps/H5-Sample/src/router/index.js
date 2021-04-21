@@ -100,6 +100,7 @@ const routes = [{
         name: 'refreshData',
         meta: {
             title: "刷新数据",
+            bgColor: "#a81f24"
         },
         component: () => import('../views/refreshData/refreshData.vue')
     },

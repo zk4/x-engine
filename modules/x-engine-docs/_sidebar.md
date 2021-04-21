@@ -1,5 +1,6 @@
 - *前端开发*
-  - [前端模块api](./docs/devProcess/微应用开发流程.md)
+  - [前端模块](./docs/devProcess/微应用开发流程.md)
+  - [公共组件](./docs/devProcess/公共组件.md)
   - [原生模块api](./docs/modules/all/模块-device.md)
   
 - [**引擎架构**](./docs/xengine/arch/xengine-引擎架构.md)

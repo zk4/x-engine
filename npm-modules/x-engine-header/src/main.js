@@ -6,7 +6,6 @@ import App from './App.vue'
 import ZKTYHeader from "../lib/ZKTYHeader.common.js"
 import "../lib/ZKTYHeader.css"
 Vue.use(ZKTYHeader)
-
 Vue.config.productionTip = false
 
 new Vue({

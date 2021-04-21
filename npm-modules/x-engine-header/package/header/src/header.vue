@@ -3,6 +3,7 @@
     class="navigator-class"
     :style="style"
     :class="[bgImage==''?'text-black no-bg':'text-white img-mode']"
+    v-if="!isShowHeader"
   >
     <slot name="leftSlot"></slot>
     <div class="title-wrapper">
@@ -36,10 +37,10 @@ export default {
   data() {
     return {
       lineheight: "",
-      isShowHeader: "",
       bgColor: "",
       title: "返回",
       bgImage: "",
+      isShowHeader: false,
     }
   },
   computed: {
@@ -77,11 +78,21 @@ export default {
     } else if (XEngine.platform.isPc) {
       const height = 64
       this.lineheight = height
+    } else {
+      const height = 64
+      this.lineheight = height
     }
   },
   methods: {
     handlerLeftButton() {
-      this.$emit("leftButton")
+      // 返回指定页面
+      if (this.$route.meta.backPath != undefined) {
+        var path = this.$route.meta.backPath
+        this.$router.go(path)
+      } else {
+        // 返回上一页
+        this.$router.go(-1)
+      }
     },
   },
   watch: {

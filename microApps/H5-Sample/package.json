@@ -8,8 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@zkty-team/x-engine-core": "^1.0.0",
-    "@zkty-team/x-engine-header": "^1.0.9",
+    "@zkty-team/x-engine-core": "^1.0.1",
+    "@zkty-team/x-engine-router": "^1.0.0",
+    "@zkty-team/x-engine-header": "^1.0.12",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "less": "^4.1.1",

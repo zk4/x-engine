@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-header",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "private": false,
   "author": "Cwz.",
   "main": "lib/ZKTYHeader.common.js",

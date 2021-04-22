@@ -9,7 +9,7 @@ public class DirectManager {
 
     public static void push(String scheme, String host, String pathname, String fragment, Map<String, Object> query, Map<String, Object> params) {
         String protocol = "https:";
-        if ("omp".equals(scheme)) protocol = "https:";
+        if ("omp".equals(scheme)) protocol = "http:";
         if ("http".equals(scheme)) protocol = "http:";
         if ("https".equals(scheme)) protocol = "https:";
         if ("microapp".equals(scheme)) protocol = "file:";

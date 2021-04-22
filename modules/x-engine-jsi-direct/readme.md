@@ -2,13 +2,12 @@
 
 <br> ![RFC 规范](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210330114053584.png)<br>
 
-## 开发方式: 
+## 开发方式
 
-> 为了方便业务人员的开发,我们对原生VueRouter的跳转进行了拦截.
+> 为了方便业务人员的开发,我们对 h5 的跳转进行了拦截.
 >
-> 开发人员可以直接使用VueRouter的`push()`和`go()`来进行路由的操作。
+> 开发人员可以直接使用vue-router的`push()`和`go()`来进行路由的操作。
 >
-> npm package name:  @zkty-team/vue-router
 
 ```javascript
 安装方式:

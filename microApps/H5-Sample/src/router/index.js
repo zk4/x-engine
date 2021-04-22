@@ -51,7 +51,6 @@ const routes = [{
         name: 'testthree',
         meta: {
             title: "第三页",
-            backPath: '/'
         },
         component: () => import('../views/jumpRouter/testthree.vue')
     },
@@ -67,7 +66,7 @@ const routes = [{
         path: '/navigation',
         name: 'navigation',
         meta: {
-            title: "设置原生导航条",
+            isShowHeader: true
         },
         component: () => import('../views/navigation.vue')
     },

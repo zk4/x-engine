@@ -1,6 +1,13 @@
 <template>
   <div class="scan">
-   12341234
+    <van-button
+      class="btn-class"
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="hanlderScan"
+    >扫码</van-button>
+    {{result}}
   </div>
 </template>
 

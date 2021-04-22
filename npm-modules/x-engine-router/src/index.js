@@ -16,7 +16,22 @@ function intercept(VueRouter, scheme) {
                 console.log('res :>> ', res);
             })
         } else {
-            return originalRouterPush.call(this, location);
+            //  为了适配android
+            if (XEngine.platform.isAndroid) {
+                XEngine.api('com.zkty.jsi.direct', 'push', {
+                    scheme: scheme,
+                    pathname: '',
+                    fragment: location.path,
+                    query: location.query,
+                    params: {
+                        hideNavbar: true
+                    }
+                }, function (res) {
+                    console.log('res :>> ', res);
+                })
+            } else {
+                return originalRouterPush.call(this, location);
+            }
         }
     }
 
@@ -34,7 +49,21 @@ function intercept(VueRouter, scheme) {
                 console.log('res :>> ', res);
             })
         } else {
-            return originalRouterGo.call(this, location);
+            //  为了适配android
+            if (XEngine.platform.isAndroid) {
+                XEngine.api('com.zkty.jsi.direct', 'back', {
+                    scheme: scheme,
+                    pathname: '',
+                    fragment: location + "",
+                    params: {
+                        hideNavbar: true
+                    }
+                }, function (res) {
+                    console.log('res :>> ', res);
+                })
+            } else {
+                return originalRouterGo.call(this, location);
+            }
         }
     }
 }

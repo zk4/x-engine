@@ -1,4 +1,10 @@
 PODS:
+  - Flutter (1.0.0)
+  - flutter_library (0.0.1):
+    - Flutter
+  - FlutterEngine (0.1.0)
+  - FlutterPluginRegistrant (0.0.1):
+    - Flutter
   - GCDWebServer (3.5.4):
     - GCDWebServer/Core (= 3.5.4)
   - GCDWebServer/Core (3.5.4)
@@ -75,6 +81,10 @@ PODS:
   - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
+  - Flutter (from `../flutter_library/.ios/Flutter/engine`)
+  - flutter_library (from `../flutter_library/.ios/Flutter`)
+  - FlutterEngine (from `../flutter_library`)
+  - FlutterPluginRegistrant (from `../flutter_library/.ios/Flutter/FlutterPluginRegistrant`)
   - JSONModel
   - x-engine-jsi-camera (from `../../x-engine-jsi-camera`)
   - x-engine-jsi-device (from `../../x-engine-jsi-device`)
@@ -103,6 +113,14 @@ SPEC REPOS:
     - JSONModel
 
 EXTERNAL SOURCES:
+  Flutter:
+    :path: "../flutter_library/.ios/Flutter/engine"
+  flutter_library:
+    :path: "../flutter_library/.ios/Flutter"
+  FlutterEngine:
+    :path: "../flutter_library"
+  FlutterPluginRegistrant:
+    :path: "../flutter_library/.ios/Flutter/FlutterPluginRegistrant"
   x-engine-jsi-camera:
     :path: "../../x-engine-jsi-camera"
   x-engine-jsi-device:
@@ -145,6 +163,10 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
 SPEC CHECKSUMS:
+  Flutter: ac41d61a47ae5bf8195a5598d2d63754888ec0d5
+  flutter_library: f6bfec3df8a4f0cc56ac2240f636531c6c2db337
+  FlutterEngine: 510eeabadbc422fa67de773ca60daab008e0b7c0
+  FlutterPluginRegistrant: 2afd5ea46d3a949472c9b7da6462d8fbf7d8b16e
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   x-engine-jsi-camera: 54c1c94282a948bf673e36f5fb77e89d99eaf6f4
@@ -168,6 +190,6 @@ SPEC CHECKSUMS:
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: f082cf77a90ff3951aa6677512125fcdb4f81d1d
+PODFILE CHECKSUM: c94e5a9fb44b7cb6c7937baf03c6b206f30e7ed4
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

@@ -8,6 +8,9 @@
 
 #import "ThreeViewController.h"
 
+#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
+
+
 @interface ThreeViewController ()
 
 @end
@@ -16,9 +19,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"模块3";
+    self.navigationItem.title = @"flutter 3";
+    UIButton *button = [[UIButton alloc]init];
+       [button setTitle:@"加载Flutter模块" forState:UIControlStateNormal];
+       button.backgroundColor=[UIColor redColor];
+       button.frame = CGRectMake(50, 50, 200, 100);
+       [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+       [button addTarget:self action:@selector(buttonPrint) forControlEvents:UIControlEventTouchUpInside];
+       [self.view addSubview:button];
 }
 
+- (void)buttonPrint{
+    FlutterViewController * flutterVC = [[FlutterViewController alloc]init];
+    [flutterVC setInitialRoute:@"defaultRoute"];
+    [self presentViewController:flutterVC animated:true completion:nil];
+}
 /*
 #pragma mark - Navigation
 

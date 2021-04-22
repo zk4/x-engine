@@ -10,8 +10,6 @@ export default {
   name: "App",
   data() {
     return {
-      isShowHeader: false,
-      navigatorHeight: this.headerHeight,
     }
   },
   computed: {

@@ -67,7 +67,7 @@ const routes = [{
         path: '/navigation',
         name: 'navigation',
         meta: {
-            title: "设置原生导航条",
+            isShowHeader: true
         },
         component: () => import('../views/navigation.vue')
     },

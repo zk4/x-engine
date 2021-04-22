@@ -1,5 +1,6 @@
   
--  JSI api 版本
+-  bridge api 版本
+  - [FSI 0.1](./docs/fsi/readme.md)
   - [JSI.2.0](./docs/modules/all/模块-direct.md)
   - [JSI.1.0 不再维护](./docs/modules/all/1.0/模块-direct.md)
 

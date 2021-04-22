@@ -6,21 +6,22 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
+@protocol _0_com_zkty_jsi_localstorage_DTO;
+@class _0_com_zkty_jsi_localstorage_DTO;
 
-
-
+@interface _0_com_zkty_jsi_localstorage_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* key;
+   	@property(nonatomic,copy) NSString* val;
+@end
+    
 
 
 @protocol xengine_jsi_localstorage_protocol
        @required 
-        - (void) _get:(NSString*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-   @required 
        - (NSString*) _get:(NSString*)dto;
     
       @required 
-        - (void) _set:(NSString*) dto complete:(void (^)(BOOL complete)) completionHandler;
-       @required 
-       - (void) _set:(NSString*)dto;
+       - (void) _set:(_0_com_zkty_jsi_localstorage_DTO*)dto;
     
 @end
   

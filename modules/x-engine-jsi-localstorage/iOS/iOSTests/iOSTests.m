@@ -4,8 +4,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <x-engine-module-engine/XEngineJSBUtil.h>
-#import "xengine__module_localstorage.h"
 @interface iOSTests : XCTestCase
 
 @end
@@ -22,11 +20,7 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-    
-    ContinousDTO * d= [ContinousDTO new];
-    NSString* s=[XEngineJSBUtil objToJsonString:d];
-    NSLog(@"%@",s);
+    // Use XCTAssert and related functions to verify your tests produce the correct results. 
     
     
 }

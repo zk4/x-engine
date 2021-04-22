@@ -26,22 +26,19 @@ JSI_MODULE(JSI_localstorage)
 }
 
    
-
+- (NSString *) genkey:(NSString*) key{
+    return  [NSString stringWithFormat:@"%@:%@", [[GlobalState sharedInstance] getLastHost], key];
+}
 - (NSString *)_get:(NSString *)dto {
-    NSString *customkey = [NSString stringWithFormat:@"%@-%@", [[GlobalState sharedInstance] getLastHost], key];
+    return [_store get:[self genkey:dto]];
+
+}
+ 
+
+- (void)_set:(_0_com_zkty_jsi_localstorage_DTO *)dto {
+    [_store set:[self genkey:dto.key] val:dto.val];
 
 }
 
-- (void)_get:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    <#code#>
-}
-
-- (void)_set:(NSString *)dto {
-    <#code#>
-}
-
-- (void)_set:(NSString *)dto complete:(void (^)(BOOL))completionHandler {
-    <#code#>
-}
-
+ 
 @end

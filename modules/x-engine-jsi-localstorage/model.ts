@@ -16,24 +16,25 @@ const conf = {
 
 
 @sync
-@async
 function get(arg:string):string {}
 
 @sync
-@async
-function set(key:string, val:string){}
+function set(arg:{key:string, val:string}){}
 
 
-// test function
-//function test_同步无返回(){
-  //let val = xengine.api("com.zkty.jsi.localstorage", "simpleMethod");
-  //document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
-//}
-//// test function
-//function test_同步简单参数(){
-  //let val = xengine.api("com.zkty.jsi.localstorage", "simpleArgMethod","hello,from js");
-  //document.getElementById("debug_text").innerText =val;
-//}
+function test_set_abc_world(){
+  let val = xengine.api("com.zkty.jsi.localstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
+}
+
+function test_get(){
+  let val = xengine.api("com.zkty.jsi.localstorage", "get",
+    'abc',
+  );
+  document.getElementById("debug_text").innerText = val;
+}
 
 //function test_同步返回命名对象() {
   //let val = xengine.api("com.zkty.jsi.localstorage", "namedObject", {});

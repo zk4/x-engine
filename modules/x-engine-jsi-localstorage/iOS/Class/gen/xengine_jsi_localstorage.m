@@ -6,6 +6,12 @@
 #import "xengine_jsi_localstorage.h"
 
 
+@implementation _0_com_zkty_jsi_localstorage_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
 
 
 
@@ -21,27 +27,14 @@
         return @"com.zkty.jsi.localstorage";
     }
     
-    - (void) get:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NSString* dto = [self convert:dict clazz:NSString.class];
-          [self _get:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
+  
   - (NSString*) get:(NSDictionary*) dict {
       NSString* dto = [self convert:dict clazz:NSString.class];
       return [self _get:dto];
         }
-    - (void) set:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NSString* dto = [self convert:dict clazz:NSString.class];
-          [self _set:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
-          }];
-      }
+  
   - (id) set:(NSDictionary*) dict {
-      NSString* dto = [self convert:dict clazz:NSString.class];
+      _0_com_zkty_jsi_localstorage_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_localstorage_DTO.class];
       [self _set:dto];
                  return nil;
         }

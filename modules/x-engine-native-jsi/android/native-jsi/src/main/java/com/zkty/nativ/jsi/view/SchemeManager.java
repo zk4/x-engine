@@ -6,8 +6,10 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
+import com.zkty.nativ.jsi.exception.XEngineException;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class SchemeManager {
@@ -49,6 +51,9 @@ public class SchemeManager {
             methodModule.invoke(object, jsonObject, completionHandler);
 
         } catch (Exception e) {
+            if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
+                throw new XEngineException(e.getMessage());
+            }
             Log.d(TAG, e.toString());
         }
 

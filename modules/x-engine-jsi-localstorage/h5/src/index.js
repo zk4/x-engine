@@ -11,7 +11,18 @@ function osCheck() {
   else {
 
     return  xengine.use("com.zkty.jsi.localstorage", 
-    []
+    [
+  {
+    "name": "test_set_abc_world",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_get",
+    "default_args": {},
+    "decorators": []
+  }
+]
 )}}
 
 export default osCheck();

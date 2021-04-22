@@ -8,13 +8,12 @@
 
 <br> ![RFC 规范](https://raw.githubusercontent.com/zk4/image_backup/main/img/image-20210330114053584.png)<br>
 
-## 开发方式: 
+## 开发方式
 
-> 为了方便业务人员的开发,我们对原生VueRouter的跳转进行了拦截.
+> 为了方便业务人员的开发,我们对 h5 的跳转进行了拦截.
 >
-> 开发人员可以直接使用VueRouter的`push()`和`go()`来进行路由的操作。
+> 开发人员可以直接使用vue-router的`push()`和`go()`来进行路由的操作。
 >
-> npm package name:  @zkty-team/vue-router
 
 ```javascript
 安装方式:
@@ -129,8 +128,8 @@ version: 0.1.13
 | --------------------------- | --------- | -------- | --------- |--------- |
 | scheme | string | 必填 | omp | scheme 类型：由原生类实现<br>当前可用:<br>1. omp 使用 http 协议，webview 带原生 api 功能<br>2. omps 使用 https 协议，webview 带原生 api 功能<br>3. http 普通 webview<br>4. https 普通 webview<br>5. microapp 使用 file 协议，打开本地微应用文件 |
 | host | string | optional |  | 形如  192.168.1.15:8080<br>要注意：<br>1. 不需要协议名。<br>2. 如果有特殊端口，也必须带上 |
-| pathname | string | 必填 | / | 要注意： |
-| fragment | string | 必填 |  | 要注意：<br>一定要以 / 开头 |
+| pathname | string | 必填 |  |  |
+| fragment | string | 必填 | / | 要注意：<br>一定要以 / 开头 |
 | query | Map\<string,string\> | optional |  | query 参数 |
 | params | Map\<string,string\> | optional | {"hideNavbar":true} | 其他参数（做兼容用） |
 **无返回值**

@@ -4,9 +4,13 @@
 
 x-engine 是一个跨端模块管理框架，它的定位就是是客户端的 Spring，管理 bean（模块）。
 
-![image-20200929021827767](assets/image-20200929021827767.png)
+![image-20210422162652052](assets/image-20210422162652052.png)
 
-x-engine 的目的并不是做“另一个跨平台”框架，
+
+
+![image-20210422162839624](assets/image-20210422162839624.png)
+
+x-engine 的目的并不是做“另一个跨平台”框架
 
 因为这样的框架太多了，从时间上，先是 cordova/capacitor/ionic，到 react-native, 到 flutter。
 
@@ -15,6 +19,7 @@ x-engine 的目的并不是做“另一个跨平台”框架，
 native + h5  : cordova 
 
 h5 -> native  : reactie-native  weex 
+
 self-render   : flutter
 
 native + web- : 小程序
@@ -40,13 +45,7 @@ x-engine 的优势在于, 原生为主. 由原生主导. x-engine 以 sdk 的形
 
 它是一套基于 x-engine 的 Hybrid 轻量解决方案。 通过几个模块的简单组合,就能使你的 app 具有类似微信小程序的能力. 
 
-支持的功能包含：
-
-- 离线更新.
-- 增强 JS 的能力.
-- 统一路由.(原生,h5,微应用,wgt,等)
-
-
+ 
 
 当然,我们知道微信小程序是view 与 logic 分离的. 这样做的好处一是api 可控,更安全, 二是可以在 view 的渲染器上做点文章. 
 

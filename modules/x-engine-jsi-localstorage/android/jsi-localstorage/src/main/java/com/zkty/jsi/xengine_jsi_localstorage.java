@@ -16,10 +16,15 @@
   import com.zkty.nativ.jsi.annotation.Optional;
 
   
+  class _0_com_zkty_jsi_localstorage_DTO {
+    public String key;
+
+    public String val;
+  }
   
   interface xengine_jsi_localstorage_protocol {
-    public void _get(String dto, final CompletionHandler<String> handler);    String _get(String dto);
-public void _set(String dto, final CompletionHandler<Nullable> handler);    void _set(String dto);
+        String _get(String dto);
+    void _set(_0_com_zkty_jsi_localstorage_DTO dto);
   }
   
   
@@ -29,19 +34,6 @@ public void _set(String dto, final CompletionHandler<Nullable> handler);    void
       return "com.zkty.jsi.localstorage";
     }
   
-    @JavascriptInterface
-    final public void get(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      String dto= convert(jsonobj,String.class);
-      _get(dto, new CompletionHandler<String>() {
-        @Override
-        public void complete(String retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
-      });
-
-    }
         @JavascriptInterface
         public String get(JSONObject jsonobj) {
           String dto= convert(jsonobj,String.class);
@@ -49,22 +41,9 @@ public void _set(String dto, final CompletionHandler<Nullable> handler);    void
         }
         
 
-    @JavascriptInterface
-    final public void set(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      String dto= convert(jsonobj,String.class);
-      _set(dto, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
         @JavascriptInterface
         public Object set(JSONObject jsonobj) {
-          String dto= convert(jsonobj,String.class);
+          _0_com_zkty_jsi_localstorage_DTO dto= convert(jsonobj,_0_com_zkty_jsi_localstorage_DTO.class);
           _set(dto);
           return null;
         }

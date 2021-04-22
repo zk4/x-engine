@@ -1,6 +1,5 @@
 <template>
   <div class="testthree-class">
-    <div style="marginTop:50px">第3页</div>
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
     <van-button type="info" size="large" round @click="handlerBack">上一页</van-button>
   </div>
@@ -9,7 +8,8 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+    }
   },
   methods: {
     handlerPush() {
@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 .testthree-class {
-  margin: 20px;
+  margin: 0 20px;
 }
 .van-button {
   margin-top: 10px;

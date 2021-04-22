@@ -1,6 +1,5 @@
 <template>
   <div class="testone-class">
-    <div style="marginTop:50px">第1页</div>
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
     <van-button type="info" size="large" round @click="handlerBack">上一页</van-button>
     <van-button
@@ -16,7 +15,6 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-core"
 export default {
   data() {
     return {}
@@ -28,7 +26,8 @@ export default {
         query: {
           id: 1,
           age: 18,
-          name:'中文'
+          name: "中文",
+          changeNavTitle: "上个页面修改的文字",
         },
       })
     },
@@ -43,71 +42,59 @@ export default {
     // https
     // microapp
     handlerOpenMicroApp() {
-      if (XEngine.isHybrid()) {
-        XEngine.api(
-          "com.zkty.jsi.direct",
-          "push",
-          {
-            scheme: "microapp",
-            host: "com.gm.microapp.home",
-            pathname: "",
-            fragment: "",
-            params: {
-              hideNavbar: true,
-            },
+      this.engine.api(
+        "com.zkty.jsi.direct",
+        "push",
+        {
+          scheme: "microapp",
+          host: "com.gm.microapp.home",
+          pathname: "",
+          fragment: "",
+          params: {
+            hideNavbar: true,
           },
-          function (res) {
-            console.log("res :>> ", res)
-          }
-        )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+        },
+        function (res) {
+          console.log("res :>> ", res)
+        }
+      )
     },
     handlerOpenBaidu() {
-      if (XEngine.isHybrid()) {
-        XEngine.api(
-          "com.zkty.jsi.direct",
-          "push",
-          {
-            scheme: "http",
-            host: "www.baidu.com",
-            pathname: "",
-            fragment: "",
-            params: {
-              hideNavbar: true,
-            },
+      this.engine.api(
+        "com.zkty.jsi.direct",
+        "push",
+        {
+          scheme: "http",
+          host: "www.baidu.com",
+          pathname: "",
+          fragment: "",
+          params: {
+            hideNavbar: true,
           },
-          function (res) {
-            console.log("res :>> ", res)
-          }
-        )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+        },
+        function (res) {
+          console.log("res :>> ", res)
+        }
+      )
     },
     // https
     handlerOpenYoutube() {
-      if (XEngine.isHybrid()) {
-        XEngine.api(
-          "com.zkty.jsi.direct",
-          "push",
-          {
-            scheme: "https",
-            host: "www.youtube.com",
-            pathname: "",
-            fragment: "",
-            params: {
-              hideNavbar: true,
-            },
+      this.engine.api(
+        "com.zkty.jsi.direct",
+        "push",
+        {
+          scheme: "https",
+          host: "www.youtube.com",
+          pathname: "",
+          fragment: "",
+          params: {
+            hideNavbar: true,
           },
-          function (res) {
-            console.log("res :>> ", res)
-          }
-        )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+        },
+        function (res) {
+          console.log("res :>> ", res)
+        }
+      )
     },
   },
 }
@@ -115,7 +102,7 @@ export default {
 
 <style scoped>
 .testone-class {
-  margin: 20px;
+  margin: 0 20px;
 }
 .van-button {
   margin-top: 10px;

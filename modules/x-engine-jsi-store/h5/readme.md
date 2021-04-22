@@ -10,6 +10,16 @@ version: 0.1.13
 `sync` `async`
 
 
+**demo**
+``` js
+
+  function test_getObject(arg: { key: string }): string {
+    xengine.api("com.zkty.jsi.store", "get", { key: "obj" }, (val) => {
+      document.getElementById("debug_text").innerText = typeof val + ":" + val;
+    });
+  }
+
+``` 
 
 **参数说明**
 
@@ -27,6 +37,24 @@ string
 `async` `sync`
 
 
+**demo**
+``` js
+
+  function test_setObject(arg: ZKStoreEntryDTO) {
+    xengine.api(
+      "com.zkty.jsi.store",
+      "set",
+      {
+        key: "obj",
+        val: JSON.stringify({ key: { a: "a", b: [1, 2, 3], c: { d: "d" } } }),
+      },
+      (res) => {
+        console.log(res);
+      }
+    );
+  }
+
+``` 
 
 **参数说明**
 

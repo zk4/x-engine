@@ -3,7 +3,7 @@ import camera from './index.js'
 import xengine from "@zkty-team/x-engine-core";
 
 window.test_openImagePicker = () => {
-
+ {
     xengine.api(
       "com.zkty.jsi.camera",
       "openImagePicker",
@@ -30,10 +30,10 @@ window.test_openImagePicker = () => {
         }
       }
     );
-  }
+  }}
  document.getElementById("test_openImagePicker").click()
       window.test_saveImageToPhotoAlbum = () => {
-
+ {
     xengine.api(
       "com.zkty.jsi.camera",
       "saveImageToPhotoAlbum",
@@ -46,7 +46,7 @@ window.test_openImagePicker = () => {
         document.getElementById("debug_text").innerText = JSON.stringify(res);
       }
     );
-  }
+  }}
  document.getElementById("test_saveImageToPhotoAlbum").click()
       
     

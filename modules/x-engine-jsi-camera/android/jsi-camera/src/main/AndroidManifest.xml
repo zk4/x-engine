@@ -5,7 +5,7 @@
     <application>
         <meta-data
             android:name="com.zkty.jsi.camera"
-            android:value="com.zkty.jsi.camera.JSI_camera" />
+            android:value="com.zkty.jsi.JSI_camera" />
     </application>
 
 </manifest>

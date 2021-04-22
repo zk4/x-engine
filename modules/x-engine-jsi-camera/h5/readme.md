@@ -11,7 +11,7 @@ version: 0.1.13
 > 调用相机
 **demo**
 ``` js
-
+ {
   function test_openImagePicker() {
     xengine.api(
       "com.zkty.jsi.camera",
@@ -40,7 +40,7 @@ version: 0.1.13
       }
     );
   }
-
+}
 ``` 
 
 **参数说明**
@@ -66,7 +66,7 @@ string
 > 保存到相册
 **demo**
 ``` js
-
+ {
   // 保存图片至相册
   function test_saveImageToPhotoAlbum() {
     xengine.api(
@@ -82,7 +82,7 @@ string
       }
     );
   }
-
+}
 ``` 
 
 **参数说明**

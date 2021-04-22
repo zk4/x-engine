@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         String fragment = "";
 
 
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, true);
-
+//        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, true);
+        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, "http:", "10.2.128.89:8080", "", "", false);
     }
 }

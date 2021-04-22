@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+import store from './store';
 import 'vant/lib/button/style';
 import Button from 'vant/lib/button';
 import {
@@ -19,7 +20,15 @@ import {
 import {
   PullRefresh
 } from 'vant';
-import store from './store';
+import {
+  Form
+} from 'vant';
+import {
+  Field
+} from 'vant';
+
+Vue.use(Form);
+Vue.use(Field);
 
 Vue.use(PullRefresh);
 Vue.use(Loading);

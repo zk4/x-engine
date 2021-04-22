@@ -10,11 +10,11 @@ public class NativeUI extends NativeModule implements IUI {
 
     @Override
     public void setNavBarHidden(boolean isHidden, boolean isAnimation) {
-
+        
     }
 
     @Override
     public void setNavTitle(String title, String color, int textSize) {
-
+        
     }
 }

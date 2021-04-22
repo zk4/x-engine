@@ -60,3 +60,6 @@ project(':jsi-camera').projectDir = new File('../../x-engine-jsi-camera/android/
 
 include ':jsi-scan'
 project(':jsi-scan').projectDir = new File('../../x-engine-jsi-scan/android/jsi-scan')
+
+include ':jsi-ui'
+project(':jsi-ui').projectDir = new File('../../x-engine-jsi-ui/android/jsi-ui')

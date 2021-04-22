@@ -5,28 +5,36 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
-
+import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.core.utils.Utils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
+import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.bridge.DWebView;
-import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.view.PermissionDto;
+import com.zkty.nativ.jsi.view.SchemeManager;
 
+import java.lang.reflect.InvocationTargetException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -141,68 +149,71 @@ public class XEngineWebView extends DWebView {
                     }
                     return true;
                 }
-//                if (s.startsWith("x-engine-json://") || s.startsWith("x-engine-call://")) {
-//
-//                    try {
-////                        String sss = "x-engine://share/share?title=title1&desc=desc1&link=link1&imageUrl=imageUrl1&type=wx&dataUrl=dataUrl1";
-//                        URL base = URL.parse(s);
-//
-//                        String moduleName = base.getHost();
-//                        String method = base.getPath().replace("/", "");
-//
-//
-//                        Map<String, Collection<String>> params = base.getQueryPairs();
-//                        String args = null;
-//                        String callback = null;
-//                        if (params != null && params.size() > 0) {
-//
-//                            if (params.containsKey("args") && params.get("args") != null && params.get("args").size() > 0) {
-//                                args = (String) params.get("args").toArray()[0];
-//                            }
-//
-//                            if (params.containsKey("callback") && params.get("callback") != null && params.get("callback").size() > 0) {
-//                                callback = (String) params.get("callback").toArray()[0];
-//
-//                            }
-//                        }
-//
-//                        if (callback != null) {
-//                            callback = URLDecoder.decode(callback);
-//                        }
-//
-//                        final String callbackUrl = callback;
-//
-//
-//                        JSONObject jsonObject = JSONObject.parseObject(URLDecoder.decode(args));
-//
-//                        CompletionHandler completionHandler = new CompletionHandler() {
-//                            @Override
-//                            public void complete(Object retValue) {
-//                                String callbackTemp = callbackUrl;
-//                                if (!TextUtils.isEmpty(callbackTemp)) {
-//                                    final String callbackTemp2 = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
-//                                    Handler handler = new Handler(Looper.getMainLooper());
-//                                    handler.post(() -> webView.loadUrl(callbackTemp2));
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void complete() {
-//                            }
-//
-//                            @Override
-//                            public void setProgressData(Object value) {
-//                            }
-//                        };
-//
-//                        SchemeManager.sharedInstance().invoke(moduleName, method, jsonObject, completionHandler);
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    return true;
-//                }
+                if (s.startsWith("x-engine-json://") || s.startsWith("x-engine-call://")) {
+
+                    try {
+//                        String sss = "x-engine://share/share?title=title1&desc=desc1&link=link1&imageUrl=imageUrl1&type=wx&dataUrl=dataUrl1";
+                        URL base = URL.parse(s);
+
+                        String moduleName = base.getHost();
+                        String method = base.getPath().replace("/", "");
+
+
+                        Map<String, Collection<String>> params = base.getQueryPairs();
+                        String args = null;
+                        String callback = null;
+                        if (params != null && params.size() > 0) {
+
+                            if (params.containsKey("args") && params.get("args") != null && params.get("args").size() > 0) {
+                                args = (String) params.get("args").toArray()[0];
+                            }
+
+                            if (params.containsKey("callback") && params.get("callback") != null && params.get("callback").size() > 0) {
+                                callback = (String) params.get("callback").toArray()[0];
+
+                            }
+                        }
+
+                        if (callback != null) {
+                            callback = URLDecoder.decode(callback);
+                        }
+
+                        final String callbackUrl = callback;
+
+
+                        JSONObject jsonObject = JSONObject.parseObject(URLDecoder.decode(args));
+
+                        CompletionHandler completionHandler = new CompletionHandler() {
+                            @Override
+                            public void complete(Object retValue) {
+                                String callbackTemp = callbackUrl;
+                                if (!TextUtils.isEmpty(callbackTemp)) {
+                                    final String callbackTemp2 = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
+                                    Handler handler = new Handler(Looper.getMainLooper());
+                                    handler.post(() -> webView.loadUrl(callbackTemp2));
+                                }
+                            }
+
+                            @Override
+                            public void complete() {
+                            }
+
+                            @Override
+                            public void setProgressData(Object value) {
+                            }
+                        };
+
+                        SchemeManager.sharedInstance().invoke(moduleName, method, jsonObject, completionHandler);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
+                            throw new XEngineException(e.getMessage());
+                        }
+                    }
+
+                    return true;
+                }
 
                 if (Build.VERSION.SDK_INT < 26) {
                     webView.loadUrl(s);

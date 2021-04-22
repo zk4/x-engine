@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.core.utils.DeviceUtils;
 import com.zkty.nativ.device.IDevice;
 import com.zkty.nativ.device.NativeDevice;
 import com.zkty.nativ.jsi.JSIModule;
@@ -48,6 +49,15 @@ public class JSIOldDeviceModule extends JSIModule {
         Map<String, Object> map = new HashMap<>();
         if (iDevice != null) {
             map.put("content", iDevice.getSystemVersion());
+        }
+        handler.complete(map);
+
+    }
+ @JavascriptInterface
+    public void getPhoneType(JSONObject obj, final CompletionHandler<Object> handler) {
+        Map<String, Object> map = new HashMap<>();
+        if (iDevice != null) {
+            map.put("content", DeviceUtils.getSystemModel());
         }
         handler.complete(map);
 

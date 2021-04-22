@@ -1,0 +1,26 @@
+
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+  
+
+class JSI_localstorage{    
+  iStore store;
+  any get(key:string);
+  void set(key);
+}
+
+interface iStore {
+  any get(key:string);
+  void set(key);
+}
+
+
+class Native_store implements iStore{    
+}
+JSI_localstorage --> Native_store
+ 
+  
+ 
+
+@enduml

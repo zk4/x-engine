@@ -1,2 +1,2 @@
 deploy_docs:
-	sls --debug
+	serverless --debug

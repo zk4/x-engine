@@ -9,6 +9,7 @@
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 #import <micros.h>
+
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
 @interface Native_store ()
@@ -25,6 +26,9 @@ NATIVE_MODULE(Native_store)
 - (int)order {
     return 0;
 }
+
+- (void)afterAllNativeModuleInited {}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -53,11 +57,9 @@ NATIVE_MODULE(Native_store)
     
     return self;
 }
-
-- (void)afterAllNativeModuleInited {
-}
-
+ 
 - (id)get:(NSString *)key {
+
     return [_store objectForKey:key];
 }
 
@@ -65,22 +67,21 @@ NATIVE_MODULE(Native_store)
     [_store setObject:val forKey:key];
 }
 
-- (void) del:(NSString*)key{
+- (void)del:(NSString*)key{
      [_store removeObjectForKey:key];
 }
 
-- (void) saveTodisk{
-    [[NSUserDefaults standardUserDefaults] setObject:self.store   forKey:X_ENGINE_STORE_KEY];
+- (void)saveTodisk{
+    [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-- (void) loadFromDisk:(BOOL)merge{
+
+- (void)loadFromDisk:(BOOL)merge {
     if(!merge){
         [self.store removeAllObjects];
     }
     [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
 }
-
-
 @end
 
 #undef X_ENGINE_STORE_KEY

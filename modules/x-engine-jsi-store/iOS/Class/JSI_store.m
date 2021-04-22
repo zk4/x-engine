@@ -9,7 +9,7 @@
 #import "JSI_store.h"
 #import "JSIContext.h"
 #import "NativeContext.h"
-#import <iStore.h>
+#import "iStore.h"
 
 @interface JSI_store()
 @property(nonatomic,strong) id<iStore> store;
@@ -23,30 +23,26 @@ JSI_MODULE(JSI_store)
 }
 
  
+ 
+  
+ 
+
+
+- (NSString *)_get:(NSString *)dto {
+    return [_store get:dto];
+}
+
+- (void)_get:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    completionHandler([_store get:dto],TRUE);
+}
+
+- (void)_set:(ZKStoreEntryDTO *)dto {
+    [_store set:dto.key val:dto.val];
+}
 
 - (void)_set:(ZKStoreEntryDTO *)dto complete:(void (^)(BOOL))completionHandler {
     [_store set:dto.key val:dto.val];
     completionHandler(TRUE);
 }
-
-- (void)_get:(_0_com_zkty_jsi_store_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    completionHandler([_store get:dto.key],YES);
-
-}
-
-- (NSString *)_get:(_0_com_zkty_jsi_store_DTO *)dto {
-        return [_store get:dto.key];
-}
-
-
-- (id)_set:(ZKStoreEntryDTO *)dto {
-    [_store set:dto.key val:dto.val];
-    return nil;
-}
-
-
-  
- 
-
 
 @end

@@ -41,7 +41,8 @@ const routes = [{
         path: '/testtwo',
         name: 'testtwo',
         meta: {
-            title: "第二页"
+            title: "第二页",
+            bgColor: "transparent"
         },
         component: () => import('../views/jumpRouter/testtwo.vue')
     },
@@ -66,14 +67,14 @@ const routes = [{
         path: '/navigation',
         name: 'navigation',
         meta: {
-            title: "设置原生导航条",
+            isShowHeader: true
         },
-        component: () => import('../views/setNavigation/navigation.vue')
+        component: () => import('../views/navigation.vue')
     },
     {
         path: '/customLayout',
         name: 'customLayout',
-        component: () => import('../views/customLayout/customLayout.vue')
+        component: () => import('../views/customLayout.vue')
     },
     {
         path: '/navHeader1',
@@ -102,7 +103,7 @@ const routes = [{
             title: "刷新数据",
             bgColor: "#a81f24"
         },
-        component: () => import('../views/refreshData/refreshData.vue')
+        component: () => import('../views/refreshData.vue')
     },
     {
         path: '/network',
@@ -140,6 +141,14 @@ const routes = [{
             isShowHeader: true
         },
         component: () => import('../views/search.vue')
+    },
+    {
+        path: '/input',
+        name: 'input',
+        meta: {
+            title:'input'
+        },
+        component: () => import('../views/input.vue')
     }
 ];
 

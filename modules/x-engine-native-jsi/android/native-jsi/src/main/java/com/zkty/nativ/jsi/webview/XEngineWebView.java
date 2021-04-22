@@ -18,7 +18,7 @@ import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
-
+import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.core.utils.Utils;
 import com.zkty.nativ.jsi.HistoryModel;
@@ -26,10 +26,11 @@ import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.bridge.DWebView;
-import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.jsi.view.SchemeManager;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -206,6 +207,9 @@ public class XEngineWebView extends DWebView {
 
                     } catch (Exception e) {
                         e.printStackTrace();
+                        if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
+                            throw new XEngineException(e.getMessage());
+                        }
                     }
 
                     return true;

@@ -38,6 +38,11 @@
        - (void) _simpleMethod;
     
       @required 
+        - (void) _simpleArgMethod:(NSString*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+   @required 
+       - (NSString*) _simpleArgMethod:(NSString*)dto;
+    
+      @required 
         - (void) _nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
        @required 
        - (_0_com_zkty_jsi_xxxx_DTO*) _nestedAnonymousObject;

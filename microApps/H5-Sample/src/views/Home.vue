@@ -4,6 +4,12 @@
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
       size="large"
       round
+      @click="handlerInput"
+    >input</van-button>
+    <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
       @click="handlerIntroduce"
     >Module Introduce</van-button>
     <van-button type="primary" size="large" round @click="handlerPushRouter">router跳转</van-button>
@@ -41,6 +47,11 @@ export default {
     return {}
   },
   methods: {
+    handlerInput() {
+      this.$router.push({
+        path: "/input",
+      })
+    },
     handlerPushRouter() {
       this.$router.push({
         path: "/testone",

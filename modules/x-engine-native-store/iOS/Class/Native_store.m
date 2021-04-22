@@ -9,7 +9,7 @@
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 #import <micros.h>
-#import "GlobalState.h"
+
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
 @interface Native_store ()
@@ -57,35 +57,18 @@ NATIVE_MODULE(Native_store)
     
     return self;
 }
-
-
-// 疑问1
-// 怎么判断ios调用还是js调用 通过host有没有值？
-// 目前想到的解决方案是的在增加3个方法让原生调用?
-// - (id)nativeGet
-// - (id)nativeSet
-// - (id)nativeDel
-
-// 疑问2
-// 下面是拿到host值 拼接的key
-// 依赖了x-engine-native-jsi模块 这样是否合适 
-
+ 
 - (id)get:(NSString *)key {
-    NSString *customkey = [NSString stringWithFormat:@"%@-%@", [[GlobalState sharedInstance] getLastHost], key];
-    NSLog(@"%@", customkey);
-    return [_store objectForKey:customkey];
+
+    return [_store objectForKey:key];
 }
 
 - (void)set:(NSString *)key val:(id)val {
-    NSString *customkey = [NSString stringWithFormat:@"%@-%@", [[GlobalState sharedInstance] getLastHost], key];
-    NSLog(@"%@", customkey);
-    [_store setObject:val forKey:customkey];
+    [_store setObject:val forKey:key];
 }
 
 - (void)del:(NSString*)key{
-    NSString *customkey = [NSString stringWithFormat:@"%@-%@", [[GlobalState sharedInstance] getLastHost], key];
-    NSLog(@"%@", customkey);
-     [_store removeObjectForKey:customkey];
+     [_store removeObjectForKey:key];
 }
 
 - (void)saveTodisk{

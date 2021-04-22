@@ -64,6 +64,16 @@ JSI_MODULE(JSI_xxxx)
     completionHandler(ret,TRUE);
 }
 
+- (NSString *)_simpleArgMethod:(NSString *)dto {
+    return @"from native sync";
+}
+
+
+- (void)_simpleArgMethod:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    completionHandler(@"from native async",TRUE);
+}
+
+ 
 
   
 @end

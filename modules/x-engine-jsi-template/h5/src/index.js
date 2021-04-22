@@ -18,6 +18,11 @@ function osCheck() {
     "decorators": []
   },
   {
+    "name": "test_同步简单参数",
+    "default_args": {},
+    "decorators": []
+  },
+  {
     "name": "test_同步返回命名对象",
     "default_args": {},
     "decorators": []
@@ -29,6 +34,11 @@ function osCheck() {
   },
   {
     "name": "test_异步返回命名对象",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_异步简单参数",
     "default_args": {},
     "decorators": []
   },

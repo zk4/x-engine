@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jsi.localstorage">
+
+    <meta-data
+        android:name="com.zkty.jsi.localstorage"
+        android:value="com.zkty.jsi.JSI_localstorage" />
+
+</manifest>

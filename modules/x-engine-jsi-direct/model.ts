@@ -19,7 +19,6 @@ interface DirectPushDTO {
   // 1. 不需要协议名。 
   // 2. 如果有特殊端口，也必须带上
   host?: string;
-  // 要注意：
   pathname: string;
   
   // 要注意：
@@ -51,7 +50,7 @@ interface DirectBackDTO {
 }
 
 
-function push(arg: DirectPushDTO = {scheme:'omp',pathname:'/',params:{'hideNavbar':true}}) {
+function push(arg: DirectPushDTO = {scheme:'omp',fragment:'/',params:{'hideNavbar':true}}) {
   // 跳转omp
   engine.api('com.zkty.jsi.direct', 'push',{
     scheme: 'omp',

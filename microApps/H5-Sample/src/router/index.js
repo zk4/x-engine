@@ -15,21 +15,25 @@ const routes = [{
         name: "Home",
         meta: {
             title: "首页",
-            customBgcImg: require('@/static/image/navBgc.jpeg')
+            bgColor: "#ddd"
         },
         component: () => import('../views/Home.vue'),
     },
     {
         path: '/modulesIntroduce',
         name: 'modulesIntroduce',
+        meta: {
+            title: "模块介绍",
+            customBgcImg: require('@/static/image/navBJ.png')
+        },
         component: () => import('../views/modulesIntroduce.vue')
     },
     {
         path: '/testone',
         name: 'testone',
         meta: {
-            title: "第一页"
-
+            title: "第一页",
+            customBgcImg: require('@/static/image/navBJ.png')
         },
         component: () => import('../views/jumpRouter/testone.vue')
     },
@@ -38,7 +42,7 @@ const routes = [{
         name: 'testtwo',
         meta: {
             title: "第二页",
-            type: '0'
+            bgColor: "transparent"
         },
         component: () => import('../views/jumpRouter/testtwo.vue')
     },
@@ -47,7 +51,7 @@ const routes = [{
         name: 'testthree',
         meta: {
             title: "第三页",
-            type: '/index'
+            backPath: '/'
         },
         component: () => import('../views/jumpRouter/testthree.vue')
     },
@@ -55,15 +59,16 @@ const routes = [{
         path: '/testfour',
         name: 'testfour',
         meta: {
-            title: "第四页",
-            type: "0"
-
+            title: "第四页"
         },
         component: () => import('../views/jumpRouter/testfour.vue')
     },
     {
         path: '/navigation',
         name: 'navigation',
+        meta: {
+            title: "设置原生导航条",
+        },
         component: () => import('../views/setNavigation/navigation.vue')
     },
     {
@@ -94,6 +99,10 @@ const routes = [{
     {
         path: '/refreshData',
         name: 'refreshData',
+        meta: {
+            title: "刷新数据",
+            bgColor: "#a81f24"
+        },
         component: () => import('../views/refreshData/refreshData.vue')
     },
     {
@@ -104,17 +113,34 @@ const routes = [{
     {
         path: '/testVueX',
         name: 'testVueX',
+        meta: {
+            title: "VueX",
+        },
         component: () => import('../views/testVueX.vue')
     },
     {
         path: '/photo',
         name: 'photo',
+        meta: {
+            title: "拍照选择相册",
+        },
         component: () => import('../views/photo.vue')
     },
     {
         path: '/scan',
         name: 'scan',
+        meta: {
+            title: "扫码",
+        },
         component: () => import('../views/scan.vue')
+    },
+    {
+        path: '/search',
+        name: 'search',
+        meta: {
+            isShowHeader: true
+        },
+        component: () => import('../views/search.vue')
     }
 ];
 

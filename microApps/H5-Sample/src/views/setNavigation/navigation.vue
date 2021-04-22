@@ -8,60 +8,47 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-core"
 export default {
   data() {
     return {}
   },
   methods: {
     handlerShowNav() {
-      // if (XEngine.isHybrid()) {
-        XEngine.bridge.call(
-          "com.zkty.jsi.ui.setNavBarHidden",
-          {
-            isHidden: false,
-            isAnimation: true,
-          },
-          function (res) {
-            console.log("res :>> ", res)
-          }
-        )
-      // } else {
-      //   alert("请在app端测试该功能.")
-      // }
+      this.$engine.api(
+        "com.zkty.jsi.ui.setNavBarHidden",
+        {
+          isHidden: false,
+          isAnimation: true,
+        },
+        function (res) {
+          console.log("res :>> ", res)
+        }
+      )
     },
     handlerChangeNavTitle() {
-      // if (XEngine.isHybrid()) {
-        XEngine.bridge.call(
-          "com.zkty.jsi.ui.setNavTitle",
-          {
-            title: "哦哦哦",
-            titleColor: "#f21811",
-            titleSize: 18,
-          },
-          function (res) {
-            console.log("res :>> ", res)
-          }
-        )
-      // } else {
-      //   alert("请在app端测试该功能.")
-      // }
+      this.$engine.api(
+        "com.zkty.jsi.ui.setNavTitle",
+        {
+          title: "哦哦哦",
+          titleColor: "#f21811",
+          titleSize: 18,
+        },
+        function (res) {
+          console.log("res :>> ", res)
+        }
+      )
     },
     handlerHiddenNav() {
-      if (XEngine.isHybrid()) {
-        XEngine.bridge.call(
-          "com.zkty.jsi.ui.setNavBarHidden",
-          {
-            isHidden: true,
-            isAnimation: true,
-          },
-          function (res) {
-            console.log("res :>> ", res)
-          }
-        )
-      } else {
-        alert("请在app端测试该功能.")
-      }
+      this.$engine.api(
+        "com.zkty.jsi.ui.setNavBarHidden",
+        {
+          isHidden: true,
+          isAnimation: true,
+        },
+        function (res) {
+          console.log("res :>> ", res)
+        }
+      )
     },
   },
 }

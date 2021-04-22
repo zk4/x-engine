@@ -18,8 +18,7 @@
 
 -(void) pushTestModule{
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-
-    [director push:@"omp" host:@"10.2.128.89:9111" pathname:@"/" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
+    [director push:@"omp" host:@"192.168.3.12:9111" pathname:@"/" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
 }
 
 - (void)viewDidLoad {

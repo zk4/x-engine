@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import xengine from "@zkty-team/x-engine-core"
+
 export default {
   methods: {
     hanlderOpenAlert() {
-      xengine.api(
+      this.$engine.api(
         "com.zkty.jsi.camera",
         "openImagePicker",
         {
@@ -52,7 +52,7 @@ export default {
       )
     },
     handlerSavePhotoToAlbum() {
-      xengine.api(
+      this.$engine.api(
         "com.zkty.jsi.camera",
         "saveImageToPhotoAlbum",
         {

@@ -1,8 +1,6 @@
 <template>
   <div>
-    <HEADER @clickLeftButton="handlerHeaderBack" :reviceNavTitle="navTitle" />
-
-    <div :style="{marginTop:navigatorHeight+'px'}">
+    <div>
       <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
         <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
           <van-cell v-for="item in list" :key="item" :title="item" />
@@ -13,13 +11,7 @@
 </template>
 
 <script>
-import HEADER from "@/components/Header/index"
-import XEngine from "@zkty-team/x-engine-core"
-
 export default {
-  components: {
-    HEADER,
-  },
   data() {
     return {
       navTitle: "刷新数据",
@@ -29,11 +21,6 @@ export default {
       refreshing: false,
       navigatorHeight: "",
     }
-  },
-  mounted() {
-    // 导航条高度
-    let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight")
-    this.navigatorHeight = navheight
   },
   methods: {
     onLoad() {

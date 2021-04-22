@@ -1,6 +1,5 @@
 <template>
   <div>
-    <HEADER :reviceNavTitle="navTitle" @clickLeftButton="handlerHeaderBack" />
     <div class="content">store中的count为:{{$store.state.count}}</div>
     <div class="operating">
       <van-button
@@ -22,14 +21,9 @@
 </template>
 
 <script>
-import HEADER from "@/components/Header/index"
 export default {
-  components: {
-    HEADER,
-  },
   data() {
     return {
-      navTitle: "TEST VUEX",
     }
   },
   methods: {
@@ -55,8 +49,7 @@ export default {
 .content {
   background: gray;
   border-radius: 20px;
-  margin-top: 200px;
-  margin: 200px 50px 50px 50px;
+  margin: 50px;
   height: 200px;
   color: white;
   line-height: 200px;

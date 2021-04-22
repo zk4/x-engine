@@ -1,5 +1,5 @@
 <template>
-  <div class="testfour-class" :style="{marginTop:navigatorHeight+'px'}">
+  <div class="testfour-class">
     <van-button type="primary" size="large" round @click="handlerBack">上一页 -1</van-button>
     <van-button type="info" size="large" round @click="handlerBackTwoPage">返回第二页 -2</van-button>
     <van-button type="warning" size="large" round @click="handlerBackIndex">返回微应用首页 /</van-button>
@@ -9,17 +9,14 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-core"
 export default {
   data() {
     return {
       navHeader: "123",
-      navigatorHeight: "",
     }
   },
-  created() {
-    let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight")
-    this.navigatorHeight = navheight
+  mounted() {
+    this.$route.meta.backPath = 0
   },
   methods: {
     handlerBack() {
@@ -43,7 +40,7 @@ export default {
 
 <style scoped>
 .testfour-class {
-  margin: 0 20px 20px 20px;
+  margin: 0 20px;
 }
 .van-button {
   margin-top: 10px;

@@ -1,47 +1,28 @@
 <template>
   <div id="app">
-    <HEADER ref="globalHeader" @leftButton="handlerBack" :title="navTitle" :bgImage="bgImg"></HEADER>
+    <ZKTY-Header />
     <router-view :style="style" />
   </div>
 </template>
 
 <script>
-import HEADER from "@/components/Header/index"
 export default {
   name: "App",
-  components: {
-    HEADER,
-  },
   data() {
     return {
+      isShowHeader: false,
       navigatorHeight: this.headerHeight,
-      navTitle: "app",
-      bgImg: "",
     }
   },
   computed: {
     style() {
-      var style = `margin-top:${this.navigatorHeight}px;`
+      let style
+      if (this.$engine.isHybrid()) {
+        style = `margin-top:${this.$navigatorHeight}px;`
+      } else {
+        style = `margin-top:${64}px;`
+      }
       return style
-    },
-  },
-  methods: {
-    handlerBack() {
-      if (this.$route.meta.type) {
-        this.$router.go(this.$route.meta.type)
-      } else {
-        this.$router.go(-1)
-      }
-    },
-  },
-  watch: {
-    $route(to) {
-      this.navTitle = to.meta.title
-      if (to.meta.customBgcImg) {
-        this.bgImg = to.meta.customBgcImg
-      } else {
-        this.bgImg = ""
-      }
     },
   },
 }
@@ -55,6 +36,21 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-.content {
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

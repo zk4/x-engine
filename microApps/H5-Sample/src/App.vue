@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ZKTY-Header v-if="!isShowHeader" @leftButton="handlerBack"></ZKTY-Header>
+    <ZKTY-Header />
     <router-view :style="style" />
   </div>
 </template>
@@ -10,30 +10,19 @@ export default {
   name: "App",
   data() {
     return {
-      navTitle: "app",
-      bgImg: "",
-      bgColor: "",
       isShowHeader: false,
       navigatorHeight: this.headerHeight,
     }
   },
   computed: {
     style() {
-      var style = `margin-top:${this.navigatorHeight}px;`
-      return style
-    },
-  },
-  methods: {
-    // 返回
-    handlerBack() {
-      // 返回指定页面
-      if (this.$route.meta.backPath != undefined) {
-        var path = this.$route.meta.backPath
-        this.$router.go(path)
+      let style
+      if (this.$engine.isHybrid()) {
+        style = `margin-top:${this.$navigatorHeight}px;`
       } else {
-        // 返回上一页
-        this.$router.go(-1)
+        style = `margin-top:${64}px;`
       }
+      return style
     },
   },
 }

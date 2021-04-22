@@ -23,7 +23,9 @@ interface NamedDTO {
 
 @sync
 @async
-function simpleMethod() {}
+function simpleMethod() {
+  //demo code
+}
 
 @sync
 @async

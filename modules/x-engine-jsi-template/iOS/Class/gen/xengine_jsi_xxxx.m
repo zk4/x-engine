@@ -50,6 +50,18 @@
    [self _simpleMethod];
               return nil;
     }
+    - (void) simpleArgMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          NSString* dto = [self convert:dict clazz:NSString.class];
+          [self _simpleArgMethod:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+  - (NSString*) simpleArgMethod:(NSDictionary*) dict {
+      NSString* dto = [self convert:dict clazz:NSString.class];
+      return [self _simpleArgMethod:dto];
+        }
     - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           [self _nestedAnonymousObject:^(_0_com_zkty_jsi_xxxx_DTO* result, BOOL complete) {

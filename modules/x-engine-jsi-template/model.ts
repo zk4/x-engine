@@ -27,6 +27,10 @@ function simpleMethod() {}
 
 @sync
 @async
+function simpleArgMethod(arg:string):string {}
+
+@sync
+@async
 function nestedAnonymousObject(): { a: string; i: { n1: string } } {}
 
 @async
@@ -38,6 +42,11 @@ function namedObject(): NamedDTO {}
 function test_同步无返回(){
   let val = xengine.api("com.zkty.jsi.xxxx", "simpleMethod");
   document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
+}
+// test function
+function test_同步简单参数(){
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js");
+  document.getElementById("debug_text").innerText =val;
 }
 
 function test_同步返回命名对象() {
@@ -55,6 +64,11 @@ function test_异步返回命名对象() {
   xengine.api("com.zkty.jsi.xxxx", "namedObject", {}, (val) => {
     document.getElementById("debug_text").innerText =
     typeof val + ":" + val.title + "," + val.titleSize;
+  });
+}
+function test_异步简单参数() {
+  xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js", (val) => {
+    document.getElementById("debug_text").innerText = val
   });
 }
 

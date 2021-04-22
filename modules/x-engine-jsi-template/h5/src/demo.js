@@ -8,6 +8,12 @@ window.test_同步无返回 = () => {
   document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
 }
  document.getElementById("test_同步无返回").click()
+      window.test_同步简单参数 = () => {
+
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js");
+  document.getElementById("debug_text").innerText =val;
+}
+ document.getElementById("test_同步简单参数").click()
       window.test_同步返回命名对象 = () => {
 
   let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
@@ -29,6 +35,13 @@ window.test_同步无返回 = () => {
   });
 }
  document.getElementById("test_异步返回命名对象").click()
+      window.test_异步简单参数 = () => {
+
+  xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js", (val) => {
+    document.getElementById("debug_text").innerText = val
+  });
+}
+ document.getElementById("test_异步简单参数").click()
       window.test_异步返回命名对象 = () => {
 
   xengine.api("com.zkty.jsi.xxxx", "namedObject", {},

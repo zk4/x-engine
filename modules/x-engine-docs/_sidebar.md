@@ -1,14 +1,13 @@
-- *前端开发*
+- [**前端**]
   - [前端模块](./docs/devProcess/微应用开发流程.md)
   - [npm 模块](./docs/devProcess/公共组件.md)
   - [JSI api](./docs/modules/all/模块-device.md)
   
-- [**原生模块**](./docs/modules/模块-开发.md)
+- [**原生**]
   - [规范](./docs/modules/模块-规范.md)
   - [开发](./docs/modules/模块-开发.md)
     
-- **产品**
-  - [微应用](./docs/product/微应用.md)
+- [**工具**]
   - [x-cli](./docs/product/x-cli.md)
   - [coge](./docs/product/coge.md)
   

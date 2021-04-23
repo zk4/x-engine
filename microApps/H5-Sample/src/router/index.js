@@ -96,6 +96,14 @@ const routes = [{
         component: () => import('../views/gifView.vue')
     },
     {
+        path: '/localstorage',
+        name: 'localstorage',
+        meta: {
+            title: "存储数据",
+        },
+        component: () => import('../views/localstorage.vue')
+    },
+    {
         path: '/refreshData',
         name: 'refreshData',
         meta: {

@@ -21,6 +21,12 @@
       color="linear-gradient(to right, #013656, #7e57c2)"
       size="large"
       round
+      @click="handlerLocalStorage"
+    >localstorage</van-button>
+    <!-- <van-button
+      color="linear-gradient(to right, #013656, #7e57c2)"
+      size="large"
+      round
       @click="handlerRefreshData"
     >刷新数据</van-button>
     <van-button type="danger" size="large" color="#7232dd" round @click="handlerSkeleton">骨架屏</van-button>
@@ -37,7 +43,7 @@
       round
       @click="handlerVueX"
     >VueX</van-button>
-    <van-button type="danger" size="large" round @click="handlerSetNav">设置导航条</van-button>
+    <van-button type="danger" size="large" round @click="handlerSetNav">设置导航条</van-button> -->
   </div>
 </template>
 
@@ -47,6 +53,11 @@ export default {
     return {}
   },
   methods: {
+    handlerLocalStorage() {
+      this.$router.push({
+        path:"/localstorage"
+      })
+    },
     handlerInput() {
       this.$router.push({
         path: "/input",

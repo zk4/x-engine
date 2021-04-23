@@ -9,6 +9,31 @@ version: 0.1.13
 ## openImagePicker
 `async`
 > 调用相机
+**demo**
+``` js
+
+  xengine.api(
+    "com.zkty.jsi.camera",
+    "openImagePicker",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        let base64 = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        console.log(base64)
+      }
+    }
+  );
+
+``` 
 
 **参数说明**
 

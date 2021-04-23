@@ -1,8 +1,7 @@
 package com.zkty.nativ.direct_https;
-
-import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.direct.IDirect;
 
 import java.util.List;
 import java.util.Map;

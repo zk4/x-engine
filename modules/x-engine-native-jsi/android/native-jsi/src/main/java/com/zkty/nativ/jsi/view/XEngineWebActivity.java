@@ -88,30 +88,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
 
         hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
-        if (hideNavBar) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Window window = getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.TRANSPARENT);
-                window.setNavigationBarColor(Color.TRANSPARENT);
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                Window window = getWindow();
-                window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            }
-            StatusBarUtil.StatusBarLightMode(this);
-        } else {
-            ImmersionBar.with(this)
-                    .fitsSystemWindows(true)
-                    .statusBarColor(R.color.white)
-                    .statusBarDarkFont(true).init();
 
-        }
+        setNavBarHidden(hideNavBar, false);
 
         setContentView(R.layout.activity_engine_webview);
         //关闭 关于文件uri暴露的检测（FileUriExposedException）
@@ -588,6 +566,42 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     public HistoryModel getHistoryModel() {
         return historyModel;
+    }
+
+    public void setNavBarHidden(boolean isHidden, boolean isAnimation) {
+
+        if (isHidden) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+                window.setNavigationBarColor(Color.TRANSPARENT);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Window window = getWindow();
+                window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
+            StatusBarUtil.StatusBarLightMode(this);
+        } else {
+            ImmersionBar.with(this)
+                    .fitsSystemWindows(true)
+                    .statusBarColor(R.color.white)
+                    .statusBarDarkFont(true).init();
+
+        }
+        if (xEngineNavBar != null)
+            xEngineNavBar.setVisibility(isHidden ? View.GONE : View.VISIBLE);
+
+    }
+
+    public void setNavTitle(String title, String color, int textSize) {
+        if (xEngineNavBar != null)
+            xEngineNavBar.setTitle(title, color, textSize);
     }
 
 }

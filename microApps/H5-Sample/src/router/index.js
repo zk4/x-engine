@@ -51,7 +51,6 @@ const routes = [{
         name: 'testthree',
         meta: {
             title: "第三页",
-            backPath: '/'
         },
         component: () => import('../views/jumpRouter/testthree.vue')
     },

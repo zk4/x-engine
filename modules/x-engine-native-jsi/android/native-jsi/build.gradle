@@ -50,5 +50,4 @@ dependencies {
 
 
     compile project(':native-core')
-    compile project(':native-protocols')
 }

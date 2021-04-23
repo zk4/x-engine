@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- Android7.0拍照权限适配 -->
         <provider
             android:name="androidx.core.content.FileProvider"

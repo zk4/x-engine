@@ -31,7 +31,7 @@ public class NativeDevice extends NativeModule implements IDevice {
 
     @Override
     public String getNavigationHeight() {
-        return String.valueOf(DensityUtils.getNavigationBarHeightIfRoom(XEngineApplication.getApplication()));
+        return String.valueOf(DensityUtils.getNavigationBarHeightIfRoom(XEngineApplication.getCurrentActivity()));
     }
 
     @Override

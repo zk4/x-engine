@@ -27,10 +27,10 @@
     public String fragment;
 
     @Optional
-		public Map<String, Object> query;
+		public Map<String,Object> query;
 
     @Optional
-		public Map<String, Object> params;
+		public Map<String,Object> params;
   }
   
   class DirectBackDTO {

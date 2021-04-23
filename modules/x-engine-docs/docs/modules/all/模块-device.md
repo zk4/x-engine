@@ -21,10 +21,8 @@ version: 0.1.13
 **demo**
 ``` js
 
-  function test_getStatusHeight() {
-    let val = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
-    document.getElementById("debug_text").innerText = typeof val + ":" + val;
-  }
+  let val = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
+  console.log(val);
 
 ``` 
 
@@ -42,10 +40,8 @@ string
 **demo**
 ``` js
 
-  function test_getNavHeight() {
-    let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
-    document.getElementById("debug_text").innerText = typeof val + ":" + val;
-  }
+  let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
+  console.log(val);
 
 ``` 
 
@@ -63,10 +59,8 @@ string
 **demo**
 ``` js
 
-  function test_getScreenHeight() {
-    let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
-    document.getElementById("debug_text").innerText = typeof val + ":" + val;
-  }
+  let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
+  console.log(val);
 
 ``` 
 
@@ -84,10 +78,8 @@ string
 **demo**
 ``` js
 
-  function test_getTabbarHeight() {
-    let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");
-    document.getElementById("debug_text").innerText = typeof val + ":" + val;
-  }
+  let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");
+  console.log(val);
 
 ``` 
 
@@ -105,12 +97,10 @@ string
 **demo**
 ``` js
 
-  function test_callPhone() {
-    xengine.api("com.zkty.jsi.device", "callPhone", {
-      phoneNum: "18637369306",
-      phoneMsg: "",
-    });
-  }
+  xengine.api("com.zkty.jsi.device", "callPhone", {
+    phoneNum: "18637369306",
+    phoneMsg: "",
+  });
 
 ``` 
 
@@ -133,12 +123,10 @@ string
 **demo**
 ``` js
 
-  function test_sendMsg() {
-    xengine.api("com.zkty.jsi.device", "sendMessage", {
-      phoneNum: "18637369306",
-      phoneMsg: "你好",
-    });
-  }
+  xengine.api("com.zkty.jsi.device", "sendMessage", {
+    phoneNum: "18637369306",
+    phoneMsg: "你好",
+  });
 
 ``` 
 
@@ -161,11 +149,9 @@ string
 **demo**
 ``` js
 
-  function test_getDeviceInfo() {
-    xengine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(val);
-    });
-  }
+  xengine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
+    console.log(JSON.stringify(val));
+  });
 
 ``` 
 

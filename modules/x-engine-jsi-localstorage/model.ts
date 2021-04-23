@@ -13,13 +13,25 @@ const conf = {
   },
 };
 
+@sync
+function set(arg:{key:string, val:string}){
+    let val = xengine.api("com.zkty.jsi.localstorage", "set",{
+    key:'your_key',
+    val:'your_val'
+  });
+
+}
+
 
 
 @sync
-function get(arg:string):string {}
+function get(arg:string):string {
+  let val = xengine.api("com.zkty.jsi.localstorage", "get",
+    'your_key',
+  );
+  console.log(val); // your_val
 
-@sync
-function set(arg:{key:string, val:string}){}
+}
 
 
 function test_set_abc_world(){

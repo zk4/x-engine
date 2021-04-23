@@ -18,10 +18,10 @@
 
 @protocol xengine_jsi_localstorage_protocol
        @required 
-       - (NSString*) _get:(NSString*)dto;
+       - (void) _set:(_0_com_zkty_jsi_localstorage_DTO*)dto;
     
       @required 
-       - (void) _set:(_0_com_zkty_jsi_localstorage_DTO*)dto;
+       - (NSString*) _get:(NSString*)dto;
     
 @end
   

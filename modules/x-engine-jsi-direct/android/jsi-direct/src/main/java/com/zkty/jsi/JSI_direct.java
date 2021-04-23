@@ -1,10 +1,9 @@
 package com.zkty.jsi;
 
 import androidx.annotation.Nullable;
-
-import com.zkty.engine.nativ.protocol.IDirectManager;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.direct.IDirectManager;
 import com.zkty.nativ.direct.NativeDirect;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 

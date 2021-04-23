@@ -25,9 +25,6 @@ project(':native-scan').projectDir = new File('../../x-engine-native-scan/androi
 include ':native-broadcast'
 project(':native-broadcast').projectDir = new File('../../x-engine-native-broadcast/android/native-broadcast')
 
-include ':native-protocols'
-project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
-
 include ':native-direct_http'
 project(':native-direct_http').projectDir = new File('../../x-engine-native-direct_http/android/native-direct_http')
 

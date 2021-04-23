@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.zkty.modules.engine"
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -56,25 +56,24 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation project(':native-core')
-    implementation project(':native-protocols')
     implementation project(':native-store')
     implementation project(':native-camera')
     implementation project(':native-ui')
     implementation project(':native-broadcast')
     implementation project(':native-device')
     implementation project(':native-scan')
-
-
     implementation project(':native-direct')
     implementation project(':native-direct_http')
     implementation project(':native-direct_https')
     implementation project(':native-direct_microapp')
     implementation project(':native-direct_omp')
     implementation project(':native-jsi')
+
     implementation project(':jsi-direct')
     implementation project(':jsi-store')
     implementation project(':jsi-device')
     implementation project(':jsi-legacy')
     implementation project(':jsi-camera')
     implementation project(':jsi-scan')
+    implementation project(':jsi-ui')
 }

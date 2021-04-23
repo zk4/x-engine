@@ -8,6 +8,6 @@
     <application>
         <meta-data
             android:name="com.zkty.native.ui"
-            android:value="com.zkty.nativ.ui.NativeUi" />
+            android:value="com.zkty.nativ.ui.NativeUI" />
     </application>
 </manifest>

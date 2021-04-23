@@ -1,7 +1,6 @@
 package com.zkty.nativ.direct;
 
-import com.zkty.engine.nativ.protocol.IDirect;
-import com.zkty.engine.nativ.protocol.IDirectManager;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 

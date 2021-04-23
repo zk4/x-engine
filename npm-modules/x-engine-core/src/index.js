@@ -139,13 +139,9 @@ Object.defineProperty(xengine, "bridge", {
 function platform() {
   var ua = navigator.userAgent,
     isAndroid = /(?:Android)/.test(ua),
-    isTablet =
-    /(?:iPad|PlayBook)/.test(ua) ||
-    (isAndroid && !/(?:Mobile)/.test(ua)),
-    isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+    isPhone = /(?:iPhone)/.test(ua),
     isPc = !isPhone && !isAndroid;
   return {
-    isTablet: isTablet,
     isPhone: isPhone,
     isAndroid: isAndroid,
     isPc: isPc,

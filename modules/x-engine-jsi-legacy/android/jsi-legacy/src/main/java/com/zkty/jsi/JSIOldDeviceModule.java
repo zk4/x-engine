@@ -57,7 +57,7 @@ public class JSIOldDeviceModule extends JSIModule {
     public void getPhoneType(JSONObject obj, final CompletionHandler<Object> handler) {
         Map<String, Object> map = new HashMap<>();
         if (iDevice != null) {
-            map.put("content", DeviceUtils.getSystemModel());
+            map.put("content", "ANDROID");
         }
         handler.complete(map);
 
@@ -89,11 +89,5 @@ public class JSIOldDeviceModule extends JSIModule {
             handler.complete();
         }
     }
-    @JavascriptInterface
-    public void getPhoneType(JSONObject obj, final CompletionHandler<Object> handler) {
-        if (iDevice != null) {
-//            iDevice.sendMessage(obj.getString("phoneNumber"), obj.getString("messageContent"));
-            handler.complete("ANDROID");
-        }
-    }
+   
 }

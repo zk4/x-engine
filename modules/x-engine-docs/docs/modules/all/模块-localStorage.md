@@ -18,6 +18,15 @@ version: 0.1.13
 ## get
 `sync`
 
+**demo**
+``` js
+
+  xengine.api("com.zkty.jsi.localstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
+
+``` 
 
 **无参数**
 **返回值**
@@ -30,6 +39,15 @@ string
 ## set
 `sync`
 
+**demo**
+``` js
+
+  let val = xengine.api("com.zkty.jsi.localstorage", "get",
+    'abc',
+  );
+  console.log(val);
+
+``` 
 
 **参数说明**
 

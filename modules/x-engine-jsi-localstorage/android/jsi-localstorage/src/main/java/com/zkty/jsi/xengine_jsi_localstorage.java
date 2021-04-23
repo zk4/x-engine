@@ -23,8 +23,8 @@
   }
   
   interface xengine_jsi_localstorage_protocol {
-        String _get(String dto);
-    void _set(_0_com_zkty_jsi_localstorage_DTO dto);
+        void _set(_0_com_zkty_jsi_localstorage_DTO dto);
+    String _get(String dto);
   }
   
   
@@ -35,17 +35,17 @@
     }
   
         @JavascriptInterface
-        public String get(JSONObject jsonobj) {
-          String dto= convert(jsonobj,String.class);
-          return _get(dto);
-        }
-        
-
-        @JavascriptInterface
         public Object set(JSONObject jsonobj) {
           _0_com_zkty_jsi_localstorage_DTO dto= convert(jsonobj,_0_com_zkty_jsi_localstorage_DTO.class);
           _set(dto);
           return null;
+        }
+        
+
+        @JavascriptInterface
+        public String get(JSONObject jsonobj) {
+          String dto= convert(jsonobj,String.class);
+          return _get(dto);
         }
         
   }

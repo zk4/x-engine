@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.zkty.nativ.jsi.annotation.Optional;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.exception.XEngineException;
+import com.zkty.nativ.jsi.webview.XEngineWebView;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -20,6 +21,13 @@ public abstract class JSIModule {
 
     public int order() {
         return 0;
+    }
+
+    protected XEngineWebView xEngineWebView;
+
+    public void setEngineWebView(XEngineWebView webView) {
+        this.xEngineWebView = webView;
+
     }
 
 

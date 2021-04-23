@@ -2,7 +2,7 @@
     package="jsi.secrect">
 
     <meta-data
-        android:name="com.zkty.jsi.secrect"
-        android:value="com.zkty.jsi.JSI_secrect" />
+        android:name="com.zkty.jsi.secret"
+        android:value="com.zkty.jsi.JSI_secret" />
 
 </manifest>

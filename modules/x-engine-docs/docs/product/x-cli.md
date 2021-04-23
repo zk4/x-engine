@@ -14,17 +14,14 @@ model  负责模型的生成
 
 module 负责模块的管理
 
-app    负责应用的管理(todo)
+
 
 可用命令发下
 
 ```
 // 根据 model.ts 生成三端接口
-x-cli model model.ts
-
-// 使用 x-cli 生成模块
-// 需要先安装 coge， 并在 x-engine/modules/x-engine-module-template 文件夹中运行了 coge -r
-x-cli module init wallet x-engine-module-wallet
+// iOS 与 android 将生成 JSI 待实现的文件
+x-cli model model.ts -t 2 -n
 ```
 
 
@@ -49,7 +46,7 @@ java:
 
 ````
 // 接口文件， dto 规范。每次覆盖
-gen/xengine__module_xxxx.java 
+gen/xengine_jsi_xxxx.java
 ````
 
 
@@ -58,8 +55,8 @@ oc:
 
 ```
 // 接口文件， dto 规范。每次覆盖
-gen/xengine__module_xxxx.h 
-gen/xengine__module_xxxx.m 
+gen/xengine_jsi_secrect.h
+gen/xengine_jsi_secrect.m
 ```
 
 
@@ -72,14 +69,14 @@ model.ts 脚本的语法与 typescript 几乎一样。
 
 #### 类型
 
-接口参数只支持两种情况：不传，或传 {}。 如果你只有一个参数，比如只有一个 int，可以用对象包住， { index:int }
 
-##### 原生类型
+
+##### 类型对应关系
 
 | ts                          | oc                | java      |
 | --------------------------- | ----------------- | --------- |
 | boolean                     | BOOL              | Boolean   |
-| int （扩展，非 ts 类型）    | NSInteger         | Integer   |
+| int （x-cli 扩展，非 ts 类型） | NSInteger         | Integer   |
 | double （慎用，会丢失精度） | double            | Double    |
 | string                      | NSString          | String    |
 | Array<?>                    | NSArray<?>        | List<?>   |
@@ -88,17 +85,7 @@ model.ts 脚本的语法与 typescript 几乎一样。
 
 
 
-##### 自定义类型
-
-```
-interface InnerTitle{
-  maintitle: string;
-  subtitle: string;
-  little: Array<Little>;
-}
-```
-
-
+##### 具名类型
 
 比如：
 
@@ -110,13 +97,27 @@ interface SheetDTO {
 }
 ```
 
+##### 匿名类型
+
+**推荐**
+
+匿名类型则不需要你再定义具名类型.因为只有 js bridge 会用到. 你可以不用关心
+
+```
+function hello(arg:{name:string,age:int}){}
+```
+
 
 
 #### 参数
 
-##### 可能情况
+接口参数只支持一个参数或不传。
 
+多个参数怎么办? 用对象包住即可.
 
+如 {name:string,age:int}
+
+也可以传原始类型,如 string, int。
 
 |                 | 有返回值（primitive） | 有返回值（对象） | 无返回值 |
 | --------------- | --------------------- | ---------------- | -------- |
@@ -140,34 +141,13 @@ Map<string,Map<string,Map<string,Map<string,string>>>>;
 title?:string
 ```
 
-
-
-将会生成
-
-``` objective-c
-...
-@interface SheetDTO: JSONModel
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,strong) NSArray<NSDictionary<NSString*,NSString*>*><Optional> * itemList;
-@property(nonatomic,copy) NSString<Optional> * content;
-@property(nonatomic,strong) CameraDTO*<Optional>  camera;
-@end
-
-
-@interface CameraDTO: JSONModel
-@property(nonatomic,assign) bool<Optional>  allowsEditing;
-@property(nonatomic,assign) bool<Optional>  savePhotosAlbum;
-@property(nonatomic,assign) double<Optional>  cameraFlashMode;
-@property(nonatomic,copy) NSString<Optional> * cameraDevice;
-@end
-... 
-```
+可选参数会在类型转换时做自动校验. 如果是必传参数, 则会直接报错.方便 debug
 
 
 
 ##### 特殊参数
 
-带`__xxxx__` 前后双下划线的都为系统保留参数.
+带`__xxxx__` 前后双下划线的都为 x-cli 保留参数.
 
 \_\_event\_\_ 通常用在二级回调。 可按如下方式申明。
 
@@ -187,15 +167,19 @@ __event__:(a:string,b:Array<string>) =>void
 function showActionSheet(sheetDTO:SheetDTO={title:"title",itemList:["a","b","c"],content:"content"}):string {}
 ```
 
+> 无返回值不需要写
 
+#### demo 方法
+
+直接写在函数声明的函数体内即可.
 
 #### 测试方法
 
-测试方法直接写在函数体内即可, 逻辑上就是在 `index.html` 生成以函数名为 name 的 `<button>`标签，并绑定方法。将函数体里的代码 copy 到 `demo.js` ，并暴露给 window。
+以 test 开头,会生成 h5 测试界面.
 
 ``` typescript
 	
-function showActionSheet(sheetDTO:SheetDTO={title:"title",itemList:["a","b","c"],content:"content"}){
+function test_showActionSheet(sheetDTO:SheetDTO={title:"title",itemList:["a","b","c"],content:"content"}){
     window.showActionSheet=()=>{
       xxxx.showActionSheet(
       )
@@ -206,28 +190,9 @@ function showActionSheet(sheetDTO:SheetDTO={title:"title",itemList:["a","b","c"]
 }
 ```
 
-也支持在方法前写上 test 生成 UI 测试按钮。
-
-````js
-function testHelloButton(){
-    window.testHelloButton=()=>{
-      xxxx.showActionSheet(
-        // 注意这里的参数
-      	{title:"title",itemList:["a","b","c"],content:"content"}
-      )
-      .then(res=>{
-        document.getElementById("debug_text").innerText= res;
-      })
-    }
-
-}
-````
-
-
-
 #### 注释
 
-注释是用来生成 readme.md，一定要写在函数定义的上面。
+注释只会生成 readme.md，一定要写在函数定义的上面。
 
 支持 /* */
 
@@ -261,119 +226,116 @@ function funcname(arg:SheetDTO={arg:"abc"}):string {
 
 
 
+#### 异步与同步
+
+默认生成异步方法
+
+如果只加了@sync, 只会生成同步方法
+
+如果只加了@async, 只会生成异步方法
+
+
+
 ####  model.ts demo
 
 ``` typescript
+// model.ts 解析版本
+const parserVersion = "1.0.0";
+
 // 命名空间
-const moduleID = "com.zkty.module.xxxx";
+const moduleID = "com.zkty.jsi.xxxx";
 
-// dto
-interface SheetDTO {
+const conf = {
+  args: {},
+  permissions: {
+    X_USER_INFO: "READ",
+    X_LBS: "READ_WRITE",
+    X_PHOTO: "READ",
+  },
+};
+
+interface NamedDTO {
+  //文字
   title: string;
-  itemList?: Array<string>;
-  content?: string;
-  __event__: string;
-}
-interface MoreDTO {
-  title: string;
+  //大小
+  titleSize: int;
 }
 
-// no args no ret
-function noArgNoRet(){
-    window.noArgNoRet = () => {
-    xxxx
-      .noArgNoRet()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "no args:"+res;
-      });
-  };
+// ------------------------ js api 声明-----------------
+@sync
+@async
+function simpleMethod() {
+  //demo code
+}
+
+@sync
+@async
+function simpleArgMethod(arg:string):string {}
+
+@sync
+@async
+function nestedAnonymousObject(): { a: string; i: { n1: string } } {}
+
+@async
+@sync
+function namedObject(): NamedDTO {}
+
+
+// ------------------------ 测试方法 -----------------
+
+function test_同步无返回(){
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleMethod");
+  document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
+ 
+}
+// test function
+function test_同步简单参数(){
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js");
+  document.getElementById("debug_text").innerText =val;
+   xengine.assert('test_同步无返回',val==='native return');
+}
+
+function test_同步返回命名对象() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.title + "," + val.titleSize;
+}
+
+function test_同步返回匿名嵌套对象() {
+  let val = xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {});
+  document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
 
 }
 
-// no args ret primitive
-function noArgRetPrimitive():string {
-    window.noArgRetPrimitive = () => {
-    xxxx
-      .noArgRetPrimitive()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "primitive args:"+res;
-      });
-  };
+function test_异步返回命名对象() {
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {}, (val) => {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
+  });
+}
+function test_异步简单参数() {
+  xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js", (val) => {
+    document.getElementById("debug_text").innerText = val
+  });
 }
 
-// no args ret Object
-function noArgRetSheetDTO():SheetDTO {
-    window.noArgRetSheetDTO = () => {
-    xxxx
-      .noArgRetSheetDTO()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "SheetDTO args:"+res;
-      });
-  };
+function test_异步返回命名对象() {
+  xengine.api("com.zkty.jsi.xxxx", "namedObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =
+    typeof val + ":" + val.title + "," + val.titleSize;
+  }
+  );
 }
 
-// have args no ret
-interface HaveArgDTO{
-  arg:string;
-}
-function haveArgNoRet(arg:HaveArgDTO={arg:"abc"}){
-    window.haveArgNoRet = () => {
-    xxxx
-      .haveArgNoRet()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "no args:"+res;
-      });
-  };
-}
-
-// have args ret primitive
-function haveArgRetPrimitive(arg:HaveArgDTO={arg:"abc"}):string {
-    window.haveArgRetPrimitive = () => {
-    xxxx
-      .haveArgRetPrimitive()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "primitive args:"+res;
-      });
-  };
-}
-
-// have args ret Object
-function haveArgRetSheetDTO(arg:HaveArgDTO={arg:"abc"}):SheetDTO {
-    window.haveArgRetSheetDTO = () => {
-    xxxx
-      .haveArgRetSheetDTO()
-      .then((res) => {
-        document.getElementById("debug_text").innerText = "SheetDTO args:"+res;
-      });
-  };
+function test_异步返回匿名嵌套对象() {
+  xengine.api("com.zkty.jsi.xxxx", "nestedAnonymousObject", {},
+  (val)=>
+  {
+    document.getElementById("debug_text").innerText =typeof val + ":" + val.a + "," + val.i.n1;
+  }
+  );
 }
 ```
 
-#### 非引擎环境兼容
-
-很多时候，我们的微应用并不在引擎环境下， 在生成 model 时，会生一个 mock.js。你可以在里面定义你认为对的函数调用。
-
-```js
-// MODIFIABLE! 
-// generated by x_cli,
-// only generated when file is not existed!
-
-export default {
-    noArgNoRet(args={},userPromise){
-      if(userPromise){
-        return userPromise()
-      }else{
-        return new Promise((resolve, reject)=>{
-          // 在这里写你的实现
-          alert("noArgNoRet no h5 implementation, you can implement this function in mock.js in  h5/src/mock.js");
-          resolve(null);
-        });
-      }
-   }
-}
-```
-
-### module
-
-### app
-
+ 

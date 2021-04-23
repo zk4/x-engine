@@ -17,15 +17,15 @@
 
   
   
-  interface xengine_jsi_secrect_protocol {
+  interface xengine_jsi_secret_protocol {
         String _get(String dto);
   }
   
   
-  public abstract class xengine_jsi_secrect extends JSIModule implements xengine_jsi_secrect_protocol {
+  public abstract class xengine_jsi_secret extends JSIModule implements xengine_jsi_secret_protocol {
     @Override
     public String moduleId() {
-      return "com.zkty.jsi.secrect";
+      return "com.zkty.jsi.secret";
     }
   
         @JavascriptInterface

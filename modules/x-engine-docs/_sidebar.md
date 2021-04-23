@@ -1,6 +1,6 @@
 - [**前端**]
-  - [前端模块](./docs/devProcess/微应用开发流程.md)
-  - [npm 模块](./docs/devProcess/公共组件.md)
+  - [前端开发](./docs/devProcess/微应用开发流程.md)
+  - [Vue UI 模块](./docs/devProcess/公共组件.md)
   - [JSI api](./docs/modules/all/模块-device.md)
   
 - [**原生**]

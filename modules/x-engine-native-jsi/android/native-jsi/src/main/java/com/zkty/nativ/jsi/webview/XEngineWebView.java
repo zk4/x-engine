@@ -48,6 +48,7 @@ public class XEngineWebView extends DWebView {
 
     //自定义webview 历史记录
     private List<HistoryModel> historyModels;
+    private HistoryModel historyModel;
 
     public XEngineWebView(Context context) {
         super(context);
@@ -233,6 +234,7 @@ public class XEngineWebView extends DWebView {
         List<JSIModule> modules = JSIContext.sharedInstance().modules();
         for (JSIModule object : modules) {
             String tag = object.moduleId();
+            object.setEngineWebView(this);
             addJavascriptObject(object, tag);
         }
 
@@ -304,6 +306,7 @@ public class XEngineWebView extends DWebView {
         String url = getUrlByHistoryModel(model);
         loadUrl(url);
         historyModels.add(model);
+        this.historyModel = model;
     }
 
     public List<HistoryModel> getHistoryModels() {
@@ -419,6 +422,10 @@ public class XEngineWebView extends DWebView {
             return String.format("%s//%s%s", model.protocol, model.host, model.pathname);
 
         return String.format("%s//%s%s#%s", model.protocol, model.host, model.pathname, model.fragment);
+    }
+
+    public HistoryModel getHistoryModel() {
+        return this.historyModel;
     }
 
 }

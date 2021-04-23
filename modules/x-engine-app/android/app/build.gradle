@@ -70,10 +70,11 @@ dependencies {
     implementation project(':native-jsi')
 
     implementation project(':jsi-direct')
-    implementation project(':jsi-store')
+    implementation project(':jsi-secret')
     implementation project(':jsi-device')
     implementation project(':jsi-legacy')
     implementation project(':jsi-camera')
     implementation project(':jsi-scan')
     implementation project(':jsi-ui')
+    implementation project(':jsi-localstorage')
 }

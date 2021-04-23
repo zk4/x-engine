@@ -43,9 +43,6 @@ project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/
 include ':jsi-direct'
 project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')
 
-include ':jsi-store'
-project(':jsi-store').projectDir = new File('../../x-engine-jsi-store/android/jsi-store')
-
 include ':jsi-device'
 project(':jsi-device').projectDir = new File('../../x-engine-jsi-device/android/jsi-device')
 
@@ -60,3 +57,9 @@ project(':jsi-scan').projectDir = new File('../../x-engine-jsi-scan/android/jsi-
 
 include ':jsi-ui'
 project(':jsi-ui').projectDir = new File('../../x-engine-jsi-ui/android/jsi-ui')
+
+include ':jsi-localstorage'
+project(':jsi-localstorage').projectDir = new File('../../x-engine-jsi-localstorage/android/jsi-localstorage')
+
+include ':jsi-secret'
+project(':jsi-secret').projectDir = new File('../../x-engine-jsi-secret/android/jsi-secret')

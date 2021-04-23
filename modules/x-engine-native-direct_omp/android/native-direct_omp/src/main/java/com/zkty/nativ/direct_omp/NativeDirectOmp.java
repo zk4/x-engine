@@ -2,10 +2,9 @@ package com.zkty.nativ.direct_omp;
 
 import android.app.Activity;
 import android.text.TextUtils;
-
-import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.direct.IDirect;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.view.XEngineWebActivity;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;

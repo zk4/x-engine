@@ -39,6 +39,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import nativ.jsi.BuildConfig;
+
 
 public class XEngineWebView extends DWebView {
     private Context mContext;
@@ -70,6 +72,7 @@ public class XEngineWebView extends DWebView {
         getSettings().setAllowFileAccess(true);
         getSettings().setAllowContentAccess(true);
         getSettings().setDomStorageEnabled(true);
+        setWebContentsDebuggingEnabled(!"release".equals(BuildConfig.BUILD_TYPE));
         ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         setLayoutParams(params);

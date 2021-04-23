@@ -2,9 +2,9 @@ package com.zkty.nativ.direct_microapp;
 
 import android.text.TextUtils;
 
-import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.direct.IDirect;
 import com.zkty.nativ.jsi.view.MicroAppLoader;
 
 import java.util.List;

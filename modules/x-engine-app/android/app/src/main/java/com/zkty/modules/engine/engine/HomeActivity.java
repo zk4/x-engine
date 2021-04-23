@@ -25,9 +25,9 @@ public class HomeActivity extends AppCompatActivity {
 
     public void nextPage(View view) {
         String protocol = "file:";
-        String host = MicroAppLoader.sharedInstance().getMicroAppHost("com.gm.microapp.mine", 0);
-          protocol = "http:";
-         host = "10.2.128.89:8080";
+        String host = MicroAppLoader.sharedInstance().getMicroAppHost("com.zkty.microapp.demo", 0);
+//          protocol = "http:";
+//         host = "10.2.128.89:8080";
 
 
         String pathname = "";
@@ -35,6 +35,5 @@ public class HomeActivity extends AppCompatActivity {
 
 
         XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, true);
-
     }
 }

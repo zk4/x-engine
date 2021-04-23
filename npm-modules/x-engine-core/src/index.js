@@ -138,17 +138,12 @@ Object.defineProperty(xengine, "bridge", {
 
 function platform() {
   var ua = navigator.userAgent,
-    isWindowsPhone = /(?:Windows Phone)/.test(ua),
-    isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
     isAndroid = /(?:Android)/.test(ua),
-    isFireFox = /(?:Firefox)/.test(ua),
-    isChrome = /(?:Chrome|CriOS)/.test(ua),
     isTablet =
     /(?:iPad|PlayBook)/.test(ua) ||
-    (isAndroid && !/(?:Mobile)/.test(ua)) ||
-    (isFireFox && /(?:Tablet)/.test(ua)),
+    (isAndroid && !/(?:Mobile)/.test(ua)),
     isPhone = /(?:iPhone)/.test(ua) && !isTablet,
-    isPc = !isPhone && !isAndroid && !isSymbian;
+    isPc = !isPhone && !isAndroid;
   return {
     isTablet: isTablet,
     isPhone: isPhone,
@@ -159,7 +154,7 @@ function platform() {
 
 // 监听输入框的软键盘弹起和收起事件
 function listenKeybord($input) {
-  if (judgeDeviceType.isIOS) {
+  if (this.platform.isPhone) {
     // IOS 键盘弹起：IOS 和 Android 输入框获取焦点键盘弹起
     $input.addEventListener(
       "focus",
@@ -178,7 +173,7 @@ function listenKeybord($input) {
   }
 
   // Andriod 键盘收起：Andriod 键盘弹起或收起页面高度会发生变化，以此为依据获知键盘收起
-  if (judgeDeviceType.isAndroid) {
+  if (this.platform.isAndroid) {
     var originHeight =
       document.documentElement.clientHeight || document.body.clientHeight;
 

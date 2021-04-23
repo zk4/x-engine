@@ -3,7 +3,7 @@ import XEngine from '@zkty-team/x-engine-core'
 function intercept(VueRouter, scheme) {
     const originalRouterPush = VueRouter.prototype.push;
     VueRouter.prototype.push = function push(location) {
-        if (XEngine.isHybrid()) {
+        if (XEngine.platform.isAndroid || xengine.platform.isPhone) {
             XEngine.api('com.zkty.jsi.direct', 'push', {
                 scheme: scheme,
                 pathname: '',
@@ -22,7 +22,7 @@ function intercept(VueRouter, scheme) {
 
     const originalRouterGo = VueRouter.prototype.go;
     VueRouter.prototype.go = function go(location) {
-        if (XEngine.isHybrid()) {
+        if (XEngine.platform.isAndroid || xengine.platform.isPhone) {
             XEngine.api('com.zkty.jsi.direct', 'back', {
                 scheme: scheme,
                 pathname: '',

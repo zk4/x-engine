@@ -1,727 +1,0 @@
-Script started on Mon Apr 19 12:55:47 2021
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine]1;..Zkty/x-enginell
-[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hlll[?1l>[?2004l
-]2;ls -G -lh]1;lltotal 1336
--rw-r--r--@    1 cwz  staff   111K  4 13 11:55 CHANGELOG.md
--rw-r--r--@    1 cwz  staff   212B  4 14 11:27 Makefile
-drwxr-xr-x     5 cwz  staff   160B  3 30 20:32 [1m[36mappTools[39;49m[0m
-drwxr-xr-x     5 cwz  staff   160B  3 30 20:32 [1m[36mdevTools[39;49m[0m
-drwxr-xr-x    10 cwz  staff   320B  4 14 11:27 [1m[36mdraft[39;49m[0m
--rw-r--r--     1 cwz  staff   380B  4 16 20:12 lerna.json
-drwxr-xr-x     4 cwz  staff   128B  4 16 20:12 [1m[36mmicroApps[39;49m[0m
-drwxr-xr-x    57 cwz  staff   1.8K  4 16 15:34 [1m[36mmodules[39;49m[0m
-drwxr-xr-x  1130 cwz  staff    35K  4 14 18:49 [1m[36mnode_modules[39;49m[0m
-drwxr-xr-x     5 cwz  staff   160B  4 16 20:13 [1m[36mnpm-modules[39;49m[0m
--rw-r--r--     1 cwz  staff   1.3K  4 16 20:12 package.json
--rw-r--r--@    1 cwz  staff    42B  4 14 11:27 readme.md
-drwxr-xr-x     3 cwz  staff    96B  3 30 20:32 [1m[36mscripts[39;49m[0m
--rw-r--r--     1 cwz  staff    43B  4 19 12:55 typescript
--rw-r--r--     1 cwz  staff   530K  4 16 20:12 yarn.lock
--rw-r--r--     1 cwz  staff    67B  3 30 20:32 zipmcripapps.sh
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine]1;..Zkty/x-engine[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004h.[90m.[39m.[39m.[?1l>[?2004l
-]2;..]1;..[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty]1;~/work/3-Zkty[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty [49m[38;5;24m[39m [K[?1h=[?2004hl[90ml[39ml[39ml[?1l>[?2004l
-]2;ls -G -lh]1;lltotal 0
-drwxr-xr-x@ 10 cwz  staff   320B  1 11 23:01 [1m[36mUniBoost[39;49m[0m
-drwxr-xr-x  17 cwz  staff   544B  4 13 13:53 [1m[36mgome-business[39;49m[0m
-drwxr-xr-x@  8 cwz  staff   256B  3  3 15:50 [1m[36mtimes_business[39;49m[0m
-drwxr-xr-x  21 cwz  staff   672B  4 19 12:55 [1m[36mx-engine[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty]1;~/work/3-Zkty[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty [49m[38;5;24m[39m [K[?1h=[?2004hs[90mcript[39ms[39mc[39mr[39mi[39mp[39mts[?1l>[?2004l
-]2;scripts]1;scriptszsh: command not found: scripts
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty]1;~/work/3-Zkty[0m[27m[24m[J[39m[0m[49m[40m[39m [31m✘ [47m[30m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty [49m[38;5;24m[39m [K[?1h=[?2004hx[90m-engine-jsi-camera[39m[18Dx[39m-[39me[39mn[39mg[39mi[39mn[39me[39m-[90m-[39m[39m/[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [10Dscripts[?1l>[?2004l
-]2;x-engine/scripts]1;x-engine/scripts[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/scripts]1;..ngine/scriptsl[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/scripts [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hl[90ml[39ml[39ml[?1l>[?2004l
-]2;ls -G -lh]1;lltotal 8
--rw-r--r--  1 cwz  staff   945B  3 30 20:32 verifyCommit.js
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/scripts]1;..ngine/scripts[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/scripts [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004h.[90m.[39m.[39m.[?1l>[?2004l
-]2;..]1;..[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine]1;..Zkty/x-engine[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hm[90microApps[39m[8Dm[39mo[90md[90mu[90ml[90me[90ms[39m[39m [39m [39md[39mu[39ml[39me[39ms[?1l>[?2004l
-]2;modules]1;modules[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules]1;..ngine/modules[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hl[90ml[39ml[39ml[?1l>[?2004l
-]2;ls -G -lh]1;lltotal 16
--rw-r--r--@  1 cwz  staff    26B  3 30 20:32 Makefile
-drwxr-xr-x   8 cwz  staff   256B  4  8 12:27 [1m[36mrn-demo[39;49m[0m
--rw-r--r--   1 cwz  staff   260B  4  7 17:08 serverless.yml
-drwxr-xr-x   5 cwz  staff   160B  3 30 20:37 [1m[36mx-engine-app[39;49m[0m
-drwxr-xr-x  30 cwz  staff   960B  4 13 19:17 [1m[36mx-engine-docs[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4 19 12:54 [1m[36mx-engine-jsi-camera[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4 19 12:54 [1m[36mx-engine-jsi-device[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4 16 20:12 [1m[36mx-engine-jsi-direct[39;49m[0m
-drwxr-xr-x   3 cwz  staff    96B  4  2 11:15 [1m[36mx-engine-jsi-direct_manager[39;49m[0m
-drwxr-xr-x  21 cwz  staff   672B  4 14 13:07 [1m[36mx-engine-jsi-legacy[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4 19 12:54 [1m[36mx-engine-jsi-scan[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4 14 13:07 [1m[36mx-engine-jsi-store[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4 16 20:12 [1m[36mx-engine-jsi-template[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4 14 13:07 [1m[36mx-engine-jsi-ui[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4  8 12:27 [1m[36mx-engine-module-bluetooth[39;49m[0m
-drwxr-xr-x  24 cwz  staff   768B  4 16 20:12 [1m[36mx-engine-module-camera[39;49m[0m
-drwxr-xr-x   4 cwz  staff   128B  4 16 17:15 [1m[36mx-engine-module-core[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4  8 12:27 [1m[36mx-engine-module-dcloud[39;49m[0m
-drwxr-xr-x  24 cwz  staff   768B  4  8 12:27 [1m[36mx-engine-module-device[39;49m[0m
-drwxr-xr-x  20 cwz  staff   640B  4 13 21:58 [1m[36mx-engine-module-engine[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4  8 12:27 [1m[36mx-engine-module-geo[39;49m[0m
-drwxr-xr-x  23 cwz  staff   736B  4  8 12:27 [1m[36mx-engine-module-localstorage[39;49m[0m
-drwxr-xr-x  22 cwz  staff   704B  4  8 12:27 [1m[36mx-engine-module-microapp[39;49m[0m
-drwxr-xr-x  24 cwz  staff   768B  4  8 12:27 [1m[36mx-engine-module-nav[39;49m[0m
-drwxr-xr-x  24 cwz  staff   768B  4  8 12:27 [1m[36mx-engine-module-network[39;49m[0m
-drwxr-xr-x  20 cwz  staff   640B  4  8 12:27 [1m[36mx-engine-module-offline[39;49m[0m
-drwxr-xr-x   4 cwz  staff   128B  4 12 11:28 [1m[36mx-engine-module-open[39;49m[0m
-drwxr-xr-x  25 cwz  staff   800B  4  8 12:27 [1m[36mx-engine-module-router[39;49m[0m
-drwxr-xr-x  26 cwz  staff   832B  4  8 12:27 [1m[36mx-engine-module-scan[39;49m[0m
-drwxr-xr-x  23 cwz  staff   736B  4  8 12:27 [1m[36mx-engine-module-secrect[39;49m[0m
-drwxr-xr-x  21 cwz  staff   672B  4  8 12:27 [1m[36mx-engine-module-share[39;49m[0m
-drwxr-xr-x  23 cwz  staff   736B  4  8 14:40 [1m[36mx-engine-module-template[39;49m[0m
-drwxr-xr-x  20 cwz  staff   640B  4  8 12:27 [1m[36mx-engine-module-tools[39;49m[0m
-drwxr-xr-x  24 cwz  staff   768B  4  8 12:27 [1m[36mx-engine-module-ui[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 13 18:26 [1m[36mx-engine-native-broadcast[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 16 20:12 [1m[36mx-engine-native-camera[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 13 21:57 [1m[36mx-engine-native-core[39;49m[0m
-drwxr-xr-x   7 cwz  staff   224B  4 13 20:24 [1m[36mx-engine-native-device[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 12 11:28 [1m[36mx-engine-native-direct[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 12 11:28 [1m[36mx-engine-native-direct_http[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 13 19:29 [1m[36mx-engine-native-direct_https[39;49m[0m
-drwxr-xr-x   3 cwz  staff    96B  4  2 11:15 [1m[36mx-engine-native-direct_manager[39;49m[0m
-drwxr-xr-x   9 cwz  staff   288B  4 12 11:28 [1m[36mx-engine-native-direct_microapp[39;49m[0m
-drwxr-xr-x   9 cwz  staff   288B  4 12 11:28 [1m[36mx-engine-native-direct_omp[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 12 11:28 [1m[36mx-engine-native-jsi[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 16 16:14 [1m[36mx-engine-native-protocols[39;49m[0m
-drwxr-xr-x   7 cwz  staff   224B  4 12 11:28 [1m[36mx-engine-native-rest[39;49m[0m
-drwxr-xr-x   7 cwz  staff   224B  4 16 20:12 [1m[36mx-engine-native-scan[39;49m[0m
-drwxr-xr-x   6 cwz  staff   192B  4 12 11:28 [1m[36mx-engine-native-securify[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 13 20:38 [1m[36mx-engine-native-store[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 15 11:38 [1m[36mx-engine-native-template[39;49m[0m
-drwxr-xr-x   8 cwz  staff   256B  4 12 11:28 [1m[36mx-engine-native-ui[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules]1;..ngine/modules[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hx[90m-engine/scripts[39m[15Dx[39m0[5C[90me[39m[39m [39m [39m [39m [39m [39m [39m [39m [14D[39me[39mg[39m [39m [39m [39m i [90mn[90mgine[39m[90me[39mx[90m-[5C[90me[90m/scripts[39m[15D [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [16Dx[90m-engine/scripts[39m[15Dx[39m-[39me[39mn[39mg[39mi[39mn[39me[39m-[90mj[90ms[90mi[90m-[90mc[90ma[90mm[90mera[39m[10D[39ms[39m [39m [39m [39m [39m [39m [39m [39m [39m [9D[90mj[90msi-camera[39m[10D[39md[90mo[90mc[90ms[39m[39m [39m [39m [39m [39m [39m [9D[39mp[39m [39m [90mo[90mcs[39m[39mo[39mc[39ms[1m/[0m[0m [?1l>[?2004l
-]2;x-engine-docs]1;x-engine-docs[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hl[90ml[39ml[39ml[?1l>[?2004l
-]2;ls -G -lh]1;lltotal 2264
--rw-r--r--@  1 cwz  staff   335B  3 30 20:32 Makefile
--rw-r--r--@  1 cwz  staff   3.4K  3 30 20:32 README.md
--rw-r--r--@  1 cwz  staff   189B  3 30 20:32 _navbar.md
--rw-r--r--@  1 cwz  staff   798B  3 30 20:32 _sidebar.md
-drwxr-xr-x  57 cwz  staff   1.8K  3 30 20:32 [1m[36massets[39;49m[0m
--rw-r--r--   1 cwz  staff   1.5K  3 30 20:32 d3d.css
-drwxr-xr-x   6 cwz  staff   192B  3 30 20:32 [1m[36mdocs[39;49m[0m
--rw-r--r--   1 cwz  staff   1.4K  3 30 20:32 docsify-remote-markdown.min.js
--rwxrwxrwx   1 cwz  staff   4.4K  4 13 19:14 [31mgen_readme.py[39;49m[0m
--rwxr-xr-x   1 cwz  staff   3.5K  3 30 20:32 [31mgit_stat.py[39;49m[0m
--rw-r--r--@  1 cwz  staff   4.8K  3 30 20:32 index.html
--rw-r--r--   1 cwz  staff   190B  3 30 20:32 microapp.json
-drwxr-xr-x   3 cwz  staff    96B  4  8 12:27 [1m[36mnode_modules[39;49m[0m
--rw-r--r--   1 cwz  staff    83K  3 30 20:32 package-lock.json
--rw-r--r--   1 cwz  staff   523B  3 30 20:32 package.json
--rw-r--r--@  1 cwz  staff   2.9K  3 30 20:32 resource.md
--rw-r--r--@  1 cwz  staff    11K  3 30 20:32 todos-1.0.md
--rw-r--r--@  1 cwz  staff   2.9K  3 30 20:32 uni-app产品调研.md
--rw-r--r--   1 cwz  staff   413B  3 30 20:32 单repo设计.md
--rw-r--r--@  1 cwz  staff   5.2K  3 30 20:32 功能草案.md
--rw-r--r--   1 cwz  staff   1.3K  3 30 20:32 基座设计.md
--rw-r--r--@  1 cwz  staff   5.1K  3 30 20:32 开发计划.md
--rw-r--r--   1 cwz  staff   743B  3 30 20:32 消息设计.md
--rw-r--r--   1 cwz  staff    11K  3 30 20:32 路由设计.md
--rw-r--r--   1 cwz  staff   928K  3 30 20:32 开发计划.pdf
--rw-r--r--   1 cwz  staff   1.9K  3 30 20:32 包管理设计.md
--rw-r--r--   1 cwz  staff   262B  3 30 20:32 混合框架对比.md
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hp[90mod install[39m[10Dp[39my[90mt[90mh[90mo[90mn[90m3[90m [90mg[90me[90mn[90m_readme.py[39m[19D[39mt[39mh[39mo[39mn[39m3[39m [39mg[39me[39mn[39m_[39mr[39me[39ma[39md[39mm[39me[39m.[39mp[39my[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[90my[39m[90mp[90m.[90me[90mm[90md[90ma[90me[90mr[90m_[90mn[90me[90mg[90m [90m3[90mn[90mo[90mh[90mt[39mp[90mo[90md[90m [90mi[90mn[90ms[90mt[90ma[90ml[90ml[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [20D [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [11Dv[90mim readme.md[39m[12Dv[39mi[39mm[39m [39mp[90ma[90mc[90mk[90ma[90mg[90me[90m.[90mj[90mson[39m[11D[39ma[39mc[39mk[39ma[39mg[39me[39m.[39ms[39m [39m [39m jo  [90mj[90mson[39m[39mj[39ms[39mo[39mn[?1l>[?2004l
-]2;vim package.json]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"package.json" 20L, 523C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[46m{[m
-  "name": "x-engine-docs",
-  "version": "0.1.13",
-  "description": "![cooltext363596337964428](assets/cooltext363596337964428.png)",
-  "main": ".docsifytopdfrc.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "convert": "node_modules/.bin/docsify-pdf-converter"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "docsify-pdf-converter": "^2.0.7"
-  },
-  "gitHead": "1fea4cec0219638167d1ff9d5670ebe36d44b20c"
-[46m}[m
-[94m~                                                                                                                                                                                        [22;1H~                                                                                                                                                                                        [23;1H~                                                                                                                                                                                        [24;1H~                                                                                                                                                                                        [25;1H~                                                                                                                                                                                        [26;1H~                                                                                                                                                                                        [27;1H~                                                                                                                                                                                        [28;1H~                                                                                                                                                                                        [29;1H~                                                                                                                                                                                        [30;1H~                                                                                                                                                                                        [31;1H~                                                                                                                                                              mt[90ma[90ml[90ml[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [20D [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [11Dv[90mim readme.md[39m[12Dv[39mi[39mm[39m [39mp[90ma[90mc[90mk[90ma[90mg[90me[90m.[90mj[90mson[39m[11D[39ma[39mc[39mk[39ma[39mg[39me[39m.[39ms[39m [39m [39m jo  [90mj[90mson[39m[39mj[39ms[39mo[39mn[?1l>[?2004l
-]2;vim package.json]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"package.json" 20L, 523C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[46m{[m
-  "name": "x-engine-docs",
-  "version": "0.1.13",
-  "description": "![cooltext363596337964428](assets/cooltext363596337964428.png)",
-  "main": ".docsifytopdfrc.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "convert": "node_modules/.bin/docsify-pdf-converter"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "docsify-pdf-converter": "^2.0.7"
-  },
-  "gitHead": "1fea4cec0219638167d1ff9d5670ebe36d44b20c"
-[46m}[m
-[94m~                                                                                                                                                                                        [22;1H~                                                                                                                                                                                        [23;1H~                                                                                                                                                                                        [24;1H~                                                                                                                                                                                        [25;1H~                                                                                                                                                                                        [26;;1H~                                                                                                                                                                                        [44;1H~                                                                                                                                                                                        [45;1H~                                                                                                                                                                                        [1;1H[?25h[?12$p[?25l[m{[20;1H}[2;1H[?25h
-
-
-
-
-
-
-
-
-
-[11;1H[10;1H
-
-[?25l[46;1H[K[46;1H:[?25hq[?25l[?2004l[>4;m[23;2t[23;1t[46;1H[K[46;1H[?2004l[?1l>[?25h[>4;m[?1049l[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hv[90mim package.json[39m[15Dv[39mi[39mm[39m [39mm[90mo[90md[90me[90ml[90m.[90mt[90ms[39m[39m [39m [39m [39m [11D[39mi[90mc[90mr[90mo[90ma[90mp[90mp[90m.json[39m[11D[39mc[39mr[39mo[39ma[39mp[39mp[39m.[39mj[39ms[39mo[39mn[1m [0m[0m [?1l>[?2004l
-]2;vim microapp.json]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"microapp.json" 12L, 190C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[46m{[m
-  "version": 3,
-  "id": "com.zkty.microapp.abc",
-  "ui": {
-    "hideNavbar": false,
-    "statusBarColor": "#fff"
-  },
-  "sign":"",
-  "allowSelfNetwork":true,
-  "module_permission":[
-  ]
-[46m}[m
-[94m~                                                                                                                                                                                        [14;1H~                                                                                                                                                                                        [15;1H~                                                                                                                                                                                        [16;1H~                                                                                                                                                                                        [17;1H~                                                                                                                                                                                        [18;1H~                                                                                                                                                                                        [19;1H~                                                                                                                                                                                        [20;1H~                                                                                                                                                                                        [21;1H~                                                                                                                                                                                        [22;1H~                                                                                                                                                                                        [23;1H~                                                                                                                                                                                        [24;1H~                                                                                                                                                                                        [25;1H~                                                                                                                                                                                        [26;1H~                                                                                                                                                                                        [27;1H~                                                                                                                                                                                        [28;1H~                                                                                                                                                                                        [29;1H~                                                                                                                                                                                        [30;1H~                                                                                                                                                                                        [31;1H~                                                                                                                                                                                        [32;1H~                                                                                                                                                                                        [33;1H~                                                                                                                                                                                        [34;1H~                                                                                                                                                                                        [35;1H~                                                                                                                                                                                        [36;1H~                                                                                                                                                                                        [37;1H~                                                                                                                                                                                        [38;1H~                                                                                                                                                                                        [39;1H~                                                                                                                                                                                        [40;1H~                                                                                                                                                                                        [41;1H~                                                                                                                                                                                        [42;1H~                                                                                                                                                                                        [43;1H~                                                                                                                                                                                        [44;1H~                                                                                                                                                                                        [45;1H~                                                                                                                                                                                        [1;1H[?25h[?12$p[?25l[m[46;1H[K[46;1H:[?25hq[?25l[?2004l[>4;m[23;2t[23;1t[46;1H[K[46;1H[?2004l[?1l>[?25h[>4;m[?1049l[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogo                      [31;1H~                                                                                                                                                                                        [32;1H~                                                                                 v[90mim microapp.json[39m[16Dv[39mi[39mm[39m [39mm[39ma[90mk[90me[90mf[90mi[90ml[90me[39m[39m [39m [39m [39m [39m [11D[39mk[39meM[3C[39mf[39mi[39ml[39me[1m [0m[0m [?1l>[?2004l
-]2;vim Makefile]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"Makefile" 15L, 335C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[2;1Hdefault:[3;9Hpython3 ./gen_readme.py[4;9Hdocsify serve .
-
-install_docsify:[7;9Hnpm install -g docsify_cli
-
-pdf:[10;9Hpandoc *.md --to=pdf -t latex -o result.pdf --pdf-engine=/Library/TeX/texbin/pdflatex
-
-pdf2:[13;9H# https://www.martinkaptein.com/blog/markdown-to-pdf-without-latex/[14;9Hpandoc -t html5 readme.md -o file.pdf -s --pdf-engine=wkhtmltopdf
-
-[94m~                                                                                                                                                                                        [17;1H~                                                                                                                                                                                        [18;1H~                                                                                                                                                                                        [19;1H~                                                                                                                                                                                        [20;1H~                                                                                                                                                                                        [21;1H~                                                                                                                                                                                        [22;1H~                                                                                                                                                                                        [23;1H~                                                                                                                                                                                        [24;1H~                                                                                                                                                                                        [25;1H~                                                                                                                                                                                        [26;1H~                                                                                                                                                                                        [27;1H~                                                                                                                                                                                        [28;1H~                                                                                                                                                                                        [29;1H~                                                                                                                                                                                        [30;1H~                                                                                                                                                                                        [31;1H~                                                                                                                               [10;9Hpandoc *.md --to=pdf -t latex -o result.pdf --pdf-engine=/Library/TeX/texbin/pdflatex
-
-pdf2:[13;9H# https://www.martinkaptein.com/blog/markdown-to-pdf-without-latex/[14;9Hpandoc -t html5 readme.md -o file.pdf -s --pdf-engine=wkhtmltopdf
-
-[94m~                                                                                                                                                                                         [34;1H~                                                                                                                                                                                        [35;1H~                                                                                                                                                                                        [36;1H~                                                                                                                                                                                        [37;1H~                                                                                                                                                                                        [38;1H~                                                                                                                                                                                        [39;1H~                                                                                                                                                                                        [40;1H~                                                                                                                                                                                        [41;1H~                                                                                                                                                                                        [42;1H~                                                                                                                                                                                        [43;1H~                                                                                                                                                                                        [44;1H~                                                                                                                                                                                        [45;1H~                                                                                                                                                                                        [1;1H[?25h[?12$p
-[3;8H[4;8H
-[4;8H[3;8H[2;1H[3;8H[4;8H
-
-[5;1H[4;8H[3;8H[4;8H
-[4;8H[3;8H[2;1H[3;8H[4;8H
-[4;8H[3;8H[2;1H[3;8H[4;8H
-[4;8H[3;8H[2;1H[3;8H[4;8H
-[?25l[m[46;1H[K[46;1H:[?25hq[?25l[?2004l[>4;m[23;2t[23;1t[46;1H[K[46;1H[?2004l[?1l>[?25h[>4;m[?1049l[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop [49m[33m[39m [K[?1h=[?2004hp[90mod install[39m[10Dp[39my[90mt[90mh[90mo[90mn[90m3[90m [90mg[90me[90mn[90m_readme.py[39m[19D[39mt[39mh[39mo[39mn[39m3[39m [39mg[39me[39mn[39m_[39mr[39me[39ma[39md[39mm[39me[39m.[39mp[39my[?1l>[?2004l
-]2;python3 gen_readme.py]1;python3cp: ../x-engine-jsi-device/./assets: No such file or directory
-~/work/3-Zkty/x-engine/modules/x-engine-jsi-device ~/work/3-Zkty/x-engine/modules/x-engine-docs
-[2K[1G[1myarn run v1.22.10[22m
-[2K[1G[2m$ webpack  --config web                                                                                                                                                                                        [37;1H~                                                                                                               le or directory
-~/work/3-Zkty/x-engine/modules/x-engine-jsi-store ~/work/3-Zkty/x-engine/modules/x-engine-docs
-[2K[1G[1myarn run v1.22.10[22m
-[2K[1G[2m$ webpack  --config webpack.md.js[22m
-vimHash: [1me64b3b9b684d7ca9ac41[39m[22m
-Version: webpack [1m4.46.0[39m[22m
-Time: [1m582[39m[22mms
-Built at: 2021/04/19 [1m下午12:57:10[39m[22m
- 1 asset
-Entrypoint [1mmain[39m[22m = [1m[32mmain.js[39m[22m
-[0] [1m./h5/src/demo.js + 2 modules[39m[22m 5.09 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
-    | [1m./h5/src/demo.js[39m[22m 2.21 KiB[1m[32m [built][39m[22m
-    | [1m./h5/src/index.js[39m[22m 492 bytes[1m[32m [built][39m[22m
-    | [1m./h5/src/mock.js[39m[22m 2.4 KiB[1m[32m [built][39m[22m
-
-[1m[33mWARNING in configuration
-The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
-You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/[39m[22m
-
-[1m[31mERROR in ./h5/src/demo.js
-Module not found: Error: Can't resolve '@zkty-team/x-engine-module-engine' in '/Users/cwz/work/3-Zkty/x-engine/modules/x-engine-jsi-store/h5/src'
- @ ./h5/src/demo.js 2:0-56 13:2-9 32:2-9 42:2-9 59:12-19 68:2-9 77:2-9 89:2-9 98:2-9 101:4-11[39m[22m
-
-[1m[31mERROR in ./h5/src/index.js
-Module not found: Error: Can't resolve '@zkty-team/x-engine-module-engine' in '/Users/cwz/work/3-Zkty/x-engine/modules/x-engine-jsi-store/h5/src'
- @ ./h5/src/index.js 3:0-56 10:11-18
- @ ./h5/src/demo.js[39m[22m
-Child [1mHtmlWebpackCompiler[39m[22m:
-     1 asset
-    Entrypoint [1mHtmlWebpackPlugin_0[39m[22m = [1m[32m__child-HtmlWebpackPlugin_0[39m[22m
-    [0] [1m/Users/cwz/work/3-Zkty/x-engine/node_modules/html-webpack-plugin/lib/loader.js!./h5/src/index.html[39m[22m 2.85 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
-[2K[1G[31merror[39m Command failed with exit code 2.
-[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
-cp: ../x-engine-jsi-store/h5/assets: No such file or directory
-cp: ../x-engine-jsi-store/iOS/assets: No such file or directory
-cp: ../x-engine-jsi-store/android/assets: No such file or directory
-./docs/modules/all/模块-store.md
- cp: ../x-engine-jsi-ui/./assets: No such file or directory
-~/work/3-Zkty/x-engine/modules/x-engine-jsi-ui ~/work/3-Zkty/x-engine/modules/x-engine-docs
-[2K[1G[1myarn run v1.22.10[22m
-[2K[1G[2m$ webpack  --config webpack.md.js[22m
-Hash: [1m81d308f29a5a54940b4b[39m[22m
-Version: webpack [1m4.46.0[39m[22m
-Time: [1m482[39m[22mms
-Built at: 2021/04/19 [1m下午12:57:12[39m[22m
- 1 asset
-Entrypoint [1mmain[39m[22m = [1m[32mmain.js[39m[22m
-[0] [1m./h5/src/demo.js + 2 modules[39m[22m 3.65 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
-    | [1m./h5/src/demo.js[39m[22m 772 bytes[1m[32m [built][39m[22m
-    | [1m./h5/src/index.js[39m[22m 510 bytes[1m[32m [built][39m[22m
-    | [1m./h5/src/mock.js[39m[22m 2.4 KiB[1m[32m [built][39m[22m
-
-[1m[33mWARNING in configuration
-The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
-You can also set it to 'none' to disable anyvimHash: [1me64b3b9b684d7ca9ac41[39m[22m
-Version: webpack [1m4.46.0[39m[22m
-Time: [1m582[39m[22mms
-Built at: 2021/04/19 [1m下午12:57:10[39m[22m
- 1 asset
-Entrypoint [1mmain[39m[22m = [1m[32mmain.js[39m[22m
-[0] [1m./h5/src/demo.js + 2 modules[39m[22m 5.09 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
-    | [1m./h5/src/demo.js[39m[22m 2.21 KiB[1m[32m [built][39m[22m
-    | [1m./h5/src/index.js[39m[22m 492 bytes[1m[32m [built][39m[22m
-    | [1m./h5/src/mock.js[39m[22m 2.4 KiB[1m[32m [built][39m[22m
-
-[1m[33mWARNING in configuration
-The 'mode' option has not been se
-    Entrypoint [1mHtmlWebpackPlugin_0[39m[22m = [1m[32m__child-HtmlWebpackPlugin_0[39m[22m
-    [0] [1m/Users/cwz/work/3-Zkty/x-engine/node_modules/html-webpack-plugin/lib/loader.js!./h5/src/index.html[39m[22m 2.19 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
-[2K[1G[31merror[39m Command failed with exit code 2.
-[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
-cp: ../x-engine-jsi-ui/h5/assets: No such file or directory
-cp: ../x-engine-jsi-ui/iOS/assets: No such file or directory
-cp: ../x-engine-jsi-ui/android/assets: No such file or directory
-./docs/modules/all/模块-ui.md
-cp: ../x-engine-jsi-direct/./assets: No such file or directory
-~/work/3-Zkty/x-engine/modules/x-engine-jsi-direct ~/work/3-Zkty/x-engine/modules/x-engine-docs
-[2K[1G[1myarn run v1.22.10[22m
-[2K[1G[2m$ webpack  --config webpack.md.js[22m
-Hash: [1mb3f155a5f3129a069ab3[39m[22m
-Version: webpack [1m4.46.0[39m[22m
-Time: [1m299[39m[22mms
-Built at: 2021/04/19 [1m下午12:57:13[39m[22m
- 1 asset
-Entrypoint [1mmain[39m[22m = [1m[32mmain.js[39m[22m
-[0] [1m./h5/src/demo.js[39m[22m 4.83 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m[1m[31m [failed][39m[22m[1m[31m [1 error][39m[22m
-
-[1m[33mWARNING in configuration
-The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
-You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/[39m[22m
-
-[1m[31mERROR in ./h5/src/demo.js
-Module build failed (from /Users/cwz/work/3-Zkty/x-engine/node_modules/babel-loader/lib/index.js):
-SyntaxError: /Users/cwz/work/3-Zkty/x-engine/modules/x-engine-jsi-direct/h5/src/demo.js: Unexpected token, expected "," (46:0)
-
-[0m [90m 44 |[39m      fragment[33m:[39m[32m'-1'[39m[0m
-[0m [90m 45 |[39m    }[0m
-[0m[31m[1m>[22m[39m[90m 46 |[39m }}[0m
-[0m [90m    |[39m [31m[1m^[22m[39m[0m
-[0m [90m 47 |[39m  document[33m.[39mgetElementById([32m"back"[39m)[33m.[39mclick()[0m
-[0m [90m 48 |[39m     [0m
-[0m [90m 49 |[39m     [0m
-    at Parser._raise (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:776:17)
-    at Parser.raiseWithData (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:769:17)
-    at Parser.raise (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:737:17)
-    at Parser.unexpected (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:9735:16)
-    at Parser.expect (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:9721:28)
-    at Parser.parseCallExpressionArguments (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10890:14)
-    at Parser.parseCoverCallAndAsyncArrowHead (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10816:29)
-    at Parser.parseSubscript (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10752:19)
-    at Parser.parseSubscripts (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10725:19)
-    at Parser.parseExprSubscripts (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10714:17)
-    at Parser.parseUpdate (/Users/cwz/work/3-Zkty/x-engine/node_ndex.html[39m[22m 2.19 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
-[2K[1G[31merror[39m Command failed with exit code 2.
-[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
-cp: ../x-engine-jsi-ui/h5/assets: No such file or directory
-cp: ../x-engine-jsi-ui/iOS/assets: No such file or directory
-cp: ../x-engine-jsi-ui/android/assets: No such file or directory
-./docs/modules/all/模块-ui.md
-cp: ../x-engine-jsi-direct/./assets: No such file or directory
-~/work/3-Zkty/x-engine/modules/x-engine-jsi-direct ~/work/3-Zkty/x-engine/modules/x-engine-docsUsers/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10399:39
-    at Parser.allowInAnd (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12104:12)
-    at Parser.parseExpression (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10399:17)
-    at Parser.parseStatementContent (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12390:23)
-    at Parser.parseStatement (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12259:17)
-    at Parser.parseBlockOrModuleBlockBody (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12845:25)
-    at Parser.parseBlockBody (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12836:10)
-    at Parser.parseBlock (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12820:10)
-    at Parser.parseStatementContent (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12335:21)
-    at Parser.parseStatement (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12259:17)
-    at Parser.parseBlockOrModuleBlockBody (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12845:25)
-    at Parser.parseBlockBody (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12836:10)
-    at Parser.parseBlock (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12820:10)
-    at Parser.parseFunctionBody (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:11777:24)
-    at Parser.parseArrowExpression (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:11749:10)
-    at Parser.parseParenAndDistinguishExpression (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:11322:12)
-    at Parser.parseExprAtom (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:11026:21)
-    at Parser.parseExprSubscripts (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10708:23)
-    at Parser.parseUpdate (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10688:21)
-    at Parser.parseMaybeUnary (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10666:23)[39m[22m
-Child [1mHtmlWebpackCompiler[39m[22m:
-     1 asset
-    Entrypoint [1mHtmlWebpackPlugin_0[39m[22m = [1m[32m__child-HtmlWebpackPlugin_0[39m[22m
-    [0] [1m/Users/cwz/work/3-Zkty/x-engine/node_modules/html-webpack-plugin/lib/loader.js!./h5/src/index.html[39m[22m 2.03 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
-[2K[1G[31merror[39m Command failed with exit code 2.
-[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
-cp: ../x-engine-jsi-direct/h5/assets: No such file or directory
-cp: ../x-engine-jsi-direct/iOS/assets: No such file or directory
-cp: ../x-engine-jsi-direct/android/assets: No such file or directory
-./docs/modules/all/模块-direct.md
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/xer.parseExpression (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:10399:17)
-    at Parser.parseStatementContent (/Users/cwz/work/3-Zkty/x-engine/node_modules/@babel/parser/lib/index.js:12390:23)
-    at Parser.parseStl[90ml[39ml[39ml[?1l>[?2004l
-]2;ls -G -lh]1;lltotal 2264
--rw-r--r--@  1 cwz  staff   335B  3 30 20:32 Makefile
--rw-r--r--@  1 cwz  staff   3.4K  3 30 20:32 README.md
--rw-r--r--@  1 cwz  staff   189B  3 30 20:32 _navbar.md
--rw-r--r--@  1 cwz  staff   798B  3 30 20:32 _sidebar.md
-drwxr-xr-x  57 cwz  staff   1.8K  3 30 20:32 [1m[36massets[39;49m[0m
--rw-r--r--   1 cwz  staff   1.5K  3 30 20:32 d3d.css
-drwxr-xr-x   6 cwz  staff   192B  3 30 20:32 [1m[36mdocs[39;49m[0m
--rw-r--r--   1 cwz  staff   1.4K  3 30 20:32 docsify-remote-markdown.min.js
--rwxrwxrwx   1 cwz  staff   4.4K  4 13 19:14 [31mgen_readme.py[39;49m[0m
--rwxr-xr-x   1 cwz  staff   3.5K  3 30 20:32 [31mgit_stat.py[39;49m[0m
--rw-r--r--@  1 cwz  staff   4.8K  3 30 20:32 index.html
--rw-r--r--   1 cwz  staff   190B  3 30 20:32 microapp.json
-drwxr-xr-x   3 cwz  staff    96B  4  8 12:27 [1m[36mnode_modules[39;49m[0m
--rw-r--r--   1 cwz  staff    83K  3 30 20:32 package-lock.json
--rw-r--r--   1 cwz  staff   523B  3 30 20:32 package.json
--rw-r--r--@  1 cwz  staff   2.9K  3 30 20:32 resource.md
--rw-r--r--@  1 cwz  staff    11K  3 30 20:32 todos-1.0.md
--rw-r--r--@  1 cwz  staff   2.9K  3 30 20:32 uni-app产品调研.md
--rw-r--r--   1 cwz  staff   413B  3 30 20:32 单repo设计.md
--rw-r--r--@  1 cwz  staff   5.2K  3 30 20:32 功能草案.md
--rw-r--r--   1 cwz  staff   1.3K  3 30 20:32 基座设计.md
--rw-r--r--@  1 cwz  staff   5.1K  3 30 20:32 开发计划.md
--rw-r--r--   1 cwz  staff   743B  3 30 20:32 消息设计.md
--rw-r--r--   1 cwz  staff    11K  3 30 20:32 路由设计.md
--rw-r--r--   1 cwz  staff   928K  3 30 20:32 开发计划.pdf
--rw-r--r--   1 cwz  staff   1.9K  3 30 20:32 包管理设计.md
--rw-r--r--   1 cwz  staff   262B  3 30 20:32 混合框架对比.md
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop ● [49m[33m[39m [K[?1h=[?2004hv[90mim Makefile[39m[11Dv[39mi[39mm[39m [39mp[90ma[90mc[90mk[90ma[90mg[90me[90m.[90mjson[39m[11D[39ma[39mc[39mk[39ma[39mg[39me
-[J[0mpackage-lock.json  [Jpackage.json     [J[A[0m[27m[24m[0m[39m[49m[70Cvim package[90m.json[39m[K[0m[39m[49m[39m-[39ml[39mo[39mc[39mk.json
-[J[7mpackage-lock.json[0m  [Jpackage.json     [J[A[0m[27m[24m[0m[39m[49m[70Cvim package-lock.json[K[0m[39m[49m
-[7mpackage-lock.json[0m  [7mpackage-lock.json[0m  [A[0m[27m[24m[0m[39m[49m[70Cvim package-lock.json[K[0m[39m[49m
-[J[A[91C[1m [0m[0m [90mn[39m[90mo[90ms[90mj[90m.[90mk[90mc[90mo[90ml[90m.[90mj[90ms[90mo[90mn[39m[39m [39m [39m [39m [39m [10D[39m.[39mj[39ms[39mo[39mn\ [?1l>[?2004l
-[J]2;vim package.json]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"package.json" 20L, 523C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[46m{[m
-  "name": "x-engine-docs",
-  "version": "0.1.13",
-  "description": "![cooltext363596337964428](assets/cooltext363596337964428.png)",
-  "main": ".docsifytopdfrc.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "convert": "node_modules/.bin/docsify-pdf-converter"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "docsify-pdf-converter": "^2.0.7"
-  },
-  "gitHead cwz  staff   4.4K  4 13 19:14 [31mgen_readme.py[39;49m[0m
--rwxr-xr-x   1 cwz  staff   3.5K  3 30 20:32 [31mgit_stat.py[39;49m[0m
--rw-r--r--@  1 cwz  staff   4.8K  3 30 20:32 index.html
--rw-r--r--   1 cwz  staff   190B  3 30 20:32 micr    [22;1H~                                                                                                                                                                                        [23;1H~                                                                                                                                                                                        [24;1H~                                                                                                                                                                                        [25;1H~                                                                                                                                                                                        [26;1H~                                                                                                                                                                                        [27;1H~                                                                                                                                                                                        [28;1H~                                                                                                                                                                                        [29;1H~                                                                                                                                                                                        [30;1H~                                                                                                                                                                                        [31;1H~                                                                                                                                                                                        [32;1H~                                                                                                                                                                                        [33;1H~                                                                                                                                                                                        [34;1H~                                                                                                                                                                                        [35;1H~                                                                                                                                                                                        [36;1H~                                                                                                                                                                                        [37;1H~                                                                                                                                                                                        [38;1H~                                                                                                                                                                                        [39;1H~                                                                                                                                                                                        [40;1H~                                                                                                                                                                                        [41;1H~                                                                                                                                                                                        [42;1H~                                                                                                                                                                                       [26;1H~                                                                                                                                                                                         [44;1H~                                                                                                                                                                                        [45;1H~                                                                                                                                                                                        [1;1H[?25h[?12$p[?25l[m[46;1H[K[46;1H:[37;1H[7mpackage.json                                                                                                                                                                             [m[38;1H[94m:[m[38;2H[K[45;1H[1m[7m[Command Line]                                                                                                                                                                           [38;2H[?25h[?25l[m[46;1H[K[46;1H:[?25hq[?25l[46;1H[K[37;1H[94m~                                                                                                                                                                                        [38;1H~                                                                                                                                                                                        [45;1H~                                                                                                                                                                                        [1;1H[?25h[?25l[46;1H[m:[?25hq[?25l[?2004l[>4;m[23;2t[23;1t[46;1H[K[46;1H[?2004l[?1l>[?25h[>4;m[?1049l[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop ● [49m[33m[39m [K[?1h=[?2004ho[90mpen camera.xcworkspace[39m[22Do[39mp[39me[39mn[39m [39m.[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [17D[?1l>[?2004l
-]2;open .]1;open[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop ● [49m[33m[39m [K[?1h=[?2004hv[90mim package.json[39m[15Dv[39mi[39mm[39m [39mp[39ma[39mt[39m [39m [39m [39m [39m [39m [39m [39m [39m [9D[90mc[90mkage.json[39m[10D[90ma[39m[39my[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [10Dth  [90ma[90mckage.json[39m[11D[90mp[39m[39mg[90me[90mn[90m_[90mr[90me[90ma[90md[90mm[90me[90m.[90mp[90my[39m[12D[39me[39mn[39m_[39mr[39me[39ma[39md[39mm[39me[39m.[39mp[39my[1m [0m[0m [?1l>[?2004l
-]2;vim gen_readme.py]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"gen_readme.py" 139L, 4522C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H#! env python3
-
-from pathlib import Path
-from os.path import join, isfile,basename,dirname
-from pathlib import Path
-from distutils.dir_util import copy_tree
-import subprocess
-import shutil
-import os
-import sys
-import glob
-
-
-tmplt = """
-
-**基座扫描测试**
-<div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/aa[18;1Hll/dist/ui/index.html'></img>
-<a id='qrlink' href="about:none">link of QR</a>
-
-{root_readme}
-
-# JS
-{h5_readme}
-
-# iOS
-{ios_readme}
-
-# android
-{android_readme}
-
-"""
-
-
-class ReadmeAggregator():[37;5Hdef __init__(self,path,outputDir):[38;9Hself.folder_path[14C= path[39;9Hself.module_short_name = self.folder_path.split("-")[-1][40;9Hself.outputDir[9C= outputDir[42;5Hdef locateReadme(self,folder_path,subpath):[43;9Hpath = join(folder_path,subpath,"readme.md")[44;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"README.md")[45;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"Readme.md")[1;1H[?25h[?12$p
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[?25l
-[46m{[11C}[?25h[?25l[m{[11C}
-[?25h
-[?25l
-[46m{[9C}[?25h[?25l[m{[9C}
-[?25h
-[?25l
-[46m{[10C}[?25h[?25l[m{[10C}
-[?25h
-[?25l
-[46m{[14C}[?25h[?25l[m{[14C}
-[?25h
-
-
-
-
-
-
-
-
-
-
-
-
-
-[?25l[1;45r[45;1H
-[1;46r[45;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"ReadMe.md")[46;1H[K[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hreturn path[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef readReadMe(self,path):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hif os.path.isfile(path):[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hcontent = ""[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Htry:[?25h[?25l[1;45r[45;1H
-[1;46r[45;17Hcontent = Path(path).read_text()[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hexcept Exception as e:[?25h[?25l[1;45r[45;1H
-[1;46r[45;17Hprint(e)[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hreturn  content[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hreturn ""[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef gen_root(self):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hpath = self.locateReadme(self.folder_path,".")[?25h[?25l[1;45r[1;1H[2M[1;46r[44;9Hself.cp_assets(path)[45;9Hreturn self.readReadMe(path)[44;1H[?25h
-[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef gen_h5(self):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hpath = self.locateReadme(self.folder_path,"h5")[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hself.cp_assets(path)[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hreturn self.readReadMe(path)[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef gen_iOS(self):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hpath = self.locateReadme(self.folder_path,"iOS")[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hself.cp_assets(path)[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hreturn self.readReadMe(path)[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef gen_android(self):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hpath = self.locateReadme(self.folder_path,"android")[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hself.cp_assets(path)[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hreturn self.readReadMe(path)[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef cp_assets(self,readmepath):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Htry:[?25h[?25l[1;45r[45;1H
-[1;46r[45;13HassetsPath= join(dirname(readmepath),"assets")[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hsubprocess.Popen(["cp","-r",assetsPath,self.outputDir ]).communicate()[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hexcept Exception as e :[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hprint("copy asserts failed!")[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5H# def handle_img(self,path,out):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9H# subprocess.Popen(["python3","/usr/local/bin/md_wash",path, "-c", "-u", "-o",out ]).communicate()[?25h[?25l[1;45r[45;1H
-[1;46r[45;9H# print("path",path,"out",out+"/assets/*",join(self.outputDir,"assets"))[?25h[?25l[1;45r[45;1H
-[1;46r[45;9H# subprocess.Popen(["cp","-r",out+"/assets/",join(self.outputDir,"assets/") ]).communicate()[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef gen_dist(self):[?25h[?25l[1;45r[1;1H[2M[1;46r[44;9Hos.system(f"pushd {self.folder_path} &&  yarn md && x-cli model model.ts -t 2 -n && popd && rm -rdf {self.outputDir}/dist/{self.get_short_module_name()} &&  cp -fr {self.folder__[45;1Hpath}/h5/dist {self.outputDir}/dist/{self.get_short_module_name()}")[44;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef get_short_module_name(self):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hreturn self.module_short_name[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef output_path(self):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hreturn join(self.outputDir,"模块-"+self.module_short_name+".md")[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hdef gen(self):[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hroot_readme    = self.gen_root()[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hself.gen_dist()[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hh5_readme      = self.gen_h5()[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hios_readme     = self.gen_iOS()[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Handroid_readme = self.gen_android()[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hmodule_name    = self.get_short_module_name()[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hcontent = tmplt.format(root_readme = root_readme,h5_readme = h5_readme, ios_readme = ios_readme, android_readme = android_readme, module_name=module_name)[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hprint(self.output_path())[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hwith open(self.output_path(),"w") as f:[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hf.write(content)[?25h[?25l[1;45r[45;1H
-[1;46r[45;9H# gen _sidebar.md[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hwith open(join(self.outputDir,"_sidebar.md"),"a") as f:[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hf.write(f"- [{self.module_short_name}](./docs/modules/all/模块-{self.module_short_name}.md)\n")[?25h[?25l[1;45r[45;1H
-[1;46r[45;9H# print(f'{self.module_short_name}')[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;1Hif __name__ == "__main__":[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5H# shutil.rmtree("./docs/modules/all/assets")[?25h[?25l[1;45r[45;1H
-[1;46r[45;5HoutputDir = "./docs/modules/all"[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hwith open(join(outputDir,"_sidebar.md"),"w") as f:[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hf.write("")[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Harr = os.listdir("..")[?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hexclude=[][?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hinclude= ['x-engine-jsi-device', 'x-engine-jsi-direct', 'x-engine-jsi-store', 'x-engine-jsi-ui'][?25h[?25l[1;45r[45;1H
-[1;46r[45;5Hfor d in arr:[?25h[?25l[1;45r[45;1H
-[1;46r[45;9Hif d in include:[?25h[?25l[1;45r[45;1H
-[1;46r[45;13H# continue[?25h[?25l[1;45r[45;1H
-[1;46r[45;9H# if "x-engine-module" in d and "template" not in d and "protocols" not in d and "offline" not in d:[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hpath = "../"+d[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hr = ReadmeAggregator(path,outputDir)[?25h[?25l[1;45r[45;1H
-[1;46r[45;13Hr.gen()[?25h[?25l[1;45r[1;1H[2M[1;46r[44;1H[?25h
-[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[?25l[1;45r[45;1H
-[1;46r[45;1H[?25h[44;1H[43;1H[42;1H[41;1H[40;1H[39;1H[38;1H[37;1H[36;1H[35;1H[34;1H[33;1H[32;1H
-    include=[?25l [46m[[85C][33;14H[?25h[?25l[m[[85C][33;15H[?25h'x-engine-jsi-device', 'x-engine-jsi-direct', 'x-engine-jsi-store', 'x-engine-jsi-ui[?25l[33;14H[46m[[85C][?25h[?25l[m[33;14H[[85C]
-[?25h[33;1H    include=[?25l [46m[[85C][33;14H[?25h[?25l[m[[85C][33;15H[?25h'x-engine-jsi-device', 'x-engine-jsi-direct', 'x-engine-jsi-store', 'x-engine-jsi-ui[?25l[33;14H[46m[[85C][?25h[?25l[m[46;1H[1m-- INSERT --[33;100H[?25h[?25l[m,[46m][?25h[?25l[m [46m][?25h[?25l[m'[46m][?25h[?25l[m;[46m][?25h[?25l[m[33;14H[[89C][?25h[?25l[33;14H[46m[[89C][?25h[?25l][m[33;104H[K[33;103H[?25h[?25l'[46m][?25h[?25l[m[33;14H[[89C][?25h[?25lx'][?25h[?25l-'][?25h[?25le'][?25h[?25ln'][?25h[?25lg'][?25h[?25li'][?25h[?25ln'][?25h[?25le'][?25h[?25l-'][?25h[?25lj'][?25h[?25ls'][?25h[?25li'][?25h[?25l-'][?25h[?25lc'][?25h[?25la'][?25h[?25lm'][?25h[?25le'][?25h[?25lr'][?25h[?25la'][?25h[?25l[33;14H[46m[[108C][?25h[?25l[m,[46m][?25h[?25l[m [46m][?25h[?25l[m'[46m][?25h[?25l[m'[46m][?25h[?25l[m[33;14H[[112C][?25h[?25lx'][?25h[?25l-'][?25h[?25le'][?25h[?25ln'][?25h[?25lg'][?25h[?25li'][?25h[?25ln'][?25h[?25le'][?25h[?25l-'][?25h[?25lj'][?25h[?25ls'][?25h[?25li'][?25h[?25l-'][?25h[?25ls'][?25h[?25lc'][?25h[?25la'][?25h[?25ln'][?25h[?25l[33;14H[46m[[129C][?25h[?25l][?25h[?25l[32;13H[][m[33;14H[[129C][32;15H[?25h[?25l[31;21H[46m([m".."[46m)[m[32;13H[][31;27H[?25h[?25l("..")[30;1H[?25h[?25l[31;21H[46m([m".."[46m)[?25h[?25l[m("..")[32;13H[46m[][?25h[?25l[m[][33;14H[46m[[129C][?25h[?25l[m[33;14H[[129C][34;18H[?25h[35;25H[36;23H[37;109H[38;27H[?25l[39;33H[46m([14C)[?25h[?25l[m[39;33H([14C)[40;18H[46m()[?25h[?25l[m()
-[?25h[?25l[40;18H[46m()[?25h[?25l[39;33H([14C)[m[40;18H()[39;49H[?25h[?25l[39;33H([14C)[38;27H[?25h[37;109H[36;23H[35;25H[34;18H[?25l[33;14H[46m[[129C][?25h[?25l[32;13H[][m[33;14H[[129C][32;15H[?25h[?25l[31;21H[46m([m".."[46m)[m[32;13H[][31;27H[?25h[?25l("..")[30;1H[?25h[?25l[29;16H[46m([m""[46m)[?25h[?25l[m("")[28;55H[?25h[27;37H[?25l[26;20H[46m([27C)[?25h[?25l[m[26;20H([27C)[25;1H[?25h[24;27H[23;1H[22;1H[?25l:[?25h[?25lq[?25h[?25l[22;2H[K[22;2H[?25h[?25l[22;1H[K[22;1H[?25h[46;1H[K[22;1H[?25l[?25h[?25l[46;1H:[?25hwq![?25l[?2004l[>4;m"gen_readme.py" 139L, 4566C written[23;2t[23;1t
-[?2004l[?1l>[?25h[>4;m[?1049l[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop ● [49m[33m[39m [K[?1h=[?2004hl[90ml[39ml[39ml[?1l>[?2004l
-]2;ls -G -lh]1;lltotal 2264
--rw-r--r--@  1 cwz  staff   335B  3 30 20:32 Makefile
--rw-r--r--@  1 cwz  staff   3.4K  3 30 20:32 README.md
--rw-r--r--@  1 cwz  staff   189B  3 30 20:32 _navbar.md
--rw-r--r--@  1 cwz  staff   798B  3 30 20:32 _sidebar.md
-drwxr-xr-x  57 cwz  staff   1.8K  3 30 20:32 [1m[36massets[39;49m[0m
--rw-r--r--   1 cwz  staff   1.5K  3 30 20:32 d3d.css
-drwxr-xr-x   6 cwz  staff   192B  3 30 20:32 [1m[36mdocs[39;49m[0m
--rw-r--r--   1 cwz  staff   1.4K  3 30 20:32 docsify-remote-markdown.min.js
--rwxrwxrwx@  1 cwz  staff   4.5K  4 19 12:59 [31mgen_readme.py[39;49m[0m
--rwxr-xr-x   1 cwz  staff   3.5K  3 30 20:32 [31mgit_stat.py[39;49m[0m
--rw-r--r--@  1 cwz  staff   4.8K  3 30 20:32 index.html
--rw-r--r--   1 cwz  staff   190B  3 30 20:32 microapp.json
-drwxr-xr-x   3 cwz  staff    96B  4  8 12:27 [1m[36mnode_modules[39;49m[0m
--rw-r--r--   1 cwz  staff    83K  3 30 20:32 package-lock.json
--rw-r--r--   1 cwz  staff   523B  3 30 20:32 package.json
--rw-r--r--@  1 cwz  staff   2.9K  3 30 20:32 resource.md
--rw-r--r--@  1 cwz  staff    11K  3 30 20:32 todos-1.0.md
--rw-r--r--@  1 cwz  staff   2.9K  3 30 20:32 uni-app产品调研.md
--rw-r--r--   1 cwz  staff   413B  3 30 20:32 单repo设计.md
--rw-r--r--@  1 cwz  staff   5.2K  3 30 20:32 功能草案.md
--rw-r--r--   1 cwz  staff   1.3K  3 30 20:32 基座设计.md
--rw-r--r--@  1 cwz  staff   5.1K  3 30 20:32 开发计划.md
--rw-r--r--   1 cwz  staff   743B  3 30 20:32 消息设计.md
--rw-r--r--   1 cwz  staff    11K  3 30 20:32 路由设计.md
--rw-r--r--   1 cwz  staff   928K  3 30 20:32 开发计划.pdf
--rw-r--r--   1 cwz  staff   1.9K  3 30 20:32 包管理设计.md
--rw-r--r--   1 cwz  staff   262B  3 30 20:32 混合框架对比.md
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop ● [49m[33m[39m [K[?1h=[?2004hv[90mim gen_readme.py[39m[16Dv[39mi[39mm[39m [39mg[39me[39mn[39m_[39mr[39me[39ma[39md[39mm[39me[39m.[39mp[39my[?1l>[?2004l
-]2;vim gen_readme.py]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"gen_readme.py" 139L, 4566C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H#! env python3
-
-from pathlib import Path
-from os.path import join, isfile,basename,dirname
-from pathlib import Path
-from distutils.dir_util import copy_tree
-import subprocess
-import shutil
-import os
-import sys
-import glob
-
-
-tmplt = """
-
-**基座扫描测试**
-<div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/aa[18;1Hll/dist/ui/index.html'></img>
-<a id='qrlink' href="about:none">link of QR</a>
-
-{root_readme}
-
-# JS
-{h5_readme}
-
-# iOS
-{ios_readme}
-
-# android
-{android_readme}
-
-"""
-
-
-class ReadmeAggregator():[37;5Hdef __init__(self,path,outputDir):[38;9Hself.folder_path[14C= path[39;9Hself.module_short_name = self.folder_path.split("-")[-1][40;9Hself.outputDir[9C= outputDir[42;5Hdef locateReadme(self,folder_path,subpath):[43;9Hpath = join(folder_path,subpath,"readme.md")[44;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"README.md")[45;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"Readme.md")[1;1H[?25h[?12$p
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[?25l[16;45r[45;1H
-[1;46r[16;1H**基座扫描测试** <div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:300[17;1H00/docs/modules/all/dist/ui/index.html'></img>[45;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"ReadMe.md")[46;1H[K[16;17H[?25h[?25l[16;45r[45;1H
-[1;46r[16;1H**基座扫描测试** <div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:300[17;1H00/docs/modules/all/dist/ui/index.html'></img> <a id='qrlink' href="about:none">link of QR</a>[45;9Hreturn path[17;47H[?25h[?25l[16;45r[45;1H
-[1;46r[16;1H**基座扫描测试** <div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:300[17;1H00/docs/modules/all/dist/ui/index.html'></img> <a id='qrlink' href="about:none">link of QR</a>[?25h[?25l[46;1H:[?25hq[?25l[97m[41mE37: No write since last change (add ! to override)[17;94H[?25h[?25l[m[46;1H[K[46;1H:[?25hq[?25l[97m[41mE37: No write since last change (add ! to override)[17;94H[?25h                                                                                                             ]2;cwz@bogon:~/work/3-Zkty/x-engine/modules/x-engine-docs]1;..x-engine-docs[0m[27m[24m[J[39m[0m[49m[47m[38;5;33m 🔥[1m[38;5;33m[47mcwz[0m[38;5;33m[47m [48;5;24m[37m[37m ~/work/3-Zkty/x-engine/modules/x-engine-docs [43m[38;5;24m[30m  develop ● [49m[33m[39m [K[?1h=[?2004hv[90mim gen_readme.py[39m[16Dv[39mi[39mm[39m [39mg[39me[39mn[39m_[39mr[39me[39ma[39md[39mm[39me[39m.[39mp[39my[?1l>[?2004l
-]2;vim gen_readme.py]1;vim[?1049h[>4;2m[?1h=[?2004h[1;46r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[46;1H"gen_readme.py" 139L, 4566C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H#! env python3
-
-from pathlib import Path
-from os.path import join, isfile,basename,dirname
-from pathlib import Path
-from distutils.dir_util import copy_tree
-import subprocess
-import shutil
-import os
-import sys
-import glob
-
-
-tmplt = """
-
-**基座扫描测试**
-<div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/aa[18;1Hll/dist/ui/index.html'></img>
-<a id='qrlink' href="about:none">link of QR</a>
-
-{root_readme}
-
-# JS
-{h5_readme}
-
-# iOS
-{ios_readme}
-
-# android
-{android_readme}
-
-"""
-
-
-class ReadmeAggregator():[37;5Hdef __init__(self,path,outputDir):[38;9Hself.folder_path[14C= path[39;9Hself.module_short_name = self.folder_path.split("-")[-1][40;9Hself.outputDir[9C= outputDir[42;5Hdef locateReadme(self,folder_path,subpath):[43;9Hpath = join(folder_path,subpath,"readme.md")[44;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"README.md")[45;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"Readme.md")[1;1H[?25h[?12$p
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[?25l[16;45r[45;1H
-[1;46r[16;1H**基座扫描测试** <div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:300[17;1H00/docs/modules/all/dist/ui/index.html'></img>[45;9Hpath = path if os.path.isfile(path) else join(folder_path,subpath,"ReadMe.md")[46;1H[K[16;17H[?25h[?25l[16;45r[45;1H
-[1;46r[16;1H**基座扫描测试** <div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:300[17;1H00/docs/modules/all/dist/ui/index.html'></img> <a id='qrlink' href="about:none">link of QR</a>[45;9Hreturn path[17;47H[?25h[?25l[16;45r[45;1H
-[1;46r[16;1H**基座扫描测试** <div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:300[17;1H00/docs/modules/all/dist/ui/index.html'></img> <a id='qrlink' href="about:none">link of QR</a>[?25h[?25l[46;1H:[?25hq[?25l[97m[41mE37: No write since last change (add ! to override)[17;94H[?25h

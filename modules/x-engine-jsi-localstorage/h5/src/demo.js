@@ -4,7 +4,7 @@ import xengine from "@zkty-team/x-engine-core";
 
 window.test_set_abc_world = () => {
 
-  let val = xengine.api("com.zkty.jsi.localstorage", "set",{
+  xengine.api("com.zkty.jsi.localstorage", "set",{
     key:'abc',
     val:'world'
   });

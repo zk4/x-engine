@@ -10,10 +10,10 @@
   import android.webkit.JavascriptInterface;
   import com.alibaba.fastjson.JSON;
   import com.alibaba.fastjson.JSONObject;
-  import com.zkty.nativ.jsi.JSIModule;
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
-
+  import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
+  import com.zkty.nativ.jsi.annotation.Optional;
 
   
   class NavTitleDTO {
@@ -43,11 +43,11 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
     }
   
     @JavascriptInterface
-    final public void setNavTitle(JSONObject obj, final CompletionHandler<Object> handler) {
+    final public void setNavTitle(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       String defaultStr = "{  \"titleSize\": 16}";
       obj = mergeDefault(obj, defaultStr);
-      NavTitleDTO data= convert(obj,NavTitleDTO.class);
-      _setNavTitle(data, new CompletionHandler<Nullable>() {
+      NavTitleDTO dto= convert(jsonobj,NavTitleDTO.class);
+      _setNavTitle(dto, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override
@@ -59,9 +59,9 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
     }
 
     @JavascriptInterface
-    final public void setNavBarHidden(JSONObject obj, final CompletionHandler<Object> handler) {
-      NavHiddenBarDTO data= convert(obj,NavHiddenBarDTO.class);
-      _setNavBarHidden(data, new CompletionHandler<Nullable>() {
+    final public void setNavBarHidden(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      NavHiddenBarDTO dto= convert(jsonobj,NavHiddenBarDTO.class);
+      _setNavBarHidden(dto, new CompletionHandler<Nullable>() {
         @Override
         public void complete(Nullable retValue) { handler.complete(null); }
         @Override

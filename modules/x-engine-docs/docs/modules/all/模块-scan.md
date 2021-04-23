@@ -21,11 +21,9 @@ version: 0.1.13
 **demo**
 ``` js
 
-  function test_openScanView() {
-    xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(val);
-    });
-  }
+  xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
+    console.log(JSON.stringify(val))
+  });
 
 ``` 
 

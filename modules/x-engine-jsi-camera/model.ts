@@ -30,7 +30,28 @@ function openImagePicker(arg: {
   args: Map<string, string>;
   // 图片选择张数
   photoCount?: int;
-}): string {}
+}): string {
+  xengine.api(
+    "com.zkty.jsi.camera",
+    "openImagePicker",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        let base64 = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        console.log(base64)
+      }
+    }
+  );
+}
 
 // 保存到相册
 @async
@@ -97,4 +118,3 @@ function test_saveImageToPhotoAlbum() {
     }
   );
 }
-

@@ -11,7 +11,7 @@
 
 
 
-@protocol xengine_jsi_secrect_protocol
+@protocol xengine_jsi_secret_protocol
        @required 
        - (NSString*) _get:(NSString*)dto;
     
@@ -19,6 +19,6 @@
   
 
 
-@interface xengine_jsi_secrect : JSIModule<xengine_jsi_secrect_protocol>
+@interface xengine_jsi_secret : JSIModule<xengine_jsi_secret_protocol>
 @end
 

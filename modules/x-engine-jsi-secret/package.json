@@ -1,7 +1,7 @@
 {
-  "name": "@zkty-team/x-engine-jsi-secrect",
+  "name": "@zkty-team/x-engine-jsi-secret",
   "version": "0.1.13",
-  "description": "secrect",
+  "description": "secret",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {

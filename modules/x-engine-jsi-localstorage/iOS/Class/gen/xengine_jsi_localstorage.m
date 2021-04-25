@@ -28,14 +28,14 @@
     }
     
   
+  - (NSString*) get:(NSDictionary*) dict {
+      NSString* dto = [self convert:dict clazz:NSString.class];
+      return [self _get:dto];
+        }
+  
   - (id) set:(NSDictionary*) dict {
       _0_com_zkty_jsi_localstorage_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_localstorage_DTO.class];
       [self _set:dto];
                  return nil;
-        }
-  
-  - (NSString*) get:(NSDictionary*) dict {
-      NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _get:dto];
         }
   @end

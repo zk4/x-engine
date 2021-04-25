@@ -13,7 +13,7 @@ version = package['version']
 Pod::Spec.new do |s|
 
 
-    s.name         = "x-engine-jsi-secrect"
+    s.name         = "x-engine-jsi-secret"
     s.version      = version
     s.summary      = package["description"]
 
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
             description
                      DESC
 
-    s.homepage     = "https://github.com/zkty-team/x-engine-jsi-secrect"
+    s.homepage     = "https://github.com/zkty-team/x-engine-jsi-secret"
 
 
    
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "10.0"
     s.ios.deployment_target = "10.0"
 
-    s.source      = { :git => 'https://github.com/zkty-team/x-engine-jsi-secrect.git',
+    s.source      = { :git => 'https://github.com/zkty-team/x-engine-jsi-secret.git',
   :tag => s.version.to_s }
 
 

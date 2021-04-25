@@ -27,6 +27,8 @@ import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.bridge.DWebView;
 import com.zkty.nativ.jsi.exception.XEngineException;
+import com.zkty.nativ.jsi.utils.UrlUtils;
+import com.zkty.nativ.jsi.view.MicroAppLoader;
 import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.jsi.view.SchemeManager;
 
@@ -414,14 +416,26 @@ public class XEngineWebView extends DWebView {
     }
 
     private String getUrlByHistoryModel(HistoryModel model) {
-        if (TextUtils.isEmpty(model.pathname) && TextUtils.isEmpty(model.fragment))
-            return String.format("%s//%s", model.protocol, model.host);
-        if (TextUtils.isEmpty(model.pathname))
-            return String.format("%s//%s#%s", model.protocol, model.host, model.fragment);
-        if (TextUtils.isEmpty(model.fragment))
-            return String.format("%s//%s%s", model.protocol, model.host, model.pathname);
+        StringBuilder sb = new StringBuilder();
+        String hostR = model.host;
+        if ("file:".equals(model.protocol)) {
+            hostR = MicroAppLoader.sharedInstance().getMicroAppHost(model.host, 0);
+        }
 
-        return String.format("%s//%s%s#%s", model.protocol, model.host, model.pathname, model.fragment);
+        sb.append(model.protocol).append("//").append(hostR);
+        if (!TextUtils.isEmpty(model.pathname)) {
+            sb.append(model.pathname);
+        }
+        if (!TextUtils.isEmpty(model.fragment)) {
+            sb.append("#").append(model.fragment);
+        }
+
+        String query = UrlUtils.getQueryStringFormMap(model.query);
+        if (!TextUtils.isEmpty(query)) {
+            sb.append("?").append(query);
+        }
+
+        return sb.toString();
     }
 
     public HistoryModel getHistoryModel() {

@@ -35,9 +35,9 @@
     }
   
         @JavascriptInterface
-        public String get(JSONObject jsonobj) {
-          String dto= convert(jsonobj,String.class);
-          return _get(dto);
+        public String get(String jsonobj) {
+//          String dto= convert(jsonobj,String.class);
+          return _get(jsonobj);
         }
         
 

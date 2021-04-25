@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -79,10 +80,8 @@ public class DWebView extends WebView {
         @Keep
         @JavascriptInterface
         public String call(String methodName, String argStr) {
-
             Log.d("DWebView", methodName + " : " + argStr);
-            String error = "Js bridge  called, but can't find a corresponded " +
-                    "JavascriptInterface object , please check your code!";
+
             String[] nameStr = parseNamespace(methodName.trim());
             String namespace = nameStr[0];
             methodName = nameStr[1];
@@ -93,11 +92,22 @@ public class DWebView extends WebView {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            String error = "Js bridge is called, but <" +
+                    namespace +
+                    "> is not registered in App!";
             if (jsb == null) {
                 PrintDebugInfo(error);
                 return ret.toString();
             }
+
+            /**
+             * isArgDataJson:根据argStr.data格式转成JSONObject 或String；
+             * 反射时传入对应参数arg或arg1
+             */
+            boolean isArgDataJson = false;
             JSONObject arg = null;
+            String arg1 = null;
             Method method = null;
             String callback = null;
 
@@ -109,13 +119,20 @@ public class DWebView extends WebView {
                 if (args.containsKey("data")) {
                     if ("null".equalsIgnoreCase(args.getString("data"))) {
                         arg = new JSONObject();
+                        isArgDataJson = true;
                     } else {
-                        arg = JSONObject.parseObject(args.getString("data"));
+                        try {
+                            arg = JSONObject.parseObject(args.getString("data"));
+                            isArgDataJson = true;
+                        } catch (Exception e) {
+                            arg1 = args.getString("data");
+                            isArgDataJson = false;
+                        }
                     }
                 }
 
             } catch (JSONException e) {
-                error = String.format("The argument of \"%s\" must be a JSON object string!", methodName);
+                error = String.format("call method: \"%s\" failed: DSBridge inner error!", methodName);
                 PrintDebugInfo(error);
                 e.printStackTrace();
                 return ret.toString();
@@ -126,11 +143,11 @@ public class DWebView extends WebView {
             boolean asyn = false;
             try {
                 method = cls.getMethod(methodName,
-                        new Class[]{JSONObject.class, CompletionHandler.class});
+                        new Class[]{isArgDataJson ? JSONObject.class : String.class, CompletionHandler.class});
                 asyn = true;
             } catch (Exception e) {
                 try {
-                    method = cls.getMethod(methodName, new Class[]{JSONObject.class});
+                    method = cls.getMethod(methodName, new Class[]{isArgDataJson ? JSONObject.class : String.class});
                 } catch (Exception ex) {
 
                 }
@@ -138,7 +155,7 @@ public class DWebView extends WebView {
 
             if (method == null) {
                 if ("_dsb".equals(namespace)) return ret.toString();
-                error = "Not find method \"" + methodName + "\" implementation! please check if the  signature or namespace of the method is right ";
+                error = "Not find method \"" + methodName + "\" implementation! please check in module <" + namespace + ">";
                 PrintDebugInfo(error);
                 return ret.toString();
             }
@@ -156,7 +173,7 @@ public class DWebView extends WebView {
             try {
                 if (asyn) {
                     final String cb = callback;
-                    method.invoke(jsb, arg, new CompletionHandler() {
+                    method.invoke(jsb, isArgDataJson ? arg : arg1, new CompletionHandler() {
 
                         @Override
                         public void complete(Object retValue) {
@@ -193,7 +210,16 @@ public class DWebView extends WebView {
                         }
                     });
                 } else {
-                    retData = method.invoke(jsb, arg);
+                    if (isArgDataJson) {
+                        retData = method.invoke(jsb, arg);
+                    } else {
+                        if (TextUtils.isEmpty(arg1)) {
+                            retData = method.invoke(jsb);
+                        } else {
+                            retData = method.invoke(jsb, arg1);
+                        }
+                    }
+
                     ret.put("code", 0);
                     ret.put("data", retData);
                     return ret.toString();

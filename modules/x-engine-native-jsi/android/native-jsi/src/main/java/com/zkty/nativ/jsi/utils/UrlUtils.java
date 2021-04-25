@@ -96,4 +96,25 @@ public class UrlUtils {
         }
         return false;
     }
+
+
+    public static String getQueryStringFormMap(Map<String, Object> map) {
+        if (map == null || map.size() > 0) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        }
+
+        if (sb.length() > 1) {
+            return sb.substring(0, sb.length() - 1);
+        }
+
+        return sb.toString();
+
+
+    }
 }

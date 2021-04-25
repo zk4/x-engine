@@ -11,7 +11,7 @@ version: 0.1.13
 
 **demo**
 ``` js
-
+ {
   // 跳转omp
   engine.api('com.zkty.jsi.direct', 'push',{
     scheme: 'omp',
@@ -43,7 +43,7 @@ version: 0.1.13
     fragment: "",  
     pathname: "",  
   })  
-
+}
 ``` 
 
 **参数说明**
@@ -65,12 +65,12 @@ version: 0.1.13
 
 **demo**
 ``` js
-
+ {
     engine.api('com.zkty.jsi.direct','back',{
      scheme: 'omp',
      fragment:'-1'
    }
-
+}
 ``` 
 
 **参数说明**

@@ -45,7 +45,7 @@ public void _back(DirectBackDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
-  public abstract class xengine_jsi_direct extends JSIModule implements xengine_jsi_direct_protocol {
+    public abstract class xengine_jsi_direct extends JSIModule implements xengine_jsi_direct_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.direct";
@@ -54,7 +54,7 @@ public void _back(DirectBackDTO dto, final CompletionHandler<Nullable> handler);
     @JavascriptInterface
     final public void push(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       String defaultStr = "{  \"scheme\": \"omp\",  \"fragment\": \"/\",  \"params\": {    \"hideNavbar\": true  }}";
-      obj = mergeDefault(obj, defaultStr);
+      jsonobj = mergeDefault(jsonobj, defaultStr);
       DirectPushDTO dto= convert(jsonobj,DirectPushDTO.class);
       _push(dto, new CompletionHandler<Nullable>() {
         @Override

@@ -1,3 +1,4 @@
+- [secret](./docs/modules/all/模块-secret.md)
 - [device](./docs/modules/all/模块-device.md)
 - [scan](./docs/modules/all/模块-scan.md)
 - [localstorage](./docs/modules/all/模块-localstorage.md)

@@ -15,7 +15,8 @@ const routes = [{
         name: "Home",
         meta: {
             title: "首页",
-            bgColor: "#ddd"
+            bgColor: "#ddd",
+            textIsCenter: true
         },
         component: () => import('../views/Home.vue'),
     },

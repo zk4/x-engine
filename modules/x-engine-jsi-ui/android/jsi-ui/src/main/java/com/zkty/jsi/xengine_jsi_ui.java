@@ -45,7 +45,7 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
     @JavascriptInterface
     final public void setNavTitle(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       String defaultStr = "{  \"titleSize\": 16}";
-      obj = mergeDefault(obj, defaultStr);
+      jsonobj = mergeDefault(jsonobj, defaultStr);
       NavTitleDTO dto= convert(jsonobj,NavTitleDTO.class);
       _setNavTitle(dto, new CompletionHandler<Nullable>() {
         @Override

@@ -27,10 +27,10 @@
     public String fragment;
 
     @Optional
-		public Map<String,Object> query;
+		public Map<String,String> query;
 
     @Optional
-		public Map<String,Object> params;
+		public Map<String,String> params;
   }
   
   class DirectBackDTO {
@@ -54,7 +54,7 @@ public void _back(DirectBackDTO dto, final CompletionHandler<Nullable> handler);
     @JavascriptInterface
     final public void push(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       String defaultStr = "{  \"scheme\": \"omp\",  \"fragment\": \"/\",  \"params\": {    \"hideNavbar\": true  }}";
-      jsonobj = mergeDefault(jsonobj, defaultStr);
+      obj = mergeDefault(obj, defaultStr);
       DirectPushDTO dto= convert(jsonobj,DirectPushDTO.class);
       _push(dto, new CompletionHandler<Nullable>() {
         @Override

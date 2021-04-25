@@ -118,8 +118,8 @@ public class JSIOldRouterModule extends JSIModule {
         if (directors != null) {
             directors.push(data.getString("scheme"), data.getString("host"), data.getString("pathname"),
                     data.getString("fragment"),
-                    data.get("query") == null ? null : (Map<String, Object>) data.get("query"),
-                    data.get("params") == null ? null : (Map<String, Object>) data.get("params"));
+                    data.get("query") == null ? null : (Map<String, String>) data.get("query"),
+                    data.get("params") == null ? null : (Map<String, String>) data.get("params"));
         }
         handler.complete();
 

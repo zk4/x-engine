@@ -21,8 +21,8 @@ public interface IDirectManager extends Protocol {
             String host,
             String pathname,
             String fragment,
-            Map<String, Object> query,
-            Map<String, Object> params
+            Map<String, String> query,
+            Map<String, String> params
     );
 
     void back(String scheme, String host, String fragment);

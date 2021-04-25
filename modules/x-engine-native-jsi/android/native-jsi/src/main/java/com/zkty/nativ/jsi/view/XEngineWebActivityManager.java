@@ -38,7 +38,7 @@ public class XEngineWebActivityManager {
     }
 
 
-    public void startXEngineActivity(Context context, @NonNull String protocol, String host, String pathname, String fragment, Map<String, Object> query, boolean hideNavBar) {
+    public void startXEngineActivity(Context context, @NonNull String protocol, String host, String pathname, String fragment, Map<String, String> query, boolean hideNavBar) {
         if (context == null) context = XEngineApplication.getApplication();
 
         Intent intent = new Intent(context, XEngineWebActivity.class);

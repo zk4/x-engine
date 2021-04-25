@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class DirectManager {
 
-    public static void push(String scheme, String host, String pathname, String fragment, Map<String, Object> query, Map<String, Object> params) {
+    public static void push(String scheme, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
         String protocol = "https:";
         if ("omp".equals(scheme)) protocol = "http:";
         if ("http".equals(scheme)) protocol = "http:";

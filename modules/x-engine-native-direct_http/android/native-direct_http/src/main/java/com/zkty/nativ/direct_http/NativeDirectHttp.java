@@ -44,7 +44,7 @@ public class NativeDirectHttp extends NativeModule implements IDirect {
     }
 
     @Override
-    public void push(String protocol, String host, String pathname, String fragment, Map<String, Object> query, Map<String, Object> params) {
+    public void push(String protocol, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
         if (microappDirect != null)
             microappDirect.push(protocol(), host, pathname, fragment, query, params);
     }

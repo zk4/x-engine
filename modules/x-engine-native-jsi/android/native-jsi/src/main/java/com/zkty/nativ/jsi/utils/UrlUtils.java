@@ -98,14 +98,14 @@ public class UrlUtils {
     }
 
 
-    public static String getQueryStringFormMap(Map<String, Object> map) {
+    public static String getQueryStringFormMap(Map<String, String> map) {
         if (map == null || map.size() > 0) {
             return null;
         }
 
         StringBuilder sb = new StringBuilder();
 
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
             sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
         }
 

@@ -12,16 +12,23 @@
         @click="handlerLeftButton"
       >
         <slot name="left">
-          <div
-            :class="[bgImage==''?'content-item-left-span-black': 'content-item-left-span-white']"
-          >{{ navTitle }}</div>
+          <i class="iconfont icon-fanhui"></i>
+          <div  class="nav-title"
+            v-if="!textIsCenter"
+          >
+          <span style="margin-left:10px;">{{ navTitle }}</span>
+
+          </div>
         </slot>
       </div>
 
       <div class="content-item-center" :style="{ lineheight: lineheight + 'px' }">
-        <slot name="center"></slot>
+        <slot name="center">
+          <div v-if="textIsCenter" class="nav-title"
+          >{{ navTitle }}</div>
+        </slot>
       </div>
-
+            <!-- :class="[bgImage==''?'content-item-left-span-black': 'content-item-left-span-white']" -->
       <div class="content-item-right" :style="{ lineheight: lineheight + 'px' }">
         <slot name="right"></slot>
       </div>
@@ -37,9 +44,13 @@ export default {
     return {
       lineheight: "",
       bgColor: "",
-      navTitle: "",
+      navTitle: "首页",
       bgImage: "",
       isShowHeader: false,
+      // false 默认靠左 
+      // true  居中
+      textIsCenter: false,
+      textColor:"#000"
     }
   },
   computed: {
@@ -55,6 +66,8 @@ export default {
     },
   },
   mounted() {
+      console.log(this.navTitle)
+
     if (XEngine.isHybrid()) {
       if (XEngine.platform.isPhone) {
         let navheight = XEngine.api(
@@ -97,13 +110,13 @@ export default {
   watch: {
     $route(to) {
       // 文字
-      if (to.meta.hasOwnProperty('title')) {
+      if (to.meta.hasOwnProperty("title")) {
         if (to.query.hasOwnProperty("changeNavTitle")) {
           this.navTitle = to.query.changeNavTitle
         } else {
           this.navTitle = to.meta.title
         }
-      } else  {
+      } else {
         this.navTitle = "请在router配置title信息"
       }
 
@@ -123,10 +136,25 @@ export default {
 
       // 是否显示header
       if (to.meta.isShowHeader == undefined) {
-        this.isShowHeader = false
+        this.isShowHeader = false;
       } else {
-        this.isShowHeader = to.meta.isShowHeader
+        this.isShowHeader = to.meta.isShowHeader;
       }
+
+      // 文字靠左还是靠右
+      alert(to.meta.textIsCenter)
+      if (to.meta.textIsCenter == undefined) {
+        this.textIsCenter = false;
+      } else {
+        this.textIsCenter = to.meta.textIsCenter;
+      }
+
+      // // 文字颜色
+      // if (to.meta.textColor == undefined) {
+      //   this.textColor = "#000";
+      // } else {
+      //   this.textColor = to.meta.textColor;
+      // }
     },
   },
 }
@@ -146,8 +174,9 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   bottom: 8px;
-  left: 20px;
-  right: 20px;
+  width: 100%;
+  /* left: 20px; */
+  /* right: 20px; */
 }
 
 .content-item-left {
@@ -155,7 +184,13 @@ export default {
   display: flex;
   text-align: center;
 }
-
+.nav-title{
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+/* 
 .content-item-left-span-white {
   padding-left: 20px;
   font-size: 18px;
@@ -190,7 +225,7 @@ export default {
   transform: rotate(-45deg);
   border-left: 2px solid black;
   border-top: 2px solid black;
-}
+} */
 
 .content-item-center {
   text-align: center;
@@ -213,6 +248,26 @@ export default {
 }
 
 .no-bg {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color:pink;
+}
+@font-face {
+    font-family: 'iconfont';
+    src:url('data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAQ4AA0AAAAABlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEHAAAABoAAAAcjvZa/0dERUYAAAP8AAAAHgAAAB4AKQAKT1MvMgAAAaQAAABCAAAAVjyvSDNjbWFwAAAB+AAAAD4AAAFCAA/p7Gdhc3AAAAP0AAAACAAAAAj//wADZ2x5ZgAAAkQAAABEAAAARG6fs/RoZWFkAAABMAAAADEAAAA2HEN382hoZWEAAAFkAAAAHQAAACQGiQOFaG10eAAAAegAAAAQAAAAEAwAAShsb2NhAAACOAAAAAoAAAAKACIAAG1heHAAAAGEAAAAHwAAACABDwAdbmFtZQAAAogAAAFJAAACiCnmEVVwb3N0AAAD1AAAAB8AAAAxy4Fu3njaY2BkYGAA4g9PvtyO57f5ysDNwgACd1ZK/obRjBoMGkyrmW4AuRwMTCBRAHxqDGgAAAB42mNgZGBgbvjfwBDDwgACTKsZGBlQAQsAU5MDFgAAAHjaY2BkYGBgYRBkANEMDExAzAWEDAz/wXwGAAp2AS0AeNpjYGRhYJzAwMrAwNTJdIaBgaEfQjO+ZjBi5ACKMrAyM2AFAWmuKQwOzxyfOTI3/G9giGFuYGgACjOC5ADk5QxdAAAEAAAAAAAAAAQAAAAEAAEoeNpjYGBgZoBgGQZGBhCwAfIYwXwWBgUgzQKEQP4zx///IaTkIahKBkY2BhiTgZEJSDAxoAJGhmEPAIP8B+EAAAAAAAAAAAAAACIAAAABASgAKAKrAtgAEAAACQEWFAYiJwEmNDcBNjIWFAcBjwEPDRoiDf7SDAwBLg0iGg0BgP7xDiEaDAEuDSINAS4MGiEOeNp9kD1OAzEQhZ/zByQSQiCoXVEA2vyUKRMp9Ailo0g23pBo1155nUg5AS0VB6DlGByAGyDRcgpelkmTImvt6PObmeexAZzjGwr/3yXuhBWO8ShcwREy4Sr1F+Ea+V24jhY+hRvUf4SbuFUD4RYu1BsdVO2Eu5vSbcsKZxgIV3CKJ+Eq9ZVwjfwqXMcVPoQb1L+EmxjjV7iFa2WpDOFhMEFgnEFjig3jAjEcLJIyBtahOfRmEsxMTzd6ETubOBso71dilwMeaDnngCntPbdmvkon/mDLgdSYbh4FS7YpjS4idCgbXyyc1d2oc7D9nu22tNi/a4E1x+xRDWzU/D3bM9JIbAyvkJI18jK3pBJTj2hrrPG7ZynW814IiU68y/SIx5o0dTr3bmniwOLn8owcfbS5kj33qBw+Y1kIeb/dTsQgil2GP5PYcRkAAAB42mNgYoAALjDJyIAOWMCiTIxMbGmJeRmlmQALcgKZAAAAAAH//wACAAEAAAAMAAAAFgAAAAIAAQADAAMAAQAEAAAAAgAAAAB42mNgYGBkAIKrS9Q5QPSdlZK/YTQAQkMG3AAA') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 22px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-fanhui:before {
+  content: "\e641";
+  padding-left: 10px;
 }
 </style>

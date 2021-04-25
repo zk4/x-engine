@@ -105,7 +105,6 @@ NATIVE_MODULE(Native_direct_omp)
         protocol = [self protocol];
     }
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
-
     if(host){
         /// TODO: 统一一个类处理 URL 地址问题
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];

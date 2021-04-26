@@ -99,7 +99,7 @@ public class UrlUtils {
 
 
     public static String getQueryStringFormMap(Map<String, String> map) {
-        if (map == null || map.size() > 0) {
+        if (map == null || map.size() == 0) {
             return null;
         }
 

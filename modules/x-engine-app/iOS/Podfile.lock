@@ -17,6 +17,9 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-jsi-localstorage (0.1.13):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-jsi-scan (0.1.13):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -89,6 +92,7 @@ DEPENDENCIES:
   - x-engine-jsi-device (from `../../x-engine-jsi-device`)
   - x-engine-jsi-direct (from `../../x-engine-jsi-direct`)
   - x-engine-jsi-legacy (from `../../x-engine-jsi-legacy`)
+  - x-engine-jsi-localstorage (from `../../x-engine-jsi-localstorage`)
   - x-engine-jsi-scan (from `../../x-engine-jsi-scan`)
   - x-engine-jsi-secret (from `../../x-engine-jsi-secret`)
   - x-engine-jsi-store (from `../../x-engine-jsi-store`)
@@ -123,6 +127,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-direct"
   x-engine-jsi-legacy:
     :path: "../../x-engine-jsi-legacy"
+  x-engine-jsi-localstorage:
+    :path: "../../x-engine-jsi-localstorage"
   x-engine-jsi-scan:
     :path: "../../x-engine-jsi-scan"
   x-engine-jsi-secret:
@@ -169,6 +175,7 @@ SPEC CHECKSUMS:
   x-engine-jsi-device: 38155c0d3b842b5ab08a19d8858af88c3690d3b8
   x-engine-jsi-direct: 576d2f25bc1d0c87e02a4ddf1469d955a9bed82e
   x-engine-jsi-legacy: c6add91d5426ffc532e78015e1f5a30dd3ce46b1
+  x-engine-jsi-localstorage: 25224e93475334b4d0133947d21fbefddda346ba
   x-engine-jsi-scan: e76f94f5ad36e3cfa5d3ed6d53e410643000710f
   x-engine-jsi-secret: f7497afb89bb8ccd3cba611a401db929691ec6ff
   x-engine-jsi-store: 3830fa2228cef38fb8ff80912e76d777c4ee5243
@@ -189,6 +196,6 @@ SPEC CHECKSUMS:
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 1f4c02994f2478aab8da0b4ebb18fbf7a76ba09b
+PODFILE CHECKSUM: 608e552ca3eab6568b2e918935ebd90a54842506
 
 COCOAPODS: 1.10.1

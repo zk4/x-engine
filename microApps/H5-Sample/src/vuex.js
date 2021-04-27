@@ -156,6 +156,8 @@ export class Store {
     (options.plugins || []).forEach(plugin => plugin(this));
 
     this._subscribes.push((mutation, state) => {
+        // todo:  这个地方速度太慢了,每次都 set.
+        // 应该在页面切到下一页的生命周期一次性将 state 刷到 native.
         xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(state)});
     });
   }

@@ -37,9 +37,9 @@ JSI_MODULE(JSI_vuex)
 - (NSString *)_get:(NSString *)dto {
     NSString* key = [self genkey:dto];
     NSString* ret = [_store get:key];
-    if(ret)
-        return [_store get:key];
-    return @"{\"count\":1}";
+
+    return ret;
+
 }
 
 - (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {

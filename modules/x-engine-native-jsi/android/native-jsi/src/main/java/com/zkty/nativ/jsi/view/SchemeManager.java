@@ -76,8 +76,13 @@ public class SchemeManager {
             methodModule.invoke(object, jsonObject, completionHandler);
 
         } catch (Exception e) {
-            if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
+            if (e instanceof XEngineException) {
                 throw new XEngineException(e.getMessage());
+            } else if (e instanceof InvocationTargetException) {
+                if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
+                    throw new XEngineException(((InvocationTargetException) e).getTargetException().getMessage());
+                }
+
             }
             Log.d(TAG, e.toString());
         }

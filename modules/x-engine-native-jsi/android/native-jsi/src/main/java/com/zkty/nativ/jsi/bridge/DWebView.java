@@ -56,7 +56,7 @@ import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 public class DWebView extends WebView {
     private static final String BRIDGE_NAME = "_dsbridge";
     private static final String LOG_TAG = "dsBridge";
-    private static boolean isDebug = !BuildConfig.BUILD_TYPE.equals("release");
+    protected static boolean isDebug = !BuildConfig.BUILD_TYPE.equals("release");
     private Map<String, Object> javaScriptNamespaceInterfaces = new HashMap();
     private String APP_CACHE_DIRNAME;
     int callID = 0;
@@ -68,14 +68,15 @@ public class DWebView extends WebView {
     private Handler mainHandler = new Handler(Looper.getMainLooper());
     private boolean isFirstLoad = true;
 
+    protected void PrintDebugInfo(String error) {
+        Log.d(LOG_TAG, error);
+        if (isDebug && !TextUtils.isEmpty(error)) {
+            evaluateJavascript(String.format("alert('%s')", "DEBUG ERR MSG:\\n" + error.replaceAll("\\'", "\\\\'")));
+        }
+    }
+
     class InnerJavascriptInterface {
 
-        private void PrintDebugInfo(String error) {
-            Log.d(LOG_TAG, error);
-            if (isDebug) {
-                evaluateJavascript(String.format("alert('%s')", "DEBUG ERR MSG:\\n" + error.replaceAll("\\'", "\\\\'")));
-            }
-        }
 
         @Keep
         @JavascriptInterface

@@ -160,6 +160,11 @@ export class Store {
         // 应该在页面切到下一页的生命周期一次性将 state 刷到 native.
         xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(state)});
     });
+    xengine.broadcastOn((type,payload)=>{
+      if(type === 'VUEX_STORE_EVENT'){
+        this.vm.state=JSON.parse(payload)
+      }
+    });
   }
 
   subscribe(fn){

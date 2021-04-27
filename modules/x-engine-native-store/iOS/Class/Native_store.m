@@ -9,11 +9,12 @@
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 #import <micros.h>
-
+ 
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
 @interface Native_store ()
 @property (nonatomic, strong)   NSMutableDictionary<NSString *, id> * store;
+
 @end
 
 @implementation Native_store

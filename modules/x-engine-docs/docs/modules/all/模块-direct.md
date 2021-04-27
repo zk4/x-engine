@@ -64,10 +64,10 @@ this.$router.go(-2)
 // 返回指定页面
 this.$router.go('/path') 
 
-// 返回根页面
+// 返回微应用根页面
 this.$router.go(/) 
                 
-// 返回根页面
+// 返回nativeApp根页面
 this.$router.go(0) 
 ```
 

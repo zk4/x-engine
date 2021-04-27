@@ -36,7 +36,7 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
   }
   
   
-  public abstract class xengine_jsi_ui extends JSIModule implements xengine_jsi_ui_protocol {
+    public abstract class xengine_jsi_ui extends JSIModule implements xengine_jsi_ui_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.ui";

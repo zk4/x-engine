@@ -3,7 +3,6 @@ package com.zkty.nativ.jsi.view;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
@@ -14,6 +13,7 @@ import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class XEngineWebActivityManager {
     private static List<XEngineWebActivity> activityList;
@@ -38,20 +38,20 @@ public class XEngineWebActivityManager {
     }
 
 
-    public void startXEngineActivity(Context context, @NonNull String protocol, String host, String pathname, String fragment, boolean hideNavBar) {
+    public void startXEngineActivity(Context context, @NonNull String protocol, String host, String pathname, String fragment, Map<String, String> query, boolean hideNavBar) {
         if (context == null) context = XEngineApplication.getApplication();
 
         Intent intent = new Intent(context, XEngineWebActivity.class);
         if (context instanceof Application) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
-        if (TextUtils.isEmpty(host)) {
-            XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
-            if (current != null && current.getHistoryModel() != null) {
-                host = current.getHistoryModel().host;
-            }
-
-        }
+//        if (TextUtils.isEmpty(host)) {
+//            XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
+//            if (current != null && current.getHistoryModel() != null) {
+//                host = current.getHistoryModel().host;
+//            }
+//
+//        }
 
 
         HistoryModel model = new HistoryModel();
@@ -59,6 +59,7 @@ public class XEngineWebActivityManager {
         model.host = host;
         model.pathname = pathname;
         model.fragment = fragment;
+        model.query = query;
 
         intent.putExtra(XEngineWebActivity.HIDE_NAV_BAR, hideNavBar);
         intent.putExtra(XEngineWebActivity.HISTORYMODEL, model);

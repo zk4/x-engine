@@ -1,3 +1,4 @@
+import xengine from '@zkty-team/x-engine-core'
 const forEach = (obj, cb) => {
   Object.keys(obj).forEach(key => {
     cb(key, obj[key]);
@@ -115,6 +116,18 @@ class ModuleCollection { // 格式化
 
 export class Store {
   constructor(options = {}) {
+    let native_state = xengine.api('com.zkty.jsi.vuex','get','store');
+    //  第一次初始化? 以 options.state 为准
+    if(!native_state)
+    {
+      if(options.state)
+      {
+        xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(options.state)});
+      }
+    }else{
+      options.state = JSON.parse(native_state)
+    }
+
     this.vm = new Vue({
       data(){
         return {

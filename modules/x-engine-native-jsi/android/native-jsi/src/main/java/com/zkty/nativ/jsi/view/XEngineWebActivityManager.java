@@ -117,7 +117,9 @@ public class XEngineWebActivityManager {
     public void backToHistoryPage(int index) {
 
         if (Math.abs(index) > activityList.size()) {
-            throw new XEngineException("error：返回数大于历史数量！");
+//            throw new XEngineException("error：返回数大于历史数量！");
+            index = activityList.size();
+//            return;
         }
         for (int i = activityList.size() - 1; i >= 0; i--) {
 

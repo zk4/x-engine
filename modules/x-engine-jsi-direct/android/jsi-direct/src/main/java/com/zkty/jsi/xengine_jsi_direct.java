@@ -27,10 +27,10 @@
     public String fragment;
 
     @Optional
-		public Map<String,Object> query;
+		public Map<String,String> query;
 
     @Optional
-		public Map<String,Object> params;
+		public Map<String,String> params;
   }
   
   class DirectBackDTO {
@@ -45,7 +45,7 @@ public void _back(DirectBackDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
-  public abstract class xengine_jsi_direct extends JSIModule implements xengine_jsi_direct_protocol {
+    public abstract class xengine_jsi_direct extends JSIModule implements xengine_jsi_direct_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.direct";

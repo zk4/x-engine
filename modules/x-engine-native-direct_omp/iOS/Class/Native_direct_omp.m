@@ -105,12 +105,11 @@ NATIVE_MODULE(Native_direct_omp)
         protocol = [self protocol];
     }
     UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
-
     if(host){
         /// TODO: 统一一个类处理 URL 地址问题
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
         BOOL hideNavbar  = [params[@"hideNavbar"] boolValue];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
         vc.hidesBottomBarWhenPushed = YES;
         if([Unity sharedInstance].getCurrentVC.navigationController){
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
@@ -126,8 +125,13 @@ NATIVE_MODULE(Native_direct_omp)
         }
         vc.hidesBottomBarWhenPushed = NO;
     } else {
-        NSString* host=[[GlobalState sharedInstance] getLastHost];
+        HistoryModel* hm=[[GlobalState sharedInstance] getLastHistory];
+        // 重新拿到 host
+        host= hm.host;
         NSAssert(host!=nil, @"host 不可为 nil");
+        
+        pathname= hm.pathname;
+        
         NSString * finalUrl = @"";
         if (query) {
             NSArray *keys = query.allKeys;
@@ -144,7 +148,7 @@ NATIVE_MODULE(Native_direct_omp)
             finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
         }
         
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         [currentVC.navigationController pushViewController:vc animated:YES];
         
     }

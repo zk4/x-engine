@@ -27,7 +27,7 @@ export default {
           id: 1,
           age: 18,
           name: "中文",
-          changeNavTitle: "上个页面修改的文字",
+          changeNavTitle: "haha",
         },
       })
     },

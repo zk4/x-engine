@@ -41,7 +41,7 @@ public class NativeDirect extends NativeModule implements IDirectManager {
     }
 
     @Override
-    public void push(String scheme, String host, String pathname, String fragment, Map<String, Object> query, Map<String, Object> params) {
+    public void push(String scheme, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
         IDirect iDirect = directors.get(scheme);
         iDirect.push(iDirect.protocol(), host, pathname, fragment, query, params);
     }

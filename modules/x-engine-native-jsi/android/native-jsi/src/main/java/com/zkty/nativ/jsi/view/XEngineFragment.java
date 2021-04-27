@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 
@@ -20,20 +21,20 @@ import nativ.jsi.R;
 
 public class XEngineFragment extends Fragment {
     private String TAG = XEngineFragment.class.getSimpleName();
-    private static final String ARG_PARAM_URL = "arg_param_url";
+    private static final String ARG_PARAM_HISTORY_MODEL = "arg_param_history_model";
     private static final String ARG_PARAM_INDEX = "arg_param_index";
 
     private XEngineWebView mWebView;
     private RelativeLayout mRoot;
-    private String mUrl;
+
     private XEngineFragment() {
     }
 
-    public static XEngineFragment newInstance(int index, String uri) {
+    public static XEngineFragment newInstance(int index, HistoryModel historyModel) {
         XEngineFragment fragment = new XEngineFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM_INDEX, index);
-        args.putString(ARG_PARAM_URL, uri);
+        args.putSerializable(ARG_PARAM_HISTORY_MODEL, historyModel);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,13 +51,13 @@ public class XEngineFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mRoot = view.findViewById(R.id.rl_root);
         if (getArguments() != null) {
-            mUrl = getArguments().getString(ARG_PARAM_URL);
+            HistoryModel historyModel = (HistoryModel) getArguments().getSerializable(ARG_PARAM_HISTORY_MODEL);
             int index = getArguments().getInt(ARG_PARAM_INDEX);
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
             mRoot.addView(mWebView, 0);
 //            PermissionDto dto = MicroAppPermissionManager.sharedInstance().getPermission(mMicroAppId, "0");
 //            mWebView.setPermission(dto);
-            mWebView.loadUrl(mUrl);
+            mWebView.loadUrl(historyModel);
         }
 
     }

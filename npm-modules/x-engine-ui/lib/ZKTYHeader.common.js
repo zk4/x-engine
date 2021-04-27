@@ -1885,12 +1885,12 @@ var es_array_map = __webpack_require__("d81d");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__("b0c0");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"331a5bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=19a551cd&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.isShowHeader)?_c('div',{staticClass:"navigator-class",class:[_vm.bgImage==''?'text-black no-bg':'text-white img-mode'],style:(_vm.style)},[_c('div',{staticClass:"title-wrapper"},[_c('div',{staticClass:"content-item-left",style:({ lineheight: _vm.lineheight + 'px' }),on:{"click":_vm.handlerLeftButton}},[_vm._t("left",[_c('div',{class:[_vm.bgImage==''?'content-item-left-span-black': 'content-item-left-span-white']},[_vm._v(_vm._s(_vm.navTitle))])])],2),_c('div',{staticClass:"content-item-center",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("center")],2),_c('div',{staticClass:"content-item-right",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("right")],2)])]):_vm._e()}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0ddafba8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=4f7a32d3&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.isShowHeader)?_c('div',{staticClass:"navigator-class",class:[_vm.bgImage==''?'text-black no-bg':'text-black img-mode'],style:(_vm.style)},[_c('div',{staticClass:"title-wrapper"},[_c('div',{staticClass:"content-item-left",style:({ lineheight: _vm.lineheight + 'px' }),on:{"click":_vm.handlerLeftButton}},[_vm._t("left",[_c('i',{staticClass:"iconfont icon-fanhui"}),(!_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_c('span',{staticClass:"left-text-color"},[_vm._v(_vm._s(_vm.navTitle))])]):_vm._e()])],2),_c('div',{staticClass:"content-item-center",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("center",[(_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_vm._v(_vm._s(_vm.navTitle))]):_vm._e()])],2),_c('div',{staticClass:"content-item-right",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("right")],2)])]):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=19a551cd&
+// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=4f7a32d3&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__("99af");
@@ -2329,6 +2329,12 @@ patch.disableDoubleTapScroll = function (ms) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var headervue_type_script_lang_js_ = ({
   name: "ZKTY-Header",
@@ -2336,9 +2342,13 @@ patch.disableDoubleTapScroll = function (ms) {
     return {
       lineheight: "",
       bgColor: "",
-      navTitle: "",
+      navTitle: "首页",
       bgImage: "",
-      isShowHeader: false
+      isShowHeader: false,
+      // false 默认靠左
+      // true  居中
+      textIsCenter: false,
+      textColor: ""
     };
   },
   computed: {
@@ -2353,6 +2363,10 @@ patch.disableDoubleTapScroll = function (ms) {
       }
 
       return style;
+    },
+    textStyle: function textStyle() {
+      var textColor = "color:".concat(this.textColor, ";");
+      return textColor;
     }
   },
   mounted: function mounted() {
@@ -2391,7 +2405,7 @@ patch.disableDoubleTapScroll = function (ms) {
   watch: {
     $route: function $route(to) {
       // 文字
-      if (to.meta.hasOwnProperty('title')) {
+      if (to.meta.hasOwnProperty("title")) {
         if (to.query.hasOwnProperty("changeNavTitle")) {
           this.navTitle = to.query.changeNavTitle;
         } else {
@@ -2420,6 +2434,20 @@ patch.disableDoubleTapScroll = function (ms) {
         this.isShowHeader = false;
       } else {
         this.isShowHeader = to.meta.isShowHeader;
+      } // 文字靠左还是靠右
+
+
+      if (to.meta.textIsCenter == undefined) {
+        this.textIsCenter = false;
+      } else {
+        this.textIsCenter = to.meta.textIsCenter;
+      } // 文字颜色
+
+
+      if (to.meta.textColor == undefined) {
+        this.textColor = "#000";
+      } else {
+        this.textColor = to.meta.textColor;
       }
     }
   }

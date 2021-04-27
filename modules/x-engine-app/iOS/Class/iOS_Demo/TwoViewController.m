@@ -33,7 +33,7 @@
     NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:microappid withVersion:0];
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE onTab:TRUE];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost pathname:@"" fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE onTab:TRUE];
 
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];

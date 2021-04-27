@@ -48,6 +48,15 @@
     }
     return host;
 }
+- (HistoryModel*) getLastHistory{
+    [self clearHistory];
+    HistoryModel* history = [_histories lastObject];
+    /// 那就是在 tab 上了.
+    if(!history){
+        history =[[GlobalState sharedInstance] getCurrentTab];
+    }
+    return history;
+}
 
 - (XEngineWebView*)getCurrentWebView{
     NSPointerArray* webviews =  [WebViewFactory sharedInstance].webviews;

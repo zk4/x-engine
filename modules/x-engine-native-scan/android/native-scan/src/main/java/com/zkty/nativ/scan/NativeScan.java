@@ -16,7 +16,7 @@ import com.zkty.nativ.scan.activity.ScanActivity;
 
 public class NativeScan extends NativeModule implements IScan {
 
-    private static final String TAG = "xengine__module_scan";
+    private static final String TAG = "NativeScan";
 
 
     private int REQUEST_CODE = 0;

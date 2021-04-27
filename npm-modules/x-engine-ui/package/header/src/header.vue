@@ -2,7 +2,7 @@
   <div
     class="navigator-class"
     :style="style"
-    :class="[bgImage==''?'text-black no-bg':'text-white img-mode']"
+    :class="[bgImage==''?'text-black no-bg':'text-black img-mode']"
     v-if="!isShowHeader"
   >
     <div class="title-wrapper">
@@ -15,7 +15,7 @@
         <slot name="left">
           <i class="iconfont icon-fanhui"></i>
           <div class="nav-title" v-if="!textIsCenter">
-            <span class="left-text-color" :style="textStyle">{{ navTitle }}</span>
+            <span class="left-text-color">{{ navTitle }}</span>
           </div>
         </slot>
       </div>
@@ -23,13 +23,11 @@
       <!-- 中间 -->
       <div class="content-item-center" :style="{ lineheight: lineheight + 'px' }">
         <slot name="center">
-          <div v-if="textIsCenter" class="nav-title"
-          >{{ navTitle }}</div>
+          <div v-if="textIsCenter" class="nav-title">{{ navTitle }}</div>
         </slot>
       </div>
 
       <!-- 右边 -->
-      <!-- :class="[bgImage==''?'content-item-left-span-black': 'content-item-left-span-white']" -->
       <div class="content-item-right" :style="{ lineheight: lineheight + 'px' }">
         <slot name="right"></slot>
       </div>
@@ -63,12 +61,12 @@ export default {
       } else if (this.bgColor) {
         style = `${style}background:${this.bgColor};`
       }
-      return style;
+      return style
     },
-    textStyle(){
-      var textColor = `color:${this.textColor};`;
-      return textColor;
-    }
+    textStyle() {
+      var textColor = `color:${this.textColor};`
+      return textColor
+    },
   },
   mounted() {
     if (XEngine.isHybrid()) {
@@ -153,9 +151,9 @@ export default {
 
       // 文字颜色
       if (to.meta.textColor == undefined) {
-        this.textColor = "#000";
+        this.textColor = "#000"
       } else {
-        this.textColor = to.meta.textColor;
+        this.textColor = to.meta.textColor
       }
     },
   },
@@ -191,17 +189,16 @@ export default {
   text-align: left;
   display: flex;
   text-align: center;
-  /* flex: 0.3; */
+  flex: 0.4;
 }
 
 .content-item-center {
-  align-items: left;
-  text-align: left;
+  text-align: center;
 }
 
 .content-item-right {
   text-align: right;
-  /* flex: 0.3; */
+  flex: 0.4;
 }
 
 .left-text-color {
@@ -224,18 +221,18 @@ export default {
   background-color: #fff;
 }
 
-span{
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+span {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-div{
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+div {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @font-face {
@@ -250,7 +247,7 @@ div{
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 25px;
-  padding-top:3px;
+  padding-top: 3px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

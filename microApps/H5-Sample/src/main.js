@@ -42,7 +42,7 @@ Vue.prototype.$tabbarHeight = engine.api("com.zkty.jsi.device", "getTabbarHeight
 // this.$tabbarHeight.language      // en
 // this.$tabbarHeight.UUID          // UUID number
 engine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
-  Vue.prototype.$tabbarHeight = val
+  Vue.prototype.$deviceInfo = val
 });
 
 import ZKTYHeader from '@zkty-team/x-engine-ui';

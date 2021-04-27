@@ -10,7 +10,7 @@
   "dependencies": {
     "@zkty-team/x-engine-core": "^1.0.3",
     "@zkty-team/x-engine-router": "^1.0.4",
-    "@zkty-team/x-engine-ui": "^1.0.18",
+    "@zkty-team/x-engine-ui": "^1.0.20",
     "axios": "^0.21.1",
     "core-js": "^3.11.0",
     "less": "^4.1.1",

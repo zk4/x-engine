@@ -109,7 +109,7 @@ NATIVE_MODULE(Native_direct_omp)
         /// TODO: 统一一个类处理 URL 地址问题
         NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
         BOOL hideNavbar  = [params[@"hideNavbar"] boolValue];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
         vc.hidesBottomBarWhenPushed = YES;
         if([Unity sharedInstance].getCurrentVC.navigationController){
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
@@ -143,7 +143,7 @@ NATIVE_MODULE(Native_direct_omp)
             finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
         }
         
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         [currentVC.navigationController pushViewController:vc animated:YES];
         
     }

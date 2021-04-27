@@ -154,6 +154,10 @@ export class Store {
 
     // 处理 插件
     (options.plugins || []).forEach(plugin => plugin(this));
+
+    this._subscribes.push((mutation, state) => {
+        xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(state)});
+    });
   }
 
   subscribe(fn){

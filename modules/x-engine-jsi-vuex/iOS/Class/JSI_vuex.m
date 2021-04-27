@@ -5,7 +5,8 @@
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
 
-//  这个 JSI 模块与 localstorage 唯一的区别在于,在 key 上多加了一串值, 为了标明这是一个 store.
+//  这个 JSI 模块与 localstorage 唯一的区别在于,在 key 上多加了一串值 @@VUEX_STORE_KEY, 为了标明这是一个专为 vuex 存储的 store.
+//  这也带一些特性.. 即使你退出了.. 也能保持 vue 的状态.
 
 
 #import "JSI_vuex.h"

@@ -60,8 +60,16 @@ NATIVE_MODULE(Native_direct_microapp)
     if (params && params[@"version"]){
         version= [params[@"version"] longValue] ;
     };
-    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:version];
-    [self.microappDirect push:[self protocol] host:localhost pathname:pathname fragment:fragment query:query params:params];
+    if(host){
+        // microapp 的 host 要特殊处理.
+        // 当第一次打开时, 因为这里传过来的时 microappid => host, pathname
+        pathname = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:version];
+        host=@"";
+    }else{
+       HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+       pathname=hm.pathname;
+    }
+    [self.microappDirect push:[self protocol] host:host pathname:pathname fragment:fragment query:query params:params];
 }
 
 @end

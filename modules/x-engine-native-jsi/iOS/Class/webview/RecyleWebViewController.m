@@ -60,7 +60,7 @@
         self.imageView404.hidden = NO;
     }
 }
-- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
@@ -107,6 +107,7 @@
         hm.fragment      = fragment;
         hm.webview       = self.webview;
         hm.host          = host;
+        hm.pathname      = pathname;
         hm.onTab         = isOnTab;
         if(!isOnTab){
             [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
@@ -128,8 +129,8 @@
     }
     return self;
 }
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
-    return [self initWithUrl:fileUrl host:host fragment:fragment newWebView:newWebView withHiddenNavBar:isHidden onTab:FALSE];
+- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
+    return [self initWithUrl:fileUrl host:host pathname:pathname fragment:fragment newWebView:newWebView withHiddenNavBar:isHidden onTab:FALSE];
 }
 
 - (void)loadFileUrl {

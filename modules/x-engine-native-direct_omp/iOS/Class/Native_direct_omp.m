@@ -125,8 +125,13 @@ NATIVE_MODULE(Native_direct_omp)
         }
         vc.hidesBottomBarWhenPushed = NO;
     } else {
-        NSString* host=[[GlobalState sharedInstance] getLastHost];
+        HistoryModel* hm=[[GlobalState sharedInstance] getLastHistory];
+        // 重新拿到 host
+        host= hm.host;
         NSAssert(host!=nil, @"host 不可为 nil");
+        
+        pathname= hm.pathname;
+        
         NSString * finalUrl = @"";
         if (query) {
             NSArray *keys = query.allKeys;

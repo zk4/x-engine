@@ -2,7 +2,10 @@
   <div
     class="navigator-class"
     :style="style"
-    :class="[bgImage==''?'text-black no-bg':'text-black img-mode']"
+    :class="[
+      bgImage == '' ? 'no-bg' : 'img-mode',
+      isWhiteColor ? 'text-white' : 'text-black',
+    ]"
     v-if="!isShowHeader"
   >
     <div class="title-wrapper">
@@ -36,7 +39,7 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-core"
+import XEngine from "@zkty-team/x-engine-core";
 export default {
   name: "ZKTY-Header",
   data() {
@@ -49,62 +52,55 @@ export default {
       // false 默认靠左
       // true  居中
       textIsCenter: false,
-      textColor: "",
-    }
+      // false 黑色
+      // true  白色
+      isWhiteColor: false,
+    };
   },
   computed: {
     style() {
-      var navigationBar = this.lineheight
-      var style = `height:${navigationBar}px;`
+      var navigationBar = this.lineheight;
+      var style = `height:${navigationBar}px;`;
       if (this.bgImage) {
-        style = `${style}background-image:url(${this.bgImage});`
+        style = `${style}background-image:url(${this.bgImage});`;
       } else if (this.bgColor) {
-        style = `${style}background:${this.bgColor};`
+        style = `${style}background:${this.bgColor};`;
       }
-      return style
+      return style;
     },
     textStyle() {
-      var textColor = `color:${this.textColor};`
-      return textColor
+      var textColor = `color:${this.textColor};`;
+      return textColor;
     },
   },
   mounted() {
     if (XEngine.isHybrid()) {
       if (XEngine.platform.isPhone) {
-        let navheight = XEngine.api(
-          "com.zkty.jsi.device",
-          "getNavigationHeight"
-        )
-        this.lineheight = navheight
+        let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
+        this.lineheight = navheight;
       } else if (XEngine.platform.isAndroid) {
-        let statusBarHeight = XEngine.api(
-          "com.zkty.jsi.device",
-          "getStatusBarHeight"
-        )
-        let navheight = XEngine.api(
-          "com.zkty.jsi.device",
-          "getNavigationHeight"
-        )
-        let height = Number(statusBarHeight) + Number(navheight)
-        this.lineheight = height
+        let statusBarHeight = XEngine.api("com.zkty.jsi.device", "getStatusBarHeight");
+        let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
+        let height = Number(statusBarHeight) + Number(navheight);
+        this.lineheight = height;
       }
     } else if (XEngine.platform.isPc) {
-      const height = 64
-      this.lineheight = height
+      const height = 64;
+      this.lineheight = height;
     } else {
-      const height = 64
-      this.lineheight = height
+      const height = 64;
+      this.lineheight = height;
     }
   },
   methods: {
     handlerLeftButton() {
       // 返回指定页面
       if (this.$route.meta.backPath != undefined) {
-        var path = this.$route.meta.backPath
-        this.$router.go(path)
+        var path = this.$route.meta.backPath;
+        this.$router.go(path);
       } else {
         // 返回上一页
-        this.$router.go(-1)
+        this.$router.go(-1);
       }
     },
   },
@@ -113,51 +109,51 @@ export default {
       // 文字
       if (to.meta.hasOwnProperty("title")) {
         if (to.query.hasOwnProperty("changeNavTitle")) {
-          this.navTitle = to.query.changeNavTitle
+          this.navTitle = to.query.changeNavTitle;
         } else {
-          this.navTitle = to.meta.title
+          this.navTitle = to.meta.title;
         }
       } else {
-        this.navTitle = "请在router配置title信息"
+        this.navTitle = "请在router配置title信息";
       }
 
       // 图片
       if (to.meta.customBgcImg) {
-        this.bgImage = to.meta.customBgcImg
+        this.bgImage = to.meta.customBgcImg;
       } else {
-        this.bgImage = ""
+        this.bgImage = "";
       }
 
       // 背景色
       if (to.meta.bgColor) {
-        this.bgColor = to.meta.bgColor
+        this.bgColor = to.meta.bgColor;
       } else {
-        this.bgColor = ""
+        this.bgColor = "";
       }
 
       // 是否显示header
       if (to.meta.isShowHeader == undefined) {
-        this.isShowHeader = false
+        this.isShowHeader = false;
       } else {
-        this.isShowHeader = to.meta.isShowHeader
+        this.isShowHeader = to.meta.isShowHeader;
       }
 
       // 文字靠左还是靠右
       if (to.meta.textIsCenter == undefined) {
-        this.textIsCenter = false
+        this.textIsCenter = false;
       } else {
-        this.textIsCenter = to.meta.textIsCenter
+        this.textIsCenter = to.meta.textIsCenter;
       }
 
       // 文字颜色
-      if (to.meta.textColor == undefined) {
-        this.textColor = "#000"
+      if (to.meta.isWhiteColor == undefined) {
+        this.isWhiteColor = false;
       } else {
-        this.textColor = to.meta.textColor
+        this.isWhiteColor = true;
       }
     },
   },
-}
+};
 </script>
 
 <style>
@@ -182,7 +178,6 @@ export default {
   align-items: center;
   font-size: 20px;
   font-weight: 600;
-  color: #111;
 }
 
 .content-item-left {
@@ -252,6 +247,17 @@ div {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.iconfont-white {
+  font-family: "iconfont" !important;
+  font-size: 25px;
+  padding-top: 3px;
+  font-style: normal;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .icon-fanhui:before {
   content: "\e641";
   padding-left: 10px;

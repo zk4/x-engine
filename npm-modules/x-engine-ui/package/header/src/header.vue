@@ -2,10 +2,11 @@
   <div
     class="navigator-class"
     :style="style"
-    :class="[bgImage==''?'text-black no-bg':'text-white img-mode']"
+    :class="[bgImage==''?'text-black no-bg':'text-black img-mode']"
     v-if="!isShowHeader"
   >
     <div class="title-wrapper">
+      <!-- 左边 -->
       <div
         class="content-item-left"
         :style="{ lineheight: lineheight + 'px' }"
@@ -13,22 +14,20 @@
       >
         <slot name="left">
           <i class="iconfont icon-fanhui"></i>
-          <div  class="nav-title"
-            v-if="!textIsCenter"
-          >
-          <span style="margin-left:10px;">{{ navTitle }}</span>
-
+          <div class="nav-title" v-if="!textIsCenter">
+            <span class="left-text-color">{{ navTitle }}</span>
           </div>
         </slot>
       </div>
 
+      <!-- 中间 -->
       <div class="content-item-center" :style="{ lineheight: lineheight + 'px' }">
         <slot name="center">
-          <div v-if="textIsCenter" class="nav-title"
-          >{{ navTitle }}</div>
+          <div v-if="textIsCenter" class="nav-title">{{ navTitle }}</div>
         </slot>
       </div>
-            <!-- :class="[bgImage==''?'content-item-left-span-black': 'content-item-left-span-white']" -->
+
+      <!-- 右边 -->
       <div class="content-item-right" :style="{ lineheight: lineheight + 'px' }">
         <slot name="right"></slot>
       </div>
@@ -47,10 +46,10 @@ export default {
       navTitle: "首页",
       bgImage: "",
       isShowHeader: false,
-      // false 默认靠左 
+      // false 默认靠左
       // true  居中
       textIsCenter: false,
-      textColor:"#000"
+      textColor: "",
     }
   },
   computed: {
@@ -64,10 +63,12 @@ export default {
       }
       return style
     },
+    textStyle() {
+      var textColor = `color:${this.textColor};`
+      return textColor
+    },
   },
   mounted() {
-      console.log(this.navTitle)
-
     if (XEngine.isHybrid()) {
       if (XEngine.platform.isPhone) {
         let navheight = XEngine.api(
@@ -136,25 +137,24 @@ export default {
 
       // 是否显示header
       if (to.meta.isShowHeader == undefined) {
-        this.isShowHeader = false;
+        this.isShowHeader = false
       } else {
-        this.isShowHeader = to.meta.isShowHeader;
+        this.isShowHeader = to.meta.isShowHeader
       }
 
       // 文字靠左还是靠右
-      alert(to.meta.textIsCenter)
       if (to.meta.textIsCenter == undefined) {
-        this.textIsCenter = false;
+        this.textIsCenter = false
       } else {
-        this.textIsCenter = to.meta.textIsCenter;
+        this.textIsCenter = to.meta.textIsCenter
       }
 
-      // // 文字颜色
-      // if (to.meta.textColor == undefined) {
-      //   this.textColor = "#000";
-      // } else {
-      //   this.textColor = to.meta.textColor;
-      // }
+      // 文字颜色
+      if (to.meta.textColor == undefined) {
+        this.textColor = "#000"
+      } else {
+        this.textColor = to.meta.textColor
+      }
     },
   },
 }
@@ -175,57 +175,22 @@ export default {
   justify-content: space-between;
   bottom: 8px;
   width: 100%;
-  /* left: 20px; */
-  /* right: 20px; */
+}
+
+.nav-title {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
 }
 
 .content-item-left {
   text-align: left;
   display: flex;
   text-align: center;
+  flex: 0.4;
 }
-.nav-title{
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 600;
-}
-/* 
-.content-item-left-span-white {
-  padding-left: 20px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.content-item-left-span-white::before {
-  left: 0px;
-  content: "";
-  top: 8px;
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  transform: rotate(-45deg);
-  border-left: 2px solid white;
-  border-top: 2px solid white;
-}
-
-.content-item-left-span-black {
-  padding-left: 20px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.content-item-left-span-black::before {
-  left: 0px;
-  content: "";
-  top: 8px;
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  transform: rotate(-45deg);
-  border-left: 2px solid black;
-  border-top: 2px solid black;
-} */
 
 .content-item-center {
   text-align: center;
@@ -233,6 +198,11 @@ export default {
 
 .content-item-right {
   text-align: right;
+  flex: 0.4;
+}
+
+.left-text-color {
+  margin-left: 10px;
 }
 
 .text-white {
@@ -248,20 +218,36 @@ export default {
 }
 
 .no-bg {
-  /* background-color: #fff; */
-  background-color:pink;
+  background-color: #fff;
 }
+
+span {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+div {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 @font-face {
-    font-family: 'iconfont';
-    src:url('data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAQ4AA0AAAAABlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEHAAAABoAAAAcjvZa/0dERUYAAAP8AAAAHgAAAB4AKQAKT1MvMgAAAaQAAABCAAAAVjyvSDNjbWFwAAAB+AAAAD4AAAFCAA/p7Gdhc3AAAAP0AAAACAAAAAj//wADZ2x5ZgAAAkQAAABEAAAARG6fs/RoZWFkAAABMAAAADEAAAA2HEN382hoZWEAAAFkAAAAHQAAACQGiQOFaG10eAAAAegAAAAQAAAAEAwAAShsb2NhAAACOAAAAAoAAAAKACIAAG1heHAAAAGEAAAAHwAAACABDwAdbmFtZQAAAogAAAFJAAACiCnmEVVwb3N0AAAD1AAAAB8AAAAxy4Fu3njaY2BkYGAA4g9PvtyO57f5ysDNwgACd1ZK/obRjBoMGkyrmW4AuRwMTCBRAHxqDGgAAAB42mNgZGBgbvjfwBDDwgACTKsZGBlQAQsAU5MDFgAAAHjaY2BkYGBgYRBkANEMDExAzAWEDAz/wXwGAAp2AS0AeNpjYGRhYJzAwMrAwNTJdIaBgaEfQjO+ZjBi5ACKMrAyM2AFAWmuKQwOzxyfOTI3/G9giGFuYGgACjOC5ADk5QxdAAAEAAAAAAAAAAQAAAAEAAEoeNpjYGBgZoBgGQZGBhCwAfIYwXwWBgUgzQKEQP4zx///IaTkIahKBkY2BhiTgZEJSDAxoAJGhmEPAIP8B+EAAAAAAAAAAAAAACIAAAABASgAKAKrAtgAEAAACQEWFAYiJwEmNDcBNjIWFAcBjwEPDRoiDf7SDAwBLg0iGg0BgP7xDiEaDAEuDSINAS4MGiEOeNp9kD1OAzEQhZ/zByQSQiCoXVEA2vyUKRMp9Ailo0g23pBo1155nUg5AS0VB6DlGByAGyDRcgpelkmTImvt6PObmeexAZzjGwr/3yXuhBWO8ShcwREy4Sr1F+Ea+V24jhY+hRvUf4SbuFUD4RYu1BsdVO2Eu5vSbcsKZxgIV3CKJ+Eq9ZVwjfwqXMcVPoQb1L+EmxjjV7iFa2WpDOFhMEFgnEFjig3jAjEcLJIyBtahOfRmEsxMTzd6ETubOBso71dilwMeaDnngCntPbdmvkon/mDLgdSYbh4FS7YpjS4idCgbXyyc1d2oc7D9nu22tNi/a4E1x+xRDWzU/D3bM9JIbAyvkJI18jK3pBJTj2hrrPG7ZynW814IiU68y/SIx5o0dTr3bmniwOLn8owcfbS5kj33qBw+Y1kIeb/dTsQgil2GP5PYcRkAAAB42mNgYoAALjDJyIAOWMCiTIxMbGmJeRmlmQALcgKZAAAAAAH//wACAAEAAAAMAAAAFgAAAAIAAQADAAMAAQAEAAAAAgAAAAB42mNgYGBkAIKrS9Q5QPSdlZK/YTQAQkMG3AAA') format('woff');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
+  font-family: "iconfont";
+  src: url("data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAQ4AA0AAAAABlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEHAAAABoAAAAcjvZa/0dERUYAAAP8AAAAHgAAAB4AKQAKT1MvMgAAAaQAAABCAAAAVjyvSDNjbWFwAAAB+AAAAD4AAAFCAA/p7Gdhc3AAAAP0AAAACAAAAAj//wADZ2x5ZgAAAkQAAABEAAAARG6fs/RoZWFkAAABMAAAADEAAAA2HEN382hoZWEAAAFkAAAAHQAAACQGiQOFaG10eAAAAegAAAAQAAAAEAwAAShsb2NhAAACOAAAAAoAAAAKACIAAG1heHAAAAGEAAAAHwAAACABDwAdbmFtZQAAAogAAAFJAAACiCnmEVVwb3N0AAAD1AAAAB8AAAAxy4Fu3njaY2BkYGAA4g9PvtyO57f5ysDNwgACd1ZK/obRjBoMGkyrmW4AuRwMTCBRAHxqDGgAAAB42mNgZGBgbvjfwBDDwgACTKsZGBlQAQsAU5MDFgAAAHjaY2BkYGBgYRBkANEMDExAzAWEDAz/wXwGAAp2AS0AeNpjYGRhYJzAwMrAwNTJdIaBgaEfQjO+ZjBi5ACKMrAyM2AFAWmuKQwOzxyfOTI3/G9giGFuYGgACjOC5ADk5QxdAAAEAAAAAAAAAAQAAAAEAAEoeNpjYGBgZoBgGQZGBhCwAfIYwXwWBgUgzQKEQP4zx///IaTkIahKBkY2BhiTgZEJSDAxoAJGhmEPAIP8B+EAAAAAAAAAAAAAACIAAAABASgAKAKrAtgAEAAACQEWFAYiJwEmNDcBNjIWFAcBjwEPDRoiDf7SDAwBLg0iGg0BgP7xDiEaDAEuDSINAS4MGiEOeNp9kD1OAzEQhZ/zByQSQiCoXVEA2vyUKRMp9Ailo0g23pBo1155nUg5AS0VB6DlGByAGyDRcgpelkmTImvt6PObmeexAZzjGwr/3yXuhBWO8ShcwREy4Sr1F+Ea+V24jhY+hRvUf4SbuFUD4RYu1BsdVO2Eu5vSbcsKZxgIV3CKJ+Eq9ZVwjfwqXMcVPoQb1L+EmxjjV7iFa2WpDOFhMEFgnEFjig3jAjEcLJIyBtahOfRmEsxMTzd6ETubOBso71dilwMeaDnngCntPbdmvkon/mDLgdSYbh4FS7YpjS4idCgbXyyc1d2oc7D9nu22tNi/a4E1x+xRDWzU/D3bM9JIbAyvkJI18jK3pBJTj2hrrPG7ZynW814IiU68y/SIx5o0dTr3bmniwOLn8owcfbS5kj33qBw+Y1kIeb/dTsQgil2GP5PYcRkAAAB42mNgYoAALjDJyIAOWMCiTIxMbGmJeRmlmQALcgKZAAAAAAH//wACAAEAAAAMAAAAFgAAAAIAAQADAAMAAQAEAAAAAgAAAAB42mNgYGBkAIKrS9Q5QPSdlZK/YTQAQkMG3AAA")
+    format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 22px;
+  font-size: 25px;
+  padding-top: 3px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

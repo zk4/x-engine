@@ -16,7 +16,7 @@ const routes = [{
         meta: {
             title: "首页",
             bgColor: "#ddd",
-            textIsCenter: true
+            textIsCenter: true,
         },
         component: () => import('../views/Home.vue'),
     },
@@ -34,6 +34,7 @@ const routes = [{
         name: 'testone',
         meta: {
             title: "第一页",
+            textIsCenter : true,
             customBgcImg: require('@/static/image/navBJ.png')
         },
         component: () => import('../views/jumpRouter/testone.vue')
@@ -146,7 +147,8 @@ const routes = [{
         path: '/search',
         name: 'search',
         meta: {
-            isShowHeader: true
+            isShowHeader: true,
+            bgColor: '#ddd'
         },
         component: () => import('../views/search.vue')
     },

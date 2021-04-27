@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-ui",
-  "version": "1.0.13",
+  "version": "1.0.20",
   "private": false,
   "author": "Cwz.",
   "main": "lib/ZKTYHeader.common.js",
@@ -23,7 +23,8 @@
   "dependencies": {
     "@zkty-team/x-engine-core": "^1.0.1",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

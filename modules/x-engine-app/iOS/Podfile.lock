@@ -13,8 +13,7 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-jsi-legacy (0.1.13):
-    - JSONModel
+  - x-engine-jsi-localstorage (0.1.13):
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-jsi-scan (0.1.13):
@@ -22,6 +21,9 @@ PODS:
     - x-engine-native-protocols
   - x-engine-jsi-ui (0.1.13):
     - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-vuex (0.1.13):
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-broadcast (1.0.0):
@@ -68,6 +70,9 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
     - ZBarSDK
+  - x-engine-native-store (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-ui (1.0.0):
     - JSONModel
     - x-engine-native-core
@@ -79,9 +84,10 @@ DEPENDENCIES:
   - x-engine-jsi-camera (from `../../x-engine-jsi-camera`)
   - x-engine-jsi-device (from `../../x-engine-jsi-device`)
   - x-engine-jsi-direct (from `../../x-engine-jsi-direct`)
-  - x-engine-jsi-legacy (from `../../x-engine-jsi-legacy`)
+  - x-engine-jsi-localstorage (from `../../x-engine-jsi-localstorage`)
   - x-engine-jsi-scan (from `../../x-engine-jsi-scan`)
   - x-engine-jsi-ui (from `../../x-engine-jsi-ui`)
+  - x-engine-jsi-vuex (from `../../x-engine-jsi-vuex`)
   - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
   - x-engine-native-camera (from `../../x-engine-native-camera`)
   - x-engine-native-core (from `../../x-engine-native-core`)
@@ -94,6 +100,7 @@ DEPENDENCIES:
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
   - x-engine-native-scan (from `../../x-engine-native-scan`)
+  - x-engine-native-store (from `../../x-engine-native-store`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
@@ -109,12 +116,14 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-device"
   x-engine-jsi-direct:
     :path: "../../x-engine-jsi-direct"
-  x-engine-jsi-legacy:
-    :path: "../../x-engine-jsi-legacy"
+  x-engine-jsi-localstorage:
+    :path: "../../x-engine-jsi-localstorage"
   x-engine-jsi-scan:
     :path: "../../x-engine-jsi-scan"
   x-engine-jsi-ui:
     :path: "../../x-engine-jsi-ui"
+  x-engine-jsi-vuex:
+    :path: "../../x-engine-jsi-vuex"
   x-engine-native-broadcast:
     :path: "../../x-engine-native-broadcast"
   x-engine-native-camera:
@@ -139,6 +148,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-protocols"
   x-engine-native-scan:
     :path: "../../x-engine-native-scan"
+  x-engine-native-store:
+    :path: "../../x-engine-native-store"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
   ZBarSDK:
@@ -150,9 +161,10 @@ SPEC CHECKSUMS:
   x-engine-jsi-camera: 54c1c94282a948bf673e36f5fb77e89d99eaf6f4
   x-engine-jsi-device: 38155c0d3b842b5ab08a19d8858af88c3690d3b8
   x-engine-jsi-direct: 576d2f25bc1d0c87e02a4ddf1469d955a9bed82e
-  x-engine-jsi-legacy: c6add91d5426ffc532e78015e1f5a30dd3ce46b1
+  x-engine-jsi-localstorage: 25224e93475334b4d0133947d21fbefddda346ba
   x-engine-jsi-scan: e76f94f5ad36e3cfa5d3ed6d53e410643000710f
   x-engine-jsi-ui: 64c934a15a630a55a29ad810ee208b7c3eebdd25
+  x-engine-jsi-vuex: 5d17152a248c2df60ef5c79879aa7256c3e59a1b
   x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
   x-engine-native-camera: 06050cc692cf66e5cc8d91e736544d3c9c483bed
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
@@ -165,9 +177,10 @@ SPEC CHECKSUMS:
   x-engine-native-jsi: 92a9a72a45029df1ca8e61e0166e3731e672f523
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
+  x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: f082cf77a90ff3951aa6677512125fcdb4f81d1d
+PODFILE CHECKSUM: b7b9535489cee4f0dad44229474a8e34a33354df
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

@@ -5,28 +5,12 @@ platform :ios, '11.0'
 
 #load './ModulePods.rb'
 target 'motherboard' do
-
-  pod 'SDWebImage'
-  pod 'WechatOpenSDK','1.8.7.1'
-  pod 'x-engine-module-engine', :path =>'../../modules/x-engine-module-engine'
-  pod 'x-engine-module-protocols', :path =>'../../modules/x-engine-module-protocols/'
-  pod 'x-engine-module-router', :path =>'../../modules/x-engine-module-router/'
-  pod 'x-engine-module-tools', :path =>'../../modules/x-engine-module-tools/'
-  pod 'x-engine-module-nav', :path =>'../../modules/x-engine-module-nav'
-  pod 'x-engine-module-dcloud', :path =>'../../modules/x-engine-module-dcloud'
-  pod 'Masonry', :path =>'../../app/ios-thirdlib/Masonry'
+  pod 'x-engine-jsi-engine', :path =>'../../modules/x-engine-jsi-engine'
+  pod 'x-engine-jsi-protocols', :path =>'../../modules/x-engine-jsi-protocols/'
   pod 'ZBarSDK', :path =>'../../app/ios-thirdlib/ZBarSDK'
-  pod 'UniBoost', :path => '../../../UniBoost'
-  pod 'x-engine-module-camera', :path =>'../../modules/x-engine-module-camera'
-  pod 'x-engine-module-device', :path =>'../../modules/x-engine-module-device'
-  #pod 'x-engine-module-bluetooth', :path =>'../../modules/x-engine-module-bluetooth'
-  pod 'x-engine-module-localstorage', :path =>'../../modules/x-engine-module-localstorage'
-  pod 'x-engine-module-network', :path =>'../../modules/x-engine-module-network'
-  pod 'x-engine-module-ui', :path =>'../../modules/x-engine-module-ui'
-  pod 'x-engine-module-scan', :path =>'../../modules/x-engine-module-scan'
-  pod 'x-engine-module-lope', :path =>'../../modules/x-engine-module-lope'
-  pod 'x-engine-module-share', :path =>'../../modules/x-engine-module-share'
-  pod 'x-engine-module-yjzdbill', :path =>'../../modules/x-engine-module-yjzdbill'
+  pod 'x-engine-jsi-camera', :path =>'../../modules/x-engine-jsi-camera'
+  pod 'x-engine-jsi-device', :path =>'../../modules/x-engine-jsi-device'
+  pod 'x-engine-jsi-scan', :path =>'../../modules/x-engine-jsi-scan'
 
   
   target 'motherboardUITests' do

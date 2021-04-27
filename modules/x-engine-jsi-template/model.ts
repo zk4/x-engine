@@ -39,6 +39,13 @@ function nestedAnonymousObject(): { a: string; i: { n1: string } } {}
 @sync
 function namedObject(): NamedDTO {}
 
+@async
+@sync
+function namedObjectWithNamedArgs(arg:NamedDTO): NamedDTO {}
+
+@async
+@sync
+function namedObjectWithArgs(arg:{name:string,age:int}): {goodname:string,price:int} {}
 
 // test function
 function test_同步无返回(){

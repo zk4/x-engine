@@ -36,10 +36,10 @@
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
     
     // 本地com.gm.microapp.mine包
-    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+//    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 
 //     cwz 远程
-    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+    [director push:@"omp" host:@"192.168.1.15:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"omp" host:@"192.168.3.12:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
     

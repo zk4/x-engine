@@ -49,6 +49,7 @@ JSI_MODULE(JSI_vuex)
 - (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
     [_broadcast broadcast:BROADCAT_EVENT payload:dto.val];
+//    [[GlobalState sharedInstance] getCurrentHostHistories]
 }
 
 

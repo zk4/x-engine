@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HistoryModel : NSObject
     @property (nonatomic, weak) UIViewController *vc;
     @property (nonatomic, weak) XEngineWebView * webview;
-
     @property (nonatomic, copy) NSString *host;
     @property (nonatomic, copy) NSString *pathname;
     @property (nonatomic, copy) NSString *fragment;
     @property (nonatomic, assign) BOOL onTab;
 
+    -(NSString*) getKey;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,0 +1,32 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
+
+def shared_pods
+  pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
+  pod 'x-engine-native-jsi', :path =>X_ENGINE_MODULES+'/x-engine-native-jsi'
+  pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
+  pod 'x-engine-native-direct_microapp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
+
+  pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
+  pod 'x-engine-native-broadcast', :path =>X_ENGINE_MODULES+'/x-engine-native-broadcast'
+
+end
+
+target 'broadcast' do
+  #use_frameworks!
+  shared_pods
+end
+target 'broadcastTests' do
+  #use_frameworks!
+  shared_pods
+end
+target 'broadcastUITests' do
+  # Pods for testing
+  shared_pods
+
+end

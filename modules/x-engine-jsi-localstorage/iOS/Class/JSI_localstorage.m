@@ -25,13 +25,11 @@ JSI_MODULE(JSI_localstorage)
     _store = XENP(iStore);
 }
 
-/// 生成 microapp 唯一的 key,现在这个实现对于 omp 来说是有 bug 的. 如果两个微应用来自同一个 host,则会冲突.
-/// TODO: 使用真实的 microapp id
-/// @param key key
 - (NSString *) genkey:(NSString*) key{
-    assert([[GlobalState sharedInstance] getLastHost]!=nil);
-    assert(key!=nil);
-    return  [NSString stringWithFormat:@"%@:%@", [[GlobalState sharedInstance] getLastHost], key];
+     assert(key!=nil);
+     HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+     assert(hm!=nil);
+     return  [NSString stringWithFormat:@"%@%@:%@", hm.host?hm.host:@"",hm.pathname?hm.pathname:@"", key];
 }
 
 - (NSString *)_get:(NSString *)dto {

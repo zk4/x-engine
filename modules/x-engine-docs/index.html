@@ -9,8 +9,7 @@
       name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
-    <link rel="stylesheet" href="./d3d.css" />
+    <link rel="stylesheet" href="./lib/themes/vue.css" />
     <style>
       figure {
         text-align: center;
@@ -81,11 +80,11 @@
           //          ),
           function (hook, vm) {
             hook.doneEach(function () {
-              // document.getElementsByClassName('collapse')[0].classList.remove('collapse');
-              var indexsrc= window.location.href.split("/")[0]+"//"+window.location.host+'/docs/modules/all/dist/'+document.getElementById("modulename").innerText+'/index.html';
-              var qrsrc='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+ indexsrc;
-                document.getElementById('qrimg').src =qrsrc;
-                document.getElementById('qrlink').href=indexsrc;
+// 禁用 QR
+//              var indexsrc= window.location.href.split("/")[0]+"//"+window.location.host+'/docs/modules/all/dist/'+document.getElementById("modulename").innerText+'/index.html';
+//              var qrsrc='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+ indexsrc;
+//                document.getElementById('qrimg').src =qrsrc;
+//                document.getElementById('qrlink').href=indexsrc;
             });
 
             hook.afterEach(function (html) {
@@ -103,14 +102,14 @@
         ],
       };
     </script>
-    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+    <script src="./lib/docsify.min.js"></script>
     <!--Java代码高亮-->
     <!--<script src="//unpkg.com/prismjs/components/prism-java.js"></script>-->
     <!--<script src="//unpkg.com/prismjs/components/prism-bash.js"></script>-->
     <!--<script src="//unpkg.com/prismjs/components/prism-java.js"></script>-->
     <!--<script src="//unpkg.com/prismjs/components/prism-sql.js"></script>-->
     <!--全文搜索,直接用官方提供的无法生效-->
-    <script src="https://cdn.bootcss.com/docsify/4.5.9/plugins/search.min.js"></script>
+    <script src="./lib/plugins/search.min.js"></script>
     <!-- 复制到剪贴板 -->
     <!--<script src="//unpkg.com/docsify-copy-code"></script>-->
     <!-- 图片缩放 -->
@@ -122,8 +121,8 @@
     <!--remote markdown-->
     <!--<script src="//unpkg.com/docsify-remote-markdown/dist/docsify-remote-markdown.min.js"></script>-->
     <script src="./docsify-remote-markdown.min.js"></script>
-    <script src="//unpkg.com/mermaid/dist/mermaid.js"></script>
-    <script src="//unpkg.com/docsify-mermaid@latest/dist/docsify-mermaid.js"></script>
-    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!--<script src="./lib/plugins/mermaid.js"></script>-->
+    <!--<script src="./lib/plugins/docsify-mermaid.js"></script>-->
+    <!--<script>mermaid.initialize({ startOnLoad: true });</script>-->
   </body>
 </html>

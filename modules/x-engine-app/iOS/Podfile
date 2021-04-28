@@ -31,7 +31,6 @@ def shared_pods
   pod 'x-engine-jsi-localstorage', :path =>'../../x-engine-jsi-localstorage'
   
   
-  
   # legacy jsi
   pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'
 

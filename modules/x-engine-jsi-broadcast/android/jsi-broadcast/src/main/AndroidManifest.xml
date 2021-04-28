@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jsi.broadcast">
 
-    <meta-data
-        android:name="com.zkty.jsi.broadcast"
-        android:value="com.zkty.jsi.JSI_broadcast" />
-
+    <application>
+        <meta-data
+            android:name="com.zkty.jsi.broadcast"
+            android:value="com.zkty.jsi.JSI_broadcast" />
+    </application>
 </manifest>

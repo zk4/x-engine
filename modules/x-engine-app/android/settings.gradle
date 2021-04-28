@@ -63,3 +63,9 @@ project(':jsi-localstorage').projectDir = new File('../../x-engine-jsi-localstor
 
 include ':jsi-secret'
 project(':jsi-secret').projectDir = new File('../../x-engine-jsi-secret/android/jsi-secret')
+
+include ':jsi-vuex'
+project(':jsi-vuex').projectDir = new File('../../x-engine-jsi-vuex/android/jsi-vuex')
+
+include ':jsi-broadcast'
+project(':jsi-broadcast').projectDir = new File('../../x-engine-jsi-broadcast/android/jsi-broadcast')

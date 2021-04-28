@@ -77,4 +77,6 @@ dependencies {
     implementation project(':jsi-scan')
     implementation project(':jsi-ui')
     implementation project(':jsi-localstorage')
+    implementation project(':jsi-vuex')
+    implementation project(':jsi-broadcast')
 }

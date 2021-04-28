@@ -162,8 +162,10 @@ export class Store {
     });
     xengine.broadcastOn((type,payload)=>{
       if(type === '@@VUEX_STORE_EVENT'){
-        // bug, 只更新了界面绑定的 state. 但实际 state 并没更新 needfix
-        this.vm.state=JSON.parse(payload)
+        let state=JSON.parse(payload)
+        Object.keys(this.vm.state).forEach(key => {
+            this.vm.state[key]=state[key];
+        })
       }
     });
   }

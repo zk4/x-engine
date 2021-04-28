@@ -18,6 +18,9 @@ public class XWebViewPool {
     private static final byte[] lock = new byte[]{};
     private Context mContext;
 
+    private XEngineWebView currentWebView;
+    private XEngineWebView currentTabWebView;
+
 
     private XWebViewPool() {
         circleList = new ArrayList<>();
@@ -73,7 +76,8 @@ public class XWebViewPool {
                     }
                 }
             }
-            return webView;
+            currentWebView = webView;
+            return currentWebView;
         }
     }
 
@@ -87,10 +91,11 @@ public class XWebViewPool {
 
     }
 
-    //返回最后一个webview 并清除其他
+    //返回最后一个webview
     public XEngineWebView getLastWebView() {
         if (circleList.size() > 0) {
-            return circleList.get(circleList.size() - 1);
+            currentWebView = circleList.get(circleList.size() - 1);
+            return currentWebView;
         }
         return null;
     }
@@ -126,42 +131,12 @@ public class XWebViewPool {
         return tabWebViewList;
     }
 
+    public XEngineWebView getCurrentWebView() {
+        return getLastWebView() == null ? currentTabWebView : currentWebView;
+    }
 
-    //返回第一个webview 并清除其他
-//    public XEngineWebView getFirstWebView() {
-//        if (circleList.size() > 0) {
-//            circleList.subList(0, 1);
-//            return circleList.get(0);
-//        }
-//        return null;
-//    }
-//
-//    //返回指定host webview 并清除其后面的
-//    public XEngineWebView getWebViewFromPool(String host) {
-//        if (TextUtils.isEmpty(host)) {
-//            return circleList.get(circleList.size() - 1);
-//        }
-//
-//
-//        int index = -1;
-//        for (int i = circleList.size() - 1; i > -1; i--) {
-//            if (circleList.get(i).getHistoryModels().get(0).host.equals(host)) {
-//                index = i;
-//                break;
-//            }
-//        }
-//        if (index == circleList.size() - 1) {
-//            return circleList.get(circleList.size() - 1);
-//        }
-//        if (index > -1) {
-//
-//            circleList.subList(0, index + 1);
-//            return circleList.get(circleList.size() - 1);
-//
-//        } else {
-//            return null;
-//        }
-//
-//    }
+    public void setCurrentTabWebView(XEngineWebView webView) {
+        this.currentTabWebView = webView;
+    }
 
 }

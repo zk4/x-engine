@@ -1,7 +1,5 @@
 package com.zkty.jsi;
 
-import android.text.TextUtils;
-
 import androidx.annotation.Nullable;
 
 import com.zkty.nativ.core.NativeContext;
@@ -24,11 +22,6 @@ public class JSI_direct extends xengine_jsi_direct {
     @Override
     public void _push(DirectPushDTO dto, CompletionHandler<Nullable> handler) {
         if (directors != null) {
-
-            if (TextUtils.isEmpty(dto.host) && xEngineWebView.getHistoryModel() != null) {
-                dto.host = xEngineWebView.getHistoryModel().host;
-                dto.pathname = xEngineWebView.getHistoryModel().pathname;
-            }
             directors.push(dto.scheme, dto.host, dto.pathname, dto.fragment, dto.query, dto.params);
         }
 

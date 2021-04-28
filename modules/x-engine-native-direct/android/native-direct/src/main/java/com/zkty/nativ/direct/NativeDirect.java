@@ -1,8 +1,12 @@
 package com.zkty.nativ.direct;
 
 
+import android.text.TextUtils;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.jsi.webview.XEngineWebView;
+import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +46,12 @@ public class NativeDirect extends NativeModule implements IDirectManager {
 
     @Override
     public void push(String scheme, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
+        if (TextUtils.isEmpty(host) && XWebViewPool.sharedInstance().getCurrentWebView() != null) {
+            XEngineWebView xEngineWebView = XWebViewPool.sharedInstance().getCurrentWebView();
+            host = xEngineWebView.getHistoryModel().host;
+            pathname = xEngineWebView.getHistoryModel().pathname;
+        }
+
         IDirect iDirect = directors.get(scheme);
         iDirect.push(iDirect.protocol(), host, pathname, fragment, query, params);
     }

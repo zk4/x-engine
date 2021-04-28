@@ -15,6 +15,7 @@ import {
   Field
 } from 'vant';
 
+
 Vue.use(Cell);
 Vue.use(Form);
 Vue.use(List);
@@ -25,6 +26,9 @@ Vue.use(Skeleton);
 Vue.use(CellGroup);
 Vue.use(PullRefresh);
 Vue.config.productionTip = false
+
+import VConsole from 'vconsole'
+new VConsole()
 
 import engine from "@zkty-team/x-engine-core"
 Vue.prototype.$engine = engine;

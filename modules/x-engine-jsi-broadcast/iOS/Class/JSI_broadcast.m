@@ -1,0 +1,35 @@
+//
+//  JSI_broadcast.m
+//  broadcast
+//
+//  Created by zk on 2020/9/7.
+//  Copyright © 2020 edz. All rights reserved.
+
+
+#import "JSI_broadcast.h"
+#import "JSIContext.h"
+#import "NativeContext.h"
+#import "iBroadcast.h"
+
+@interface JSI_broadcast()
+@property (nonatomic, strong)   id<iBroadcast>  broadcast;
+
+@end
+
+@implementation JSI_broadcast
+JSI_MODULE(JSI_broadcast)
+
+- (void)afterAllJSIModuleInited {
+    _broadcast = XENP(iBroadcast);
+
+}
+
+   
+  
+ 
+- (void)_triggerBroadcast:(_0_com_zkty_jsi_broadcast_DTO *)dto {
+    [_broadcast broadcast:dto.type  payload:dto.payload];
+
+}
+
+@end

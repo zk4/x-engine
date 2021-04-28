@@ -213,8 +213,15 @@ public class XEngineWebView extends DWebView {
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
-                            throw new XEngineException(e.getMessage());
+                        if (isDebug) {
+                            if (e instanceof XEngineException) {
+                                PrintDebugInfo(e.getMessage());
+                            } else if (e instanceof InvocationTargetException) {
+                                if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
+                                    PrintDebugInfo(((InvocationTargetException) e).getTargetException().getMessage());
+                                }
+
+                            }
                         }
                     }
 

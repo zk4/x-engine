@@ -9,6 +9,6 @@
 #ifndef iBroadcast_h
 #define iBroadcast_h
 @protocol iBroadcast <NSObject>
--(void) broadcast:(NSString*) payload;
+-(void) broadcast:(NSString*) type payload:(NSString*) payload;
 @end
 #endif /* iBroadcast_h */

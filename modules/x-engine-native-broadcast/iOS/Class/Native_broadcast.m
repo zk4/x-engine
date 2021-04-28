@@ -28,11 +28,17 @@ NATIVE_MODULE(Native_broadcast)
 - (void)afterAllNativeModuleInited{
 } 
 
-- (void)broadcast:(NSString*) payload{
+-(void) broadcast:(NSString*) type payload:(NSString*) payload{
     for (XEngineWebView* wv in [WebViewFactory sharedInstance].webviews){
-        [wv callHandler:@"com.zkty.module.engine.broadcast" arguments:payload completionHandler:^(id  _Nullable value) {
-            NSLog(@"js return value %@",value);
-        }];
+        if(wv){
+            [wv callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
+                @"type":type,
+                @"payload":payload
+            }
+             completionHandler:^(id  _Nullable value) {
+                NSLog(@"js return value %@",value);
+            }];
+        }
     }
 }
 @end

@@ -32,7 +32,7 @@ NATIVE_MODULE(Native_device)
 
 - (NSString *)getNavigationHeight {
     CGFloat navigationHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 88 : 64;
-    NSString *heightStr = [NSString stringWithFormat:@"%.f",navigationHeight];
+NSString *heightStr = [NSString stringWithFormat:@"%.f",navigationHeight];
     return heightStr;
     
 }

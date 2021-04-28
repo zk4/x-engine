@@ -1,6 +1,6 @@
 .PHONY: h5 dev push push-to-pods  x
 dev:
-	npm install @zkty-team/x-cli
+	#npm install @zkty-team/x-cli
 	watchexec --exts ts 'x-cli model model.ts' 
 
 h5:

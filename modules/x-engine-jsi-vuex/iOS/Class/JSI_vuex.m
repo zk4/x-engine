@@ -50,7 +50,7 @@ JSI_MODULE(JSI_vuex)
     for (HistoryModel* hm in histories){
         if(hm.webview){
             [hm.webview callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
-                @"type":BROADCAT_EVENT,
+                @"type":BROADCAST_EVENT,
                 @"payload":dto.val
             }
              completionHandler:^(id  _Nullable value) {

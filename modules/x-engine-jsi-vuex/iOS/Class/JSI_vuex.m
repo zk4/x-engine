@@ -17,7 +17,7 @@
 #import "GlobalState.h"
 
 #define VUEX_STORE_KEY @"@@VUEX_STORE_KEY"
-#define BROADCAT_EVENT @"VUEX_STORE_EVENT"
+#define BROADCAST_EVENT @"VUEX_STORE_EVENT"
 
 @interface JSI_vuex()
 @property (nonatomic, strong) id<iStore> store;
@@ -48,7 +48,7 @@ JSI_MODULE(JSI_vuex)
 
 - (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
-    [_broadcast broadcast:BROADCAT_EVENT payload:dto.val];
+    [_broadcast broadcast:BROADCAST_EVENT payload:dto.val];
 }
 
 

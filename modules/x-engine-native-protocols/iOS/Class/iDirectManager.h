@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
         query:(nullable NSDictionary<NSString*,id>*) query
         params:(nullable NSDictionary<NSString*,id>*) params;
 
+// 将 uri 参数转化为上面 push 的参数
+- (void)push: (NSString*) uri
+        params:(nullable NSDictionary<NSString*,id>*) params;
+
 - (void)back: (NSString*) scheme host:(nullable NSString*) host                    fragment:(NSString*) fragment;
 
 @end

@@ -45,14 +45,6 @@ public class XEngineWebActivityManager {
         if (context instanceof Application) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
-//        if (TextUtils.isEmpty(host)) {
-//            XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
-//            if (current != null && current.getHistoryModel() != null) {
-//                host = current.getHistoryModel().host;
-//            }
-//
-//        }
-
 
         HistoryModel model = new HistoryModel();
         model.protocol = protocol;

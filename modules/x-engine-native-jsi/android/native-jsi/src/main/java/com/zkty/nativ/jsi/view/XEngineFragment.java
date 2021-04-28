@@ -54,6 +54,7 @@ public class XEngineFragment extends Fragment {
             HistoryModel historyModel = (HistoryModel) getArguments().getSerializable(ARG_PARAM_HISTORY_MODEL);
             int index = getArguments().getInt(ARG_PARAM_INDEX);
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
+            XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
             mRoot.addView(mWebView, 0);
 //            PermissionDto dto = MicroAppPermissionManager.sharedInstance().getPermission(mMicroAppId, "0");
 //            mWebView.setPermission(dto);
@@ -64,6 +65,14 @@ public class XEngineFragment extends Fragment {
 
     public XEngineWebView getWebView() {
         return mWebView;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
+        }
     }
 
     @Override

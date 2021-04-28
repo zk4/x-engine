@@ -32,17 +32,6 @@ function test_triggerbroadcast() {
 function test_onbroadcast() {
   xengine.broadcastOn((type,payload)=>{
     document.getElementById("debug_text").innerText =type + payload;
-  xengine.assert('test_onbroadcast',type==='hello' && payload==='world')
-    
-  }
-)
-
+    xengine.assert('test_onbroadcast',type==='hello' && payload==='world')
+  })
 }
-  
-  
-  
-  
-  
-  
-  
-  

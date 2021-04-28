@@ -5,16 +5,23 @@
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
 
+//  这个 JSI 模块与 localstorage 唯一的区别在于,在 key 上多加了一串值 @@VUEX_STORE_KEY, 为了标明这是一个专为 vuex 存储的 store.
+//  这也带一些特性.. 即使你退出了.. 也能保持 vue 的状态.
+
 
 #import "JSI_vuex.h"
 #import "JSIContext.h"
 #import "NativeContext.h"
 #import "iStore.h"
+#import "iBroadcast.h"
 #import "GlobalState.h"
 
+#define VUEX_STORE_KEY @"@@VUEX_STORE_KEY"
+#define BROADCAT_EVENT @"VUEX_STORE_EVENT"
 
 @interface JSI_vuex()
 @property (nonatomic, strong) id<iStore> store;
+@property (nonatomic, strong)   id<iBroadcast>  broadcast;
 
 @end
 
@@ -23,27 +30,25 @@ JSI_MODULE(JSI_vuex)
 
 - (void)afterAllJSIModuleInited {
     _store = XENP(iStore);
+    _broadcast = XENP(iBroadcast);
 }
 
-/// 生成 microapp 唯一的 key,现在这个实现对于 omp 来说是有 bug 的. 如果两个微应用来自同一个 host,则会冲突.
-/// TODO: 使用真实的 microapp id
-/// @param key key
 - (NSString *) genkey:(NSString*) key{
-    assert([[GlobalState sharedInstance] getLastHost]!=nil);
-    assert(key!=nil);
-    return  [NSString stringWithFormat:@"%@:%@", [[GlobalState sharedInstance] getLastHost], key];
+     assert(key!=nil);
+     HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+     assert(hm!=nil);
+     return  [NSString stringWithFormat:@"%@%@%@:%@",VUEX_STORE_KEY, hm.host?hm.host:@"",hm.pathname?hm.pathname:@"", key];
 }
 
 - (NSString *)_get:(NSString *)dto {
     NSString* key = [self genkey:dto];
     NSString* ret = [_store get:key];
-    if(ret)
-        return [_store get:key];
-    return @"{\"count\":1}";
+    return ret;
 }
 
 - (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
+    [_broadcast broadcast:BROADCAT_EVENT payload:dto.val];
 }
 
 

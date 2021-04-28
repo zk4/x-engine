@@ -25,6 +25,20 @@
     }
 @end
     
+  
+@implementation _2_com_zkty_jsi_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
+  
+@implementation _3_com_zkty_jsi_xxxx_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+    
 
 
 
@@ -80,4 +94,28 @@
   - (NamedDTO*) namedObject:(NSDictionary*) dict {
   return [self _namedObject];
     }
+    - (void) namedObjectWithNamedArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
+          [self _namedObjectWithNamedArgs:dto complete:^(NamedDTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+  - (NamedDTO*) namedObjectWithNamedArgs:(NSDictionary*) dict {
+      NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
+      return [self _namedObjectWithNamedArgs:dto];
+        }
+    - (void) namedObjectWithArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          _3_com_zkty_jsi_xxxx_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_xxxx_DTO.class];
+          [self _namedObjectWithArgs:dto complete:^(_2_com_zkty_jsi_xxxx_DTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+  - (_2_com_zkty_jsi_xxxx_DTO*) namedObjectWithArgs:(NSDictionary*) dict {
+      _3_com_zkty_jsi_xxxx_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_xxxx_DTO.class];
+      return [self _namedObjectWithArgs:dto];
+        }
   @end

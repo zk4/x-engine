@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :style="{marginTop:navigatorHeight+'px'}">
+    <div >
       <div style="margin-top:30px;" v-show="skeletonShow">
         <van-skeleton title avatar round animate :row="3" />
       </div>

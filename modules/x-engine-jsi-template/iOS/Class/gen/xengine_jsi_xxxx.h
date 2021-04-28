@@ -9,9 +9,13 @@
 @protocol NamedDTO;
 @protocol _0_com_zkty_jsi_xxxx_DTO;
 @protocol _1_com_zkty_jsi_xxxx_DTO;
+@protocol _2_com_zkty_jsi_xxxx_DTO;
+@protocol _3_com_zkty_jsi_xxxx_DTO;
 @class NamedDTO;
 @class _0_com_zkty_jsi_xxxx_DTO;
 @class _1_com_zkty_jsi_xxxx_DTO;
+@class _2_com_zkty_jsi_xxxx_DTO;
+@class _3_com_zkty_jsi_xxxx_DTO;
 
 @interface NamedDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -27,6 +31,18 @@
 
 @interface _1_com_zkty_jsi_xxxx_DTO: JSONModel
   	@property(nonatomic,copy) NSString* n1;
+@end
+    
+
+@interface _2_com_zkty_jsi_xxxx_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* goodname;
+   	@property(nonatomic,assign) NSInteger price;
+@end
+    
+
+@interface _3_com_zkty_jsi_xxxx_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,assign) NSInteger age;
 @end
     
 
@@ -51,6 +67,16 @@
         - (void) _namedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
        @required 
        - (NamedDTO*) _namedObject;
+    
+      @required 
+        - (void) _namedObjectWithNamedArgs:(NamedDTO*) dto complete:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
+   @required 
+       - (NamedDTO*) _namedObjectWithNamedArgs:(NamedDTO*)dto;
+    
+      @required 
+        - (void) _namedObjectWithArgs:(_3_com_zkty_jsi_xxxx_DTO*) dto complete:(void (^)(_2_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
+   @required 
+       - (_2_com_zkty_jsi_xxxx_DTO*) _namedObjectWithArgs:(_3_com_zkty_jsi_xxxx_DTO*)dto;
     
 @end
   

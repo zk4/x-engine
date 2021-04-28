@@ -67,7 +67,6 @@ function broadcastOff() {
 }
 
 function broadcastOn(eventcb) {
-  //use("com.zkty.module.engine","broadcast")
   xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
     return eventcb(res.type,res.payload);
   });

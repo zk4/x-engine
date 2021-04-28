@@ -161,7 +161,8 @@ export class Store {
         xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(state)});
     });
     xengine.broadcastOn((type,payload)=>{
-      if(type === 'VUEX_STORE_EVENT'){
+      if(type === '@@VUEX_STORE_EVENT'){
+        // bug, 只更新了界面绑定的 state. 但实际 state 并没更新 needfix
         this.vm.state=JSON.parse(payload)
       }
     });

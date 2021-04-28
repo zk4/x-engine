@@ -17,7 +17,7 @@
 #import "GlobalState.h"
 
 #define VUEX_STORE_KEY @"@@VUEX_STORE_KEY"
-#define BROADCAT_EVENT @"VUEX_STORE_EVENT"
+#define BROADCAT_EVENT @"@@VUEX_STORE_EVENT"
 
 @interface JSI_vuex()
 @property (nonatomic, strong) id<iStore> store;

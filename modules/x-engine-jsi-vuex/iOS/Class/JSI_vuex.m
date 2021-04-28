@@ -48,8 +48,19 @@ JSI_MODULE(JSI_vuex)
 
 - (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
-    [_broadcast broadcast:BROADCAT_EVENT payload:dto.val];
-//    [[GlobalState sharedInstance] getCurrentHostHistories]
+    // 仅对同样的微应用广播
+    NSMutableArray<HistoryModel *> *histories= [[GlobalState sharedInstance] getCurrentHostHistories];
+    for (HistoryModel* hm in histories){
+        if(hm.webview){
+            [hm.webview callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
+                @"type":BROADCAT_EVENT,
+                @"payload":dto.val
+            }
+             completionHandler:^(id  _Nullable value) {
+                NSLog(@"js return value %@",value);
+            }];
+        }
+    }
 }
 
 

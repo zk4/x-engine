@@ -28,7 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)push: (NSString*) uri
         params:(nullable NSDictionary<NSString*,id>*) params;
 
-- (void)back: (NSString*) scheme host:(nullable NSString*) host                    fragment:(NSString*) fragment;
+- (void)back: (NSString*) scheme 
+        host:(nullable NSString*) host                    
+    fragment:(NSString*) fragment;
 
 @end
 

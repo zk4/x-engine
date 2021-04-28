@@ -161,8 +161,11 @@ export class Store {
         xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(state)});
     });
     xengine.broadcastOn((type,payload)=>{
-      if(type === 'VUEX_STORE_EVENT'){
-        this.vm.state=JSON.parse(payload)
+      if(type === '@@VUEX_STORE_EVENT'){
+        let state=JSON.parse(payload)
+        Object.keys(this.vm.state).forEach(key => {
+            this.vm.state[key]=state[key];
+        })
       }
     });
   }

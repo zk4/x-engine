@@ -38,16 +38,16 @@
 - (void)setCurrentTabVC:(UIViewController*) vc{
     _current_tab_vc = vc;
 }
-
-- (NSString*) getLastHost{
-    [self clearHistory];
-    NSString* host = [_histories lastObject].host;
-    /// 那就是在 tab 上了.
-    if(!host){
-        host =[[GlobalState sharedInstance] getCurrentTab].host;
-    }
-    return host;
-}
+//
+//- (NSString*) getLastHost{
+//    [self clearHistory];
+//    NSString* host = [_histories lastObject].host;
+//    /// 那就是在 tab 上了.
+//    if(!host){
+//        host =[[GlobalState sharedInstance] getCurrentTab].host;
+//    }
+//    return host;
+//}
 - (HistoryModel*) getLastHistory{
     [self clearHistory];
     HistoryModel* history = [_histories lastObject];
@@ -79,12 +79,12 @@
 }
 - (NSMutableArray<HistoryModel *> *)getCurrentHostHistories{
     [self clearHistory];
-    
-    NSString* host =  [_histories lastObject].host;
+    HistoryModel* lasthm =[_histories lastObject];
+   
     NSMutableArray* ret = [NSMutableArray new];
-    if(host){
+    if(lasthm){
         for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
-            if(host == hm.host)
+            if([lasthm.getKey isEqualToString:hm.getKey])
                 [ret insertObject:hm atIndex:0];
         }
     }

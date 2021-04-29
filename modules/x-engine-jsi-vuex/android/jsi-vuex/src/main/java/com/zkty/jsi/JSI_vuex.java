@@ -15,7 +15,7 @@ public class JSI_vuex extends xengine_jsi_vuex {
     private NativeStore iStore;
     private NativeBroadcast iBroadcast;
     private static final String VUEX_STORE_KEY = "@@VUEX_STORE_KEY";
-    private static final String BROADCAT_EVENT = "BROADCAT_EVENT";
+    private static final String BROADCAST_EVENT = "VUEX_STORE_EVENT";
 
     @Override
     protected void afterAllJSIModuleInited() {
@@ -39,7 +39,7 @@ public class JSI_vuex extends xengine_jsi_vuex {
     @Override
     public void _set(_0_com_zkty_jsi_vuex_DTO dto) {
         iStore.set(genKey(dto.key), dto.val);
-        iBroadcast.broadcast(BROADCAT_EVENT, dto.val);
+        iBroadcast.broadcast(BROADCAST_EVENT, dto.val);
     }
 
     private String genKey(String key) {

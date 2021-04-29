@@ -40,7 +40,9 @@
 
 //     cwz 远程
 //    [director push:@"omp" host:@"10.2.128.80:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    [director push:@"omp://10.2.128.80:8080#/" params:@{@"hideNavbar":@TRUE}];
+//    [director push:@"omp://10.2.128.80:8080#/" params:@{@"hideNavbar":@TRUE}];
+    [director push:@"https://pypi.org/project/coge/" params:@{@"hideNavbar":@TRUE}];
+
 //    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"omp" host:@"192.168.3.12:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
     

@@ -91,8 +91,14 @@ static NSString *const kSlash               = @"/";
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params{
     NSURL* url = [NSURL URLWithString:[Native_direct SPAUrl2StandardUrl:uri]];
-
-    NSString* host = [NSString stringWithFormat:@"%@:%@",url.host,url.port];
+    NSNumber* port = url.port;
+    if(!port){
+        if([url.scheme isEqualToString:@"https"])
+            port = @443;
+        else if([url.scheme isEqualToString:@"http"])
+            port = @80;
+    }
+    NSString* host = [NSString stringWithFormat:@"%@:%@",url.host,port];
     [self push:url.scheme host:host pathname:url.path fragment:url.fragment query:url.parameterString.uq_queryDictionary params:params];
 }
 

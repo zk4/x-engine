@@ -1,7 +1,6 @@
 package com.zkty.jsi;
 
 
-import com.zkty.jsi.xengine_jsi_broadcast;
 import com.zkty.nativ.broadcast.IBroadcast;
 import com.zkty.nativ.broadcast.NativeBroadcast;
 import com.zkty.nativ.core.NativeContext;

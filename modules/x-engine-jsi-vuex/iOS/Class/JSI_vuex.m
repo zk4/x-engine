@@ -17,7 +17,7 @@
 #import "GlobalState.h"
 
 #define VUEX_STORE_KEY @"@@VUEX_STORE_KEY"
-#define BROADCAT_EVENT @"@@VUEX_STORE_EVENT"
+#define BROADCAST_EVENT @"VUEX_STORE_EVENT"
 
 @interface JSI_vuex()
 @property (nonatomic, strong) id<iStore> store;
@@ -50,7 +50,7 @@ JSI_MODULE(JSI_vuex)
     for (HistoryModel* hm in histories){
         if(hm.webview){
             [hm.webview callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
-                @"type":BROADCAT_EVENT,
+                @"type":BROADCAST_EVENT,
                 @"payload":dto.val
             }
              completionHandler:^(id  _Nullable value) {

@@ -64,11 +64,7 @@ public class UrlUtils {
      */
     public static Map<String, String> parseForParams(String url) {
         Map<String, String> map = new HashMap();
-        if (url == null) {
-            return map;
-        }
-        url = url.trim();
-        if (url.equals("")) {
+        if (TextUtils.isEmpty(url)) {
             return map;
         }
         if (url.contains("?")) {

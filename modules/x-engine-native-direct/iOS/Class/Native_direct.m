@@ -10,6 +10,8 @@
 #import "NativeContext.h"
 #import "iDirectManager.h"
 #import "iDirect.h"
+#import "NSString+Router+URLQuery.h"
+
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
 @end
@@ -53,6 +55,47 @@ NATIVE_MODULE(Native_direct)
     id<iDirect> direct = [self.directors objectForKey:scheme];
     [direct push:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
 }
+
+
+
+static NSString *const kQueryBegin          = @"?";
+static NSString *const kFragmentBegin       = @"#";
+static NSString *const kSlash               = @"/";
+
++ (NSString*)SPAUrl2StandardUrl:(NSString*)raw {
+    int questionMark = -1;
+    int hashtagMark = -1;
+
+    for (int i=0;i< raw.length;i++){
+        char cc= [raw characterAtIndex:i];
+
+        if(cc == '#' && hashtagMark == -1){
+            hashtagMark=i;
+        }
+        // 仅当找到 hashtag 后才再找?, 不然不是 SPA url
+        if(hashtagMark != -1 && cc == '?' && questionMark == -1){
+            questionMark=i;
+        }
+    }
+    if(questionMark != -1 && hashtagMark != -1){
+        NSString* sub1= [raw substringToIndex:hashtagMark];
+        NSString* sub2= [raw substringWithRange:NSMakeRange(hashtagMark, questionMark-hashtagMark)];
+        NSString* sub3=[ [raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
+    }
+    return raw;
+}
+
+
+
+
+- (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params{
+    NSURL* url = [NSURL URLWithString:[Native_direct SPAUrl2StandardUrl:uri]];
+
+    NSString* host = [NSString stringWithFormat:@"%@:%@",url.host,url.port];
+    [self push:url.scheme host:host pathname:url.path fragment:url.fragment query:url.parameterString.uq_queryDictionary params:params];
+}
+
 
 @end
  

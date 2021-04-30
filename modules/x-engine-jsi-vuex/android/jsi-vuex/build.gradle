@@ -44,5 +44,7 @@ dependencies {
     compile project(':native-core')
     compile project(':native-jsi')
     compile project(':native-store')
+    compile project(':native-broadcast')
+
 
 }

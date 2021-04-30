@@ -157,6 +157,13 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+
+    }
+
+    @Override
     protected void onDestroy() {
         zXingView.onDestroy(); // 销毁二维码扫描控件
         ImmersionBar.with(this).destroy();

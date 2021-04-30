@@ -1,8 +1,5 @@
 
 
-**基座扫描测试**
-<div id='modulename' style='display:none'>vuex</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
-<a id='qrlink' href="about:none">link of QR</a>
 
 初版原理:
 
@@ -13,7 +10,6 @@
 TODO:
 
 1. 不要每次 set 时存值,而是通过生命周期 hook 去回调.
-# api 
 
 
 JSI Id: com.zkty.jsi.vuex
@@ -67,3 +63,4 @@ string
 
 
     
+

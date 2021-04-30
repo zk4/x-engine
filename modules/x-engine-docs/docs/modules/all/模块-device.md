@@ -5,8 +5,7 @@
 <a id='qrlink' href="about:none">link of QR</a>
 
 
-
-# JS
+# api 
 
 
 JSI Id: com.zkty.jsi.device
@@ -27,6 +26,7 @@ version: 0.1.13
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -46,6 +46,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -65,6 +66,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -84,6 +86,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -156,6 +159,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 
@@ -177,10 +181,3 @@ interface DeviceDTO {
 
 
     
-
-# iOS
-
-
-# android
-
-

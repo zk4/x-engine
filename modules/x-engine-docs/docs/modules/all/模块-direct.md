@@ -72,8 +72,7 @@ this.$router.go(0)
 ```
 
 
-
-# JS
+# api 
 
 
 JSI Id: com.zkty.jsi.direct
@@ -159,10 +158,3 @@ version: 0.1.13
 
 
     
-
-# iOS
-
-
-# android
-
-

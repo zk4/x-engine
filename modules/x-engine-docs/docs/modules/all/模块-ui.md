@@ -6,8 +6,7 @@
 
 hello, readme
 
-
-# JS
+# api 
 
 
 JSI Id: com.zkty.jsi.ui
@@ -65,10 +64,3 @@ version: 0.1.13
 
 
     
-
-# iOS
-
-
-# android
-
-

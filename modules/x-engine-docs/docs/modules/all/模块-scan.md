@@ -5,8 +5,7 @@
 <a id='qrlink' href="about:none">link of QR</a>
 
 
-
-# JS
+# api 
 
 
 JSI Id: com.zkty.jsi.scan
@@ -28,6 +27,7 @@ version: 0.1.13
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -35,10 +35,3 @@ string
 
 
     
-
-# iOS
-
-
-# android
-
-

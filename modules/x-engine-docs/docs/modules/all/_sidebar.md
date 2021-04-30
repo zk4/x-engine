@@ -3,5 +3,6 @@
 - [scan](./docs/modules/all/模块-scan.md)
 - [localstorage](./docs/modules/all/模块-localstorage.md)
 - [ui](./docs/modules/all/模块-ui.md)
+- [vuex](./docs/modules/all/模块-vuex.md)
 - [direct](./docs/modules/all/模块-direct.md)
 - [camera](./docs/modules/all/模块-camera.md)

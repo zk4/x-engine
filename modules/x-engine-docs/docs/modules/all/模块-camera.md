@@ -5,8 +5,7 @@
 <a id='qrlink' href="about:none">link of QR</a>
 
 
-
-# JS
+# api 
 
 
 JSI Id: com.zkty.jsi.camera
@@ -97,10 +96,3 @@ string
 
 
     
-
-# iOS
-
-
-# android
-
-

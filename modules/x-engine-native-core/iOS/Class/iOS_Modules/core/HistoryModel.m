@@ -10,4 +10,7 @@
 
 @implementation HistoryModel
 
+-(NSString*) getKey{
+    return [NSString stringWithFormat:@"%@%@",_host?_host:@"",_pathname?_pathname:@""];
+}
 @end

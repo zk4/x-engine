@@ -20,32 +20,27 @@ export default {
   },
 
   beforeCreate() {
-    console.log("two-beforeCreate")
+    console.log("pagetwo-beforeCreate")
   },
   created() {
-    console.log("two-created")
+    console.log("pagetwo-created")
   },
   beforeMount() {
-    console.log("two-beforeMount")
+    console.log("beforeMount")
   },
   mounted() {
-    console.log("two-mounted")
+    console.log("mounted")
     this.id = this.$route.query.id
     this.age = this.$route.query.age
     this.name = this.$route.query.name
   },
   beforeDestroy() {
-    console.log("two-beforeDestroy")
+    console.log("beforeDestroy")
   },
   destroyed() {
-    console.log("two-destroyed")
+    console.log("destroyed")
   },
-  activated() {
-    console.log("one-activated")
-  },
-  deactivated() {
-    console.log("two-activated")
-  },
+
   methods: {
     handlerPush() {
       this.$router.push({

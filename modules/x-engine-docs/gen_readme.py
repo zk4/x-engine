@@ -11,25 +11,28 @@ import sys
 import glob
 
 
+
+# **基座扫描测试**
+# <div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
+# <a id='qrlink' href="about:none">link of QR</a>
+
 tmplt = """
 
-**基座扫描测试**
-<div id='modulename' style='display:none'>{module_name}</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
-<a id='qrlink' href="about:none">link of QR</a>
 
 {root_readme}
-
-# JS
 {h5_readme}
-
-# iOS
-{ios_readme}
-
-# android
-{android_readme}
 
 """
 
+ios_tmplt ="""
+# iOS
+{ios_readme}
+"""
+
+android_tmplt ="""
+# android
+{android_readme}
+"""
 
 class ReadmeAggregator():
 
@@ -105,7 +108,11 @@ class ReadmeAggregator():
         android_readme = self.gen_android()
         module_name    = self.get_short_module_name()
 
-        content = tmplt.format(root_readme = root_readme,h5_readme = h5_readme, ios_readme = ios_readme, android_readme = android_readme, module_name=module_name)
+        content = tmplt.format(root_readme = root_readme,h5_readme = h5_readme,  module_name=module_name)
+        if len(ios_readme.strip())>0:
+            content += ios_tmplt.format(ios_readme = ios_readme) 
+        if len(android_readme.strip())>0:
+            content += android_tmplt.format(android_readme = android_readme)
         print(self.output_path())
         with open(self.output_path(),"w") as f:
             f.write(content)
@@ -124,7 +131,7 @@ if __name__ == "__main__":
 
     arr = os.listdir("..")
     exclude=[]
-    include= ['x-engine-jsi-secret','x-engine-jsi-device', 'x-engine-jsi-direct', 'x-engine-jsi-localstorage', 'x-engine-jsi-ui', 'x-engine-jsi-camera', 'x-engine-jsi-scan']
+    include= ['x-engine-jsi-secret','x-engine-jsi-device', 'x-engine-jsi-direct', 'x-engine-jsi-localstorage', 'x-engine-jsi-ui', 'x-engine-jsi-camera', 'x-engine-jsi-scan' ]
     for d in arr:
         if d in include:
             # continue

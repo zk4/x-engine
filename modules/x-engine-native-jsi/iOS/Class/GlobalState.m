@@ -73,6 +73,8 @@
         for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
             if(lastwebview == hm.webview)
                 [ret insertObject:hm atIndex:0];
+            else
+                break;
         }
     }
     return ret;
@@ -86,6 +88,8 @@
         for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
             if([lasthm.getKey isEqualToString:hm.getKey])
                 [ret insertObject:hm atIndex:0];
+            else
+                break;
         }
     }
     return ret;

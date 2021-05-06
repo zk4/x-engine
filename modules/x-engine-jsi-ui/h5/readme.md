@@ -11,12 +11,12 @@ version: 0.1.13
 
 **demo**
 ``` js
- {
+
   xengine.api("com.zkty.jsi.ui", "setNavTitle", {
     title: "title",
     titleColor: "#000000"
   });
-}
+
 ``` 
 
 **参数说明**
@@ -35,14 +35,14 @@ version: 0.1.13
 > 使用push,或 nav 里 hideNavbar 参数控制状态的显示
 **demo**
 ``` js
- {
+
   xengine.api("com.zkty.jsi.ui", "setNavBarHidden", {
     //是否隐藏navBar
     isHidden: true,
     //是否使用动画效果
     isAnimation: true,
   });
-}
+
 ``` 
 
 **参数说明**

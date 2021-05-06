@@ -22,7 +22,7 @@
   }
   
   
-  public abstract class xengine_jsi_scan extends JSIModule implements xengine_jsi_scan_protocol {
+    public abstract class xengine_jsi_scan extends JSIModule implements xengine_jsi_scan_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.scan";

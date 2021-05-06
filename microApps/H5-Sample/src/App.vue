@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <ZKTY-Header />
-    <router-view :style="style" />
+    <keep-alive>
+      <router-view :style="style" />
+    </keep-alive>
   </div>
 </template>
 
@@ -9,8 +11,7 @@
 export default {
   name: "App",
   data() {
-    return {
-    }
+    return {}
   },
   computed: {
     style() {

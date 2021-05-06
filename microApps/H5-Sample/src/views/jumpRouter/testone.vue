@@ -19,6 +19,31 @@ export default {
   data() {
     return {}
   },
+
+  beforeCreate() {
+    console.log("one-beforeCreate")
+  },
+  created() {
+    console.log("one-created")
+  },
+  beforeMount() {
+    console.log("one-beforeMount")
+  },
+  mounted() {
+    console.log("one-mounted")
+  },
+  beforeDestroy() {
+    console.log("one-beforeDestroy")
+  },
+  destroyed() {
+    console.log("one-destroyed")
+  },
+  activated() {
+    console.log("one-activated")
+  },
+  deactivated() {
+    console.log("two-activated")
+  },
   methods: {
     handlerPush() {
       this.$router.push({

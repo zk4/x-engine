@@ -178,10 +178,80 @@
 
 #pragma mark - <life cycle>
 - (void)viewDidLoad {
+    NSLog(@"RecyleWebViewController的viewDidLoad调用了");
     [super viewDidLoad];
     [self setupUI];
 }
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"RecyleWebViewController的viewWillAppear调用了");
+    
+//    [self.webview callHandler:@"triggerVueLifeCycle" completionHandler:nil];
+    
+//    [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueCreated"];
+    
+    //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
+    //           completionHandler:nil];
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
+    self.progresslayer.alpha = 0;
+}
+
+
+#pragma mark 自定义导航按钮支持侧滑手势处理
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSLog(@"RecyleWebViewController的viewDidAppear调用了");
+    
+    [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueMounted"];
+
+    if(self.isOnTab){
+        [[GlobalState sharedInstance] setCurrentTabVC:self];
+    }
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
+     if(self.screenView){
+        //  返回的时候不要急着 remove， 不然会闪历史界面
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.screenView removeFromSuperview];
+            self.screenView = nil;
+        });
+    }
+    [self.view insertSubview:self.webview atIndex:0];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    NSLog(@"RecyleWebViewController的viewWillDisappear调用了");
+    
+    if(!self.newWebview && self.screenView == nil){
+        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+        self.screenView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:self.screenView];
+        self.screenView.frame = self.view.bounds;
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"RecyleWebViewController的viewDidDisappear调用了");
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self drawFrame];
+}
+
+- (void)drawFrame{
+    self.webview.frame = self.view.bounds;
+    self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
+    float height = (self.view.bounds.size.width / 375.0) * 200;
+    self.imageView404.frame = CGRectMake(0, (self.view.bounds.size.height - height) * 0.5, self.view.bounds.size.width, height);
+    self.tipLabel404.frame = CGRectMake(0, CGRectGetHeight(self.imageView404.frame) + 8, self.imageView404.bounds.size.width, self.tipLabel404.font.lineHeight);
+}
+
+#pragma mark - <ui>
 - (void)setupUI {
     self.hidesBottomBarWhenPushed = YES;
     
@@ -209,59 +279,8 @@
     [self setupProgressLayer];
     [self setup404];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-}
-
-#pragma mark 自定义导航按钮支持侧滑手势处理
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
     
-    if(self.isOnTab){
-        [[GlobalState sharedInstance] setCurrentTabVC:self];
-    }
-
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-     if(self.screenView){
-        //  返回的时候不要急着 remove， 不然会闪历史界面
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.screenView removeFromSuperview];
-            self.screenView = nil;
-        });
-    }
-    [self.view insertSubview:self.webview atIndex:0];
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
-    //           completionHandler:nil];
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    self.progresslayer.alpha = 0;
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    if(!self.newWebview && self.screenView == nil){
-        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
-        self.screenView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:self.screenView];
-        self.screenView.frame = self.view.bounds;
-    }
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    [self drawFrame];
-}
-
-- (void)drawFrame{
-    self.webview.frame = self.view.bounds;
-    self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
-    float height = (self.view.bounds.size.width / 375.0) * 200;
-    self.imageView404.frame = CGRectMake(0, (self.view.bounds.size.height - height) * 0.5, self.view.bounds.size.width, height);
-    self.tipLabel404.frame = CGRectMake(0, CGRectGetHeight(self.imageView404.frame) + 8, self.imageView404.bounds.size.width, self.tipLabel404.font.lineHeight);
-}
-
-#pragma mark - <ui>
 - (void)setupBackButton {
     UIButton *backButton = [[UIButton alloc] init];
     [backButton setImage: [UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];

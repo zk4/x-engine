@@ -446,6 +446,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
            completionHandler:nil];
 }
 
+- (void)triggerVueLifeCycleWithMethod:(NSString *)lifeMethod {
+    NSString *json = [XEngineJSBUtil objToJsonString:@{@"method":lifeMethod}];
+    [self evaluateJavaScript:[NSString stringWithFormat:@"window._triggerVueLifeCycle(%@)",json]
+           completionHandler:nil];
+}
+
 - (void) addJavascriptObject:(id)object namespace:(NSString *)namespace{
     if(namespace==nil){
         namespace=@"";
@@ -546,6 +552,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (void)hasJavascriptMethod:(NSString *)handlerName methodExistCallback:(void (^)(bool exist))callback{
+    NSLog(@"%@", handlerName);
     [self callHandler:@"_hasJavascriptMethod" arguments:@[handlerName] completionHandler:^(NSNumber* _Nullable value) {
         callback([value boolValue]);
     }];
@@ -555,27 +562,26 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 #pragma mark - <WKWebView cycleLife>
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+    NSLog(@"页面开始加载时调用");
     [self.indicatorView startAnimating];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
         [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
     }
 }
 
+// 当内容开始返回时调用
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
+    NSLog(@"当内容开始返回时调用");
+//    NSLog(@"内容开始返回:%s",__FUNCTION__);
+}
+
 // 页面加载完成后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
+    NSLog(@"页面开始加载完成后调用");
     [self.indicatorView stopAnimating];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
-}
-
-- (void)dealloc {
-    [self.indicatorView stopAnimating];
-}
-
-// 当内容开始返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-    NSLog(@"内容开始返回:%s",__FUNCTION__);
 }
 
 // 页面加载失败时调用
@@ -584,26 +590,16 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSLog(@"didFailProvisionalNavigation==>\n%@",error.debugDescription);
 }
 
-- (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
-    if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
-        NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
-        jsonStr= [jsonStr substringFromIndex:range.location+1];
-    }
-
-    jsonStr = [jsonStr stringByRemovingPercentEncoding];
-
-    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    NSError*err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    return dic;
-}
-
 // 接收到服务器跳转请求之后调用
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{}
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
+    NSLog(@"接收到服务器跳转请求之后调用");
+}
 
 
 // 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    
+    NSLog(@"在发送请求之前，决定是否跳转");
     NSString * urlStr = [navigationAction.request.URL absoluteString];
     NSRange range = NSMakeRange(0, 0);
     NSURL * URL;
@@ -712,5 +708,23 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return str;
+}
+
+- (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
+    if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
+        NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
+        jsonStr= [jsonStr substringFromIndex:range.location+1];
+    }
+
+    jsonStr = [jsonStr stringByRemovingPercentEncoding];
+
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSError*err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    return dic;
+}
+
+- (void)dealloc {
+    [self.indicatorView stopAnimating];
 }
 @end

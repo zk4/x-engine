@@ -12,6 +12,8 @@ import com.zkty.nativ.core.utils.DeviceUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import module.device.R;
+
 public class NativeDevice extends NativeModule implements IDevice {
 
     @Override
@@ -41,7 +43,7 @@ public class NativeDevice extends NativeModule implements IDevice {
 
     @Override
     public String getTabbarHeight() {
-        return null;
+        return String.valueOf((int)DensityUtils.pixelsToDip(XEngineApplication.getApplication(),XEngineApplication.getApplication().getResources().getDimension(R.dimen.dp_70)));
     }
 
     @Override

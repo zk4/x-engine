@@ -3,7 +3,6 @@ package com.zkty.nativ.direct;
 import com.anthonynsimon.url.URL;
 import com.anthonynsimon.url.exceptions.MalformedURLException;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 
 import java.util.Map;
@@ -30,6 +29,18 @@ public class DirectManager {
             String scheme = url1.getScheme();
             //URL解析的 fragment 包含query，eg：/mall2/orderlist?selectedIndex=0，故query传null
             push(scheme, url1.getHost(), url1.getPath(), url1.getFragment(), null, params);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+
+    } public static void push(String url) {
+
+        try {
+            URL url1 = URL.parse(url);
+            String scheme = url1.getScheme();
+            //URL解析的 fragment 包含query，eg：/mall2/orderlist?selectedIndex=0，故query传null
+            push(scheme, url1.getHost(), url1.getPath(), url1.getFragment(), null, null);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

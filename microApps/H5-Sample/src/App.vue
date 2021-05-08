@@ -9,15 +9,17 @@
 export default {
   name: "App",
   data() {
-    return {
-    }
+    return {}
   },
   computed: {
     style() {
       let style
-      if (this.$engine.isHybrid()) {
+      if (this.$engine.platform.isPhone) {
         style = `margin-top:${this.$navigatorHeight}px;`
-      } else {
+      } else if (this.$engine.platform.isAndroid) {
+        let height = Number(this.$navigatorHeight) + Number(this.$statusHeight)
+        style = `margin-top:${height}px;`
+      } else if (this.$engine.platform.isPc) {
         style = `margin-top:${64}px;`
       }
       return style
@@ -33,11 +35,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-.bounce-enter-active {
-  animation: bounce-in 0.5s;
-}
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
 }
 </style>

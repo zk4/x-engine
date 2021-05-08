@@ -16,26 +16,42 @@ export default {
       id: "",
       age: "",
       name: "",
-    };
+    }
+  },
+
+  beforeCreate() {
+    console.log("pagetwo-beforeCreate")
   },
   created() {
+    console.log("pagetwo-created")
+  },
+  beforeMount() {
+    console.log("beforeMount")
   },
   mounted() {
-    this.id = this.$route.query.id;
-    this.age = this.$route.query.age;
-    this.name = this.$route.query.name;
+    console.log("mounted")
+    this.id = this.$route.query.id
+    this.age = this.$route.query.age
+    this.name = this.$route.query.name
   },
+  beforeDestroy() {
+    console.log("beforeDestroy")
+  },
+  destroyed() {
+    console.log("destroyed")
+  },
+
   methods: {
     handlerPush() {
       this.$router.push({
         path: "/testthree",
-      });
+      })
     },
     handlerBack() {
-      this.$router.go(-1);
+      this.$router.go(-1)
     },
   },
-};
+}
 </script>
 
 <style scoped>

@@ -22,7 +22,7 @@ export default {
           isAnimation: true,
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },
@@ -36,7 +36,7 @@ export default {
           titleSize: 18,
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },
@@ -49,7 +49,7 @@ export default {
           isAnimation: true,
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },

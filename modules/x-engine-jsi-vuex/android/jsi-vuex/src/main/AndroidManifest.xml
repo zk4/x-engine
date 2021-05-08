@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jsi.vuex">
 
-    <meta-data
-        android:name="com.zkty.jsi.vuex"
-        android:value="com.zkty.jsi.JSI_vuex" />
-
+    <application>
+        <meta-data
+            android:name="com.zkty.jsi.vuex"
+            android:value="com.zkty.jsi.JSI_vuex" />
+    </application>
 </manifest>

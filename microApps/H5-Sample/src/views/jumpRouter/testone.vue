@@ -20,31 +20,39 @@ export default {
     return {}
   },
 
-  beforeCreate() {
-    console.log("one-beforeCreate")
-  },
-  created() {
-    console.log("one-created")
-  },
-  beforeMount() {
-    console.log("one-beforeMount")
-  },
+  // beforeCreate() {
+  //   console.log("one-beforeCreate")
+  // },
+  // created() {
+  //   console.log("one-created")
+  // },
+  // beforeMount() {
+  //   console.log("one-beforeMount")
+  // },
+  created() {},
   mounted() {
-    console.log("one-mounted")
+    console.log("mounted")
+    // console.log(this.$methods)
+    // this.$engine.broadcastOn((type, payload) => {
+    //   console.log("o000e-mounted")
+    // })
   },
-  beforeDestroy() {
-    console.log("one-beforeDestroy")
-  },
-  destroyed() {
-    console.log("one-destroyed")
-  },
-  activated() {
-    console.log("one-activated")
-  },
-  deactivated() {
-    console.log("two-activated")
-  },
+  // beforeDestroy() {
+  //   console.log("one-beforeDestroy")
+  // },
+  // destroyed() {
+  //   console.log("one-destroyed")
+  // },
+  // activated() {
+  //   console.log("one-activated")
+  // },
+  // deactivated() {
+  //   console.log("two-activated")
+  // },
   methods: {
+    test() {
+      alert("test")
+    },
     handlerPush() {
       this.$router.push({
         path: "/testtwo",
@@ -80,7 +88,7 @@ export default {
           },
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },
@@ -98,7 +106,7 @@ export default {
           },
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },
@@ -117,7 +125,7 @@ export default {
           },
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },

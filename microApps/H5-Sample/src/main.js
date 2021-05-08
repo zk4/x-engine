@@ -64,13 +64,14 @@ import ZKTYHeader from "@zkty-team/x-engine-ui";
 import "@zkty-team/x-engine-ui/lib/ZKTYHeader.css";
 Vue.use(ZKTYHeader);
 
+import lifeCycle from "./lifeCycle";
+Vue.use(lifeCycle);
+
 Vue.prototype.$store = store;
-let vm = new Vue({
+new Vue({
   router,
   store,
   render: (h) => h(App),
-});
-vm.$mount("#app");
-window["vue"] = vm;
+}).$mount("#app");
 
 export default Vue;

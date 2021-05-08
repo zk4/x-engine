@@ -92,7 +92,7 @@
 //            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
 //        } else {
 //            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _ gNonnull action) {
 //                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
 //            }];
 //            [errorAlert addAction:sureAction];
@@ -178,7 +178,6 @@
 
 #pragma mark - <life cycle>
 - (void)viewDidLoad {
-    NSLog(@"RecyleWebViewController的viewDidLoad调用了");
     [super viewDidLoad];
     [self setupUI];
 }
@@ -186,14 +185,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"RecyleWebViewController的viewWillAppear调用了");
-    
-//    [self.webview callHandler:@"triggerVueLifeCycle" completionHandler:nil];
-    
-//    [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueCreated"];
-    
-    //    [self.webview evaluateJavaScript:@"window.location.href=%@",@"https://www.baidu.com"
-    //           completionHandler:nil];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.progresslayer.alpha = 0;
 }
@@ -202,10 +193,10 @@
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSLog(@"RecyleWebViewController的viewDidAppear调用了");
     
+    // 临时放在这里
     [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueMounted"];
-
+    
     if(self.isOnTab){
         [[GlobalState sharedInstance] setCurrentTabVC:self];
     }
@@ -223,8 +214,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    NSLog(@"RecyleWebViewController的viewWillDisappear调用了");
-    
     if(!self.newWebview && self.screenView == nil){
         self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
         self.screenView.backgroundColor = [UIColor whiteColor];
@@ -235,7 +224,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    NSLog(@"RecyleWebViewController的viewDidDisappear调用了");
 }
 
 - (void)viewDidLayoutSubviews {

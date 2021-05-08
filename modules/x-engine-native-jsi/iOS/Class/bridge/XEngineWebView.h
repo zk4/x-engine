@@ -51,7 +51,7 @@
 - (id _Nullable ) onMessage:(NSDictionary *_Nonnull) msg type:(int) type;
 
 // trigger vue life cycle
-- (void)triggerVueLifeCycleWithMethod:(NSString *)lifeMethod;
+- (void)triggerVueLifeCycleWithMethod:(NSString*_Nullable)method;
 
 @end
 

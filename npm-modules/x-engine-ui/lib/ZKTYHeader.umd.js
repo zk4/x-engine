@@ -1894,14 +1894,14 @@ var es_array_map = __webpack_require__("d81d");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__("b0c0");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0ddafba8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=6c8e20ea&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0ddafba8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=055e4242&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.isShowHeader)?_c('div',{staticClass:"navigator-class",class:[
     _vm.bgImage == '' ? 'no-bg' : 'img-mode',
     _vm.isWhiteColor ? 'text-white' : 'text-black' ],style:(_vm.style)},[_c('div',{staticClass:"title-wrapper"},[_c('div',{staticClass:"content-item-left",style:({ lineheight: _vm.lineheight + 'px' }),on:{"click":_vm.handlerLeftButton}},[_vm._t("left",[_c('i',{staticClass:"iconfont icon-fanhui"}),(!_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_c('span',{staticClass:"left-text-color"},[_vm._v(_vm._s(_vm.navTitle))])]):_vm._e()])],2),_c('div',{staticClass:"content-item-center",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("center",[(_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_vm._v(_vm._s(_vm.navTitle))]):_vm._e()])],2),_c('div',{staticClass:"content-item-right",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("right")],2)])]):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=6c8e20ea&
+// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=055e4242&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__("99af");
@@ -2386,24 +2386,19 @@ patch.disableDoubleTapScroll = function (ms) {
     }
   },
   mounted: function mounted() {
-    if (x_engine_core_src.isHybrid()) {
-      if (x_engine_core_src.platform.isPhone) {
-        var navheight = x_engine_core_src.api("com.zkty.jsi.device", "getNavigationHeight");
-        this.lineheight = navheight;
-      } else if (x_engine_core_src.platform.isAndroid) {
-        var statusBarHeight = x_engine_core_src.api("com.zkty.jsi.device", "getStatusBarHeight");
+    if (x_engine_core_src.platform.isPhone) {
+      var navheight = x_engine_core_src.api("com.zkty.jsi.device", "getNavigationHeight");
+      this.lineheight = navheight;
+    } else if (x_engine_core_src.platform.isAndroid) {
+      var statusBarHeight = x_engine_core_src.api("com.zkty.jsi.device", "getStatusBarHeight");
 
-        var _navheight = x_engine_core_src.api("com.zkty.jsi.device", "getNavigationHeight");
+      var _navheight = x_engine_core_src.api("com.zkty.jsi.device", "getNavigationHeight");
 
-        var height = Number(statusBarHeight) + Number(_navheight);
-        this.lineheight = height;
-      }
+      var height = Number(statusBarHeight) + Number(_navheight);
+      this.lineheight = height;
     } else if (x_engine_core_src.platform.isPc) {
       var _height = 64;
       this.lineheight = _height;
-    } else {
-      var _height2 = 64;
-      this.lineheight = _height2;
     }
   },
   methods: {

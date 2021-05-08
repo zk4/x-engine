@@ -46,8 +46,13 @@ export default {
     let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight")
     this.navigatorHeight = navheight
 
-    // let getTabbarHeight = XEngine.api("com.zkty.jsi.device", "getTabbarHeight")
-    alert(this.$tabbarHeight)
+    //   // alert("tabbar==>" + this.$tabbarHeight)
+    //   alert("statusHeight==>" + this.$statusHeight)
+    //   alert("navigatorHeight==>" + this.$navigatorHeight)
+    //   // alert("screenHeight==>" + this.$screenHeight)
+
+    //   let a = Number(this.$statusHeight) + Number(this.$navigatorHeight)
+    //   alert(a)
   },
   methods: {
     handlerBack() {

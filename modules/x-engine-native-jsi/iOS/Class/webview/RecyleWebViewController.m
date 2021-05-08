@@ -195,7 +195,7 @@
     [super viewDidAppear:animated];
     
     // 临时放在这里
-    [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueMounted"];
+//    [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueMounted"];
     
     if(self.isOnTab){
         [[GlobalState sharedInstance] setCurrentTabVC:self];

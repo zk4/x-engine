@@ -6,19 +6,11 @@ npm install @zkty-team/x-cli -g
 
 
 
-## 命令
-
-命令主要分为三个方向
-
-model  负责模型的生成
-
-module 负责模块的管理
-
-
-
-可用命令发下
+## 主要命令
 
 ```
+x-cli model --help
+
 // 根据 model.ts 生成三端接口
 // iOS 与 android 将生成 JSI 待实现的文件
 x-cli model model.ts -t 2 -n

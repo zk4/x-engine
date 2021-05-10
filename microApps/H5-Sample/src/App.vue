@@ -13,16 +13,11 @@ export default {
   },
   computed: {
     style() {
-      let style
-      if (this.$engine.platform.isPhone) {
-        style = `margin-top:${this.$navigatorHeight}px;`
-      } else if (this.$engine.platform.isAndroid) {
-        let height = Number(this.$navigatorHeight) + Number(this.$statusHeight)
-        style = `margin-top:${height}px;`
-      } else if (this.$engine.platform.isPc) {
-        style = `margin-top:${64}px;`
-      }
-      return style
+      return this.$engine.platform.isPc
+        ? `margin-top:${64}px;`
+        : `margin-top:${
+            Number(this.$navigatorHeight) + Number(this.$statusHeight)
+          }px;`
     },
   },
 }

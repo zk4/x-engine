@@ -26,7 +26,8 @@ NATIVE_MODULE(Native_device)
 - (void)afterAllNativeModuleInited{}
 
 - (NSString *)getStatusHeight {
-    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];
+//    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];
+    NSString *heightStr = [NSString stringWithFormat:@"20"];
     return heightStr;
 }
 

@@ -74,17 +74,12 @@ export default {
     },
   },
   mounted() {
-    if (XEngine.platform.isPhone) {
-      let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
-      this.lineheight = navheight;
-    } else if (XEngine.platform.isAndroid) {
+    if (XEngine.platform.isPc) {
+      this.lineheight = 64;
+    } else {
       let statusBarHeight = XEngine.api("com.zkty.jsi.device", "getStatusBarHeight");
       let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
-      let height = Number(statusBarHeight) + Number(navheight);
-      this.lineheight = height;
-    } else if (XEngine.platform.isPc) {
-      const height = 64;
-      this.lineheight = height;
+      this.lineheight = Number(statusBarHeight) + Number(navheight);
     }
   },
   methods: {

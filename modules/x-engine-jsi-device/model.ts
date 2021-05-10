@@ -34,24 +34,28 @@ interface DeviceDTO {
 }
 
 // 获取状态栏高度
+//单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 @sync
 function getStatusBarHeight(): string {
   let val = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
   console.log(val);
 }
 // 获取导航条高度
+//单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 @sync
 function getNavigationHeight(): string {
   let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
   console.log(val);
 }
 // 获取屏幕高度
+//单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 @sync
 function getScreenHeight(): string {
   let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
   console.log(val);
 }
 // 获取tabBar高度
+//单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 @sync
 function getTabbarHeight(): string {
   let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");

@@ -53,6 +53,8 @@ public void _back(DirectBackDTO dto, final CompletionHandler<Nullable> handler);
   
     @JavascriptInterface
     final public void push(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      String defaultStr = "{  \"scheme\": \"omp\",  \"fragment\": \"/\",  \"params\": {    \"hideNavbar\": true  }}";
+      jsonobj = mergeDefault(jsonobj, defaultStr);
       DirectPushDTO dto= convert(jsonobj,DirectPushDTO.class);
       _push(dto, new CompletionHandler<Nullable>() {
         @Override

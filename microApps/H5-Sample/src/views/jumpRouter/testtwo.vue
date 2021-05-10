@@ -1,3 +1,11 @@
+<!--
+ * @Author: sheng.wang
+ * @Date: 2021-05-10 16:44:39
+ * @LastEditTime: 2021-05-10 19:00:14
+ * @LastEditors: sheng.wang
+ * @Description: 
+ * @FilePath: /x-engine/microApps/H5-Sample/src/views/jumpRouter/testtwo.vue
+-->
 <template>
   <div class="testtwo-class">
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
@@ -29,7 +37,7 @@ export default {
     console.log("beforeMount")
   },
   mounted() {
-    console.log("mounted")
+    console.log("two mounted")
     this.id = this.$route.query.id
     this.age = this.$route.query.age
     this.name = this.$route.query.name

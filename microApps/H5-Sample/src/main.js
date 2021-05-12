@@ -64,7 +64,7 @@ import ZKTYHeader from "@zkty-team/x-engine-ui";
 import "@zkty-team/x-engine-ui/lib/ZKTYHeader.css";
 Vue.use(ZKTYHeader);
 
-import lifeCycle from "./lifeCycle";
+import lifeCycle from "@zkty-team/x-engine-lifecycle";
 Vue.use(lifeCycle);
 
 Vue.prototype.$store = store;

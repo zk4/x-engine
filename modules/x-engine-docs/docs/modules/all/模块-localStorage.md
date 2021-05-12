@@ -16,10 +16,10 @@ version: 0.1.13
 **demo**
 ``` js
 
-  xengine.api("com.zkty.jsi.localstorage", "set",{
-    key:'abc',
-    val:'world'
-  });
+  let val = xengine.api("com.zkty.jsi.localstorage", "get",
+    'abc',
+  );
+  console.log(val);
 
 ``` 
 
@@ -38,10 +38,10 @@ string
 **demo**
 ``` js
 
-  let val = xengine.api("com.zkty.jsi.localstorage", "get",
-    'abc',
-  );
-  console.log(val);
+  xengine.api("com.zkty.jsi.localstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
 
 ``` 
 

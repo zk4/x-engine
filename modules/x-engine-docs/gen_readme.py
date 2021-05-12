@@ -25,12 +25,12 @@ tmplt = """
 """
 
 ios_tmplt ="""
-# iOS
+# iOS 注意事项
 {ios_readme}
 """
 
 android_tmplt ="""
-# android
+# android 注意事项
 {android_readme}
 """
 

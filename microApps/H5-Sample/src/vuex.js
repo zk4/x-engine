@@ -6,12 +6,12 @@ const forEach = (obj, cb) => {
 }
 
 let Vue = null;
-export function install(_Vue) {
+export function install (_Vue) {
   if (Vue !== _Vue) {
     Vue = _Vue
   }
   Vue.mixin({
-    beforeCreate() {
+    beforeCreate () {
       const options = this.$options;
       if (options.store) {
         this.$store = options.store;
@@ -47,7 +47,7 @@ const installModule = (store, rootState, path, rootModule) => {
   if (getters) {
     forEach(getters, (getterName, fn) => {
       Object.defineProperty(store.getters, getterName, {
-        get() {
+        get () {
           return fn(rootModule.state); // 让对应的函数执行
         }
       });
@@ -83,11 +83,11 @@ const installModule = (store, rootState, path, rootModule) => {
 
 
 class ModuleCollection { // 格式化
-  constructor(options) {
+  constructor (options) {
     // 注册模块 将模块注册成树结构
     this.register([], options);
   }
-  register(path, rootModule) {
+  register (path, rootModule) {
     let module = { // 将模块格式化
       _rawModule: rootModule,
       _chidlren: {},
@@ -115,27 +115,25 @@ class ModuleCollection { // 格式化
 
 
 export class Store {
-  constructor(options = {}) {
-    let native_state = xengine.api('com.zkty.jsi.vuex','get','store');
+  constructor (options = {}) {
+    let native_state = xengine.api('com.zkty.jsi.vuex', 'get', 'store');
     //  第一次初始化? 以 options.state 为准
-    if(!native_state)
-    {
-      if(options.state)
-      {
-        xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(options.state)});
+    if (!native_state) {
+      if (options.state) {
+        xengine.api('com.zkty.jsi.vuex', 'set', { key: 'store', val: JSON.stringify(options.state) });
       }
-    }else{
+    } else {
       options.state = JSON.parse(native_state)
     }
 
     this.vm = new Vue({
-      data(){
+      data () {
         return {
           state: options.state
         }
       }
     })
-    
+
     this.getters = {};
     this.mutations = {};
     this.actions = {};
@@ -156,21 +154,22 @@ export class Store {
     (options.plugins || []).forEach(plugin => plugin(this));
 
     this._subscribes.push((mutation, state) => {
-        // todo:  这个地方速度太慢了,每次都 set.
-        // 应该在页面切到下一页的生命周期一次性将 state 刷到 native.
-        xengine.api('com.zkty.jsi.vuex','set',{key:'store',val:JSON.stringify(state)});
+      // todo:  这个地方速度太慢了,每次都 set.
+      // 应该在页面切到下一页的生命周期一次性将 state 刷到 native.
+      xengine.api('com.zkty.jsi.vuex', 'set', { key: 'store', val: JSON.stringify(state) });
     });
-    xengine.broadcastOn((type,payload)=>{
-      if(type === '@@VUEX_STORE_EVENT'){
-        let state=JSON.parse(payload)
+    xengine.broadcastOn((type, payload) => {
+      console.log('hahah')
+      if (type === '@@VUEX_STORE_EVENT') {
+        let state = JSON.parse(payload)
         Object.keys(this.vm.state).forEach(key => {
-            this.vm.state[key]=state[key];
+          this.vm.state[key] = state[key];
         })
       }
     });
   }
 
-  subscribe(fn){
+  subscribe (fn) {
     this._subscribes.push(fn);
   }
 
@@ -182,7 +181,7 @@ export class Store {
     this.actions[type].forEach(cb => cb(payload))
   }
 
-  get state() {
+  get state () {
     return this.vm.state
   }
 

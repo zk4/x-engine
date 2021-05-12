@@ -446,15 +446,15 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
            completionHandler:nil];
 }
 
-//- (void)triggerVueLifeCycleWithMethod:(NSString *)method {
-//    [self callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
-//        @"type":BROADCAST_EVENT,
-//        @"payload":method
-//    }
-//     completionHandler:^(id  _Nullable value) {
-//        NSLog(@"js return value %@",value);
-//    }];
-//}
+- (void)triggerVueLifeCycleWithMethod:(NSString *)method {
+    [self callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
+        @"type":BROADCAST_EVENT,
+        @"payload":method
+    }
+     completionHandler:^(id  _Nullable value) {
+        NSLog(@"js return value %@",value);
+    }];
+}
 
 - (void) addJavascriptObject:(id)object namespace:(NSString *)namespace{
     if(namespace==nil){

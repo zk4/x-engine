@@ -1,13 +1,14 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-10 16:44:39
- * @LastEditTime: 2021-05-12 15:47:03
+ * @LastEditTime: 2021-05-11 10:51:12
  * @LastEditors: sheng.wang
  * @Description:
  * @FilePath: /x-engine/microApps/H5-Sample/src/lifeCycle.js
  */
 import xengine from "@zkty-team/x-engine-core";
 let Vue;
+
 export function install(_Vue) {
   if (Vue !== _Vue) {
     Vue = _Vue;

@@ -31,7 +31,7 @@ export default {
   // },
   created() {},
   mounted() {
-    console.log("mounted")
+    console.log("one mounted")
     // console.log(this.$methods)
     // this.$engine.broadcastOn((type, payload) => {
     //   console.log("o000e-mounted")

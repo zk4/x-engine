@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "连接原生native和js之间的重要模块",
   "main": "src/index.js",
   "scripts": {

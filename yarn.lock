@@ -2466,8 +2466,10 @@
     typescript-parser "^2.6.1"
     yargs "^16.0.3"
 
-"@zkty-team/x-engine-core@^0.1.13":
-  version "1.0.3"
+"@zkty-team/x-engine-core@^0.1.13", "@zkty-team/x-engine-core@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@zkty-team/x-engine-core/-/x-engine-core-1.0.4.tgz#4267f389b406e78f04b6aa512e5693cadb423383"
+  integrity sha512-wuDzJb7gUJ9ptUURwUSK1AJyMlMHfTAvLw1ZeQbOYYRRNULebcLnQIOL0wQ2B4XGd4NGJbFih3lzYaesuKjSpA==
 
 "@zkty-team/x-engine-ui@^1.1.2":
   version "1.1.2"

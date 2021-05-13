@@ -1,20 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/tv_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="20dp"
         android:text="viewer"
         android:onClick="viewer"
         android:textColor="#ffffff" />
 
+    <Button
+        android:id="@+id/tv_pdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="pdf"
+        android:textColor="#ffffff" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/tv_ppt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="ppt"
+        android:textColor="#ffffff" />
+    <Button
+        android:id="@+id/tv_pptx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="pptx"
+        android:textColor="#ffffff" />
+    <Button
+        android:id="@+id/tv_doc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="doc"
+        android:textColor="#ffffff" />
+    <Button
+        android:id="@+id/tv_docx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="docx"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/tv_xls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="xls"
+        android:textColor="#ffffff" />
+    <Button
+        android:id="@+id/tv_xlsx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="xlsx"
+        android:textColor="#ffffff" />
+    <Button
+        android:id="@+id/tv_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="txt"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/tv_epub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="epub"
+        android:textColor="#ffffff" />
+</LinearLayout>

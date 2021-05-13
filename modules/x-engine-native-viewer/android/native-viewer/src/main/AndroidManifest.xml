@@ -12,14 +12,6 @@
         <meta-data
             android:name="com.zkty.native.viewer"
             android:value="com.zkty.nativ.viewer.Nativeviewer" />
-        <activity android:name="com.zkty.nativ.viewer.activity.PreViewActivity"
-            android:screenOrientation="portrait"
-            />
 
-        <service
-            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
-            android:label="dexopt"
-            android:process=":dexopt" >
-        </service>
     </application>
 </manifest>

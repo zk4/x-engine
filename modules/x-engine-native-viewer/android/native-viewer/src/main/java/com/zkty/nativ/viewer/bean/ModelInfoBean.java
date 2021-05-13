@@ -1,5 +1,4 @@
-package com.zkty.engine.jsi.viewer;
-
+package com.zkty.nativ.viewer.bean;
 
 /**
  * @author : MaJi
@@ -12,7 +11,7 @@ public class ModelInfoBean {
     private String modelName;
     private String pic;
 
-    public ModelInfoBean(boolean isDefault,String modelId, String modelName, String pic) {
+    public ModelInfoBean(boolean isDefault, String modelId, String modelName, String pic) {
         this.isDefault = isDefault;
         this.modelName = modelName;
         this.modelId = modelId;

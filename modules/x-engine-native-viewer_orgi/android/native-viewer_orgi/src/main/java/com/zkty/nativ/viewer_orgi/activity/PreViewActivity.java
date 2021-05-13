@@ -1,4 +1,4 @@
-package com.zkty.nativ.viewer.activity;
+package com.zkty.nativ.viewer_orgi.activity;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,7 +15,8 @@ import com.zkty.nativ.jsi.view.XEngineNavBar;
 
 import java.io.File;
 
-import module.viewer.R;
+import module.viewer_orgi.R;
+
 
 /**
  * @author : MaJi
@@ -46,57 +47,31 @@ public class PreViewActivity extends BaseXEngineActivity {
 //        下面的回调必须要实现，暂时没找到此回调的用处
 
         String filePath = getIntent().getStringExtra("filePath");
+        String fileType = getIntent().getStringExtra("fileType");
         File file = new File(filePath);
         mXEngineNavBar.setLeftTitle( file.getName());
-        openFile(filePath);
+        openFile(filePath,fileType);
     }
 
     /**
      * 打开文件
      * @param path
      */
-    private void openFile(String path) {
+    private void openFile(String path,String fileType) {
         Bundle bundle = new Bundle();
         //文件路径
         bundle.putString("filePath", path);
         //临时文件的路径，必须设置，否则会报错
         bundle.putString("tempPath", Environment.getExternalStorageDirectory().getAbsolutePath()+"腾讯文件TBS");
         //准备
-        boolean result = tbsReaderView.preOpen(getFileType(path), false);
+        boolean result = tbsReaderView.preOpen(fileType, false);
         if (result) {
             //预览文件
             tbsReaderView.openFile(bundle);
         }
     }
 
-    /**
-     * 获取文件类型
-     * @param path
-     * @return
-     */
-    private String getFileType(String path) {
-        String type = "";
-        if(path.endsWith(".pdf")){
-            type = "pdf";
-        }else if(path.endsWith(".ppt")){
-            type = "ppt";
-        }else if(path.endsWith(".pptx")){
-            type = "pptx";
-        }else if(path.endsWith(".doc")){
-            type = "doc";
-        }else if(path.endsWith(".docx")){
-            type = "docx";
-        }else if(path.endsWith(".xls")){
-            type = "xls";
-        }else if(path.endsWith(".xlsx")){
-            type = "xlsx";
-        }else if(path.endsWith(".txt")){
-            type = "txt";
-        }else if(path.endsWith(".epub")){
-            type = "epub";
-        }
-        return type;
-    }
+
 
     /**
      * 读取文件监听 目前没什么用

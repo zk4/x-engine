@@ -7,7 +7,6 @@ import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class NativeBroadcast extends NativeModule implements IBroadcast {
@@ -19,14 +18,15 @@ public class NativeBroadcast extends NativeModule implements IBroadcast {
 
     @Override
     public void broadcast(String type, String payload) {
-        List<XEngineWebView> total = XWebViewPool.sharedInstance().getWebViews();
-        total.addAll(XWebViewPool.sharedInstance().getTabWebViewList());
 
         Map<String, String> bro = new HashMap<>();
         bro.put("type", type);
         bro.put("payload", payload);
 
-        for (XEngineWebView webView : total) {
+        for (XEngineWebView webView : XWebViewPool.sharedInstance().getWebViews()) {
+            webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
+        }
+        for (XEngineWebView webView : XWebViewPool.sharedInstance().getTabWebViewList()) {
             webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
         }
     }

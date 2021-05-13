@@ -2128,7 +2128,7 @@
   resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-4.5.13.tgz#4f1fd2161be8f69d6cba8079f3f0d7dc4dee47a7"
   integrity sha512-jhUIg3klgi5Cxhs8dnat5hi/W2tQJvsqCxR0u6hgfSob0ORODgUBlN+F/uwq7cKIe/pzedVUk1y07F13GQvPqg==
 
-"@vue/cli-plugin-babel@^4.5.13":
+"@vue/cli-plugin-babel@^4.5.13", "@vue/cli-plugin-babel@~4.5.0":
   version "4.5.13"
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-4.5.13.tgz#a89c482edcc4ea1d135645cec502a7f5fd4c30e7"
   integrity sha512-ykvEAfD8PgGs+dGMGqr7l/nRmIS39NRzWLhMluPLTvDV1L+IxcoB73HNLGA/aENDpl8CuWrTE+1VgydcOhp+wg==
@@ -2141,7 +2141,7 @@
     thread-loader "^2.1.3"
     webpack "^4.0.0"
 
-"@vue/cli-plugin-eslint@^4.5.13":
+"@vue/cli-plugin-eslint@^4.5.13", "@vue/cli-plugin-eslint@~4.5.0":
   version "4.5.13"
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.5.13.tgz#8baf22d0d96d76720c7506646b96f4f62c05bdfa"
   integrity sha512-yc2uXX6aBiy3vEf5TwaueaDqQbdIXIhk0x0KzEtpPo23jBdLkpOSoU5NCgE06g/ZiGAcettpmBSv73Hfp4wHEw==
@@ -2165,7 +2165,7 @@
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.5.13.tgz#98646d8bc1e69cf6c6a6cba2fed3eace0356c360"
   integrity sha512-I1S9wZC7iI0Wn8kw8Zh+A2Qkf6s1M6vTGBkx8boXjuzfwEEyEHRxadsVCecZc8Mkpydo0nykj+MyYF96TKFuVA==
 
-"@vue/cli-service@^4.5.13":
+"@vue/cli-service@^4.5.13", "@vue/cli-service@~4.5.0":
   version "4.5.13"
   resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-4.5.13.tgz#a09e684a801684b6e24e5414ad30650970eec9ed"
   integrity sha512-CKAZN4iokMMsaUyJRU22oUAz3oS/X9sVBSKAF2/shFBV5xh3jqAlKl8OXZYz4cXGFLA6djNuYrniuLAo7Ku97A==
@@ -2466,20 +2466,8 @@
     typescript-parser "^2.6.1"
     yargs "^16.0.3"
 
-"@zkty-team/x-engine-core@^0.1.13", "@zkty-team/x-engine-core@^1.0.4":
+"@zkty-team/x-engine-core@^0.1.13":
   version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@zkty-team/x-engine-core/-/x-engine-core-1.0.4.tgz#4267f389b406e78f04b6aa512e5693cadb423383"
-  integrity sha512-wuDzJb7gUJ9ptUURwUSK1AJyMlMHfTAvLw1ZeQbOYYRRNULebcLnQIOL0wQ2B4XGd4NGJbFih3lzYaesuKjSpA==
-
-"@zkty-team/x-engine-ui@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@zkty-team/x-engine-ui/-/x-engine-ui-1.1.2.tgz#84d8b97e6d2f529628da44a436e01f31a47ce1c1"
-  integrity sha512-Pjs7DGHcKXtTk/cHIuCjJNZHC5VY/JCuXr3RIAvTbgsPZjwxaqEz+xqD9oHRDBx4e8CxegMhPI6mr/DByUv1/A==
-  dependencies:
-    "@zkty-team/x-engine-core" "^1.0.1"
-    core-js "^3.6.5"
-    vue "^2.6.11"
-    vue-router "^3.5.1"
 
 JSONStream@^1.0.4, JSONStream@^1.3.4, JSONStream@^1.3.5:
   version "1.3.5"

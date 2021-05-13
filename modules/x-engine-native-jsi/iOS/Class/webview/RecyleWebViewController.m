@@ -52,6 +52,15 @@
     }
 }
 
+- (void)handleNavigationTransition:(UIGestureRecognizer *)gap{
+    //    NSLog(@"用户左滑了手势啊");
+    if (self.webview.canGoBack==YES) {
+        [self.webview goBack];
+    }else{
+        NSLog(@"此时不能左滑");
+    }
+}
+
 - (void)webViewLoadFail:(NSNotification *)notifi{
     NSDictionary *dic = notifi.object;
     id web = dic[@"webView"];
@@ -193,7 +202,6 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    // 临时放在这里
     [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueMounted"];
     
     if(self.isOnTab){
@@ -266,8 +274,8 @@
     [self setupProgressLayer];
     [self setup404];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    
 }
+
 - (void)setupBackButton {
     UIButton *backButton = [[UIButton alloc] init];
     [backButton setImage: [UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];

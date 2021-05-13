@@ -13,3 +13,5 @@ project(':native-protocols').projectDir = new File('../../x-engine-native-protoc
 include ':native-viewer'
 project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/android/native-viewer')
 
+include ':native-viewer-orgi'
+project(':native-viewer-orgi').projectDir = new File('../../x-engine-native-viewer-orgi/android/native-viewer-orgi')

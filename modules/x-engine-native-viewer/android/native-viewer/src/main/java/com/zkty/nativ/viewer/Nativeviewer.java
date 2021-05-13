@@ -1,11 +1,14 @@
 package com.zkty.nativ.viewer;
 
-import com.anthonynsimon.url.URL;
+import android.content.Intent;
+
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.viewer.activity.PreViewActivity;
+import com.zkty.nativ.viewer.bean.NativeViewerInfoBean;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Nativeviewer extends NativeModule implements Iviewer {
 
@@ -20,38 +23,41 @@ public class Nativeviewer extends NativeModule implements Iviewer {
     }
 
     @Override
+    public boolean isDefault() {
+        return false;
+    }
+
+    @Override
+    public String getModelPic() {
+        return "pic";
+    }
+
+    @Override
+    public String getModelName() {
+        return "viewer";
+    }
+
+
+    @Override
+    public List<String> typeList() {
+        List<String> typeList = new ArrayList<>();
+        typeList.add("pdf");
+        typeList.add("ppt");
+        typeList.add("pptx");
+        typeList.add("doc");
+        typeList.add("docx");
+        typeList.add("xls");
+        typeList.add("xlsx");
+        typeList.add("txt");
+        typeList.add("epub");
+        return typeList;
+    }
+
+    @Override
     public void openFileReader(String filePath, CallBack callBack) {
-        try {
-            push(filePath);
-            callBack.success("打开成功");
-        }catch (Exception e){
-            callBack.success("打开失败");
-        }
-
-    }
-
-    public static void push(String url) {
-        try {
-            URL url1 = URL.parse(url);
-            String scheme = url1.getScheme();
-            //URL解析的 fragment 包含query，eg：/mall2/orderlist?selectedIndex=0，故query传null
-            push(scheme, url1.getHost(), url1.getPath(), url1.getFragment(), null, null);
-        } catch (com.anthonynsimon.url.exceptions.MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    public static void push(String scheme, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
-        String protocol = "https:";
-        if ("omp".equals(scheme)) protocol = "http:";
-        if ("http".equals(scheme)) protocol = "http:";
-        if ("https".equals(scheme)) protocol = "https:";
-        if ("microapp".equals(scheme)) protocol = "file:";
-
-        boolean hideNavbar = params != null && params.containsKey("hideNavbar") && Boolean.parseBoolean(String.valueOf(params.get("hideNavbar")));
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(XEngineApplication.getCurrentActivity(), protocol, host, pathname, fragment, query, hideNavbar);
+        Intent intent = new Intent(XEngineApplication.getCurrentActivity(), PreViewActivity.class);
+        intent.putExtra("filePath",filePath);
+        XEngineApplication.getCurrentActivity().startActivity(intent);
 
     }
 

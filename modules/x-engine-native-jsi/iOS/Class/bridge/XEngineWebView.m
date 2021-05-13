@@ -15,7 +15,7 @@
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
-@implementation XEngineWebView
+@implementation XEngineWebView 
 
 {
     void (^alertHandler)(void);
@@ -447,6 +447,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (void)triggerVueLifeCycleWithMethod:(NSString *)method {
+    // BROADCAST_EVENT == @@VUE_LIFECYCLE_EVENT
     [self callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
         @"type":BROADCAST_EVENT,
         @"payload":method
@@ -587,7 +588,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.indicatorView stopAnimating];
-    NSLog(@"didFailProvisionalNavigation==>\n%@",error.debugDescription);
+    [self addCustomView];
 }
 
 // 接收到服务器跳转请求之后调用
@@ -725,4 +726,34 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void)dealloc {
     [self.indicatorView stopAnimating];
 }
+
+// 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中
+// 添加自定义的view 在view上添加侧滑手势,返回上个页面
+- (void)addCustomView {
+    UIView *view = [[UIView alloc] init];
+    view.frame = self.frame;
+    view.backgroundColor = [UIColor whiteColor];
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
+    panGesture.delegate = self; // 设置手势代理，拦截手势触发
+    [view addGestureRecognizer:panGesture];
+    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self addSubview:view];
+}
+
+- (void)handleNavigationTransition:(UIPanGestureRecognizer *)pan {
+    [[self viewController].navigationController popViewControllerAnimated:YES];
+}
+
+- (UIViewController*)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController
+                                          class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
 @end

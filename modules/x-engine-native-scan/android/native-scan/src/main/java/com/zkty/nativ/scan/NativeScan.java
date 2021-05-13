@@ -19,7 +19,7 @@ public class NativeScan extends NativeModule implements IScan {
     private static final String TAG = "NativeScan";
 
 
-    private int REQUEST_CODE = 0;
+    private int REQUEST_CODE = 0x10;
     private LifecycleListener lifeCycleListener;
 
     @Override
@@ -34,13 +34,15 @@ public class NativeScan extends NativeModule implements IScan {
 
     @Override
     public void openScanView(CallBack callBack) {
-        REQUEST_CODE++;
 
         Activity activity = XEngineApplication.getCurrentActivity();
         if (activity == null || !(activity instanceof BaseXEngineActivity)) return;
         final BaseXEngineActivity act = (BaseXEngineActivity) activity;
 
-//        if (lifeCycleListener == null) {
+        if (lifeCycleListener != null) {
+            act.removeLifeCycleListener(lifeCycleListener);
+            lifeCycleListener = null;
+        }
         lifeCycleListener = new LifecycleListener() {
             @Override
             public void onCreate() {
@@ -82,7 +84,6 @@ public class NativeScan extends NativeModule implements IScan {
                 Log.d(TAG, "REQUEST_CODE:" + REQUEST_CODE + ",requestCode=" + requestCode);
                 if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
                     REQUEST_CODE++;
-
                     if (intent.hasExtra("result")) {
                         String code = intent.getStringExtra("result");
                         if (!TextUtils.isEmpty(code)) {
@@ -106,6 +107,7 @@ public class NativeScan extends NativeModule implements IScan {
             }
         };
 //        }
+
         act.addLifeCycleListener(lifeCycleListener);
 
         Intent intent = new Intent();

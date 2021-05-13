@@ -7,7 +7,7 @@ version: 0.1.13
 
 
 ## openScanView
-`async`
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 
 **demo**
 ``` js

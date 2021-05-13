@@ -14,13 +14,13 @@ export function install(_Vue) {
     Vue.$$x_engine_broadcast_once = false;
   }
   Vue.mixin({
-    created() {
+    beforeCreate() {
       let that = this;
       xengine.broadcastOn((type, payload) => {
-        // $$x_engine_broadcast_once 用来解决回退上一个webview出发俩次vue 生命周期
         if (type === "@@VUE_LIFECYCLE_EVENT") {
           if (that.$$x_engine_broadcast_once) {
             let hook = "mounted";
+            console.log("if的logo");
             const handlers = that.$options[hook];
             if (handlers) {
               for (let i = 0, j = handlers.length; i < j; i++) {
@@ -31,6 +31,7 @@ export function install(_Vue) {
               that.$emit("hook:" + hook);
             }
           } else {
+            console.log("else的logo");
             that.$$x_engine_broadcast_once = true;
           }
         }

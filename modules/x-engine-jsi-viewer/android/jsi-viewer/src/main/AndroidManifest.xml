@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jsi.viewer">
 
-    <meta-data
-        android:name="com.zkty.jsi.viewer"
-        android:value="com.zkty.jsi.JSI_viewer" />
+    <application>
+        <meta-data
+            android:name="com.zkty.jsi.viewer"
+            android:value="com.zkty.jsi.JSI_viewer" />
+    </application>
+
 
 </manifest>

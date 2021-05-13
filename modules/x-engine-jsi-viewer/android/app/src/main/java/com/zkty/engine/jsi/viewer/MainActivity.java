@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void push(String url) {
-
         try {
             URL url1 = URL.parse(url);
             String scheme = url1.getScheme();

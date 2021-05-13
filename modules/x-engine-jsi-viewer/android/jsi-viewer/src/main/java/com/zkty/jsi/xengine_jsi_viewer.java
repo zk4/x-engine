@@ -25,15 +25,15 @@
   }
   
   
-  public abstract class xengine_jsi_viewer extends JSIModule implements xengine_jsi_viewer_protocol {
+    public abstract class xengine_jsi_viewer extends JSIModule implements xengine_jsi_viewer_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.viewer";
     }
   
     @JavascriptInterface
-    final public void openFileReader(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      String dto= convert(jsonobj,String.class);
+    final public void openFileReader(String dto, final CompletionHandler<Object> handler) {
+      
       _openFileReader(dto, new CompletionHandler<StatusDTO>() {
         @Override
         public void complete(StatusDTO retValue) { handler.complete(retValue); }

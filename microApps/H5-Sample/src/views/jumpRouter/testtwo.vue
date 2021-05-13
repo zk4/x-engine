@@ -1,3 +1,11 @@
+<!--
+ * @Author: sheng.wang
+ * @Date: 2021-05-10 16:44:39
+ * @LastEditTime: 2021-05-10 19:00:14
+ * @LastEditors: sheng.wang
+ * @Description: 
+ * @FilePath: /x-engine/microApps/H5-Sample/src/views/jumpRouter/testtwo.vue
+-->
 <template>
   <div class="testtwo-class">
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
@@ -16,26 +24,42 @@ export default {
       id: "",
       age: "",
       name: "",
-    };
+    }
+  },
+
+  beforeCreate() {
+    console.log("pagetwo-beforeCreate")
   },
   created() {
+    console.log("pagetwo-created")
+  },
+  beforeMount() {
+    console.log("beforeMount")
   },
   mounted() {
-    this.id = this.$route.query.id;
-    this.age = this.$route.query.age;
-    this.name = this.$route.query.name;
+    console.log("two mounted")
+    this.id = this.$route.query.id
+    this.age = this.$route.query.age
+    this.name = this.$route.query.name
   },
+  beforeDestroy() {
+    console.log("beforeDestroy")
+  },
+  destroyed() {
+    console.log("destroyed")
+  },
+
   methods: {
     handlerPush() {
       this.$router.push({
         path: "/testthree",
-      });
+      })
     },
     handlerBack() {
-      this.$router.go(-1);
+      this.$router.go(-1)
     },
   },
-};
+}
 </script>
 
 <style scoped>

@@ -8,7 +8,7 @@ version: 0.1.13
 
 ## getStatusBarHeight
 `sync`
-> 获取状态栏高度
+> 获取状态栏高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
 
@@ -28,7 +28,7 @@ string
 
 ## getNavigationHeight
 `sync`
-> 获取导航条高度
+> 获取导航条高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
 
@@ -48,7 +48,7 @@ string
 
 ## getScreenHeight
 `sync`
-> 获取屏幕高度
+> 获取屏幕高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
 
@@ -68,7 +68,7 @@ string
 
 ## getTabbarHeight
 `sync`
-> 获取tabBar高度
+> 获取tabBar高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
 

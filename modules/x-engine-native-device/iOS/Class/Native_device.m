@@ -26,15 +26,15 @@ NATIVE_MODULE(Native_device)
 - (void)afterAllNativeModuleInited{}
 
 - (NSString *)getStatusHeight {
-    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];
+//    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];
+    NSString *heightStr = [NSString stringWithFormat:@"20"];
     return heightStr;
 }
 
 - (NSString *)getNavigationHeight {
-    CGFloat navigationHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 88 : 64;
-NSString *heightStr = [NSString stringWithFormat:@"%.f",navigationHeight];
+    CGFloat navigationHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 68 : 44;
+    NSString *heightStr = [NSString stringWithFormat:@"%.f",navigationHeight];
     return heightStr;
-    
 }
 
 - (NSString *)getScreenHeight {

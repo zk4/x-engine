@@ -16,18 +16,18 @@ const conf = {
 
 @sync
 function get(arg:string):string {
-  xengine.api("com.zkty.jsi.localstorage", "set",{
-    key:'abc',
-    val:'world'
-  });
-}
-
-@sync
-function set(arg:{key:string, val:string}){
   let val = xengine.api("com.zkty.jsi.localstorage", "get",
     'abc',
   );
   console.log(val);
+}
+
+@sync
+function set(arg:{key:string, val:string}){
+  xengine.api("com.zkty.jsi.localstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
 }
 
 

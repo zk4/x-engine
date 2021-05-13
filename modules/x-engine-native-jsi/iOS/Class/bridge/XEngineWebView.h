@@ -50,6 +50,9 @@
 // private method, the developer shoudn't call this method
 - (id _Nullable ) onMessage:(NSDictionary *_Nonnull) msg type:(int) type;
 
+// trigger vue life cycle
+- (void)triggerVueLifeCycleWithMethod:(NSString*_Nullable)method;
+
 @end
 
 

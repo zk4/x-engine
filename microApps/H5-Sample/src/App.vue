@@ -9,18 +9,15 @@
 export default {
   name: "App",
   data() {
-    return {
-    }
+    return {}
   },
   computed: {
     style() {
-      let style
-      if (this.$engine.isHybrid()) {
-        style = `margin-top:${this.$navigatorHeight}px;`
-      } else {
-        style = `margin-top:${64}px;`
-      }
-      return style
+      return this.$engine.platform.isPc
+        ? `margin-top:${64}px;`
+        : `margin-top:${
+            Number(this.$navigatorHeight) + Number(this.$statusHeight)
+          }px;`
     },
   },
 }
@@ -33,11 +30,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-.bounce-enter-active {
-  animation: bounce-in 0.5s;
-}
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
 }
 </style>

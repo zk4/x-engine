@@ -2,24 +2,24 @@ import dsbridge from "./dsbridge";
 const module_names = new Set([]);
 const patch = {};
 
-function isFunction(functionToCheck) {
+function isFunction (functionToCheck) {
   return (
     functionToCheck && {}.toString.call(functionToCheck) === "[object Function]"
   );
 }
 
-function isObject(val) {
+function isObject (val) {
   if (val === null) {
     return false;
   }
   return typeof val === "function" || typeof val === "object";
 }
 
-function isString(x) {
+function isString (x) {
   return Object.prototype.toString.call(x) === "[object String]";
 }
 
-function isHybrid() {
+function isHybrid () {
   return window && window._dswk === true;
 }
 let xengine = {
@@ -35,7 +35,7 @@ let xengine = {
   assert: xassert,
 };
 
-function xassert(targetID, expression) {
+function xassert (targetID, expression) {
   if (expression) {
     document.getElementById(targetID).style.backgroundColor = "green";
   } else {
@@ -43,7 +43,7 @@ function xassert(targetID, expression) {
   }
 }
 
-function api(jsimoduleId, funcname, args, cb) {
+function api (jsimoduleId, funcname, args, cb) {
   if (args) {
     if (args.hasOwnProperty("__event__")) {
       only_idx++;
@@ -62,18 +62,21 @@ function api(jsimoduleId, funcname, args, cb) {
   return dsbridge.call(jsimoduleId + "." + funcname, args, cb);
 }
 
-function broadcastOff() {
+function broadcastOff () {
   xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }
-
-function broadcastOn(eventcb) {
+let eventCBStack = []
+function broadcastOn (eventcb) {
+  eventCBStack.push(eventcb);
   xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
-    return eventcb(res.type,res.payload);
+    for (const cb of eventCBStack) {
+      cb(res.type, res.payload);
+    }
   });
 }
 let only_idx = 0;
 
-function use(ns, funcs) {
+function use (ns, funcs) {
   if (module_names.has(ns)) {
     throw ns + ',注册无效,模块已存在,xengine.use("' + ns + '") 只允许调用一次;';
   }
@@ -127,7 +130,7 @@ function use(ns, funcs) {
 }
 
 Object.defineProperty(xengine, "bridge", {
-  get() {
+  get () {
     return dsbridge;
   },
   set: function () {
@@ -135,7 +138,7 @@ Object.defineProperty(xengine, "bridge", {
   },
 });
 
-function platform() {
+function platform () {
   var ua = navigator.userAgent,
     isAndroid = /(?:Android)/.test(ua),
     isPhone = /(?:iPhone)/.test(ua),
@@ -148,7 +151,7 @@ function platform() {
 }
 
 // 监听输入框的软键盘弹起和收起事件
-function listenKeybord($input) {
+function listenKeybord ($input) {
   if (this.platform.isPhone) {
     // IOS 键盘弹起：IOS 和 Android 输入框获取焦点键盘弹起
     $input.addEventListener(

@@ -12,7 +12,7 @@
 #import "GlobalState.h"
 #import "iSecurify.h"
 
-
+#define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
 @implementation XEngineWebView
@@ -446,6 +446,16 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
            completionHandler:nil];
 }
 
+- (void)triggerVueLifeCycleWithMethod:(NSString *)method {
+    [self callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
+        @"type":BROADCAST_EVENT,
+        @"payload":method
+    }
+     completionHandler:^(id  _Nullable value) {
+        NSLog(@"js return value %@",value);
+    }];
+}
+
 - (void) addJavascriptObject:(id)object namespace:(NSString *)namespace{
     if(namespace==nil){
         namespace=@"";
@@ -561,6 +571,11 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
 }
 
+// 当内容开始返回时调用
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
+//    NSLog(@"内容开始返回:%s",__FUNCTION__);
+}
+
 // 页面加载完成后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     [self.indicatorView stopAnimating];
@@ -569,37 +584,16 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
 }
 
-- (void)dealloc {
-    [self.indicatorView stopAnimating];
-}
-
-// 当内容开始返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-    NSLog(@"内容开始返回:%s",__FUNCTION__);
-}
-
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.indicatorView stopAnimating];
     NSLog(@"didFailProvisionalNavigation==>\n%@",error.debugDescription);
 }
 
-- (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
-    if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
-        NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
-        jsonStr= [jsonStr substringFromIndex:range.location+1];
-    }
-
-    jsonStr = [jsonStr stringByRemovingPercentEncoding];
-
-    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    NSError*err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    return dic;
-}
-
 // 接收到服务器跳转请求之后调用
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{}
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
+    NSLog(@"接收到服务器跳转请求之后调用");
+}
 
 
 // 在发送请求之前，决定是否跳转
@@ -712,5 +706,23 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return str;
+}
+
+- (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
+    if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
+        NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
+        jsonStr= [jsonStr substringFromIndex:range.location+1];
+    }
+
+    jsonStr = [jsonStr stringByRemovingPercentEncoding];
+
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSError*err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    return dic;
+}
+
+- (void)dealloc {
+    [self.indicatorView stopAnimating];
 }
 @end

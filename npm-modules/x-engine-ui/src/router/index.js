@@ -8,8 +8,9 @@ const routes = [
     name: "testPage",
     meta: {
       title: "首页",
-      bgColor: "#eee",
+      bgColor: "#ddd",
       textIsCenter: true,
+      isWhiteColor : true
     },
     component: () => import("../views/testPage.vue"),
   }

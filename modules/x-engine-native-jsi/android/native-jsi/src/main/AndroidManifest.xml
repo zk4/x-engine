@@ -16,6 +16,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/TranTheme" />
 
+        <service
+            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+            android:label="dexopt"
+            android:process=":dexopt" >
+        </service>
+
 
 
             <meta-data

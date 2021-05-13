@@ -48,9 +48,9 @@ public class XWebViewPool {
         this.mContext = context;
     }
 
-//    public void setMultiMode(boolean mode) {
-//        this.IS_MULTI_MODE = mode;
-//    }
+    public void setMultiMode(boolean mode) {
+        this.IS_MULTI_MODE = mode;
+    }
 
 
     /**
@@ -59,23 +59,23 @@ public class XWebViewPool {
     public XEngineWebView getUnusedWebViewFromPool(String host) {
         synchronized (lock) {
             XEngineWebView webView = null;
-//            if (IS_MULTI_MODE || circleList.size() == 0) {
+            if (IS_MULTI_MODE || circleList.size() == 0) {
 
                 webView = new XEngineWebView(mContext);
                 circleList.add(webView);
 
-//            } else {
-//                webView = circleList.get(circleList.size() - 1);
-//                if (!host.equals(circleList.get(circleList.size() - 1).getHistoryModels().get(0).host)) {
-//                    webView = new XEngineWebView(mContext);
-//                    circleList.add(webView);
-//                } else {
-//                    ViewGroup parent = (ViewGroup) webView.getParent();
-//                    if (parent != null) {
-//                        parent.removeAllViews();
-//                    }
-//                }
-//            }
+            } else {
+                webView = circleList.get(circleList.size() - 1);
+                if (!host.equals(circleList.get(circleList.size() - 1).getHistoryModels().get(0).host)) {
+                    webView = new XEngineWebView(mContext);
+                    circleList.add(webView);
+                } else {
+                    ViewGroup parent = (ViewGroup) webView.getParent();
+                    if (parent != null) {
+                        parent.removeAllViews();
+                    }
+                }
+            }
             currentWebView = webView;
             return currentWebView;
         }

@@ -32,8 +32,10 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
-import com.zkty.nativ.core.utils.ImageUtils;
+
+
 import com.zkty.nativ.jsi.HistoryModel;
+import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
 import com.zkty.nativ.jsi.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
@@ -44,18 +46,14 @@ import com.zkty.nativ.jsi.webview.XWebViewPool;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 
 import nativ.jsi.R;
 
 public class XEngineWebActivity extends BaseXEngineActivity {
     private static final String TAG = XEngineWebActivity.class.getSimpleName();
-    private static final String VUE_LIFECYCLE_EVENT = "@@VUE_LIFECYCLE_EVENT";
-    private static final String NATIVE_CALL_VUE_MOUNTED = "NativeCallVueMounted";
 
     protected XEngineWebView mWebView;
     private RelativeLayout mRoot;
@@ -229,6 +227,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
                 }
                 ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
             }
+
         }
 
         super.onResume();
@@ -239,7 +238,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
                 iterator.next().onResume();
             }
         }
-        broadcast(VUE_LIFECYCLE_EVENT, NATIVE_CALL_VUE_MOUNTED);
+
     }
 
     @Override
@@ -541,27 +540,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     private void broadcast(List<String> msg) {
         Log.d(TAG, "发送全局广播：" + msg);
         mWebView.callHandler("com.zkty.module.engine.broadcast", msg == null ? new Object[]{} : msg.toArray(), retValue -> Log.d(TAG, "broadcast:" + msg));
-    }
-
-    private void broadcast(String type, String payload) {
-
-        Log.d(TAG, "broadcast = onResume");
-        List<XEngineWebView> total = XWebViewPool.sharedInstance().getWebViews();
-        total.addAll(XWebViewPool.sharedInstance().getTabWebViewList());
-
-        Map<String, String> bro = new HashMap<>();
-        bro.put("type", type);
-        bro.put("payload", payload);
-
-        for (XEngineWebView webView : total) {
-            webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
-        }
-
-//
-//        Map<String, String> bro = new HashMap<>();
-//        bro.put("type", type);
-//        bro.put("payload", payload);
-//        mWebView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
     }
 
     private boolean broadcastAble = true;

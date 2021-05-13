@@ -321,48 +321,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//
-////            if (TextUtils.isEmpty(mMicroAppId)) {
-////                if (mWebView.canGoBack()) {
-////                    mWebView.goBack();
-////                    return true;
-////                }
-////            } else {
-//
-//            if (mWebView.canGoBack()) {
-//
-//                XEngineWebActivity lastActivity = XEngineWebActivityManager.sharedInstance().getLastActivity();
-//                if (lastActivity != null) {
-//
-//                    if (TextUtils.isEmpty(lastActivity.getHistoryModel().fragment)) {
-//                        mWebView.goBackToIndexPage();
-//                    } else {
-//                        WebBackForwardList backForwardList = mWebView.copyBackForwardList();
-//                        if (backForwardList != null && backForwardList.getSize() != 0) {
-//                            int index = 0;
-//                            for (int i = backForwardList.getCurrentIndex(); i > -1; i--) {
-//                                String url = backForwardList.getItemAtIndex(i).getOriginalUrl();
-//                                if (lastActivity.getHistoryModel().fragment.equals(UrlUtils.getRouterFormUrl(url))) {
-//                                    break;
-//                                }
-//                                index++;
-//                            }
-//                            mWebView.goBackOrForward(-index);
-//                        }
-//                    }
-//
-//                }
-//
-//            } else {
-////                mWebView.historyBack();
-//            }
-//
-//            finish();
-//            return true;
-//
-////            }
-//        }
         return super.onKeyDown(keyCode, event);
     }
 
@@ -546,14 +504,15 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     private void broadcast(String type, String payload) {
 
         Log.d(TAG, "broadcast = onResume");
-        List<XEngineWebView> total = XWebViewPool.sharedInstance().getWebViews();
-        total.addAll(XWebViewPool.sharedInstance().getTabWebViewList());
+      
 
         Map<String, String> bro = new HashMap<>();
         bro.put("type", type);
         bro.put("payload", payload);
 
-        for (XEngineWebView webView : total) {
+        for (XEngineWebView webView : XWebViewPool.sharedInstance().getWebViews()) {
+            webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
+        } for (XEngineWebView webView : XWebViewPool.sharedInstance().getTabWebViewList()) {
             webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
         }
 

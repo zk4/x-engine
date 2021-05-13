@@ -61,6 +61,7 @@ public class JSIContext extends NativeModule {
     private void initWebView() {
         // 设置开启优化方案
         // 在调用TBS初始化、创建WebView之前进行如下配置
+        QbSdk.setDownloadWithoutWifi(true);
         Map<String, Object> map = new HashMap<>();
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);

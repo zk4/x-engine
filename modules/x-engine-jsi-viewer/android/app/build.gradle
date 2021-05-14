@@ -37,6 +37,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(':jsi-viewer')
+    implementation project(':native-ui')
+    implementation project(':native-store')
     implementation project(':native-viewer')
-    implementation project(':native-viewer-orgi')
+    implementation project(':native-viewer_orgi')
 }

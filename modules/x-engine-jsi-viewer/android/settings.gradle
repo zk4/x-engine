@@ -7,11 +7,17 @@ project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/
 include ':native-core'
 project(':native-core').projectDir = new File('../../x-engine-native-core/android/native-core')
 
+include ':native-ui'
+project(':native-ui').projectDir = new File('../../x-engine-native-ui/android/native-ui')
+
+include ':native-store'
+project(':native-store').projectDir = new File('../../x-engine-native-store/android/native-store')
+
 include ':native-protocols'
 project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
 
 include ':native-viewer'
 project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/android/native-viewer')
 
-include ':native-viewer-orgi'
-project(':native-viewer-orgi').projectDir = new File('../../x-engine-native-viewer-orgi/android/native-viewer-orgi')
+include ':native-viewer_orgi'
+project(':native-viewer_orgi').projectDir = new File('../../x-engine-native-viewer_orgi/android/native-viewer_orgi')

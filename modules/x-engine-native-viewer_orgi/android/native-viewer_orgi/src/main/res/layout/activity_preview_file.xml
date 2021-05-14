@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/llContent">
+    <com.zkty.nativ.jsi.view.XEngineNavBar
+        android:id="@+id/mXEngineNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <LinearLayout
+        android:id="@+id/llLoadLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/tvFileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="filename"
+            android:textSize="@dimen/dp_20"
+            android:textColor="@color/color_12"
+            android:layout_marginTop="@dimen/dp_100"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            >
+            <com.zkty.nativ.viewer_orgi.widget.CircularProgressBar
+                android:id="@+id/lockQuantityCircularProgressBar"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                app:marker_visible="false"
+                app:circular_progress="0.9"
+                app:progress_background_color="#f3f3f3"
+                app:progress_color="@color/color_FFA824"
+                app:stroke_width="@dimen/dp_6"
+                app:thumb_visible="false"
+                />
+
+            <TextView
+                android:id="@+id/tvProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10%"
+                android:textColor="@color/color_12"
+                android:textSize="15dp"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvDownLoadStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下载成功"
+            android:textColor="@color/color_12"
+            android:textSize="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_50"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/tvDownLoad"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="wrap_content"
+            android:text="重新下载"
+            android:background="@color/color_FFA824"
+            android:layout_marginTop="@dimen/dp_30"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,6 +1,5 @@
 package com.zkty.engine.jsi.viewer;
 
-import com.zkty.nativ.viewer.bean.NativeViewerInfoBean;
 
 /**
  * @author : MaJi

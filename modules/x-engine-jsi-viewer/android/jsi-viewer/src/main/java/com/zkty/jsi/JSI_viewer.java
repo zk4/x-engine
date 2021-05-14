@@ -20,8 +20,8 @@ public class JSI_viewer extends xengine_jsi_viewer {
 
 
     @Override
-    public void _openFileReader(String filePath, CompletionHandler<StatusDTO> handler) {
-        iViewer.openFileReader(filePath, new CallBack() {
+    public void _openFileReader(OpenFiileDTO dto, CompletionHandler<StatusDTO> handler) {
+        iViewer.openFileReader(dto.filePath,dto.fileName, new CallBack() {
             @Override
             public void success(String msg) {
                 StatusDTO statusDTO = new StatusDTO();
@@ -30,5 +30,4 @@ public class JSI_viewer extends xengine_jsi_viewer {
             }
         });
     }
-
 }

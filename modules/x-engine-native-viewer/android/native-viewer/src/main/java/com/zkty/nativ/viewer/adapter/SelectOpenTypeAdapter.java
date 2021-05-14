@@ -48,7 +48,7 @@ public class SelectOpenTypeAdapter extends  RecyclerView.Adapter<SelectOpenTypeA
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         IviewerStatus modelInfoBean = (IviewerStatus) mData.get(position);
         holder.mTitle.setText(modelInfoBean.getModelName());
-
+        holder.ivPic.setImageResource(modelInfoBean.getModelPicRes());
         if(selectPosition == position){
             holder.ivStatus.setImageResource(R.mipmap.ic_select);
         }else{

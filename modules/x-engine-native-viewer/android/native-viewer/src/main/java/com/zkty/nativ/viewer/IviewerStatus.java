@@ -13,7 +13,13 @@ public interface IviewerStatus {
      * 获取该模块的图片
      * @return
      */
-    String getModelPic();
+    String getModelPicUrl();
+
+    /**
+     * 获取该模块的图片
+     * @return
+     */
+    int getModelPicRes();
 
     /**
      * 获取该模块的名称

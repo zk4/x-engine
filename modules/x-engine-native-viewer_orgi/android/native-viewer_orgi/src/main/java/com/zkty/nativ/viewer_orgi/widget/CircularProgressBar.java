@@ -298,7 +298,7 @@ public class CircularProgressBar extends View {
                         .getColor(R.styleable.CircularProgressBar_progress_background_color,
                                 Color.GREEN));
                 setProgress(
-                        attributes.getFloat(R.styleable.CircularProgressBar_progress, 0.0f));
+                        attributes.getFloat(R.styleable.CircularProgressBar_circular_progress, 0.0f));
                 setMarkerProgress(
                         attributes.getFloat(R.styleable.CircularProgressBar_marker_progress,
                                 0.0f));

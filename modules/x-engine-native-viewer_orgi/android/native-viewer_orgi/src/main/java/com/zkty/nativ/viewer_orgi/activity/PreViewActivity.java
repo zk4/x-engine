@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,6 +17,8 @@ import androidx.annotation.Nullable;
 
 import com.tencent.smtt.sdk.TbsReaderView;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.core.utils.ToastUtils;
+import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.XEngineNavBar;
 import com.zkty.nativ.ui.view.dialog.DialogHelper;
@@ -23,6 +26,10 @@ import com.zkty.nativ.viewer.utils.DownloadUtil;
 import com.zkty.nativ.viewer_orgi.widget.CircularProgressBar;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import module.viewer_orgi.R;
 
@@ -73,6 +80,25 @@ public class PreViewActivity extends BaseXEngineActivity implements View.OnClick
         tvDownLoad = findViewById(R.id.tvDownLoad);
 
         mXEngineNavBar = findViewById(R.id.mXEngineNavBar);
+
+        List<Double> iconSize = new ArrayList<>();
+        iconSize.add(20.0);
+        iconSize.add(20.0);
+        Map<String,String> map = new HashMap<>();
+        map.put("title","分享");
+        Map<String,String> map1 = new HashMap<>();
+        map1.put("title","更多");
+        List<Map<String,String> > itemlist = new ArrayList<>();
+        itemlist.add(map);
+        itemlist.add(map1);
+
+
+        mXEngineNavBar.setNavRightMenuBtn("更多", "#121212", null, null, iconSize, itemlist, false, "100", new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ToastUtils.showCenterToast(itemlist.get(position).get("title"));
+            }
+        });
         mXEngineNavBar.setLeftListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +113,7 @@ public class PreViewActivity extends BaseXEngineActivity implements View.OnClick
         fileName = getIntent().getStringExtra(FILE_NAME) ;
         fileType = getIntent().getStringExtra(FILE_TYPE);
         if(TextUtils.isEmpty(getIntent().getStringExtra(FILE_NAME))){
-            this.fileName = DownloadUtil.getFileName(filePath);
+            this.fileName = FileUtils.getFileName(filePath);
         }
         mXEngineNavBar.setTitle(fileName,null,null);
         tvFileName.setText(fileName);

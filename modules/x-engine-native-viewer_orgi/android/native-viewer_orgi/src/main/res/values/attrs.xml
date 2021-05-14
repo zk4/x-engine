@@ -3,7 +3,7 @@
 
     <declare-styleable name="CircularProgressBar">
         <attr name="stroke_width" format="dimension" />
-        <attr name="progress" format="float" />
+        <attr name="circular_progress" format="float" />
         <attr name="marker_progress" format="float" />
         <attr name="progress_color" format="color" />
         <attr name="progress_background_color" format="color" />

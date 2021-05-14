@@ -45,7 +45,7 @@
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 app:marker_visible="false"
-                app:progress="0.9"
+                app:circular_progress="0.9"
                 app:progress_background_color="#f3f3f3"
                 app:progress_color="@color/color_FFA824"
                 app:stroke_width="@dimen/dp_6"

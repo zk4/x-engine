@@ -90,31 +90,7 @@ public class DownloadUtil {
         });
     }
 
-    /**
-     * @param saveDir
-     * @return
-     * @throws IOException
-     * 判断下载目录是否存在
-     */
-    private String isExistDir(String saveDir) throws IOException {
-        // 下载位置
-        File downloadFile = new File(Environment.getExternalStorageDirectory(), saveDir);
-        if (!downloadFile.mkdirs()) {
-            downloadFile.createNewFile();
-        }
-        String savePath = downloadFile.getAbsolutePath();
-        return savePath;
-    }
 
-    /**
-     * @param url
-     * @return
-     * 从下载连接中解析出文件名
-     */
-    @NonNull
-    public static String getNameFromUrl(String url) {
-        return url.substring(url.lastIndexOf("/") + 1);
-    }
 
     public interface OnDownloadListener {
         /**
@@ -135,61 +111,6 @@ public class DownloadUtil {
     }
 
 
-    /**
-     * 获取文件类型
-     *
-     * @param path
-     * @return
-     */
-    public static String getFileType(String path) {
-        //获取文件名称
-        if(path.startsWith("http") && path.contains("?")){
-            path = path.substring(0, path.indexOf("?"));
-        }
-        String type = "";
-        if (path.endsWith(".pdf")) {
-            type = "pdf";
-        } else if (path.endsWith(".ppt")) {
-            type = "ppt";
-        } else if (path.endsWith(".pptx")) {
-            type = "pptx";
-        } else if (path.endsWith(".doc")) {
-            type = "doc";
-        } else if (path.endsWith(".docx")) {
-            type = "docx";
-        } else if (path.endsWith(".xls")) {
-            type = "xls";
-        } else if (path.endsWith(".xlsx")) {
-            type = "xlsx";
-        } else if (path.endsWith(".txt")) {
-            type = "txt";
-        } else if (path.endsWith(".epub")) {
-            type = "epub";
-        }
-        return type;
-    }
 
-    /**
-     * 获取文件名吃
-     * @param urlname
-     * @return
-     */
-    public static String getFileName(String urlname) {
-        if(urlname.startsWith("http")){
-            //获取文件名称
-            urlname = urlname.substring(0, urlname.indexOf("?"));
-            int start = urlname.lastIndexOf("/");
-            int end = urlname.length();
-            if (start != -1 && end != -1) {
-                return urlname.substring(start + 1, end);
-            } else {
-                return null;
-            }
-        }else{
-            File file = new File(urlname);
-            String fileName = file.getName();
-            return fileName;
-        }
-    }
 }
 

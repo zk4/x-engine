@@ -14,12 +14,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import module.viewer_orgi.R;
+
 public class Nativeviewer_orgi extends NativeModule implements IviewerStatus {
 
     @Override
     public String moduleId() {
         return "com.zkty.native.viewer_orgi";
     }
+
 
     @Override
     public void afterAllNativeModuleInited() {
@@ -37,8 +40,13 @@ public class Nativeviewer_orgi extends NativeModule implements IviewerStatus {
     }
 
     @Override
-    public String getModelPic() {
+    public String getModelPicUrl() {
         return "null";
+    }
+
+    @Override
+    public int getModelPicRes() {
+        return R.mipmap.ic_launcher;
     }
 
     @Override

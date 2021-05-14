@@ -1,10 +1,10 @@
 {
   "name": "@zkty-team/x-engine-ui",
-  "version": "1.1.2",
+  "version": "1.1.11",
   "private": false,
   "author": "Cwz.",
-  "main": "lib/ZKTYHeader.common.js",
-  "style": "lib/ZKTYHeader.css",
+  "main": "lib/Header.common.js",
+  "style": "lib/Header.css",
   "keywords": [
     "header",
     "x-engine-header",
@@ -18,10 +18,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name ZKTYHeader --dest lib package/index.js"
+    "lib": "vue-cli-service build --target lib --name Header --dest lib package/index.js"
   },
   "dependencies": {
-    "@zkty-team/x-engine-core": "^1.0.1",
+    "@zkty-team/x-engine-core": "^1.0.4",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.5.1"

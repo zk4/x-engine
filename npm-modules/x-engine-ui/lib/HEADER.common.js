@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["ZKTYHeader"] = factory();
-	else
-		root["ZKTYHeader"] = factory();
-})((typeof self !== 'undefined' ? self : this), function() {
-return /******/ (function(modules) { // webpackBootstrap
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -345,7 +336,7 @@ var match, version;
 
 if (v8) {
   match = v8.split('.');
-  version = match[0] + match[1];
+  version = match[0] < 4 ? 1 : match[0] + match[1];
 } else if (userAgent) {
   match = userAgent.match(/Edge\/(\d+)/);
   if (!match || match[1] >= 74) {
@@ -440,17 +431,16 @@ module.exports = fails(function () {
 /***/ "4930":
 /***/ (function(module, exports, __webpack_require__) {
 
-var IS_NODE = __webpack_require__("605d");
+/* eslint-disable es/no-symbol -- required for testing */
 var V8_VERSION = __webpack_require__("2d00");
 var fails = __webpack_require__("d039");
 
 // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
 module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
-  // eslint-disable-next-line es/no-symbol -- required for testing
-  return !Symbol.sham &&
+  return !String(Symbol()) ||
     // Chrome 38 Symbol has incorrect toString conversion
     // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
-    (IS_NODE ? V8_VERSION === 38 : V8_VERSION > 37 && V8_VERSION < 41);
+    !Symbol.sham && V8_VERSION && V8_VERSION < 41;
 });
 
 
@@ -512,12 +502,14 @@ module.exports = function (argument) {
 /***/ }),
 
 /***/ "5135":
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var toObject = __webpack_require__("7b0b");
 
 var hasOwnProperty = {}.hasOwnProperty;
 
-module.exports = function (it, key) {
-  return hasOwnProperty.call(it, key);
+module.exports = function hasOwn(it, key) {
+  return hasOwnProperty.call(toObject(it), key);
 };
 
 
@@ -532,7 +524,7 @@ var store = __webpack_require__("c6cd");
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.10.2',
+  version: '3.12.1',
   mode: IS_PURE ? 'pure' : 'global',
   copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 });
@@ -618,17 +610,6 @@ module.exports = function (bitmap, value) {
 
 /***/ }),
 
-/***/ "605d":
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof = __webpack_require__("c6b6");
-var global = __webpack_require__("da84");
-
-module.exports = classof(global.process) == 'process';
-
-
-/***/ }),
-
 /***/ "65f0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -685,7 +666,7 @@ var getterFor = function (TYPE) {
   };
 };
 
-if (NATIVE_WEAK_MAP) {
+if (NATIVE_WEAK_MAP || shared.state) {
   var store = shared.state || (shared.state = new WeakMap());
   var wmget = store.get;
   var wmhas = store.has;
@@ -1894,14 +1875,14 @@ var es_array_map = __webpack_require__("d81d");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__("b0c0");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0ddafba8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=a0020ff0&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"66bd09ac-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=76ca490a&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.isShowHeader)?_c('div',{staticClass:"navigator-class",class:[
     _vm.bgImage == '' ? 'no-bg' : 'img-mode',
     _vm.isWhiteColor ? 'text-white' : 'text-black' ],style:(_vm.style)},[_c('div',{staticClass:"title-wrapper"},[_c('div',{staticClass:"content-item-left",style:({ lineheight: _vm.lineheight + 'px' }),on:{"click":_vm.handlerLeftButton}},[_vm._t("left",[_c('i',{staticClass:"iconfont icon-fanhui"}),(!_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_c('span',{staticClass:"left-text-color"},[_vm._v(_vm._s(_vm.navTitle))])]):_vm._e()])],2),_c('div',{staticClass:"content-item-center",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("center",[(_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_vm._v(_vm._s(_vm.navTitle))]):_vm._e()])],2),_c('div',{staticClass:"content-item-right",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("right")],2)])]):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=a0020ff0&
+// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=76ca490a&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__("99af");
@@ -2075,24 +2056,24 @@ default:
 const module_names = new Set([]);
 const patch = {};
 
-function isFunction(functionToCheck) {
+function isFunction (functionToCheck) {
   return (
     functionToCheck && {}.toString.call(functionToCheck) === "[object Function]"
   );
 }
 
-function isObject(val) {
+function isObject (val) {
   if (val === null) {
     return false;
   }
   return typeof val === "function" || typeof val === "object";
 }
 
-function isString(x) {
+function isString (x) {
   return Object.prototype.toString.call(x) === "[object String]";
 }
 
-function isHybrid() {
+function isHybrid () {
   return window && window._dswk === true;
 }
 let xengine = {
@@ -2108,7 +2089,7 @@ let xengine = {
   assert: xassert,
 };
 
-function xassert(targetID, expression) {
+function xassert (targetID, expression) {
   if (expression) {
     document.getElementById(targetID).style.backgroundColor = "green";
   } else {
@@ -2116,7 +2097,7 @@ function xassert(targetID, expression) {
   }
 }
 
-function api(jsimoduleId, funcname, args, cb) {
+function api (jsimoduleId, funcname, args, cb) {
   if (args) {
     if (args.hasOwnProperty("__event__")) {
       only_idx++;
@@ -2135,19 +2116,21 @@ function api(jsimoduleId, funcname, args, cb) {
   return dsbridge.call(jsimoduleId + "." + funcname, args, cb);
 }
 
-function broadcastOff() {
+function broadcastOff () {
   xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }
-
-function broadcastOn(eventcb) {
-  //use("com.zkty.module.engine","broadcast")
+let eventCBStack = []
+function broadcastOn (eventcb) {
+  eventCBStack.push(eventcb);
   xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
-    return eventcb(res);
+    for (const cb of eventCBStack) {
+      cb(res.type, res.payload);
+    }
   });
 }
 let only_idx = 0;
 
-function use(ns, funcs) {
+function use (ns, funcs) {
   if (module_names.has(ns)) {
     throw ns + ',注册无效,模块已存在,xengine.use("' + ns + '") 只允许调用一次;';
   }
@@ -2201,7 +2184,7 @@ function use(ns, funcs) {
 }
 
 Object.defineProperty(xengine, "bridge", {
-  get() {
+  get () {
     return dsbridge;
   },
   set: function () {
@@ -2209,21 +2192,12 @@ Object.defineProperty(xengine, "bridge", {
   },
 });
 
-function platform() {
+function platform () {
   var ua = navigator.userAgent,
-    isWindowsPhone = /(?:Windows Phone)/.test(ua),
-    isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
     isAndroid = /(?:Android)/.test(ua),
-    isFireFox = /(?:Firefox)/.test(ua),
-    isChrome = /(?:Chrome|CriOS)/.test(ua),
-    isTablet =
-    /(?:iPad|PlayBook)/.test(ua) ||
-    (isAndroid && !/(?:Mobile)/.test(ua)) ||
-    (isFireFox && /(?:Tablet)/.test(ua)),
-    isPhone = /(?:iPhone)/.test(ua) && !isTablet,
-    isPc = !isPhone && !isAndroid && !isSymbian;
+    isPhone = /(?:iPhone)/.test(ua),
+    isPc = !isPhone && !isAndroid;
   return {
-    isTablet: isTablet,
     isPhone: isPhone,
     isAndroid: isAndroid,
     isPc: isPc,
@@ -2231,8 +2205,8 @@ function platform() {
 }
 
 // 监听输入框的软键盘弹起和收起事件
-function listenKeybord($input) {
-  if (judgeDeviceType.isIOS) {
+function listenKeybord ($input) {
+  if (this.platform.isPhone) {
     // IOS 键盘弹起：IOS 和 Android 输入框获取焦点键盘弹起
     $input.addEventListener(
       "focus",
@@ -2251,7 +2225,7 @@ function listenKeybord($input) {
   }
 
   // Andriod 键盘收起：Andriod 键盘弹起或收起页面高度会发生变化，以此为依据获知键盘收起
-  if (judgeDeviceType.isAndroid) {
+  if (this.platform.isAndroid) {
     var originHeight =
       document.documentElement.clientHeight || document.body.clientHeight;
 
@@ -2306,6 +2280,7 @@ patch.disableDoubleTapScroll = function (ms) {
   }
 };
 /* harmony default export */ var x_engine_core_src = (xengine);
+
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=script&lang=js&
 
 
@@ -2351,7 +2326,7 @@ patch.disableDoubleTapScroll = function (ms) {
 //
 
 /* harmony default export */ var headervue_type_script_lang_js_ = ({
-  name: "ZKTY-Header",
+  name: "Header",
   data: function data() {
     return {
       lineheight: "",
@@ -2391,7 +2366,13 @@ patch.disableDoubleTapScroll = function (ms) {
     } else {
       var statusBarHeight = x_engine_core_src.api("com.zkty.jsi.device", "getStatusBarHeight");
       var navheight = x_engine_core_src.api("com.zkty.jsi.device", "getNavigationHeight");
-      this.lineheight = Number(statusBarHeight) + Number(navheight);
+
+      if (navheight == undefined && statusBarHeight == undefined) {
+        this.lineheight = 64;
+      } else {
+        var height = Number(statusBarHeight) + Number(navheight);
+        this.lineheight = height;
+      }
     }
   },
   methods: {
@@ -2609,7 +2590,7 @@ var install = function install(Vue) {
 }; // 判断是否是直接引入文件
 
 
-if (typeof window !== 'undefined' && window.Vue) {
+if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
@@ -2617,7 +2598,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
   install: install,
   // 以下是具体的组件列表
-  ZKTYHeader: package_header
+  Header: package_header
 });
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 
@@ -2656,5 +2637,4 @@ module.exports = NATIVE_SYMBOL
 /***/ })
 
 /******/ });
-});
-//# sourceMappingURL=ZKTYHeader.umd.js.map
+//# sourceMappingURL=Header.common.js.map

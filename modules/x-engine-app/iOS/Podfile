@@ -6,6 +6,7 @@ def shared_pods
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
   
   # native
+
   pod 'x-engine-native-jsi', :path =>'../../x-engine-native-jsi'
   pod 'x-engine-native-ui', :path =>'../../x-engine-native-ui'
   pod 'x-engine-native-direct', :path =>'../../x-engine-native-direct'
@@ -21,6 +22,7 @@ def shared_pods
   pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
 
   # jsi
+  pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
   pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'
   pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
   pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'

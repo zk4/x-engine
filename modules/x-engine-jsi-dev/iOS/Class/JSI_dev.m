@@ -20,7 +20,7 @@ JSI_MODULE(JSI_dev)
 }
 
 - (void)_log:(NSString *)dto {
-    NSLog(@"%@",dto);
+    NSLog(@"JSLOG: %@",dto);
 }
 
 @end

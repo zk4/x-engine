@@ -22,6 +22,7 @@ def shared_pods
 
   # jsi
   pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'
+  pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
   pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
   pod 'x-engine-jsi-device', :path =>'../../x-engine-jsi-device'
   pod 'x-engine-jsi-camera', :path =>'../../x-engine-jsi-camera'

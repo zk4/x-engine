@@ -3,14 +3,11 @@
 # X-engine 简介
 
 x-engine 是一个跨端模块管理框架.
-只做一件事，<span style="color:blue">管理原生模块(iOS/android)</span>。 
-
-围绕这个功能有一系列的自动化: 工程结构, 文档生成. 代码生成. 自动注册.等. 
-
+只做一件事，<span style="color:blue">管理原生模块(iOS/android)</span>。 所有其他功能特性均由 plugin 支撑。
 
 <!-- tabs:start -->
 
-#### **架构图**
+## **当前架构图**
 
 ![](assets/image-20210422162652052.png)
 
@@ -56,7 +53,11 @@ x-engine 以 sdk 的形式集成. 而其他跨平台框架会以 sdk 的插件�
 
 
 
+## Next Step
 
+保持简单，拥抱社区力量。 taro 将是我们 UI 层演进的下一个方向。 
+
+![image-20210514161052958](assets/image-20210514161052958.png)
 
 
 # 外部资源

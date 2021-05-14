@@ -41,7 +41,7 @@
 <script>
 import XEngine from "@zkty-team/x-engine-core";
 export default {
-  name: "ZKTY-Header",
+  name: "HEADER",
   data() {
     return {
       lineheight: "",
@@ -79,7 +79,12 @@ export default {
     } else {
       let statusBarHeight = XEngine.api("com.zkty.jsi.device", "getStatusBarHeight");
       let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
-      this.lineheight = Number(statusBarHeight) + Number(navheight);
+      if (navheight == undefined && statusBarHeight == undefined) {
+        this.lineheight = 64;
+      } else {
+        let height = Number(statusBarHeight) + Number(navheight);
+        this.lineheight = height;
+      }
     }
   },
   methods: {

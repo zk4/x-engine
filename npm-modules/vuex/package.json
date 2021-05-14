@@ -1,0 +1,17 @@
+{
+  "name": "@zkty-team/vuex",
+  "version": "1.0.5",
+  "description": "与使用纯H5 SPA页面没有任何改变的 Vuex",
+  "main": "src/index.js",
+  "sideEffects": false,
+  "files": [
+    "src"
+  ],
+  "keywords": ["zkty-team/vuex", "vuex"],
+  "author": "Capricorn",
+  "license": "ISC",
+  "dependencies": {
+    "@zkty-team/x-engine-core": "^1.0.4",
+    "vue-router": "^3.5.1"
+  }
+}

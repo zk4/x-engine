@@ -6,6 +6,9 @@ PODS:
   - x-engine-jsi-camera (0.1.13):
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-jsi-dev (0.1.13):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-jsi-device (0.1.13):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -92,6 +95,7 @@ PODS:
 DEPENDENCIES:
   - JSONModel
   - x-engine-jsi-camera (from `../../x-engine-jsi-camera`)
+  - x-engine-jsi-dev (from `../../x-engine-jsi-dev`)
   - x-engine-jsi-device (from `../../x-engine-jsi-device`)
   - x-engine-jsi-direct (from `../../x-engine-jsi-direct`)
   - x-engine-jsi-legacy (from `../../x-engine-jsi-legacy`)
@@ -125,6 +129,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   x-engine-jsi-camera:
     :path: "../../x-engine-jsi-camera"
+  x-engine-jsi-dev:
+    :path: "../../x-engine-jsi-dev"
   x-engine-jsi-device:
     :path: "../../x-engine-jsi-device"
   x-engine-jsi-direct:
@@ -178,6 +184,7 @@ SPEC CHECKSUMS:
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   x-engine-jsi-camera: 54c1c94282a948bf673e36f5fb77e89d99eaf6f4
+  x-engine-jsi-dev: e2f829611e4131588e8a90b53a04e8493d2866f2
   x-engine-jsi-device: 38155c0d3b842b5ab08a19d8858af88c3690d3b8
   x-engine-jsi-direct: 576d2f25bc1d0c87e02a4ddf1469d955a9bed82e
   x-engine-jsi-legacy: c6add91d5426ffc532e78015e1f5a30dd3ce46b1
@@ -203,6 +210,6 @@ SPEC CHECKSUMS:
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 537b71e82b0464005422df50dc7114afa3d1881d
+PODFILE CHECKSUM: d5b0a035f9c32a058647b335682432d999aa39ce
 
 COCOAPODS: 1.10.0

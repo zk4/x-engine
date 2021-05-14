@@ -1,5 +1,5 @@
-import HEADER from "./src/header";
-HEADER.install = function(Vue) {
-  Vue.component(HEADER.name, HEADER);
+import Header from "./src/header";
+Header.install = function(Vue) {
+  Vue.component(Header.name, Header);
 };
-export default HEADER;
+export default Header;

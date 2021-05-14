@@ -20,9 +20,9 @@
 安装方式
 
 ```javascript
-import HEADER from "@zkty-team/x-engine-header";
-import "@zkty-team/x-engine-header/lib/HEADER.css";
-Vue.use(HEADER);
+import Header from "@zkty-team/x-engine-header";
+import "@zkty-team/x-engine-header/lib/Header.css";
+Vue.use(Header);
 ```
 
 使用方式
@@ -31,7 +31,7 @@ Vue.use(HEADER);
 
 ```javascript
 <div id="app">
-  <HEADER />
+  <Header />
 </div>
 ```
 

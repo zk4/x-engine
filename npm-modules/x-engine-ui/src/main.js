@@ -2,11 +2,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 // 本地package
-import HEADER from "../package/header/index";
+// import Header from "../package/header/index";
 // lib包中
-// import HEADER from "../lib/HEADER.common.js";
-import "../lib/HEADER.css";
-Vue.use(HEADER);
+import Header from "../lib/Header.common.js";
+// import "../lib/Header.css";
+Vue.use(Header);
 Vue.config.productionTip = false;
 
 new Vue({

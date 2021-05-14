@@ -41,7 +41,7 @@
 <script>
 import XEngine from "@zkty-team/x-engine-core";
 export default {
-  name: "HEADER",
+  name: "Header",
   data() {
     return {
       lineheight: "",

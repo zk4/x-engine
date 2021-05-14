@@ -23,12 +23,25 @@
             />
 
         <TextView
+            android:id="@+id/tvSetDefault"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:text="设置为默认方式"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/dp_12"
+            android:textColor="@color/color_12"
+            android:drawableLeft="@drawable/selector_default_status"
+            android:drawablePadding="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            />
+
+        <TextView
             android:id="@+id/tvOpenFile"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:text="打开"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="@dimen/dp_16"
             android:textColor="@color/color_12"
             />
 

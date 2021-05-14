@@ -7,22 +7,23 @@ version: 0.1.13
 
 
 ## openFileReader
-`sync`,`async`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用),[`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 打开文件
 **demo**
 ``` js
 
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", 'http://gfsei.atguat.net.cn/9b82cdfe4167b7da07fb395ce3963f4cw004.pdf?Expires=2563098084&AccessKey=40de0c1abb5e4506bccc56d4aee3d945&Signature=1083d55756878793fe68cf43fd599d95', (val) => {
-     document.getElementById("debug_text").innerText = JSON.stringify(val);
-  });
+    
 
 ``` 
 
-**无参数**
+**参数说明**
 
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| filePath | string | 必填 |  | 文件地址 |
+| fileName | string | 必填 |  | 文件名称 |
 **返回值**
 ``` js
-
 
 
 //返回参数

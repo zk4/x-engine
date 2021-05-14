@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         Nativeviewer nativeviewer = new Nativeviewer();
-        nativeviewer.openFileReader(filePath, new CallBack() {
+        nativeviewer.openFileReader(filePath,"", new CallBack() {
             @Override
             public void success(String dto) {
 

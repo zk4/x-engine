@@ -1,7 +1,6 @@
 package com.zkty.nativ.viewer.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zkty.nativ.viewer.bean.ModelInfoBean;
+import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.viewer.IviewerStatus;
 
 import java.util.List;
 
@@ -26,10 +25,10 @@ import module.viewer.R;
  */
 public class SelectOpenTypeAdapter extends  RecyclerView.Adapter<SelectOpenTypeAdapter.ViewHolder>{
     private final Context mContext;
-    private List<ModelInfoBean> mData;
+    private List<NativeModule> mData;
 
-    public int selectPosition = -1;
-    public SelectOpenTypeAdapter(Context mContext, List<ModelInfoBean> mData) {
+    public int selectPosition = 0;
+    public SelectOpenTypeAdapter(Context mContext, List<NativeModule> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -47,7 +46,7 @@ public class SelectOpenTypeAdapter extends  RecyclerView.Adapter<SelectOpenTypeA
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ModelInfoBean modelInfoBean = mData.get(position);
+        IviewerStatus modelInfoBean = (IviewerStatus) mData.get(position);
         holder.mTitle.setText(modelInfoBean.getModelName());
 
         if(selectPosition == position){

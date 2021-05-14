@@ -16,12 +16,18 @@
   import com.zkty.nativ.jsi.annotation.Optional;
 
   
+  class OpenFiileDTO {
+    public String filePath;
+
+    public String fileName;
+  }
+  
   class StatusDTO {
     public String result;
   }
   
   interface xengine_jsi_viewer_protocol {
-    public void _openFileReader(String dto, final CompletionHandler<StatusDTO> handler);
+    public void _openFileReader(OpenFiileDTO dto, final CompletionHandler<StatusDTO> handler);
   }
   
   
@@ -32,8 +38,8 @@
     }
   
     @JavascriptInterface
-    final public void openFileReader(String dto, final CompletionHandler<Object> handler) {
-      
+    final public void openFileReader(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      OpenFiileDTO dto= convert(jsonobj,OpenFiileDTO.class);
       _openFileReader(dto, new CompletionHandler<StatusDTO>() {
         @Override
         public void complete(StatusDTO retValue) { handler.complete(retValue); }

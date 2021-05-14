@@ -10,6 +10,9 @@ project(':native-core').projectDir = new File('../../x-engine-native-core/androi
 include ':native-ui'
 project(':native-ui').projectDir = new File('../../x-engine-native-ui/android/native-ui')
 
+include ':native-store'
+project(':native-store').projectDir = new File('../../x-engine-native-store/android/native-store')
+
 include ':native-protocols'
 project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
 

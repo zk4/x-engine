@@ -6,8 +6,16 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
+@protocol OpenFiileDTO;
 @protocol StatusDTO;
+@class OpenFiileDTO;
 @class StatusDTO;
+
+@interface OpenFiileDTO: JSONModel
+  	@property(nonatomic,copy) NSString* filePath;
+   	@property(nonatomic,copy) NSString* fileName;
+@end
+    
 
 @interface StatusDTO: JSONModel
   	@property(nonatomic,copy) NSString* result;
@@ -17,7 +25,7 @@
 
 @protocol xengine_jsi_viewer_protocol
        @required 
-        - (void) _openFileReader:(NSString*) dto complete:(void (^)(StatusDTO* result,BOOL complete)) completionHandler;
+        - (void) _openFileReader:(OpenFiileDTO*) dto complete:(void (^)(StatusDTO* result,BOOL complete)) completionHandler;
 
 @end
   

@@ -6,13 +6,15 @@ import android.util.Log;
 import com.tencent.mmkv.MMKV;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.store.StoreUtils;
+import com.zkty.nativ.viewer.IviewerStatus;
 import com.zkty.nativ.viewer_orgi.activity.PreViewActivity;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nativeviewer_orgi extends NativeModule implements Iviewer_orgi {
+public class Nativeviewer_orgi extends NativeModule implements IviewerStatus {
 
     @Override
     public String moduleId() {
@@ -26,7 +28,12 @@ public class Nativeviewer_orgi extends NativeModule implements Iviewer_orgi {
 
     @Override
     public boolean isDefault() {
-        return false;
+        return (boolean) StoreUtils.get(moduleId(),false);
+    }
+
+    @Override
+    public void setDefault(Boolean isDefault) {
+        StoreUtils.put(moduleId(),isDefault);
     }
 
     @Override
@@ -55,10 +62,8 @@ public class Nativeviewer_orgi extends NativeModule implements Iviewer_orgi {
     }
 
     @Override
-    public void openFileReader(String filePath, String fileType) {
-        Intent intent = new Intent(XEngineApplication.getCurrentActivity(), PreViewActivity.class);
-        intent.putExtra("filePath",filePath);
-        intent.putExtra("fileType",fileType);
-        XEngineApplication.getCurrentActivity().startActivity(intent);
+    public void openFileReader(String filePath, String fileName, String fileType) {
+        PreViewActivity.startAty(filePath,fileName,fileType);
     }
+
 }

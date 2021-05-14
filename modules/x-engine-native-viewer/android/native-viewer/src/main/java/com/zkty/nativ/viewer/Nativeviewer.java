@@ -1,19 +1,15 @@
 package com.zkty.nativ.viewer;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.utils.FileUtils;
-import com.zkty.nativ.ui.view.dialog.DialogHelper;
 import com.zkty.nativ.viewer.dialog.SelectOpenTypeDialog;
 import com.zkty.nativ.viewer.utils.DownloadUtil;
 
-import java.io.File;
 import java.util.List;
 
 public class Nativeviewer extends NativeModule implements Iviewer {
@@ -26,6 +22,8 @@ public class Nativeviewer extends NativeModule implements Iviewer {
 
     //文件路径
     private String filePath;
+    //h5 回调
+    private CallBack callBack;
 
     @Override
     public String moduleId() {
@@ -40,7 +38,8 @@ public class Nativeviewer extends NativeModule implements Iviewer {
 
     @Override
     public void openFileReader(String fileUrl, String fileName,CallBack callBack) {
-        this.fileType = DownloadUtil.getFileType(fileUrl);
+        this.callBack = callBack;
+        this.fileType = FileUtils.getFileType(fileUrl);
         this.fileName = fileName;
         this.filePath = fileUrl;
 
@@ -51,7 +50,6 @@ public class Nativeviewer extends NativeModule implements Iviewer {
                 if (!iViewer.typeList().contains(fileType)) {
                     modules.remove(iViewer);
                 }
-                iViewer.setDefault(false);
             }
         }
         NativeModule nativeModule = modules.get(0);
@@ -66,11 +64,12 @@ public class Nativeviewer extends NativeModule implements Iviewer {
     //支持的类型
     public void checkModel() {
         if (TextUtils.isEmpty(filePath)) {
-            ToastUtils.showCenterToast("文件路径为空");
+            callBack.success("文件地址");
             return;
         }
         //没有符合的组件
         if (modules.size() == 0) {
+            callBack.success("不支持该文件类型");
             return;
         }
         //只有一个组件
@@ -114,67 +113,6 @@ public class Nativeviewer extends NativeModule implements Iviewer {
         iviewerStatus.openFileReader(filePath, fileName, fileType);
         iviewerStatus.setDefault(isDefault);
     }
-
-
-
-//    /**
-//     * 下载文件
-//     *
-//     */
-//    public void downloadFile() {
-//        //创建文件夹
-//        File folder = new File(XEngineApplication.getCurrentActivity().getExternalCacheDir().getAbsoluteFile().getPath() + "/downloads");
-//        if (!folder.exists()) {
-//            folder.mkdirs();
-//        }
-//        if(TextUtils.isEmpty(fileName)){
-//            //获取文件名称
-//            String realUrl = filePath.substring(0, filePath.indexOf("?"));
-//            this.fileName = getFileName(realUrl);
-//        }
-//
-//
-//        //要保存文件
-//        File file = new File(folder.getPath() + "/" + fileName);
-//        //文件路径
-//        this.filePath = file.getPath();
-//        //文件存 直接打开 不下载
-//        if (file.exists()) {
-//            checkFile();
-//            return;
-//        }
-//        //开始下载'
-//        XEngineApplication.getCurrentActivity().runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                DialogHelper.showLoadingDialog(XEngineApplication.getCurrentActivity(), "下载中...", 0);
-//            }
-//        });
-//        DownloadUtil.get().download(filePath, filePath, new DownloadUtil.OnDownloadListener() {
-//            @Override
-//            public void onDownloadSuccess() {
-//                XEngineApplication.getCurrentActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        DialogHelper.showSuccessDialog(XEngineApplication.getCurrentActivity(), "下载成功", 1);
-//                        checkFile();
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onDownloading(int progress) {
-//                //进度
-//                Log.i("注意", progress + "%");
-//            }
-//
-//            @Override
-//            public void onDownloadFailed() {
-//                //失败
-//                DialogHelper.showSuccessDialog(XEngineApplication.getCurrentActivity(), "下载失败", 1);
-//            }
-//        });
-//    }
 
 
 }

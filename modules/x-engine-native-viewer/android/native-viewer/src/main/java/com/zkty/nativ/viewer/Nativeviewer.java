@@ -52,8 +52,6 @@ public class Nativeviewer extends NativeModule implements Iviewer {
                 }
             }
         }
-        NativeModule nativeModule = modules.get(0);
-        modules.add(nativeModule);
         checkModel();
     }
 

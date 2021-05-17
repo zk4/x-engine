@@ -11,13 +11,11 @@
 @protocol iViewer <NSObject>
 ///打开方式
 @property (nonatomic,assign)BOOL defaultState;
-///模块
-- (nonnull NSString *)modulName;
 ///类型
 - (nonnull NSArray *)modulTypeList;
 
 - (BOOL)getDefaultState;
-
+//
 - (void)openFileWithfileUrl:(NSString *)url fileType:(NSString *)type callBack:(void(^)(NSString *__nullable filepath))callBack;
 @end
 #endif /* iViewer_h */

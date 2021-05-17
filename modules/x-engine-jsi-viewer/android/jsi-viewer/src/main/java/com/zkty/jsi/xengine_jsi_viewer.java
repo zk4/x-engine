@@ -31,7 +31,7 @@
   }
   
   
-    public abstract class xengine_jsi_viewer extends JSIModule implements xengine_jsi_viewer_protocol {
+  public abstract class xengine_jsi_viewer extends JSIModule implements xengine_jsi_viewer_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.viewer";

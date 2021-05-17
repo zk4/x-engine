@@ -11,7 +11,7 @@ version: 0.1.13
 
 
 ## get
-[`sync`](/docs/modules/模块-规范?id=jsi-调用)
+`sync`
 
 **demo**
 ``` js
@@ -24,7 +24,6 @@ version: 0.1.13
 ``` 
 
 **无参数**
-
 **返回值**
 ``` js
 string
@@ -33,7 +32,7 @@ string
 
 
 ## set
-[`sync`](/docs/modules/模块-规范?id=jsi-调用)
+`sync`
 
 **demo**
 ``` js

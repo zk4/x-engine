@@ -7,7 +7,7 @@ version: 0.1.13
 
 
 ## openImagePicker
-[`async`](/docs/modules/模块-规范?id=jsi-调用)
+`async`
 > 调用相机
 **demo**
 ``` js
@@ -54,7 +54,7 @@ string
 
 
 ## saveImageToPhotoAlbum
-[`async`](/docs/modules/模块-规范?id=jsi-调用)
+`async`
 > 保存到相册
 **demo**
 ``` js

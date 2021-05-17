@@ -49,7 +49,7 @@ public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_camera_DTO dto, final Complet
   }
   
   
-    public abstract class xengine_jsi_camera extends JSIModule implements xengine_jsi_camera_protocol {
+  public abstract class xengine_jsi_camera extends JSIModule implements xengine_jsi_camera_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.camera";

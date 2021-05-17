@@ -2,15 +2,21 @@
 
 # X-engine 简介
 
-x-engine 是一个跨端模块管理框架.
-只做一件事，<span style="color:blue">管理原生模块(iOS/android)</span>。 
+x-engine 是一个跨端模块管理框架. 只做一件事，<span style="color:blue">管理原生模块(iOS/android)</span>。 所有其他功能特性均由 plugin 支撑。
 
-围绕这个功能有一系列的自动化: 工程结构, 文档生成. 代码生成. 自动注册.等. 
+你可以基于 x-engine 开发原生 App。也可以基于 x-engine 开发 react-native 与原生的混合。
+
+基于 x-engine 我们要做的事：
+
+1. 沉淀各咱原生模块(Native Module)。
+2. 打通跨端框块路由与通信。
+3. 快速开发方案支持。
+
 
 
 <!-- tabs:start -->
 
-#### **架构图**
+## **当前架构图**
 
 ![](assets/image-20210422162652052.png)
 
@@ -54,9 +60,13 @@ x-engine 的优势在于, 原生为主. 由原生主导. 充分利用社区已�
 
 x-engine 以 sdk 的形式集成. 而其他跨平台框架会以 sdk 的插件集成.也就代表对原生工程不会有侵入性. 
 
+至于 UI 层你愿意用什么去做混合应用开发。完全由使用者决定。
 
+## Next Step
 
+保持简单，拥抱社区力量。 taro 的 UI 方案比较完善，且基于开源社区。将会基于 x-engine 做深度整合。
 
+![image-20210514161052958](assets/image-20210514161052958.png)
 
 
 # 外部资源

@@ -21,7 +21,9 @@ interface StatusDTO {
 
 //打开文件 
 function openFileReader(fileDTO: OpenFiileDTO): StatusDTO {
-    
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {filePath: "http://gfsei.atguat.net.cn/9b82cdfe4167b7da07fb395ce3963f4cw004.pdf?Expires=2563098084&AccessKey=40de0c1abb5e4506bccc56d4aee3d945&Signature=1083d55756878793fe68cf43fd599d95",fileName: "协议.pdf"}, (val) => {
+    console.log(JSON.stringify(val))
+      });    
 }
 
 

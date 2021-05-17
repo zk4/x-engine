@@ -18,20 +18,19 @@
   
   
   interface xengine_jsi_secrect_protocol {
-    
-public String _get(String dto);
+        String _get(String dto);
   }
   
   
-    public abstract class xengine_jsi_secrect extends JSIModule implements xengine_jsi_secrect_protocol {
+  public abstract class xengine_jsi_secrect extends JSIModule implements xengine_jsi_secrect_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.secrect";
     }
   
         @JavascriptInterface
-        public String get(String dto) {
-          
+        public String get(JSONObject jsonobj) {
+          String dto= convert(jsonobj,String.class);
           return _get(dto);
         }
         

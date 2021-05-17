@@ -23,22 +23,20 @@
   }
   
   interface xengine_jsi_localstorage_protocol {
-    
-public String _get(String dto);
-
-public void _set(_0_com_zkty_jsi_localstorage_DTO dto);
+        String _get(String dto);
+    void _set(_0_com_zkty_jsi_localstorage_DTO dto);
   }
   
   
-    public abstract class xengine_jsi_localstorage extends JSIModule implements xengine_jsi_localstorage_protocol {
+  public abstract class xengine_jsi_localstorage extends JSIModule implements xengine_jsi_localstorage_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.localstorage";
     }
   
         @JavascriptInterface
-        public String get(String dto) {
-          
+        public String get(JSONObject jsonobj) {
+          String dto= convert(jsonobj,String.class);
           return _get(dto);
         }
         

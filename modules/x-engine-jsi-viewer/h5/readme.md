@@ -7,7 +7,7 @@ version: 0.1.13
 
 
 ## openFileReader
-`sync`,`async`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用),[`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 打开文件
 **demo**
 ``` js

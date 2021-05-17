@@ -36,7 +36,7 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
   }
   
   
-  public abstract class xengine_jsi_ui extends JSIModule implements xengine_jsi_ui_protocol {
+    public abstract class xengine_jsi_ui extends JSIModule implements xengine_jsi_ui_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.ui";
@@ -45,7 +45,7 @@ public void _setNavBarHidden(NavHiddenBarDTO dto, final CompletionHandler<Nullab
     @JavascriptInterface
     final public void setNavTitle(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       String defaultStr = "{  \"titleSize\": 16}";
-      obj = mergeDefault(obj, defaultStr);
+      jsonobj = mergeDefault(jsonobj, defaultStr);
       NavTitleDTO dto= convert(jsonobj,NavTitleDTO.class);
       _setNavTitle(dto, new CompletionHandler<Nullable>() {
         @Override

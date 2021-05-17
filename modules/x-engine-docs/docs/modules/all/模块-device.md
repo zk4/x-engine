@@ -11,7 +11,7 @@ version: 0.1.13
 
 
 ## getStatusBarHeight
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 获取状态栏高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
@@ -22,6 +22,7 @@ version: 0.1.13
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -30,7 +31,7 @@ string
 
 
 ## getNavigationHeight
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 获取导航条高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
@@ -41,6 +42,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -49,7 +51,7 @@ string
 
 
 ## getScreenHeight
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 获取屏幕高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
@@ -60,6 +62,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -68,7 +71,7 @@ string
 
 
 ## getTabbarHeight
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 获取tabBar高度<br>单位 （android : dp ； ios: pt ； 对应h5: 逻辑像素 px）
 **demo**
 ``` js
@@ -79,6 +82,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -87,7 +91,7 @@ string
 
 
 ## callPhone
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 打电话
 **demo**
 ``` js
@@ -113,7 +117,7 @@ string
 
 
 ## sendMessage
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 发短信
 **demo**
 ``` js
@@ -139,7 +143,7 @@ string
 
 
 ## getDeviceInfo
-`async`
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 获取设备信息
 **demo**
 ``` js
@@ -151,6 +155,7 @@ string
 ``` 
 
 **无参数**
+
 **返回值**
 ``` js
 

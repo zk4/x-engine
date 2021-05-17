@@ -37,20 +37,22 @@ NATIVE_MODULE(Native_viewer)
     self.store = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
 }
 
-- (void)setDefaultState:(BOOL)defaultState{
+- (void)setDefaultState:(BOOL)defaultState
+{
     [self.iviewer setDefaultState:defaultState];
 }
 
-- (BOOL)getDefaultState{
+- (BOOL)getDefaultState
+{
     return [self.iviewer getDefaultState];
 }
 
-- (nonnull NSArray *)modulTypeList
+- (nonnull NSArray *)openFileTypeList
 {
-    return  [self.iviewer modulTypeList];
+    return  [self.iviewer openFileTypeList];
 }
 
-- (void)openFileWithfileUrl:(NSString *)url fileType:(NSString *)type callBack:(void(^)(NSString *__nullable filepath))callBack
+- (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type callBack:(void(^_Nullable)(NSString *__nullable filepath))callBack;
 {
     [self.iviewer openFileWithfileUrl:url fileType:type callBack:callBack];
 }

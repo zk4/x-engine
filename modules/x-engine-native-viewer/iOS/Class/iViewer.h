@@ -12,10 +12,10 @@
 ///打开方式
 @property (nonatomic,assign)BOOL defaultState;
 ///类型
-- (nonnull NSArray *)modulTypeList;
+- (nonnull NSArray *)openFileTypeList;
 
 - (BOOL)getDefaultState;
 //
-- (void)openFileWithfileUrl:(NSString *)url fileType:(NSString *)type callBack:(void(^)(NSString *__nullable filepath))callBack;
+- (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type callBack:(void(^_Nullable)(NSString *__nullable filepath))callBack;
 @end
 #endif /* iViewer_h */

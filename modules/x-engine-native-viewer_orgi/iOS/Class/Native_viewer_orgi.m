@@ -48,20 +48,31 @@ NATIVE_MODULE(Native_viewer_orgi)
     self.viewerDict = [NSMutableDictionary new];
     return self;
 }
-- (nonnull NSArray *)modulTypeList{
+///仅支持打开文件类型
+- (nonnull NSArray *)openFileTypeList
+{
     return  @[@"pdf",@"doc",@"xls",@"rtf",@"txt",@"csv"];
 }
 
-- (void)setDefaultState:(BOOL)defaultState{
+- (void)setDefaultState:(BOOL)defaultState
+{
     [self.store set:[self moduleId] val:[NSNumber numberWithBool:defaultState]];
     [self.store saveTodisk];
 }
-- (BOOL)getDefaultState{
+
+- (BOOL)getDefaultState
+{
     return  [[self.store get:[self moduleId]] boolValue];
 }
-- (void)openFileWithfileUrl:(NSString *)url fileType:(NSString *)type callBack:(void(^)(NSString *__nullable filepath))callBack
+
+- (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type callBack:(void(^_Nullable)(NSString *__nullable filepath))callBack
 {
-    
+    BOOL openState = [self isConformFileOpenTypeList:[self openFileTypeList] currectFileType:type];
+    if (!openState) {
+        NSLog(@"不支持的类型");
+        return;
+    }
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:url.lastPathComponent];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -93,7 +104,20 @@ NATIVE_MODULE(Native_viewer_orgi)
         callBack(url.absoluteString);
     }
 }
+- (BOOL)isConformFileOpenTypeList:(NSArray *)list currectFileType:(NSString *)type
+{
+    __block BOOL boo = false;
+    [list enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([type isEqualToString:list[idx]]){
+            boo = YES;
+            *stop = YES;
+        }else{
+            boo = NO;
+        }
+    }];
+    return boo;
 
+}
 
 
 

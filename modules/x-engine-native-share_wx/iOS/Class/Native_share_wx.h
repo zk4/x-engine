@@ -7,9 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "NativeModule.h"
-#import "iShare_wx.h"
+#import "iShare.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_share_wx : NativeModule <iShare_wx>
+@interface Native_share_wx : NativeModule <iShare>
  
 @end
 

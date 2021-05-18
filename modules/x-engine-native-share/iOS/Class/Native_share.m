@@ -8,6 +8,7 @@
 
 #import "Native_share.h"
 #import "NativeContext.h"
+#import "iShare.h"
 
 @interface Native_share()
 { }
@@ -28,6 +29,10 @@ NATIVE_MODULE(Native_share)
 } 
 -(NSString*) test{
     return @"test";
+}
+- (void)shareWithTitle:(NSString *)title{
+    id<iShare> direct = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iShare)];
+    [direct shareWithTitle:@"title"];
 }
 @end
  

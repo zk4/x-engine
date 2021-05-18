@@ -6,78 +6,30 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol NamedDTO;
 @protocol _0_com_zkty_jsi_share_DTO;
-@protocol _1_com_zkty_jsi_share_DTO;
-@protocol _2_com_zkty_jsi_share_DTO;
-@protocol _3_com_zkty_jsi_share_DTO;
-@class NamedDTO;
 @class _0_com_zkty_jsi_share_DTO;
-@class _1_com_zkty_jsi_share_DTO;
-@class _2_com_zkty_jsi_share_DTO;
-@class _3_com_zkty_jsi_share_DTO;
-
-@interface NamedDTO: JSONModel
-  	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,assign) NSInteger titleSize;
-@end
-    
 
 @interface _0_com_zkty_jsi_share_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* a;
-   	@property(nonatomic,strong) _1_com_zkty_jsi_share_DTO* i;
-@end
-    
-
-@interface _1_com_zkty_jsi_share_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* n1;
-@end
-    
-
-@interface _2_com_zkty_jsi_share_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* goodname;
-   	@property(nonatomic,assign) NSInteger price;
-@end
-    
-
-@interface _3_com_zkty_jsi_share_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* name;
-   	@property(nonatomic,assign) NSInteger age;
+  	@property(nonatomic,copy) NSString* channel;
+   	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,copy) NSString* title;
+   	@property(nonatomic,copy) NSString* desc;
+   	@property(nonatomic,copy) NSString* text;
+   	@property(nonatomic,copy) NSString* imgUrl;
+   	@property(nonatomic,copy) NSString* imgData;
+   	@property(nonatomic,copy) NSString* url;
+   	@property(nonatomic,copy) NSString* userName;
+   	@property(nonatomic,copy) NSString* path;
+   	@property(nonatomic,copy) NSString* link;
+   	@property(nonatomic,assign) NSInteger miniProgramType;
 @end
     
 
 
 @protocol xengine_jsi_share_protocol
        @required 
-       - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
-       @required 
-       - (void) _simpleMethod;
-    
-      @required 
-        - (void) _simpleArgMethod:(NSString*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-   @required 
-       - (NSString*) _simpleArgMethod:(NSString*)dto;
-    
-      @required 
-        - (void) _nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_share_DTO* result,BOOL complete)) completionHandler;
-       @required 
-       - (_0_com_zkty_jsi_share_DTO*) _nestedAnonymousObject;
-    
-      @required 
-        - (void) _namedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
-       @required 
-       - (NamedDTO*) _namedObject;
-    
-      @required 
-        - (void) _namedObjectWithNamedArgs:(NamedDTO*) dto complete:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
-   @required 
-       - (NamedDTO*) _namedObjectWithNamedArgs:(NamedDTO*)dto;
-    
-      @required 
-        - (void) _namedObjectWithArgs:(_3_com_zkty_jsi_share_DTO*) dto complete:(void (^)(_2_com_zkty_jsi_share_DTO* result,BOOL complete)) completionHandler;
-   @required 
-       - (_2_com_zkty_jsi_share_DTO*) _namedObjectWithArgs:(_3_com_zkty_jsi_share_DTO*)dto;
-    
+        - (void) _share:(_0_com_zkty_jsi_share_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
 @end
   
 

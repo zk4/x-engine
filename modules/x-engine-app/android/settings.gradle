@@ -37,6 +37,12 @@ project(':native-direct_omp').projectDir = new File('../../x-engine-native-direc
 include ':native-direct_microapp'
 project(':native-direct_microapp').projectDir = new File('../../x-engine-native-direct_microapp/android/native-direct_microapp')
 
+include ':native-share'
+project(':native-share').projectDir = new File('../../x-engine-native-share/android/native-share')
+
+include ':native-share_wx'
+project(':native-share_wx').projectDir = new File('../../x-engine-native-share_wx/android/native-share_wx')
+
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
@@ -69,3 +75,6 @@ project(':jsi-vuex').projectDir = new File('../../x-engine-jsi-vuex/android/jsi-
 
 include ':jsi-broadcast'
 project(':jsi-broadcast').projectDir = new File('../../x-engine-jsi-broadcast/android/jsi-broadcast')
+
+include ':jsi-share'
+project(':jsi-share').projectDir = new File('../../x-engine-jsi-share/android/jsi-share')

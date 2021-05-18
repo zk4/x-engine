@@ -68,6 +68,8 @@ dependencies {
     implementation project(':native-direct_microapp')
     implementation project(':native-direct_omp')
     implementation project(':native-jsi')
+    implementation project(':native-share')
+    implementation project(':native-share_wx')
 
     implementation project(':jsi-direct')
     implementation project(':jsi-secret')
@@ -79,4 +81,5 @@ dependencies {
     implementation project(':jsi-localstorage')
     implementation project(':jsi-vuex')
     implementation project(':jsi-broadcast')
+    implementation project(':jsi-share')
 }

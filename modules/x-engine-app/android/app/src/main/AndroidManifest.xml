@@ -37,6 +37,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <meta-data android:name="wx_appid"
+            android:value="wxa11a02e98f71d356"/>
     </application>
 
 </manifest>

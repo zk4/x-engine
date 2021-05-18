@@ -16,47 +16,44 @@
   import com.zkty.nativ.jsi.annotation.Optional;
 
   
-  class NamedDTO {
-    public String title;
-
-    public Integer titleSize;
-  }
-  
   class _0_com_zkty_jsi_share_DTO {
-    public String a;
+    public String channel;
 
-    public _1_com_zkty_jsi_share_DTO i;
-  }
-  
-  class _1_com_zkty_jsi_share_DTO {
-    public String n1;
-  }
-  
-  class _2_com_zkty_jsi_share_DTO {
-    public String goodname;
+    public String type;
 
-    public Integer price;
-  }
-  
-  class _3_com_zkty_jsi_share_DTO {
-    public String name;
+    @Optional
+		public String title;
 
-    public Integer age;
+    @Optional
+		public String desc;
+
+    @Optional
+		public String text;
+
+    @Optional
+		public String imgUrl;
+
+    @Optional
+		public String imgData;
+
+    @Optional
+		public String url;
+
+    @Optional
+		public String userName;
+
+    @Optional
+		public String path;
+
+    @Optional
+		public String link;
+
+    @Optional
+		public Integer miniProgramType;
   }
   
   interface xengine_jsi_share_protocol {
-    public void _simpleMethod(final CompletionHandler<Nullable> handler);
-public void _simpleMethod();
-public void _simpleArgMethod(String dto, final CompletionHandler<String> handler);
-public String _simpleArgMethod(String dto);
-public void _nestedAnonymousObject(final CompletionHandler<_0_com_zkty_jsi_share_DTO> handler);
-public _0_com_zkty_jsi_share_DTO _nestedAnonymousObject();
-public void _namedObject(final CompletionHandler<NamedDTO> handler);
-public NamedDTO _namedObject();
-public void _namedObjectWithNamedArgs(NamedDTO dto, final CompletionHandler<NamedDTO> handler);
-public NamedDTO _namedObjectWithNamedArgs(NamedDTO dto);
-public void _namedObjectWithArgs(_3_com_zkty_jsi_share_DTO dto, final CompletionHandler<_2_com_zkty_jsi_share_DTO> handler);
-public _2_com_zkty_jsi_share_DTO _namedObjectWithArgs(_3_com_zkty_jsi_share_DTO dto);
+    public void _share(_0_com_zkty_jsi_share_DTO dto, final CompletionHandler<String> handler);
   }
   
   
@@ -67,29 +64,9 @@ public _2_com_zkty_jsi_share_DTO _namedObjectWithArgs(_3_com_zkty_jsi_share_DTO 
     }
   
     @JavascriptInterface
-    final public void simpleMethod(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _simpleMethod(new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
-        @JavascriptInterface
-        public Object simpleMethod(JSONObject jsonobj) {
-          
-          _simpleMethod();
-          return null;
-        }
-        
-
-    @JavascriptInterface
-    final public void simpleArgMethod(String dto, final CompletionHandler<Object> handler) {
-      
-      _simpleArgMethod(dto, new CompletionHandler<String>() {
+    final public void share(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _0_com_zkty_jsi_share_DTO dto= convert(jsonobj,_0_com_zkty_jsi_share_DTO.class);
+      _share(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override
@@ -99,90 +76,6 @@ public _2_com_zkty_jsi_share_DTO _namedObjectWithArgs(_3_com_zkty_jsi_share_DTO 
       });
 
     }
-        @JavascriptInterface
-        public String simpleArgMethod(String dto) {
-          
-          return _simpleArgMethod(dto);
-        }
-        
-
-    @JavascriptInterface
-    final public void nestedAnonymousObject(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _nestedAnonymousObject(new CompletionHandler<_0_com_zkty_jsi_share_DTO>() {
-        @Override
-        public void complete(_0_com_zkty_jsi_share_DTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(_0_com_zkty_jsi_share_DTO value) { handler.setProgressData(value); }
-      });
-
-    }
-        @JavascriptInterface
-        public _0_com_zkty_jsi_share_DTO nestedAnonymousObject(JSONObject jsonobj) {
-          
-          return _nestedAnonymousObject();
-        }
-        
-
-    @JavascriptInterface
-    final public void namedObject(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _namedObject(new CompletionHandler<NamedDTO>() {
-        @Override
-        public void complete(NamedDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(NamedDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-        @JavascriptInterface
-        public NamedDTO namedObject(JSONObject jsonobj) {
-          
-          return _namedObject();
-        }
-        
-
-    @JavascriptInterface
-    final public void namedObjectWithNamedArgs(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      NamedDTO dto= convert(jsonobj,NamedDTO.class);
-      _namedObjectWithNamedArgs(dto, new CompletionHandler<NamedDTO>() {
-        @Override
-        public void complete(NamedDTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(NamedDTO value) { handler.setProgressData(value); }
-      });
-
-    }
-        @JavascriptInterface
-        public NamedDTO namedObjectWithNamedArgs(JSONObject jsonobj) {
-          NamedDTO dto= convert(jsonobj,NamedDTO.class);
-          return _namedObjectWithNamedArgs(dto);
-        }
-        
-
-    @JavascriptInterface
-    final public void namedObjectWithArgs(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _3_com_zkty_jsi_share_DTO dto= convert(jsonobj,_3_com_zkty_jsi_share_DTO.class);
-      _namedObjectWithArgs(dto, new CompletionHandler<_2_com_zkty_jsi_share_DTO>() {
-        @Override
-        public void complete(_2_com_zkty_jsi_share_DTO retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(_2_com_zkty_jsi_share_DTO value) { handler.setProgressData(value); }
-      });
-
-    }
-        @JavascriptInterface
-        public _2_com_zkty_jsi_share_DTO namedObjectWithArgs(JSONObject jsonobj) {
-          _3_com_zkty_jsi_share_DTO dto= convert(jsonobj,_3_com_zkty_jsi_share_DTO.class);
-          return _namedObjectWithArgs(dto);
-        }
-        
   }
   
 

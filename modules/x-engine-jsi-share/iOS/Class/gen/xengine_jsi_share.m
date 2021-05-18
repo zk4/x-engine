@@ -6,36 +6,19 @@
 #import "xengine_jsi_share.h"
 
 
-@implementation NamedDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
 @implementation _0_com_zkty_jsi_share_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
-@implementation _1_com_zkty_jsi_share_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation _2_com_zkty_jsi_share_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
-@implementation _3_com_zkty_jsi_share_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+   
+   	if ([propertyName isEqualToString:@"title"]) { return YES; }
+   	if ([propertyName isEqualToString:@"desc"]) { return YES; }
+   	if ([propertyName isEqualToString:@"text"]) { return YES; }
+   	if ([propertyName isEqualToString:@"imgUrl"]) { return YES; }
+   	if ([propertyName isEqualToString:@"imgData"]) { return YES; }
+   	if ([propertyName isEqualToString:@"url"]) { return YES; }
+   	if ([propertyName isEqualToString:@"userName"]) { return YES; }
+   	if ([propertyName isEqualToString:@"path"]) { return YES; }
+   	if ([propertyName isEqualToString:@"link"]) { return YES; }
+   	if ([propertyName isEqualToString:@"miniProgramType"]) { return YES; }	return NO;
     }
 @end
     
@@ -54,68 +37,12 @@
         return @"com.zkty.jsi.share";
     }
     
-    - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) share:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _simpleMethod:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-  - (id) simpleMethod:(NSDictionary*) dict {
-   [self _simpleMethod];
-              return nil;
-    }
-    - (void) simpleArgMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NSString* dto = [self convert:dict clazz:NSString.class];
-          [self _simpleArgMethod:dto complete:^(NSString* result,  BOOL complete) {
+          _0_com_zkty_jsi_share_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_share_DTO.class];
+          [self _share:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
       }
-  - (NSString*) simpleArgMethod:(NSDictionary*) dict {
-      NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _simpleArgMethod:dto];
-        }
-    - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _nestedAnonymousObject:^(_0_com_zkty_jsi_share_DTO* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-  - (_0_com_zkty_jsi_share_DTO*) nestedAnonymousObject:(NSDictionary*) dict {
-  return [self _nestedAnonymousObject];
-    }
-    - (void) namedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _namedObject:^(NamedDTO* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-  - (NamedDTO*) namedObject:(NSDictionary*) dict {
-  return [self _namedObject];
-    }
-    - (void) namedObjectWithNamedArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-          [self _namedObjectWithNamedArgs:dto complete:^(NamedDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (NamedDTO*) namedObjectWithNamedArgs:(NSDictionary*) dict {
-      NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-      return [self _namedObjectWithNamedArgs:dto];
-        }
-    - (void) namedObjectWithArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          _3_com_zkty_jsi_share_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_share_DTO.class];
-          [self _namedObjectWithArgs:dto complete:^(_2_com_zkty_jsi_share_DTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (_2_com_zkty_jsi_share_DTO*) namedObjectWithArgs:(NSDictionary*) dict {
-      _3_com_zkty_jsi_share_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_share_DTO.class];
-      return [self _namedObjectWithArgs:dto];
-        }
   @end

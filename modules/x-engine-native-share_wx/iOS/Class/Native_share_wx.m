@@ -29,8 +29,6 @@ NATIVE_MODULE(Native_share_wx)
 -(NSString*) test{
     return @"test";
 }
-- (void)shareWithTitle:(NSString *)title{
-    NSLog(@"分享成功");
-}
+
 @end
  

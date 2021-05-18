@@ -10,7 +10,7 @@
 #define iShare_h
 @protocol iShare <NSObject>
 -(NSString*) test;
-- (void)shareWithTitle:(NSString *)title;
+//- (void)shareWithTitle:(NSString *)title;
 
 @end
 #endif /* iShare_h */

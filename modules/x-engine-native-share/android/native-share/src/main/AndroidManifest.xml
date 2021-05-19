@@ -9,6 +9,6 @@
 
         <meta-data
             android:name="com.zkty.native.share"
-            android:value="com.zkty.nativ.share.Nativeshare" />
+            android:value="com.zkty.nativ.share.NativeShare" />
     </application>
 </manifest>

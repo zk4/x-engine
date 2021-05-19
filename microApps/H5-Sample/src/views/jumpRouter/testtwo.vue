@@ -27,27 +27,27 @@ export default {
     }
   },
 
-  beforeCreate() {
-    console.log("pagetwo-beforeCreate")
-  },
-  created() {
-    console.log("pagetwo-created")
-  },
-  beforeMount() {
-    console.log("beforeMount")
-  },
+  // beforeCreate() {
+  //   console.log("pagetwo-beforeCreate")
+  // },
+  // created() {
+  //   console.log("pagetwo-created")
+  // },
+  // beforeMount() {
+  //   console.log("beforeMount")
+  // },
   mounted() {
-    console.log("two mounted")
+    // console.log("two mounted")
     this.id = this.$route.query.id
     this.age = this.$route.query.age
     this.name = this.$route.query.name
   },
-  beforeDestroy() {
-    console.log("beforeDestroy")
-  },
-  destroyed() {
-    console.log("destroyed")
-  },
+  // beforeDestroy() {
+  //   console.log("beforeDestroy")
+  // },
+  // destroyed() {
+  //   console.log("destroyed")
+  // },
 
   methods: {
     handlerPush() {

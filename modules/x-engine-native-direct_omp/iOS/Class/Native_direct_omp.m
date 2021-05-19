@@ -150,7 +150,6 @@ NATIVE_MODULE(Native_direct_omp)
         
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         [currentVC.navigationController pushViewController:vc animated:YES];
-        
     }
 }
 

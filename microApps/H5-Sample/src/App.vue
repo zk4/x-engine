@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ZKTY-Header />
+    <Header />
     <router-view :style="style" />
   </div>
 </template>

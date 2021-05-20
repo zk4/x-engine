@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -55,7 +56,10 @@ import nativ.jsi.R;
 public class XEngineWebActivity extends BaseXEngineActivity {
     private static final String TAG = XEngineWebActivity.class.getSimpleName();
     private static final String VUE_LIFECYCLE_EVENT = "@@VUE_LIFECYCLE_EVENT";
-    private static final String NATIVE_CALL_VUE_MOUNTED = "NativeCallVueMounted";
+    private static final String ON_NATIVE_SHOW = "onNativeShow";
+    private static final String ON_NATIVE_HIDE = "onNativeHide";
+    private static final String ON_NATIVE_DESTROYED = "onNativeDestroyed";
+    private static final String ON_WEBVIEW_SHOW = "onWebviewShow";
 
     protected XEngineWebView mWebView;
     private RelativeLayout mRoot;
@@ -123,6 +127,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
         lifecycleListeners = new LinkedHashSet<>();
+
+        mWebView.setOnPageStateListener(() -> broadcast(VUE_LIFECYCLE_EVENT, ON_WEBVIEW_SHOW));
 
         mWebView.loadUrl(historyModel);
 
@@ -202,7 +208,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG, "onRestart()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -221,14 +226,15 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             new Handler().postDelayed(() ->
                             showScreenCapture(false)
                     , 400);
-            mWebView = XWebViewPool.sharedInstance().getLastWebView();
-            if (mWebView != null) {
-
-                if (mWebView.getParent() != null) {
-                    ((ViewGroup) mWebView.getParent()).removeView(mWebView);
-                }
-                ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
-            }
+//            mWebView = XWebViewPool.sharedInstance().getLastWebView();
+//            if (mWebView != null) {
+//
+//                if (mWebView.getParent() != null) {
+//                    ((ViewGroup) mWebView.getParent()).removeView(mWebView);
+//                }
+//                ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
+//            }
+            broadcast(VUE_LIFECYCLE_EVENT, ON_NATIVE_SHOW);
         }
 
         super.onResume();
@@ -239,14 +245,13 @@ public class XEngineWebActivity extends BaseXEngineActivity {
                 iterator.next().onResume();
             }
         }
-        broadcast(VUE_LIFECYCLE_EVENT, NATIVE_CALL_VUE_MOUNTED);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         isResume = false;
-        Log.d(TAG, "onPause()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
+        broadcast(VUE_LIFECYCLE_EVENT, ON_NATIVE_HIDE);
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -259,7 +264,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -270,6 +274,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     @Override
     protected void onDestroy() {
+        broadcast(VUE_LIFECYCLE_EVENT, ON_NATIVE_DESTROYED);
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -302,8 +307,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     }
 
     public void backUp() {
-
-        Log.d(TAG, "backUp()");
         //模拟 KeyEvent.ACTION_DOWN事件,调用onKeyDown
         new Thread(new Runnable() {
             public void run() {
@@ -497,30 +500,16 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     }
 
     private void broadcast(List<String> msg) {
-        Log.d(TAG, "发送全局广播：" + msg);
-        mWebView.callHandler("com.zkty.module.engine.broadcast", msg == null ? new Object[]{} : msg.toArray(), retValue -> Log.d(TAG, "broadcast:" + msg));
+        mWebView.callHandler("com.zkty.jsi.engine.lifecycle.notify", msg == null ? new Object[]{} : msg.toArray(), retValue -> Log.d(TAG, "broadcast:" + msg));
     }
 
     private void broadcast(String type, String payload) {
-
-        Log.d(TAG, "broadcast = onResume");
-      
-
+//        Log.d("DWebView-Log", "broadcast：type=" + type + " ,payload = " + payload + "__" + mWebView.hashCode());
         Map<String, String> bro = new HashMap<>();
         bro.put("type", type);
         bro.put("payload", payload);
+        mWebView.callHandler("com.zkty.jsi.engine.lifecycle.notify", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
 
-        for (XEngineWebView webView : XWebViewPool.sharedInstance().getWebViews()) {
-            webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
-        } for (XEngineWebView webView : XWebViewPool.sharedInstance().getTabWebViewList()) {
-            webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
-        }
-
-//
-//        Map<String, String> bro = new HashMap<>();
-//        bro.put("type", type);
-//        bro.put("payload", payload);
-//        mWebView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
     }
 
     private boolean broadcastAble = true;

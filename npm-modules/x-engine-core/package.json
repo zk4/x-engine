@@ -1,14 +1,20 @@
 {
   "name": "@zkty-team/x-engine-core",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "连接原生native和js之间的重要模块",
-  "main": "src/index.js",
+  "main": "dist/core.common.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf dist && microbundle --external all"
   },
+  "source": "src/index.js",
+  "module": "./dist/core.module.js",
   "keywords": [
     "x-engine-core"
   ],
   "author": "Cwz.",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "microbundle": "^0.13.0",
+    "rimraf": "^3.0.2"
+  }
 }

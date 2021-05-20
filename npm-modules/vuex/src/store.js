@@ -2,7 +2,6 @@ import applyMixin from './mixin'
 import devtoolPlugin from './plugins/devtool'
 import ModuleCollection from './module/module-collection'
 import { forEachValue, isObject, isPromise, assert, partial } from './util'
-import { platform } from './util'
 import xengine from '@zkty-team/x-engine-core'
 import { __DEV__ } from './util'
 

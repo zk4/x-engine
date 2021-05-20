@@ -1,5 +1,7 @@
 package com.zkty.nativ.share;
 
+import android.graphics.Bitmap;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.utils.ImageUtils;
@@ -34,10 +36,10 @@ public class NativeShare extends NativeModule implements IShareManager {
     }
 
     @Override
-    public void share(String channel, String type, String text, String title, String desc, String imgUrl, String imgData, String url, String userName, String path, String link, int miniProgramType) {
+    public void share(String channel, String type, String text, String title, String desc, String imgUrl, String imgData, Bitmap imgBitmap, String url, String userName, String path, String link, int miniProgramType) {
         Ishare ishare = shares.get(channel);
         if (ishare != null) {
-            ishare.share(channel, type, text, title, desc, imgUrl, imgData, url, userName, path, link, miniProgramType);
+            ishare.share(channel, type, text, title, desc, imgUrl, imgData, imgBitmap, url, userName, path, link, miniProgramType);
         }
     }
 }

@@ -2,24 +2,24 @@ import dsbridge from "./dsbridge";
 const module_names = new Set([]);
 const patch = {};
 
-function isFunction (functionToCheck) {
+function isFunction(functionToCheck) {
   return (
     functionToCheck && {}.toString.call(functionToCheck) === "[object Function]"
   );
 }
 
-function isObject (val) {
+function isObject(val) {
   if (val === null) {
     return false;
   }
   return typeof val === "function" || typeof val === "object";
 }
 
-function isString (x) {
+function isString(x) {
   return Object.prototype.toString.call(x) === "[object String]";
 }
 
-function isHybrid () {
+function isHybrid() {
   return window && window._dswk === true;
 }
 let xengine = {
@@ -33,9 +33,20 @@ let xengine = {
   broadcastOn: broadcastOn,
   broadcastOff: broadcastOff,
   assert: xassert,
+  onLifecycle: onLifecycle,
 };
 
-function xassert (targetID, expression) {
+// lifecycle
+let __onLifeCycleCB;
+function onLifecycle(cb) {
+  __onLifeCycleCB = cb;
+}
+xengine.bridge.register("com.zkty.jsi.engine.lifecycle.notify", (res) => {
+  if (__onLifeCycleCB) __onLifeCycleCB(res.type, res.payload);
+  else throw "未注册 lifecycle";
+});
+
+function xassert(targetID, expression) {
   if (expression) {
     document.getElementById(targetID).style.backgroundColor = "green";
   } else {
@@ -43,7 +54,7 @@ function xassert (targetID, expression) {
   }
 }
 
-function api (jsimoduleId, funcname, args, cb) {
+function api(jsimoduleId, funcname, args, cb) {
   if (args) {
     if (args.hasOwnProperty("__event__")) {
       only_idx++;
@@ -62,11 +73,11 @@ function api (jsimoduleId, funcname, args, cb) {
   return dsbridge.call(jsimoduleId + "." + funcname, args, cb);
 }
 
-function broadcastOff () {
+function broadcastOff() {
   xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }
-let eventCBStack = []
-function broadcastOn (eventcb) {
+let eventCBStack = [];
+function broadcastOn(eventcb) {
   eventCBStack.push(eventcb);
   xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
     for (const cb of eventCBStack) {
@@ -76,14 +87,14 @@ function broadcastOn (eventcb) {
 }
 let only_idx = 0;
 
-function use (ns, funcs) {
+function use(ns, funcs) {
   if (module_names.has(ns)) {
     throw ns + ',注册无效,模块已存在,xengine.use("' + ns + '") 只允许调用一次;';
   }
   module_names.add(ns);
   console.log(ns + ",js 注册成功");
 
-  let _call = function (funcname, args) {
+  let _call = function(funcname, args) {
     if (args.hasOwnProperty("__event__")) {
       only_idx++;
       let eventcb = args["__event__"];
@@ -101,7 +112,7 @@ function use (ns, funcs) {
         const warning_msg =
           "x-engine 0.1.0 将不再支持 promise,改用参数里的　__ret__做为异步返回值,以支持多次返回.或者直接调用函数同步返回";
         console.warn(warning_msg);
-        xengine.bridge.call(ns + "." + funcname, args, function (res) {
+        xengine.bridge.call(ns + "." + funcname, args, function(res) {
           // only resolve once
           resolve(res);
           if (args["__ret__"]) {
@@ -118,7 +129,7 @@ function use (ns, funcs) {
       acc[cur.name] = (args) =>
         _call(cur.name, {
           ...cur.default_args,
-          ...args
+          ...args,
         });
     } else if (isString(cur)) {
       acc[cur] = (args) => _call(cur, args);
@@ -130,15 +141,15 @@ function use (ns, funcs) {
 }
 
 Object.defineProperty(xengine, "bridge", {
-  get () {
+  get() {
     return dsbridge;
   },
-  set: function () {
+  set: function() {
     throw "dsbridge不能被修改";
   },
 });
 
-function platform () {
+function platform() {
   var ua = navigator.userAgent,
     isAndroid = /(?:Android)/.test(ua),
     isPhone = /(?:iPhone)/.test(ua),
@@ -151,12 +162,12 @@ function platform () {
 }
 
 // 监听输入框的软键盘弹起和收起事件
-function listenKeybord ($input) {
+function listenKeybord($input) {
   if (this.platform.isPhone) {
     // IOS 键盘弹起：IOS 和 Android 输入框获取焦点键盘弹起
     $input.addEventListener(
       "focus",
-      function () {
+      function() {
         console.log("IOS 键盘弹起啦！");
         // IOS 键盘弹起后操作
       },
@@ -177,7 +188,7 @@ function listenKeybord ($input) {
 
     window.addEventListener(
       "resize",
-      function () {
+      function() {
         var resizeHeight =
           document.documentElement.clientHeight || document.body.clientHeight;
         if (originHeight < resizeHeight) {
@@ -201,7 +212,7 @@ for (var i = 0; i < $inputs.length; i++) {
   listenKeybord($inputs[i]);
 }
 
-patch.disableDoubleTapScroll = function (ms) {
+patch.disableDoubleTapScroll = function(ms) {
   ms = ms || 500;
   console.log("禁用双击滑动,两次点击冷却时间为" + ms + " ms");
   //禁止双击时, webview 自动上移
@@ -211,7 +222,7 @@ patch.disableDoubleTapScroll = function (ms) {
   if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipad") >= 0) {
     document.body.addEventListener(
       "touchend",
-      function (event) {
+      function(event) {
         var a = new Date().getTime();
         iLastTouch = iLastTouch || a + 1;
         var c = a - iLastTouch;

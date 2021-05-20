@@ -7,9 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "NativeModule.h"
-#import "iViewer.h"
+#import "iViewerManager.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_viewer : NativeModule <iViewer>
+@interface Native_viewer : NativeModule <iViewerManager>
  
 @end
 

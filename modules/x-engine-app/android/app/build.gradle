@@ -82,4 +82,5 @@ dependencies {
     implementation project(':jsi-vuex')
     implementation project(':jsi-broadcast')
     implementation project(':jsi-share')
+    implementation project(':jsi-dev')
 }

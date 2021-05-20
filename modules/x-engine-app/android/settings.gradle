@@ -78,3 +78,6 @@ project(':jsi-broadcast').projectDir = new File('../../x-engine-jsi-broadcast/an
 
 include ':jsi-share'
 project(':jsi-share').projectDir = new File('../../x-engine-jsi-share/android/jsi-share')
+
+include ':jsi-dev'
+project(':jsi-dev').projectDir = new File('../../x-engine-jsi-dev/android/jsi-dev')

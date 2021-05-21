@@ -508,10 +508,8 @@ public class ImageUtils {
 
     public static void getBitmap(String path, BitmapCallback callback) {
         if (TextUtils.isEmpty(path)) callback.onFail();
-        if (path.startsWith("data:image")) {
-            byte[] bytes = Base64.decode(path, Base64.DEFAULT);
-            callback.onSuccess(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-        } else if (path.startsWith("http")) {
+
+        if (path.startsWith("http")) {
             new Thread() {
                 @Override
                 public void run() {
@@ -537,6 +535,9 @@ public class ImageUtils {
                 }
             }.start();
 
+        } else if (path.startsWith("data:image")) {
+            byte[] bytes = Base64.decode(path, Base64.DEFAULT);
+            callback.onSuccess(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         } else {
             callback.onFail();
         }

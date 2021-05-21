@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.zkty.nativ.jsi.annotation.Optional;
+import com.zkty.nativ.core.annotation.Optional;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -12,7 +12,6 @@ import com.zkty.nativ.jsi.webview.XEngineWebView;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 
 public abstract class JSIModule {

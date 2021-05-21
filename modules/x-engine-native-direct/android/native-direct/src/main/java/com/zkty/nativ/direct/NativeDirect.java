@@ -14,12 +14,10 @@ import java.util.Map;
 
 
 public class NativeDirect extends NativeModule implements IDirectManager {
-    private static int j = 1;
 
 
     {
         directors = new HashMap<>();
-
     }
 
     private Map<String, IDirect> directors;

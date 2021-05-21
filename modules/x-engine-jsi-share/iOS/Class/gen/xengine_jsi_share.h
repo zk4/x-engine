@@ -6,30 +6,58 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol _0_com_zkty_jsi_share_DTO;
-@class _0_com_zkty_jsi_share_DTO;
+@protocol ShareDTO;
+@protocol ShareTextDTO;
+@protocol ShareImgDTO;
+@protocol ShareLinkDTO;
+@protocol ShareMiniProgramDTO;
+@class ShareDTO;
+@class ShareTextDTO;
+@class ShareImgDTO;
+@class ShareLinkDTO;
+@class ShareMiniProgramDTO;
 
-@interface _0_com_zkty_jsi_share_DTO: JSONModel
+@interface ShareDTO: JSONModel
   	@property(nonatomic,copy) NSString* channel;
    	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,copy) NSString* title;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* info;
+@end
+    
+
+@interface ShareTextDTO: JSONModel
+  	@property(nonatomic,copy) NSString* text;
+@end
+    
+
+@interface ShareImgDTO: JSONModel
+  	@property(nonatomic,copy) NSString* imgData;
+@end
+    
+
+@interface ShareLinkDTO: JSONModel
+  	@property(nonatomic,copy) NSString* title;
    	@property(nonatomic,copy) NSString* desc;
-   	@property(nonatomic,copy) NSString* text;
    	@property(nonatomic,copy) NSString* imgUrl;
-   	@property(nonatomic,copy) NSString* imgData;
    	@property(nonatomic,copy) NSString* url;
-   	@property(nonatomic,copy) NSString* userName;
+@end
+    
+
+@interface ShareMiniProgramDTO: JSONModel
+  	@property(nonatomic,copy) NSString* userName;
    	@property(nonatomic,copy) NSString* path;
    	@property(nonatomic,copy) NSString* link;
    	@property(nonatomic,assign) NSInteger miniProgramType;
+   	@property(nonatomic,copy) NSString* title;
+   	@property(nonatomic,copy) NSString* desc;
+   	@property(nonatomic,copy) NSString* imgUrl;
 @end
     
 
 
 @protocol xengine_jsi_share_protocol
        @required 
-        - (void) _share:(_0_com_zkty_jsi_share_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-
+        - (void) _share:(ShareDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    
 @end
   
 

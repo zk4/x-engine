@@ -1,4 +1,4 @@
-package com.zkty.nativ.jsi.annotation;
+package com.zkty.nativ.core.annotation;
 
 
 import com.alibaba.fastjson.parser.DefaultJSONParser;

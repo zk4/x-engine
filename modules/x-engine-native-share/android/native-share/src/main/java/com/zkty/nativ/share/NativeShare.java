@@ -1,10 +1,15 @@
 package com.zkty.nativ.share;
 
-import android.graphics.Bitmap;
+import androidx.appcompat.app.AlertDialog;
 
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
-import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.core.exception.XCoreException;
+import com.zkty.nativ.share.dto.ShareImg;
+import com.zkty.nativ.share.dto.ShareLink;
+import com.zkty.nativ.share.dto.ShareMiniProgram;
+import com.zkty.nativ.share.dto.ShareText;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,11 +40,43 @@ public class NativeShare extends NativeModule implements IShareManager {
 
     }
 
+
     @Override
-    public void share(String channel, String type, String text, String title, String desc, String imgUrl, String imgData, Bitmap imgBitmap, String url, String userName, String path, String link, int miniProgramType) {
+    public void share(String channel, String type, Map<String, String> info) {
         Ishare ishare = shares.get(channel);
         if (ishare != null) {
-            ishare.share(channel, type, text, title, desc, imgUrl, imgData, imgBitmap, url, userName, path, link, miniProgramType);
+            try {
+                switch (type) {
+                    case "text":
+                        ShareText text = convert(info, ShareText.class);
+                        ishare.share(channel, text);
+                        break;
+                    case "img":
+                        ShareImg img = convert(info, ShareImg.class);
+                        ishare.share(channel, img);
+                        break;
+                    case "link":
+                        ShareLink link = convert(info, ShareLink.class);
+                        ishare.share(channel, link);
+                        break;
+                    case "miniProgram":
+                        ShareMiniProgram miniProgram = convert(info, ShareMiniProgram.class);
+                        ishare.share(miniProgram);
+                        break;
+                    default:
+                        break;
+
+                }
+            } catch (XCoreException e) {
+
+                AlertDialog dialog = new AlertDialog.Builder(XEngineApplication.getCurrentActivity())
+                        .setTitle("notice")
+                        .setMessage(e.getMessage())
+                        .setCancelable(true).create();
+                dialog.show();
+
+            }
+
         }
     }
 }

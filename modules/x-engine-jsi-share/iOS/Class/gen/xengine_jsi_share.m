@@ -6,19 +6,43 @@
 #import "xengine_jsi_share.h"
 
 
-@implementation _0_com_zkty_jsi_share_DTO
+@implementation ShareDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
-   	if ([propertyName isEqualToString:@"title"]) { return YES; }
-   	if ([propertyName isEqualToString:@"desc"]) { return YES; }
-   	if ([propertyName isEqualToString:@"text"]) { return YES; }
+   	return NO;
+    }
+@end
+    
+  
+@implementation ShareTextDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
+  
+@implementation ShareImgDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+    
+  
+@implementation ShareLinkDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
    	if ([propertyName isEqualToString:@"imgUrl"]) { return YES; }
-   	if ([propertyName isEqualToString:@"imgData"]) { return YES; }
-   	if ([propertyName isEqualToString:@"url"]) { return YES; }
-   	if ([propertyName isEqualToString:@"userName"]) { return YES; }
-   	if ([propertyName isEqualToString:@"path"]) { return YES; }
-   	if ([propertyName isEqualToString:@"link"]) { return YES; }
-   	if ([propertyName isEqualToString:@"miniProgramType"]) { return YES; }	return NO;
+   	return NO;
+    }
+@end
+    
+  
+@implementation ShareMiniProgramDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   
+   
+   
+   
+   	return NO;
     }
 @end
     
@@ -39,10 +63,9 @@
     
     - (void) share:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _0_com_zkty_jsi_share_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_share_DTO.class];
-          [self _share:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
+          ShareDTO* dto = [self convert:dict clazz:ShareDTO.class];
+          [self _share:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
           }];
-        
       }
   @end

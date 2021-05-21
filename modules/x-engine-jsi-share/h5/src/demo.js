@@ -10,13 +10,12 @@ window.test_share = () => {
     {
       channel: "wx_zone",
       type: "link",
-      url:
-        "https://www.baidu.com"
-	},
-    (res) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
-    }
-  );
+      info:{
+		  url:"https://www.baidu.com",
+		  title:"testTitle",
+		  desc:"description"
+	  }
+	});
 }}
  document.getElementById("test_share").click()
       window.test_share2 = () => {
@@ -27,17 +26,16 @@ window.test_share = () => {
     {
 		channel: "wx_friend",
 		type: "miniProgram",
-		userName:"gh_d43f693ca31f",
-		path:"/pages/media",
-        title:"test",
-        desc:"testdesc",
-        link:"http://www.baidu.com",
-        imageurl:"",
-        miniProgramType:2
-	},
-    (res) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
-    }
+		 info:{
+			userName:"gh_d43f693ca31f",
+			path:"/pages/media",
+			title:"test",
+			desc:"testdesc",
+			link:"http://www.baidu.com",
+			imageurl:"",
+			miniProgramType:2
+		 }
+	}
   );
 }}
  document.getElementById("test_share2").click()

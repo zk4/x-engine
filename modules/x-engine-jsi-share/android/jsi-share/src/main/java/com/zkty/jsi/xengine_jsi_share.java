@@ -10,50 +10,57 @@
   import android.webkit.JavascriptInterface;
   import com.alibaba.fastjson.JSON;
   import com.alibaba.fastjson.JSONObject;
+  import com.zkty.nativ.core.annotation.Optional;
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
-  import com.zkty.nativ.jsi.annotation.Optional;
 
   
-  class _0_com_zkty_jsi_share_DTO {
+  class ShareDTO {
     public String channel;
 
     public String type;
 
-    @Optional
-		public String title;
+    public Map<String,String> info;
+  }
+  
+  class ShareTextDTO {
+    public String text;
+  }
+  
+  class ShareImgDTO {
+    public String imgData;
+  }
+  
+  class ShareLinkDTO {
+    public String title;
 
-    @Optional
-		public String desc;
-
-    @Optional
-		public String text;
+    public String desc;
 
     @Optional
 		public String imgUrl;
 
-    @Optional
-		public String imgData;
+    public String url;
+  }
+  
+  class ShareMiniProgramDTO {
+    public String userName;
 
-    @Optional
-		public String url;
+    public String path;
 
-    @Optional
-		public String userName;
+    public String link;
 
-    @Optional
-		public String path;
+    public Integer miniProgramType;
 
-    @Optional
-		public String link;
+    public String title;
 
-    @Optional
-		public Integer miniProgramType;
+    public String desc;
+
+    public String imgUrl;
   }
   
   interface xengine_jsi_share_protocol {
-    public void _share(_0_com_zkty_jsi_share_DTO dto, final CompletionHandler<String> handler);
+    public void _share(ShareDTO dto, final CompletionHandler<Nullable> handler);
   }
   
   
@@ -65,14 +72,14 @@
   
     @JavascriptInterface
     final public void share(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _0_com_zkty_jsi_share_DTO dto= convert(jsonobj,_0_com_zkty_jsi_share_DTO.class);
-      _share(dto, new CompletionHandler<String>() {
+      ShareDTO dto= convert(jsonobj,ShareDTO.class);
+      _share(dto, new CompletionHandler<Nullable>() {
         @Override
-        public void complete(String retValue) { handler.complete(retValue); }
+        public void complete(Nullable retValue) { handler.complete(null); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
       });
 
     }

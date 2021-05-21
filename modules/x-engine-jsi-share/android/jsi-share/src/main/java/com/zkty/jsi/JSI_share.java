@@ -1,6 +1,8 @@
 package com.zkty.jsi;
 
 
+import androidx.annotation.Nullable;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
@@ -12,19 +14,16 @@ public class JSI_share extends xengine_jsi_share {
 
     @Override
     protected void afterAllJSIModuleInited() {
-
         NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(IShareManager.class);
         if (module instanceof NativeShare)
             shares = (NativeShare) module;
-
     }
+
 
     @Override
-    public void _share(_0_com_zkty_jsi_share_DTO dto, CompletionHandler<String> handler) {
+    public void _share(ShareDTO dto, CompletionHandler<Nullable> handler) {
         if (shares != null) {
-            shares.share(dto.channel, dto.type, dto.text, dto.title, dto.desc, dto.imgUrl, dto.imgData, dto.url, dto.userName, dto.path, dto.link, dto.miniProgramType);
+            shares.share(dto.channel, dto.type, dto.info);
         }
-
     }
-
 }

@@ -68,6 +68,9 @@ Vue.use(Header);
 import lifeCycle from "./lifeCycle";
 Vue.use(lifeCycle);
 
+// import compatiable from "./compatiable";
+// Vue.use(compatiable);
+
 Vue.prototype.$store = store;
 new Vue({
   router,

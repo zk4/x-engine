@@ -35,18 +35,10 @@
 - (void)didClickBtn {
     id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
     
-    // 本地com.gm.microapp.mine包
+    // 本地包
 //    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 
-//     cwz 远程
+    // 远程
     [director push:@"omp" host:@"10.2.128.61:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-//        [director push:@"omp" host:@"10.2.128.181:8086" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp://10.2.128.80:8080#/" params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"https://pypi.org/project/coge/" params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp" host:@"192.168.3.12:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    
-    // zk4 远程 请替换host
-//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 }
 @end

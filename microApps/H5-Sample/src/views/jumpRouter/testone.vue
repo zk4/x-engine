@@ -20,11 +20,13 @@ export default {
     return {}
   },
   mounted() {
-    // console.log("testOnePage-->mounted")
+    console.log("mounted")
     // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-mounted")
+    this.$engine.api("com.zkty.jsi.dev", "log", "testone-mounted")
   },
   destroyed() {
-    // console.log("testOnePage-->destroyed")
+    console.log("destroyed")
+    this.$engine.api("com.zkty.jsi.dev", "log", "testone-destroyed")
     // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-destroyed")
   },
   methods: {

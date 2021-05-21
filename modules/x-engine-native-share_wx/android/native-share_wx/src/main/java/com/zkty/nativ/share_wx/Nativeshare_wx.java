@@ -56,14 +56,14 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
     }
 
     @Override
-    public void share(String channel, String type, String text, String title, String desc, String imgUrl, String imgData, String url, String userName, String path, String link, int miniProgramType) {
-        decodeImageAndShareToWx(XEngineApplication.getCurrentActivity(), channel, type, text, title, desc, imgUrl, imgData, url, userName, path, link, miniProgramType);
+    public void share(String channel, String type, String text, String title, String desc, String imgUrl, String imgData, Bitmap imgBitmap, String url, String userName, String path, String link, int miniProgramType) {
+        decodeImageAndShareToWx(XEngineApplication.getCurrentActivity(), channel, type, text, title, desc, imgUrl, imgData, imgBitmap, url, userName, path, link, miniProgramType);
 
     }
 
-    private static void decodeImageAndShareToWx(Context context, String channel, String type, String text, String title, String desc, String imgUrl, String imgData, String url, String userName, String path, String link, int miniProgramType) {
+    private static void decodeImageAndShareToWx(Context context, String channel, String type, String text, String title, String desc, String imgUrl, String imgData, Bitmap imgBitmap, String url, String userName, String path, String link, int miniProgramType) {
         if (TextUtils.isEmpty(imgUrl)) {
-            shareToWx(context, channel, type, text, title, desc, null, imgData, url, userName, path, link, miniProgramType);
+            shareToWx(context, channel, type, text, title, desc, null, imgData, imgBitmap, url, userName, path, link, miniProgramType);
         } else {
             new Thread() {
                 @Override
@@ -79,12 +79,12 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                             ByteArrayOutputStream stream = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                             byte[] imageByte = stream.toByteArray();
-                            handler.post(() -> shareToWx(context, channel, type, text, title, desc, imageByte, null, url, userName, path, link, miniProgramType));
+                            handler.post(() -> shareToWx(context, channel, type, text, title, desc, imageByte, imgData, imgBitmap, url, userName, path, link, miniProgramType));
 
                         }
 
                     } catch (Exception e) {
-                        handler.post(() -> shareToWx(context, channel, type, text, title, desc, null, null, url, userName, path, link, miniProgramType));
+                        handler.post(() -> shareToWx(context, channel, type, text, title, desc, null, imgData, imgBitmap, url, userName, path, link, miniProgramType));
                     }
                 }
             }.start();
@@ -94,7 +94,7 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
 
     }
 
-    private static void shareToWx(Context context, String channel, String type, String text, String title, String desc, byte[] thumbBmp, String imgData, String url, String userName, String path, String link, int miniProgramType) {
+    private static void shareToWx(Context context, String channel, String type, String text, String title, String desc, byte[] thumbBmp, String imgData ,Bitmap imgBitmap, String url, String userName, String path, String link, int miniProgramType) {
 
         int mTargetScene = SendMessageToWX.Req.WXSceneSession;
         if ("wx_friend".equals(channel)) {
@@ -144,12 +144,16 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                 break;
             case "img":
                 Bitmap bmp = null;
-                if (thumbBmp != null) {
-                    bmp = BitmapFactory.decodeByteArray(thumbBmp, 0, thumbBmp.length);
-                } else if (imgData != null) {
+                if (imgBitmap != null) {
+                    bmp = imgBitmap;
+                }
+                else if (!TextUtils.isEmpty(imgData)) {
                     byte[] bytes = Base64.decode(imgData, Base64.DEFAULT);
                     bmp = BitmapFactory.decodeByteArray(bytes, 0, thumbBmp.length);
+                }else if (thumbBmp != null) {
+                    bmp = BitmapFactory.decodeByteArray(thumbBmp, 0, thumbBmp.length);
                 }
+
 
 //初始化 WXImageObject 和 WXMediaMessage 对象
                 WXImageObject imgObj = new WXImageObject(bmp);

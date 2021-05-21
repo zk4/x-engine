@@ -208,17 +208,16 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    
-#warning  show
-    if(self.firstDidAppearCbIgnored){
+    if(self.firstDidAppearCbIgnored) {
         self.firstDidAppearCbIgnored = NO;
-    }else{
+    } else {
         [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     }
     
     if(self.isOnTab){
         [[GlobalState sharedInstance] setCurrentTabVC:self];
     }
+    
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
      if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
@@ -231,10 +230,8 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-//    NSLog(@"viewWillDisappear");
     [super viewWillDisappear:animated];
 
-#warning  hide
     [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
     
     if(!self.newWebview && self.screenView == nil){
@@ -246,16 +243,13 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-//    NSLog(@"viewDidDisappear");
     [super viewDidDisappear:animated];
 }
 
 - (void)dealloc {
-#warning  destoryed
     [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
     NSLog(@"delloc了");
 }
-
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];

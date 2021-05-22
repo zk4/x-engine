@@ -8,7 +8,7 @@ x-engine 是一个跨端模块管理框架. <span style="color:blue">管理原�
 
 
 
-但最终：我们还是要做 app 出来。
+但最终：我们都要做 app 出来。
 
 而 app = UI + 逻辑。
 
@@ -16,8 +16,7 @@ UI 层在最终呈现时，现在有 3 种方案
 
 1. 原生 UI
    1. 纯原生
-   2. React Native 生成原生组件
-   3. Weex 生成原生组件
+   2. 生成原生组件，如 React Native， Weex
 2. H5
 3. 自制渲染引擎
 

@@ -1,4 +1,4 @@
-<img src="assets/image-20210522170631443.png" alt="image-20210522170631443" style="zoom:50%;" />
+<img src="assets/image-20210522170631443.png" alt="image-20210522170631443" style="center:true;zoom:50%;" />
 
 # X-engine 简介
 
@@ -42,7 +42,7 @@ UI 层在最终呈现时，现在有 3 种方案
 
 ## **架构图**
 
-![image-20210522170415391](assets/image-20210522170415391.png)
+![image-20210522171327126](assets/image-20210522171327126.png)
 
 #### **类图**
 
@@ -51,15 +51,4 @@ UI 层在最终呈现时，现在有 3 种方案
 
 <!-- tabs:end -->
 
-
-
-## 一码多端？
-
-不是我们考虑的事。
-
-
-
-
-
-# 外部资源
-[ve-charts](https://vueblocks.github.io/ve-charts/#/chart-wordcloud)
+  

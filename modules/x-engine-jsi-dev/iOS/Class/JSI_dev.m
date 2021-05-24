@@ -8,7 +8,7 @@
 
 #import "JSI_dev.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 @interface JSI_dev()
 @end

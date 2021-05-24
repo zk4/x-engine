@@ -7,7 +7,7 @@
 //
 
 #import "Native_direct_omp.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
@@ -143,10 +143,11 @@ NATIVE_MODULE(Native_direct_omp)
             NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
             NSString *finalQueryString;
             finalQueryString = [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
-            finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@?%@",protocol,host,pathname,fragment,finalQueryString];
+            finalUrl = [NSString stringWithFormat:@"%@//%@%@%@?%@",protocol,host,pathname,fragment,finalQueryString];
         } else {
-            finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
+            finalUrl = [NSString stringWithFormat:@"%@//%@%@%@",protocol,host,pathname,fragment];
         }
+
         
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         [currentVC.navigationController pushViewController:vc animated:YES];

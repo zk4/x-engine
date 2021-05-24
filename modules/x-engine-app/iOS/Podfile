@@ -14,6 +14,7 @@ def shared_pods
   pod 'x-engine-native-direct_https', :path =>'../../x-engine-native-direct_https'
   pod 'x-engine-native-direct_omp', :path =>'../../x-engine-native-direct_omp'
   pod 'x-engine-native-direct_microapp', :path =>'../../x-engine-native-direct_microapp'
+  pod 'x-engine-native-direct_native', :path =>'../../x-engine-native-direct_native'
   pod 'x-engine-native-broadcast', :path =>'../../x-engine-native-broadcast'
   pod 'x-engine-native-device', :path =>'../../x-engine-native-device'
   pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'

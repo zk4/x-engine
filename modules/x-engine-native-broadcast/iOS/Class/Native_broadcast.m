@@ -7,7 +7,7 @@
 
 
 #import "Native_broadcast.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "WebViewFactory.h"
 
 @interface Native_broadcast()
@@ -25,7 +25,7 @@ NATIVE_MODULE(Native_broadcast)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited{
+- (void)afterAllXENativeModuleInited{
 } 
 
 -(void) broadcast:(NSString*) type payload:(NSString*) payload{

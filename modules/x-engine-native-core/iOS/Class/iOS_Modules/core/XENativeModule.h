@@ -1,5 +1,5 @@
 //
-//  NativeModule.h
+//  XENativeModule.h
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NativeModule : NSObject
+@interface XENativeModule : NSObject
 - (NSString *)moduleId;
 - (int)order;
 - (void)afterAllNativeModuleInited;

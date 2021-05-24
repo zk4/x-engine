@@ -7,7 +7,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "Native_camera.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
 #import <GCDWebServer.h>
 #import <Photos/Photos.h>
@@ -38,7 +38,7 @@ NATIVE_MODULE(Native_camera)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited {}
+- (void)afterAllXENativeModuleInited {}
 
 // 打开提示框
 - (void)openImagePicker:(CameraParamsDTO *)dto success:(void (^)(NSString *))success {

@@ -12,7 +12,7 @@
 
 #import "JSI_vuex.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iStore.h"
 #import "GlobalState.h"
 

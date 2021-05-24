@@ -17,8 +17,19 @@
 
 -(void) pushTestModule{
     id<iDirectManager> director = XENP(iDirectManager);
-
-    [director push:@"rn" host:@"category" pathname:@"/Two"  fragment:@"" query:nil  params:@{@"hideNavbar":@TRUE}];
+ 
+    [director push:@"rn" host:@"192.168.1.15:8081" pathname:@"/index.bundle"  fragment:nil query:@{@"platform":@"ios"}  params:@{
+        @"scores" : @[
+          @{
+            @"name" : @"Alex",
+            @"value": @"42"
+           },
+          @{
+            @"name" : @"Joel",
+            @"value": @"10"
+          }
+        ]
+      }];
 
 }
 

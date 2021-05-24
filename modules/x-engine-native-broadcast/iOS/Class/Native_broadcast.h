@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iBroadcast.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_broadcast : NativeModule <iBroadcast>
+@interface Native_broadcast : XENativeModule <iBroadcast>
  
 @end
 

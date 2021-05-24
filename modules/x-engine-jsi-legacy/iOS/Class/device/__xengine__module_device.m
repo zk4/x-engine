@@ -7,7 +7,7 @@
 
 
 #import "__xengine__module_device.h"
-#import <NativeContext.h>
+#import <XENativeContext.h>
 #import "JSIContext.h"
 #import <micros.h>
 #import <sys/utsname.h>

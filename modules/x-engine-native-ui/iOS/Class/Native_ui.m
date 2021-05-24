@@ -7,7 +7,7 @@
 
 
 #import "Native_ui.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Unity.h"
 
 @interface Native_ui()
@@ -25,7 +25,7 @@ NATIVE_MODULE(Native_ui)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited{
+- (void)afterAllXENativeModuleInited{
 }
 
 

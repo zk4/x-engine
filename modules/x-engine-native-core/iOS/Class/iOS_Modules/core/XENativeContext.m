@@ -5,29 +5,29 @@
 //  Copyright © 2021 zkty-team. All rights reserved.
 //
 
-#import "NativeContext.h"
-#import "NativeModule.h"
+#import "XENativeContext.h"
+#import "XENativeModule.h"
 #import <objc/message.h>
 
-@interface NativeContext ()
+@interface XENativeContext ()
 // 维护通过 load 注册过来的 class
 @property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
 // 实例化后的 modules, 因为 module 有 order，使用 NSMutableArray 维护顺序
-@property (nonatomic, strong) NSMutableArray<NativeModule *> *modules;
+@property (nonatomic, strong) NSMutableArray<XENativeModule *> *modules;
 // moduleid 映射的 module
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NativeModule *> *moduleId2Moudle;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, XENativeModule *> *moduleId2Moudle;
 // module 对应的 protocols
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray *> *moduleId2MoudleProtocolnames;
 
 @end
  
 
-@implementation NativeContext
+@implementation XENativeContext
 + (void) showEngineVersion{
     NSLog(@"x-engine version: 2.0.0");
 }
 + (void)load {
-    [NativeContext showEngineVersion];
+    [XENativeContext showEngineVersion];
     
 // demo
 // 在各自对应的模块中重写 + load方法,监听UIApplicationDidFinishLaunchingNotification通知
@@ -43,10 +43,10 @@
     
 }
 + (instancetype)sharedInstance {
-    static NativeContext *sharedInstance = nil;
+    static XENativeContext *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[NativeContext alloc] init];
+        sharedInstance = [[XENativeContext alloc] init];
         sharedInstance.moduleClasses =[NSMutableSet new];
         sharedInstance.modules = [NSMutableArray array];
         sharedInstance.moduleId2Moudle = [[NSMutableDictionary alloc] init];
@@ -84,7 +84,7 @@
 - (void)initModules {
     for (Class cls in self.moduleClasses) {
         id rawmoduleClass = [[cls alloc] init];
-        NativeModule *moduleClass = (NativeModule *)rawmoduleClass;
+        XENativeModule *moduleClass = (XENativeModule *)rawmoduleClass;
         NSString *moduleId = [moduleClass moduleId];
 
         [self.moduleId2Moudle setObject:moduleClass forKey:moduleClass.moduleId];
@@ -96,7 +96,7 @@
         NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
-    self.modules = [[self.modules sortedArrayUsingComparator:^(NativeModule *left, NativeModule *right) {
+    self.modules = [[self.modules sortedArrayUsingComparator:^(XENativeModule *left, XENativeModule *right) {
       if ([left order] > [right order]) {
           return NSOrderedDescending;
       } else if ([left order] < [right order]) {
@@ -119,7 +119,7 @@
     return nil;
 }
 - (void) afterAllNativeModuleInited{
-    for (NativeModule *module in self.modules) {
+    for (XENativeModule *module in self.modules) {
         [module afterAllNativeModuleInited];
     }
 }

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red'
   },
   highScoresTitle: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10
   },

@@ -7,7 +7,7 @@
 //
 
 #import "Native_direct_microapp.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "MicroAppLoader.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
@@ -34,8 +34,8 @@ NATIVE_MODULE(Native_direct_microapp)
     return @"microapp";
 }
 
-- (void)afterAllNativeModuleInited{
-   NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
+- (void)afterAllXENativeModuleInited{
+   NSArray* modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
     for(id<iDirect> direct in modules){
         // 暂时 与 omp 使用相同的逻辑
         if([[direct scheme] isEqualToString:@"omp"]){

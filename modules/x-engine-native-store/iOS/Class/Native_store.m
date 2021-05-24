@@ -5,7 +5,7 @@
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
 
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 #import <micros.h>
@@ -28,7 +28,7 @@ NATIVE_MODULE(Native_store)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited {}
+- (void)afterAllXENativeModuleInited {}
 
 - (instancetype)init {
     self = [super init];

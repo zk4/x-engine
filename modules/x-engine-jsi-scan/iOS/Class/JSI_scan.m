@@ -8,7 +8,7 @@
 
 #import "JSI_scan.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iScan.h"
 
 @interface JSI_scan()

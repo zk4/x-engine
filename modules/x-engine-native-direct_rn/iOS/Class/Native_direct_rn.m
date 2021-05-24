@@ -39,24 +39,32 @@ NATIVE_MODULE(Native_direct_rn)
 }
 
 - (void)push:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
-    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://10.2.128.80:8081/index.bundle?platform=ios"];
+    NSString * finalUrl = @"";
+    
+    pathname = pathname?pathname:@"";
+    fragment = fragment?[NSString stringWithFormat:@"#%@",fragment]:@"";
+    
+    if (query) {
+        NSArray *keys = query.allKeys;
+        NSArray *values = query.allValues;
+        NSString *forString = [NSString string];
+        for (NSInteger i = 0; i<keys.count; i++) {
+            forString = [forString stringByAppendingFormat:@"%@=%@&", keys[i], values[i]];
+        }
+        NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
+        NSString *finalQueryString;
+        finalQueryString = [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
+        finalUrl = [NSString stringWithFormat:@"%@//%@%@%@?%@",protocol,host,pathname,fragment,finalQueryString];
+    } else {
+        finalUrl = [NSString stringWithFormat:@"%@//%@%@%@",protocol,host,pathname,fragment];
+    }
+    NSURL *jsCodeLocation = [NSURL URLWithString:finalUrl];
 
     RCTRootView *rootView =
       [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
                                   moduleName: @"RNHighScores"
                            initialProperties:
-                             @{
-                               @"scores" : @[
-                                 @{
-                                   @"name" : @"Alex",
-                                   @"value": @"42"
-                                  },
-                                 @{
-                                   @"name" : @"Joel",
-                                   @"value": @"10"
-                                 }
-                               ]
-                             }
+                             params
                                launchOptions: nil];
     UIViewController *vc = [[UIViewController alloc] init];
     vc.view = rootView;

@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iUI.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_ui : NativeModule <iUI>
+@interface Native_ui : XENativeModule <iUI>
 - (void)setNavBarHidden:(BOOL)isHidden isAnimation:(BOOL)isAnimation;
 - (void)setNavTitle:(NSString *)title withTitleColor:(NSString *)color withTitleSize:(NSInteger)size;
 

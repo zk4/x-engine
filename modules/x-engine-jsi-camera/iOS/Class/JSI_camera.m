@@ -8,7 +8,7 @@
 
 #import "JSI_camera.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iCamera.h"
 
 @interface JSI_camera()

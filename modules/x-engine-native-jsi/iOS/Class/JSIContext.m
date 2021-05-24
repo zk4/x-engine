@@ -7,7 +7,7 @@
 //
 
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "JSIModule.h"
 
 
@@ -56,7 +56,7 @@ NATIVE_MODULE(JSIContext)
         NSLog(@"moudle found: %@", moduleClass.moduleId);
     }
 
-    self.modules = [[self.modules sortedArrayUsingComparator:^(NativeModule *left, NativeModule *right) {
+    self.modules = [[self.modules sortedArrayUsingComparator:^(XENativeModule *left, XENativeModule *right) {
       if ([left order] > [right order]) {
           return NSOrderedDescending;
       } else if ([left order] < [right order]) {

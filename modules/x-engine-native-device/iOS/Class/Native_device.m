@@ -7,7 +7,7 @@
 
 
 #import "Native_device.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 @interface Native_device()
 @end
@@ -23,7 +23,7 @@ NATIVE_MODULE(Native_device)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited{}
+- (void)afterAllXENativeModuleInited{}
 
 - (NSString *)getStatusHeight {
 //    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];

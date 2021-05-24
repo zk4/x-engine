@@ -583,6 +583,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
 }
 
+
+
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.indicatorView stopAnimating];
@@ -731,8 +733,25 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     UIView *view = [[UIView alloc] init];
     view.frame = self.frame;
     view.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2 - 150, [UIScreen mainScreen].bounds.size.width, 200)];
+    img.image = [UIImage imageNamed:@"404"];
+    [view addSubview:img];
+    
+    
+    UILabel *label = [[UILabel alloc] init];
+    if (img.image) {
+        label.frame = CGRectMake(0, CGRectGetMaxY(img.frame) + 10, [UIScreen mainScreen].bounds.size.width, 16);
+    } else {
+        label.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2 , [UIScreen mainScreen].bounds.size.width, 16);
+    }
+    label.text = @"您访问的页面找不到了";
+    label.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:label];
+    
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    panGesture.delegate = self; // 设置手势代理，拦截手势触发
+    panGesture.delegate = self;
     [view addGestureRecognizer:panGesture];
     [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.delegate = self;

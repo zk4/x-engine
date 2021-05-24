@@ -22,6 +22,7 @@ import androidx.core.content.FileProvider;
 
 
 import com.bumptech.glide.Glide;
+import com.zkty.nativ.core.XEngineApplication;
 
 
 import java.io.ByteArrayOutputStream;
@@ -504,5 +505,60 @@ public class ImageUtils {
 
     }
 
+
+    public static void getBitmap(String path, BitmapCallback callback) {
+        if (TextUtils.isEmpty(path)) callback.onFail();
+
+        if (path.startsWith("http")) {
+            new Thread() {
+                @Override
+                public void run() {
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = Glide.with(XEngineApplication.getCurrentActivity())
+                                .asBitmap()
+                                .load(path)
+                                .into(150, 150).get();
+                        if (bitmap != null) {
+
+                            callback.onSuccess(bitmap);
+//                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+//                            bytes = stream.toByteArray();
+                        }
+
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+
+        } else {
+            try {
+                byte[] bytes = Base64.decode(path, Base64.DEFAULT);
+                callback.onSuccess(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+            } catch (Exception e) {
+                callback.onFail();
+            }
+
+        }
+
+    }
+
+    public static byte[] bitmapToBytes(Bitmap bitmap) {
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
+    }
+
+    public interface BitmapCallback {
+        void onSuccess(Bitmap bitmap);
+
+        void onFail();
+
+    }
 
 }

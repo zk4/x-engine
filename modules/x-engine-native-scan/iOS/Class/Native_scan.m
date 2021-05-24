@@ -25,7 +25,7 @@ NATIVE_MODULE(Native_scan)
     return 0;
 }
 
-- (void)afterAllXENativeModuleInited{}
+- (void)afterAllNativeModuleInited{}
 
 
 - (void)openScanView:(void (^)(NSString * res))completionHandler {

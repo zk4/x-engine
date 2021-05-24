@@ -20,6 +20,7 @@ def shared_pods
   pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
   pod 'x-engine-native-scan', :path =>'../../x-engine-native-scan'
   pod 'x-engine-native-store', :path =>'../../x-engine-native-store'
+  pod 'x-engine-native-dev', :path =>'../../x-engine-native-dev'
   pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
 
   # jsi

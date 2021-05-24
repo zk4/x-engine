@@ -131,7 +131,10 @@ NATIVE_MODULE(Native_direct_omp)
         NSAssert(host!=nil, @"host 不可为 nil");
         
         pathname= hm.pathname;
+        pathname = pathname?pathname:@"";
+        fragment = fragment?[NSString stringWithFormat:@"#%@",fragment]:@"";
         
+
         NSString * finalUrl = @"";
         if (query) {
             NSArray *keys = query.allKeys;

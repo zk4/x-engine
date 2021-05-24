@@ -28,7 +28,7 @@ NATIVE_MODULE(Native_store)
     return 0;
 }
 
-- (void)afterAllXENativeModuleInited {}
+- (void)afterAllNativeModuleInited {}
 
 - (instancetype)init {
     self = [super init];

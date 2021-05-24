@@ -25,7 +25,7 @@ NATIVE_MODULE(Native_broadcast)
     return 0;
 }
 
-- (void)afterAllXENativeModuleInited{
+- (void)afterAllNativeModuleInited{
 } 
 
 -(void) broadcast:(NSString*) type payload:(NSString*) payload{

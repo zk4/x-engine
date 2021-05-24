@@ -38,7 +38,7 @@ NATIVE_MODULE(Native_camera)
     return 0;
 }
 
-- (void)afterAllXENativeModuleInited {}
+- (void)afterAllNativeModuleInited {}
 
 // 打开提示框
 - (void)openImagePicker:(CameraParamsDTO *)dto success:(void (^)(NSString *))success {

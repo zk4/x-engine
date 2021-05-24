@@ -34,7 +34,7 @@ NATIVE_MODULE(Native_direct_microapp)
     return @"microapp";
 }
 
-- (void)afterAllXENativeModuleInited{
+- (void)afterAllNativeModuleInited{
    NSArray* modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
     for(id<iDirect> direct in modules){
         // 暂时 与 omp 使用相同的逻辑

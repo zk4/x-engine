@@ -31,22 +31,14 @@ NATIVE_MODULE(Native_direct_native)
     return @"file:";
 }
 -(NSString*) scheme{
-    return @"microapp";
+    return @"native";
 }
 
-- (void)afterAllXENativeModuleInited{
-   NSArray* modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
-    for(id<iDirect> direct in modules){
-        // 暂时 与 omp 使用相同的逻辑
-        if([[direct scheme] isEqualToString:[self scheme]]){
-            self.nativeDirect = direct;
-            return;
-        }
-    }
+- (void)afterAllNativeModuleInited{
 }
 
 - (void)back:(NSString*) host fragment:(NSString*) fragment{
-    [self.nativeDirect back:host fragment:fragment];
+    //TODO
 }
 
 - (void)push:(NSString*) protocol  // 强制 protocol，非必须
@@ -56,7 +48,7 @@ NATIVE_MODULE(Native_direct_native)
         query:(NSDictionary<NSString*,id>*) query
         params:(NSDictionary<NSString*,id>*) params  {
 
-    [self.nativeDirect push:[self protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    //TODO
 }
 
 

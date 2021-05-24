@@ -25,7 +25,7 @@ NATIVE_MODULE(Native_ui)
     return 0;
 }
 
-- (void)afterAllXENativeModuleInited{
+- (void)afterAllNativeModuleInited{
 }
 
 

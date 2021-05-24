@@ -4,6 +4,7 @@
 //
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
+//  管理类实现
 
 
 #import "Native_viewer.h"
@@ -11,20 +12,16 @@
 
 #import "AFNetworking.h"
 #import "iViewer.h"
+#import "Unity.h"
 #import <x-engine-native-store/iStore.h>
 
 @interface Native_viewer()
 { }
-@property (nonatomic, strong) NSMutableDictionary<NSString*, id<iViewer>> * viewers;
-@property (nonatomic, strong) id<iViewer>iviewer;
-
-@property (nonatomic, strong) id<iStore>store;
-
+@property (nonatomic, strong) NSMutableDictionary<NSString*, NSMutableArray<id<iViewer>>*> *viewers;
 @end
 
 @implementation Native_viewer
 NATIVE_MODULE(Native_viewer)
-
 - (NSString*) moduleId{
     return @"com.zkty.native.viewer";
 }
@@ -32,29 +29,82 @@ NATIVE_MODULE(Native_viewer)
 - (int) order{
     return 0;
 }
-
-- (void)afterAllNativeModuleInited{
-    self.store = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
+- (instancetype)init
+{
+    self = [super init];
+    self.viewers = [NSMutableDictionary new];
+    return self;
+}
+///可用的模块数量 list
+- (void)afterAllNativeModuleInited
+{
+    NSArray *modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iViewer)];
+     for(id<iViewer> viewer in modules){
+         for(NSString* type in [viewer getTypes] )
+         {
+             NSMutableArray* array = [self.viewers objectForKey:type];
+             if(!array){
+                 array= [NSMutableArray new];
+                 [self.viewers setObject:array forKey:type];
+             }
+             [array addObject:viewer];
+         }
+     }
 }
 
-- (void)setDefaultState:(BOOL)defaultState
-{
-    [self.iviewer setDefaultState:defaultState];
-}
+//@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf"
 
-- (BOOL)getDefaultState
-{
-    return [self.iviewer getDefaultState];
+- (id<iViewer>) getDefaultViewer:(NSString*) type{
+    NSMutableArray* viewers = [self.viewers objectForKey:type];
+    for(id<iViewer> v in viewers){
+        if([v isDefault])return v;
+    }
+    return NULL;
 }
-
-- (nonnull NSArray *)openFileTypeList
-{
-    return  [self.iviewer openFileTypeList];
-}
-
-- (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type callBack:(void(^_Nullable)(NSString *__nullable filepath))callBack;
-{
-    [self.iviewer openFileWithfileUrl:url fileType:type callBack:callBack];
+- (void)openFileWithfileUrl:(NSString * _Nonnull)url fileType:(NSString * _Nonnull)type callBack:(void (^ _Nullable)(NSString * _Nullable))callBack {
+    
+   NSMutableArray* viewers = [self.viewers objectForKey:type];
+    if(!viewers){
+        //todo
+        // alert 不支持类型
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:@"不支持类型" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    else if(viewers.count==1){
+        // todo
+        // 直接打开
+        [viewers[0] openFileWithfileUrl:url fileType:type callBack:^(NSString * _Nullable filepath) {}];
+    }
+    else if(viewers.count>1){
+        // todo
+        id<iViewer> defaultViewer = [self getDefaultViewer:type];
+        if(defaultViewer){
+            //有默认，用默认打开
+            [defaultViewer openFileWithfileUrl:url fileType:type callBack:nil];
+        }else{
+            //没有默认 弹框选择，设置默认，用默认打开
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"选择打开方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            //todo 取得 viewers 所有 names
+            for(id<iViewer> viewer in viewers){
+                UIAlertAction *alertAction = [UIAlertAction actionWithTitle:viewer.getName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+ 
+                    [viewer openFileWithfileUrl:url fileType:type callBack:^(NSString * _Nullable filepath) {
+//                        [self.previewController refreshCurrentPreviewItem];
+                    }];
+                    
+                }];
+                [actionSheet addAction:alertAction];
+            }
+            
+            UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"取消");
+            }];
+            [actionSheet addAction:action3];
+            [[Unity sharedInstance].getCurrentVC presentViewController:actionSheet animated:YES completion:nil];
+        }
+    }
+  
 }
 
 @end

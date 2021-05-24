@@ -125,6 +125,14 @@ public class XEngineWebView extends DWebView {
             }
 
             @Override
+            public void onPageFinished(WebView webView, String s) {
+                super.onPageFinished(webView, s);
+                if (onPageStateListener != null) {
+                    onPageStateListener.onPageFinished();
+                }
+            }
+
+            @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String s) {
                 Log.d(TAG, "response url= " + s);
 
@@ -389,15 +397,25 @@ public class XEngineWebView extends DWebView {
 
     }
 
+    public interface OnPageStateListener {
+        void onPageFinished();
+
+    }
+
     public interface OnScrollListener {
         void onScrollChange(int scrollX, int scrollY, int oldScrollX, int oldScrollY);
     }
 
     private OnScrollListener mScrollListener;
+    private OnPageStateListener onPageStateListener;
 
 
     public void setOnScrollListener(OnScrollListener listener) {
         this.mScrollListener = listener;
+    }
+
+    public void setOnPageStateListener(OnPageStateListener listener) {
+        this.onPageStateListener = listener;
     }
 
     public OnScrollListener getScrollListener() {

@@ -2,7 +2,7 @@
 const parserVersion = "1.0.0";
 
 // 命名空间
-const moduleID = "com.zkty.jsi.secrect";
+const moduleID = "com.zkty.jsi.secret";
 
 const conf = {
   args: {},
@@ -16,14 +16,14 @@ const conf = {
 
 @sync
 function get(arg:string):string {
-  let val = xengine.api("com.zkty.jsi.secrect", "get",
+  let val = xengine.api("com.zkty.jsi.secret", "get",
     'TOKEN',
   );
   console.log(val);
 }
 
 function test_get(){
-  let val = xengine.api("com.zkty.jsi.secrect", "get",
+  let val = xengine.api("com.zkty.jsi.secret", "get",
     'TOKEN',
   );
 

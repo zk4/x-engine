@@ -9,21 +9,15 @@
 #import "Native_share.h"
 #import "NativeContext.h"
 #import "iShare.h"
-@class ChannelListModel;
-@class ShareGoodsModel;
-@class ShareStatusModel;
 
-@implementation ChannelListModel
+@implementation ShareInfoModel
+
+
+@end
+@implementation ContentModel
 
 @end
 
-@implementation ShareGoodsModel
-
-@end
-
-@implementation ShareStatusModel
-
-@end
 
 @interface Native_share()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSMutableArray<id<iShare>>*> *shares;
@@ -61,7 +55,7 @@ NATIVE_MODULE(Native_share)
      }
 } 
 
-- (void)shareTypeWithType:(nonnull NSString *)type shareData:(nonnull ShareGoodsModel *)dto complete:(nonnull void (^)(ShareStatusModel * _Nonnull, BOOL))completionHandler {
+- (void)shareTypeWithType:(nonnull NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler {
     NSMutableArray* shareArr = [self.shares objectForKey:type];
     if(shareArr.count==1){
         [shareArr[0] shareTypeWithType:type shareData:dto complete:completionHandler];

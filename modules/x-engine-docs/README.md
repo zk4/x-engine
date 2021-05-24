@@ -2,7 +2,8 @@
 
 # X-engine 简介
 
-x-engine 是一个跨端模块管理框架. <span style="color:blue">管理原生模块(iOS/android)</span>。 所有其他功能特性均由 plugin 支撑。
+x-engine 是一个跨端模块管理框架. <span style="color:blue">管理原生模块(iOS/android)</span>。 所有功能特性均由模块支撑。
+
 通过 x-engine  我们提供一整套完善的前端解决方案。
 
 你可以基于 x-engine 开发原生 App。也可以基于 x-engine 开发 react-native 与原生的混合。

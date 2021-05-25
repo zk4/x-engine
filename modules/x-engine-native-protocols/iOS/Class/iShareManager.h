@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param dto 分享的信息
 /// @param completionHandler 分享结果
 - (void)shareTypeWithType:(NSString *)type shareData:(ShareInfoModel *)dto complete:(void (^)(BOOL complete)) completionHandler;
+
+- (void)shareTypeWithType:(NSString *)type shareImage:(UIImage *)image complete:(void (^)(BOOL complete)) completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

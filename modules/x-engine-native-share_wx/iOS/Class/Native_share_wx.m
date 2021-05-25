@@ -43,7 +43,25 @@ NATIVE_MODULE(Native_share_wx)
 - (NSArray<NSString *> * _Nullable)getTypes {
     return @[@"wx_friend",@"wx_zone",@"gome",@"create_poster",@"save_img"];
 }
+- (void)shareTypeWithType:(NSString *)type shareImage:(UIImage *)image complete:(void (^)(BOOL complete)) completionHandler{
+    WXMediaMessage *message = [WXMediaMessage message];
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.7);
+    
+    WXImageObject *ext = [WXImageObject object];
+    ext.imageData = imageData;
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = WXSceneSession;
 
+    [WXApi sendReq:req completion:^(BOOL success) {
+        completionHandler(success);
+    }];
+}
 - (void)shareTypeWithType:(nonnull NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler {
     if ([dto.shareType isEqualToString:@"text"]) {
         SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];

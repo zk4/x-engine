@@ -18,6 +18,30 @@
 
 @end
 
+///NEW
+@implementation OpenShareUiDTONav
+
+
+
+@end
+
+@implementation ChannelDTONav
+
+
+
+@end
+
+@implementation ChannelStatusDTONav
+
+
+
+@end
+
+@implementation PosterDTONav
+
+
+
+@end
 
 @interface Native_share()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSMutableArray<id<iShare>>*> *shares;
@@ -62,5 +86,11 @@ NATIVE_MODULE(Native_share)
     }
 }
 
+- (void)shareTypeWithType:(NSString *)type shareImage:(UIImage *)image complete:(void (^)(BOOL complete)) completionHandler{
+    NSMutableArray* shareArr = [self.shares objectForKey:type];
+    if(shareArr.count==1){
+        [shareArr[0] shareTypeWithType:type shareImage:image complete:completionHandler];
+    }
+}
 @end
  

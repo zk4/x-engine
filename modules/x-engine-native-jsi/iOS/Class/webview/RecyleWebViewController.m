@@ -9,7 +9,7 @@
 #import "GlobalState.h"
 #import "Unity.h"
 #import "iSecurify.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 
 /// TODO: webview refactor
@@ -104,7 +104,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 //        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
 //        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
 //            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
-//            id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+//            id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
 //            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
 //        } else {
 //            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];

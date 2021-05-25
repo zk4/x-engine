@@ -1,6 +1,6 @@
 
 
-JSI Id: com.zkty.jsi.secrect
+JSI Id: com.zkty.jsi.secret
 
 version: 0.1.13
 
@@ -12,7 +12,7 @@ version: 0.1.13
 **demo**
 ``` js
 
-  let val = xengine.api("com.zkty.jsi.secrect", "get",
+  let val = xengine.api("com.zkty.jsi.secret", "get",
     'TOKEN',
   );
   console.log(val);

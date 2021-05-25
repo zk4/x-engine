@@ -8,7 +8,7 @@
 
 #import "JSI_device.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iDevice.h"
 
 @interface JSI_device()

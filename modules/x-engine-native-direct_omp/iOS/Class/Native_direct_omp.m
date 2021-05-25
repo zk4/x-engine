@@ -7,12 +7,14 @@
 //
 
 #import "Native_direct_omp.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "iDirect.h"
 #import "GlobalState.h"
+#import "XENativeContext.h"
+#import "iStore.h"
 
 #define  ONE_PAGE_ONE_WEBVIEW TRUE
 @implementation Native_direct_omp
@@ -131,7 +133,10 @@ NATIVE_MODULE(Native_direct_omp)
         NSAssert(host!=nil, @"host 不可为 nil");
         
         pathname= hm.pathname;
+        pathname = pathname?pathname:@"";
+        fragment = fragment?[NSString stringWithFormat:@"#%@",fragment]:@"";
         
+
         NSString * finalUrl = @"";
         if (query) {
             NSArray *keys = query.allKeys;
@@ -143,9 +148,17 @@ NATIVE_MODULE(Native_direct_omp)
             NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
             NSString *finalQueryString;
             finalQueryString = [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
-            finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@?%@",protocol,host,pathname,fragment,finalQueryString];
+            // 拼接url 让前端去取
+            finalUrl = [NSString stringWithFormat:@"%@//%@%@%@?%@",protocol,host,pathname,fragment,finalQueryString];
         } else {
-            finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
+            finalUrl = [NSString stringWithFormat:@"%@//%@%@%@",protocol,host,pathname,fragment];
+        }
+        
+        if (params[@"nativeParams"]) {
+            id<iStore>store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
+            // 存入store 让前端去取
+            [store set:@"nativeParams" val:params[@"nativeParams"]];
+            [store saveTodisk];
         }
         
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];

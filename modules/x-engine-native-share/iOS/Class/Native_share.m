@@ -7,7 +7,7 @@
 
 
 #import "Native_share.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iShare.h"
 
 @implementation ShareInfoModel
@@ -65,7 +65,7 @@ NATIVE_MODULE(Native_share)
     return self;
 }
 - (void)afterAllNativeModuleInited{
-    NSArray *modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iShare)];
+    NSArray *modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iShare)];
      for(id<iShare> share in modules){
          for(NSString* type in [share getTypes] )
          {

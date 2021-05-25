@@ -7,7 +7,7 @@
 
 
 #import "Native_viewer_orgi.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "AFNetworking.h"
 #import "Unity.h"
 #import <x-engine-native-store/iStore.h>
@@ -33,7 +33,7 @@ NATIVE_MODULE(Native_viewer_orgi)
 }
 
 - (void)afterAllNativeModuleInited{
-    self.store = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
+    self.store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
 }
 
 - (instancetype)init

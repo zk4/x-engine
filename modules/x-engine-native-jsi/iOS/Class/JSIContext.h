@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 NS_ASSUME_NONNULL_BEGIN
 #define JSI_MODULE(clz) + (void)load{ \
     [[JSIContext sharedInstance] registerModuleByClass:clz.class];}\
 
-@interface JSIContext : NativeModule
+@interface JSIContext : XENativeModule
 + (instancetype)sharedInstance;
 - (void) registerModuleByClass:(Class)clazz;
 - (void) start;

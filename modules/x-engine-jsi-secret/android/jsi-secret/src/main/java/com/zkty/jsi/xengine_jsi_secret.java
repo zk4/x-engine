@@ -4,27 +4,35 @@
 
   package com.zkty.jsi;
 
+  import java.util.List;
+  import java.util.Map;
+  import java.util.Set;
   import android.webkit.JavascriptInterface;
-
-import com.zkty.nativ.jsi.JSIModule;
+  import com.alibaba.fastjson.JSON;
+  import com.alibaba.fastjson.JSONObject;
+  import com.zkty.nativ.jsi.bridge.CompletionHandler;
+  import com.zkty.nativ.jsi.JSIModule;
+  import androidx.annotation.Nullable;
+  import com.zkty.nativ.jsi.annotation.Optional;
 
   
   
   interface xengine_jsi_secret_protocol {
-        String _get(String dto);
+    
+public String _get(String dto);
   }
   
   
-  public abstract class xengine_jsi_secret extends JSIModule implements xengine_jsi_secret_protocol {
+    public abstract class xengine_jsi_secret extends JSIModule implements xengine_jsi_secret_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.secret";
     }
   
         @JavascriptInterface
-        public String get(String jsonobj) {
-//          String dto= convert(jsonobj,String.class);
-          return _get(jsonobj);
+        public String get(String dto) {
+          
+          return _get(dto);
         }
         
   }

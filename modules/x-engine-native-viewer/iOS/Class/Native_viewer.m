@@ -8,7 +8,7 @@
 
 
 #import "Native_viewer.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 #import "AFNetworking.h"
 #import "iViewer.h"
@@ -38,7 +38,7 @@ NATIVE_MODULE(Native_viewer)
 ///可用的模块数量 list
 - (void)afterAllNativeModuleInited
 {
-    NSArray *modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iViewer)];
+    NSArray *modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iViewer)];
      for(id<iViewer> viewer in modules){
          for(NSString* type in [viewer getTypes] )
          {

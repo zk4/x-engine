@@ -7,7 +7,7 @@
 
 
 #import "Native_device.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 @interface Native_device()
 @end

@@ -7,7 +7,7 @@
 
 
 #import "Native_ui.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Unity.h"
 
 @interface Native_ui()

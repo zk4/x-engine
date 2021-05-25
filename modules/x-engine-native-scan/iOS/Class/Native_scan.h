@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iScan.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_scan : NativeModule <iScan>
+@interface Native_scan : XENativeModule <iScan>
 
 @end
 

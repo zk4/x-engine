@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
+		module.exports = factory(require("@zkty-team/x-engine-core"));
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
+		define(["@zkty-team/x-engine-core"], factory);
 	else if(typeof exports === 'object')
-		exports["Header"] = factory();
+		exports["Header"] = factory(require("@zkty-team/x-engine-core"));
 	else
-		root["Header"] = factory();
-})((typeof self !== 'undefined' ? self : this), function() {
+		root["Header"] = factory(root["@zkty-team/x-engine-core"]);
+})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE_f9a2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -1847,6 +1847,13 @@ module.exports = function (key) {
 
 /***/ }),
 
+/***/ "f9a2":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_f9a2__;
+
+/***/ }),
+
 /***/ "fb15":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1884,14 +1891,14 @@ var es_array_map = __webpack_require__("d81d");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__("b0c0");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"66bd09ac-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=76ca490a&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"71557d87-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=template&id=05478eec&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.isShowHeader)?_c('div',{staticClass:"navigator-class",class:[
     _vm.bgImage == '' ? 'no-bg' : 'img-mode',
     _vm.isWhiteColor ? 'text-white' : 'text-black' ],style:(_vm.style)},[_c('div',{staticClass:"title-wrapper"},[_c('div',{staticClass:"content-item-left",style:({ lineheight: _vm.lineheight + 'px' }),on:{"click":_vm.handlerLeftButton}},[_vm._t("left",[_c('i',{staticClass:"iconfont icon-fanhui"}),(!_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_c('span',{staticClass:"left-text-color"},[_vm._v(_vm._s(_vm.navTitle))])]):_vm._e()])],2),_c('div',{staticClass:"content-item-center",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("center",[(_vm.textIsCenter)?_c('div',{staticClass:"nav-title"},[_vm._v(_vm._s(_vm.navTitle))]):_vm._e()])],2),_c('div',{staticClass:"content-item-right",style:({ lineheight: _vm.lineheight + 'px' })},[_vm._t("right")],2)])]):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=76ca490a&
+// CONCATENATED MODULE: ./package/header/src/header.vue?vue&type=template&id=05478eec&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__("99af");
@@ -1899,396 +1906,9 @@ var es_array_concat = __webpack_require__("99af");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
 var es_number_constructor = __webpack_require__("a9e3");
 
-// CONCATENATED MODULE: ./node_modules/@zkty-team/x-engine-core/src/dsbridge.js
-var bridge = {
-default:
-    undefined,
-
-    // js调用Native方法
-    call: function(functionName, args, callback) {
-        // 如果是无参数的方法  function(functionName,callback)
-        "function" == typeof args && (callback = args, args = {});
-        
-        //参数对象 {data: args/null}
-        // void 0 解释 https://stackoverflow.com/questions/7452341/what-does-void-0-mean
-        args = { data: void 0 === args ? null : args};
-        
-        // 如果是异步并且要接收返回值的
-        if ("function" == typeof callback) {
-            // callback标识,计数器
-            var tag = "dscb" + window.dscb++;
-            // 保存回调   window[dscbX] = callback Function
-            window[tag] = callback;
-            // args = {data: args/null,_dscbstud:tag}
-            args._dscbstub = tag
-        }
-        // 将参数转成Json字符串
-        args = JSON.stringify(args);
-        
-        var ret = "";
-        // 这里不会走到,目前从源里没有看到有什么地方注入了_dsbridge
-        if (window._dsbridge) {
-            ret = _dsbridge.call(functionName, args);
-        }
-        
-        // 客户端会走到这里, webView初始化的时候会给window注入_dswk=true
-        else if (window._dswk || -1 != navigator.userAgent.indexOf("_dsbridge")) {
-            ret = prompt("_dsbridge=" + functionName, args);
-        }
-        return JSON.parse(ret || "{}").data
-    },
-    unregister:function(jsFunctionName){
-      delete window._dsaf._obs[jsFunctionName]
-      delete window._dsaf[jsFunctionName]
-      delete window._dsf._obs[jsFunctionName]
-      delete window._dsf[jsFunctionName]
-    },
-    // js注册供Native调用的方法,如果传入callback,则为异步方法
-    register: function(jsFunctionName, receiveParamsFunction, callback) {
-        
-        // 判断是同步还是异步  callback = { _obs:{} };
-        callback = callback ? window._dsaf : window._dsf;
-        
-        //只执行一次,为了调用一次native的dsinit方法
-        window._dsInit || (window._dsInit = !0, setTimeout(function() {
-            bridge.call("_dsb.dsinit")
-        }, 0));
-        
-        //将call保存在对应的数据结构中, callback = { jsFunctionName : receiveParamsFunction: , _obs:{} };
-        "object" == typeof receiveParamsFunction ? callback._obs[jsFunctionName] = receiveParamsFunction : callback[jsFunctionName] = receiveParamsFunction
-    },
-    
-    // js注册供Native调用的异步方法
-    registerAsyn: function(b, a) {
-        this.register(b, a, !0)
-    },
-    
-    // 是否有Native方法
-    hasNativeMethod: function(b, a) {
-        return this.call("_dsb.hasNativeMethod", {
-            name: b,
-            type: a || "all"
-        })
-    },
-    
-    // 禁用Dialog
-    disableJavascriptDialogBlock: function(b) {
-        this.call("_dsb.disableJavascriptDialogBlock", {
-            disable: !1 !== b
-        })
-    }
-};
-
-
-// https://www.cnblogs.com/binbin001/p/11393040.html
-// 立即执行一段代码 ,函数表达示后面跟 `()` 可以立即执行
-// function(){}()
-(function(){
-    
-    // js对象动态添加属性
-    // obj[property] = xxx. not obj.property = xxx
-    
-    // 1. 如果Window已经添加了 `_dsf` 属性直接返回
-    if(window._dsf) return;
-
-    // 2. Window添加一个 `_dsf` 对象属性, 保存同步方法
-    window["_dsf"] = { _obs:{} };
-    // 3. Window添加一个 `_dsaf` 对象属性, 保存异步方法
-    window["_dsaf"] = { _obs:{} };
-    // 4. Window添加一个callback计数唯一标识
-    window["dscb"] = 0;
-    // 5. Window添加一个 bridge属性
-    window["dsBridge"] =  bridge;
-     //6. Window添加一个界面关闭方法
-    window["close"] = function(){
-        bridge.call("_dsb.closePage");
-    };
-    // 7. Window添加统一处理Native方法的函数
-    //a = { "callbackId":id, "method":name, "data":[x,y,z,..]}
-    window["_handleMessageFromNative"] = function(a){
-        // 调用方法的参数数组
-        var e = JSON.parse(a.data),
-        
-        // 临时对象
-        b = {
-            id: a.callbackId,
-            complete: !0
-        },
-        // 同步方法
-        c = this._dsf[a.method],
-        // 异步方法
-        d = this._dsaf[a.method],
-        
-        
-        h = function (a, c){
-           b.data = a.apply(c, e);
-           bridge.call("_dsb.returnValue", b);
-        },
-
-        k = function (a, c){
-            e.push(function (a, c){
-                b.data = a;
-                b.complete = !1 !== c;
-                bridge.call("_dsb.returnValue", b)
-            });
-            a.apply(c, e);
-        };
-
-        if(c) h(c, this._dsf);
-        else if(d) k(d, this._dsaf);
-        else if(c = a.method.split("."), !(2 > c.length)){
-            a = c.pop();
-            var c = c.join("."),
-                d = this._dsf._obs,
-                d = d[c] ||
-                {},
-                f = d[a];
-            f && "function" == typeof f ? h(f, d) : (d = this._dsaf._obs, d = d[c] ||
-            {}, (f = d[a]) && "function" == typeof f && k(f, d))
-        }
-    };
-    
-    bridge.register("_hasJavascriptMethod", function(a, b) {
-        b = a.split(".");
-        if (2 > b.length) return !(!_dsf[b] && !_dsaf[b]);
-        a = b.pop();
-        b = b.join(".");
-        return (b = _dsf._obs[b] || _dsaf._obs[b]) && !! b[a]
-    });
-    
-})();
-/* harmony default export */ var dsbridge = (bridge);
-
-
-// CONCATENATED MODULE: ./node_modules/@zkty-team/x-engine-core/src/index.js
-
-const module_names = new Set([]);
-const patch = {};
-
-function isFunction (functionToCheck) {
-  return (
-    functionToCheck && {}.toString.call(functionToCheck) === "[object Function]"
-  );
-}
-
-function isObject (val) {
-  if (val === null) {
-    return false;
-  }
-  return typeof val === "function" || typeof val === "object";
-}
-
-function isString (x) {
-  return Object.prototype.toString.call(x) === "[object String]";
-}
-
-function isHybrid () {
-  return window && window._dswk === true;
-}
-let xengine = {
-  patch: patch,
-  platform: platform(),
-  hybrid: true,
-  isHybrid: isHybrid,
-  bridge: dsbridge,
-  use: use,
-  api: api,
-  broadcastOn: broadcastOn,
-  broadcastOff: broadcastOff,
-  assert: xassert,
-};
-
-function xassert (targetID, expression) {
-  if (expression) {
-    document.getElementById(targetID).style.backgroundColor = "green";
-  } else {
-    document.getElementById(targetID).style.backgroundColor = "red";
-  }
-}
-
-function api (jsimoduleId, funcname, args, cb) {
-  if (args) {
-    if (args.hasOwnProperty("__event__")) {
-      only_idx++;
-      let eventcb = args["__event__"];
-      if (!isFunction(eventcb)) throw "__event__ 必须为函数";
-      args["__event__"] = ns + "." + funcname + ".__event__" + only_idx;
-      xengine.bridge.register(args["__event__"], (res) => {
-        // 处理__event__ 回调
-        return eventcb(res);
-      });
-    }
-  }
-  // 处理 sync, async 方法
-  // aysnc 会通过 cb 传递
-  // sync 通过 return 返回
-  return dsbridge.call(jsimoduleId + "." + funcname, args, cb);
-}
-
-function broadcastOff () {
-  xengine.bridge.unregister("com.zkty.module.engine.broadcast");
-}
-let eventCBStack = []
-function broadcastOn (eventcb) {
-  eventCBStack.push(eventcb);
-  xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
-    for (const cb of eventCBStack) {
-      cb(res.type, res.payload);
-    }
-  });
-}
-let only_idx = 0;
-
-function use (ns, funcs) {
-  if (module_names.has(ns)) {
-    throw ns + ',注册无效,模块已存在,xengine.use("' + ns + '") 只允许调用一次;';
-  }
-  module_names.add(ns);
-  console.log(ns + ",js 注册成功");
-
-  let _call = function (funcname, args) {
-    if (args.hasOwnProperty("__event__")) {
-      only_idx++;
-      let eventcb = args["__event__"];
-      if (!isFunction(eventcb)) throw "__event__ 必须为函数";
-      args["__event__"] = ns + "." + funcname + ".__event__" + only_idx;
-      xengine.bridge.register(args["__event__"], (res) => {
-        return eventcb(res);
-      });
-    }
-
-    if (funcname.startsWith("sync")) {
-      return xengine.bridge.call(ns + "." + funcname, args);
-    } else {
-      let p = new Promise((resolve, reject) => {
-        const warning_msg =
-          "x-engine 0.1.0 将不再支持 promise,改用参数里的　__ret__做为异步返回值,以支持多次返回.或者直接调用函数同步返回";
-        console.warn(warning_msg);
-        xengine.bridge.call(ns + "." + funcname, args, function (res) {
-          // only resolve once
-          resolve(res);
-          if (args["__ret__"]) {
-            return args["__ret__"](res);
-          }
-        });
-      });
-      return p;
-    }
-  };
-
-  return funcs.reduce((acc, cur, i) => {
-    if (isObject(cur)) {
-      acc[cur.name] = (args) =>
-        _call(cur.name, {
-          ...cur.default_args,
-          ...args
-        });
-    } else if (isString(cur)) {
-      acc[cur] = (args) => _call(cur, args);
-    } else {
-      throw "仅支持 string 与 {name:xxx, default_args:{...}}";
-    }
-    return acc;
-  }, {});
-}
-
-Object.defineProperty(xengine, "bridge", {
-  get () {
-    return dsbridge;
-  },
-  set: function () {
-    throw "dsbridge不能被修改";
-  },
-});
-
-function platform () {
-  var ua = navigator.userAgent,
-    isAndroid = /(?:Android)/.test(ua),
-    isPhone = /(?:iPhone)/.test(ua),
-    isPc = !isPhone && !isAndroid;
-  return {
-    isPhone: isPhone,
-    isAndroid: isAndroid,
-    isPc: isPc,
-  };
-}
-
-// 监听输入框的软键盘弹起和收起事件
-function listenKeybord ($input) {
-  if (this.platform.isPhone) {
-    // IOS 键盘弹起：IOS 和 Android 输入框获取焦点键盘弹起
-    $input.addEventListener(
-      "focus",
-      function () {
-        console.log("IOS 键盘弹起啦！");
-        // IOS 键盘弹起后操作
-      },
-      false
-    );
-
-    // IOS 键盘收起：IOS 点击输入框以外区域或点击收起按钮，输入框都会失去焦点，键盘会收起，
-    $input.addEventListener("blur", () => {
-      console.log("IOS 键盘收起啦！");
-      // IOS 键盘收起后操作
-    });
-  }
-
-  // Andriod 键盘收起：Andriod 键盘弹起或收起页面高度会发生变化，以此为依据获知键盘收起
-  if (this.platform.isAndroid) {
-    var originHeight =
-      document.documentElement.clientHeight || document.body.clientHeight;
-
-    window.addEventListener(
-      "resize",
-      function () {
-        var resizeHeight =
-          document.documentElement.clientHeight || document.body.clientHeight;
-        if (originHeight < resizeHeight) {
-          console.log("Android 键盘收起啦！");
-          // Android 键盘收起后操作
-        } else {
-          console.log("Android 键盘弹起啦！");
-          // Android 键盘弹起后操作
-        }
-
-        originHeight = resizeHeight;
-      },
-      false
-    );
-  }
-}
-
-var $inputs = document.querySelectorAll(".input");
-
-for (var i = 0; i < $inputs.length; i++) {
-  listenKeybord($inputs[i]);
-}
-
-patch.disableDoubleTapScroll = function (ms) {
-  ms = ms || 500;
-  console.log("禁用双击滑动,两次点击冷却时间为" + ms + " ms");
-  //禁止双击时, webview 自动上移
-  //不是个好方案, 会导致快速点击按钮失效
-  var agent = navigator.userAgent.toLowerCase();
-  var iLastTouch = null;
-  if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipad") >= 0) {
-    document.body.addEventListener(
-      "touchend",
-      function (event) {
-        var a = new Date().getTime();
-        iLastTouch = iLastTouch || a + 1;
-        var c = a - iLastTouch;
-        if (c < ms && c > 0) {
-          event.preventDefault();
-          return false;
-        }
-        iLastTouch = a;
-      },
-      false
-    );
-  }
-};
-/* harmony default export */ var x_engine_core_src = (xengine);
+// EXTERNAL MODULE: external "@zkty-team/x-engine-core"
+var x_engine_core_ = __webpack_require__("f9a2");
+var x_engine_core_default = /*#__PURE__*/__webpack_require__.n(x_engine_core_);
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./package/header/src/header.vue?vue&type=script&lang=js&
 
@@ -2336,6 +1956,12 @@ patch.disableDoubleTapScroll = function (ms) {
 
 /* harmony default export */ var headervue_type_script_lang_js_ = ({
   name: "Header",
+  props: {
+    ssrIsShowHeader: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: function data() {
     return {
       lineheight: "",
@@ -2370,11 +1996,11 @@ patch.disableDoubleTapScroll = function (ms) {
     }
   },
   mounted: function mounted() {
-    if (x_engine_core_src.platform.isPc) {
+    if (x_engine_core_default.a.platform.isPc) {
       this.lineheight = 64;
     } else {
-      var statusBarHeight = x_engine_core_src.api("com.zkty.jsi.device", "getStatusBarHeight");
-      var navheight = x_engine_core_src.api("com.zkty.jsi.device", "getNavigationHeight");
+      var statusBarHeight = x_engine_core_default.a.api("com.zkty.jsi.device", "getStatusBarHeight");
+      var navheight = x_engine_core_default.a.api("com.zkty.jsi.device", "getNavigationHeight");
 
       if (navheight == undefined && statusBarHeight == undefined) {
         this.lineheight = 64;
@@ -2424,7 +2050,7 @@ patch.disableDoubleTapScroll = function (ms) {
       } // 是否显示header
 
 
-      if (to.meta.isShowHeader == undefined) {
+      if (to.meta.isShowHeader == undefined || this.ssrIsShowHeader !== false) {
         this.isShowHeader = false;
       } else {
         this.isShowHeader = to.meta.isShowHeader;
@@ -2443,6 +2069,12 @@ patch.disableDoubleTapScroll = function (ms) {
       } else {
         this.isWhiteColor = true;
       }
+    },
+    ssrIsShowHeader: {
+      handler: function handler(data) {
+        this.isShowHeader = data;
+      },
+      immediate: true
     }
   }
 });

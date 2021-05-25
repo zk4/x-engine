@@ -8,7 +8,7 @@
 #import "XEngineCallInfo.h"
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "GlobalState.h"
 #import "iSecurify.h"
 
@@ -297,7 +297,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     //    if(![@"_dsb" isEqual:moduleName]){
     //        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
     //        // 判断是否有microapp.json文件
-    //        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+    //        id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
     //
     //        if(securify){
     //            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
@@ -645,9 +645,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id module;
         if ([scheme isEqualToString:@"x-engine-call"]) {
             NSString* moduleId = [NSString stringWithFormat:@"%@",URL.host];
-            module =[[NativeContext sharedInstance] getModuleById:moduleId];
+            module =[[XENativeContext sharedInstance] getModuleById:moduleId];
         }else{
-            module =[[NativeContext sharedInstance] getModuleById:URL.host];
+            module =[[XENativeContext sharedInstance] getModuleById:URL.host];
         }
         
         NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];

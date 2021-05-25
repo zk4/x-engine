@@ -13,7 +13,6 @@
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
-  import com.zkty.nativ.jsi.annotation.Optional;
 
   
   class _0_com_zkty_jsi_localstorage_DTO {

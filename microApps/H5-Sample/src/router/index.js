@@ -1,6 +1,6 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import XEngineRouter from "@zkty-team/x-engine-router"
+import XEngineRouter from "../../../../npm-modules/x-engine-router/src/index"
 
 Vue.use(VueRouter);
 

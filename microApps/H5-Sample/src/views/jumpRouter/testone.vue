@@ -50,12 +50,14 @@ export default {
     },
     handlerPush() {
       this.$router.push({
-        path: "/testtwo",
+        name: "/testtwo",
         query: {
+          changeNavTitle: "haha"
+        },
+        params: {
           id: 1,
           age: 18,
           name: "中文",
-          changeNavTitle: "haha",
         },
       })
     },

@@ -38,10 +38,10 @@
     id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
     
     // 本地包
-    [director push:@"microapp" host:@"10.2.128.73:8082" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+//    [director push:@"microapp" host:@"10.2.128.73:8082" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 
     // 远程
-//    [director push:@"omp" host:@"10.2.128.61:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+    [director push:@"omp" host:@"10.2.128.73:8082" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"native" host:@"category" pathname:@"/Two"  fragment:@"" query:nil  params:@{@"hideNavbar":@TRUE}];
   
 

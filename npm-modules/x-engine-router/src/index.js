@@ -2,7 +2,7 @@ import XEngine from '@zkty-team/x-engine-core'
 let vue
 function intercept(VueRouter, scheme) {
     const originalRouterPush = VueRouter.prototype.push;
-    VueRouter.prototype.push = function push(location) {
+    VueRouter.prototype.push = function push (location) {
         if (XEngine.isHybrid()) {
             XEngine.api('com.zkty.jsi.direct', 'push', {
                 scheme: scheme,
@@ -67,39 +67,36 @@ function intercept(VueRouter, scheme) {
             }
         }
     }
-    const rawRouter = VueRouter
-    const paramsObj = Object.create(null)
-    console.log('rawRouter', rawRouter)
-    let val = JSON.parse(XEngine.api("com.zkty.jsi.secret", "get", 'nativeParams',));
-    console.log(val);
     // xengine.broadcastOn((type, payload) => {
     //     if (type === '@@VUEX_STORE_EVENT') {
     //       let state = JSON.parse(payload)
     //         rawRouter._route.params = state;
     //     }
     //   });
-    // Object.defineProperty(rawRouter._route, 'params', {
-    //     value: {},
-    //     get () {
-    //         return paramsObj
-    //     },
-    //     set (newValue) {
-    //         paramsObj = newValue
-    //     }
-    // })
+    
 }
 let installed = false
-function install (Vue) {
+function install (Vue, VueRouter) {
+    if (installed) return
     vue = Vue || window.Vue
-    if (vue) {
-        installed = true
-    }
+    installed = true
     if (process.env.NODE_ENV == 'development') {
-        XEngineRouter(VueRouter, 'omp');
+        intercept(VueRouter, 'omp');
     } else {
-        XEngineRouter(VueRouter, 'microapp');
+        intercept(VueRouter, 'microapp');
     }
-
+    Vue.mixin({
+        beforeCreate () {
+            if (XEngine.isHybrid()) {
+                let val = XEngine.api("com.zkty.jsi.secret", "get", 'nativeParams');
+                console.log('val: ', val);
+                
+                const data = JSON.parse(val)
+                // console.log('data',  data)
+                Vue.util.defineReactive(this.$route, 'params', data)
+            }
+        },
+    }) 
 }
 export default {
     intercept, install

@@ -7,7 +7,7 @@
 
 
 #import "Native_share_wx.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Native_share.h"
 #import "WXApi.h"//微信分享
 

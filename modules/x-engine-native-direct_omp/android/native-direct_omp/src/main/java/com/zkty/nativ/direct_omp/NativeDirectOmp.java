@@ -3,12 +3,15 @@ package com.zkty.nativ.direct_omp;
 import android.app.Activity;
 import android.text.TextUtils;
 
+import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.direct.IDirect;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.view.XEngineWebActivity;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.store.IStore;
+import com.zkty.nativ.store.NativeStore;
 
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -47,9 +50,16 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
         if (TextUtils.isEmpty(protocol)) {
             protocol = protocol();
         }
-        Activity currentActivity = XEngineApplication.getCurrentActivity();
-
         boolean hideNavbar = params != null && params.containsKey("hideNavbar") && Boolean.parseBoolean(String.valueOf(params.get("hideNavbar")));
+        if (params != null && params.containsKey("nativeParams")) {
+            NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(IStore.class);
+            NativeStore iStore = null;
+            if (module instanceof NativeStore) {
+                iStore = (NativeStore) module;
+                iStore.set("nativeParams", params.get("nativeParams"));
+            }
+        }
+        Activity currentActivity = XEngineApplication.getCurrentActivity();
         XEngineWebActivityManager.sharedInstance().startXEngineActivity(currentActivity, protocol, host, pathname, fragment, query, hideNavbar);
     }
 

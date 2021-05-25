@@ -79,10 +79,11 @@ NATIVE_MODULE(Native_share)
      }
 } 
 
-- (void)shareTypeWithType:(nonnull NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler {
-    NSMutableArray* shareArr = [self.shares objectForKey:type];
+- (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler {
+    NSMutableArray* shareArr = [self.shares objectForKey:channel];
     if(shareArr.count==1){
-        [shareArr[0] shareTypeWithType:type shareData:dto complete:completionHandler];
+//        [shareArr[0] shareTypeWithType:type shareData:dto complete:completionHandler];
+        [shareArr[0] shareChannel:channel type:type shareData:dto complete:completionHandler];
     }
 }
 

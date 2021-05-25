@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     - (NSArray<NSString*>*_Nullable) getTypes;
     - (NSString*_Nullable) getName;
-    - (NSString*_Nullable) getIconUrl;
-    - (void)shareTypeWithType:(NSString *)type shareData:(ShareInfoModel *)dto complete:(void (^)(BOOL complete)) completionHandler;
+//    - (NSString*_Nullable) getIconUrl;
+    - (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler ;
 
 @end
 

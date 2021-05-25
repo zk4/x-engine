@@ -8,7 +8,7 @@ secret 模块,是用来让 jsi 获取全局信息, 如 token. 用户名,手机�
 
 
 
-JSI Id: com.zkty.jsi.secrect
+JSI Id: com.zkty.jsi.secret
 
 version: 0.1.13
 
@@ -20,7 +20,7 @@ version: 0.1.13
 **demo**
 ``` js
 
-  let val = xengine.api("com.zkty.jsi.secrect", "get",
+  let val = xengine.api("com.zkty.jsi.secret", "get",
     'TOKEN',
   );
   console.log(val);

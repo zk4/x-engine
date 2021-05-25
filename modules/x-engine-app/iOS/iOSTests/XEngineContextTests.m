@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Native_direct.h"
 @interface XEngineContextTests : XCTestCase
 
@@ -25,18 +25,18 @@
 
 - (void)test不可以注册相同的Native_Module {
  
-    XCTAssertThrows([[NativeContext sharedInstance] registerModuleByClass:Native_direct.class]);
-    [[NativeContext sharedInstance] start];
+    XCTAssertThrows([[XENativeContext sharedInstance] registerModuleByClass:Native_direct.class]);
+    [[XENativeContext sharedInstance] start];
  
 }
 - (void)test获取directmanager_native_Module {
 
-    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.direct"];
+    id openmanager= [[XENativeContext sharedInstance] getModuleById:@"com.zkty.native.direct"];
     XCTAssert(openmanager,@"应该获得 direct manager");
 }
 - (void)test获取不存在的_native_Module {
 
-    id openmanager= [[NativeContext sharedInstance] getModuleById:@"com.zkty.native.openmanager.nonexist"];
+    id openmanager= [[XENativeContext sharedInstance] getModuleById:@"com.zkty.native.openmanager.nonexist"];
     XCTAssert(!openmanager,@"应该获得不到 openmanager.nonexist");
 }
 - (void)testDeleteArrayRange {

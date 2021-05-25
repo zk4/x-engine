@@ -1,18 +1,45 @@
-![](assets/cooltext363596337964428.png)
+<img src="assets/image-20210522170631443.png" alt="image-20210522170631443" style="center:true;zoom:50%;" />
 
 # X-engine 简介
 
-x-engine 是一个跨端模块管理框架.
-只做一件事，<span style="color:blue">管理原生模块(iOS/android)</span>。 
+x-engine 是一个跨端模块管理框架. <span style="color:blue">管理原生模块(iOS/android)</span>。 所有功能特性均由模块支撑。
 
-围绕这个功能有一系列的自动化: 工程结构, 文档生成. 代码生成. 自动注册.等. 
+通过 x-engine  我们提供一整套完善的前端解决方案。
+
+你可以基于 x-engine 开发原生 App。也可以基于 x-engine 开发 react-native 与原生的混合。
+
+但最终：我们都要做 app 出来。
+
+而 app = UI + 逻辑。
+
+UI 层在最终呈现时，现在有 4 种方案
+
+1. 原生语言 -> 原生布局引擎 -> 原生绘制引擎  -> UI
+2. 自定义语言 -> 浏览器布局引擎 -> 浏览器绘制引擎  -> UI，常见于 hybrid 方案
+3. 自定义语言 -> 自定义布局引擎 -> 原生绘制引擎     -> UI，常见于 RN / weex 等这种方案
+4. 自制引擎    -> 自定义布局引擎 -> 自定义绘制引擎  -> UI，常见于 flutter, crossapp 这种方案
+
+
+
+<img src="assets/image-20210524125334634.png" alt="image-20210524125334634" style="zoom:40%;" />
+
+
+
+原生 UI 层社区如此繁荣。再造轮子就没必要了。 那我们前端解决方案的目标就比较清晰。
+
+2. UI 模块间无缝路由。
+3. UI 模块能复用 Native Api。
+4. 提供快速开发范式与兼容方案。
+4. 保障模块的安全，保障性能。
+
+
 
 
 <!-- tabs:start -->
 
-#### **架构图**
+## **架构图**
 
-![](assets/image-20210422162652052.png)
+<img src="assets/image-20210524132643378.png" alt="image-20210524132643378" style="zoom:50%;" />
 
 #### **类图**
 
@@ -21,43 +48,8 @@ x-engine 是一个跨端模块管理框架.
 
 <!-- tabs:end -->
 
+  
 
+## 小程序呢
 
-
-x-engine 可以与各种跨平台框架融合.
-
-
-跨平台框架: 总结下来就这几种模式：
-
-native + h5  : cordova 
-
-h5 -> native  : reactie-native  weex 
-
-self-render   : flutter
-
-native + web- : 小程序
-
-没有谁好谁坏, 但在选择某个方案前,你都得关注这几个点:
-
-项目目标, 可维护性, 可扩展性, 可协作性, 开发效率, 开发人员门槛, 开发技术的隔离.
-
-cordova/capacitor/ionic 的问题在于, 它是以 h5 为主.原生为辅. 这就让原生很尴尬,最终会沦为插件转换器. 但 h5 也很尴尬,只要涉及到原生.完全摸不着北.
-
-reactie-native  的问题在于, 它丢弃了 h5 很多东西. 如果你真又要开发效率又要原生性能.也许是个不错的选择.
-
-flutter 就是更尴尬. 半路出家的 native 开发者去玩 flutter. 总有一种突然能先写两端的幻觉. 但出问题能不能 hold 住是个非常大的问号. 能不能 google 到答案基本是 99% flutter 开发人员的上限.
-
-
-
-
-x-engine 的优势在于, 原生为主. 由原生主导. 充分利用社区已存在的功能.
-
-x-engine 以 sdk 的形式集成. 而其他跨平台框架会以 sdk 的插件集成.也就代表对原生工程不会有侵入性. 
-
-
-
-
-
-
-# 外部资源
-[ve-charts](https://vueblocks.github.io/ve-charts/#/chart-wordcloud)
+小程序的支持不应该由 x-engine 解决。而应该由 UI 方案自己解决。比如，基于 taro，vant-weapp。

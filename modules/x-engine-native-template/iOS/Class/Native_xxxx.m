@@ -7,7 +7,7 @@
 
 
 #import "Native_xxxx.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 @interface Native_xxxx()
 { }

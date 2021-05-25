@@ -7,7 +7,7 @@
 
 
 #import "Native_direct_https.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "MicroAppLoader.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
@@ -34,7 +34,7 @@ NATIVE_MODULE(Native_direct_https)
     return 0;
 }
 - (void)afterAllNativeModuleInited{
-   NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
+   NSArray* modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
     for(id<iDirect> direct in modules){
         // 暂时 与 omp 使用相同的逻辑
         if([[direct scheme] isEqualToString:@"omp"]){

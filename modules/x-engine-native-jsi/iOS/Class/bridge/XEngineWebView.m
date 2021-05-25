@@ -8,16 +8,15 @@
 #import "XEngineCallInfo.h"
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "GlobalState.h"
 #import "iSecurify.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
+
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
-@implementation XEngineWebView 
-
-{
+@implementation XEngineWebView {
     void (^alertHandler)(void);
     void (^confirmHandler)(BOOL);
     void (^promptHandler)(NSString *);
@@ -295,22 +294,22 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     NSString* moduleName = nameStr[0];
     NSString* methodName = nameStr[1];
-//    if(![@"_dsb" isEqual:moduleName]){
-//        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
-//        // 判断是否有microapp.json文件
-//        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-//
-//        if(securify){
-//            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
-//            if (!isAvailable) {
-//                /// TODO: 挪到 security 模块里.
-//                [self showErrorAlert:@"%@模块未在 microapp.json 里注册, 请联系原生开发人员"];
-//                return nil;
-//            }
-//            
-//        }
-//    }
- 
+    //    if(![@"_dsb" isEqual:moduleName]){
+    //        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
+    //        // 判断是否有microapp.json文件
+    //        id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+    //
+    //        if(securify){
+    //            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
+    //            if (!isAvailable) {
+    //                /// TODO: 挪到 security 模块里.
+    //                [self showErrorAlert:@"%@模块未在 microapp.json 里注册, 请联系原生开发人员"];
+    //                return nil;
+    //            }
+    //
+    //        }
+    //    }
+    
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[moduleName];
     NSString *error = [NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result = [NSMutableDictionary dictionaryWithDictionary:
@@ -319,7 +318,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                                       @"data":@""
                                   }];
     if(!JavascriptInterfaceObject){
-//        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge called, but can't find %@ 模块, please check your code!",modulename]];
+        //        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge called, but can't find %@ 模块, please check your code!",modulename]];
         [self showErrorAlert:[NSString stringWithFormat:@"没有找到原生%@模块, 请联系原生开发人员", moduleName]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     } else {
@@ -365,7 +364,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
-//                    [GlobalState setCurrentWebView:self];
+                    //                    [GlobalState setCurrentWebView:self];
                     action(JavascriptInterfaceObject, selasyn, arg, completionHandler);
                     break;
                 }
@@ -444,17 +443,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                                                       @"data":[XEngineJSBUtil objToJsonString: info.args]}];
     [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
            completionHandler:nil];
-}
-
-- (void)triggerVueLifeCycleWithMethod:(NSString *)method {
-    // BROADCAST_EVENT == @@VUE_LIFECYCLE_EVENT
-    [self callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
-        @"type":BROADCAST_EVENT,
-        @"payload":method
-    }
-     completionHandler:^(id  _Nullable value) {
-        NSLog(@"js return value %@",value);
-    }];
 }
 
 - (void) addJavascriptObject:(id)object namespace:(NSString *)namespace{
@@ -574,16 +562,28 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-//    NSLog(@"内容开始返回:%s",__FUNCTION__);
+    //    NSLog(@"内容开始返回:%s",__FUNCTION__);
+}
+
+- (void)triggerVueLifeCycleWithMethod:(NSString *)method {
+    // BROADCAST_EVENT == @@VUE_LIFECYCLE_EVENT
+    [self callHandler:@"com.zkty.jsi.engine.lifecycle.notify" arguments:@{
+        @"type":method,
+        @"payload":[NSString stringWithFormat:@"%p:%@",self,method]
+    }
+    completionHandler:^(id  _Nullable value) {}];
 }
 
 // 页面加载完成后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     [self.indicatorView stopAnimating];
+    [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
 }
+
+
 
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
@@ -645,9 +645,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id module;
         if ([scheme isEqualToString:@"x-engine-call"]) {
             NSString* moduleId = [NSString stringWithFormat:@"%@",URL.host];
-            module =[[NativeContext sharedInstance] getModuleById:moduleId];
+            module =[[XENativeContext sharedInstance] getModuleById:moduleId];
         }else{
-            module =[[NativeContext sharedInstance] getModuleById:URL.host];
+            module =[[XENativeContext sharedInstance] getModuleById:URL.host];
         }
         
         NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];
@@ -657,21 +657,21 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
             XEngineCallBack  Cb=  ^(id data, BOOL ret){
                 if (callBackStr && callBackStr.length !=0) {
                     NSString * retDataStr = [self idFromObject:data];
-
-
+                    
+                    
                     NSString * str = [callBackStr stringByRemovingPercentEncoding];
                     str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
                     str = [str stringByRemovingPercentEncoding];
                     str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
                     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
                     [weakSelf loadRequest:request];
-
+                    
                 }
             };
-
-
+            
+            
             [module performSelector:sel withObject:argsDic withObject:Cb];
-
+            
         }
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
@@ -714,9 +714,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
         jsonStr= [jsonStr substringFromIndex:range.location+1];
     }
-
+    
     jsonStr = [jsonStr stringByRemovingPercentEncoding];
-
+    
     NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
     NSError*err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
@@ -733,8 +733,25 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     UIView *view = [[UIView alloc] init];
     view.frame = self.frame;
     view.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2 - 150, [UIScreen mainScreen].bounds.size.width, 200)];
+    img.image = [UIImage imageNamed:@"404"];
+    [view addSubview:img];
+    
+    
+    UILabel *label = [[UILabel alloc] init];
+    if (img.image) {
+        label.frame = CGRectMake(0, CGRectGetMaxY(img.frame) + 10, [UIScreen mainScreen].bounds.size.width, 16);
+    } else {
+        label.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2 , [UIScreen mainScreen].bounds.size.width, 16);
+    }
+    label.text = @"您访问的页面找不到了";
+    label.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:label];
+    
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    panGesture.delegate = self; // 设置手势代理，拦截手势触发
+    panGesture.delegate = self;
     [view addGestureRecognizer:panGesture];
     [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.delegate = self;
@@ -755,5 +772,4 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     return nil;
 }
-
 @end

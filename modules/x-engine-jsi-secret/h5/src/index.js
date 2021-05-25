@@ -10,7 +10,7 @@ function osCheck() {
 } 
   else {
 
-    return  xengine.use("com.zkty.jsi.secrect", 
+    return  xengine.use("com.zkty.jsi.secret", 
     [
   {
     "name": "test_get",

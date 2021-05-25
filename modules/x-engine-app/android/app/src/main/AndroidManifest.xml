@@ -10,7 +10,7 @@
 
     <application
         android:name=".engine.application.ZKTYApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon"
@@ -37,6 +37,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <meta-data android:name="wx_appid"
+            android:value="wxa11a02e98f71d356"/>
     </application>
 
 </manifest>

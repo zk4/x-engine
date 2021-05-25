@@ -1,5 +1,5 @@
-import ZKTYHeader from "./src/header";
-ZKTYHeader.install = function(Vue) {
-    Vue.component(ZKTYHeader.name, ZKTYHeader);
+import Header from "./src/header";
+Header.install = function(Vue) {
+  Vue.component(Header.name, Header);
 };
-export default ZKTYHeader;
+export default Header;

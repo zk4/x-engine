@@ -1,17 +1,27 @@
 {
   "name": "@zkty-team/x-engine-lifecycle",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "解决原生APP跨webView不刷新mounted问题",
-  "main": "src/lifeCycle.js",
+  "main": "dist/lifeCycle.common.js",
   "keywords": [
     "x-engine-lifeCycle"
   ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "source": "src/lifeCycle.js",
+  "module": "./dist/lifeCycle.module.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf dist && microbundle --external all"
   },
   "author": "wangsheng",
   "license": "ISC",
   "dependencies": {
-    "@zkty-team/x-engine-core": "^1.0.4"
+    "@zkty-team/x-engine-core": "^1.0.7"
+  },
+  "devDependencies": {
+    "microbundle": "^0.13.0",
+    "rimraf": "^3.0.2"
   }
 }

@@ -8,7 +8,7 @@
 
 #import "JSIOldNavModule.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "WebViewFactory.h"
@@ -33,8 +33,8 @@ JSI_MODULE(JSIOldNavModule)
 }
 
 -(void)afterAllJSIModuleInited {
-    self.directors = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-    self.ui = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iUI)];
+    self.directors = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+    self.ui = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iUI)];
 }
 
 

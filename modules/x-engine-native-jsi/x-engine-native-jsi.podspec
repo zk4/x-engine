@@ -48,5 +48,22 @@ Pod::Spec.new do |s|
 
     
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
+    
+    #这是需要添加mrc标识的文件，为相对路径
+    non_arc_files = 'RecyleWebViewController.m'
+
+    #在工程中首先排除一下
+    s.exclude_files = non_arc_files
+
+    #一下就是子设置，为需要添加mrc标识的文件进行设置
+    s.subspec 'no-arc' do |sp|
+
+    sp.source_files = non_arc_files
+
+    sp.requires_arc = false
+    
+    end
+    
+    
 end
 

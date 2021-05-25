@@ -7,7 +7,7 @@
 
 
 #import "Native_direct.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iDirectManager.h"
 #import "iDirect.h"
 #import "NSString+Router+URLQuery.h"
@@ -35,7 +35,7 @@ NATIVE_MODULE(Native_direct)
 }
 
 - (void)afterAllNativeModuleInited{
-   NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
+   NSArray* modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
     for(id<iDirect> direct in modules){
         [self.directors setObject:direct forKey:[direct scheme]];
     }

@@ -12,7 +12,12 @@ version: 0.1.13
 **demo**
 ``` js
 
-    
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {
+    filePath: "xxx",
+    fileName: "协议.pdf"}, (val) => {
+      console.log(JSON.stringify(val)
+    )}
+  );    
 
 ``` 
 

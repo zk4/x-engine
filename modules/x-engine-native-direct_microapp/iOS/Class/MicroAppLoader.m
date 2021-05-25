@@ -6,7 +6,7 @@
 //
 
 #import "MicroAppLoader.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iSecurify.h"
 
 
@@ -95,7 +95,7 @@
 //           NSString *microappJson = [NSString stringWithFormat:@"%@/microapp.json", htmlPath];
 //           if([[NSFileManager defaultManager] fileExistsAtPath:microappJson]){
 //               NSString *jsonString = [NSString stringWithContentsOfFile:microappJson encoding:NSUTF8StringEncoding error:nil];
-//               id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+//               id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
 //               [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
 //           } else {
 //               UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"mircoapp.json 不存在" message:@"" preferredStyle:UIAlertControllerStyleAlert];

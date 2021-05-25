@@ -20,7 +20,7 @@ function isString (x) {
 }
 
 function isHybrid () {
-  return window && window._dswk === true;
+  return globalThis && globalThis._dswk === true;
 }
 let xengine = {
   patch: patch,
@@ -33,13 +33,26 @@ let xengine = {
   broadcastOn: broadcastOn,
   broadcastOff: broadcastOff,
   assert: xassert,
+  onLifecycle: onLifecycle,
 };
 
+// lifecycle
+let __onLifeCycleCB;
+function onLifecycle (cb) {
+  __onLifeCycleCB = cb;
+}
+xengine.bridge.register("com.zkty.jsi.engine.lifecycle.notify", (res) => {
+  if (__onLifeCycleCB) __onLifeCycleCB(res.type, res.payload);
+  else throw "未注册 lifecycle";
+});
+
 function xassert (targetID, expression) {
-  if (expression) {
-    document.getElementById(targetID).style.backgroundColor = "green";
-  } else {
-    document.getElementById(targetID).style.backgroundColor = "red";
+  if ('document' in globalThis) {
+    if (expression) {
+      document.getElementById(targetID).style.backgroundColor = "green";
+    } else {
+      document.getElementById(targetID).style.backgroundColor = "red";
+    }
   }
 }
 
@@ -65,7 +78,7 @@ function api (jsimoduleId, funcname, args, cb) {
 function broadcastOff () {
   xengine.bridge.unregister("com.zkty.module.engine.broadcast");
 }
-let eventCBStack = []
+let eventCBStack = [];
 function broadcastOn (eventcb) {
   eventCBStack.push(eventcb);
   xengine.bridge.register("com.zkty.module.engine.broadcast", (res) => {
@@ -118,7 +131,7 @@ function use (ns, funcs) {
       acc[cur.name] = (args) =>
         _call(cur.name, {
           ...cur.default_args,
-          ...args
+          ...args,
         });
     } else if (isString(cur)) {
       acc[cur] = (args) => _call(cur, args);
@@ -139,7 +152,7 @@ Object.defineProperty(xengine, "bridge", {
 });
 
 function platform () {
-  var ua = navigator.userAgent,
+  var ua = globalThis?.navigator?.userAgent,
     isAndroid = /(?:Android)/.test(ua),
     isPhone = /(?:iPhone)/.test(ua),
     isPc = !isPhone && !isAndroid;
@@ -173,13 +186,13 @@ function listenKeybord ($input) {
   // Andriod 键盘收起：Andriod 键盘弹起或收起页面高度会发生变化，以此为依据获知键盘收起
   if (this.platform.isAndroid) {
     var originHeight =
-      document.documentElement.clientHeight || document.body.clientHeight;
+      document?.documentElement.clientHeight || document?.body.clientHeight;
 
-    window.addEventListener(
+    globalThis.addEventListener(
       "resize",
       function () {
         var resizeHeight =
-          document.documentElement.clientHeight || document.body.clientHeight;
+          document?.documentElement.clientHeight || document?.body.clientHeight;
         if (originHeight < resizeHeight) {
           console.log("Android 键盘收起啦！");
           // Android 键盘收起后操作
@@ -195,7 +208,10 @@ function listenKeybord ($input) {
   }
 }
 
-var $inputs = document.querySelectorAll(".input");
+var $inputs = [];
+if ('document' in globalThis) {
+  $inputs = document.querySelectorAll(".input")
+}
 
 for (var i = 0; i < $inputs.length; i++) {
   listenKeybord($inputs[i]);
@@ -206,23 +222,25 @@ patch.disableDoubleTapScroll = function (ms) {
   console.log("禁用双击滑动,两次点击冷却时间为" + ms + " ms");
   //禁止双击时, webview 自动上移
   //不是个好方案, 会导致快速点击按钮失效
-  var agent = navigator.userAgent.toLowerCase();
+  var agent = globalThis?.navigator?.userAgent?.toLowerCase();
   var iLastTouch = null;
-  if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipad") >= 0) {
-    document.body.addEventListener(
-      "touchend",
-      function (event) {
-        var a = new Date().getTime();
-        iLastTouch = iLastTouch || a + 1;
-        var c = a - iLastTouch;
-        if (c < ms && c > 0) {
-          event.preventDefault();
-          return false;
-        }
-        iLastTouch = a;
-      },
-      false
-    );
+  if ('document' in globalThis) {
+    if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipad") >= 0) {
+      document.body.addEventListener(
+        "touchend",
+        function (event) {
+          var a = new Date().getTime();
+          iLastTouch = iLastTouch || a + 1;
+          var c = a - iLastTouch;
+          if (c < ms && c > 0) {
+            event.preventDefault();
+            return false;
+          }
+          iLastTouch = a;
+        },
+        false
+      );
+    }
   }
 };
 export default xengine;

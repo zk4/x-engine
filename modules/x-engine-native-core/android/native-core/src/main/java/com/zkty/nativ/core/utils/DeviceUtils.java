@@ -10,9 +10,9 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-
 import com.zkty.nativ.core.XEngineApplication;
 
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
@@ -125,6 +125,27 @@ public class DeviceUtils {
         // 通过WLAN或移动网络(3G/2G)确定的位置（也称作AGPS，辅助GPS定位。主要用于在室内或遮盖物（建筑群或茂密的深林等）密集的地方定位）
         boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         return gps || network;
+    }
+
+    /**
+     * 判断手机是否ROOT
+     */
+    public static boolean isRoot() {
+
+        boolean root = false;
+
+        try {
+            if ((!new File("/system/bin/su").exists())
+                    && (!new File("/system/xbin/su").exists())) {
+                root = false;
+            } else {
+                root = true;
+            }
+
+        } catch (Exception e) {
+        }
+
+        return root;
     }
 
 }

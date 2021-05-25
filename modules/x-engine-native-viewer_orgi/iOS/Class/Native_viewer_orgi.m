@@ -7,7 +7,7 @@
 
 
 #import "Native_viewer_orgi.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "AFNetworking.h"
 #import "Unity.h"
 #import <x-engine-native-store/iStore.h>
@@ -19,6 +19,7 @@
 @property (strong, nonatomic)QLPreviewController *previewController;
 @property (nonatomic, assign) id<iStore>store;
 @property (nonatomic, copy)NSString *fileUrl;
+
 @end
 
 @implementation Native_viewer_orgi
@@ -34,8 +35,8 @@ NATIVE_MODULE(Native_viewer_orgi)
 }
 
 - (void)afterAllNativeModuleInited{
-    
-    self.store = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
+
+    self.store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
 
 }
 
@@ -145,6 +146,7 @@ NATIVE_MODULE(Native_viewer_orgi)
 
 }
 
+ 
 @end
  
 

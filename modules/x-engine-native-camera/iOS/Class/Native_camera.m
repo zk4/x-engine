@@ -7,7 +7,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "Native_camera.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
 #import <GCDWebServer.h>
 #import <Photos/Photos.h>

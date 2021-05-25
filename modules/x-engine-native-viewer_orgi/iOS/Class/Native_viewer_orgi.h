@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iViewer.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_viewer_orgi : NativeModule <iViewer>
+@interface Native_viewer_orgi : XENativeModule <iViewer>
  
 @end
 

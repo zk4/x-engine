@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iDirect.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Native_direct_omp : NativeModule <iDirect>
+@interface Native_direct_omp : XENativeModule <iDirect>
  @end
 
 NS_ASSUME_NONNULL_END

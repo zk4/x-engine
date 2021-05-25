@@ -6,11 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iCamera.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_camera : NativeModule <iCamera>
+@interface Native_camera : XENativeModule <iCamera>
  
 @end
 

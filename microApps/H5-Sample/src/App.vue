@@ -1,6 +1,14 @@
+<!--
+ * @Author: sheng.wang
+ * @Date: 2021-05-20 14:20:45
+ * @LastEditTime: 2021-05-24 17:26:02
+ * @LastEditors: sheng.wang
+ * @Description: 
+ * @FilePath: /x-engine/microApps/H5-Sample/src/App.vue
+-->
 <template>
   <div id="app">
-    <ZKTY-Header />
+    <Header  />
     <router-view :style="style" />
   </div>
 </template>

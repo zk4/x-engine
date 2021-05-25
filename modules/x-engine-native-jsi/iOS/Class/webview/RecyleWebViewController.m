@@ -9,7 +9,7 @@
 #import "GlobalState.h"
 #import "Unity.h"
 #import "iSecurify.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 
 /// TODO: webview refactor
@@ -18,12 +18,19 @@
  由调用者保证 url 正确。不对 url 的处理，打不开就打不开
  RecyleWebViewController 只负责载着 view 做转场动画。
  */
+
+NSString * const OnNativeShow = @"onNativeShow";
+NSString * const OnNativeHide = @"onNativeHide";
+NSString * const OnNativeDestroyed = @"onNativeDestroyed";
+
+
 @interface RecyleWebViewController () <UIGestureRecognizerDelegate, WKNavigationDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
 @property (nonatomic, assign) Boolean newWebview;
+@property (nonatomic, assign) Boolean firstDidAppearCbIgnored;
 @property (nonatomic, assign) Boolean isOnTab;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
@@ -97,7 +104,7 @@
 //        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
 //        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
 //            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
-//            id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
+//            id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
 //            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
 //        } else {
 //            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
@@ -197,16 +204,20 @@
     self.progresslayer.alpha = 0;
 }
 
-
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self.webview triggerVueLifeCycleWithMethod:@"NativeCallVueMounted"];
+    if(self.firstDidAppearCbIgnored) {
+        self.firstDidAppearCbIgnored = NO;
+    } else {
+        [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
+    }
     
     if(self.isOnTab){
         [[GlobalState sharedInstance] setCurrentTabVC:self];
     }
+    
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
      if(self.screenView){
         //  返回的时候不要急着 remove， 不然会闪历史界面
@@ -218,9 +229,11 @@
     [self.view insertSubview:self.webview atIndex:0];
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
+    
     if(!self.newWebview && self.screenView == nil){
         self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
         self.screenView.backgroundColor = [UIColor whiteColor];
@@ -231,6 +244,11 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+}
+
+- (void)dealloc {
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
+    NSLog(@"delloc了");
 }
 
 - (void)viewDidLayoutSubviews {
@@ -248,6 +266,7 @@
 
 #pragma mark - <ui>
 - (void)setupUI {
+    self.firstDidAppearCbIgnored = YES;
     self.hidesBottomBarWhenPushed = YES;
     
     self.navigationController.interactivePopGestureRecognizer.delegate = self;

@@ -20,9 +20,34 @@ export default {
     return {}
   },
   mounted() {
-    console.log("testOnePage-->mounted")
+    // console.log("testOnePage-->mounted")
+    // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-mounted")
+  },
+  destroyed() {
+    // console.log("testOnePage-->destroyed")
+    // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-destroyed")
   },
   methods: {
+    onNativeShow() {
+      console.log("onePageCustom-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
+    },
+    onNativeHide() {
+      console.log("onePageCustom-->onNativeHide")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeHide"
+      )
+    },
+    onNativeDestroyed() {
+      console.log("onePageCustom-->onNativeDestroyed")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeDestroyed"
+      )
+    },
     handlerPush() {
       this.$router.push({
         path: "/testtwo",
@@ -37,13 +62,6 @@ export default {
     handlerBack() {
       this.$router.go(-1)
     },
-
-    // scheme tip:
-    // file
-    // omp
-    // http
-    // https
-    // microapp
     handlerOpenMicroApp() {
       this.$engine.api(
         "com.zkty.jsi.direct",

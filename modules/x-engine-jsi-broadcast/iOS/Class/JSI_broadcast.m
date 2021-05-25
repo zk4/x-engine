@@ -8,7 +8,7 @@
 
 #import "JSI_broadcast.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iBroadcast.h"
 
 @interface JSI_broadcast()

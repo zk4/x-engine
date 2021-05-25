@@ -41,7 +41,13 @@
 <script>
 import XEngine from "@zkty-team/x-engine-core";
 export default {
-  name: "ZKTY-Header",
+  name: "Header",
+  props: {
+    ssrIsShowHeader: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       lineheight: "",
@@ -79,7 +85,12 @@ export default {
     } else {
       let statusBarHeight = XEngine.api("com.zkty.jsi.device", "getStatusBarHeight");
       let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
-      this.lineheight = Number(statusBarHeight) + Number(navheight);
+      if (navheight == undefined && statusBarHeight == undefined) {
+        this.lineheight = 64;
+      } else {
+        let height = Number(statusBarHeight) + Number(navheight);
+        this.lineheight = height;
+      }
     }
   },
   methods: {
@@ -122,7 +133,7 @@ export default {
       }
 
       // 是否显示header
-      if (to.meta.isShowHeader == undefined) {
+      if (to.meta.isShowHeader == undefined || this.ssrIsShowHeader !== false) {
         this.isShowHeader = false;
       } else {
         this.isShowHeader = to.meta.isShowHeader;
@@ -142,6 +153,12 @@ export default {
         this.isWhiteColor = true;
       }
     },
+    ssrIsShowHeader: {
+      handler(data) {
+        this.isShowHeader = data
+      },
+      immediate: true
+    }
   },
 };
 </script>
@@ -174,7 +191,7 @@ export default {
   text-align: left;
   display: flex;
   text-align: center;
-  flex: 0.4;
+  flex: 0.5;
 }
 
 .content-item-center {

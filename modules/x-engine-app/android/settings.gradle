@@ -43,6 +43,12 @@ project(':native-share').projectDir = new File('../../x-engine-native-share/andr
 include ':native-share_wx'
 project(':native-share_wx').projectDir = new File('../../x-engine-native-share_wx/android/native-share_wx')
 
+include ':native-viewer'
+project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/android/native-viewer')
+
+include ':native-viewer_orgi'
+project(':native-viewer_orgi').projectDir = new File('../../x-engine-native-viewer_orgi/android/native-viewer_orgi')
+
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
@@ -81,3 +87,6 @@ project(':jsi-share').projectDir = new File('../../x-engine-jsi-share/android/js
 
 include ':jsi-dev'
 project(':jsi-dev').projectDir = new File('../../x-engine-jsi-dev/android/jsi-dev')
+
+include ':jsi-viewer'
+project(':jsi-viewer').projectDir = new File('../../x-engine-jsi-viewer/android/jsi-viewer')

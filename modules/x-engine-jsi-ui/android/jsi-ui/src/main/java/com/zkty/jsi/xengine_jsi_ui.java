@@ -4,15 +4,18 @@
 
   package com.zkty.jsi;
 
+  import java.util.List;
+  import java.util.Map;
+  import java.util.Set;
   import android.webkit.JavascriptInterface;
-
+  import com.alibaba.fastjson.JSON;
   import com.alibaba.fastjson.JSONObject;
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
 
-
-class NavTitleDTO {
+  
+  class NavTitleDTO {
     public String title;
 
     public String titleColor;

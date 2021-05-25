@@ -37,7 +37,7 @@
 //                        object:nil
 //                         queue:nil
 //                    usingBlock:^(NSNotification *note) {
-//                      [[NativeContext sharedInstance] start];
+//                      [[XENativeContext sharedInstance] start];
 //                      [[NSNotificationCenter defaultCenter] removeObserver:observer];
 //                    }];
     

@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iShareManager.h"
 #import "JSONModel.h"
 
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface Native_share : NativeModule <iShareManager>
+@interface Native_share : XENativeModule <iShareManager>
 
 @end
 

@@ -155,9 +155,9 @@ NATIVE_MODULE(Native_direct_omp)
         }
         
         if (params[@"nativeParams"]) {
-            id<iStore>store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
             // 存入store 让前端去取
-            [store set:@"nativeParams" val:params[@"nativeParams"]];
+            id<iStore>store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
+            [store set:@"nativeParams" val:[self dictionaryToJson:params[@"nativeParams"]]];
             [store saveTodisk];
         }
         

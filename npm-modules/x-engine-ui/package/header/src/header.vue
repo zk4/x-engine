@@ -42,6 +42,12 @@
 import XEngine from "@zkty-team/x-engine-core";
 export default {
   name: "Header",
+  props: {
+    ssrIsShowHeader: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       lineheight: "",
@@ -127,7 +133,7 @@ export default {
       }
 
       // 是否显示header
-      if (to.meta.isShowHeader == undefined) {
+      if (to.meta.isShowHeader == undefined || this.ssrIsShowHeader !== false) {
         this.isShowHeader = false;
       } else {
         this.isShowHeader = to.meta.isShowHeader;
@@ -147,6 +153,12 @@ export default {
         this.isWhiteColor = true;
       }
     },
+    ssrIsShowHeader: {
+      handler(data) {
+        this.isShowHeader = data
+      },
+      immediate: true
+    }
   },
 };
 </script>
@@ -179,7 +191,7 @@ export default {
   text-align: left;
   display: flex;
   text-align: center;
-  flex: 0.4;
+  flex: 0.5;
 }
 
 .content-item-center {

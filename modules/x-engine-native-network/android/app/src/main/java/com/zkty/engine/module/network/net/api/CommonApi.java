@@ -1,13 +1,11 @@
 package com.zkty.engine.module.network.net.api;
 
 
-
 import com.zkty.nativ.network.bean.BaseResp;
 
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 import rx.Observable;
 
 
@@ -32,6 +30,4 @@ public interface CommonApi {
     @GET("finishList")
     Observable<BaseResp> getScheduleAccomplishedInfo();
 
-    @GET
-    Observable<BaseResp> post(@Url String url);
 }

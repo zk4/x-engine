@@ -52,7 +52,7 @@ public class TokenInterceptor implements Interceptor {
 
     private void getNewToken() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("CommonService.getInstance().USER_SERVE").append("renewToken");
+        stringBuilder.append("http://10.115.91.71:32383/login/").append("renewToken");
         OkHttpClient client = new OkHttpClient();
         FormBody.Builder builder = new FormBody.Builder();
         Request request = new Request.Builder()

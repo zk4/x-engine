@@ -3,7 +3,9 @@ package com.zkty.nativ.network.api;
 
 import java.util.Map;
 
-import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import retrofit2.http.Part;
+import rx.Observable;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -36,7 +38,16 @@ public interface RetrofitHttpService {
 
     @FormUrlEncoded
     @POST()
-    Observable<String> Obpost(@Url String url, @FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers);
+    Observable<String> ObpostMap(@Url String url, @FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers);
+
+    @POST()
+    Observable<String> ObpostBody(@Url String url, @Body Map<String, String> params, @HeaderMap Map<String, String> headers);
+
+    @POST()
+    Observable<String> ObpostQuery(@Url String url, @QueryMap Map<String, String> params, @HeaderMap Map<String, String> headers);
+
+    @POST()
+    Observable<String> ObpostPath(@Url String url, @HeaderMap Map<String, String> headers);
 
     @FormUrlEncoded
     @PUT
@@ -47,19 +58,20 @@ public interface RetrofitHttpService {
     Observable<ResponseBody> Obdownload(@HeaderMap Map<String, String> headers, @Url String url, @QueryMap Map<String, String> params);
     @GET()
     Observable<ResponseBody> Obdownload(@HeaderMap Map<String, String> headers, @Url String url, @Body String data);
-
+    @GET()
+    Observable<ResponseBody> Obdownload(@HeaderMap Map<String, String> headers, @Url String url);
     @Streaming
     @GET()
     Call<ResponseBody> download(@HeaderMap Map<String, String> headers, @Url String url, @QueryMap Map<String, String> params);
-
     @GET()
     Call<ResponseBody> download(@HeaderMap Map<String, String> headers, @Url String url, @Body String data);
     @Multipart
     @POST()
     Call<String> uploadMultipleTypeFile(@Url String url, @FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers, @PartMap Map<String, RequestBody> Filesparams);
-
     @Multipart
     @POST()
     Call<String> uploadMultipleTypeFile(@Url String url, @Body String data, @HeaderMap Map<String, String> headers, @PartMap Map<String, RequestBody> Filesparams);
-
+    @Multipart
+    @POST
+    Observable<ResponseBody> uploadMultipleTypeFile(@Url String url, @Part MultipartBody.Part file);
 }

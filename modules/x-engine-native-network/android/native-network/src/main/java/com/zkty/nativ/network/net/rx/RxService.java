@@ -3,11 +3,24 @@ package com.zkty.nativ.network.net.rx;
 
 import com.google.gson.Gson;
 import com.zkty.nativ.network.NetworkMaster;
+import com.zkty.nativ.network.api.RetrofitHttpService;
+import com.zkty.nativ.network.net.ProgressRequestBody;
 import com.zkty.nativ.network.net.converter.DecodeConverterFactory;
+import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
+import com.zkty.nativ.network.net.myinterface.OnUploadListener;
 import com.zkty.nativ.network.okhttp.OkhttpProvidede;
+import com.zkty.nativ.network.utils.WriteFileUtil;
 
+import java.io.File;
+import java.util.HashMap;
+
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class RxService {
 
@@ -32,16 +45,82 @@ public class RxService {
      * @param <T>
      * @return
      */
-    public static <T> T createBasicApi(Class<T> clazz, String serverUrl,boolean isCheckToekn) {
+    public static <T> T createBasicApi(Class<T> clazz,String hostUrl, String serverUrl,boolean isCheckToekn) {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(DecodeConverterFactory.create(new Gson()))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(OkhttpProvidede.okHttpClient(isCheckToekn))
-                .baseUrl(NetworkMaster.getInstance().getHostUrl() + serverUrl)
+                .baseUrl(hostUrl + serverUrl)
                 .build();
         return retrofit.create(clazz);
     }
 
+    /**
+     * 下载文件
+     * @param url
+     * @param filePath
+     * @param onDownloadListener
+     */
+
+    public static void downLoadFile(String url, String filePath, OnDownloadListener onDownloadListener) {
+        HashMap<String, String> headers = new HashMap<>();
+        createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),"/downLoad/",false)
+                .Obdownload(headers,url)
+                /*http请求线程*/
+                .subscribeOn(Schedulers.newThread())
+                /*回调线程*/
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        onDownloadListener.onDownloadFailed();
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        WriteFileUtil.writeFile(responseBody,filePath,onDownloadListener);
+                    }
+                });
+    }
+
+    /**
+     * 上传文件
+     * @param url
+     * @param filePath
+     * @param onUploadListener
+     */
+
+    public static void upLoadFile(String url, String filePath, OnUploadListener onUploadListener) {
+        File file = new File(filePath);
+        //封装请求体
+        ProgressRequestBody uploadFileRequestBody = new ProgressRequestBody(file, onUploadListener);
+        //封装文件
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), uploadFileRequestBody);
+        //创建请求
+        createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),"/update/",false)
+                .uploadMultipleTypeFile(url,part)
+                /*http请求线程*/
+                .subscribeOn(Schedulers.newThread())
+                /*回调线程*/
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                    }
+                });
+    }
 
 
     private static String getUserAgent() {
@@ -58,6 +137,7 @@ public class RxService {
         }
         return sb.toString();
     }
+
 
 }
 

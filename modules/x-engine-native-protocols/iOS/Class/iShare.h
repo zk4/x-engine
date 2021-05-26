@@ -8,12 +8,11 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class ContentModel,ShareInfoModel;
+@class ShareInfoModel;
 @protocol iShare <NSObject>
 
     - (NSArray<NSString*>*_Nullable) getTypes;
     - (NSString*_Nullable) getName;
-//    - (NSString*_Nullable) getIconUrl;
     - (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler ;
 
 @end

@@ -12,7 +12,24 @@ version: 0.1.13
 **demo**
 ``` js
 
-
+xengine.api("com.zkty.jsi.gmshare", "openShareUi", {"shopWechatGroupImgUrl":"","channelList":[
+        {
+            "channel":"wx_friend",
+            "shareType":"miniProgram"
+        },
+        {
+            "channel":"wx_zone",
+            "shareType":"miniProgram"
+        },
+        {
+            "channel":"gome",
+            "shareType":"miniProgram"
+        },
+        {
+            "channel":"create_poster",
+            "shareType":"img"
+        }
+    ]});
 
 ``` 
 
@@ -42,12 +59,23 @@ interface ChannelStatusDTO {
 
 
 ## createPoster
-[`async`](/docs/modules/模块-规范?id=jsi-调用)
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 创建海报
 **demo**
 ``` js
 
-  
+  xengine.api("com.zkty.jsi.gmshare", "createPoster",{
+        "posterType":"goods",
+        "posterImgUrl":"https://i.picsum.photos/id/658/400/400.jpg?hmac=mo1ioi7RJtmA8U7UCDNYXsibPrMbHXvcnGQe23Hqgl4",
+        "shopLogoUrl":"https://i.picsum.photos/id/658/400/400.jpg?hmac=mo1ioi7RJtmA8U7UCDNYXsibPrMbHXvcnGQe23Hqgl4",
+        "shopName":"海报店铺名称",
+        "shopAddress":"",
+        "rightCornerImg":"https://i.picsum.photos/id/658/400/400.jpg?hmac=mo1ioi7RJtmA8U7UCDNYXsibPrMbHXvcnGQe23Hqgl4",
+        "minProgramImg":"https://i.picsum.photos/id/658/400/400.jpg?hmac=mo1ioi7RJtmA8U7UCDNYXsibPrMbHXvcnGQe23Hqgl4",
+        "goodsTitle":"海报商品名称",
+        "goodsPrice":"¥100.00",
+        "activityName":""
+    });
 
 ``` 
 

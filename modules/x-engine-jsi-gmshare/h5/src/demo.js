@@ -4,7 +4,7 @@ import xengine from "@zkty-team/x-engine-core";
 
 window.test_openShareUi = () => {
 
- xengine.api("com.zkty.jsi.gmshare", "openShareUi", {"shopWechatGroupImgUrl":"",channelList":[
+ xengine.api("com.zkty.jsi.gmshare", "openShareUi", {"shopWechatGroupImgUrl":"","channelList":[
         {
             "channel":"wx_friend",
             "shareType":"miniProgram"
@@ -21,7 +21,10 @@ window.test_openShareUi = () => {
             "channel":"create_poster",
             "shareType":"img"
         }
-    ]}
+    ]}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
  document.getElementById("test_openShareUi").click()
       window.test_createPoster = () => {
 

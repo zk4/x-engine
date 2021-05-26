@@ -4,16 +4,16 @@
 
   package com.zkty.jsi;
 
+  import java.util.List;
+  import java.util.Map;
+  import java.util.Set;
   import android.webkit.JavascriptInterface;
-
-import androidx.annotation.Nullable;
-
-import com.alibaba.fastjson.JSONObject;
-import com.zkty.nativ.core.annotation.Optional;
-import com.zkty.nativ.jsi.JSIModule;
-import com.zkty.nativ.jsi.bridge.CompletionHandler;
-
-import java.util.List;
+  import com.alibaba.fastjson.JSON;
+  import com.alibaba.fastjson.JSONObject;
+  import com.zkty.nativ.jsi.bridge.CompletionHandler;
+  import com.zkty.nativ.jsi.JSIModule;
+  import androidx.annotation.Nullable;
+  import com.zkty.nativ.core.annotation.Optional;
 
   
   class OpenShareUiDTO {
@@ -70,7 +70,8 @@ import java.util.List;
   
   interface xengine_jsi_gmshare_protocol {
     public void _openShareUi(OpenShareUiDTO dto, final CompletionHandler<ChannelStatusDTO> handler);
-public void _createPoster(PosterDTO dto, final CompletionHandler<Nullable> handler);
+
+public void _createPoster(PosterDTO dto);
   }
   
   
@@ -94,19 +95,13 @@ public void _createPoster(PosterDTO dto, final CompletionHandler<Nullable> handl
 
     }
 
-    @JavascriptInterface
-    final public void createPoster(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      PosterDTO dto= convert(jsonobj,PosterDTO.class);
-      _createPoster(dto, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
+        @JavascriptInterface
+        public Object createPoster(JSONObject jsonobj) {
+          PosterDTO dto= convert(jsonobj,PosterDTO.class);
+          _createPoster(dto);
+          return null;
+        }
+        
   }
   
 

@@ -54,7 +54,7 @@
         - (void) _openShareUi:(OpenShareUiDTO*) dto complete:(void (^)(ChannelStatusDTO* result,BOOL complete)) completionHandler;
 
       @required 
-        - (void) _createPoster:(PosterDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+       - (void) _createPoster:(PosterDTO*)dto;
     
 @end
   

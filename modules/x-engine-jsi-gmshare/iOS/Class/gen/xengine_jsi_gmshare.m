@@ -65,11 +65,10 @@
           }];
         
       }
-    - (void) createPoster:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          PosterDTO* dto = [self convert:dict clazz:PosterDTO.class];
-          [self _createPoster:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
-          }];
-      }
+  
+  - (id) createPoster:(NSDictionary*) dict {
+      PosterDTO* dto = [self convert:dict clazz:PosterDTO.class];
+      [self _createPoster:dto];
+                 return nil;
+        }
   @end

@@ -24,6 +24,7 @@ JSI_MODULE(JSI_viewer)
 }
   
 - (void)_openFileReader:(OpenFiileDTO *)dto complete:(void (^)(StatusDTO *, BOOL))completionHandler {
+    dto.filePath 
     [self.iviewer openFileWithfileUrl:dto.filePath fileType:@"pdf" callBack:^(NSString * _Nullable filepath) {
         
     }];

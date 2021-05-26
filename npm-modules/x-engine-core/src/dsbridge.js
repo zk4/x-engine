@@ -31,7 +31,8 @@ var bridge = {
 
         // 客户端会走到这里, webView初始化的时候会给globalThis注入_dswk=true
         else if (globalThis._dswk || -1 != globalThis?.navigator?.userAgent.indexOf("_dsbridge")) {
-            // ret = prompt("_dsbridge=" + functionName, args);
+            if(globalThis.prompt)
+                ret = globalThis.prompt("_dsbridge=" + functionName, args);
         }
         return JSON.parse(ret || "{}").data
     },

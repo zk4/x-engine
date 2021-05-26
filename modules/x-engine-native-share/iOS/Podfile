@@ -11,6 +11,7 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'x-engine-native-share_wx', :path => X_ENGINE_MODULES+'/x-engine-native-share_wx'
 end
 
 target 'share' do

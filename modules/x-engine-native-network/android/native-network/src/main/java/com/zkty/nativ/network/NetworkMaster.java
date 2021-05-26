@@ -10,18 +10,23 @@ import okhttp3.Interceptor;
 
 
 public class NetworkMaster {
-    private static String hostUrl;
-    private static String buildTypeName;
-    private static String appVerisonName;
-    private static Context mContext;
     private static NetworkMaster mInstance;
+    private static Context mContext;
+    //接口host地址
+    private static String hostUrl;
+    //环境名称
+    private static String buildTypeName;
+    //环境类型
     private static String mBuildType;
+    //app版本号
+    private static String appVerisonName;
+    //登陆成功返回的 token
     private static String sessionToken;
     //token拦截
     private static Interceptor tokenInterceptor;
-
-
+    //网络监听
     private NetworkListener networkListener;
+
 
     public NetworkMaster(Context mContext,  String hostUrl, String mBuildType, String buildTypeName, String appVerisonName,String sessionToken, Interceptor interceptor) {
         NetworkMaster.mContext = mContext;
@@ -60,6 +65,10 @@ public class NetworkMaster {
 
     public String getSessionToken() {
         return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken){
+        this.sessionToken = sessionToken;
     }
 
     public Interceptor getTokenInterceptor() {

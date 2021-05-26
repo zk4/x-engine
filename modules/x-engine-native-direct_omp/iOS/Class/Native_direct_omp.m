@@ -136,8 +136,9 @@ NATIVE_MODULE(Native_direct_omp)
         pathname = pathname?pathname:@"";
         fragment = fragment?[NSString stringWithFormat:@"#%@",fragment]:@"";
         
-
+        NSString *finalQueryString=nil;
         NSString * finalUrl = @"";
+        
         if (query) {
             NSArray *keys = query.allKeys;
             NSArray *values = query.allValues;
@@ -145,14 +146,15 @@ NATIVE_MODULE(Native_direct_omp)
             for (NSInteger i = 0; i<keys.count; i++) {
                 forString = [forString stringByAppendingFormat:@"%@=%@&", keys[i], values[i]];
             }
-            NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
-            NSString *finalQueryString;
-            finalQueryString = [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
-            // 拼接url 让前端去取
-            finalUrl = [NSString stringWithFormat:@"%@//%@%@%@?%@",protocol,host,pathname,fragment,finalQueryString];
-        } else {
-            finalUrl = [NSString stringWithFormat:@"%@//%@%@%@",protocol,host,pathname,fragment];
-        }
+            if(forString.length>0){
+                NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
+                finalQueryString = [NSString stringWithFormat:@"?%@", [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]]];
+            }
+         }
+        finalQueryString = finalQueryString?finalQueryString:@"";
+
+        finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,finalQueryString];
+        
         
         if (params[@"nativeParams"]) {
             // 存入store 让前端去取

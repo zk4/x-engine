@@ -15,9 +15,9 @@
 
 @end
 
-@implementation ChannelStatusDTO
-
-@end
+//@implementation ChannelStatusDTO
+//
+//@end
 
 @implementation PosterDTO
 

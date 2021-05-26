@@ -6,7 +6,7 @@
 //
 
 #import "JSONModel.h"
-
+@class ChannelStatusDTO;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChannelDTO : JSONModel
@@ -25,15 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ChannelStatusDTO : JSONModel
-//分享渠道标签  wx_friend (微信好友) wx_zone（朋友圈）gome（国美） create_poster(生成海报) save_img(保存图片)
-@property (nonatomic, copy)NSString *channel;
-  //分享类型 text (文字) img (图片) link (链接) miniProgram (微信小程序)
-@property (nonatomic, copy)NSString *shareType;
-  //分享图片的base64
-@property (nonatomic, copy)NSString *shareImgData;
-
-@end
+//@interface ChannelStatusDTO : JSONModel
+////分享渠道标签  wx_friend (微信好友) wx_zone（朋友圈）gome（国美） create_poster(生成海报) save_img(保存图片)
+//@property (nonatomic, copy)NSString *channel;
+//  //分享类型 text (文字) img (图片) link (链接) miniProgram (微信小程序)
+//@property (nonatomic, copy)NSString *shareType;
+//  //分享图片的base64
+//@property (nonatomic, copy)NSString *shareImgData;
+//
+//@end
 //海报信息
 @interface PosterDTO : JSONModel
 //海报类型  goods(商品) shop(店铺) activity(活动)

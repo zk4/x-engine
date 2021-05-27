@@ -11,9 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 @class ShareInfoModel;
 @protocol iShare <NSObject>
 
-    - (NSArray<NSString*>*_Nullable) getTypes;
-    - (NSString*_Nullable) getName;
-    - (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler ;
+- (NSArray<NSString*>*_Nullable)getTypes;
+- (NSString*_Nullable)getName;
+//- (void)share:(ShareDTO *)dto complete:(void (^)(BOOL))completionHandler;
+
+//    - (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler ;
 
 @end
 

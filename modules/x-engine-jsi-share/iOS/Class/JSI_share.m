@@ -44,4 +44,8 @@ JSI_MODULE(JSI_share)
  
 
   
+- (void)_share:(ShareDTO *)dto complete:(void (^)(BOOL))completionHandler {
+    
+}
+
 @end

@@ -7,11 +7,17 @@
 
 #import "iGmshare.h"
 
-@implementation OpenShareUiDTO
+@implementation ShareDTO
 
 @end
 
-@implementation ChannelDTO
+@implementation ShareTextDTO
+
+@end
+@implementation ShareLinkDTO
+
+@end
+@implementation ShareMiniProgramDTO
 
 @end
 
@@ -19,6 +25,6 @@
 //
 //@end
 
-@implementation PosterDTO
-
-@end
+//@implementation PosterDTO
+//
+//@end

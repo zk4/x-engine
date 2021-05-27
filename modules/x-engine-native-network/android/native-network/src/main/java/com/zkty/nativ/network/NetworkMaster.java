@@ -27,6 +27,12 @@ public class NetworkMaster {
     //网络监听
     private NetworkListener networkListener;
 
+    public static NetworkMaster getInstance() {
+        if (mInstance == null) {
+            throw new NullPointerException("请初始化 NetworkMaster");
+        }
+        return mInstance;
+    }
 
     public NetworkMaster(Context mContext,  String hostUrl, String mBuildType, String buildTypeName, String appVerisonName,String sessionToken, Interceptor interceptor) {
         NetworkMaster.mContext = mContext;
@@ -38,7 +44,9 @@ public class NetworkMaster {
         NetworkMaster.sessionToken = sessionToken;
     }
 
-
+    public static Context getContext() {
+        return mContext;
+    }
 
     public void setNetworkLinstener(NetworkListener linstener) {
         this.networkListener = linstener;
@@ -48,16 +56,6 @@ public class NetworkMaster {
         return networkListener;
     }
 
-    public static Context getContext() {
-        return mContext;
-    }
-
-    public static NetworkMaster getInstance() {
-        if (mInstance == null) {
-            throw new NullPointerException("请初始化 NetworkMaster");
-        }
-        return mInstance;
-    }
 
     public String getHostUrl() {
         return hostUrl;

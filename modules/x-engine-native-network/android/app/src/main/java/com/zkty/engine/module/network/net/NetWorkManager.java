@@ -10,19 +10,19 @@ import com.zkty.nativ.network.utils.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommonEngine {
+public class NetWorkManager {
 
-    private static CommonEngine mInstance;
+    private static NetWorkManager mInstance;
 
     private List<String> imageUrlList = new ArrayList<>();
     private int currentNum = 0;
 
-    private CommonEngine() {
+    private NetWorkManager() {
     }
 
-    public static CommonEngine getInstance() {
+    public static NetWorkManager getInstance() {
         if (mInstance == null) {
-            mInstance = new CommonEngine();
+            mInstance = new NetWorkManager();
         }
         return mInstance;
     }
@@ -37,7 +37,7 @@ public class CommonEngine {
     }
 
     public void getSmsCode(String phoneNum, final ServiceCallback callback) {
-        RxServiceManager.LoginServeApiFor(CommonApi.class)
+        RxServiceManager.LoginServeApiFor()
                 .getSmsCode(phoneNum)
                 .compose(RxUtil.<BaseResp>handleRestfullResult())
                 .subscribe(
@@ -49,7 +49,7 @@ public class CommonEngine {
     }
 
     public void getScheduleListById(final ServiceCallback callback) {
-        RxServiceManager.ScheduleServeApiFor(CommonApi.class)
+        RxServiceManager.ScheduleServeApiFor()
                 .getScheduleAccomplishedInfo()
                 .compose(RxUtil.<BaseResp>handleRestfullResult())
                 .subscribe(

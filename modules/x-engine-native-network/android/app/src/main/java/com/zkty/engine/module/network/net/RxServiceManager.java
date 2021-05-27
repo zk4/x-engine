@@ -1,5 +1,11 @@
 package com.zkty.engine.module.network.net;
 
+import com.zkty.engine.module.network.net.api.AdApi;
+import com.zkty.engine.module.network.net.api.CommonApi;
+import com.zkty.engine.module.network.net.api.ImApi;
+import com.zkty.engine.module.network.net.api.LoginApi;
+import com.zkty.engine.module.network.net.api.ScheduleApi;
+import com.zkty.engine.module.network.net.api.ServiceApi;
 import com.zkty.nativ.network.NetworkMaster;
 import com.zkty.nativ.network.net.rx.RxService;
 
@@ -11,27 +17,27 @@ import com.zkty.nativ.network.net.rx.RxService;
 public class RxServiceManager {
 
     //用户服务
-    public static <T> T LoginServeApiFor(Class<T> clazz) {
-        return RxService.createBasicApi(clazz, NetworkMaster.getInstance().getHostUrl() ,"/login/",false);
+    public static LoginApi LoginServeApiFor() {
+        return RxService.createBasicApi(LoginApi.class, NetworkMaster.getInstance().getHostUrl() ,"/login/",false);
     }
 
     //IM服务
-    public static <T> T IMServeApiFor(Class<T> clazz) {
-        return RxService.createBasicApi(clazz, NetworkMaster.getInstance().getHostUrl(),"/im-service/",true);
+    public static ImApi IMServeApiFor() {
+        return RxService.createBasicApi(ImApi.class, NetworkMaster.getInstance().getHostUrl(),"/im-service/",true);
     }
 
     //日程服务
-    public static <T> T ScheduleServeApiFor(Class<T> clazz) {
-        return RxService.createBasicApi(clazz, NetworkMaster.getInstance().getHostUrl(),"/schedule/",true);
+    public static ScheduleApi ScheduleServeApiFor() {
+        return RxService.createBasicApi(ScheduleApi.class, NetworkMaster.getInstance().getHostUrl(),"/schedule/",true);
     }
 
     //广告
-    public static <T> T AdServeApiFor(Class<T> clazz) {
-        return RxService.createBasicApi(clazz, NetworkMaster.getInstance().getHostUrl(),"/ad/",false);
+    public static AdApi AdServeApiFor() {
+        return RxService.createBasicApi(AdApi.class, NetworkMaster.getInstance().getHostUrl(),"/ad/",false);
     }
 
     //客服
-    public static <T> T SerivceServeApiFor(Class<T> clazz) {
-        return RxService.createBasicApi(clazz, "http://larkapi.gomeuat.com.cn","/open/",false);
+    public static ServiceApi SerivceServeApiFor() {
+        return RxService.createBasicApi(ServiceApi.class, "http://larkapi.gomeuat.com.cn","/open/",false);
     }
 }

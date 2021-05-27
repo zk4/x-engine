@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.zkty.engine.module.network.net.CommonEngine;
+import com.zkty.engine.module.network.net.NetWorkManager;
 import com.zkty.engine.module.network.net.callback.ServiceCallback;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ToastUtils;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void network(View view) {
-        CommonEngine.getInstance().getScheduleListById(new ServiceCallback() {
+        NetWorkManager.getInstance().getScheduleListById(new ServiceCallback() {
             @Override
             public void onSuccess(Object jsonObj) {
                 ToastUtils.showCenterToast("哈哈哈哈哈哈");

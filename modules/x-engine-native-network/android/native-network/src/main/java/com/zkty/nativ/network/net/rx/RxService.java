@@ -40,17 +40,16 @@ public class RxService {
     /**
      * 创建 Retrofit
      * @param clazz
-     * @param serverUrl
      * @param isCheckToekn
      * @param <T>
      * @return
      */
-    public static <T> T createBasicApi(Class<T> clazz,String hostUrl, String serverUrl,boolean isCheckToekn) {
+    public static <T> T createBasicApi(Class<T> clazz,String hostUrl,boolean isCheckToekn) {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(DecodeConverterFactory.create(new Gson()))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(OkhttpProvidede.okHttpClient(isCheckToekn))
-                .baseUrl(hostUrl + serverUrl)
+                .baseUrl(hostUrl)
                 .build();
         return retrofit.create(clazz);
     }
@@ -64,7 +63,7 @@ public class RxService {
 
     public static void downLoadFile(String url, String filePath, OnDownloadListener onDownloadListener) {
         HashMap<String, String> headers = new HashMap<>();
-        createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),"/downLoad/",false)
+        createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),false)
                 .Obdownload(headers,url)
                 /*http请求线程*/
                 .subscribeOn(Schedulers.newThread())
@@ -102,7 +101,7 @@ public class RxService {
         //封装文件
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), uploadFileRequestBody);
         //创建请求
-        createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),"/update/",false)
+        createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),false)
                 .uploadMultipleTypeFile(url,part)
                 /*http请求线程*/
                 .subscribeOn(Schedulers.newThread())

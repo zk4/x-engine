@@ -25,8 +25,7 @@
 
     public String fileType;
 
-    @Optional
-		public String title;
+    public String title;
   }
   
   interface xengine_jsi_viewer_protocol {

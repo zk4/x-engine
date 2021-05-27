@@ -22,3 +22,7 @@ project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/an
 //
 include ':native-viewer_orgi'
 project(':native-viewer_orgi').projectDir = new File('../../x-engine-native-viewer_orgi/android/native-viewer_orgi')
+
+
+include ':native-viewer_original'
+project(':native-viewer_original').projectDir = new File('../../x-engine-native-viewer_original/android/native-viewer_original')

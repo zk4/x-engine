@@ -21,20 +21,17 @@ function openFileReader(fileDTO: {
   fileType: string;
 
   //title 展示使用
-  title?: string;
-} ): StatusDTO {
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", {
-    fileUrl: "xxx",
-    fileType: "协议.pdf",
-    title : "用户协议"}, (val) => {ß
-      console.log(JSON.stringify(val)
-    )}
-  );    
+  title: string;
+}): StatusDTO {
+      xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf","fileType":"pdf","title":"用户协议"}, (val) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(val);
+            console.log(JSON.stringify(val)
+    });  
 }
 
 
 function test_openFileReader {
-    xengine.api("com.zkty.jsi.viewer", "openFileReader", {fileUrl: "http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf",fileType: "pdf",title : "用户协议"}, (val) => {
+    xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf","fileType":"pdf","title":"用户协议"}, (val) => {
       document.getElementById("debug_text").innerText = JSON.stringify(val);
     });
 }

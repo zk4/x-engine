@@ -41,4 +41,5 @@ dependencies {
     implementation project(':native-store')
     implementation project(':native-viewer')
     implementation project(':native-viewer_orgi')
+    implementation project(':native-viewer_original')
 }

@@ -1,4 +1,4 @@
-package com.zkty.nativ.viewer_orgi.widget;
+package com.zkty.nativ.viewer.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 
-import module.viewer_orgi.R;
+import module.viewer.R;
 
 
 public class CircularProgressBar extends View {

@@ -3,6 +3,7 @@ package com.zkty.nativ.viewer;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.tencent.smtt.utils.Md5Utils;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
@@ -15,15 +16,16 @@ import java.util.List;
 public class Nativeviewer extends NativeModule implements Iviewer {
 
     private List<NativeModule> modules;
+    //文件下载地址
+    private String fileUrl;
     //文件类型
     private String fileType;
     //文件名称
     private String fileName;
-
-    //文件路径
-    private String filePath;
+    //预览时的标题
+    private String title;
     //h5 回调
-    private CallBack callBack;
+    private static CallBack callBack;
 
     @Override
     public String moduleId() {
@@ -37,11 +39,12 @@ public class Nativeviewer extends NativeModule implements Iviewer {
     }
 
     @Override
-    public void openFileReader(String fileUrl, String fileType,CallBack callBack) {
+    public void openFileReader(String fileUrl, String fileType,String title,CallBack callBack) {
         this.callBack = callBack;
         this.fileType = fileType;
-        this.fileName = "fileName";
-        this.filePath = fileUrl;
+        this.fileName = Md5Utils.getMD5(fileUrl);
+        this.fileUrl = fileUrl;
+        this.title = title;
 
         modules = NativeContext.sharedInstance().getModulesByProtocol(IviewerStatus.class);
         for (NativeModule module : modules) {
@@ -61,7 +64,7 @@ public class Nativeviewer extends NativeModule implements Iviewer {
      */
     //支持的类型
     public void checkModel() {
-        if (TextUtils.isEmpty(filePath)) {
+        if (TextUtils.isEmpty(fileUrl)) {
             callBack.success("文件地址");
             return;
         }
@@ -103,14 +106,33 @@ public class Nativeviewer extends NativeModule implements Iviewer {
 
     /**
      * 打开文件
-     *
      * @param iviewerStatus 模块
      * @param isDefault 是否设置默认
      */
     public void openFile(IviewerStatus iviewerStatus, boolean isDefault) {
-        iviewerStatus.openFileReader(filePath, fileName, fileType);
-        iviewerStatus.setDefault(isDefault);
+        if(iviewerStatus.isOnlineOpen()){
+            iviewerStatus.openFileReader(fileUrl, title, fileType);
+            iviewerStatus.setDefault(isDefault);
+        }else{
+            this.iviewerStatus = iviewerStatus;
+            DownLoadFileActivity.startAty(fileUrl,fileName,fileType,title,isDefault);
+        }
     }
 
+
+    /**
+     * 获取回调
+     */
+    public static CallBack getCallback(){
+        return callBack;
+    }
+
+    /**
+     * 获取回调
+     */
+    private static IviewerStatus iviewerStatus;
+    public static IviewerStatus getIviewerStatus(){
+        return iviewerStatus;
+    }
 
 }

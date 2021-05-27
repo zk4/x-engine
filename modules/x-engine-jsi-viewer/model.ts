@@ -4,26 +4,29 @@ const parserVersion = "1.0.0";
 // 命名空间
 const moduleID = "com.zkty.jsi.viewer";
 
-//返回参数
-interface OpenFiileDTO {
-  //文件地址
-  filePath: string;
-  //文件名称
-  fileName: string;
-}
 
-//返回参数
+//打开的回调 扩展使用 
 interface StatusDTO {
   //状态信息返回
-  result: string;
+  resultMsg: string;
 }
 
 
 //打开文件 
-function openFileReader(fileDTO: OpenFiileDTO): StatusDTO {
+function openFileReader(fileDTO: {
+  //文件地址
+  fileUrl: string;
+
+  //文件类型，指定文件类型打开文件
+  fileType: string;
+
+  //title 展示使用
+  title: string;
+} ): StatusDTO {
   xengine.api("com.zkty.jsi.viewer", "openFileReader", {
-    filePath: "xxx",
-    fileName: "协议.pdf"}, (val) => {
+    fileUrl: "xxx",
+    fileType: "协议.pdf",
+    title : "用户协议"}, (val) => {
       console.log(JSON.stringify(val)
     )}
   );    
@@ -31,7 +34,7 @@ function openFileReader(fileDTO: OpenFiileDTO): StatusDTO {
 
 
 function test_openFileReader {
-    xengine.api("com.zkty.jsi.viewer", "openFileReader", {filePath: "http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf",fileName: "协议.pdf"}, (val) => {
+    xengine.api("com.zkty.jsi.viewer", "openFileReader", {fileUrl: "http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf",fileType: "pdf",title : "用户协议"}, (val) => {
       document.getElementById("debug_text").innerText = JSON.stringify(val);
     });
 }

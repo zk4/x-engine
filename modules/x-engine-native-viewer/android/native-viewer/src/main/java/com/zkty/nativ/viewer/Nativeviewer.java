@@ -37,10 +37,10 @@ public class Nativeviewer extends NativeModule implements Iviewer {
     }
 
     @Override
-    public void openFileReader(String fileUrl, String fileName,CallBack callBack) {
+    public void openFileReader(String fileUrl, String fileType,CallBack callBack) {
         this.callBack = callBack;
-        this.fileType = FileUtils.getFileType(fileUrl);
-        this.fileName = fileName;
+        this.fileType = fileType;
+        this.fileName = "fileName";
         this.filePath = fileUrl;
 
         modules = NativeContext.sharedInstance().getModulesByProtocol(IviewerStatus.class);

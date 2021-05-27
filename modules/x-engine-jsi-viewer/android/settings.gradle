@@ -1,6 +1,6 @@
 include ':app'
-//include ':jsi-viewer'
-//project(':jsi-viewer').projectDir = new File('../../x-engine-jsi-viewer/android/jsi-viewer')
+include ':jsi-viewer'
+project(':jsi-viewer').projectDir = new File('../../x-engine-jsi-viewer/android/jsi-viewer')
 
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
@@ -17,8 +17,8 @@ project(':native-store').projectDir = new File('../../x-engine-native-store/andr
 include ':native-protocols'
 project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
 
-//include ':native-viewer'
-//project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/android/native-viewer')
+include ':native-viewer'
+project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/android/native-viewer')
 //
-//include ':native-viewer_orgi'
-//project(':native-viewer_orgi').projectDir = new File('../../x-engine-native-viewer_orgi/android/native-viewer_orgi')
+include ':native-viewer_orgi'
+project(':native-viewer_orgi').projectDir = new File('../../x-engine-native-viewer_orgi/android/native-viewer_orgi')

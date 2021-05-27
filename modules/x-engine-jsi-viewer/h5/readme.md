@@ -7,14 +7,15 @@ version: 0.1.13
 
 
 ## openFileReader
-[`sync`](/docs/modules/模块-规范?id=jsi-调用),[`async`](/docs/modules/模块-规范?id=jsi-调用)
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 打开文件
 **demo**
 ``` js
 
   xengine.api("com.zkty.jsi.viewer", "openFileReader", {
-    filePath: "xxx",
-    fileName: "协议.pdf"}, (val) => {
+    fileUrl: "xxx",
+    fileType: "协议.pdf",
+    title : "用户协议"}, (val) => {
       console.log(JSON.stringify(val)
     )}
   );    
@@ -25,17 +26,19 @@ version: 0.1.13
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| filePath | string | 必填 |  | 文件地址 |
-| fileName | string | 必填 |  | 文件名称 |
+| fileUrl | string | 必填 |  | 文件地址 |
+| fileType | string | 必填 |  | 文件类型，指定文件类型打开文件 |
+| title | string | 必填 |  | title 展示使用 |
 **返回值**
 ``` js
 
 
-//返回参数
+
+//打开的回调 扩展使用 
 interface StatusDTO {
 
   //状态信息返回
-  result: string;
+  resultMsg: string;
 
 }
 ``` 

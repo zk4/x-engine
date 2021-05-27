@@ -1,7 +1,7 @@
 import dsbridge from "./dsbridge";
 const module_names = new Set([]);
 const patch = {};
-
+var global_this = typeof  window == 'undefined' ? global : window;
 function isFunction (functionToCheck) {
   return (
     functionToCheck && {}.toString.call(functionToCheck) === "[object Function]"
@@ -20,7 +20,7 @@ function isString (x) {
 }
 
 function isHybrid () {
-  return globalThis && globalThis._dswk === true;
+  return global_this && global_this._dswk === true;
 }
 let xengine = {
   patch: patch,
@@ -47,7 +47,7 @@ xengine.bridge.register("com.zkty.jsi.engine.lifecycle.notify", (res) => {
 });
 
 function xassert (targetID, expression) {
-  if ('document' in globalThis) {
+  if ('document' in global_this) {
     if (expression) {
       document.getElementById(targetID).style.backgroundColor = "green";
     } else {
@@ -152,7 +152,7 @@ Object.defineProperty(xengine, "bridge", {
 });
 
 function platform () {
-  var ua = globalThis?.navigator?.userAgent,
+  var ua = global_this?.navigator?.userAgent,
     isAndroid = /(?:Android)/.test(ua),
     isPhone = /(?:iPhone)/.test(ua),
     isPc = !isPhone && !isAndroid;
@@ -188,7 +188,7 @@ function listenKeybord ($input) {
     var originHeight =
       document?.documentElement.clientHeight || document?.body.clientHeight;
 
-    globalThis.addEventListener(
+    global_this.addEventListener(
       "resize",
       function () {
         var resizeHeight =
@@ -209,7 +209,7 @@ function listenKeybord ($input) {
 }
 
 var $inputs = [];
-if ('document' in globalThis) {
+if ('document' in global_this) {
   $inputs = document.querySelectorAll(".input")
 }
 
@@ -222,9 +222,9 @@ patch.disableDoubleTapScroll = function (ms) {
   console.log("禁用双击滑动,两次点击冷却时间为" + ms + " ms");
   //禁止双击时, webview 自动上移
   //不是个好方案, 会导致快速点击按钮失效
-  var agent = globalThis?.navigator?.userAgent?.toLowerCase();
+  var agent = global_this?.navigator?.userAgent?.toLowerCase();
   var iLastTouch = null;
-  if ('document' in globalThis) {
+  if ('document' in global_this) {
     if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipad") >= 0) {
       document.body.addEventListener(
         "touchend",

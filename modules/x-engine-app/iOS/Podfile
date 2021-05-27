@@ -1,16 +1,7 @@
 # Uncomment thj next line to define a global platform for your project
 platform :ios, '10.0'
 
-source 'https://github.com/CocoaPods/Specs.git'
-install! 'cocoapods', :deterministic_uuids => false
-
-
-
 def shared_pods
-  # 忽略引入库的所有警告（强迫症者的福音啊）
-  inhibit_all_warnings!
-
-
   pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
   
@@ -28,13 +19,14 @@ def shared_pods
   pod 'x-engine-native-device', :path =>'../../x-engine-native-device'
   pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
   pod 'x-engine-native-scan', :path =>'../../x-engine-native-scan'
-  pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
   pod 'x-engine-native-store', :path =>'../../x-engine-native-store'
-  pod 'x-engine-native-dev', :path =>'../../x-engine-native-dev' , :configurations => ['Debug']
+  pod 'x-engine-native-dev', :path =>'../../x-engine-native-dev'
+  pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
 
   # jsi
   pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
   pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'
+  pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
   pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
   pod 'x-engine-jsi-device', :path =>'../../x-engine-jsi-device'
   pod 'x-engine-jsi-camera', :path =>'../../x-engine-jsi-camera'

@@ -1,0 +1,60 @@
+PODS:
+  - BMKLocationKit (1.8.5)
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.4.3)
+  - SSZipArchive (2.2.3)
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-engine (0.1.7):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+  - x-engine-module-protocols (0.0.9):
+    - BMKLocationKit
+  - x-engine-module-tools (1.0.0):
+    - SSZipArchive
+    - WechatOpenSDK
+    - x-engine-module-engine
+    - x-engine-module-protocols
+
+DEPENDENCIES:
+  - x-engine-module-engine (from `../../x-engine-module-engine`)
+  - x-engine-module-protocols (from `../../x-engine-module-protocols/`)
+  - x-engine-module-tools (from `../../x-engine-module-tools/`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - BMKLocationKit
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+    - WechatOpenSDK
+
+EXTERNAL SOURCES:
+  x-engine-module-engine:
+    :path: "../../x-engine-module-engine"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols/"
+  x-engine-module-tools:
+    :path: "../../x-engine-module-tools/"
+
+SPEC CHECKSUMS:
+  BMKLocationKit: fd3d6b4a9a3a1a2763819f56b780bda5fc5b8726
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-engine: d77afd9c989076f32938179c9c17054b924180f2
+  x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+
+PODFILE CHECKSUM: 7306236af99f3cea152951a6a04d66e905c6d245
+
+COCOAPODS: 1.10.0

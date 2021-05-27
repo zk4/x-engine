@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "microAppName": "物业公告1",
+      "microAppId": "com.zkty.microapp.demo4",
+      "microAppVersion": 2,
+      "url": "http://192.168.8.153:80/com.zkty.microapp.demo4.2.zip"
+    }
+  ]
+}

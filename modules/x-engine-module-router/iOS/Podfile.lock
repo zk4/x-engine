@@ -1,0 +1,105 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - BMKLocationKit (2.0.0)
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.5.0)
+  - SDWebImage (5.9.1):
+    - SDWebImage/Core (= 5.9.1)
+  - SDWebImage/Core (5.9.1)
+  - SSZipArchive (2.2.3)
+  - UniBoost (3.0.7)
+  - WechatOpenSDK (1.8.7.1)
+  - x-engine-module-dcloud (0.0.1):
+    - x-engine-module-engine
+    - x-engine-module-tools
+  - x-engine-module-engine (0.1.12):
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SSZipArchive
+  - x-engine-module-nav (1.1.1):
+    - x-engine-module-engine
+    - x-engine-module-protocols
+  - x-engine-module-protocols (0.0.9):
+    - BMKLocationKit
+  - x-engine-module-tools (1.0.0):
+    - SSZipArchive
+    - WechatOpenSDK
+    - x-engine-module-engine
+    - x-engine-module-protocols
+
+DEPENDENCIES:
+  - AFNetworking (~> 4.0.0)
+  - SDWebImage
+  - UniBoost (from `../../../../UniBoost`)
+  - WechatOpenSDK
+  - x-engine-module-dcloud (from `../../x-engine-module-dcloud`)
+  - x-engine-module-engine (from `../../x-engine-module-engine`)
+  - x-engine-module-nav (from `../../x-engine-module-nav`)
+  - x-engine-module-protocols (from `../../x-engine-module-protocols`)
+  - x-engine-module-tools (from `../../x-engine-module-tools`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - WechatOpenSDK
+  trunk:
+    - AFNetworking
+    - BMKLocationKit
+    - JSONModel
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SDWebImage
+    - SSZipArchive
+
+EXTERNAL SOURCES:
+  UniBoost:
+    :path: "../../../../UniBoost"
+  x-engine-module-dcloud:
+    :path: "../../x-engine-module-dcloud"
+  x-engine-module-engine:
+    :path: "../../x-engine-module-engine"
+  x-engine-module-nav:
+    :path: "../../x-engine-module-nav"
+  x-engine-module-protocols:
+    :path: "../../x-engine-module-protocols"
+  x-engine-module-tools:
+    :path: "../../x-engine-module-tools"
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  UniBoost: dc3cbe86a18285e477aa69a472d611d1bb18dfb6
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
+  x-engine-module-engine: 1f226e469366a657a6399014a14f57df521ba729
+  x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
+  x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
+  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
+
+PODFILE CHECKSUM: 4c39d43afe6c2009de9f0ff2da023feb0928d3fb
+
+COCOAPODS: 1.10.0

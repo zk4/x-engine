@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="module.localstorage">
+
+    <application>
+
+        <meta-data
+            android:name="com.zkty.module.localstorage"
+            android:value="com.zkty.modules.loaded.jsapi.__xengine__module_localstorage" />
+    </application>
+</manifest>

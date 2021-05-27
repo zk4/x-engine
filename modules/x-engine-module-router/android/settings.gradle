@@ -1,0 +1,8 @@
+include ':app'
+include ':module-router'
+
+include ':module-engine'
+project(':module-engine').projectDir = new File('../../x-engine-module-engine/android/module-engine')
+include ':module-dcloud'
+project(':module-dcloud').projectDir = new File('../../x-engine-module-dcloud/android/module-dcloud')
+

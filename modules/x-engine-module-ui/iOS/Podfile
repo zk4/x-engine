@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+
+target 'ui' do
+  
+   pod 'x-engine-module-engine', :path =>'../../x-engine-module-engine/'
+   pod 'x-engine-module-tools', :path =>'../../x-engine-module-tools/'
+   #pod 'x-engine-module-microapp', :path =>'../../x-engine-module-microapp/'
+   pod 'x-engine-module-protocols', :path =>'../../x-engine-module-protocols/'
+   pod 'AFNetworking', '~> 4.0.0'
+   
+ target 'uiTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'uiUITests' do
+    # Pods for testing
+  end
+
+end

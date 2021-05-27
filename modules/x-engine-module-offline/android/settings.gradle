@@ -1,0 +1,9 @@
+include ':module-offline'
+
+include ':module-engine'
+project(':module-engine').projectDir = new File('../../x-engine-module-engine/android/module-engine')
+rootProject.name = "Offline"
+include ':module-network'
+project(':module-network').projectDir = new File('../../x-engine-module-network/android/module-network')
+
+include ':app'

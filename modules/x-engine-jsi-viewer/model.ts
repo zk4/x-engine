@@ -21,12 +21,12 @@ function openFileReader(fileDTO: {
   fileType: string;
 
   //title 展示使用
-  title: string;
+  title?: string;
 } ): StatusDTO {
   xengine.api("com.zkty.jsi.viewer", "openFileReader", {
     fileUrl: "xxx",
     fileType: "协议.pdf",
-    title : "用户协议"}, (val) => {
+    title : "用户协议"}, (val) => {ß
       console.log(JSON.stringify(val)
     )}
   );    

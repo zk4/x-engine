@@ -15,7 +15,7 @@ version: 0.1.13
   xengine.api("com.zkty.jsi.viewer", "openFileReader", {
     fileUrl: "xxx",
     fileType: "协议.pdf",
-    title : "用户协议"}, (val) => {
+    title : "用户协议"}, (val) => {ß
       console.log(JSON.stringify(val)
     )}
   );    
@@ -28,7 +28,7 @@ version: 0.1.13
 | --------------------------- | --------- | -------- | --------- |--------- |
 | fileUrl | string | 必填 |  | 文件地址 |
 | fileType | string | 必填 |  | 文件类型，指定文件类型打开文件 |
-| title | string | 必填 |  | title 展示使用 |
+| title | string | optional |  | title 展示使用 |
 **返回值**
 ``` js
 

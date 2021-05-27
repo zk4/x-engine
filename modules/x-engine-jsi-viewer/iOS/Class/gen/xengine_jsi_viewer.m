@@ -15,7 +15,7 @@
 @implementation _0_com_zkty_jsi_viewer_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
-   	return NO;
+   	if ([propertyName isEqualToString:@"title"]) { return YES; }	return NO;
     }
 @end
     

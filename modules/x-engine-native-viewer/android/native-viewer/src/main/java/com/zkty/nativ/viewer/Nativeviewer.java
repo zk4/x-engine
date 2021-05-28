@@ -65,7 +65,7 @@ public class Nativeviewer extends NativeModule implements Iviewer {
     //支持的类型
     public void checkModel() {
         if (TextUtils.isEmpty(fileUrl)) {
-            callBack.success("文件地址");
+            callBack.success("文件地址不存在");
             return;
         }
         //没有符合的组件

@@ -7,9 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "XENativeModule.h"
-#import "iViewer_original.h"
+#import "iViewer.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_viewer_original : XENativeModule <iViewer_original>
+@interface Native_viewer_original : XENativeModule <iViewer>
  
 @end
 

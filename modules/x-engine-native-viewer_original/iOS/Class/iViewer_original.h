@@ -9,6 +9,6 @@
 #ifndef iViewer_original_h
 #define iViewer_original_h
 @protocol iViewer_original <NSObject>
--(NSString*) test;
+
 @end
 #endif /* iViewer_original_h */

@@ -6,15 +6,16 @@
 #import "xengine_jsi_viewer.h"
 
 
-@implementation OpenFiileDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+@implementation StatusDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
     
   
-@implementation StatusDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+@implementation _0_com_zkty_jsi_viewer_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   	return NO;
     }
 @end
     
@@ -35,7 +36,7 @@
     
     - (void) openFileReader:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          OpenFiileDTO* dto = [self convert:dict clazz:OpenFiileDTO.class];
+          _0_com_zkty_jsi_viewer_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_viewer_DTO.class];
           [self _openFileReader:dto complete:^(StatusDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];

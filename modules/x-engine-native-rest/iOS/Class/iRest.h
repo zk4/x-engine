@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

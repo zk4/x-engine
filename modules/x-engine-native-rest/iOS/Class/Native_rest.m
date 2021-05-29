@@ -7,7 +7,7 @@
 
 
 #import "Native_rest.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "AFHTTPSessionManager.h"
 
 @interface Native_rest()

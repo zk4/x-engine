@@ -1,7 +1,7 @@
 import dsbridge from "./dsbridge";
 const module_names = new Set([]);
 const patch = {};
-var global_this = typeof  window == 'undefined' ? global : window;
+const global_this = typeof  window == 'undefined' ? global : window;
 function isFunction (functionToCheck) {
   return (
     functionToCheck && {}.toString.call(functionToCheck) === "[object Function]"
@@ -152,7 +152,7 @@ Object.defineProperty(xengine, "bridge", {
 });
 
 function platform () {
-  var ua = global_this?.navigator?.userAgent,
+  var ua = global_this.navigator.userAgent,
     isAndroid = /(?:Android)/.test(ua),
     isPhone = /(?:iPhone)/.test(ua),
     isPc = !isPhone && !isAndroid;
@@ -186,13 +186,13 @@ function listenKeybord ($input) {
   // Andriod 键盘收起：Andriod 键盘弹起或收起页面高度会发生变化，以此为依据获知键盘收起
   if (this.platform.isAndroid) {
     var originHeight =
-      document?.documentElement.clientHeight || document?.body.clientHeight;
+      document.documentElement.clientHeight || document.body.clientHeight;
 
     global_this.addEventListener(
       "resize",
       function () {
         var resizeHeight =
-          document?.documentElement.clientHeight || document?.body.clientHeight;
+          document.documentElement.clientHeight || document.body.clientHeight;
         if (originHeight < resizeHeight) {
           console.log("Android 键盘收起啦！");
           // Android 键盘收起后操作
@@ -222,7 +222,7 @@ patch.disableDoubleTapScroll = function (ms) {
   console.log("禁用双击滑动,两次点击冷却时间为" + ms + " ms");
   //禁止双击时, webview 自动上移
   //不是个好方案, 会导致快速点击按钮失效
-  var agent = global_this?.navigator?.userAgent?.toLowerCase();
+  var agent = global_this.navigator.userAgent.toLowerCase();
   var iLastTouch = null;
   if ('document' in global_this) {
     if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipad") >= 0) {
@@ -243,42 +243,4 @@ patch.disableDoubleTapScroll = function (ms) {
     }
   }
 };
-export function install (Vue) {
-  Vue.prototype.$engine = xengine;
-  // 原生手机状态栏高度
-  Vue.prototype.$statusHeight = xengine.api(
-    "com.zkty.jsi.device",
-    "getStatusBarHeight"
-  );
-  // 原生手机导航条高度
-  Vue.prototype.$navigatorHeight = xengine.api(
-    "com.zkty.jsi.device",
-    "getNavigationHeight"
-  );
-  // 原生手机屏幕整体高度
-  Vue.prototype.$screenHeight = xengine.api(
-    "com.zkty.jsi.device",
-    "getScreenHeight"
-  );
-  // 原生手机底部tabbar高度
-  Vue.prototype.$tabbarHeight = xengine.api(
-    "com.zkty.jsi.device",
-    "getTabbarHeight"
-  );
-  // 原生手机相关信息
-  // this.$tabbarHeight.type          // iOS / android
-  // this.$tabbarHeight.systemVersion // 14.4
-  // this.$tabbarHeight.language      // en
-  // this.$tabbarHeight.UUID          // UUID number
-  xengine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
-    Vue.prototype.$deviceInfo = val;
-  });
-}
-export {
-  xengine
-}
-export default {
-  xengine,
-  install
-};
-
+export default xengine;

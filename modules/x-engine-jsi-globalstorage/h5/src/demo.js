@@ -2,7 +2,15 @@
 import globalstorage from './index.js'
 import xengine from "@zkty-team/x-engine-core";
 
-window.test_set = () => {
+window.test_set_haha = () => {
+
+  xengine.api("com.zkty.jsi.globalstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
+}
+ document.getElementById("test_set_haha").click()
+      window.test_set = () => {
 
   xengine.api("com.zkty.jsi.globalstorage", "set",{
     key:'abc',

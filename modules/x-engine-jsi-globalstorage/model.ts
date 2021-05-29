@@ -37,6 +37,12 @@ function del(arg:string) {
 }
 
 
+function test_set_haha(){
+  xengine.api("com.zkty.jsi.globalstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
+}
 function test_set(){
   xengine.api("com.zkty.jsi.globalstorage", "set",{
     key:'abc',

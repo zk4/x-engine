@@ -35,8 +35,10 @@ JSI_MODULE(JSI_globalstorage)
 - (void)_set:(_0_com_zkty_jsi_globalstorage_DTO *)dto {
     NSString *key = [NSString stringWithFormat:@"%@", [self genkey:dto.key]];
     NSString *title = [NSString stringWithFormat:@"%@已存在, 请删除后重新设置", dto.key];
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:key]) {
+    if ([_store get:key]) {
         UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"温馨提示" message:title preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        [ac addAction:action];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
     }
     [_store set:[self genkey:dto.key] val:dto.val];

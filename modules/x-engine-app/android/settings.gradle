@@ -90,3 +90,6 @@ project(':jsi-dev').projectDir = new File('../../x-engine-jsi-dev/android/jsi-de
 
 include ':jsi-viewer'
 project(':jsi-viewer').projectDir = new File('../../x-engine-jsi-viewer/android/jsi-viewer')
+
+include ':jsi-globalstorage'
+project(':jsi-globalstorage').projectDir = new File('../../x-engine-jsi-globalstorage/android/jsi-globalstorage')

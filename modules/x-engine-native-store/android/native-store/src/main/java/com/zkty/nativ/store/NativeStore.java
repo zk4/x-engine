@@ -34,6 +34,11 @@ public class NativeStore extends NativeModule implements IStore {
     }
 
     @Override
+    public boolean has(String key) {
+        return StoreUtils.contains(key);
+    }
+
+    @Override
     public void del(String key) {
         StoreUtils.remove(key);
     }

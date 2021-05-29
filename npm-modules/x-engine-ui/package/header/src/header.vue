@@ -16,7 +16,9 @@
         @click="handlerLeftButton"
       >
         <slot name="left">
-          <i class="iconfont icon-fanhui"></i>
+          <div class="left-img-class">
+            <i class="iconfont icon-fanhui"></i>
+          </div>
           <div class="nav-title" v-if="!textIsCenter">
             <span class="left-text-color">{{ navTitle }}</span>
           </div>
@@ -39,7 +41,7 @@
 </template>
 
 <script>
-import XEngine from "@zkty-team/x-engine-core";
+import {xengine} from "@zkty-team/x-engine-core";
 export default {
   name: "Header",
   props: {
@@ -80,11 +82,11 @@ export default {
     },
   },
   mounted() {
-    if (XEngine.platform.isPc) {
+    if (xengine.platform.isPc) {
       this.lineheight = 64;
     } else {
-      let statusBarHeight = XEngine.api("com.zkty.jsi.device", "getStatusBarHeight");
-      let navheight = XEngine.api("com.zkty.jsi.device", "getNavigationHeight");
+      let statusBarHeight = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
+      let navheight = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
       if (navheight == undefined && statusBarHeight == undefined) {
         this.lineheight = 64;
       } else {
@@ -191,10 +193,18 @@ export default {
   text-align: left;
   display: flex;
   text-align: center;
-  flex: 0.5;
+  
+}
+
+.left-img-class{
+  padding-top:5px;
 }
 
 .content-item-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -249,7 +259,6 @@ div {
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 25px;
-  padding-top: 3px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -258,7 +267,8 @@ div {
 .iconfont-white {
   font-family: "iconfont" !important;
   font-size: 25px;
-  padding-top: 3px;
+  /* padding-top: 3px; */
+  /* vertical-align: middle; */
   font-style: normal;
   color: #fff;
   -webkit-font-smoothing: antialiased;
@@ -268,5 +278,6 @@ div {
 .icon-fanhui:before {
   content: "\e641";
   padding-left: 10px;
+  /* padding-top: 50px; */
 }
 </style>

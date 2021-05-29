@@ -10,9 +10,7 @@
   "scripts": {
     "build": "rimraf dist && microbundle --external all"
   },
-  "source": "src/index.js",
-  "main": "./dist/vuex.common.js",  
-	"module": "./dist/vuex.module.js",
+  "main": "src/index.js",
   "keywords": ["zkty-team/vuex", "vuex"],
   "author": "Capricorn",
   "license": "ISC",

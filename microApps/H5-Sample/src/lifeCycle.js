@@ -1,4 +1,12 @@
-import xengine from "@zkty-team/x-engine-core";
+/*
+ * @Author: sheng.wang
+ * @Date: 2021-05-20 14:20:45
+ * @LastEditTime: 2021-05-28 19:19:51
+ * @LastEditors: sheng.wang
+ * @Description: 
+ * @FilePath: /x-engine/microApps/H5-Sample/src/lifeCycle.js
+ */
+import {xengine} from "@zkty-team/x-engine-core";
 
 const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示
 const ON_WEBVIEW_SHOW = "onWebviewShow"; // 原生显示

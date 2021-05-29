@@ -1,7 +1,7 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-04-28 14:34:33
- * @LastEditTime: 2021-05-24 19:09:58
+ * @LastEditTime: 2021-05-29 11:59:08
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/npm-modules/x-engine-ui/vue.config.js
@@ -14,6 +14,7 @@ module.exports = {
     }
   },
   lintOnSave: false, // 关闭eslint检查
+  // 在打包的时候过滤打包 @zkty-team/x-engine-core
   chainWebpack: config => {
     config.externals({
       '@zkty-team/x-engine-core': '@zkty-team/x-engine-core'

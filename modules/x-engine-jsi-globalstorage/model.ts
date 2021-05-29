@@ -30,11 +30,10 @@ function set(arg:{key:string, val:string}){
 }
 
 @sync
-function del(arg:string):string {
-  let val = xengine.api("com.zkty.jsi.globalstorage", "del",
+function del(arg:string) {
+ xengine.api("com.zkty.jsi.globalstorage", "del",
     'abc',
   );
-  console.log(val);
 }
 
 
@@ -53,10 +52,10 @@ function test_get(){
 }
 
 function test_del(){
-  let val = xengine.api("com.zkty.jsi.globalstorage", "del",
+  xengine.api("com.zkty.jsi.globalstorage", "del",
     'abc',
   );
-  document.getElementById("debug_text").innerText = val;
+ 
 }
 
   

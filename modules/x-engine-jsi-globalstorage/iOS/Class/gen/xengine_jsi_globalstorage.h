@@ -24,7 +24,7 @@
        - (void) _set:(_0_com_zkty_jsi_globalstorage_DTO*)dto;
     
       @required 
-       - (NSString*) _del:(NSString*)dto;
+       - (void) _del:(NSString*)dto;
     
 @end
   

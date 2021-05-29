@@ -28,7 +28,7 @@ public String _get(String dto);
 
 public void _set(_0_com_zkty_jsi_globalstorage_DTO dto);
 
-public String _del(String dto);
+public void _del(String dto);
   }
   
   
@@ -54,9 +54,10 @@ public String _del(String dto);
         
 
         @JavascriptInterface
-        public String del(String dto) {
+        public Object del(String dto) {
           
-          return _del(dto);
+          _del(dto);
+          return null;
         }
         
   }

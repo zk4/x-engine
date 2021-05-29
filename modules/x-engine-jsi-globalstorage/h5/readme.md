@@ -57,19 +57,15 @@ string
 **demo**
 ``` js
  {
-  let val = xengine.api("com.zkty.jsi.globalstorage", "del",
+ xengine.api("com.zkty.jsi.globalstorage", "del",
     'abc',
   );
-  console.log(val);
 }
 ``` 
 
 **无参数**
 
-**返回值**
-``` js
-string
-``` 
+**无返回值**
 
 
     

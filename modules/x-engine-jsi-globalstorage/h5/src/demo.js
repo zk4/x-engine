@@ -20,10 +20,10 @@ window.test_set = () => {
  document.getElementById("test_get").click()
       window.test_del = () => {
 {
-  let val = xengine.api("com.zkty.jsi.globalstorage", "del",
+  xengine.api("com.zkty.jsi.globalstorage", "del",
     'abc',
   );
-  document.getElementById("debug_text").innerText = val;
+ 
 }}
  document.getElementById("test_del").click()
       

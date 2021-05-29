@@ -39,8 +39,9 @@
                  return nil;
         }
   
-  - (NSString*) del:(NSDictionary*) dict {
+  - (id) del:(NSDictionary*) dict {
       NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _del:dto];
+      [self _del:dto];
+                 return nil;
         }
   @end

@@ -2718,7 +2718,9 @@
     yargs "^16.0.3"
 
 "@zkty-team/x-engine-core@^0.1.13":
-  version "1.0.7"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@zkty-team/x-engine-core/-/x-engine-core-1.1.1.tgz#14947a3e1ceaf7f2fa6260a19bdef9890fed1199"
+  integrity sha512-I0PN8aUkbmR7MtG5bpJ0VcH/LbJYVX39G0lfo6Jhy5OG+EuPm0dsqjzz+3wi1zsFsbu7UnspMWjhuQHe4Y+YXw==
 
 JSONStream@^1.0.4, JSONStream@^1.3.4, JSONStream@^1.3.5:
   version "1.3.5"

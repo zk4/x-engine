@@ -1,4 +1,4 @@
-var global_this = typeof  window == 'undefined' ? global : window;
+var global_this =  window;
 var bridge = {
     default:
         this,

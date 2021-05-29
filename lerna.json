@@ -4,7 +4,6 @@
     "npm-modules/x-engine-router",
     "npm-modules/x-engine-lifecycle",
     "npm-modules/x-engine-ui",
-    "modules/x-engine-jsi-*",
     "microApps/H5-Sample"
   ],
   "version": "0.1.13",

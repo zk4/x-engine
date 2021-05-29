@@ -6,27 +6,18 @@ version: 0.1.13
 
 
 
-## simpleMethod
-`async` `sync`
-
+## get
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
 **demo**
 ``` js
-
-  //demo code
-
+ {
+  let val = xengine.api("com.zkty.jsi.globalstorage", "get",
+    'abc',
+  );
+  console.log(val);
+}
 ``` 
-
-**无参数**
-
-**无返回值**
-
-
-
-## simpleArgMethod
-`async` `sync`
-
-
 
 **无参数**
 
@@ -37,91 +28,47 @@ string
 
 
 
-## nestedAnonymousObject
-`async` `sync`
+## set
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
-
-
-**无参数**
-
-**返回值**
+**demo**
 ``` js
- {
- a: string; i: {
- n1: string 
-} 
+{
+  xengine.api("com.zkty.jsi.globalstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
 }
 ``` 
-
-
-
-## namedObject
-`sync` `async`
-
-
-
-**无参数**
-
-**返回值**
-``` js
-
-
-interface NamedDTO {
-
-  //文字
-  title: string;
-  //大小
-  titleSize: int;
-
-}
-``` 
-
-
-
-## namedObjectWithNamedArgs
-`sync` `async`
-
-
 
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 |  | 文字 |
-| titleSize | int | 必填 |  | 大小 |
-**返回值**
+| key | string | 必填 |  |  |
+| val | string | 必填 |  |  |
+**无返回值**
+
+
+
+## del
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
+
+**demo**
 ``` js
-
-
-interface NamedDTO {
-
-  //文字
-  title: string;
-  //大小
-  titleSize: int;
-
+ {
+  let val = xengine.api("com.zkty.jsi.globalstorage", "del",
+    'abc',
+  );
+  console.log(val);
 }
 ``` 
 
+**无参数**
 
-
-## namedObjectWithArgs
-`sync` `async`
-
-
-
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| name | string | 必填 |  |  |
-| age | int | 必填 |  |  |
 **返回值**
 ``` js
- {
-goodname:string,
-price:int
-}
+string
 ``` 
 
 

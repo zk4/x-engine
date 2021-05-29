@@ -13,42 +13,17 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.globalstorage", 
     [
   {
-    "name": "test_同步无返回",
+    "name": "test_set",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "test_同步简单参数",
+    "name": "test_get",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "test_同步返回命名对象",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_同步返回匿名嵌套对象",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_异步返回命名对象",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_异步简单参数",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_异步返回命名对象",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_异步返回匿名嵌套对象",
+    "name": "test_del",
     "default_args": {},
     "decorators": []
   }

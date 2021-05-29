@@ -6,77 +6,25 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol NamedDTO;
 @protocol _0_com_zkty_jsi_globalstorage_DTO;
-@protocol _1_com_zkty_jsi_globalstorage_DTO;
-@protocol _2_com_zkty_jsi_globalstorage_DTO;
-@protocol _3_com_zkty_jsi_globalstorage_DTO;
-@class NamedDTO;
 @class _0_com_zkty_jsi_globalstorage_DTO;
-@class _1_com_zkty_jsi_globalstorage_DTO;
-@class _2_com_zkty_jsi_globalstorage_DTO;
-@class _3_com_zkty_jsi_globalstorage_DTO;
-
-@interface NamedDTO: JSONModel
-  	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,assign) NSInteger titleSize;
-@end
-    
 
 @interface _0_com_zkty_jsi_globalstorage_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* a;
-   	@property(nonatomic,strong) _1_com_zkty_jsi_globalstorage_DTO* i;
-@end
-    
-
-@interface _1_com_zkty_jsi_globalstorage_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* n1;
-@end
-    
-
-@interface _2_com_zkty_jsi_globalstorage_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* goodname;
-   	@property(nonatomic,assign) NSInteger price;
-@end
-    
-
-@interface _3_com_zkty_jsi_globalstorage_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* name;
-   	@property(nonatomic,assign) NSInteger age;
+  	@property(nonatomic,copy) NSString* key;
+   	@property(nonatomic,copy) NSString* val;
 @end
     
 
 
 @protocol xengine_jsi_globalstorage_protocol
        @required 
-       - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
-       @required 
-       - (void) _simpleMethod;
+       - (NSString*) _get:(NSString*)dto;
     
       @required 
-        - (void) _simpleArgMethod:(NSString*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
-   @required 
-       - (NSString*) _simpleArgMethod:(NSString*)dto;
+       - (void) _set:(_0_com_zkty_jsi_globalstorage_DTO*)dto;
     
       @required 
-        - (void) _nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_globalstorage_DTO* result,BOOL complete)) completionHandler;
-       @required 
-       - (_0_com_zkty_jsi_globalstorage_DTO*) _nestedAnonymousObject;
-    
-      @required 
-        - (void) _namedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
-       @required 
-       - (NamedDTO*) _namedObject;
-    
-      @required 
-        - (void) _namedObjectWithNamedArgs:(NamedDTO*) dto complete:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
-   @required 
-       - (NamedDTO*) _namedObjectWithNamedArgs:(NamedDTO*)dto;
-    
-      @required 
-        - (void) _namedObjectWithArgs:(_3_com_zkty_jsi_globalstorage_DTO*) dto complete:(void (^)(_2_com_zkty_jsi_globalstorage_DTO* result,BOOL complete)) completionHandler;
-   @required 
-       - (_2_com_zkty_jsi_globalstorage_DTO*) _namedObjectWithArgs:(_3_com_zkty_jsi_globalstorage_DTO*)dto;
+       - (NSString*) _del:(NSString*)dto;
     
 @end
   

@@ -6,34 +6,7 @@
 #import "xengine_jsi_globalstorage.h"
 
 
-@implementation NamedDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
 @implementation _0_com_zkty_jsi_globalstorage_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
-@implementation _1_com_zkty_jsi_globalstorage_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation _2_com_zkty_jsi_globalstorage_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
-@implementation _3_com_zkty_jsi_globalstorage_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
@@ -54,68 +27,20 @@
         return @"com.zkty.jsi.globalstorage";
     }
     
-    - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _simpleMethod:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-  - (id) simpleMethod:(NSDictionary*) dict {
-   [self _simpleMethod];
-              return nil;
-    }
-    - (void) simpleArgMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NSString* dto = [self convert:dict clazz:NSString.class];
-          [self _simpleArgMethod:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (NSString*) simpleArgMethod:(NSDictionary*) dict {
+  
+  - (NSString*) get:(NSDictionary*) dict {
       NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _simpleArgMethod:dto];
+      return [self _get:dto];
         }
-    - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _nestedAnonymousObject:^(_0_com_zkty_jsi_globalstorage_DTO* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-  - (_0_com_zkty_jsi_globalstorage_DTO*) nestedAnonymousObject:(NSDictionary*) dict {
-  return [self _nestedAnonymousObject];
-    }
-    - (void) namedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _namedObject:^(NamedDTO* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-  - (NamedDTO*) namedObject:(NSDictionary*) dict {
-  return [self _namedObject];
-    }
-    - (void) namedObjectWithNamedArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-          [self _namedObjectWithNamedArgs:dto complete:^(NamedDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (NamedDTO*) namedObjectWithNamedArgs:(NSDictionary*) dict {
-      NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-      return [self _namedObjectWithNamedArgs:dto];
+  
+  - (id) set:(NSDictionary*) dict {
+      _0_com_zkty_jsi_globalstorage_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_globalstorage_DTO.class];
+      [self _set:dto];
+                 return nil;
         }
-    - (void) namedObjectWithArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          _3_com_zkty_jsi_globalstorage_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_globalstorage_DTO.class];
-          [self _namedObjectWithArgs:dto complete:^(_2_com_zkty_jsi_globalstorage_DTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (_2_com_zkty_jsi_globalstorage_DTO*) namedObjectWithArgs:(NSDictionary*) dict {
-      _3_com_zkty_jsi_globalstorage_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_globalstorage_DTO.class];
-      return [self _namedObjectWithArgs:dto];
+  
+  - (NSString*) del:(NSDictionary*) dict {
+      NSString* dto = [self convert:dict clazz:NSString.class];
+      return [self _del:dto];
         }
   @end

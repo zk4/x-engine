@@ -35,7 +35,7 @@ public class JSI_globalstorage extends xengine_jsi_globalstorage {
         //如果 key 存在, 则无法存值. 弹框提示. 需要调用者主动 delete .
         if (iStore.has(genKey(dto.key))) {
             AlertDialog dialog = new AlertDialog.Builder(XEngineApplication.getCurrentActivity())
-                    .setMessage(String.format("%s 已存在，请删除后重新设置", dto.key))
+                    .setMessage(String.format("key: %s 已存在! 你正在覆盖全局数据! 请调用 del 后再重试.", dto.key))
                     .setCancelable(true)
                     .setPositiveButton("确定", (dialog1, which) -> dialog1.dismiss())
                     .create();

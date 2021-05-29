@@ -51,12 +51,12 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
             protocol = protocol();
         }
         boolean hideNavbar = params != null && params.containsKey("hideNavbar") && Boolean.parseBoolean(String.valueOf(params.get("hideNavbar")));
-        if (params != null && params.containsKey("__native__params__")) {
+        if (params != null && params.containsKey("nativeParams")) {
             NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(IStore.class);
             NativeStore iStore = null;
             if (module instanceof NativeStore) {
                 iStore = (NativeStore) module;
-                iStore.set("__native__params__", params.get("__native__params__"));
+                iStore.set("__native__params__", params.get("nativeParams"));
             }
         }
         Activity currentActivity = XEngineApplication.getCurrentActivity();

@@ -11,12 +11,12 @@ version: 0.1.13
 
 **demo**
 ``` js
- {
+
   let val = xengine.api("com.zkty.jsi.globalstorage", "get",
     'abc',
   );
   console.log(val);
-}
+
 ``` 
 
 **无参数**
@@ -33,12 +33,12 @@ string
 
 **demo**
 ``` js
-{
+
   xengine.api("com.zkty.jsi.globalstorage", "set",{
     key:'abc',
     val:'world'
   });
-}
+
 ``` 
 
 **参数说明**
@@ -56,11 +56,11 @@ string
 
 **demo**
 ``` js
- {
+
  xengine.api("com.zkty.jsi.globalstorage", "del",
     'abc',
   );
-}
+
 ``` 
 
 **无参数**

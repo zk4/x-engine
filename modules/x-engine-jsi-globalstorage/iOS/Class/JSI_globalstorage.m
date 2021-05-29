@@ -8,72 +8,42 @@
 
 #import "JSI_globalstorage.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
+#import "iStore.h"
+#import "GlobalState.h"
+
 
 @interface JSI_globalstorage()
+@property (nonatomic, strong) id<iStore> store;
 @end
 
 @implementation JSI_globalstorage
 JSI_MODULE(JSI_globalstorage)
 
 - (void)afterAllJSIModuleInited {
+    _store = XENP(iStore);
 }
 
-   
- 
+- (void)_del:(NSString *)dto {
+    [_store del:[self genkey:dto]];
+}   
 
-- (void)_simpleMethod:(void (^)(BOOL))completionHandler {
-    NSLog(@"hello,_simpleMethod");
+- (NSString *)_get:(NSString *)dto {
+    return [_store get:[self genkey:dto]];
 }
 
-- (void)_simpleMethod {
-    NSLog(@"hello,_simpleMethod");
-    
+- (void)_set:(_0_com_zkty_jsi_globalstorage_DTO *)dto {
+    NSString *key = [NSString stringWithFormat:@"%@", [self genkey:dto.key]];
+    NSString *title = [NSString stringWithFormat:@"%@已存在, 请删除后重新设置", dto.key];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:key]) {
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"温馨提示" message:title preferredStyle:UIAlertControllerStyleAlert];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+    }
+    [_store set:[self genkey:dto.key] val:dto.val];
 }
 
-- (NamedDTO *)_namedObject {
-    NamedDTO* ret = [NamedDTO new];
-    ret.title=@"_namedObject sync";
-    ret.titleSize=10000;
-    return ret;
+- (NSString *) genkey:(NSString*) key{
+    assert(key!=nil);
+    return  [NSString stringWithFormat:@"__global__key__%@", key];
 }
-
-
-- (void)_namedObject:(void (^)(NamedDTO *, BOOL))completionHandler {
-    NamedDTO* ret = [NamedDTO new];
-    ret.title=@"_namedObject async";
-    ret.titleSize=10000;
-    completionHandler(ret,TRUE);
-}
-
-
-- (_0_com_zkty_jsi_globalstorage_DTO *)_nestedAnonymousObject {
-    _0_com_zkty_jsi_globalstorage_DTO * ret =[_0_com_zkty_jsi_globalstorage_DTO new];
-    ret.a=@"hello";
-    ret.i =[_1_com_zkty_jsi_globalstorage_DTO new];
-    ret.i.n1=@"_nestedAnonymousObject sync";
-    return ret;
-}
-
-
-- (void)_nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_globalstorage_DTO *, BOOL))completionHandler {
-    _0_com_zkty_jsi_globalstorage_DTO * ret =[_0_com_zkty_jsi_globalstorage_DTO new];
-    ret.a=@"hello";
-    ret.i =[_1_com_zkty_jsi_globalstorage_DTO new];
-    ret.i.n1=@"_nestedAnonymousObject async";
-    completionHandler(ret,TRUE);
-}
-
-- (NSString *)_simpleArgMethod:(NSString *)dto {
-    return @"from native sync";
-}
-
-
-- (void)_simpleArgMethod:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    completionHandler(@"from native async",TRUE);
-}
-
- 
-
-  
 @end

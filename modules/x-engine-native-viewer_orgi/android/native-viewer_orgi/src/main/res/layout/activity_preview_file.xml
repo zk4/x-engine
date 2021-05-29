@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_30"
             >
-            <com.zkty.nativ.viewer_orgi.widget.CircularProgressBar
+            <com.zkty.nativ.viewer.widget.CircularProgressBar
                 android:id="@+id/lockQuantityCircularProgressBar"
                 android:layout_width="@dimen/dp_60"
                 android:layout_height="@dimen/dp_60"

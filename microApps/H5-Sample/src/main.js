@@ -3,11 +3,11 @@
  * @Date: 2021-05-21 11:58:55
  * @LastEditTime: 2021-05-28 19:23:11
  * @LastEditors: sheng.wang
- * @Description: 
+ * @Description:
  * @FilePath: /x-engine/microApps/H5-Sample/src/main.js
  */
 import xengine from "@zkty-team/x-engine-core";
-console.log('xengine',xengine)
+console.log("xengine", xengine);
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -39,8 +39,7 @@ Vue.config.productionTip = false;
 import VConsole from "vconsole";
 new VConsole();
 
-
-Vue.use(xengine)
+Vue.use(xengine);
 // this.$statusHeight
 // install(Vue) {
 //   Vue.prototype.$engine = engine;

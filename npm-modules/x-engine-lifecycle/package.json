@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-lifecycle",
-  "version": "1.0.5",
+  "version": "2.0.1",
   "description": "解决原生APP跨webView不刷新mounted问题",
   "keywords": [
     "x-engine-lifeCycle"

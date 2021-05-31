@@ -1,12 +1,14 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-31 10:47:33
- * @LastEditTime: 2021-05-31 10:58:36
+ * @LastEditTime: 2021-05-31 18:18:14
  * @LastEditors: sheng.wang
  * @Description: 
- * @FilePath: /x-engine/npm-modules/vue-engine-core/index.js
+ * @FilePath: /x-engine/npm-modules/vue-engine-core/src/index.js
  */
-export function install (Vue, xengine) {
+import xengine from '@zkty-team/x-engine-core'
+
+export function install (Vue) {
   Vue.prototype.$engine = xengine;
   // 原生手机状态栏高度
   Vue.prototype.$statusHeight = xengine.api(

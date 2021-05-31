@@ -2,7 +2,7 @@
 
 import type VueRouter from '../index'
 import { stringifyQuery } from './query'
-import { xengine as XEngine } from '@zkty-team/x-engine-core'
+import XEngine from '@zkty-team/x-engine-core'
 
 const trailingSlashRE = /\/?$/
 

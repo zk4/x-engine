@@ -1,12 +1,12 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-10 16:44:39
- * @LastEditTime: 2021-05-29 12:56:24
+ * @LastEditTime: 2021-05-31 18:18:37
  * @LastEditors: sheng.wang
  * @Description:
  * @FilePath: /x-engine/npm-modules/x-engine-lifecycle/src/lifeCycle.js
  */
-import {xengine} from "@zkty-team/x-engine-core";
+import xengine from "@zkty-team/x-engine-core";
 
 const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示
 const ON_WEBVIEW_SHOW = "onWebviewShow"; // 原生显示

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import {xengine} from "@zkty-team/x-engine-core";
+import xengine from "@zkty-team/x-engine-core";
 export default {
   name: "Header",
   props: {

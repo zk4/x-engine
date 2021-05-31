@@ -35,7 +35,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {
-    "@zkty-team/x-engine-core": "^1.1.1"
+    "@zkty-team/x-engine-core": "^2.0.1"
   },
   "eslintConfig": {
     "root": true,

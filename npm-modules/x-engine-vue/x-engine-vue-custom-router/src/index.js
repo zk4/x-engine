@@ -15,7 +15,7 @@ import { HTML5History } from './history/html5'
 import { AbstractHistory } from './history/abstract'
 
 import type { Matcher } from './create-matcher'
-import { xengine as XEngine } from '@zkty-team/x-engine-core'
+import XEngine from '@zkty-team/x-engine-core'
 
 import { isNavigationFailure, NavigationFailureType } from './util/errors'
 export default class VueRouter {

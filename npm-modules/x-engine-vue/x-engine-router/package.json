@@ -12,6 +12,6 @@
   "author": "Cwz.",
   "license": "ISC",
   "dependencies": {
-    "@zkty-team/x-engine-core": "^1.1.1"
+    "@zkty-team/x-engine-core": "^2.0.1"
   }
 }

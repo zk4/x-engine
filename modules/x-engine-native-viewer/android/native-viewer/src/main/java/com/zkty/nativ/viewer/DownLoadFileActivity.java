@@ -47,9 +47,12 @@ public class DownLoadFileActivity extends BaseXEngineActivity implements View.On
     private TextView tvProgress;
     private TextView tvDownLoadStatus;
     private Button tvDownLoad;
-
+    //文件的信息
     private String fileUrl,filePath,fileName,fileType,title;
+    //是否设置默认
     private boolean isDefault;
+    //是否下载完成
+    private boolean isDownLoadFinish = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,12 +98,16 @@ public class DownLoadFileActivity extends BaseXEngineActivity implements View.On
         filePath = file.getPath();
         //文件存 直接打开 不下载
         if (file.exists()) {
+            //文件存在 下载完成
+            isDownLoadFinish = true;
             openFile(filePath, fileType);
             return;
         }
-        DownloadUtil.get().download(fileUrl, filePath, new DownloadUtil.OnDownloadListener() {
+        DownloadUtil.get().download(fileUrl, filePath,fileType, new DownloadUtil.OnDownloadListener() {
             @Override
             public void onDownloadSuccess() {
+                //下载完成
+                isDownLoadFinish = true;
                 XEngineApplication.getCurrentActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -117,6 +124,7 @@ public class DownLoadFileActivity extends BaseXEngineActivity implements View.On
 
             @Override
             public void onDownloading(int progress) {
+
                 XEngineApplication.getCurrentActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -130,15 +138,15 @@ public class DownLoadFileActivity extends BaseXEngineActivity implements View.On
             }
 
             @Override
-            public void onDownloadFailed() {
+            public void onDownloadFailed(String msg) {
                 XEngineApplication.getCurrentActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         tvDownLoadStatus.setVisibility(View.VISIBLE);
                         tvDownLoad.setVisibility(View.VISIBLE);
-                        tvDownLoadStatus.setText("下载失败");
-                        tvDownLoadStatus.setText("重新下载");
-                        Nativeviewer.getCallback().success("下载失败");
+                        tvDownLoadStatus.setText(msg);
+                        tvDownLoad.setText("重新下载");
+                        Nativeviewer.getCallback().success(msg);
                     }
                 });
 
@@ -168,5 +176,21 @@ public class DownLoadFileActivity extends BaseXEngineActivity implements View.On
         Nativeviewer.getIviewerStatus().openFileReader(filePath, title, fileType);
         Nativeviewer.getIviewerStatus().setDefault(isDefault);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            //没有下载完成 则删除文件
+            if(!isDownLoadFinish){
+                File file = new File(filePath);
+                if(file.exists()){
+                    file.delete();
+                }
+            }
+        }catch (Exception e){
+
+        }
     }
 }

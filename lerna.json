@@ -21,5 +21,6 @@
       "verifyRegistry": false,
       "message": "chore: publish"
     }
-  }
+  },
+  "useWorkspaces": true
 }

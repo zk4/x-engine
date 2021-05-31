@@ -1,5 +1,5 @@
 {
-  "name": "@zkty-team/vuex",
+  "name": "@zkty-team/x-engine-vuex",
   "version": "2.0.4",
   "description": "与使用纯H5 SPA页面没有任何改变的 Vuex",
   "sideEffects": false,

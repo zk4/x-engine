@@ -1,5 +1,5 @@
 {
-  "name": "vue-engine-core",
+  "name": "@zkty-team/x-engine-vue-transfer-native-way",
   "version": "2.0.4",
   "description": "",
   "main": "./src/index.js",

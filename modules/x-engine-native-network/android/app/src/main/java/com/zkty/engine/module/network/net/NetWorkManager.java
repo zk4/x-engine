@@ -8,7 +8,9 @@ import com.zkty.nativ.network.net.rx.RxUtil;
 import com.zkty.nativ.network.utils.LogUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NetWorkManager {
 
@@ -49,15 +51,24 @@ public class NetWorkManager {
     }
 
     public void getScheduleListById(final ServiceCallback callback) {
-        RxServiceManager.ScheduleServeApiFor()
-                .getScheduleAccomplishedInfo()
-                .compose(RxUtil.<BaseResp>handleRestfullResult())
-                .subscribe(
-                        responseBean -> {
-                            callback.onSuccess(responseBean);
-                        },
-                        throwable -> handlerThrowable(throwable, callback)
-                );
+//        RxServiceManager.ScheduleServeApiFor()
+//                .getScheduleAccomplishedInfo()
+//                .compose(RxUtil.<BaseResp>handleRestfullResult())
+//                .subscribe(
+//                        responseBean -> {
+//                            callback.onSuccess(responseBean);
+//                        },
+//                        throwable -> handlerThrowable(throwable, callback)
+//                );
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("equipType", "android");
+        map.put("groupId", "123231231");
+        map.put("imToken", "121231313123");
+        map.put("imUserId", "asdadasdadad");
+        RequestMaster.postBody("/im-service/listGmUserInfoByGroupId",map,callback);
+
     }
 
 

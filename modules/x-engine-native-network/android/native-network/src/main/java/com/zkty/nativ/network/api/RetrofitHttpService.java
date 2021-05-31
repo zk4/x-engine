@@ -41,7 +41,7 @@ public interface RetrofitHttpService {
     Observable<String> ObpostMap(@Url String url, @FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers);
 
     @POST()
-    Observable<String> ObpostBody(@Url String url, @Body Map<String, String> params, @HeaderMap Map<String, String> headers);
+    Observable<String> ObpostBody(@Url String url, @Body Map<String, Object> params, @HeaderMap Map<String, String> headers);
 
     @POST()
     Observable<String> ObpostQuery(@Url String url, @QueryMap Map<String, String> params, @HeaderMap Map<String, String> headers);

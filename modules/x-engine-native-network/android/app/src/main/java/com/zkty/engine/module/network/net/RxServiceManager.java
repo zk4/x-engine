@@ -7,6 +7,7 @@ import com.zkty.engine.module.network.net.api.LoginApi;
 import com.zkty.engine.module.network.net.api.ScheduleApi;
 import com.zkty.engine.module.network.net.api.ServiceApi;
 import com.zkty.nativ.network.NetworkMaster;
+import com.zkty.nativ.network.api.RetrofitHttpService;
 import com.zkty.nativ.network.net.rx.RxService;
 
 /**
@@ -18,26 +19,36 @@ public class RxServiceManager {
 
     //用户服务
     public static LoginApi LoginServeApiFor() {
-        return RxService.createBasicApi(LoginApi.class, NetworkMaster.getInstance().getHostUrl() ,"/login/",false);
+        return RxService.createBasicApi(LoginApi.class, NetworkMaster.getInstance().getHostUrl() +"/login/",false);
     }
 
     //IM服务
     public static ImApi IMServeApiFor() {
-        return RxService.createBasicApi(ImApi.class, NetworkMaster.getInstance().getHostUrl(),"/im-service/",true);
+        return RxService.createBasicApi(ImApi.class, NetworkMaster.getInstance().getHostUrl()+"/im-service/",true);
     }
 
     //日程服务
     public static ScheduleApi ScheduleServeApiFor() {
-        return RxService.createBasicApi(ScheduleApi.class, NetworkMaster.getInstance().getHostUrl(),"/schedule/",true);
+        return RxService.createBasicApi(ScheduleApi.class, NetworkMaster.getInstance().getHostUrl()+"/schedule/",true);
     }
 
     //广告
     public static AdApi AdServeApiFor() {
-        return RxService.createBasicApi(AdApi.class, NetworkMaster.getInstance().getHostUrl(),"/ad/",false);
+        return RxService.createBasicApi(AdApi.class, NetworkMaster.getInstance().getHostUrl()+"/ad/",false);
     }
 
     //客服
     public static ServiceApi SerivceServeApiFor() {
-        return RxService.createBasicApi(ServiceApi.class, "http://larkapi.gomeuat.com.cn","/open/",false);
+        return RxService.createBasicApi(ServiceApi.class, "http://larkapi.gomeuat.com.cn" +  "/open/",false);
+    }
+
+
+    //用户服务
+    public static RetrofitHttpService RetrofitServeApiFor() {
+        return RxService.createBasicApi(RetrofitHttpService.class, NetworkMaster.getInstance().getHostUrl(),false);
+    }
+
+    public static RetrofitHttpService RetrofitServeApiIMFor() {
+        return RxService.createBasicApi(RetrofitHttpService.class, "http://larkapi.gomeuat.com.cn/open/",false);
     }
 }

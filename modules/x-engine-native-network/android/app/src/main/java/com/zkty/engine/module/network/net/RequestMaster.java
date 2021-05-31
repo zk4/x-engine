@@ -9,6 +9,7 @@ import com.zkty.nativ.network.net.rx.RxUtil;
 import com.zkty.nativ.network.utils.GsonUtil;
 import com.zkty.nativ.network.utils.LogUtils;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import rx.Observable;
@@ -23,37 +24,22 @@ public class RequestMaster {
 
 
 
+
     @SuppressLint("CheckResult")
-    public static void postMapLogin(String url, Map<String,String> parmas, Map<String,String> heads, final ServiceCallback callback) {
-        Observable<String> obget = RxServiceManager.LoginServeApiFor(RetrofitHttpService.class)
-                .ObpostMap(url, parmas, heads);
-        request(obget, callback);
+    public static void postBody(String url, Map<String,Object> parmas,  final ServiceCallback callback) {
+        Observable<String> observable = RxServiceManager.RetrofitServeApiFor()
+                .ObpostBody(url, parmas, new HashMap<>());
+        request(observable,callback);
     }
     @SuppressLint("CheckResult")
-    public static void postQueryLogin(String url, Map<String,String> parmas, Map<String,String> heads, final ServiceCallback callback) {
-        Observable<String> obget = RxServiceManager.LoginServeApiFor(RetrofitHttpService.class)
+    public static void postQuery(String url, Map<String,String> parmas, Map<String,String> heads, final ServiceCallback callback) {
+        Observable<String> observable = RxServiceManager.RetrofitServeApiFor()
                 .ObpostQuery(url, parmas, heads);
-        request(obget, callback);
-    }
-    @SuppressLint("CheckResult")
-    public static void getLogin(String url, Map<String,String> parmas, Map<String,String> heads, final ServiceCallback callback) {
-        Observable<String> obget = RxServiceManager.LoginServeApiFor(RetrofitHttpService.class)
-                .Obget(url, parmas, heads);
-        request(obget, callback);
+        request(observable, callback);
     }
 
-
-
-    @SuppressLint("CheckResult")
-    public static void postMapService(String url, Map<String,String> parmas, Map<String,String> heads, final ServiceCallback callback) {
-        Observable<String> obget = RxServiceManager.SerivceServeApiFor(RetrofitHttpService.class)
-                .ObpostBody(url, parmas, heads);
-        request(obget,callback);
-    }
-
-
-    public static void request(Observable<String> obget, ServiceCallback callback){
-        obget.compose(RxUtil.<String>handleRestfullResult())
+    public static void request(Observable<String> observable, ServiceCallback callback){
+        observable.compose(RxUtil.<String>handleRestfullResult())
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onCompleted() {

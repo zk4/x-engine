@@ -1483,10 +1483,10 @@
   "resolved" "https://registry.npm.taobao.org/@xtuc/long/download/@xtuc/long-4.2.2.tgz"
   "version" "4.2.2"
 
-"@zkty-team/x-engine-core@^1.1.1":
-  "integrity" "sha512-I0PN8aUkbmR7MtG5bpJ0VcH/LbJYVX39G0lfo6Jhy5OG+EuPm0dsqjzz+3wi1zsFsbu7UnspMWjhuQHe4Y+YXw=="
-  "resolved" "https://registry.npmjs.org/@zkty-team/x-engine-core/-/x-engine-core-1.1.1.tgz"
-  "version" "1.1.1"
+"@zkty-team/x-engine-core@^2.0.1":
+  "integrity" "sha512-PQdDgvHB/0K/s2TXl/zxiK5uzdFGl9JltDpI9JTv4xp+JeK8GS7wi9jkemVeHHdmpt+mDMypE6+WAFzXUDMHdw=="
+  "resolved" "https://registry.npmjs.org/@zkty-team/x-engine-core/-/x-engine-core-2.0.4.tgz"
+  "version" "2.0.4"
 
 "abbrev@1":
   "integrity" "sha1-+PLIh60Qv2f2NPAFtph/7TF5qsg="

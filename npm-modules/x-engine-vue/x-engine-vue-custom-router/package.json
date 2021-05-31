@@ -108,5 +108,6 @@
   },
   "peerDependencies": {
     "@zkty-team/x-engine-core": "^2.0.1"
-  }
+  },
+  "gitHead": "9d96122687d7caba8a42005b95c48aaeaa84ae05"
 }

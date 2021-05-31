@@ -9,16 +9,6 @@
 #import "Native_share.h"
 #import "XENativeContext.h"
 #import "iShare.h"
-
-@implementation ShareInfoModel
-
-
-@end
-@implementation ContentModel
-
-@end
-
-
 @interface Native_share()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSMutableArray<id<iShare>>*> *shares;
 
@@ -34,12 +24,14 @@ NATIVE_MODULE(Native_share)
 - (int) order{
     return 0;
 }
+
 - (instancetype)init
 {
     self = [super init];
     self.shares = [NSMutableDictionary new];
     return self;
 }
+
 - (void)afterAllNativeModuleInited{
     NSArray *modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iShare)];
      for(id<iShare> share in modules){
@@ -53,14 +45,17 @@ NATIVE_MODULE(Native_share)
              [array addObject:share];
          }
      }
-} 
+}
 
-- (void)shareTypeWithType:(nonnull NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler {
-    NSMutableArray* shareArr = [self.shares objectForKey:type];
-    if(shareArr.count==1){
-        [shareArr[0] shareTypeWithType:type shareData:dto complete:completionHandler];
-    }
+///分享图片
+- (void)shareWithType:(nonnull NSString *)type channel:(nonnull NSString *)channel posterInfo:(nonnull NSDictionary *)info complete:(nonnull void (^)(NSString * _Nullable, NSString * _Nullable, NSString * _Nullable, BOOL))completionHandler {
+    id<iShare> ishare = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iShare)];
+    [ishare shareWithType:type channel:channel posterInfo:info complete:^(NSString * _Nonnull channel, NSString * _Nonnull shareType, NSString * _Nonnull imageData, BOOL complete) {
+        completionHandler(channel,shareType,imageData,YES);
+    }];
+
 }
 
 @end
- 
+
+

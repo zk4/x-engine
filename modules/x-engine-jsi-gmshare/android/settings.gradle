@@ -1,0 +1,13 @@
+include ':app'
+
+include ':native-jsi'
+project(':native-jsi').projectDir = new File('../../../../x-engine/modules/x-engine-native-jsi/android/native-jsi')
+
+include ':native-core'
+project(':native-core').projectDir = new File('../../../../x-engine/modules/x-engine-native-core/android/native-core')
+
+include ':native-protocols'
+project(':native-protocols').projectDir = new File('../../../../x-engine/modules/x-engine-native-protocols/android/native-protocols')
+
+
+

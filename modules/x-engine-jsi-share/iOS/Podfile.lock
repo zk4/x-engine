@@ -1,5 +1,6 @@
 PODS:
   - JSONModel (1.8.0)
+  - WechatOpenSDK (1.8.7.1)
   - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
   - x-engine-native-direct (1.0.0):
@@ -18,45 +19,74 @@ PODS:
   - x-engine-native-jsi (1.0.0):
     - JSONModel
     - x-engine-native-core
+    - x-engine-native-jsi/no-arc (= 1.0.0)
+    - x-engine-native-protocols
+  - x-engine-native-jsi/no-arc (1.0.0):
+    - JSONModel
+    - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
+  - x-engine-native-share (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-share_wx (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-store (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
 
 DEPENDENCIES:
-  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
-  - x-engine-native-direct (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct`)
-  - x-engine-native-direct_microapp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp`)
-  - x-engine-native-direct_omp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp`)
-  - x-engine-native-jsi (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi`)
-  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
+  - WechatOpenSDK
+  - x-engine-native-core (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-share (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share`)
+  - x-engine-native-share_wx (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share_wx`)
+  - x-engine-native-store (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-store`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JSONModel
+    - WechatOpenSDK
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-core"
   x-engine-native-direct:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct"
   x-engine-native-direct_microapp:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_omp"
   x-engine-native-jsi:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-protocols"
+  x-engine-native-share:
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share"
+  x-engine-native-share_wx:
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share_wx"
+  x-engine-native-store:
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-store"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
   x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
-  x-engine-native-jsi: 92a9a72a45029df1ca8e61e0166e3731e672f523
+  x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-share: 1318598548336dcd0c4f78a3dbb9478920e8f471
+  x-engine-native-share_wx: 18a012fb99d85f476ee99ba7404c98698532d144
+  x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
 
-PODFILE CHECKSUM: 653701e313c6de346ae244bb5d001b3b1ce16957
+PODFILE CHECKSUM: 21d54bccd94c6c86922a1d40c739d465a448a589
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

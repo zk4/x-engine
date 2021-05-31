@@ -8,12 +8,15 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class ShareInfoModel;
+@class OpenShareUiDTO;
+@class ChannelStatusDTO;
+@class PosterDTO;
+
 @protocol iShareManager <NSObject>
-//- (void)share:(ShareDTO *)dto complete:(void (^)(BOOL))completionHandler;
-
-//- (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull ShareInfoModel *)dto complete:(nonnull void (^)(BOOL))completionHandler ;
-
+/**
+ 分享
+ */
+- (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(NSString *__nullable channel,NSString *__nullable shareType,NSString *_Nullable imageData,BOOL complete)) completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

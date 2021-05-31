@@ -8,10 +8,9 @@
     "npm-modules/x-engine-vue/x-engine-vue-custom-router",
     "npm-modules/x-engine-vue/x-engine-vue-transfer-native-way",
     "npm-modules/x-engine-vue/x-engine-vuex",
-    "modules/x-engine-jsi-*",
     "microApps/H5-Sample"
   ],
-  "version": "0.1.13",
+  "version": "2.0.4",
   "npmClient": "yarn",
   "command": {
     "publish": {

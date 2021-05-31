@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/lifecycle-vue-compatiable",
-  "version": "0.0.1",
+  "version": "2.0.4",
   "description": "原生App触发vue的生命周期",
   "main": "src/lifeCycle.js",
   "keywords": [
@@ -15,6 +15,6 @@
   "author": "Cwz.",
   "license": "ISC",
   "dependencies": {
-    "@zkty-team/x-engine-core": "^2.0.1"
+    "@zkty-team/x-engine-core": "^2.0.4"
   }
 }

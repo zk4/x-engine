@@ -1,7 +1,7 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-21 11:58:55
- * @LastEditTime: 2021-05-31 14:56:29
+ * @LastEditTime: 2021-05-31 19:31:28
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/main.js
@@ -39,7 +39,7 @@ import VConsole from "vconsole";
 new VConsole();
 
 import xengine from "@zkty-team/x-engine-core";
-import VueEngine from '@zkty-team/vue-engine-core'
+import VueEngine from '@zkty-team/x-engine-vue-transfer-native-way'
 
 Vue.use(VueEngine)
 

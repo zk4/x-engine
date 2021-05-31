@@ -1,7 +1,6 @@
 h5/node_modules
 .DS_Store
 **/*/.DS_Store
-**/*/dist
 **/*/build
 **/*/UniBoost
 **/*/Pods

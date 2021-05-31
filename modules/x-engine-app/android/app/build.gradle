@@ -86,4 +86,5 @@ dependencies {
     implementation project(':jsi-share')
     implementation project(':jsi-dev')
     implementation project(':jsi-viewer')
+    implementation project(':jsi-globalstorage')
 }

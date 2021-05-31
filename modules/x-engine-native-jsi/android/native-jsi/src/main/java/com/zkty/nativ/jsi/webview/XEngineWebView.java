@@ -73,6 +73,8 @@ public class XEngineWebView extends DWebView {
         getSettings().setUseWideViewPort(true);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         getSettings().setAllowFileAccess(true);
+        // 设置是否允许通过 file url 加载的 Javascript 可以访问其他的源(包括http、https等源)
+        getSettings().setAllowUniversalAccessFromFileURLs(true);
         getSettings().setAllowContentAccess(true);
         getSettings().setDomStorageEnabled(true);
         setWebContentsDebuggingEnabled(!"release".equals(BuildConfig.BUILD_TYPE));

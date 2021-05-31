@@ -33,6 +33,12 @@ public interface IviewerStatus {
     boolean isDefault();
 
     /**
+     * 是否支持在线打开
+     * @return
+     */
+    boolean isOnlineOpen();
+
+    /**
      * 设置默认 状态
      * @return
      */

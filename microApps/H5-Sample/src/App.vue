@@ -1,7 +1,7 @@
 <!--
  * @Author: sheng.wang
  * @Date: 2021-05-20 14:20:45
- * @LastEditTime: 2021-05-24 17:26:02
+ * @LastEditTime: 2021-05-28 19:24:10
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/App.vue
@@ -18,6 +18,9 @@ export default {
   name: "App",
   data() {
     return {}
+  },
+  created() {
+    console.log('this', this.$engine)
   },
   computed: {
     style() {

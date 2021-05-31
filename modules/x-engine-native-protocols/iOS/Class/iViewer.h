@@ -14,6 +14,6 @@
     - (NSArray<NSString*>*_Nullable) getTypes;
     - (NSString*_Nullable) getName;
     - (NSString*_Nullable) getIconUrl;
-    - (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type callBack:(void(^_Nullable)(NSString *__nullable filepath))callBack;
+    - (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type title:(NSString *_Nonnull)title;
 @end
 #endif /* iViewer_h */

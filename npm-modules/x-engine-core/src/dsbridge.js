@@ -1,3 +1,4 @@
+var global_this =  window;
 var bridge = {
     default:
         this,
@@ -14,9 +15,9 @@ var bridge = {
         // 如果是异步并且要接收返回值的
         if ("function" == typeof callback) {
             // callback标识,计数器
-            var tag = "dscb" + globalThis.dscb++;
-            // 保存回调   globalThis[dscbX] = callback Function
-            globalThis[tag] = callback;
+            var tag = "dscb" + global_this.dscb++;
+            // 保存回调   global_this[dscbX] = callback Function
+            global_this[tag] = callback;
             // args = {data: args/null,_dscbstud:tag}
             args._dscbstub = tag
         }
@@ -25,30 +26,31 @@ var bridge = {
 
         var ret = "";
         // 这里不会走到,目前从源里没有看到有什么地方注入了_dsbridge
-        if (globalThis._dsbridge) {
+        if (global_this._dsbridge) {
             ret = _dsbridge.call(functionName, args);
         }
 
-        // 客户端会走到这里, webView初始化的时候会给globalThis注入_dswk=true
-        else if (globalThis._dswk || -1 != globalThis?.navigator?.userAgent.indexOf("_dsbridge")) {
-            // ret = prompt("_dsbridge=" + functionName, args);
+        // 客户端会走到这里, webView初始化的时候会给global_this注入_dswk=true
+        else if (global_this._dswk || -1 != global_this.navigator.userAgent.indexOf("_dsbridge")) {
+            if (global_this.prompt)
+                ret = global_this.prompt("_dsbridge=" + functionName, args);
         }
         return JSON.parse(ret || "{}").data
     },
     unregister: function (jsFunctionName) {
-        delete globalThis._dsaf._obs[jsFunctionName]
-        delete globalThis._dsaf[jsFunctionName]
-        delete globalThis._dsf._obs[jsFunctionName]
-        delete globalThis._dsf[jsFunctionName]
+        delete global_this._dsaf._obs[jsFunctionName]
+        delete global_this._dsaf[jsFunctionName]
+        delete global_this._dsf._obs[jsFunctionName]
+        delete global_this._dsf[jsFunctionName]
     },
     // js注册供Native调用的方法,如果传入callback,则为异步方法
     register: function (jsFunctionName, receiveParamsFunction, callback) {
 
         // 判断是同步还是异步  callback = { _obs:{} };
-        callback = callback ? globalThis._dsaf : globalThis._dsf;
+        callback = callback ? global_this._dsaf : global_this._dsf;
 
         //只执行一次,为了调用一次native的dsinit方法
-        globalThis._dsInit || (globalThis._dsInit = !0, setTimeout(function () {
+        global_this._dsInit || (global_this._dsInit = !0, setTimeout(function () {
             bridge.call("_dsb.dsinit")
         }, 0));
 
@@ -86,24 +88,24 @@ var bridge = {
     // js对象动态添加属性
     // obj[property] = xxx. not obj.property = xxx
 
-    // 1. 如果globalThis已经添加了 `_dsf` 属性直接返回
-    if (globalThis._dsf) return;
+    // 1. 如果global_this已经添加了 `_dsf` 属性直接返回
+    if (global_this._dsf) return;
 
-    // 2. globalThis添加一个 `_dsf` 对象属性, 保存同步方法
-    globalThis["_dsf"] = { _obs: {} };
-    // 3. globalThis添加一个 `_dsaf` 对象属性, 保存异步方法
-    globalThis["_dsaf"] = { _obs: {} };
-    // 4. globalThis添加一个callback计数唯一标识
-    globalThis["dscb"] = 0;
-    // 5. globalThis添加一个 bridge属性
-    globalThis["dsBridge"] = bridge;
-    //6. globalThis添加一个界面关闭方法
-    globalThis["close"] = function () {
+    // 2. global_this添加一个 `_dsf` 对象属性, 保存同步方法
+    global_this["_dsf"] = { _obs: {} };
+    // 3. global_this添加一个 `_dsaf` 对象属性, 保存异步方法
+    global_this["_dsaf"] = { _obs: {} };
+    // 4. global_this添加一个callback计数唯一标识
+    global_this["dscb"] = 0;
+    // 5. global_this添加一个 bridge属性
+    global_this["dsBridge"] = bridge;
+    //6. global_this添加一个界面关闭方法
+    global_this["close"] = function () {
         bridge.call("_dsb.closePage");
     };
-    // 7. globalThis添加统一处理Native方法的函数
+    // 7. global_this添加统一处理Native方法的函数
     //a = { "callbackId":id, "method":name, "data":[x,y,z,..]}
-    globalThis["_handleMessageFromNative"] = function (a) {
+    global_this["_handleMessageFromNative"] = function (a) {
         // 调用方法的参数数组
         var e = JSON.parse(a.data),
 
@@ -155,5 +157,6 @@ var bridge = {
     });
 
 })();
+
 export default bridge;
 

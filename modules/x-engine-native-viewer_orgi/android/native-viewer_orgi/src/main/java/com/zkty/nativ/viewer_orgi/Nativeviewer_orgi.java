@@ -35,6 +35,11 @@ public class Nativeviewer_orgi extends NativeModule implements IviewerStatus {
     }
 
     @Override
+    public boolean isOnlineOpen() {
+        return false;
+    }
+
+    @Override
     public void setDefault(Boolean isDefault) {
         StoreUtils.put(moduleId(),isDefault);
     }

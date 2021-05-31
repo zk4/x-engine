@@ -7,11 +7,10 @@ import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 import com.zkty.nativ.store.IStore;
 import com.zkty.nativ.store.NativeStore;
-import com.zkty.nativ.store.StoreUtils;
 
 public class JSI_localstorage extends xengine_jsi_localstorage {
     private NativeStore iStore;
-    
+
     @Override
     protected void afterAllJSIModuleInited() {
         NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(IStore.class);
@@ -29,7 +28,7 @@ public class JSI_localstorage extends xengine_jsi_localstorage {
 
     @Override
     public void _set(_0_com_zkty_jsi_localstorage_DTO dto) {
-        iStore.set(dto.key, dto.val);
+        iStore.set(genKey(dto.key), dto.val);
     }
 
     private String genKey(String key) {

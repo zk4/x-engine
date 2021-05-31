@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,9 +20,8 @@ import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.XEngineNavBar;
-import com.zkty.nativ.ui.view.dialog.DialogHelper;
 import com.zkty.nativ.viewer.utils.DownloadUtil;
-import com.zkty.nativ.viewer_orgi.widget.CircularProgressBar;
+import com.zkty.nativ.viewer.widget.CircularProgressBar;
 
 import java.io.File;
 import java.util.ArrayList;

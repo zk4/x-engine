@@ -5,11 +5,12 @@ public interface Iviewer {
 
     /**
      * 打开文件预览
-     * @param filePath
-     * @param fileName
+     * @param fileUrl
+     * @param fileType
+     * @param title
      * @param callBack
      */
-    void openFileReader(String filePath,String fileName,CallBack callBack);
+    void openFileReader(String fileUrl,String fileType,String title,CallBack callBack);
 
 
 

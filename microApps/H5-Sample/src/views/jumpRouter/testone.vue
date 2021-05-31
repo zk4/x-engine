@@ -1,5 +1,6 @@
 <template>
   <div class="testone-class">
+    <div style="height:100px;"></div>
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
     <van-button type="info" size="large" round @click="handlerBack">上一页</van-button>
     <van-button
@@ -50,7 +51,7 @@ export default {
     },
     handlerPush() {
       this.$router.push({
-        name: "/testtwo",
+        name: "testtwo",
         query: {
           changeNavTitle: "haha"
         },

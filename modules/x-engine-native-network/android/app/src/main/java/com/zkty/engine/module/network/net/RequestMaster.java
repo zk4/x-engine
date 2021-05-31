@@ -25,18 +25,33 @@ public class RequestMaster {
 
 
 
-    @SuppressLint("CheckResult")
-    public static void postBody(String url, Map<String,Object> parmas,  final ServiceCallback callback) {
+
+
+    public static void post_Body(String url, Map<String,Object> parmas,  final ServiceCallback callback) {
         Observable<String> observable = RxServiceManager.RetrofitServeApiFor()
                 .ObpostBody(url, parmas, new HashMap<>());
         request(observable,callback);
     }
-    @SuppressLint("CheckResult")
-    public static void postQuery(String url, Map<String,String> parmas, Map<String,String> heads, final ServiceCallback callback) {
+
+
+    public static void post_Query(String url, Map<String,String> parmas,  final ServiceCallback callback) {
         Observable<String> observable = RxServiceManager.RetrofitServeApiFor()
-                .ObpostQuery(url, parmas, heads);
+                .ObpostQuery(url, parmas, new HashMap<>());
         request(observable, callback);
     }
+
+
+    public static void get_Path(String url, Map<String,String> parmas,  final ServiceCallback callback) {
+        Observable<String> observable = RxServiceManager.RetrofitServeApiFor()
+                .Obget(url, parmas, new HashMap<>());
+        request(observable, callback);
+    }
+
+
+
+
+
+
 
     public static void request(Observable<String> observable, ServiceCallback callback){
         observable.compose(RxUtil.<String>handleRestfullResult())

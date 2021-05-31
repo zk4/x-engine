@@ -67,8 +67,9 @@ public class NetWorkManager {
         map.put("groupId", "123231231");
         map.put("imToken", "121231313123");
         map.put("imUserId", "asdadasdadad");
-        RequestMaster.postBody("/im-service/listGmUserInfoByGroupId",map,callback);
+//        RequestMaster.post_Body("/im-service/listGmUserInfoByGroupId",map,callback);
 
+        RequestMaster.get_Path(String.format("/ad/desc/findByPlaceIdAndMallId/%s/%s","111","222"),new HashMap<>(),callback);
     }
 
 

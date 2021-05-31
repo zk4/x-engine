@@ -202,6 +202,8 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.progresslayer.alpha = 0;
+    [self.webview.scrollView setShowsVerticalScrollIndicator:NO];
+    [self.webview.scrollView setShowsHorizontalScrollIndicator:NO];
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理

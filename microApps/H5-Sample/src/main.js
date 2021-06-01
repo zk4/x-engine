@@ -1,12 +1,13 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-21 11:58:55
- * @LastEditTime: 2021-05-31 19:31:28
+ * @LastEditTime: 2021-06-01 21:49:14
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/main.js
  */
-
+import lifeCycle from "./lifeCycle";
+Vue.use(lifeCycle);
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -48,8 +49,7 @@ import "@zkty-team/x-engine-ui/lib/Header.css";
 Vue.use(Header);
 
 // import lifeCycle from "@zkty-team/x-engine-lifecycle";
-import lifeCycle from "./lifeCycle";
-Vue.use(lifeCycle);
+
 
 // import compatiable from "./compatiable";
 // Vue.use(compatiable);

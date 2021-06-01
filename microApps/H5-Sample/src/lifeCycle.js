@@ -1,13 +1,13 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-20 14:20:45
- * @LastEditTime: 2021-05-28 19:19:51
+ * @LastEditTime: 2021-06-01 21:48:51
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/lifeCycle.js
  */
-import {xengine} from "@zkty-team/x-engine-core";
-
+import xengine from "@zkty-team/x-engine-core";
+console.log(xengine)
 const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示
 const ON_WEBVIEW_SHOW = "onWebviewShow"; // 原生显示
 const ON_NATIVE_HIDE = "onNativeHide"; // 原生隐藏

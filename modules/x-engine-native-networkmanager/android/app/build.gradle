@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.zkty.engine.module.network"
+        applicationId "com.zkty.engine.module.networkmanager"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
@@ -13,10 +13,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    packagingOptions {
-        //解决编译时com.android.builder.merge.DuplicateRelativeFileException: More than one file was found with OS independent path 'META-INF/rxjava.properties'这个错误
-        exclude 'META-INF/rxjava.properties'
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -39,6 +36,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(':native-network')
     implementation project(':native-networkmanager')
 }

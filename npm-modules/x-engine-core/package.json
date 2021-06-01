@@ -2,7 +2,7 @@
   "name": "@zkty-team/x-engine-core",
   "version": "2.0.4",
   "description": "连接原生native和js之间的重要模块",
-  "main": "dist/core.common.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "rimraf dist && microbundle --external all"
   },

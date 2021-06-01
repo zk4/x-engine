@@ -7,6 +7,9 @@ publish:
 
 # 重新 link
 install:
-	lerna clean
 	rm -rdf node_modules
+	rm -rdf npm-modules/*/node_modules
+	rm -rdf ./microApps/*/node_modules
+	# link npm modules in root for develop
 	yarn install
+	yarn workspace @zkty-team/x-engine-ui lib

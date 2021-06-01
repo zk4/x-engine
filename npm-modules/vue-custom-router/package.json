@@ -69,7 +69,6 @@
     "babel-preset-flow-vue": "^1.0.0",
     "browserstack-local": "^1.4.8",
     "buble": "^0.19.8",
-    "chromedriver": "^86.0.0",
     "conventional-changelog-cli": "^2.0.11",
     "cross-spawn": "^7.0.3",
     "css-loader": "^2.1.1",
@@ -106,7 +105,7 @@
     "webpack-dev-middleware": "^3.7.0",
     "yorkie": "^2.0.0"
   },
-  "peerDependencies": {
-    "@zkty-team/x-engine-core": "^1.1.1"
+  "dependencies": {
+        "@zkty-team/x-engine-core": "^1.1.1"
   }
 }

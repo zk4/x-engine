@@ -35,7 +35,7 @@
 @implementation Native_viewer_original
 NATIVE_MODULE(Native_viewer_original)
 
- - (NSString*) moduleId{
+- (NSString *)moduleId{
     return @"com.zkty.native.viewer_original";
 }
 
@@ -44,13 +44,10 @@ NATIVE_MODULE(Native_viewer_original)
 }
 
 - (void)afterAllNativeModuleInited{
-    
     self.store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
-
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     ///iWork文档、微软Office97以上版本的文档、RTF文档、PDF文件、图片文件、文本文件和CSV文件
     self.previewController  =  [[QLPreviewController alloc]  init];
@@ -59,9 +56,8 @@ NATIVE_MODULE(Native_viewer_original)
     return self;
 }
 
-- (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type title:(NSString *)title
-{
-    self.encryptUrl = [[self md5EncryptWithString:url] stringByAppendingString:@".pdf"];
+- (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type title:(NSString *)title {
+    self.encryptUrl = [[self md5EncryptWithString:url] stringByAppendingString:[NSString stringWithFormat:@".%@", type]];
     self.fileUrl= url;
     self.titleString = title;
     self.hud = [MBProgressHUD showHUDAddedTo:[Unity sharedInstance].getCurrentVC.view animated:YES];
@@ -113,8 +109,7 @@ NATIVE_MODULE(Native_viewer_original)
     }
 }
 
-- (NSString *)getIconUrl
-{
+- (NSString *)getIconUrl {
     /// TODO:
     return @"";
 }
@@ -124,33 +119,28 @@ NATIVE_MODULE(Native_viewer_original)
     return @"阅读器";
 }
 
-- (NSArray<NSString *> *)getTypes
-{
+- (NSArray<NSString *> *)getTypes {
     return  @[@"pdf",@"doc",@"xls",@"rtf",@"txt",@"csv"];
 }
  
 
-- (void)setDefault:(BOOL)val
-{
+- (void)setDefault:(BOOL)val {
     [self.store set:DEFAULT_KEY val:[NSNumber numberWithBool:val]];
 }
 
-- (BOOL)isDefault
-{
+- (BOOL)isDefault {
     return [[self.store get:DEFAULT_KEY ] boolValue];
 }
 
 #pragma mark - QLPreviewControllerDataSource
 
 ///需要显示的文件的个数
-- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)previewController
-{
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)previewController {
     return 1;
 }
 
 ///返回要打开文件的地址，包括网络或者本地的地址
--(id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
-{
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
     NSURL * url = [NSURL URLWithString:self.fileUrl];
     QLPreviewCustomItem *item = [[QLPreviewCustomItem alloc]initWithTitle:self.titleString url:url];
     return item;
@@ -158,20 +148,15 @@ NATIVE_MODULE(Native_viewer_original)
 }
 
 ///控制器在即将消失后调用
-- (void)previewControllerWillDismiss:(QLPreviewController*)controller
-{
+- (void)previewControllerWillDismiss:(QLPreviewController*)controller {
     [self.hud hideAnimated:YES];
 }
 
 ///控制器消失后调用
-- (void)previewControllerDidDismiss:(QLPreviewController *)controller
-{
-    
-}
+- (void)previewControllerDidDismiss:(QLPreviewController *)controller {}
 
 ///MD5
 - (NSString *)md5EncryptWithString:(NSString *)string {
-
     if (nil == string || string.length == 0) {
         return nil;
     }
@@ -179,9 +164,7 @@ NATIVE_MODULE(Native_viewer_original)
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5(cStr, (unsigned int)strlen(cStr), result);
     return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",result[0],result[1],result[2],result[3],result[4],result[5],result[6],result[7],result[8],result[9],result[10],result[11],result[12],result[13],result[14],result[15]];
-
 }
-
 @end
 #undef  DEFAULT_KEY
 

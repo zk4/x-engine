@@ -450,7 +450,7 @@ public class XEngineWebView extends DWebView {
         }
 
         sb.append(model.protocol).append("//").append(hostR);
-        if (!TextUtils.isEmpty(model.pathname)) {
+        if (!TextUtils.isEmpty(model.pathname) && !model.pathname.equals("/")) {
             sb.append(model.pathname);
         }
         if (!TextUtils.isEmpty(model.fragment)) {

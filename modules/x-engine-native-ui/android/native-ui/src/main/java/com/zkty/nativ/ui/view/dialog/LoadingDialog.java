@@ -4,7 +4,6 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +28,7 @@ public class LoadingDialog extends BaseDialog {
         messageView = (TextView) content.findViewById(R.id.dialog_loading_message);
         mLoadingView = (LoadingView) content.findViewById(R.id.normal_loading_img);
         mSuccessView = (ImageView) content.findViewById(R.id.normal_img);
-        getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//        getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         setDialogView(content, 0.5);
     }
 

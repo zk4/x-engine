@@ -53,9 +53,7 @@ NATIVE_MODULE(Native_share)
     [ishare shareWithType:type channel:channel posterInfo:info complete:^(NSString * _Nonnull channel, NSString * _Nonnull shareType, NSString * _Nonnull imageData, BOOL complete) {
         completionHandler(channel,shareType,imageData,YES);
     }];
-
 }
-
 @end
 
 

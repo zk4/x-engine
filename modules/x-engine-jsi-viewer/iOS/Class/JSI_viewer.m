@@ -20,19 +20,9 @@ JSI_MODULE(JSI_viewer)
 
 - (void)afterAllJSIModuleInited {
     self.iviewer = XENP(iViewer);
-
-}
-  
-- (void)_openFileReader:(OpenFiileDTO *)dto complete:(void (^)(StatusDTO *, BOOL))completionHandler {
-    NSString *fileType = [NSString string];
-    if ([dto.filePath containsString:@"?"]){
-        fileType = [dto.filePath componentsSeparatedByString:@"?"].firstObject.pathExtension;
-    }else{
-        fileType = dto.filePath.pathExtension;
-    }
-    [self.iviewer openFileWithfileUrl:dto.filePath fileType:fileType callBack:^(NSString * _Nullable filepath) {
-        
-    }];
 }
 
+- (void)_openFileReader:(_0_com_zkty_jsi_viewer_DTO *)dto complete:(void (^)(StatusDTO *, BOOL))completionHandler {
+    [self.iviewer openFileWithfileUrl:dto.fileUrl fileType:dto.fileType title:dto.title];
+}
 @end

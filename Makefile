@@ -9,7 +9,10 @@ publish:
 init:
 	@echo "将初始化开发环境!"
 	@echo "注意,任何未在版本管理的代码将被删除!"
-	
+	cd ./npm-modules/x-engine-vue/vuex && npm run build
+	cd ./npm-modules/x-engine-vue/vue-router && npm run build
+	cd ./npm-modules/x-engine-vue/ui && npm run lib
+	cd ./npm-modules/x-engine-vue/lifecycle && npm run build
 	# git clean -fdx
 	lerna clean               # 清理所有的node_modules
 	rm -rdf node_modules

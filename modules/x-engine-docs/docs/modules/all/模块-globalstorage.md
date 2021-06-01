@@ -1,12 +1,11 @@
 
 
 
-相当于浏览器里的 localstorage.  与 globalstorage 的区别在于,  A 微应用只能在 localstorage 对 A 的数据进行操作. 而不能对 B 的 localstorage 做任何操作.
-globalstorage 则是全局的.
+所有微应用的公共数据交换区域. 没有权限区别. 一般用于非关键业务数据交换. 
 
 
 
-JSI Id: com.zkty.jsi.localstorage
+JSI Id: com.zkty.jsi.globalstorage
 
 version: 0.1.13
 
@@ -18,7 +17,7 @@ version: 0.1.13
 **demo**
 ``` js
 
-  let val = xengine.api("com.zkty.jsi.localstorage", "get",
+  let val = xengine.api("com.zkty.jsi.globalstorage", "get",
     'abc',
   );
   console.log(val);
@@ -40,7 +39,7 @@ string
 **demo**
 ``` js
 
-  xengine.api("com.zkty.jsi.localstorage", "set",{
+  xengine.api("com.zkty.jsi.globalstorage", "set",{
     key:'abc',
     val:'world'
   });
@@ -53,6 +52,24 @@ string
 | --------------------------- | --------- | -------- | --------- |--------- |
 | key | string | 必填 |  |  |
 | val | string | 必填 |  |  |
+**无返回值**
+
+
+
+## del
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
+
+**demo**
+``` js
+
+ xengine.api("com.zkty.jsi.globalstorage", "del",
+    'abc',
+  );
+
+``` 
+
+**无参数**
+
 **无返回值**
 
 

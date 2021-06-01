@@ -1,6 +1,0 @@
-include ':app'
-include ':native-viewer_orgi'
-
-include ':native-core'
-project(':native-core').projectDir = new File('../../x-engine-native-core/android/native-core')
-

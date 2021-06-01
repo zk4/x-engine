@@ -121,7 +121,7 @@ NATIVE_MODULE(Native_viewer_original)
 
 - (NSString *)getName
 {
-    return @"PDF阅读器";
+    return @"阅读器";
 }
 
 - (NSArray<NSString *> *)getTypes

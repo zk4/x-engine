@@ -7,9 +7,6 @@ project(':native-jsi').projectDir = new File('../../../../x-engine/modules/x-eng
 include ':native-core'
 project(':native-core').projectDir = new File('../../../../x-engine/modules/x-engine-native-core/android/native-core')
 
-include ':native-networkmanager'
-project(':native-networkmanager').projectDir = new File('../../../../x-engine/modules/x-engine-native-networkmanager/android/native-networkmanager')
-
 include ':native-protocols'
 project(':native-protocols').projectDir = new File('../../../../x-engine/modules/x-engine-native-protocols/android/native-protocols')
 

@@ -20,13 +20,13 @@
 @implementation Native_direct_omp
 NATIVE_MODULE(Native_direct_omp)
 
-- (NSString*) moduleId{
+- (NSString *)moduleId {
     return @"com.zkty.native.direct_omp";
 }
-- (int) order{
+
+- (int)order {
     return 0;
 }
-
 
 - (void)back:(NSString*) host fragment:(NSString*) fragment{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
@@ -97,50 +97,49 @@ NATIVE_MODULE(Native_direct_omp)
     }
 }
 
+
 - (void)push:(NSString*) protocol  // 强制指定 protocol，非必须，
         host:(NSString*) host
     pathname:(NSString*) pathname
     fragment:(NSString*) fragment
        query:(NSDictionary<NSString*,id>*) query
       params:(NSDictionary<NSString*,id>*) params {
+    
     if(!protocol){
         protocol = [self protocol];
     }
-    UIViewController * currentVC = [Unity sharedInstance].getCurrentVC;
+    
+    BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
+    [self judgeParamsWithDict:params];
+    NSString *queryString = [self judgeQueryWithDict:query];
+    NSString *finalUrl = @"";
+    
     if(host){
-        /// TODO: 统一一个类处理 URL 地址问题
-        [self judgeParamsWithDict:params];
-        NSString *finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@%@",protocol,host,pathname,fragment,[self judgeQueryWithDict:query]];
-        BOOL hideNavbar = [params[@"hideNavbar"] boolValue];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:TRUE withHiddenNavBar:hideNavbar];
-        vc.hidesBottomBarWhenPushed = YES;
-        if([Unity sharedInstance].getCurrentVC.navigationController){
-            [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
-        } else {
-            UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-            if([nav isKindOfClass:[UINavigationController class]]){
-                [nav pushViewController:vc animated:YES];
-            } else {
-                nav = nav.navigationController;
-                [nav pushViewController:vc animated:YES];
-            }
-        }
-        vc.hidesBottomBarWhenPushed = NO;
+        finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@%@",protocol,host,pathname,fragment,queryString];
     } else {
         HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
-        // 重新拿到 host
         host = hm.host;
         NSAssert(host!=nil, @"host 不可为 nil");
-        pathname= hm.pathname;
-        pathname = pathname?pathname:@"";
-        fragment = fragment?[NSString stringWithFormat:@"#%@",fragment]:@"";
-        NSString *finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,[self judgeQueryWithDict:query]];
-        [self judgeParamsWithDict:params];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
-        [currentVC.navigationController pushViewController:vc animated:YES];
+        pathname = hm.pathname;
+        pathname = pathname ? pathname : @"";
+        fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
+        finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
     }
+    
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:isHideNavBar];
+    if([Unity sharedInstance].getCurrentVC.navigationController){
+        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+    } else {
+        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        if([nav isKindOfClass:[UINavigationController class]]){
+            [nav pushViewController:vc animated:YES];
+        } else {
+            nav = nav.navigationController;
+            [nav pushViewController:vc animated:YES];
+        }
+    }
+    vc.hidesBottomBarWhenPushed = NO;
 }
-
 
 /// 判断query是否有值, 有值的就拼接在url上
 /// @param query 前端传入的query参数

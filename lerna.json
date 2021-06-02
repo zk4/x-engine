@@ -1,8 +1,7 @@
 {
   "packages": [
     "npm-modules/x-engine-core",
-    "npm-modules/x-engine-vue/*",
-    "microApps/H5-Sample"
+    "npm-modules/x-engine-vue/*"
   ],
   "version": "2.0.4",
   "npmClient": "yarn",

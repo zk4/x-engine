@@ -14,7 +14,6 @@ public class RequestServer {
 
 
 
-
     public static void getImToken(Map<String, Object> body, final ServiceCallback callback){
         NetworkServer.getInstance().sendPost("/im-service/getImToken",body,callback);;
     }
@@ -23,6 +22,12 @@ public class RequestServer {
     public static void getimsessionid(Map<String, Object> body, final ServiceCallback callback){
         NetworkServer.getInstance().setBaseurl("http://larkapi.gomeuat.com.cn").sendPost("/open/getimsessionid",body,callback);;
     }
+
+    public static void findByPlaceIdAndMallId(Map<String, Object> body, final ServiceCallback callback){
+        NetworkServer.getInstance().sendGet(String.format("/ad/desc/findByPlaceIdAndMallId/%s/%s",1,1),body,callback);;
+    }
+
+
 
 
 }

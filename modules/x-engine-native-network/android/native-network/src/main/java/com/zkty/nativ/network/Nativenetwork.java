@@ -1,5 +1,7 @@
 package com.zkty.nativ.network;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.network.api.RetrofitHttpService;
 import com.zkty.nativ.network.bean.BaseResp;
@@ -81,6 +83,8 @@ public class Nativenetwork extends NativeModule implements Inetwork {
                     @Override
                     public void onNext(String s) {
                         BaseResp baseResp = GsonUtil.fromJson(s,BaseResp.class);
+//                        JSONObject jsonObject = JSON.parseObject(s);
+//                        Class caClass = jsonObject.toJavaObject(Class.class);
                         if(null == callback) return;
                         callback.onSuccess(baseResp);
                     }

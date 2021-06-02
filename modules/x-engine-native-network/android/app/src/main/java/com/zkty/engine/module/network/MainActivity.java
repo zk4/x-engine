@@ -80,6 +80,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RequestServer.findByPlaceIdAndMallId(map, new ServiceCallback<BaseResp<AdDescInfoBean>>() {
+            @Override
+            public void onSuccess(BaseResp<AdDescInfoBean> dataStr) {
+                Log.d("getImToken", GsonUtil.toJson(dataStr));
+            }
+
+            @Override
+            public void onError(ApiException apiException) {
+
+            }
+
+            @Override
+            public void onInvalid() {
+
+            }
+        });
+
 
         //创建文件夹
 //        File folder = new File(XEngineApplication.getCurrentActivity().getExternalCacheDir().getAbsoluteFile().getPath() + "/downloads");

@@ -1,7 +1,7 @@
 <!--
  * @Author: sheng.wang
  * @Date: 2021-05-10 16:44:39
- * @LastEditTime: 2021-05-26 16:28:47
+ * @LastEditTime: 2021-06-02 13:59:32
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/views/jumpRouter/testtwo.vue
@@ -38,7 +38,6 @@ export default {
   // },
   mounted() {
     // console.log("two mounted")
-    console.log(this.$route)
     this.id = this.$route.params.id
     this.age = this.$route.params.age
     this.name = this.$route.params.name

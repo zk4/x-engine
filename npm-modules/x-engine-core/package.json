@@ -1,11 +1,13 @@
 {
   "name": "@zkty-team/x-engine-core",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "description": "连接原生native和js之间的重要模块",
   "main": "src/index.js",
   "scripts": {
     "build": "rimraf dist && microbundle --external all"
   },
+  "source": "src/index.js",
+  "module": "./dist/core.module.js",
   "keywords": [
     "x-engine-core"
   ],
@@ -14,5 +16,6 @@
   "devDependencies": {
     "microbundle": "^0.13.0",
     "rimraf": "^3.0.2"
-  }
+  },
+  "gitHead": "9d96122687d7caba8a42005b95c48aaeaa84ae05"
 }

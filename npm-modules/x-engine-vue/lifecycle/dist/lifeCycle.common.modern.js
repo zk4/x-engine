@@ -1,0 +1,2 @@
+import e from"@zkty-team/x-engine-core";let i;function t(t){i!==t&&(i=t),i.mixin({beforeCreate(){e.onLifecycle((e,i)=>{var t;if("onNativeShow"==e)null==(t=this.onNativeShow)||t.call(this);else if("onWebviewShow"==e){var l;null==(l=this.onNativeShow)||l.call(this)}else if("onNativeHide"==e){var o;null==(o=this.onNativeHide)||o.call(this)}else if("onNativeDestroyed"==e){var a;null==(a=this.onNativeDestroyed)||a.call(this)}})}})}var l={install:t};export default l;export{t as install};
+//# sourceMappingURL=lifeCycle.common.modern.js.map

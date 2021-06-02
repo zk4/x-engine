@@ -1,0 +1,13 @@
+{
+  "name": "@zkty-team/x-engine-vue-transfer-native-way",
+  "version": "2.0.4",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "gitHead": "9d96122687d7caba8a42005b95c48aaeaa84ae05"
+}

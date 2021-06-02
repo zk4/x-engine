@@ -1,7 +1,9 @@
 {
   "packages": [
+    "npm-modules/x-engine-core",
+    "npm-modules/x-engine-vue/*"
   ],
-  "version": "2.2.1",
+  "version": "2.0.4",
   "npmClient": "yarn",
   "command": {
     "publish": {
@@ -12,5 +14,6 @@
       "verifyRegistry": false,
       "message": "chore: publish"
     }
-  }
+  },
+  "useWorkspaces": true
 }

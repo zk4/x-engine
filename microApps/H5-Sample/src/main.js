@@ -1,13 +1,12 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-21 11:58:55
- * @LastEditTime: 2021-06-01 21:49:14
+ * @LastEditTime: 2021-06-02 13:01:41
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/main.js
  */
-import lifeCycle from "./lifeCycle";
-Vue.use(lifeCycle);
+
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -39,16 +38,15 @@ Vue.config.productionTip = false;
 import VConsole from "vconsole";
 new VConsole();
 
-import xengine from "@zkty-team/x-engine-core";
+import './utils/test'
 import VueEngine from '@zkty-team/x-engine-vue-transfer-native-way'
-
-Vue.use(VueEngine)
 
 import Header from "@zkty-team/x-engine-ui";
 import "@zkty-team/x-engine-ui/lib/Header.css";
+import lifeCycle from "@zkty-team/x-engine-lifecycle";
 Vue.use(Header);
-
-// import lifeCycle from "@zkty-team/x-engine-lifecycle";
+Vue.use(lifeCycle);
+Vue.use(VueEngine)
 
 
 // import compatiable from "./compatiable";

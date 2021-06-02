@@ -2,8 +2,11 @@ package com.zkty.engine.module.network.net.serve;
 
 import android.text.TextUtils;
 
+import com.zkty.engine.module.network.BuildConfig;
 import com.zkty.engine.module.network.net.NetWorkManager;
 import com.zkty.engine.module.network.net.callback.Inetworkmanager;
+import com.zkty.engine.module.network.net.utils.NetworkCommonUtils;
+import com.zkty.nativ.network.NetworkConfig;
 import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
 import com.zkty.nativ.network.net.myinterface.OnUploadListener;
 import com.zkty.nativ.network.net.myinterface.ServiceCallback;
@@ -27,19 +30,6 @@ public class NetworkServer implements Inetworkmanager {
      * 请求url
      */
     private String baseurl;
-    /**
-     * 请求方法名
-     */
-    private String url;
-
-    /**
-     *  文件路径
-     */
-    private String filePath;
-    /**
-     * 请求参数
-     */
-    private HashMap<String, Object> params;
 
     /**
      * header 参数
@@ -47,19 +37,10 @@ public class NetworkServer implements Inetworkmanager {
     private Map<String, String> heads;
 
     /**
-     * 请求回调
+     * 是否拦截token
      */
-    private ServiceCallback callback;
+    private boolean isIntercepToken;
 
-    /**
-     * 下载回调
-     */
-    private OnDownloadListener onDownloadListener;
-
-    /**
-     * 上传回调
-     */
-    private OnUploadListener onUploadListener;
 
     private static NetworkServer networkServer;
     /**
@@ -74,110 +55,104 @@ public class NetworkServer implements Inetworkmanager {
                 }
             }
         }
+        //设置默认
+        networkServer.setDefault();
         return networkServer;
     }
 
+    /**
+     * 设置默认 配置
+     */
+    public void setDefault(){
+        //默认的请求 host
+        setBaseurl(NetworkCommonUtils.getHost(BuildConfig.BUILD_TYPE));
+        //默认的请求传惨方式
+        setRequestType(NetworkConfig.REQUEST_TYPE_BODY);
+        //默认请求头
+        setHeads(new HashMap<>());
+        //默认拦截token
+        setIntercepToken(true);
+    }
 
+    /**
+     * 设置传惨类型
+     * @param requestType
+     * @return
+     */
     public NetworkServer setRequestType(String requestType) {
         this.requestType = requestType;
         return this;
     }
 
+    /**
+     * 设置 baseurl
+     * @param baseurl
+     * @return
+     */
     public NetworkServer setBaseurl(String baseurl) {
         this.baseurl = baseurl;
         return this;
     }
 
-    public NetworkServer setUrl(String url) {
-        this.url = url;
-        return this;
-    }
-
-    public NetworkServer setParams(Map<String, Object> params) {
-        this.params = (HashMap<String, Object>) params;
-        return this;
-    }
-
+    /**
+     * 设置header参数
+     * @param heads
+     * @return
+     */
     public NetworkServer setHeads(Map<String, String> heads) {
         this.heads =  heads;
         return this;
     }
 
-    public NetworkServer setCallback(ServiceCallback callback) {
-        this.callback = callback;
+
+    public NetworkServer setIntercepToken(boolean intercepToken) {
+        isIntercepToken = intercepToken;
         return this;
     }
 
-    public static void setNetworkServer(NetworkServer networkServer) {
-        NetworkServer.networkServer = networkServer;
-    }
-
-    public NetworkServer setFilePath(String filePath) {
-        this.filePath = filePath;
-        return this;
-    }
-
-    public NetworkServer setOnDownloadListener(OnDownloadListener onDownloadListener) {
-        this.onDownloadListener = onDownloadListener;
-        return this;
-    }
-
-    public NetworkServer setOnUploadListener(OnUploadListener onUploadListener) {
-        this.onUploadListener = onUploadListener;
-        return this;
-    }
-
+    /**
+     * post请求
+     * @param interfaceName
+     * @param params
+     * @param callback
+     */
     @Override
-    public void post() {
-        if(TextUtils.isEmpty(requestType)){
-            LogUtils.d("请求类型为空");
-            return;
-        }
-        if(TextUtils.isEmpty(url)){
-            LogUtils.d("请求地址为空");
-            return;
-        }
-
-
-        NetWorkManager.getiNetwork().post(requestType,baseurl,url,params,heads,callback);
+    public void sendPost(String interfaceName, Map<String, Object> params,ServiceCallback callback){
+        NetWorkManager.getiNetwork().post(requestType,baseurl,interfaceName,params,heads,isIntercepToken,callback);
     }
 
+
+    /**
+     * post请求
+     * @param interfaceName
+     * @param params
+     * @param callback
+     */
     @Override
-    public void get() {
-        if(TextUtils.isEmpty(requestType)){
-            LogUtils.d("请求类型为空");
-            return;
-        }
-        if(TextUtils.isEmpty(url)){
-            LogUtils.d("请求地址为空");
-            return;
-        }
-        NetWorkManager.getiNetwork().get(requestType,baseurl,url,params,heads,callback);
+    public void sendGet(String interfaceName, Map<String, Object> params,ServiceCallback callback){
+        NetWorkManager.getiNetwork().get(requestType,baseurl,interfaceName,params,heads,isIntercepToken,callback);
     }
 
+
+    /**
+     * 下载文件
+     * @param downloadUrl
+     * @param filePath
+     * @param onDownloadListener
+     */
     @Override
-    public void download() {
-        if(TextUtils.isEmpty(filePath)){
-            LogUtils.d("文件路晋为空");
-            return;
-        }
-        if(TextUtils.isEmpty(url)){
-            LogUtils.d("请求地址为空");
-            return;
-        }
-        NetWorkManager.getiNetwork().download(url,filePath,onDownloadListener);
+    public void sendDownload(String downloadUrl, String filePath,OnDownloadListener onDownloadListener) {
+        NetWorkManager.getiNetwork().download(downloadUrl,filePath,onDownloadListener);
     }
 
+    /**
+     * 上传文件
+     * @param uploadUrl
+     * @param filePath
+     * @param onUploadListener
+     */
     @Override
-    public void upload() {
-        if(TextUtils.isEmpty(filePath)){
-            LogUtils.d("文件路晋为空");
-            return;
-        }
-        if(TextUtils.isEmpty(url)){
-            LogUtils.d("请求地址为空");
-            return;
-        }
-        NetWorkManager.getiNetwork().upload(url,filePath,onUploadListener);
+    public void sendUpload(String uploadUrl, String filePath,OnUploadListener onUploadListener) {
+        NetWorkManager.getiNetwork().upload(uploadUrl,filePath,onUploadListener);
     }
 }

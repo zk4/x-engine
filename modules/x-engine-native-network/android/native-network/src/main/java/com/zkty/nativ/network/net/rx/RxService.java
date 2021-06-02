@@ -69,7 +69,7 @@ public class RxService {
                 /*http请求线程*/
                 .subscribeOn(Schedulers.newThread())
                 /*回调线程*/
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.newThread())
                 .subscribe(new Observer<ResponseBody>() {
                     @Override
                     public void onCompleted() {

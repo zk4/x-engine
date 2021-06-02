@@ -18,7 +18,7 @@ public interface Inetwork {
      * @param params
      * @param callback
      */
-    void post(String requestType, String baseUrl, String url, Map<String, Object> params, Map<String, String> heads, ServiceCallback callback);
+    void post(String requestType, String baseUrl, String url, Map<String, Object> params, Map<String, String> heads, boolean isIntercepToken, ServiceCallback callback);
 
 
     /**
@@ -28,7 +28,7 @@ public interface Inetwork {
      * @param callback
      */
 
-    void get(String requestType, String baseUrl, String url, Map<String, Object> params, Map<String, String> heads, ServiceCallback callback);
+    void get(String requestType, String baseUrl, String url, Map<String, Object> params, Map<String, String> heads, boolean isIntercepToken, ServiceCallback callback);
 
 
     /**

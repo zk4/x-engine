@@ -65,7 +65,12 @@ public class ProgressRequestBody extends RequestBody {
 
             bytesWritten += byteCount;
             if (fileUploadObserver != null) {
-                fileUploadObserver.onUploading((int) (bytesWritten*100 / contentLength()));
+                if(bytesWritten == contentLength()){
+                    fileUploadObserver.onUploadSuccess();
+                }else{
+                    fileUploadObserver.onUploading((int) (bytesWritten*100 / contentLength()));
+                }
+
             }
 
         }

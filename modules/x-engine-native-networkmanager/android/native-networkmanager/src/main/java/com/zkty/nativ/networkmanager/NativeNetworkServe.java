@@ -39,7 +39,7 @@ public class NativeNetworkServe extends NativeModule implements Inetworkmanager 
 
     @Override
     public void post(String requestType, String url, HashMap<String, Object> params, HashMap<String, Object> heads, ServiceCallback callback) {
-        NetworkManager.getiNetwork().post(requestType,url,params,heads,callback);
+        NetworkManager.getiNetwork().post(requestType,url,params,heads,trcallback);
     }
 
     @Override

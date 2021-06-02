@@ -1,30 +1,34 @@
 package com.zkty.engine.module.network.net.callback;
 
 
-import java.util.HashMap;
+import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
+import com.zkty.nativ.network.net.myinterface.OnUploadListener;
+import com.zkty.nativ.network.net.myinterface.ServiceCallback;
+
+import java.util.Map;
 
 public interface Inetworkmanager {
 
     /**
      * post 请求
      */
-    void post();
+    void sendPost(String interfaceName, Map<String, Object> params, ServiceCallback callback);
 
     /**
      * get 请求
      */
-    void get();
+    void sendGet(String interfaceName, Map<String, Object> params,ServiceCallback callback);
 
 
     /**
      * 下载文件
      */
-    void download();
+    void sendDownload(String downloadUrl, String filePath, OnDownloadListener onDownloadListener);
 
     /**
      * 上传文件
      */
-    void upload();
+    void sendUpload(String uploadUrl, String filePath, OnUploadListener onUploadListener);
 
 
 }

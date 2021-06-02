@@ -16,12 +16,10 @@ public class RequestServer {
 
 
     public static void getImToken(Map<String, Object> body, final ServiceCallback callback){
-        NetworkServer.getInstance()
-                .setRequestType(NetworkConfig.REQUEST_TYPE_BODY)
-                .setBaseurl("http://10.115.91.71:32383")
-                .setUrl("/im-service/getImToken")
-                .setParams(body)
-                .setCallback(callback)
-                .post();
+        NetworkServer.getInstance().sendPost("/im-service/getImToken",body,callback);;
     }
+
+
+
+
 }

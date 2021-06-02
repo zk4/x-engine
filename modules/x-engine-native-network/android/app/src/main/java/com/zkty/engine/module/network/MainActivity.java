@@ -2,23 +2,24 @@ package com.zkty.engine.module.network;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.zkty.engine.module.network.net.NetWorkManager;
-import com.zkty.engine.module.network.net.callback.ServiceCallback;
-import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.core.utils.ToastUtils;
+import com.zkty.engine.module.network.net.RequestMaster;
+import com.zkty.engine.module.network.net.serve.NetworkServer;
+import com.zkty.engine.module.network.net.serve.RequestServer;
+import com.zkty.nativ.network.NetworkConfig;
+import com.zkty.nativ.network.bean.BaseResp;
 import com.zkty.nativ.network.net.exception.ApiException;
-import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
-import com.zkty.nativ.network.net.myinterface.OnUploadListener;
-import com.zkty.nativ.network.net.rx.RxService;
-import com.zkty.nativ.network.utils.LogUtils;
+import com.zkty.nativ.network.net.myinterface.ServiceCallback;
+import com.zkty.nativ.network.utils.GsonUtil;
 
-import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,12 +35,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void network(View view) {
-
-
-        NetWorkManager.getInstance().getScheduleListById(new ServiceCallback() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("osType", 11);
+        map.put("tokenType","GM-C-User");
+        map.put("userKey", "1231312413131");
+        RequestServer.getImToken(map, new ServiceCallback<BaseResp<IMTokenInfoBean>>() {
             @Override
-            public void onSuccess(Object jsonObj) {
-                ToastUtils.showCenterToast("哈哈哈哈哈哈");
+            public void onSuccess(BaseResp<IMTokenInfoBean> jsonObj) {
+                Log.d("getImToken", GsonUtil.toJson(jsonObj));
+
             }
 
             @Override
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         //创建文件夹
 //        File folder = new File(XEngineApplication.getCurrentActivity().getExternalCacheDir().getAbsoluteFile().getPath() + "/downloads");

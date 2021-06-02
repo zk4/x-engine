@@ -34,17 +34,17 @@ public interface RetrofitHttpService {
     Call<String> post(@Url String url, @Body String data, @HeaderMap Map<String, String> headers);
 
     @GET()
-    Observable<String> Obget(@Url String url, @QueryMap Map<String, String> params, @HeaderMap Map<String, String> headers);
+    Observable<String> Obget(@Url String url, @QueryMap Map<String, Object> params, @HeaderMap Map<String, String> headers);
 
     @FormUrlEncoded
     @POST()
-    Observable<String> ObpostMap(@Url String url, @FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers);
+    Observable<String> ObpostFileMap(@Url String url, @FieldMap Map<String, Object> params, @HeaderMap Map<String, String> headers);
 
     @POST()
     Observable<String> ObpostBody(@Url String url, @Body Map<String, Object> params, @HeaderMap Map<String, String> headers);
 
     @POST()
-    Observable<String> ObpostQuery(@Url String url, @QueryMap Map<String, String> params, @HeaderMap Map<String, String> headers);
+    Observable<String> ObpostQueryMap(@Url String url, @QueryMap Map<String, Object> params, @HeaderMap Map<String, String> headers);
 
     @POST()
     Observable<String> ObpostPath(@Url String url, @HeaderMap Map<String, String> headers);

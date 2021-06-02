@@ -2,9 +2,9 @@ package com.zkty.engine.module.network.net;
 
 import android.annotation.SuppressLint;
 
-import com.zkty.engine.module.network.net.callback.ServiceCallback;
 import com.zkty.nativ.network.api.RetrofitHttpService;
 import com.zkty.nativ.network.bean.BaseResp;
+import com.zkty.nativ.network.net.myinterface.ServiceCallback;
 import com.zkty.nativ.network.net.rx.RxUtil;
 import com.zkty.nativ.network.utils.GsonUtil;
 import com.zkty.nativ.network.utils.LogUtils;
@@ -34,14 +34,14 @@ public class RequestMaster {
     }
 
 
-    public static void post_Query(String url, Map<String,String> parmas,  final ServiceCallback callback) {
+    public static void post_Query(String url, Map<String,Object> parmas,  final ServiceCallback callback) {
         Observable<String> observable = RxServiceManager.RetrofitServeApiFor()
-                .ObpostQuery(url, parmas, new HashMap<>());
+                .ObpostQueryMap(url, parmas, new HashMap<>());
         request(observable, callback);
     }
 
 
-    public static void get_Path(String url, Map<String,String> parmas,  final ServiceCallback callback) {
+    public static void get_Path(String url, Map<String,Object> parmas,  final ServiceCallback callback) {
         Observable<String> observable = RxServiceManager.RetrofitServeApiFor()
                 .Obget(url, parmas, new HashMap<>());
         request(observable, callback);

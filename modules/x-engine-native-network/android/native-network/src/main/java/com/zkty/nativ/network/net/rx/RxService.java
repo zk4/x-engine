@@ -6,6 +6,7 @@ import com.zkty.nativ.network.NetworkMaster;
 import com.zkty.nativ.network.api.RetrofitHttpService;
 import com.zkty.nativ.network.net.ProgressRequestBody;
 import com.zkty.nativ.network.net.converter.DecodeConverterFactory;
+import com.zkty.nativ.network.net.converter.StringConverterFactory;
 import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
 import com.zkty.nativ.network.net.myinterface.OnUploadListener;
 import com.zkty.nativ.network.okhttp.OkhttpProvidede;
@@ -46,7 +47,7 @@ public class RxService {
      */
     public static <T> T createBasicApi(Class<T> clazz,String hostUrl,boolean isCheckToekn) {
         Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(DecodeConverterFactory.create(new Gson()))
+                .addConverterFactory(StringConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(OkhttpProvidede.okHttpClient(isCheckToekn))
                 .baseUrl(hostUrl)

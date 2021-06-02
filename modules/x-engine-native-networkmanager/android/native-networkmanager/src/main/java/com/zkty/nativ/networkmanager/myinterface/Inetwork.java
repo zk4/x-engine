@@ -20,7 +20,7 @@ public interface Inetwork {
      * @param params
      * @param callback
      */
-    void post(String requestType, String url, HashMap<String,Object> params, HashMap<String,Object> heads, ServiceCallback callback);
+    void post(String requestType,String baseUrl, String url, HashMap<String,Object> params, HashMap<String,Object> heads, ServiceCallback callback);
 
 
     /**
@@ -30,7 +30,7 @@ public interface Inetwork {
      * @param callback
      */
 
-    void get(String requestType, String url, HashMap<String,Object> params, HashMap<String,Object> heads, ServiceCallback callback);
+    void get(String requestType, String baseUrl, String url, HashMap<String,Object> params, HashMap<String,Object> heads, ServiceCallback callback);
 
 
     /**

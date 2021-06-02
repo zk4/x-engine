@@ -13,7 +13,27 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.viewer", 
     [
   {
-    "name": "test_openFileReader",
+    "name": "test_openPDF",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openPPT",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openWord",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openExcel",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openErrorPDF",
     "default_args": {},
     "decorators": []
   }

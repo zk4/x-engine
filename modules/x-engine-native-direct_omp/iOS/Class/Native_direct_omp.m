@@ -106,16 +106,16 @@ NATIVE_MODULE(Native_direct_omp)
     if(!protocol){
         protocol = [self protocol];
     }
-    UIViewController * currentVC=[Unity sharedInstance].getCurrentVC;
+    UIViewController * currentVC = [Unity sharedInstance].getCurrentVC;
     if(host){
         /// TODO: 统一一个类处理 URL 地址问题
-        NSString * finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@",protocol,host,pathname,fragment];
-        BOOL hideNavbar  = [params[@"hideNavbar"] boolValue];
-        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:TRUE  withHiddenNavBar:hideNavbar];
+        [self judgeParamsWithDict:params];
+        NSString *finalUrl = [NSString stringWithFormat:@"%@//%@%@#%@%@",protocol,host,pathname,fragment,[self judgeQueryWithDict:query]];
+        BOOL hideNavbar = [params[@"hideNavbar"] boolValue];
+        RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:TRUE withHiddenNavBar:hideNavbar];
         vc.hidesBottomBarWhenPushed = YES;
         if([Unity sharedInstance].getCurrentVC.navigationController){
             [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
-            
         } else {
             UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
             if([nav isKindOfClass:[UINavigationController class]]){
@@ -127,47 +127,51 @@ NATIVE_MODULE(Native_direct_omp)
         }
         vc.hidesBottomBarWhenPushed = NO;
     } else {
-        HistoryModel* hm=[[GlobalState sharedInstance] getLastHistory];
+        HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
         // 重新拿到 host
-        host= hm.host;
+        host = hm.host;
         NSAssert(host!=nil, @"host 不可为 nil");
-        
         pathname= hm.pathname;
         pathname = pathname?pathname:@"";
         fragment = fragment?[NSString stringWithFormat:@"#%@",fragment]:@"";
-        
-        NSString *finalQueryString=nil;
-        NSString * finalUrl = @"";
-        
-        if (query) {
-            NSArray *keys = query.allKeys;
-            NSArray *values = query.allValues;
-            NSString *forString = [NSString string];
-            for (NSInteger i = 0; i<keys.count; i++) {
-                forString = [forString stringByAppendingFormat:@"%@=%@&", keys[i], values[i]];
-            }
-            if(forString.length>0){
-                NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
-                finalQueryString = [NSString stringWithFormat:@"?%@", [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]]];
-            }
-         }
-        finalQueryString = finalQueryString?finalQueryString:@"";
-
-        finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,finalQueryString];
-        
-        
-        if (params[@"nativeParams"]) {
-            // 存入store 让前端去取
-            id<iStore>store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
-            [store set:@"__native__params__" val:[self dictionaryToJson:params[@"nativeParams"]]];
-        }
-        
+        NSString *finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,[self judgeQueryWithDict:query]];
+        [self judgeParamsWithDict:params];
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:[params[@"hideNavbar"] boolValue]];
         [currentVC.navigationController pushViewController:vc animated:YES];
     }
 }
 
-//字典转json格式字符串：
+
+/// 判断query是否有值, 有值的就拼接在url上
+/// @param query 前端传入的query参数
+- (NSString *)judgeQueryWithDict:(NSDictionary<NSString*,id> *)query {
+    NSString *finalQueryString = nil;
+    if (query) {
+        NSArray *keys = query.allKeys;
+        NSArray *values = query.allValues;
+        NSString *forString = [NSString string];
+        for (NSInteger i = 0; i<keys.count; i++) {
+            forString = [forString stringByAppendingFormat:@"%@=%@&", keys[i], values[i]];
+        }
+        if(forString.length > 0){
+            NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
+            finalQueryString = [NSString stringWithFormat:@"?%@", [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]]];
+        }
+    }
+    return finalQueryString = finalQueryString ? finalQueryString : @"";
+}
+
+
+/// 判断params["nativeParams"]是否有值, 有值就存入store
+/// @param params 前端传入的params参数
+- (void)judgeParamsWithDict:(NSDictionary<NSString*,id>*)params {
+    if (params[@"nativeParams"]) {
+        id<iStore>store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
+        [store set:@"__native__params__" val:[self dictionaryToJson:params[@"nativeParams"]]];
+    }
+}
+
+//字典转json格式字符串:
 - (NSString*)dictionaryToJson:(NSDictionary *)dic {
     NSError *parseError = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];

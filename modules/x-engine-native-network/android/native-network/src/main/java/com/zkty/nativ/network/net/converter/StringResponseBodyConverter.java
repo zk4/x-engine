@@ -20,7 +20,7 @@ public class StringResponseBodyConverter implements Converter<ResponseBody, Stri
     @Override
     public String convert(ResponseBody responseBody) throws IOException {
         String response = responseBody.string();
-        BaseResp baseModel = GsonUtil.fromJson(response,BaseResp.class);
+//        BaseResp baseModel = GsonUtil.fromJson(response,BaseResp.class);
         return  response;
     }
 }

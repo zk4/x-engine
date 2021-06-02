@@ -1,5 +1,7 @@
 package com.zkty.nativ.network.bean;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 public class BaseResp<T> implements Serializable {
@@ -10,6 +12,8 @@ public class BaseResp<T> implements Serializable {
     protected String message;
     protected T data;
 
+    protected String extraMap;
+    protected String msg;
 
     public int getCode() {
         return code;
@@ -20,7 +24,7 @@ public class BaseResp<T> implements Serializable {
     }
 
     public String getMessage() {
-        return message;
+        return TextUtils.isEmpty(message) ? msg : message;
     }
 
     public void setMessage(String message) {

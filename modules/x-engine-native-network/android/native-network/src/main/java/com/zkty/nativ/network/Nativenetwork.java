@@ -20,11 +20,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -78,7 +81,6 @@ public class Nativenetwork extends NativeModule implements Inetwork {
                     @Override
                     public void onNext(String s) {
                         BaseResp baseResp = GsonUtil.fromJson(s,BaseResp.class);
-
                         if(null == callback) return;
                         callback.onSuccess(baseResp);
                     }
@@ -135,6 +137,23 @@ public class Nativenetwork extends NativeModule implements Inetwork {
         ProgressRequestBody uploadFileRequestBody = new ProgressRequestBody(file, callback);
         //封装文件
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), uploadFileRequestBody);
+
+//        Request request = new Request.Builder()
+//                .header("Authorization", "Client-ID " + UUID.randomUUID())
+//                .url(url)
+//                .post(uploadFileRequestBody)
+//                .build();
+//
+//        new OkHttpClient().newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(okhttp3.Call call, IOException e) {
+//                // 下载失败
+//                WriteFileUtil.mHandler.post(() -> callback.onUploadFailed());
+//            }
+//            @Override
+//            public void onResponse(okhttp3.Call call, Response response) throws IOException {
+//            }
+//        });
 
         //创建请求
         RxService.createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),false)

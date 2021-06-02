@@ -16,11 +16,16 @@ import com.zkty.nativ.network.utils.LogUtils;
 import com.zkty.nativ.network.utils.WriteFileUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.Callback;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.Observer;
@@ -109,42 +114,18 @@ public class Nativenetwork extends NativeModule implements Inetwork {
 
     @Override
     public void download(String url, String filePath, OnDownloadListener callback) {
-        HashMap<String, String> headers = new HashMap<>();
-
-        RxService.createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),false)
-                .Obdownload(headers,url)
-                /*http请求线程*/
-                .subscribeOn(Schedulers.newThread())
-                .map(new Func1<ResponseBody, ResponseBody>() {
-                    @Override
-                    public ResponseBody call(ResponseBody responseBody) {
-                        return responseBody;
-                    }
-                })
-                /*回调线程*/
-                .observeOn(Schedulers.newThread())
-                .doOnNext(new Action1<ResponseBody>() {
-                    @Override
-                    public void call(ResponseBody responseBody) {
-                        WriteFileUtil.writeFile(responseBody,filePath,callback);
-                    }
-                });
-//                .subscribe(new Observer<ResponseBody>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        callback.onDownloadFailed();
-//                    }
-//
-//                    @Override
-//                    public void onNext(ResponseBody responseBody) {
-//                        WriteFileUtil.writeFile(responseBody,filePath,callback);
-//                    }
-//                });
+        Request request = new Request.Builder().url(url).build();
+        new OkHttpClient().newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                // 下载失败
+                WriteFileUtil.mHandler.post(() -> callback.onDownloadFailed());
+            }
+            @Override
+            public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                WriteFileUtil.writeFile(response.body(),filePath,callback);
+            }
+        });
     }
 
     @Override
@@ -154,6 +135,7 @@ public class Nativenetwork extends NativeModule implements Inetwork {
         ProgressRequestBody uploadFileRequestBody = new ProgressRequestBody(file, callback);
         //封装文件
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), uploadFileRequestBody);
+
         //创建请求
         RxService.createBasicApi(RetrofitHttpService.class,NetworkMaster.getInstance().getHostUrl(),false)
                 .uploadMultipleTypeFile(url,part)

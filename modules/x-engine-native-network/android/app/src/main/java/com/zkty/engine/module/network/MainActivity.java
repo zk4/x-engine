@@ -9,10 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.zkty.engine.module.network.net.DownloadUtil;
 import com.zkty.engine.module.network.net.serve.NetworkServer;
 import com.zkty.engine.module.network.net.serve.RequestServer;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.network.DownloadUtil;
 import com.zkty.nativ.network.bean.BaseResp;
 import com.zkty.nativ.network.net.exception.ApiException;
 import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
@@ -73,23 +73,23 @@ public class MainActivity extends AppCompatActivity {
         //文件路径
         String filePath = file.getPath();
 
-//        NetworkServer.getInstance().sendDownload("http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf",filePath, new OnDownloadListener() {
-//            @Override
-//            public void onDownloadSuccess() {
-//                viewById.setText("下载完成");
-//            }
-//
-//            @Override
-//            public void onDownloading(int progress) {
-//                viewById.setText(progress + "%");
-//                LogUtils.d(progress + "%");
-//            }
-//
-//            @Override
-//            public void onDownloadFailed() {
-//                viewById.setText("下载失败");
-//            }
-//        });
+        NetworkServer.getInstance().sendDownload("http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf",filePath, new OnDownloadListener() {
+            @Override
+            public void onDownloadSuccess() {
+                viewById.setText("下载完成");
+            }
+
+            @Override
+            public void onDownloading(int progress) {
+                viewById.setText(progress + "%");
+                LogUtils.d(progress + "%");
+            }
+
+            @Override
+            public void onDownloadFailed() {
+                viewById.setText("下载失败");
+            }
+        });
 
 //        DownloadUtil.get().download("http://www.bitsavers.org/pdf/aeon/Aeon_Systems_Model_7064.pdf", filePath, new DownloadUtil.OnDownloadListener() {
 //            @Override

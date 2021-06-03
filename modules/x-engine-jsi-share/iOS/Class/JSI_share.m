@@ -9,43 +9,22 @@
 #import "JSI_share.h"
 #import "JSIContext.h"
 #import "XENativeContext.h"
+#import "iShare.h"
 
 @interface JSI_share()
+@property(nonatomic, strong) id<iShare> ishare;
 @end
 
 @implementation JSI_share
 JSI_MODULE(JSI_share)
 
 - (void)afterAllJSIModuleInited {
+    self.ishare = XENP(iShare);
 }
 
-   
- 
-
-- (void)_simpleMethod:(void (^)(BOOL))completionHandler {
-    NSLog(@"hello,_simpleMethod");
-}
-
-- (void)_simpleMethod {
-    NSLog(@"hello,_simpleMethod");
-    
-}
-
-
-- (NSString *)_simpleArgMethod:(NSString *)dto {
-    return @"from native sync";
-}
-
-
-- (void)_simpleArgMethod:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    completionHandler(@"from native async",TRUE);
-}
-
- 
-
-  
 - (void)_share:(ShareDTO *)dto complete:(void (^)(BOOL))completionHandler {
-    
+    [self.ishare shareWithType:dto.type channel:dto.channel posterInfo:dto.info complete:^(NSString * _Nullable channel, NSString * _Nullable shareType, NSString * _Nullable imageData, BOOL complete) {
+        completionHandler(true);
+    }];
 }
-
 @end

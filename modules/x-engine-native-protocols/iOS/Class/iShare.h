@@ -32,9 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
  分享
  */
 - (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(NSString *__nullable channel,NSString *__nullable shareType,NSString *_Nullable imageData,BOOL complete)) completionHandler;
-
-
-
 @end
 
 

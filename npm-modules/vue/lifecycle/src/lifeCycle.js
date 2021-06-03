@@ -1,10 +1,10 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-10 16:44:39
- * @LastEditTime: 2021-05-31 18:18:37
+ * @LastEditTime: 2021-06-03 18:44:15
  * @LastEditors: sheng.wang
  * @Description:
- * @FilePath: /x-engine/npm-modules/x-engine-lifecycle/src/lifeCycle.js
+ * @FilePath: /x-engine/npm-modules/vue/lifecycle/src/lifeCycle.js
  */
 import xengine from "@zkty-team/x-engine-core";
 
@@ -34,6 +34,8 @@ export function install(_Vue) {
     },
   });
 }
+
+
 
 export default {
   install,

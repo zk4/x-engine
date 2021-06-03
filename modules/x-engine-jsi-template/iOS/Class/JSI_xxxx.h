@@ -2,9 +2,6 @@
 //  JSI_xxxx.h
 //  xxxx
 //
-//  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import "xengine_jsi_xxxx.h"

@@ -1,4 +1,4 @@
-package com.zkty.engine.module.network;
+package com.zkty.engine.module.network.bean;
 
 public class IMTokenInfoBean {
 

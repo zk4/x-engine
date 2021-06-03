@@ -9,18 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.zkty.engine.module.network.net.serve.NetworkServer;
+import com.zkty.engine.module.network.bean.AdDescInfoBean;
+import com.zkty.engine.module.network.bean.IMTokenInfoBean;
+import com.zkty.engine.module.network.bean.ImsessiionidBean;
 import com.zkty.engine.module.network.net.serve.RequestServer;
-import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.network.bean.BaseResp;
 import com.zkty.nativ.network.net.exception.ApiException;
-import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
 import com.zkty.nativ.network.net.myinterface.ServiceCallback;
 import com.zkty.nativ.network.utils.GsonUtil;
-import com.zkty.nativ.network.utils.LogUtils;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 

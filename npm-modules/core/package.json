@@ -7,7 +7,7 @@
     "build": "rimraf dist && microbundle --external all"
   },
   "source": "src/index.js",
-  "module": "./dist/core.module.js",
+  "module": "./dist/bridge.module.js",
   "keywords": [
     "x-engine-core"
   ],

@@ -98,11 +98,6 @@ NATIVE_MODULE(Native_viewer_original)
             NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
             NSDictionary *dict = r.allHeaderFields;
             NSString *responseType = dict[@"content-type"];
-            
-            NSLog(@"%@", responseType);
-            NSLog(@"%@", self.typeDict[responseType]);
-            NSLog(@"%@", type);
-            
             if ([self.typeDict[responseType] isEqualToString:type]) {
                 self.fileUrl = filePath.absoluteString;
                 dispatch_async(dispatch_get_main_queue(), ^{

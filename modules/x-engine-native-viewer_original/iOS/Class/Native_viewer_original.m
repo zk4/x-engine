@@ -48,11 +48,11 @@ NATIVE_MODULE(Native_viewer_original)
 - (NSMutableDictionary *)typeDict {
     if (!_typeDict) {
         _typeDict = [NSMutableDictionary dictionary];
-        [_typeDict setValue:@".xls" forKey:@"application/x-xls"];
-        [_typeDict setValue:@".ppt" forKey:@"application/x-ppt"];
-        [_typeDict setValue:@".doc" forKey:@"application/msword"];
-        [_typeDict setValue:@".xlsx" forKey:@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"];
-        [_typeDict setValue:@".ppt" forKey:@"application/vnd.ms-powerpoint"];
+        [_typeDict setValue:@"pdf" forKey:@"application/pdf"];
+        [_typeDict setValue:@"ppt" forKey:@"application/vnd.ms-powerpoint"];
+        [_typeDict setValue:@"xlsx" forKey:@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"];
+        [_typeDict setValue:@"xls" forKey:@"application/x-xls"];
+        [_typeDict setValue:@"doc" forKey:@"application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
     }
     return _typeDict;
 }
@@ -74,18 +74,16 @@ NATIVE_MODULE(Native_viewer_original)
     self.hud.removeFromSuperViewOnHide = YES;
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.encryptUrl];
+    NSString *localPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.encryptUrl];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    // 文件是否存在本地磁盘
-    if (![fileManager fileExistsAtPath:filePath]) {
+
+    if (![fileManager fileExistsAtPath:localPath]) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.timeoutIntervalForRequest = 10;
         
         AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
         NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress){
-            //下载进度
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.hud.detailsLabel.text = [NSString stringWithFormat:@"正在下载：%.2f %%",downloadProgress.fractionCompleted*100];
             });
@@ -98,6 +96,11 @@ NATIVE_MODULE(Native_viewer_original)
             NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
             NSDictionary *dict = r.allHeaderFields;
             NSString *responseType = dict[@"content-type"];
+            
+            NSLog(@"%@", responseType);
+            NSLog(@"%@", self.typeDict[responseType]);
+            NSLog(@"%@", type);
+            
             if ([self.typeDict[responseType] isEqualToString:type]) {
                 self.fileUrl = filePath.absoluteString;
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -119,12 +122,14 @@ NATIVE_MODULE(Native_viewer_original)
                 UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
                 [ac addAction:enter];
                 [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];
+                NSLog(@"%@", localPath);
+                [fileManager removeItemAtPath:localPath error:nil];
             }
         }];
         [downloadTask resume];
     } else {
         NSURL *documentsDirectoryURL = [fileManager URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-        self.fileUrl = [[documentsDirectoryURL URLByAppendingPathComponent:filePath.lastPathComponent] absoluteString];
+        self.fileUrl = [[documentsDirectoryURL URLByAppendingPathComponent:localPath.lastPathComponent] absoluteString];
         [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
     }
 }
@@ -147,10 +152,6 @@ NATIVE_MODULE(Native_viewer_original)
 
 - (BOOL)isDefault {
     return [[self.store get:DEFAULT_KEY ] boolValue];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    
 }
 
 #pragma mark - QLPreviewControllerDataSource

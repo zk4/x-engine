@@ -28,6 +28,19 @@ function openFileReader(fileDTO: {
       });  
 }
 
+
+function test_openDOC {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.doc","fileType":"doc","title":"doc"}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
+
+function test_openDOCX {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.docx","fileType":"docx","title":"docx"}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
+
 function test_openPDF {
     xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.pdf","fileType":"pdf","title":"pdf"}, (val) => {
       document.getElementById("debug_text").innerText = JSON.stringify(val);
@@ -40,24 +53,23 @@ function test_openPPT {
   });
 }
 
-function test_openWord {
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test1.docx","fileType":"docx","title":"word"}, (val) => {
+function test_openPPTX {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.pptx","fileType":"pptx","title":"pptx"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
 
-function test_openExcel {
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"xlsx","title":"excel"}, (val) => {
+function test_openXLS {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xls","fileType":"xls","title":"xls"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
 
-function test_openErrorPDF {
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"pdf","title":"excel"}, (val) => {
+function test_openXLSX {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"xlsx","title":"xlsx"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
-
 
 
 

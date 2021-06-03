@@ -2,6 +2,18 @@
 import viewer from './index.js'
 import xengine from "@zkty-team/x-engine-core";
 
+window.test_openDOC = () => {
+
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.doc","fileType":"doc","title":"doc"}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
+window.test_openDOCX = () => {
+
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.docx","fileType":"docx","title":"docx"}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
 window.test_openPDF = () => {
 
     xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.pdf","fileType":"pdf","title":"pdf"}, (val) => {
@@ -14,21 +26,21 @@ window.test_openPPT = () => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
-window.test_openWord = () => {
+window.test_openPPTX = () => {
 
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test1.docx","fileType":"docx","title":"word"}, (val) => {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.pptx","fileType":"pptx","title":"pptx"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
-window.test_openExcel = () => {
+window.test_openXLS = () => {
 
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"xlsx","title":"excel"}, (val) => {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xls","fileType":"xls","title":"xls"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
-window.test_openErrorPDF = () => {
+window.test_openXLSX = () => {
 
-  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"pdf","title":"excel"}, (val) => {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"xlsx","title":"xlsx"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }

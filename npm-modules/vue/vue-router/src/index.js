@@ -15,7 +15,6 @@ import { HTML5History } from './history/html5'
 import { AbstractHistory } from './history/abstract'
 
 import type { Matcher } from './create-matcher'
-import XEngine from '@zkty-team/x-engine-core'
 
 import { isNavigationFailure, NavigationFailureType } from './util/errors'
 export default class VueRouter {
@@ -278,54 +277,6 @@ function registerHook (list: Array<any>, fn: Function): Function {
 function createHref (base: string, fullPath: string, mode) {
   var path = mode === 'hash' ? '#' + fullPath : fullPath
   return base ? cleanPath(base + '/' + path) : path
-}
-export function intercept (VueRouter, scheme) {
-  const originalRouterPush = VueRouter.prototype.push
-  VueRouter.prototype.push = function push (location) {
-    if (XEngine.isHybrid()) {
-      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
-        XEngine.api('com.zkty.jsi.direct', 'push', {
-          scheme: scheme,
-          pathname: '',
-          fragment: location.path || '/' + location.name,
-          query: location.query,
-          params: {
-            hideNavbar: true,
-            nativeParams: location.params
-          }
-        }, function (res) {
-          console.log('res :>> ', res)
-        })
-      }
-    } else {
-      return originalRouterPush.call(this, location)
-    }
-  }
-
-  const originalRouterGo = VueRouter.prototype.go
-  VueRouter.prototype.go = function go (location) {
-    if (XEngine.isHybrid()) {
-      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
-        XEngine.api('com.zkty.jsi.direct', 'back', {
-          scheme: scheme,
-          pathname: '',
-          fragment: location + '',
-          params: {
-            hideNavbar: true
-          }
-        }, function (res) {
-          console.log('res :>> ', res)
-        })
-      }
-    } else {
-      return originalRouterGo.call(this, location)
-    }
-  }
-}
-if (process.env.NODE_ENV === 'development') {
-  intercept(VueRouter, 'omp')
-} else {
-  intercept(VueRouter, 'microapp')
 }
 
 VueRouter.install = install

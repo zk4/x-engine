@@ -1,5 +1,5 @@
 /*!
-  * vue-router v2.0.4
+  * vue-router v2.0.9
   * (c) 2021 Capricorn
   * @license MIT
   */
@@ -1269,24 +1269,75 @@ function findAnchor (children) {
   }
 }
 
+function intercept (scheme) {
+  const originalRouterPush = VueRouter.prototype.push;
+  VueRouter.prototype.push = function push (location) {
+    if (XEngine.isHybrid()) {
+      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
+        XEngine.api('com.zkty.jsi.direct', 'push', {
+          scheme: scheme,
+          pathname: '',
+          fragment: location.path || '/' + location.name,
+          query: location.query,
+          params: {
+            hideNavbar: true,
+            nativeParams: location.params
+          }
+        }, function (res) {
+          console.log('res :>> ', res);
+        });
+      }
+    } else {
+      return originalRouterPush.call(this, location)
+    }
+  };
+
+  const originalRouterGo = VueRouter.prototype.go;
+  VueRouter.prototype.go = function go (location) {
+    if (XEngine.isHybrid()) {
+      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
+        XEngine.api('com.zkty.jsi.direct', 'back', {
+          scheme: scheme,
+          pathname: '',
+          fragment: location + '',
+          params: {
+            hideNavbar: true
+          }
+        }, function (res) {
+          console.log('res :>> ', res);
+        });
+      }
+    } else {
+      return originalRouterGo.call(this, location)
+    }
+  };
+}
+
 /*
  * @Author: sheng.wang
  * @Date: 2021-02-09 16:48:14
- * @LastEditTime: 2021-05-28 18:36:24
+ * @LastEditTime: 2021-06-03 20:15:59
  * @LastEditors: sheng.wang
  * @Description:
- * @FilePath: /vue-router/src/install.js
+ * @FilePath: /x-engine/npm-modules/vue/vue-router/src/install.js
  */
 let _Vue;
 
-function install (Vue) {
+function install (Vue, protocol) {
   if (install.installed && _Vue === Vue) return
   install.installed = true;
 
   _Vue = Vue;
 
   const isDef = v => v !== undefined;
-
+  if (protocol) {
+    intercept(protocol);
+  } else {
+    {
+      intercept('omp');
+    }
+  }
+  
   const registerInstance = (vm, callVal) => {
     let i = vm.$options._parentVnode;
     if (isDef(i) && isDef(i = i.data) && isDef(i = i.registerRouteInstance)) {
@@ -3110,55 +3161,9 @@ function createHref (base, fullPath, mode) {
   var path = mode === 'hash' ? '#' + fullPath : fullPath;
   return base ? cleanPath(base + '/' + path) : path
 }
-function intercept (VueRouter, scheme) {
-  const originalRouterPush = VueRouter.prototype.push;
-  VueRouter.prototype.push = function push (location) {
-    if (XEngine.isHybrid()) {
-      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
-        XEngine.api('com.zkty.jsi.direct', 'push', {
-          scheme: scheme,
-          pathname: '',
-          fragment: location.path || '/' + location.name,
-          query: location.query,
-          params: {
-            hideNavbar: true,
-            nativeParams: location.params
-          }
-        }, function (res) {
-          console.log('res :>> ', res);
-        });
-      }
-    } else {
-      return originalRouterPush.call(this, location)
-    }
-  };
-
-  const originalRouterGo = VueRouter.prototype.go;
-  VueRouter.prototype.go = function go (location) {
-    if (XEngine.isHybrid()) {
-      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
-        XEngine.api('com.zkty.jsi.direct', 'back', {
-          scheme: scheme,
-          pathname: '',
-          fragment: location + '',
-          params: {
-            hideNavbar: true
-          }
-        }, function (res) {
-          console.log('res :>> ', res);
-        });
-      }
-    } else {
-      return originalRouterGo.call(this, location)
-    }
-  };
-}
-{
-  intercept(VueRouter, 'omp');
-}
 
 VueRouter.install = install;
-VueRouter.version = '2.0.4';
+VueRouter.version = '2.0.9';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 VueRouter.START_LOCATION = START;
@@ -3168,4 +3173,3 @@ if (inBrowser && window.Vue) {
 }
 
 export default VueRouter;
-export { intercept };

@@ -128,6 +128,7 @@ public class XEngineWebView extends DWebView {
 
             @Override
             public void onPageFinished(WebView webView, String s) {
+                evaluateJavascript("window._dswk=true;");
                 super.onPageFinished(webView, s);
                 if (onPageStateListener != null) {
                     onPageStateListener.onPageFinished();

@@ -111,11 +111,13 @@ public class DWebView extends WebView {
             String arg1 = null;
             Method method = null;
             String callback = null;
-
+            boolean asyn = false;
+            //根据参数中是否有_dscbstub 判断是否异步调用
             try {
                 JSONObject args = JSONObject.parseObject(argStr);
                 if (args.containsKey("_dscbstub")) {
                     callback = args.getString("_dscbstub");
+                    asyn = true;
                 }
                 if (args.containsKey("data")) {
                     if ("null".equalsIgnoreCase(args.getString("data"))) {
@@ -141,12 +143,16 @@ public class DWebView extends WebView {
 
 
             Class<?> cls = jsb.getClass();
-            boolean asyn = false;
-            try {
-                method = cls.getMethod(methodName,
-                        new Class[]{isArgDataJson ? JSONObject.class : String.class, CompletionHandler.class});
-                asyn = true;
-            } catch (Exception e) {
+            if (asyn) {//异步调用，第二个参数必须为CompletionHandler
+                try {
+                    method = cls.getMethod(methodName,
+                            new Class[]{isArgDataJson ? JSONObject.class : String.class, CompletionHandler.class});
+
+                } catch (Exception e) {
+
+                }
+            } else {
+                //同步调用，只有一个参数
                 try {
                     method = cls.getMethod(methodName, new Class[]{isArgDataJson ? JSONObject.class : String.class});
                 } catch (Exception ex) {
@@ -156,7 +162,8 @@ public class DWebView extends WebView {
 
             if (method == null) {
                 if ("_dsb".equals(namespace)) return ret.toString();
-                error = "Not find method \"" + methodName + "\" implementation! please check in module <" + namespace + ">";
+//                error = "Not find method \"" + methodName + "\" implementation! please check in module <" + namespace + ">";
+                error = String.format("Do not find %s method < %s > implementation in module < %s >! please check your calling mode .", asyn ? "asyn" : "syn", methodName, namespace);
                 PrintDebugInfo(error);
                 return ret.toString();
             }

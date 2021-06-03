@@ -18,7 +18,7 @@
 
 #define DEFAULT_KEY  @"Native_viewer_orgi:defaultState"
 
-@interface Native_viewer_original()<QLPreviewControllerDataSource,QLPreviewControllerDelegate>
+@interface Native_viewer_original()<QLPreviewControllerDataSource,QLPreviewControllerDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 { }
 @property (strong, nonatomic)QLPreviewController *previewController;
 @property (nonatomic, assign) id<iStore>store;
@@ -30,6 +30,8 @@
 @property (nonatomic, copy)NSString *encryptUrl;
 
 @property (nonatomic, strong) MBProgressHUD *hud;
+
+@property (nonatomic, strong) NSMutableDictionary *typeDict;
 @end
 
 @implementation Native_viewer_original
@@ -43,20 +45,29 @@ NATIVE_MODULE(Native_viewer_original)
     return 0;
 }
 
+- (NSMutableDictionary *)typeDict {
+    if (!_typeDict) {
+        _typeDict = [NSMutableDictionary dictionary];
+        [_typeDict setValue:@"doc" forKey:@"application/msword"];
+        [_typeDict setValue:@"docx" forKey:@"application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+        [_typeDict setValue:@"pdf" forKey:@"application/pdf"];
+        [_typeDict setValue:@"ppt" forKey:@"application/vnd.ms-powerpoint"];
+        [_typeDict setValue:@"pptx" forKey:@"application/vnd.openxmlformats-officedocument.presentationml.presentation"];
+        [_typeDict setValue:@"xls" forKey:@"application/vnd.ms-excel"];
+        [_typeDict setValue:@"xlsx" forKey:@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"];
+    }
+    return _typeDict;
+}
+
 - (void)afterAllNativeModuleInited{
     self.store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
 }
 
-- (instancetype)init {
-    self = [super init];
-    ///iWork文档、微软Office97以上版本的文档、RTF文档、PDF文件、图片文件、文本文件和CSV文件
-    self.previewController  =  [[QLPreviewController alloc]  init];
-    self.previewController.dataSource  = self;
-    [self.previewController setDelegate:self];
-    return self;
-}
-
 - (void)openFileWithfileUrl:(NSString *_Nonnull)url fileType:(NSString *_Nonnull)type title:(NSString *)title {
+    self.previewController  = [[QLPreviewController alloc] init];
+    self.previewController.dataSource = self;
+    [self.previewController setDelegate:self];
+    
     self.encryptUrl = [[self md5EncryptWithString:url] stringByAppendingString:[NSString stringWithFormat:@".%@", type]];
     self.fileUrl= url;
     self.titleString = title;
@@ -65,18 +76,16 @@ NATIVE_MODULE(Native_viewer_original)
     self.hud.removeFromSuperViewOnHide = YES;
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.encryptUrl];
+    NSString *localPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.encryptUrl];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    ///文件是否存在本地磁盘
-    if (![fileManager fileExistsAtPath:filePath]) {
-        ///网络文件下载
+
+    if (![fileManager fileExistsAtPath:localPath]) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.timeoutIntervalForRequest = 10;
+        
         AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
         NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress){
-            //下载进度
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.hud.detailsLabel.text = [NSString stringWithFormat:@"正在下载：%.2f %%",downloadProgress.fractionCompleted*100];
             });
@@ -86,44 +95,59 @@ NATIVE_MODULE(Native_viewer_original)
             NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:self.encryptUrl];///下载完的本地路径
             return url;
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-            self.fileUrl = filePath.absoluteString;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (!error) {///success
-                    [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
-                }else{
-                    [self.hud hideAnimated:YES];
-                    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"" message:@"下载失败" preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *canleaction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-                        NSLog(@"点击了取消按钮");
-                    }];
-                    [ac addAction:canleaction];
-                    [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];
-                }
-            });
+            NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
+            NSDictionary *dict = r.allHeaderFields;
+            NSString *responseType = dict[@"content-type"];
+            
+            NSLog(@"%@", responseType);
+            NSLog(@"%@", self.typeDict[responseType]);
+            NSLog(@"%@", type);
+            
+            if ([self.typeDict[responseType] isEqualToString:type]) {
+                self.fileUrl = filePath.absoluteString;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (!error) {///success
+                        [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
+                    } else {
+                        [self.hud hideAnimated:YES];
+                        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"" message:@"下载失败" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *canleaction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+                            NSLog(@"点击了取消按钮");
+                        }];
+                        [ac addAction:canleaction];
+                        [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];
+                    }
+                });
+            } else {
+                [self.hud hideAnimated:YES];
+                UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"" message:@"源文件类型不正确, 请核对传入的fileType" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+                [ac addAction:enter];
+                [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];
+                NSLog(@"%@", localPath);
+                [fileManager removeItemAtPath:localPath error:nil];
+            }
         }];
         [downloadTask resume];
-    }else{
+    } else {
         NSURL *documentsDirectoryURL = [fileManager URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-        self.fileUrl = [[documentsDirectoryURL URLByAppendingPathComponent:filePath.lastPathComponent] absoluteString];
+        self.fileUrl = [[documentsDirectoryURL URLByAppendingPathComponent:localPath.lastPathComponent] absoluteString];
         [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
     }
 }
 
 - (NSString *)getIconUrl {
-    /// TODO:
     return @"";
 }
 
-- (NSString *)getName
-{
+- (NSString *)getName {
     return @"阅读器";
 }
 
 - (NSArray<NSString *> *)getTypes {
-    return  @[@"pdf",@"doc",@"xls",@"rtf",@"txt",@"csv"];
+    return  @[@"pdf", @"doc", @"xls", @"xlsx", @"rtf",@"txt",@"csv", @"docx", @"pptx", @"ppt"];
 }
  
-
 - (void)setDefault:(BOOL)val {
     [self.store set:DEFAULT_KEY val:[NSNumber numberWithBool:val]];
 }
@@ -133,7 +157,6 @@ NATIVE_MODULE(Native_viewer_original)
 }
 
 #pragma mark - QLPreviewControllerDataSource
-
 ///需要显示的文件的个数
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)previewController {
     return 1;
@@ -141,8 +164,8 @@ NATIVE_MODULE(Native_viewer_original)
 
 ///返回要打开文件的地址，包括网络或者本地的地址
 - (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
-    NSURL * url = [NSURL URLWithString:self.fileUrl];
-    QLPreviewCustomItem *item = [[QLPreviewCustomItem alloc]initWithTitle:self.titleString url:url];
+    NSURL *url = [NSURL URLWithString:self.fileUrl];
+    QLPreviewCustomItem *item = [[QLPreviewCustomItem alloc] initWithTitle:self.titleString url:url];
     return item;
     
 }
@@ -153,7 +176,11 @@ NATIVE_MODULE(Native_viewer_original)
 }
 
 ///控制器消失后调用
-- (void)previewControllerDidDismiss:(QLPreviewController *)controller {}
+- (void)previewControllerDidDismiss:(QLPreviewController *)controller {
+    self.previewController = nil;
+    self.previewController.dataSource = nil;
+    self.previewController.delegate = nil;
+}
 
 ///MD5
 - (NSString *)md5EncryptWithString:(NSString *)string {

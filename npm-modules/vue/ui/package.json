@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-ui",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": false,
   "author": "Cwz.",
   "main": "lib/Header.common.js",

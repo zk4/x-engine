@@ -6,7 +6,7 @@ const msg = require('fs').readFileSync(msgPath, 'utf-8').trim()
 
 const releaseRE = /^v\d/
 const Merged = /^Merge /
-const commitRE = /^(revert: )?(feat|fix|docs|dx|refactor|perf|test|workflow|build|ci|chore|types|wip|release|deps)(\(.+\))+: .{1,50}/
+const commitRE = /^(revert: )?(feat|fix|docs|dx|refactor|perf|test|workflow|build|ci|chore|types|wip|release|deps)(\(.+\))?: .{1,50}/
 
 if (!Merged.test(msg) && !releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log()

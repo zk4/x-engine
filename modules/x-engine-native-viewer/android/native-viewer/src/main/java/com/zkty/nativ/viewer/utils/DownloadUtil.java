@@ -1,6 +1,8 @@
 package com.zkty.nativ.viewer.utils;
 
 import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -41,13 +43,13 @@ public class DownloadUtil {
      * @param savePath 储存下载文件的SDCard目录
      * @param listener 下载监听
      */
-    public void download(final String url, final String savePath, final OnDownloadListener listener) {
+    public void download(final String url, final String savePath,String FileType, final OnDownloadListener listener) {
         Request request = new Request.Builder().url(url).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(okhttp3.Call call, IOException e) {
                 // 下载失败
-                listener.onDownloadFailed();
+                listener.onDownloadFailed("下载失败");
             }
             @Override
             public void onResponse(okhttp3.Call call, Response response) throws IOException {
@@ -57,6 +59,14 @@ public class DownloadUtil {
                 FileOutputStream fos = null;
                 // 储存下载文件的目录
                 try {
+                    String content = response.header("Content-Type");
+                    Log.d("Nativeviewer",content);
+                    String contentFileType = ResponseContentTypeUtils.FILE_TYPE_MAP.get(content);
+                    //判断文件类型
+                    if(TextUtils.isEmpty(contentFileType) || !contentFileType.equals("."+FileType)){
+                        listener.onDownloadFailed("源文件类型不正确, 请核对传入的fileType");
+                        return;
+                    }
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
                     File file = new File(savePath);
@@ -73,7 +83,7 @@ public class DownloadUtil {
                     // 下载完成
                     listener.onDownloadSuccess();
                 } catch (Exception e) {
-                    listener.onDownloadFailed();
+                    listener.onDownloadFailed("下载失败");
                 } finally {
                     try {
                         if (is != null)
@@ -107,10 +117,9 @@ public class DownloadUtil {
         /**
          * 下载失败
          */
-        void onDownloadFailed();
+        void onDownloadFailed(String msg);
     }
 
 
 
 }
-

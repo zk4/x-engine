@@ -13,20 +13,23 @@
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
+  import com.zkty.nativ.core.annotation.Optional;
 
-  
-  class OpenFiileDTO {
-    public String filePath;
-
-    public String fileName;
-  }
   
   class StatusDTO {
-    public String result;
+    public String resultMsg;
+  }
+  
+  class _0_com_zkty_jsi_viewer_DTO {
+    public String fileUrl;
+
+    public String fileType;
+
+    public String title;
   }
   
   interface xengine_jsi_viewer_protocol {
-    public void _openFileReader(OpenFiileDTO dto, final CompletionHandler<StatusDTO> handler);
+    public void _openFileReader(_0_com_zkty_jsi_viewer_DTO dto, final CompletionHandler<StatusDTO> handler);
   }
   
   
@@ -38,7 +41,7 @@
   
     @JavascriptInterface
     final public void openFileReader(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      OpenFiileDTO dto= convert(jsonobj,OpenFiileDTO.class);
+      _0_com_zkty_jsi_viewer_DTO dto= convert(jsonobj,_0_com_zkty_jsi_viewer_DTO.class);
       _openFileReader(dto, new CompletionHandler<StatusDTO>() {
         @Override
         public void complete(StatusDTO retValue) { handler.complete(retValue); }

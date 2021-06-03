@@ -71,7 +71,7 @@ dependencies {
     implementation project(':native-share')
     implementation project(':native-share_wx')
     implementation project(':native-viewer')
-    implementation project(':native-viewer_orgi')
+    implementation project(':native-viewer_original')
 
     implementation project(':jsi-direct')
     implementation project(':jsi-secret')
@@ -86,4 +86,5 @@ dependencies {
     implementation project(':jsi-share')
     implementation project(':jsi-dev')
     implementation project(':jsi-viewer')
+    implementation project(':jsi-globalstorage')
 }

@@ -1,4 +1,4 @@
-var global_this = typeof  window == 'undefined' ? global : window;
+var global_this =  window;
 var bridge = {
     default:
         this,
@@ -31,7 +31,7 @@ var bridge = {
         }
 
         // 客户端会走到这里, webView初始化的时候会给global_this注入_dswk=true
-        else if (global_this._dswk || -1 != global_this?.navigator?.userAgent.indexOf("_dsbridge")) {
+        else if (global_this._dswk || -1 != global_this.navigator.userAgent.indexOf("_dsbridge")) {
             if (global_this.prompt)
                 ret = global_this.prompt("_dsbridge=" + functionName, args);
         }

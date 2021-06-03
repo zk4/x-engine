@@ -73,6 +73,8 @@ public class XEngineWebView extends DWebView {
         getSettings().setUseWideViewPort(true);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         getSettings().setAllowFileAccess(true);
+        // 设置是否允许通过 file url 加载的 Javascript 可以访问其他的源(包括http、https等源)
+        getSettings().setAllowUniversalAccessFromFileURLs(true);
         getSettings().setAllowContentAccess(true);
         getSettings().setDomStorageEnabled(true);
         setWebContentsDebuggingEnabled(!"release".equals(BuildConfig.BUILD_TYPE));
@@ -126,6 +128,7 @@ public class XEngineWebView extends DWebView {
 
             @Override
             public void onPageFinished(WebView webView, String s) {
+                evaluateJavascript("window._dswk=true;");
                 super.onPageFinished(webView, s);
                 if (onPageStateListener != null) {
                     onPageStateListener.onPageFinished();
@@ -448,7 +451,7 @@ public class XEngineWebView extends DWebView {
         }
 
         sb.append(model.protocol).append("//").append(hostR);
-        if (!TextUtils.isEmpty(model.pathname)) {
+        if (!TextUtils.isEmpty(model.pathname) && !model.pathname.equals("/")) {
             sb.append(model.pathname);
         }
         if (!TextUtils.isEmpty(model.fragment)) {

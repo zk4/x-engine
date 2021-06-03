@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iShare.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_share_wx : NativeModule <iShare>
+@interface Native_share_wx : XENativeModule <iShare>
  
 @end
 

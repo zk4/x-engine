@@ -1,7 +1,4 @@
 PODS:
-  - GCDWebServer (3.5.4):
-    - GCDWebServer/Core (= 3.5.4)
-  - GCDWebServer/Core (3.5.4)
   - JSONModel (1.8.0)
   - WHDebugTool (2.3)
   - x-engine-jsi-camera (2.0.3):
@@ -44,7 +41,6 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-camera (1.0.0):
-    - GCDWebServer
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
@@ -138,7 +134,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - GCDWebServer
     - JSONModel
     - WHDebugTool
 
@@ -201,7 +196,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
 SPEC CHECKSUMS:
-  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   WHDebugTool: 6e6b6b60af073126b43096fc791985a4f7f249a3
   x-engine-jsi-camera: 4d94c77f06190fe50f33cefe1e60d60723278e47
@@ -216,7 +210,7 @@ SPEC CHECKSUMS:
   x-engine-jsi-ui: acbff4c636442300696d5ed9e58c35581fe10010
   x-engine-jsi-vuex: a1de7b8ee73f6c720c7cbc4713bb175ccad94d56
   x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
-  x-engine-native-camera: 06050cc692cf66e5cc8d91e736544d3c9c483bed
+  x-engine-native-camera: f81c179d6c8995491cf118b26a69a3e7f03cec79
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-dev: a71f3b8ae114477a086ab269bed514ea26432d50
   x-engine-native-device: 05280cc3d26c9e4f917ac4a5e5b38aa23122e978

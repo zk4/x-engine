@@ -8,5 +8,5 @@ window.test_同步无返回 = () => {
   document.getElementById("debug_text").innerText = val;
 }
  document.getElementById("test_同步无返回").click()
-      
+        
     

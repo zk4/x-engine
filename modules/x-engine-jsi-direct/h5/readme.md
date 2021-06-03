@@ -7,7 +7,7 @@ version: 0.1.13
 
 
 ## push
-[`sync`](/docs/modules/模块-规范?id=jsi-调用),[`async`](/docs/modules/模块-规范?id=jsi-调用)
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 
 **demo**
 ``` js
@@ -61,7 +61,7 @@ version: 0.1.13
 
 
 ## back
-[`sync`](/docs/modules/模块-规范?id=jsi-调用),[`async`](/docs/modules/模块-规范?id=jsi-调用)
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 
 **demo**
 ``` js

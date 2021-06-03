@@ -1,6 +1,8 @@
 
 
 
+相当于浏览器里的 localstorage.  与 globalstorage 的区别在于,  A 微应用只能在 localstorage 对 A 的数据进行操作. 而不能对 B 的 localstorage 做任何操作.
+globalstorage 则是全局的.
 
 
 

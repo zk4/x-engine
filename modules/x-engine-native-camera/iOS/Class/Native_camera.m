@@ -9,15 +9,11 @@
 #import "Native_camera.h"
 #import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
-#import <GCDWebServer.h>
 #import <Photos/Photos.h>
-#import "GCDWebServerDataResponse.h"
-#import "GCDWebServerURLEncodedFormRequest.h"
 
 typedef void (^PhotoCallBack)(NSString *);
 typedef void (^SaveCallBack)(NSString *);
 @interface Native_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
-@property(nonatomic,strong) GCDWebServer *webServer;
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
 @property(nonatomic,strong) UIImage * photoImage;
@@ -159,11 +155,6 @@ NATIVE_MODULE(Native_camera)
         }
         NSMutableDictionary *ret = [NSMutableDictionary new];
         if (!self.isbase64) {
-            if(self.webServer){
-                [self.webServer stop];
-            }
-            weakself.webServer = [[GCDWebServer alloc] init];
-            [self startServer];
             
             NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
             NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
@@ -245,33 +236,6 @@ NATIVE_MODULE(Native_camera)
     }
 }
 
-#pragma utils
-- (void)startServer {
-    __weak typeof(self) weakself = self;
-    [_webServer addHandlerForMethod:@"GET" pathRegex:@"^/.*" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
-        //        NSDictionary * requestData = [[NSDictionary alloc]initWithDictionary:request.query];
-        
-        NSDictionary * argsDic = weakself.cameraDto.args;
-        UIImage *image = [weakself cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-        NSData *imageData = UIImagePNGRepresentation(image);
-        
-        GCDWebServerDataResponse *response;
-        //响应
-        response = [GCDWebServerDataResponse responseWithStatusCode:200];
-        //响应头设置，跨域请求需要设置，只允许设置的域名或者ip才能跨域访问本接口）
-        [response setValue:@"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
-        [response setValue:@"Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method" forAdditionalHeader:@"Access-Control-Allow-Headers"];
-        [response setValue:@"GET, POST, OPTIONS, PATCH, PUT, DELETE" forAdditionalHeader:@"Access-Control-Allow-Methods"];
-        [response setValue:@"GET, POST, PATCH, OPTIONS, PUT, DELETE" forAdditionalHeader:@"Allow"];
-        
-        //设置options的实效性（我设置了12个小时=43200秒）
-        [response setValue:@"43200" forAdditionalHeader:@"Access-Control-max-age"];
-        response = [GCDWebServerDataResponse responseWithData:imageData contentType:@"image"];
-        return response;
-    }];
-    
-    [_webServer startWithPort:18129 bonjourName:@"GCD Web Server"];
-}
 
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];

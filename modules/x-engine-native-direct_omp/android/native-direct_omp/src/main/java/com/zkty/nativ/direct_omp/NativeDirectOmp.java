@@ -56,7 +56,7 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
             NativeStore iStore = null;
             if (module instanceof NativeStore) {
                 iStore = (NativeStore) module;
-                iStore.set("nativeParams", params.get("nativeParams"));
+                iStore.set("__native__params__", params.get("nativeParams"));
             }
         }
         Activity currentActivity = XEngineApplication.getCurrentActivity();

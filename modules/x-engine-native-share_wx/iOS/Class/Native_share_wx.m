@@ -54,9 +54,9 @@ NATIVE_MODULE(Native_share_wx)
             UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
             UIImage *thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
             NSData *imageData = UIImageJPEGRepresentation(thumbImg, 1);//[info[@"imgData"] dataUsingEncoding:NSUTF8StringEncoding];
-            
             WXImageObject *ext = [WXImageObject object];
             ext.imageData = imageData;
+            
             message.mediaObject = ext;
             
             SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
@@ -73,7 +73,6 @@ NATIVE_MODULE(Native_share_wx)
                                   YES);
             }];
         }
-        
         if ([type isEqualToString:@"link"]) {
             WXWebpageObject *webpageObject = [WXWebpageObject object];
             webpageObject.webpageUrl = info[@"link"];
@@ -88,11 +87,10 @@ NATIVE_MODULE(Native_share_wx)
             req.scene = WXSceneSession;
             [WXApi sendReq:req completion:^(BOOL success) { }];
         }
-        
         if ([type isEqualToString:@"miniProgram"]) {
+
             WXMiniProgramObject *object = [WXMiniProgramObject object];
-//            object.webpageUrl = info[@"link"];
-            object.webpageUrl = @"http://www.baidu.com";
+            object.webpageUrl = info[@"link"];
             object.userName = info[@"userName"];
             object.path = info[@"path"];
             UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
@@ -113,15 +111,16 @@ NATIVE_MODULE(Native_share_wx)
             [WXApi sendReq:req completion:^(BOOL success) { }];
         }
     }
-    
     if ([channel isEqualToString:@"wx_zone"]) {
         if ([type isEqualToString:@"img"]) {
             WXMediaMessage *message = [WXMediaMessage message];
             WXImageObject *ext = [WXImageObject object];
             UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
             UIImage *thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
-            ext.imageData = UIImageJPEGRepresentation(thumbImg, 1);
+            ext.imageData = UIImageJPEGRepresentation(thumbImg, 1);;
+
             message.mediaObject = ext;
+            
             SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
             req.bText = NO;
             req.message = message;
@@ -135,6 +134,7 @@ NATIVE_MODULE(Native_share_wx)
 }
 
 - (UIImage *)thumbImageWithImage:(UIImage *)scImg limitSize:(CGSize)limitSize {
+    
     if (scImg.size.width <= limitSize.width && scImg.size.height <= limitSize.height) {
         return scImg;
     }
@@ -151,7 +151,10 @@ NATIVE_MODULE(Native_share_wx)
     UIImage *thumbImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return thumbImg;
+
 }
+
+
 
 - (UIImage *)convertViewToImage:(UIView *)view {
     
@@ -162,7 +165,6 @@ NATIVE_MODULE(Native_share_wx)
     UIGraphicsEndImageContext();
     return imageRet;
 }
-
 //- (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull OpenShareUiDTO *)dto complete:(nonnull void (^)(BOOL))completionHandler {
 //    NSLog(@"---");
 //    if ([channel isEqualToString:@"wx_friend"]) {
@@ -287,3 +289,4 @@ NATIVE_MODULE(Native_share_wx)
 //}
 
 @end
+

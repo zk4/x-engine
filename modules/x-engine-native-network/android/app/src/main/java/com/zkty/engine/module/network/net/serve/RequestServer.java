@@ -20,7 +20,8 @@ public class RequestServer {
 
 
     public static void getimsessionid(Map<String, Object> body, final ServiceCallback callback){
-        NetworkServer.getInstance().setBaseurl("http://larkapi.gomeuat.com.cn").sendPost("/open/getimsessionid",body,callback);;
+        NetworkServer.getInstance().setBaseurl("http://larkapi.gomeuat.com.cn")
+                .sendPost("/open/getimsessionid",body,callback);
     }
 
     public static void findByPlaceIdAndMallId(Map<String, Object> body, final ServiceCallback callback){

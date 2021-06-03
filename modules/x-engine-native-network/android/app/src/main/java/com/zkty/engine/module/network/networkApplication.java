@@ -16,7 +16,6 @@ public class networkApplication extends XEngineApplication {
                 .setHostUrl( NetworkCommonUtils.getHost(BuildConfig.BUILD_TYPE))
                 .setBuildName(NetworkCommonUtils.getBuildTypeName(BuildConfig.BUILD_TYPE))
                 .setTokenInterceptor(new TokenInterceptor())
-                .setSessionToken("13242342423424")
                 .build();
     }
 }

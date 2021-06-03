@@ -1,7 +1,7 @@
 {
   "packages": [
-    "npm-modules/x-engine-core",
-    "npm-modules/x-engine-vue/*"
+    "npm-modules/core",
+    "npm-modules/vue/*"
   ],
   "version": "2.0.4",
   "npmClient": "yarn",

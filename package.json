@@ -40,8 +40,8 @@
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "workspaces": [
-    "npm-modules/x-engine-core",
-    "npm-modules/x-engine-vue/*",
+    "npm-modules/core",
+    "npm-modules/vue/*",
     "microApps/H5-Sample",
     "microApps/vue-app-c"
   ]

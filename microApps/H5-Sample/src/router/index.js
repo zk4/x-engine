@@ -1,5 +1,5 @@
 import Vue from "vue"
-import VueRouter from "../../../../npm-modules/vue/vue-router/types"
+import VueRouter from "@zkty-team/vue-router"
 
 Vue.use(VueRouter);
 

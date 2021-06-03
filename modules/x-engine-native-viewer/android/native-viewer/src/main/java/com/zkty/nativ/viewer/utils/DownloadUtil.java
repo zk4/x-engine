@@ -64,7 +64,7 @@ public class DownloadUtil {
                     String contentFileType = ResponseContentTypeUtils.FILE_TYPE_MAP.get(content);
                     //判断文件类型
                     if(TextUtils.isEmpty(contentFileType) || !contentFileType.equals("."+FileType)){
-                        listener.onDownloadFailed("文件类型不符");
+                        listener.onDownloadFailed("源文件类型不正确, 请核对传入的fileType");
                         return;
                     }
                     is = response.body().byteStream();

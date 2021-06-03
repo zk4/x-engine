@@ -54,7 +54,7 @@ export default {
     return {
       lineheight: "",
       bgColor: "",
-      navTitle: "首页",
+      navTitle: "",
       bgImage: "",
       isShowHeader: false,
       // false 默认靠左

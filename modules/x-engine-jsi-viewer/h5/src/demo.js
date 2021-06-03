@@ -44,5 +44,11 @@ window.test_openXLSX = () => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
+window.test_openErrorType = () => {
+
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"pdf","title":"xlsx"}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
 
     

@@ -53,12 +53,11 @@ function test_openPPT {
   });
 }
 
-function test_openPPTX {
+function test_openPPTX{
   xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.pptx","fileType":"pptx","title":"pptx"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
-
 function test_openXLS {
   xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xls","fileType":"xls","title":"xls"}, (val) => {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
@@ -71,6 +70,11 @@ function test_openXLSX {
   });
 }
 
+function test_openErrorType {
+  xengine.api("com.zkty.jsi.viewer", "openFileReader", {"fileUrl": "http://127.0.0.1:8000/test.xlsx","fileType":"pdf","title":"xlsx"}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
 
 
 

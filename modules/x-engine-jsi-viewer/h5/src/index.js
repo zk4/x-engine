@@ -46,6 +46,11 @@ function osCheck() {
     "name": "test_openXLSX",
     "default_args": {},
     "decorators": []
+  },
+  {
+    "name": "test_openErrorType",
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

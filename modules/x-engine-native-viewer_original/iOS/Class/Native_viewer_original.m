@@ -48,11 +48,13 @@ NATIVE_MODULE(Native_viewer_original)
 - (NSMutableDictionary *)typeDict {
     if (!_typeDict) {
         _typeDict = [NSMutableDictionary dictionary];
+        [_typeDict setValue:@"doc" forKey:@"application/msword"];
+        [_typeDict setValue:@"docx" forKey:@"application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
         [_typeDict setValue:@"pdf" forKey:@"application/pdf"];
         [_typeDict setValue:@"ppt" forKey:@"application/vnd.ms-powerpoint"];
+        [_typeDict setValue:@"pptx" forKey:@"application/vnd.openxmlformats-officedocument.presentationml.presentation"];
+        [_typeDict setValue:@"xls" forKey:@"application/vnd.ms-excel"];
         [_typeDict setValue:@"xlsx" forKey:@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"];
-        [_typeDict setValue:@"xls" forKey:@"application/x-xls"];
-        [_typeDict setValue:@"doc" forKey:@"application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
     }
     return _typeDict;
 }
@@ -118,7 +120,7 @@ NATIVE_MODULE(Native_viewer_original)
                 });
             } else {
                 [self.hud hideAnimated:YES];
-                UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"" message:@"type不正确" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"" message:@"源文件类型不正确, 请核对传入的fileType" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
                 [ac addAction:enter];
                 [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];

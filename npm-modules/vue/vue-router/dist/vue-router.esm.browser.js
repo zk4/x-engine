@@ -1,5 +1,5 @@
 /*!
-  * vue-router v2.0.4
+  * vue-router v2.0.6
   * (c) 2021 Capricorn
   * @license MIT
   */
@@ -3158,7 +3158,7 @@ function intercept (VueRouter, scheme) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '2.0.4';
+VueRouter.version = '2.0.6';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 VueRouter.START_LOCATION = START;

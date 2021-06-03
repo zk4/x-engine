@@ -1,13 +1,13 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-14 15:09:34
- * @LastEditTime: 2021-06-01 21:40:13
+ * @LastEditTime: 2021-06-03 14:22:46
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/store/index.js
  */
 import Vue from 'vue'
-import Vuex from '@zkty-team/vuex'
+import Vuex from '../../../../npm-modules/vue/vuex/dist/vuex.common'
 
 Vue.use(Vuex)
 

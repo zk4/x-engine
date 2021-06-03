@@ -42,6 +42,7 @@
   "workspaces": [
     "npm-modules/x-engine-core",
     "npm-modules/x-engine-vue/*",
-    "microApps/H5-Sample"
+    "microApps/H5-Sample",
+    "microApps/vue-app-c"
   ]
 }

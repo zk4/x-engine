@@ -1,7 +1,7 @@
 /*
  * @Author: sheng.wang
  * @Date: 2021-05-21 11:58:55
- * @LastEditTime: 2021-06-02 13:01:41
+ * @LastEditTime: 2021-06-03 14:20:32
  * @LastEditors: sheng.wang
  * @Description: 
  * @FilePath: /x-engine/microApps/H5-Sample/src/main.js
@@ -39,14 +39,12 @@ import VConsole from "vconsole";
 new VConsole();
 
 import './utils/test'
-import VueEngine from '@zkty-team/x-engine-vue-transfer-native-way'
 
-import Header from "@zkty-team/x-engine-ui";
+import Header from "../../../npm-modules/vue/ui/lib/Header.common";
 import "@zkty-team/x-engine-ui/lib/Header.css";
-import lifeCycle from "@zkty-team/x-engine-lifecycle";
+import lifeCycle from "../../../npm-modules/vue/lifecycle/dist/lifeCycle.common";
 Vue.use(Header);
 Vue.use(lifeCycle);
-Vue.use(VueEngine)
 
 
 // import compatiable from "./compatiable";

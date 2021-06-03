@@ -1,0 +1,11 @@
+{
+  "json.schemas": [
+  ],
+  "[jsonc]": {
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": [
+      "document"
+    ]
+  },
+  "editor.semanticTokenColorCustomizations": null
+}

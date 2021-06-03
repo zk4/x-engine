@@ -47,7 +47,9 @@ export default {
   data() {
     return {}
   },
-
+  mounted() {
+    console.log(this.$statusHeight)
+  },
   methods: {
     handlerLocalStorage() {
       this.$router.push({

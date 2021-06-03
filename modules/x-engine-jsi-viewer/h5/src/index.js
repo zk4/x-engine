@@ -13,7 +13,42 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.viewer", 
     [
   {
-    "name": "test_openFileReader",
+    "name": "test_openDOC",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openDOCX",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openPDF",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openPPT",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openPPTX",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openXLS",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openXLSX",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openErrorType",
     "default_args": {},
     "decorators": []
   }

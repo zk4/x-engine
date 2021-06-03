@@ -1,0 +1,31 @@
+{
+  "name": "@zkty-team/vuex",
+  "version": "2.0.9",
+  "description": "与使用纯H5 SPA页面没有任何改变的 Vuex",
+  "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf dist && microbundle --external all"
+  },
+  "source": "src/index.js",
+  "main": "./dist/vuex.common.js",
+  "module": "./dist/vuex.module.js",
+  "keywords": [
+    "zkty-team/vuex",
+    "vuex"
+  ],
+  "author": "Capricorn",
+  "license": "ISC",
+  "devDependencies": {
+    "microbundle": "^0.13.0",
+    "rimraf": "^3.0.2"
+  },
+  "peerDependencies": {
+    "@zkty-team/x-engine-core": "^2.0.1",
+    "vue": "^2.0.0"
+  },
+  "gitHead": "9d96122687d7caba8a42005b95c48aaeaa84ae05"
+}

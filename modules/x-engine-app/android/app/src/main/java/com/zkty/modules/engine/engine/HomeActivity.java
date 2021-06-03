@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void nextPage(View view) {
         String protocol = "file:";
-        String host = "com.zkty.module.share";
+        String host = "com.zkty.microapp.demo";
 //          protocol = "http:";
 //         host = "10.2.128.89:8080";
 

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-localstorage",
-  "version": "0.1.13",
+  "version": "2.0.3",
   "description": "localstorage",
   "main": "h5/src/index.js",
   "license": "MIT",

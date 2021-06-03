@@ -1,5 +1,7 @@
+1. 使用 lerna 统一管理版本。参看 lerna 官方教程。
+1. 使用 yarn workspace 统一管理依赖。参看 yarn workspace。
+
 ## 开发
-1. 仓库里的npm 包使用了 lerna 管理本地依赖。参看 lerna 官方教程。
 2. 原生模块，分为 native 与 JSI 类，(module 弃用)，模块均可通过 x-cli 快速生成与测试。
 
 ## demo

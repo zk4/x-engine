@@ -78,16 +78,14 @@ public class DownloadUtil {
                         }
                     }
 
-                    //复制 ResponseBody inputStream 流
-                    ResponseBody responseBody = response.body();
-                    BufferedSource source = responseBody.source();
-                    source.request(Long.MAX_VALUE);
-                    Buffer buffer = source.buffer();
-//                    is = response.body().byteStream();
-                    is = buffer.clone().inputStream();
-                    //判断流的大小
+                    is = response.body().byteStream();
                     long total = response.body().contentLength();
                     if(total < 0){
+                        ResponseBody responseBody = response.body();
+                        BufferedSource source = responseBody.source();
+                        source.request(Long.MAX_VALUE);
+                        Buffer buffer = source.buffer();
+                        is = buffer.clone().inputStream();
                         total = is.available();
                     }
                     File file = new File(savePath);
@@ -97,6 +95,7 @@ public class DownloadUtil {
                         fos.write(buf, 0, len);
                         sum += len;
                         int progress = (int) (sum * 1.0f / total * 100);
+                        Log.d("onDownloadSuccess",progress+"");
                         // 下载中
                         listener.onDownloading(progress);
                     }

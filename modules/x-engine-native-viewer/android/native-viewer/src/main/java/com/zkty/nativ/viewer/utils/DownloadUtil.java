@@ -6,15 +6,24 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.alibaba.fastjson.util.IOUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okio.Buffer;
+import okio.BufferedSource;
+
+import static com.alibaba.fastjson.util.IOUtils.UTF8;
 
 /**
  * @author : MaJi
@@ -60,15 +69,27 @@ public class DownloadUtil {
                 // 储存下载文件的目录
                 try {
                     String content = response.header("Content-Type");
-                    Log.d("Nativeviewer",content);
-                    String contentFileType = ResponseContentTypeUtils.FILE_TYPE_MAP.get(content);
-                    //判断文件类型
-                    if(TextUtils.isEmpty(contentFileType) || !contentFileType.equals("."+FileType)){
-                        listener.onDownloadFailed("源文件类型不正确, 请核对传入的fileType");
-                        return;
+                    if(!TextUtils.isEmpty(content)){
+                        String contentFileType = ResponseContentTypeUtils.FILE_TYPE_MAP.get(content);
+                        //判断文件类型
+                        if(TextUtils.isEmpty(contentFileType) || !contentFileType.equals("."+FileType)){
+                            listener.onDownloadFailed("源文件类型不正确, 请核对传入的fileType");
+                            return;
+                        }
                     }
-                    is = response.body().byteStream();
+
+                    //复制 ResponseBody inputStream 流
+                    ResponseBody responseBody = response.body();
+                    BufferedSource source = responseBody.source();
+                    source.request(Long.MAX_VALUE);
+                    Buffer buffer = source.buffer();
+//                    is = response.body().byteStream();
+                    is = buffer.clone().inputStream();
+                    //判断流的大小
                     long total = response.body().contentLength();
+                    if(total < 0){
+                        total = is.available();
+                    }
                     File file = new File(savePath);
                     fos = new FileOutputStream(file);
                     long sum = 0;

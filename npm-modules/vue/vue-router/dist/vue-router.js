@@ -1,5 +1,5 @@
 /*!
-  * vue-router v2.0.6
+  * vue-router v2.0.9
   * (c) 2021 Capricorn
   * @license MIT
   */
@@ -3198,7 +3198,7 @@
   }
 
   VueRouter.install = install;
-  VueRouter.version = '2.0.6';
+  VueRouter.version = '2.0.9';
   VueRouter.isNavigationFailure = isNavigationFailure;
   VueRouter.NavigationFailureType = NavigationFailureType;
   VueRouter.START_LOCATION = START;

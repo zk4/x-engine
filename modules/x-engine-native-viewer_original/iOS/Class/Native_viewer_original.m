@@ -87,7 +87,7 @@ NATIVE_MODULE(Native_viewer_original)
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.hud.detailsLabel.text = [NSString stringWithFormat:@"正在下载：%.2f %%",downloadProgress.fractionCompleted*100];
             });
-            NSLog(@"file download %@",[NSString stringWithFormat:@"download progress：%.2f %%",downloadProgress.fractionCompleted*100]) ;
+            NSLog(@"file download %@",[NSString stringWithFormat:@"download progress：%.2f %%",downloadProgress.fractionCompleted*100]);
         } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
             NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
             NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:self.encryptUrl];///下载完的本地路径
@@ -107,17 +107,21 @@ NATIVE_MODULE(Native_viewer_original)
                 self.fileUrl = filePath.absoluteString;
                 NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
                 NSDictionary *dict = r.allHeaderFields;
-                NSString *responseType = dict[@"content-type"];
-                if ([self.typeDict[responseType] isEqualToString:type]) {
+                if(dict[@"content-type"] == nil) {
                     [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
                 } else {
-                    [self.hud hideAnimated:YES];
-                    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"" message:@"源文件类型不正确, 请核对传入的fileType" preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
-                    [ac addAction:enter];
-                    [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];
-                    NSLog(@"%@", localPath);
-                    [fileManager removeItemAtPath:localPath error:nil];
+                    NSString *responseType = dict[@"content-type"];
+                    if ([self.typeDict[responseType] isEqualToString:type]) {
+                        [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
+                    } else {
+                        [self.hud hideAnimated:YES];
+                        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"" message:@"源文件类型不正确, 请核对传入的fileType" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+                        [ac addAction:enter];
+                        [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];
+                        NSLog(@"%@", localPath);
+                        [fileManager removeItemAtPath:localPath error:nil];
+                    }
                 }
             }
             

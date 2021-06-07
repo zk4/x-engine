@@ -73,7 +73,12 @@ NATIVE_MODULE(Native_viewer_original)
     self.hud.userInteractionEnabled = YES;
     self.hud.removeFromSuperViewOnHide = YES;
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+
+    // document
+    //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    // 
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *localPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.encryptUrl];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     

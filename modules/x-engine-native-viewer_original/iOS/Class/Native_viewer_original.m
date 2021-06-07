@@ -8,7 +8,7 @@
 
 #import "Native_viewer_original.h"
 #import "XENativeContext.h"
-#import <x-engine-native-store/iStore.h>
+#import <x-engine-native-protocols/iStore.h>
 #import <QuickLook/QuickLook.h>
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"

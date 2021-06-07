@@ -250,7 +250,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 - (void)dealloc {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
-    NSLog(@"delloc了");
 }
 
 - (void)viewDidLayoutSubviews {

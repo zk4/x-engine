@@ -72,6 +72,9 @@ function api (jsimoduleId, funcname, args, cb) {
   // 处理 sync, async 方法
   // aysnc 会通过 cb 传递
   // sync 通过 return 返回
+  // 如果是无参数的方法  function(functionName,callback)
+  //"function" == typeof args && (callback = args, args = {});
+
   return dsbridge.call(jsimoduleId + "." + funcname, args, cb);
 }
 

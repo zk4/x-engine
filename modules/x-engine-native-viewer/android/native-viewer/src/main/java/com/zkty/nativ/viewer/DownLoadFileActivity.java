@@ -117,7 +117,8 @@ public class DownLoadFileActivity extends BaseXEngineActivity implements View.On
                         tvDownLoad.setText("打开");
                         tvDownLoadStatus.setVisibility(View.VISIBLE);
                         tvDownLoad.setVisibility(View.VISIBLE);
-//                        openFile(filePath, fileType);
+                        //打开文件
+                        openFile(filePath, fileType);
                     }
                 });
             }

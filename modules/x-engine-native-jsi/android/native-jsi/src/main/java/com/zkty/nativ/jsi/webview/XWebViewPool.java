@@ -82,13 +82,28 @@ public class XWebViewPool {
     }
 
     public void cleanWebView() {
+        for (XEngineWebView webView : circleList) {
+            webView.cleanCache();
+        }
         circleList.clear();
+    }
+
+    public void cleanTabWebView() {
+        for (XEngineWebView webView : tabWebViewList) {
+            webView.cleanCache();
+        }
+        tabWebViewList.clear();
+    }
+
+    public void cleanAllWebView() {
+        cleanWebView();
+        cleanTabWebView();
     }
 
     public void removeWebView(XEngineWebView webView) {
         if (circleList.contains(webView))
             circleList.remove(webView);
-
+        webView.cleanCache();
     }
 
     //返回最后一个webview

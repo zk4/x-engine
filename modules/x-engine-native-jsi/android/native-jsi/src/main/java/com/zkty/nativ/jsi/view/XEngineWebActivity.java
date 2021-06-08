@@ -18,7 +18,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -27,7 +26,6 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.PluralsRes;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -128,7 +126,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         XEngineWebActivityManager.sharedInstance().addActivity(this);
         lifecycleListeners = new LinkedHashSet<>();
 
-        mWebView.setOnPageStateListener(() -> broadcast(VUE_LIFECYCLE_EVENT, ON_WEBVIEW_SHOW));
+        mWebView.setOnPageStateListener(() -> broadcast(ON_WEBVIEW_SHOW, ON_WEBVIEW_SHOW));
 
         mWebView.loadUrl(historyModel);
 
@@ -234,7 +232,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 //                }
 //                ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
 //            }
-            broadcast(VUE_LIFECYCLE_EVENT, ON_NATIVE_SHOW);
+            broadcast(ON_NATIVE_SHOW, ON_NATIVE_SHOW);
         }
 
         super.onResume();
@@ -251,7 +249,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     protected void onPause() {
         super.onPause();
         isResume = false;
-        broadcast(VUE_LIFECYCLE_EVENT, ON_NATIVE_HIDE);
+        broadcast(ON_NATIVE_HIDE, ON_NATIVE_HIDE);
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {
@@ -274,7 +272,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     @Override
     protected void onDestroy() {
-        broadcast(VUE_LIFECYCLE_EVENT, ON_NATIVE_DESTROYED);
+        broadcast(ON_NATIVE_DESTROYED, ON_NATIVE_DESTROYED);
         if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
             Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
             while (iterator.hasNext()) {

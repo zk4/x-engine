@@ -234,12 +234,12 @@ public class DWebView extends WebView {
                 }
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
-                error = String.format("Call failed：The parameter of \"%s\" in Java is invalid:%s", methodName, e.getTargetException().getMessage());
+                error = String.format("Call failed0：The parameter of \"%s\" in Java is invalid:%s", methodName, e.getTargetException().getMessage());
                 PrintDebugInfo(error);
                 return ret.toString();
             } catch (Exception e) {
                 e.printStackTrace();
-                error = String.format("Call failed：The parameter of \"%s\" in Java is invalid", methodName);
+                error = String.format("Call failed1：The parameter of \"%s\" in Java is invalid", methodName);
                 PrintDebugInfo(error);
                 return ret.toString();
             }

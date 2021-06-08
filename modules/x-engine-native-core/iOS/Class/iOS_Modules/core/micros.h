@@ -143,7 +143,7 @@
 
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
-#define concat(a,b)  [NSString initWithFormat:@"%@,%@", a, b ];
+#define XE_CONCAT(a,b) a##b
 
 #define WeakSelf(type) __weak typeof(type) weak##type = type;
 #define WeakSelfNamed(type,name) __weak typeof(type) weak##type##name = type;

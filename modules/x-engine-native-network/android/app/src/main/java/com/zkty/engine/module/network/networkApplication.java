@@ -15,7 +15,7 @@ public class networkApplication extends XEngineApplication {
                 .setBuildType(BuildConfig.BUILD_TYPE)
                 .setHostUrl( NetworkCommonUtils.getHost(BuildConfig.BUILD_TYPE))
                 .setBuildName(NetworkCommonUtils.getBuildTypeName(BuildConfig.BUILD_TYPE))
-                .setTokenInterceptor(new TokenInterceptor())
+                .setInterceptor(new TokenInterceptor())
                 .build();
     }
 }

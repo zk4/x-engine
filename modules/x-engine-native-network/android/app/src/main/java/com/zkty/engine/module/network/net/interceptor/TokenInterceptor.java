@@ -25,7 +25,7 @@ public class TokenInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request()
                 .newBuilder()
-                .header("Authorization", "Bearer " + NetworkMaster.getInstance().getSessionToken())
+                .header("Authorization", "Bearer " + "")
                 .removeHeader("User-Agent")
                 .addHeader("User-Agent", getUserAgent())
                 .build();
@@ -39,7 +39,7 @@ public class TokenInterceptor implements Interceptor {
             //使用新的Token，创建新的请求
             Request newRequest = chain.request()
                     .newBuilder()
-                    .header("Authorization", "Bearer " + NetworkMaster.getInstance().getSessionToken())
+                    .header("Authorization", "Bearer ")
                     .removeHeader("User-Agent")
                     .addHeader("User-Agent", getUserAgent())
                     .build();
@@ -56,7 +56,7 @@ public class TokenInterceptor implements Interceptor {
         OkHttpClient client = new OkHttpClient();
         FormBody.Builder builder = new FormBody.Builder();
         Request request = new Request.Builder()
-                .header("Authorization", "Bearer " + NetworkMaster.getInstance().getSessionToken())
+                .header("Authorization", "Bearer " )
                 .post(builder.build())
                 .url(stringBuilder.toString())
                 .build();

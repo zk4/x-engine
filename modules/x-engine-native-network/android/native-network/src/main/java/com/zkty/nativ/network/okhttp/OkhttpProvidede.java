@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -104,10 +105,14 @@ public class OkhttpProvidede {
                     }
 
                     //SSL证书
-                    okHttpClientCheckToken = new OkHttpClient.Builder().sslSocketFactory(new Tls12SocketFactory(sslContext.getSocketFactory()), new HttpsUtil.UnSafeTrustManager())
-                            //拦截token
-                            .hostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
-                            .addInterceptor(NetworkMaster.getInstance().getTokenInterceptor())
+                    OkHttpClient.Builder builder = new OkHttpClient.Builder().sslSocketFactory(new Tls12SocketFactory(sslContext.getSocketFactory()), new HttpsUtil.UnSafeTrustManager());
+
+                    //添加拦截
+                    for (Interceptor interceptor1 : NetworkMaster.getInstance().getInterceptorList()) {
+                        builder.addInterceptor(interceptor1);
+                    }
+                    //拦截token
+                    builder.hostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
                             //打印日志
                             .addInterceptor(interceptor)
                             //设置Cache
@@ -120,6 +125,8 @@ public class OkhttpProvidede {
                             //失败重连
                             .retryOnConnectionFailure(true)
                             .build();
+
+                    okHttpClientCheckToken = builder.build();
 
                 }
             }

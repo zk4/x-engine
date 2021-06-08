@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.zkty.nativ.network.net.exception.ApiException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -20,12 +21,10 @@ public class NetworkMaster {
     private static String mBuildType;
     //app版本号
     private static String appVerisonName;
-    //登陆成功返回的 token
-    private static String sessionToken;
-    //token拦截
-    private static Interceptor tokenInterceptor;
     //网络监听
     private NetworkListener networkListener;
+
+    private static List<Interceptor> interceptorList = new ArrayList<>();
 
     public static NetworkMaster getInstance() {
         if (mInstance == null) {
@@ -34,14 +33,15 @@ public class NetworkMaster {
         return mInstance;
     }
 
-    public NetworkMaster(Context mContext,  String hostUrl, String mBuildType, String buildTypeName, String appVerisonName,String sessionToken, Interceptor interceptor) {
+    public NetworkMaster(Context mContext,  String hostUrl, String mBuildType, String buildTypeName, String appVerisonName, List<Interceptor> interceptorList) {
         NetworkMaster.mContext = mContext;
         NetworkMaster.mBuildType = mBuildType;
         NetworkMaster.hostUrl = hostUrl;
         NetworkMaster.buildTypeName = buildTypeName;
         NetworkMaster.appVerisonName = appVerisonName;
-        NetworkMaster.tokenInterceptor = interceptor;
-        NetworkMaster.sessionToken = sessionToken;
+        NetworkMaster.interceptorList.clear();
+        NetworkMaster.interceptorList.addAll(interceptorList);
+
     }
 
     public static Context getContext() {
@@ -61,17 +61,14 @@ public class NetworkMaster {
         return hostUrl;
     }
 
-    public String getSessionToken() {
-        return sessionToken;
+    public static List<Interceptor> getInterceptorList() {
+        return interceptorList;
     }
 
-    public void setSessionToken(String sessionToken){
-        this.sessionToken = sessionToken;
+    public static void setInterceptorList(List<Interceptor> interceptorList) {
+        NetworkMaster.interceptorList = interceptorList;
     }
 
-    public Interceptor getTokenInterceptor() {
-        return tokenInterceptor;
-    }
 
     public interface NetworkListener {
         void onInvalid(ApiException apiException);
@@ -86,8 +83,7 @@ public class NetworkMaster {
         private String hostUrl;
         private String buildTypeName;
         private String appVerisonName;
-        private String sessionToken;
-        private Interceptor interceptor;
+        private List<Interceptor> interceptorList = new ArrayList<>();
 
         public SingletonBuilder(Context context) {
             mContext = context.getApplicationContext();
@@ -110,17 +106,13 @@ public class NetworkMaster {
             this.appVerisonName = appVerisonName;
             return this;
         }
-        public SingletonBuilder setTokenInterceptor(Interceptor interceptor) {
-            this.interceptor = interceptor;
-            return this;
-        }
-        public SingletonBuilder setSessionToken(String sessionToken) {
-            this.sessionToken = sessionToken;
+        public SingletonBuilder setInterceptor(Interceptor interceptor) {
+            this.interceptorList.add(interceptor);
             return this;
         }
 
         public NetworkMaster build() {
-            mInstance = new NetworkMaster(mContext,hostUrl,mBuildType,buildTypeName,appVerisonName,sessionToken,interceptor);
+            mInstance = new NetworkMaster(mContext,hostUrl,mBuildType,buildTypeName,appVerisonName,interceptorList);
             return mInstance;
         }
 

@@ -68,7 +68,7 @@ public class JSIContext extends NativeModule {
         QbSdk.initTbsSettings(map);
 
         XWebViewPool.sharedInstance().init(XEngineApplication.getApplication());
-        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
+//        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
         QbSdk.initX5Environment(XEngineApplication.getApplication(), new QbSdk.PreInitCallback() {
             @Override
             public void onCoreInitFinished() {

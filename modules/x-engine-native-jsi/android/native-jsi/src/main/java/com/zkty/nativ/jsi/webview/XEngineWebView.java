@@ -447,7 +447,7 @@ public class XEngineWebView extends DWebView {
         StringBuilder sb = new StringBuilder();
         String hostR = model.host;
         if ("file:".equals(model.protocol)) {
-            hostR = MicroAppLoader.sharedInstance().getMicroAppHost(model.host, 0);
+            hostR = MicroAppLoader.sharedInstance().getMicroAppHostFormAssets(model.host);
         }
 
         sb.append(model.protocol).append("//").append(hostR);

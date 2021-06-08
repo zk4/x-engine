@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-core",
-  "version": "2.1.0",
+  "version": "2.7.0",
   "description": "连接原生native和js之间的重要模块",
   "main": "dist/bridge.common.js",
   "scripts": {

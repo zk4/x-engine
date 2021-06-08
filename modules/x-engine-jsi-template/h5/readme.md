@@ -2,12 +2,12 @@
 
 JSI Id: com.zkty.jsi.xxxx
 
-version: 0.1.13
+version: 2.0.3
 
 
 
 ## simpleMethod
-`async` `sync`
+[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
 
 **demo**
@@ -24,7 +24,7 @@ version: 0.1.13
 
 
 ## simpleArgMethod
-`async` `sync`
+[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
 
 
@@ -38,7 +38,7 @@ string
 
 
 ## nestedAnonymousObject
-`async` `sync`
+[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
 
 
@@ -56,7 +56,7 @@ string
 
 
 ## namedObject
-`sync` `async`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用) [`async`](/docs/modules/模块-规范?id=jsi-调用)
 
 
 
@@ -79,7 +79,7 @@ interface NamedDTO {
 
 
 ## namedObjectWithNamedArgs
-`sync` `async`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用) [`async`](/docs/modules/模块-规范?id=jsi-调用)
 
 
 
@@ -106,7 +106,7 @@ interface NamedDTO {
 
 
 ## namedObjectWithArgs
-`sync` `async`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用) [`async`](/docs/modules/模块-规范?id=jsi-调用)
 
 
 

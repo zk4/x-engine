@@ -15,6 +15,7 @@ init:
 	cd ./npm-modules/vue/vue-router && yarn build
 	cd ./npm-modules/vue/ui && yarn lib
 	cd ./npm-modules/vue/lifecycle && yarn build
+	cd ./npm-modules/core && yarn build
 	@echo "注意,任何未在版本管理的代码将被删除!"
 	# git clean -fdx
 	

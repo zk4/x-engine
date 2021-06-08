@@ -13,7 +13,7 @@
 #import "AFNetworking.h"
 #import "iViewer.h"
 #import "Unity.h"
-#import <x-engine-native-store/iStore.h>
+#import <x-engine-native-protocols/iStore.h>
 
 @interface Native_viewer()
 { }

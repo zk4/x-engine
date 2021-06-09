@@ -40,24 +40,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @end
 
 @implementation RecyleWebViewController
-- (void)webViewProgressChange:(NSNotification *)notifi{
-    NSDictionary *dic = notifi.object;
-    XEngineWebView *web = dic[@"webView"];
-    if(web == self.webview){
-        if(dic[@"progress"]){
-            float floatNum = [dic[@"progress"] floatValue];
-            
-            self.progresslayer.alpha = 1;
-            [self.progresslayer setProgress:floatNum animated:YES];
-            if (floatNum == 1) {
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.progresslayer.alpha = 0;
-                }];
-      
-            }
-        }
-    }
-}
 
 - (void)handleNavigationTransition:(UIGestureRecognizer *)gap{
     //    NSLog(@"用户左滑了手势啊");
@@ -201,7 +183,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    self.progresslayer.alpha = 0;
     [self.webview.scrollView setShowsVerticalScrollIndicator:NO];
     [self.webview.scrollView setShowsHorizontalScrollIndicator:NO];
 }
@@ -248,9 +229,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     [super viewDidDisappear:animated];
 }
 
-- (void)dealloc {
-    [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
-}
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -323,6 +301,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     self.progresslayer = [[UIProgressView alloc] init];
     self.progresslayer.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.5);
     self.progresslayer.progressTintColor = [UIColor orangeColor];
+    self.progresslayer.alpha = 0;
     [self.view addSubview:self.progresslayer];
 }
 
@@ -338,6 +317,24 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     self.tipLabel404.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
     self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel404];
+}
+
+- (void)webViewProgressChange:(NSNotification *)notifi{
+    NSDictionary *dic = notifi.object;
+    XEngineWebView *web = dic[@"webView"];
+    if(web == self.webview){
+        if(dic[@"progress"]){
+            float floatNum = [dic[@"progress"] floatValue];
+            self.progresslayer.alpha = 1;
+            [self.progresslayer setProgress:floatNum animated:YES];
+            if (floatNum == 1) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.progresslayer.alpha = 0;
+                }];
+      
+            }
+        }
+    }
 }
 
 #pragma mark - < utils --> json->dic / dic->json >
@@ -370,4 +367,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
+- (void)dealloc {
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
+}
 @end

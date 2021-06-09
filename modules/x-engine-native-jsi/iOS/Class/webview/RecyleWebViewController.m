@@ -88,33 +88,12 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.loadUrl = fileUrl;
         self.isOnTab   = isOnTab;
         
-        if(newWebView){
-            self.webview = [[WebViewFactory sharedInstance] createWebView];
-            [self.webview loadUrl:self.loadUrl];
-            self.webview.frame = [UIScreen mainScreen].bounds;
-            
-         }else {
-            self.webview = [[GlobalState sharedInstance] getCurrentWebView];
-       }
+      
+        self.webview = [[WebViewFactory sharedInstance] createWebView];
+        [self.webview loadUrl:self.loadUrl];
+        self.webview.frame = [UIScreen mainScreen].bounds;
+ 
         
-        // 存microapp.json 但是存哪里更合适
-        // 最后的url会有什么区别, 有几种方式
-#warning: 下面这段放哪里合适  这是个问题
-
-//        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
-//        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
-//            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
-//            id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-//            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
-//        } else {
-//            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _ gNonnull action) {
-//                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
-//            }];
-//            [errorAlert addAction:sureAction];
-//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
-//        }
-//
         // 如果是在 tab 上,则不受 history 管理.
         // 不然会出现这种情况,如果4 个 tab 上全是微应用.
         // 则会有 4 个永远不会消失的 history.
@@ -125,6 +104,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         hm.host          = host;
         hm.pathname      = pathname;
         hm.onTab         = isOnTab;
+        self.webview.model = hm;
         if(!isOnTab){
             [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
         }else{

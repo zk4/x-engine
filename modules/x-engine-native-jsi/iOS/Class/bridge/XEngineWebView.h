@@ -4,7 +4,7 @@
 
 
 #import <WebKit/WebKit.h>
-
+#import "HistoryModel.h"
  
 
 @interface XEngineWebView : WKWebView <WKUIDelegate,WKNavigationDelegate, UIGestureRecognizerDelegate>
@@ -12,7 +12,7 @@
 @property (nullable, nonatomic, weak) id <WKUIDelegate> DSUIDelegate;
 @property (nonatomic, assign)  int index;
 @property (nonatomic, strong) UIActivityIndicatorView * _Nullable indicatorView;
-
+@property (nullable, nonatomic, strong)  HistoryModel*  model;
 - (void)loadUrl: (NSString * _Nonnull) url;
 
 // Call javascript handler

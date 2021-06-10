@@ -41,7 +41,7 @@
 //    [director push:@"microapp" host:@"10.2.128.73:8082" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 
     // 远程10.2.128.71:8080
-    [director push:@"omp" host:@"10.2.128.73:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+    [director push:@"omp" host:@"10.2.128.73:8081" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 //    [director push:@"native" host:@"category" pathname:@"/Two"  fragment:@"" query:nil  params:@{@"hideNavbar":@TRUE}];
   
 

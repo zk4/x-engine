@@ -8,7 +8,7 @@
  */
 import View from './components/view'
 import Link from './components/link'
-import { intercept } from './util/app-intercept'
+import { intercept, checkProtocol } from './util/app-intercept'
 export let _Vue
 
 export function install (Vue, protocol) {
@@ -21,13 +21,12 @@ export function install (Vue, protocol) {
   if (protocol) {
     intercept(protocol)
   } else {
-    if (process.env.NODE_ENV === 'development') {
-      intercept('omp')
+    if (checkProtocol()) {
+      intercept(checkProtocol())
     } else {
       intercept('microapp')
     }
   }
-  
   const registerInstance = (vm, callVal) => {
     let i = vm.$options._parentVnode
     if (isDef(i) && isDef(i = i.data) && isDef(i = i.registerRouteInstance)) {

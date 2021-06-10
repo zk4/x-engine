@@ -12,9 +12,7 @@ public class networkApplication extends XEngineApplication {
         super.onCreate();
 //        NetworkMaster.init(this,BuildConfig.BUILD_TYPE, NetworkCommonUtils.getHost(BuildConfig.BUILD_TYPE),NetworkCommonUtils.getBuildTypeName(BuildConfig.BUILD_TYPE));
         new NetworkMaster.SingletonBuilder(this)
-                .setBuildType(BuildConfig.BUILD_TYPE)
                 .setHostUrl( NetworkCommonUtils.getHost(BuildConfig.BUILD_TYPE))
-                .setBuildName(NetworkCommonUtils.getBuildTypeName(BuildConfig.BUILD_TYPE))
                 .setInterceptor(new TokenInterceptor())
                 .build();
     }

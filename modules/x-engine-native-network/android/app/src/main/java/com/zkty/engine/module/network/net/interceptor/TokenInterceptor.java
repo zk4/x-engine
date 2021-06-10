@@ -25,7 +25,7 @@ public class TokenInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request()
                 .newBuilder()
-                .header("Authorization", "Bearer " + "")
+                .header("Authorization", "Bearer 123465" )
                 .removeHeader("User-Agent")
                 .addHeader("User-Agent", getUserAgent())
                 .build();
@@ -33,19 +33,19 @@ public class TokenInterceptor implements Interceptor {
         Response response = chain.proceed(request);
 
         //根据和服务端的约定判断token过期
-        if (isTokenExpired(response)) {
-            //同步请求方式，获取最新的Token
-            getNewToken();
-            //使用新的Token，创建新的请求
-            Request newRequest = chain.request()
-                    .newBuilder()
-                    .header("Authorization", "Bearer ")
-                    .removeHeader("User-Agent")
-                    .addHeader("User-Agent", getUserAgent())
-                    .build();
-            //重新请求
-            return chain.proceed(newRequest);
-        }
+//        if (isTokenExpired(response)) {
+//            //同步请求方式，获取最新的Token
+//            getNewToken();
+//            //使用新的Token，创建新的请求
+//            Request newRequest = chain.request()
+//                    .newBuilder()
+//                    .header("Authorization", "Bearer " )
+//                    .removeHeader("User-Agent")
+//                    .addHeader("User-Agent", getUserAgent())
+//                    .build();
+//            //重新请求
+//            return chain.proceed(newRequest);
+//        }
         return response;
 
     }

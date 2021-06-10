@@ -1,17 +1,13 @@
 package com.zkty.engine.module.network.net.serve;
 
-import android.text.TextUtils;
-
 import com.zkty.engine.module.network.BuildConfig;
-import com.zkty.engine.module.network.net.NetWorkManager;
 import com.zkty.engine.module.network.net.callback.Inetworkmanager;
 import com.zkty.engine.module.network.net.utils.NetworkCommonUtils;
 import com.zkty.nativ.network.NetworkConfig;
-import com.zkty.nativ.network.net.exception.ApiException;
+import com.zkty.nativ.network.NetworkMaster;
 import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
 import com.zkty.nativ.network.net.myinterface.OnUploadListener;
 import com.zkty.nativ.network.net.myinterface.ServiceCallback;
-import com.zkty.nativ.network.utils.LogUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -119,7 +115,7 @@ public class NetworkServer implements Inetworkmanager {
      */
     @Override
     public void sendPost(String interfaceName, Map<String, Object> params,ServiceCallback callback){
-        NetWorkManager.getiNetwork().post(requestType, baseurl, interfaceName, params, heads, isIntercepToken, callback);
+        NetworkMaster.getInstance().post(requestType, baseurl, interfaceName, params, heads, isIntercepToken, callback);
     }
 
 
@@ -131,7 +127,7 @@ public class NetworkServer implements Inetworkmanager {
      */
     @Override
     public void sendGet(String interfaceName, Map<String, Object> params,ServiceCallback callback){
-        NetWorkManager.getiNetwork().get(requestType,baseurl,interfaceName,params,heads,isIntercepToken,callback);
+        NetworkMaster.getInstance().get(requestType,baseurl,interfaceName,params,heads,isIntercepToken,callback);
     }
 
 
@@ -143,7 +139,7 @@ public class NetworkServer implements Inetworkmanager {
      */
     @Override
     public void sendDownload(String downloadUrl, String filePath,OnDownloadListener onDownloadListener) {
-        NetWorkManager.getiNetwork().download(downloadUrl,filePath,onDownloadListener);
+        NetworkMaster.getInstance().download(downloadUrl,filePath,onDownloadListener);
     }
 
     /**
@@ -154,6 +150,6 @@ public class NetworkServer implements Inetworkmanager {
      */
     @Override
     public void sendUpload(String uploadUrl, String filePath,OnUploadListener onUploadListener) {
-        NetWorkManager.getiNetwork().upload(uploadUrl,filePath,onUploadListener);
+        NetworkMaster.getInstance().upload(uploadUrl,filePath,onUploadListener);
     }
 }

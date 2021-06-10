@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/vuex",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "与使用纯H5 SPA页面没有任何改变的 Vuex",
   "sideEffects": false,
   "files": [

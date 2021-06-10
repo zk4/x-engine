@@ -125,9 +125,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void postBody(){
         Map<String, Object> map = new HashMap<>();
-        map.put("osType", 11);
-        map.put("tokenType","GM-C-User");
-        map.put("userKey", "123131453");
+        map.put("userid", "123123131241241241");
+        map.put("entry", "composite");
+        map.put("orgi", "666666");
+//        map.put("osType", 11);
+//        map.put("tokenType","GM-C-User");
+//        map.put("userKey", "123131453");
 //
         RequestServer.getimsessionid(map, new ServiceCallback<BaseResp<ImsessiionidBean>>() {
 

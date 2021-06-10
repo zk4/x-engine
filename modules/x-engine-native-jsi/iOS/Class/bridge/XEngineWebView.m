@@ -70,12 +70,12 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     interalApis.webview=self;
     [self addJavascriptObject:interalApis namespace:@"_dsb"];
     
-    if (@available(iOS 13.0, *)) {
-        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
-    } else {
+//    if (@available(iOS 13.0, *)) {
+//        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+//    } else {
         // Fallback on earlier versions
         /// TODO: 上面的函数只支持iOS 13.0,保持低版本兼容 @cwz
-    }
+//    }
 //    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
 //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
     return self;
@@ -631,7 +631,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 // 2.1- 开始下载指定 URL 的内容, 下载之前会调用一次 开始下载 回调
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    [self.indicatorView startAnimating];
+//    [self.indicatorView startAnimating];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
         [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
     }
@@ -643,7 +643,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 3- 确定下载的内容被允许之后再载入视图。
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
     [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
@@ -652,13 +652,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
     [self addCustomView];
 }
 
 // 4.2- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
     [self addCustomView];
 }
 
@@ -703,7 +703,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (void)dealloc {
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
 }
 
 // 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中

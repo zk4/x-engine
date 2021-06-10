@@ -7,21 +7,17 @@
 #import "XEngineWebView.h"
 #import "JSIContext.h"
 #import "JSIModule.h"
-
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "CustomURLSchemeHandler.h"
 
 
 @interface WebViewFactory ()
-
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
 @end
 
 @implementation WebViewFactory
-
-+ (instancetype)sharedInstance
-{
++ (instancetype)sharedInstance {
     static WebViewFactory *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -40,7 +36,7 @@
     return self;
 }
 
--(XEngineWebView *)createWebView{
+- (XEngineWebView *)createWebView {
     NSMutableArray *modules = [[JSIContext sharedInstance] modules];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;

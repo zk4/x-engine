@@ -44,3 +44,15 @@ export function intercept (scheme) {
     }
   }
 }
+
+
+export function checkProtocol () {
+  const protocol = window.location.protocol
+  if (/^file/.test(protocol)) {
+    return 'microapp'
+  } else if (/^http/.test(protocol)) {
+    return 'omp'
+  } else {
+    return false
+  }
+}

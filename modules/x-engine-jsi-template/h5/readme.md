@@ -37,6 +37,20 @@ string
 
 
 
+## simpleArgNumberMethod
+[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
+
+
+
+**无参数**
+
+**返回值**
+``` js
+int
+``` 
+
+
+
 ## nestedAnonymousObject
 [`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
 

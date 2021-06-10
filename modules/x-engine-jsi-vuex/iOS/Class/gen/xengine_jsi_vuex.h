@@ -17,10 +17,10 @@
 
 
 @protocol xengine_jsi_vuex_protocol
-       @required 
+
        - (NSString*) _get:(NSString*)dto;
     
-      @required 
+
        - (void) _set:(_0_com_zkty_jsi_vuex_DTO*)dto;
     
 @end

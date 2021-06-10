@@ -49,6 +49,8 @@
 public void _simpleMethod();
 public void _simpleArgMethod(String dto, final CompletionHandler<String> handler);
 public String _simpleArgMethod(String dto);
+public void _simpleArgNumberMethod(Integer dto, final CompletionHandler<Integer> handler);
+public Integer _simpleArgNumberMethod(Integer dto);
 public void _nestedAnonymousObject(final CompletionHandler<_0_com_zkty_jsi_xxxx_DTO> handler);
 public _0_com_zkty_jsi_xxxx_DTO _nestedAnonymousObject();
 public void _namedObject(final CompletionHandler<NamedDTO> handler);
@@ -103,6 +105,26 @@ public _2_com_zkty_jsi_xxxx_DTO _namedObjectWithArgs(_3_com_zkty_jsi_xxxx_DTO dt
         public String simpleArgMethod(String dto) {
           
           return _simpleArgMethod(dto);
+        }
+        
+
+    @JavascriptInterface
+    final public void simpleArgNumberMethod(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      Integer dto= convert(jsonobj,Integer.class);
+      _simpleArgNumberMethod(dto, new CompletionHandler<Integer>() {
+        @Override
+        public void complete(Integer retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Integer value) { handler.setProgressData(value); }
+      });
+
+    }
+        @JavascriptInterface
+        public Integer simpleArgNumberMethod(JSONObject jsonobj) {
+          Integer dto= convert(jsonobj,Integer.class);
+          return _simpleArgNumberMethod(dto);
         }
         
 

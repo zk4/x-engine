@@ -73,8 +73,20 @@
         
       }
   - (NSString*) simpleArgMethod:(NSDictionary*) dict {
-      NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _simpleArgMethod:dto];
+      NSString* dto = (NSString*)dict;
+        return [self _simpleArgMethod:dto];
+        }
+    - (void) simpleArgNumberMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          NSInteger dto = [self convert:dict clazz:NSInteger.class];
+          [self _simpleArgNumberMethod:dto complete:^(NSInteger result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+      }
+  - (NSInteger) simpleArgNumberMethod:(NSDictionary*) dict {
+      NSInteger dto = (NSInteger)dict;
+        return [self _simpleArgNumberMethod:dto];
         }
     - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
@@ -104,7 +116,7 @@
       }
   - (NamedDTO*) namedObjectWithNamedArgs:(NSDictionary*) dict {
       NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-      return [self _namedObjectWithNamedArgs:dto];
+        return [self _namedObjectWithNamedArgs:dto];
         }
     - (void) namedObjectWithArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
@@ -116,6 +128,6 @@
       }
   - (_2_com_zkty_jsi_xxxx_DTO*) namedObjectWithArgs:(NSDictionary*) dict {
       _3_com_zkty_jsi_xxxx_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_xxxx_DTO.class];
-      return [self _namedObjectWithArgs:dto];
+        return [self _namedObjectWithArgs:dto];
         }
   @end

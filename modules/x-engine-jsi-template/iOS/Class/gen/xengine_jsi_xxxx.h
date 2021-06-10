@@ -59,6 +59,11 @@
        - (NSString*) _simpleArgMethod:(NSString*)dto;
     
       @required 
+        - (void) _simpleArgNumberMethod:(NSInteger) dto complete:(void (^)(NSInteger result,BOOL complete)) completionHandler;
+   @required 
+       - (NSInteger) _simpleArgNumberMethod:(NSInteger)dto;
+    
+      @required 
         - (void) _nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
        @required 
        - (_0_com_zkty_jsi_xxxx_DTO*) _nestedAnonymousObject;

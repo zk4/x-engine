@@ -2,7 +2,7 @@ version:
 	#lerna version --conventional-commits
 	lerna version --force-publish
 
-publish:
+publish: init
 	lerna publish --no-verify-access --force-publish
 
 # 重新 link

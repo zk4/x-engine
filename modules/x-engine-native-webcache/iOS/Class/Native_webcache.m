@@ -6,6 +6,10 @@
 
 #import "Native_webcache.h"
 #import "XENativeContext.h"
+#import "micros.h"
+#import "NSURLProtocol+WebKitSupport.h"
+#import "ReplacingImageURLProtocol.h"
+
 
 @interface Native_webcache()
 { }
@@ -24,8 +28,27 @@ NATIVE_MODULE(Native_webcache)
 
 - (void)afterAllNativeModuleInited{
 } 
--(NSString*) test{
-    return @"test";
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+ 
+ 
+        [[NSNotificationCenter defaultCenter]
+         addObserverForName:UIApplicationDidFinishLaunchingNotification
+         object:nil
+         queue:nil
+         usingBlock:^(NSNotification *note) {
+            [NSURLProtocol registerClass:[ReplacingImageURLProtocol class]];
+            for (NSString* scheme in @[@"http", @"https"]) {
+                    [NSURLProtocol wk_registerScheme:scheme];
+            }
+        }];
+
+
+    }
+    
+    return self;
 }
+
 @end
  

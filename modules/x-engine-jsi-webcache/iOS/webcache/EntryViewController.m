@@ -6,7 +6,6 @@
 #import "EntryViewController.h"
 #import "XENativeContext.h"
 #import "iDirectManager.h"
- 
 @interface EntryViewController ()
 
 @end
@@ -18,8 +17,8 @@
 
 -(void) pushTestModule{
     id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-
-    [director push:@"omp" host:@"10.2.128.71:9111" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
+  
+    [director push:@"omp://192.168.1.15:9111" params:@{@"hideNavbar":@YES}];
 }
 
 - (void)viewDidLoad {

@@ -12,33 +12,6 @@
     }
 @end
     
-  
-@implementation _0_com_zkty_jsi_webcache_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
-@implementation _1_com_zkty_jsi_webcache_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-    
-  
-@implementation _2_com_zkty_jsi_webcache_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-  
-@implementation _3_com_zkty_jsi_webcache_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
 
 
 
@@ -64,70 +37,4 @@
    [self _simpleMethod];
               return nil;
     }
-    - (void) simpleArgMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NSString* dto = [self convert:dict clazz:NSString.class];
-          [self _simpleArgMethod:dto complete:^(NSString* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (NSString*) simpleArgMethod:(NSDictionary*) dict {
-      NSString* dto = (NSString*)dict;
-        return [self _simpleArgMethod:dto];
-        }
-    - (void) simpleArgNumberMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NSInteger dto = [self convert:dict clazz:NSInteger.class];
-          [self _simpleArgNumberMethod:dto complete:^(NSInteger result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (NSInteger) simpleArgNumberMethod:(NSDictionary*) dict {
-      NSInteger dto = (NSInteger)dict;
-        return [self _simpleArgNumberMethod:dto];
-        }
-    - (void) nestedAnonymousObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _nestedAnonymousObject:^(_0_com_zkty_jsi_webcache_DTO* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-  - (_0_com_zkty_jsi_webcache_DTO*) nestedAnonymousObject:(NSDictionary*) dict {
-  return [self _nestedAnonymousObject];
-    }
-    - (void) namedObject:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          [self _namedObject:^(NamedDTO* result, BOOL complete) {
-            completionHandler(result ,complete);
-          }];
-      }
-  - (NamedDTO*) namedObject:(NSDictionary*) dict {
-  return [self _namedObject];
-    }
-    - (void) namedObjectWithNamedArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-          [self _namedObjectWithNamedArgs:dto complete:^(NamedDTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (NamedDTO*) namedObjectWithNamedArgs:(NSDictionary*) dict {
-      NamedDTO* dto = [self convert:dict clazz:NamedDTO.class];
-        return [self _namedObjectWithNamedArgs:dto];
-        }
-    - (void) namedObjectWithArgs:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-
-          _3_com_zkty_jsi_webcache_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_webcache_DTO.class];
-          [self _namedObjectWithArgs:dto complete:^(_2_com_zkty_jsi_webcache_DTO* result,  BOOL complete) {
-            completionHandler(result,complete);
-          }];
-        
-      }
-  - (_2_com_zkty_jsi_webcache_DTO*) namedObjectWithArgs:(NSDictionary*) dict {
-      _3_com_zkty_jsi_webcache_DTO* dto = [self convert:dict clazz:_3_com_zkty_jsi_webcache_DTO.class];
-        return [self _namedObjectWithArgs:dto];
-        }
   @end

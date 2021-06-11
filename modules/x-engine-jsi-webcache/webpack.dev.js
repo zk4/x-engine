@@ -17,7 +17,7 @@ module.exports = {
         hot: true,
         port: 9111,
         contentBase: './h5/dist',
-        open: true,
+        open: false,
 
     },
   output: {

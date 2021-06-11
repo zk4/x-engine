@@ -5,10 +5,10 @@
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",
-    "md": "webpack  --config webpack.md.js",
-    "build": "webpack  --config webpack.prod.js",
-    "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",
+    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config .webpack/webpack.dev.js",
+    "md": "webpack  --config .webpack/webpack.md.js",
+    "build": "webpack  --config .webpack/webpack.prod.js",
+    "prod": "WEBPACK_MODE=production webpack  --config .webpack/webpack.prod.js",
     "patch": "npm version patch"
   },
   "files": [

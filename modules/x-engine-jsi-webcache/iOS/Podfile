@@ -18,6 +18,7 @@ def shared_pods
   pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
   pod 'x-engine-native-webcache', :path =>X_ENGINE_MODULES+'/x-engine-native-webcache'
   pod 'x-engine-native-rest', :path =>X_ENGINE_MODULES+'/x-engine-native-rest'
+  pod 'x-engine-native-store', :path =>X_ENGINE_MODULES+'/x-engine-native-store'
 
 
 end

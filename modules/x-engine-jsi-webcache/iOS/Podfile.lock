@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - JSONModel (1.8.0)
   - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
@@ -34,9 +49,15 @@ PODS:
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
+  - x-engine-native-rest (1.0.0):
+    - AFNetworking (~> 4.0.0)
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-webcache (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
+    - x-engine-native-rest
 
 DEPENDENCIES:
   - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
@@ -47,10 +68,12 @@ DEPENDENCIES:
   - x-engine-native-direct_omp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp`)
   - x-engine-native-jsi (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi`)
   - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-rest (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-rest`)
   - x-engine-native-webcache (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-webcache`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
     - JSONModel
 
 EXTERNAL SOURCES:
@@ -70,10 +93,13 @@ EXTERNAL SOURCES:
     :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
     :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
+  x-engine-native-rest:
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-rest"
   x-engine-native-webcache:
     :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-webcache"
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
@@ -83,8 +109,9 @@ SPEC CHECKSUMS:
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
-  x-engine-native-webcache: a77702d7638a2b950137ccf6da2d7c3a473eef53
+  x-engine-native-rest: 600cf890c6779cfbdb24efea44e5f1b42e9fe45c
+  x-engine-native-webcache: 8835ba2a1141fc3736f967ce958576635fb819f1
 
-PODFILE CHECKSUM: 0a1f1ad584b9e01574832ae0f9b51e9acae2001a
+PODFILE CHECKSUM: ce2185673560d549368dfbfa48afc664678013b3
 
 COCOAPODS: 1.10.0

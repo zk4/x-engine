@@ -128,7 +128,6 @@ public class XEngineWebView extends DWebView {
 
             @Override
             public void onPageFinished(WebView webView, String s) {
-                evaluateJavascript("window._dswk=true;");
                 super.onPageFinished(webView, s);
                 if (onPageStateListener != null) {
                     onPageStateListener.onPageFinished();
@@ -323,6 +322,7 @@ public class XEngineWebView extends DWebView {
 
 
     public void loadUrl(HistoryModel model) {
+        evaluateJavascript("window._dswk=true;");
         String url = getUrlByHistoryModel(model);
         loadUrl(url);
         historyModels.add(model);

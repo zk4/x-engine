@@ -108,7 +108,7 @@
 }
 
 - (id)getModuleByProtocol:(Protocol *)proto {
-    // if found multipal modules, choose only the first found, or you can call getModulesByProtocol:
+    // if found multipal modules, choose only the first found, otherwise you need to call getModulesByProtocol IF YOU REALLY KNOW WHAT YOU ARE DOING:
     NSString *protocoalName = NSStringFromProtocol(proto);
     for (NSString *moduleId in self.moduleId2MoudleProtocolnames) {
         NSMutableArray *protocolNames = [self.moduleId2MoudleProtocolnames objectForKey:moduleId];

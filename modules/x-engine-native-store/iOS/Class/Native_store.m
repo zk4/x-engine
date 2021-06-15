@@ -3,7 +3,6 @@
 //  store
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
 
 #import "XENativeContext.h"
 #import "Native_store.h"
@@ -42,17 +41,17 @@ NATIVE_MODULE(Native_store)
          queue:nil
          usingBlock:^(NSNotification *note) {
             StrongSelf(self)
-            [self loadFromDisk:FALSE];
+            [strongself loadFromDisk:FALSE];
         }];
-        WeakSelfNamed(self,1)
+
         [[NSNotificationCenter defaultCenter]
          addObserverForName:UIApplicationDidEnterBackgroundNotification
          object:nil
          queue:nil
          usingBlock:^(NSNotification *note) {
             NSLog(@"save ");
-            StrongSelfNamed(self,1)
-            [self saveTodisk];
+            StrongSelf(self)
+            [strongself saveTodisk];
         }];
     }
     

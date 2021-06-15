@@ -86,10 +86,16 @@
         id rawmoduleClass = [[cls alloc] init];
         XENativeModule *moduleClass = (XENativeModule *)rawmoduleClass;
         NSString *moduleId = [moduleClass moduleId];
-
+#ifdef DEBUG
+        if([self.moduleId2Moudle objectForKey:moduleClass.moduleId])
+        {
+            NSAssert(0, @"为何有重复的 moduleid?");
+        }
+#endif
         [self.moduleId2Moudle setObject:moduleClass forKey:moduleClass.moduleId];
-
+        
         NSMutableArray *protocols = [self getProtocols:cls];
+
         [self.moduleId2MoudleProtocolnames setObject:protocols forKey:moduleId];
 
         [self.modules addObject:moduleClass];
@@ -110,6 +116,17 @@
 - (id)getModuleByProtocol:(Protocol *)proto {
     // if found multipal modules, choose only the first found, otherwise you need to call getModulesByProtocol IF YOU REALLY KNOW WHAT YOU ARE DOING:
     NSString *protocoalName = NSStringFromProtocol(proto);
+#ifdef DEBUG
+    // check for consitence
+    int i =0;
+    for (NSString *moduleId in self.moduleId2MoudleProtocolnames) {
+        NSMutableArray *protocolNames = [self.moduleId2MoudleProtocolnames objectForKey:moduleId];
+        if ([protocolNames containsObject:protocoalName]) {
+            i++;
+        }
+        NSAssert(i<=1,@"为何注册多个相同的 protocoalName,又调用了只获取一个的 getModuleByProtocol 方法, 检测是否工程有问题");
+    }
+#endif
     for (NSString *moduleId in self.moduleId2MoudleProtocolnames) {
         NSMutableArray *protocolNames = [self.moduleId2MoudleProtocolnames objectForKey:moduleId];
         if ([protocolNames containsObject:protocoalName]) {

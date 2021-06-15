@@ -48,7 +48,6 @@
         // 视图是被presented出来的
         rootVC = [rootVC presentedViewController];
     }
-
     if ([rootVC isKindOfClass:[UITabBarController class]]) {
         // 根视图为UITabBarController
         currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
@@ -56,7 +55,6 @@
         // 根视图为UINavigationController
         UINavigationController *nav = (UINavigationController *)rootVC;
         currentVC = [self getCurrentVCFrom:[nav topViewController]];
-//        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
     } else {
         // 根视图为非导航类
         currentVC = rootVC;

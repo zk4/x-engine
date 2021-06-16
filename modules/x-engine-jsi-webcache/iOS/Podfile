@@ -8,6 +8,7 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-jsi', :path =>X_ENGINE_MODULES+'/x-engine-native-jsi'
+  pod 'x-engine-jsi-direct', :path =>X_ENGINE_MODULES+'/x-engine-jsi-direct'
   pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
   pod 'x-engine-native-direct_https', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_https'
   pod 'x-engine-native-direct_http', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_http'

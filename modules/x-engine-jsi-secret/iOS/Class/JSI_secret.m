@@ -11,6 +11,7 @@
 #import "XENativeContext.h"
 #import "iStore.h"
 #import "GlobalState.h"
+#import "MJExtension.h"
 
 
 @interface JSI_secret()
@@ -27,7 +28,13 @@ JSI_MODULE(JSI_secret)
  
 - (NSString *)_get:(NSString *)dto {
     ///TODO: check microapp.json 的权限
-    return [_store get:dto];
+    
+    id ret= [_store get:dto];
+    if([ret isKindOfClass:NSDictionary.class]){
+        NSDictionary* dict2=(NSDictionary* ) ret;
+        return [dict2 mj_JSONString];
+    }
+    return ret;
 }
  
 

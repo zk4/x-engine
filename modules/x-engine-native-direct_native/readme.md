@@ -2,6 +2,8 @@
 
 增加 native 路由机制。
 
+当前仅 jsi 有依赖需求.
+
 
 
 ## 设计
@@ -16,6 +18,8 @@
 
 1. 实现了原生 UI 路由接口的。
 2. 由业务打开方提供 UI 界面的实例化与打开方式。
+
+
 
 
 
@@ -66,4 +70,18 @@ interface DirectBackDTO {
 
 
 ```
+
+
+
+scheme: native 
+
+host: 域名()
+
+pathname: 类 id
+
+
+
+参考:
+
+https://juejin.cn/post/6844903902467342349
 

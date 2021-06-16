@@ -1,8 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jsi.gmshare">
- <application>
-    <meta-data
-        android:name="com.zkty.jsi.gmshare"
-        android:value="com.zkty.jsi.JSI_gmshare" />
-  </application>
-</manifest>

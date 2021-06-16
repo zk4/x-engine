@@ -54,15 +54,15 @@
 
 - (void)didClickBtn {
     
-//    id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[OneViewController new] animated:YES];
+    id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+//    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[OneViewController new] animated:YES];
 //    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[OneViewController new] animated:YES];
 
     // 本地包
-//    [director push:@"microapp" host:@"10.2.128.73:8082" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+    [director push:@"omp" host:@"192.168.1.15:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 
     // 远程10.2.128.71:8080
-//    [director push:@"omp" host:@"10.2.128.73:8081" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+//    [director push:@"omp://192.168.1.15:8080" params:@{@"hideNavbar":@YES}];
 //    [director push:@"native" host:@"category" pathname:@"/Two"  fragment:@"" query:nil  params:@{@"hideNavbar":@TRUE}];
   
 

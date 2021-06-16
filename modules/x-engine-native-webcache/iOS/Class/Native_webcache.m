@@ -9,6 +9,7 @@
 #import "micros.h"
 #import "NSURLProtocol+WebKitSupport.h"
 #import "ReplacingImageURLProtocol.h"
+#import <UIKit/UIKit.h>
 
 
 @interface Native_webcache()

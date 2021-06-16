@@ -5,6 +5,7 @@ import com.zkty.engine.module.network.net.callback.Inetworkmanager;
 import com.zkty.engine.module.network.net.utils.NetworkCommonUtils;
 import com.zkty.nativ.network.NetworkConfig;
 import com.zkty.nativ.network.NetworkMaster;
+import com.zkty.nativ.network.net.exception.ApiException;
 import com.zkty.nativ.network.net.myinterface.OnDownloadListener;
 import com.zkty.nativ.network.net.myinterface.OnUploadListener;
 import com.zkty.nativ.network.net.myinterface.ServiceCallback;
@@ -127,7 +128,22 @@ public class NetworkServer implements Inetworkmanager {
      */
     @Override
     public void sendGet(String interfaceName, Map<String, Object> params,ServiceCallback callback){
-        NetworkMaster.getInstance().get(requestType,baseurl,interfaceName,params,heads,isIntercepToken,callback);
+        NetworkMaster.getInstance().get(requestType, baseurl, interfaceName, params, heads, isIntercepToken, new ServiceCallback() {
+            @Override
+            public void onSuccess(Object jsonObg) {
+
+            }
+
+            @Override
+            public void onError(ApiException apiException) {
+
+            }
+
+            @Override
+            public void onInvalid() {
+
+            }
+        });
     }
 
 

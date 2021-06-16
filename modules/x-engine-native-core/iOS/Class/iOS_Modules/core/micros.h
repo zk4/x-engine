@@ -146,10 +146,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 #define XE_CONCAT(a,b) a##b
 
 #define WeakSelf(type) __weak typeof(type) weak##type = type;
-#define WeakSelfNamed(type,name) __weak typeof(type) weak##type##name = type;
-#define StrongSelfNamed(type,name) __strong typeof(type) type = weak##type##name;
-
-#define StrongSelf(type) __strong typeof(type) type = weak##type;
+#define StrongSelf(type) __strong typeof(weak##type) strong##type = weak##type;
 
 
 #define XE_ALERT(msg)\

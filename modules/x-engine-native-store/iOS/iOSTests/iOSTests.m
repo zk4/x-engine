@@ -62,7 +62,6 @@
     NSString* oldVal = [_store get:@"oldkey"];
     XCTAssertEqualObjects(@"abc",newVal, @"should equal");
     XCTAssertEqualObjects(@"123",oldVal, @"should equal");
-
 }
 
 

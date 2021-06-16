@@ -283,13 +283,14 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         if (lifecycleListeners != null) {
             lifecycleListeners.clear();
         }
+      
 
         EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_SHOW_TABBAR));
         EventBus.getDefault().unregister(this);
-
         super.onDestroy();
         XEngineWebActivityManager.sharedInstance().clearActivity(this);
         mWebView.goBack();
+
 //        SwipeBackHelper.onDestroy(this);
 
     }

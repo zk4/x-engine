@@ -128,6 +128,7 @@ public class XEngineWebView extends DWebView {
 
             @Override
             public void onPageFinished(WebView webView, String s) {
+                evaluateJavascript("window._dswk=true;");
                 super.onPageFinished(webView, s);
                 if (onPageStateListener != null) {
                     onPageStateListener.onPageFinished();
@@ -450,7 +451,8 @@ public class XEngineWebView extends DWebView {
             hostR = MicroAppLoader.sharedInstance().getMicroAppHostFormAssets(model.host);
         }
 
-        sb.append(model.protocol).append("//").append(hostR);
+
+        sb.append(model.protocol).append("//").append(TextUtils.isEmpty(hostR) ? "" : hostR);
         if (!TextUtils.isEmpty(model.pathname) && !model.pathname.equals("/")) {
             sb.append(model.pathname);
         }

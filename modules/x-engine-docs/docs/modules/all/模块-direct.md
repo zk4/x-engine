@@ -124,7 +124,7 @@ version: 0.1.13
 		pathname: "/",
 		fragment: "/xxx",
     query: {
-      id:1
+      id:1,
       name: "x-engine"
     }
   },function(res) {

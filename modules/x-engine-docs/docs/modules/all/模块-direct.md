@@ -103,6 +103,8 @@ version: 0.1.13
   });
 
 	// 跳转microapp的某个页面
+	// host: 跳转的microapp名称
+	// fragment: 跳转的页面名称
 	engine.api("com.zkty.jsi.direct","push",{
     scheme: "microapp",
     host: "com.gm.microapp.xxx",
@@ -113,6 +115,9 @@ version: 0.1.13
    });
 
 	// 跳转microapp的某个页面并且携带参数, 在下一个页面通过this.$router.query.xx来获取传递参数
+	// host: 跳转的microapp名称
+	// fragment: 跳转的页面名称
+	// query: 跳转携带的参数
 	engine.api("com.zkty.jsi.direct", "push", {
 		scheme: "microapp",
 		host: "com.gm.microapp.xxx",

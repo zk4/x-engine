@@ -14,6 +14,11 @@ android {
             abiFilters"armeabi","armeabi-v7a","x86","mips"
         }
         multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -67,6 +72,7 @@ dependencies {
     implementation project(':native-direct_https')
     implementation project(':native-direct_microapp')
     implementation project(':native-direct_omp')
+    implementation project(':native-direct_native')
     implementation project(':native-jsi')
     implementation project(':native-share')
     implementation project(':native-share_wx')
@@ -87,4 +93,6 @@ dependencies {
     implementation project(':jsi-dev')
     implementation project(':jsi-viewer')
     implementation project(':jsi-globalstorage')
+
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
 }

@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class XEngineApplication extends MultiDexApplication {
@@ -30,8 +31,29 @@ public class XEngineApplication extends MultiDexApplication {
         application = this;
         //主进程中初始化引擎
 //        if (Utils.getCurProcessName(this).equals(getApplicationInfo().packageName)) {
-            NativeContext.sharedInstance().init(this);
+        NativeContext.sharedInstance().init(this);
 //        }
+        registerAppOnCreateLifecycleCallback();
+        registerActivityLifecycleCallback();
+
+    }
+
+    private void registerAppOnCreateLifecycleCallback() {
+        List<NativeModule> modules = NativeContext.sharedInstance().getModules();
+
+        for (NativeModule module : modules) {
+            if (module instanceof IApplicationListener) {
+                IApplicationListener listener = (IApplicationListener) module;
+                if (listener != null) {
+                    listener.onAppCreate(this);
+                }
+
+            }
+        }
+
+    }
+
+    private void registerActivityLifecycleCallback() {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -70,6 +92,23 @@ public class XEngineApplication extends MultiDexApplication {
         });
     }
 
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        List<NativeModule> modules = NativeContext.sharedInstance().getModules();
+
+        for (NativeModule module : modules) {
+            if (module instanceof IApplicationListener) {
+                IApplicationListener listener = (IApplicationListener) module;
+                if (listener != null) {
+                    listener.onTerminate();
+                }
+
+            }
+        }
+
+    }
 
     public static Application getApplication() {
         return application;

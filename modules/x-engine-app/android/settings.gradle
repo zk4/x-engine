@@ -37,6 +37,9 @@ project(':native-direct_omp').projectDir = new File('../../x-engine-native-direc
 include ':native-direct_microapp'
 project(':native-direct_microapp').projectDir = new File('../../x-engine-native-direct_microapp/android/native-direct_microapp')
 
+include ':native-direct_native'
+project(':native-direct_native').projectDir = new File('../../x-engine-native-direct_native/android/native-direct_native')
+
 include ':native-share'
 project(':native-share').projectDir = new File('../../x-engine-native-share/android/native-share')
 

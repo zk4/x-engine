@@ -75,7 +75,7 @@ interface DirectBackDTO {
 
 scheme: native 
 
-host: 域名()
+host: 域名(空)
 
 pathname: 类 id
 

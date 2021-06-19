@@ -3,6 +3,7 @@ package com.zkty.nativ.direct;
 import com.anthonynsimon.url.URL;
 import com.anthonynsimon.url.exceptions.MalformedURLException;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 
 import java.util.Map;
@@ -21,6 +22,12 @@ public class DirectManager {
 
     }
 
+    public static void push(HistoryModel model) {
+        if (model != null) {
+            push(model.scheme, model.host, model.pathname, model.fragment, model.query, model.params);
+        }
+    }
+
 
     public static void push(String url, Map<String, String> params) {
 
@@ -34,7 +41,9 @@ public class DirectManager {
         }
 
 
-    } public static void push(String url) {
+    }
+
+    public static void push(String url) {
 
         try {
             URL url1 = URL.parse(url);

@@ -267,9 +267,9 @@ public class XEngineWebView extends DWebView {
         stopLoading();
 //        setWebChromeClient(null);
 //      setWebViewClient(null);
-        clearCache(true);
+//        clearCache(true);
         clearHistory();
-        loadUrl("about:blank");
+//        loadUrl("about:blank");
         this.destroy();
 
     }

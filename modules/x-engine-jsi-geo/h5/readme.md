@@ -6,135 +6,45 @@ version: 2.0.3
 
 
 
-## simpleMethod
-[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
-
-
+## locate
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
+> 获取单次定位信息
 **demo**
 ``` js
-
-  //demo code
-
-``` 
-
-**无参数**
-
-**无返回值**
-
-
-
-## simpleArgMethod
-[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
-
-
-
-**无参数**
-
-**返回值**
-``` js
-string
-``` 
-
-
-
-## simpleArgNumberMethod
-[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
-
-
-
-**无参数**
-
-**返回值**
-``` js
-int
-``` 
-
-
-
-## nestedAnonymousObject
-[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
-
-
-
-**无参数**
-
-**返回值**
-``` js
- {
- a: string; i: {
- n1: string 
-} 
+  {
+  xengine.api("com.zkty.jsi.geo", "locate",(val)=>{
+  document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
 }
 ``` 
 
-
-
-## namedObject
-[`sync`](/docs/modules/模块-规范?id=jsi-调用) [`async`](/docs/modules/模块-规范?id=jsi-调用)
-
-
-
 **无参数**
 
 **返回值**
 ``` js
 
+interface LocationDTO {
 
-interface NamedDTO {
+   // 目标地经度
+  longitude: string;
+  // 目标地纬度
+  latitude: string;
+  // 地址
+  address:string;
+  // 国家名字
+  country: string;
+  // 省名字
+  province: string;
+  // 城市名字
+  city: string;
+  // 区名字
+  district: string;
+  // 街道
+  street: string;
+  
+  
+  
 
-  //文字
-  title: string;
-  //大小
-  titleSize: int;
-
-}
-``` 
-
-
-
-## namedObjectWithNamedArgs
-[`sync`](/docs/modules/模块-规范?id=jsi-调用) [`async`](/docs/modules/模块-规范?id=jsi-调用)
-
-
-
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| title | string | 必填 |  | 文字 |
-| titleSize | int | 必填 |  | 大小 |
-**返回值**
-``` js
-
-
-interface NamedDTO {
-
-  //文字
-  title: string;
-  //大小
-  titleSize: int;
-
-}
-``` 
-
-
-
-## namedObjectWithArgs
-[`sync`](/docs/modules/模块-规范?id=jsi-调用) [`async`](/docs/modules/模块-规范?id=jsi-调用)
-
-
-
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| name | string | 必填 |  |  |
-| age | int | 必填 |  |  |
-**返回值**
-``` js
- {
-goodname:string,
-price:int
 }
 ``` 
 

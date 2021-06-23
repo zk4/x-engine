@@ -6,6 +6,7 @@ import java.util.Map;
 public class HistoryModel implements Serializable {
     public boolean isResume;
     public String protocol;
+    public String scheme;
     public String host;
     public String pathname;
     public String fragment;

@@ -11,6 +11,13 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
+  
+  pod 'x-engine-jsi-globalstorage', :path => X_ENGINE_MODULES+'/x-engine-jsi-globalstorage'
+  pod 'x-engine-native-jsi', :path => X_ENGINE_MODULES+'/x-engine-native-jsi'
+  pod 'x-engine-native-scan', :path => X_ENGINE_MODULES+'/x-engine-native-scan'
+
+  pod 'MGJRouter', '~>0.9.0'
+
 end
 
 target 'direct_native' do

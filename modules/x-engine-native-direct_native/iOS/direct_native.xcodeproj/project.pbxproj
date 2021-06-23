@@ -3,19 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 003F95D924DA4A6100633E1F /* libc++.tbd */; };
 		00DFC6CA24C83F95006A53EE /* iDirect_nativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6C924C83F95006A53EE /* iDirect_nativeTests.m */; };
-		00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6D424C83F95006A53EE /* iOSUITests.m */; };
 		00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		00DFC6F524C84000006A53EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EB24C84000006A53EE /* main.m */; };
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
 		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
-		037077DA0CF9AB0139DD4CB0 /* libPods-direct_nativeUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8350D989E9DC64C10250A7DE /* libPods-direct_nativeUITests.a */; };
+		387ED6BA26835C8200F2A3F4 /* direct_nativeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 387ED6B926835C8200F2A3F4 /* direct_nativeUITests.m */; };
 		38E983942615F6E8007F6BDF /* Native_direct_native.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_direct_native.m */; };
 		8DE2BE0D911D179E746F70B9 /* libPods-direct_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6766A91E76375D29D7BBF318 /* libPods-direct_nativeTests.a */; };
 		EE1E8D9093AC7168C6D0E863 /* libPods-direct_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9BE71C3752AAE7FEAFE2CF /* libPods-direct_native.a */; };
@@ -29,12 +28,12 @@
 			remoteGlobalIDString = 00DFC6A924C83F94006A53EE;
 			remoteInfo = iOS;
 		};
-		00DFC6D124C83F95006A53EE /* PBXContainerItemProxy */ = {
+		387ED6BC26835C8200F2A3F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00DFC6A224C83F94006A53EE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 00DFC6A924C83F94006A53EE;
-			remoteInfo = iOS;
+			remoteInfo = direct_native;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -44,9 +43,6 @@
 		00DFC6C524C83F95006A53EE /* direct_nativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = direct_nativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6C924C83F95006A53EE /* iDirect_nativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iDirect_nativeTests.m; sourceTree = "<group>"; };
 		00DFC6CB24C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00DFC6D024C83F95006A53EE /* direct_nativeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = direct_nativeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00DFC6D424C83F95006A53EE /* iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSUITests.m; sourceTree = "<group>"; };
-		00DFC6D624C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00DFC6E324C84000006A53EE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00DFC6E424C84000006A53EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00DFC6EB24C84000006A53EE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,10 +54,12 @@
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		29A8E4C45DA829D493BB387D /* Pods-direct_nativeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_nativeUITests.release.xcconfig"; path = "Target Support Files/Pods-direct_nativeUITests/Pods-direct_nativeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2DCA87AAE86E310D57FEEBFE /* Pods-abstract-direct_nativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct_nativeTests.release.xcconfig"; path = "Target Support Files/Pods-abstract-direct_nativeTests/Pods-abstract-direct_nativeTests.release.xcconfig"; sourceTree = "<group>"; };
+		387ED6B726835C8200F2A3F4 /* direct_nativeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = direct_nativeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		387ED6B926835C8200F2A3F4 /* direct_nativeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = direct_nativeUITests.m; sourceTree = "<group>"; };
+		387ED6BB26835C8200F2A3F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38E983922615F6E8007F6BDF /* Native_direct_native.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Native_direct_native.m; sourceTree = "<group>"; };
 		38E983932615F6E8007F6BDF /* Native_direct_native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Native_direct_native.h; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		581FAF352624CC1A00ED7DCC /* iDirect_native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDirect_native.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-direct_nativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_nativeTests.release.xcconfig"; path = "Target Support Files/Pods-direct_nativeTests/Pods-direct_nativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		6766A91E76375D29D7BBF318 /* libPods-direct_nativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-direct_nativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,11 +97,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00DFC6CD24C83F95006A53EE /* Frameworks */ = {
+		387ED6B426835C8200F2A3F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				037077DA0CF9AB0139DD4CB0 /* libPods-direct_nativeUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +113,7 @@
 				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* direct_native */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
-				00DFC6D324C83F95006A53EE /* iOSUITests */,
+				387ED6B826835C8200F2A3F4 /* direct_nativeUITests */,
 				00DFC6AB24C83F94006A53EE /* Products */,
 				5566DC63F412C2C1E9076389 /* Pods */,
 				B1C6B1D81743291D8E148429 /* Frameworks */,
@@ -128,7 +125,7 @@
 			children = (
 				00DFC6AA24C83F94006A53EE /* direct_native.app */,
 				00DFC6C524C83F95006A53EE /* direct_nativeTests.xctest */,
-				00DFC6D024C83F95006A53EE /* direct_nativeUITests.xctest */,
+				387ED6B726835C8200F2A3F4 /* direct_nativeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,15 +137,6 @@
 				00DFC6CB24C83F95006A53EE /* Info.plist */,
 			);
 			path = iOSTests;
-			sourceTree = "<group>";
-		};
-		00DFC6D324C83F95006A53EE /* iOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				00DFC6D424C83F95006A53EE /* iOSUITests.m */,
-				00DFC6D624C83F95006A53EE /* Info.plist */,
-			);
-			path = iOSUITests;
 			sourceTree = "<group>";
 		};
 		00DFC6E224C84000006A53EE /* direct_native */ = {
@@ -164,6 +152,15 @@
 				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
 			);
 			path = direct_native;
+			sourceTree = "<group>";
+		};
+		387ED6B826835C8200F2A3F4 /* direct_nativeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				387ED6B926835C8200F2A3F4 /* direct_nativeUITests.m */,
+				387ED6BB26835C8200F2A3F4 /* Info.plist */,
+			);
+			path = direct_nativeUITests;
 			sourceTree = "<group>";
 		};
 		5566DC63F412C2C1E9076389 /* Pods */ = {
@@ -194,7 +191,6 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				581FAF352624CC1A00ED7DCC /* iDirect_native.h */,
 				38E983932615F6E8007F6BDF /* Native_direct_native.h */,
 				38E983922615F6E8007F6BDF /* Native_direct_native.m */,
 			);
@@ -224,6 +220,7 @@
 				00DFC6A724C83F94006A53EE /* Frameworks */,
 				00DFC6A824C83F94006A53EE /* Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
+				DE5C63DD68250B09584D2C07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,6 +239,7 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
+				F7C32EE32A65CC9D883E88FB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,24 +251,22 @@
 			productReference = 00DFC6C524C83F95006A53EE /* direct_nativeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		00DFC6CF24C83F95006A53EE /* direct_nativeUITests */ = {
+		387ED6B626835C8200F2A3F4 /* direct_nativeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "direct_nativeUITests" */;
+			buildConfigurationList = 387ED6BE26835C8200F2A3F4 /* Build configuration list for PBXNativeTarget "direct_nativeUITests" */;
 			buildPhases = (
-				50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */,
-				00DFC6CC24C83F95006A53EE /* Sources */,
-				00DFC6CD24C83F95006A53EE /* Frameworks */,
-				00DFC6CE24C83F95006A53EE /* Resources */,
-				5826725C24FFE896001D6CF3 /* ShellScript */,
+				387ED6B326835C8200F2A3F4 /* Sources */,
+				387ED6B426835C8200F2A3F4 /* Frameworks */,
+				387ED6B526835C8200F2A3F4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				00DFC6D224C83F95006A53EE /* PBXTargetDependency */,
+				387ED6BD26835C8200F2A3F4 /* PBXTargetDependency */,
 			);
 			name = direct_nativeUITests;
-			productName = iOSUITests;
-			productReference = 00DFC6D024C83F95006A53EE /* direct_nativeUITests.xctest */;
+			productName = direct_nativeUITests;
+			productReference = 387ED6B726835C8200F2A3F4 /* direct_nativeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -289,8 +285,8 @@
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = 00DFC6A924C83F94006A53EE;
 					};
-					00DFC6CF24C83F95006A53EE = {
-						CreatedOnToolsVersion = 11.5;
+					387ED6B626835C8200F2A3F4 = {
+						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 00DFC6A924C83F94006A53EE;
 					};
 				};
@@ -310,7 +306,7 @@
 			targets = (
 				00DFC6A924C83F94006A53EE /* direct_native */,
 				00DFC6C424C83F95006A53EE /* direct_nativeTests */,
-				00DFC6CF24C83F95006A53EE /* direct_nativeUITests */,
+				387ED6B626835C8200F2A3F4 /* direct_nativeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -332,7 +328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00DFC6CE24C83F95006A53EE /* Resources */ = {
+		387ED6B526835C8200F2A3F4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -363,45 +359,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-direct_nativeUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5826725C24FFE896001D6CF3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		5826725D24FFE94A001D6CF3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -442,6 +399,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DE5C63DD68250B09584D2C07 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_native/Pods-direct_native-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_native/Pods-direct_native-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_native/Pods-direct_native-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7C32EE32A65CC9D883E88FB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_nativeTests/Pods-direct_nativeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_nativeTests/Pods-direct_nativeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_nativeTests/Pods-direct_nativeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -464,11 +455,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00DFC6CC24C83F95006A53EE /* Sources */ = {
+		387ED6B326835C8200F2A3F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00DFC6D524C83F95006A53EE /* iOSUITests.m in Sources */,
+				387ED6BA26835C8200F2A3F4 /* direct_nativeUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,16 +471,17 @@
 			target = 00DFC6A924C83F94006A53EE /* direct_native */;
 			targetProxy = 00DFC6C624C83F95006A53EE /* PBXContainerItemProxy */;
 		};
-		00DFC6D224C83F95006A53EE /* PBXTargetDependency */ = {
+		387ED6BD26835C8200F2A3F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 00DFC6A924C83F94006A53EE /* direct_native */;
-			targetProxy = 00DFC6D124C83F95006A53EE /* PBXContainerItemProxy */;
+			targetProxy = 387ED6BC26835C8200F2A3F4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		00DFC6D724C83F95006A53EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-direct_native.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -538,7 +530,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -590,7 +582,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -603,9 +595,10 @@
 			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-direct_native.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: junyu wang (736Q47FF3Z)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = XFZ38U4TMY;
 				INFOPLIST_FILE = "$(SRCROOT)/direct_native/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -614,8 +607,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
 				PRODUCT_NAME = direct_native;
+				PROVISIONING_PROFILE_SPECIFIER = "gomeHomeAppC-pp-Dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -625,9 +619,10 @@
 			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-direct_native.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guomeijia Life Technology Co.,Ltd. (XFZ38U4TMY)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = XFZ38U4TMY;
 				INFOPLIST_FILE = "$(SRCROOT)/direct_native/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -636,8 +631,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
 				PRODUCT_NAME = direct_native;
+				PROVISIONING_PROFILE_SPECIFIER = "gomeHomeAppC-pp";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -647,10 +643,11 @@
 			baseConfigurationReference = A5D13A8E4F88C6229E85D0A4 /* Pods-direct_nativeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				CODE_SIGN_IDENTITY = "iPhone Developer: junyu wang (736Q47FF3Z)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iOSTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -658,6 +655,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/direct_native.app/direct_native";
 			};
@@ -668,57 +667,61 @@
 			baseConfigurationReference = 63DE3BD3E28F9EAAA98AA143 /* Pods-direct_nativeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				CODE_SIGN_IDENTITY = "iPhone Developer: junyu wang (736Q47FF3Z)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iOSTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSTests;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/direct_native.app/direct_native";
 			};
 			name = Release;
 		};
-		00DFC6E024C83F95006A53EE /* Debug */ = {
+		387ED6BF26835C8200F2A3F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC9328813DA9AD9B20D713E0 /* Pods-direct_nativeUITests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
-				INFOPLIST_FILE = iOSUITests/Info.plist;
+				INFOPLIST_FILE = direct_nativeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "zkty.direct-nativeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iOS;
+				TEST_TARGET_NAME = direct_native;
 			};
 			name = Debug;
 		};
-		00DFC6E124C83F95006A53EE /* Release */ = {
+		387ED6C026835C8200F2A3F4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29A8E4C45DA829D493BB387D /* Pods-direct_nativeUITests.release.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
-				INFOPLIST_FILE = iOSUITests/Info.plist;
+				INFOPLIST_FILE = direct_nativeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "zkty.direct-nativeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iOS;
+				TEST_TARGET_NAME = direct_native;
 			};
 			name = Release;
 		};
@@ -732,7 +735,7 @@
 				00DFC6D824C83F95006A53EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		00DFC6D924C83F95006A53EE /* Build configuration list for PBXNativeTarget "direct_native" */ = {
 			isa = XCConfigurationList;
@@ -741,7 +744,7 @@
 				00DFC6DB24C83F95006A53EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		00DFC6DC24C83F95006A53EE /* Build configuration list for PBXNativeTarget "direct_nativeTests" */ = {
 			isa = XCConfigurationList;
@@ -750,16 +753,16 @@
 				00DFC6DE24C83F95006A53EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "direct_nativeUITests" */ = {
+		387ED6BE26835C8200F2A3F4 /* Build configuration list for PBXNativeTarget "direct_nativeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				00DFC6E024C83F95006A53EE /* Debug */,
-				00DFC6E124C83F95006A53EE /* Release */,
+				387ED6BF26835C8200F2A3F4 /* Debug */,
+				387ED6C026835C8200F2A3F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

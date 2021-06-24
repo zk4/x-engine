@@ -1,14 +1,10 @@
 package com.zkty.nativ.geo_gaode;
 
-import android.util.Log;
-
-import com.tencent.mmkv.MMKV;
 import com.zkty.nativ.core.NativeModule;
-import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.geo.IGeoManager;
+import com.zkty.nativ.geo.Igeo;
 
-import java.io.File;
-
-public class Nativegeo_gaode extends NativeModule implements Igeo_gaode {
+public class Nativegeo_gaode extends NativeModule implements Igeo {
 
     @Override
     public String moduleId() {
@@ -17,6 +13,12 @@ public class Nativegeo_gaode extends NativeModule implements Igeo_gaode {
 
     @Override
     public void afterAllNativeModuleInited() {
+
+    }
+
+    @Override
+    public void locate(IGeoManager.CallBack callBack) {
+
 
     }
 }

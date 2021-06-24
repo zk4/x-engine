@@ -7,6 +7,7 @@
 #import "Native_geo_gaode.h"
 #import "XENativeContext.h"
 
+#import <objc/runtime.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 
@@ -48,25 +49,48 @@ NATIVE_MODULE(Native_geo_gaode)
 -(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult;{
     // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        NSLog(@"定位结果");
             if (error)
             {
-                NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-                
-                if (error.code == AMapLocationErrorLocateFailed)
-                {
+                    geoResult(nil);
                     return;
-                }
             }
-            
-            NSLog(@"location:%@", location);
-            
+                        
             if (regeocode)
             {
-                NSLog(@"reGeocode:%@", regeocode);
+                NSDictionary *reGeoDict = [self dicFromObject:regeocode];
+                geoResult(reGeoDict);
+            }
+            else{
+                geoResult(nil);
             }
         }];
 }
+
+//model转化为字典
+- (NSDictionary *)dicFromObject:(NSObject *)object {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    unsigned int count;
+    objc_property_t *propertyList = class_copyPropertyList([object class], &count);
+    
+    for (int i = 0; i < count; i++) {
+        objc_property_t property = propertyList[i];
+        const char *cName = property_getName(property);
+        NSString *name = [NSString stringWithUTF8String:cName];
+        NSObject *value = [object valueForKey:name];//valueForKey返回的数字和字符串都是对象
+        
+        if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
+            //string , bool, int ,NSinteger
+            [dic setObject:value forKey:name];
+            
+        } else {
+            //model
+            [dic setObject:[self dicFromObject:value] forKey:name];
+        }
+    }
+    
+    return [dic copy];
+}
+
 
 -(AMapLocationManager*)locationManager{
     //首次定位精度百米以内，超时两秒

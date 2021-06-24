@@ -23,7 +23,9 @@
     BOOL isSuccess = [_geo_gaode initSDKByConfig:@{@"keyString":@"c68c60fb8801d81927bb6746a93a6fce"}];
     if (isSuccess) {
         [_geo_gaode geoSinglePositionResult:^(NSDictionary *reDic){
-            
+            for (NSString *keyString in [reDic allKeys]) {
+                NSLog(@"位置信息==%@:%@",keyString,reDic[keyString]);
+            }
         }];
     }
 }

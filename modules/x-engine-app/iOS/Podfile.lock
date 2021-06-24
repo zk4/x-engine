@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - JSONModel (1.8.0)
   - WHDebugTool (2.3)
   - x-engine-jsi-camera (2.0.3):
@@ -88,6 +103,11 @@ PODS:
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
+  - x-engine-native-rest (1.0.0):
+    - AFNetworking (~> 4.0.0)
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-scan (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -99,6 +119,10 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-webcache (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+    - x-engine-native-rest
   - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
@@ -127,13 +151,16 @@ DEPENDENCIES:
   - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - x-engine-native-rest (from `../../x-engine-native-rest`)
   - x-engine-native-scan (from `../../x-engine-native-scan`)
   - x-engine-native-store (from `../../x-engine-native-store`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
+  - x-engine-native-webcache (from `../../x-engine-native-webcache`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - JSONModel
     - WHDebugTool
 
@@ -186,16 +213,21 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-jsi"
   x-engine-native-protocols:
     :path: "../../x-engine-native-protocols"
+  x-engine-native-rest:
+    :path: "../../x-engine-native-rest"
   x-engine-native-scan:
     :path: "../../x-engine-native-scan"
   x-engine-native-store:
     :path: "../../x-engine-native-store"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
+  x-engine-native-webcache:
+    :path: "../../x-engine-native-webcache"
   ZBarSDK:
     :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   WHDebugTool: 6e6b6b60af073126b43096fc791985a4f7f249a3
   x-engine-jsi-camera: 4d94c77f06190fe50f33cefe1e60d60723278e47
@@ -222,11 +254,13 @@ SPEC CHECKSUMS:
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-rest: 600cf890c6779cfbdb24efea44e5f1b42e9fe45c
   x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
   x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
+  x-engine-native-webcache: 8835ba2a1141fc3736f967ce958576635fb819f1
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 33ced8405e4886b38922f95d3630863627591260
+PODFILE CHECKSUM: 7958575f2ef5a6c9be79f28252060b8e471376bf
 
 COCOAPODS: 1.10.1

@@ -126,7 +126,7 @@ NATIVE_MODULE(Native_direct_omp)
     }
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment newWebView:ONE_PAGE_ONE_WEBVIEW withHiddenNavBar:isHideNavBar];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment   withHiddenNavBar:isHideNavBar onTab:FALSE];
     if([Unity sharedInstance].getCurrentVC.navigationController){
         [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
     } else {

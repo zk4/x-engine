@@ -29,7 +29,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
-@property (nonatomic, assign) Boolean newWebview;
 @property (nonatomic, assign) Boolean firstDidAppearCbIgnored;
 @property (nonatomic, assign) Boolean isOnTab;
 @property (nonatomic, strong) UIProgressView *progresslayer;
@@ -59,7 +58,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     }
 }
 
-- (instancetype)initWithUrl:(NSString *)fileUrl host:(NSString *)host pathname:(NSString *)pathname query:(NSMutableDictionary *)query fragment:(NSString *)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
+- (instancetype)initWithUrl:(NSString *)fileUrl host:(NSString *)host pathname:(NSString *)pathname query:(NSMutableDictionary *)query fragment:(NSString *)fragment   withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
@@ -67,7 +66,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
         self.isHiddenNavbar = isHidden;
-        self.newWebview = newWebView;
         self.loadUrl = fileUrl;
         self.isOnTab   = isOnTab;
         self.webview = [[WebViewFactory sharedInstance] createWebView];
@@ -107,7 +105,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     return self;
 }
 
-- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment  withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
@@ -115,7 +113,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
         self.isHiddenNavbar = isHidden;
-        self.newWebview = newWebView;
         self.loadUrl = fileUrl;
         self.isOnTab   = isOnTab;
         
@@ -157,7 +154,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     return self;
 }
 - (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
-    return [self initWithUrl:fileUrl host:host pathname:pathname fragment:fragment newWebView:newWebView withHiddenNavBar:isHidden onTab:FALSE];
+    return [self initWithUrl:fileUrl host:host pathname:pathname fragment:fragment   withHiddenNavBar:isHidden onTab:FALSE];
 }
 
 - (void)loadFileUrl {
@@ -246,12 +243,12 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
     [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
     
-    if(!self.newWebview && self.screenView == nil){
-        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
-        self.screenView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:self.screenView];
-        self.screenView.frame = self.view.bounds;
-    }
+//    if(!self.newWebview && self.screenView == nil){
+//        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+//        self.screenView.backgroundColor = [UIColor whiteColor];
+//        [self.view addSubview:self.screenView];
+//        self.screenView.frame = self.view.bounds;
+//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

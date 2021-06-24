@@ -39,8 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 注册原生页面URL地址
 /// @param URLPattern 原生页面URL
 /// @param openNativeActive 打开原生页面事件
-- (void)registerURLPattern:(NSString *)URLPattern openNativeActive:(void (^)(void))openNativeActive;
-
+- (void)registerURLPattern:(NSString *)URLPattern openNativeActive:(void (^)(NSDictionary *routerParameters))openNativeActive;
 
 @end
 

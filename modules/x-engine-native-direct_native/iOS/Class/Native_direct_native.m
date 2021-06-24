@@ -117,9 +117,9 @@ NATIVE_MODULE(Native_direct_native)
     }
 }
 ///提前注册原生页面网址
-- (void)registerURLPattern:(NSString *)URLPattern openNativeActive:(void (^)(void))openNativeActive {
+- (void)registerURLPattern:(NSString *)URLPattern openNativeActive:(void (^)(NSDictionary *routerParameters))openNativeActive {
     [MGJRouter registerURLPattern:URLPattern toHandler:^(NSDictionary *routerParameters) {
-        openNativeActive();
+        openNativeActive(routerParameters);
     }];
 }
 
@@ -129,7 +129,7 @@ NATIVE_MODULE(Native_direct_native)
         fragment:(NSString*) fragment
         query:(NSDictionary<NSString*,id>*) query
         params:(NSDictionary<NSString*,id>*) params  {
-    [MGJRouter openURL:pathname withUserInfo:nil completion:^(id  _Nonnull result){}];
+    [MGJRouter openURL:pathname withUserInfo:params completion:^(id  _Nonnull result){}];
 }
 
 /// 判断query是否有值, 有值的就拼接在url上

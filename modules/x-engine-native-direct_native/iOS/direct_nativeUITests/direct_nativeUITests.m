@@ -13,6 +13,7 @@
 #import "XENativeContext.h"
 
 @interface direct_nativeUITests : XCTestCase
+@property (nonatomic, strong) XCUIApplication *app;
 @property(nonatomic,strong) id<iDirect> nativeDirect;
 @property (nonatomic, strong) id<iScan>  nativeScan;
 @end
@@ -23,26 +24,47 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
 
     // In UI tests it is usually best to stop immediately when a failure occurs.
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    //关闭应用
+    [app terminate];
+    //重新启动引用
+    [app launch];
+    //启动参数
+    NSArray *args = [app launchArguments];
+    for(int i=0;i<args.count;i++){
+        NSLog(@"arg :  %@",[args objectAtIndex:i]);
+    }
+    //启动环境
+    NSDictionary *env = [app launchEnvironment];
+    for (id key in env) {
+        NSString *object=[env objectForKey:key];
+        NSLog(@"env : %@",object);
+    }
+    
+    // In UI tests it is usually best to stop immediately when a failure occurs.
     self.continueAfterFailure = NO;
-    __weak typeof(self) weakSelf = self;
+    [self.app launch];
+
     _nativeScan = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iScan)];
     _nativeDirect = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirect)];
-    [_nativeDirect registerURLPattern:@"mgj://scan/scan" openNativeActive:^{
-        UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:@"与啊谁呢好难过" preferredStyle:UIAlertControllerStyleAlert];
+    [_nativeDirect registerURLPattern:@"/scan/alert" openNativeActive:^(NSDictionary *routerParameters){
+        NSDictionary *dict = routerParameters[@"MGJRouterParameterUserInfo"];
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:[dict[@"key"] stringWithString: @"李焕英"] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
         [ac addAction:action];
         [[Unity sharedInstance].getCurrentVC presentViewController:ac animated:YES completion:nil];
+
     }];
 
     // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
 }
-///实质是测UI(待定)
-- (void)test跳原生页面 {
-    [self.nativeDirect push:@"" host:@"" pathname:@"mgj://scan/scan" fragment:@"" query:@"" params:@""];
-}
-- (void)test点击 {
+- (void)test带参数路由跳转{
+    
+    [[[XCUIApplication alloc] init].staticTexts[@"Load Module"] tap];
+    [self.nativeDirect push:@"" host:@"" pathname:@"/scan/alert" fragment:@"" query:@"" params:@{@"key":@"value"}];
     
 }
+
 - (void)testExample {
             
     // UI tests must launch the application that they test.

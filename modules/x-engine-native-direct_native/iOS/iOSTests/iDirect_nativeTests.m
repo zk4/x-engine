@@ -20,7 +20,8 @@
     __weak typeof(self) weakSelf = self;
     _nativeScan = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iScan)];
     _nativeDirect = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirect)];
-    [_nativeDirect registerURLPattern:@"mgj://scan/scan" openNativeActive:^{
+    [_nativeDirect registerURLPattern:@"/scan/scan" openNativeActive:^(NSDictionary *routerParameters){
+        XCTAssertNotNil(routerParameters);
         weakSelf.nativeScan = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iScan)];
         [weakSelf.nativeScan openScanView:^(NSString *res) {
             NSLog(@"扫码结果 %@",res);
@@ -29,7 +30,7 @@
 }
 ///实质是测UI(待定)
 - (void)testScanRuterJump {
-    [self.nativeDirect push:@"" host:@"" pathname:@"mgj://scan/scan" fragment:@"" query:@"" params:@""];
+    [self.nativeDirect push:@"" host:@"" pathname:@"/scan/scan" fragment:@"" query:@"" params:@{@"key":@"value"}];
 }
 
 

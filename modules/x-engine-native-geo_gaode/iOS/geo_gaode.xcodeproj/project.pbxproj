@@ -614,7 +614,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
 				PRODUCT_NAME = geo_gaode;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -636,7 +636,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
 				PRODUCT_NAME = geo_gaode;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

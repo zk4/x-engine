@@ -24,11 +24,12 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    NSString* output = [_geo_gaode test];
-
-    NSString*  should= @"test";
-
-     XCTAssertEqualObjects(output,should, @"should equal");
+    BOOL isSuccess = [_geo_gaode initSDKByConfig:@{@"keyString":@"c68c60fb8801d81927bb6746a93a6fce"}];
+    if (isSuccess) {
+        [_geo_gaode geoSinglePositionResult:^(NSDictionary *reDic){
+            
+        }];
+    }
     
     
 }

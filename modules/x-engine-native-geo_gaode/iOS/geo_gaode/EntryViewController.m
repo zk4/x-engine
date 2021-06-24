@@ -5,8 +5,12 @@
 
 #import "EntryViewController.h"
 #import "XENativeContext.h"
+#import "iGeo_gaode.h"
+#import "Native_geo_gaode.h"
  
 @interface EntryViewController ()
+
+@property(nonatomic,strong) id<iGeo_gaode> geo_gaode;
 
 @end
 
@@ -16,12 +20,18 @@
 }
 
 -(void) pushTestModule{
-   
+    BOOL isSuccess = [_geo_gaode initSDKByConfig:@{@"keyString":@"c68c60fb8801d81927bb6746a93a6fce"}];
+    if (isSuccess) {
+        [_geo_gaode geoSinglePositionResult:^(NSDictionary *reDic){
+            
+        }];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self pushTestModule];
+    _geo_gaode = [Native_geo_gaode new];
+//    [self pushTestModule];
 
 }
 

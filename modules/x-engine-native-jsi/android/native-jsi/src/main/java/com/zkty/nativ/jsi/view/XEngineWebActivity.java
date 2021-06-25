@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,9 +31,9 @@ import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.core.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
-import com.zkty.nativ.jsi.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -44,8 +43,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 

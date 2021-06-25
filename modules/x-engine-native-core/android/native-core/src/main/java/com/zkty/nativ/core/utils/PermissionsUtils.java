@@ -1,4 +1,4 @@
-package com.zkty.nativ.jsi.utils;
+package com.zkty.nativ.core.utils;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 
 import com.zkty.nativ.core.XEngineApplication;
 

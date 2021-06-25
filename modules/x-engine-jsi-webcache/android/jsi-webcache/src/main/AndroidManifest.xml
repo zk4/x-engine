@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jsi.webcache">
+ <application>
+    <meta-data
+        android:name="com.zkty.jsi.webcache"
+        android:value="com.zkty.jsi.JSI_webcache" />
+  </application>
+</manifest>

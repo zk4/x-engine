@@ -270,7 +270,7 @@ public class XEngineWebView extends DWebView {
 //        clearCache(true);
         clearHistory();
 //        loadUrl("about:blank");
-        this.destroy();
+//        this.destroy();
 
     }
 

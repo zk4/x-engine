@@ -393,6 +393,17 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
+/**
+ 解决bug：
+ [NSURL URLWithString:]方法无法处理带有特殊字符的字符串，会导致转出来的URL为nil
+ 在setter方法中统一编码
+ */
+-(void)setLoadUrl:(NSString *)loadUrl {
+    
+    NSString *encodeString = [loadUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];// 编码转换
+    _loadUrl = encodeString;
+}
+
 - (void)dealloc {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
 }

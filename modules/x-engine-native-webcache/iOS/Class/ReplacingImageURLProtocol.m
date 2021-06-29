@@ -88,10 +88,10 @@ static NSString* const Header_Content_Type=@"Content-Type";
         NSString* contenttype = headers[Header_Content_Type];
         NSArray* tokens = [contenttype componentsSeparatedByString:@";"];
         NSString* mimeType = tokens[0];
-        BOOL shoudCache = [@[@"application/javascript"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BOOL shoudNotCache = [@[@"application/json"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             return [mimeType compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
         }] != NSNotFound;
-        if(shoudCache){
+        if(!shoudNotCache){
             [cache set:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString] val:@{@"data":data,@"headers":headers}];
             NSLog(@"save cache: ==========>%@",task.response.URL);
         }

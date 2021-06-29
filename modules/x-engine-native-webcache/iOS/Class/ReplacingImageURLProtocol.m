@@ -15,7 +15,7 @@
 
 static NSString* const FilteredKey = @"@@interceptable";
 static NSString* const WebCacheKey = @"@@WebGetCache";
-
+static NSString* const Header_Content_Type=@"Content-Type";
 
 @interface ReplacingImageURLProtocol()
  
@@ -26,15 +26,17 @@ static NSString* const WebCacheKey = @"@@WebGetCache";
 
  
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    NSString* extension = request.URL.pathExtension;
-    BOOL interceptable = [@[@"js", @"css",@"html",@"png",@"jpg",@"jpeg",@"gif"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return [extension compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
-    }] != NSNotFound;
-    BOOL stop = interceptable && [@"GET" isEqualToString:request.HTTPMethod];
+//    NSString* extension = request.URL.pathExtension;
+//    BOOL interceptable = [@[@"js", @"css", @"png",@"jpg",@"jpeg",@"gif"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        return [extension compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
+//    }] != NSNotFound;
+//    BOOL stop = interceptable && [@"GET" isEqualToString:request.HTTPMethod];
+//
+//    NSLog(@"%@ ==========>%@",stop?@"STOP":@"PASS",request.URL);
+//
+//    return stop;
 
-    NSLog(@"%@ ==========>%@",stop?@"STOP":@"PASS",request.URL);
-
-    return stop;
+    return YES;
 
 }
 
@@ -48,21 +50,24 @@ static NSString* const WebCacheKey = @"@@WebGetCache";
     
     //1. 检测缓存
     //   1. 无: 请求网络
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
     id<iStore> cache= XENP(iStore);
-    NSData* data=  [cache get:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString]];
+    NSDictionary* data=  [cache get:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString]];
+
     if(data){
-        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:@"application/*" expectedContentLength:data.length textEncodingName:nil];
+        NSData* rawdata = (NSData*)data[@"data"];
+        NSString* contenttype = data[@"headers"][Header_Content_Type];
+        NSArray* tokens = [contenttype componentsSeparatedByString:@";"];
+        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:tokens[0] expectedContentLength:rawdata.length textEncodingName:nil];
         [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
-        [self.client URLProtocol:self didLoadData:data];
+        [self.client URLProtocol:self didLoadData:rawdata];
         [self.client URLProtocolDidFinishLoading:self];
         NSLog(@"hit cache: ==========>%@",request.URL);
 
         return;
     }
-    // TODO: 应该带上所有原始请求信息
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager
      GET:self.request.URL.absoluteString
      parameters: nil
@@ -71,25 +76,36 @@ static NSString* const WebCacheKey = @"@@WebGetCache";
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // 准备数据
         NSData* data = responseObject;
-        
-        // TODO: MIMEType 应该用原始的
-        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:@"application/*" expectedContentLength:data.length textEncodingName:nil];
-        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
+
+        NSHTTPURLResponse* resp = (NSHTTPURLResponse*) task.response;
+        [self.client URLProtocol:self didReceiveResponse:resp cacheStoragePolicy:NSURLCacheStorageAllowed];
+        NSDictionary* headers =  resp.allHeaderFields;
         [self.client URLProtocol:self didLoadData:data];
         [self.client URLProtocolDidFinishLoading:self];
+        
         id<iStore> cache= XENP(iStore);
-        [cache set:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString] val:data];
+        /// TODO: 不缓存接口
+        NSString* contenttype = headers[Header_Content_Type];
+        NSArray* tokens = [contenttype componentsSeparatedByString:@";"];
+        NSString* mimeType = tokens[0];
+        BOOL shoudNotCache = [@[@"application/json"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            return [mimeType compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
+        }] != NSNotFound;
+        if(!shoudNotCache){
+            [cache set:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString] val:@{@"data":data,@"headers":headers}];
+            NSLog(@"save cache: ==========>%@",task.response.URL);
+        }
+
 
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error){
         NSLog(@"failed");
     }];
-    //   2. 有: 返回缓存
-    
+ 
   
 }
-
-- (void)stopLoading {
+ 
+- (void) stopLoading{
+    
 }
-
 @end

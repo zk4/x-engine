@@ -398,7 +398,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
  [NSURL URLWithString:]方法无法处理带有特殊字符的字符串，会导致转出来的URL为nil
  在setter方法中统一编码
  */
-//
 //-(void)setLoadUrl:(NSString *)loadUrl {
 //
 //    NSString *encodeString = [loadUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];// 编码转换

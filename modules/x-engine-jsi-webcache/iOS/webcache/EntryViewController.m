@@ -18,8 +18,8 @@
 -(void) pushTestModule{
     id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
   
-//    [director push:@"omp://10.2.128.71:8081" params:@{@"hideNavbar":@YES}];
-    [director push:@"https://www.baidu.com" params:@{@"hideNavbar":@YES}];
+    [director push:@"omp://192.168.1.15:8081" params:@{@"hideNavbar":@YES}];
+//    [director push:@"https://www.baidu.com" params:@{@"hideNavbar":@YES}];
 
 }
 

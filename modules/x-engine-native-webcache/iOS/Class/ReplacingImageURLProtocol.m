@@ -63,11 +63,15 @@ static NSString* const Header_Content_Type=@"Content-Type";
         [self.client URLProtocolDidFinishLoading:self];
         NSLog(@"hit cache: ==========>%@",request.URL);
 
-        return;
+        // using rolling　cache, do not return
+        // return;
     }
-    
+   　
+    // TODO: 合并请求
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    // TODO: 应该根据返回的 Content-Type 决定怎么序列化
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSLog(@"-------->%@",self.request.URL.absoluteString);
     [manager
      GET:self.request.URL.absoluteString
      parameters: nil
@@ -92,6 +96,7 @@ static NSString* const Header_Content_Type=@"Content-Type";
             return [mimeType compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
         }] != NSNotFound;
         if(!shoudNotCache){
+            // TODO: 同步
             [cache set:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString] val:@{@"data":data,@"headers":headers}];
             NSLog(@"save cache: ==========>%@",task.response.URL);
         }
@@ -99,7 +104,7 @@ static NSString* const Header_Content_Type=@"Content-Type";
 
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error){
-        NSLog(@"failed");
+        NSLog(@"failed %@",error);
     }];
  
   

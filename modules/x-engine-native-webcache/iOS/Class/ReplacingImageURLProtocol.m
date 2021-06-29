@@ -26,15 +26,17 @@ static NSString* const WebCacheKey = @"@@WebGetCache";
 
  
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    NSString* extension = request.URL.pathExtension;
-    BOOL interceptable = [@[@"js", @"css",@"html",@"png",@"jpg",@"jpeg",@"gif"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return [extension compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
-    }] != NSNotFound;
-    BOOL stop = interceptable && [@"GET" isEqualToString:request.HTTPMethod];
+//    NSString* extension = request.URL.pathExtension;
+//    BOOL interceptable = [@[@"js", @"css", @"png",@"jpg",@"jpeg",@"gif"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        return [extension compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
+//    }] != NSNotFound;
+//    BOOL stop = interceptable && [@"GET" isEqualToString:request.HTTPMethod];
+//
+//    NSLog(@"%@ ==========>%@",stop?@"STOP":@"PASS",request.URL);
+//
+//    return stop;
 
-    NSLog(@"%@ ==========>%@",stop?@"STOP":@"PASS",request.URL);
-
-    return stop;
+    return YES;
 
 }
 
@@ -52,11 +54,15 @@ static NSString* const WebCacheKey = @"@@WebGetCache";
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
     id<iStore> cache= XENP(iStore);
-    NSData* data=  [cache get:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString]];
+    NSDictionary* data=  [cache get:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString]];
+
     if(data){
-        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:@"application/*" expectedContentLength:data.length textEncodingName:nil];
+        NSData* rawdata = (NSData*)data[@"data"];
+        NSString* contenttype = data[@"headers"][@"Content-Type"];
+        NSArray* tokens = [contenttype componentsSeparatedByString:@";"];
+        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:tokens[0] expectedContentLength:rawdata.length textEncodingName:nil];
         [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
-        [self.client URLProtocol:self didLoadData:data];
+        [self.client URLProtocol:self didLoadData:rawdata];
         [self.client URLProtocolDidFinishLoading:self];
         NSLog(@"hit cache: ==========>%@",request.URL);
 
@@ -73,19 +79,24 @@ static NSString* const WebCacheKey = @"@@WebGetCache";
         NSData* data = responseObject;
         
         // TODO: MIMEType 应该用原始的
-        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:@"application/*" expectedContentLength:data.length textEncodingName:nil];
-        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
+
+//        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:@"application/*" expectedContentLength:data.length textEncodingName:nil];
+
+        NSHTTPURLResponse* resp = (NSHTTPURLResponse*) task.response;
+        [self.client URLProtocol:self didReceiveResponse:resp cacheStoragePolicy:NSURLCacheStorageAllowed];
+        NSDictionary* headers =  resp.allHeaderFields;
         [self.client URLProtocol:self didLoadData:data];
         [self.client URLProtocolDidFinishLoading:self];
         id<iStore> cache= XENP(iStore);
-        [cache set:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString] val:data];
+        [cache set:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString] val:@{@"data":data,@"headers":headers}];
+        NSLog(@"save cache: ==========>%@",task.response.URL);
+
 
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error){
         NSLog(@"failed");
     }];
-    //   2. 有: 返回缓存
-    
+ 
   
 }
 

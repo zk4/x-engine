@@ -63,8 +63,8 @@ static NSString* const Header_Content_Type=@"Content-Type";
 
 - (void)sendCache:(NSString *)mimeType rawdata:(NSData *)rawdata request:(NSMutableURLRequest *)request headers:(NSDictionary*)headers {
     NSHTTPURLResponse* response = [[NSHTTPURLResponse alloc] initWithURL:self.request.URL MIMEType:mimeType expectedContentLength:rawdata.length textEncodingName:nil];
-   /// TODO: 怎么返回原始的 headers？
-//    response.allHeaderFields= headers.mutableCopy;
+    /// TODO: 怎么返回原始的 headers？
+    //    response.allHeaderFields= headers.mutableCopy;
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
     [self.client URLProtocol:self didLoadData:rawdata];
     [self.client URLProtocolDidFinishLoading:self];
@@ -109,7 +109,7 @@ static NSString* const Header_Content_Type=@"Content-Type";
             NSHTTPURLResponse* resp =(NSHTTPURLResponse* )response;
             NSDictionary* headers =  resp.allHeaderFields;
             NSString* mimeType = [self extractMimeType:headers];
-
+            
             /// 无缓存，　怎么着也得返回一下。
             if(!cache){
                 NSData* rawdata =data;

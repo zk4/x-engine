@@ -2,7 +2,7 @@
 //  ReplacingImageURLProtocol.m
 //  NSURLProtocol+WebKitSupport
 //
-//  Created by yeatse on 2016/10/11.
+//  Created by yeatse　＆ zk on 2020/06/30.
 //  Copyright © 2016年 Yeatse. All rights reserved.
 //
 
@@ -29,17 +29,6 @@ static NSString* const Header_Content_Type=@"Content-Type";
     if ([NSURLProtocol propertyForKey:FilteredKey inRequest:request]) {
         return NO;
     }
-    
-    //    NSString* extension = request.URL.pathExtension;
-    //    BOOL interceptable = [@[@"js", @"css", @"png",@"jpg",@"jpeg",@"gif"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    //        return [extension compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
-    //    }] != NSNotFound;
-    //    BOOL stop = interceptable && [@"GET" isEqualToString:request.HTTPMethod];
-    //
-    //    NSLog(@"%@ ==========>%@",stop?@"STOP":@"PASS",request.URL);
-    //
-    //    return stop;
-    
     return YES;
     
 }
@@ -62,7 +51,8 @@ static NSString* const Header_Content_Type=@"Content-Type";
 
 
 - (void)sendCache:(NSString *)mimeType rawdata:(NSData *)rawdata request:(NSMutableURLRequest *)request headers:(NSDictionary*)headers {
-    NSHTTPURLResponse* response = [[NSHTTPURLResponse alloc] initWithURL:self.request.URL MIMEType:mimeType expectedContentLength:rawdata.length textEncodingName:nil];
+    
+    NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:mimeType expectedContentLength:rawdata.length textEncodingName:nil];
     /// TODO: 怎么返回原始的 headers？
     //    response.allHeaderFields= headers.mutableCopy;
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
@@ -73,9 +63,7 @@ static NSString* const Header_Content_Type=@"Content-Type";
 
 - (NSString *)extractMimeType:(NSDictionary *)headers {
     NSString* contenttype = headers[Header_Content_Type];
-    
     NSArray* tokens = contenttype?[contenttype componentsSeparatedByString:@";"]:nil;
-    
     NSString* mimeType = (tokens && tokens.count)>0?tokens[0]:nil;
     return mimeType;
 }
@@ -102,9 +90,11 @@ static NSString* const Header_Content_Type=@"Content-Type";
     // 异步拿最新的数据
     NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc]initWithURL:self.request.URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [NSURLProtocol setProperty:@YES forKey:FilteredKey inRequest:request2];
-    /// TODO: 视频不能用。
+    
+    /// TODO: 视频不能播放
+
+    /// TODO: 使用新的 api
     [NSURLConnection sendAsynchronousRequest:request2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        /// TODO: 视频会多次返回？
         if (connectionError == nil) {
             NSHTTPURLResponse* resp =(NSHTTPURLResponse* )response;
             NSDictionary* headers =  resp.allHeaderFields;
@@ -112,9 +102,9 @@ static NSString* const Header_Content_Type=@"Content-Type";
             
             /// 无缓存，　怎么着也得返回一下。
             if(!cache){
-                NSData* rawdata =data;
-                /// TODO: default mimeType?
-                [self sendCache:mimeType rawdata:rawdata request:request headers:headers];
+                [self.client URLProtocol:self didReceiveResponse:resp cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+                [self.client URLProtocol:self didLoadData:data];
+                [self.client URLProtocolDidFinishLoading:self];;
             }
             /// 更新缓存
             if([self shouldCache:mimeType]){

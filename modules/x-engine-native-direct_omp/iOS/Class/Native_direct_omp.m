@@ -17,6 +17,9 @@
 #import "iStore.h"
 
 #define  ONE_PAGE_ONE_WEBVIEW TRUE
+@interface Native_direct_omp()
+@property(nonatomic,strong) UINavigationController* navc;
+@end
 @implementation Native_direct_omp
 NATIVE_MODULE(Native_direct_omp)
 
@@ -26,6 +29,10 @@ NATIVE_MODULE(Native_direct_omp)
 
 - (int)order {
     return 0;
+}
+
+- (void)afterAllNativeModuleInited{
+    self.navc =[Unity sharedInstance].getCurrentVC.navigationController;
 }
 
 - (void)back:(NSString*) host fragment:(NSString*) fragment{
@@ -108,6 +115,9 @@ NATIVE_MODULE(Native_direct_omp)
     if(!protocol){
         protocol = [self protocol];
     }
+    if(!self.navc)
+    self.navc =[Unity sharedInstance].getCurrentVC.navigationController;
+ 
     
     BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
     [self judgeParamsWithDict:params];
@@ -126,8 +136,8 @@ NATIVE_MODULE(Native_direct_omp)
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment   withHiddenNavBar:isHideNavBar onTab:FALSE];
-    if([Unity sharedInstance].getCurrentVC.navigationController){
-        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES];
+    if(self.navc){
+        [self.navc pushViewController:vc animated:YES];
     } else {
         UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
         if([nav isKindOfClass:[UINavigationController class]]){

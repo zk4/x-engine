@@ -63,7 +63,7 @@ NATIVE_MODULE(Native_share_wx)
         }
         if ([type isEqualToString:@"link"]) {
             WXWebpageObject *webpageObject = [WXWebpageObject object];
-            webpageObject.webpageUrl = info[@"url"];
+            webpageObject.webpageUrl = @"https://www.baidu.com";//info[@"url"];
             message.title = info[@"title"];
             message.description = info[@"desc"];
             [message setThumbImage:thumbImg];
@@ -74,7 +74,7 @@ NATIVE_MODULE(Native_share_wx)
         if ([type isEqualToString:@"miniProgram"]) {
             WXMiniProgramObject *object = [WXMiniProgramObject object];
             /// TODO: 应该是取link 的值
-            object.webpageUrl = info[@"link"];
+            object.webpageUrl = @"https://www.baidu.com";//info[@"link"];
             object.userName = info[@"userName"];
             object.path = info[@"path"];
             object.hdImageData = UIImageJPEGRepresentation(thumbImg, 1);

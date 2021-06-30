@@ -12,7 +12,7 @@
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
 @interface Native_store ()
-@property (nonatomic, strong)   NSMutableDictionary<NSString *, id> * store;
+@property (atomic, strong)   NSMutableDictionary<NSString *, id> * store;
 
 @end
 

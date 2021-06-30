@@ -116,14 +116,13 @@ NATIVE_MODULE(Native_direct_omp)
     
     if(host){
         pathname = pathname ? pathname : @"";
-        fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     } else {
         HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
         host = hm.host;
         NSAssert(host!=nil, @"host 不可为 nil");
         pathname = hm.pathname ? hm.pathname : @"";
-        fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     }
+    fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname fragment:fragment   withHiddenNavBar:isHideNavBar onTab:FALSE];

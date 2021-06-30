@@ -1,95 +1,128 @@
+////
+////  ReplacingImageURLProtocol.m
+////  NSURLProtocol+WebKitSupport
+////
+////  Created by yeatse　＆ zk on 2020/06/30.
+////  Copyright © 2016年 Yeatse. All rights reserved.
+////
 //
-//  ReplacingImageURLProtocol.m
-//  NSURLProtocol+WebKitSupport
+//#import "ReplacingImageURLProtocol.h"
+//#import "AFHTTPSessionManager.h"
+//#import "iStore.h"
+//#import "XENativeContext.h"
+//#import <UIKit/UIKit.h>
+//#import "micros.h"
 //
-//  Created by yeatse on 2016/10/11.
-//  Copyright © 2016年 Yeatse. All rights reserved.
+//static NSString* const FilteredKey = @"@@interceptable";
+//static NSString* const WebCacheKey = @"@@WebGetCache";
+//static NSString* const Header_Content_Type=@"Content-Type";
 //
-
-#import "ReplacingImageURLProtocol.h"
-#import "AFHTTPSessionManager.h"
-#import "iStore.h"
-#import "XENativeContext.h"
-#import <UIKit/UIKit.h>
-#import "micros.h"
-
-static NSString* const FilteredKey = @"@@interceptable";
-static NSString* const WebCacheKey = @"@@WebGetCache";
-
-
-@interface ReplacingImageURLProtocol()
- 
-@end
-
-
-@implementation ReplacingImageURLProtocol
-
- 
-+ (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    NSString* extension = request.URL.pathExtension;
-    BOOL interceptable = [@[@"js", @"css",@"html",@"png",@"jpg",@"jpeg",@"gif"] indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return [extension compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
-    }] != NSNotFound;
-    BOOL stop = interceptable && [@"GET" isEqualToString:request.HTTPMethod];
-
-    NSLog(@"%@ ==========>%@",stop?@"STOP":@"PASS",request.URL);
-
-    return stop;
-
-}
-
-+ (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-    return request;
-}
-
-- (void)startLoading {
-    NSMutableURLRequest* request = self.request.mutableCopy;
-    [NSURLProtocol setProperty:@YES forKey:FilteredKey inRequest:request];
-    
-    //1. 检测缓存
-    //   1. 无: 请求网络
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
-    id<iStore> cache= XENP(iStore);
-    NSData* data=  [cache get:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString]];
-    if(data){
-        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:@"application/*" expectedContentLength:data.length textEncodingName:nil];
-        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
-        [self.client URLProtocol:self didLoadData:data];
-        [self.client URLProtocolDidFinishLoading:self];
-        NSLog(@"hit cache: ==========>%@",request.URL);
-
-        return;
-    }
-    // TODO: 应该带上所有原始请求信息
-    [manager
-     GET:self.request.URL.absoluteString
-     parameters: nil
-     headers:self.request.allHTTPHeaderFields
-     progress:nil
-     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        // 准备数据
-        NSData* data = responseObject;
-        
-        // TODO: MIMEType 应该用原始的
-        NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:@"application/*" expectedContentLength:data.length textEncodingName:nil];
-        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
-        [self.client URLProtocol:self didLoadData:data];
-        [self.client URLProtocolDidFinishLoading:self];
-        id<iStore> cache= XENP(iStore);
-        [cache set:[NSString stringWithFormat:@"%@%@",WebCacheKey,self.request.URL.absoluteString] val:data];
-
-    }
-     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error){
-        NSLog(@"failed");
-    }];
-    //   2. 有: 返回缓存
-    
-  
-}
-
-- (void)stopLoading {
-}
-
-@end
+//@interface ReplacingImageURLProtocol()
+//
+//@end
+//
+//
+//@implementation ReplacingImageURLProtocol
+//
+//
+//+ (BOOL)canInitWithRequest:(NSURLRequest *)request {
+//    if ([NSURLProtocol propertyForKey:FilteredKey inRequest:request]) {
+//        return NO;
+//    }
+//    return YES;
+//    
+//}
+//-(NSString*) genCacheKey:(NSString*)key{
+//    return [NSString stringWithFormat:@"%@%@",WebCacheKey,key];
+//}
+//
+//-(BOOL) shouldCache:(NSString*)mimeType{
+//    if(!mimeType)return NO;
+//    // TODO: 使用正则表达式更好点？
+//    NSArray* notCacheArray=@[@"application/json",@"video/mp4"];
+//    return [notCacheArray indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        return [mimeType compare:obj options:NSCaseInsensitiveSearch] == NSOrderedSame;
+//    }] == NSNotFound;
+//}
+//
+//+ (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
+//    return request;
+//}
+//
+//
+//- (void)sendCache:(NSString *)mimeType rawdata:(NSData *)rawdata request:(NSMutableURLRequest *)request headers:(NSDictionary*)headers {
+//    
+//    NSURLResponse* response = [[NSURLResponse alloc] initWithURL:self.request.URL MIMEType:mimeType expectedContentLength:rawdata.length textEncodingName:nil];
+//    /// TODO: 怎么返回原始的 headers？
+//    //    response.allHeaderFields= headers.mutableCopy;
+//    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
+//    [self.client URLProtocol:self didLoadData:rawdata];
+//    [self.client URLProtocolDidFinishLoading:self];
+//    NSLog(@"hit cache: ==========>%@",request.URL);
+//}
+//
+//- (NSString *)extractMimeType:(NSDictionary *)headers {
+//    NSString* contenttype = headers[Header_Content_Type];
+//    NSArray* tokens = contenttype?[contenttype componentsSeparatedByString:@";"]:nil;
+//    NSString* mimeType = (tokens && tokens.count)>0?tokens[0]:nil;
+//    return mimeType;
+//}
+//
+//- (void)startLoading {
+//    NSString* url =self.request.URL.absoluteString;
+//    NSMutableURLRequest* request = self.request.mutableCopy;
+//    [NSURLProtocol setProperty:@YES forKey:FilteredKey inRequest:request];
+//    
+//    //1. 检测缓存
+//    id<iStore> store= XENP(iStore);
+//    NSDictionary* cache=  [store get:[self genCacheKey:url]];
+//    
+//    // 有缓存，直接用缓存
+//    if(cache){
+//        NSData* rawdata = (NSData*)cache[@"data"];
+//        NSDictionary* headers = cache[@"headers"];
+//        NSString* mimeType = [self extractMimeType:headers];
+//        /// TODO: default mimeType?
+//        [self sendCache:mimeType rawdata:rawdata request:request headers:headers];
+//    }
+//    //　使用rolling cache　机制，还要继续请求
+//    
+//    // 异步拿最新的数据
+//    NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc]initWithURL:self.request.URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+//    [NSURLProtocol setProperty:@YES forKey:FilteredKey inRequest:request2];
+//    
+//    /// TODO: 视频不能播放
+//
+//    /// TODO: 使用新的 api
+//    [NSURLConnection sendAsynchronousRequest:request2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+//        if (connectionError == nil) {
+//            NSHTTPURLResponse* resp =(NSHTTPURLResponse* )response;
+//            NSDictionary* headers =  resp.allHeaderFields;
+//            NSString* mimeType = [self extractMimeType:headers];
+//            
+//            /// 无缓存，　怎么着也得返回一下。
+//            if(!cache){
+//                [self.client URLProtocol:self didReceiveResponse:resp cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+//                [self.client URLProtocol:self didLoadData:data];
+//                [self.client URLProtocolDidFinishLoading:self];;
+//            }
+//            /// 更新缓存
+//            if([self shouldCache:mimeType]){
+//                id<iStore> store= XENP(iStore);
+//                [store set:[self genCacheKey:self.request.URL.absoluteString] val:@{@"data":data,@"headers":headers}];
+//                NSLog(@"save cache: ==========>%@",resp.URL);
+//            }
+//            
+//        }else {
+//            NSLog(@"%@",connectionError);
+//        }
+//    }];
+//    
+//    
+//    
+//}
+//
+//- (void) stopLoading{
+//    
+//}
+//@end

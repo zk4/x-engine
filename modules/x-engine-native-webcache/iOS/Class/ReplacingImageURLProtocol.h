@@ -1,13 +1,13 @@
+////
+////  ReplacingImageURLProtocol.h
+////  NSURLProtocol+WebKitSupport
+////
+////  Created by yeatse on 2016/10/11.
+////  Copyright © 2016年 Yeatse. All rights reserved.
+////
 //
-//  ReplacingImageURLProtocol.h
-//  NSURLProtocol+WebKitSupport
+//#import <Foundation/Foundation.h>
 //
-//  Created by yeatse on 2016/10/11.
-//  Copyright © 2016年 Yeatse. All rights reserved.
+//@interface ReplacingImageURLProtocol : NSURLProtocol
 //
-
-#import <Foundation/Foundation.h>
-
-@interface ReplacingImageURLProtocol : NSURLProtocol
-
-@end
+//@end

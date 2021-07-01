@@ -10,7 +10,7 @@ window.test_set_haha = () => {
   });
 }
  document.getElementById("test_set_haha").click()
-      window.test_set = () => {
+        window.test_set = () => {
 
   xengine.api("com.zkty.jsi.globalstorage", "set",{
     key:'abc',
@@ -18,7 +18,7 @@ window.test_set_haha = () => {
   });
 }
  document.getElementById("test_set").click()
-      window.test_get = () => {
+        window.test_get = () => {
 
   let val = xengine.api("com.zkty.jsi.globalstorage", "get",
     'abc',
@@ -26,7 +26,7 @@ window.test_set_haha = () => {
   document.getElementById("debug_text").innerText = val;
 }
  document.getElementById("test_get").click()
-      window.test_del = () => {
+        window.test_del = () => {
 
   xengine.api("com.zkty.jsi.globalstorage", "del",
     'abc',
@@ -34,5 +34,5 @@ window.test_set_haha = () => {
  
 }
  document.getElementById("test_del").click()
-      
+        
     

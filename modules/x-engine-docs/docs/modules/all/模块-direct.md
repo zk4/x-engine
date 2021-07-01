@@ -10,6 +10,7 @@
 > 为了方便业务人员的开发,我们对 h5 的跳转进行了拦截.
 >
 > 开发人员可以直接使用vue-router的`push()`和`go()`来进行路由的操作。
+>
 
 ```javascript
 安装方式:
@@ -72,7 +73,7 @@ this.$router.go(0)
 
 JSI Id: com.zkty.jsi.direct
 
-version: 0.1.13
+version: 2.0.3
 
 
 
@@ -88,9 +89,7 @@ version: 0.1.13
     host: "10.2.128.80:8082",
     pathname:'',
     fragment:''
-  }),function(res) {
-    console.log("res :>> ", res);
-  });
+  })
 
   // 跳转microapp
   engine.api('com.zkty.jsi.direct', 'push', {
@@ -98,38 +97,7 @@ version: 0.1.13
     host: "com.gm.microapp.mine",
     pathname: "",
     fragment: "",
-  }),function(res) {
-    console.log("res :>> ", res);
-  });
-
-	// 跳转microapp的某个页面
-	// host: 跳转的microapp名称
-	// fragment: 跳转的页面名称
-	engine.api("com.zkty.jsi.direct","push",{
-    scheme: "microapp",
-    host: "com.gm.microapp.xxx",
-    pathname: "/",
-    fragment: "/xxx"
-   },function(res) {
-    console.log("res :>> ", res);
-   });
-
-	// 跳转microapp的某个页面并且携带参数, 在下一个页面通过this.$router.query.xx来获取传递参数
-	// host: 跳转的microapp名称
-	// fragment: 跳转的页面名称
-	// query: 跳转携带的参数
-	engine.api("com.zkty.jsi.direct", "push", {
-		scheme: "microapp",
-		host: "com.gm.microapp.xxx",
-		pathname: "/",
-		fragment: "/xxx",
-    query: {
-      id:1,
-      name: "x-engine"
-    }
-  },function(res) {
-    console.log("res :>> ", res);
-  });
+  })
 
   // 跳转http
   engine.api('com.zkty.jsi.direct', 'push', {  
@@ -137,9 +105,7 @@ version: 0.1.13
     host: "www.baidu.com",  
     fragment: "/",  
     pathname: "",  
-  }),function(res) {
-    console.log("res :>> ", res);
-  });
+  })
 
   // 跳转https
   engine.api('com.zkty.jsi.direct', 'push', {  
@@ -147,11 +113,9 @@ version: 0.1.13
     host: "www.youtube.com",  
     fragment: "",  
     pathname: "",  
-  }) ,function(res) {
-    console.log("res :>> ", res);
-  }); 
+  })  
 
-```
+``` 
 
 **参数说明**
 
@@ -178,7 +142,7 @@ version: 0.1.13
      fragment:'-1'
    }
 
-```
+``` 
 
 **参数说明**
 
@@ -189,7 +153,7 @@ version: 0.1.13
 **无返回值**
 
 
-​    
+    
 
 
 # iOS 注意事项

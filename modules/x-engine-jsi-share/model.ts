@@ -73,6 +73,7 @@ interface ShareMiniProgramDTO {
 
 // 分享
 function share(arg: ShareDTO) {
+  // 分享链接
   xengine.api("com.zkty.jsi.share", "share", {
     channel: "wx_zone",
     type: "link",
@@ -80,6 +81,30 @@ function share(arg: ShareDTO) {
       url: "https://www.baidu.com",
       title: "testTitle",
       desc: "description",
+    },
+  });
+
+  // 分享小程序
+  xengine.api("com.zkty.jsi.share", "share", {
+    channel: "wx_friend",
+    type: "miniProgram",
+    info: {
+      userName: "gh_d43f693ca31f",
+      path: "/pages/media",
+      title: "test",
+      desc: "testdesc",
+      link: "http://www.baidu.com",
+      imageurl: "",
+      miniProgramType: 2,
+    },
+  });
+
+  // 分享图片
+  xengine.api("com.zkty.jsi.share", "share", {
+    channel: "wx_zone",
+    type: "img",
+    info: {
+      imgData: "https://www.baidu.com",
     },
   });
 }

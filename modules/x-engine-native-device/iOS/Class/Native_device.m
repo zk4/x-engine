@@ -43,7 +43,7 @@ NATIVE_MODULE(Native_device)
 
 
 - (NSString *)getTabbarHeight {
-    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [Unity sharedInstance].getCurrentVC.tabBarController.tabBar.frame.size.height];
+    NSString *heightStr = [NSString stringWithFormat:@"%.2d", [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49];
     return heightStr;
 }
 

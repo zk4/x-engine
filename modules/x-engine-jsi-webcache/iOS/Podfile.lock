@@ -67,18 +67,18 @@ PODS:
     - x-engine-native-rest
 
 DEPENDENCIES:
-  - x-engine-jsi-direct (from `/Users/zk/git/company/working/x-engine/modules/x-engine-jsi-direct`)
-  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
-  - x-engine-native-direct (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct`)
-  - x-engine-native-direct_http (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_http`)
-  - x-engine-native-direct_https (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_https`)
-  - x-engine-native-direct_microapp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp`)
-  - x-engine-native-direct_omp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp`)
-  - x-engine-native-jsi (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi`)
-  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
-  - x-engine-native-rest (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-rest`)
-  - x-engine-native-store (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-store`)
-  - x-engine-native-webcache (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-webcache`)
+  - x-engine-jsi-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-jsi-direct`)
+  - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_http (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_http`)
+  - x-engine-native-direct_https (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_https`)
+  - x-engine-native-direct_microapp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-rest (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-rest`)
+  - x-engine-native-store (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store`)
+  - x-engine-native-webcache (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-webcache`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -87,29 +87,29 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   x-engine-jsi-direct:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-jsi-direct"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-jsi-direct"
   x-engine-native-core:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core"
   x-engine-native-direct:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct"
   x-engine-native-direct_http:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_http"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_http"
   x-engine-native-direct_https:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_https"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_https"
   x-engine-native-direct_microapp:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp"
   x-engine-native-jsi:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
   x-engine-native-rest:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-rest"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-rest"
   x-engine-native-store:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-store"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store"
   x-engine-native-webcache:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-webcache"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-webcache"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -129,4 +129,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: fb6d4b5ec29a4e082a08398f34665fd07777078c
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

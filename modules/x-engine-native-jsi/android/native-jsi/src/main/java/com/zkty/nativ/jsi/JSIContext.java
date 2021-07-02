@@ -8,10 +8,11 @@ import android.util.Log;
 
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.TbsDownloader;
+import com.tencent.smtt.sdk.TbsListener;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.ArrayList;
@@ -69,6 +70,21 @@ public class JSIContext extends NativeModule {
 
         XWebViewPool.sharedInstance().init(XEngineApplication.getApplication());
 //        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
+        QbSdk.setTbsListener(new TbsListener() {
+            @Override
+            public void onDownloadFinish(int i) {
+
+
+            }
+            @Override
+            public void onInstallFinish(int i) {
+                Log.d("initX5", "onInstallFinish -->安装X5内核进度：" + i);
+            }
+            @Override
+            public void onDownloadProgress(int i) {
+                Log.d("initX5", "onDownloadProgress -->下载X5内核进度：" + i);
+            }
+        });
         QbSdk.initX5Environment(XEngineApplication.getApplication(), new QbSdk.PreInitCallback() {
             @Override
             public void onCoreInitFinished() {
@@ -78,8 +94,12 @@ public class JSIContext extends NativeModule {
             @Override
             public void onViewInitFinished(boolean b) {
                 Log.d("initX5", "onViewInitFinished: " + b);
+                if (!b) {
+                    TbsDownloader.startDownload(XEngineApplication.getApplication());
+                }
             }
         });
+
 
 
     }

@@ -27,13 +27,13 @@ NATIVE_MODULE(Native_webcache)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited{
-} 
+- (void)afterAllNativeModuleInited {
+    
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
- 
- 
         [[NSNotificationCenter defaultCenter]
          addObserverForName:UIApplicationDidFinishLaunchingNotification
          object:nil
@@ -44,12 +44,8 @@ NATIVE_MODULE(Native_webcache)
                     [NSURLProtocol wk_registerScheme:scheme];
             }
         }];
-
-
     }
-    
     return self;
 }
-
 @end
  

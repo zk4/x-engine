@@ -33,5 +33,7 @@
 /// 会自动读取档案。
 /// @param merge 是否要 merge 已经存在的档案，当前档案将被覆盖
 - (void)loadFromDisk:(BOOL)merge;
+
+- (void)delAll;
 @end
 #endif /* istore_h */

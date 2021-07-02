@@ -6,22 +6,21 @@ source 'https://github.com/CocoaPods/Specs.git'
 X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 
 def shared_pods
-  pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
-  pod 'x-engine-native-jsi', :path =>X_ENGINE_MODULES+'/x-engine-native-jsi'
   pod 'x-engine-jsi-direct', :path =>X_ENGINE_MODULES+'/x-engine-jsi-direct'
-  pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
-  pod 'x-engine-native-direct_https', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_https'
-  pod 'x-engine-native-direct_http', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_http'
-
-  pod 'x-engine-native-direct_microapp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
-
-  pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'x-engine-jsi-device', :path =>X_ENGINE_MODULES+'/x-engine-jsi-device'
+  
+  pod 'x-engine-native-jsi', :path =>X_ENGINE_MODULES+'/x-engine-native-jsi'
+  pod 'x-engine-native-rest', :path =>X_ENGINE_MODULES+'/x-engine-native-rest'
+  pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
+  pod 'x-engine-native-store', :path =>X_ENGINE_MODULES+'/x-engine-native-store'
+  pod 'x-engine-native-device', :path =>X_ENGINE_MODULES+'/x-engine-native-device'
   pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
   pod 'x-engine-native-webcache', :path =>X_ENGINE_MODULES+'/x-engine-native-webcache'
-  pod 'x-engine-native-rest', :path =>X_ENGINE_MODULES+'/x-engine-native-rest'
-  pod 'x-engine-native-store', :path =>X_ENGINE_MODULES+'/x-engine-native-store'
-
-
+  pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
+  pod 'x-engine-native-direct_http', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_http'
+  pod 'x-engine-native-direct_https', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_https'
+  pod 'x-engine-native-direct_microapp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
 end
 
 target 'webcache' do

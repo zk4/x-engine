@@ -2,22 +2,14 @@ package com.zkty.nativ.core;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.multidex.MultiDexApplication;
-
 
 import com.zkty.nativ.core.utils.IApplicationListener;
 import com.zkty.nativ.core.utils.Utils;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class XEngineApplication extends MultiDexApplication {
 

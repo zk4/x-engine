@@ -8,8 +8,6 @@ import android.util.Log;
 
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
-import com.tencent.smtt.sdk.TbsDownloader;
-import com.tencent.smtt.sdk.TbsListener;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
@@ -70,44 +68,18 @@ public class JSIContext extends NativeModule {
 
         XWebViewPool.sharedInstance().init(XEngineApplication.getApplication());
 ////        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
-//        QbSdk.setTbsListener(new TbsListener() {
-//            @Override
-//            public void onDownloadFinish(int i) {
-//                if(i == 100){
-//                    Log.d("initX5", "onDownloadFinish -->下载X5内核完成");
-//                }else{
-//                    Log.d("initX5", "onDownloadFinish -->下载X5内核失败" + i);
-////                    if(!TbsDownloader.isDownloading() && !QbSdk.canLoadX5(XEngineApplication.getApplication())){
-////                        TbsDownloader.startDownload(XEngineApplication.getApplication());
-////                    }
-//                }
-//
-//            }
-//            @Override
-//            public void onInstallFinish(int i) {
-//                Log.d("initX5", "onInstallFinish -->安装X5内核进度：" + i);
-//            }
-//            @Override
-//            public void onDownloadProgress(int i) {
-//                Log.d("initX5", "onDownloadProgress -->下载X5内核进度：" + i);
-//            }
-//        });
-//        QbSdk.initX5Environment(XEngineApplication.getApplication(), new QbSdk.PreInitCallback() {
-//            @Override
-//            public void onCoreInitFinished() {
-//                Log.d("initX5", "onCoreInitFinished");
-//            }
-//
-//            @Override
-//            public void onViewInitFinished(boolean b) {
-//                Log.d("initX5", "onViewInitFinished: " + b);
-//                if(!TbsDownloader.isDownloading() && !QbSdk.canLoadX5(XEngineApplication.getApplication())){
-//                    TbsDownloader.startDownload(XEngineApplication.getApplication());
-//                }
-//            }
-//        });
 
+        QbSdk.initX5Environment(XEngineApplication.getApplication(), new QbSdk.PreInitCallback() {
+            @Override
+            public void onCoreInitFinished() {
+                Log.d("initX5", "onCoreInitFinished");
+            }
 
+            @Override
+            public void onViewInitFinished(boolean b) {
+                Log.d("initX5", "onViewInitFinished: " + b);
+            }
+        });
 
     }
 

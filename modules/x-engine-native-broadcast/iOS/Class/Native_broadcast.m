@@ -36,7 +36,7 @@ NATIVE_MODULE(Native_broadcast)
                 @"payload":payload
             }
              completionHandler:^(id  _Nullable value) {
-                NSLog(@"js return value %@",value);
+                NSLog(@"js broadcast ret value %@",value);
             }];
         }
     }

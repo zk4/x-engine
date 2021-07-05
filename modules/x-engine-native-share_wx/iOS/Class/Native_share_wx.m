@@ -74,7 +74,7 @@ NATIVE_MODULE(Native_share_wx)
         if ([type isEqualToString:@"miniProgram"]) {
             WXMiniProgramObject *object = [WXMiniProgramObject object];
             /// TODO: 应该是取link 的值
-            object.webpageUrl = info[@"link"];
+            object.webpageUrl = @"1";//info[@"link"];
             object.userName = info[@"userName"];
             object.path = info[@"path"];
             object.hdImageData = UIImageJPEGRepresentation(thumbImg, 1);

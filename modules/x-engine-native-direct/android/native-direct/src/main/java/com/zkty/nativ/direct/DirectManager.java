@@ -6,6 +6,7 @@ import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.jsi.utils.UrlUtils;
+import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 
 import java.util.Map;
@@ -28,6 +29,12 @@ public class DirectManager {
 //        boolean hideNavbar = params != null && params.containsKey("hideNavbar") && Boolean.parseBoolean(String.valueOf(params.get("hideNavbar")));
 //        XEngineWebActivityManager.sharedInstance().startXEngineActivity(XEngineApplication.getCurrentActivity(), protocol, host, pathname, fragment, query, hideNavbar);
 
+    }
+
+    public static void push(HistoryModel model) {
+        if (model != null) {
+            push(model.scheme, model.host, model.pathname, model.fragment, model.query, model.params);
+        }
     }
 
 

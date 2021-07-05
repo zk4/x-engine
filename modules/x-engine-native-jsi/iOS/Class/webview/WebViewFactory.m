@@ -40,11 +40,11 @@
     NSMutableArray *modules = [[JSIContext sharedInstance] modules];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
-    
+    configuration.websiteDataStore = [WKWebsiteDataStore nonPersistentDataStore];
     if (@available(iOS 11.0, *) ) {
-        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
-        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
-        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
+//        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
+//        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
+//        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
     }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
     webview.configuration.preferences.javaScriptEnabled = YES;
@@ -56,8 +56,8 @@
     for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }
-//    [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
-//    [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    [webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    [webview addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     // apple bug, compact 之前必须加个 NULL
     [self.webviews addPointer:NULL];
     [self.webviews compact];
@@ -70,29 +70,28 @@
 }
 
 /// TODO: 为什么 estimatedProgress 在这??
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-//    if ([keyPath isEqualToString:@"estimatedProgress"]) {
-//
-//        float floatNum = [[change objectForKey:@"new"] floatValue];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-//            @"progress":@(floatNum),
-//            @"webView":object,
-//        }];
-//        if (floatNum >= 1) {
-//            [object removeObserver:self forKeyPath:@"estimatedProgress"];
-//        }
-//    } else if ([keyPath isEqualToString:@"title"]) {
-//        if([change objectForKey:@"new"]){
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
-//                @"title":[change objectForKey:@"new"],
-//                @"webView":object,
-//            }];
-//        }
-//    } else {
-//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-//    }
-//}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
 
+        float floatNum = [[change objectForKey:@"new"] floatValue];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+            @"progress":@(floatNum),
+            @"webView":object,
+        }];
+        if (floatNum >= 1) {
+            [object removeObserver:self forKeyPath:@"estimatedProgress"];
+        }
+    } else if ([keyPath isEqualToString:@"title"]) {
+        if([change objectForKey:@"new"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
+                @"title":[change objectForKey:@"new"],
+                @"webView":object,
+            }];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
 @end
 
 

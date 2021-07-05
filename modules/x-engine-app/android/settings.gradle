@@ -52,6 +52,12 @@ project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/an
 include ':native-viewer_original'
 project(':native-viewer_original').projectDir = new File('../../x-engine-native-viewer_original/android/native-viewer_original')
 
+include ':native-geo'
+project(':native-geo').projectDir = new File('../../x-engine-native-geo/android/native-geo')
+
+include ':native-geo_gaode'
+project(':native-geo_gaode').projectDir = new File('../../x-engine-native-geo_gaode/android/native-geo_gaode')
+
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
@@ -96,3 +102,6 @@ project(':jsi-viewer').projectDir = new File('../../x-engine-jsi-viewer/android/
 
 include ':jsi-globalstorage'
 project(':jsi-globalstorage').projectDir = new File('../../x-engine-jsi-globalstorage/android/jsi-globalstorage')
+
+include ':jsi-geo'
+project(':jsi-geo').projectDir = new File('../../x-engine-jsi-geo/android/jsi-geo')

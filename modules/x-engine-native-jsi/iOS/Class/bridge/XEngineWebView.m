@@ -425,8 +425,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void) dispatchJavascriptCall:(XEngineCallInfo*) info{
     NSString * json=[XEngineJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
                                                       @"data":[XEngineJSBUtil objToJsonString: info.args]}];
-    [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
-           completionHandler:nil];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
+               completionHandler:nil];
+    });
+    
 }
 
 - (void) addJavascriptObject:(id)object namespace:(NSString *)namespace{

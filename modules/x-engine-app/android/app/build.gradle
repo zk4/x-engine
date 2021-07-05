@@ -59,6 +59,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+
 
     implementation project(':native-core')
     implementation project(':native-store')
@@ -78,6 +80,8 @@ dependencies {
     implementation project(':native-share_wx')
     implementation project(':native-viewer')
     implementation project(':native-viewer_original')
+    implementation project(':native-geo')
+    implementation project(':native-geo_gaode')
 
     implementation project(':jsi-direct')
     implementation project(':jsi-secret')
@@ -93,6 +97,6 @@ dependencies {
     implementation project(':jsi-dev')
     implementation project(':jsi-viewer')
     implementation project(':jsi-globalstorage')
+    implementation project(':jsi-geo')
 
-    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
 }

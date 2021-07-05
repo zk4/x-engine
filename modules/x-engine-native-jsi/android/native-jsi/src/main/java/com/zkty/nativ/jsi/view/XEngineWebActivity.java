@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,9 +31,9 @@ import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.core.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
-import com.zkty.nativ.jsi.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -44,8 +43,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -72,7 +69,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private boolean hideNavBar = false;//是否隐藏NavBar
 
-    //    private ArrayList<LifecycleListener> lifecycleListeners;
 
     private boolean isFirst = true;
     private boolean isResume = false;
@@ -124,19 +120,11 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
-        lifecycleListeners = new LinkedHashSet<>();
 
         mWebView.setOnPageStateListener(() -> broadcast(ON_WEBVIEW_SHOW, ON_WEBVIEW_SHOW));
 
         mWebView.loadUrl(historyModel);
 
-    }
-
-
-    @Override
-    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
-//        SwipeBackHelper.onPostCreate(this);
     }
 
     @Override
@@ -183,35 +171,12 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             }
         }
 
-        if (lifecycleListeners != null) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onActivityResult(requestCode, resultCode, data);
-            }
-        }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-        if (lifecycleListeners != null) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
-        }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onRestart();
-            }
-        }
     }
 
     @Override
@@ -237,12 +202,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         super.onResume();
         XEngineWebActivityManager.sharedInstance().setCurrent(this);
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onResume();
-            }
-        }
     }
 
     @Override
@@ -250,41 +209,11 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         super.onPause();
         isResume = false;
         broadcast(ON_NATIVE_HIDE, ON_NATIVE_HIDE);
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onPause();
-            }
-        }
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onStop();
-            }
-        }
     }
 
     @Override
     protected void onDestroy() {
         broadcast(ON_NATIVE_DESTROYED, ON_NATIVE_DESTROYED);
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onDestroy();
-            }
-        }
-
-        if (lifecycleListeners != null) {
-            lifecycleListeners.clear();
-        }
-      
-
         EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_SHOW_TABBAR));
         EventBus.getDefault().unregister(this);
         super.onDestroy();
@@ -292,7 +221,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         mWebView.goBack();
 
 //        SwipeBackHelper.onDestroy(this);
-
+        removeAllLifeCycleListeners();
     }
 
 
@@ -320,11 +249,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
                 }
             }
         }).start();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
     }
 
     public void showScreenCapture(boolean isShow) {

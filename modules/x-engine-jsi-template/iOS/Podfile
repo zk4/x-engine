@@ -2,6 +2,7 @@
 platform :ios, '11.0'
  
 source 'https://github.com/CocoaPods/Specs.git'
+install! 'cocoapods', :deterministic_uuids => false, :integrate_targets => false
 
 X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 

@@ -67,6 +67,13 @@ public class XEngineWebView extends DWebView {
     public void init() {
         historyModels = new ArrayList<>();
         getSettings().setJavaScriptEnabled(true);
+        if (getX5WebViewExtension() != null) {
+            getX5WebViewExtension().setHorizontalScrollBarEnabled(false);
+            getX5WebViewExtension().setVerticalScrollBarEnabled(false);
+        } else {
+            setHorizontalScrollBarEnabled(false);
+            setVerticalScrollBarEnabled(false);
+        }
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式(true);
         getSettings().setAppCacheEnabled(false);
         getSettings().setSupportZoom(false);
@@ -267,10 +274,10 @@ public class XEngineWebView extends DWebView {
         stopLoading();
 //        setWebChromeClient(null);
 //      setWebViewClient(null);
-        clearCache(true);
+//        clearCache(true);
         clearHistory();
-        loadUrl("about:blank");
-        this.destroy();
+//        loadUrl("about:blank");
+//        this.destroy();
 
     }
 

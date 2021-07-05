@@ -12,7 +12,7 @@
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
 @interface Native_store ()
-@property (nonatomic, strong)   NSMutableDictionary<NSString *, id> * store;
+@property (atomic, strong)   NSMutableDictionary<NSString *, id> * store;
 
 @end
 
@@ -70,6 +70,10 @@ NATIVE_MODULE(Native_store)
 - (void)del:(NSString*)key{
      [_store removeObjectForKey:key];
 }
+- (void)delAll{
+     [_store removeAllObjects];
+}
+
 
 - (void)saveTodisk{
     [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];

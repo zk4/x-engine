@@ -30,30 +30,9 @@ public class XEngineApplication extends MultiDexApplication {
         super.onCreate();
         application = this;
         //主进程中初始化引擎
-//        if (Utils.getCurProcessName(this).equals(getApplicationInfo().packageName)) {
-        NativeContext.sharedInstance().init(this);
-//        }
-        registerAppOnCreateLifecycleCallback();
-        registerActivityLifecycleCallback();
-
-    }
-
-    private void registerAppOnCreateLifecycleCallback() {
-        List<NativeModule> modules = NativeContext.sharedInstance().getModules();
-
-        for (NativeModule module : modules) {
-            if (module instanceof IApplicationListener) {
-                IApplicationListener listener = (IApplicationListener) module;
-                if (listener != null) {
-                    listener.onAppCreate(this);
-                }
-
-            }
+        if (Utils.getCurProcessName(this).equals(getApplicationInfo().packageName)) {
+            NativeContext.sharedInstance().init(this);
         }
-
-    }
-
-    private void registerActivityLifecycleCallback() {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

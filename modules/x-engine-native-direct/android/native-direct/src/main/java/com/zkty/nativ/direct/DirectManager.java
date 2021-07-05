@@ -20,15 +20,6 @@ public class DirectManager {
             director.push(scheme, host, pathname, fragment, query, params);
         }
 
-//        String protocol = "https:";
-//        if ("omp".equals(scheme)) protocol = "http:";
-//        if ("http".equals(scheme)) protocol = "http:";
-//        if ("https".equals(scheme)) protocol = "https:";
-//        if ("microapp".equals(scheme)) protocol = "file:";
-//
-//        boolean hideNavbar = params != null && params.containsKey("hideNavbar") && Boolean.parseBoolean(String.valueOf(params.get("hideNavbar")));
-//        XEngineWebActivityManager.sharedInstance().startXEngineActivity(XEngineApplication.getCurrentActivity(), protocol, host, pathname, fragment, query, hideNavbar);
-
     }
 
     public static void push(HistoryModel model) {
@@ -62,7 +53,6 @@ public class DirectManager {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
 
     }
 }

@@ -70,6 +70,10 @@ NATIVE_MODULE(Native_store)
 - (void)del:(NSString*)key{
      [_store removeObjectForKey:key];
 }
+- (void)delAll{
+     [_store removeAllObjects];
+}
+
 
 - (void)saveTodisk{
     [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];

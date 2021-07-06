@@ -17,10 +17,12 @@
 
 /*
  基于主工程　build configuration 的配置，使 lib 里的宏生效
+ 在主工程里　Podfile 最后面配置
+ 
  post_install do |installer|
    installer.pods_project.targets.each do |target|
      target.build_configurations.each do |config|
-       if config.name == 'Debug'
+       if config.name == 'Debug'　　＃对应 Build Configuration
          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1'
        end
        if config.name == 'Release'

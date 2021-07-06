@@ -68,13 +68,7 @@ public class XEngineApplication extends MultiDexApplication {
     public void onTerminate() {
         super.onTerminate();
         ActivityStackManager.getInstance().unRegister(this);
-    }
-
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
         List<NativeModule> modules = NativeContext.sharedInstance().getModules();
-
         for (NativeModule module : modules) {
             if (module instanceof IApplicationListener) {
                 IApplicationListener listener = (IApplicationListener) module;

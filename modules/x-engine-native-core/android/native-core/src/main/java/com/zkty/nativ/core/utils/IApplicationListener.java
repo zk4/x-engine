@@ -6,5 +6,5 @@ public interface IApplicationListener {
 
     void onAppCreate(Context context);
 
-    void onAppLowMemory();
+    void onTerminate();
 }

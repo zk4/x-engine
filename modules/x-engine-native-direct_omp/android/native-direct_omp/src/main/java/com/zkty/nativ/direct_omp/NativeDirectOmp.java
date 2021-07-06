@@ -10,6 +10,8 @@ import com.zkty.nativ.direct.IDirect;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.view.XEngineWebActivity;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.jsi.webview.XEngineWebView;
+import com.zkty.nativ.jsi.webview.XWebViewPool;
 import com.zkty.nativ.store.IStore;
 import com.zkty.nativ.store.NativeStore;
 
@@ -50,6 +52,15 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
         if (TextUtils.isEmpty(protocol)) {
             protocol = protocol();
         }
+
+        XEngineWebView xEngineWebView = XWebViewPool.sharedInstance().getCurrentWebView();
+        if (TextUtils.isEmpty(host) && xEngineWebView != null) {
+
+            host = xEngineWebView.getHistoryModel().host;
+            pathname = xEngineWebView.getHistoryModel().pathname;
+        }
+
+
         boolean hideNavbar = params != null && params.containsKey("hideNavbar") && Boolean.parseBoolean(String.valueOf(params.get("hideNavbar")));
         if (params != null && params.containsKey("nativeParams")) {
             NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(IStore.class);

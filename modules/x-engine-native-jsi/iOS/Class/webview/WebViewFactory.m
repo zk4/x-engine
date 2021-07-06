@@ -53,6 +53,12 @@
     [webview.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
     [webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
     
+    ///web禁止长按
+    NSMutableString *javascript = [NSMutableString string];
+    [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];
+    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+    [webview.configuration.userContentController addUserScript:noneSelectScript];
+    
     for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];
     }

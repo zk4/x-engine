@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.barlibrary.ImmersionBar;
 import com.zkty.nativ.core.utils.ToastUtils;
 
@@ -23,7 +25,7 @@ import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
 import nativ.scan.R;
 
-
+@Route(path = "/scan/scan")
 public class ScanActivity extends AppCompatActivity {
     private static final String TAG = ScanActivity.class.getSimpleName();
 
@@ -48,6 +50,9 @@ public class ScanActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_layout);
+        ARouter.getInstance().inject(this);
+
+
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white)

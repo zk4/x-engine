@@ -44,12 +44,6 @@ public class NativeDirect extends NativeModule implements IDirectManager {
 
     @Override
     public void push(String scheme, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
-        XEngineWebView xEngineWebView = XWebViewPool.sharedInstance().getCurrentWebView();
-        if (TextUtils.isEmpty(host) && xEngineWebView != null) {
-
-            host = xEngineWebView.getHistoryModel().host;
-            pathname = xEngineWebView.getHistoryModel().pathname;
-        }
 
         IDirect iDirect = directors.get(scheme);
         iDirect.push(iDirect.protocol(), host, pathname, fragment, query, params);

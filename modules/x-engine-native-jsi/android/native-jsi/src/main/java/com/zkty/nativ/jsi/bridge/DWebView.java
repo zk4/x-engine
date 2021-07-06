@@ -67,6 +67,7 @@ public class DWebView extends WebView {
     private InnerJavascriptInterface innerJavascriptInterface = new InnerJavascriptInterface();
     private Handler mainHandler = new Handler(Looper.getMainLooper());
     private boolean isFirstLoad = true;
+    String mUrl;
 
     protected void PrintDebugInfo(String error) {
         Log.d(LOG_TAG, error);
@@ -81,7 +82,7 @@ public class DWebView extends WebView {
         @Keep
         @JavascriptInterface
         public String call(String methodName, String argStr) {
-            Log.d("DWebView", methodName + " : " + argStr);
+            Log.d("DWebView", mUrl + " --> " + methodName + " : " + argStr);
 
             String[] nameStr = parseNamespace(methodName.trim());
             String namespace = nameStr[0];
@@ -470,6 +471,7 @@ public class DWebView extends WebView {
                 }
 
                 DWebView.super.loadUrl(url);
+               mUrl = url;
             }
         });
     }

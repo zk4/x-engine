@@ -70,12 +70,14 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
 
     /**
      * 从栈顶开始(除外)向下移除n个activity
+     * 同时需要保留栈底Activity
      */
     public void finishActivities(int goal) {
+        goal = Math.abs(goal);
         //0，不作操作
-        if (goal < 1) return;
+        if (goal == 0) return;
         int size = stack.size();
-        //超过栈数量时移除除栈顶外所有act
+        //超过栈数量时移除除栈顶及栈底外所有act
         if (goal >= size) goal = size - 1;
 
         for (int i = size - 1; i > size - goal - 1; i--) {

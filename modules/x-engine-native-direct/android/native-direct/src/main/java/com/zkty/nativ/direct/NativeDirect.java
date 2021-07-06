@@ -3,6 +3,7 @@ package com.zkty.nativ.direct;
 
 import android.text.TextUtils;
 
+import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -47,6 +48,17 @@ public class NativeDirect extends NativeModule implements IDirectManager {
 
         IDirect iDirect = directors.get(scheme);
         iDirect.push(iDirect.protocol(), host, pathname, fragment, query, params);
+
+        if (params != null && params.containsKey("__deleteHistory__")) {
+            try {
+                int goal = Integer.parseInt(params.get("__deleteHistory__"));
+                ActivityStackManager.getInstance().finishActivities(goal);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     @Override

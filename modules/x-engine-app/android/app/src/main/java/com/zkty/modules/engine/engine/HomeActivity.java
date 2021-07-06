@@ -79,9 +79,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void finishAct(View view) {
-        startActivity(new Intent(this, HomeActivity.class));
+
         int num = Integer.parseInt(et_num.getText().toString());
         ActivityStackManager.getInstance().finishActivities(num);
+        startActivity(new Intent(this, HomeActivity.class));
 
     }
 }

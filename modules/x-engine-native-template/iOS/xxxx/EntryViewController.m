@@ -24,8 +24,11 @@
     [super viewDidLoad];
     [self pushTestModule];
     id<iDev> dev = XENP(iDev);
-    [dev enabledDebug:TRUE];
+
     [dev log:@"world"];
+    // 切换 Build Configuration　里的　Debug 　与 Release
+    [dev xlog:@"world"];
+
 
 }
 

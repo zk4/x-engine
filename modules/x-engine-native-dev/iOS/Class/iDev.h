@@ -12,6 +12,7 @@
 /**
  一种将主工程环境信息传到 lib 里的通用做法，在运行时做。
  */
+- (void)enabledDebug:(BOOL)val;
 - (void) log:(NSString*) msg;
 
 /*

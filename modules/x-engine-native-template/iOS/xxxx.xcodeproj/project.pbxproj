@@ -17,6 +17,7 @@
 		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		32903E3B00A2B4C1FECF371B /* libPods-xxxxUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F693434A50457CA7AC4D2A /* libPods-xxxxUITests.a */; };
 		38E983942615F6E8007F6BDF /* Native_xxxx.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_xxxx.m */; };
+		565DD27B989F5FB8F69BF75F /* libPods-sit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DB072EC16780DC21C5AF4B /* libPods-sit.a */; };
 		580B91632694CCEA006AD356 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		580B91642694CCEA006AD356 /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
 		580B91652694CCEA006AD356 /* Native_xxxx.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_xxxx.m */; };
@@ -33,7 +34,7 @@
 		580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 580B91CC2694D10D006AD356 /* Info.uat.plist */; };
-		A34D74F2ECABB58EC6384A41 /* libPods-sit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE28664B6272A329035C395 /* libPods-sit.a */; };
+		A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-xxxxTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-xxxxTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-xxxx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-xxxx.a */; };
 		E8FCBD124B8B0CAA64512CFB /* libPods-uat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1324DE619428EB3AFBB1044B /* libPods-uat.a */; };
@@ -75,6 +76,7 @@
 		00DFC6FA24C841FD006A53EE /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryViewController.xib; sourceTree = "<group>"; };
 		01D84C6C13F7C70F566C7345 /* Pods-SharedLibs-xxxxUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedLibs-xxxxUITests.debug.xcconfig"; path = "Target Support Files/Pods-SharedLibs-xxxxUITests/Pods-SharedLibs-xxxxUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		033EC6F0470EC20A2B48D442 /* Pods-SharedLibs-xxxxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedLibs-xxxxTests.debug.xcconfig"; path = "Target Support Files/Pods-SharedLibs-xxxxTests/Pods-SharedLibs-xxxxTests.debug.xcconfig"; sourceTree = "<group>"; };
+		05DB072EC16780DC21C5AF4B /* libPods-sit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1324DE619428EB3AFBB1044B /* libPods-uat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A8E4C45DA829D493BB387D /* Pods-xxxxUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxxxUITests.release.xcconfig"; path = "Target Support Files/Pods-xxxxUITests/Pods-xxxxUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,7 +149,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				580B91682694CCEA006AD356 /* libc++.tbd in Frameworks */,
-				A34D74F2ECABB58EC6384A41 /* libPods-sit.a in Frameworks */,
+				A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */,
+				565DD27B989F5FB8F69BF75F /* libPods-sit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +281,7 @@
 				99E2791A9045AAC4D5BE8FBB /* libPods-xxxxTests.a */,
 				34F693434A50457CA7AC4D2A /* libPods-xxxxUITests.a */,
 				1324DE619428EB3AFBB1044B /* libPods-uat.a */,
+				05DB072EC16780DC21C5AF4B /* libPods-sit.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

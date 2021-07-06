@@ -11,7 +11,7 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
-
+  pod 'x-engine-native-dev', :path => X_ENGINE_MODULES+'/x-engine-native-dev'
 end
   target 'sit' do
     shared_pods
@@ -20,7 +20,6 @@ end
   end
   target 'uat' do
     shared_pods
-    pod 'x-engine-native-dev', :path => X_ENGINE_MODULES+'/x-engine-native-dev'
     #use_frameworks!
   end
   target 'xxxx' do
@@ -39,3 +38,17 @@ end
     #shared_pods
 
   end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if config.name == 'Debug'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1'
+      end
+      if config.name == 'Release'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) RELEASE=1'
+      end
+
+    end
+  end
+end

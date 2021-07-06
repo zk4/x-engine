@@ -6,7 +6,7 @@
 #import "EntryViewController.h"
 #import "XENativeContext.h"
 #import <x-engine-native-ui/Native_ui.h>
-#import <iUI.h>
+#import <iDev.h>
 @interface EntryViewController ()
 
 @end
@@ -23,8 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self pushTestModule];
-    id<iUI> ui = XENP(iUI);
-    [ui alert:@"world"];
+    id<iDev> dev = XENP(iDev);
+    [dev enabledDebug:TRUE];
+    [dev log:@"world"];
 
 }
 

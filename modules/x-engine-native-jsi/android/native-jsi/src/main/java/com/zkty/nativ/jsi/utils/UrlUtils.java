@@ -59,22 +59,15 @@ public class UrlUtils {
     /**
      * 解析url
      *
-     * @param url
+     * @param ie=UTF-8&wd=ARouter
      * @return
      */
-    public static Map<String, String> parseForParams(String url) {
+    public static Map<String, String> getQueryMapFormString(String query) {
         Map<String, String> map = new HashMap();
-        if (TextUtils.isEmpty(url)) {
+        if (TextUtils.isEmpty(query)) {
             return map;
         }
-        if (url.contains("?")) {
-            url = url.substring(url.indexOf("?") + 1);
-        } else {
-            return map;
-        }
-
-        //有参数
-        String[] params = url.split("&");
+        String[] params = query.split("&");
         for (String param : params) {
             String[] keyValue = param.split("=");
             if (keyValue.length > 1)

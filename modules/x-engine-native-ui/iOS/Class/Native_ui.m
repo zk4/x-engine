@@ -54,6 +54,12 @@ NATIVE_MODULE(Native_ui)
 
 }
 
+- (void)alert:(nonnull NSString *)msg {
+    //DEBUG
+    NSLog(@"hello! %@",msg);
+}
+
+
 + (UIColor *) colorFromHexCode:(NSString *)hexString {
     NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
     if([cleanString length] == 3) {

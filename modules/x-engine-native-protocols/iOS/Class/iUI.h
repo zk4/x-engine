@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol iUI <NSObject>
 - (void)setNavBarHidden:(BOOL)isHidden isAnimation:(BOOL)isAnimation;
 - (void)setNavTitle:(NSString *)title withTitleColor:(NSString *)color withTitleSize:(NSInteger)size;
+- (void) alert:(NSString*) msg;
 @end
 
 NS_ASSUME_NONNULL_END

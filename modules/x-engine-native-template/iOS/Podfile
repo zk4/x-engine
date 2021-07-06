@@ -11,18 +11,31 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
-end
-
-target 'xxxx' do
-  #use_frameworks!
-  shared_pods
-end
-target 'xxxxTests' do
-  #use_frameworks!
-  shared_pods
-end
-target 'xxxxUITests' do
-  # Pods for testing
-  shared_pods
 
 end
+  target 'sit' do
+    shared_pods
+    pod 'x-engine-native-ui', :path => X_ENGINE_MODULES+'/x-engine-native-ui'
+    #use_frameworks!
+  end
+  target 'uat' do
+    shared_pods
+    pod 'x-engine-native-dev', :path => X_ENGINE_MODULES+'/x-engine-native-dev'
+    #use_frameworks!
+  end
+  target 'xxxx' do
+    shared_pods
+    #use_frameworks!
+  end
+
+  target 'xxxxTests' do
+    shared_pods
+    #use_frameworks!
+  end
+
+  target 'xxxxUITests' do
+    shared_pods
+    # Pods for testing
+    #shared_pods
+
+  end

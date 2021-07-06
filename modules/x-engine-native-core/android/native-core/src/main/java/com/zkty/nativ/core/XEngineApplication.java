@@ -6,7 +6,10 @@ import android.os.Bundle;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.zkty.nativ.core.utils.IApplicationListener;
 import com.zkty.nativ.core.utils.Utils;
+
+import java.util.List;
 
 public class XEngineApplication extends MultiDexApplication {
 
@@ -65,6 +68,23 @@ public class XEngineApplication extends MultiDexApplication {
     public void onTerminate() {
         super.onTerminate();
         ActivityStackManager.getInstance().unRegister(this);
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        List<NativeModule> modules = NativeContext.sharedInstance().getModules();
+
+        for (NativeModule module : modules) {
+            if (module instanceof IApplicationListener) {
+                IApplicationListener listener = (IApplicationListener) module;
+                if (listener != null) {
+                    listener.onTerminate();
+                }
+
+            }
+        }
+
     }
 
     public static Application getApplication() {

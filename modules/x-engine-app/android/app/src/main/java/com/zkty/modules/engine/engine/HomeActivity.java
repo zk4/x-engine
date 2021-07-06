@@ -6,12 +6,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zkty.modules.engine.R;
+import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.DensityUtils;
 import com.zkty.nativ.direct.DirectManager;
@@ -24,13 +27,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
-    private XEngineWebView mWebview;
+    private TextView tv_page;
+    private EditText et_num;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        tv_page = findViewById(R.id.tv_page);
+        et_num = findViewById(R.id.et_num);
+        tv_page.setText("page:" + ActivityStackManager.getInstance().getActivityNum());
 
     }
 
@@ -48,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, null, true);
     }
 
+
     public void scan(View view) {
         Intent intent = new Intent(this, ScanActivity.class);
         startActivityForResult(intent, 100);
@@ -64,5 +72,16 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    public void nextAct(View view) {
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+    public void finishAct(View view) {
+        startActivity(new Intent(this, HomeActivity.class));
+        int num = Integer.parseInt(et_num.getText().toString());
+        ActivityStackManager.getInstance().finishActivities(num);
+
     }
 }

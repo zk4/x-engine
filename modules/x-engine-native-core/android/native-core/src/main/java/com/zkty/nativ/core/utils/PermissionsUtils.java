@@ -24,11 +24,17 @@ import java.util.List;
  */
 public class PermissionsUtils {
 
-    private static final int mRequestCode = 10100;//权限请求码
+    private static int mRequestCode = 10100;//权限请求码
     public static boolean showSystemSetting = true;
 
 
     private IPermissionsResult mPermissionsResult;
+
+    public void checkPermissions(Activity context, String[] permissions, int requestCode, @NonNull IPermissionsResult permissionsResult) {
+        mRequestCode = requestCode;
+        checkPermissions(context, permissions, permissionsResult);
+
+    }
 
     public void checkPermissions(Activity context, String[] permissions, @NonNull IPermissionsResult permissionsResult) {
         mPermissionsResult = permissionsResult;
@@ -99,16 +105,13 @@ public class PermissionsUtils {
         if (mPermissionDialog == null) {
             mPermissionDialog = new AlertDialog.Builder(context)
                     .setMessage("已禁用权限，请手动授予")
-                    .setPositiveButton("设置", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            cancelPermissionDialog();
+                    .setPositiveButton("设置", (dialog, which) -> {
+                        cancelPermissionDialog();
 
-                            Uri packageURI = Uri.parse("package:" + mPackName);
-                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
-                            context.startActivity(intent);
-                            context.finish();
-                        }
+                        Uri packageURI = Uri.parse("package:" + mPackName);
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                        context.startActivity(intent);
+                        context.finish();
                     })
                     .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                         @Override

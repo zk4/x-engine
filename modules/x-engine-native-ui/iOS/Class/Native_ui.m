@@ -54,6 +54,7 @@ NATIVE_MODULE(Native_ui)
 
 }
 
+
 + (UIColor *) colorFromHexCode:(NSString *)hexString {
     NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
     if([cleanString length] == 3) {

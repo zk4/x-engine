@@ -49,7 +49,17 @@ NATIVE_MODULE(Native_share_wx)
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
 
-    UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
+    UIImage *desImage = nil;
+
+    if ([info objectForKey:@"imgData"]) {
+        NSData *sData = [[NSData alloc]initWithBase64EncodedString:[info objectForKey:@"imgData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        desImage = [[UIImage alloc] initWithData:sData];
+//        desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgData"]]]];
+    }else if ([info objectForKey:@"imgUrl"]) {
+        desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
+    }else{
+        //TODO
+    }
     UIImage *thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
     
     if ([channel isEqualToString:@"wx_friend"]) {

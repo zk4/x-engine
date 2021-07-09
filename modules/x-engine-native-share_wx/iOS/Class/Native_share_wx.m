@@ -53,7 +53,11 @@ NATIVE_MODULE(Native_share_wx)
     NSData *sData;
     UIImage *thumbImg;
     if ([info objectForKey:@"imgData"]) {
-        sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[info objectForKey:@"imgData"]]];
+        if ([[info objectForKey:@"imgData"] hasPrefix:@"http:"] || [[info objectForKey:@"imgData"] hasPrefix:@"https:"]){
+            sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[info objectForKey:@"imgData"]]];
+        }else{
+            sData = [[NSData alloc] initWithBase64EncodedString:[info objectForKey:@"imgData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        }
     }else if ([info objectForKey:@"imgUrl"]) {
         desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
         thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];

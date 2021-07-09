@@ -1,12 +1,11 @@
 package com.zkty.nativ.direct;
 
 
-import android.text.TextUtils;
-
+import com.alibaba.fastjson.JSONObject;
+import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
-import com.zkty.nativ.jsi.webview.XEngineWebView;
-import com.zkty.nativ.jsi.webview.XWebViewPool;
+import com.zkty.nativ.core.XEngineApplication;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +46,19 @@ public class NativeDirect extends NativeModule implements IDirectManager {
 
         IDirect iDirect = directors.get(scheme);
         iDirect.push(iDirect.protocol(), host, pathname, fragment, query, params);
+
+        if (params != null && params.containsKey("nativeParams")) {
+            try {
+                JSONObject nativeParams = JSONObject.parseObject(params.get("nativeParams"));
+                int goal = nativeParams.getIntValue("__deleteHistory__");
+                XEngineApplication.getCurrentActivity().runOnUiThread(() -> ActivityStackManager.getInstance().finishActivities(goal));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     @Override

@@ -25,6 +25,7 @@ public class XEngineApplication extends MultiDexApplication {
         if (Utils.getCurProcessName(this).equals(getApplicationInfo().packageName)) {
             NativeContext.sharedInstance().init(this);
         }
+        ActivityStackManager.getInstance().register(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -63,12 +64,11 @@ public class XEngineApplication extends MultiDexApplication {
         });
     }
 
-
     @Override
     public void onTerminate() {
         super.onTerminate();
+        ActivityStackManager.getInstance().unRegister(this);
         List<NativeModule> modules = NativeContext.sharedInstance().getModules();
-
         for (NativeModule module : modules) {
             if (module instanceof IApplicationListener) {
                 IApplicationListener listener = (IApplicationListener) module;

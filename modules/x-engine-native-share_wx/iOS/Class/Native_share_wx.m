@@ -49,22 +49,27 @@ NATIVE_MODULE(Native_share_wx)
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
 
-    UIImage *desImage = nil;
-
+    NSData *sData;///分享图片真实图片data
+    NSData *thumbData;///分享小程序的缩略图data
+    UIImage *thumbImg;///缩略图控件
     if ([info objectForKey:@"imgData"]) {
-        NSData *sData = [[NSData alloc]initWithBase64EncodedString:[info objectForKey:@"imgData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        desImage = [[UIImage alloc] initWithData:sData];
-//        desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgData"]]]];
+        if ([[info objectForKey:@"imgData"] hasPrefix:@"http:"] || [[info objectForKey:@"imgData"] hasPrefix:@"https:"]){
+            sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[info objectForKey:@"imgData"]]];
+        }else{
+            sData = [[NSData alloc] initWithBase64EncodedString:[info objectForKey:@"imgData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        }
     }else if ([info objectForKey:@"imgUrl"]) {
-        desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
+        UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
+        thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
+        thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]];
     }else{
         //TODO
     }
-    UIImage *thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
+    
     
     if ([channel isEqualToString:@"wx_friend"]) {
         if ([type isEqualToString:@"img"]) {
-            NSData *imageData = UIImageJPEGRepresentation(thumbImg, 1);//[info[@"imgData"] dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *imageData = sData;
             WXImageObject *ext = [WXImageObject object];
             ext.imageData = imageData;
             message.mediaObject = ext;
@@ -87,12 +92,12 @@ NATIVE_MODULE(Native_share_wx)
             object.webpageUrl = @"1";//info[@"link"];
             object.userName = info[@"userName"];
             object.path = info[@"path"];
-            object.hdImageData = UIImageJPEGRepresentation(thumbImg, 1);
+            object.hdImageData = sData;
             object.withShareTicket = YES;
             object.miniProgramType = [info[@"miniProgramType"] intValue];
             message.title = info[@"title"];
             message.description = info[@"desc"];
-            message.thumbData = nil;
+            message.thumbData = thumbData;
             message.mediaObject = object;
             req.message = message;
             req.scene = WXSceneSession; //目前只支持会话
@@ -102,7 +107,7 @@ NATIVE_MODULE(Native_share_wx)
     if ([channel isEqualToString:@"wx_zone"]) {
         if ([type isEqualToString:@"img"]) {
             WXImageObject *ext = [WXImageObject object];
-            ext.imageData = UIImageJPEGRepresentation(thumbImg, 1);;
+            ext.imageData = sData;
             message.mediaObject = ext;
             req.message = message;
             req.scene = WXSceneTimeline;

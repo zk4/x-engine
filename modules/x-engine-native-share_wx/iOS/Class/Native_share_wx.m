@@ -50,21 +50,21 @@ NATIVE_MODULE(Native_share_wx)
     req.bText = NO;
 
     UIImage *desImage = nil;
-
+    NSData *sData;
+    UIImage *thumbImg;
     if ([info objectForKey:@"imgData"]) {
-        NSData *sData = [[NSData alloc]initWithBase64EncodedString:[info objectForKey:@"imgData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        desImage = [[UIImage alloc] initWithData:sData];
-//        desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgData"]]]];
+        sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[info objectForKey:@"imgData"]]];
     }else if ([info objectForKey:@"imgUrl"]) {
         desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
+        thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
     }else{
         //TODO
     }
-    UIImage *thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
+    
     
     if ([channel isEqualToString:@"wx_friend"]) {
         if ([type isEqualToString:@"img"]) {
-            NSData *imageData = UIImageJPEGRepresentation(thumbImg, 1);//[info[@"imgData"] dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *imageData = sData;
             WXImageObject *ext = [WXImageObject object];
             ext.imageData = imageData;
             message.mediaObject = ext;
@@ -87,7 +87,7 @@ NATIVE_MODULE(Native_share_wx)
             object.webpageUrl = @"1";//info[@"link"];
             object.userName = info[@"userName"];
             object.path = info[@"path"];
-            object.hdImageData = UIImageJPEGRepresentation(thumbImg, 1);
+            object.hdImageData = sData;
             object.withShareTicket = YES;
             object.miniProgramType = [info[@"miniProgramType"] intValue];
             message.title = info[@"title"];
@@ -102,7 +102,7 @@ NATIVE_MODULE(Native_share_wx)
     if ([channel isEqualToString:@"wx_zone"]) {
         if ([type isEqualToString:@"img"]) {
             WXImageObject *ext = [WXImageObject object];
-            ext.imageData = UIImageJPEGRepresentation(thumbImg, 1);;
+            ext.imageData = sData;
             message.mediaObject = ext;
             req.message = message;
             req.scene = WXSceneTimeline;

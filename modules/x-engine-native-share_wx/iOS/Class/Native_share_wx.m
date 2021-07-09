@@ -49,9 +49,9 @@ NATIVE_MODULE(Native_share_wx)
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
 
-    UIImage *desImage = nil;
-    NSData *sData;
-    UIImage *thumbImg;
+    NSData *sData;///分享图片真实图片data
+    NSData *thumbData;///分享小程序的缩略图data
+    UIImage *thumbImg;///缩略图控件
     if ([info objectForKey:@"imgData"]) {
         if ([[info objectForKey:@"imgData"] hasPrefix:@"http:"] || [[info objectForKey:@"imgData"] hasPrefix:@"https:"]){
             sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[info objectForKey:@"imgData"]]];
@@ -59,8 +59,9 @@ NATIVE_MODULE(Native_share_wx)
             sData = [[NSData alloc] initWithBase64EncodedString:[info objectForKey:@"imgData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
         }
     }else if ([info objectForKey:@"imgUrl"]) {
-        desImage=   [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
+        UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
         thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
+        thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]];
     }else{
         //TODO
     }
@@ -96,7 +97,7 @@ NATIVE_MODULE(Native_share_wx)
             object.miniProgramType = [info[@"miniProgramType"] intValue];
             message.title = info[@"title"];
             message.description = info[@"desc"];
-            message.thumbData = nil;
+            message.thumbData = thumbData;
             message.mediaObject = object;
             req.message = message;
             req.scene = WXSceneSession; //目前只支持会话

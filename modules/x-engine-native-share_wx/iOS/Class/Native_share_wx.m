@@ -52,7 +52,8 @@ NATIVE_MODULE(Native_share_wx)
     NSData *sData;///分享图片真实图片data
     NSData *thumbData;///分享小程序的缩略图data
     UIImage *thumbImg;///缩略图控件
-    if ([info objectForKey:@"imgData"]) {
+    NSString *imgDatastr =[info objectForKey:@"imgData"];
+    if (imgDatastr.length>0) {
         if ([[info objectForKey:@"imgData"] hasPrefix:@"http:"] || [[info objectForKey:@"imgData"] hasPrefix:@"https:"]){
             sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[info objectForKey:@"imgData"]]];
         }else{
@@ -63,7 +64,11 @@ NATIVE_MODULE(Native_share_wx)
         thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
         thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]];
     }else{
-        //TODO
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"图片加载失败" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+        [alert addAction:enter];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+        return;;
     }
     
     
@@ -89,7 +94,11 @@ NATIVE_MODULE(Native_share_wx)
         if ([type isEqualToString:@"miniProgram"]) {
             WXMiniProgramObject *object = [WXMiniProgramObject object];
             /// TODO: 应该是取link 的值
-            object.webpageUrl = @"1";//info[@"link"];
+            if ([[info objectForKey:@"link"] hasPrefix:@"http:"] || [[info objectForKey:@"link"] hasPrefix:@"https:"]){
+                object.webpageUrl = [info objectForKey:@"link"];
+            }else{
+                object.webpageUrl = @"1";
+            }
             object.userName = info[@"userName"];
             object.path = info[@"path"];
             object.hdImageData = sData;

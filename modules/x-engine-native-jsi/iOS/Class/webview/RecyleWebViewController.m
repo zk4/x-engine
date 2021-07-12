@@ -339,7 +339,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     
     self.tipLabel404 = [[UILabel alloc] init];
     self.tipLabel404.textAlignment = NSTextAlignmentCenter;
-    self.tipLabel404.text = @"您访问的页面找不到了";
+    self.tipLabel404.text = @"您访问的页面找不到了。";
     self.tipLabel404.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
     self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel404];

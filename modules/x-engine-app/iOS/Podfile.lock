@@ -120,9 +120,6 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-webcache (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
@@ -156,7 +153,6 @@ DEPENDENCIES:
   - x-engine-native-scan (from `../../x-engine-native-scan`)
   - x-engine-native-store (from `../../x-engine-native-store`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
-  - x-engine-native-webcache (from `../../x-engine-native-webcache`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
@@ -223,8 +219,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-store"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
-  x-engine-native-webcache:
-    :path: "../../x-engine-native-webcache"
   ZBarSDK:
     :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
@@ -261,9 +255,8 @@ SPEC CHECKSUMS:
   x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
   x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
-  x-engine-native-webcache: a77702d7638a2b950137ccf6da2d7c3a473eef53
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: a3d3a37b9b72f26108851ed41200fdbf6a6be35d
+PODFILE CHECKSUM: 31d27037bb10924aa428361016dfbd4226e82446
 
 COCOAPODS: 1.10.0

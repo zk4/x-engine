@@ -21,14 +21,18 @@ NS_ASSUME_NONNULL_BEGIN
 // 注意 protocol 带:, 形如 http: https:
 -(NSString*) protocol;
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        host:(nullable NSString*) host
-        pathname:(NSString*) pathname
-        fragment:(nullable NSString*) fragment 
-        query:(nullable NSDictionary<NSString*,id>*) query
-        params:(nullable NSDictionary<NSString*,id>*) params;
+- (void)push:(UIViewController*) container
+        params:(nullable NSDictionary<NSString*,id>*) params;  //　原生参数
 
 - (void)back:(NSString*) host fragment:(NSString*) fragment;
+
+// 创建容器，vc
+- (UIViewController*)getContainer:(NSString*) protocol
+        host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
+        query:(nullable NSDictionary<NSString*,id>*) query
+        params:(nullable NSDictionary<NSString*,id>*) params;
 
 @end
 

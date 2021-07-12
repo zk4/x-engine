@@ -7,13 +7,12 @@
 //
 
 #import "TwoViewController.h"
-
-#import "RecyleWebViewController.h"
-#import "MicroAppLoader.h"
-#import <GlobalState.h>
+#import <iDirectManager.h>
+#import <XENativeContext.h>
 
 @interface TwoViewController ()
 @end
+
 
 @implementation TwoViewController
 
@@ -21,20 +20,8 @@
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";
 
-    ///TODO: 统一一个类处理 URL 地址问题
-    NSString* protocol= @"file:";
-    NSString* microappid = @"com.gm.microapp.mine";
-    NSString* fragment = @"/";
-    
 
-    NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:microappid withVersion:0];
-    NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
-
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost pathname:@"" fragment:fragment  withHiddenNavBar:TRUE onTab:TRUE];
-
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
-    vc.view.frame = self.view.frame;
+    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.mine" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

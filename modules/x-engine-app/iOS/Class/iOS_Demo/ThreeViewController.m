@@ -7,6 +7,8 @@
 //
 
 #import "ThreeViewController.h"
+#import <iDirectManager.h>
+#import <XENativeContext.h>
 
 @interface ThreeViewController ()
 
@@ -16,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"模块3";
+
+    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.mine/#testone" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 }
 
 /*

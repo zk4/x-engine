@@ -20,9 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"模块1";
-    [self setupView];
-//    [self didClickBtn];
+    
+    [XENP(iDirectManager) addToTab:self uri:@"https://www.baidu.com/" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
+
 }
 
 - (void)setupView {

@@ -49,13 +49,12 @@ NATIVE_MODULE(Native_direct_microapp)
     [self.microappDirect back:host fragment:fragment];
 }
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        host:(NSString*) host
-        pathname:(NSString*) pathname
-        fragment:(NSString*) fragment
-        query:(NSDictionary<NSString*,id>*) query
-        params:(NSDictionary<NSString*,id>*) params  {
+- (void)push:(UIViewController*) container
+      params:(nullable NSDictionary<NSString*,id>*) params{
+    [self.microappDirect push:container params:params];
+}
 
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
     long version =0;
     if (params && params[@"version"]){
         version= [params[@"version"] longValue] ;
@@ -69,7 +68,6 @@ NATIVE_MODULE(Native_direct_microapp)
        HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
        pathname=hm.pathname;
     }
-    [self.microappDirect push:[self protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];
 }
-
 @end

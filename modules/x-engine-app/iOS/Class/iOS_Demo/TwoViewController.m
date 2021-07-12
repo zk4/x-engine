@@ -26,14 +26,11 @@
     NSString* microappid = @"com.gm.microapp.mine";
     NSString* fragment = @"/";
     
-//    NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,host];
-//    if(pathname && ![pathname isEqualToString:@"/"]){
-//        finalUrl =[NSString stringWithFormat:@"%@#%@",finalUrl,pathname];
-//    }
+
     NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:microappid withVersion:0];
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost pathname:@"" fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE onTab:TRUE];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost pathname:@"" fragment:fragment  withHiddenNavBar:TRUE onTab:TRUE];
 
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];

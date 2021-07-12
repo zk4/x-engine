@@ -45,6 +45,7 @@ def shared_pods
   pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'
 
   pod 'JSONModel'
+  pod 'MJExtension'
 end
 
 target 'ModuleApp' do

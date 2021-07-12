@@ -28,18 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
         query:(nullable NSDictionary<NSString*,id>*) query
         params:(nullable NSDictionary<NSString*,id>*) params;
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        pathname:(NSString*) pathname
-        query:(nullable NSDictionary<NSString*,id>*) query
-        params:(nullable NSDictionary<NSString*,id>*) params
-        completion:(void (^)(id result))completion;
-
 - (void)back:(NSString*) host fragment:(NSString*) fragment;
-
-/// 注册原生页面URL地址
-/// @param URLPattern 原生页面URL
-/// @param openNativeActive 打开原生页面事件
-- (void)registerURLPattern:(NSString *)URLPattern openNativeActive:(void (^)(NSDictionary *routerParameters))openNativeActive;
 
 @end
 

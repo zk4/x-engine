@@ -192,6 +192,7 @@ NATIVE_MODULE(Native_direct_omp)
         NSAssert(host!=nil, @"host 不可为 nil");
         pathname = hm.pathname ? hm.pathname : @"";
     }
+    NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#") ;
     fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 

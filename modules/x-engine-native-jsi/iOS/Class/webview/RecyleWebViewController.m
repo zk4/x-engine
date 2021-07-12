@@ -228,14 +228,14 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-     if(self.screenView){
-        //  返回的时候不要急着 remove， 不然会闪历史界面
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.screenView removeFromSuperview];
-            self.screenView = nil;
-        });
-    }
-    [self.view insertSubview:self.webview atIndex:0];
+//     if(self.screenView){
+//        //  返回的时候不要急着 remove， 不然会闪历史界面
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.screenView removeFromSuperview];
+//            self.screenView = nil;
+//        });
+//    }
+//    [self.view insertSubview:self.webview atIndex:0];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

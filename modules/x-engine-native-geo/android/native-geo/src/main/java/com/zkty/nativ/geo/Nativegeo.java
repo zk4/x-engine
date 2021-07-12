@@ -3,6 +3,7 @@ package com.zkty.nativ.geo;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +21,20 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
     private List<NativeModule> modules;
     private LifecycleListener lifeCycleListener;
-    private String[] permissions = new String[]{
-            Manifest.permission.ACCESS_COARSE_LOCATION};
+    private String[] permissions;
+    //Android10以下申请定位权限
+    private String[] permissionsO = new String[]{
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION};
+
+    //Android 10及以上申请定位权限
+    private String[] permissionsQ = new String[]{
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+
     private final int LOCATION_REQUEST_CODE = 0x31;
-    private PermissionsUtils permissionsUtils = new PermissionsUtils();
+    private PermissionsUtils permissionsUtils;
 
     @Override
     public String moduleId() {
@@ -38,11 +49,16 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
     @Override
     public void locate(CallBack callBack) {
+        permissions = permissionsO;
+        if (Build.VERSION.SDK_INT >= 29) {
+            permissions = permissionsQ;
+        }
+
 
         Activity activity = XEngineApplication.getCurrentActivity();
         if (activity == null || !(activity instanceof BaseXEngineActivity)) return;
         final BaseXEngineActivity act = (BaseXEngineActivity) activity;
-
+        permissionsUtils = new PermissionsUtils();
         if (lifeCycleListener != null) {
             act.removeLifeCycleListener(lifeCycleListener);
             lifeCycleListener = null;
@@ -90,7 +106,8 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
             @Override
             public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-                permissionsUtils.onRequestPermissionsResult(activity, requestCode, permissions, grantResults);
+                if (requestCode == LOCATION_REQUEST_CODE)
+                    permissionsUtils.onRequestPermissionsResult(activity, requestCode, permissions, grantResults);
             }
         };
 
@@ -98,7 +115,7 @@ public class Nativegeo extends NativeModule implements IGeoManager {
             callBack.onLocation(null);
             return;
         }
-
+        act.addLifeCycleListener(lifeCycleListener);
         permissionsUtils.checkPermissions(activity, permissions, LOCATION_REQUEST_CODE, new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissions() {

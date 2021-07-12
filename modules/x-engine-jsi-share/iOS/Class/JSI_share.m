@@ -23,10 +23,7 @@ JSI_MODULE(JSI_share)
 }
 
 - (void)_share:(ShareDTO *)dto complete:(void (^)(BOOL))completionHandler {
-//    [ishareManager shareWithType:dto.type channel:dto.channel posterInfo:dto.info complete:^(NSString * _Nullable channel, NSString * _Nullable shareType, NSString * _Nullable imageData, BOOL complete) {
-//        completionHandler(true);
-    
-//    }];
+
     [self.ishareManager shareWithType:dto.type channel:dto.channel posterInfo:dto.info complete:^(  BOOL complete) {
         completionHandler(TRUE);
     }];

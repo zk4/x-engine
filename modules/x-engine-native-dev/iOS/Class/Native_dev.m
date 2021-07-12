@@ -5,7 +5,7 @@
 //  Created by zk on 2020/9/7.
 //  Copyright © 2020 edz. All rights reserved.
 
-
+BOOL NATIVE_DEV_DEBUG=TRUE; 
 #import "Native_dev.h"
 #import "XENativeModule.h"
 #import "XENativeContext.h"
@@ -29,8 +29,30 @@ NATIVE_MODULE(Native_dev)
 
 - (void)afterAllNativeModuleInited{
     
-} 
+}
 
+- (void)enabledDebug:(BOOL)val{
+    NATIVE_DEV_DEBUG = val;
+}
+
+
+- (void)log:(nonnull NSString *)msg {
+    if(NATIVE_DEV_DEBUG){
+        NSLog(@"hello! DEBUG %@",msg);
+    }else{
+        NSLog(@"hello! ELSE %@",msg);
+    }
+
+}
+- (void) xlog:(NSString*) msg{
+#ifdef DEBUG
+    NSLog(@"DEBUG 宏生效");
+#endif
+#ifdef RELEASE
+    NSLog(@"RELEASE 宏生效");
+#endif
+
+}
 - (void) UIApplicationDidFinishLaunchingNotification {
     [WHDebugToolManager toggleWith:DebugToolTypeAll];
 }

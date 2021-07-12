@@ -36,7 +36,7 @@ NATIVE_MODULE(Native_geo_gaode)
         return NO;
     }
     NSString *keyString = config[@"keyString"];
-    keyString = @"c68c60fb8801d81927bb6746a93a6fce";
+//    keyString = @"c68c60fb8801d81927bb6746a93a6fce";
     [[AMapServices sharedServices] setEnableHTTPS:YES];
     [AMapServices sharedServices].apiKey = keyString;
     

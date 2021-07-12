@@ -8,7 +8,7 @@
 #import "XENativeContext.h"
 #import "micros.h"
 #import "NSURLProtocol+WebKitSupport.h"
-//#import "ReplacingImageURLProtocol.h"
+#import "ReplacingImageURLProtocol.h"
 #import "MyURLProtocol.h"
 
 #import <UIKit/UIKit.h>

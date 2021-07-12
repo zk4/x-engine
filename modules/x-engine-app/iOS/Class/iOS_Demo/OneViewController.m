@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // 直接打开http　有 bug，　在返回时找不到地址了。
     [XENP(iDirectManager) addToTab:self uri:@"https://www.baidu.com/" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 
 }

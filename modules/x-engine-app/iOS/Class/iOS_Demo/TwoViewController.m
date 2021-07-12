@@ -23,10 +23,10 @@
 
     [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.mine" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 }
-
-- (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"............");
-}
+// 这样写是有 bug ，不会调父的viewDidAppear
+//- (void)viewDidAppear:(BOOL)animated{
+//    NSLog(@"............");
+//}
 /*
 #pragma mark - Navigation
 

@@ -77,6 +77,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     private android.webkit.ValueCallback<Uri[]> mUploadCallbackAboveL;
     private PermissionsUtils permissionsUtils = new PermissionsUtils();
     public static final int FILECHOOSER_RESULTCODE = 10;// 表单的结果回调
+    public static final int XACTIVITY_REQUEST_CODE = 150;// 权限请求码
 
     private HistoryModel historyModel;
 
@@ -176,7 +177,9 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        if (requestCode == XACTIVITY_REQUEST_CODE) {
+            permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        }
     }
 
     @Override
@@ -338,7 +341,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private void showSelectDialog() {
         permissionsUtils.checkPermissions(this, new String[]{Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, XACTIVITY_REQUEST_CODE, new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissions() {
                 CameraDialog bottomDialog = new CameraDialog(XEngineWebActivity.this);
@@ -372,7 +375,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private void choseFile() {
         permissionsUtils.checkPermissions(this, new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, XACTIVITY_REQUEST_CODE, new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissions() {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);

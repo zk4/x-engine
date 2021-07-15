@@ -39,7 +39,7 @@
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
         
         // 隐藏tabbar
-        viewController.hidesBottomBarWhenPushed = YES;
+//        viewController.hidesBottomBarWhenPushed = YES;
         
         // 保留滑动返回手势
         if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {

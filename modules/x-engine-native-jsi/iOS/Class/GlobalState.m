@@ -38,16 +38,7 @@
 - (void)setCurrentTabVC:(UIViewController*) vc{
     _current_tab_vc = vc;
 }
-//
-//- (NSString*) getLastHost{
-//    [self clearHistory];
-//    NSString* host = [_histories lastObject].host;
-//    /// 那就是在 tab 上了.
-//    if(!host){
-//        host =[[GlobalState sharedInstance] getCurrentTab].host;
-//    }
-//    return host;
-//}
+
 - (HistoryModel*) getLastHistory{
     [self clearHistory];
     HistoryModel* history = [_histories lastObject];

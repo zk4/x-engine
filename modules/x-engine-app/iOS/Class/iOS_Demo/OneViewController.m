@@ -20,9 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"模块1";
-    [self setupView];
-//    [self didClickBtn];
+    // 直接打开http　有 bug，　在返回时找不到地址了。
+//    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.home" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
+    
+    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.71:8081" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 }
 
 - (void)setupView {

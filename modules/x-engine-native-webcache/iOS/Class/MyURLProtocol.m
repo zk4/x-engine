@@ -71,10 +71,9 @@
 
 {
     
-    //如果此请求是拦截到请求之后，接管请求而发起的新请求，则不处理。
-    
-    if ([request.URL.scheme isEqualToString:@"http"] &&
-        
+    // 如果此请求是拦截到请求之后，接管请求而发起的新请求，则不处理。
+    if (([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"]) &&
+        [request.HTTPMethod isEqualToString:@"get"] &&
         [request valueForHTTPHeaderField:MyURLProtocolHandled] == nil)
         
     {
@@ -82,7 +81,11 @@
         return YES;
         
     }
-    
+    // TODO: post body 丢失
+    // https://github.com/li6185377/IMYWebLoader 这个方案也许可行
+    if([request.HTTPMethod isEqualToString:@"post"]){
+        NSLog(@"body is missing");
+    }
     return NO;
     
 }

@@ -228,14 +228,14 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-     if(self.screenView){
-        //  返回的时候不要急着 remove， 不然会闪历史界面
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.screenView removeFromSuperview];
-            self.screenView = nil;
-        });
-    }
-    [self.view insertSubview:self.webview atIndex:0];
+//     if(self.screenView){
+//        //  返回的时候不要急着 remove， 不然会闪历史界面
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.screenView removeFromSuperview];
+//            self.screenView = nil;
+//        });
+//    }
+//    [self.view insertSubview:self.webview atIndex:0];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -339,7 +339,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     
     self.tipLabel404 = [[UILabel alloc] init];
     self.tipLabel404.textAlignment = NSTextAlignmentCenter;
-    self.tipLabel404.text = @"您访问的页面找不到了";
+    self.tipLabel404.text = @"您访问的页面找不到了。";
     self.tipLabel404.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
     self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel404];

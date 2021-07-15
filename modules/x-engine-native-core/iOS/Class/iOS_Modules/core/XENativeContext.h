@@ -17,6 +17,8 @@
 @interface XENativeContext : NSObject
 + (instancetype)sharedInstance;
 
+// 将 a.b.c　转换为　a*10000+ b*100 +c  得到一个 long
+- (long) getVersion;
 - (id) getModuleByProtocol:(Protocol *) proto;
 - (id) getModuleById:(NSString*) moduleId;
 - (NSMutableArray*) getModulesByProtocol:(Protocol *) proto;

@@ -49,13 +49,24 @@ NATIVE_MODULE(Native_direct_microapp)
     [self.microappDirect back:host fragment:fragment];
 }
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        host:(NSString*) host
-        pathname:(NSString*) pathname
-        fragment:(NSString*) fragment
-        query:(NSDictionary<NSString*,id>*) query
-        params:(NSDictionary<NSString*,id>*) params  {
+- (void)push:(UIViewController*) container
+      params:(nullable NSDictionary<NSString*,id>*) params{
+    [self.microappDirect push:container params:params];
+}
 
+
+- (void)showErrorAlert:(NSString *)errorString
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        [ac addAction:action];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+    });
+}
+
+
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
     long version =0;
     if (params && params[@"version"]){
         version= [params[@"version"] longValue] ;
@@ -64,12 +75,18 @@ NATIVE_MODULE(Native_direct_microapp)
         // microapp 的 host 要特殊处理.
         // 当第一次打开时, 因为这里传过来的时 microappid => host, pathname
         pathname = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:version];
+        if(!pathname){
+            NSString* errStr = [NSString stringWithFormat:@"找不到本地微应用:%@",host];
+            [self showErrorAlert:errStr];
+            return nil;
+        }
+            
         host=@"";
+
     }else{
        HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
        pathname=hm.pathname;
     }
-    [self.microappDirect push:[self protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];
 }
-
 @end

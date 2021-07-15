@@ -16,9 +16,9 @@
 #import "XENativeContext.h"
 #import "iStore.h"
 
-#define  ONE_PAGE_ONE_WEBVIEW TRUE
+
 @interface Native_direct_omp()
-@property(nonatomic,strong) UINavigationController* navc;
+//@property(nonatomic,strong) UINavigationController* navc;
 @end
 @implementation Native_direct_omp
 NATIVE_MODULE(Native_direct_omp)
@@ -32,18 +32,16 @@ NATIVE_MODULE(Native_direct_omp)
 }
 
 - (void)afterAllNativeModuleInited{
-    self.navc =[Unity sharedInstance].getCurrentVC.navigationController;
+
 }
 
 - (void)back:(NSString*) host fragment:(NSString*) fragment{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
     NSMutableArray<HistoryModel*>*  histories= nil;
-    if(ONE_PAGE_ONE_WEBVIEW){
-        histories = [[GlobalState sharedInstance] getCurrentHostHistories];
-    } else {
-        histories = [[GlobalState sharedInstance] getCurrentWebViewHistories];
-    }
+
+    histories = [[GlobalState sharedInstance] getCurrentHostHistories];
+
     BOOL isMinusHistory = [fragment rangeOfString:@"^-\\d+$" options:NSRegularExpressionSearch].location != NSNotFound;
     
     BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
@@ -110,22 +108,34 @@ NATIVE_MODULE(Native_direct_omp)
 
     // 基于 tabbar　的应用，第一次大概率是 navigationController，保存起来。
     // TODO: 优化
-    if(!self.navc)
-        self.navc =[Unity sharedInstance].getCurrentVC.navigationController;
+//    if(!self.navc)
+//        self.navc =[Unity sharedInstance].getCurrentVC.navigationController;
 
-
-    if(self.navc){
-        [self.navc pushViewController:container animated:YES];
-    } else {
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        if([nav isKindOfClass:[UINavigationController class]]){
-            [nav pushViewController:container animated:YES];
-        } else {
-            nav = nav.navigationController;
-            [nav pushViewController:container animated:YES];
+    UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
+//    if(navc){
+        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
+        int deleteHistory = 0;
+        if(nativeParams){
+            id deletable = [nativeParams objectForKey:@"__deleteHistory__"];
+            if(deletable)
+                deleteHistory =[deletable intValue];
         }
-    }
-    container.hidesBottomBarWhenPushed = NO;
+        NSAssert(deleteHistory>=0, @"__deleteHistory__ 必须大于等于 0");
+        while(deleteHistory>0){
+            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
+            deleteHistory--;
+        }
+        [navc pushViewController:container animated:YES];
+//    } else {
+//        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+//        if([nav isKindOfClass:[UINavigationController class]]){
+//            [nav pushViewController:container animated:YES];
+//        } else {
+//            nav = nav.navigationController;
+//            [nav pushViewController:container animated:YES];
+//        }
+//    }
+//    container.hidesBottomBarWhenPushed = NO;
 }
 
 /// 判断query是否有值, 有值的就拼接在url上
@@ -198,6 +208,8 @@ NATIVE_MODULE(Native_direct_omp)
 
     RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname  fragment:fragment   withHiddenNavBar:isHideNavBar onTab:onTab];
     
+    vc.hidesBottomBarWhenPushed = YES;
+
     return  vc;
 }
 

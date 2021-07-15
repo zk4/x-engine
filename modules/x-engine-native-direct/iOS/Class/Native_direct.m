@@ -63,7 +63,9 @@ NATIVE_MODULE(Native_direct)
         params:(NSDictionary<NSString*,NSString*>*) params {
     id<iDirect> direct = [self.directors objectForKey:scheme];
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
-    [direct push:container params:params];
+    if(container){
+        [direct push:container params:params];
+    }
 }
 
 - (void)addToTab: (UIViewController*) parent

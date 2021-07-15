@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.mine/#testone" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
+    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.mine/#/testone" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 }
 
 /*

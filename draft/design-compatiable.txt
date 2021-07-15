@@ -63,6 +63,7 @@ package 协议模块 {
   package 原生模块(direct.manager) {
  class Native_direct extends NativeModule implements iDirectManager{  
     - directors: Map<string,iDirect>;
+    - (Container) getContainer;
   }
 
 
@@ -70,6 +71,7 @@ package 协议模块 {
   package 原生模块(direct.http) {
   class Native_direct_http   extends NativeModule implements iDirect{
     - (string) moduleId;
+    - (Container) getContainer;
     +(void)push:(...);
     +(void)back:(...);
   }

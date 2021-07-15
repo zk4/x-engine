@@ -16,7 +16,7 @@ export default {
     }
   },
   mounted() {
-    this.$route.meta.backPath = 0
+    this.$route.meta.backPath = -1
   },
   methods: {
     handlerBack() {

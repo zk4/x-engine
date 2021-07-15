@@ -33,7 +33,8 @@
     NSString *localhost = [[MicroAppLoader sharedInstance] getMicroAppHost:microappid withVersion:0];
     NSString * finalUrl = [NSString stringWithFormat:@"%@//%@",protocol,localhost];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost pathname:@"" fragment:fragment newWebView:TRUE  withHiddenNavBar:TRUE onTab:TRUE];
+    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:localhost pathname:@"" fragment:@"" withHiddenNavBar:YES onTab:YES];
+    
 
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
@@ -43,14 +44,4 @@
 - (void)viewDidAppear:(BOOL)animated{
     NSLog(@"............");
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

@@ -239,12 +239,12 @@
 		58D20BC626138BEF0082ADC3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				58D20BC726138BEF0082ADC3 /* MainNavigationController.h */,
-				58D20BC826138BEF0082ADC3 /* MainTabbarController.m */,
-				58D20BC926138BEF0082ADC3 /* MainViewController.m */,
-				58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */,
 				58D20BCB26138BEF0082ADC3 /* MainViewController.h */,
+				58D20BC926138BEF0082ADC3 /* MainViewController.m */,
 				58D20BCC26138BEF0082ADC3 /* MainTabbarController.h */,
+				58D20BC826138BEF0082ADC3 /* MainTabbarController.m */,
+				58D20BC726138BEF0082ADC3 /* MainNavigationController.h */,
+				58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";

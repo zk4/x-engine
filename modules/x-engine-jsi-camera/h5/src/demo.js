@@ -31,7 +31,7 @@ window.test_openImagePicker = () => {
   );
 }
  document.getElementById("test_openImagePicker").click()
-      window.test_saveImageToPhotoAlbum = () => {
+        window.test_saveImageToPhotoAlbum = () => {
 
   xengine.api(
     "com.zkty.jsi.camera",
@@ -47,5 +47,5 @@ window.test_openImagePicker = () => {
   );
 }
  document.getElementById("test_saveImageToPhotoAlbum").click()
-      
+        
     

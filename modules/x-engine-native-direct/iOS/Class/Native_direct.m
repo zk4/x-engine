@@ -76,7 +76,7 @@ NATIVE_MODULE(Native_direct)
         query:(nullable NSDictionary<NSString*,id>*) query
           params:(nullable NSDictionary<NSString*,id>*) params{
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:@"" fragment:fragment query:query params:params];
+    UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     [parent addChildViewController:vc];
     [parent.view addSubview:vc.view];
     vc.view.frame = parent.view.frame;

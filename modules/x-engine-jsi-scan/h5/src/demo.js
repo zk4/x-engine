@@ -9,5 +9,5 @@ window.test_openScanView = () => {
   });
 }
  document.getElementById("test_openScanView").click()
-      
+        
     

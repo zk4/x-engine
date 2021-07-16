@@ -10,6 +10,7 @@
 > 为了方便业务人员的开发,我们对 h5 的跳转进行了拦截.
 >
 > 开发人员可以直接使用vue-router的`push()`和`go()`来进行路由的操作。
+>
 
 ```javascript
 安装方式:
@@ -72,7 +73,7 @@ this.$router.go(0)
 
 JSI Id: com.zkty.jsi.direct
 
-version: 0.1.13
+version: 2.0.3
 
 
 
@@ -88,9 +89,7 @@ version: 0.1.13
     host: "10.2.128.80:8082",
     pathname:'',
     fragment:''
-  }),function(res) {
-    console.log("res :>> ", res);
-  });
+  })
 
   // 跳转microapp
   engine.api('com.zkty.jsi.direct', 'push', {
@@ -98,38 +97,18 @@ version: 0.1.13
     host: "com.gm.microapp.mine",
     pathname: "",
     fragment: "",
-  }),function(res) {
-    console.log("res :>> ", res);
-  });
-
-	// 跳转microapp的某个页面
-	// host: 跳转的microapp名称
-	// fragment: 跳转的页面名称
-	engine.api("com.zkty.jsi.direct","push",{
+  })
+  
+  // 跳转并删除当前页
+  engine.api('com.zkty.jsi.direct', 'push', {
     scheme: "microapp",
-    host: "com.gm.microapp.xxx",
-    pathname: "/",
-    fragment: "/xxx"
-   },function(res) {
-    console.log("res :>> ", res);
-   });
-
-	// 跳转microapp的某个页面并且携带参数, 在下一个页面通过this.$router.query.xx来获取传递参数
-	// host: 跳转的microapp名称
-	// fragment: 跳转的页面名称
-	// query: 跳转携带的参数
-	engine.api("com.zkty.jsi.direct", "push", {
-		scheme: "microapp",
-		host: "com.gm.microapp.xxx",
-		pathname: "/",
-		fragment: "/xxx",
-    query: {
-      id:1,
-      name: "x-engine"
+    host: "com.gm.microapp.mine",
+    pathname: "",
+    fragment: "",
+    params:{
+      '__deleteHistory__':1
     }
-  },function(res) {
-    console.log("res :>> ", res);
-  });
+  })
 
   // 跳转http
   engine.api('com.zkty.jsi.direct', 'push', {  
@@ -137,9 +116,7 @@ version: 0.1.13
     host: "www.baidu.com",  
     fragment: "/",  
     pathname: "",  
-  }),function(res) {
-    console.log("res :>> ", res);
-  });
+  })
 
   // 跳转https
   engine.api('com.zkty.jsi.direct', 'push', {  
@@ -147,11 +124,9 @@ version: 0.1.13
     host: "www.youtube.com",  
     fragment: "",  
     pathname: "",  
-  }) ,function(res) {
-    console.log("res :>> ", res);
-  }); 
+  })  
 
-```
+``` 
 
 **参数说明**
 
@@ -162,7 +137,7 @@ version: 0.1.13
 | pathname | string | 必填 |  |  |
 | fragment | string | 必填 | / | 要注意：<br>一定要以 / 开头 |
 | query | Map\<string,string\> | optional |  | query 参数 |
-| params | Map\<string,string\> | optional | {"hideNavbar":true} | 其他参数（做兼容用） |
+| params | Map\<string,string\> | optional | {"hideNavbar":true} | 其他参数（做兼容用）<br>\_\_deleteHistory\_\_: 1   在push　到下一页之前，　删除掉当前页<br>\_\_deleteHistory\_\_: 2   在push　到下一页之前，　删除掉当前两页<br>历史不足时，到 tab 历史为止。 |
 **无返回值**
 
 
@@ -178,18 +153,18 @@ version: 0.1.13
      fragment:'-1'
    }
 
-```
+``` 
 
 **参数说明**
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | scheme | string | 必填 |  | scheme 类型：由原生类实现<br>当前可用:<br>1. omp 使用 http 协议，webview 带原生 api 功能<br>2. omps 使用 https 协议，webview 带原生 api 功能<br>3. http 普通 webview<br>4. https 普通 webview<br>5. microapp 使用 file 协议，打开本地微应用文件 |
-| fragment | string | 必填 |  | 要注意：<br>/ 回头当前应用的首页<br>标准路由一定要以 / 开头<br>一些特殊字段：<br>-1 回上一页<br>0  回头历史中的原生页 |
+| fragment | string | 必填 |  | 要注意：<br>/ 回到当前应用的首页<br>标准路由一定要以 / 开头<br>一些特殊字段：<br>-1 回上一页<br>0  回头历史中的原生页 |
 **无返回值**
 
 
-​    
+    
 
 
 # iOS 注意事项

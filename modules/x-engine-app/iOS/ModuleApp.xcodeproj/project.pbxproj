@@ -264,10 +264,10 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */,
-				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
 				58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */,
 				58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */,
+				583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */,
+				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
 			);
 			path = Class;
 			sourceTree = SOURCE_ROOT;

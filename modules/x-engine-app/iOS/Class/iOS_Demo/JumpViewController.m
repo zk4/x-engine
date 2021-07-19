@@ -43,7 +43,7 @@
  
 
 -(void)btnclik {
-    [XENP(iDirectManager) push:@"omp://127.0.0.1:8080" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
+    [XENP(iDirectManager) push:@"omp://127.0.0.1:8080/#/testone" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 
 }
 -(void)back {

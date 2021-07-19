@@ -12,6 +12,8 @@
 #import "NSURL+QueryDictionary.h"
 #import "HistoryModel.h"
 #import "GlobalState.h"
+#import "Unity.h"
+#import "RecyleWebViewController.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -42,10 +44,80 @@ NATIVE_MODULE(Native_direct)
     }
 }
 
-- (void)back: (NSString*) scheme host:(NSString*) host fragment:(NSString*) fragment{
+- (void) _back:(NSString*) host fragment:(NSString*) fragment{
+    UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
+    NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
+    NSMutableArray<HistoryModel*>*  histories= nil;
+
+    histories = [[GlobalState sharedInstance] getCurrentHostHistories];
+
+    BOOL isMinusHistory = [fragment rangeOfString:@"^-\\d+$" options:NSRegularExpressionSearch].location != NSNotFound;
+    BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
     
+    if ([@"0" isEqualToString:fragment]){
+        int i =0;
+        for (UIViewController *vc in [ary reverseObjectEnumerator]){
+            if (![vc isKindOfClass:[RecyleWebViewController class]]){
+                [navC popToViewController:vc animated:YES];
+                // 当 i=0 时，也就当前页就不是 RecyleWebViewController，判断现在就是在 tab 页上
+                if(i>0)
+                    [histories removeAllObjects];
+                return;
+            }
+            i++;
+        }
+    } else if ([@"/" isEqualToString:fragment]){
+        if(histories && histories.count > 0){
+            [navC popToViewController:histories[0].vc animated:YES];
+            [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
+        }
+    } else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
+        if(histories){
+            if(histories.count > 1) {
+                [navC popToViewController:histories[histories.count-2].vc animated:YES];
+                [histories removeLastObject];
+            } else if(histories.count ==1){
+                [navC popViewControllerAnimated:YES];
+                [histories removeLastObject];
+            }
+        }
+    } else if(isMinusHistory) {
+        if(histories){
+            int minusHistory = [fragment intValue];
+            if(minusHistory+histories.count<0){
+                /// TODO: alert
+                NSLog(@"没有历史给你退.");
+            }
+            [navC popToViewController:histories[histories.count-1+minusHistory].vc animated:YES];
+            [histories removeObjectsInRange:NSMakeRange(histories.count+minusHistory,  -minusHistory)];
+        }
+    } else if (isNamedHistory){
+        if(histories && histories.count > 1){
+            int i = 0;
+            for (HistoryModel *hm in [histories reverseObjectEnumerator]){
+                if(hm && [hm.fragment isEqualToString:fragment]){
+                    [navC popToViewController:hm.vc animated:YES];
+                    
+                    [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
+                    return;
+                }
+                i++;
+            }
+        }
+    } else {
+        /// TODO: alert
+        NSLog(@"what the fuck? %@",fragment);
+    }
+}
+
+- (void)back: (NSString*) scheme host:(NSString*) host fragment:(NSString*) fragment{
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    [direct back:host fragment:fragment];
+    // 如果不实现,委托给管理类实现
+    if([direct respondsToSelector:@selector(back:host:fragment:)]){
+        [direct back:host fragment:fragment];
+    }else{
+        [self _back:host fragment:fragment];
+    }
 }
 
 

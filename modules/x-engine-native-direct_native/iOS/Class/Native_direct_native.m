@@ -29,9 +29,9 @@ NATIVE_MODULE(Native_direct_native)
     self.routes = [NSMutableDictionary new];
 } 
  
-- (void)back:(nonnull NSString *)host fragment:(nonnull NSString *)fragment {
-    [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:TRUE];
-}
+//- (void)back:(nonnull NSString *)host fragment:(nonnull NSString *)fragment {
+//    [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:TRUE];
+//}
 
 - (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
     

@@ -32,6 +32,7 @@ NATIVE_MODULE(Native_direct_native)
 - (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
     NSString* url = [NSString stringWithFormat:@"%@//%@%@",protocol,host,pathname];
     [MGJRouter openURL:url withUserInfo:@{@"query":query?query:@{},@"params":params?params:@{}} completion:nil];
+    // TODO: 没有遵循 direct 接口. 
     return nil;
 }
 

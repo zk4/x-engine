@@ -17,8 +17,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"JustViewController";
+    [self setupView];
 }
-
+- (void)setupView {
+    {
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 44);
+    btn.backgroundColor = [UIColor systemPinkColor];
+    [btn setTitle:@"push" forState:UIControlStateNormal];
+         [self.view addSubview:btn];
+    }
+    {
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 44);
+    btn.backgroundColor = [UIColor systemPinkColor];
+    [btn setTitle:@"replace" forState:UIControlStateNormal];
+  
+    [self.view addSubview:btn];
+    }
+    
+}
 /*
 #pragma mark - Navigation
 

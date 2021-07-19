@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 extern NSString *const MGJRouterParameterURL;
 extern NSString *const MGJRouterParameterCompletion;
 extern NSString *const MGJRouterParameterUserInfo;
@@ -16,6 +16,7 @@ extern NSString *const MGJRouterParameterUserInfo;
  *  routerParameters 里内置的几个参数会用到上面定义的 string
  */
 typedef void (^MGJRouterHandler)(NSDictionary *routerParameters);
+typedef UIViewController* (^VCCreater)(NSDictionary *routerParameters);
 
 /**
  *  需要返回一个 object，配合 objectForURL: 使用
@@ -33,6 +34,7 @@ typedef id (^MGJRouterObjectHandler)(NSDictionary *routerParameters);
  */
 + (void)registerURLPattern:(NSString *)URLPattern toHandler:(MGJRouterHandler)handler;
 
++ (void)registerURLPattern:(NSString *)URLPattern toCreator:(VCCreater)handler;
 /**
  *  注册 URLPattern 对应的 ObjectHandler，需要返回一个 object 给调用方
  *

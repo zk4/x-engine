@@ -1,8 +1,10 @@
 #import "AppDelegate.h"
 #import "XENativeContext.h"
 #import "JSIContext.h"
- 
+#import "MGJRouter.h"
 #import "MainTabbarController.h"
+#import "JumpViewController.h"
+#import <Unity.h>
 @interface AppDelegate ()
 @end
 
@@ -11,6 +13,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[XENativeContext sharedInstance] start];
     [[JSIContext sharedInstance] start];
+    
+    [MGJRouter registerURLPattern:@"native://foo/bar" toHandler:^(NSDictionary *routerParameters) {
+        NSLog(@"routerParameterUserInfo:%@", routerParameters[MGJRouterParameterUserInfo]);
+ 
+        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[[JumpViewController alloc] init] animated:TRUE];
+         
+    }];
+    
 //  id<iOpenManager> img = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
 //  [img open:@"h5" :@"com.gm.microapp.mine" :@"hello" :@{} :0 :FALSE];
     

@@ -42,6 +42,11 @@ NSString *const MGJRouterParameterUserInfo = @"MGJRouterParameterUserInfo";
     [[self sharedInstance] addURLPattern:URLPattern andHandler:handler];
 }
 
++ (void)registerURLPattern:(NSString *)URLPattern toCreator:(VCCreater)handler
+{
+    [[self sharedInstance] addURLPattern:URLPattern andCreator:handler];
+}
+
 + (void)deregisterURLPattern:(NSString *)URLPattern
 {
     [[self sharedInstance] removeURLPattern:URLPattern];
@@ -168,6 +173,14 @@ NSString *const MGJRouterParameterUserInfo = @"MGJRouterParameterUserInfo";
     NSMutableDictionary *subRoutes = [self addURLPattern:URLPattern];
     if (handler && subRoutes) {
         subRoutes[@"_"] = [handler copy];
+    }
+}
+//  处理 controller 创建
+- (void)addURLPattern:(NSString *)URLPattern andCreator:(VCCreater)handler
+{
+    NSMutableDictionary *subRoutes = [self addURLPattern:URLPattern];
+    if (handler && subRoutes) {
+        subRoutes[@"@"] = [handler copy];
     }
 }
 

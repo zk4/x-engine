@@ -3,7 +3,6 @@
 //  direct
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
 
 
 #import "Native_direct.h"

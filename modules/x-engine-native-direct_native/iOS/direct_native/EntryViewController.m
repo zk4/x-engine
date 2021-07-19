@@ -20,7 +20,7 @@
 
 -(void) pushTestModule{
     id<iDirectManager>  dm = XENP(iDirectManager);
-    [dm push:@"native://foo/bar?user_id=1900" params:nil];
+    [dm push:@"native://foo/bar2" params:@{@"hello":@"world"}];
 //    [MGJRouter openURL:@"native://foo/bar?user=2#a=3" withUserInfo:@{
 //        @"query": @{@"user_id":@1900},
 //        @"params": @{@"hideNavBar":@TRUE}

@@ -55,17 +55,8 @@ NATIVE_MODULE(Native_direct)
     BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
     
     if ([@"0" isEqualToString:fragment]){
-        int i =0;
-        for (UIViewController *vc in [ary reverseObjectEnumerator]){
-            if (![vc isKindOfClass:[RecyleWebViewController class]]){
-                [navC popToViewController:vc animated:YES];
-                // 当 i=0 时，也就当前页就不是 RecyleWebViewController，判断现在就是在 tab 页上
-                if(i>0)
-                    [histories removeAllObjects];
-                return;
-            }
-            i++;
-        }
+        [navC popToRootViewControllerAnimated:TRUE];
+        [histories removeAllObjects];
     } else if ([@"/" isEqualToString:fragment]){
         if(histories && histories.count > 0){
             [navC popToViewController:histories[0].vc animated:YES];

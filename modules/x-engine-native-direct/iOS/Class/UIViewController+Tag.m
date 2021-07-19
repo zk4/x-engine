@@ -18,7 +18,7 @@ static const  char* KEY_HISTORY_MODEL="KEY_HISTORY_MODEL";
 }
 
 - (void)setCurrentHistory:(HistoryModel *) history{
-    objc_setAssociatedObject(self,KEY_HISTORY_MODEL,history,OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self,KEY_HISTORY_MODEL,history,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

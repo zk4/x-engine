@@ -6,7 +6,6 @@
 #import "XEngineWebView.h"
 #import "WebViewFactory.h"
 #import "JSIModule.h"
-#import "GlobalState.h"
 #import "Unity.h"
 #import "iSecurify.h"
 #import "XENativeContext.h"
@@ -41,7 +40,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @implementation RecyleWebViewController
 
 - (void)handleNavigationTransition:(UIGestureRecognizer *)gap{
-    //    NSLog(@"用户左滑了手势啊");
     if (self.webview.canGoBack==YES) {
         [self.webview goBack];
     }else{

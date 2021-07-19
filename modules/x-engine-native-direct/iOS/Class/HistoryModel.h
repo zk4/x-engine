@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class UIViewController;
 @class XEngineWebView;
 @interface HistoryModel : NSObject
-    @property (nonatomic, weak) UIViewController *vc;
+ 
     @property (nonatomic, weak) XEngineWebView * webview;
     @property (nonatomic, copy) NSString *host;
     @property (nonatomic, copy) NSString *pathname;

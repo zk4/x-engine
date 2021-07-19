@@ -11,7 +11,6 @@
 #import "iDirect.h"
 #import "NSURL+QueryDictionary.h"
 #import "HistoryModel.h"
-#import "GlobalState.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "UIViewController+Tag.h"
@@ -48,29 +47,24 @@ NATIVE_MODULE(Native_direct)
 - (void) _back:(NSString*) host fragment:(NSString*) fragment{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-//    NSMutableArray<HistoryModel*>*  histories= nil;
-
-//    histories = [[GlobalState sharedInstance] getCurrentHostHistories];
-
+ 
+ 
     BOOL isMinusHistory = [fragment rangeOfString:@"^-\\d+$" options:NSRegularExpressionSearch].location != NSNotFound;
     BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
     
     if ([@"0" isEqualToString:fragment]){
         [navC popToRootViewControllerAnimated:TRUE];
-//        [histories removeAllObjects];
+
     } else if ([@"/" isEqualToString:fragment]){
         if(ary && ary.count > 0){
             [navC popToViewController:ary[0] animated:YES];
-//            [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
         }
-    } else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
+    } else if (!fragment || [@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
         if(ary){
             if(ary.count > 1) {
                 [navC popToViewController:ary[ary.count-2] animated:YES];
-//                [histories removeLastObject];
             } else if(ary.count ==1){
                 [navC popViewControllerAnimated:YES];
-//                [histories removeLastObject];
             }
         }
     } else if(isMinusHistory) {
@@ -81,7 +75,6 @@ NATIVE_MODULE(Native_direct)
                 NSLog(@"没有历史给你退.");
             }
             [navC popToViewController:ary[ary.count-1+minusHistory] animated:YES];
-//            [histories removeObjectsInRange:NSMakeRange(histories.count+minusHistory,  -minusHistory)];
         }
     } else if (isNamedHistory){
         if(ary && ary.count > 1){
@@ -89,9 +82,7 @@ NATIVE_MODULE(Native_direct)
             for (UIViewController *vc in [ary reverseObjectEnumerator]){
                 HistoryModel *hm = [vc getLastHistory];
                 if(hm && [hm.fragment isEqualToString:fragment]){
-                    [navC popToViewController:hm.vc animated:YES];
-                    
-//                    [ary removeObjectsInRange:NSMakeRange(ary.count -i,  i)];
+                    [navC popToViewController:vc animated:YES];
                     return;
                 }
                 i++;
@@ -128,9 +119,7 @@ NATIVE_MODULE(Native_direct)
         fragment:(NSString*) fragment
         query:(nullable NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,NSString*>*) params {
-    
-    id<iDirect> direct = [self.directors objectForKey:scheme];
-    
+
     // 复用上一次的 host
     if(host){
         pathname = pathname && (pathname.length!=0) ? pathname : @"/";
@@ -141,28 +130,43 @@ NATIVE_MODULE(Native_direct)
         pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
     }
     
+    id<iDirect> direct = [self.directors objectForKey:scheme];
+
     // 拿容器
-    // TODO: container 里做历史栈的记录,不太科学,我还没入栈呢.
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     NSAssert(container,@"why here, where is your container?");
 
-    // 加载容器
-    [direct push:container params:params];
-    
-    // 如果是在 tab 上,则不受 history 管理.
-    // 不然会出现这种情况,如果4 个 tab 上全是微应用.
-    // 则会有 4 个永远不会消失的 history.
-    HistoryModel* hm = [HistoryModel new];
- 
-    hm.fragment      = fragment;
-    hm.webview       = nil;
-    hm.host          = host;
-    hm.pathname      = pathname;
-    hm.onTab         = NO;
-    [container setCurrentHistory:hm];
-    
+    if([direct respondsToSelector:@selector(push:container:params:)]){
+        [direct push:container params:params];
+    }else{
+
+        UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
+
+        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
+        int deleteHistory = 0;
+        if(nativeParams){
+            id deletable = [nativeParams objectForKey:@"__deleteHistory__"];
+            if(deletable)
+                deleteHistory =[deletable intValue];
+        }
+        NSAssert(deleteHistory>=0, @"__deleteHistory__ 必须大于等于 0");
+        while(deleteHistory>0){
+            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
+            deleteHistory--;
+        }
+        [navc pushViewController:container animated:YES];
   
+ 
+        HistoryModel* hm = [HistoryModel new];
      
+        hm.fragment      = fragment;
+        // TODO: webview?
+        hm.webview       = nil;
+        hm.host          = host;
+        hm.pathname      = pathname;
+        hm.onTab         = NO;
+        [container setCurrentHistory:hm];
+    }
 }
 
 - (void)addToTab: (UIViewController*) parent
@@ -174,19 +178,17 @@ NATIVE_MODULE(Native_direct)
           params:(nullable NSDictionary<NSString*,id>*) params{
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    // TODO: container 里做历史栈的记录,不太科学,我还没入栈呢.
     UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     [parent addChildViewController:vc];
-    
-    [parent.view addSubview:vc.view];
     vc.view.frame = parent.view.frame;
+    [parent.view addSubview:vc.view];
+
     
-    // 如果是在 tab 上,则不受 history 管理.
-    // 不然会出现这种情况,如果4 个 tab 上全是微应用.
-    // 则会有 4 个永远不会消失的 history.
+
     HistoryModel* hm = [HistoryModel new];
  
     hm.fragment      = fragment;
+    //TODO:
     hm.webview       = nil;
     hm.host          = host;
     hm.pathname      = pathname;

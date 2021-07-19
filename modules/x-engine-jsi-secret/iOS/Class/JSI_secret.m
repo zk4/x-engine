@@ -10,7 +10,6 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "iStore.h"
-#import "GlobalState.h"
 #import "MJExtension.h"
 
 

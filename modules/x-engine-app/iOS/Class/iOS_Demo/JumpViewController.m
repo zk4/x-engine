@@ -47,6 +47,6 @@
 
 }
 -(void)back {
-    [XENP(iDirectManager) back:@"native" host:nil fragment:@"-1"];
+    [XENP(iDirectManager) back:@"native" host:nil fragment:nil];
 }
 @end

@@ -77,7 +77,7 @@ function push(arg: DirectPushDTO = {scheme:'omp',fragment:'/',params:{'hideNavba
     pathname: "",
     fragment: "",
     params:{
-      '__deleteHistory__':1
+      __deleteHistory__:1
     }
   })
 

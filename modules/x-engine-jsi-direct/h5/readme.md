@@ -35,7 +35,7 @@ version: 2.0.3
     pathname: "",
     fragment: "",
     params:{
-      '__deleteHistory__':1
+      __deleteHistory__:1
     }
   })
 

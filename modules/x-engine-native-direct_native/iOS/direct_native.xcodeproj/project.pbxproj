@@ -34,6 +34,8 @@
 		580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 580B91CC2694D10D006AD356 /* Info.uat.plist */; };
+		58FFC80D26A55E2E00428F8B /* MGJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FFC80C26A55E2E00428F8B /* MGJRouter.m */; };
+		58FFC86326A5629900428F8B /* EntryViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FFC86126A5629900428F8B /* EntryViewController2.m */; };
 		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-direct_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-direct_nativeTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-direct_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-direct_native.a */; };
@@ -92,7 +94,10 @@
 		580B918D2694CDB7006AD356 /* Info.sit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.sit.plist; sourceTree = "<group>"; };
 		580B91C02694D0DA006AD356 /* uat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		580B91CC2694D10D006AD356 /* Info.uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.uat.plist; sourceTree = "<group>"; };
-		581FAF352624CC1A00ED7DCC /* iDirect_native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDirect_native.h; sourceTree = "<group>"; };
+		58FFC80B26A55E2E00428F8B /* MGJRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGJRouter.h; sourceTree = "<group>"; };
+		58FFC80C26A55E2E00428F8B /* MGJRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGJRouter.m; sourceTree = "<group>"; };
+		58FFC86126A5629900428F8B /* EntryViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryViewController2.m; sourceTree = "<group>"; };
+		58FFC86226A5629900428F8B /* EntryViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryViewController2.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-direct_nativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_nativeTests.release.xcconfig"; path = "Target Support Files/Pods-direct_nativeTests/Pods-direct_nativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-direct_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct_native.release.xcconfig"; path = "Target Support Files/Pods-abstract-direct_native/Pods-abstract-direct_native.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +224,8 @@
 				580B91CC2694D10D006AD356 /* Info.uat.plist */,
 				580B918D2694CDB7006AD356 /* Info.sit.plist */,
 				00DFC6EB24C84000006A53EE /* main.m */,
+				58FFC86226A5629900428F8B /* EntryViewController2.h */,
+				58FFC86126A5629900428F8B /* EntryViewController2.m */,
 				00DFC6F824C841FD006A53EE /* EntryViewController.h */,
 				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
 				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
@@ -266,7 +273,8 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				581FAF352624CC1A00ED7DCC /* iDirect_native.h */,
+				58FFC80B26A55E2E00428F8B /* MGJRouter.h */,
+				58FFC80C26A55E2E00428F8B /* MGJRouter.m */,
 				38E983932615F6E8007F6BDF /* Native_direct_native.h */,
 				38E983922615F6E8007F6BDF /* Native_direct_native.m */,
 			);
@@ -663,7 +671,9 @@
 			files = (
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
+				58FFC80D26A55E2E00428F8B /* MGJRouter.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_direct_native.m in Sources */,
+				58FFC86326A5629900428F8B /* EntryViewController2.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

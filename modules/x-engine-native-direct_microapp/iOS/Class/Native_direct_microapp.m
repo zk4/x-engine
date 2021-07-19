@@ -9,9 +9,7 @@
 #import "Native_direct_microapp.h"
 #import "XENativeContext.h"
 #import "MicroAppLoader.h"
-#import "WebViewFactory.h"
 #import "Unity.h"
-#import "RecyleWebViewController.h"
 #import "GlobalState.h"
 
 @interface Native_direct_microapp ()

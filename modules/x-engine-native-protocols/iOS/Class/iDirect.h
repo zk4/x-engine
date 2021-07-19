@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class UIViewController;
 NS_ASSUME_NONNULL_BEGIN
  @protocol iDirect <NSObject>
 // scheme 形如

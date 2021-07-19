@@ -10,7 +10,7 @@
 #import "XENativeContext.h"
 #import "iDirectManager.h"
 #import "iDirect.h"
-#import "NSString+Router+URLQuery.h"
+#import "NSURL+QueryDictionary.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -124,7 +124,7 @@ static NSString *const kSlash               = @"/";
     }
     NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
 
-    [self push:url.scheme host:host pathname:url.path fragment:url.fragment query:url.parameterString.uq_queryDictionary params:params];
+    [self push:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
 }
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
@@ -141,7 +141,7 @@ static NSString *const kSlash               = @"/";
     NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
     
 
-    [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.parameterString.uq_queryDictionary params:params];
+    [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
 
 }
 

@@ -15,6 +15,9 @@
 #import "XENativeContext.h"
 #import "iStore.h"
 #import "GlobalState.h"
+#import "Unity.h"
+#import "HistoryModel.h"
+#import "UIViewController+Tag.h"
 
 #define VUEX_STORE_KEY @"@@VUEX_STORE_KEY"
 #define BROADCAST_EVENT @"@@VUEX_STORE_EVENT"
@@ -32,7 +35,7 @@ JSI_MODULE(JSI_vuex)
 
 - (NSString *) genkey:(NSString*) key{
      assert(key!=nil);
-     HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+     HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
      assert(hm!=nil);
      return  [NSString stringWithFormat:@"%@%@%@:%@",VUEX_STORE_KEY, hm.host?hm.host:@"",hm.pathname?hm.pathname:@"", key];
 }
@@ -46,18 +49,19 @@ JSI_MODULE(JSI_vuex)
 - (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
     // 仅对同样的微应用广播
-    NSMutableArray<HistoryModel *> *histories= [[GlobalState sharedInstance] getCurrentHostHistories];
-    for (HistoryModel* hm in histories){
-        if(hm.webview){
-            [hm.webview callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
-                @"type":BROADCAST_EVENT,
-                @"payload":dto.val
-            }
-             completionHandler:^(id  _Nullable value) {
-                NSLog(@"js return value %@",value);
-            }];
-        }
-    }
+    // TODO: 
+//    NSMutableArray<HistoryModel *> *histories= [[GlobalState sharedInstance] getCurrentHostHistories];
+//    for (HistoryModel* hm in histories){
+//        if(hm.webview){
+//            [hm.webview callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
+//                @"type":BROADCAST_EVENT,
+//                @"payload":dto.val
+//            }
+//             completionHandler:^(id  _Nullable value) {
+//                NSLog(@"js return value %@",value);
+//            }];
+//        }
+//    }
 }
 
 

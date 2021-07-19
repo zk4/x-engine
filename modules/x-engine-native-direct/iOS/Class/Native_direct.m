@@ -14,6 +14,7 @@
 #import "GlobalState.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
+#import "UIViewController+Tag.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -47,49 +48,50 @@ NATIVE_MODULE(Native_direct)
 - (void) _back:(NSString*) host fragment:(NSString*) fragment{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-    NSMutableArray<HistoryModel*>*  histories= nil;
+//    NSMutableArray<HistoryModel*>*  histories= nil;
 
-    histories = [[GlobalState sharedInstance] getCurrentHostHistories];
+//    histories = [[GlobalState sharedInstance] getCurrentHostHistories];
 
     BOOL isMinusHistory = [fragment rangeOfString:@"^-\\d+$" options:NSRegularExpressionSearch].location != NSNotFound;
     BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
     
     if ([@"0" isEqualToString:fragment]){
         [navC popToRootViewControllerAnimated:TRUE];
-        [histories removeAllObjects];
+//        [histories removeAllObjects];
     } else if ([@"/" isEqualToString:fragment]){
-        if(histories && histories.count > 0){
-            [navC popToViewController:histories[0].vc animated:YES];
-            [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
+        if(ary && ary.count > 0){
+            [navC popToViewController:ary[0] animated:YES];
+//            [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
         }
     } else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
-        if(histories){
-            if(histories.count > 1) {
-                [navC popToViewController:histories[histories.count-2].vc animated:YES];
-                [histories removeLastObject];
-            } else if(histories.count ==1){
+        if(ary){
+            if(ary.count > 1) {
+                [navC popToViewController:ary[ary.count-2] animated:YES];
+//                [histories removeLastObject];
+            } else if(ary.count ==1){
                 [navC popViewControllerAnimated:YES];
-                [histories removeLastObject];
+//                [histories removeLastObject];
             }
         }
     } else if(isMinusHistory) {
-        if(histories){
+        if(ary){
             int minusHistory = [fragment intValue];
-            if(minusHistory+histories.count<0){
+            if(minusHistory+ary.count<0){
                 /// TODO: alert
                 NSLog(@"没有历史给你退.");
             }
-            [navC popToViewController:histories[histories.count-1+minusHistory].vc animated:YES];
-            [histories removeObjectsInRange:NSMakeRange(histories.count+minusHistory,  -minusHistory)];
+            [navC popToViewController:ary[ary.count-1+minusHistory] animated:YES];
+//            [histories removeObjectsInRange:NSMakeRange(histories.count+minusHistory,  -minusHistory)];
         }
     } else if (isNamedHistory){
-        if(histories && histories.count > 1){
+        if(ary && ary.count > 1){
             int i = 0;
-            for (HistoryModel *hm in [histories reverseObjectEnumerator]){
+            for (UIViewController *vc in [ary reverseObjectEnumerator]){
+                HistoryModel *hm = [vc getLastHistory];
                 if(hm && [hm.fragment isEqualToString:fragment]){
                     [navC popToViewController:hm.vc animated:YES];
                     
-                    [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
+//                    [ary removeObjectsInRange:NSMakeRange(ary.count -i,  i)];
                     return;
                 }
                 i++;
@@ -133,7 +135,7 @@ NATIVE_MODULE(Native_direct)
     if(host){
         pathname = pathname && (pathname.length!=0) ? pathname : @"/";
     } else {
-        HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
+        HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
         host = hm.host;
         NSAssert(host!=nil, @"host 不可为 nil");
         pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
@@ -146,6 +148,20 @@ NATIVE_MODULE(Native_direct)
 
     // 加载容器
     [direct push:container params:params];
+    
+    // 如果是在 tab 上,则不受 history 管理.
+    // 不然会出现这种情况,如果4 个 tab 上全是微应用.
+    // 则会有 4 个永远不会消失的 history.
+    HistoryModel* hm = [HistoryModel new];
+ 
+    hm.fragment      = fragment;
+    hm.webview       = nil;
+    hm.host          = host;
+    hm.pathname      = pathname;
+    hm.onTab         = NO;
+    [container setCurrentHistory:hm];
+    
+  
      
 }
 
@@ -164,7 +180,18 @@ NATIVE_MODULE(Native_direct)
     
     [parent.view addSubview:vc.view];
     vc.view.frame = parent.view.frame;
-
+    
+    // 如果是在 tab 上,则不受 history 管理.
+    // 不然会出现这种情况,如果4 个 tab 上全是微应用.
+    // 则会有 4 个永远不会消失的 history.
+    HistoryModel* hm = [HistoryModel new];
+ 
+    hm.fragment      = fragment;
+    hm.webview       = nil;
+    hm.host          = host;
+    hm.pathname      = pathname;
+    hm.onTab         = YES;
+    [parent setCurrentHistory:hm];
     
 
 }

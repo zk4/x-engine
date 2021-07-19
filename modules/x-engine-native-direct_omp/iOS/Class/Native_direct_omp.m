@@ -16,6 +16,7 @@
 #import "XENativeContext.h"
 #import "iStore.h"
 #import <x-engine-native-direct/UINavigationController+Completion.h>
+#import "UIViewController+Tag.h"
 
 
 @interface Native_direct_omp()
@@ -125,22 +126,12 @@ NATIVE_MODULE(Native_direct_omp)
     vc.hidesBottomBarWhenPushed = YES;
     
     
-    // 如果是在 tab 上,则不受 history 管理.
-    // 不然会出现这种情况,如果4 个 tab 上全是微应用.
-    // 则会有 4 个永远不会消失的 history.
-    HistoryModel* hm = [HistoryModel new];
-    hm.vc            = vc;
-    hm.fragment      = fragment;
-    hm.webview       = webview;
-    hm.host          = host;
-    hm.pathname      = pathname;
-    hm.onTab         = onTab;
-
-    if(!onTab){
-        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
-    }else{
-        [[GlobalState sharedInstance] addCurrentTab:hm];
-    }
+   
+//    if(!onTab){
+//        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+//    }else{
+//        [[GlobalState sharedInstance] addCurrentTab:hm];
+//    }
     return  vc;
 }
 

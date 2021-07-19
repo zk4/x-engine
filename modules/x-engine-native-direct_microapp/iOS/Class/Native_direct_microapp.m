@@ -10,7 +10,8 @@
 #import "XENativeContext.h"
 #import "MicroAppLoader.h"
 #import "Unity.h"
-#import "GlobalState.h"
+#import "HistoryModel.h"
+#import "UIViewController+Tag.h"
 
 @interface Native_direct_microapp ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
@@ -83,7 +84,7 @@ NATIVE_MODULE(Native_direct_microapp)
         host=@"";
 
     }else{
-       HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+       HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
        pathname=hm.pathname;
     }
     return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];

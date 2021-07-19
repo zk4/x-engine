@@ -6,7 +6,6 @@
 
 #import "Native_direct_native.h"
 #import "XENativeContext.h"
-#import "MGJRouter.h"
 #import <Unity.h>
 @interface Native_direct_native()
 @property (nonatomic, strong) NSMutableDictionary<NSString*,id>* routes;

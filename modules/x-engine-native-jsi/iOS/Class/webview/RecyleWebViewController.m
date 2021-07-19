@@ -75,9 +75,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         [self.webview loadUrl:self.loadUrl];
         self.webview.frame = [UIScreen mainScreen].bounds;
         self.isOnTab = isOnTab;
-        if(self.isOnTab){
-            [[GlobalState sharedInstance] setCurrentTabVC:self];
-        }
+//        if(self.isOnTab){
+//            [[GlobalState sharedInstance] setCurrentTabVC:self];
+//        }
         
        
         
@@ -245,9 +245,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     }
     
-    if(self.isOnTab){
-        [[GlobalState sharedInstance] setCurrentTabVC:self];
-    }
+//    if(self.isOnTab){
+//        [[GlobalState sharedInstance] setCurrentTabVC:self];
+//    }
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
 //     if(self.screenView){

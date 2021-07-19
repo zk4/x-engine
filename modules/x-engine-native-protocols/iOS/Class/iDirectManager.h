@@ -57,10 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
     params:(nullable NSDictionary<NSString*,id>*) params;
 
 
-typedef UIViewController* _Nullable (^NativeVCCreator)(NSString* host, NSString* pathname, NSString* fragment, NSDictionary* query, NSDictionary* params);
 
-// 注册原生路由
-- (void) registerNativeRouter:(NSString*) urlPattern nativeVCCreator:(NativeVCCreator) nativeVCCreator;
 @end
 
 

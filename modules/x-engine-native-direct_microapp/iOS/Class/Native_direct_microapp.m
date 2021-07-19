@@ -69,6 +69,7 @@ NATIVE_MODULE(Native_direct_microapp)
     if (params && params[@"version"]){
         version= [params[@"version"] longValue] ;
     };
+
     if(host && host.length>0){
         // microapp 的 host 要特殊处理.
         // 当第一次打开时, 因为这里传过来的时 microappid => host, pathname
@@ -78,7 +79,7 @@ NATIVE_MODULE(Native_direct_microapp)
             [self showErrorAlert:errStr];
             return nil;
         }
-            
+        // 供后面构造字符串用,不会出现 nil
         host=@"";
 
     }else{

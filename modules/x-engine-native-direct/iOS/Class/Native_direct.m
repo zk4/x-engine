@@ -43,15 +43,16 @@ NATIVE_MODULE(Native_direct)
 }
 
 - (void)back: (NSString*) scheme host:(NSString*) host fragment:(NSString*) fragment{
+    
     id<iDirect> direct = [self.directors objectForKey:scheme];
     [direct back:host fragment:fragment];
 }
 
 
 - (nonnull UIViewController *)getContainer:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+    
     id<iDirect> direct = [self.directors objectForKey:scheme];
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
-
     return container;
     
 }
@@ -62,6 +63,7 @@ NATIVE_MODULE(Native_direct)
         fragment:(NSString*) fragment
         query:(nullable NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,NSString*>*) params {
+    
     id<iDirect> direct = [self.directors objectForKey:scheme];
     
     // 复用上一次的 host
@@ -74,9 +76,12 @@ NATIVE_MODULE(Native_direct)
         pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
     }
     
+    // 拿容器
+    // TODO: container 里做历史栈的记录,不太科学,我还没入栈呢.
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     NSAssert(container,@"why here, where is your container?");
-    
+
+    // 加载容器
     [direct push:container params:params];
      
 }
@@ -90,21 +95,14 @@ NATIVE_MODULE(Native_direct)
           params:(nullable NSDictionary<NSString*,id>*) params{
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
+    // TODO: container 里做历史栈的记录,不太科学,我还没入栈呢.
     UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     [parent addChildViewController:vc];
     
     [parent.view addSubview:vc.view];
     vc.view.frame = parent.view.frame;
+
     
-//    HistoryModel* hm = [HistoryModel new];
-//    hm.vc            = vc;
-//    hm.fragment      = fragment;
-//    // TODO:  怎么处理?
-////                        hm.webview       = self.webview;
-//    hm.host          = host;
-//    hm.pathname      = pathname;
-//    hm.onTab         = TRUE;
-//    [[GlobalState sharedInstance] addCurrentTab:hm];
 
 }
 
@@ -139,6 +137,7 @@ static NSString *const kSlash               = @"/";
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params{
     // convert SPA url hash router style to standard url style
+    // TODO: 写这不合适. manager 理应不关心 port
     NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
     NSNumber* port = url.port;
     if(!port){
@@ -155,6 +154,7 @@ static NSString *const kSlash               = @"/";
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
     // convert SPA url hash router style to standard url style
+    // TODO: 写这不合适. manager 理应不关心 port
     NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
     NSNumber* port = url.port;
     if(!port){
@@ -171,7 +171,7 @@ static NSString *const kSlash               = @"/";
     
 
 }
-
+ 
 
 
 @end

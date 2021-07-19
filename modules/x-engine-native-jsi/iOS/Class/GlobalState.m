@@ -49,12 +49,12 @@
     return history;
 }
 
-- (XEngineWebView*)getCurrentWebView{
-    NSPointerArray* webviews =  [WebViewFactory sharedInstance].webviews;
-    [webviews addPointer:NULL];
-    [webviews compact];
-    return [[webviews allObjects] lastObject];
-}
+//- (XEngineWebView*)getCurrentWebView{
+//    NSPointerArray* webviews =  [WebViewFactory sharedInstance].webviews;
+//    [webviews addPointer:NULL];
+//    [webviews compact];
+//    return [[webviews allObjects] lastObject];
+//}
 //- (NSMutableArray<HistoryModel*>*) getCurrentWebViewHistories{
 //    [self clearHistory];
 //    

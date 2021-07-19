@@ -15,6 +15,7 @@
 #import "GlobalState.h"
 #import "XENativeContext.h"
 #import "iStore.h"
+#import <x-engine-native-direct/UINavigationController+Completion.h>
 
 
 @interface Native_direct_omp()
@@ -104,15 +105,10 @@ NATIVE_MODULE(Native_direct_omp)
 
 
 - (void)push:(UIViewController*) container
-      params:(nullable NSDictionary<NSString*,id>*) params{
-
-    // 基于 tabbar　的应用，第一次大概率是 navigationController，保存起来。
-    // TODO: 优化
-//    if(!self.navc)
-//        self.navc =[Unity sharedInstance].getCurrentVC.navigationController;
+      params:(nullable NSDictionary<NSString*,id>*) params  {
 
     UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
-//    if(navc){
+
         NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
         int deleteHistory = 0;
         if(nativeParams){
@@ -126,16 +122,7 @@ NATIVE_MODULE(Native_direct_omp)
             deleteHistory--;
         }
         [navc pushViewController:container animated:YES];
-//    } else {
-//        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-//        if([nav isKindOfClass:[UINavigationController class]]){
-//            [nav pushViewController:container animated:YES];
-//        } else {
-//            nav = nav.navigationController;
-//            [nav pushViewController:container animated:YES];
-//        }
-//    }
-//    container.hidesBottomBarWhenPushed = NO;
+
 }
 
 /// 判断query是否有值, 有值的就拼接在url上
@@ -194,22 +181,33 @@ NATIVE_MODULE(Native_direct_omp)
     NSString *queryString = [self judgeQueryWithDict:query];
     NSString *finalUrl = @"";
     
-    if(host){
-        pathname = pathname && (pathname.length!=0) ? pathname : @"/";
-    } else {
-        HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
-        host = hm.host;
-        NSAssert(host!=nil, @"host 不可为 nil");
-        pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
-    }
-    NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#") ;
+   
+    NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#");
     fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname  fragment:fragment   withHiddenNavBar:isHideNavBar onTab:onTab];
-    
-    vc.hidesBottomBarWhenPushed = YES;
+    XEngineWebView* webview = [[WebViewFactory sharedInstance] createWebView];
 
+    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl XEngineWebView:webview withHiddenNavBar:isHideNavBar onTab:onTab];
+    vc.hidesBottomBarWhenPushed = YES;
+    
+    
+    // 如果是在 tab 上,则不受 history 管理.
+    // 不然会出现这种情况,如果4 个 tab 上全是微应用.
+    // 则会有 4 个永远不会消失的 history.
+    HistoryModel* hm = [HistoryModel new];
+    hm.vc            = vc;
+    hm.fragment      = fragment;
+    hm.webview       = webview;
+    hm.host          = host;
+    hm.pathname      = pathname;
+    hm.onTab         = onTab;
+
+    if(!onTab){
+        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
+    }else{
+        [[GlobalState sharedInstance] addCurrentTab:hm];
+    }
     return  vc;
 }
 

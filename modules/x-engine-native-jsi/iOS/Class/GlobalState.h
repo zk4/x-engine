@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (XEngineWebView*)getCurrentWebView;
 
 - (HistoryModel*) getLastHistory;
-- (NSMutableArray<HistoryModel *> *)getCurrentWebViewHistories;
+//- (NSMutableArray<HistoryModel *> *)getCurrentWebViewHistories;
 - (NSMutableArray<HistoryModel *> *)getCurrentHostHistories;
 - (void)addCurrentWebViewHistory:(HistoryModel *) history;
 

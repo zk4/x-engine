@@ -49,8 +49,8 @@ NATIVE_MODULE(Native_direct_http)
 }
 
 - (void)push:(UIViewController*) container
-      params:(nullable NSDictionary<NSString*,id>*) params{
-    [self.microappDirect push:container params:params];
+      params:(nullable NSDictionary<NSString*,id>*) params  {
+    [self.microappDirect push:container params:params  ];
 }
 
 

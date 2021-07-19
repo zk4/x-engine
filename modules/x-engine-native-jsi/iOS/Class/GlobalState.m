@@ -55,21 +55,21 @@
     [webviews compact];
     return [[webviews allObjects] lastObject];
 }
-- (NSMutableArray<HistoryModel*>*) getCurrentWebViewHistories{
-    [self clearHistory];
-    
-    XEngineWebView* lastwebview =  [_histories lastObject].webview;
-    NSMutableArray* ret = [NSMutableArray new];
-    if(lastwebview){
-        for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
-            if(lastwebview == hm.webview)
-                [ret insertObject:hm atIndex:0];
-            else
-                break;
-        }
-    }
-    return ret;
-}
+//- (NSMutableArray<HistoryModel*>*) getCurrentWebViewHistories{
+//    [self clearHistory];
+//    
+//    XEngineWebView* lastwebview =  [_histories lastObject].webview;
+//    NSMutableArray* ret = [NSMutableArray new];
+//    if(lastwebview){
+//        for(HistoryModel* hm in  [_histories reverseObjectEnumerator]){
+//            if(lastwebview == hm.webview)
+//                [ret insertObject:hm atIndex:0];
+//            else
+//                break;
+//        }
+//    }
+//    return ret;
+//}
 - (NSMutableArray<HistoryModel *> *)getCurrentHostHistories{
     [self clearHistory];
     HistoryModel* lasthm =[_histories lastObject];

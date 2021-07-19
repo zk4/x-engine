@@ -3,7 +3,7 @@
 //  ModuleApp
 //
 //  Created by cwz on 2021/3/23.
-//  Copyright © 2021 zkty-teamty-team. All rights reserved.
+//  Copyright © 2021 zkty-team. All rights reserved.
 //
 
 #import "TwoViewController.h"
@@ -19,22 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";
-
-
     [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.mine" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 }
-// 这样写是有 bug ，不会调父的viewDidAppear
-//- (void)viewDidAppear:(BOOL)animated{
-//    NSLog(@"............");
-//}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ 
 
 @end

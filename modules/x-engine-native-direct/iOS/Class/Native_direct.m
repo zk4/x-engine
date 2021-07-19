@@ -10,6 +10,8 @@
 #import "iDirectManager.h"
 #import "iDirect.h"
 #import "NSURL+QueryDictionary.h"
+#import "HistoryModel.h"
+#import "GlobalState.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -61,10 +63,22 @@ NATIVE_MODULE(Native_direct)
         query:(nullable NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,NSString*>*) params {
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
-    if(container){
-        [direct push:container params:params];
+    
+    // 复用上一次的 host
+    if(host){
+        pathname = pathname && (pathname.length!=0) ? pathname : @"/";
+    } else {
+        HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
+        host = hm.host;
+        NSAssert(host!=nil, @"host 不可为 nil");
+        pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
     }
+    
+    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    NSAssert(container,@"why here, where is your container?");
+    
+    [direct push:container params:params];
+     
 }
 
 - (void)addToTab: (UIViewController*) parent
@@ -74,11 +88,24 @@ NATIVE_MODULE(Native_direct)
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
           params:(nullable NSDictionary<NSString*,id>*) params{
+    
     id<iDirect> direct = [self.directors objectForKey:scheme];
     UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     [parent addChildViewController:vc];
+    
     [parent.view addSubview:vc.view];
     vc.view.frame = parent.view.frame;
+    
+//    HistoryModel* hm = [HistoryModel new];
+//    hm.vc            = vc;
+//    hm.fragment      = fragment;
+//    // TODO:  怎么处理?
+////                        hm.webview       = self.webview;
+//    hm.host          = host;
+//    hm.pathname      = pathname;
+//    hm.onTab         = TRUE;
+//    [[GlobalState sharedInstance] addCurrentTab:hm];
+
 }
 
 static NSString *const kQueryBegin          = @"?";
@@ -139,8 +166,9 @@ static NSString *const kSlash               = @"/";
     }
     NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
     
-
+ 
     [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    
 
 }
 

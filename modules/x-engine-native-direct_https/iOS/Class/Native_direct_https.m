@@ -48,7 +48,7 @@ NATIVE_MODULE(Native_direct_https)
     [self.microappDirect back:host fragment:fragment];
 }
 - (void)push:(UIViewController*) container
-      params:(nullable NSDictionary<NSString*,id>*) params{
+      params:(nullable NSDictionary<NSString*,id>*) params  {
     [self.microappDirect push:container params:params];
 }
 

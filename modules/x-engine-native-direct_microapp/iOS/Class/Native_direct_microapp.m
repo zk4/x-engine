@@ -48,8 +48,8 @@ NATIVE_MODULE(Native_direct_microapp)
 }
 
 - (void)push:(UIViewController*) container
-      params:(nullable NSDictionary<NSString*,id>*) params{
-    [self.microappDirect push:container params:params];
+      params:(nullable NSDictionary<NSString*,id>*) params {
+    [self.microappDirect push:container params:params  ];
 }
 
 
@@ -69,7 +69,7 @@ NATIVE_MODULE(Native_direct_microapp)
     if (params && params[@"version"]){
         version= [params[@"version"] longValue] ;
     };
-    if(host){
+    if(host && host.length>0){
         // microapp 的 host 要特殊处理.
         // 当第一次打开时, 因为这里传过来的时 microappid => host, pathname
         pathname = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:version];

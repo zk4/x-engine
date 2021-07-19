@@ -4,9 +4,11 @@
 //
 
 #import "EntryViewController.h"
+
 #import "XENativeContext.h"
-#import <x-engine-native-ui/Native_ui.h>
-#import <iDev.h>
+#import "MGJRouter.h"
+#import <iDirectManager.h>
+
 @interface EntryViewController ()
 
 @end
@@ -17,17 +19,19 @@
 }
 
 -(void) pushTestModule{
-   
+    id<iDirectManager>  dm = XENP(iDirectManager);
+    [dm push:@"native://foo/bar2" params:@{@"hello":@"world"}];
+//    [MGJRouter openURL:@"native://foo/bar?user=2#a=3" withUserInfo:@{
+//        @"query": @{@"user_id":@1900},
+//        @"params": @{@"hideNavBar":@TRUE}
+//    }  completion:nil];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self pushTestModule];
-    id<iDev> dev = XENP(iDev);
-
-    [dev log:@"world"];
-    // 切换 Build Configuration　里的　Debug 　与 Release
-    [dev xlog:@"world"];
+    
+ 
 
 
 }

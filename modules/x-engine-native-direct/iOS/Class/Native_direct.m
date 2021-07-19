@@ -3,14 +3,13 @@
 //  direct
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
 
 
 #import "Native_direct.h"
 #import "XENativeContext.h"
 #import "iDirectManager.h"
 #import "iDirect.h"
-#import "NSString+Router+URLQuery.h"
+#import "NSURL+QueryDictionary.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -76,7 +75,7 @@ NATIVE_MODULE(Native_direct)
         query:(nullable NSDictionary<NSString*,id>*) query
           params:(nullable NSDictionary<NSString*,id>*) params{
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:@"" fragment:fragment query:query params:params];
+    UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     [parent addChildViewController:vc];
     [parent.view addSubview:vc.view];
     vc.view.frame = parent.view.frame;
@@ -124,7 +123,7 @@ static NSString *const kSlash               = @"/";
     }
     NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
 
-    [self push:url.scheme host:host pathname:url.path fragment:url.fragment query:url.parameterString.uq_queryDictionary params:params];
+    [self push:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
 }
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
@@ -141,7 +140,7 @@ static NSString *const kSlash               = @"/";
     NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
     
 
-    [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.parameterString.uq_queryDictionary params:params];
+    [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
 
 }
 

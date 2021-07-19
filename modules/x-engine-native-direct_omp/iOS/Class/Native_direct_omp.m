@@ -195,12 +195,12 @@ NATIVE_MODULE(Native_direct_omp)
     NSString *finalUrl = @"";
     
     if(host){
-        pathname = pathname ? pathname : @"";
+        pathname = pathname && (pathname.length!=0) ? pathname : @"/";
     } else {
         HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
         host = hm.host;
         NSAssert(host!=nil, @"host 不可为 nil");
-        pathname = hm.pathname ? hm.pathname : @"";
+        pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
     }
     NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#") ;
     fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";

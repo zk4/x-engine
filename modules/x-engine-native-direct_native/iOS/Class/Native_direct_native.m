@@ -6,7 +6,7 @@
 
 #import "Native_direct_native.h"
 #import "XENativeContext.h"
-
+#import "MGJRouter.h"
 @interface Native_direct_native()
 { }
 @end
@@ -24,8 +24,30 @@ NATIVE_MODULE(Native_direct_native)
 
 - (void)afterAllNativeModuleInited{
 } 
--(NSString*) test{
-    return @"test";
+ 
+- (void)back:(nonnull NSString *)host fragment:(nonnull NSString *)fragment {
+     
 }
+
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+    NSString* url = [NSString stringWithFormat:@"%@//%@%@",protocol,host,pathname];
+    [MGJRouter openURL:url withUserInfo:@{@"query":query?query:@{},@"params":params?params:@{}} completion:nil];
+    // TODO: 没有遵循 direct 接口. 
+    return nil;
+}
+
+- (nonnull NSString *)protocol {
+    return @"native:";
+}
+
+- (void)push:(nonnull UIViewController *)container params:(nullable NSDictionary<NSString *,id> *)params {
+    // TODO: 暂时由 getContainer 完成 push 操作
+    NSLog(@"暂时由 getContainer 完成native: push 操作");
+}
+
+- (nonnull NSString *)scheme {
+    return @"native";
+}
+
 @end
  

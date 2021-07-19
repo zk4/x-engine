@@ -5,9 +5,10 @@
 
 #import <Foundation/Foundation.h>
 #import "XENativeModule.h"
+#import "iDirect.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_direct_native : XENativeModule
+@interface Native_direct_native : XENativeModule  <iDirect>
  
 @end
 

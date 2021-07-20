@@ -56,6 +56,7 @@ NATIVE_MODULE(Native_direct)
         [navC popToRootViewControllerAnimated:TRUE];
 
     } else if ([@"/" isEqualToString:fragment]){
+        [navC popToRootViewControllerAnimated:TRUE];
         if(ary && ary.count > 0){
             [navC popToViewController:ary[0] animated:YES];
         }

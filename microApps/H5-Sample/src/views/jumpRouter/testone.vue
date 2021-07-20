@@ -54,7 +54,7 @@ export default {
       this.$router.push({
         name: "testtwo",
         query: {
-          changeNavTitle: "haha"
+          changeNavTitle: "第二页"
         },
         params: {
           id: 1,

@@ -19,7 +19,6 @@
 
 
 @interface Native_direct_omp()
-//@property(nonatomic,strong) UINavigationController* navc;
 @end
 @implementation Native_direct_omp
 NATIVE_MODULE(Native_direct_omp)
@@ -35,28 +34,6 @@ NATIVE_MODULE(Native_direct_omp)
 - (void)afterAllNativeModuleInited{
 
 }
-
-
-//- (void)push:(UIViewController*) container
-//      params:(nullable NSDictionary<NSString*,id>*) params  {
-//
-//    UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
-//
-//        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
-//        int deleteHistory = 0;
-//        if(nativeParams){
-//            id deletable = [nativeParams objectForKey:@"__deleteHistory__"];
-//            if(deletable)
-//                deleteHistory =[deletable intValue];
-//        }
-//        NSAssert(deleteHistory>=0, @"__deleteHistory__ 必须大于等于 0");
-//        while(deleteHistory>0){
-//            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
-//            deleteHistory--;
-//        }
-//        [navc pushViewController:container animated:YES];
-//
-//}
 
 /// 判断query是否有值, 有值的就拼接在url上
 /// @param query 前端传入的query参数

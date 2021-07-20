@@ -29,7 +29,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
 @property (nonatomic, assign) Boolean firstDidAppearCbIgnored;
-@property (nonatomic, assign) Boolean isOnTab;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
@@ -185,7 +184,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     self.imageView404.frame = CGRectMake(0, (self.view.bounds.size.height - height) * 0.5, self.view.bounds.size.width, height);
     self.tipLabel404.frame = CGRectMake(0, CGRectGetHeight(self.imageView404.frame) + 8, self.imageView404.bounds.size.width, self.tipLabel404.font.lineHeight);
 }
-
+- (XEngineWebView*) getWebView{
+    return self.webview;
+}
 #pragma mark - <ui>
 - (void)setupUI {
     self.firstDidAppearCbIgnored = YES;

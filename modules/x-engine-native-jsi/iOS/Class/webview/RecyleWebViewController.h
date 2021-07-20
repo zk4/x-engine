@@ -5,4 +5,5 @@
                       XEngineWebView:(XEngineWebView * _Nullable) webview
                     withHiddenNavBar:(BOOL)isHidden;
  
+- (XEngineWebView*) getWebView;
 @end

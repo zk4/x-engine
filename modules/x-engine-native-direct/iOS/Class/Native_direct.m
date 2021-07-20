@@ -74,8 +74,10 @@ NATIVE_MODULE(Native_direct)
             if(minusHistory+ary.count<0){
                 /// TODO: alert
                 NSLog(@"没有历史给你退.");
+                [navC popToRootViewControllerAnimated:TRUE];
+            }else {
+                [navC popToViewController:ary[ary.count-1+minusHistory] animated:YES];
             }
-            [navC popToViewController:ary[ary.count-1+minusHistory] animated:YES];
         }
     } else if (isNamedHistory){
         if(ary && ary.count > 1){
@@ -143,6 +145,7 @@ NATIVE_MODULE(Native_direct)
 
         UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
 
+        //  删除历史逻辑
         NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
         int deleteHistory = 0;
         if(nativeParams){
@@ -161,11 +164,9 @@ NATIVE_MODULE(Native_direct)
         HistoryModel* hm = [HistoryModel new];
      
         hm.fragment      = fragment;
-        // TODO: webview?
-        hm.webview       = nil;
         hm.host          = host;
         hm.pathname      = pathname;
-        hm.onTab         = NO;
+
         [container setCurrentHistory:hm];
     }
 }
@@ -179,23 +180,20 @@ NATIVE_MODULE(Native_direct)
           params:(nullable NSDictionary<NSString*,id>*) params{
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
+    
     UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    
     [parent addChildViewController:vc];
     vc.view.frame = parent.view.frame;
     [parent.view addSubview:vc.view];
 
-    
-
+    // TODO: 这里有时机问题.
     HistoryModel* hm = [HistoryModel new];
  
     hm.fragment      = fragment;
-    //TODO:
-    hm.webview       = nil;
     hm.host          = host;
     hm.pathname      = pathname;
-    hm.onTab         = YES;
     [parent setCurrentHistory:hm];
-    
 
 }
 

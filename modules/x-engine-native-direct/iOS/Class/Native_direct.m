@@ -121,7 +121,7 @@ NATIVE_MODULE(Native_direct)
         pathname:(NSString*) pathname
         fragment:(NSString*) fragment
         query:(nullable NSDictionary<NSString*,NSString*>*) query
-        params:(NSDictionary<NSString*,NSString*>*) params {
+        params:(NSDictionary<NSString*,id>*) params {
 
     // 复用上一次的 host
     if(host){

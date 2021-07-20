@@ -4,6 +4,8 @@
 #import "UIViewController+Tag.h"
 #import <objc/runtime.h>
 #import "iTabBar.h"
+#import "XENativeContext.h"
+#import "iTabbar.h"
 static const  char* KEY_HISTORY_MODEL="KEY_HISTORY_MODEL";
 
 
@@ -16,12 +18,9 @@ static const  char* KEY_HISTORY_MODEL="KEY_HISTORY_MODEL";
 - (HistoryModel*) getLastHistory{
     HistoryModel*  _historyModel = objc_getAssociatedObject(self,KEY_HISTORY_MODEL);
     if(!_historyModel){
-        id<iTabBar> tabbar = self;
-        NSAssert(tabbar, @"找不到 historyModel, 如果你没有使用原生的 tabbar,请继承 iTabBar 并实现接口");
-        if(tabbar){
-            UIViewController* vc= [tabbar getCurrentTabItemVC];
-            _historyModel = objc_getAssociatedObject(vc,KEY_HISTORY_MODEL);
-        }
+        UIViewController* vc=  [XENP(iTabbar) getCurrentTabItemVC];
+        _historyModel = objc_getAssociatedObject(vc,KEY_HISTORY_MODEL);
+        NSAssert(_historyModel, @"找不到 historyModel, 如果你没有使用原生的 tabbar,请继承 iTabBarDelegate 明确拿到 vc");
     }
     return _historyModel;
 }

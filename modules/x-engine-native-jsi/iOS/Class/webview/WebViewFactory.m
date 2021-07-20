@@ -41,11 +41,11 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
     configuration.websiteDataStore = [WKWebsiteDataStore nonPersistentDataStore];
-    if (@available(iOS 11.0, *) ) {
+//    if (@available(iOS 11.0, *) ) {
 //        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
 //        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
 //        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
-    }
+//    }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
     webview.configuration.preferences.javaScriptEnabled = YES;
     webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;

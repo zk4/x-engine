@@ -109,7 +109,6 @@ NATIVE_MODULE(Native_direct_omp)
     }
     
     BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
-    BOOL onTab   = [params[@"onTab"] boolValue];
     [self judgeParamsWithDict:params];
     NSString *queryString = [self judgeQueryWithDict:query];
     NSString *finalUrl = @"";
@@ -121,16 +120,10 @@ NATIVE_MODULE(Native_direct_omp)
 
     XEngineWebView* webview = [[WebViewFactory sharedInstance] createWebView];
 
-    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl XEngineWebView:webview withHiddenNavBar:isHideNavBar onTab:onTab];
+    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl XEngineWebView:webview withHiddenNavBar:isHideNavBar];
     vc.hidesBottomBarWhenPushed = YES;
     
-    
-   
-//    if(!onTab){
-//        [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
-//    }else{
-//        [[GlobalState sharedInstance] addCurrentTab:hm];
-//    }
+
     return  vc;
 }
 

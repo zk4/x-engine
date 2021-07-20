@@ -44,14 +44,6 @@ NATIVE_MODULE(Native_direct_microapp)
     }
 }
 
-//- (void)back:(NSString*) host fragment:(NSString*) fragment{
-//    [self.microappDirect back:host fragment:fragment];
-//}
-//
-//- (void)push:(UIViewController*) container
-//      params:(nullable NSDictionary<NSString*,id>*) params {
-//    [self.microappDirect push:container params:params  ];
-//}
 
 
 - (void)showErrorAlert:(NSString *)errorString

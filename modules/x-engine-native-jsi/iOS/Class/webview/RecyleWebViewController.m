@@ -58,7 +58,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
                       XEngineWebView:(XEngineWebView * _Nullable) webview
                     withHiddenNavBar:(BOOL)isHidden
-                               onTab:(BOOL)isOnTab
+                                
 {
     self = [super init];
     if (self){
@@ -69,15 +69,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.webview.navigationDelegate = self;
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
-//        self.webview = [[WebViewFactory sharedInstance] createWebView];
         [self.webview loadUrl:self.loadUrl];
         self.webview.frame = [UIScreen mainScreen].bounds;
-        self.isOnTab = isOnTab;
-//        if(self.isOnTab){
-//            [[GlobalState sharedInstance] setCurrentTabVC:self];
-//        }
-        
-       
+
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -94,88 +88,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     return self;
     return self;
 }
-//- (instancetype)initWithUrl:(NSString *)fileUrl host:(NSString *)host pathname:(NSString *)pathname query:(NSMutableDictionary *)query fragment:(NSString *)fragment   withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
-//    self = [super init];
-//    if (self){
-//        if(fileUrl.length == 0)
-//            return self;
-//        self.webview.allowsBackForwardNavigationGestures = YES;
-//        self.webview.navigationDelegate = self;
-//        self.isHiddenNavbar = isHidden;
-//        self.loadUrl = fileUrl;
-//        self.isOnTab   = isOnTab;
-//        self.webview = [[WebViewFactory sharedInstance] createWebView];
-//        [self.webview loadUrl:self.loadUrl];
-//        self.webview.frame = [UIScreen mainScreen].bounds;
-//
-//
-//        // 如果是在 tab 上,则不受 history 管理.
-//        // 不然会出现这种情况,如果4 个 tab 上全是微应用.
-//        // 则会有 4 个永远不会消失的 history.
-//        HistoryModel* hm = [HistoryModel new];
-//        hm.vc            = self;
-//        hm.fragment      = fragment;
-//        hm.webview       = self.webview;
-//        hm.host          = host;
-//        hm.pathname      = pathname;
-//        hm.onTab         = isOnTab;
-//        self.webview.model = hm;
-//        if(!isOnTab){
-//            [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
-//        }else{
-//            [[GlobalState sharedInstance] addCurrentTab:hm];
-//        }
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(webViewProgressChange:)
-//                                                     name:@"XEWebViewProgressChangeNotification"
-//                                                   object:nil];
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(webViewLoadFail:)
-//                                                     name:@"XEWebViewLoadFailNotification"
-//                                                   object:nil];
-//        [self loadFileUrl];
-//
-//    }
-//    return self;
-//}
-//
-//- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment  withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
-//    self = [super init];
-//    if (self){
-//        if(fileUrl.length == 0)
-//            return self;
-//        self.webview.allowsBackForwardNavigationGestures = YES;
-//        self.webview.navigationDelegate = self;
-//        self.isHiddenNavbar = isHidden;
-//        self.loadUrl = fileUrl;
-//        self.isOnTab   = isOnTab;
-//
-//
-//        self.webview = [[WebViewFactory sharedInstance] createWebView];
-//        [self.webview loadUrl:self.loadUrl];
-//        self.webview.frame = [UIScreen mainScreen].bounds;
-//
-//
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(webViewProgressChange:)
-//                                                     name:@"XEWebViewProgressChangeNotification"
-//                                                   object:nil];
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(webViewLoadFail:)
-//                                                     name:@"XEWebViewLoadFailNotification"
-//                                                   object:nil];
-//        [self loadFileUrl];
-//
-//    }
-//    return self;
-//}
-//- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
-//    return [self initWithUrl:fileUrl host:host pathname:pathname fragment:fragment   withHiddenNavBar:isHidden onTab:FALSE];
-//}
+
 
 - (void)loadFileUrl {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
@@ -242,20 +155,10 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     } else {
         [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     }
-    
-//    if(self.isOnTab){
-//        [[GlobalState sharedInstance] setCurrentTabVC:self];
-//    }
+   
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-//     if(self.screenView){
-//        //  返回的时候不要急着 remove， 不然会闪历史界面
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self.screenView removeFromSuperview];
-//            self.screenView = nil;
-//        });
-//    }
-//    [self.view insertSubview:self.webview atIndex:0];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -263,12 +166,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
     [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
     
-//    if(!self.newWebview && self.screenView == nil){
-//        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
-//        self.screenView.backgroundColor = [UIColor whiteColor];
-//        [self.view addSubview:self.screenView];
-//        self.screenView.frame = self.view.bounds;
-//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

@@ -25,5 +25,26 @@
             "strict":true,
             "white_host_list":["ltlx.com","halilai.com"]
         }
-    }
+    },
+    
+    "packagesInfo":[
+        {
+          "id":0,
+          "name":"com.gm.microapp.home",
+          "version":0,
+          "downloadUrl":"https://www.baidu.com"
+        },
+        {
+          "id":1,
+          "name":"com.gm.microapp.mall",
+          "version":0,
+          "downloadUrl":"https://www.baidu.com"
+        },
+        {
+          "id":2,
+          "name":"com.gm.microapp.mine",
+          "version":0,
+          "downloadUrl":"https://www.baidu.com"
+        }
+    ]
 }

@@ -32,23 +32,20 @@
 
 
 - (void)offinePackage {
-    NSString *packageInfoURL = @"";
-    
+    NSString *packageInfoURL = @"https://www.fastmock.site/mock/f9660015182cbe11b416f557de19725c/xengine/api/getMicroappInfo";
     id<iOffline>offline = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iOffline)];
-    
-//    // 1- 获取应用下所有的包信息
-    NSArray *allPackageInfoArray = [offline getPackagesInfo:packageInfoURL];
-
-    // 2- 循环包信息和本地包做判断看是否需要下载
-    // 2.1 - yes 下载
-    // 2.2 - no  不下载
-    for (NSDictionary *packageInfo in allPackageInfoArray) {
-        if([offline judgeIsDownloadNewPackage:packageInfo]) {
-            [offline downloadNewPackage:packageInfo[@"downloadUrl"]];
-        } else {
-            continue;
+    // 1- 获取应用下所有的包信息
+    [offline getPackagesInfo:packageInfoURL completion:^(NSArray *array) {
+        // 2- 循环包信息和本地包做判断看是否需要下载
+        for (NSDictionary *packageInfo in array) {
+            [offline judgeIsDownloadNewPackage:packageInfo completion:^(BOOL isDownload, NSDictionary *dict) {
+                // 3- isDownload == YES 下载
+                if (isDownload == YES) {
+                    [offline downloadNewPackageWithDict:dict];
+                }
+            }];
         }
-    }
+    }];
 }
 @end
 

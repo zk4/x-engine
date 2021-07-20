@@ -9,6 +9,7 @@
 #import "Unity.h"
 #import "iSecurify.h"
 #import "XENativeContext.h"
+#import "iWebcache.h"
 
 
 /// TODO: webview refactor
@@ -34,6 +35,8 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) UILabel *tipLabel404;
 @property (nonatomic, strong) UIView *screenView;
 @property (nonatomic, strong) UIImageView *navBarHairlineImageView;
+@property (nonatomic, strong) id<iWebcache> webcache;
+
 @end
 
 @implementation RecyleWebViewController
@@ -55,7 +58,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     }
 }
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
-                      XEngineWebView:(XEngineWebView * _Nullable) webview
                     withHiddenNavBar:(BOOL)isHidden
                                 
 {
@@ -63,9 +65,14 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     if (self){
         if(fileUrl.length == 0)
             return self;
-        self.webview=webview;
+        
+        self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
+        self.webcache =XENP(iWebcache);
+        if(self.webcache){
+            [self.webcache enableCache];
+        }
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
         [self.webview loadUrl:self.loadUrl];
@@ -85,7 +92,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         
     }
     return self;
-    return self;
+  
 }
 
 
@@ -157,6 +164,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
    
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
+    
+    [self.webcache enableCache];
+
 
 }
 
@@ -169,6 +179,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    [self.webcache disableCache];
 }
 
 

@@ -4,14 +4,12 @@
 //
 
 
+#import <WebKit/WebKit.h>
+#import <UIKit/UIKit.h>
 #import "Native_webcache.h"
 #import "XENativeContext.h"
-#import "micros.h"
-#import "NSURLProtocol+WebKitSupport.h"
-#import "ReplacingImageURLProtocol.h"
-#import "MyURLProtocol.h"
+#import "SLWebCacheManager.h"
 
-#import <UIKit/UIKit.h>
 
 
 @interface Native_webcache()
@@ -33,25 +31,33 @@ NATIVE_MODULE(Native_webcache)
 } 
 - (instancetype)init {
     self = [super init];
-    if (self) {
- 
- 
-        [[NSNotificationCenter defaultCenter]
-         addObserverForName:UIApplicationDidFinishLaunchingNotification
-         object:nil
-         queue:nil
-         usingBlock:^(NSNotification *note) {
-            [NSURLProtocol registerClass:[MyURLProtocol class]];
-            for (NSString* scheme in @[@"http", @"https"]) {
-                    [NSURLProtocol wk_registerScheme:scheme];
-            }
-        }];
-
-
-    }
+    if (self) {}
     
     return self;
 }
+
+ 
+- (void)enablePostIntercept:(WKWebView*)webview {
+
+    NSString *ajaxhookjs = [[NSBundle mainBundle] pathForResource:@"ajaxhook" ofType:@"js"];
+    NSString *ajaxhookjs_content = [NSString stringWithContentsOfFile:ajaxhookjs encoding:NSUTF8StringEncoding error:nil];
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:ajaxhookjs_content injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+    [webview.configuration.userContentController addUserScript:script];
+
+}
+
+- (void)disableCache {
+    SLWebCacheManager *cacheManager = [SLWebCacheManager shareInstance];
+    cacheManager.isUsingURLProtocol = YES;
+    [cacheManager closeCache];
+}
+
+
+- (void)enableCache {
+    SLWebCacheManager *cacheManager = [SLWebCacheManager shareInstance];
+    [cacheManager openCache];
+}
+
 
 @end
  

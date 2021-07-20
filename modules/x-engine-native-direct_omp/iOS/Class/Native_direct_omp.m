@@ -95,9 +95,8 @@ NATIVE_MODULE(Native_direct_omp)
     fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 
-    XEngineWebView* webview = [[WebViewFactory sharedInstance] createWebView];
 
-    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl XEngineWebView:webview withHiddenNavBar:isHideNavBar];
+    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar];
     vc.hidesBottomBarWhenPushed = YES;
     
 

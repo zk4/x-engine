@@ -273,14 +273,24 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         }
     });
 }
+//字典转json格式字符串:
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+   
 
 -(id) convertDict:(id) obj {
     SEL selector = NSSelectorFromString(@"toDictionary");
     if([obj respondsToSelector:selector]){
         id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
         return   action(obj, selector);
-    }else {
-        return [NSString stringWithFormat:@"%@",obj ];
+    }else if ([obj isKindOfClass:NSDictionary.class]){
+        return [self dictionaryToJson:obj ];
+    }else{
+        return [NSString stringWithFormat:@"%@",obj];
     }
 }
 

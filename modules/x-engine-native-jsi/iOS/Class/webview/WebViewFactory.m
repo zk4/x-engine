@@ -9,7 +9,8 @@
 #import "JSIModule.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "CustomURLSchemeHandler.h"
+#import "iWebcache.h"
+#import "XENativeContext.h"
 
 
 @interface WebViewFactory ()
@@ -54,10 +55,22 @@
     [webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
     
     ///web禁止长按
+    {
     NSMutableString *javascript = [NSMutableString string];
     [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];
     WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
     [webview.configuration.userContentController addUserScript:noneSelectScript];
+    }
+//    {
+//    NSString *ajaxhookjs = [[NSBundle mainBundle] pathForResource:@"ajaxhook" ofType:@"js"];
+//    NSString *ajaxhookjs_content = [NSString stringWithContentsOfFile:ajaxhookjs encoding:NSUTF8StringEncoding error:nil];
+//    WKUserScript *script = [[WKUserScript alloc] initWithSource:ajaxhookjs_content injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+//    [webview.configuration.userContentController addUserScript:script];
+//
+//    }
+    id<iWebcache> webcache= XENP(iWebcache);
+    if(webview)
+        [webcache enablePostIntercept:webview];
     
     for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];

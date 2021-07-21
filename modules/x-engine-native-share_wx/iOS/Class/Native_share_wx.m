@@ -54,10 +54,10 @@ NATIVE_MODULE(Native_share_wx)
     UIImage *thumbImg;///缩略图控件
     NSString *imgDatastr =[info objectForKey:@"imgData"];
     if (imgDatastr.length>0) {
-        if ([[info objectForKey:@"imgData"] hasPrefix:@"http:"] || [[info objectForKey:@"imgData"] hasPrefix:@"https:"]){
-            sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[info objectForKey:@"imgData"]]];
+        if ([imgDatastr hasPrefix:@"http:"] || [imgDatastr hasPrefix:@"https:"]){
+            sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgDatastr]];
         }else{
-            sData = [[NSData alloc] initWithBase64EncodedString:[info objectForKey:@"imgData"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            sData = [[NSData alloc] initWithBase64EncodedString:imgDatastr options:NSDataBase64DecodingIgnoreUnknownCharacters];
         }
     }else if ([info objectForKey:@"imgUrl"]) {
         UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];

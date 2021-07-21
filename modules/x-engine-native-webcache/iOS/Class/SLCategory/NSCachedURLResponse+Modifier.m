@@ -1,24 +1,22 @@
 //
-//  NSCachedURLResponse+SetHeader.m
+//  NSCachedURLResponse+Modifier.m
 //  x-engine-native-jsi
 //
 //  Created by zk on 2021/7/21.
-//
+//  参考:  https://stackoverflow.com/questions/19855280/how-to-set-nsurlrequest-cache-expiration
 
-#import "NSCachedURLResponse+SetHeader.h"
 
-@implementation NSCachedURLResponse (SetHeader)
+#import "NSCachedURLResponse+Modifier.h"
+
+@implementation NSCachedURLResponse (Modifier)
 -(NSCachedURLResponse*)cors:(NSString*) origin {
   NSCachedURLResponse* cachedResponse = self;
   NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)[cachedResponse response];
   NSDictionary *headers = [httpResponse allHeaderFields];
   NSMutableDictionary* newHeaders = [headers mutableCopy];
 
-
     newHeaders[@"Access-Control-Allow-Origin"]  =origin;
     newHeaders[@"Access-Control-Allow-Credentials"]  =@"true";
-
-     
 
   NSHTTPURLResponse* newResponse = [[NSHTTPURLResponse alloc] initWithURL:httpResponse.URL
                                                                statusCode:httpResponse.statusCode

@@ -1,6 +1,5 @@
 //
-//  NSCachedURLResponse+SetHeader.h
-//  x-engine-native-jsi
+//  NSCachedURLResponse+Modifier.h
 //
 //  Created by zk on 2021/7/21.
 //
@@ -9,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSCachedURLResponse (SetHeader)
+@interface NSCachedURLResponse (Modifier)
 -(NSCachedURLResponse*)responseWithExpirationDuration:(int)duration;
 -(NSCachedURLResponse*)cors:(NSString*) origin;
 @end

@@ -8,7 +8,7 @@
 
 #import "SLUrlProtocol.h"
 #import "SLWebCacheManager.h"
-#import "NSCachedURLResponse+SetHeader.h"
+#import "NSCachedURLResponse+Modifier.h"
 
 static NSString *SLUrlProtocolHandled = @"SLUrlProtocolHandled";
 

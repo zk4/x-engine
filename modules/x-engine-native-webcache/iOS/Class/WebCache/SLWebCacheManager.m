@@ -232,10 +232,7 @@
         NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL MIMEType:[otherInfo objectForKey:@"MIMEType"] expectedContentLength:data.length textEncodingName:[otherInfo objectForKey:@"textEncodingName"]];
    
         NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
-// https://stackoverflow.com/questions/11794385/loading-text-file-by-ajax-call-in-uiwebview-using-custom-nsurlprotocol-fails/15234850#15234850
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)[cachedResponse response];
-//    https://stackoverflow.com/questions/19855280/how-to-set-nsurlrequest-cache-expiration
-//        NSLog(@"%@",[httpResponse.allHeaderFields  description]);
+
         if(!data){
             [self removeCacheFileWithRequest:request];
             return nil;

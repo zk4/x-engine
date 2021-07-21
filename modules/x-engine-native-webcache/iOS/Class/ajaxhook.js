@@ -2,14 +2,14 @@
 (function() {
 
  
-    window.OMTAjax = {
+    window.xengine_Ajax = {
         hookedXHR: {},
         hookAjax: hookAjax,
-        nativePost: nativePost,
+        nativeRequest: nativeRequest,
         nativeCallback: nativeCallback
     };
 
-    function nativePost(xhrId, params) {
+    function nativeRequest(xhrId, params) {
        
         //  请求 native
         params.xhrId = xhrId;
@@ -24,13 +24,13 @@
                 var responseHeaders = data["responseHeaders"];
                 var error = data["error"];
 
-                window.OMTAjax.nativeCallback(xhrId, statusCode, responseText, responseHeaders, error);
+                window.xengine_Ajax.nativeCallback(xhrId, statusCode, responseText, responseHeaders, error);
             });
         }
     }
 
     function nativeCallback(xhrId, statusCode, responseText, responseHeaders, error) {
-        var xhr = window.OMTAjax.hookedXHR[xhrId];
+        var xhr = window.xengine_Ajax.hookedXHR[xhrId];
 
         if(xhr.isAborted) { // 如果该请求已经手动取消了
             return;
@@ -58,7 +58,7 @@
     }
 
     // hook ajax send 方法
-    window.OMTAjax.hookAjax({
+    window.xengine_Ajax.hookAjax({
         setRequestHeader: function (arg, xhr) {
             if(!this.omtHeaders) {
                 this.omtHeaders = {};
@@ -102,8 +102,8 @@
 
 
                 var xhrId = 'xhrId' + (new Date()).getTime();
-                window.OMTAjax.hookedXHR[xhrId] = this;
-                window.OMTAjax.nativePost(xhrId, params);
+                window.xengine_Ajax.hookedXHR[xhrId] = this;
+                window.xengine_Ajax.nativeRequest(xhrId, params);
 
                 // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
                 return true;

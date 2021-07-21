@@ -88,7 +88,6 @@
         },
         send: function (arg, xhr) {
             this.isAborted = false;
-//            if(this.omtOpenArg[0] === 'POST') {
                 var params = {};
                 params.data = arg[0];
                 params.method = this.omtOpenArg[0];
@@ -108,15 +107,12 @@
 
                 // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
                 return true;
-//            }
         },
         abort: function (arg, xhr) {
-//            if(this.omtOpenArg[0] === 'POST') {
                 if(xhr.onabort) {
                     xhr.onabort()
                 }
                 return true;
-//            }
         }
 
     });
@@ -184,21 +180,15 @@
         function hookfunc(func) {
             return function() {
                 var args = [].slice.call(arguments);
-
-                // call() 方法调用一个函数, 其具有一个指定的this值和分别地提供的参数
-                // 该方法的作用和 apply() 方法类似，只有一个区别，就是call()方法接受的是若干个参数的列表，而apply()方法接受的是一个包含多个参数的数组
                 if (proxy[func]) {
-                    // 修改 2
                     var result = proxy[func].call(this, args, this.xhr);
                     if(result) {
                         return result;
                     }
                 }
-
                 return this.xhr[func].apply(this.xhr, args);
             }
         }
-
         return window._ahrealxhr;
     }
 

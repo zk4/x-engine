@@ -18,8 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.71:8080" params:@{@"hideNavbar":@TRUE}];
-    [XENP(iDirectManager) addToTab:self uri:@"http://uat.c.gomedc.com/gm-appc-home/index.html" params:@{@"hideNavbar":@TRUE}];
+    [XENP(iDirectManager) addToTab:self uri:@"omp://127.0.0.1:8080" params:@{@"hideNavbar":@TRUE}];
+//    [XENP(iDirectManager) addToTab:self uri:@"http://uat.c.gomedc.com/gm-appc-home/index.html" params:@{@"hideNavbar":@TRUE}];
 
 }
 @end

@@ -47,6 +47,7 @@ def shared_pods
 
   pod 'JSONModel'
   pod 'MJExtension'
+  pod 'SSZipArchive'
 end
 
 target 'ModuleApp' do

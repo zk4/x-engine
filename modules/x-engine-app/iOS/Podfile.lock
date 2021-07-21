@@ -17,6 +17,7 @@ PODS:
   - JSONModel (1.8.0)
   - MGJRouter (0.9.3)
   - MJExtension (3.2.4)
+  - SSZipArchive (2.2.3)
   - WHDebugTool (2.3)
   - x-engine-jsi-camera (2.0.3):
     - x-engine-native-core
@@ -133,6 +134,7 @@ PODS:
 DEPENDENCIES:
   - JSONModel
   - MJExtension
+  - SSZipArchive
   - x-engine-jsi-camera (from `../../x-engine-jsi-camera`)
   - x-engine-jsi-dev (from `../../x-engine-jsi-dev`)
   - x-engine-jsi-device (from `../../x-engine-jsi-device`)
@@ -171,6 +173,7 @@ SPEC REPOS:
     - JSONModel
     - MGJRouter
     - MJExtension
+    - SSZipArchive
     - WHDebugTool
 
 EXTERNAL SOURCES:
@@ -242,6 +245,7 @@ SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   MGJRouter: f65821e2aeffc8f9e84b254c8f1c0dd80f048aa9
   MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WHDebugTool: 6e6b6b60af073126b43096fc791985a4f7f249a3
   x-engine-jsi-camera: 4d94c77f06190fe50f33cefe1e60d60723278e47
   x-engine-jsi-dev: dd13340ff0ccdbd64589b9ae03c6a2b7cdd2b675
@@ -275,6 +279,6 @@ SPEC CHECKSUMS:
   x-engine-native-webcache: a77702d7638a2b950137ccf6da2d7c3a473eef53
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 70c4c4fd52bd68bfbb1a1e8203ba3cdcbb4b6dfb
+PODFILE CHECKSUM: 1792a4a1f5a76952aa26527ced167a1dc790da7c
 
 COCOAPODS: 1.10.1

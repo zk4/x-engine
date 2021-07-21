@@ -34,6 +34,7 @@
 		58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
 		A48398AA261F100300D04124 /* microapp.json in Resources */ = {isa = PBXBuildFile; fileRef = A48398A9261F100300D04124 /* microapp.json */; };
+		A4A2C91426A81B670022D146 /* com.gm.microapp.home.1 in Resources */ = {isa = PBXBuildFile; fileRef = A4A2C91326A81B670022D146 /* com.gm.microapp.home.1 */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A48398A9261F100300D04124 /* microapp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = microapp.json; sourceTree = "<group>"; };
+		A4A2C91326A81B670022D146 /* com.gm.microapp.home.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = com.gm.microapp.home.1; sourceTree = SOURCE_ROOT; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,8 +229,8 @@
 				58D20BBF26138BEF0082ADC3 /* OneViewController.m */,
 				58D20BCD26138BEF0082ADC3 /* TwoViewController.h */,
 				58D20BC226138BEF0082ADC3 /* TwoViewController.m */,
-				58D20BC126138BEF0082ADC3 /* ThreeViewController.m */,
 				58D20BC426138BEF0082ADC3 /* ThreeViewController.h */,
+				58D20BC126138BEF0082ADC3 /* ThreeViewController.m */,
 				58D20BC026138BEF0082ADC3 /* JumpViewController.h */,
 				58D20BC526138BEF0082ADC3 /* JumpViewController.m */,
 				58D20BC626138BEF0082ADC3 /* Main */,
@@ -264,6 +266,7 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				A4A2C91326A81B670022D146 /* com.gm.microapp.home.1 */,
 				58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */,
 				58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */,
 				583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */,
@@ -385,6 +388,7 @@
 				58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */,
 				58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */,
 				A48398AA261F100300D04124 /* microapp.json in Resources */,
+				A4A2C91426A81B670022D146 /* com.gm.microapp.home.1 in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

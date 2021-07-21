@@ -25,6 +25,7 @@
     
     [self.window makeKeyAndVisible];
     
+    
     [self offinePackage];
     
     return YES;
@@ -32,7 +33,7 @@
 
 
 - (void)offinePackage {
-    NSString *packageInfoURL = @"https://www.fastmock.site/mock/f9660015182cbe11b416f557de19725c/xengine/api/getMicroappInfo";
+    NSString *packageInfoURL = @"https://www.letonglexue.com/api/test/getTestList";
     id<iOffline>offline = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iOffline)];
     // 1- 获取应用下所有的包信息
     [offline getPackagesInfo:packageInfoURL completion:^(NSArray *array) {

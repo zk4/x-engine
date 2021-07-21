@@ -32,19 +32,22 @@
           "id":0,
           "name":"com.gm.microapp.home",
           "version":0,
-          "downloadUrl":"https://www.baidu.com"
+          "downloadUrl":"https://www.baidu.com",
+          "isForce": false
         },
         {
           "id":1,
           "name":"com.gm.microapp.mall",
           "version":0,
-          "downloadUrl":"https://www.baidu.com"
+          "downloadUrl":"https://www.baidu.com",
+          "isForce": false
         },
         {
           "id":2,
           "name":"com.gm.microapp.mine",
           "version":0,
-          "downloadUrl":"https://www.baidu.com"
+          "downloadUrl":"https://www.baidu.com",
+          "isForce": false
         }
     ]
 }

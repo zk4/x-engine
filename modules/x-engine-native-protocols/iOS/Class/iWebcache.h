@@ -11,7 +11,7 @@
 -(void) enableCache;
 // 当 webview 到后台时,应该关闭缓存
 -(void) disableCache;
-// wkwebview 的网络代理会使 postbody 丢失. 这个接口应该作相应补救处理
--(void) enablePostIntercept:(WKWebView*) webview;
+// wkwebview 的网络代理会使 postbody 丢失. 这个接口应该作相应补救处理, 但是应该更多,代理所有 xhr 请求.
+-(void) enableXHRIntercept:(WKWebView*) webview;
 @end
 #endif /* iWebcache_h */

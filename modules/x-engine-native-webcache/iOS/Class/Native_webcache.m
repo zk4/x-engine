@@ -37,7 +37,7 @@ NATIVE_MODULE(Native_webcache)
 }
 
  
-- (void)enablePostIntercept:(WKWebView*)webview {
+- (void)enableXHRIntercept:(WKWebView*)webview {
 
     NSString *ajaxhookjs = [[NSBundle mainBundle] pathForResource:@"ajaxhook" ofType:@"js"];
     NSString *ajaxhookjs_content = [NSString stringWithContentsOfFile:ajaxhookjs encoding:NSUTF8StringEncoding error:nil];

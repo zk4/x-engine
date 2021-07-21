@@ -61,16 +61,10 @@
     WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
     [webview.configuration.userContentController addUserScript:noneSelectScript];
     }
-//    {
-//    NSString *ajaxhookjs = [[NSBundle mainBundle] pathForResource:@"ajaxhook" ofType:@"js"];
-//    NSString *ajaxhookjs_content = [NSString stringWithContentsOfFile:ajaxhookjs encoding:NSUTF8StringEncoding error:nil];
-//    WKUserScript *script = [[WKUserScript alloc] initWithSource:ajaxhookjs_content injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
-//    [webview.configuration.userContentController addUserScript:script];
-//
-//    }
+    // webcache 插件
     id<iWebcache> webcache= XENP(iWebcache);
     if(webview)
-        [webcache enablePostIntercept:webview];
+        [webcache enableXHRIntercept:webview];
     
     for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];

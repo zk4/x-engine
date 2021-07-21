@@ -4,11 +4,9 @@
 //
 
 
-#import <UIKit/UIKit.h>
-#import "XEngineWebView.h"
+ 
 
-
-
+@class XEngineWebView;
 @interface WebViewFactory: NSObject
 @property (nonatomic, strong) NSPointerArray* webviews;
     + (instancetype)sharedInstance;

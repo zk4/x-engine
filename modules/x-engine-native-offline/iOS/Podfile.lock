@@ -1,5 +1,6 @@
 PODS:
   - JSONModel (1.8.0)
+  - SSZipArchive (2.2.3)
   - WHDebugTool (2.1)
   - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
@@ -15,6 +16,7 @@ PODS:
     - x-engine-native-protocols
 
 DEPENDENCIES:
+  - SSZipArchive
   - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
   - x-engine-native-dev (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-dev`)
   - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
@@ -23,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JSONModel
+    - SSZipArchive
     - WHDebugTool
 
 EXTERNAL SOURCES:
@@ -37,12 +40,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   WHDebugTool: 93b0a99e3b47e57f94b91c407b4a4c5bfaaec531
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-dev: a71f3b8ae114477a086ab269bed514ea26432d50
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
-PODFILE CHECKSUM: a447feb98a438ad446b49b10318cb1016add6f6a
+PODFILE CHECKSUM: e662f9e393678a15af5aae6de01b838c0942391b
 
 COCOAPODS: 1.10.1

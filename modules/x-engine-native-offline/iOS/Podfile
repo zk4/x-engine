@@ -12,6 +12,7 @@ def shared_pods
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
   pod 'x-engine-native-dev', :path => X_ENGINE_MODULES+'/x-engine-native-dev'
+  pod 'x-engine-native-dev', :path => X_ENGINE_MODULES+'/x-engine-native-dev'
 end
   target 'sit' do
     shared_pods

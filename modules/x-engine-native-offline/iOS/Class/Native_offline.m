@@ -6,12 +6,13 @@
 
 #import "Native_offline.h"
 #import "XENativeContext.h"
-
-#define DocumentPath NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
+//#import <ZipArchive.h>
+#import "ZipArchive.h"
 
 @interface Native_offline() <NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSURLSessionTask *dataTask;
+@property (nonatomic, strong) NSDictionary *saveDownloadInfo;
 @end
 
 @implementation Native_offline
@@ -29,19 +30,31 @@ NATIVE_MODULE(Native_offline)
     
 }
 
+- (NSDictionary *)saveDownloadInfo {
+    if (!_saveDownloadInfo) {
+        _saveDownloadInfo = [NSDictionary dictionary];
+    }
+    return _saveDownloadInfo;
+}
+
 /// 请求接口获取最新的microapp信息
 /// @param url 请求地址
 /// @param arrayBlock responseblock
 - (void)getPackagesInfo:(NSString *)url completion:(void (^)(NSArray *))arrayBlock {
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSError* error1;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:kNilOptions
-                                                               error:&error1];
-        NSArray *microappInfoArray = [json objectForKey:@"data"];
-        if(arrayBlock) {
-            arrayBlock(microappInfoArray);
+        
+        if (data==nil) {
+            NSLog(@"request data is nil, please check code");
+            return;
+        } else {
+            NSError* error1;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
+            NSLog(@"像后端请求过来的数据==>%@", json);
+            NSArray *microappInfoArray = [json objectForKey:@"data"];
+            if(arrayBlock) {
+                arrayBlock(microappInfoArray);
+            }
         }
     }];
     // 启动任务
@@ -76,7 +89,9 @@ NATIVE_MODULE(Native_offline)
     for (NSDictionary *localDict in localMicroappInfoArray) {
         if ([localDict[@"name"] isEqualToString:newMicroappName]) {
             if (newVersion > [localDict[@"version"] intValue]) {
-                NSLog(@"需要下载");
+                NSLog(@"%@、需要下载", newMicroappInfoDict[@"name"]);
+                // 保存传入的下载microappInfo 为之后 更新本地microapp.json用
+                _saveDownloadInfo = newMicroappInfoDict;
                 if (block) {
                     block(YES, newMicroappInfoDict);
                 }
@@ -84,17 +99,22 @@ NATIVE_MODULE(Native_offline)
                 if (block) {
                     block(NO, newMicroappInfoDict);
                 }
-                NSLog(@"不需要下载");
+                NSLog(@"%@、不需要下载", newMicroappInfoDict[@"name"]);
             }
         }
     }
 }
 
-
 // 下载新的package
 - (void)downloadNewPackageWithDict:(NSDictionary *)dict {
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc] init]];
-    NSURLSessionDownloadTask *dataTask = [session downloadTaskWithURL:[NSURL URLWithString:@"http://127.0.0.1:8000/com.gm.microapp.home.1.zip"]];
+    NSURLSessionConfiguration *sessionConfig=[NSURLSessionConfiguration defaultSessionConfiguration];
+    // 请求超时时间
+    sessionConfig.timeoutIntervalForRequest = 5.0f;
+    // 是否允许蜂窝网络下载
+    sessionConfig.allowsCellularAccess = true;
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:[[NSOperationQueue alloc] init]];
+    NSURLSessionDownloadTask *dataTask = [session downloadTaskWithURL:[NSURL URLWithString:dict[@"downloadUrl"]]];
     [dataTask resume];
 }
 
@@ -109,22 +129,85 @@ NATIVE_MODULE(Native_offline)
     NSLog(@"--------%f", 1.0 * totalBytesWritten / totalBytesExpectedToWrite);
 }
 
-////////////////////////////////////////todo 待做下载后移到document文件夹下
 // 下载完毕就会调用一次这个方法
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     
-//    NSLog(@"%@", location);
+    // caches path
+    NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    // 下载后的文件名称
+    NSString *file = [caches stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
+    // 将临时文件move到Caches文件夹
+    // AtPath : 剪切前的文件路径  ToPath : 剪切后的文件路径
+    [[NSFileManager defaultManager] moveItemAtPath:location.path toPath:file error:nil];
+    
+    // document path
+    NSString *documentPath= [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filePath = [documentPath stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
+    NSMutableString *string = [NSMutableString stringWithString:filePath];
+    NSString *desPath =  [string substringToIndex:string.length - 4];
+    
+    // 解压
+    [SSZipArchive unzipFileAtPath:file toDestination:desPath];
+    
+    // 同步本地的microapp.json
+    [self syncLocalMicroappJson];
+}
+
+// 同步本地microapp.json
+- (void)syncLocalMicroappJson {
+    // 想好添加plist的时机, 所有逻辑从plist读取microapp的包信息
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0] stringByAppendingPathComponent:@"packageInfo.plist"];
+    NSLog(@"%@", filePath);
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"packageInfo" ofType:@"text"];
+//    NSLog(@"%@", path);
 //
-//    // 文件将来存放的真实路径
-//    NSString *file = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
-//    NSLog(@"%@", downloadTask.response);
-//    NSLog(@"%@", downloadTask.response.suggestedFilename);
-//    NSLog(@"%@", file);
-////
-//    NSLog(@"%@", DocumentPath);
-//    // 剪切location的临时文件到真实路径
-//    NSFileManager *mgr = [NSFileManager defaultManager];
-//    [mgr moveItemAtURL:location toURL:[NSURL fileURLWithPath:file] error:nil];
+//    NSData *jsonData1 = [[NSFileManager defaultManager] contentsAtPath:path];
+//    NSDictionary *dict1 = [NSJSONSerialization JSONObjectWithData:jsonData1 options:1 error:nil];
+//    NSLog(@"%@", dict1);
+//
+//    NSArray *array = @[@1, @2, @3];
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:array,@"1",@"dongdong", @"name", nil];
+//    NSLog(@"%@", dic);
+//
+//    //首先判断能否转化为一个json数据，如果能，接下来先把foundation对象转化为NSData类型，然后写入文件
+//    if ([NSJSONSerialization isValidJSONObject:dic]) {
+//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:1 error:nil];
+//        [jsonData writeToFile:path atomically:YES];
+//    }
+//
+//    在读取的时候首先去文件中读取为NSData类对象，然后通过NSJSONSerialization类将其转化为foundation对象
+//        NSData *jsonData = [[NSFileManager defaultManager] contentsAtPath:path];
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:1 error:nil];
+//    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//    NSMutableArray *array = dict[@"packagesInfo"];
+    
+//    for (NSDictionary *dict in array) {
+//        if ([dict[@"name"] isEqualToString:_saveDownloadInfo[@"name"]]) {
+//            NSString *str = [self dictionaryToJson:_saveDownloadInfo];
+//            BOOL s = [str writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//            NSLog(@"%d", s);
+//            if ([NSJSONSerialization isValidJSONObject:_saveDownloadInfo]) {
+//                NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:path append:YES];
+//                [outStream open];
+//                // 执行写入方法，并接收写入的数据量
+//                NSError *error;
+//                NSInteger length = [NSJSONSerialization writeJSONObject:_saveDownloadInfo toStream:outStream options:NSJSONWritingPrettyPrinted error:&error];
+//                NSLog(@"json可以写入");
+//                NSLog(@"write %ld bytes",(long)length);
+//                // 关闭数据流， 写入完成
+//                [outStream close];
+//            } else {
+//                NSLog(@"json不可以写入");
+//            }
+                
+            
+            
+//        } else {
+//            NSLog(@"0000");
+//        }
+//    }
 }
 
 // 下载错误会来到这个方法
@@ -135,5 +218,12 @@ NATIVE_MODULE(Native_offline)
 // 断点下载(中途取消,或者退出)会来到这个方法
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {
     NSLog(@"didResumeAtOffset");
+}
+
+//字典转json格式字符串:
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 @end

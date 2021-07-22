@@ -21,7 +21,7 @@ export default {
     return {}
   },
   mounted() {
-    console.log('window._dswk', window._dswk)
+    console.log('windowwindowwindow._dswk', window._dswk)
     // console.log("testOnePage-->mounted")
     // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-mounted")
   },

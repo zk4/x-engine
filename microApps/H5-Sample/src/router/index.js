@@ -1,7 +1,7 @@
 import Vue from "vue"
 import VueRouter from "@zkty-team/vue-router"
 
-Vue.use(VueRouter);
+Vue.use(VueRouter, 'omp');
 
 const routes = [{
     path: "/",

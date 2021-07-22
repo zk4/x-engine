@@ -22,8 +22,6 @@
 		1E337E5F6B1132BEC88164B0 /* libPods-abstract-jsi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8DC8101AACCF7B49A8CCE6 /* libPods-abstract-jsi.a */; };
 		3D3117ACEAFBE347D917AE03 /* libPods-abstract-jsiUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FD060FF1F1F44601A6CAC /* libPods-abstract-jsiUITests.a */; };
 		4C8FF21BC1A6241D578AADBE /* libPods-abstract-jsiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F425D64FA1A2D2EEEAB4FEFD /* libPods-abstract-jsiTests.a */; };
-		587F741B250669A300F515BD /* JSI_jsi.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* JSI_jsi.m */; };
-		58D209A0261346360082ADC3 /* xengine_jsi_jsi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2099F261346360082ADC3 /* xengine_jsi_jsi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,10 +66,6 @@
 		2DCA87AAE86E310D57FEEBFE /* Pods-abstract-jsiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-jsiTests.release.xcconfig"; path = "Target Support Files/Pods-abstract-jsiTests/Pods-abstract-jsiTests.release.xcconfig"; sourceTree = "<group>"; };
 		369FD060FF1F1F44601A6CAC /* libPods-abstract-jsiUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abstract-jsiUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		587F7419250669A300F515BD /* JSI_jsi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSI_jsi.h; sourceTree = "<group>"; };
-		587F741A250669A300F515BD /* JSI_jsi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSI_jsi.m; sourceTree = "<group>"; };
-		58D2099E261346360082ADC3 /* xengine_jsi_jsi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine_jsi_jsi.h; sourceTree = "<group>"; };
-		58D2099F261346360082ADC3 /* xengine_jsi_jsi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine_jsi_jsi.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-jsi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-jsi.release.xcconfig"; path = "Target Support Files/Pods-abstract-jsi/Pods-abstract-jsi.release.xcconfig"; sourceTree = "<group>"; };
 		72641C340A39E3023A427808 /* Pods-abstract-jsiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-jsiUITests.release.xcconfig"; path = "Target Support Files/Pods-abstract-jsiUITests/Pods-abstract-jsiUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,21 +191,9 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		587F74202506737700F515BD /* gen */ = {
-			isa = PBXGroup;
-			children = (
-				58D2099E261346360082ADC3 /* xengine_jsi_jsi.h */,
-				58D2099F261346360082ADC3 /* xengine_jsi_jsi.m */,
-			);
-			path = gen;
-			sourceTree = "<group>";
-		};
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				587F74202506737700F515BD /* gen */,
-				587F7419250669A300F515BD /* JSI_jsi.h */,
-				587F741A250669A300F515BD /* JSI_jsi.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -469,9 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
-				58D209A0261346360082ADC3 /* xengine_jsi_jsi.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
-				587F741B250669A300F515BD /* JSI_jsi.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

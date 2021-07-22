@@ -70,6 +70,17 @@ JSI_MODULE(JSI_xxxx)
 - (void)_simpleArgMethod:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
     completionHandler(@"from native async",TRUE);
 }
+ 
+
+- (NSInteger)_simpleArgNumberMethod:(NSInteger)dto {
+    return dto;
+}
+
+
+- (void)_simpleArgNumberMethod:(NSInteger)dto complete:(void (^)(NSInteger, BOOL))completionHandler {
+    completionHandler(dto,TRUE);
+}
+
 
  
 

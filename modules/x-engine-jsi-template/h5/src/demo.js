@@ -14,6 +14,12 @@ window.test_同步无返回 = () => {
   document.getElementById("debug_text").innerText =val;
 }
  document.getElementById("test_同步简单参数").click()
+        window.test_同步简单数字参数 = () => {
+
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleArgNumberMethod",1000);
+  document.getElementById("debug_text").innerText =val;
+}
+ document.getElementById("test_同步简单数字参数").click()
         window.test_同步返回命名对象 = () => {
 
   let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
@@ -42,6 +48,13 @@ window.test_同步无返回 = () => {
   });
 }
  document.getElementById("test_异步简单参数").click()
+        window.test_异步简单数字参数 = () => {
+
+  xengine.api("com.zkty.jsi.xxxx", "simpleArgNumberMethod",1000, (val) => {
+    document.getElementById("debug_text").innerText = val
+  });
+}
+ document.getElementById("test_异步简单数字参数").click()
         window.test_异步返回命名对象 = () => {
 
   xengine.api("com.zkty.jsi.xxxx", "namedObject", {},

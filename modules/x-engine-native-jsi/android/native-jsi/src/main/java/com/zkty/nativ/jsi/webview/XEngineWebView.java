@@ -67,6 +67,13 @@ public class XEngineWebView extends DWebView {
     public void init() {
         historyModels = new ArrayList<>();
         getSettings().setJavaScriptEnabled(true);
+        if (getX5WebViewExtension() != null) {
+            getX5WebViewExtension().setHorizontalScrollBarEnabled(false);
+            getX5WebViewExtension().setVerticalScrollBarEnabled(false);
+        } else {
+            setHorizontalScrollBarEnabled(false);
+            setVerticalScrollBarEnabled(false);
+        }
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式(true);
         getSettings().setAppCacheEnabled(false);
         getSettings().setSupportZoom(false);
@@ -85,7 +92,8 @@ public class XEngineWebView extends DWebView {
 
         setWebViewClient();
         // setErrorPage();
-        setOnLongClickListener();
+        //屏蔽长按图片保存功能
+//        setOnLongClickListener();
     }
 
 
@@ -267,10 +275,10 @@ public class XEngineWebView extends DWebView {
         stopLoading();
 //        setWebChromeClient(null);
 //      setWebViewClient(null);
-        clearCache(true);
+//        clearCache(true);
         clearHistory();
-        loadUrl("about:blank");
-        this.destroy();
+//        loadUrl("about:blank");
+//        this.destroy();
 
     }
 
@@ -323,6 +331,7 @@ public class XEngineWebView extends DWebView {
 
 
     public void loadUrl(HistoryModel model) {
+        evaluateJavascript("window._dswk=true;");
         String url = getUrlByHistoryModel(model);
         loadUrl(url);
         historyModels.add(model);
@@ -450,7 +459,8 @@ public class XEngineWebView extends DWebView {
             hostR = MicroAppLoader.sharedInstance().getMicroAppHostFormAssets(model.host);
         }
 
-        sb.append(model.protocol).append("//").append(hostR);
+
+        sb.append(model.protocol).append("//").append(TextUtils.isEmpty(hostR) ? "" : hostR);
         if (!TextUtils.isEmpty(model.pathname) && !model.pathname.equals("/")) {
             sb.append(model.pathname);
         }

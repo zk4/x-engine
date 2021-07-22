@@ -40,6 +40,9 @@
     if([param isKindOfClass:NSString.class]){
         return param;
     }
+    if([param isKindOfClass:NSNumber.class]){
+        return param;
+    }
     dto = [[dto alloc] initWithDictionary:param error:&err];
     if (err) {
         

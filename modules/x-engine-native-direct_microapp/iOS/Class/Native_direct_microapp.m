@@ -9,10 +9,9 @@
 #import "Native_direct_microapp.h"
 #import "XENativeContext.h"
 #import "MicroAppLoader.h"
-#import "WebViewFactory.h"
 #import "Unity.h"
-#import "RecyleWebViewController.h"
-#import "GlobalState.h"
+#import "HistoryModel.h"
+#import "UIViewController+Tag.h"
 
 @interface Native_direct_microapp ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
@@ -45,31 +44,41 @@ NATIVE_MODULE(Native_direct_microapp)
     }
 }
 
-- (void)back:(NSString*) host fragment:(NSString*) fragment{
-    [self.microappDirect back:host fragment:fragment];
+
+
+- (void)showErrorAlert:(NSString *)errorString
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        [ac addAction:action];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+    });
 }
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        host:(NSString*) host
-        pathname:(NSString*) pathname
-        fragment:(NSString*) fragment
-        query:(NSDictionary<NSString*,id>*) query
-        params:(NSDictionary<NSString*,id>*) params  {
 
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
     long version =0;
     if (params && params[@"version"]){
         version= [params[@"version"] longValue] ;
     };
-    if(host){
+
+    if(host && host.length>0){
         // microapp 的 host 要特殊处理.
         // 当第一次打开时, 因为这里传过来的时 microappid => host, pathname
         pathname = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:version];
+        if(!pathname){
+            NSString* errStr = [NSString stringWithFormat:@"找不到本地微应用:%@",host];
+            [self showErrorAlert:errStr];
+            return nil;
+        }
+        // 供后面构造字符串用,不会出现 nil
         host=@"";
+
     }else{
-       HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+       HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
        pathname=hm.pathname;
     }
-    [self.microappDirect push:[self protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];
 }
-
 @end

@@ -8,6 +8,7 @@
 
 #import "Native_device.h"
 #import "XENativeContext.h"
+#import <x-engine-native-core/Unity.h>
 
 @interface Native_device()
 @end
@@ -26,14 +27,12 @@ NATIVE_MODULE(Native_device)
 - (void)afterAllNativeModuleInited{}
 
 - (NSString *)getStatusHeight {
-//    NSString *heightStr = [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];
-    NSString *heightStr = [NSString stringWithFormat:@"20"];
-    return heightStr;
+    NSString *hexightStr= [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];
+    return hexightStr;
 }
 
 - (NSString *)getNavigationHeight {
-    CGFloat navigationHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 68 : 44;
-    NSString *heightStr = [NSString stringWithFormat:@"%.f",navigationHeight];
+    NSString *heightStr = [NSString stringWithFormat:@"%.2f",[Unity sharedInstance].getCurrentVC.navigationController.navigationBar.frame.size.height];
     return heightStr;
 }
 
@@ -44,8 +43,7 @@ NATIVE_MODULE(Native_device)
 
 
 - (NSString *)getTabbarHeight {
-    CGFloat tabBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49;
-    NSString *heightStr = [NSString stringWithFormat:@"%.f",tabBarHeight];
+    NSString *heightStr = [NSString stringWithFormat:@"%.2d", [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49];
     return heightStr;
 }
 

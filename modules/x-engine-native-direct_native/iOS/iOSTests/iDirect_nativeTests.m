@@ -22,15 +22,11 @@
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-    NSString* output = [_direct_native test];
-
-    NSString*  should= @"test";
-
-     XCTAssertEqualObjects(output,should, @"should equal");
-    
-    
+    NSURL* url =[NSURL URLWithString:@"http://192.1.6.1.:8000/index.html"];
+    if ([[url path] length] > 0 && ![[url absoluteString] hasSuffix:@"/"]) {
+        url = [url URLByAppendingPathComponent:@""];
+    }
+    NSLog(@"%@",url);
 }
 
 - (void)testPerformanceExample {

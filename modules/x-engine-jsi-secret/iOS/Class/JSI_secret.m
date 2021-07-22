@@ -10,7 +10,7 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "iStore.h"
-#import "GlobalState.h"
+#import "MJExtension.h"
 
 
 @interface JSI_secret()
@@ -24,12 +24,22 @@ JSI_MODULE(JSI_secret)
 - (void)afterAllJSIModuleInited {
     _store = XENP(iStore);
 }
- 
+
 - (NSString *)_get:(NSString *)dto {
     ///TODO: check microapp.json 的权限
-    return [_store get:dto];
+    
+    id ret= [_store get:dto];
+    if([ret isKindOfClass:NSDictionary.class]){
+        NSDictionary* dict2=(NSDictionary* ) ret;
+        return [dict2 mj_JSONString];
+    }
+    return ret;
 }
- 
 
-
+//字典转json格式字符串:
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 @end

@@ -6,7 +6,6 @@
 #import "XEngineWebView.h"
 #import "WebViewFactory.h"
 #import "JSIModule.h"
-#import "GlobalState.h"
 #import "Unity.h"
 #import "iSecurify.h"
 #import "XENativeContext.h"
@@ -29,9 +28,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
 @property (nonatomic, assign) Boolean isHiddenNavbar;
-@property (nonatomic, assign) Boolean newWebview;
 @property (nonatomic, assign) Boolean firstDidAppearCbIgnored;
-@property (nonatomic, assign) Boolean isOnTab;
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
@@ -42,7 +39,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @implementation RecyleWebViewController
 
 - (void)handleNavigationTransition:(UIGestureRecognizer *)gap{
-    //    NSLog(@"用户左滑了手势啊");
     if (self.webview.canGoBack==YES) {
         [self.webview goBack];
     }else{
@@ -58,60 +54,23 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.imageView404.hidden = NO;
     }
 }
-- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host  pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden onTab:(BOOL)isOnTab {
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
+                      XEngineWebView:(XEngineWebView * _Nullable) webview
+                    withHiddenNavBar:(BOOL)isHidden
+                                
+{
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
             return self;
+        self.webview=webview;
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
         self.isHiddenNavbar = isHidden;
-        self.newWebview = newWebView;
         self.loadUrl = fileUrl;
-        self.isOnTab   = isOnTab;
-        
-        if(newWebView){
-            self.webview = [[WebViewFactory sharedInstance] createWebView];
-            [self.webview loadUrl:self.loadUrl];
-            self.webview.frame = [UIScreen mainScreen].bounds;
-            
-         }else {
-            self.webview = [[GlobalState sharedInstance] getCurrentWebView];
-       }
-        
-        // 存microapp.json 但是存哪里更合适
-        // 最后的url会有什么区别, 有几种方式
-#warning: 下面这段放哪里合适  这是个问题
+        [self.webview loadUrl:self.loadUrl];
+        self.webview.frame = [UIScreen mainScreen].bounds;
 
-//        NSString *microappPath = [host stringByReplacingOccurrencesOfString:@"index.html" withString:@"microapp.json"];
-//        if([[NSFileManager defaultManager] fileExistsAtPath:microappPath]){
-//            NSString *jsonString = [NSString stringWithContentsOfFile:microappPath encoding:NSUTF8StringEncoding error:nil];
-//            id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-//            [securify saveMicroAppJsonWithJson:[self dictionaryWithJsonString:jsonString]];
-//        } else {
-//            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"mircoapp.json is not define" preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _ gNonnull action) {
-//                [[UIApplication sharedApplication].keyWindow.rootViewController.navigationController popViewControllerAnimated:YES];
-//            }];
-//            [errorAlert addAction:sureAction];
-//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{}];
-//        }
-//
-        // 如果是在 tab 上,则不受 history 管理.
-        // 不然会出现这种情况,如果4 个 tab 上全是微应用.
-        // 则会有 4 个永远不会消失的 history.
-        HistoryModel* hm = [HistoryModel new];
-        hm.vc            = self;
-        hm.fragment      = fragment;
-        hm.webview       = self.webview;
-        hm.host          = host;
-        hm.pathname      = pathname;
-        hm.onTab         = isOnTab;
-        if(!isOnTab){
-            [[GlobalState sharedInstance] addCurrentWebViewHistory:hm];
-        }else{
-            [[GlobalState sharedInstance] addCurrentTab:hm];
-        }
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -126,10 +85,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         
     }
     return self;
+    return self;
 }
-- (instancetype _Nonnull )initWithUrl:(NSString * _Nullable)fileUrl host:(NSString * _Nullable)host pathname:(NSString * _Nullable)pathname fragment:(NSString * _Nullable)fragment newWebView:(BOOL)newWebView withHiddenNavBar:(BOOL)isHidden{
-    return [self initWithUrl:fileUrl host:host pathname:pathname fragment:fragment newWebView:newWebView withHiddenNavBar:isHidden onTab:FALSE];
-}
+
 
 - (void)loadFileUrl {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
@@ -196,20 +154,10 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     } else {
         [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     }
-    
-    if(self.isOnTab){
-        [[GlobalState sharedInstance] setCurrentTabVC:self];
-    }
+   
     
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-     if(self.screenView){
-        //  返回的时候不要急着 remove， 不然会闪历史界面
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.screenView removeFromSuperview];
-            self.screenView = nil;
-        });
-    }
-    [self.view insertSubview:self.webview atIndex:0];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -217,12 +165,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
     [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
     
-    if(!self.newWebview && self.screenView == nil){
-        self.screenView = [self.view resizableSnapshotViewFromRect:self.view.bounds afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
-        self.screenView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:self.screenView];
-        self.screenView.frame = self.view.bounds;
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -242,7 +184,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     self.imageView404.frame = CGRectMake(0, (self.view.bounds.size.height - height) * 0.5, self.view.bounds.size.width, height);
     self.tipLabel404.frame = CGRectMake(0, CGRectGetHeight(self.imageView404.frame) + 8, self.imageView404.bounds.size.width, self.tipLabel404.font.lineHeight);
 }
-
+- (XEngineWebView*) getWebView{
+    return self.webview;
+}
 #pragma mark - <ui>
 - (void)setupUI {
     self.firstDidAppearCbIgnored = YES;
@@ -313,7 +257,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     
     self.tipLabel404 = [[UILabel alloc] init];
     self.tipLabel404.textAlignment = NSTextAlignmentCenter;
-    self.tipLabel404.text = @"您访问的页面找不到了";
+    self.tipLabel404.text = @"您访问的页面找不到了。";
     self.tipLabel404.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
     self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel404];

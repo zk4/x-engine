@@ -1,0 +1,29 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+# 在环境变量里指向 x-engine 本地路径
+# export X_ENGINE_MODULES=/Users/zk/git/company/working/x-engine/modules
+
+X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
+
+def shared_pods
+  pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
+  pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'AMapLocation'
+end
+
+target 'geo_gaode' do
+  #use_frameworks!
+  shared_pods
+end
+target 'geo_gaodeTests' do
+  #use_frameworks!
+  shared_pods
+end
+target 'geo_gaodeUITests' do
+  # Pods for testing
+  shared_pods
+
+end

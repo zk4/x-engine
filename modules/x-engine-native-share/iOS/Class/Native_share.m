@@ -10,7 +10,7 @@
 #import "XENativeContext.h"
 #import "iShare.h"
 @interface Native_share()
-@property (nonatomic, strong) NSMutableDictionary<NSString*, NSMutableArray<id<iShare>>*> *shares;
+@property (nonatomic, strong) NSMutableDictionary<NSString*, id<iShare>> *shares;
 
 @end
 
@@ -34,25 +34,24 @@ NATIVE_MODULE(Native_share)
 
 - (void)afterAllNativeModuleInited{
     NSArray *modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iShare)];
-     for(id<iShare> share in modules){
-         for(NSString* type in [share getTypes] )
-         {
-             NSMutableArray* array = [self.shares objectForKey:type];
-             if(!array){
-                 array= [NSMutableArray new];
-                 [self.shares setObject:array forKey:type];
-             }
-             [array addObject:share];
-         }
-     }
+    for(id<iShare> share in modules){
+        for (NSString* channel in [share getChannels])
+        [self.shares setObject:share forKey:channel];
+    }
 }
 
 ///分享图片
-- (void)shareWithType:(nonnull NSString *)type channel:(nonnull NSString *)channel posterInfo:(nonnull NSDictionary *)info complete:(nonnull void (^)(NSString * _Nullable, NSString * _Nullable, NSString * _Nullable, BOOL))completionHandler {
-    id<iShare> ishare = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iShare)];
-    [ishare shareWithType:type channel:channel posterInfo:info complete:^(NSString * _Nonnull channel, NSString * _Nonnull shareType, NSString * _Nonnull imageData, BOOL complete) {
-        completionHandler(channel,shareType,imageData,YES);
-    }];
+- (void)shareWithType:(nonnull NSString *)type channel:(nonnull NSString *)channel posterInfo:(nonnull NSDictionary *)info complete:(nonnull void (^)( BOOL))completionHandler {
+  
+    id<iShare> share = [self.shares objectForKey:type];
+    if(share)
+    {
+        [share shareWithType:type channel:channel posterInfo:info complete:^(BOOL complete) {
+           completionHandler(complete);
+        }];
+    }else{
+        //TDOO
+    }
 }
 @end
 

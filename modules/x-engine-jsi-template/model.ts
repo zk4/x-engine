@@ -33,6 +33,10 @@ function simpleArgMethod(arg:string):string {}
 
 @sync
 @async
+function simpleArgNumberMethod(arg:int):int {}
+
+@sync
+@async
 function nestedAnonymousObject(): { a: string; i: { n1: string } } {}
 
 @async
@@ -57,6 +61,11 @@ function test_同步简单参数(){
   let val = xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js");
   document.getElementById("debug_text").innerText =val;
 }
+// test function
+function test_同步简单数字参数(){
+  let val = xengine.api("com.zkty.jsi.xxxx", "simpleArgNumberMethod",1000);
+  document.getElementById("debug_text").innerText =val;
+}
 
 function test_同步返回命名对象() {
   let val = xengine.api("com.zkty.jsi.xxxx", "namedObject", {});
@@ -77,6 +86,11 @@ function test_异步返回命名对象() {
 }
 function test_异步简单参数() {
   xengine.api("com.zkty.jsi.xxxx", "simpleArgMethod","hello,from js", (val) => {
+    document.getElementById("debug_text").innerText = val
+  });
+}
+function test_异步简单数字参数() {
+  xengine.api("com.zkty.jsi.xxxx", "simpleArgNumberMethod",1000, (val) => {
     document.getElementById("debug_text").innerText = val
   });
 }

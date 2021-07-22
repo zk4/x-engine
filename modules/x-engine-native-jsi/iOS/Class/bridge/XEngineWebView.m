@@ -9,7 +9,6 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "XENativeContext.h"
-#import "GlobalState.h"
 #import "iSecurify.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
@@ -70,12 +69,12 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     interalApis.webview=self;
     [self addJavascriptObject:interalApis namespace:@"_dsb"];
     
-    if (@available(iOS 13.0, *)) {
-        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
-    } else {
+//    if (@available(iOS 13.0, *)) {
+//        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+//    } else {
         // Fallback on earlier versions
         /// TODO: 上面的函数只支持iOS 13.0,保持低版本兼容 @cwz
-    }
+//    }
 //    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
 //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
     return self;
@@ -293,21 +292,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     NSString* moduleName = nameStr[0];
     NSString* methodName = nameStr[1];
-    //    if(![@"_dsb" isEqual:moduleName]){
-    //        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
-    //        // 判断是否有microapp.json文件
-    //        id<iSecurify> securify = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-    //
-    //        if(securify){
-    //            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
-    //            if (!isAvailable) {
-    //                /// TODO: 挪到 security 模块里.
-    //                [self showErrorAlert:@"%@模块未在 microapp.json 里注册, 请联系原生开发人员"];
-    //                return nil;
-    //            }
-    //
-    //        }
-    //    }
     
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[moduleName];
     NSString *error = [NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
@@ -440,8 +424,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void) dispatchJavascriptCall:(XEngineCallInfo*) info{
     NSString * json=[XEngineJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
                                                       @"data":[XEngineJSBUtil objToJsonString: info.args]}];
-    [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
-           completionHandler:nil];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
+               completionHandler:nil];
+    });
+    
 }
 
 - (void) addJavascriptObject:(id)object namespace:(NSString *)namespace{
@@ -646,7 +635,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 // 2.1- 开始下载指定 URL 的内容, 下载之前会调用一次 开始下载 回调
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    [self.indicatorView startAnimating];
+//    [self.indicatorView startAnimating];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
         [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
     }
@@ -658,7 +647,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 3- 确定下载的内容被允许之后再载入视图。
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
     [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
@@ -667,13 +656,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
     [self addCustomView];
 }
 
 // 4.2- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
     [self addCustomView];
 }
 
@@ -718,7 +707,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (void)dealloc {
-    [self.indicatorView stopAnimating];
+//    [self.indicatorView stopAnimating];
 }
 
 // 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ChannelDTO :JSONModel
 @property(nonatomic,copy) NSString *channel;
 @property(nonatomic,copy) NSString *shareType;
+@property(nonatomic,copy) NSString* shareImgData;
 @end
 
 @interface OpenShareUiDTO :JSONModel
@@ -26,12 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol iShare <NSObject>
 
-- (NSArray<NSString*>*_Nullable)getTypes;
+- (NSArray<NSString*>*_Nullable)getChannels;
 - (NSString *_Nullable)getName;
 /**
  分享
  */
-- (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(NSString *__nullable channel,NSString *__nullable shareType,NSString *_Nullable imageData,BOOL complete)) completionHandler;
+- (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(BOOL complete)) completionHandler;
 @end
 
 

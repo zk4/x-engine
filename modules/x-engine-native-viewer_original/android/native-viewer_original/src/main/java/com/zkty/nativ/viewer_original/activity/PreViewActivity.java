@@ -3,15 +3,22 @@ package com.zkty.nativ.viewer_original.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.TbsDownloader;
+import com.tencent.smtt.sdk.TbsListener;
 import com.tencent.smtt.sdk.TbsReaderView;
+import com.tencent.smtt.sdk.ValueCallback;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
@@ -39,9 +46,15 @@ public class PreViewActivity extends BaseXEngineActivity {
     private LinearLayout llContent;
     private XEngineNavBar mXEngineNavBar;
     private TbsReaderView tbsReaderView;
+    private RelativeLayout relLoadX5;
+    private TextView tvProgress;
     private String filePath,downLoadUrl;
     private String fileType;
     private String title;
+
+    private int maxProgress = 100;
+    private int cunProgress = 0;
+    private boolean isFirst = true;
 
     public static void startAty(String filePath, String title, String fileType) {
         Intent intent = new Intent(XEngineApplication.getCurrentActivity(), PreViewActivity.class);
@@ -64,6 +77,9 @@ public class PreViewActivity extends BaseXEngineActivity {
 
         llContent = findViewById(R.id.llContent);
         mXEngineNavBar = findViewById(R.id.mXEngineNavBar);
+
+        relLoadX5 = findViewById(R.id.relLoadX5);
+        tvProgress = findViewById(R.id.tvProgress);
 
         List<Double> iconSize = new ArrayList<>();
         iconSize.add(20.0);
@@ -91,8 +107,75 @@ public class PreViewActivity extends BaseXEngineActivity {
 
         //设置标题
         mXEngineNavBar.setTitle(title,null,null);
+
         //打开文件
-        openFile(filePath, fileType);
+        if(QbSdk.canLoadX5(XEngineApplication.getApplication())){//是否支持 x5 浏览
+            openFile(filePath, fileType);
+        }else{
+            relLoadX5.setVisibility(View.VISIBLE);
+            //x5下载监听
+            QbSdk.setTbsListener(new TbsListener() {
+                @Override
+                public void onDownloadFinish(int i) {
+                    Log.d("initX5 prew", "onDownloadFinish -->下载X5内核完成：" + i);
+                    if(i != 100 && !TbsDownloader.isDownloading() && !QbSdk.canLoadX5(getApplicationContext())){
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                TbsDownloader.startDownload(getApplicationContext());
+                            }
+                        },10000);
+
+                    }else{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvProgress.setText("浏览器安装中");
+                            }
+                        });
+                    }
+
+
+                }
+                @Override
+                public void onInstallFinish(int i) {
+                    //安装完成
+                    if(QbSdk.canLoadX5(getApplicationContext())){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                openFile(filePath, fileType);
+                            }
+                        });
+                    }
+
+                }
+                @Override
+                public void onDownloadProgress(int progress) {
+                    if(isFirst && progress > 20){
+                        maxProgress = 100 - progress;
+                        cunProgress = progress;
+                    }
+                    isFirst = false;
+                    float ratio = ((progress - cunProgress) / maxProgress);
+                    int pro = (int) (100 * ratio);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvProgress.setText("浏览器加载中：" + pro + "%");
+                        }
+                    });
+                    Log.d("initX5  prew", "onDownloadProgress -->下载X5内核进度：" + progress);
+                }
+            });
+            //判断是否在下载中
+            Log.d("initX5 prew",  "是否正在下载X5内核 -->" +TbsDownloader.isDownloading() + "");
+            if(!TbsDownloader.isDownloading()){
+                Log.d("initX5 prew",  "下载X5内核 -->");
+                TbsDownloader.startDownload(getApplicationContext());
+            }
+        }
+
     }
 
 
@@ -101,6 +184,7 @@ public class PreViewActivity extends BaseXEngineActivity {
      * @param path
      */
     private void openFile(String path,String fileType) {
+        relLoadX5.setVisibility(View.GONE);
         tbsReaderView = new TbsReaderView(this, readerCallback);
         llContent.addView(tbsReaderView,new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         Bundle bundle = new Bundle();

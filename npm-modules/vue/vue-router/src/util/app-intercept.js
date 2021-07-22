@@ -45,11 +45,10 @@ export function intercept (scheme) {
   }
 }
 
-const checkProtocol = () => {
+export const checkScheme = () => {
   const protocol = window.location.protocol
-  if (/^(http|https):/.test(protocol)) return true
-  else return false
+  if (/^(http|https):/.test(protocol)) return 'omp'
+  else return 'microapp'
 }
-export const scheme = checkProtocol() ? 'omp' : 'microapp'
 
 

@@ -33,8 +33,18 @@
 
 
 - (void)offinePackage {
-    NSString *packageInfoURL = @"https://www.letonglexue.com/api/test/getTestList";
     id<iOffline>offline = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iOffline)];
+    
+    // 启动应用后读取packageInfo.json的信息 写入document长久持有 已做后续更新内容的依据
+    // 如果路径下没有 写入
+    // 如果路径下已有 不在操作
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *packageInfoPath = [documentPath stringByAppendingPathComponent:@"packageInfo.json"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:packageInfoPath]) {
+        [offline saveProjectMicroappInfo:[offline getRootPackageJsonInfo]];
+    }
+    
+    NSString *packageInfoURL = @"https://www.letonglexue.com/api/test/getTestList";
     // 1- 获取应用下所有的包信息
     [offline getPackagesInfo:packageInfoURL completion:^(NSArray *array) {
         // 2- 循环包信息和本地包做判断看是否需要下载

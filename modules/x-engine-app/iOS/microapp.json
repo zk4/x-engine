@@ -31,7 +31,7 @@
         {
           "id":0,
           "name":"com.gm.microapp.home",
-          "version":0,
+          "version":1,
           "downloadUrl":"https://www.baidu.com",
           "isForce": false
         },

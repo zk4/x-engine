@@ -10,7 +10,9 @@
 #import "RecyleWebViewController.h"
 #import "MicroAppLoader.h"
 #import "XENativeContext.h"
+#import "iOffline.h"
 @interface ThreeViewController ()
+@property (nonatomic, strong) id<iOffline>offline;
 @end
 
 @implementation ThreeViewController
@@ -18,14 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"模块3";
+    _offline = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iOffline)];
     [self readH5];
 }
 
 - (void)readH5 {
-    NSMutableDictionary *dict = [self getFilePathWithIndex:0];
-    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSMutableDictionary *dict = [_offline getFilePathWithIndex:2];
     NSMutableString *microappid = [NSMutableString string];
-    if ([mgr fileExistsAtPath:dict[@"filePath"]]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dict[@"filePath"]]) {
         NSString *finalPath = [NSString stringWithFormat:@"file://%@/index.html", dict[@"filePath"]];
         [microappid appendString:finalPath];
         RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalPath host:dict[@"name"] pathname:@"" fragment:@"" withHiddenNavBar:YES onTab:YES];
@@ -33,7 +35,7 @@
         [self.view addSubview:vc.view];
         vc.view.frame = self.view.frame;
     } else {
-        [microappid appendString:@"com.gm.microapp.home"];
+        [microappid appendString:@"com.gm.microapp.mine"];
         NSString *protocol= @"file:";
         NSString *pathname = @"";
         NSString *fragment = @"";
@@ -44,29 +46,5 @@
         [self.view addSubview:vc.view];
         vc.view.frame = self.view.frame;
     }
-}
-
-// 获取本地地址
-- (NSMutableDictionary *)getFilePathWithIndex:(int)index {
-    NSDictionary *dict =[self getLocalMicroappInfo][index];
-    NSString *name = dict[@"name"];
-    NSString *version = [NSString stringWithFormat:@"%@", dict[@"version"]];
-    NSString *packageName = [NSString stringWithFormat:@"%@.%@", name,version];
-    NSString *documentPath= [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentPath, packageName];
-    
-    NSMutableDictionary *localDict = [NSMutableDictionary dictionary];
-    localDict[@"name"] = name;
-    localDict[@"filePath"] = filePath;
-    return localDict;
-}
-
-// 获取本地microapp信息
-- (NSArray *)getLocalMicroappInfo {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"microapp" ofType:@"json"];
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    NSArray *array = dict[@"packagesInfo"];
-    return array;
 }
 @end

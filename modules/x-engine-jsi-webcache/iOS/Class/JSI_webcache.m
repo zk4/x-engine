@@ -29,7 +29,7 @@ JSI_MODULE(JSI_webcache)
     return isNull;
 }
 // 直接使用,不经过 gen
-- (void) xhrReuqest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+- (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     
     NSDictionary* headers = dict[@"header"];
     NSString* url = dict[@"url"];

@@ -18,6 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.71:8080" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
+    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.73:8080" params:@{@"hideNavbar":@TRUE, @"onTab":@TRUE}];
 }
 @end

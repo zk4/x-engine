@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && microbundle --external all"
+    "build": "rimraf dist && microbundle --no-sourcemap --external all"
   },
   "source": "src/index.js",
   "main": "./dist/vuex.common.js",

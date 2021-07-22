@@ -1337,17 +1337,11 @@
     };
   }
 
-
-  function checkProtocol () {
+  var checkScheme = function () {
     var protocol = window.location.protocol;
-    if (/^file/.test(protocol)) {
-      return 'microapp'
-    } else if (/^http/.test(protocol)) {
-      return 'omp'
-    } else {
-      return false
-    }
-  }
+    if (/^(http|https):/.test(protocol)) { return 'omp' }
+    else { return 'microapp' }
+  };
 
   /*
    * @Author: sheng.wang
@@ -1359,22 +1353,18 @@
    */
   var _Vue;
 
-  function install (Vue, protocol) {
+  function install (Vue, scheme) {
     if (install.installed && _Vue === Vue) { return }
     install.installed = true;
 
     _Vue = Vue;
 
     var isDef = function (v) { return v !== undefined; };
-    if (protocol) {
-      intercept(protocol);
-    } else {
-      if (checkProtocol()) {
-        intercept(checkProtocol());
-      } else {
-        intercept('microapp');
-      }
-    }
+
+    scheme = scheme || checkScheme();
+
+    intercept(scheme);
+
     var registerInstance = function (vm, callVal) {
       var i = vm.$options._parentVnode;
       if (isDef(i) && isDef(i = i.data) && isDef(i = i.registerRouteInstance)) {

@@ -14,12 +14,12 @@ const ON_NATIVE_HIDE = "onNativeHide"; // 原生隐藏
 const ON_NATIVE_DESTROYED = "onNativeDestroyed"; // 原生销毁
 
 let Vue;
-export function install(_Vue) {
+export function install (_Vue) {
   if (Vue !== _Vue) {
     Vue = _Vue;
   }
   Vue.mixin({
-    beforeCreate() {
+    mounted () {
       xengine.onLifecycle((type, payload) => {
         if (type == ON_NATIVE_SHOW) {
           this.onNativeShow?.();

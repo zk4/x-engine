@@ -44,3 +44,12 @@ export function intercept (scheme) {
     }
   }
 }
+
+const checkProtocol = () => {
+  const protocol = window.location.protocol
+  if (/^(http|https):/.test(protocol)) return true
+  else return false
+}
+export const scheme = checkProtocol() ? 'omp' : 'microapp'
+
+

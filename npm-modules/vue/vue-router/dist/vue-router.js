@@ -1,5 +1,5 @@
 /*!
-  * vue-router v2.0.9
+  * vue-router v2.7.0
   * (c) 2021 Capricorn
   * @license MIT
   */
@@ -1337,6 +1337,13 @@
     };
   }
 
+  var checkProtocol = function () {
+    var protocol = window.location.protocol;
+    if (/^(http|https):/.test(protocol)) { return true }
+    else { return false }
+  };
+  var scheme = checkProtocol() ? 'omp' : 'microapp';
+
   /*
    * @Author: sheng.wang
    * @Date: 2021-02-09 16:48:14
@@ -1354,14 +1361,11 @@
     _Vue = Vue;
 
     var isDef = function (v) { return v !== undefined; };
-    if (protocol) {
-      intercept(protocol);
-    } else {
-      {
-        intercept('omp');
-      }
-    }
-    
+
+    protocol = protocol || scheme;
+
+    intercept(protocol);
+
     var registerInstance = function (vm, callVal) {
       var i = vm.$options._parentVnode;
       if (isDef(i) && isDef(i = i.data) && isDef(i = i.registerRouteInstance)) {
@@ -3203,7 +3207,7 @@
   }
 
   VueRouter.install = install;
-  VueRouter.version = '2.0.9';
+  VueRouter.version = '2.7.0';
   VueRouter.isNavigationFailure = isNavigationFailure;
   VueRouter.NavigationFailureType = NavigationFailureType;
   VueRouter.START_LOCATION = START;

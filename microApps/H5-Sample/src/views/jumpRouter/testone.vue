@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     onNativeShow() {
-      console.log("onePageCustom-->onNativeShow")
+      alert("onePageCustom-->onNativeShow")
       this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
     },
     onNativeHide() {

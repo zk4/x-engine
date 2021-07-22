@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-scan",
-  "version": "2.0.3",
+  "version": "2.8.1",
   "description": "scan",
   "main": "h5/src/index.js",
   "license": "MIT",

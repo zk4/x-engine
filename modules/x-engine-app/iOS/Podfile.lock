@@ -112,6 +112,9 @@ PODS:
   - x-engine-native-store (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-tabbar (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-ui (1.0.0):
     - JSONModel
     - x-engine-native-core
@@ -147,6 +150,7 @@ DEPENDENCIES:
   - x-engine-native-rest (from `../../x-engine-native-rest`)
   - x-engine-native-scan (from `../../x-engine-native-scan`)
   - x-engine-native-store (from `../../x-engine-native-store`)
+  - x-engine-native-tabbar (from `../../x-engine-native-tabbar`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
@@ -210,6 +214,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-scan"
   x-engine-native-store:
     :path: "../../x-engine-native-store"
+  x-engine-native-tabbar:
+    :path: "../../x-engine-native-tabbar"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
   ZBarSDK:
@@ -246,9 +252,10 @@ SPEC CHECKSUMS:
   x-engine-native-rest: 600cf890c6779cfbdb24efea44e5f1b42e9fe45c
   x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
   x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
+  x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 5d35fb81cc2d9b72556efc5670f8715f71c8013e
+PODFILE CHECKSUM: d055770895646527bdc6ad6e99229f3c54fe069f
 
 COCOAPODS: 1.10.0

@@ -91,31 +91,31 @@
         return json;
     }
 
-    function nativeRequest(xhrId, params) {
+    function nativeRequest(xhr, params) {
         if(FormData.prototype.isPrototypeOf(params.data)){
             let data = formData2Json(params.data);
             params.data = data;
         }
         //  请求 native
-        params.xhrId = xhrId;
+//        params.xhrId = xhrId;
         if(window.dsBridge) {
             window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params,function(data) {
                 data = JSON.parse(data)
                 console.log(data)
-
-                var xhrId = data["xhrId"];
+//
+//                var xhrId = data["xhrId"];
                 var statusCode = 1*data["statusCode"];
                 var responseText = data["responseText"];
                 var responseHeaders = data["responseHeaders"];
                 var error = data["error"];
 
-                window.xengine_Ajax.nativeCallback(xhrId, statusCode, responseText, responseHeaders, error);
+              nativeCallback(xhr, statusCode, responseText, responseHeaders, error);
             });
         }
     }
 
-    function nativeCallback(xhrId, statusCode, responseText, responseHeaders, error) {
-        var xhr = window.xengine_Ajax.hookedXHR[xhrId];
+    function nativeCallback(xhr, statusCode, responseText, responseHeaders, error) {
+//        var xhr = window.xengine_Ajax.hookedXHR[xhrId];
 
         if(xhr.isAborted) { // 如果该请求已经手动取消了
             return;
@@ -124,6 +124,7 @@
         if(error) {
             xhr.readyState = 1;
             if(xhr.onerror) {
+                console.error(error);
                 xhr.onerror();
             }
         } else {
@@ -186,9 +187,10 @@
                 params.url = url;
 
 
-                var xhrId = 'xhrId' + (new Date()).getTime();
-                window.xengine_Ajax.hookedXHR[xhrId] = this;
-                window.xengine_Ajax.nativeRequest(xhrId, params);
+//                var xhrId = 'xhrId' + (new Date()).getTime();
+//                window.xengine_Ajax.hookedXHR[xhrId] = this;
+                let  that = this;
+                window.xengine_Ajax.nativeRequest(that, params);
 
                 // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
                 return true;

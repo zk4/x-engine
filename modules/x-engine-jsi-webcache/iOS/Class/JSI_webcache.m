@@ -33,8 +33,7 @@ JSI_MODULE(JSI_webcache)
     
     NSDictionary* headers = dict[@"header"];
     NSString* url = dict[@"url"];
-    NSString* xhrId = dict[@"xhrId"];
-    
+
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     request.HTTPMethod = dict[@"method"];
@@ -53,7 +52,7 @@ JSI_MODULE(JSI_webcache)
     }
     request.allHTTPHeaderFields= safeHeaders;
     // post 有可能没有 body
-    if(![self isNull:dict key:@"data"])
+    if(dict && ![self isNull:dict key:@"data"] && dict[@"data"])
         request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
@@ -68,7 +67,7 @@ JSI_MODULE(JSI_webcache)
 
 
             NSDictionary* ret =@{
-                @"xhrId":xhrId,
+          
                 @"statusCode": statusCode,
                 @"responseText":responseText,
                 @"responseHeaders":headers
@@ -77,7 +76,7 @@ JSI_MODULE(JSI_webcache)
             
         } else {
             NSDictionary* ret =@{
-                @"xhrId":xhrId,
+              
                 @"error":[NSString stringWithFormat:@"%@", error]
             };
             completionHandler(ret,TRUE);

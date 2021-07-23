@@ -93,8 +93,8 @@
 
     function nativeRequest(xhrId, params) {
         if(FormData.prototype.isPrototypeOf(params.data)){
-            let json = formData2Json(params.data);
-            console.log("hell");
+            let data = formData2Json(params.data);
+            params.data = data;
         }
         //  请求 native
         params.xhrId = xhrId;

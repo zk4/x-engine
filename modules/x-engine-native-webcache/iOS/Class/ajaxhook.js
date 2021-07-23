@@ -99,44 +99,44 @@
     }
 
     function nativeRequest(xhr, params) {
-
+        if(!window.dsBridge)  return false;
         //  请求 native
-        if(window.dsBridge) {
-            window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params,function(data) {
-                data = JSON.parse(data)
-                var statusCode = 1*data["statusCode"];
-                var responseText = data["responseText"];
-                var responseHeaders = data["responseHeaders"];
-                var error = data["error"];
-                
-                
-                if(xhr.isAborted) { // 如果该请求已经手动取消了
-                    return;
+        window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params,function(data) {
+            data = JSON.parse(data)
+            var statusCode = 1*data["statusCode"];
+            var responseText = data["responseText"];
+            var responseHeaders = data["responseHeaders"];
+            var error = data["error"];
+            
+            
+            if(xhr.isAborted) { // 如果该请求已经手动取消了
+                return;
+            }
+
+            if(error) {
+                xhr.readyState = 1;
+                if(xhr.onerror) {
+                    console.error(error);
+                    xhr.onerror();
                 }
+            } else {
+                xhr.status = statusCode;
+                xhr.responseText = responseText;
+                xhr.readyState = 4;
 
-                if(error) {
-                    xhr.readyState = 1;
-                    if(xhr.onerror) {
-                        console.error(error);
-                        xhr.onerror();
-                    }
-                } else {
-                    xhr.status = statusCode;
-                    xhr.responseText = responseText;
-                    xhr.readyState = 4;
+                xhr.omtResponseHeaders = responseHeaders;
 
-                    xhr.omtResponseHeaders = responseHeaders;
-
-                    if(xhr.onreadystatechange) {
-                        xhr.onreadystatechange();
-                    }
-                    if(xhr.onload) {
-                        xhr.onload();
-                    }
+                if(xhr.onreadystatechange) {
+                    xhr.onreadystatechange();
                 }
-                
-            });
-        }
+                if(xhr.onload) {
+                    xhr.onload();
+                }
+            }
+            
+        });
+        return true;
+        
     }
  
 
@@ -267,10 +267,8 @@
 //                let data = formData2Json(params.data);
 //                params.data = data;
 //            }
-            nativeRequest(that, params);
-
             // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
-            return true;
+            return nativeRequest(that, params);
         },
         abort: function (arg, xhr) {
                 if(xhr.onabort) {

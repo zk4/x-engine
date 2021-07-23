@@ -24,6 +24,7 @@ def shared_pods
 #  pod 'x-engine-native-webcache', :path =>'../../x-engine-native-webcache'
   pod 'x-engine-native-rest', :path =>'../../x-engine-native-rest'
   pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
+  pod 'x-engine-native-tabbar', :path =>'../../x-engine-native-tabbar'
 
   # jsi
   pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
@@ -42,7 +43,7 @@ def shared_pods
   
   
   # legacy jsi
-  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'
+#  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'
 
   pod 'JSONModel'
   pod 'MJExtension'

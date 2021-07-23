@@ -21,7 +21,7 @@ export default {
     return {}
   },
   mounted() {
-    console.log('window._dswk', window._dswk)
+    console.log('windowwindowwindow._dswk', window._dswk)
     // console.log("testOnePage-->mounted")
     // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-mounted")
   },
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     onNativeShow() {
-      console.log("onePageCustom-->onNativeShow")
+      alert("onePageCustom-->onNativeShow")
       this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
     },
     onNativeHide() {
@@ -54,7 +54,7 @@ export default {
       this.$router.push({
         name: "testtwo",
         query: {
-          changeNavTitle: "haha"
+          changeNavTitle: "第二页"
         },
         params: {
           id: 1,

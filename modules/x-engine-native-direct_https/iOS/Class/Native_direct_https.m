@@ -12,7 +12,7 @@
 #import "WebViewFactory.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "GlobalState.h"
+ 
 
 @interface Native_direct_https ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
@@ -43,14 +43,14 @@ NATIVE_MODULE(Native_direct_https)
         }
     }
 }
-
-- (void)back:(NSString*) host fragment:(NSString*) fragment{
-    [self.microappDirect back:host fragment:fragment];
-}
-- (void)push:(UIViewController*) container
-      params:(nullable NSDictionary<NSString*,id>*) params{
-    [self.microappDirect push:container params:params];
-}
+//
+//- (void)back:(NSString*) host fragment:(NSString*) fragment{
+//    [self.microappDirect back:host fragment:fragment];
+//}
+//- (void)push:(UIViewController*) container
+//      params:(nullable NSDictionary<NSString*,id>*) params  {
+//    [self.microappDirect push:container params:params];
+//}
 
 
 - (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {

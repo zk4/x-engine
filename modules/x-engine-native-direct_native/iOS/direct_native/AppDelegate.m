@@ -10,6 +10,7 @@
 #import "XENativeContext.h"
 #import "MGJRouter.h"
 #import <x-engine-native-core/Unity.h>
+#import <iDirectManager.h>
 
 @interface AppDelegate ()
 
@@ -23,18 +24,12 @@
     
     [[XENativeContext sharedInstance] start];
 
-    [MGJRouter registerURLPattern:@"native://foo/bar" toHandler:^(NSDictionary *routerParameters) {
-        NSLog(@"routerParameterUserInfo:%@", routerParameters[MGJRouterParameterUserInfo]);
- 
-        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[[EntryViewController alloc] init] animated:TRUE];
-         
+    id<iDirectManager> dm = XENP(iDirectManager);
+    
+    [dm registerNativeRouter:@"native://foo/bar2" nativeVCCreator:^UIViewController * _Nullable(NSString * _Nonnull host, NSString * _Nonnull pathname, NSString * _Nonnull fragment, NSDictionary * _Nonnull query, NSDictionary * _Nonnull params) {
+         return [[EntryViewController alloc] init];
     }];
-    [MGJRouter registerURLPattern:@"native://foo/bar2" toHandler:^(NSDictionary *routerParameters) {
-        NSLog(@"routerParameterUserInfo:%@", routerParameters[MGJRouterParameterUserInfo]);
- 
-        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[[EntryViewController2 alloc] init] animated:TRUE];
-         
-    }];
+    
 
     EntryViewController *homePageVC = [[EntryViewController alloc] init];
        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];

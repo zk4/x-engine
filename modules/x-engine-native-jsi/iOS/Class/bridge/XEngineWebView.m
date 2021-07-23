@@ -9,7 +9,6 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "XENativeContext.h"
-#import "GlobalState.h"
 #import "iSecurify.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"

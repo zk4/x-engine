@@ -10,6 +10,10 @@
 #import "iDirectManager.h"
 #import "iDirect.h"
 #import "NSURL+QueryDictionary.h"
+#import "HistoryModel.h"
+#import "Unity.h"
+#import "RecyleWebViewController.h"
+#import "UIViewController+Tag.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -40,16 +44,74 @@ NATIVE_MODULE(Native_direct)
     }
 }
 
+- (void) _back:(NSString*) host fragment:(NSString*) fragment{
+    UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
+    NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
+ 
+ 
+    BOOL isMinusHistory = [fragment rangeOfString:@"^-\\d+$" options:NSRegularExpressionSearch].location != NSNotFound;
+    BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
+    
+    if ([@"0" isEqualToString:fragment]){
+        [navC popToRootViewControllerAnimated:TRUE];
+
+    } else if ([@"/" isEqualToString:fragment]){
+        [navC popToRootViewControllerAnimated:TRUE];
+        if(ary && ary.count > 0){
+            [navC popToViewController:ary[0] animated:YES];
+        }
+    } else if (!fragment || [@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
+        if(ary){
+            if(ary.count > 1) {
+                [navC popToViewController:ary[ary.count-2] animated:YES];
+            } else if(ary.count ==1){
+                [navC popViewControllerAnimated:YES];
+            }
+        }
+    } else if(isMinusHistory) {
+        if(ary){
+            int minusHistory = [fragment intValue];
+            if(minusHistory+ary.count<0){
+                /// TODO: alert
+                NSLog(@"没有历史给你退.");
+                [navC popToRootViewControllerAnimated:TRUE];
+            }else {
+                [navC popToViewController:ary[ary.count-1+minusHistory] animated:YES];
+            }
+        }
+    } else if (isNamedHistory){
+        if(ary && ary.count > 1){
+            int i = 0;
+            for (UIViewController *vc in [ary reverseObjectEnumerator]){
+                HistoryModel *hm = [vc getLastHistory];
+                if(hm && [hm.fragment isEqualToString:fragment]){
+                    [navC popToViewController:vc animated:YES];
+                    return;
+                }
+                i++;
+            }
+        }
+    } else {
+        /// TODO: alert
+        NSLog(@"what the fuck? %@",fragment);
+    }
+}
+
 - (void)back: (NSString*) scheme host:(NSString*) host fragment:(NSString*) fragment{
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    [direct back:host fragment:fragment];
+    // 如果不实现,委托给管理类实现
+    if([direct respondsToSelector:@selector(back:host:fragment:)]){
+        [direct back:host fragment:fragment];
+    }else{
+        [self _back:host fragment:fragment];
+    }
 }
 
 
 - (nonnull UIViewController *)getContainer:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+    
     id<iDirect> direct = [self.directors objectForKey:scheme];
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
-
     return container;
     
 }
@@ -59,11 +121,53 @@ NATIVE_MODULE(Native_direct)
         pathname:(NSString*) pathname
         fragment:(NSString*) fragment
         query:(nullable NSDictionary<NSString*,NSString*>*) query
-        params:(NSDictionary<NSString*,NSString*>*) params {
+        params:(NSDictionary<NSString*,id>*) params {
+
+    // 复用上一次的 host
+    if(host){
+        pathname = pathname && (pathname.length!=0) ? pathname : @"/";
+    } else {
+        HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
+        host = hm.host;
+        NSAssert(host!=nil, @"host 不可为 nil");
+        pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
+    }
+    
     id<iDirect> direct = [self.directors objectForKey:scheme];
+
+    // 拿容器
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
-    if(container){
+    NSAssert(container,@"why here, where is your container?");
+
+    if([direct respondsToSelector:@selector(push:container:params:)]){
         [direct push:container params:params];
+    }else{
+
+        UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
+
+        //  删除历史逻辑
+        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
+        int deleteHistory = 0;
+        if(nativeParams){
+            id deletable = [nativeParams objectForKey:@"__deleteHistory__"];
+            if(deletable)
+                deleteHistory =[deletable intValue];
+        }
+        NSAssert(deleteHistory>=0, @"__deleteHistory__ 必须大于等于 0");
+        while(deleteHistory>0){
+            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
+            deleteHistory--;
+        }
+        [navc pushViewController:container animated:YES];
+  
+ 
+        HistoryModel* hm = [HistoryModel new];
+     
+        hm.fragment      = fragment;
+        hm.host          = host;
+        hm.pathname      = pathname;
+
+        [container setCurrentHistory:hm];
     }
 }
 
@@ -74,11 +178,23 @@ NATIVE_MODULE(Native_direct)
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
           params:(nullable NSDictionary<NSString*,id>*) params{
+    
     id<iDirect> direct = [self.directors objectForKey:scheme];
+    
     UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    
     [parent addChildViewController:vc];
-    [parent.view addSubview:vc.view];
     vc.view.frame = parent.view.frame;
+    [parent.view addSubview:vc.view];
+
+    // TODO: 这里有时机问题.
+    HistoryModel* hm = [HistoryModel new];
+ 
+    hm.fragment      = fragment;
+    hm.host          = host;
+    hm.pathname      = pathname;
+    [parent setCurrentHistory:hm];
+
 }
 
 static NSString *const kQueryBegin          = @"?";
@@ -112,6 +228,7 @@ static NSString *const kSlash               = @"/";
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params{
     // convert SPA url hash router style to standard url style
+    // TODO: 写这不合适. manager 理应不关心 port
     NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
     NSNumber* port = url.port;
     if(!port){
@@ -128,6 +245,7 @@ static NSString *const kSlash               = @"/";
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
     // convert SPA url hash router style to standard url style
+    // TODO: 写这不合适. manager 理应不关心 port
     NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
     NSNumber* port = url.port;
     if(!port){
@@ -139,11 +257,12 @@ static NSString *const kSlash               = @"/";
     }
     NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
     
-
+ 
     [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    
 
 }
-
+ 
 
 
 @end

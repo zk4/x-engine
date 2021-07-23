@@ -5,22 +5,25 @@
 #import "MainTabbarController.h"
 #import "JumpViewController.h"
 #import <Unity.h>
-@interface AppDelegate ()
-@end
+#import <x-engine-native-protocols/iNativeRegister.h>
+ 
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[XENativeContext sharedInstance] start];
     [[JSIContext sharedInstance] start];
-    
-    [MGJRouter registerURLPattern:@"native://foo/bar" toHandler:^(NSDictionary *routerParameters) {
-        NSLog(@"routerParameterUserInfo:%@", routerParameters[MGJRouterParameterUserInfo]);
- 
-        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[[JumpViewController alloc] init] animated:TRUE];
-         
+    id<iNativeRegister> ir = XENP(iNativeRegister);
+    [ir registerNativeRouter:@"native://foo/bar" nativeVCCreator:^UIViewController * _Nullable(NSString * _Nonnull protocol, NSString * _Nonnull host, NSString * _Nonnull pathname, NSString * _Nonnull fragment, NSDictionary * _Nonnull query, NSDictionary * _Nonnull params) {
+        return [[JumpViewController alloc] init] ;
     }];
-    
+//    [MGJRouter registerURLPattern:@"native://foo/bar" toHandler:^(NSDictionary *routerParameters) {
+//        NSLog(@"routerParameterUserInfo:%@", routerParameters[MGJRouterParameterUserInfo]);
+// 
+//        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:[[JumpViewController alloc] init] animated:TRUE];
+//         
+//    }];
+//    
 //  id<iOpenManager> img = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
 //  [img open:@"h5" :@"com.gm.microapp.mine" :@"hello" :@{} :0 :FALSE];
     

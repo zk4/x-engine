@@ -1,6 +1,7 @@
  
 ;
 (function() {
+    // blob 转 base64
     // https://github.com/niklasvh/base64-arraybuffer/blob/master/lib/base64-arraybuffer.js
     var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -56,13 +57,19 @@
         bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
       }
     }
+    // 需要 es5 支持
+//    toBase64(file) {
+//      return new Promise((resolve, reject) => {
+//        const reader = new FileReader();
+//        reader.readAsDataURL(file);
+//        reader.onload = () => resolve(reader.result);
+//        reader.onerror = (error) => reject(error);
+//      });
+//    },
+
+    
  ////////////////////////////////////////////////////////////////////////////////
-    window.xengine_Ajax = {
-        hookedXHR: {},
-        hookAjax: hookAjax,
-        nativeRequest: nativeRequest,
-        nativeCallback: nativeCallback
-    };
+
     function formData2Json(formData){
         let object = {};
         formData.forEach((value, key) => {
@@ -92,117 +99,48 @@
     }
 
     function nativeRequest(xhr, params) {
-        if(FormData.prototype.isPrototypeOf(params.data)){
-            let data = formData2Json(params.data);
-            params.data = data;
-        }
+
         //  请求 native
-//        params.xhrId = xhrId;
         if(window.dsBridge) {
             window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params,function(data) {
                 data = JSON.parse(data)
-                console.log(data)
-//
-//                var xhrId = data["xhrId"];
                 var statusCode = 1*data["statusCode"];
                 var responseText = data["responseText"];
                 var responseHeaders = data["responseHeaders"];
                 var error = data["error"];
+                
+                
+                if(xhr.isAborted) { // 如果该请求已经手动取消了
+                    return;
+                }
 
-              nativeCallback(xhr, statusCode, responseText, responseHeaders, error);
+                if(error) {
+                    xhr.readyState = 1;
+                    if(xhr.onerror) {
+                        console.error(error);
+                        xhr.onerror();
+                    }
+                } else {
+                    xhr.status = statusCode;
+                    xhr.responseText = responseText;
+                    xhr.readyState = 4;
+
+                    xhr.omtResponseHeaders = responseHeaders;
+
+                    if(xhr.onreadystatechange) {
+                        xhr.onreadystatechange();
+                    }
+                    if(xhr.onload) {
+                        xhr.onload();
+                    }
+                }
+                
             });
         }
     }
+ 
 
-    function nativeCallback(xhr, statusCode, responseText, responseHeaders, error) {
-//        var xhr = window.xengine_Ajax.hookedXHR[xhrId];
-
-        if(xhr.isAborted) { // 如果该请求已经手动取消了
-            return;
-        }
-
-        if(error) {
-            xhr.readyState = 1;
-            if(xhr.onerror) {
-                console.error(error);
-                xhr.onerror();
-            }
-        } else {
-            xhr.status = statusCode;
-            xhr.responseText = responseText;
-            xhr.readyState = 4;
-
-            xhr.omtResponseHeaders = responseHeaders;
-
-            if(xhr.onreadystatechange) {
-                xhr.onreadystatechange();
-            }
-            if(xhr.onload) {
-                xhr.onload();
-            }
-        }
-    }
-
-    // hook ajax send 方法
-    window.xengine_Ajax.hookAjax({
-        setRequestHeader: function (arg, xhr) {
-            if(!this.omtHeaders) {
-                this.omtHeaders = {};
-            }
-            this.omtHeaders[arg[0]] = arg[1];
-        },
-        getAllResponseHeaders: function (arg, xhr) {
-            var headers = this.omtResponseHeaders;
-            if(headers) {
-                if(typeof(headers) === 'object') {
-                    var result = '';
-                    for(var key in headers) {
-                        result = result + key + ':' + headers[key] + '\r\n'
-                    }
-                    return result;
-                }
-                return headers;
-            }
-        },
-        getResponseHeader: function (arg, xhr) {
-            if(this.omtResponseHeaders && this.omtResponseHeaders(arg[0])) {
-                return this.omtResponseHeaders(arg[0]);
-            }
-        },
-        open: function (arg, xhr) {
-            this.omtOpenArg = arg;
-        },
-        send: function (arg, xhr) {
-            this.isAborted = false;
-                var params = {};
-                params.data = arg[0];
-                params.method = this.omtOpenArg[0];
-                params.header = this.omtHeaders;
-
-                var url = this.omtOpenArg[1];
-                var location = window.location;
-                if(location.protocol !== "file:" && !url.startsWith(location.protocol)) {
-                    url = location.origin + url;
-                }
-                params.url = url;
-
-
-//                var xhrId = 'xhrId' + (new Date()).getTime();
-//                window.xengine_Ajax.hookedXHR[xhrId] = this;
-                let  that = this;
-                window.xengine_Ajax.nativeRequest(that, params);
-
-                // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
-                return true;
-        },
-        abort: function (arg, xhr) {
-                if(xhr.onabort) {
-                    xhr.onabort()
-                }
-                return true;
-        }
-
-    });
+    
 
     function hookAjax(proxy) {
         // 保存真正的XMLHttpRequest对象
@@ -279,6 +217,71 @@
         return window._ahrealxhr;
     }
 
+    // hook ajax send 方法
+    hookAjax({
+        setRequestHeader: function (arg, xhr) {
+            if(!this.omtHeaders) {
+                this.omtHeaders = {};
+            }
+            this.omtHeaders[arg[0]] = arg[1];
+        },
+        getAllResponseHeaders: function (arg, xhr) {
+            var headers = this.omtResponseHeaders;
+            if(headers) {
+                if(typeof(headers) === 'object') {
+                    var result = '';
+                    for(var key in headers) {
+                        result = result + key + ':' + headers[key] + '\r\n'
+                    }
+                    return result;
+                }
+                return headers;
+            }
+        },
+        getResponseHeader: function (arg, xhr) {
+            if(this.omtResponseHeaders && this.omtResponseHeaders(arg[0])) {
+                return this.omtResponseHeaders(arg[0]);
+            }
+        },
+        open: function (arg, xhr) {
+            this.omtOpenArg = arg;
+        },
+        send: function (arg, xhr) {
+            this.isAborted = false;
+            var params = {};
+            params.data = arg[0];
+            params.method = this.omtOpenArg[0];
+            params.header = this.omtHeaders;
+
+            var url = this.omtOpenArg[1];
+            var location = window.location;
+            if(location.protocol !== "file:" && !url.startsWith(location.protocol)) {
+                url = location.origin + url;
+            }
+            params.url = url;
+        
+            let  that = this;
+            
+            // TODO: 处理 formdata, 应该返回 promise
+            if(FormData.prototype.isPrototypeOf(params.data)){
+                let data = formData2Json(params.data);
+                params.data = data;
+            }
+            
+            nativeRequest(that, params);
+
+            // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
+            return true;
+        },
+        abort: function (arg, xhr) {
+                if(xhr.onabort) {
+                    xhr.onabort()
+                }
+                return true;
+        }
+
+    });
+    
 
 
 })();

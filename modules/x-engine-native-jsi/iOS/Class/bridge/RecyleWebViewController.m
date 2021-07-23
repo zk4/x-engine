@@ -21,7 +21,7 @@ NSString * const OnNativeHide = @"onNativeHide";
 NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 
-@interface RecyleWebViewController () <UIGestureRecognizerDelegate, WKNavigationDelegate>
+@interface RecyleWebViewController () < WKNavigationDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
@@ -200,8 +200,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     self.firstDidAppearCbIgnored = YES;
     self.hidesBottomBarWhenPushed = YES;
     
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
+ 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     if (@available(iOS 11.0, *)) {

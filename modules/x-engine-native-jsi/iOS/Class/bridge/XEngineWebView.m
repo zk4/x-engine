@@ -742,12 +742,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     label.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1.0];
     label.textAlignment = NSTextAlignmentCenter;
     [view addSubview:label];
-    
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    panGesture.delegate = self;
-    [view addGestureRecognizer:panGesture];
-    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.delegate = self;
+     
     [self addSubview:view];
 }
 

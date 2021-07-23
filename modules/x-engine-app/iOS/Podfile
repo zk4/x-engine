@@ -42,7 +42,7 @@ def shared_pods
   pod 'x-engine-jsi-store', :path =>'../../x-engine-jsi-store'
   pod 'x-engine-jsi-localstorage', :path =>'../../x-engine-jsi-localstorage'
   pod 'x-engine-jsi-vuex', :path =>'../../x-engine-jsi-vuex'
-
+ 
 
   
   

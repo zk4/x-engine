@@ -13,5 +13,9 @@
 -(void) disableCache;
 // wkwebview 的网络代理会使 postbody 丢失. 这个接口应该作相应补救处理, 但是应该更多,代理所有 xhr 请求.
 -(void) enableXHRIntercept:(WKWebView*) webview;
+
+-(void) clearCache;
+
+- (NSUInteger)cacheSize;
 @end
 #endif /* iWebcache_h */

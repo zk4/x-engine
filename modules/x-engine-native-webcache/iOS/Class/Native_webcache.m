@@ -13,7 +13,8 @@
 
 
 @interface Native_webcache()
-{ }
+@property (nonatomic, strong)     SLWebCacheManager *cacheManager;
+
 @end
 
 @implementation Native_webcache
@@ -28,6 +29,7 @@ NATIVE_MODULE(Native_webcache)
 }
 
 - (void)afterAllNativeModuleInited{
+    self.cacheManager =[SLWebCacheManager shareInstance];
 } 
 - (instancetype)init {
     self = [super init];
@@ -47,16 +49,25 @@ NATIVE_MODULE(Native_webcache)
 }
 
 - (void)disableCache {
-    SLWebCacheManager *cacheManager = [SLWebCacheManager shareInstance];
-    cacheManager.isUsingURLProtocol = YES;
-    [cacheManager closeCache];
+    self.cacheManager.isUsingURLProtocol = YES;
+    [self.cacheManager closeCache];
 }
 
 
 - (void)enableCache {
-    SLWebCacheManager *cacheManager = [SLWebCacheManager shareInstance];
-    [cacheManager openCache];
+    [self.cacheManager openCache];
 }
+
+- (void)clearCache {
+    [self.cacheManager clearCache];
+}
+
+- (NSUInteger)cacheSize {
+    return [self.cacheManager folderSize];
+}
+
+
+
 
 
 @end

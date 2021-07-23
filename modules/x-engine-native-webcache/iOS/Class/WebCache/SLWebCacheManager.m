@@ -180,6 +180,7 @@
                            @"textEncodingName" : cachedURLResponse.response.textEncodingName == nil ? @"": cachedURLResponse.response.textEncodingName};
     
     //写入磁盘
+    NSLog(@"@saved => %@",request);
     BOOL result1 = [info writeToFile:[self filePathFromRequest:request isInfo:YES] atomically:YES];
     BOOL result2 = [cachedURLResponse.data writeToFile:[self filePathFromRequest:request isInfo:NO] atomically:YES];
     //写入内存
@@ -254,9 +255,9 @@
         NSLog(@"req => %@:%@",request.URL, request.HTTPMethod);
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-            }
+//            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+//                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+//            }
             if (error) {
                 cachedResponse = nil;
             } else {

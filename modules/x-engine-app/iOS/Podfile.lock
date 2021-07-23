@@ -16,7 +16,6 @@ PODS:
     - AFNetworking/NSURLSession
   - JSONModel (1.8.0)
   - MJExtension (3.2.4)
-  - WHDebugTool (2.3)
   - x-engine-jsi-camera (2.0.3):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -60,10 +59,6 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-core (1.0.0):
-    - x-engine-native-protocols
-  - x-engine-native-dev (1.0.0):
-    - WHDebugTool
-    - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-device (1.0.0):
     - x-engine-native-core
@@ -144,7 +139,6 @@ DEPENDENCIES:
   - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
   - x-engine-native-camera (from `../../x-engine-native-camera`)
   - x-engine-native-core (from `../../x-engine-native-core`)
-  - x-engine-native-dev (from `../../x-engine-native-dev`)
   - x-engine-native-device (from `../../x-engine-native-device`)
   - x-engine-native-direct (from `../../x-engine-native-direct`)
   - x-engine-native-direct_http (from `../../x-engine-native-direct_http`)
@@ -167,7 +161,6 @@ SPEC REPOS:
     - AFNetworking
     - JSONModel
     - MJExtension
-    - WHDebugTool
 
 EXTERNAL SOURCES:
   x-engine-jsi-camera:
@@ -198,8 +191,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-camera"
   x-engine-native-core:
     :path: "../../x-engine-native-core"
-  x-engine-native-dev:
-    :path: "../../x-engine-native-dev"
   x-engine-native-device:
     :path: "../../x-engine-native-device"
   x-engine-native-direct:
@@ -237,7 +228,6 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
-  WHDebugTool: 6e6b6b60af073126b43096fc791985a4f7f249a3
   x-engine-jsi-camera: 4d94c77f06190fe50f33cefe1e60d60723278e47
   x-engine-jsi-dev: dd13340ff0ccdbd64589b9ae03c6a2b7cdd2b675
   x-engine-jsi-device: f49bb904f42af8062de5e06db7660bf27efe44aa
@@ -252,7 +242,6 @@ SPEC CHECKSUMS:
   x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
   x-engine-native-camera: f81c179d6c8995491cf118b26a69a3e7f03cec79
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
-  x-engine-native-dev: a71f3b8ae114477a086ab269bed514ea26432d50
   x-engine-native-device: 05280cc3d26c9e4f917ac4a5e5b38aa23122e978
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
   x-engine-native-direct_http: 0a8c48c42b87664030ec554515c2edf6e879aab0
@@ -270,6 +259,6 @@ SPEC CHECKSUMS:
   x-engine-native-webcache: 06ea0dfdcfd2a88577643b4844ba5129d5190323
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: b1546b35d93753bd15fb6b9c4375a8fb9412385d
+PODFILE CHECKSUM: b831d339a992d9f397b5f4419e4b9c49a206f892
 
 COCOAPODS: 1.10.0

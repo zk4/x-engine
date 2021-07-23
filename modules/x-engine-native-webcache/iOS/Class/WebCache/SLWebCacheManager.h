@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)checkCapacity;
 ///强制清除缓存
 - (void)clearCache;
-
+- (NSUInteger)folderSize;
 @end
 
 NS_ASSUME_NONNULL_END

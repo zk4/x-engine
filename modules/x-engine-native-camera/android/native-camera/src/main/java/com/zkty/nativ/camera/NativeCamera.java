@@ -27,13 +27,11 @@ import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.XEngineProvider;
-import com.zkty.nativ.jsi.bridge.OnReturnValue;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
-import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
 
 import java.io.File;
@@ -196,11 +194,11 @@ public class NativeCamera extends NativeModule implements ICamera {
                             Log.d(TAG, "album:" + uri.toString());
                             try {
                                 long timestamp = System.currentTimeMillis();
-                                out = new File(act.getCacheDir(), "temp_" + timestamp + ".jpg");
-
-                                String file = FileUtils.saveFile(act.getContentResolver().openInputStream(uri), out.getParentFile(), out.getName());          //读取相册原始文件并保存到缓存目录
-
-                                if (!TextUtils.isEmpty(file)) {
+//                                out = new File(act.getCacheDir(), "temp_" + timestamp + ".jpg");
+//
+//                                String file1 = FileUtils.saveFile(act.getContentResolver().openInputStream(uri), out.getParentFile(), out.getName());          //读取相册原始文件并保存到缓存目录
+                                out = FileUtils.uri2File(uri);
+                                if (out.exists()) {
                                     Log.d(TAG, "out:" + out.getPath());
 
                                     if (cameraDTO.isAllowsEditing()) {              //编辑

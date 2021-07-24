@@ -50,7 +50,7 @@ public class Nativegeo extends NativeModule implements IGeoManager {
     @Override
     public void locate(CallBack callBack) {
         permissions = permissionsO;
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build.VERSION.SDK_INT == 29) {
             permissions = permissionsQ;
         }
 

@@ -43,7 +43,7 @@ UI 层在最终呈现时，现在有 4 种方案
 
 #### **类图**
 
-![](assets/image-20210422162839624.png)
+![design-compatiable](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/design-compatiable.png)
 
 
 <!-- tabs:end -->

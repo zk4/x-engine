@@ -1,0 +1,37 @@
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+ 
+package 引擎核心类 {
+  class EngineContext {}
+  
+  
+  class  aModule {
+    + (string) moduleId;
+  }
+}
+ 
+ 
+package 接口 {
+  
+  interface iOpen {    
+    + (void) open(...);
+  }
+  
+  
+}
+ 
+package iOpen实现 {
+  class OpenH5Module   extends aModule implements iOpen{
+    - (string) moduleId;
+    - (void) open(...);
+  }
+  
+
+}
+  
+
+EngineContext o--  aModule : aggregation
+
+
+@enduml

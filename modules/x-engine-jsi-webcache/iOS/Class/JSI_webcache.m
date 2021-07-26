@@ -9,12 +9,15 @@
 #import "XENativeContext.h"
 
 @interface JSI_webcache()
+@property (nonatomic, strong) NSMutableDictionary* cache;
+
 @end
 
 @implementation JSI_webcache
 JSI_MODULE(JSI_webcache)
 
 - (void)afterAllJSIModuleInited {
+    _cache=[NSMutableDictionary new];
 }
 
 -(BOOL)isNull:(NSDictionary *)dict key:(NSString*)key{
@@ -33,6 +36,12 @@ JSI_MODULE(JSI_webcache)
     
     NSDictionary* headers = dict[@"header"];
     NSString* url = dict[@"url"];
+    NSString* cacheKey = [NSString stringWithFormat:@"%@%@",dict[@"url"] ,dict[@"data"]];
+    
+    // 仅缓存 GET, 如果有更新,则会会二次返回,
+    if([_cache objectForKey:cacheKey] && [dict[@"method"] isEqualToString:@"GET"]){
+        completionHandler(_cache[cacheKey],false);
+    }
 
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -58,6 +67,8 @@ JSI_MODULE(JSI_webcache)
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
 
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
+    __weak typeof(self) weakSelf = self;
+
     NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
         if (!error) {
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)r;
@@ -72,6 +83,7 @@ JSI_MODULE(JSI_webcache)
                 @"responseText":responseText,
                 @"responseHeaders":headers
             };
+            weakSelf.cache[cacheKey] = ret;
             completionHandler(ret,TRUE);
             
         } else {

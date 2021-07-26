@@ -88,6 +88,14 @@
 //    if(content_type && [content_type rangeOfString:@"application/json"].location!=NSNotFound){
 //        return NO;
 //    }
+    //对于域名黑名单的过滤
+    if (self.blackListsHost.count > 0) {
+        BOOL isExist = [self.blackListsHost containsObject:request.URL.host];
+        if (isExist) {
+            return NO;
+        }
+    }
+    
     //对于域名白名单的过滤
     if (self.whiteListsHost.count > 0) {
         BOOL isExist = [self.whiteListsHost containsObject:request.URL.host];
@@ -354,15 +362,24 @@
     }
     return _cacheTime;
 }
-- (NSArray *)whiteListsHost {
+- (void)addWhiteHost:(NSString*)host{
     if (!_whiteListsHost) {
-        _whiteListsHost = [NSArray array];
+        _whiteListsHost = [NSMutableSet set];
     }
-    return _whiteListsHost;
+    [_whiteListsHost addObject:host];
 }
-- (NSArray *)whiteListsRequestUrl {
+
+ 
+- (void)addBlackHost:(NSString*)host{
+    if (!_blackListsHost) {
+        _blackListsHost = [NSMutableSet set];
+    }
+    [_blackListsHost addObject:host];
+}
+ 
+- (NSMutableSet *)whiteListsRequestUrl {
     if (!_whiteListsRequestUrl) {
-        _whiteListsRequestUrl = [NSArray array];
+        _whiteListsRequestUrl = [NSMutableSet set];
     }
     return _whiteListsRequestUrl;
 }

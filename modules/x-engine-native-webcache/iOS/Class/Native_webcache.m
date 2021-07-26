@@ -66,7 +66,13 @@ NATIVE_MODULE(Native_webcache)
     return [self.cacheManager folderSize];
 }
 
+- (void)addWhiteHost:(NSString*)host;{
+    [self.cacheManager addWhiteHost:host];
+}
 
+- (void)addBlackHost:(NSString*)host{
+    [self.cacheManager addBlackHost:host];
+}
 
 
 

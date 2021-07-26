@@ -17,5 +17,9 @@
 -(void) clearCache;
 
 - (NSUInteger)cacheSize;
+
+- (void)addWhiteHost:(NSString*)host;
+
+- (void)addBlackHost:(NSString*)host;
 @end
 #endif /* iWebcache_h */

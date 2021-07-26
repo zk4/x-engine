@@ -6,13 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.zkty.nativ.core.base.CoreActivity;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class BaseXEngineActivity extends AppCompatActivity {
+public class BaseXEngineActivity extends CoreActivity {
     protected Set<LifecycleListener> lifecycleListeners;
 
     public void addLifeCycleListener(LifecycleListener lifeCycleListener) {

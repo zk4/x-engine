@@ -86,6 +86,7 @@ public class NativeScan extends NativeModule implements IScan {
                     REQUEST_CODE++;
                     if (intent.hasExtra("result")) {
                         String code = intent.getStringExtra("result");
+                        Log.d(TAG, "scan result ::" + code);
                         if (!TextUtils.isEmpty(code)) {
                             callBack.succes(code);
 //                            if (mXEngineWebView != null) {

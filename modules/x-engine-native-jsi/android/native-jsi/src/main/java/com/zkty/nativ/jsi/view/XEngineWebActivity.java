@@ -255,11 +255,13 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     }
 
     public void showScreenCapture(boolean isShow) {
-        if (isShow) {
-            Bitmap bitmap = captureView(mRoot);
-            ivScreen.setImageBitmap(bitmap);
-        }
-        ivScreen.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        //todo 目前多webview 模式，不需要显示
+//        if (XWebViewPool.IS_MULTI_MODE)
+//        if (isShow) {
+//            Bitmap bitmap = captureView(mRoot);
+//            ivScreen.setImageBitmap(bitmap);
+//        }
+//        ivScreen.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
     private Bitmap captureView(View view) {

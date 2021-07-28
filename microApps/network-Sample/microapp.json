@@ -1,0 +1,35 @@
+{
+    "id":"com.gome.microapp.mine",
+    "version":2,
+    "engine_version":"1.0.0",
+    "router":{
+        "navBar":{
+            "hide": true
+        },
+        "statusBar":{
+            "color":"#fff000"
+        }
+    },
+    
+    "permission":{
+        "secrect":["accesstoken"],
+        "module":{
+            "com.zkty.module.router":{
+                "scope":"all"
+            },
+            "com.zkty.jsi.ui":{
+                "scope":"all"
+            },
+            "com.zkty.module.device":{
+                "scope":"all"
+            },
+            "com.zkty.jsi.direct":{
+                "scope":"all"
+            }
+        },
+        "network":{
+            "strict":true,
+            "white_host_list":["www.fastmock.site","www.baidu.com"]
+        }
+    }
+}

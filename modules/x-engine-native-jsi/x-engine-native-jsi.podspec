@@ -38,6 +38,7 @@ Pod::Spec.new do |s|
     s.source_files  = "iOS/Class/**/*.{h,m}"
     s.public_header_files = "iOS/Class/**/*.h"
    
+
     s.frameworks  = "CoreServices"
 
     # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可

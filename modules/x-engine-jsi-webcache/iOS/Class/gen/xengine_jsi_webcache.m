@@ -4,16 +4,7 @@
 
 
 #import "xengine_jsi_webcache.h"
-
-
-@implementation NamedDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
-
-
+ 
 
 
   @implementation xengine_jsi_webcache
@@ -27,14 +18,5 @@
         return @"com.zkty.jsi.webcache";
     }
     
-    - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _simpleMethod:^(BOOL complete) {
-                 completionHandler(nil,complete); 
-          }];
-      }
-  - (id) simpleMethod:(NSDictionary*) dict {
-   [self _simpleMethod];
-              return nil;
-    }
   @end

@@ -47,7 +47,8 @@ NATIVE_MODULE(Native_geo_gaode)
  单次定位
  */
 -(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult;{
-     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+    // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
+    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error || !regeocode)
         {
             geoResult(nil);

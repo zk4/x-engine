@@ -28,8 +28,8 @@ interface DirectPushDTO {
   query?:Map<string, string>;
 
   // 其他参数（做兼容用）
-  //\_\_deleteHistory\_\_: 1   在push　到下一页之前，　删除掉当前页
-  //\_\_deleteHistory\_\_: 2   在push　到下一页之前，　删除掉当前两页
+  //\_\_deleteHistory\_\_: -1   在push　到下一页之前，　删除掉当前页
+  //\_\_deleteHistory\_\_: -2   在push　到下一页之前，　删除掉当前两页
   //历史不足时，到 tab 历史为止。
   params?:Map<string, string>;
 }

@@ -153,10 +153,10 @@ NATIVE_MODULE(Native_direct)
             if(deletable)
                 deleteHistory =[deletable intValue];
         }
-        NSAssert(deleteHistory>=0, @"__deleteHistory__ 必须大于等于 0");
-        while(deleteHistory>0){
+        NSAssert(deleteHistory<=0, @"__deleteHistory__ 必须小于等于 0");
+        while(deleteHistory<0){
             [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
-            deleteHistory--;
+            deleteHistory++;
         }
         [navc pushViewController:container animated:YES];
   

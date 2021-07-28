@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///缓存管理者
-@interface SLWebCacheManager : NSObject
+@interface SLWebCacheManager : NSObject <NSCacheDelegate>
 
 /// 缓存方案：SLUrlCache 和 SLUrlProtocol，默认NO 即使用SLUrlCache进行缓存
 @property (nonatomic, assign) BOOL isUsingURLProtocol;
@@ -64,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addWhiteHost:(NSString*)host;
 - (void)addBlackHost:(NSString*)host;
  
+
 @end
 
 NS_ASSUME_NONNULL_END

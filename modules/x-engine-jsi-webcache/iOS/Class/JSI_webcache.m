@@ -37,10 +37,15 @@ JSI_MODULE(JSI_webcache)
     NSDictionary* headers = dict[@"header"];
     NSString* url = dict[@"url"];
     NSString* cacheKey = [NSString stringWithFormat:@"%@%@",dict[@"url"] ,dict[@"data"]];
+    NSString* method = dict[@"method"];
     
     // 仅缓存 GET, 如果有更新,则会会二次返回,
-    if([_cache objectForKey:cacheKey] && [dict[@"method"] isEqualToString:@"GET"]){
-        completionHandler(_cache[cacheKey],false);
+    if([_cache objectForKey:cacheKey]
+       //&& [method isEqualToString:@"GET"]
+       ){
+        completionHandler(_cache[cacheKey],TRUE);
+        return;
+        
     }
 
     
@@ -78,7 +83,6 @@ JSI_MODULE(JSI_webcache)
 
 
             NSDictionary* ret =@{
-          
                 @"statusCode": statusCode,
                 @"responseText":responseText,
                 @"responseHeaders":headers

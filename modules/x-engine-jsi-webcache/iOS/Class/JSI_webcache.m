@@ -43,6 +43,8 @@ JSI_MODULE(JSI_webcache)
     if([_cache objectForKey:cacheKey]
        //&& [method isEqualToString:@"GET"]
        ){
+        NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
+
         completionHandler(_cache[cacheKey],TRUE);
         return;
         

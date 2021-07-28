@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package com.zkty.nativ.scan.activity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.huawei.hms.hmsscankit.OnLightVisibleCallBack;
 import com.huawei.hms.hmsscankit.OnResultCallback;
 import com.huawei.hms.hmsscankit.RemoteView;
@@ -61,6 +63,11 @@ public class DefinedActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_defined);
+        ImmersionBar.with(this)
+                .fitsSystemWindows(true)
+                .statusBarColor(R.color.white)
+                .statusBarDarkFont(true).init();
+
         // Bind the camera preview screen.
         frameLayout = findViewById(R.id.rim);
 
@@ -184,12 +191,19 @@ public class DefinedActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         remoteView.onDestroy();
+        ImmersionBar.with(this).destroy();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         remoteView.onStop();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
     }
 
     /**

@@ -11,15 +11,12 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.huawei.hms.hmsscankit.ScanUtil;
 import com.huawei.hms.ml.scan.HmsScan;
-import com.huawei.hms.ml.scan.HmsScanAnalyzerOptions;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.scan.activity.DefinedActivity;
-import com.zkty.nativ.scan.activity.ScanActivity;
 
 public class NativeScan extends NativeModule implements IScan {
 
@@ -98,19 +95,11 @@ public class NativeScan extends NativeModule implements IScan {
                         String code = intent.getStringExtra("result");
                         if (!TextUtils.isEmpty(code)) {
                             callBack.succes(code);
-//                            if (mXEngineWebView != null) {
-//                                mXEngineWebView.callHandler(dto.__event__, new Object[]{code}, new OnReturnValue<Object>() {
-//                                    @Override
-//                                    public void onValue(Object retValue) {
-//
-//                                    }
-//                                });
-//                            }
                         }
                     }
                 }
                 if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_DEFINE) {
-                    HmsScan obj = intent.getParcelableExtra(ScanUtil.RESULT);
+                    HmsScan obj = intent.getParcelableExtra(DefinedActivity.SCAN_RESULT);
                     if (obj != null) {
                         callBack.succes(obj.getOriginalValue());
                     }

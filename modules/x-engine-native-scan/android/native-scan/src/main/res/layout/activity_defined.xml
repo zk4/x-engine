@@ -7,8 +7,7 @@
     <FrameLayout
         android:id="@+id/rim"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent" />
 
 
     <RelativeLayout
@@ -22,9 +21,9 @@
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:visibility="gone"
             android:gravity="center"
-            android:src="@drawable/flashlight_off" />
+            android:src="@drawable/flashlight_off"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -36,20 +35,20 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:background="#FF000000"
-            android:alpha="0.1" />
+            android:alpha="0.1"
+            android:background="#FF000000" />
 
         <TextView
+            android:layout_width="220dp"
+            android:layout_height="20dp"
             android:layout_above="@id/scan_area"
-            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:text="将码放入取景框，即可自动扫描"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_height="20dp"
-            android:layout_width="220dp" />
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/scan_area"
@@ -62,44 +61,43 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
 
         <TextView
-            android:layout_marginStart="10sp"
-            android:layout_toEndOf="@+id/back_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_toEndOf="@+id/back_img"
             android:gravity="center_vertical"
-            android:text="扫码"
+            android:text="扫一扫"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textColor="#111111"
+            android:textSize="@dimen/sp_20"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/back_img"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:src="@drawable/back" />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_20"
+            android:src="@mipmap/icon_back" />
 
         <ImageView
             android:id="@+id/img_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:padding="12dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
             android:gravity="center"
-            android:visibility="gone"
-            android:src="@drawable/photo" />
+            android:padding="12dp"
+            android:src="@drawable/photo"
+            android:visibility="gone" />
     </RelativeLayout>
 
 </FrameLayout>

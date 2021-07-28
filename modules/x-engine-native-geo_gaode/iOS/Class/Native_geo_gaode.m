@@ -6,19 +6,19 @@
 
 #import "Native_geo_gaode.h"
 #import "XENativeContext.h"
-
 #import <objc/runtime.h>
-#import <AMapFoundationKit/AMapFoundationKit.h>
-#import <AMapLocationKit/AMapLocationKit.h>
+
 
 @interface Native_geo_gaode()
 @property (nonatomic,strong) AMapLocationManager *locationManager;
+@property (nonatomic, strong) NSString* apikey;
+
 @end
 
 @implementation Native_geo_gaode
 NATIVE_MODULE(Native_geo_gaode)
 
- - (NSString*) moduleId{
+- (NSString*) moduleId{
     return @"com.zkty.native.geo_gaode";
 }
 
@@ -27,47 +27,53 @@ NATIVE_MODULE(Native_geo_gaode)
 }
 
 - (void)afterAllNativeModuleInited{
-} 
-
-
--(BOOL)initSDKByConfig:(NSDictionary*)config{
+    _locationManager = [[AMapLocationManager alloc] init];
+    // 带逆地理信息的一次定位（返回坐标和地址信息）
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    //   定位超时时间，最低2s，此处设置为2s
+    _locationManager.locationTimeout =2;
+    //   逆地理请求超时时间，最低2s，此处设置为2s
+    _locationManager.reGeocodeTimeout = 2;
     
-    if (![config isKindOfClass:[NSDictionary class]] || config.allKeys.count <= 0) {
-        return NO;
-    }
-    NSString *keyString = config[@"keyString"];
-//    keyString = @"c68c60fb8801d81927bb6746a93a6fce";
+    _locationManager.delegate = self;
     [[AMapServices sharedServices] setEnableHTTPS:YES];
-    [AMapServices sharedServices].apiKey = keyString;
-    
-    return YES;
-}
+    [AMapServices sharedServices].apiKey = @"";
+} 
 
 /**
  单次定位
  */
 -(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult;{
-    // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
-    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-            if (error)
-            {
-                    geoResult(nil);
-                    return;
-            }
-                        
-            if (regeocode)
-            {
-                NSDictionary *reGeoDict = [self dicFromObject:regeocode];
-                geoResult(reGeoDict);
-            }
-            else{
-                geoResult(nil);
-            }
-        }];
+     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error || !regeocode)
+        {
+            geoResult(nil);
+            return;
+        }
+        //取出第一个位置
+        NSLog(@"%@",location.timestamp);
+        
+        //位置坐标
+        CLLocationCoordinate2D coordinate=location.coordinate;
+        
+        NSLog(@"您的当前位置:经度：%f,纬度：%f,海拔：%f,航向：%f,速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
+        
+        NSMutableDictionary *reGeoDict = [self dicFromObject:regeocode];
+   
+        NSString* longitude = [NSString stringWithFormat:@"%f",coordinate.longitude];
+        [reGeoDict setObject:longitude forKey:@"longitude"];
+        
+        NSString* latitude = [NSString stringWithFormat:@"%f",coordinate.latitude];
+        [reGeoDict setObject:latitude forKey:@"latitude" ];
+        
+        geoResult(reGeoDict);
+        
+        
+    }];
 }
 
 //model转化为字典
-- (NSDictionary *)dicFromObject:(NSObject *)object {
+- (NSMutableDictionary *)dicFromObject:(NSObject *)object {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     unsigned int count;
     objc_property_t *propertyList = class_copyPropertyList([object class], &count);
@@ -88,36 +94,16 @@ NATIVE_MODULE(Native_geo_gaode)
         }
     }
     
-    return [dic copy];
+    return dic;
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager doRequireLocationAuth:(CLLocationManager*)locationManager
+{
+    [locationManager requestAlwaysAuthorization];
 }
 
 
--(AMapLocationManager*)locationManager{
-    //首次定位精度百米以内，超时两秒
-    if (!_locationManager) {
-        _locationManager = [[AMapLocationManager alloc] init];
-        // 带逆地理信息的一次定位（返回坐标和地址信息）
-        [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-        //   定位超时时间，最低2s，此处设置为2s
-        _locationManager.locationTimeout =2;
-        //   逆地理请求超时时间，最低2s，此处设置为2s
-        _locationManager.reGeocodeTimeout = 2;
-    }
-    return _locationManager;
-}
 
-//-(AMapLocationManager*)locationManager{
-//    //首次定位精度十米以内，超时10秒
-//    if (!_locationManager) {
-//        // 带逆地理信息的一次定位（返回坐标和地址信息）
-//        [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-//        //   定位超时时间，最低2s，此处设置为10s
-//        _locationManager.locationTimeout =10;
-//        //   逆地理请求超时时间，最低2s，此处设置为10s
-//        _locationManager.reGeocodeTimeout = 10;
-//    }
-//    return _locationManager;
-//}
 
 @end
- 
+

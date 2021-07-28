@@ -36,7 +36,7 @@ export default {
       var formData = new FormData();
       var imagefile = document.querySelector("#file");
       let base64img = await this.toBase64(imagefile.files[0])
-      axios.post("upload_file",{"imagebase64": base64img} , {
+      axios.post("upload_file",{"imagebase64": base64img} ,formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

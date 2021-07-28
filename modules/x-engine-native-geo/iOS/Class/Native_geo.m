@@ -24,8 +24,6 @@ NATIVE_MODULE(Native_geo)
 
 - (void)afterAllNativeModuleInited{
 } 
--(NSString*) test{
-    return @"test";
-}
+ 
 @end
  

@@ -1,0 +1,21 @@
+R_DEF: Internal format may change without notice
+local
+drawable back
+drawable cloors
+drawable flashlight_off
+drawable flashlight_on
+drawable photo
+id activity_scan_layout_img
+id activity_scan_layout_rl
+id back_img
+id flash
+id flush_btn
+id hint
+id img_btn
+id rim
+id scan_area
+id zxingview
+layout activity_defined
+layout activity_scan_layout
+mipmap flash_off
+mipmap flash_on

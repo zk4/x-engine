@@ -25,8 +25,8 @@ NATIVE_MODULE(Native_geo_gaode)
 - (int) order{
     return 0;
 }
-
-- (void)afterAllNativeModuleInited{
+-(void) initSDK:(NSString*) key{
+    
     _locationManager = [[AMapLocationManager alloc] init];
     // 带逆地理信息的一次定位（返回坐标和地址信息）
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
@@ -37,7 +37,10 @@ NATIVE_MODULE(Native_geo_gaode)
     
     _locationManager.delegate = self;
     [[AMapServices sharedServices] setEnableHTTPS:YES];
-    [AMapServices sharedServices].apiKey = @"";
+    [AMapServices sharedServices].apiKey = key;
+}
+- (void)afterAllNativeModuleInited{
+
 } 
 
 /**

@@ -9,4 +9,9 @@
 #define iGaodeDelegate_h
 
 
+@protocol iGaodeDelegate  <NSObject>
+
+
+@end
+
 #endif /* iGaodeDelegate_h */

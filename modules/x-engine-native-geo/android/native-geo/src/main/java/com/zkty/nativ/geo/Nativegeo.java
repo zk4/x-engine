@@ -56,10 +56,9 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
 
         permissions = permissionsO;
-        if (Build.VERSION.SDK_INT == 29) {
-            permissions = permissionsQ;
-        }
-
+//        if (Build.VERSION.SDK_INT == 29) {
+//            permissions = permissionsQ;
+//        }
 
         Activity activity = XEngineApplication.getCurrentActivity();
         if (activity == null || !(activity instanceof BaseXEngineActivity)) return;

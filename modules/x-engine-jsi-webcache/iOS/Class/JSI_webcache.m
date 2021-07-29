@@ -31,6 +31,22 @@ JSI_MODULE(JSI_webcache)
     BOOL isNull = [obj isEqual:[NSNull null]];
     return isNull;
 }
+- (NSMutableDictionary *)makeSafeHeaders:(NSDictionary *)headers {
+    NSMutableDictionary* safeHeaders = [NSMutableDictionary new];
+    // 遍历 headers,将数字转为字符
+    for (NSString *headerField in headers.keyEnumerator) {
+        
+        if([headers[headerField] isKindOfClass:NSNumber.class]){
+            NSString* newVal = [NSString stringWithFormat:@"%@",headers[headerField]];
+            [safeHeaders setValue:newVal forKey:headerField];
+            
+        }else {
+            [safeHeaders setValue:headers[headerField] forKey:headerField];
+        }
+    }
+    return safeHeaders;
+}
+
 // 直接使用,不经过 gen
 - (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     
@@ -50,21 +66,10 @@ JSI_MODULE(JSI_webcache)
 
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    request.HTTPMethod = dict[@"method"];
     
-    NSMutableDictionary* safeHeaders = [NSMutableDictionary new];
-    // 遍历 headers,将数字转为字符
-    for (NSString *headerField in headers.keyEnumerator) {
-        
-        if([headers[headerField] isKindOfClass:NSNumber.class]){
-            NSString* newVal = [NSString stringWithFormat:@"%@",headers[headerField]];
-            [safeHeaders setValue:newVal forKey:headerField];
-            
-        }else {
-            [safeHeaders setValue:headers[headerField] forKey:headerField];
-        }
-    }
-    request.allHTTPHeaderFields= safeHeaders;
+    request.HTTPMethod = method;
+    request.allHTTPHeaderFields= [self makeSafeHeaders:headers];
+    
     // post 有可能没有 body
     if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
         if([dict[@"data"] isKindOfClass:NSString.class]){

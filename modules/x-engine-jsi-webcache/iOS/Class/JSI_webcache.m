@@ -66,8 +66,11 @@ JSI_MODULE(JSI_webcache)
     }
     request.allHTTPHeaderFields= safeHeaders;
     // post 有可能没有 body
-    if(dict && ![self isNull:dict key:@"data"] && dict[@"data"])
-        request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
+    if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
+        if([dict[@"data"] isKindOfClass:NSString.class]){
+            request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
+        }
+    }
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
 

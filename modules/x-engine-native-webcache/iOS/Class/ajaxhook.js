@@ -79,7 +79,11 @@
 
 				console.log('base64Str: ', base64Str);
 
-				object[name] = base64Str
+                object['@'+name] = {
+                    'type': value.type,
+                    'name': value.name,
+                    'binary':base64Str
+                }
 
 			} else {
 				object[name] = value

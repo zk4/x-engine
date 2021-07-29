@@ -4,8 +4,11 @@
     <van-button type="primary" size="large" round @click="postData">postData</van-button>
     <div>result:</div>
     <div>{{content}}</div>
-    <form id="uploadForm" enctype="multipart/form-data" v-on:change="uploadFile">
+    <form ref="myForm" id="uploadForm" enctype="multipart/form-data" submit="/upload">
+      <input type="text" id="name" name="name">
+      <input type="text" id="age" name="age">
       <input type="file" id="file" name="file" />
+      <input type="file" id="file2" name="haha" />
     </form>
     <van-button type="primary" size="large" round @click="uploadImg">uploadImg</van-button>
   </div>
@@ -32,21 +35,13 @@ export default {
         reader.onerror = (error) => reject(error);
       });
     },
-    async uploadImg() {
-      var formData = new FormData();
-      var imagefile = document.querySelector("#file");
-      let base64img = await this.toBase64(imagefile.files[0])
-      axios.post("upload_file",{"imagebase64": base64img} , {
+    async uploadImg(e) {
+      var myFormData = new FormData(this.$refs.myForm)
+      axios.post("upload_file",myFormData , {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      //formData.append("imagebase64", base64img);
-      /*axios.post("upload_file", formData, {*/
-        /*headers: {*/
-          /*"Content-Type": "multipart/form-data",*/
-        /*},*/
-      /*});*/
     },
     postData() {
       server

@@ -70,23 +70,35 @@
 
 	////////////////////////////////////////////////////////////////////////////////
 
-	function formData2Json (params, formData) {
+	async function formData2Json (params, formData) {
 		let object = {};
-		formData.forEach(function (value, key) {
+		for (let [name, value] of formData) {
 			if (value instanceof File) {
-				value.arrayBuffer().then(data => {
-					let base64Img = encode(data);
+				let data = await value.arrayBuffer()
+				let base64Str = encode(data);
 
-					console.log('base64Img: ', base64Img);
+				console.log('base64Str: ', base64Str);
 
-					object[key] = base64Img
+				object[name] = base64Str
 
-				})
 			} else {
-				object[key] = value
+				object[name] = value
 			}
-		});
+		}
 		params.data = object
+		// formData.forEach(async (value, key) => {
+		//   if (value instanceof File) {
+		//     let data = await value.arrayBuffer()
+		//     let base64Str = encode(data);
+
+		//     console.log('base64Str: ', base64Str);
+
+		//     object[key] = base64Str
+
+		// } else {
+		//   object[key] = value
+		// }
+		// });
 	}
 
 	function nativeRequest (xhr, params) {
@@ -255,7 +267,7 @@
 
 			// TODO: 处理 formdata, 应该返回 promise
 			if (FormData.prototype.isPrototypeOf(params.data)) {
-				formData2Json(params, params.data)
+				await formData2Json(params, params.data)
 				console.log('params: ', params);
 			}
 			// 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求

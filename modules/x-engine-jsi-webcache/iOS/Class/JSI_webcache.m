@@ -36,12 +36,20 @@ JSI_MODULE(JSI_webcache)
 // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
     NSDictionary* headers = dict[@"header"];
     NSString* url = dict[@"url"];
-    NSString* cacheKey = [NSString stringWithFormat:@"%@%@",dict[@"url"] ,dict[@"data"]];
     NSString* method = dict[@"method"];
+
+    NSString* cacheKey;
+    if([method isEqualToString:@"GET"]){
+        cacheKey = [NSString stringWithFormat:@"%@%@",dict[@"url"] ,dict[@"data"]];
+    }else{
+        cacheKey = [NSString stringWithFormat:@"%@%@",method ,url];
+    }
+
+    
     
     // 仅缓存 GET, 如果有更新,则会会二次返回,
     if([_cache objectForKey:cacheKey]
-       //&& [method isEqualToString:@"GET"]
+       //&&
        ){
         NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
 

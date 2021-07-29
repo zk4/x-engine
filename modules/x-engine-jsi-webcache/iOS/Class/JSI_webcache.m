@@ -38,11 +38,13 @@ JSI_MODULE(JSI_webcache)
     NSString* url = dict[@"url"];
     NSString* method = dict[@"method"];
 
-    NSString* cacheKey;
+    NSString* cacheKey=nil;
     if([method isEqualToString:@"GET"]){
-        cacheKey = [NSString stringWithFormat:@"%@%@",dict[@"url"] ,dict[@"data"]];
+        if(dict && ![self isNull:dict key:@"data"] && dict[@"data"])
+            cacheKey = [NSString stringWithFormat:@"%@%@",url ,dict[@"data"]];
+        cacheKey =url;
     }else{
-        cacheKey = [NSString stringWithFormat:@"%@%@",method ,url];
+   //     cacheKey = [NSString stringWithFormat:@"%@%@",method ,url];
     }
 
     
@@ -97,7 +99,8 @@ JSI_MODULE(JSI_webcache)
                 @"responseText":responseText,
                 @"responseHeaders":headers
             };
-            weakSelf.cache[cacheKey] = ret;
+            if(cacheKey)
+                weakSelf.cache[cacheKey] = ret;
             completionHandler(ret,TRUE);
             
         } else {

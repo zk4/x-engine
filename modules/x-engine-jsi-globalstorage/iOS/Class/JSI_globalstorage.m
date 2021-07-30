@@ -33,6 +33,9 @@ JSI_MODULE(JSI_globalstorage)
 }
 
 - (void)_set:(_0_com_zkty_jsi_globalstorage_DTO *)dto {
+    if(dto == nil){
+        return;
+    }
     NSString *key = [NSString stringWithFormat:@"%@", [self genkey:dto.key]];
     NSString *title = [NSString stringWithFormat:@"key: %@ 已存在! 你正在覆盖全局数据! 请调用 del 后再重试.", dto.key];
     if ([_store get:key]) {

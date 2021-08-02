@@ -75,11 +75,14 @@
 		for (let [name, value] of formData) {
 			if (value instanceof File) {
 				let data = await value.arrayBuffer()
+
 				let base64Str = encode(data);
 
-				console.log('base64Str: ', base64Str);
-
-				object[name] = base64Str
+				object[name] = {
+					type: value.type,
+					name: value.name,
+					content: base64Str
+				}
 
 			} else {
 				object[name] = value

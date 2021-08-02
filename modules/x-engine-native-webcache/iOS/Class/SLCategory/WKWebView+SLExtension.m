@@ -45,34 +45,34 @@
 }
 
 #pragma mark - UserAgent
-/// 获取UA
-+ (NSString *)sl_getUserAgent {
-    //获取UserAgent 这个是异步的
-    //    [self evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-    //        NSString *userAgent = response;
-    //    }];
-    UIWebView *webView = [[UIWebView alloc] init];
-    NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    return userAgent;
-}
-/// 设置UA  在WKWebView初始化之前设置 ，才能实时生效
-+ (void)sl_setCustomUserAgentWithType:(SLSetUAType)type UAString:(NSString *)customUserAgent {
-    if (!customUserAgent || customUserAgent.length <= 0) {
-        return;
-    }
-    // 这种设置方式仅对当前webView对象有效
-    //  self.customUserAgent = customUserAgent;
-    if (type == SLSetUATypeReplace) {
-        NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:customUserAgent, @"UserAgent", nil];
-        //iOS8.0之前 是通过这种方式设置的，设置之后是全局
-        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
-    }else {
-        NSString *originalUserAgent = [WKWebView sl_getUserAgent];
-        NSString *appUserAgent = [NSString stringWithFormat:@"%@-%@", originalUserAgent, customUserAgent];
-        NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:appUserAgent, @"UserAgent", nil];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
-    }
-}
+///// 获取UA
+//+ (NSString *)sl_getUserAgent {
+//    //获取UserAgent 这个是异步的
+//    //    [self evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+//    //        NSString *userAgent = response;
+//    //    }];
+//    UIWebView *webView = [[UIWebView alloc] init];
+//    NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+//    return userAgent;
+//}
+///// 设置UA  在WKWebView初始化之前设置 ，才能实时生效
+//+ (void)sl_setCustomUserAgentWithType:(SLSetUAType)type UAString:(NSString *)customUserAgent {
+//    if (!customUserAgent || customUserAgent.length <= 0) {
+//        return;
+//    }
+//    // 这种设置方式仅对当前webView对象有效
+//    //  self.customUserAgent = customUserAgent;
+//    if (type == SLSetUATypeReplace) {
+//        NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:customUserAgent, @"UserAgent", nil];
+//        //iOS8.0之前 是通过这种方式设置的，设置之后是全局
+//        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+//    }else {
+//        NSString *originalUserAgent = [WKWebView sl_getUserAgent];
+//        NSString *appUserAgent = [NSString stringWithFormat:@"%@-%@", originalUserAgent, customUserAgent];
+//        NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:appUserAgent, @"UserAgent", nil];
+//        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+//    }
+//}
 
 #pragma mark - Cookie
 ///设置自定义Cookie

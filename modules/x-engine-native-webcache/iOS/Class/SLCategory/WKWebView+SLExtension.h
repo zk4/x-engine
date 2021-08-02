@@ -25,10 +25,10 @@ typedef NS_ENUM (NSInteger, SLSetUAType){
 ///取消注册http/https
 + (void)sl_unregisterSchemeForSupportHttpProtocol;
 
-/// 获取UA
-+ (NSString *)sl_getUserAgent;
-/// 设置UA  在WKWebView初始化之前设置，才能实时生效
-+ (void)sl_setCustomUserAgentWithType:(SLSetUAType)type UAString:(NSString *)customUserAgent;
+///// 获取UA
+//+ (NSString *)sl_getUserAgent;
+///// 设置UA  在WKWebView初始化之前设置，才能实时生效
+//+ (void)sl_setCustomUserAgentWithType:(SLSetUAType)type UAString:(NSString *)customUserAgent;
 
 ///设置自定义Cookie
 + (void)sl_setCustomCookieWithName:(NSString *)name

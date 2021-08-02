@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";
 //    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.min11e" params:@{@"hideNavbar":@TRUE,@"nativeParams":@{@"__fallback__":@"microapp://com.gm.microapp.home"}}];
-    [XENP(iDirectManager) addFallbackRouter:@"microapp://com.gm.microapp.min11e" fallback:@"https://www.baidu.com"];
+    [XENP(iDirectManager) addFallbackRouter:@"microapp://com.gm.microapp.min11e" fallback:@"http://www.baidu.com"];
     [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.min11e" params:@{@"hideNavbar":@TRUE}];
 }
  

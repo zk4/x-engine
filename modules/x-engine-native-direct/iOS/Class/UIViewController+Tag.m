@@ -5,7 +5,6 @@
 #import <objc/runtime.h>
 #import "iTabBar.h"
 #import "XENativeContext.h"
-#import "iTabbar.h"
 static const  char* KEY_HISTORY_MODEL="KEY_HISTORY_MODEL";
 
 
@@ -20,7 +19,7 @@ static const  char* KEY_HISTORY_MODEL="KEY_HISTORY_MODEL";
     if(!_historyModel){
         UIViewController* vc=  [XENP(iTabbar) getCurrentTabItemVC];
         _historyModel = objc_getAssociatedObject(vc,KEY_HISTORY_MODEL);
-        NSAssert(_historyModel, @"找不到 historyModel, 如果你没有使用原生的 tabbar,请继承 iTabBarDelegate 明确拿到 vc");
+        NSAssert(_historyModel, @"找不到 historyModel, 如果你没有使用原生的 tabbar,请继承 iTabBarDelegate 明确拿到 vc, 即使你使用了原生 Tabbar, 也应该实现一下iTabbar,如果这时弹出 alertview,也有可能错 tabbar");
     }
     return _historyModel;
 }

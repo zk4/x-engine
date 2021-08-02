@@ -144,7 +144,7 @@ NATIVE_MODULE(Native_direct)
     // 实在找不到,跳到默认错误页
     NSAssert(container,@"why here, where is your container?");
 
-    if([direct respondsToSelector:@selector(push:container:params:)]){
+    if([direct respondsToSelector:@selector(push:params:)]){
         [direct push:container params:params];
     }else{
 
@@ -190,7 +190,7 @@ NATIVE_MODULE(Native_direct)
     
 
     if(!container){
-        // TODO: try fallback
+        // try fallback
         static NSString* FALL_BACK_KEY = @"__fallback__";
         NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
         NSString* fallback = nil;
@@ -209,7 +209,7 @@ NATIVE_MODULE(Native_direct)
             return;
         }
     }
-    // TODO: try 降级路由表
+    // try 降级路由表
     if(!container){
         NSString* schemeHostPath = [NSString stringWithFormat:@"%@://%@%@",scheme,host,pathname];
        NSString* fallback= [self.fallbackMappings objectForKey:schemeHostPath];

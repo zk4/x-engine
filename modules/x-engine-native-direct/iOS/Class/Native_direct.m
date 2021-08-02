@@ -140,7 +140,15 @@ NATIVE_MODULE(Native_direct)
 
     // 拿容器
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
-   
+    
+    if(!container){
+        NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
+        if(fallbackUrl){
+            [self push:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
+            return;
+        }
+    }
+    
     // 实在找不到,跳到默认错误页
     NSAssert(container,@"why here, where is your container?");
 
@@ -176,6 +184,30 @@ NATIVE_MODULE(Native_direct)
     }
 }
 
+- (NSURL *)fallback:(NSString * _Nullable)host params:(NSDictionary<NSString *,id> * _Nullable)params pathname:(NSString * _Nonnull)pathname scheme:(NSString * _Nonnull)scheme {
+    static NSString* FALL_BACK_KEY = @"__fallback__";
+    NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
+    NSString* fallback = nil;
+    if(nativeParams){
+        id _fallback = [nativeParams objectForKey:FALL_BACK_KEY];
+        if(_fallback){
+            fallback =[_fallback string];
+            // 必须删除,防止循环 fallback
+            [[nativeParams mutableCopy] removeObjectForKey:FALL_BACK_KEY];
+        }
+    }
+    // fallback: schem + host + path
+    NSURL* fallbackUrl = [NSURL URLWithString:fallback];
+    
+    if(!fallbackUrl){
+        // 使用降级表
+        NSString* schemeHostPath = [NSString stringWithFormat:@"%@://%@%@",scheme,host,pathname];
+        NSString* fallback= [self.fallbackMappings objectForKey:schemeHostPath];
+        fallbackUrl = [NSURL URLWithString:fallback];
+    }
+    return fallbackUrl;
+}
+
 - (void)addToTab: (UIViewController*) parent
         scheme:(NSString*) scheme
         host:(nullable NSString*) host
@@ -188,40 +220,20 @@ NATIVE_MODULE(Native_direct)
     
     UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     
-
+ 
     if(!container){
         // try fallback
-        static NSString* FALL_BACK_KEY = @"__fallback__";
-        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
-        NSString* fallback = nil;
-         if(nativeParams){
-            id _fallback = [nativeParams objectForKey:FALL_BACK_KEY];
-             if(_fallback){
-                fallback =[_fallback string];
-                 // 必须删除,防止循环 fallback
-                 [[nativeParams mutableCopy] removeObjectForKey:FALL_BACK_KEY];
-             }
-        }
-        // fallback: schem + host + path
-        NSURL* fallbackUrl = [NSURL URLWithString:fallback];
+        NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
         if(fallbackUrl){
             [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
             return;
         }
     }
-    // try 降级路由表
-    if(!container){
-        NSString* schemeHostPath = [NSString stringWithFormat:@"%@://%@%@",scheme,host,pathname];
-       NSString* fallback= [self.fallbackMappings objectForKey:schemeHostPath];
-        NSURL* fallbackUrl = [NSURL URLWithString:fallback];
-        if(fallbackUrl){
-            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
-            return;
-        }
-    }
+ 
      
-    NSAssert(container, @"实在找不到");
-   
+    // 实在找不到,跳到默认错误页
+    NSAssert(container,@"why here, where is your container?");
+
  
     [parent addChildViewController:container];
     container.view.frame = parent.view.frame;

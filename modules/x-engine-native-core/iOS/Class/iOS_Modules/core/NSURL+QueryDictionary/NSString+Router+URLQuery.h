@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     - (NSString*)uq_URLByReplacingQueryWithDictionary:(NSDictionary*)queryDictionary;
 
+    - (NSString*)SPAUrl2StandardUrl;
+    - (NSString*)SPAUrlEncode;
+
 @end
 
 

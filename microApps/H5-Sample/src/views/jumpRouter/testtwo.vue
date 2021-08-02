@@ -9,6 +9,7 @@
 <template>
   <div class="testtwo-class">
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
+    <van-button type="primary" size="large" round @click="handlerPushNative">下一页原生native://foo/bar</van-button>
     <van-button type="info" size="large" round @click="handlerBack">上一页</van-button>
 
     <div>id ==> {{ id }}</div>
@@ -50,6 +51,25 @@ export default {
   // },
 
   methods: {
+  handlerPushNative(){
+      this.$engine.api(
+        "com.zkty.jsi.direct",
+        "push",
+        {
+          scheme: "native",
+          host: "foo",
+          pathname: "/bar",
+          fragment: "",
+          params: {
+            hideNavbar: true,
+          },
+        },
+        function (res) {
+          // console.log("res :>> ", res)
+        }
+      )
+
+  },
     handlerPush() {
       this.$router.push({
         path: "/testthree",

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/vuex",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "description": "与使用纯H5 SPA页面没有任何改变的 Vuex",
   "sideEffects": false,
   "files": [
@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && microbundle --external all"
+    "build": "rimraf dist && microbundle --no-sourcemap --external all"
   },
   "source": "src/index.js",
   "main": "./dist/vuex.common.js",

@@ -6,7 +6,6 @@
 
 #import "Native_offline.h"
 #import "XENativeContext.h"
-//#import <ZipArchive.h>
 #import "ZipArchive.h"
 
 @interface Native_offline() <NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
@@ -60,11 +59,9 @@ NATIVE_MODULE(Native_offline)
         } else {
             NSError* error1;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
-            NSLog(@"后端请求过来的数据==>%@", json);
             NSArray *microappInfoArray = [json objectForKey:@"data"];
             self.saveResponseMicroappInfo = nil;
             [self.saveResponseMicroappInfo setObject:microappInfoArray forKey:@"data"];
-            NSLog(@"saveResponseMicroappInfo==>\n%@", self.saveResponseMicroappInfo);
             if(arrayBlock) {
                 arrayBlock(microappInfoArray);
             }
@@ -94,7 +91,7 @@ NATIVE_MODULE(Native_offline)
     for (NSDictionary *localDict in localMicroappInfoArray) {
         if ([localDict[@"name"] isEqualToString:newMicroappName]) {
             if (newVersion > [localDict[@"version"] intValue]) {
-                NSLog(@"%@、需要下载", newMicroappInfoDict[@"name"]);
+//                NSLog(@"%@、需要下载", newMicroappInfoDict[@"name"]);
                 // 保存传入的下载microappInfo 为之后 更新本地microapp.json用
                 _saveDownloadInfo = newMicroappInfoDict;
                 if (block) {
@@ -104,7 +101,7 @@ NATIVE_MODULE(Native_offline)
                 if (block) {
                     block(NO, newMicroappInfoDict);
                 }
-                NSLog(@"%@、不需要下载", newMicroappInfoDict[@"name"]);
+//                NSLog(@"%@、不需要下载", newMicroappInfoDict[@"name"]);
             }
         }
     }
@@ -213,12 +210,12 @@ NATIVE_MODULE(Native_offline)
         NSInteger length = [NSJSONSerialization writeJSONObject:dict toStream:outStream options:NSJSONWritingPrettyPrinted error:&error];
         if (length != 0) {
             [outStream close];
-            NSLog(@"packageInfo.json写入成功");
+//            NSLog(@"packageInfo.json写入成功");
         } else {
-            NSLog(@"packageInfo.json==>%@", error);
+//            NSLog(@"packageInfo.json==>%@", error);
         }
     } else {
-        NSLog(@"packageInfo.json无法写入");
+//        NSLog(@"packageInfo.json无法写入");
     }
 }
 
@@ -229,7 +226,7 @@ NATIVE_MODULE(Native_offline)
 - (NSDictionary *)getProjectMicroappInfo {
     NSString *documentPath= [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *packageInfoPath = [documentPath stringByAppendingPathComponent:@"packageInfo.json"];
-    NSLog(@"packageInfoPath==>\n%@", packageInfoPath);
+//    NSLog(@"packageInfoPath==>\n%@", packageInfoPath);
     NSData *data = [[NSData alloc] initWithContentsOfFile:packageInfoPath];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     return dict;

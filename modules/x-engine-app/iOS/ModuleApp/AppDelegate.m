@@ -25,7 +25,6 @@
     
     [self.window makeKeyAndVisible];
     
-    
     [self offinePackage];
     
     return YES;

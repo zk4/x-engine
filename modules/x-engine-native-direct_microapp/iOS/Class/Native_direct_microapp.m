@@ -80,5 +80,6 @@ NATIVE_MODULE(Native_direct_microapp)
        pathname=hm.pathname;
     }
     return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];
+    
 }
 @end

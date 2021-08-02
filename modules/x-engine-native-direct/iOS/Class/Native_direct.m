@@ -137,6 +137,8 @@ NATIVE_MODULE(Native_direct)
 
     // 拿容器
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+   
+    // 实在找不到,跳到默认错误页
     NSAssert(container,@"why here, where is your container?");
 
     if([direct respondsToSelector:@selector(push:container:params:)]){
@@ -181,12 +183,33 @@ NATIVE_MODULE(Native_direct)
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
     
-    UIViewController* vc =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     
-    [parent addChildViewController:vc];
-    vc.view.frame = parent.view.frame;
-    [parent.view addSubview:vc.view];
+   
 
+    
+    // TODO: try fallback
+    if(!container){
+        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
+        NSString* fallback =  [params objectForKey:@"__fallback__"];
+        if(nativeParams){
+            id _fallback = [nativeParams objectForKey:@"__fallback__"];
+            if(_fallback)
+                fallback =[_fallback string];
+        }
+        // fallback schem + host + path +query
+        
+        NSURL* fallbackUrl = [NSURL URLWithString:fallback];
+        [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
+
+        return;
+    }
+    // TODO: try 降级路由表
+    
+    
+    [parent addChildViewController:container];
+    container.view.frame = parent.view.frame;
+    [parent.view addSubview:container.view];
     // TODO: 这里有时机问题.
     HistoryModel* hm = [HistoryModel new];
  
@@ -219,7 +242,7 @@ static NSString *const kSlash               = @"/";
     if(questionMark != -1 && hashtagMark != -1){
         NSString* sub1= [raw substringToIndex:hashtagMark];
         NSString* sub2= [raw substringWithRange:NSMakeRange(hashtagMark, questionMark-hashtagMark)];
-        NSString* sub3=[ [raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSString* sub3=[[raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
     }
     return raw;

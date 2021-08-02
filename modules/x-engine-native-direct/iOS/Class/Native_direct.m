@@ -17,6 +17,8 @@
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
+@property (nonatomic, strong) NSMutableDictionary<NSString*, NSString*> * fallbackMappings;
+
 @end
 
 @implementation Native_direct
@@ -34,6 +36,7 @@ NATIVE_MODULE(Native_direct)
 {
     self = [super init];
     self.directors=[NSMutableDictionary new];
+    self.fallbackMappings = [NSMutableDictionary new];
     return self;
 }
 
@@ -185,28 +188,41 @@ NATIVE_MODULE(Native_direct)
     
     UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
     
-   
 
-    
-    // TODO: try fallback
     if(!container){
+        // TODO: try fallback
+        static NSString* FALL_BACK_KEY = @"__fallback__";
         NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
-        NSString* fallback =  [params objectForKey:@"__fallback__"];
-        if(nativeParams){
-            id _fallback = [nativeParams objectForKey:@"__fallback__"];
-            if(_fallback)
+        NSString* fallback = nil;
+         if(nativeParams){
+            id _fallback = [nativeParams objectForKey:FALL_BACK_KEY];
+             if(_fallback){
                 fallback =[_fallback string];
+                 // 必须删除,防止循环 fallback
+                 [[nativeParams mutableCopy] removeObjectForKey:FALL_BACK_KEY];
+             }
         }
-        // fallback schem + host + path +query
-        
+        // fallback: schem + host + path
         NSURL* fallbackUrl = [NSURL URLWithString:fallback];
-        [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
-
-        return;
+        if(fallbackUrl){
+            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
+            return;
+        }
     }
     // TODO: try 降级路由表
-    
-    
+    if(!container){
+        NSString* schemeHostPath = [NSString stringWithFormat:@"%@://%@%@",scheme,host,pathname];
+       NSString* fallback= [self.fallbackMappings objectForKey:schemeHostPath];
+        NSURL* fallbackUrl = [NSURL URLWithString:fallback];
+        if(fallbackUrl){
+            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
+            return;
+        }
+    }
+     
+    NSAssert(container, @"实在找不到");
+   
+ 
     [parent addChildViewController:container];
     container.view.frame = parent.view.frame;
     [parent.view addSubview:container.view];
@@ -218,6 +234,9 @@ NATIVE_MODULE(Native_direct)
     hm.pathname      = pathname;
     [parent setCurrentHistory:hm];
 
+}
+- (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback{
+    [self.fallbackMappings setObject:fallback forKey:schemeHostPath];
 }
 
 static NSString *const kQueryBegin          = @"?";

@@ -47,8 +47,8 @@ JSI_MODULE(JSI_webcache)
     return safeHeaders;
 }
 
-// 直接使用,不经过 gen
-- (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+- (void) _xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
     NSDictionary* headers = dict[@"header"];
     NSString* url = dict[@"url"];

@@ -4,7 +4,10 @@
 
 
 #import "xengine_jsi_webcache.h"
- 
+
+
+
+
 
 
   @implementation xengine_jsi_webcache
@@ -18,5 +21,11 @@
         return @"com.zkty.jsi.webcache";
     }
     
+    - (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
+          NSDictionary* dto = [self convert:dict clazz:NSDictionary.class];
+          [self _xhrRequest:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
+          }];
+      }
   @end

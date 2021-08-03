@@ -24,8 +24,9 @@
     - (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           NSDictionary* dto = [self convert:dict clazz:NSDictionary.class];
-          [self _xhrRequest:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          [self _xhrRequest:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
+        
       }
   @end

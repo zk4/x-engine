@@ -12,7 +12,6 @@
 #import "NSURL+QueryDictionary.h"
 #import "HistoryModel.h"
 #import "Unity.h"
-#import "RecyleWebViewController.h"
 #import "UIViewController+Tag.h"
 
 @interface Native_direct()

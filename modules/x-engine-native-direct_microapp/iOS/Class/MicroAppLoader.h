@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MicroAppLoader : NSObject
 
 + (instancetype) sharedInstance;
--(NSString *)getMicroAppHost:(NSString *)microAppId withVersion:(long)version;
+-(NSString *)getMicroAppHost:(NSString *)microAppId withVersion:(int)version;
 - (NSString *)microappDirectory;
 @end
 

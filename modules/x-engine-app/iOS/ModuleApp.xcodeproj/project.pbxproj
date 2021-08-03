@@ -30,11 +30,7 @@
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
 		58D20BD426138BEF0082ADC3 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
-		A48398AA261F100300D04124 /* microapp.json in Resources */ = {isa = PBXBuildFile; fileRef = A48398A9261F100300D04124 /* microapp.json */; };
-		A4A2C92326A9464C0022D146 /* packageInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = A4A2C92226A9464C0022D146 /* packageInfo.json */; };
-		A4A2C92D26A954020022D146 /* com.gm.microapp.mine.0 in Resources */ = {isa = PBXBuildFile; fileRef = A4A2C92A26A954020022D146 /* com.gm.microapp.mine.0 */; };
-		A4A2C92E26A954020022D146 /* com.gm.microapp.mall.0 in Resources */ = {isa = PBXBuildFile; fileRef = A4A2C92B26A954020022D146 /* com.gm.microapp.mall.0 */; };
-		A4A2C92F26A954020022D146 /* com.gm.microapp.home.0 in Resources */ = {isa = PBXBuildFile; fileRef = A4A2C92C26A954020022D146 /* com.gm.microapp.home.0 */; };
+		A4E9638126B9462F00C6A0DD /* microapp in Resources */ = {isa = PBXBuildFile; fileRef = A4E9638026B9462F00C6A0DD /* microapp */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -100,11 +96,7 @@
 		58F6FD542620D46B00A482EF /* RegexTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A48398A9261F100300D04124 /* microapp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = microapp.json; sourceTree = "<group>"; };
-		A4A2C92226A9464C0022D146 /* packageInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = packageInfo.json; sourceTree = "<group>"; };
-		A4A2C92A26A954020022D146 /* com.gm.microapp.mine.0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = com.gm.microapp.mine.0; sourceTree = SOURCE_ROOT; };
-		A4A2C92B26A954020022D146 /* com.gm.microapp.mall.0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = com.gm.microapp.mall.0; sourceTree = SOURCE_ROOT; };
-		A4A2C92C26A954020022D146 /* com.gm.microapp.home.0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = com.gm.microapp.home.0; sourceTree = SOURCE_ROOT; };
+		A4E9638026B9462F00C6A0DD /* microapp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = microapp; sourceTree = "<group>"; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,8 +138,7 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				A4A2C92226A9464C0022D146 /* packageInfo.json */,
-				A48398A9261F100300D04124 /* microapp.json */,
+				A4E9638026B9462F00C6A0DD /* microapp */,
 				00DFC6E224C84000006A53EE /* ModuleApp */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
 				00DFC6D324C83F95006A53EE /* iOSUITests */,
@@ -267,9 +258,6 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				A4A2C92C26A954020022D146 /* com.gm.microapp.home.0 */,
-				A4A2C92B26A954020022D146 /* com.gm.microapp.mall.0 */,
-				A4A2C92A26A954020022D146 /* com.gm.microapp.mine.0 */,
 				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
 			);
 			path = Class;
@@ -384,12 +372,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
-				A4A2C92D26A954020022D146 /* com.gm.microapp.mine.0 in Resources */,
-				A4A2C92F26A954020022D146 /* com.gm.microapp.home.0 in Resources */,
-				A4A2C92E26A954020022D146 /* com.gm.microapp.mall.0 in Resources */,
-				A4A2C92326A9464C0022D146 /* packageInfo.json in Resources */,
-				A48398AA261F100300D04124 /* microapp.json in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
+				A4E9638126B9462F00C6A0DD /* microapp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

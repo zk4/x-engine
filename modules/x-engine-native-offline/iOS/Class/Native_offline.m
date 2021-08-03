@@ -28,6 +28,22 @@ NATIVE_MODULE(Native_offline)
     return 0;
 }
 
+// lazy
+- (NSDictionary *)saveDownloadInfo {
+    if (!_saveDownloadInfo) {
+        _saveDownloadInfo = [NSDictionary dictionary];
+    }
+    return _saveDownloadInfo;
+}
+
+// lazy
+- (NSMutableDictionary *)saveResponseMicroappInfo {
+    if (!_saveResponseMicroappInfo) {
+        _saveResponseMicroappInfo = [NSMutableDictionary dictionary];
+    }
+    return  _saveResponseMicroappInfo;
+}
+
 /*
  * 启动应用后读取packageInfo.json的信息 写入沙盒 已做后续更新内容的依据
  * 如果路径下没有 写入
@@ -37,6 +53,8 @@ NATIVE_MODULE(Native_offline)
     NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
     if(![[NSFileManager defaultManager] fileExistsAtPath:packageInfoPath]) {
         [self saveProjectMicroappInfo:[self getRootPackageJsonInfo]];
+    } else {
+        NSLog(@"有packageInfo.json, 不执行任何操作");
     }
 }
 
@@ -57,25 +75,6 @@ NATIVE_MODULE(Native_offline)
             }];
         }
     }];
-}
-
-/**
- * 获取微应用包地址
- * @packageName: 需要加载包名称
- */
-- (NSString *)getPackageWithPackageName:(NSString *)packageName {
-    NSArray *array = [self getProjectMicroappInfo][@"data"];
-    NSString *filePath = [NSString string];
-    for (NSDictionary *dict in array) {
-        NSString *name = [NSString stringWithFormat:@"%@", dict[@"name"]];
-        if ([name isEqualToString:packageName]) {
-            NSString *name = dict[@"name"];
-            NSString *version = [NSString stringWithFormat:@"%@", dict[@"version"]];
-            NSString *packageName = [NSString stringWithFormat:@"%@.%@", name,version];
-            filePath = [NSString stringWithFormat:@"%@/%@", kDocumentPath, packageName];
-        }
-    }
-    return filePath;
 }
 
 
@@ -140,7 +139,6 @@ NATIVE_MODULE(Native_offline)
         }
     }
 }
-
 
 /**
  * 下载新的应用包
@@ -211,10 +209,76 @@ NATIVE_MODULE(Native_offline)
 
 /**************************************util**************************************/
 /**
- * 获取本地地址包地址
- * @index 传入对应索引
+ * 第一次打开应用调用的方法 如果ducument下已有packageInfo.json 将不在调用
+ * 读取本地packageInfo.json的内容
  */
-- (NSString *)getFilePathWithPackageName:(NSString *)packageName {
+- (NSDictionary *)getRootPackageJsonInfo {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"microapp" ofType:@""];
+    NSArray *arr = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
+    
+    NSMutableArray *saveArr = [NSMutableArray array];
+    for (NSInteger i = 0; i < arr.count; i++) {
+        NSString *str = [NSString stringWithFormat:@"/%@/microapp.json", arr[i]];
+        NSString *microappJsonPath = [path stringByAppendingString:str];
+        NSData *data = [[NSData alloc] initWithContentsOfFile:microappJsonPath];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        [saveArr insertObject:dict atIndex:0];
+    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"data"] = saveArr;
+    return dict;
+}
+
+/**
+ * 将项目下的microoapp信息存入document的packageInfo中
+ * @array all microapp 集合
+ */
+- (void)saveProjectMicroappInfo:(NSDictionary *)dict {
+    if ([NSJSONSerialization isValidJSONObject:dict]) {
+        NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
+        NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:packageInfoPath append:YES];
+        [outStream open];
+        NSError *error;
+        NSInteger length = [NSJSONSerialization writeJSONObject:dict toStream:outStream options:NSJSONWritingPrettyPrinted error:&error];
+        if (length != 0) {
+            [outStream close];
+            NSLog(@"packageInfo.json写入成功");
+        } else {
+            NSLog(@"packageInfo.json==>%@", error);
+        }
+    } else {
+        NSLog(@"packageInfo.json无法写入");
+    }
+}
+
+/**
+ * 从document的packageInfo中读取存入的microoapp信息
+ * return all microapp info
+ */
+- (NSDictionary *)getProjectMicroappInfo {
+    NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
+    NSData *data = [[NSData alloc] initWithContentsOfFile:packageInfoPath];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    return dict;
+}
+
+/*
+ * 字典转json格式字符串:
+ */
+- (NSString*)dictionaryToJson:(NSDictionary *)dict {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+
+/************************************暂时不用, 保留方法*****************************************/
+/**
+ * 暂时不用, 保留方法
+ * 获取微应用包地址
+ * @packageName: 需要加载包名称
+ */
+- (NSString *)getPackageWithPackageName:(NSString *)packageName {
     NSArray *array = [self getProjectMicroappInfo][@"data"];
     NSString *filePath = [NSString string];
     for (NSDictionary *dict in array) {
@@ -231,6 +295,7 @@ NATIVE_MODULE(Native_offline)
 
 
 /**
+ ** 暂时不用, 保留方法
  * 获取本地地址包地址
  * @index 传入对应索引
  */
@@ -249,56 +314,25 @@ NATIVE_MODULE(Native_offline)
 }
 
 /**
- * 将项目下的microoapp信息存入document的packageInfo中
- * @array all microapp 集合
+ * 获取根目录下所有的microapp
  */
-- (void)saveProjectMicroappInfo:(NSDictionary *)dict {
-    NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
-    if ([NSJSONSerialization isValidJSONObject:dict]) {
-        NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:packageInfoPath append:YES];
-        [outStream open];
-        NSError *error;
-        NSInteger length = [NSJSONSerialization writeJSONObject:dict toStream:outStream options:NSJSONWritingPrettyPrinted error:&error];
-        if (length != 0) {
-            [outStream close];
-            //            NSLog(@"packageInfo.json写入成功");
-        } else {
-            //            NSLog(@"packageInfo.json==>%@", error);
-        }
-    } else {
-        //        NSLog(@"packageInfo.json无法写入");
-    }
-}
-
-/**
- * 从document的packageInfo中读取存入的microoapp信息
- * return all microapp info
- */
-- (NSDictionary *)getProjectMicroappInfo {
-    NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
-    //    NSLog(@"packageInfoPath==>\n%@", packageInfoPath);
-    NSData *data = [[NSData alloc] initWithContentsOfFile:packageInfoPath];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    return dict;
-}
+//- (NSDictionary *)getRootPackageJsonInfo {
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"packageInfo" ofType:@"json"];
+//    NSLog(@"%@", path);
+//    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//    return dict;
+//}
 
 /**
  * 第一次打开应用调用的方法 如果ducument下已有packageInfo.json 将不在调用
  * 读取本地packageInfo.json的内容
  */
-- (NSDictionary *)getRootPackageJsonInfo {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"packageInfo" ofType:@"json"];
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    return dict;
-}
-
-/*
- * 字典转json格式字符串:
- */
-- (NSString*)dictionaryToJson:(NSDictionary *)dict {
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&parseError];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
+//- (NSDictionary *)getRootPackageJsonInfo {
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"packageInfo" ofType:@"json"];
+//    NSLog(@"%@", path);
+//    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//    return dict;
+//}
 @end

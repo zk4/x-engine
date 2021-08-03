@@ -13,6 +13,8 @@
 #import "HistoryModel.h"
 #import "UIViewController+Tag.h"
 
+#define kDocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+
 @interface Native_direct_microapp ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
 @end
@@ -58,10 +60,15 @@ NATIVE_MODULE(Native_direct_microapp)
 
 
 - (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
-    long version =0;
-    if (params && params[@"version"]){
-        version= [params[@"version"] longValue] ;
-    };
+    
+    int version = 0;
+    NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:packageInfoPath]) {
+        version = 0;
+    } else {
+        version = [self getLocalVersionWithHostName:host];
+    }
+    
 
     if(host && host.length>0){
         // microapp 的 host 要特殊处理.
@@ -80,5 +87,22 @@ NATIVE_MODULE(Native_direct_microapp)
        pathname=hm.pathname;
     }
     return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];
+}
+
+// 获取本地版本号
+- (int)getLocalVersionWithHostName:(NSString *)hostName {
+    // 读出name对应的版本号
+    int version = 0;
+    NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
+    NSData *data = [[NSData alloc] initWithContentsOfFile:packageInfoPath];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    NSArray *array = dict[@"data"];
+    for (NSDictionary *dict in array) {
+        NSString *name = [NSString stringWithFormat:@"%@", dict[@"name"]];
+        if ([name isEqualToString:hostName]) {
+            version = [dict[@"version"] intValue];
+        }
+    }
+    return version;
 }
 @end

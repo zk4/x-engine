@@ -29,7 +29,7 @@ JSI_MODULE(JSI_localstorage)
 
 - (NSString *) genkey:(NSString*) key{
      assert(key!=nil);
-     HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
+    HistoryModel* hm= [[Unity sharedInstance].getCurrentVC getLastHistory];
      assert(hm!=nil);
      return  [NSString stringWithFormat:@"%@%@:%@", hm.host?hm.host:@"",hm.pathname?hm.pathname:@"", key];
 }

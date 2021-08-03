@@ -17,6 +17,7 @@
 		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		037077DA0CF9AB0139DD4CB0 /* libPods-webcacheUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8350D989E9DC64C10250A7DE /* libPods-webcacheUITests.a */; };
 		38E983942615F6E8007F6BDF /* Native_webcache.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_webcache.m */; };
+		607D0AB026B1296900046EDA /* ajaxhook.js in Resources */ = {isa = PBXBuildFile; fileRef = 607D0AAF26B1296900046EDA /* ajaxhook.js */; };
 		8DE2BE0D911D179E746F70B9 /* libPods-webcacheTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6766A91E76375D29D7BBF318 /* libPods-webcacheTests.a */; };
 		EE1E8D9093AC7168C6D0E863 /* libPods-webcache.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9BE71C3752AAE7FEAFE2CF /* libPods-webcache.a */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		581FAF352624CC1A00ED7DCC /* iWebcache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iWebcache.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
+		607D0AAF26B1296900046EDA /* ajaxhook.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ajaxhook.js; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-webcacheTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-webcacheTests.release.xcconfig"; path = "Target Support Files/Pods-webcacheTests/Pods-webcacheTests.release.xcconfig"; sourceTree = "<group>"; };
 		6766A91E76375D29D7BBF318 /* libPods-webcacheTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-webcacheTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-webcache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-webcache.release.xcconfig"; path = "Target Support Files/Pods-abstract-webcache/Pods-abstract-webcache.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				607D0AAF26B1296900046EDA /* ajaxhook.js */,
 				581FAF352624CC1A00ED7DCC /* iWebcache.h */,
 				38E983932615F6E8007F6BDF /* Native_webcache.h */,
 				38E983922615F6E8007F6BDF /* Native_webcache.m */,
@@ -320,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607D0AB026B1296900046EDA /* ajaxhook.js in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 			);

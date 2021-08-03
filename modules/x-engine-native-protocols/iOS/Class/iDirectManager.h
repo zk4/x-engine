@@ -57,7 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
     params:(nullable NSDictionary<NSString*,id>*) params;
 
 
-
+// 增加降级映射表
+- (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback;
 @end
 
 

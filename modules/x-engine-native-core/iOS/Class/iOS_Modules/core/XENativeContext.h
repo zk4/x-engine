@@ -14,6 +14,18 @@
 // x-engine native module protocols
 #define XENP(proto) [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(proto)]
 
+
+#ifdef DEBUG
+
+#  define NSLog(fmt, ...) do {                                            \
+NSString* file = [[NSString alloc] initWithFormat:@"%s", __FILE__]; \
+NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
+} while(0)
+#else
+# define NSLog(...);
+#endif
+
+
 @interface XENativeContext : NSObject
 + (instancetype)sharedInstance;
 

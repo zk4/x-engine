@@ -55,6 +55,12 @@ NS_ASSUME_NONNULL_BEGIN
     fragment:(nullable NSString*) fragment
     query:(nullable NSDictionary<NSString*,id>*) query
     params:(nullable NSDictionary<NSString*,id>*) params;
+
+
+// 增加降级映射表
+- (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback;
 @end
+
+
 
 NS_ASSUME_NONNULL_END

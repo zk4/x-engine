@@ -48,7 +48,7 @@ interface DirectBackDTO {
   // 标准路由一定要以 / 开头
   // 一些特殊字段：
   // -1 回上一页
-  // 0  回头历史中的原生页
+  // 0  回到 tab 页
   fragment: string;
 }
 

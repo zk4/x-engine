@@ -17,11 +17,9 @@
 
 
 @protocol xengine_jsi_webcache_protocol
-       @required 
-       - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
-       @required 
-       - (void) _simpleMethod;
-    
+//       @required 
+//      - (void) _xhrPOST:(void (^)(NSDictionary* result,BOOL complete)) completionHandler;
+//    
 @end
   
 

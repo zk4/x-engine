@@ -12,13 +12,13 @@
 #import "Unity.h"
 #import "RecyleWebViewController.h"
 #import "iDirect.h"
-#import "GlobalState.h"
 #import "XENativeContext.h"
 #import "iStore.h"
+#import <x-engine-native-direct/UINavigationController+Completion.h>
+#import "UIViewController+Tag.h"
 
 
 @interface Native_direct_omp()
-//@property(nonatomic,strong) UINavigationController* navc;
 @end
 @implementation Native_direct_omp
 NATIVE_MODULE(Native_direct_omp)
@@ -33,109 +33,6 @@ NATIVE_MODULE(Native_direct_omp)
 
 - (void)afterAllNativeModuleInited{
 
-}
-
-- (void)back:(NSString*) host fragment:(NSString*) fragment{
-    UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
-    NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
-    NSMutableArray<HistoryModel*>*  histories= nil;
-
-    histories = [[GlobalState sharedInstance] getCurrentHostHistories];
-
-    BOOL isMinusHistory = [fragment rangeOfString:@"^-\\d+$" options:NSRegularExpressionSearch].location != NSNotFound;
-    
-    BOOL isNamedHistory = [fragment rangeOfString:@"^/\\w+$" options:NSRegularExpressionSearch].location != NSNotFound;
-    
-    if ([@"0" isEqualToString:fragment]){
-        int i =0;
-        for (UIViewController *vc in [ary reverseObjectEnumerator]){
-            if (![vc isKindOfClass:[RecyleWebViewController class]]){
-                [navC popToViewController:vc animated:YES];
-                // 当 i=0 时，也就当前页就不是 RecyleWebViewController，判断现在就是在 tab 页上
-                if(i>0)
-                    [histories removeAllObjects];
-                return;
-            }
-            i++;
-        }
-    } else if ([@"/" isEqualToString:fragment]){
-        if(histories && histories.count > 0){
-            [navC popToViewController:histories[0].vc animated:YES];
-            [histories removeObjectsInRange:NSMakeRange(1, histories.count - 1)];
-        }
-    } else if ([@"-1" isEqualToString:fragment] || [@"" isEqualToString:fragment]){
-        if(histories){
-            if(histories.count > 1) {
-                [navC popToViewController:histories[histories.count-2].vc animated:YES];
-                [histories removeLastObject];
-            } else if(histories.count ==1){
-                [navC popViewControllerAnimated:YES];
-                [histories removeLastObject];
-            }
-        }
-    } else if(isMinusHistory) {
-        if(histories){
-            int minusHistory = [fragment intValue];
-            if(minusHistory+histories.count<0){
-                /// TODO: alert
-                NSLog(@"没有历史给你退.");
-            }
-            [navC popToViewController:histories[histories.count-1+minusHistory].vc animated:YES];
-            [histories removeObjectsInRange:NSMakeRange(histories.count+minusHistory,  -minusHistory)];
-        }
-    } else if (isNamedHistory){
-        if(histories && histories.count > 1){
-            int i = 0;
-            for (HistoryModel *hm in [histories reverseObjectEnumerator]){
-                if(hm && [hm.fragment isEqualToString:fragment]){
-                    [navC popToViewController:hm.vc animated:YES];
-                    
-                    [histories removeObjectsInRange:NSMakeRange(histories.count -i,  i)];
-                    return;
-                }
-                i++;
-            }
-        }
-    } else {
-        /// TODO: alert
-        NSLog(@"what the fuck? %@",fragment);
-    }
-}
-
-
-- (void)push:(UIViewController*) container
-      params:(nullable NSDictionary<NSString*,id>*) params{
-
-    // 基于 tabbar　的应用，第一次大概率是 navigationController，保存起来。
-    // TODO: 优化
-//    if(!self.navc)
-//        self.navc =[Unity sharedInstance].getCurrentVC.navigationController;
-
-    UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
-//    if(navc){
-        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
-        int deleteHistory = 0;
-        if(nativeParams){
-            id deletable = [nativeParams objectForKey:@"__deleteHistory__"];
-            if(deletable)
-                deleteHistory =[deletable intValue];
-        }
-        NSAssert(deleteHistory>=0, @"__deleteHistory__ 必须大于等于 0");
-        while(deleteHistory>0){
-            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
-            deleteHistory--;
-        }
-        [navc pushViewController:container animated:YES];
-//    } else {
-//        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-//        if([nav isKindOfClass:[UINavigationController class]]){
-//            [nav pushViewController:container animated:YES];
-//        } else {
-//            nav = nav.navigationController;
-//            [nav pushViewController:container animated:YES];
-//        }
-//    }
-//    container.hidesBottomBarWhenPushed = NO;
 }
 
 /// 判断query是否有值, 有值的就拼接在url上
@@ -189,26 +86,19 @@ NATIVE_MODULE(Native_direct_omp)
     }
     
     BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
-    BOOL onTab   = [params[@"onTab"] boolValue];
     [self judgeParamsWithDict:params];
     NSString *queryString = [self judgeQueryWithDict:query];
     NSString *finalUrl = @"";
     
-    if(host){
-        pathname = pathname && (pathname.length!=0) ? pathname : @"/";
-    } else {
-        HistoryModel* hm = [[GlobalState sharedInstance] getLastHistory];
-        host = hm.host;
-        NSAssert(host!=nil, @"host 不可为 nil");
-        pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
-    }
-    NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#") ;
+   
+    NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#");
     fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 
-    RecyleWebViewController *vc = [[RecyleWebViewController alloc] initWithUrl:finalUrl host:host pathname:pathname  fragment:fragment   withHiddenNavBar:isHideNavBar onTab:onTab];
-    
+
+    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar];
     vc.hidesBottomBarWhenPushed = YES;
+    
 
     return  vc;
 }

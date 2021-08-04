@@ -10,7 +10,7 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "iStore.h"
-#import "GlobalState.h"
+
 
 
 @interface JSI_globalstorage()

@@ -11,6 +11,9 @@
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
 #import "MainNavigationController.h"
+#import <x-engine-native-tabbar/iTabbar.h>
+#import <x-engine-native-core/XENativeContext.h>
+
 
 @interface MainTabbarController ()
 
@@ -34,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [XENP(iTabbar) registerDelegate:self];
         
     [self setupChildVc:[[OneViewController alloc] init] title:@"模块1" image:@"one-nor" selectedImage:@"one-sel"];
     
@@ -51,5 +55,10 @@
     // 包装一个导航控制器, 添加导航控制器为tabbarcontroller的子控制器
     MainNavigationController *nav = [[MainNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];
+}
+- (UIViewController*)getCurrentTabItemVC{
+    UIViewController* ret= [self.viewControllers objectAtIndex:self.selectedIndex ];
+    NSArray* children = ret.childViewControllers;
+    return children[0];
 }
 @end

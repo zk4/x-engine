@@ -2,30 +2,6 @@
 
   如果h5 是以formdata格式传输
   例如:
-
-  ```javascript
-  const data = new FormData()
-  data.append('a', File) // 某个文件(.jpeg)
-  data.append('b', 'a')
-  data.append('c', JSON.stringify{d: 1})
-  data.append('f', 1)
-
-  ajax(data)
-
-  function ajax(data) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('post', './a.json')
-    xhr.setRequestHeader('Content-Type', 'multipart/form-data')
-    xhr.send(data)
-    xhr.onreadystatechange = () => {
-      if(xhr.DONE) {
-        console.log(xhr.responseText)
-      }
-    }
-  }
-  ```
-
-  以上面的ajax为例那么 h5会传递给native一个json对象 形如:
   ```json
   {
     "data": {

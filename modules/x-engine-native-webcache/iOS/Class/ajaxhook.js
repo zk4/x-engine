@@ -89,19 +89,7 @@
 			}
 		}
 		params.data = object
-		// formData.forEach(async (value, key) => {
-		//   if (value instanceof File) {
-		//     let data = await value.arrayBuffer()
-		//     let base64Str = encode(data);
-
-		//     console.log('base64Str: ', base64Str);
-
-		//     object[key] = base64Str
-
-		// } else {
-		//   object[key] = value
-		// }
-		// });
+		console.log('object ------ params: ', params);
 	}
 
 	function nativeRequest (xhr, params) {
@@ -271,8 +259,8 @@
 			// TODO: 处理 formdata, 应该返回 promise
 			if (FormData.prototype.isPrototypeOf(params.data)) {
 				await formData2Json(params, params.data)
-				console.log('params: ', params);
 			}
+			console.log('params: ', params);
 			// 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
 			return nativeRequest(that, params);
 		},

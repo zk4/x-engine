@@ -43,6 +43,48 @@ NATIVE_MODULE(Native_share_wx)
     return @[@"wx_friend",@"wx_zone",@"miniProgram",@"link",@"img"];
 }
 
+
+// 压缩图片
+- (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(float)size withQuality:(float)q{
+    CGFloat compression ;
+   
+        compression = q;
+    
+    NSData *data = UIImageJPEGRepresentation(image, compression);
+    
+        if (data.length/1024 < size) return data;
+        CGFloat max = 1;
+        CGFloat min = 0;
+        for (int i = 0; i < 6; ++i) {
+            compression = (max + min) / 2;
+            data = UIImageJPEGRepresentation(image, compression);
+            if (data.length/1024 < size * 0.9) {
+                min = compression;
+            } else if (data.length/1024 > size) {
+                max = compression;
+            } else {
+                break;
+            }
+        }
+        UIImage *resultImage = [UIImage imageWithData:data];
+        if (data.length/1024 < size) return data;
+        
+        NSUInteger lastDataLength = 0;
+        while (data.length/1024 > size && data.length/1024 != lastDataLength) {
+            lastDataLength = data.length /1024;
+            CGFloat ratio = size / data.length/1024;
+            CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
+                                     (NSUInteger)(resultImage.size.height * sqrtf(ratio)));
+            UIGraphicsBeginImageContext(size);
+            [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+            resultImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            data = UIImageJPEGRepresentation(resultImage, compression);
+        }
+    
+    return data;
+}
+
 - (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(BOOL complete)) completionHandler {
     
     WXMediaMessage *message = [WXMediaMessage message];
@@ -61,14 +103,15 @@ NATIVE_MODULE(Native_share_wx)
         }
     }else if ([info objectForKey:@"imgUrl"]) {
         UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
-        thumbImg = [self thumbImageWithImage:desImage limitSize:CGSizeMake(100, 100)];
-        thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]];
+        thumbData = [self compressOriginalImage:desImage toMaxDataSizeKBytes:63.0 withQuality:1];
+        thumbImg = [[UIImage alloc] initWithData:thumbData];
+         
     }else{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"图片加载失败" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
         [alert addAction:enter];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-        return;;
+        return;
     }
     
     
@@ -94,8 +137,12 @@ NATIVE_MODULE(Native_share_wx)
         if ([type isEqualToString:@"miniProgram"]) {
             WXMiniProgramObject *object = [WXMiniProgramObject object];
             /// TODO: 应该是取link 的值
-            if ([[info objectForKey:@"link"] hasPrefix:@"http:"] || [[info objectForKey:@"link"] hasPrefix:@"https:"]){
-                object.webpageUrl = [info objectForKey:@"link"];
+            id link = [info objectForKey:@"link"];
+            if([link isKindOfClass:NSString.class] )
+            {
+                if ([link hasPrefix:@"http:"] || [link hasPrefix:@"https:"]){
+                    object.webpageUrl = link;
+                }
             }else{
                 object.webpageUrl = @"1";
             }

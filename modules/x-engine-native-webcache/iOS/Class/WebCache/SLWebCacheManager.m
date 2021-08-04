@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSMutableDictionary *responseDic;
 //记录正在下载的任务、防止下载请求的循环调用
 ///内存缓存空间
-@property (nonatomic, strong) YYCache *memoryCache;
+@property (nonatomic, strong) NSCache *memoryCache;
  
 @end
 
@@ -198,10 +198,10 @@
     [self.memoryCache setObject:cachedURLResponse.data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
     [self.memoryCache setObject:info forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
 //
-//    return result1 & result2;
+    return result1 & result2;
  
     // yycache 没有返回值
-    return TRUE;
+//    return TRUE;
 }
 ///加载缓存数据   内存 -> 磁盘 ->网络
 - (NSCachedURLResponse *)loadCachedResponeWithRequest:(NSURLRequest *)request {
@@ -402,17 +402,17 @@
     }
     return _responseDic;
 }
-- (YYCache *)memoryCache{
-//    if (!_memoryCache) {
-//        _memoryCache = [[NSCache alloc] init];
-//        _memoryCache.delegate = self;
-//        //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
-//        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
-//        //能够缓存的对象的最大数量。默认值为0，表示没有限制
-//        _memoryCache.countLimit = 1000;
-//    }
-//    return _memoryCache;
-    return [YYCache cacheWithName:@"XENGINE_YY_Cache"];
+- (NSCache *)memoryCache{
+    if (!_memoryCache) {
+        _memoryCache = [[NSCache alloc] init];
+        _memoryCache.delegate = self;
+        //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
+        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
+        //能够缓存的对象的最大数量。默认值为0，表示没有限制
+        _memoryCache.countLimit = 1000;
+    }
+    return _memoryCache;
+//    return [YYCache cacheWithName:@"XENGINE_YY_Cache"];
 }
 
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj{

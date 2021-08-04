@@ -194,30 +194,31 @@ NATIVE_MODULE(Native_camera)
 #pragma 保存图片
 - (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto saveSuccess:(void (^)(NSString *))success {
     self.saveCallback = success;
-    UIImage * image = [UIImage new];
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusAuthorized){
+            [self performSelectorInBackground:@selector(downloadImg:) withObject:nil];
+        } else {
+            [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+        }
+    }];
+}
+
+- (void)downloadImg:(SaveImageDTO *)dto {
+    UIImage *image = [UIImage new];
     if ([dto.type isEqualToString:@"url"]) {
-        image = [UIImage imageWithData:[NSData
-                                        dataWithContentsOfURL:[NSURL URLWithString:dto.imageData]]];
-    } else if([dto.type isEqualToString:@"base64"]){
-        if  ([dto.imageData rangeOfString:@"base64,"].location !=NSNotFound) {
+        NSURL *downloadUrl = [NSURL URLWithString:dto.imageData];
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:downloadUrl]];
+    } else if ([dto.type isEqualToString:@"base64"]){
+        if  ([dto.imageData rangeOfString:@"base64,"].location != NSNotFound) {
             NSRange range = [dto.imageData rangeOfString:@"base64, "];
             dto.imageData = [dto.imageData substringFromIndex:range.location+range.length];
         }
-        NSData * imageData =[[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        image = [UIImage imageWithData:imageData ];
+        NSData *imageData =[[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        image = [UIImage imageWithData:imageData];
     }
-    
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusAuthorized){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-            });
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
-            });
-        }
-    }];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    });
 }
 
 - (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{

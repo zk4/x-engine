@@ -8,7 +8,6 @@
 
 #import "Native_share_wx.h"
 #import "XENativeContext.h"
-#import "Native_share.h"
 #import "WXApi.h"//微信分享
 #import "Unity.h"
 
@@ -28,6 +27,9 @@ NATIVE_MODULE(Native_share_wx)
 }
 
 - (void)afterAllNativeModuleInited{
+    [WXApi startLogByLevel:WXLogLevelDetail logBlock:^(NSString * _Nonnull log) {
+        
+    }];
 }
  
 
@@ -85,41 +87,59 @@ NATIVE_MODULE(Native_share_wx)
     return data;
 }
 
+- (NSData*) shrinkSizeForKB:(float) kb imgData:(NSString*)imgData{
+    NSData *binaryData;
+    if (imgData.length>0) {
+        if ([imgData hasPrefix:@"http:"] || [imgData hasPrefix:@"https:"]){
+            
+            UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgData]]];
+            binaryData = [self compressOriginalImage:desImage toMaxDataSizeKBytes:kb withQuality:1];
+
+        }else{
+            binaryData = [[NSData alloc] initWithBase64EncodedString:imgData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            // TODO: 如果 binaryData  超过 {kb}
+            // 提示用户
+            
+        }
+    }else{
+#ifdef DEBUG
+        @throw  [NSException exceptionWithName:@"为何没有 imgData 数据,是 url 或者 base64" reason:nil  userInfo:nil];
+#endif
+        return [NSData new];
+    }
+    return binaryData;
+    
+}
+- (NSData *)thumbnail_64kbData:(NSString *)imgurl {
+    UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgurl]]];
+    NSData*  thumbData = [self compressOriginalImage:desImage toMaxDataSizeKBytes:63.0 withQuality:1];
+    return thumbData;
+  
+}
+
+- (UIImage *)thumbnail_64kb:(NSString *)imgurl {
+    NSData* data = [self thumbnail_64kbData:imgurl];
+    UIImage*  thumbImg = [[UIImage alloc] initWithData:data];
+    return thumbImg;
+}
+
 - (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(BOOL complete)) completionHandler {
     
     WXMediaMessage *message = [WXMediaMessage message];
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
-
-    NSData *sData;///分享图片真实图片data
-    NSData *thumbData;///分享小程序的缩略图data
-    UIImage *thumbImg;///缩略图控件
+    
+ 
     NSString *imgDatastr =[info objectForKey:@"imgData"];
-    if (imgDatastr.length>0) {
-        if ([imgDatastr hasPrefix:@"http:"] || [imgDatastr hasPrefix:@"https:"]){
-            sData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgDatastr]];
-        }else{
-            sData = [[NSData alloc] initWithBase64EncodedString:imgDatastr options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        }
-    }else if ([info objectForKey:@"imgUrl"]) {
-        UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:info[@"imgUrl"]]]];
-        thumbData = [self compressOriginalImage:desImage toMaxDataSizeKBytes:63.0 withQuality:1];
-        thumbImg = [[UIImage alloc] initWithData:thumbData];
-         
-    }else{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"图片加载失败" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
-        [alert addAction:enter];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    
-    
+  
     if ([channel isEqualToString:@"wx_friend"]) {
         if ([type isEqualToString:@"img"]) {
-            NSData *imageData = sData;
+            // 高清图片
+            // 图片的网络路径或base64格式图片数据
+           // 大小不能超过25M
+          
             WXImageObject *ext = [WXImageObject object];
-            ext.imageData = imageData;
+            ext.imageData = [self shrinkSizeForKB:24000 imgData:imgDatastr];
             message.mediaObject = ext;
             req.message = message;
             req.scene = WXSceneSession;
@@ -129,6 +149,10 @@ NATIVE_MODULE(Native_share_wx)
             webpageObject.webpageUrl = info[@"url"];
             message.title = info[@"title"];
             message.description = info[@"desc"];
+            NSString* imgurl = info[@"imgUrl"];
+            UIImage * thumbImg = [self thumbnail_64kb:imgurl];
+            
+            //  大小不能超过64K
             [message setThumbImage:thumbImg];
             message.mediaObject = webpageObject;
             req.message = message;
@@ -148,11 +172,14 @@ NATIVE_MODULE(Native_share_wx)
             }
             object.userName = info[@"userName"];
             object.path = info[@"path"];
-            object.hdImageData = sData;
+            // 大小不能超过128k
+            object.hdImageData = [self shrinkSizeForKB:127 imgData:imgDatastr];
             object.withShareTicket = YES;
             object.miniProgramType = [info[@"miniProgramType"] intValue];
             message.title = info[@"title"];
             message.description = info[@"desc"];
+            NSString* imgurl = info[@"imgUrl"];
+            NSData * thumbData = [self thumbnail_64kbData:imgurl];
             message.thumbData = thumbData;
             message.mediaObject = object;
             req.message = message;
@@ -163,7 +190,7 @@ NATIVE_MODULE(Native_share_wx)
     if ([channel isEqualToString:@"wx_zone"]) {
         if ([type isEqualToString:@"img"]) {
             WXImageObject *ext = [WXImageObject object];
-            ext.imageData = sData;
+            ext.imageData = [self shrinkSizeForKB:24000 imgData:imgDatastr];
             message.mediaObject = ext;
             req.message = message;
             req.scene = WXSceneTimeline;
@@ -208,128 +235,6 @@ NATIVE_MODULE(Native_share_wx)
     UIGraphicsEndImageContext();
     return imageRet;
 }
-//- (void)shareChannel:(nonnull NSString *)channel type:(NSString *)type shareData:(nonnull OpenShareUiDTO *)dto complete:(nonnull void (^)(BOOL))completionHandler {
-//    NSLog(@"---");
-//    if ([channel isEqualToString:@"wx_friend"]) {
-//        if ([type isEqualToString:@"text"]) {
-//            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-//            req.bText = YES;
-//            req.text = dto.contentInfo.text;
-//            req.scene = WXSceneSession;
-//            [WXApi sendReq:req completion:^(BOOL success) {
-//                NSLog(success?@"分享成功":@"分享失败");
-//                completionHandler(success);
-//            }];
-//        }
-//        if ([type isEqualToString:@"img"]) {
-//            WXMediaMessage *message = [WXMediaMessage message];
-//            UIImage *imagee = [UIImage imageNamed:@"mayun.jpg"];
-//            NSData *imageData = UIImageJPEGRepresentation(imagee, 0.7);
-//
-//            WXImageObject *ext = [WXImageObject object];
-//            ext.imageData = imageData;
-//
-//            message.mediaObject = ext;
-//
-//            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-//            req.bText = NO;
-//            req.message = message;
-//            req.scene = WXSceneSpecifiedSession;
-//
-//            [WXApi sendReq:req completion:^(BOOL success) {
-//                completionHandler(success);
-//            }];
-//        }
-//        if ([type isEqualToString:@"link"]) {
-//
-//            WXWebpageObject *webpageObject = [WXWebpageObject object];
-//            webpageObject.webpageUrl = dto.contentInfo.link;
-//            WXMediaMessage *message = [WXMediaMessage message];
-//            message.title = dto.contentInfo.title;
-//            message.description =dto.contentInfo.desc;
-//            [message setThumbImage:[UIImage imageNamed:@"mayun.jpg"]];
-//            message.mediaObject = webpageObject;
-//            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-//            req.bText = NO;
-//            req.message = message;
-//            req.scene = WXSceneSession;
-//            [WXApi sendReq:req completion:^(BOOL success) {
-//                completionHandler(success);
-//            }];
-//        }
-//        if ([type isEqualToString:@"miniProgram"]) {
-//            WXMiniProgramObject *object = [WXMiniProgramObject object];
-//            object.webpageUrl =  dto.contentInfo.url;
-//            object.userName = dto.contentInfo.userName;
-//            object.path = dto.contentInfo.path;
-//            object.hdImageData = dto.contentInfo.imgData;
-//            object.withShareTicket = YES;
-//            object.miniProgramType = 0;//正式，开发，体验
-//            WXMediaMessage *message = [WXMediaMessage message];
-//            message.title = dto.contentInfo.title;
-//            message.description = dto.contentInfo.desc;
-//            message.thumbData = dto.contentInfo.imgData;  //兼容旧版本节点的图片，小于32KB，新版本优先
-//                                      //使用WXMiniProgramObject的hdImageData属性
-//            message.mediaObject = object;
-//            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-//            req.bText = NO;
-//            req.message = message;
-//            req.scene = WXSceneSession;  //目前只支持会话
-//            [WXApi sendReq:req completion:^(BOOL success) {
-//                completionHandler(success);
-//            }];
-//        }
-//    }
-//    ///支持分享小程序类型消息至会话，暂不支持分享至朋友圈。
-//    if ([channel isEqualToString:@"wx_zone"]) {
-//        if ([type isEqualToString:@"text"]) {
-//            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-//            req.bText = YES;
-//            req.text = dto.contentInfo.text;
-//            req.scene = WXSceneSession;
-//            [WXApi sendReq:req completion:^(BOOL success) {
-//                NSLog(success?@"分享成功":@"分享失败");
-//                completionHandler(success);
-//            }];
-//        }
-//        if ([type isEqualToString:@"img"]) {
-//            WXMediaMessage *message = [WXMediaMessage message];
-//            UIImage *imagee = [UIImage imageNamed:@"mayun.jpg"];
-//            NSData *imageData = UIImageJPEGRepresentation(imagee, 0.7);
-//
-//            WXImageObject *ext = [WXImageObject object];
-//            ext.imageData = imageData;
-//
-//            message.mediaObject = ext;
-//
-//            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-//            req.bText = NO;
-//            req.message = message;
-//            req.scene = WXSceneSpecifiedSession;
-//
-//            [WXApi sendReq:req completion:^(BOOL success) {
-//                completionHandler(success);
-//            }];
-//        }
-//        if ([type isEqualToString:@"link"]) {
-//
-//            WXWebpageObject *webpageObject = [WXWebpageObject object];
-//            webpageObject.webpageUrl = dto.contentInfo.link;
-//            WXMediaMessage *message = [WXMediaMessage message];
-//            message.title = dto.contentInfo.title;
-//            message.description =dto.contentInfo.desc;
-//            [message setThumbImage:[UIImage imageNamed:@"mayun.jpg"]];
-//            message.mediaObject = webpageObject;
-//            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-//            req.bText = NO;
-//            req.message = message;
-//            req.scene = WXSceneSession;
-//            [WXApi sendReq:req completion:^(BOOL success) {
-//                completionHandler(success);
-//            }];
-//        }
-//    }
-//}
 
 @end
 

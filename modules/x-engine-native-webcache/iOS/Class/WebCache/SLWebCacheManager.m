@@ -11,12 +11,15 @@
 #import "SLUrlCache.h"
 #import "SLUrlProtocol.h"
 #import "WKWebView+SLExtension.h"
+#import "YYCache.h"
 
 //实现原理参考 戴明大神：https://github.com/ming1016/STMURLCache
 @interface SLWebCacheManager ()
-@property (nonatomic, strong) NSMutableDictionary *responseDic; //记录正在下载的任务、防止下载请求的循环调用
+@property (nonatomic, strong) NSMutableDictionary *responseDic;
+//记录正在下载的任务、防止下载请求的循环调用
 ///内存缓存空间
-@property (nonatomic, strong) NSCache *memoryCache;
+@property (nonatomic, strong) YYCache *memoryCache;
+ 
 @end
 
 @implementation SLWebCacheManager
@@ -84,10 +87,10 @@
 //    if(accept && [accept rangeOfString:@"application/json"].location!=NSNotFound){
 //        return NO;
 //    }
-//    NSString* content_type = request.allHTTPHeaderFields[@"Content-Type"] ;
-//    if(content_type && [content_type rangeOfString:@"application/json"].location!=NSNotFound){
-//        return NO;
-//    }
+    NSString* content_type = request.allHTTPHeaderFields[@"Content-Type"] ;
+    if(content_type && [content_type rangeOfString:@"image"].location!=NSNotFound){
+        return NO;
+    }
     //对于域名黑名单的过滤
     if (self.blackListsHost.count > 0) {
         BOOL isExist = [self.blackListsHost containsObject:request.URL.host];
@@ -187,15 +190,18 @@
                            @"MIMEType" : cachedURLResponse.response.MIMEType ? cachedURLResponse.response.MIMEType :@"application/octet-stream",
                            @"textEncodingName" : cachedURLResponse.response.textEncodingName == nil ? @"": cachedURLResponse.response.textEncodingName};
     
-    //写入磁盘
+//    //写入磁盘
     NSLog(@"@saved => %@",request);
     BOOL result1 = [info writeToFile:[self filePathFromRequest:request isInfo:YES] atomically:YES];
     BOOL result2 = [cachedURLResponse.data writeToFile:[self filePathFromRequest:request isInfo:NO] atomically:YES];
     //写入内存
     [self.memoryCache setObject:cachedURLResponse.data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
     [self.memoryCache setObject:info forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
-    
-    return result1 & result2;
+//
+//    return result1 & result2;
+ 
+    // yycache 没有返回值
+    return TRUE;
 }
 ///加载缓存数据   内存 -> 磁盘 ->网络
 - (NSCachedURLResponse *)loadCachedResponeWithRequest:(NSURLRequest *)request {
@@ -396,16 +402,17 @@
     }
     return _responseDic;
 }
-- (NSCache *)memoryCache{
-    if (!_memoryCache) {
-        _memoryCache = [[NSCache alloc] init];
-        _memoryCache.delegate = self;
-        //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
-        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
-        //能够缓存的对象的最大数量。默认值为0，表示没有限制
-        _memoryCache.countLimit = 1000;
-    }
-    return _memoryCache;
+- (YYCache *)memoryCache{
+//    if (!_memoryCache) {
+//        _memoryCache = [[NSCache alloc] init];
+//        _memoryCache.delegate = self;
+//        //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
+//        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
+//        //能够缓存的对象的最大数量。默认值为0，表示没有限制
+//        _memoryCache.countLimit = 1000;
+//    }
+//    return _memoryCache;
+    return [YYCache cacheWithName:@"XENGINE_YY_Cache"];
 }
 
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj{

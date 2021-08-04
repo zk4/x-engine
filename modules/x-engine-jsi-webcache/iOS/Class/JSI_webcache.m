@@ -47,18 +47,30 @@ JSI_MODULE(JSI_webcache)
     return safeHeaders;
 }
 
-// 直接使用,不经过 gen
-- (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
-    
+
+- (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSString*,BOOL))completionHandler {
+// 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
     NSDictionary* headers = dict[@"header"];
     NSString* url = dict[@"url"];
-    NSString* cacheKey = [NSString stringWithFormat:@"%@%@",dict[@"url"] ,dict[@"data"]];
     NSString* method = dict[@"method"];
+
+    NSString* cacheKey=nil;
+    if([method isEqualToString:@"GET"]){
+        if(dict && ![self isNull:dict key:@"data"] && dict[@"data"])
+            cacheKey = [NSString stringWithFormat:@"%@%@",url ,dict[@"data"]];
+        cacheKey =url;
+    }else{
+   //     cacheKey = [NSString stringWithFormat:@"%@%@",method ,url];
+    }
+
+    
     
     // 仅缓存 GET, 如果有更新,则会会二次返回,
     if([_cache objectForKey:cacheKey]
-       //&& [method isEqualToString:@"GET"]
+       //&&
        ){
+        NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
+
         completionHandler(_cache[cacheKey],TRUE);
         return;
         
@@ -95,7 +107,8 @@ JSI_MODULE(JSI_webcache)
                 @"responseText":responseText,
                 @"responseHeaders":headers
             };
-            weakSelf.cache[cacheKey] = ret;
+            if(cacheKey)
+                weakSelf.cache[cacheKey] = ret;
             completionHandler(ret,TRUE);
             
         } else {

@@ -8,25 +8,21 @@
  */
 import View from './components/view'
 import Link from './components/link'
-import { intercept, checkProtocol } from './util/app-intercept'
+import { intercept, checkScheme } from './util/app-intercept'
 export let _Vue
 
-export function install (Vue, protocol) {
+export function install (Vue, scheme) {
   if (install.installed && _Vue === Vue) return
   install.installed = true
 
   _Vue = Vue
 
   const isDef = v => v !== undefined
-  if (protocol) {
-    intercept(protocol)
-  } else {
-    if (checkProtocol()) {
-      intercept(checkProtocol())
-    } else {
-      intercept('microapp')
-    }
-  }
+
+  scheme = scheme || checkScheme()
+
+  intercept(scheme)
+
   const registerInstance = (vm, callVal) => {
     let i = vm.$options._parentVnode
     if (isDef(i) && isDef(i = i.data) && isDef(i = i.registerRouteInstance)) {

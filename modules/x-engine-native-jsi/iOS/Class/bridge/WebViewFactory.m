@@ -50,7 +50,7 @@
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
         
     // 禁止回弹
-    webview.scrollView.bounces = false;
+    // webview.scrollView.bounces = false;
 
     webview.configuration.preferences.javaScriptEnabled = YES;
     webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;

@@ -144,31 +144,31 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
 {
-    if(!jsDialogBlock){
+//    if(!jsDialogBlock){
         completionHandler();
-    }
-    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
-                               @selector(webView:runJavaScriptAlertPanelWithMessage
-                                         :initiatedByFrame:completionHandler:)])
-    {
-        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
-                         initiatedByFrame:frame
-                        completionHandler:completionHandler];
-    }else{
+//    }
+//    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
+//                               @selector(webView:runJavaScriptAlertPanelWithMessage
+//                                         :initiatedByFrame:completionHandler:)])
+//    {
+//        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
+//                         initiatedByFrame:frame
+//                        completionHandler:completionHandler];
+//    }else{
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
-                                                                       message:message
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-            if(completionHandler){
-                completionHandler();
-            }
-        }];
-        [alert addAction:action];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-    }
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
+//                                                                       message:message
+//                                                                preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
+//                                                         style:UIAlertActionStyleDefault
+//                                                       handler:^(UIAlertAction * _Nonnull action) {
+//            if(completionHandler){
+//                completionHandler();
+//            }
+//        }];
+//        [alert addAction:action];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+//    }
 }
 
 -(void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message

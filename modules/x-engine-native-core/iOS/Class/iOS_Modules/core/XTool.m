@@ -1,8 +1,8 @@
-#import "XCategotry.h"
+#import "XTool.h"
 #import "micros.h"
 
 #pragma mark - 错误处理
-@implementation XCategotryError
+@implementation XToolError
 + (NSError *) wrapper:(NSError *)error  underlyingError:(NSError *) underlyingError {
     if (!error) {
         return underlyingError;
@@ -17,7 +17,7 @@
 @end
 
 #pragma mark - 弹各种框
-@implementation XCategotryAlert
+@implementation  XToolAlert
 + (void)alert:(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
@@ -27,7 +27,7 @@
 @end
 
 #pragma mark - 图片处理
-@implementation XCategotryImage
+@implementation  XToolImage
 
     
 #pragma mark - 压缩图片
@@ -92,7 +92,7 @@
         return nil;
     }
     UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgurl]]];
-    NSData*  thumbData = [XCategotryImage compressImage:desImage toMaxDataSizeKBytes:63.0 miniQuality:1];
+    NSData*  thumbData = [XToolImage compressImage:desImage toMaxDataSizeKBytes:63.0 miniQuality:1];
     return thumbData;
     
 }

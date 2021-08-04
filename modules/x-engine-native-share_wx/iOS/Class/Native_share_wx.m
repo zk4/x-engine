@@ -10,7 +10,7 @@
 #import "XENativeContext.h"
 #import "WXApi.h"//微信分享
 #import "Unity.h"
-#import <XCategotry.h>
+#import <XTool.h>
 
 @interface Native_share_wx()<WXApiDelegate>
 { }
@@ -54,7 +54,7 @@ NATIVE_MODULE(Native_share_wx)
         if ([imgData hasPrefix:@"http:"] || [imgData hasPrefix:@"https:"]){
             
             UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgData]]];
-            binaryData = [XCategotryImage compressImage:desImage toMaxDataSizeKBytes:kb miniQuality:1];
+            binaryData = [XToolImage compressImage:desImage toMaxDataSizeKBytes:kb miniQuality:1];
 
 
         }else{
@@ -66,7 +66,7 @@ NATIVE_MODULE(Native_share_wx)
     }else{
 #ifdef DEBUG
         NSString* message =@"imgData 不存在";
-        [XCategotryAlert alert:message];
+        [XToolAlert alert:message];
 #endif
         return nil;
     }
@@ -102,7 +102,7 @@ NATIVE_MODULE(Native_share_wx)
             message.title = info[@"title"];
             message.description = info[@"desc"];
             NSString* imgurl = info[@"imgUrl"];
-            UIImage * thumbImg = [XCategotryImage thumbnail_64kb:imgurl];
+            UIImage * thumbImg = [XToolImage thumbnail_64kb:imgurl];
             
             //  大小不能超过64K
             [message setThumbImage:thumbImg];
@@ -132,7 +132,7 @@ NATIVE_MODULE(Native_share_wx)
             message.title = info[@"title"];
             message.description = info[@"desc"];
             NSString* imgurl = info[@"imgUrl"];
-            NSData * thumbData = [XCategotryImage thumbnail_64kbData:imgurl];
+            NSData * thumbData = [XToolImage thumbnail_64kbData:imgurl];
             message.thumbData = thumbData;
             message.mediaObject = object;
             req.message = message;

@@ -1,16 +1,16 @@
 //
-//  XCategory.h
+//   XTool.h
 //  只允许静态方法暴露, 不允许维护状态
  
 
-@interface XCategotryError : NSObject
+@interface  XToolError : NSObject
 // iOS更优雅的NSError的处理流程, 能够记住每一层的 NSError
 // https://www.jianshu.com/p/2e9081da0391
 + (NSError *) wrapper:(NSError *)error  underlyingError:(NSError *) underlyingError;
 @end
 
 
-@interface XCategotryAlert: NSObject
+@interface  XToolAlert: NSObject
 + (void)alert:(NSString *)message;
 
 
@@ -18,7 +18,7 @@
 
 
 
-@interface XCategotryImage: NSObject
+@interface  XToolImage: NSObject
 
 
 /// 尽量按高质量压缩图片到你要的结果

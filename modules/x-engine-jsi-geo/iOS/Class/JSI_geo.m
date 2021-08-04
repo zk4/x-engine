@@ -24,17 +24,21 @@ JSI_MODULE(JSI_geo)
 - (void)_locate:(void (^)(LocationDTO *, BOOL))completionHandler {
  
     [self.gaodegeo geoSinglePositionResult:^(NSDictionary *reDic) {
-        LocationDTO *dto = [[LocationDTO alloc] init];
- 
-        dto.longitude = reDic[@"longitude"];
-        dto.latitude = reDic[@"latitude"];
-        dto.address = reDic[@"formattedAddress"];
-        dto.country = reDic[@"country"];
-        dto.province = reDic[@"province"];
-        dto.city = reDic[@"city"];
-        dto.district = reDic[@"district"];
-        dto.street = reDic[@"street"];
-        completionHandler(dto,YES);
+        if (reDic == nil) {
+            completionHandler(NULL,YES);
+        }else{
+            LocationDTO *dto = [[LocationDTO alloc] init];
+     
+            dto.longitude = reDic[@"longitude"];
+            dto.latitude = reDic[@"latitude"];
+            dto.address = reDic[@"formattedAddress"];
+            dto.country = reDic[@"country"];
+            dto.province = reDic[@"province"];
+            dto.city = reDic[@"city"];
+            dto.district = reDic[@"district"];
+            dto.street = reDic[@"street"];
+            completionHandler(dto,YES);
+        }
     }];
 }
 

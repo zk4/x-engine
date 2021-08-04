@@ -10,7 +10,9 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "iStore.h"
-#import "GlobalState.h"
+#import "Unity.h"
+#import "UIViewController+Tag.h"
+#import "HistoryModel.h"
 
 
 @interface JSI_localstorage()
@@ -27,7 +29,7 @@ JSI_MODULE(JSI_localstorage)
 
 - (NSString *) genkey:(NSString*) key{
      assert(key!=nil);
-     HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+    HistoryModel* hm= [[Unity sharedInstance].getCurrentVC getLastHistory];
      assert(hm!=nil);
      return  [NSString stringWithFormat:@"%@%@:%@", hm.host?hm.host:@"",hm.pathname?hm.pathname:@"", key];
 }

@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XENativeModule.h"
-#import "iWebcache.h"
+#import <x-engine-native-protocols/iWebcache.h>
 NS_ASSUME_NONNULL_BEGIN
 @interface Native_webcache : XENativeModule <iWebcache>
  

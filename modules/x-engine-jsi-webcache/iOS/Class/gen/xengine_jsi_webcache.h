@@ -6,22 +6,15 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol NamedDTO;
-@class NamedDTO;
 
-@interface NamedDTO: JSONModel
-  	@property(nonatomic,copy) NSString* title;
-   	@property(nonatomic,assign) NSInteger titleSize;
-@end
-    
+
+
 
 
 @protocol xengine_jsi_webcache_protocol
        @required 
-       - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
-       @required 
-       - (void) _simpleMethod;
-    
+        - (void) _xhrRequest:(NSDictionary*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
 @end
   
 

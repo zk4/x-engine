@@ -4,36 +4,36 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "XENativeContext.h"
-#import "iDirect.h"
-#import "iScan.h"
-
+#import "iDirect_native.h"
+#import "Native_direct_native.h"
 @interface iOSTests : XCTestCase
-@property(nonatomic,strong) id<iDirect> nativeDirect;
-@property (nonatomic, strong) id<iScan>  nativeScan;
-
+@property(nonatomic,strong) id<iDirect_native> direct_native;
 @end
 
 @implementation iOSTests
 
 - (void)setUp {
-    __weak typeof(self) weakSelf = self;
-    _nativeScan = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iScan)];
-    _nativeDirect = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirect)];
-    [_nativeDirect registerURLPattern:@"/scan/scan" openNativeActive:^(NSDictionary *routerParameters){
-        XCTAssertNotNil(routerParameters);
-        weakSelf.nativeScan = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iScan)];
-        [weakSelf.nativeScan openScanView:^(NSString *res) {
-            NSLog(@"扫码结果 %@",res);
-        }];
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+    _direct_native = [Native_direct_native new];
+}
+
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+}
+
+- (void)testExample {
+    NSURL* url =[NSURL URLWithString:@"http://192.1.6.1.:8000/index.html"];
+    if ([[url path] length] > 0 && ![[url absoluteString] hasSuffix:@"/"]) {
+        url = [url URLByAppendingPathComponent:@""];
+    }
+    NSLog(@"%@",url);
+}
+
+- (void)testPerformanceExample {
+    // This is an example of a performance test case.
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
     }];
 }
-///实质是测UI(待定)
-- (void)testScanRuterJump {
-    [self.nativeDirect push:@"" host:@"" pathname:@"/scan/scan" fragment:@"" query:@"" params:@{@"key":@"value"}];
-}
-
-
-
 
 @end

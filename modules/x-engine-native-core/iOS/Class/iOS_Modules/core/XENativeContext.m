@@ -8,6 +8,9 @@
 #import "XENativeContext.h"
 #import "XENativeModule.h"
 #import <objc/message.h>
+static const int __XENGINE_VERSION_BIG__  = 2;
+static const int __XENGINE_VERSION_MID__  = 3;
+static const int __XENGINE_VERSION_SMALL__  = 0;
 
 @interface XENativeContext ()
 // 维护通过 load 注册过来的 class
@@ -24,8 +27,13 @@
 
 @implementation XENativeContext
 + (void) showEngineVersion{
-    NSLog(@"x-engine version: 2.0.0");
+    NSString* msg = [NSString stringWithFormat:@"x-engine version: %d.%d.%d",__XENGINE_VERSION_BIG__,__XENGINE_VERSION_MID__,__XENGINE_VERSION_SMALL__];
+    NSLog(@"%@",msg);
 }
+- (long) getVersion{
+  return __XENGINE_VERSION_BIG__*10000 + __XENGINE_VERSION_MID__*100 + __XENGINE_VERSION_SMALL__;
+}
+
 + (void)load {
     [XENativeContext showEngineVersion];
     
@@ -54,6 +62,8 @@
     });
     return sharedInstance;
 }
+
+
 
 - (void)start {
     printf("%s\n","---必须保证 Native 模块首先初始化。--- start");

@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-direct",
-  "version": "2.0.3",
+  "version": "2.8.1",
   "description": "direct",
   "main": "h5/src/index.js",
   "license": "MIT",

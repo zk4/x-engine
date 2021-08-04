@@ -24,6 +24,25 @@
 }
 - (void)afterAllJSIModuleInited {
 }
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+    
+}
 
 - (void)showErrorAlert:(NSString *)errorString
 {
@@ -35,8 +54,12 @@
 
 
 - (id)convert:(NSDictionary *)param clazz:(Class)clazz {
+    // 目标格式是字典不做转换
+    if(clazz && [NSDictionary.class isEqual:clazz])
+        return param;
     NSError *err;
     id dto = [clazz class];
+
     if([param isKindOfClass:NSString.class]){
         return param;
     }
@@ -95,10 +118,10 @@
     // 遍历 dest 的 key
     for(NSString* destKey in [dest allKeys]){
         id value = [dest objectForKey:destKey];
-
+        
         // default 里没有的相同 key
         if(![[dv allKeys] containsObject:destKey]){
-                value = dest[destKey];
+            value = dest[destKey];
         }
         // default 里有相同的 key
         else {
@@ -110,7 +133,7 @@
                 value = [self merge:dest[destKey] defaultDict:dv[destKey]];
             }
             else{
-            //  其他,使用 dest
+                //  其他,使用 dest
                 value = dest[destKey];
             }
         }

@@ -16,15 +16,9 @@
   import com.zkty.nativ.core.annotation.Optional;
 
   
-  class NamedDTO {
-    public String title;
-
-    public Integer titleSize;
-  }
   
   interface xengine_jsi_webcache_protocol {
-    public void _simpleMethod(final CompletionHandler<Nullable> handler);
-public void _simpleMethod();
+    public void _xhrRequest(Map dto, final CompletionHandler<String> handler);
   }
   
   
@@ -35,24 +29,18 @@ public void _simpleMethod();
     }
   
     @JavascriptInterface
-    final public void simpleMethod(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _simpleMethod(new CompletionHandler<Nullable>() {
+    final public void xhrRequest(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      Map dto= convert(jsonobj,Map.class);
+      _xhrRequest(dto, new CompletionHandler<String>() {
         @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
+        public void complete(String retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+        public void setProgressData(String value) { handler.setProgressData(value); }
       });
 
     }
-        @JavascriptInterface
-        public Object simpleMethod(JSONObject jsonobj) {
-          
-          _simpleMethod();
-          return null;
-        }
-        
   }
   
 

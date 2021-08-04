@@ -4,18 +4,17 @@
 //
 
 
+#import <WebKit/WebKit.h>
+#import <UIKit/UIKit.h>
 #import "Native_webcache.h"
 #import "XENativeContext.h"
-#import "micros.h"
-#import "NSURLProtocol+WebKitSupport.h"
-//#import "ReplacingImageURLProtocol.h"
-#import "MyURLProtocol.h"
+#import "SLWebCacheManager.h"
 
-#import <UIKit/UIKit.h>
 
 
 @interface Native_webcache()
-{ }
+@property (nonatomic, strong)     SLWebCacheManager *cacheManager;
+
 @end
 
 @implementation Native_webcache
@@ -30,28 +29,52 @@ NATIVE_MODULE(Native_webcache)
 }
 
 - (void)afterAllNativeModuleInited{
+    self.cacheManager =[SLWebCacheManager shareInstance];
 } 
 - (instancetype)init {
     self = [super init];
-    if (self) {
- 
- 
-        [[NSNotificationCenter defaultCenter]
-         addObserverForName:UIApplicationDidFinishLaunchingNotification
-         object:nil
-         queue:nil
-         usingBlock:^(NSNotification *note) {
-            [NSURLProtocol registerClass:[MyURLProtocol class]];
-            for (NSString* scheme in @[@"http", @"https"]) {
-                    [NSURLProtocol wk_registerScheme:scheme];
-            }
-        }];
-
-
-    }
+    if (self) {}
     
     return self;
 }
+
+ 
+- (void)enableXHRIntercept:(WKWebView*)webview {
+
+    NSString *ajaxhookjs = [[NSBundle mainBundle] pathForResource:@"ajaxhook" ofType:@"js"];
+    NSString *ajaxhookjs_content = [NSString stringWithContentsOfFile:ajaxhookjs encoding:NSUTF8StringEncoding error:nil];
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:ajaxhookjs_content injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+    [webview.configuration.userContentController addUserScript:script];
+
+}
+
+- (void)disableCache {
+    self.cacheManager.isUsingURLProtocol = YES;
+    [self.cacheManager closeCache];
+}
+
+
+- (void)enableCache {
+    [self.cacheManager openCache];
+}
+
+- (void)clearCache {
+    [self.cacheManager clearCache];
+}
+
+- (NSUInteger)cacheSize {
+    return [self.cacheManager folderSize];
+}
+
+- (void)addWhiteHost:(NSString*)host;{
+    [self.cacheManager addWhiteHost:host];
+}
+
+- (void)addBlackHost:(NSString*)host{
+    [self.cacheManager addBlackHost:host];
+}
+
+
 
 @end
  

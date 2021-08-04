@@ -9,7 +9,6 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "XENativeContext.h"
-#import "GlobalState.h"
 #import "iSecurify.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
@@ -274,14 +273,24 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         }
     });
 }
+//字典转json格式字符串:
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+   
 
 -(id) convertDict:(id) obj {
     SEL selector = NSSelectorFromString(@"toDictionary");
     if([obj respondsToSelector:selector]){
         id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
         return   action(obj, selector);
-    }else {
-        return [NSString stringWithFormat:@"%@",obj ];
+    }else if ([obj isKindOfClass:NSDictionary.class]){
+        return [self dictionaryToJson:obj ];
+    }else{
+        return [NSString stringWithFormat:@"%@",obj];
     }
 }
 
@@ -733,12 +742,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     label.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1.0];
     label.textAlignment = NSTextAlignmentCenter;
     [view addSubview:label];
-    
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    panGesture.delegate = self;
-    [view addGestureRecognizer:panGesture];
-    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.delegate = self;
+     
     [self addSubview:view];
 }
 

@@ -35,8 +35,8 @@
     
     id<iOffline>offline = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iOffline)];
     
-    [offline offlinePackageWithUrl: @"https://www.letonglexue.com/api/test/getTestList"];
-    
+//    [offline offlinePackageWithUrl: @"https://www.letonglexue.com/api/test/getTestList"];
+    [offline offlinePackageWithUrl: @"http://127.0.0.1:9527/data.json"];
     return YES;
 }
 @end

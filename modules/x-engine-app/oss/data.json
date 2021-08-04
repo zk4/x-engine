@@ -1,27 +1,27 @@
 {
     "data": [
         {
-            "downloadUrl": "http://letonglexue.com/upload/hll/com.gm.microapp.home.1.zip",
+            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.home.1.zip",
             "id": 0,
             "isForce": false,
             "name": "com.gm.microapp.home",
             "version": 1
         },
         {
-            "downloadUrl": "http://letonglexue.com/upload/hll/com.gm.microapp.mall.1.zip",
+            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.mall.1.zip",
             "id": 0,
             "isForce": false,
             "name": "com.gm.microapp.home",
             "version": 1
         },
         {
-            "downloadUrl": "http://letonglexue.com/upload/hll/com.gm.microapp.mine.1.zip",
+            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.mine.1.zip",
             "id": 0,
             "isForce": false,
             "name": "com.gm.microapp.home",
             "version": 1
         }
     ],
-    "msg" = "",
-    "status": 0
+    "msg" : "",
+    "code" : 200
 }

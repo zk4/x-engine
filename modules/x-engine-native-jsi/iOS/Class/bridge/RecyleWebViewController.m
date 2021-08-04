@@ -56,22 +56,12 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 }
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
                     withHiddenNavBar:(BOOL)isHidden
-                                
 {
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
             return self;
      
-//        {
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        btn.frame = CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 44);
-//        btn.backgroundColor = [UIColor systemPinkColor];
-//        [btn setTitle:@"refresh" forState:UIControlStateNormal];
-//            [btn addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
-//
-//        [self.view addSubview:btn];
-//        }
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;

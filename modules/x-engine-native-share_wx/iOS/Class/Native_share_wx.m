@@ -10,6 +10,7 @@
 #import "XENativeContext.h"
 #import "WXApi.h"//微信分享
 #import "Unity.h"
+#import <XCategotry.h>
 
 @interface Native_share_wx()<WXApiDelegate>
 { }
@@ -45,47 +46,7 @@ NATIVE_MODULE(Native_share_wx)
     return @[@"wx_friend",@"wx_zone",@"miniProgram",@"link",@"img"];
 }
 
-
-// 压缩图片
-- (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(float)size withQuality:(float)q{
-    CGFloat compression ;
-   
-        compression = q;
-    
-    NSData *data = UIImageJPEGRepresentation(image, compression);
-    
-        if (data.length/1024 < size) return data;
-        CGFloat max = 1;
-        CGFloat min = 0;
-        for (int i = 0; i < 6; ++i) {
-            compression = (max + min) / 2;
-            data = UIImageJPEGRepresentation(image, compression);
-            if (data.length/1024 < size * 0.9) {
-                min = compression;
-            } else if (data.length/1024 > size) {
-                max = compression;
-            } else {
-                break;
-            }
-        }
-        UIImage *resultImage = [UIImage imageWithData:data];
-        if (data.length/1024 < size) return data;
-        
-        NSUInteger lastDataLength = 0;
-        while (data.length/1024 > size && data.length/1024 != lastDataLength) {
-            lastDataLength = data.length /1024;
-            CGFloat ratio = size / data.length/1024;
-            CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
-                                     (NSUInteger)(resultImage.size.height * sqrtf(ratio)));
-            UIGraphicsBeginImageContext(size);
-            [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-            resultImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            data = UIImageJPEGRepresentation(resultImage, compression);
-        }
-    
-    return data;
-}
+ 
 
 - (NSData*) shrinkSizeForKB:(float) kb imgData:(NSString*)imgData{
     NSData *binaryData;
@@ -93,7 +54,8 @@ NATIVE_MODULE(Native_share_wx)
         if ([imgData hasPrefix:@"http:"] || [imgData hasPrefix:@"https:"]){
             
             UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgData]]];
-            binaryData = [self compressOriginalImage:desImage toMaxDataSizeKBytes:kb withQuality:1];
+            binaryData = [XCategotryImage compressImage:desImage toMaxDataSizeKBytes:kb miniQuality:1];
+
 
         }else{
             binaryData = [[NSData alloc] initWithBase64EncodedString:imgData options:NSDataBase64DecodingIgnoreUnknownCharacters];
@@ -104,38 +66,15 @@ NATIVE_MODULE(Native_share_wx)
     }else{
 #ifdef DEBUG
         NSString* message =@"imgData 不存在";
-        [self alert:message];
+        [XCategotryAlert alert:message];
 #endif
         return nil;
     }
     return binaryData;
     
 }
-- (void)alert:(NSString *)message {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
-    [alert addAction:enter];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-}
-
-- (NSData *)thumbnail_64kbData:(NSString *)imgurl {
-    if(!imgurl){
-        NSString* message =@"img 不存在";
-        [self alert:message];
-        return nil;
-    }
-    UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgurl]]];
-    NSData*  thumbData = [self compressOriginalImage:desImage toMaxDataSizeKBytes:63.0 withQuality:1];
-    return thumbData;
-  
-}
-
-- (UIImage *)thumbnail_64kb:(NSString *)imgurl {
-    NSData* data = [self thumbnail_64kbData:imgurl];
-    UIImage*  thumbImg = [[UIImage alloc] initWithData:data];
-    return thumbImg;
-}
-
+ 
+ 
 - (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(BOOL complete)) completionHandler {
     
     WXMediaMessage *message = [WXMediaMessage message];
@@ -163,7 +102,7 @@ NATIVE_MODULE(Native_share_wx)
             message.title = info[@"title"];
             message.description = info[@"desc"];
             NSString* imgurl = info[@"imgUrl"];
-            UIImage * thumbImg = [self thumbnail_64kb:imgurl];
+            UIImage * thumbImg = [XCategotryImage thumbnail_64kb:imgurl];
             
             //  大小不能超过64K
             [message setThumbImage:thumbImg];
@@ -173,7 +112,7 @@ NATIVE_MODULE(Native_share_wx)
         }
         if ([type isEqualToString:@"miniProgram"]) {
             WXMiniProgramObject *object = [WXMiniProgramObject object];
-            /// TODO: 应该是取link 的值
+            
             id link = [info objectForKey:@"link"];
             if([link isKindOfClass:NSString.class] )
             {
@@ -193,7 +132,7 @@ NATIVE_MODULE(Native_share_wx)
             message.title = info[@"title"];
             message.description = info[@"desc"];
             NSString* imgurl = info[@"imgUrl"];
-            NSData * thumbData = [self thumbnail_64kbData:imgurl];
+            NSData * thumbData = [XCategotryImage thumbnail_64kbData:imgurl];
             message.thumbData = thumbData;
             message.mediaObject = object;
             req.message = message;

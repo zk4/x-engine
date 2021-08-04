@@ -20,7 +20,7 @@
     id<iShare> sharewx= XENP(iShare);
 //    [sharewx shareWithType:@"miniProgram" channel:@"wx_friend" posterInfo:
 //     @{
-//         @"imgData" : @"https://res.wx.qq.com/op_res/jck8iqKH85F0BaUWOT3GsSNmuGiOajiC-0bUWehibxED9c4JCauEun6UAZFh3HdO",
+//         @"imgData" : @"https://pic1.zhimg.com/80/v2-3c49d29ca5d8a19baaf6ccb498309ea0_1440w.jpg",
 //         @"userName" : @"gh_bf12178b86e9",
 //         @"title" : @"给您分享了【测试商品不发货勿拍】摩飞榨汁机",
 //         @"link" : @1,
@@ -30,10 +30,10 @@
 //       } complete:^(BOOL complete) {
 //        NSLog(@"");
 //    }];
-//
+
     [sharewx shareWithType:@"img" channel:@"wx_zone" posterInfo:
      @{
-//         @"imgData" : @"https://res.wx.qq.com/op_res/jck8iqKH85F0BaUWOT3GsSNmuGiOajiC-0bUWehibxED9c4JCauEun6UAZFh3HdO",
+         @"imgData" : @"https://pic1.zhimg.com/80/v2-3c49d29ca5d8a19baaf6ccb498309ea0_1440w.jpg",
          @"userName" : @"gh_bf12178b86e9",
          @"title" : @"给您分享了【测试商品不发货勿拍】摩飞榨汁机",
          @"link" : @1,

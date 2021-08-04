@@ -120,7 +120,6 @@ PODS:
   - x-engine-native-webcache (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
-    - YYCache
   - YYCache (1.0.4)
   - ZBarSDK (1.5.2)
 
@@ -156,6 +155,7 @@ DEPENDENCIES:
   - x-engine-native-tabbar (from `../../x-engine-native-tabbar`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
   - x-engine-native-webcache (from `../../x-engine-native-webcache`)
+  - YYCache
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
@@ -259,7 +259,7 @@ SPEC CHECKSUMS:
   x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
-  x-engine-native-webcache: 3b1fe4498b704f70bf45ad82e34fdf4863ca1a69
+  x-engine-native-webcache: 06ea0dfdcfd2a88577643b4844ba5129d5190323
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 

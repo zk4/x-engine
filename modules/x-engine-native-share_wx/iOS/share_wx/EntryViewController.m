@@ -33,7 +33,7 @@
 //
     [sharewx shareWithType:@"img" channel:@"wx_zone" posterInfo:
      @{
-         @"imgData" : @"https://res.wx.qq.com/op_res/jck8iqKH85F0BaUWOT3GsSNmuGiOajiC-0bUWehibxED9c4JCauEun6UAZFh3HdO",
+//         @"imgData" : @"https://res.wx.qq.com/op_res/jck8iqKH85F0BaUWOT3GsSNmuGiOajiC-0bUWehibxED9c4JCauEun6UAZFh3HdO",
          @"userName" : @"gh_bf12178b86e9",
          @"title" : @"给您分享了【测试商品不发货勿拍】摩飞榨汁机",
          @"link" : @1,

@@ -103,14 +103,27 @@ NATIVE_MODULE(Native_share_wx)
         }
     }else{
 #ifdef DEBUG
-        @throw  [NSException exceptionWithName:@"为何没有 imgData 数据,是 url 或者 base64" reason:nil  userInfo:nil];
+        NSString* message =@"imgData 不存在";
+        [self alert:message];
 #endif
-        return [NSData new];
+        return nil;
     }
     return binaryData;
     
 }
+- (void)alert:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+    [alert addAction:enter];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
 - (NSData *)thumbnail_64kbData:(NSString *)imgurl {
+    if(!imgurl){
+        NSString* message =@"img 不存在";
+        [self alert:message];
+        return nil;
+    }
     UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgurl]]];
     NSData*  thumbData = [self compressOriginalImage:desImage toMaxDataSizeKBytes:63.0 withQuality:1];
     return thumbData;
@@ -130,7 +143,6 @@ NATIVE_MODULE(Native_share_wx)
     req.bText = NO;
     
  
-    NSString *imgDatastr =[info objectForKey:@"imgData"];
   
     if ([channel isEqualToString:@"wx_friend"]) {
         if ([type isEqualToString:@"img"]) {
@@ -139,6 +151,7 @@ NATIVE_MODULE(Native_share_wx)
            // 大小不能超过25M
           
             WXImageObject *ext = [WXImageObject object];
+            NSString *imgDatastr =[info objectForKey:@"imgData"];
             ext.imageData = [self shrinkSizeForKB:24000 imgData:imgDatastr];
             message.mediaObject = ext;
             req.message = message;
@@ -172,6 +185,7 @@ NATIVE_MODULE(Native_share_wx)
             }
             object.userName = info[@"userName"];
             object.path = info[@"path"];
+            NSString *imgDatastr =[info objectForKey:@"imgData"];
             // 大小不能超过128k
             object.hdImageData = [self shrinkSizeForKB:127 imgData:imgDatastr];
             object.withShareTicket = YES;
@@ -190,6 +204,7 @@ NATIVE_MODULE(Native_share_wx)
     if ([channel isEqualToString:@"wx_zone"]) {
         if ([type isEqualToString:@"img"]) {
             WXImageObject *ext = [WXImageObject object];
+            NSString *imgDatastr =[info objectForKey:@"imgData"];
             ext.imageData = [self shrinkSizeForKB:24000 imgData:imgDatastr];
             message.mediaObject = ext;
             req.message = message;

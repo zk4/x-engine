@@ -248,10 +248,10 @@
 			params.header = this.omtHeaders;
 
 			var url = this.omtOpenArg[1];
-			var location = window.location;
-			if (location.protocol !== "file:" && !url.startsWith(location.protocol)) {
-				url = location.origin + url;
-			}
+//			var location = window.location;
+////			if (location.protocol !== "file:" && !url.startsWith(location.protocol)) {
+//				url = location.origin + url;
+//            }
 			params.url = url;
 
 			let that = this;

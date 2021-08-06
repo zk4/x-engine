@@ -13,7 +13,8 @@ typedef void (^xScanBlock)(NSString *);
 @interface Native_hms_scan()
  
     @property ( nonatomic) xScanBlock block;
- 
+@property (nonatomic, strong) HmsDefaultScanViewController * hms_vc;
+
 @end
 
 @implementation Native_hms_scan
@@ -28,21 +29,22 @@ NATIVE_MODULE(Native_hms_scan)
 }
 
 - (void)afterAllNativeModuleInited{
+    
 } 
  
 - (void)openScanView:(void (^)(NSString *))completionHandler {
     // 初始化HmsDefaultScanViewController，实现代理。
     // "QR_CODE | DATA_MATRIX"表示只扫描QR和DataMatrix的码
     HmsScanOptions *options = [[HmsScanOptions alloc] initWithScanFormatType:QR_CODE | DATA_MATRIX Photo:FALSE];
-    HmsDefaultScanViewController *hmsDefaultScanViewController = [[HmsDefaultScanViewController alloc] initDefaultScanWithFormatType:options];
-    
-    hmsDefaultScanViewController.defaultScanDelegate = self;
-    [[Unity sharedInstance].getCurrentVC.view addSubview:hmsDefaultScanViewController.view];
-    [[Unity sharedInstance].getCurrentVC addChildViewController:hmsDefaultScanViewController];
-    [[Unity sharedInstance].getCurrentVC didMoveToParentViewController:hmsDefaultScanViewController];
+    HmsDefaultScanViewController* hms_vc = [[HmsDefaultScanViewController alloc] initDefaultScanWithFormatType:options];
+//    全屏
+//    hms_vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    hms_vc.defaultScanDelegate = self;
+    [[Unity sharedInstance].getCurrentVC presentViewController:hms_vc animated:YES completion:^{
+        
+    }];
  
    // 隐藏导航栏。
-    [Unity sharedInstance].getCurrentVC.navigationController.navigationBarHidden = YES;
     self.block = completionHandler;
 }
 /*DefaultScan Delegate
@@ -51,6 +53,8 @@ NATIVE_MODULE(Native_hms_scan)
 - (void)defaultScanDelegateForDicResult:(NSDictionary *)resultDic{
     NSString* jsonStr=  resultDic[@"text"];
     self.block(jsonStr?jsonStr:@"");
+  
+
 }
 
 /*DefaultScan Delegate

@@ -36,6 +36,7 @@ JSI_MODULE(JSI_webcache)
 
 
 - (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSString*,BOOL))completionHandler {
+    NSLog(@"%@", dict);
     // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
     NSDictionary* headers = dict[@"header"];
     NSString *url = dict[@"url"];
@@ -63,13 +64,34 @@ JSI_MODULE(JSI_webcache)
     request.allHTTPHeaderFields = [self makeSafeHeaders:headers];
     
     // post 有可能没有 body
+    
     if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
         if([dict[@"data"] isKindOfClass:NSString.class]){
             request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
         }
     }
     
+    
+    if(dict[@"headers"] )
+    
+    
+//    if ([dict[@"data"] objectForKey:@"@file"]) {
+//        NSMutableData* requestMutableData = [NSMutableData data];
+//        NSMutableString* myString = [NSMutableString stringWithFormat:@"--%@\r\n",dict[@"data"][@"file"]];
+//        [myString appendString:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", dict[@"data"][@"file"]];
+//        [myString appendString:[NSString stringWithFormat:@"\r\n--%@\r\n",dict[@"data"][@"file"]]];
+//        [myString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",dict[@"data"][@"file"]]];
+//        [myString appendString:@"Content-Type: image/jpeg\r\n\r\n"];
+//        [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
+//        [requestMutableData appendData:imageData];
+//        [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",dict[@"data"][@"file"]] dataUsingEncoding:NSUTF8StringEncoding] ];
+//        request.HTTPBody = requestMutableData;
+//    }
+
+    
+
     NSLog(@"methods==>%@\n URL==>%@\n Body==>%@",request.HTTPMethod, request.URL, request.HTTPBody);
+    
     
     __weak typeof(self) weakSelf = self;
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc] init]];
@@ -93,6 +115,48 @@ JSI_MODULE(JSI_webcache)
     }];
     [sessionTask resume];
 }
+
+//- (NSURLRequest *)POSTImage:(NSString *)URLString data:(NSData *)imageData name:(NSString*)name finish:(RequestFinish)finish{
+//    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+//    [request setHTTPMethod:@"POST"];
+//    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
+//    [request setTimeoutInterval:20];
+//    NSString* headerString = [NSString stringWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@",UploadImageBoundary];
+//    [request setValue:headerString forHTTPHeaderField:@"Content-Type"];
+    
+//    NSMutableData* requestMutableData = [NSMutableData data];
+//    NSMutableString* myString = [NSMutableString stringWithFormat:@"--%@\r\n",UploadImageBoundary];
+//    [myString appendString:@"Content-Disposition: form-data; name=\"appid\"\r\n\r\n"];/*这里要打两个回车*/
+//    [myString appendString:@"100118"];
+//    [myString appendString:[NSString stringWithFormat:@"\r\n--%@\r\n",UploadImageBoundary]];
+//    [myString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",name]];
+//    [myString appendString:@"Content-Type: image/jpeg\r\n\r\n"];
+//    /*转化为二进制数据*/
+//    [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
+    /*文件数据部分，也是二进制*/
+//    [requestMutableData appendData:imageData];
+    /*已--boundary结尾表明结束*/
+//    [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",UploadImageBoundary] dataUsingEncoding:NSUTF8StringEncoding] ];
+    
+//    request.HTTPBody = requestMutableData;
+    
+    
+    /*开始上传*/
+//    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    sessionConfig.timeoutIntervalForRequest = 20;
+//    NSURLSession* session  = [NSURLSession sessionWithConfiguration:sessionConfig
+//                                                        delegate:self
+//                                                   delegateQueue:nil];
+//
+//    NSURLSessionDataTask * uploadtask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//        if (finish) {
+//            finish(nil,dictionary,error);
+//        }
+//    }];
+//    [uploadtask resume];
+//    return request;
+//}
 
 //字典转json格式字符串:
 - (NSString*)dictionaryToJson:(NSDictionary *)dic {

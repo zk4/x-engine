@@ -240,7 +240,8 @@
 		open: function (arg, xhr) {
 			this.omtOpenArg = arg;
 		},
-		send: async function (arg, xhr) {
+		send: function (arg, xhr) {
+            console.log('arg=>: ', arg);
 			this.isAborted = false;
 			var params = {};
 			params.data = arg[0];
@@ -258,9 +259,9 @@
 
 			// TODO: 处理 formdata, 应该返回 promise
 			if (FormData.prototype.isPrototypeOf(params.data)) {
-				await formData2Json(params, params.data)
+				 formData2Json(params, params.data)
 			}
-			console.log('params: ', params);
+			console.log('params=>: ', params);
 			// 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
 			return nativeRequest(that, params);
 		},

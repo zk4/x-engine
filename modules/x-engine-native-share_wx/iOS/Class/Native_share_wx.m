@@ -28,12 +28,8 @@ NATIVE_MODULE(Native_share_wx)
 }
 
 - (void)afterAllNativeModuleInited{
-    [WXApi startLogByLevel:WXLogLevelDetail logBlock:^(NSString * _Nonnull log) {
-        
-    }];
 }
  
-
 - (NSString * _Nullable)getIconUrl {
     return  @"";
 }
@@ -52,7 +48,6 @@ NATIVE_MODULE(Native_share_wx)
     NSData *binaryData;
     if (imgData.length>0) {
         if ([imgData hasPrefix:@"http:"] || [imgData hasPrefix:@"https:"]){
-            
             UIImage *desImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgData]]];
             binaryData = [XToolImage compressImage:desImage toMaxDataSizeKBytes:kb miniQuality:1];
 
@@ -80,8 +75,6 @@ NATIVE_MODULE(Native_share_wx)
     WXMediaMessage *message = [WXMediaMessage message];
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
-    
- 
   
     if ([channel isEqualToString:@"wx_friend"]) {
         if ([type isEqualToString:@"img"]) {

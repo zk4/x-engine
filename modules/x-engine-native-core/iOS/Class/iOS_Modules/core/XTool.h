@@ -18,8 +18,8 @@
 
 
 
-@interface  XToolImage: NSObject
 
+@interface  XToolImage: NSObject
 
 /// 尽量按高质量压缩图片到你要的结果
 /// @param image 源图片
@@ -33,4 +33,12 @@
 
 + (UIImage *)thumbnail_64kb:(NSString *)imgurl;
 
+@end
+
+
+@interface  XToolDataConverter: NSObject
+
+/// 转换 dictionary 为 json 字符串
+/// @param dic 
++ (NSString*)dictionaryToJson:(NSDictionary *)dic;
 @end

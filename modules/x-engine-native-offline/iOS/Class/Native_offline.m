@@ -51,6 +51,8 @@ NATIVE_MODULE(Native_offline)
  */
 - (void)afterAllNativeModuleInited {
     NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
+    NSLog(@"packageInfoPath==>%@", packageInfoPath);
+    
     if(![[NSFileManager defaultManager] fileExistsAtPath:packageInfoPath]) {
         [self saveProjectMicroappInfo:[self getRootPackageJsonInfo]];
     } else {
@@ -124,7 +126,7 @@ NATIVE_MODULE(Native_offline)
     for (NSDictionary *localDict in localMicroappInfoArray) {
         if ([localDict[@"name"] isEqualToString:newMicroappName]) {
             if (newVersion > [localDict[@"version"] intValue]) {
-                //                NSLog(@"%@、需要下载", newMicroappInfoDict[@"name"]);
+                NSLog(@"%@、需要下载", newMicroappInfoDict[@"name"]);
                 // 保存传入的下载microappInfo 为之后 更新本地microapp.json用
                 _saveDownloadInfo = newMicroappInfoDict;
                 if (block) {
@@ -134,7 +136,7 @@ NATIVE_MODULE(Native_offline)
                 if (block) {
                     block(NO, newMicroappInfoDict);
                 }
-                //                NSLog(@"%@、不需要下载", newMicroappInfoDict[@"name"]);
+                NSLog(@"%@、不需要下载", newMicroappInfoDict[@"name"]);
             }
         }
     }
@@ -164,7 +166,7 @@ NATIVE_MODULE(Native_offline)
  * bytesWritten: 这次写入多少
  */
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-    NSLog(@"--------%f", 1.0 * totalBytesWritten / totalBytesExpectedToWrite);
+    NSLog(@"下载进度==>\n%f", 1.0 * totalBytesWritten / totalBytesExpectedToWrite);
 }
 
 // 下载完毕就会调用一次这个方法
@@ -236,18 +238,18 @@ NATIVE_MODULE(Native_offline)
 - (void)saveProjectMicroappInfo:(NSDictionary *)dict {
     if ([NSJSONSerialization isValidJSONObject:dict]) {
         NSString *packageInfoPath = [kDocumentPath stringByAppendingPathComponent:@"packageInfo.json"];
-        NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:packageInfoPath append:YES];
+        NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:packageInfoPath append:NO];
         [outStream open];
         NSError *error;
         NSInteger length = [NSJSONSerialization writeJSONObject:dict toStream:outStream options:NSJSONWritingPrettyPrinted error:&error];
         if (length != 0) {
             [outStream close];
-            NSLog(@"packageInfo.json写入成功");
+            NSLog(@"packageInfo.json==>写入成功%@", packageInfoPath);
         } else {
             NSLog(@"packageInfo.json==>%@", error);
         }
     } else {
-        NSLog(@"packageInfo.json无法写入");
+        NSLog(@"packageInfo.json无法写入==>(dict不可用)");
     }
 }
 
@@ -278,20 +280,20 @@ NATIVE_MODULE(Native_offline)
  * 获取微应用包地址
  * @packageName: 需要加载包名称
  */
-- (NSString *)getPackageWithPackageName:(NSString *)packageName {
-    NSArray *array = [self getProjectMicroappInfo][@"data"];
-    NSString *filePath = [NSString string];
-    for (NSDictionary *dict in array) {
-        NSString *name = [NSString stringWithFormat:@"%@", dict[@"name"]];
-        if ([name isEqualToString:packageName]) {
-            NSString *name = dict[@"name"];
-            NSString *version = [NSString stringWithFormat:@"%@", dict[@"version"]];
-            NSString *packageName = [NSString stringWithFormat:@"%@.%@", name,version];
-            filePath = [NSString stringWithFormat:@"%@/%@", kDocumentPath, packageName];
-        }
-    }
-    return filePath;
-}
+//- (NSString *)getPackageWithPackageName:(NSString *)packageName {
+//    NSArray *array = [self getProjectMicroappInfo][@"data"];
+//    NSString *filePath = [NSString string];
+//    for (NSDictionary *dict in array) {
+//        NSString *name = [NSString stringWithFormat:@"%@", dict[@"name"]];
+//        if ([name isEqualToString:packageName]) {
+//            NSString *name = dict[@"name"];
+//            NSString *version = [NSString stringWithFormat:@"%@", dict[@"version"]];
+//            NSString *packageName = [NSString stringWithFormat:@"%@.%@", name,version];
+//            filePath = [NSString stringWithFormat:@"%@/%@", kDocumentPath, packageName];
+//        }
+//    }
+//    return filePath;
+//}
 
 
 /**
@@ -299,19 +301,19 @@ NATIVE_MODULE(Native_offline)
  * 获取本地地址包地址
  * @index 传入对应索引
  */
-- (NSMutableDictionary *)getFilePathWithIndex:(int)index {
-    NSArray *array = [self getProjectMicroappInfo][@"data"];
-    NSDictionary *dict = array[index];
-    NSString *name = dict[@"name"];
-    NSString *version = [NSString stringWithFormat:@"%@", dict[@"version"]];
-    NSString *packageName = [NSString stringWithFormat:@"%@.%@", name,version];
-    NSString *documentPath= [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentPath, packageName];
-    NSMutableDictionary *localDict = [NSMutableDictionary dictionary];
-    localDict[@"name"] = name;
-    localDict[@"filePath"] = filePath;
-    return localDict;
-}
+//- (NSMutableDictionary *)getFilePathWithIndex:(int)index {
+//    NSArray *array = [self getProjectMicroappInfo][@"data"];
+//    NSDictionary *dict = array[index];
+//    NSString *name = dict[@"name"];
+//    NSString *version = [NSString stringWithFormat:@"%@", dict[@"version"]];
+//    NSString *packageName = [NSString stringWithFormat:@"%@.%@", name,version];
+//    NSString *documentPath= [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//    NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentPath, packageName];
+//    NSMutableDictionary *localDict = [NSMutableDictionary dictionary];
+//    localDict[@"name"] = name;
+//    localDict[@"filePath"] = filePath;
+//    return localDict;
+//}
 
 /**
  * 获取根目录下所有的microapp

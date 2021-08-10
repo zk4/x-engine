@@ -72,11 +72,11 @@
     NSUInteger lastDataLength = 0;
     while (data.length/1024 > size && data.length/1024 != lastDataLength) {
         lastDataLength = data.length /1024;
-        CGFloat ratio = size / data.length/1024;
-        CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
+        CGFloat ratio = size / lastDataLength;
+        CGSize nextsize = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
                                  (NSUInteger)(resultImage.size.height * sqrtf(ratio)));
-        UIGraphicsBeginImageContext(size);
-        [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        UIGraphicsBeginImageContext(nextsize);
+        [resultImage drawInRect:CGRectMake(0, 0, nextsize.width, nextsize.height)];
         resultImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         data = UIImageJPEGRepresentation(resultImage, compression);

@@ -63,39 +63,43 @@ JSI_MODULE(JSI_webcache)
     request.HTTPMethod = method;
     request.allHTTPHeaderFields = [self makeSafeHeaders:headers];
     
-    // post 有可能没有 body
     
-    if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
-        if([dict[@"data"] isKindOfClass:NSString.class]){
-            request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
+    // 如果 content-type = multipart/form-data
+    NSString *type = [NSString stringWithFormat:@"%@", dict[@"headers"][@"Content-Type"]];
+    if([type isEqualToString:@"multipart/form-data"]) {
+        NSString *boundaryString = [NSString stringWithFormat:@"%@", dict[@"data"][@"@file"][@"binary"]];
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *headerString = [NSString stringWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@",boundaryString];
+        [request setValue:headerString forHTTPHeaderField:@"Content-Type"];
+        
+        NSMutableData* requestMutableData = [NSMutableData data];
+        NSMutableString *myString = [NSMutableString stringWithFormat:@"--%@\r\n",boundaryString];
+        [myString appendString:@"Content-Disposition: form-data; name=\"appid\"\r\n\r\n"];/*这里要打两个回车*/
+        [myString appendString:[NSString stringWithFormat:@"\r\n--%@\r\n",boundaryString]];
+        [myString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",dict[@"data"][@"filename"]]];
+        [myString appendString:[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", dict[@"data"][@"filetype"]]];
+        /*转化为二进制数据*/
+        [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
+        /*文件数据部分，也是二进制*/
+        [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
+        /*已--boundary结尾表明结束*/
+        [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundaryString] dataUsingEncoding:NSUTF8StringEncoding]];
+        request.HTTPBody = requestMutableData;
+    } else {
+        // post 有可能没有 body
+        if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
+            if([dict[@"data"] isKindOfClass:NSString.class]){
+                request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
+            }
         }
     }
-    
-    
-    if(dict[@"headers"] )
-    
-    
-//    if ([dict[@"data"] objectForKey:@"@file"]) {
-//        NSMutableData* requestMutableData = [NSMutableData data];
-//        NSMutableString* myString = [NSMutableString stringWithFormat:@"--%@\r\n",dict[@"data"][@"file"]];
-//        [myString appendString:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", dict[@"data"][@"file"]];
-//        [myString appendString:[NSString stringWithFormat:@"\r\n--%@\r\n",dict[@"data"][@"file"]]];
-//        [myString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",dict[@"data"][@"file"]]];
-//        [myString appendString:@"Content-Type: image/jpeg\r\n\r\n"];
-//        [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
-//        [requestMutableData appendData:imageData];
-//        [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",dict[@"data"][@"file"]] dataUsingEncoding:NSUTF8StringEncoding] ];
-//        request.HTTPBody = requestMutableData;
-//    }
-
-    
-
     NSLog(@"methods==>%@\n URL==>%@\n Body==>%@",request.HTTPMethod, request.URL, request.HTTPBody);
-    
     
     __weak typeof(self) weakSelf = self;
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc] init]];
     NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
+        NSLog(@"%@", error);
         if (!error) {
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)r;
             NSString *statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;

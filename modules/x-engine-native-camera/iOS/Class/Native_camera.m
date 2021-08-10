@@ -155,7 +155,7 @@ NATIVE_MODULE(Native_camera)
         }
         NSMutableDictionary *ret = [NSMutableDictionary new];
         if (!self.isbase64) {
-            
+
             NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
             NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
             if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
@@ -360,35 +360,7 @@ NATIVE_MODULE(Native_camera)
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
-
-//获取当前屏幕显示的viewcontroller
-- (UIViewController *)getCurrentVC {
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
-    return currentVC;
-}
-
-- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC {
-    UIViewController *currentVC;
-    if ([rootVC presentedViewController]) {
-        // 视图是被presented出来的
-        rootVC = [rootVC presentedViewController];
-    }
-    
-    if ([rootVC isKindOfClass:[UITabBarController class]]) {
-        // 根视图为UITabBarController
-        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
-    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
-        // 根视图为UINavigationController
-        UINavigationController *nav = (UINavigationController *)rootVC;
-        currentVC = [self getCurrentVCFrom:[nav topViewController]];
-        //        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
-    } else {
-        // 根视图为非导航类
-        currentVC = rootVC;
-    }
-    return currentVC;
-}
+ 
 
 
 - (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{

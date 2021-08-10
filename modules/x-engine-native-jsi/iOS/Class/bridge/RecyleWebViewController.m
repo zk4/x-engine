@@ -81,10 +81,10 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         }
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
-        [self.webview loadUrl:self.loadUrl];
+//        [self.webview loadUrl:self.loadUrl];
+//        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL URLWithString:self.loadUrl]];
         self.webview.frame = [UIScreen mainScreen].bounds;
 
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
                                                      name:@"XEWebViewProgressChangeNotification"
@@ -113,7 +113,8 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+//     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+        [self.webview loadUrl:self.loadUrl];
     }
 }
 

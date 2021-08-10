@@ -161,12 +161,23 @@ NATIVE_MODULE(Native_offline)
 #pragma mark - <NSURLSessionDownloadDelegate>
 /**
  * 每当写入数据到临时文件时，就会调用一次这个方法
- * totalBytesExpectedToWrite:总大小
- * totalBytesWritten: 已经写入的大小
- * bytesWritten: 这次写入多少
+ * @param session          会话对象
+ * @param downloadTask       下载任务
+ * @param bytesWritten       本次写入的数据大小
+ * @param totalBytesWritten     下载的数据总大小
+ * @param totalBytesExpectedToWrite 文件的总大小
  */
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-    NSLog(@"下载进度==>\n%f", 1.0 * totalBytesWritten / totalBytesExpectedToWrite);
+    
+    //下载进度
+    double downloadProgress = totalBytesWritten / (double)totalBytesExpectedToWrite;
+    NSString *progressStr = [NSString stringWithFormat:@"%.1f", downloadProgress * 100];
+    progressStr = [progressStr stringByAppendingString:@"%"];
+    NSLog(@"progressStr==>%@", progressStr);
+    
+    
+    //下载进度
+//    NSLog(@"%f",1.0 * totalBytesWritten/totalBytesExpectedToWrite);
 }
 
 // 下载完毕就会调用一次这个方法

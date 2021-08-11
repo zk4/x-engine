@@ -440,7 +440,8 @@ public class NativeCamera extends NativeModule implements ICamera {
             cameraRetDTO.setHeight(String.valueOf(options.outHeight));
 
             if (cameraDTO.isIsbase64()) {
-                String ret = ClientManager.imageToBase64(paths.get(j));
+//                String ret = ClientManager.imageToBase64(paths.get(j));
+                String ret = ClientManager.bitmapToString(paths.get(j));
                 if (ret != null) {
                     cameraRetDTO.setRetImage(ret);
                 } else {

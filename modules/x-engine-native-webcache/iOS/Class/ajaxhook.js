@@ -249,9 +249,12 @@
 
 			var url = this.omtOpenArg[1];
 			var location = window.location;
-			if (location.protocol !== "file:" && !url.startsWith(location.protocol)) {
+            
+            // 是相对地址
+			if (url.startsWith('/')) {
 				url = location.origin + url;
 			}
+            
 			params.url = url;
 
 			let that = this;

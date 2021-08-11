@@ -3,10 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible"
-        content="IE=edge">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 
@@ -14,8 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <body>
-  <input type="file"
-         id="file"><br>
+  <input type="file" id="file"><br>
   <hr>
   <button id="onFormdata">提交 formdata</button>
   <button id="onJson">提交 json</button>
@@ -27,32 +24,34 @@
     formdata.append('file', this.files[0])
   }
 
-  onJson.onclick = function () {
-    const options = {
-      url: 'https://6108e994d71b67001763961c.mockapi.io/json/users',
-      data: { id: 1 },
-      method: 'POST',
-    }
-    axios(options).then(res => {
-      console.log('res', res)
-    })
-  }
-
   onFormdata.onclick = function () {
     formdata.append('description', '图片')
     const options = {
       url: 'https://6108e994d71b67001763961c.mockapi.io/json/upload',
       data: formdata,
       method: 'POST',
-      // headers: {
-      //   'Content-Type': 'multipart/form-data'
-      // }
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json'
+      }
     }
     axios(options).then(res => {
       console.log('res', res)
     })
   }
 
+  onJson.onclick = function () {
+    const options = {
+      url: 'https://6108e994d71b67001763961c.mockapi.io/json/users',
+      data: {
+        id: 1
+      },
+      method: 'POST',
+    }
+    axios(options).then(res => {
+      console.log('res', res)
+    })
+  }
 </script>
 
 </html>

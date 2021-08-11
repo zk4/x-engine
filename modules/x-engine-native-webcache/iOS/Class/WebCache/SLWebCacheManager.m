@@ -11,7 +11,7 @@
 #import "SLUrlCache.h"
 #import "SLUrlProtocol.h"
 #import "WKWebView+SLExtension.h"
-#import "YYCache.h"
+//#import "YYCache.h"
 
 //实现原理参考 戴明大神：https://github.com/ming1016/STMURLCache
 @interface SLWebCacheManager ()

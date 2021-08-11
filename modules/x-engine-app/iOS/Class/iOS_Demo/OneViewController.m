@@ -18,15 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [XENP(iDirectManager) addToTab:self uri:@"https://uppy.io/examples/xhrupload" params:@{@"hideNavbar":@TRUE}];
+//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8080" params:@{@"hideNavbar":@TRUE}];
     
-//    [XENP(iDirectManager) addToTab:self uri:@"http://10.2.128.71:8080" params:@{@"hideNavbar":@TRUE}];
-//
-//[XENP(iDirectManager) addToTab:self uri:@"microapp://to-find" params:@{@"hideNavbar":@TRUE}];
-//    [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
-    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8080" params:@{@"hideNavbar":@TRUE}];
-    
-//    [XENP(iDirectManager) addToTab:self uri:@"http://uat.c.gomedc.com/gm-appc-home/index.html" params:@{@"hideNavbar":@TRUE}];
+    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.71:3000/" params:@{@"hideNavbar":@TRUE}];
 
 }
 @end

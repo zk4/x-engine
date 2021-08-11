@@ -39,7 +39,7 @@ JSI_MODULE(JSI_webcache)
     NSLog(@"%@", dict);
     
     // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
-    NSDictionary* headers = dict[@"header"];
+    NSDictionary* headers = dict[@"headers"];
     NSString *url = dict[@"url"];
     NSString *method = dict[@"method"];
     
@@ -54,7 +54,6 @@ JSI_MODULE(JSI_webcache)
     
     // 仅缓存 GET, 如果有更新,则会会二次返回,
     if([_cache objectForKey:cacheKey]){
-        //&&
         NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
         completionHandler(_cache[cacheKey],TRUE);
         return;
@@ -65,21 +64,15 @@ JSI_MODULE(JSI_webcache)
     request.allHTTPHeaderFields = [self makeSafeHeaders:headers];
     
     // 如果 content-type = multipart/form-data
-    NSString *type = [NSString stringWithFormat:@"%@", dict[@"headers"][@"Content-Type"]];
-    if([type isEqualToString:@"multipart/form-data"]) {
+    NSString *type = [NSString stringWithFormat:@"%@", headers[@"Content-Type"]];
+    if([type containsString:@"multipart/form-data"]) {
         NSArray *tempArr = dict[@"data"];
-//        NSMutableString *bodyString = [NSMutableString string];
+
         NSMutableData *mutableData = [NSMutableData data];
         for (NSString *str in tempArr) {
-//            NSString *splicingStr = [self base64Dencode:str];
-//            NSLog(@"%@", splicingStr);
             NSData *data = [self base64Decode:str];
             [mutableData appendData:data];
-//            if (splicingStr.length != 0) {
-//                [bodyString appendString:splicingStr];
-//            }
         }
-//        NSLog(@"bodyString==>%@", bodyString);
         request.HTTPBody = [mutableData copy];
     } else {
         // post 有可能没有 body

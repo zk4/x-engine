@@ -1,5 +1,7 @@
 ;
 (function () {
+    const boundary
+    = '----tabrisformdataboundary-' + Math.round(Math.random() * 100000000) + '-yradnuobatadmrofsirbat';
     // blob 转 base64
     // https://github.com/niklasvh/base64-arraybuffer/blob/master/lib/base64-arraybuffer.js
     var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -119,8 +121,7 @@
 //        }
 //        params.data = object
         
-        const boundary
-        = '----tabrisformdataboundary-' + Math.round(Math.random() * 100000000) + '-yradnuobatadmrofsirbat';
+   
         const parts = [];
         for (const [name, value] of formData) {
             parts.push(`--${boundary}\r\n`);
@@ -136,7 +137,7 @@
                 parts.push(`Content-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`);
             }
         }
-        parts.push(`--${boundary}--`);
+        parts.push(`--${boundary}--\r\n`);
         const result = []
         for (let i = 0; i < parts.length; i++) {
             const item = parts[i];
@@ -319,9 +320,9 @@
         
         var url = this.omtOpenArg[1];
 //        var location = window.location;
-//        if (location.protocol !== "file:" && !url.startsWith(location.protocol)) {
-//            url = location.origin + url;
-//        }
+        if (url.startsWith("/")) {
+            url = location.origin + url;
+        }
         params.url = url;
         
         let that = this;
@@ -330,7 +331,7 @@
         if (FormData.prototype.isPrototypeOf(params.data)) {
             await formData2Json(params, params.data)
             params.headers = {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': `multipart/form-data;boundary=${boundary}`
             }
         }
         console.log('params: ', params);

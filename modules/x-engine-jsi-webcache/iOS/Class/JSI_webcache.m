@@ -37,6 +37,7 @@ JSI_MODULE(JSI_webcache)
 
 - (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSString*,BOOL))completionHandler {
     NSLog(@"%@", dict);
+    
     // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
     NSDictionary* headers = dict[@"header"];
     NSString *url = dict[@"url"];
@@ -63,29 +64,23 @@ JSI_MODULE(JSI_webcache)
     request.HTTPMethod = method;
     request.allHTTPHeaderFields = [self makeSafeHeaders:headers];
     
-    
     // 如果 content-type = multipart/form-data
     NSString *type = [NSString stringWithFormat:@"%@", dict[@"headers"][@"Content-Type"]];
     if([type isEqualToString:@"multipart/form-data"]) {
-        NSString *boundaryString = [NSString stringWithFormat:@"%@", dict[@"data"][@"@file"][@"binary"]];
-        [request setHTTPMethod:@"POST"];
-        
-        NSString *headerString = [NSString stringWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@",boundaryString];
-        [request setValue:headerString forHTTPHeaderField:@"Content-Type"];
-        
-        NSMutableData* requestMutableData = [NSMutableData data];
-        NSMutableString *myString = [NSMutableString stringWithFormat:@"--%@\r\n",boundaryString];
-        [myString appendString:@"Content-Disposition: form-data; name=\"appid\"\r\n\r\n"];/*这里要打两个回车*/
-        [myString appendString:[NSString stringWithFormat:@"\r\n--%@\r\n",boundaryString]];
-        [myString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",dict[@"data"][@"filename"]]];
-        [myString appendString:[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", dict[@"data"][@"filetype"]]];
-        /*转化为二进制数据*/
-        [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
-        /*文件数据部分，也是二进制*/
-        [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
-        /*已--boundary结尾表明结束*/
-        [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundaryString] dataUsingEncoding:NSUTF8StringEncoding]];
-        request.HTTPBody = requestMutableData;
+        NSArray *tempArr = dict[@"data"];
+//        NSMutableString *bodyString = [NSMutableString string];
+        NSMutableData *mutableData = [NSMutableData data];
+        for (NSString *str in tempArr) {
+//            NSString *splicingStr = [self base64Dencode:str];
+//            NSLog(@"%@", splicingStr);
+            NSData *data = [self base64Decode:str];
+            [mutableData appendData:data];
+//            if (splicingStr.length != 0) {
+//                [bodyString appendString:splicingStr];
+//            }
+        }
+//        NSLog(@"bodyString==>%@", bodyString);
+        request.HTTPBody = [mutableData copy];
     } else {
         // post 有可能没有 body
         if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
@@ -109,6 +104,7 @@ JSI_MODULE(JSI_webcache)
             dict[@"statusCode"] = statusCode;
             dict[@"responseText"] = responseText;
             dict[@"responseHeaders"] = headers;
+            NSLog(@"dict======>%@", dict);
             if(cacheKey) weakSelf.cache[cacheKey] = dict;
             completionHandler([self dictionaryToJson:dict],TRUE);
         } else {
@@ -177,5 +173,25 @@ JSI_MODULE(JSI_webcache)
     id obj = [dict objectForKey:key];// judge NSNull
     BOOL isNull = [obj isEqual:[NSNull null]];
     return isNull;
+}
+
+
+- (NSString *)base64Encode:(NSData *)sData{
+    if (!sData) {
+        return nil;
+    }
+//    NSData *sData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *base64Data = [sData base64EncodedDataWithOptions:0];
+    NSString *baseString = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
+    return baseString;
+}
+ 
+- (NSData *)base64Decode:(NSString *)string{
+    if (!string) {
+        return nil;
+    }
+    NSData *sData = [[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
+//    NSString *dataString = [[NSString alloc]initWithData:sData encoding:NSUTF8StringEncoding];
+    return sData;
 }
 @end

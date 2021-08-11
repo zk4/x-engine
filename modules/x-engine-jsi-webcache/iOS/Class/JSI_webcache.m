@@ -62,28 +62,18 @@ JSI_MODULE(JSI_webcache)
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     request.HTTPMethod = method;
     request.allHTTPHeaderFields = [self makeSafeHeaders:headers];
-    
-    // 如果 content-type = multipart/form-data
-    NSString *type = [NSString stringWithFormat:@"%@", headers[@"Content-Type"]];
-    if([type containsString:@"multipart/form-data"]) {
+
+    if([method isEqualToString:@"POST"]) {
         NSArray *tempArr = dict[@"data"];
 
         NSMutableData *mutableData = [NSMutableData data];
         for (NSString *str in tempArr) {
-            NSData *data = [self base64Decode:str];
+            NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
             [mutableData appendData:data];
         }
         request.HTTPBody = [mutableData copy];
-    } else {
-        // post 有可能没有 body
-        if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
-            if([dict[@"data"] isKindOfClass:NSString.class]){
-                request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
-            }
-        }
     }
-    NSLog(@"methods==>%@\n URL==>%@\n Body==>%@",request.HTTPMethod, request.URL, request.HTTPBody);
-    
+
     __weak typeof(self) weakSelf = self;
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc] init]];
     NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
@@ -108,49 +98,7 @@ JSI_MODULE(JSI_webcache)
     }];
     [sessionTask resume];
 }
-
-//- (NSURLRequest *)POSTImage:(NSString *)URLString data:(NSData *)imageData name:(NSString*)name finish:(RequestFinish)finish{
-//    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
-//    [request setHTTPMethod:@"POST"];
-//    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
-//    [request setTimeoutInterval:20];
-//    NSString* headerString = [NSString stringWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@",UploadImageBoundary];
-//    [request setValue:headerString forHTTPHeaderField:@"Content-Type"];
-    
-//    NSMutableData* requestMutableData = [NSMutableData data];
-//    NSMutableString* myString = [NSMutableString stringWithFormat:@"--%@\r\n",UploadImageBoundary];
-//    [myString appendString:@"Content-Disposition: form-data; name=\"appid\"\r\n\r\n"];/*这里要打两个回车*/
-//    [myString appendString:@"100118"];
-//    [myString appendString:[NSString stringWithFormat:@"\r\n--%@\r\n",UploadImageBoundary]];
-//    [myString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",name]];
-//    [myString appendString:@"Content-Type: image/jpeg\r\n\r\n"];
-//    /*转化为二进制数据*/
-//    [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
-    /*文件数据部分，也是二进制*/
-//    [requestMutableData appendData:imageData];
-    /*已--boundary结尾表明结束*/
-//    [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",UploadImageBoundary] dataUsingEncoding:NSUTF8StringEncoding] ];
-    
-//    request.HTTPBody = requestMutableData;
-    
-    
-    /*开始上传*/
-//    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    sessionConfig.timeoutIntervalForRequest = 20;
-//    NSURLSession* session  = [NSURLSession sessionWithConfiguration:sessionConfig
-//                                                        delegate:self
-//                                                   delegateQueue:nil];
-//
-//    NSURLSessionDataTask * uploadtask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-//        if (finish) {
-//            finish(nil,dictionary,error);
-//        }
-//    }];
-//    [uploadtask resume];
-//    return request;
-//}
-
+ 
 //字典转json格式字符串:
 - (NSString*)dictionaryToJson:(NSDictionary *)dic {
     NSError *parseError = nil;
@@ -167,24 +115,5 @@ JSI_MODULE(JSI_webcache)
     BOOL isNull = [obj isEqual:[NSNull null]];
     return isNull;
 }
-
-
-- (NSString *)base64Encode:(NSData *)sData{
-    if (!sData) {
-        return nil;
-    }
-//    NSData *sData = [string dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *base64Data = [sData base64EncodedDataWithOptions:0];
-    NSString *baseString = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
-    return baseString;
-}
  
-- (NSData *)base64Decode:(NSString *)string{
-    if (!string) {
-        return nil;
-    }
-    NSData *sData = [[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
-//    NSString *dataString = [[NSString alloc]initWithData:sData encoding:NSUTF8StringEncoding];
-    return sData;
-}
 @end

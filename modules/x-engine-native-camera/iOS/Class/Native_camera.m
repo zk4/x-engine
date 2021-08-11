@@ -295,6 +295,7 @@ NATIVE_MODULE(Native_camera)
     return NO;
 }
 
+
 // 压缩图片
 - (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(NSString*)size withQuality:(NSString *)q{
     CGFloat compression ;
@@ -325,11 +326,11 @@ NATIVE_MODULE(Native_camera)
         NSUInteger lastDataLength = 0;
         while (data.length/1024 > size.floatValue && data.length/1024 != lastDataLength) {
             lastDataLength = data.length /1024;
-            CGFloat ratio = (CGFloat)size.floatValue / data.length/1024;
-            CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
+            CGFloat ratio = (CGFloat)size.floatValue / lastDataLength;
+            CGSize finalsize = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
                                      (NSUInteger)(resultImage.size.height * sqrtf(ratio)));
-            UIGraphicsBeginImageContext(size);
-            [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+            UIGraphicsBeginImageContext(finalsize);
+            [resultImage drawInRect:CGRectMake(0, 0, finalsize.width, finalsize.height)];
             resultImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             data = UIImageJPEGRepresentation(resultImage, compression);

@@ -18,8 +18,8 @@
 @property (nonatomic, strong) NSMutableDictionary *responseDic;
 //记录正在下载的任务、防止下载请求的循环调用
 ///内存缓存空间
-@property (nonatomic, strong) NSCache *memoryCache;
- 
+//@property (nonatomic, strong) NSCache *memoryCache;
+@property (nonatomic, strong) YYCache *memoryCache;
 @end
 
 @implementation SLWebCacheManager
@@ -402,17 +402,17 @@
     }
     return _responseDic;
 }
-- (NSCache *)memoryCache{
+- (YYCache *)memoryCache{
     if (!_memoryCache) {
-        _memoryCache = [[NSCache alloc] init];
-        _memoryCache.delegate = self;
-        //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
-        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
-        //能够缓存的对象的最大数量。默认值为0，表示没有限制
-        _memoryCache.countLimit = 1000;
+//        _memoryCache = [[NSCache alloc] init];
+//        _memoryCache.delegate = self;
+//        //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
+//        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
+//        //能够缓存的对象的最大数量。默认值为0，表示没有限制
+//        _memoryCache.countLimit = 1000;
+        _memoryCache=[YYCache cacheWithName:@"XENGINE_YY_Cache"];
     }
     return _memoryCache;
-//    return [YYCache cacheWithName:@"XENGINE_YY_Cache"];
 }
 
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj{

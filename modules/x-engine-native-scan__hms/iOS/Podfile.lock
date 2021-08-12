@@ -17,10 +17,10 @@ PODS:
 
 DEPENDENCIES:
   - ScanKitFrameWork (~> 1.0.2.300)
-  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
-  - x-engine-native-dev (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-dev`)
-  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
-  - x-engine-native-ui (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-ui`)
+  - x-engine-native-core (from `/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-core`)
+  - x-engine-native-dev (from `/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-dev`)
+  - x-engine-native-protocols (from `/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-protocols`)
+  - x-engine-native-ui (from `/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-ui`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -30,13 +30,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-core"
   x-engine-native-dev:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-dev"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-dev"
   x-engine-native-protocols:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-protocols"
   x-engine-native-ui:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-ui"
+    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules//x-engine-native-ui"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -47,6 +47,6 @@ SPEC CHECKSUMS:
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
-PODFILE CHECKSUM: 7b12afb6b477f55163cc002821e25bc8354a3d8d
+PODFILE CHECKSUM: 8021d3067b5fe3a337e5fa5a58581ee09942b27c
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

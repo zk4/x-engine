@@ -86,7 +86,7 @@ JSI_MODULE(JSI_webcache)
     if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
         if([dict[@"data"] isKindOfClass:NSString.class]){
             request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
-        }else  if([dict[@"data"] isKindOfClass:NSDictionary.class]){
+        }else  if([dict[@"data"] isKindOfClass:NSArray.class]){
             NSArray *tempArr = dict[@"data"];
 
             NSMutableData *mutableData = [NSMutableData data];

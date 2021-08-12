@@ -14,17 +14,18 @@
         event.preventDefault();
         let form = getOuterForm(event.target);
         let formData = new FormData(form);
-        $.ajax({
-          url: form.action,
-          type: form.method,
-          data: formData,
-          success: function(data) {
-            alert(data);
-          },
-          cache: false,
-          contentType: false,
-          processData: false,
-        });
+        let xmlHttp = new XMLHttpRequest();
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState == 4)
+              {
+                  console.warn("注意,在 x-engine 里, 原生 form 提交已全局拦截, 将不再支持页面跳转! 若有兼容问题, 请修改业务代码.")
+                  console.log(xmlHttp.responseText);
+              }
+          }
+          xmlHttp.open(form.method, form.action);
+          xmlHttp.send(formData);
+ 
       }
     });
 
@@ -189,7 +190,7 @@
         // }
         // console.log('test: ', test);
         params.data = newParts
-        console.log('object ------ params: ', params);
+//        console.log('object ------ params: ', params);
     }
     
     function nativeRequest (xhr, params) {
@@ -363,7 +364,7 @@
                 'Content-Type': `multipart/form-data;boundary=${boundary}`
             }
         }
-        console.log('params: ', params);
+//        console.log('params: ', params);
         // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
         return nativeRequest(that, params);
     },

@@ -1,5 +1,34 @@
 ;
 (function () {
+    // 拦截 webview 直接提交的 form.
+    function getOuterForm(node) {
+      let parentNode = node.parentNode;
+      if (parentNode.nodeName == "FORM") {
+        return parentNode;
+      } else {
+        return getOuterForm(parentNode);
+      }
+    }
+    document.body.addEventListener("click", function(event) {
+      if (event.target.type == "submit") {
+        event.preventDefault();
+        let form = getOuterForm(event.target);
+        let formData = new FormData(form);
+        $.ajax({
+          url: form.action,
+          type: form.method,
+          data: formData,
+          success: function(data) {
+            alert(data);
+          },
+          cache: false,
+          contentType: false,
+          processData: false,
+        });
+      }
+    });
+
+    
     const boundary
     = '----tabrisformdataboundary-' + Math.round(Math.random() * 100000000) + '-yradnuobatadmrofsirbat';
     // blob 转 base64

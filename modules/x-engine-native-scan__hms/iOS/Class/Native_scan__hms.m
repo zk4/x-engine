@@ -8,7 +8,9 @@
 #import "XENativeContext.h"
 //#import <ScanKitFrameWork/ScanKitFrameWork.h>
 #import <ScanKitFrameWork/HmsCustomScanViewController.h>
-#import "QRCodeBacgrouView.h"
+#import "QRCodeScanPreviewView.h"
+
+#import "MBProgressHUD.h"
 
 #include <Unity.h>
  
@@ -18,10 +20,11 @@ typedef void (^xScanBlock)(NSString *);
 }
 @property ( nonatomic) xScanBlock block;
 @property (nonatomic, strong) HmsCustomScanViewController *hmsCustomScanViewController;
-@property (nonatomic, strong) QRCodeBacgrouView *scanView;
+@property (nonatomic, strong) QRCodeScanPreviewView *scanView;
 @property (nonatomic, assign) CGRect areaRect;
 @property (nonatomic, strong) UIImageView *line;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) MBProgressHUD *hud;
 
 @end
 
@@ -55,7 +58,7 @@ NATIVE_MODULE(Native_scan__hms)
     //扫码区域
     CGRect areaRect = CGRectMake(([Unity sharedInstance].getCurrentVC.view.frame.size.width - 300)/2, ([Unity sharedInstance].getCurrentVC.view.frame.size.height - 300)/2, 300, 300);
     self.areaRect = areaRect;
-    QRCodeBacgrouView *scanView = [[QRCodeBacgrouView alloc]initWithFrame:[Unity sharedInstance].getCurrentVC.view.bounds];
+    QRCodeScanPreviewView *scanView = [[QRCodeScanPreviewView alloc]initWithFrame:[Unity sharedInstance].getCurrentVC.view.bounds];
     scanView.scanFrame = areaRect;
     [self.hmsCustomScanViewController.view addSubview:scanView];
     self.scanView = scanView;
@@ -203,23 +206,29 @@ NATIVE_MODULE(Native_scan__hms)
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self showLoading:@"正在处理"];
+    ///耗时操作
     NSDictionary *dic = [HmsBitMap bitMapForImage:image withOptions:[[HmsScanOptions alloc] initWithScanFormatType:ALL Photo:true]];
     NSString *jsonStr = @"";
     if (dic) {
         jsonStr =  dic[@"text"];
     }
-    self.block(jsonStr?jsonStr:@"");
-    [picker dismissViewControllerAnimated:YES completion:^{ }];
+    ///先销毁图片选择页面
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self removeHud];
+        self.block(jsonStr?jsonStr:@"");
+        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:NO completion:^{}];
+    }];
 }
 
 - (void)customizedScanDelegateForResult:(NSDictionary *)resultDic{
-
+    //不是所有的地方都需要弱Timer
     __block NSTimer *timer;
     timer = _timer;
     dispatch_async(dispatch_get_main_queue(), ^{
      // 在主线程内处理数据
         [self stopTimer:timer];
-        NSString* jsonStr=  resultDic[@"text"];
+        NSString* jsonStr =  resultDic[@"text"];
         self.block(jsonStr?jsonStr:@"");
    });
 }
@@ -230,7 +239,26 @@ NATIVE_MODULE(Native_scan__hms)
     t = nil;
 }
 
-
+- (void)showLoading:(NSString *)tip{
+    [self removeHud];
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:keyWindow animated:YES];
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.label.text = tip;
+    self.hud.label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+    hud.removeFromSuperViewOnHide = YES;
+    hud.contentColor = [UIColor whiteColor];
+    hud.bezelView.backgroundColor = [UIColor blackColor];
+    hud.bezelView.color = [UIColor blackColor];
+    
+    self.hud = hud;
+}
+- (void)removeHud{
+    if(self.hud){
+        self.hud.removeFromSuperViewOnHide = YES;
+        [self.hud hideAnimated:YES];
+    }
+}
 /*DefaultScan Delegate
   Data returned by album pictures
  */

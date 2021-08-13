@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QRCodeBacgrouView : UIView<UIGestureRecognizerDelegate>
+@interface QRCodeScanPreviewView : UIView<UIGestureRecognizerDelegate>
 @property(nonatomic,assign)CGRect scanFrame;
 @property(nonatomic,assign)CGFloat effectiveScale;
 @property(nonatomic,assign)CGFloat beginGestureScale;

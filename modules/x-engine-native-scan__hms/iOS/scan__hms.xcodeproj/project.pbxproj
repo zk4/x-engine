@@ -16,6 +16,7 @@
 		00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
 		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		32903E3B00A2B4C1FECF371B /* libPods-scan__hmsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F693434A50457CA7AC4D2A /* libPods-scan__hmsUITests.a */; };
+		385D29BB26C54E4A00B5181F /* QRCodeScanPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 385D29B926C54E4A00B5181F /* QRCodeScanPreviewView.m */; };
 		38E983942615F6E8007F6BDF /* Native_scan__hms.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_scan__hms.m */; };
 		565DD27B989F5FB8F69BF75F /* libPods-sit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DB072EC16780DC21C5AF4B /* libPods-sit.a */; };
 		580B91632694CCEA006AD356 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
@@ -33,7 +34,6 @@
 		580B91B72694D0DA006AD356 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 003F95D924DA4A6100633E1F /* libc++.tbd */; };
 		580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
-		580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 580B91CC2694D10D006AD356 /* Info.uat.plist */; };
 		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-scan__hmsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-scan__hmsTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-scan__hms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-scan__hms.a */; };
@@ -82,6 +82,8 @@
 		29A8E4C45DA829D493BB387D /* Pods-scan__hmsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scan__hmsUITests.release.xcconfig"; path = "Target Support Files/Pods-scan__hmsUITests/Pods-scan__hmsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2DCA87AAE86E310D57FEEBFE /* Pods-abstract-scan__hmsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-scan__hmsTests.release.xcconfig"; path = "Target Support Files/Pods-abstract-scan__hmsTests/Pods-abstract-scan__hmsTests.release.xcconfig"; sourceTree = "<group>"; };
 		34F693434A50457CA7AC4D2A /* libPods-scan__hmsUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-scan__hmsUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		385D29B926C54E4A00B5181F /* QRCodeScanPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanPreviewView.m; sourceTree = "<group>"; };
+		385D29BA26C54E4A00B5181F /* QRCodeScanPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScanPreviewView.h; sourceTree = "<group>"; };
 		38E983922615F6E8007F6BDF /* Native_scan__hms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Native_scan__hms.m; sourceTree = "<group>"; };
 		38E983932615F6E8007F6BDF /* Native_scan__hms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Native_scan__hms.h; sourceTree = "<group>"; };
 		3B0B693E1A63099F30F8DF08 /* Pods-SharedLibs-sit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedLibs-sit.debug.xcconfig"; path = "Target Support Files/Pods-SharedLibs-sit/Pods-SharedLibs-sit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +267,8 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				385D29BA26C54E4A00B5181F /* QRCodeScanPreviewView.h */,
+				385D29B926C54E4A00B5181F /* QRCodeScanPreviewView.m */,
 				38E983932615F6E8007F6BDF /* Native_scan__hms.h */,
 				38E983922615F6E8007F6BDF /* Native_scan__hms.m */,
 			);
@@ -399,7 +403,7 @@
 		00DFC6A224C83F94006A53EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = zk;
 				TargetAttributes = {
 					00DFC6A924C83F94006A53EE = {
@@ -475,7 +479,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */,
 				580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */,
 				580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */,
 			);
@@ -839,6 +842,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385D29BB26C54E4A00B5181F /* QRCodeScanPreviewView.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_scan__hms.m in Sources */,
@@ -926,6 +930,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -984,6 +989,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1015,22 +1021,22 @@
 			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-scan__hms.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: junyu wang (736Q47FF3Z)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2GBSCJ7C97;
+				DEVELOPMENT_TEAM = XFZ38U4TMY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/scan__hms/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.scan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
 				PRODUCT_NAME = scan__hms;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "gomeHomeAppC-pp-Dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1046,7 +1052,7 @@
 				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/scan__hms/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1149,7 +1155,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SR5A3T479H;
 				INFOPLIST_FILE = "$(SRCROOT)/scan__hms/Info.sit.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1171,7 +1177,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SR5A3T479H;
 				INFOPLIST_FILE = "$(SRCROOT)/scan__hms/Info.sit.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1193,7 +1199,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SR5A3T479H;
 				INFOPLIST_FILE = "$(SRCROOT)/scan__hms/Info.uat.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1215,7 +1221,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SR5A3T479H;
 				INFOPLIST_FILE = "$(SRCROOT)/scan__hms/Info.uat.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

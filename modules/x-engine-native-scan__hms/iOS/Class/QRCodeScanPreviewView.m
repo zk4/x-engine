@@ -1,17 +1,17 @@
 //
-//  QRCodeBacgrouView.m
+//  QRCodeScanPreviewView.m
 //  testSingature
 //
 //  Created by jabraknight on 2021/8/9.
 //  Copyright © 2021 zk. All rights reserved.
 //
 
-#import "QRCodeBacgrouView.h"
-#define screen_width [UIScreen mainScreen].bounds.size.width
-#define screen_height [UIScreen mainScreen].bounds.size.height
-@implementation QRCodeBacgrouView
+#import "QRCodeScanPreviewView.h"
+
+@implementation QRCodeScanPreviewView
+
 - (void)drawRect:(CGRect)rect {
-    _scanFrame = CGRectMake((screen_width - 300)/2, (screen_height - 300)/2, 300, 300);
+
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //填充区域颜色

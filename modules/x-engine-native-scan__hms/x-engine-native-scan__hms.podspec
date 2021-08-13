@@ -37,7 +37,8 @@ Pod::Spec.new do |s|
 
     s.source_files  = "iOS/Class/**/*.{h,m}"
     s.public_header_files = "iOS/Class/**/*.h"
-   
+    s.resource     = "iOS/scan__hms/*.{xcassets,json}"
+
     s.frameworks  = "CoreServices"
 
     # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
@@ -45,6 +46,7 @@ Pod::Spec.new do |s|
     s.dependency "x-engine-native-core"
     s.dependency "x-engine-native-protocols"
     s.dependency 'ScanKitFrameWork', '~> 1.0.2.300'
+    s.dependency 'MBProgressHUD', '1.2.0'
 
     
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}

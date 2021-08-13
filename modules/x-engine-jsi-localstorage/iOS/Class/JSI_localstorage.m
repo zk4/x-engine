@@ -38,9 +38,11 @@ JSI_MODULE(JSI_localstorage)
     return [_store get:[self genkey:dto]];
 }
 
-- (void)_set:(_0_com_zkty_jsi_localstorage_DTO *)dto {
+- (void)_set:(_set0_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
 }
 
+
+ 
 
 @end

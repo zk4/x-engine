@@ -105,8 +105,9 @@ JSI_MODULE(JSI_webcache)
 
     NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
         if (!error) {
-            NSHTTPURLResponse *response = (NSHTTPURLResponse *)r;
-            NSString* statusCode =[NSString stringWithFormat:@"%d",[response statusCode]] ;
+            NSHTTPURLResponse *response =nil;
+            response = (NSHTTPURLResponse *)r;
+            NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
             NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
             NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
 

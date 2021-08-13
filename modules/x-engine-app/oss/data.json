@@ -1,27 +1,27 @@
 {
     "data": [
         {
-            "version":1,
-            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.home.1.zip",
+            "version": 0,
+            "downloadUrl": "http://10.2.128.61:9527/zip/com.gm.microapp.home.0.zip",
             "id": 0,
             "isForce": false,
-            "name": "com.gm.microapp.home",
+            "name": "com.gm.microapp.home"
         },
         {
             "version": 0,
-            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.mall.0.zip",
+            "downloadUrl": "http://10.2.128.61:9527/zip/com.gm.microapp.mall.0.zip",
             "id": 0,
             "isForce": false,
-            "name": "com.gm.microapp.mall",
+            "name": "com.gm.microapp.mall"
         },
         {
-            "version":0,
-            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.mine.0.zip",
+            "version": 0,
+            "downloadUrl": "http://10.2.128.61:9527/zip/com.gm.microapp.mine.0.zip",
             "id": 0,
             "isForce": false,
-            "name": "com.gm.microapp.mine",
+            "name": "com.gm.microapp.mine"
         }
     ],
-    "msg" : "",
-    "code" : 200
+    "msg": "",
+    "code": 200
 }

@@ -47,7 +47,6 @@ NATIVE_MODULE(Native_direct_microapp)
 }
 
 
-
 - (void)showErrorAlert:(NSString *)errorString
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -81,7 +80,6 @@ NATIVE_MODULE(Native_direct_microapp)
         }
         // 供后面构造字符串用,不会出现 nil
         host=@"";
-
     }else{
        HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
        pathname=hm.pathname;

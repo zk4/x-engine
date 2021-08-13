@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
 
     s.source_files  = "iOS/Class/**/*.{h,m}"
     s.public_header_files = "iOS/Class/**/*.h"
-    s.resource     = "iOS/scan__hms/Assets.xcassets"
+    s.resource     = "iOS/scan__hms/*.{xcassets,json}"
 
     s.frameworks  = "CoreServices"
 

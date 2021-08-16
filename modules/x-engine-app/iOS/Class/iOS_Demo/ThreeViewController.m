@@ -7,11 +7,13 @@
 //
 
 #import "ThreeViewController.h"
+#import "iOffline.h"
 #import <iDirectManager.h>
 #import <XENativeContext.h>
 
-@interface ThreeViewController ()
 
+@interface ThreeViewController ()
+@property (nonatomic, strong) id<iOffline>offline;
 @end
 
 @implementation ThreeViewController
@@ -21,5 +23,4 @@
 
     [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.mine" params:@{@"hideNavbar":@TRUE}];
 }
- 
 @end

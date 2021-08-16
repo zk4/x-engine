@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "version": 1,
+            "downloadUrl": "http://10.2.128.71:9527/zip/com.gm.microapp.home.0.zip",
+            "id": 0,
+            "isForce": false,
+            "name": "com.gm.microapp.home"
+        },
+        {
+            "version": 5,
+            "downloadUrl": "http://10.2.128.71:9527/zip/com.gm.microapp.home.1.zip",
+            "id": 0,
+            "isForce": false,
+            "name": "com.gm.microapp.mall"
+        },
+        {
+            "version": 0,
+            "downloadUrl": "http://10.2.128.71:9527/zip/com.gm.microapp.mine.0.zip",
+            "id": 0,
+            "isForce": false,
+            "name": "com.gm.microapp.mine"
+        }
+    ],
+    "msg": "",
+    "code": 200
+}

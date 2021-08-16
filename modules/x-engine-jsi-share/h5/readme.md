@@ -2,31 +2,51 @@
 
 JSI Id: com.zkty.jsi.share
 
-version: 0.1.13
+version: 2.0.3
 
 
 
 ## share
-[`sync`](/docs/modules/模块-规范?id=jsi-调用),[`async`](/docs/modules/模块-规范?id=jsi-调用)
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 分享
 **demo**
 ``` js
-{
-  xengine.api(
-    "com.zkty.jsi.share",
-    "share",
-    {
-      channel: "wx_zone",
-      type: "link",
-	  info:{
-		  url:"https://www.baidu.com",
-		  title:"testTitle",
-		  desc:"description"
-	  }
-      
-    }
-  );
-}
+
+  // 分享链接
+  xengine.api("com.zkty.jsi.share", "share", {
+    channel: "wx_zone",
+    type: "link",
+    info: {
+      url: "https://www.baidu.com",
+      title: "testTitle",
+      desc: "description",
+    },
+  });
+
+  // 分享小程序
+  xengine.api("com.zkty.jsi.share", "share", {
+    channel: "wx_friend",
+    type: "miniProgram",
+    info: {
+      userName: "gh_d43f693ca31f",
+      path: "/pages/media",
+      title: "test",
+      desc: "testdesc",
+      link: "http://www.baidu.com",
+      imageurl: "",
+      miniProgramType: 2,
+    },
+  });
+
+  // 分享图片
+  xengine.api("com.zkty.jsi.share", "share", {
+    channel: "wx_zone",
+    type: "img",
+    info: {
+      imgData: "https://www.baidu.com",
+    },
+  });
+
 ``` 
 
 **参数说明**

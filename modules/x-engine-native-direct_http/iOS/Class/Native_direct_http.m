@@ -8,7 +8,6 @@
 
 #import "Native_direct_http.h"
 #import "XENativeContext.h"
-#import "MicroAppLoader.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"

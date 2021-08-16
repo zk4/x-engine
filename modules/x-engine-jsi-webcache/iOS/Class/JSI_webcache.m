@@ -104,9 +104,7 @@ JSI_MODULE(JSI_webcache)
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
 
-   
-    
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
+
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *sessionTask =[[AFHTTPSessionManager manager] dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -114,9 +112,7 @@ JSI_MODULE(JSI_webcache)
         
     } completionHandler:^(NSURLResponse * _Nonnull r, id  _Nullable data, NSError * _Nullable error) {
         if (!error) {
-//            NSString* body =     [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"%@",data);
-    
+
             NSHTTPURLResponse *response =nil;
             response = (NSHTTPURLResponse *)r;
             NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
@@ -141,36 +137,8 @@ JSI_MODULE(JSI_webcache)
             completionHandler(ret,TRUE);
         }
     }];
-//    NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
-//        if (!error) {
-//            NSString* body =     [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//            NSLog(@"%@",body);
-//            NSHTTPURLResponse *response =nil;
-//            response = (NSHTTPURLResponse *)r;
-//            NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-//            NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-//            NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
-//
-//
-//            NSDictionary* ret =@{
-//                @"statusCode": statusCode,
-//                @"responseText":responseText,
-//                @"responseHeaders":headers
-//            };
-//            if(cacheKey)
-//                weakSelf.cache[cacheKey] = ret;
-//            completionHandler(ret,TRUE);
-//
-//        } else {
-//            NSDictionary* ret =@{
-//
-//                @"error":[NSString stringWithFormat:@"%@", error]
-//            };
-//            completionHandler(ret,TRUE);
-//        }
-//    }];
+
     [sessionTask resume];
-//
 }
 
 //字典转json格式字符串:

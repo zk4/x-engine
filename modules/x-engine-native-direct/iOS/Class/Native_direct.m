@@ -13,6 +13,7 @@
 #import "HistoryModel.h"
 #import "Unity.h"
 #import "UIViewController+Tag.h"
+#import "iToast.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -147,9 +148,14 @@ NATIVE_MODULE(Native_direct)
             return;
         }
     }
-    
+    if(!container){
+        NSString* msg = [NSString stringWithFormat:@"找不到路径: %@://%@%@",scheme,host,pathname];
+        [XENP(iToast) toast:msg];
+        return;
+    }
     // 实在找不到,跳到默认错误页
-    NSAssert(container,@"why here, where is your container?");
+//    NSAssert(container,@"why here, where is your container?");
+
 
     if([direct respondsToSelector:@selector(push:params:)]){
         [direct push:container params:params];

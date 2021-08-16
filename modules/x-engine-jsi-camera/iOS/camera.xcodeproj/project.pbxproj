@@ -21,6 +21,7 @@
 		58D209A0261346360082ADC3 /* xengine_jsi_camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2099F261346360082ADC3 /* xengine_jsi_camera.m */; };
 		64354DB0471E360AC7A3B8A8 /* libPods-camera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8CA3713E96420DF83249E1 /* libPods-camera.a */; };
 		6A6EA1E26D7AD8995610C648 /* libPods-cameraUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42511EECCA68257EBB3854A8 /* libPods-cameraUITests.a */; };
+		A4B08B6426CA4CCA00383541 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B08B6326CA4CCA00383541 /* AssetsLibrary.framework */; };
 		E6482C9CFE9A42FEC2328834 /* libPods-cameraTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15B7D44DF761F640EDBA44 /* libPods-cameraTests.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		8A4FCA27E7FE59204E44E83A /* Pods-abstract-cameraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-cameraTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-cameraTests/Pods-abstract-cameraTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-camera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camera.release.xcconfig"; path = "Target Support Files/Pods-camera/Pods-camera.release.xcconfig"; sourceTree = "<group>"; };
 		9E8CA3713E96420DF83249E1 /* libPods-camera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-camera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B08B6326CA4CCA00383541 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-cameraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-cameraUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-cameraUITests/Pods-abstract-cameraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-camera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camera.debug.xcconfig"; path = "Target Support Files/Pods-camera/Pods-camera.debug.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4B08B6426CA4CCA00383541 /* AssetsLibrary.framework in Frameworks */,
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
 				64354DB0471E360AC7A3B8A8 /* libPods-camera.a in Frameworks */,
 			);
@@ -221,6 +224,7 @@
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4B08B6326CA4CCA00383541 /* AssetsLibrary.framework */,
 				003F95D924DA4A6100633E1F /* libc++.tbd */,
 				9E8CA3713E96420DF83249E1 /* libPods-camera.a */,
 				6D15B7D44DF761F640EDBA44 /* libPods-cameraTests.a */,
@@ -680,7 +684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2GBSCJ7C97;
+				DEVELOPMENT_TEAM = 2ZE56AMZE7;
 				INFOPLIST_FILE = "$(SRCROOT)/camera/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -702,7 +706,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2GBSCJ7C97;
+				DEVELOPMENT_TEAM = 2ZE56AMZE7;
 				INFOPLIST_FILE = "$(SRCROOT)/camera/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

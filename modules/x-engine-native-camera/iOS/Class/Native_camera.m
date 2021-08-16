@@ -6,6 +6,7 @@
 //  Copyright © 2020 edz. All rights reserved.
 
 #import <AVFoundation/AVFoundation.h>
+#import <Photos/Photos.h>
 #import "Native_camera.h"
 #import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
@@ -105,6 +106,39 @@ NATIVE_MODULE(Native_camera)
     }
 }
 
+//- (void)choosePhotos:(CameraParamsDTO*)dto {
+//    PHFetchOptions *options = [PHFetchOptions new];
+//    PHFetchResult *topLevelUserCollections = [PHAssetCollection fetchTopLevelUserCollectionsWithOptions:options];
+//    PHAssetCollectionSubtype subType = PHAssetCollectionSubtypeAlbumRegular;
+//    PHFetchResult *smartAlbumsResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:subType options:options];
+//
+//    NSMutableArray *photoGroups = [NSMutableArray array];
+//    [topLevelUserCollections enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+//             PHAssetCollection *asset = (PHAssetCollection *)obj;
+//             PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:[PHFetchOptions new]];
+//             if (result.count > 0) {
+//                 NSLog(@"%@", asset);
+//                 NSLog(@"%@", asset.localizedTitle);
+//             }
+//         }
+//    }];
+//
+//    [smartAlbumsResult enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+//           PHAssetCollection *asset = (PHAssetCollection *)obj;
+//           PHFetchOptions *options = [[PHFetchOptions alloc] init];
+//           options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+//
+//           PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:options];
+//           if(result.count > 0 && asset.assetCollectionSubtype != PHAssetCollectionSubtypeSmartAlbumVideos) {
+//               NSLog(@"%@", asset);
+//               NSLog(@"%@", asset.localizedTitle);
+//            }
+//         }
+//    }];
+//}
+
 #pragma 调起相册
 - (void)choosePhotos:(CameraParamsDTO*)dto {
     __weak typeof(self) weakself = self;
@@ -112,15 +146,21 @@ NATIVE_MODULE(Native_camera)
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        
+//        NSLog(@"%@", photos);
+//        NSLog(@"%@", assets);
+        
+//        for (PHAsset *asset in assets) {
+////            PHFetchOptions *options = [PHFetchOptions ]
+//            [PHAsset fetchAssetsInAssetCollection:asset options:includeAllBurstAssets];
+//        }
         NSMutableDictionary * ret = [NSMutableDictionary new];
         NSMutableArray * photoarrays=  [NSMutableArray new];
         NSDictionary* argsDic = dto.args;
         float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
         float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
-        
+
         for(int i = 0; i< photos.count; i++){
-//            UIImage* image=  [self parseImage: Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-            
             NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
             UIImage* image = [UIImage imageWithData:imageData];
             [photoarrays addObject: @{
@@ -203,14 +243,16 @@ NATIVE_MODULE(Native_camera)
     }
 }
 
-#pragma 保存图片
+#pragma ----------------------------------保存图片----------------------------------
 - (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto saveSuccess:(void (^)(NSString *))success {
     self.saveCallback = success;
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized){
-            [self performSelectorInBackground:@selector(downloadImg:) withObject:nil];
+            [self performSelectorInBackground:@selector(downloadImg:) withObject:dto];
         } else {
-            [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+            });
         }
     }];
 }
@@ -262,7 +304,7 @@ NATIVE_MODULE(Native_camera)
     }
     return dic;
 }
-//
+
 //- (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
 //    NSData *imageData;
 //    CGFloat width_height_per = image.size.width/image.size.height;

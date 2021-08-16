@@ -1,8 +1,13 @@
 package com.zkty.nativ.jsi.utils;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.zkty.nativ.core.XEngineApplication;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -471,7 +476,7 @@ public class FileUtils {
      */
     public static String getFileType(String path) {
         //获取文件名称
-        if(path.startsWith("http") && path.contains("?")){
+        if (path.startsWith("http") && path.contains("?")) {
             path = path.substring(0, path.indexOf("?"));
         }
         String type = "";
@@ -499,11 +504,12 @@ public class FileUtils {
 
     /**
      * 获取文件名吃
+     *
      * @param urlname
      * @return
      */
     public static String getFileName(String urlname) {
-        if(urlname.startsWith("http")){
+        if (urlname.startsWith("http")) {
             //从下载连接中解析出文件名
             urlname = urlname.substring(0, urlname.indexOf("?"));
             int start = urlname.lastIndexOf("/");
@@ -513,12 +519,38 @@ public class FileUtils {
             } else {
                 return null;
             }
-        }else{
+        } else {
             //从本地路径中解析出文件名
             File file = new File(urlname);
             String fileName = file.getName();
             return fileName;
         }
     }
+
+    /**
+     * 图片uri转换为file文件
+     * 返回值为file类型
+     *
+     * @param uri
+     * @return
+     */
+    public static File uri2File(Uri uri) {
+        String img_path;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor actualimagecursor = XEngineApplication.getCurrentActivity().managedQuery(uri, proj, null,
+                null, null);
+        if (actualimagecursor == null) {
+            img_path = uri.getPath();
+        } else {
+            int actual_image_column_index = actualimagecursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            actualimagecursor.moveToFirst();
+            img_path = actualimagecursor
+                    .getString(actual_image_column_index);
+        }
+        File file = new File(img_path);
+        return file;
+    }
+
 
 }

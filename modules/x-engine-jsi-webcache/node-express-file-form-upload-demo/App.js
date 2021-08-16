@@ -66,7 +66,8 @@
     res.render('index.html');
   });
 
-  app.post('/upload', multer(multerConfig).single('photo'),function(req, res){
+  app.post('/upload', multer(multerConfig).array('photo'),function(req, res){
+    console.log(req);
       //Here is where I could add functions to then get the url of the new photo
       //And relocate that to a cloud storage solution with a callback containing its new url
       //then ideally loading that into your database solution.   Use case - user uploading an avatar...

@@ -62,9 +62,6 @@ JSI_MODULE(JSI_webcache)
     }else{
    //     cacheKey = [NSString stringWithFormat:@"%@%@",method ,url];
     }
-
-    
-    
     // 仅缓存 GET, 如果有更新,则会会二次返回,
     if([_cache objectForKey:cacheKey]
        //&&
@@ -73,12 +70,10 @@ JSI_MODULE(JSI_webcache)
 
         completionHandler(_cache[cacheKey],TRUE);
         return;
-        
     }
 
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
     request.HTTPMethod = method;
     request.allHTTPHeaderFields= [self makeSafeHeaders:headers];
     
@@ -88,9 +83,9 @@ JSI_MODULE(JSI_webcache)
             request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
         }else  if([dict[@"data"] isKindOfClass:NSArray.class]){
             NSArray *tempArr = dict[@"data"];
-
             NSMutableData *mutableData = [NSMutableData data];
             for (NSString *str in tempArr) {
+                NSLog(@"%@", [self textFromBase64String:str]);
                 NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
                 [mutableData appendData:data];
             }
@@ -109,7 +104,6 @@ JSI_MODULE(JSI_webcache)
             NSString* statusCode =[NSString stringWithFormat:@"%d",[response statusCode]] ;
             NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
             NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
-
 
             NSDictionary* ret =@{
                 @"statusCode": statusCode,
@@ -139,5 +133,9 @@ JSI_MODULE(JSI_webcache)
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-  
+- (NSString *)textFromBase64String:(NSString *)base64 {
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:base64 options:0];
+    NSString *text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return text;
+}
 @end

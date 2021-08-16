@@ -1,110 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Express File Upload</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="./styles/style.css">
-
   <script src="./libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/dsbridge/3.1.4/dsbridge.min.js"></script>
+  <script src="./user.js"></script>
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
 </head>
+
 <body>
+  <br />
+  <br />
+  <br />
 
-  <div class="jumbotron">
-    <div class="container text-center">
-      <h1>Express App File Uploads</h1>
-      <p>An example that uploads a user's file to your local server.</p>
-      <p>Read more online at: <a href="https://medium.com/@Moonstrasse/how-to-make-a-basic-html-form-file-upload-using-multer-in-an-express-node-js-app-16dac2476610">Blog Post </a></p>
-    </div>
+  <div class="form">
+    <h1>Normal form submit</h1>
+    <form id="singleForm" action="upload" enctype="multipart/form-data" method="POST">
+      <!-- <div class="inner-wrap"> -->
+        <input type="file" id="photo" name="photo" />
+        <input id="photo" name="user" />
+        <input id="photo" name="pwd" />
+        <input type="submit" name="Upload" value="Upload Photo" />
+      <!-- </div> -->
+    </form>
   </div>
 
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
+  <br />
+  <br />
 
+  <div class="form">
+    <h1>submit multiple photo - AJAX</h1>
+    <form id="arrayForm" action="upload" enctype="multipart/form-data" method="POST">
+      <div class="inner-wrap">
+        <input type="file" id="morephoto" name="photo" multiple />
+        <input id="morephoto" name="user" />
+        <input id="morephoto" name="pwd" />
+        <input type="submit" name="Upload" value="Upload Photo" />
       </div>
-    </div>
-  </nav>
-
-  <div class="container text-center">
-      <div class="col-sm-12">
-        <div class="form">
-          <h1>Normal form submit</h1>
-
-           <!-- IMAGE UPLOAD FORM -->
-          <form  id="normalForm" action="upload" enctype="multipart/form-data" method="POST">
-
-                <div class="section">Note: Only image files are allowed.</div>
-                <div class="inner-wrap">
-                  <label><input type="file" id="photo" name="photo" /></label>
-                  <div class="button-section">
-                    <input type="submit" name="Upload" value="Upload Photo"/>
-                  </div>
-                </div>
-
-            </div>
-          </form>
-
-
-        </div>
-      </div>
+    </form>
+  </div>
   </div>
 
-  <div class="container text-center">
-      <div class="col-sm-12">
-        <div class="form">
-          <h1>submit form throught AJAX</h1>
+  <br />
+  <br />
 
-           <!-- IMAGE UPLOAD FORM -->
-          <form  id="myForm" enctype="multipart/form-data" >
-
-                <div class="section">Note: Only image files are allowed.</div>
-                <div class="inner-wrap">
-                  <label><input type="file" id="photo" name="photo" /></label>
-                  <div class="button-section">
-                    <input type="submit" id="ajaxUpload" value="Upload Photo"/>
-                  </div>
-                </div>
-
-            </div>
-          </form>
-
-        </div>
-      </div>
+  <div class="form">
+    <h1>text and photo - xhr</h1>
+    <!--HTML部分-->
+    <form action="">
+      <label for="">
+        <input id="fileID" type="file" name="file">
+      </label>
+      <label for="">
+        <input id="buttonID" type="button" value="Upload Photo">
+      </label>
+    </form>
   </div>
-<form id="form">
-  <p id="error" hidden>Please fill out all fields.</p>
 
-  <label for="city">City</label>
-  <input type="text" id="city" required>
-
-  <button type="submit">Submit</button>
-</form>
-<p id="thanks" hidden>Your data has been received. Thanks!</p>
-
-  <script src="user.js"></script>
-  <script>
-  </script>
+  <br />
+  <br />
 </body>
+
+
+<script>
+  // $("#singleForm").submit(function (e) {
+    // e.preventDefault();
+    // var formData = new FormData();
+    // $.ajax({
+    //   url: "/upload",
+    //   type: "POST",
+    //   data: formData,
+    //   success: function (data) {
+    //     alert(data);
+    //   },
+    //   cache: false,
+    //   contentType: false,
+    //   processData: false,
+    // });
+  // });
+
+  // 可以发
+  var btn = document.getElementById("buttonID")
+  btn.onclick = function () {
+    var file = document.getElementById("fileID")
+    var formData = new FormData();
+    formData.append('upload', file.files[0]);
+    formData.append("key1", "value1")
+    formData.append("key2", "value2")
+    formData.append("key4", "value4")
+    formData.append("key5", "value5")
+
+    var xhr = new XMLHttpRequest;
+    xhr.open('post', '/upload');
+    xhr.send(formData);
+    xhr.onreadystatechange = function () {
+      //status状态为200 表示请求成功，readystate为4表示对象传递完毕或者准备就绪 
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log('成功');
+      }
+    }
+  }
+</script>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

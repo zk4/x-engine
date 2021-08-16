@@ -6,6 +6,7 @@
 //  Copyright © 2020 edz. All rights reserved.
 
 #import <AVFoundation/AVFoundation.h>
+#import <Photos/Photos.h>
 #import "Native_camera.h"
 #import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
@@ -105,37 +106,80 @@ NATIVE_MODULE(Native_camera)
     }
 }
 
-#pragma 调起相册
 - (void)choosePhotos:(CameraParamsDTO*)dto {
-    __weak typeof(self) weakself = self;
-    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
-    imagePickerVc.allowTakeVideo = NO;
-    imagePickerVc.allowPickingVideo = NO;
-    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-        NSMutableDictionary * ret = [NSMutableDictionary new];
-        NSMutableArray * photoarrays=  [NSMutableArray new];
-        NSDictionary* argsDic = dto.args;
-        float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
-        float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
-        
-        for(int i = 0; i< photos.count; i++){
-//            UIImage* image=  [self parseImage: Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-            
-            NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
-            UIImage* image = [UIImage imageWithData:imageData];
-            [photoarrays addObject: @{
-                @"retImage":[weakself UIImageToBase64Str:image],
-                @"contentType":@"image/png",
-                @"width": [NSNumber numberWithDouble:image.size.width],
-                @"height":[NSNumber numberWithDouble:image.size.height],
-                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
-            }];
-        }
-        ret[@"data"] = photoarrays;
-        [weakself sendParamtoWeb:ret];
+    PHFetchOptions *options = [PHFetchOptions new];
+    PHFetchResult *topLevelUserCollections = [PHAssetCollection fetchTopLevelUserCollectionsWithOptions:options];
+    PHAssetCollectionSubtype subType = PHAssetCollectionSubtypeAlbumRegular;
+    PHFetchResult *smartAlbumsResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:subType options:options];
+    
+    NSMutableArray *photoGroups = [NSMutableArray array];
+    [topLevelUserCollections enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+             PHAssetCollection *asset = (PHAssetCollection *)obj;
+             PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:[PHFetchOptions new]];
+             if (result.count > 0) {
+                 NSLog(@"%@", asset);
+                 NSLog(@"%@", asset.localizedTitle);
+             }
+         }
     }];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:imagePickerVc animated:YES completion:nil];
+
+    [smartAlbumsResult enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+           PHAssetCollection *asset = (PHAssetCollection *)obj;
+           PHFetchOptions *options = [[PHFetchOptions alloc] init];
+           options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+                
+           PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:options];
+           if(result.count > 0 && asset.assetCollectionSubtype != PHAssetCollectionSubtypeSmartAlbumVideos) {
+               NSLog(@"%@", asset);
+               NSLog(@"%@", asset.localizedTitle);
+            }
+         }
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+#pragma 调起相册
+//- (void)choosePhotos:(CameraParamsDTO*)dto {
+//    __weak typeof(self) weakself = self;
+//    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+//    imagePickerVc.allowTakeVideo = NO;
+//    imagePickerVc.allowPickingVideo = NO;
+//    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+//        NSMutableDictionary * ret = [NSMutableDictionary new];
+//        NSMutableArray * photoarrays=  [NSMutableArray new];
+//        NSDictionary* argsDic = dto.args;
+//        float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
+//        float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
+//
+//        for(int i = 0; i< photos.count; i++){
+////            UIImage* image=  [self parseImage: Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+//
+//            NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
+//            UIImage* image = [UIImage imageWithData:imageData];
+//            [photoarrays addObject: @{
+//                @"retImage":[weakself UIImageToBase64Str:image],
+//                @"contentType":@"image/png",
+//                @"width": [NSNumber numberWithDouble:image.size.width],
+//                @"height":[NSNumber numberWithDouble:image.size.height],
+//                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
+//            }];
+//        }
+//        ret[@"data"] = photoarrays;
+//        [weakself sendParamtoWeb:ret];
+//    }];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:imagePickerVc animated:YES completion:nil];
+//}
 
 #pragma UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -203,14 +247,16 @@ NATIVE_MODULE(Native_camera)
     }
 }
 
-#pragma 保存图片
+#pragma ----------------------------------保存图片----------------------------------
 - (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto saveSuccess:(void (^)(NSString *))success {
     self.saveCallback = success;
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized){
-            [self performSelectorInBackground:@selector(downloadImg:) withObject:nil];
+            [self performSelectorInBackground:@selector(downloadImg:) withObject:dto];
         } else {
-            [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+            });
         }
     }];
 }

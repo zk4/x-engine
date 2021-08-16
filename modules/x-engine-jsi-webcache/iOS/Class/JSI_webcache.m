@@ -7,6 +7,8 @@
 #import "JSI_webcache.h"
 #import "JSIContext.h"
 #import "XENativeContext.h"
+#import "AFHTTPSessionManager.h"
+#import "XTool.h"
 
 @interface JSI_webcache()
 @property (nonatomic, strong) NSMutableDictionary* cache;
@@ -46,6 +48,8 @@ JSI_MODULE(JSI_webcache)
     }
     return safeHeaders;
 }
+
+
 
 
 - (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSString*,BOOL))completionHandler {
@@ -100,15 +104,23 @@ JSI_MODULE(JSI_webcache)
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
 
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
+   
+    
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
     __weak typeof(self) weakSelf = self;
-
-    NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
+    NSURLSessionDataTask *sessionTask =[[AFHTTPSessionManager manager] dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull r, id  _Nullable data, NSError * _Nullable error) {
         if (!error) {
+//            NSString* body =     [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",data);
+    
             NSHTTPURLResponse *response =nil;
             response = (NSHTTPURLResponse *)r;
             NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-            NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+            NSDictionary* responseText =  [XToolDataConverter dictionaryToJson:data];
             NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
 
 
@@ -129,8 +141,36 @@ JSI_MODULE(JSI_webcache)
             completionHandler(ret,TRUE);
         }
     }];
+//    NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
+//        if (!error) {
+//            NSString* body =     [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            NSLog(@"%@",body);
+//            NSHTTPURLResponse *response =nil;
+//            response = (NSHTTPURLResponse *)r;
+//            NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
+//            NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+//            NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
+//
+//
+//            NSDictionary* ret =@{
+//                @"statusCode": statusCode,
+//                @"responseText":responseText,
+//                @"responseHeaders":headers
+//            };
+//            if(cacheKey)
+//                weakSelf.cache[cacheKey] = ret;
+//            completionHandler(ret,TRUE);
+//
+//        } else {
+//            NSDictionary* ret =@{
+//
+//                @"error":[NSString stringWithFormat:@"%@", error]
+//            };
+//            completionHandler(ret,TRUE);
+//        }
+//    }];
     [sessionTask resume];
-    
+//
 }
 
 //字典转json格式字符串:

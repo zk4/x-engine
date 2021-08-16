@@ -12,11 +12,11 @@
 
 
 @protocol xengine_jsi_webcache_protocol
-       @required 
-        - (void) _xhrRequest:(NSDictionary*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+   @required 
+     - (void) _xhrRequest:(NSDictionary*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
 @end
-  
+
 
 
 @interface xengine_jsi_webcache : JSIModule<xengine_jsi_webcache_protocol>

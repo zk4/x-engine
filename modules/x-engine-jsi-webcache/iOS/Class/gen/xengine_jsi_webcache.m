@@ -24,9 +24,15 @@
     - (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           NSDictionary* dto = [self convert:dict clazz:NSDictionary.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+
           [self _xhrRequest:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
-      }
+  }
   @end

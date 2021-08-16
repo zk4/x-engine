@@ -41,4 +41,12 @@
 /// 转换 dictionary 为 json 字符串
 /// @param dic 
 + (NSString*)dictionaryToJson:(NSDictionary *)dic;
+
+/// 将 spa 地址转换为标准 url
++ (NSString*)SPAUrl2StandardUrl:(NSString*)raw;
+@end
+
+
+@interface XToolRuntime : NSObject
++ (NSArray *) getSubclasses:(Class) parentClass;
 @end

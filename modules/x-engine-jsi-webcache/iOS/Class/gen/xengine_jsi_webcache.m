@@ -30,7 +30,7 @@
           return;
         }
 
-          [self _xhrRequest:dto complete:^(NSString* result,  BOOL complete) {
+          [self _xhrRequest:dto complete:^(NSDictionary* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

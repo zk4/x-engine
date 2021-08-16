@@ -52,7 +52,7 @@ JSI_MODULE(JSI_webcache)
 
 
 
-- (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSString*,BOOL))completionHandler {
+- (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSDictionary*,BOOL))completionHandler {
 // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
     NSDictionary* headers = dict[@"headers"];
     NSString* url = dict[@"url"];
@@ -116,7 +116,7 @@ JSI_MODULE(JSI_webcache)
             NSHTTPURLResponse *response =nil;
             response = (NSHTTPURLResponse *)r;
             NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-            NSDictionary* responseText =  [XToolDataConverter dictionaryToJson:data];
+            NSString* responseText =  [XToolDataConverter dictionaryToJson:data];
             NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
 
 

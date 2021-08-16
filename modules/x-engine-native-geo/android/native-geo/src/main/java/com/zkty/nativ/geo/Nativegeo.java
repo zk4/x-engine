@@ -4,9 +4,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.provider.Settings;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
@@ -49,11 +52,13 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
     @Override
     public void locate(CallBack callBack) {
-        permissions = permissionsO;
-        if (Build.VERSION.SDK_INT >= 29) {
-            permissions = permissionsQ;
-        }
+        checkGeoService();
 
+
+        permissions = permissionsO;
+//        if (Build.VERSION.SDK_INT == 29) {
+//            permissions = permissionsQ;
+//        }
 
         Activity activity = XEngineApplication.getCurrentActivity();
         if (activity == null || !(activity instanceof BaseXEngineActivity)) return;
@@ -131,4 +136,54 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
 
     }
+
+    private void checkGeoService() {
+        if (!isLocServiceEnable()) {
+            Activity activity = XEngineApplication.getCurrentActivity();
+            AlertDialog mPermissionDialog = new AlertDialog.Builder(activity)
+                    .setMessage("请前往设置页面开启定位服务，并允许应用访问您的位置")
+                    .setPositiveButton("设置", (dialog, which) -> {
+                        dialog.dismiss();
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        activity.startActivity(intent);
+                    })
+                    .setNegativeButton("暂不开启", (dialog, which) -> {
+                        //关闭页面或者做其他操作
+                        dialog.dismiss();
+
+                    })
+                    .create();
+            mPermissionDialog.show();
+        }
+    }
+
+
+    /**
+     * 手机是否开启位置服务，如果没有开启那么所有app将不能使用定位功能
+     */
+    private boolean isLocServiceEnable() {
+//        LocationManager locationManager = (LocationManager) XEngineApplication.getCurrentActivity().getSystemService(Context.LOCATION_SERVICE);
+//        if (locationManager == null) {
+//            return false;
+//        }
+//        return locationManager.isLocationEnabled();
+
+        int locationMode = 0;
+        String locationProviders;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                locationMode = Settings.Secure.getInt(XEngineApplication.getCurrentActivity().getContentResolver(), Settings.Secure.LOCATION_MODE);
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+        } else {
+            locationProviders = Settings.Secure.getString(XEngineApplication.getCurrentActivity().getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
+        }
+
+    }
+
+
 }

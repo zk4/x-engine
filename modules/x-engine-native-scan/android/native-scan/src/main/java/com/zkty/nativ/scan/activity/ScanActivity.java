@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -66,10 +67,13 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onScanQRCodeSuccess(String result) {
                 Log.d(TAG, result);
-                Intent intent = new Intent();
-                intent.putExtra("result", result);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                new Handler().postDelayed(() -> {
+                    Intent intent = new Intent();
+                    intent.putExtra("result", result);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }, 500);
+
             }
 
             @Override

@@ -14,6 +14,6 @@ const conf = {
 };
 
 @async
-function xhrRequest(arg: Map):string {
+function xhrRequest(arg: Map):Map {
   //demo code
 }

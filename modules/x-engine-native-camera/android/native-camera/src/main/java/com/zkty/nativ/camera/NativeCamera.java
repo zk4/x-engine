@@ -27,13 +27,11 @@ import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.XEngineProvider;
-import com.zkty.nativ.jsi.bridge.OnReturnValue;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
-import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
 
 import java.io.File;
@@ -98,160 +96,165 @@ public class NativeCamera extends NativeModule implements ICamera {
         Activity activity = XEngineApplication.getCurrentActivity();
         if (activity == null || !(activity instanceof BaseXEngineActivity)) return;
         final BaseXEngineActivity act = (BaseXEngineActivity) activity;
-        if (lifeCycleListener == null) {
-            lifeCycleListener = new LifecycleListener() {
-                @Override
-                public void onCreate() {
 
-                }
 
-                @Override
-                public void onStart() {
+        if (lifeCycleListener != null) {
+            act.removeLifeCycleListener(lifeCycleListener);
+            lifeCycleListener = null;
+        }
+        lifeCycleListener = new LifecycleListener() {
+            @Override
+            public void onCreate() {
 
-                }
+            }
 
-                @Override
-                public void onRestart() {
+            @Override
+            public void onStart() {
 
-                }
+            }
 
-                @Override
-                public void onResume() {
+            @Override
+            public void onRestart() {
 
-                }
+            }
 
-                @Override
-                public void onPause() {
+            @Override
+            public void onResume() {
 
-                }
+            }
 
-                @Override
-                public void onStop() {
+            @Override
+            public void onPause() {
 
-                }
+            }
 
-                @Override
-                public void onDestroy() {
-                    act.removeLifeCycleListener(lifeCycleListener);
-                    lifeCycleListener = null;
-                }
+            @Override
+            public void onStop() {
 
-                @Override
-                public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-                    Log.d(TAG, "onActivityResult---" + "requestCode:" + requestCode + "---resultCode:" + resultCode);
+            }
 
-                    if (resultCode == Activity.RESULT_OK) {
-                        if (requestCode == REQUEST_OBTAIN_PIC) {
-                            ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
-                            StringBuffer stringBuffer = new StringBuffer();
-                            stringBuffer.append("当前选中图片路径：\n");
-                            for (int i = 0; i < items.size(); i++) {
-                                stringBuffer.append(items.get(i) + "\n");
+            @Override
+            public void onDestroy() {
+                act.removeLifeCycleListener(lifeCycleListener);
+                lifeCycleListener = null;
+            }
+
+            @Override
+            public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+                Log.d(TAG, "onActivityResult---" + "requestCode:" + requestCode + "---resultCode:" + resultCode);
+
+                if (resultCode == Activity.RESULT_OK) {
+                    if (requestCode == REQUEST_OBTAIN_PIC) {
+                        ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
+                        StringBuffer stringBuffer = new StringBuffer();
+                        stringBuffer.append("当前选中图片路径：\n");
+                        for (int i = 0; i < items.size(); i++) {
+                            stringBuffer.append(items.get(i) + "\n");
+                        }
+                        Log.d(TAG, "selected:" + stringBuffer.toString());
+
+                        if (items != null) {
+                            String path = items.get(0);                 //原始文件位置
+
+                            ArrayList<String> paths = new ArrayList<>();
+                            items.add(path);
+                            setResult(paths);
+                        } else {
+                            throw new XEngineException("XEngineWebView is null!");
+                        }
+                    } else if (requestCode == REQUEST_CAMERA) {                 //相机返回
+                        Log.d(TAG, "camera:---path:" + out.getPath());
+
+                        if (cameraDTO.isAllowsEditing()) {                //保存到相册功能需要适配
+                            // 其次把文件插入到系统图库
+                            try {
+                                MediaStore.Images.Media.insertImage(act.getContentResolver(), out.getAbsolutePath(), out.getName(), null);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
                             }
-                            Log.d(TAG, "selected:" + stringBuffer.toString());
 
-                            if (items != null) {
-                                String path = items.get(0);                 //原始文件位置
-
-                                ArrayList<String> paths = new ArrayList<>();
-                                items.add(path);
-                                setResult(paths);
+                            // 最后通知图库更新
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // 判断SDK版本是不是4.4或者高于4.4
+                                String[] paths = new String[]{out.getPath()};
+                                MediaScannerConnection.scanFile(act, paths, null, null);
                             } else {
-                                throw new XEngineException("XEngineWebView is null!");
+                                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                                intent.setData(Uri.fromFile(out));
+                                act.sendBroadcast(intent);
                             }
-                        } else if (requestCode == REQUEST_CAMERA) {                 //相机返回
-                            Log.d(TAG, "camera:---path:" + out.getPath());
+                        }
 
-                            if (cameraDTO.isAllowsEditing()) {                //保存到相册功能需要适配
-                                // 其次把文件插入到系统图库
-                                try {
-                                    MediaStore.Images.Media.insertImage(act.getContentResolver(), out.getAbsolutePath(), out.getName(), null);
-                                } catch (FileNotFoundException e) {
-                                    e.printStackTrace();
-                                }
+                        if (out.exists()) {
+                            if (cameraDTO.isAllowsEditing()) {
+                                crop(act, FileProvider.getUriForFile(act, XEngineProvider.getProvider(), out), out.getParentFile(), out.getName(), editArgs);
+                            } else {
+                                ArrayList<String> items = new ArrayList<>();
+                                items.add(out.getPath());
+                                setResult(items);
 
-                                // 最后通知图库更新
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // 判断SDK版本是不是4.4或者高于4.4
-                                    String[] paths = new String[]{out.getPath()};
-                                    MediaScannerConnection.scanFile(act, paths, null, null);
-                                } else {
-                                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                                    intent.setData(Uri.fromFile(out));
-                                    act.sendBroadcast(intent);
-                                }
                             }
-
+                        }
+                    } else if (requestCode == REQUEST_ALBUM) {                  //相册返回
+                        Uri uri = data.getData();
+                        Log.d(TAG, "album:" + uri.toString());
+                        try {
+                            long timestamp = System.currentTimeMillis();
+//                                out = new File(act.getCacheDir(), "temp_" + timestamp + ".jpg");
+//
+//                                String file1 = FileUtils.saveFile(act.getContentResolver().openInputStream(uri), out.getParentFile(), out.getName());          //读取相册原始文件并保存到缓存目录
+                            out = FileUtils.uri2File(uri);
                             if (out.exists()) {
-                                if (cameraDTO.isAllowsEditing()) {
-                                    crop(act, FileProvider.getUriForFile(act, XEngineProvider.getProvider(), out), out.getParentFile(), out.getName(), editArgs);
-                                } else {
+                                Log.d(TAG, "out:" + out.getPath());
+
+                                if (cameraDTO.isAllowsEditing()) {              //编辑
+                                    crop(act, uri, out.getParentFile(), out.getName(), editArgs);
+                                } else {                                    //直接返回
                                     ArrayList<String> items = new ArrayList<>();
                                     items.add(out.getPath());
                                     setResult(items);
 
                                 }
                             }
-                        } else if (requestCode == REQUEST_ALBUM) {                  //相册返回
-                            Uri uri = data.getData();
-                            Log.d(TAG, "album:" + uri.toString());
-                            try {
-                                long timestamp = System.currentTimeMillis();
-                                out = new File(act.getCacheDir(), "temp_" + timestamp + ".jpg");
+                        } catch (Exception e) {
 
-                                String file = FileUtils.saveFile(act.getContentResolver().openInputStream(uri), out.getParentFile(), out.getName());          //读取相册原始文件并保存到缓存目录
+                        }
+                    } else if (requestCode == REQUEST_CROP) {                   //裁剪返回
+                        Log.d(TAG, "crop:");
 
-                                if (!TextUtils.isEmpty(file)) {
-                                    Log.d(TAG, "out:" + out.getPath());
+                        if (outCrop.exists()) {
+                            String path = outCrop.getPath();
+                            Log.d(TAG, "outCrop:" + path);
 
-                                    if (cameraDTO.isAllowsEditing()) {              //编辑
-                                        crop(act, uri, out.getParentFile(), out.getName(), editArgs);
-                                    } else {                                    //直接返回
-                                        ArrayList<String> items = new ArrayList<>();
-                                        items.add(out.getPath());
-                                        setResult(items);
+                            ArrayList<String> items = new ArrayList<>();
+                            items.add(path);
+                            setResult(items);           //设置数据返回
+                        } else {
+                            throw new XEngineException("XEngineWebView is null!");
+                        }
+                    } else if (requestCode == REQUEST_ALBUM_MUILTE) {
+                        ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
+                        if (items != null && items.size() > 0) {
+                            setResult(items);
+                        }
 
-                                    }
-                                }
-                            } catch (Exception e) {
+                    }
+                }
+            }
 
-                            }
-                        } else if (requestCode == REQUEST_CROP) {                   //裁剪返回
-                            Log.d(TAG, "crop:");
-
-                            if (outCrop.exists()) {
-                                String path = outCrop.getPath();
-                                Log.d(TAG, "outCrop:" + path);
-
-                                ArrayList<String> items = new ArrayList<>();
-                                items.add(path);
-                                setResult(items);           //设置数据返回
-                            } else {
-                                throw new XEngineException("XEngineWebView is null!");
-                            }
-                        } else if (requestCode == REQUEST_ALBUM_MUILTE) {
-                            ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
-                            if (items != null && items.size() > 0) {
-                                setResult(items);
-                            }
-
+            @Override
+            public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+                Log.d(TAG, "onRequestPermissionsResult" + requestCode);
+                if (requestCode == PERMISSION_REQUEST_CAMERA) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (act.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                            showDialog(act);
                         }
                     }
                 }
-
-                @Override
-                public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-                    Log.d(TAG, "onRequestPermissionsResult" + requestCode);
-                    if (requestCode == PERMISSION_REQUEST_CAMERA) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (act.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                                showDialog(act);
-                            }
-                        }
-                    }
-                }
-            };
-            act.addLifeCycleListener(lifeCycleListener);
-        }
+            }
+        };
+        act.addLifeCycleListener(lifeCycleListener);
+//        }
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && act.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -437,7 +440,8 @@ public class NativeCamera extends NativeModule implements ICamera {
             cameraRetDTO.setHeight(String.valueOf(options.outHeight));
 
             if (cameraDTO.isIsbase64()) {
-                String ret = ClientManager.imageToBase64(paths.get(j));
+//                String ret = ClientManager.imageToBase64(paths.get(j));
+                String ret = ClientManager.bitmapToString(paths.get(j));
                 if (ret != null) {
                     cameraRetDTO.setRetImage(ret);
                 } else {

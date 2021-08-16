@@ -104,6 +104,7 @@ public class PermissionsUtils {
         final String mPackName = context.getPackageName();
         if (mPermissionDialog == null) {
             mPermissionDialog = new AlertDialog.Builder(context)
+                    .setCancelable(false)
                     .setMessage("已禁用权限，请手动授予")
                     .setPositiveButton("设置", (dialog, which) -> {
                         cancelPermissionDialog();

@@ -13,7 +13,7 @@
 
 @protocol xengine_jsi_webcache_protocol
    @required 
-     - (void) _xhrRequest:(NSDictionary*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+     - (void) _xhrRequest:(NSDictionary*) dto complete:(void (^)(NSDictionary* result,BOOL complete)) completionHandler;
 
 @end
 

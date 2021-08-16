@@ -18,7 +18,7 @@
   
   
   interface xengine_jsi_webcache_protocol {
-    public void _xhrRequest(Map dto, final CompletionHandler<String> handler);
+    public void _xhrRequest(Map dto, final CompletionHandler<Map> handler);
   }
   
   
@@ -31,13 +31,13 @@
     @JavascriptInterface
     final public void xhrRequest(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       Map dto= convert(jsonobj,Map.class);
-      _xhrRequest(dto, new CompletionHandler<String>() {
+      _xhrRequest(dto, new CompletionHandler<Map>() {
         @Override
-        public void complete(String retValue) { handler.complete(retValue); }
+        public void complete(Map retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
+        public void setProgressData(Map value) { handler.setProgressData(value); }
       });
 
     }

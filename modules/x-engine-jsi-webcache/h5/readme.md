@@ -20,7 +20,7 @@ version: 2.8.1
 
 **返回值**
 ``` js
-string
+Map
 ``` 
 
 

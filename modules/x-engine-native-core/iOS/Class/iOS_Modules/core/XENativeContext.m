@@ -8,8 +8,8 @@
 #import "XENativeContext.h"
 #import "XENativeModule.h"
 #import <objc/message.h>
-static const int __XENGINE_VERSION_BIG__  = 2;
-static const int __XENGINE_VERSION_MID__  = 5;
+static const int __XENGINE_VERSION_BIG__  = 3;
+static const int __XENGINE_VERSION_MID__  = 0;
 static const int __XENGINE_VERSION_SMALL__  = 0;
 
 @interface XENativeContext ()

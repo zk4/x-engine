@@ -10,7 +10,7 @@
 #import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
 #import <Photos/Photos.h>
-
+#import "XTool.h"
 typedef void (^PhotoCallBack)(NSString *);
 typedef void (^SaveCallBack)(NSString *);
 @interface Native_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
@@ -115,8 +115,14 @@ NATIVE_MODULE(Native_camera)
         NSMutableDictionary * ret = [NSMutableDictionary new];
         NSMutableArray * photoarrays=  [NSMutableArray new];
         NSDictionary* argsDic = dto.args;
+        float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
+        float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
+        
         for(int i = 0; i< photos.count; i++){
-            UIImage* image=  [self parseImage:photos[i] Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+//            UIImage* image=  [self parseImage: Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            
+            NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
+            UIImage* image = [UIImage imageWithData:imageData];
             [photoarrays addObject: @{
                 @"retImage":[weakself UIImageToBase64Str:image],
                 @"contentType":@"image/png",
@@ -168,8 +174,14 @@ NATIVE_MODULE(Native_camera)
             ret[@"data"] = @[paramDic];
             [self sendParamtoWeb:ret];
         } else {
+            
             NSDictionary * argsDic = self.cameraDto.args;
-            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
+            float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
+            
+//            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            NSData* imageData= [XToolImage compressImage:self.photoImage toMaxDataSizeKBytes:maxBytes miniQuality:q];
+            UIImage* image = [UIImage imageWithData:imageData];
             NSDictionary * paramDic = @{
                 @"retImage":[self UIImageToBase64Str:image],
                 @"contentType":@"image/png",
@@ -250,25 +262,25 @@ NATIVE_MODULE(Native_camera)
     }
     return dic;
 }
-
-- (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
-    NSData *imageData;
-    CGFloat width_height_per = image.size.width/image.size.height;
-    CGFloat width = image.size.width;
-    CGFloat height = image.size.height;
-    NSString * w = [NSString stringWithFormat:@"%@",imageWidth];
-    NSString * h = [NSString stringWithFormat:@"%@",imageHeight];
-    if ([self getNoEmptyString:w])  width = w.floatValue;
-    if ([self getNoEmptyString:h])  height = h.floatValue;
-    if (![self getNoEmptyString:w]) width = height*width_height_per;
-    if (![self getNoEmptyString:h]) height = width/width_height_per;
-    image= [self imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
-    
-    NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
-    NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
-    imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
-    return [UIImage imageWithData:imageData];
-}
+//
+//- (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
+//    NSData *imageData;
+//    CGFloat width_height_per = image.size.width/image.size.height;
+//    CGFloat width = image.size.width;
+//    CGFloat height = image.size.height;
+//    NSString * w = [NSString stringWithFormat:@"%@",imageWidth];
+//    NSString * h = [NSString stringWithFormat:@"%@",imageHeight];
+//    if ([self getNoEmptyString:w])  width = w.floatValue;
+//    if ([self getNoEmptyString:h])  height = h.floatValue;
+//    if (![self getNoEmptyString:w]) width = height*width_height_per;
+//    if (![self getNoEmptyString:h]) height = width/width_height_per;
+//    image= [self imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
+//
+//    NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
+//    NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
+//    imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
+//    return [UIImage imageWithData:imageData];
+//}
 
 //图片裁剪
 - (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize{
@@ -363,9 +375,9 @@ NATIVE_MODULE(Native_camera)
 
  
 
-
-- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
-    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
-}
+//
+//- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
+//    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
+//}
 @end
 

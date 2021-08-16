@@ -11,7 +11,8 @@
 @implementation NSCachedURLResponse (Modifier)
 -(NSCachedURLResponse*)cors:(NSString*) origin {
   NSCachedURLResponse* cachedResponse = self;
-  NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)[cachedResponse response];
+    NSHTTPURLResponse *httpResponse = nil;
+    httpResponse=(NSHTTPURLResponse*)[cachedResponse response];
   NSDictionary *headers = [httpResponse allHeaderFields];
   NSMutableDictionary* newHeaders = [headers mutableCopy];
 

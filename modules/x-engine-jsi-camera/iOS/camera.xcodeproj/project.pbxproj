@@ -260,7 +260,6 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
-				C95AB3D886DDD857BB1EEAD3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -476,23 +475,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-camera/Pods-camera-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C95AB3D886DDD857BB1EEAD3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-cameraTests/Pods-cameraTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-cameraTests/Pods-cameraTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-cameraTests/Pods-cameraTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CC6219C06A1F8CEF4D860D79 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -698,7 +680,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZE56AMZE7;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/camera/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -707,7 +689,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS.2;
 				PRODUCT_NAME = camera;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -720,7 +702,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZE56AMZE7;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/camera/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -729,7 +711,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS.2;
 				PRODUCT_NAME = camera;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -741,7 +723,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -762,7 +744,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (

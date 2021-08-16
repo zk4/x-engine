@@ -10,7 +10,7 @@
 #import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
 #import <Photos/Photos.h>
-
+#import "XTool.h"
 typedef void (^PhotoCallBack)(NSString *);
 typedef void (^SaveCallBack)(NSString *);
 @interface Native_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
@@ -115,8 +115,14 @@ NATIVE_MODULE(Native_camera)
         NSMutableDictionary * ret = [NSMutableDictionary new];
         NSMutableArray * photoarrays=  [NSMutableArray new];
         NSDictionary* argsDic = dto.args;
+        float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
+        float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
+        
         for(int i = 0; i< photos.count; i++){
-            UIImage* image=  [self parseImage:photos[i] Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+//            UIImage* image=  [self parseImage: Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            
+            NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
+            UIImage* image = [UIImage imageWithData:imageData];
             [photoarrays addObject: @{
                 @"retImage":[weakself UIImageToBase64Str:image],
                 @"contentType":@"image/png",
@@ -155,7 +161,7 @@ NATIVE_MODULE(Native_camera)
         }
         NSMutableDictionary *ret = [NSMutableDictionary new];
         if (!self.isbase64) {
-            
+
             NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
             NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
             if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
@@ -168,8 +174,14 @@ NATIVE_MODULE(Native_camera)
             ret[@"data"] = @[paramDic];
             [self sendParamtoWeb:ret];
         } else {
+            
             NSDictionary * argsDic = self.cameraDto.args;
-            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
+            float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
+            
+//            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            NSData* imageData= [XToolImage compressImage:self.photoImage toMaxDataSizeKBytes:maxBytes miniQuality:q];
+            UIImage* image = [UIImage imageWithData:imageData];
             NSDictionary * paramDic = @{
                 @"retImage":[self UIImageToBase64Str:image],
                 @"contentType":@"image/png",
@@ -194,30 +206,31 @@ NATIVE_MODULE(Native_camera)
 #pragma 保存图片
 - (void)saveImageToPhotoAlbum:(SaveImageDTO *)dto saveSuccess:(void (^)(NSString *))success {
     self.saveCallback = success;
-    UIImage * image = [UIImage new];
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusAuthorized){
+            [self performSelectorInBackground:@selector(downloadImg:) withObject:nil];
+        } else {
+            [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
+        }
+    }];
+}
+
+- (void)downloadImg:(SaveImageDTO *)dto {
+    UIImage *image = [UIImage new];
     if ([dto.type isEqualToString:@"url"]) {
-        image = [UIImage imageWithData:[NSData
-                                        dataWithContentsOfURL:[NSURL URLWithString:dto.imageData]]];
-    } else if([dto.type isEqualToString:@"base64"]){
-        if  ([dto.imageData rangeOfString:@"base64,"].location !=NSNotFound) {
+        NSURL *downloadUrl = [NSURL URLWithString:dto.imageData];
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:downloadUrl]];
+    } else if ([dto.type isEqualToString:@"base64"]){
+        if  ([dto.imageData rangeOfString:@"base64,"].location != NSNotFound) {
             NSRange range = [dto.imageData rangeOfString:@"base64, "];
             dto.imageData = [dto.imageData substringFromIndex:range.location+range.length];
         }
-        NSData * imageData =[[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        image = [UIImage imageWithData:imageData ];
+        NSData *imageData =[[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        image = [UIImage imageWithData:imageData];
     }
-    
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusAuthorized){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-            });
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self showPhotoOrCameraWarnAlert:@"请在iPhone的“设置-隐私”选项中允许访问你的相册"];
-            });
-        }
-    }];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    });
 }
 
 - (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -249,25 +262,25 @@ NATIVE_MODULE(Native_camera)
     }
     return dic;
 }
-
-- (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
-    NSData *imageData;
-    CGFloat width_height_per = image.size.width/image.size.height;
-    CGFloat width = image.size.width;
-    CGFloat height = image.size.height;
-    NSString * w = [NSString stringWithFormat:@"%@",imageWidth];
-    NSString * h = [NSString stringWithFormat:@"%@",imageHeight];
-    if ([self getNoEmptyString:w])  width = w.floatValue;
-    if ([self getNoEmptyString:h])  height = h.floatValue;
-    if (![self getNoEmptyString:w]) width = height*width_height_per;
-    if (![self getNoEmptyString:h]) height = width/width_height_per;
-    image= [self imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
-    
-    NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
-    NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
-    imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
-    return [UIImage imageWithData:imageData];
-}
+//
+//- (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
+//    NSData *imageData;
+//    CGFloat width_height_per = image.size.width/image.size.height;
+//    CGFloat width = image.size.width;
+//    CGFloat height = image.size.height;
+//    NSString * w = [NSString stringWithFormat:@"%@",imageWidth];
+//    NSString * h = [NSString stringWithFormat:@"%@",imageHeight];
+//    if ([self getNoEmptyString:w])  width = w.floatValue;
+//    if ([self getNoEmptyString:h])  height = h.floatValue;
+//    if (![self getNoEmptyString:w]) width = height*width_height_per;
+//    if (![self getNoEmptyString:h]) height = width/width_height_per;
+//    image= [self imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
+//
+//    NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
+//    NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
+//    imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
+//    return [UIImage imageWithData:imageData];
+//}
 
 //图片裁剪
 - (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize{
@@ -293,6 +306,7 @@ NATIVE_MODULE(Native_camera)
     }
     return NO;
 }
+
 
 // 压缩图片
 - (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(NSString*)size withQuality:(NSString *)q{
@@ -324,11 +338,11 @@ NATIVE_MODULE(Native_camera)
         NSUInteger lastDataLength = 0;
         while (data.length/1024 > size.floatValue && data.length/1024 != lastDataLength) {
             lastDataLength = data.length /1024;
-            CGFloat ratio = (CGFloat)size.floatValue / data.length/1024;
-            CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
+            CGFloat ratio = (CGFloat)size.floatValue / lastDataLength;
+            CGSize finalsize = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
                                      (NSUInteger)(resultImage.size.height * sqrtf(ratio)));
-            UIGraphicsBeginImageContext(size);
-            [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+            UIGraphicsBeginImageContext(finalsize);
+            [resultImage drawInRect:CGRectMake(0, 0, finalsize.width, finalsize.height)];
             resultImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             data = UIImageJPEGRepresentation(resultImage, compression);
@@ -359,39 +373,11 @@ NATIVE_MODULE(Native_camera)
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
+ 
 
-//获取当前屏幕显示的viewcontroller
-- (UIViewController *)getCurrentVC {
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
-    return currentVC;
-}
-
-- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC {
-    UIViewController *currentVC;
-    if ([rootVC presentedViewController]) {
-        // 视图是被presented出来的
-        rootVC = [rootVC presentedViewController];
-    }
-    
-    if ([rootVC isKindOfClass:[UITabBarController class]]) {
-        // 根视图为UITabBarController
-        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
-    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
-        // 根视图为UINavigationController
-        UINavigationController *nav = (UINavigationController *)rootVC;
-        currentVC = [self getCurrentVCFrom:[nav topViewController]];
-        //        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
-    } else {
-        // 根视图为非导航类
-        currentVC = rootVC;
-    }
-    return currentVC;
-}
-
-
-- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
-    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
-}
+//
+//- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
+//    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
+//}
 @end
 

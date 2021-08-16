@@ -64,6 +64,7 @@ NATIVE_MODULE(Native_store)
 }
 
 - (void)set:(NSString *)key val:(id)val {
+    if(!val)return;
     [_store setObject:val forKey:key];
 }
 

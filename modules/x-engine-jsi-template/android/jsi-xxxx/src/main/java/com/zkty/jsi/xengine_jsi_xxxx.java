@@ -44,13 +44,59 @@
     public Integer age;
   }
   
+  class _4_com_zkty_jsi_xxxx_DTO {
+    public String name;
+
+    public Integer age;
+
+    public List<_5_com_zkty_jsi_xxxx_DTO> houses;
+  }
+  
+  class _5_com_zkty_jsi_xxxx_DTO {
+    public String address;
+
+    public String longtitude;
+
+    public String latitude;
+
+    public _6_com_zkty_jsi_xxxx_DTO dealer;
+  }
+  
+  class _6_com_zkty_jsi_xxxx_DTO {
+    public String name;
+
+    public Integer age;
+  }
+  
+  class _7_com_zkty_jsi_xxxx_DTO {
+    public String name;
+
+    public Integer age;
+
+    public List<_8_com_zkty_jsi_xxxx_DTO> houses;
+  }
+  
+  class _8_com_zkty_jsi_xxxx_DTO {
+    public String address;
+
+    public String longtitude;
+
+    public String latitude;
+
+    public _9_com_zkty_jsi_xxxx_DTO dealer;
+  }
+  
+  class _9_com_zkty_jsi_xxxx_DTO {
+    public String name;
+
+    public Integer age;
+  }
+  
   interface xengine_jsi_xxxx_protocol {
     public void _simpleMethod(final CompletionHandler<Nullable> handler);
 public void _simpleMethod();
 public void _simpleArgMethod(String dto, final CompletionHandler<String> handler);
 public String _simpleArgMethod(String dto);
-public void _simpleArgNumberMethod(Integer dto, final CompletionHandler<Integer> handler);
-public Integer _simpleArgNumberMethod(Integer dto);
 public void _nestedAnonymousObject(final CompletionHandler<_0_com_zkty_jsi_xxxx_DTO> handler);
 public _0_com_zkty_jsi_xxxx_DTO _nestedAnonymousObject();
 public void _namedObject(final CompletionHandler<NamedDTO> handler);
@@ -59,6 +105,8 @@ public void _namedObjectWithNamedArgs(NamedDTO dto, final CompletionHandler<Name
 public NamedDTO _namedObjectWithNamedArgs(NamedDTO dto);
 public void _namedObjectWithArgs(_3_com_zkty_jsi_xxxx_DTO dto, final CompletionHandler<_2_com_zkty_jsi_xxxx_DTO> handler);
 public _2_com_zkty_jsi_xxxx_DTO _namedObjectWithArgs(_3_com_zkty_jsi_xxxx_DTO dto);
+public void _complexAnoymousRetWithAnoymousArgs(_7_com_zkty_jsi_xxxx_DTO dto, final CompletionHandler<_4_com_zkty_jsi_xxxx_DTO> handler);
+public _4_com_zkty_jsi_xxxx_DTO _complexAnoymousRetWithAnoymousArgs(_7_com_zkty_jsi_xxxx_DTO dto);
   }
   
   
@@ -105,26 +153,6 @@ public _2_com_zkty_jsi_xxxx_DTO _namedObjectWithArgs(_3_com_zkty_jsi_xxxx_DTO dt
         public String simpleArgMethod(String dto) {
           
           return _simpleArgMethod(dto);
-        }
-        
-
-    @JavascriptInterface
-    final public void simpleArgNumberMethod(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      Integer dto= convert(jsonobj,Integer.class);
-      _simpleArgNumberMethod(dto, new CompletionHandler<Integer>() {
-        @Override
-        public void complete(Integer retValue) { handler.complete(retValue); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Integer value) { handler.setProgressData(value); }
-      });
-
-    }
-        @JavascriptInterface
-        public Integer simpleArgNumberMethod(JSONObject jsonobj) {
-          Integer dto= convert(jsonobj,Integer.class);
-          return _simpleArgNumberMethod(dto);
         }
         
 
@@ -203,6 +231,26 @@ public _2_com_zkty_jsi_xxxx_DTO _namedObjectWithArgs(_3_com_zkty_jsi_xxxx_DTO dt
         public _2_com_zkty_jsi_xxxx_DTO namedObjectWithArgs(JSONObject jsonobj) {
           _3_com_zkty_jsi_xxxx_DTO dto= convert(jsonobj,_3_com_zkty_jsi_xxxx_DTO.class);
           return _namedObjectWithArgs(dto);
+        }
+        
+
+    @JavascriptInterface
+    final public void complexAnoymousRetWithAnoymousArgs(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _7_com_zkty_jsi_xxxx_DTO dto= convert(jsonobj,_7_com_zkty_jsi_xxxx_DTO.class);
+      _complexAnoymousRetWithAnoymousArgs(dto, new CompletionHandler<_4_com_zkty_jsi_xxxx_DTO>() {
+        @Override
+        public void complete(_4_com_zkty_jsi_xxxx_DTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(_4_com_zkty_jsi_xxxx_DTO value) { handler.setProgressData(value); }
+      });
+
+    }
+        @JavascriptInterface
+        public _4_com_zkty_jsi_xxxx_DTO complexAnoymousRetWithAnoymousArgs(JSONObject jsonobj) {
+          _7_com_zkty_jsi_xxxx_DTO dto= convert(jsonobj,_7_com_zkty_jsi_xxxx_DTO.class);
+          return _complexAnoymousRetWithAnoymousArgs(dto);
         }
         
   }

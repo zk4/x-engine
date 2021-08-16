@@ -41,10 +41,12 @@ NATIVE_MODULE(Native_rest)
 - (AFHTTPSessionManager *)session:(NSURL *)baseUrl{
     AFHTTPSessionManager* sessionManager = [self.sessionManagers objectForKey:baseUrl];
 
-    /// TODO: 同步
-    if(!sessionManager){
-        sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseUrl];
-        [self.sessionManagers setObject:sessionManager forKey:baseUrl];
+    @synchronized (self) {
+        if(!sessionManager){
+            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseUrl];
+            [self.sessionManagers setObject:sessionManager forKey:baseUrl];
+        
+        }
     }
     return sessionManager;
 }

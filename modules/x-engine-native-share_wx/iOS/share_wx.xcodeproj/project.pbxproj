@@ -61,7 +61,7 @@
 		38E983922615F6E8007F6BDF /* Native_share_wx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Native_share_wx.m; sourceTree = "<group>"; };
 		38E983932615F6E8007F6BDF /* Native_share_wx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Native_share_wx.h; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		581FAF352624CC1A00ED7DCC /* iShare_wx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iShare_wx.h; sourceTree = "<group>"; };
+		5867B5A526BABCB900CF75E2 /* share_wx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = share_wx.entitlements; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-share_wxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-share_wxTests.release.xcconfig"; path = "Target Support Files/Pods-share_wxTests/Pods-share_wxTests.release.xcconfig"; sourceTree = "<group>"; };
 		6766A91E76375D29D7BBF318 /* libPods-share_wxTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-share_wxTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +154,7 @@
 		00DFC6E224C84000006A53EE /* share_wx */ = {
 			isa = PBXGroup;
 			children = (
+				5867B5A526BABCB900CF75E2 /* share_wx.entitlements */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
 				00DFC6E424C84000006A53EE /* Assets.xcassets */,
@@ -194,7 +195,6 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				581FAF352624CC1A00ED7DCC /* iShare_wx.h */,
 				38E983932615F6E8007F6BDF /* Native_share_wx.h */,
 				38E983922615F6E8007F6BDF /* Native_share_wx.m */,
 			);
@@ -603,9 +603,11 @@
 			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-share_wx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = share_wx/share_wx.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = XFZ38U4TMY;
 				INFOPLIST_FILE = "$(SRCROOT)/share_wx/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -614,8 +616,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
 				PRODUCT_NAME = share_wx;
+				PROVISIONING_PROFILE_SPECIFIER = "gomeHomeAppC-pp-Dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -625,9 +628,10 @@
 			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-share_wx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = share_wx/share_wx.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/share_wx/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -638,6 +642,7 @@
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
 				PRODUCT_NAME = share_wx;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

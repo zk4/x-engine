@@ -2,6 +2,7 @@
 - [globalstorage](./docs/modules/all/模块-globalstorage.md)
 - [device](./docs/modules/all/模块-device.md)
 - [scan](./docs/modules/all/模块-scan.md)
+- [share](./docs/modules/all/模块-share.md)
 - [localstorage](./docs/modules/all/模块-localstorage.md)
 - [ui](./docs/modules/all/模块-ui.md)
 - [direct](./docs/modules/all/模块-direct.md)

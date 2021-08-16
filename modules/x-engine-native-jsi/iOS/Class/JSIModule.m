@@ -11,6 +11,8 @@
 #import <objc/message.h>
 #import "XEngineJSBUtil.h"
 #import "Unity.h"
+#import "iToast.h"
+#import "XENativeContext.h"
 # ifndef mustOverride
 #define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 #endif
@@ -46,10 +48,11 @@
 
 - (void)showErrorAlert:(NSString *)errorString
 {
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-    [ac addAction:action];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+//    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+//    [ac addAction:action];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+    [XENP(iToast) toast:errorString duration:1.0];
 }
 
 

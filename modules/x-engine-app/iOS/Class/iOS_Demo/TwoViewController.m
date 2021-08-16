@@ -23,6 +23,4 @@
     [XENP(iDirectManager) addFallbackRouter:@"microapp://com.gm.microapp.min11e" fallback:@"http://www.baidu.com"];
     [XENP(iDirectManager) addToTab:self uri:@"microapp://com.gm.microapp.min11e" params:@{@"hideNavbar":@TRUE}];
 }
- 
-
 @end

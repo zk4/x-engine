@@ -4,7 +4,7 @@
 //
 //  Created by wsl on 2020/5/30.
 //  Copyright © 2020 https://github.com/wsl2ls   ----- . All rights reserved.
-//
+// https://juejin.cn/post/6844904079458566152
 
 #import "SLUrlProtocol.h"
 #import "SLWebCacheManager.h"
@@ -70,8 +70,8 @@ static NSString *SLUrlProtocolHandled = @"SLUrlProtocolHandled";
         //没有缓存数据
         //使用NSURLSession继续把request发送出去
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
-        self.session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:mainQueue];
+        
+        self.session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
         NSURLSessionDataTask *task = [self.session dataTaskWithRequest:mutableReqeust];
         [task resume];
     }
@@ -107,11 +107,6 @@ didReceiveResponse:(NSURLResponse *)response
 //接收到服务器返回的数据 调用多次，数据是分批返回的
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data {
-    // 打印返回的数据
-    //    NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    //    if (dataStr) {
-    //        NSLog(@"收到数据: %@", dataStr);
-    //    }
     //拼接数据
     [self appendData:data];
     [self.client URLProtocol:self didLoadData:data];

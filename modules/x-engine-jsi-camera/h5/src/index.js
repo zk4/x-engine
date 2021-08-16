@@ -13,6 +13,16 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.camera", 
     [
   {
+    "name": "test_aok",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_openImagePicker2",
+    "default_args": {},
+    "decorators": []
+  },
+  {
     "name": "test_openImagePicker",
     "default_args": {},
     "decorators": []

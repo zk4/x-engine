@@ -9,7 +9,7 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "XENativeContext.h"
-#import "iSecurify.h"
+#import "iToast.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
 
@@ -144,31 +144,31 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
 {
-    if(!jsDialogBlock){
+//    if(!jsDialogBlock){
         completionHandler();
-    }
-    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
-                               @selector(webView:runJavaScriptAlertPanelWithMessage
-                                         :initiatedByFrame:completionHandler:)])
-    {
-        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
-                         initiatedByFrame:frame
-                        completionHandler:completionHandler];
-    }else{
+//    }
+//    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
+//                               @selector(webView:runJavaScriptAlertPanelWithMessage
+//                                         :initiatedByFrame:completionHandler:)])
+//    {
+//        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
+//                         initiatedByFrame:frame
+//                        completionHandler:completionHandler];
+//    }else{
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
-                                                                       message:message
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-            if(completionHandler){
-                completionHandler();
-            }
-        }];
-        [alert addAction:action];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-    }
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
+//                                                                       message:message
+//                                                                preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
+//                                                         style:UIAlertActionStyleDefault
+//                                                       handler:^(UIAlertAction * _Nonnull action) {
+//            if(completionHandler){
+//                completionHandler();
+//            }
+//        }];
+//        [alert addAction:action];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+//    }
 }
 
 -(void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message
@@ -251,14 +251,15 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)showErrorAlert:(NSString *)message
 {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [errorAlert addAction:sureAction];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
-        
-    }];
+    [XENP(iToast) toast:message duration:1.0];
+//    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    [errorAlert addAction:sureAction];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
+//
+//    }];
 }
 
 - (void) evalJavascript:(int) delay{

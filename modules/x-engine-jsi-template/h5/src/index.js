@@ -61,6 +61,16 @@ function osCheck() {
     "name": "test_异步返回匿名嵌套对象",
     "default_args": {},
     "decorators": []
+  },
+  {
+    "name": "test_complex_async",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_complex_sync",
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

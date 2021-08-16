@@ -50,7 +50,7 @@ JSI_MODULE(JSI_webcache)
 
 - (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSString*,BOOL))completionHandler {
 // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
-    NSDictionary* headers = dict[@"header"];
+    NSDictionary* headers = dict[@"headers"];
     NSString* url = dict[@"url"];
     NSString* method = dict[@"method"];
 
@@ -86,6 +86,15 @@ JSI_MODULE(JSI_webcache)
     if(dict && ![self isNull:dict key:@"data"] && dict[@"data"]){
         if([dict[@"data"] isKindOfClass:NSString.class]){
             request.HTTPBody = [dict[@"data"] dataUsingEncoding:NSUTF8StringEncoding];
+        }else  if([dict[@"data"] isKindOfClass:NSArray.class]){
+            NSArray *tempArr = dict[@"data"];
+
+            NSMutableData *mutableData = [NSMutableData data];
+            for (NSString *str in tempArr) {
+                NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                [mutableData appendData:data];
+            }
+            request.HTTPBody = [mutableData copy];
         }
     }
     
@@ -96,8 +105,9 @@ JSI_MODULE(JSI_webcache)
 
     NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
         if (!error) {
-            NSHTTPURLResponse *response = (NSHTTPURLResponse *)r;
-            NSString* statusCode =[NSString stringWithFormat:@"%d",[response statusCode]] ;
+            NSHTTPURLResponse *response =nil;
+            response = (NSHTTPURLResponse *)r;
+            NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
             NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
             NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
 

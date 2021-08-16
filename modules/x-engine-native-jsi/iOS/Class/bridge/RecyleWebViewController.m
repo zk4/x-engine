@@ -56,22 +56,12 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 }
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
                     withHiddenNavBar:(BOOL)isHidden
-                                
 {
     self = [super init];
     if (self){
         if(fileUrl.length == 0)
             return self;
      
-//        {
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        btn.frame = CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 44);
-//        btn.backgroundColor = [UIColor systemPinkColor];
-//        [btn setTitle:@"refresh" forState:UIControlStateNormal];
-//            [btn addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
-//
-//        [self.view addSubview:btn];
-//        }
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
@@ -81,10 +71,10 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         }
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
-        [self.webview loadUrl:self.loadUrl];
+//        [self.webview loadUrl:self.loadUrl];
+//        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL URLWithString:self.loadUrl]];
         self.webview.frame = [UIScreen mainScreen].bounds;
 
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
                                                      name:@"XEWebViewProgressChangeNotification"
@@ -113,7 +103,8 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+//     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+        [self.webview loadUrl:self.loadUrl];
     }
 }
 

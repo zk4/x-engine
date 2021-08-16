@@ -106,80 +106,76 @@ NATIVE_MODULE(Native_camera)
     }
 }
 
-- (void)choosePhotos:(CameraParamsDTO*)dto {
-    PHFetchOptions *options = [PHFetchOptions new];
-    PHFetchResult *topLevelUserCollections = [PHAssetCollection fetchTopLevelUserCollectionsWithOptions:options];
-    PHAssetCollectionSubtype subType = PHAssetCollectionSubtypeAlbumRegular;
-    PHFetchResult *smartAlbumsResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:subType options:options];
-    
-    NSMutableArray *photoGroups = [NSMutableArray array];
-    [topLevelUserCollections enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[PHAssetCollection class]]) {
-             PHAssetCollection *asset = (PHAssetCollection *)obj;
-             PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:[PHFetchOptions new]];
-             if (result.count > 0) {
-                 NSLog(@"%@", asset);
-                 NSLog(@"%@", asset.localizedTitle);
-             }
-         }
-    }];
-
-    [smartAlbumsResult enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[PHAssetCollection class]]) {
-           PHAssetCollection *asset = (PHAssetCollection *)obj;
-           PHFetchOptions *options = [[PHFetchOptions alloc] init];
-           options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-                
-           PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:options];
-           if(result.count > 0 && asset.assetCollectionSubtype != PHAssetCollectionSubtypeSmartAlbumVideos) {
-               NSLog(@"%@", asset);
-               NSLog(@"%@", asset.localizedTitle);
-            }
-         }
-    }];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
+//- (void)choosePhotos:(CameraParamsDTO*)dto {
+//    PHFetchOptions *options = [PHFetchOptions new];
+//    PHFetchResult *topLevelUserCollections = [PHAssetCollection fetchTopLevelUserCollectionsWithOptions:options];
+//    PHAssetCollectionSubtype subType = PHAssetCollectionSubtypeAlbumRegular;
+//    PHFetchResult *smartAlbumsResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:subType options:options];
+//
+//    NSMutableArray *photoGroups = [NSMutableArray array];
+//    [topLevelUserCollections enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+//             PHAssetCollection *asset = (PHAssetCollection *)obj;
+//             PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:[PHFetchOptions new]];
+//             if (result.count > 0) {
+//                 NSLog(@"%@", asset);
+//                 NSLog(@"%@", asset.localizedTitle);
+//             }
+//         }
+//    }];
+//
+//    [smartAlbumsResult enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+//           PHAssetCollection *asset = (PHAssetCollection *)obj;
+//           PHFetchOptions *options = [[PHFetchOptions alloc] init];
+//           options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+//
+//           PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:asset options:options];
+//           if(result.count > 0 && asset.assetCollectionSubtype != PHAssetCollectionSubtypeSmartAlbumVideos) {
+//               NSLog(@"%@", asset);
+//               NSLog(@"%@", asset.localizedTitle);
+//            }
+//         }
+//    }];
+//}
 
 #pragma 调起相册
-//- (void)choosePhotos:(CameraParamsDTO*)dto {
-//    __weak typeof(self) weakself = self;
-//    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
-//    imagePickerVc.allowTakeVideo = NO;
-//    imagePickerVc.allowPickingVideo = NO;
-//    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-//        NSMutableDictionary * ret = [NSMutableDictionary new];
-//        NSMutableArray * photoarrays=  [NSMutableArray new];
-//        NSDictionary* argsDic = dto.args;
-//        float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
-//        float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
-//
-//        for(int i = 0; i< photos.count; i++){
-////            UIImage* image=  [self parseImage: Width:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-//
-//            NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
-//            UIImage* image = [UIImage imageWithData:imageData];
-//            [photoarrays addObject: @{
-//                @"retImage":[weakself UIImageToBase64Str:image],
-//                @"contentType":@"image/png",
-//                @"width": [NSNumber numberWithDouble:image.size.width],
-//                @"height":[NSNumber numberWithDouble:image.size.height],
-//                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
-//            }];
+- (void)choosePhotos:(CameraParamsDTO*)dto {
+    __weak typeof(self) weakself = self;
+    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+    imagePickerVc.allowTakeVideo = NO;
+    imagePickerVc.allowPickingVideo = NO;
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        
+//        NSLog(@"%@", photos);
+//        NSLog(@"%@", assets);
+        
+//        for (PHAsset *asset in assets) {
+////            PHFetchOptions *options = [PHFetchOptions ]
+//            [PHAsset fetchAssetsInAssetCollection:asset options:includeAllBurstAssets];
 //        }
-//        ret[@"data"] = photoarrays;
-//        [weakself sendParamtoWeb:ret];
-//    }];
-//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:imagePickerVc animated:YES completion:nil];
-//}
+        NSMutableDictionary * ret = [NSMutableDictionary new];
+        NSMutableArray * photoarrays=  [NSMutableArray new];
+        NSDictionary* argsDic = dto.args;
+        float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
+        float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
+
+        for(int i = 0; i< photos.count; i++){
+            NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
+            UIImage* image = [UIImage imageWithData:imageData];
+            [photoarrays addObject: @{
+                @"retImage":[weakself UIImageToBase64Str:image],
+                @"contentType":@"image/png",
+                @"width": [NSNumber numberWithDouble:image.size.width],
+                @"height":[NSNumber numberWithDouble:image.size.height],
+                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
+            }];
+        }
+        ret[@"data"] = photoarrays;
+        [weakself sendParamtoWeb:ret];
+    }];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:imagePickerVc animated:YES completion:nil];
+}
 
 #pragma UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -308,7 +304,7 @@ NATIVE_MODULE(Native_camera)
     }
     return dic;
 }
-//
+
 //- (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
 //    NSData *imageData;
 //    CGFloat width_height_per = image.size.width/image.size.height;

@@ -1,5 +1,6 @@
 PODS:
   - JSONModel (1.8.0)
+  - Toast (4.0.0)
   - x-engine-jsi-camera (2.8.1):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -36,45 +37,54 @@ PODS:
   - x-engine-native-tabbar (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-toast (1.0.0):
+    - Toast (~> 4.0.0)
+    - x-engine-native-core
+    - x-engine-native-protocols
 
 DEPENDENCIES:
   - JSONModel
   - x-engine-jsi-camera (from `../`)
-  - x-engine-native-camera (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-camera`)
-  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
-  - x-engine-native-direct (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct`)
-  - x-engine-native-direct_microapp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp`)
-  - x-engine-native-direct_omp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp`)
-  - x-engine-native-jsi (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi`)
-  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
-  - x-engine-native-tabbar (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-tabbar`)
+  - x-engine-native-camera (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-camera`)
+  - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-tabbar (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar`)
+  - x-engine-native-toast (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-toast`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JSONModel
+    - Toast
 
 EXTERNAL SOURCES:
   x-engine-jsi-camera:
     :path: "../"
   x-engine-native-camera:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-camera"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-camera"
   x-engine-native-core:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core"
   x-engine-native-direct:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct"
   x-engine-native-direct_microapp:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp"
   x-engine-native-jsi:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
   x-engine-native-tabbar:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-tabbar"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar"
+  x-engine-native-toast:
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-toast"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   x-engine-jsi-camera: 4f0e5cab50ec441c897161329c39e23f368a6a79
   x-engine-native-camera: f81c179d6c8995491cf118b26a69a3e7f03cec79
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
@@ -84,7 +94,8 @@ SPEC CHECKSUMS:
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
+  x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
 
-PODFILE CHECKSUM: 17d4b8da3d762421bdd17f86e0ab646750ccc481
+PODFILE CHECKSUM: 85e906ab1323bce274f8a6a20090d57eb9a8ee6c
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

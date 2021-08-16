@@ -33,6 +33,7 @@ import com.tencent.smtt.sdk.WebView;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.HistoryModel;
+import com.zkty.nativ.jsi.utils.AndroidBug5497Workaround;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
@@ -93,6 +94,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         setNavBarHidden(hideNavBar, false);
 
         setContentView(R.layout.activity_engine_webview);
+
+        AndroidBug5497Workaround.assistActivity(this);
         //关闭 关于文件uri暴露的检测（FileUriExposedException）
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());

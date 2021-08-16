@@ -113,8 +113,7 @@ JSI_MODULE(JSI_webcache)
     } completionHandler:^(NSURLResponse * _Nonnull r, id  _Nullable data, NSError * _Nullable error) {
         if (!error) {
 
-            NSHTTPURLResponse *response =nil;
-            response = (NSHTTPURLResponse *)r;
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *)r;
             NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
             NSString* responseText =  [XToolDataConverter dictionaryToJson:data];
             NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};

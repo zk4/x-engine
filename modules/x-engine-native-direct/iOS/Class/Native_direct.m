@@ -74,12 +74,12 @@ NATIVE_MODULE(Native_direct)
     } else if(isMinusHistory) {
         if(ary){
             int minusHistory = [fragment intValue];
-            if(minusHistory+ary.count<0){
-                /// TODO: alert
-                NSLog(@"没有历史给你退.");
+            int idx = minusHistory+ary.count -1 ;
+            if(idx<0){
+                [XENP(iToast) toast:@"历史超出边界.退到根目录"];
                 [navC popToRootViewControllerAnimated:TRUE];
             }else {
-                [navC popToViewController:ary[ary.count-1+minusHistory] animated:YES];
+                [navC popToViewController:ary[idx] animated:YES];
             }
         }
     } else if (isNamedHistory){
@@ -239,7 +239,7 @@ NATIVE_MODULE(Native_direct)
      
     // 实在找不到,跳到默认错误页
     NSAssert(container,@"why here, where is your container?");
-
+    if(!container)return;
  
     [parent addChildViewController:container];
     container.view.frame = parent.view.frame;

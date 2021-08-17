@@ -68,17 +68,12 @@ JSI_MODULE(JSI_webcache)
     }
 
     
-    
     // 仅缓存 GET, 如果有更新,则会会二次返回,
-//    if([_cache objectForKey:cacheKey]
-//       //&&
-//       ){
-//        NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
-//
-//        completionHandler(_cache[cacheKey],TRUE);
-//        return;
-//        
-//    }
+    if([_cache objectForKey:cacheKey]){
+        NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
+        completionHandler(_cache[cacheKey],TRUE);
+        return;
+    }
 
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];

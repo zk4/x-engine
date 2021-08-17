@@ -345,15 +345,15 @@ public class XEngineWebView extends DWebView {
     @Override
     public void loadUrl(String url) {
         if (url.startsWith("/data")) url = "file://" + url;
-        if (getOriginalUrl() != null && getOriginalUrl().equals(url)) {
-            url = url.replaceAll("\\'", "");
-            if (url.contains("?")) {
-                url = url + "&timestamp=" + System.currentTimeMillis();
-            } else {
-                url = url + "?timestamp=" + System.currentTimeMillis();
-            }
-
-        }
+//        if (getOriginalUrl() != null && getOriginalUrl().equals(url)) {
+//            url = url.replaceAll("\\'", "");
+//            if (url.contains("?")) {
+//                url = url + "&timestamp=" + System.currentTimeMillis();
+//            } else {
+//                url = url + "?timestamp=" + System.currentTimeMillis();
+//            }
+//
+//        }
 
         Log.d("DWebView", "url=" + url);
         super.loadUrl(url);

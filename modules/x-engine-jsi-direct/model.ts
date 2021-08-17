@@ -31,6 +31,7 @@ interface DirectPushDTO {
   //\_\_deleteHistory\_\_: -1   在push　到下一页之前，　删除掉当前页
   //\_\_deleteHistory\_\_: -2   在push　到下一页之前，　删除掉当前两页
   //历史不足时，到 tab 历史为止。
+  //\_\_fallback\_\_: 'https://www.baidu.com/'   找不到路由时的 fallback
   params?:Map<string, string>;
 }
 

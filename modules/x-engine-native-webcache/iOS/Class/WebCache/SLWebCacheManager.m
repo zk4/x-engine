@@ -244,7 +244,7 @@
 
         // 写入 header 的问题 https://www.coder.work/article/455876
         //cache没过期
-        NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL MIMEType:[otherInfo objectForKey:@"MIMEType"] expectedContentLength:data.length textEncodingName:[otherInfo objectForKey:@"textEncodingName"]];
+        NSURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:request.URL MIMEType:[otherInfo objectForKey:@"MIMEType"] expectedContentLength:data.length textEncodingName:[otherInfo objectForKey:@"textEncodingName"]];
    
         NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
 
@@ -269,9 +269,7 @@
         NSLog(@"req => %@:%@",request.URL, request.HTTPMethod);
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-//                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-//            }
+          
             if (error) {
                 cachedResponse = nil;
             } else {
@@ -416,7 +414,7 @@
 }
 
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj{
-    NSLog(@"@evicted =>%@", obj);
+//    NSLog(@"@evicted =>%@", obj);
      
 }
 @end

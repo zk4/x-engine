@@ -1,5 +1,6 @@
 #import "XTool.h"
 #import "micros.h"
+#import <objc/runtime.h>
 
 #pragma mark - 错误处理
 @implementation XToolError
@@ -113,4 +114,67 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
+
+ 
++ (NSString*)SPAUrl2StandardUrl:(NSString*)raw {
+    int questionMark = -1;
+    int hashtagMark = -1;
+
+    for (int i=0;i< raw.length;i++){
+        char cc= [raw characterAtIndex:i];
+
+        if(cc == '#' && hashtagMark == -1){
+            hashtagMark=i;
+        }
+        // 仅当找到 hashtag 后才再找?, 不然不是 SPA url
+        if(hashtagMark != -1 && cc == '?' && questionMark == -1){
+            questionMark=i;
+        }
+    }
+    if(questionMark != -1 && hashtagMark != -1){
+        NSString* sub1= [raw substringToIndex:hashtagMark];
+        NSString* sub2= [raw substringWithRange:NSMakeRange(hashtagMark, questionMark-hashtagMark)];
+        NSString* sub3=[ [raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
+    }
+    return raw;
+}
+
+@end
+
+
+
+
+@implementation XToolRuntime
+
++ (NSArray *) getSubclasses:(Class) parentClass
+{
+  int numClasses = objc_getClassList(NULL, 0);
+  Class *classes = NULL;
+
+  classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
+  numClasses = objc_getClassList(classes, numClasses);
+
+  NSMutableArray *result = [NSMutableArray array];
+  for (NSInteger i = 0; i < numClasses; i++)
+  {
+    Class superClass = classes[i];
+    do
+    {
+      superClass = class_getSuperclass(superClass);
+    } while(superClass && superClass != parentClass);
+
+    if (superClass == nil)
+    {
+      continue;
+    }
+
+    [result addObject:classes[i]];
+  }
+
+  free(classes);
+
+  return result;
+}
+
 @end

@@ -6,6 +6,7 @@ import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.core.utils.ToastUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,10 @@ public class NativeDirect extends NativeModule implements IDirectManager {
     public void push(String scheme, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
 
         IDirect iDirect = directors.get(scheme);
+        if (iDirect == null) {
+            ToastUtils.showNormalShortToast("跳转地址错误");
+            return;
+        }
         iDirect.push(iDirect.protocol(), host, pathname, fragment, query, params);
 
         if (params != null && params.containsKey("nativeParams")) {

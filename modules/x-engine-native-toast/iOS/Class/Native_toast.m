@@ -27,12 +27,12 @@ NATIVE_MODULE(Native_toast)
     [CSToastManager setQueueEnabled:YES];
 } 
 - (void)toast:(NSString *)msg{
-    [[Unity sharedInstance].getCurrentVC.view makeToast:msg
+    [[UIApplication sharedApplication].keyWindow makeToast:msg
                                                duration:3.0
                                                position:CSToastPositionTop];
 }
 - (void)toast:(NSString *)msg duration:(NSTimeInterval)duration{
-    [[Unity sharedInstance].getCurrentVC.view makeToast:msg
+    [[UIApplication sharedApplication].keyWindow makeToast:msg
                                                duration:duration
                                                position:CSToastPositionTop];
 }

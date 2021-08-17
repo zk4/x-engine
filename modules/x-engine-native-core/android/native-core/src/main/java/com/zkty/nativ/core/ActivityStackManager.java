@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.zkty.nativ.core.base.CoreActivity;
+
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -116,7 +118,8 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        addActivity(activity);
+        if (activity instanceof CoreActivity)
+            addActivity(activity);
     }
 
     @Override
@@ -146,7 +149,8 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        removeActivity(activity);
+        if (activity instanceof CoreActivity)
+            removeActivity(activity);
     }
 }
 

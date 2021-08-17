@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -43,7 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'org.jetbrains:annotations:15.0'
-    api files('src/libs/tbs_sdk_thirdapp_v4.3.0.165_44065.jar')
+    api files('src/libs/tbs_sdk_thirdapp_v4.3.0.176_44076.jar')
     api 'com.gyf.barlibrary:barlibrary:2.3.0'
     api 'com.github.anthonynsimon:jurl:v0.4.2'
 

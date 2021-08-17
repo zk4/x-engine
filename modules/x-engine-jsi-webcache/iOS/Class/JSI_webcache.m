@@ -7,6 +7,8 @@
 #import "JSI_webcache.h"
 #import "JSIContext.h"
 #import "XENativeContext.h"
+#import "AFHTTPSessionManager.h"
+#import "XTool.h"
 
 @interface JSI_webcache()
 @property (nonatomic, strong) NSMutableDictionary* cache;
@@ -48,7 +50,9 @@ JSI_MODULE(JSI_webcache)
 }
 
 
-- (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSString*,BOOL))completionHandler {
+
+
+- (void)_xhrRequest:(NSDictionary *)dict complete:(void (^)(NSDictionary*,BOOL))completionHandler {
 // 可以参考一下这个 https://github1s.com/eclipsesource/tabris-js/blob/HEAD/src/tabris/XMLHttpRequest.js#L8
     NSDictionary* headers = dict[@"headers"];
     NSString* url = dict[@"url"];
@@ -100,15 +104,19 @@ JSI_MODULE(JSI_webcache)
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
 
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
-    __weak typeof(self) weakSelf = self;
 
-    NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
+    __weak typeof(self) weakSelf = self;
+    NSURLSessionDataTask *sessionTask =[[AFHTTPSessionManager manager] dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull r, id  _Nullable data, NSError * _Nullable error) {
         if (!error) {
+
             NSHTTPURLResponse *response =nil;
             response = (NSHTTPURLResponse *)r;
             NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-            NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+            NSString* responseText =  [XToolDataConverter dictionaryToJson:data];
             NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
 
 
@@ -129,8 +137,8 @@ JSI_MODULE(JSI_webcache)
             completionHandler(ret,TRUE);
         }
     }];
+
     [sessionTask resume];
-    
 }
 
 //字典转json格式字符串:

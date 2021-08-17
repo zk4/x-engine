@@ -9,6 +9,7 @@ import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class DirectManager {
@@ -46,10 +47,13 @@ public class DirectManager {
     public static void push(String url) {
 
         try {
+
             URL url1 = URL.parse(url);
+            Map<String, String> params = new HashMap<>();
+            params.put("hideNavbar", "true");
             String scheme = url1.getScheme();
             //URL解析的 fragment 包含query，eg：/mall2/orderlist?selectedIndex=0，故query传null
-            push(scheme, url1.getHost(), url1.getPath(), url1.getFragment(), null, null);
+            push(scheme, url1.getHost(), url1.getPath(), url1.getFragment(), null, params);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

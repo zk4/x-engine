@@ -147,19 +147,29 @@ NATIVE_MODULE(Native_camera)
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-        
+        // 这时 assetsFetchResults 中包含的，应该就是各个资源（PHAsset）
+        for ( PHAsset *phAsset in assets) {
+            PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+            option.resizeMode = PHImageRequestOptionsResizeModeExact;
+            option.networkAccessAllowed = YES;
+            option.synchronous = YES;//同步执行
+            
+            [[PHImageManager defaultManager] requestImageDataForAsset:phAsset options:option resultHandler:^(NSData *data, NSString *uti, UIImageOrientation orientation, NSDictionary *dic){
+                //                                if ([uti isEqualToString:@"com.compuserve.gif"]) {
+                if (data != nil) {
+                    NSString *path;
+                    NSURL *urlPath = [dic objectForKey:@"PHImageFileURLKey"];
+                    NSString *fileName = nil;
+                    if (urlPath) {
+                        fileName = [[urlPath absoluteString] lastPathComponent];
+                    }
+                    NSLog(@"imageurl=%@",urlPath);
+                }
+                return;
+            }];
+        }
         NSLog(@"%@", photos);
         NSLog(@"%@", assets);
-        
-//        PHFetchOptions *options = [[PHFetchOptions alloc] init];
-//        for (PHAsset *as in assets) {
-//            [[PHImageManager defaultManager] requestImageDataForAsset:as options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-//                NSLog(@"%@", imageData);
-//                NSLog(@"%@", dataUTI);
-//                NSLog(@"%@", info);
-//            }];
-//        };
-        
         for (PHAsset *as in assets) {
             PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
             options.synchronous = YES;
@@ -179,7 +189,7 @@ NATIVE_MODULE(Native_camera)
         NSDictionary* argsDic = dto.args;
         float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
         float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
-
+        
         for(int i = 0; i< photos.count; i++){
             NSData* imageData= [XToolImage compressImage:photos[i] toMaxDataSizeKBytes:maxBytes miniQuality:q];
             UIImage* image = [UIImage imageWithData:imageData];
@@ -222,7 +232,7 @@ NATIVE_MODULE(Native_camera)
         }
         NSMutableDictionary *ret = [NSMutableDictionary new];
         if (!self.isbase64) {
-
+            
             NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
             NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
             if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
@@ -240,7 +250,7 @@ NATIVE_MODULE(Native_camera)
             float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
             float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
             
-//            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+            //            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
             NSData* imageData= [XToolImage compressImage:self.photoImage toMaxDataSizeKBytes:maxBytes miniQuality:q];
             UIImage* image = [UIImage imageWithData:imageData];
             NSDictionary * paramDic = @{
@@ -403,7 +413,7 @@ NATIVE_MODULE(Native_camera)
             lastDataLength = data.length /1024;
             CGFloat ratio = (CGFloat)size.floatValue / lastDataLength;
             CGSize finalsize = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
-                                     (NSUInteger)(resultImage.size.height * sqrtf(ratio)));
+                                          (NSUInteger)(resultImage.size.height * sqrtf(ratio)));
             UIGraphicsBeginImageContext(finalsize);
             [resultImage drawInRect:CGRectMake(0, 0, finalsize.width, finalsize.height)];
             resultImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -436,7 +446,7 @@ NATIVE_MODULE(Native_camera)
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
- 
+
 
 //
 //- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{

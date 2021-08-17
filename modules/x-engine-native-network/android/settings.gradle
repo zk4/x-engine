@@ -7,6 +7,12 @@ project(':native-jsi').projectDir = new File('../../../../x-engine/modules/x-eng
 include ':native-core'
 project(':native-core').projectDir = new File('../../../../x-engine/modules/x-engine-native-core/android/native-core')
 
+include ':native-ui'
+project(':native-ui').projectDir = new File('../../../../x-engine/modules/x-engine-native-ui/android/native-ui')
+
+include ':native-camera'
+project(':native-camera').projectDir = new File('../../../../x-engine/modules/x-engine-native-camera/android/native-camera')
+
 include ':native-protocols'
 project(':native-protocols').projectDir = new File('../../../../x-engine/modules/x-engine-native-protocols/android/native-protocols')
 

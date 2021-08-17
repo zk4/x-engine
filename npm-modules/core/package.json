@@ -4,7 +4,7 @@
   "description": "连接原生native和js之间的重要模块",
   "main": "dist/bridge.common.js",
   "scripts": {
-    "build": "rimraf dist && microbundle --external all"
+    "build": "rimraf dist && microbundle --no-sourcemap --external all"
   },
   "source": "src/index.js",
   "module": "./dist/bridge.module.js",

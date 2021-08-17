@@ -22,8 +22,11 @@ import {
   PullRefresh,
   Form,
   Field,
+  Tabs,
+  Tab
 } from "vant";
-
+Vue.use(Tabs);
+Vue.use(Tab);
 Vue.use(Cell);
 Vue.use(Form);
 Vue.use(List);

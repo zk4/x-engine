@@ -1,5 +1,5 @@
 declare var document: Document;
-
+declare type scheme = 'omp' | 'microapp';
 declare class RouteRegExp extends RegExp {
   keys: Array<{ name: string, optional: boolean }>;
 }
@@ -36,6 +36,7 @@ declare type RouterOptions = {
   fallback?: boolean;
   base?: string;
   linkActiveClass?: string;
+  scheme?: string;
   linkExactActiveClass?: string;
   parseQuery?: (query: string) => Object;
   stringifyQuery?: (query: Object) => string;

@@ -115,7 +115,7 @@ function ensureSlash (): boolean {
   return false
 }
 
-export function getHash (): string {
+export function getHash (): string { // 返回# 后面的hash的url
   // We can't use window.location.hash here because it's not
   // consistent across browsers - Firefox will pre-decode it!
   let href = window.location.href

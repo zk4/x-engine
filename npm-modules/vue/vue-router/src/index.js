@@ -17,6 +17,9 @@ import { AbstractHistory } from './history/abstract'
 import type { Matcher } from './create-matcher'
 
 import { isNavigationFailure, NavigationFailureType } from './util/errors'
+
+import { checkScheme, is_native_location, native_go, native_push, isSameLavelRoute } from './util/app-intercept';
+
 export default class VueRouter {
   static install: () => void
   static version: string
@@ -45,7 +48,7 @@ export default class VueRouter {
     this.resolveHooks = []
     this.afterHooks = []
     this.matcher = createMatcher(options.routes || [], this)
-
+    this.scheme = options.scheme || checkScheme()
     let mode = options.mode || 'hash'
     this.fallback =
       mode === 'history' && !supportsPushState && options.fallback !== false
@@ -164,13 +167,18 @@ export default class VueRouter {
   }
 
   push (location: RawLocation, onComplete?: Function, onAbort?: Function) {
-    // $flow-disable-line
-    if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
-      return new Promise((resolve, reject) => {
-        this.history.push(location, resolve, reject)
-      })
+    const isSLR = isSameLavelRoute(this.currentRoute, location)
+    if (is_native_location(location, isSLR)) {
+      native_push(location, this.scheme)
     } else {
-      this.history.push(location, onComplete, onAbort)
+      // $flow-disable-line
+      if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
+        return new Promise((resolve, reject) => {
+          this.history.push(location, resolve, reject)
+        })
+      } else {
+        this.history.push(location, onComplete, onAbort)
+      }
     }
   }
 
@@ -186,7 +194,11 @@ export default class VueRouter {
   }
 
   go (n: number) {
-    this.history.go(n)
+    if (is_native_location(n)) {
+      native_go(n, this.scheme)
+    } else {
+      this.history.go(n)
+    }
   }
 
   back () {

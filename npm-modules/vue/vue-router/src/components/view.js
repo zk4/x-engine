@@ -14,7 +14,6 @@ export default {
   render (_, { props, children, parent, data }) {
     // used by devtools to display a router-view badge
     data.routerView = true
-
     // directly use parent context's createElement() function
     // so that components rendered by router-view can resolve named slots
     const h = parent.$createElement
@@ -80,11 +79,11 @@ export default {
       }
     }
 
-    // also register instance in prepatch hook
-    // in case the same component instance is reused across different routes
-    ;(data.hook || (data.hook = {})).prepatch = (_, vnode) => {
-      matched.instances[name] = vnode.componentInstance
-    }
+      // also register instance in prepatch hook
+      // in case the same component instance is reused across different routes
+      ; (data.hook || (data.hook = {})).prepatch = (_, vnode) => {
+        matched.instances[name] = vnode.componentInstance
+      }
 
     // register instance in init hook
     // in case kept-alive component be actived when routes changed

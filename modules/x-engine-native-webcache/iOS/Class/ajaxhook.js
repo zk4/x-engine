@@ -57,6 +57,38 @@
 			bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
 		}
 	}
+
+	function textToArrayBuffer (s) {
+		var i = s.length;
+		var n = 0;
+		var ba = new Array()
+		for (var j = 0; j < i;) {
+			var c = s.codePointAt(j);
+			if (c < 128) {
+				ba[n++] = c;
+				j++;
+			}
+			else if ((c > 127) && (c < 2048)) {
+				ba[n++] = (c >> 6) | 192;
+				ba[n++] = (c & 63) | 128;
+				j++;
+			}
+			else if ((c > 2047) && (c < 65536)) {
+				ba[n++] = (c >> 12) | 224;
+				ba[n++] = ((c >> 6) & 63) | 128;
+				ba[n++] = (c & 63) | 128;
+				j++;
+			}
+			else {
+				ba[n++] = (c >> 18) | 240;
+				ba[n++] = ((c >> 12) & 63) | 128;
+				ba[n++] = ((c >> 6) & 63) | 128;
+				ba[n++] = (c & 63) | 128;
+				j += 2;
+			}
+		}
+		return new Uint8Array(ba).buffer;
+	}
 	// 需要 es5 支持
 	//    toBase64(file) {
 	//      return new Promise((resolve, reject) => {
@@ -72,24 +104,62 @@
 
 	async function formData2Json (params, formData) {
 		let object = {};
-		for (let [name, value] of formData) {
+		// for (let [name, value] of formData) {
+		// 	if (value instanceof File) {
+		// 		let data = await value.arrayBuffer()
+
+		// 		let base64Str = encode(data);
+
+		// 		object['@' + name] = {
+		// 			'type': value.type,
+		// 			'name': value.name,
+		// 			'binary': base64Str
+		// 		}
+
+		// 	} else {
+		// 		object[name] = value
+		// 	}
+		// }
+		const boundary
+			= '----tabrisformdataboundary-' + Math.round(Math.random() * 100000000) + '-yradnuobatadmrofsirbat';
+		const parts = [];
+		for (const [name, value] of formData) {
+			parts.push(`--${boundary}\r\n`);
 			if (value instanceof File) {
 				let data = await value.arrayBuffer()
 
-				let base64Str = encode(data);
-
-                object['@'+name] = {
-                    'type': value.type,
-                    'name': value.name,
-                    'binary':base64Str
-                }
-
+				// let base64Str = encode(data);
+				parts.push(`Content-Disposition: form-data; name="${name}"; filename="${value.name}"\r\n`);
+				parts.push(`Content-Type: ${value.type || 'application/octet-stream'}\r\n\r\n`);
+				parts.push(data);
+				parts.push('\r\n');
 			} else {
-				object[name] = value
+				parts.push(`Content-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`);
 			}
 		}
-		params.data = object
-		console.log('object ------ params: ', params);
+		parts.push(`--${boundary}--`);
+		const result = []
+		for (let i = 0; i < parts.length; i++) {
+			const item = parts[i];
+			if (item instanceof ArrayBuffer) {
+				result[i] = item
+			} else {
+				result[i] = textToArrayBuffer(item)
+			}
+		}
+		const newParts = []
+		for (i = 0; i < result.length; i++) {
+			const item = result[i];
+			newParts[i] = encode(item)
+		}
+		// const test = []
+		// for (i = 0; i < newParts.length; i++) {
+		// 	const item = newParts[i];
+		// 	console.log('item: ', item);
+		// 	test[i] = decode(item)
+		// }
+		// console.log('test: ', test);
+		params.data = newParts
 	}
 
 	function nativeRequest (xhr, params) {
@@ -245,7 +315,7 @@
 			var params = {};
 			params.data = arg[0];
 			params.method = this.omtOpenArg[0];
-			params.header = this.omtHeaders;
+			params.headers = this.omtHeaders;
 
 			var url = this.omtOpenArg[1];
 			var location = window.location;
@@ -259,6 +329,9 @@
 			// TODO: 处理 formdata, 应该返回 promise
 			if (FormData.prototype.isPrototypeOf(params.data)) {
 				await formData2Json(params, params.data)
+				params.headers = {
+					'Content-Type': 'multipart/form-data'
+				}
 			}
 			console.log('params: ', params);
 			// 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求

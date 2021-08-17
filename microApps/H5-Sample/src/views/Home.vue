@@ -1,6 +1,16 @@
 <template>
   <div class="testone-class">
     <van-button
+      size="large"
+      round
+      @click="() => $router.push({path: '/test1/test2', query: {home: 'home'}})"
+    >routing</van-button>
+    <van-button
+      size="large"
+      round
+      @click="() => $router.push({path: '/dynamic'})"
+    >dynamic</van-button>
+    <van-button
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
       size="large"
       round

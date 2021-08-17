@@ -26,6 +26,18 @@
   file.onchange = function () {
     formdata.append('file', this.files[0])
   }
+  // function ajax() {
+  //   const xhr = new XMLHttpRequest()
+  //   xhr.open('POST', './a.json', true)
+  //   xhr.setRequestHeader('Content-Type', 'multipart/form-data')
+  //   xhr.send(formdata)
+  //   xhr.onreadystatechange = function () {
+  //     if (xhr.DONE) {
+  //       console.log(xhr.responseText)
+  //     }
+  //   }
+  // }
+
 
   onJson.onclick = function () {
     const options = {
@@ -40,13 +52,11 @@
 
   onFormdata.onclick = function () {
     formdata.append('description', '图片')
+    // ajax()
     const options = {
       url: 'https://6108e994d71b67001763961c.mockapi.io/json/upload',
       data: formdata,
       method: 'POST',
-      // headers: {
-      //   'Content-Type': 'multipart/form-data'
-      // }
     }
     axios(options).then(res => {
       console.log('res', res)

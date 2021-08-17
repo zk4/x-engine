@@ -3,157 +3,221 @@ import VueRouter from "@zkty-team/vue-router"
 
 Vue.use(VueRouter, 'omp');
 
-const routes = [{
-    path: "/",
-    name: "Home",
-    meta: {
-        title: "首页",
-        bgColor: "#ddd",
-        textIsCenter: true,
-        isWhiteColor: true
+const routes = [
+    {
+        path: "/",
+        name: "Home",
+        meta: {
+            title: "首页",
+            bgColor: "#ddd",
+            textIsCenter: true,
+            isWhiteColor: true
+        },
+        children: [
+            {
+                path: "dynamic",
+                name: "dynamic",
+                meta: {
+                    isNativeDirect: true
+                },
+                component: () => import('../views/routing-map-handler/test-c.vue'),
+            },
+        ],
+        component: () => import('../views/Home.vue'),
     },
-    component: () => import('../views/Home.vue'),
-},
-{
-    path: '/modulesIntroduce',
-    name: 'modulesIntroduce',
-    meta: {
-        title: "模块介绍",
-        customBgcImg: require('@/static/image/navBJ.png')
+    {
+        path: "/dynamic",
+        name: "dynamic",
+        meta: {
+
+        },
+        component: () => import('../views/routing-map-handler/test-c.vue'),
     },
-    component: () => import('../views/modulesIntroduce.vue')
-},
-{
-    path: '/testone',
-    name: 'testone',
-    meta: {
-        title: "第一页",
-        textIsCenter: true,
-        customBgcImg: require('@/static/image/navBJ.png')
+    {
+        path: '/test1',
+        name: 'test1',
+        meta: {
+            title: "test1",
+        },
+        component: () => import('../views/routing-map-handler/test1.vue'),
+        children: [
+            {
+                path: 'test1',
+                name: 'test1',
+                meta: {
+                    title: 'test1',
+                    isNativeDirect: true
+                },
+                component: () => import('../views/routing-map-handler/test1/test1.vue')
+            },
+            {
+                path: 'test2',
+                name: 'test2',
+                meta: {
+                    title: 'test2'
+                },
+                component: () => import('../views/routing-map-handler/test2/test2.vue')
+            }
+        ]
     },
-    component: () => import('../views/jumpRouter/testone.vue')
-},
-{
-    path: '/testtwo',
-    name: 'testtwo',
-    meta: {
-        title: "第二页",
-        bgColor: "transparent"
+    {
+        path: '/test2',
+        name: '/test2',
+        meta: {
+            title: "test2",
+        },
+        component: () => import('../views/routing-map-handler/test2.vue'),
+        children: [
+            {
+                path: 'test2',
+                name: 'test2',
+                meta: {
+                    title: 'test2'
+                },
+                component: () => import('../views/routing-map-handler/test2/test2.vue')
+            }
+        ]
     },
-    component: () => import('../views/jumpRouter/testtwo.vue')
-},
-{
-    path: '/testthree',
-    name: 'testthree',
-    meta: {
-        title: "第三页",
+    {
+        path: '/modulesIntroduce',
+        name: 'modulesIntroduce',
+        meta: {
+            title: "模块介绍",
+            customBgcImg: require('@/static/image/navBJ.png')
+        },
+        component: () => import('../views/modulesIntroduce.vue')
     },
-    component: () => import('../views/jumpRouter/testthree.vue')
-},
-{
-    path: '/testfour',
-    name: 'testfour',
-    meta: {
-        title: "第四页"
+    {
+        path: '/testone',
+        name: 'testone',
+        meta: {
+            title: "第一页",
+            textIsCenter: true,
+            customBgcImg: require('@/static/image/navBJ.png')
+        },
+        component: () => import('../views/jumpRouter/testone.vue')
     },
-    component: () => import('../views/jumpRouter/testfour.vue')
-},
-{
-    path: '/navigation',
-    name: 'navigation',
-    meta: {
-        isShowHeader: true
+    {
+        path: '/testtwo',
+        name: 'testtwo',
+        meta: {
+            title: "第二页",
+            bgColor: "transparent"
+        },
+        component: () => import('../views/jumpRouter/testtwo.vue')
     },
-    component: () => import('../views/navigation.vue')
-},
-{
-    path: '/customLayout',
-    name: 'customLayout',
-    component: () => import('../views/customLayout.vue')
-},
-{
-    path: '/navHeader1',
-    name: 'navHeader1',
-    component: () => import('../views/navHeader1.vue')
-},
-{
-    path: '/navHeader2',
-    name: 'navHeader2',
-    component: () => import('../views/navHeader2.vue')
-},
-{
-    path: '/skeleton',
-    name: 'skeleton',
-    component: () => import('../views/skeleton.vue')
-},
-{
-    path: '/gifView',
-    name: 'gifView',
-    component: () => import('../views/gifView.vue')
-},
-{
-    path: '/localstorage',
-    name: 'localstorage',
-    meta: {
-        title: "存储数据",
+    {
+        path: '/testthree',
+        name: 'testthree',
+        meta: {
+            title: "第三页",
+        },
+        component: () => import('../views/jumpRouter/testthree.vue')
     },
-    component: () => import('../views/localstorage.vue')
-},
-{
-    path: '/refreshData',
-    name: 'refreshData',
-    meta: {
-        title: "刷新数据",
-        bgColor: "#a81f24"
+    {
+        path: '/testfour',
+        name: 'testfour',
+        meta: {
+            title: "第四页"
+        },
+        component: () => import('../views/jumpRouter/testfour.vue')
     },
-    component: () => import('../views/refreshData.vue')
-},
-{
-    path: '/network',
-    name: 'network',
-    component: () => import('../views/network.vue')
-},
-{
-    path: '/testVueX',
-    name: 'testVueX',
-    meta: {
-        title: "VueX",
+    {
+        path: '/navigation',
+        name: 'navigation',
+        meta: {
+            isShowHeader: true
+        },
+        component: () => import('../views/navigation.vue')
     },
-    component: () => import('../views/testVueX.vue')
-},
-{
-    path: '/photo',
-    name: 'photo',
-    meta: {
-        title: "拍照选择相册",
+    {
+        path: '/customLayout',
+        name: 'customLayout',
+        component: () => import('../views/customLayout.vue')
     },
-    component: () => import('../views/photo.vue')
-},
-{
-    path: '/scan',
-    name: 'scan',
-    meta: {
-        title: "扫码",
+    {
+        path: '/navHeader1',
+        name: 'navHeader1',
+        component: () => import('../views/navHeader1.vue')
     },
-    component: () => import('../views/scan.vue')
-},
-{
-    path: '/search',
-    name: 'search',
-    meta: {
-        isShowHeader: true,
-        bgColor: '#ddd'
+    {
+        path: '/navHeader2',
+        name: 'navHeader2',
+        component: () => import('../views/navHeader2.vue')
     },
-    component: () => import('../views/search.vue')
-},
-{
-    path: '/input',
-    name: 'input',
-    meta: {
-        title: 'input'
+    {
+        path: '/skeleton',
+        name: 'skeleton',
+        component: () => import('../views/skeleton.vue')
     },
-    component: () => import('../views/input.vue')
-}
+    {
+        path: '/gifView',
+        name: 'gifView',
+        component: () => import('../views/gifView.vue')
+    },
+    {
+        path: '/localstorage',
+        name: 'localstorage',
+        meta: {
+            title: "存储数据",
+        },
+        component: () => import('../views/localstorage.vue')
+    },
+    {
+        path: '/refreshData',
+        name: 'refreshData',
+        meta: {
+            title: "刷新数据",
+            bgColor: "#a81f24"
+        },
+        component: () => import('../views/refreshData.vue')
+    },
+    {
+        path: '/network',
+        name: 'network',
+        component: () => import('../views/network.vue')
+    },
+    {
+        path: '/testVueX',
+        name: 'testVueX',
+        meta: {
+            title: "VueX",
+        },
+        component: () => import('../views/testVueX.vue')
+    },
+    {
+        path: '/photo',
+        name: 'photo',
+        meta: {
+            title: "拍照选择相册",
+        },
+        component: () => import('../views/photo.vue')
+    },
+    {
+        path: '/scan',
+        name: 'scan',
+        meta: {
+            title: "扫码",
+        },
+        component: () => import('../views/scan.vue')
+    },
+    {
+        path: '/search',
+        name: 'search',
+        meta: {
+            isShowHeader: true,
+            bgColor: '#ddd'
+        },
+        component: () => import('../views/search.vue')
+    },
+    {
+        path: '/input',
+        name: 'input',
+        meta: {
+            title: 'input'
+        },
+        component: () => import('../views/input.vue')
+    }
 ];
 
 const router = new VueRouter({

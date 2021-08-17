@@ -8,10 +8,9 @@
  */
 import View from './components/view'
 import Link from './components/link'
-import { intercept, checkScheme } from './util/app-intercept'
 export let _Vue
 
-export function install (Vue, scheme) {
+export function install (Vue) {
   if (install.installed && _Vue === Vue) return
   install.installed = true
 
@@ -19,9 +18,9 @@ export function install (Vue, scheme) {
 
   const isDef = v => v !== undefined
 
-  scheme = scheme || checkScheme()
+  // scheme = scheme || checkScheme()
 
-  intercept(scheme)
+  // intercept(scheme)
 
   const registerInstance = (vm, callVal) => {
     let i = vm.$options._parentVnode

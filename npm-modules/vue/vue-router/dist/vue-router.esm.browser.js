@@ -1,5 +1,5 @@
 /*!
-  * vue-router v2.8.0
+  * vue-router v2.8.1
   * (c) 2021 Capricorn
   * @license MIT
   */
@@ -309,7 +309,6 @@ var View = {
   render (_, { props, children, parent, data }) {
     // used by devtools to display a router-view badge
     data.routerView = true;
-
     // directly use parent context's createElement() function
     // so that components rendered by router-view can resolve named slots
     const h = parent.$createElement;
@@ -375,11 +374,11 @@ var View = {
       }
     }
 
-    // also register instance in prepatch hook
-    // in case the same component instance is reused across different routes
-    ;(data.hook || (data.hook = {})).prepatch = (_, vnode) => {
-      matched.instances[name] = vnode.componentInstance;
-    };
+      // also register instance in prepatch hook
+      // in case the same component instance is reused across different routes
+      ; (data.hook || (data.hook = {})).prepatch = (_, vnode) => {
+        matched.instances[name] = vnode.componentInstance;
+      };
 
     // register instance in init hook
     // in case kept-alive component be actived when routes changed
@@ -1269,56 +1268,6 @@ function findAnchor (children) {
   }
 }
 
-function intercept (scheme) {
-  const originalRouterPush = VueRouter.prototype.push;
-  VueRouter.prototype.push = function push (location) {
-    if (XEngine.isHybrid()) {
-      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
-        XEngine.api('com.zkty.jsi.direct', 'push', {
-          scheme: scheme,
-          pathname: '',
-          fragment: location.path || '/' + location.name,
-          query: location.query,
-          params: {
-            hideNavbar: true,
-            nativeParams: location.params
-          }
-        }, function (res) {
-          console.log('res :>> ', res);
-        });
-      }
-    } else {
-      return originalRouterPush.call(this, location)
-    }
-  };
-
-  const originalRouterGo = VueRouter.prototype.go;
-  VueRouter.prototype.go = function go (location) {
-    if (XEngine.isHybrid()) {
-      if (XEngine.platform.isAndroid || XEngine.platform.isPhone) {
-        XEngine.api('com.zkty.jsi.direct', 'back', {
-          scheme: scheme,
-          pathname: '',
-          fragment: location + '',
-          params: {
-            hideNavbar: true
-          }
-        }, function (res) {
-          console.log('res :>> ', res);
-        });
-      }
-    } else {
-      return originalRouterGo.call(this, location)
-    }
-  };
-}
-
-const checkScheme = () => {
-  const protocol = window.location.protocol;
-  if (/^(http|https):/.test(protocol)) return 'omp'
-  else return 'microapp'
-};
-
 /*
  * @Author: sheng.wang
  * @Date: 2021-02-09 16:48:14
@@ -1329,7 +1278,7 @@ const checkScheme = () => {
  */
 let _Vue;
 
-function install (Vue, scheme) {
+function install (Vue) {
   if (install.installed && _Vue === Vue) return
   install.installed = true;
 
@@ -1337,9 +1286,9 @@ function install (Vue, scheme) {
 
   const isDef = v => v !== undefined;
 
-  scheme = scheme || checkScheme();
+  // scheme = scheme || checkScheme()
 
-  intercept(scheme);
+  // intercept(scheme)
 
   const registerInstance = (vm, callVal) => {
     let i = vm.$options._parentVnode;
@@ -2258,7 +2207,6 @@ function once (fn) {
 }
 
 /*  */
-
 class History {
   
   
@@ -2271,228 +2219,230 @@ class History {
   
   
   
-
   // implemented by sub-classes
   
   
     
       
-      
-      
+        
+          
 
-      constructor (router, base) {
-        this.router = router;
-        this.base = normalizeBase(base);
-        // start with a route object that stands for "nowhere"
-        this.current = START;
-        this.pending = null;
-        this.ready = false;
-        this.readyCbs = [];
-        this.readyErrorCbs = [];
-        this.errorCbs = [];
-        this.listeners = [];
+constructor(router, base) {
+  this.router = router;
+  this.base = normalizeBase(base);
+  // start with a route object that stands for "nowhere"
+  this.current = START;
+  this.pending = null;
+  this.ready = false;
+  this.readyCbs = [];
+  this.readyErrorCbs = [];
+  this.errorCbs = [];
+  this.listeners = [];
+}
+
+listen(cb) {
+  this.cb = cb;
+}
+
+onReady(cb, errorCb) {
+  if (this.ready) {
+    cb();
+  } else {
+    this.readyCbs.push(cb);
+    if (errorCb) {
+      this.readyErrorCbs.push(errorCb);
+    }
+  }
+}
+
+onError(errorCb) {
+  this.errorCbs.push(errorCb);
+}
+
+transitionTo(
+  location,
+  onComplete ,
+  onAbort 
+) {
+  let route;
+  // catch redirect option https://github.com/vuejs/vue-router/issues/3201
+  try {
+    route = this.router.match(location, this.current);
+  } catch (e) {
+    this.errorCbs.forEach(cb => {
+      cb(e);
+    });
+    // Exception should still be thrown
+    throw e
+  }
+  const prev = this.current;
+  this.confirmTransition(
+    route,
+    () => {
+      this.updateRoute(route);
+      onComplete && onComplete(route);
+      this.ensureURL();
+      this.router.afterHooks.forEach(hook => {
+        hook && hook(route, prev);
+      });
+
+      // fire ready cbs once
+      if (!this.ready) {
+        this.ready = true;
+        this.readyCbs.forEach(cb => {
+          cb(route);
+        });
       }
-
-      listen (cb) {
-        this.cb = cb;
+    },
+    err => {
+      if (onAbort) {
+        onAbort(err);
       }
-
-      onReady (cb, errorCb) {
-        if (this.ready) {
-          cb();
-        } else {
-          this.readyCbs.push(cb);
-          if (errorCb) {
-            this.readyErrorCbs.push(errorCb);
-          }
-        }
-      }
-
-      onError (errorCb) {
-        this.errorCbs.push(errorCb);
-      }
-
-      transitionTo (
-        location,
-        onComplete ,
-        onAbort 
-      ) {
-        let route;
-        // catch redirect option https://github.com/vuejs/vue-router/issues/3201
-        try {
-          route = this.router.match(location, this.current);
-        } catch (e) {
-          this.errorCbs.forEach(cb => {
-            cb(e);
+      if (err && !this.ready) {
+        // Initial redirection should not mark the history as ready yet
+        // because it's triggered by the redirection instead
+        // https://github.com/vuejs/vue-router/issues/3225
+        // https://github.com/vuejs/vue-router/issues/3331
+        if (!isNavigationFailure(err, NavigationFailureType.redirected) || prev !== START) {
+          this.ready = true;
+          this.readyErrorCbs.forEach(cb => {
+            cb(err);
           });
-          // Exception should still be thrown
-          throw e
         }
-        const prev = this.current;
-        this.confirmTransition(
-          route,
-          () => {
-            this.updateRoute(route);
-            onComplete && onComplete(route);
-            this.ensureURL();
-            this.router.afterHooks.forEach(hook => {
-              hook && hook(route, prev);
-            });
-
-            // fire ready cbs once
-            if (!this.ready) {
-              this.ready = true;
-              this.readyCbs.forEach(cb => {
-                cb(route);
-              });
-            }
-          },
-          err => {
-            if (onAbort) {
-              onAbort(err);
-            }
-            if (err && !this.ready) {
-              // Initial redirection should not mark the history as ready yet
-              // because it's triggered by the redirection instead
-              // https://github.com/vuejs/vue-router/issues/3225
-              // https://github.com/vuejs/vue-router/issues/3331
-              if (!isNavigationFailure(err, NavigationFailureType.redirected) || prev !== START) {
-                this.ready = true;
-                this.readyErrorCbs.forEach(cb => {
-                  cb(err);
-                });
-              }
-            }
-          }
-        );
       }
+    }
+  );
+}
 
-      confirmTransition (route, onComplete, onAbort ) {
-        const current = this.current;
-        this.pending = route;
-        const abort = err => {
-          // changed after adding errors with
-          // https://github.com/vuejs/vue-router/pull/3047 before that change,
-          // redirect and aborted navigation would produce an err == null
-          if (!isNavigationFailure(err) && isError(err)) {
-            if (this.errorCbs.length) {
-              this.errorCbs.forEach(cb => {
-                cb(err);
-              });
-            } else {
-              warn(false, 'uncaught error during route navigation:');
-              console.error(err);
-            }
-          }
-          onAbort && onAbort(err);
-        };
-        const lastRouteIndex = route.matched.length - 1;
-        const lastCurrentIndex = current.matched.length - 1;
-        if (
-          isSameRoute(route, current) &&
+confirmTransition(route, onComplete, onAbort ) {
+
+
+  const current = this.current;
+  this.pending = route;
+  const abort = err => {
+    // changed after adding errors with
+    // https://github.com/vuejs/vue-router/pull/3047 before that change,
+    // redirect and aborted navigation would produce an err == null
+    if (!isNavigationFailure(err) && isError(err)) {
+      if (this.errorCbs.length) {
+        this.errorCbs.forEach(cb => {
+          cb(err);
+        });
+      } else {
+        warn(false, 'uncaught error during route navigation:');
+        console.error(err);
+      }
+    }
+    onAbort && onAbort(err);
+  };
+  const lastRouteIndex = route.matched.length - 1;
+  const lastCurrentIndex = current.matched.length - 1;
+  if (
+    isSameRoute(route, current) &&
     // in the case the route map has been dynamically appended to
     lastRouteIndex === lastCurrentIndex &&
     route.matched[lastRouteIndex] === current.matched[lastCurrentIndex]
-        ) {
-          this.ensureURL();
-          return abort(createNavigationDuplicatedError(current, route))
-        }
+  ) {
+    this.ensureURL();
+    return abort(createNavigationDuplicatedError(current, route))
+  }
 
-        const { updated, deactivated, activated } = resolveQueue(
-          this.current.matched,
-          route.matched
-        );
+  const { updated, deactivated, activated } = resolveQueue(
+    this.current.matched,
+    route.matched
+  );
 
-        const queue = [].concat(
-          // in-component leave guards
-          extractLeaveGuards(deactivated),
-          // global before hooks
-          this.router.beforeHooks,
-          // in-component update hooks
-          extractUpdateHooks(updated),
-          // in-config enter guards
-          activated.map(m => m.beforeEnter),
-          // async components
-          resolveAsyncComponents(activated)
-        );
+  const queue = [].concat(
+    // in-component leave guards
+    extractLeaveGuards(deactivated),
+    // global before hooks
+    this.router.beforeHooks,
+    // in-component update hooks
+    extractUpdateHooks(updated),
+    // in-config enter guards
+    activated.map(m => m.beforeEnter),
+    // async components
+    resolveAsyncComponents(activated)
+  );
 
-        const iterator = (hook, next) => {
-          if (this.pending !== route) {
-            return abort(createNavigationCancelledError(current, route))
-          }
-          try {
-            hook(route, current, (to) => {
-              if (to === false) {
-                // next(false) -> abort navigation, ensure current URL
-                this.ensureURL(true);
-                abort(createNavigationAbortedError(current, route));
-              } else if (isError(to)) {
-                this.ensureURL(true);
-                abort(to);
-              } else if (
-                typeof to === 'string' ||
+  const iterator = (hook, next) => {
+    if (this.pending !== route) {
+      return abort(createNavigationCancelledError(current, route))
+    }
+    try {
+      hook(route, current, (to) => {
+        if (to === false) {
+          // next(false) -> abort navigation, ensure current URL
+          this.ensureURL(true);
+          abort(createNavigationAbortedError(current, route));
+        } else if (isError(to)) {
+          this.ensureURL(true);
+          abort(to);
+        } else if (
+          typeof to === 'string' ||
           (typeof to === 'object' &&
             (typeof to.path === 'string' || typeof to.name === 'string'))
-              ) {
-                // next('/') or next({ path: '/' }) -> redirect
-                abort(createNavigationRedirectedError(current, route));
-                if (typeof to === 'object' && to.replace) {
-                  this.replace(to);
-                } else {
-                  this.push(to);
-                }
-              } else {
-                // confirm transition and pass on the value
-                next(to);
-              }
-            });
-          } catch (e) {
-            abort(e);
+        ) {
+          // next('/') or next({ path: '/' }) -> redirect
+          abort(createNavigationRedirectedError(current, route));
+          if (typeof to === 'object' && to.replace) {
+            this.replace(to);
+          } else {
+            this.push(to);
           }
-        };
+        } else {
+          // confirm transition and pass on the value
+          next(to);
+        }
+      });
+    } catch (e) {
+      abort(e);
+    }
+  };
 
-        runQueue(queue, iterator, () => {
-          // wait until async components are resolved before
-          // extracting in-component enter guards
-          const enterGuards = extractEnterGuards(activated);
-          const queue = enterGuards.concat(this.router.resolveHooks);
-          runQueue(queue, iterator, () => {
-            if (this.pending !== route) {
-              return abort(createNavigationCancelledError(current, route))
-            }
-            this.pending = null;
-            onComplete(route);
-            if (this.router.app) {
-              this.router.app.$nextTick(() => {
-                handleRouteEntered(route);
-              });
-            }
-          });
+  runQueue(queue, iterator, () => {
+    // wait until async components are resolved before
+    // extracting in-component enter guards
+    const enterGuards = extractEnterGuards(activated);
+    const queue = enterGuards.concat(this.router.resolveHooks);
+    runQueue(queue, iterator, () => {
+      if (this.pending !== route) {
+        return abort(createNavigationCancelledError(current, route))
+      }
+      this.pending = null;
+
+      onComplete(route);
+      if (this.router.app) {
+        this.router.app.$nextTick(() => {
+          handleRouteEntered(route);
         });
       }
+    });
+  });
+}
 
-      updateRoute (route) {
-        this.current = route;
-        this.cb && this.cb(route);
-      }
+updateRoute(route) {
+  this.current = route;
+  this.cb && this.cb(route);
+}
 
-      setupListeners () {
-        // Default implementation is empty
-      }
+setupListeners() {
+  // Default implementation is empty
+}
 
-      teardown () {
-        // clean up event listeners
-        // https://github.com/vuejs/vue-router/issues/2341
-        this.listeners.forEach(cleanupListener => {
-          cleanupListener();
-        });
-        this.listeners = [];
+teardown() {
+  // clean up event listeners
+  // https://github.com/vuejs/vue-router/issues/2341
+  this.listeners.forEach(cleanupListener => {
+    cleanupListener();
+  });
+  this.listeners = [];
 
-        // reset current history route
-        // https://github.com/vuejs/vue-router/issues/3294
-        this.current = START;
-        this.pending = null;
-      }
+  // reset current history route
+  // https://github.com/vuejs/vue-router/issues/3294
+  this.current = START;
+  this.pending = null;
+}
 }
 
 function normalizeBase (base) {
@@ -2659,6 +2609,7 @@ class HTML5History extends History {
 
   push (location, onComplete, onAbort) {
     const { current: fromRoute } = this;
+
     this.transitionTo(location, route => {
       pushState(cleanPath(this.base + route.fullPath));
       handleScroll(this.router, route, fromRoute, false);
@@ -2805,7 +2756,7 @@ function ensureSlash () {
   return false
 }
 
-function getHash () {
+function getHash () { // 返回# 后面的hash的url
   // We can't use window.location.hash here because it's not
   // consistent across browsers - Firefox will pre-decode it!
   let href = window.location.href;
@@ -2911,6 +2862,81 @@ class AbstractHistory extends History {
 }
 
 /*  */
+
+function native_push (location, scheme) {
+  XEngine.api('com.zkty.jsi.direct', 'push', {
+    scheme: scheme,
+    pathname: '',
+    fragment: location.path || '/' + location.name,
+    query: location.query,
+    params: {
+      hideNavbar: true,
+      nativeParams: location.params
+    }
+  }, function (res) {
+    console.log('res :>> ', res);
+  });
+}
+
+function native_go (location, scheme) {
+  XEngine.api('com.zkty.jsi.direct', 'back', {
+    scheme: scheme,
+    pathname: '',
+    fragment: location + '',
+    params: {
+      hideNavbar: true
+    }
+  }, function (res) {
+    console.log('res :>> ', res);
+  });
+}
+// 判断是否到原生
+function is_native () {
+  return XEngine.isHybrid() && (XEngine.platform.isAndroid || XEngine.platform.isPhone)
+}
+
+function is_native_location (location, isSLR) {
+  console.log('location: ', location);
+  console.log('isSLR: ', isSLR);
+  if (!location) return
+  if (is_native()) {
+    if (isSLR) return false
+    // const { path } = location
+    // // 如果是 / 走原生路由
+    // if (path === '/') return true
+    // // 如果给的路由是多级路由 走vue-router 
+    // if (typeof path === 'string' && path.match(/\//g).length > 1) return false
+    // // 如果是 /test /test1   这样的路由走原生
+    return true
+  }
+  // 如果没有在app中 走原生vue-router
+  return false
+}
+
+
+function isSameLavelRoute (currentRoute, target) {
+  if (!currentRoute || !target) return
+  const { path } = currentRoute;
+  return equalPath(path, target.path)
+}
+
+
+const checkScheme = () => {
+  const protocol = window.location.protocol;
+  if (/^(http|https):/.test(protocol)) return 'omp'
+  return 'microapp'
+};
+
+
+function equalPath (currentPath, targetPath) {
+  const reg = /(?:\/).*(?=\/)/;
+  const cur = reg.exec(currentPath) && reg.exec(currentPath)[0];
+  const target = reg.exec(targetPath) && reg.exec(targetPath)[0];
+  return cur === target
+}
+
+/*  */
+
 class VueRouter {
   
   
@@ -2939,7 +2965,7 @@ class VueRouter {
     this.resolveHooks = [];
     this.afterHooks = [];
     this.matcher = createMatcher(options.routes || [], this);
-
+    this.scheme = options.scheme || checkScheme();
     let mode = options.mode || 'hash';
     this.fallback =
       mode === 'history' && !supportsPushState && options.fallback !== false;
@@ -3057,13 +3083,18 @@ class VueRouter {
   }
 
   push (location, onComplete, onAbort) {
-    // $flow-disable-line
-    if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
-      return new Promise((resolve, reject) => {
-        this.history.push(location, resolve, reject);
-      })
+    const isSLR = isSameLavelRoute(this.currentRoute, location);
+    if (is_native_location(location, isSLR)) {
+      native_push(location, this.scheme);
     } else {
-      this.history.push(location, onComplete, onAbort);
+      // $flow-disable-line
+      if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
+        return new Promise((resolve, reject) => {
+          this.history.push(location, resolve, reject);
+        })
+      } else {
+        this.history.push(location, onComplete, onAbort);
+      }
     }
   }
 
@@ -3079,7 +3110,11 @@ class VueRouter {
   }
 
   go (n) {
-    this.history.go(n);
+    if (is_native_location(n)) {
+      native_go(n, this.scheme);
+    } else {
+      this.history.go(n);
+    }
   }
 
   back () {
@@ -3166,7 +3201,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '2.8.0';
+VueRouter.version = '2.8.1';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 VueRouter.START_LOCATION = START;

@@ -230,6 +230,8 @@ NATIVE_MODULE(Native_scan__hms)
         [self stopTimer:timer];
         NSString* jsonStr =  resultDic[@"text"];
         self.block(jsonStr?jsonStr:@"");
+        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:NO completion:^{}];
+
    });
 }
 

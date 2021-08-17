@@ -17,6 +17,7 @@ PODS:
   - JSONModel (1.8.0)
   - MJExtension (3.2.4)
   - SSZipArchive (2.2.3)
+  - Toast (4.0.0)
   - x-engine-jsi-camera (2.8.1):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -47,6 +48,9 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-jsi-vuex (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-webcache (2.8.1):
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-broadcast (1.0.0):
@@ -94,9 +98,6 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-offline (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
   - x-engine-native-rest (1.0.0):
@@ -114,10 +115,22 @@ PODS:
   - x-engine-native-tabbar (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-toast (1.0.0):
+    - Toast (~> 4.0.0)
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-ui (1.0.0):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-updator (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-webcache (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+    - YYCache
+  - YYCache (1.0.4)
   - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
@@ -134,6 +147,7 @@ DEPENDENCIES:
   - x-engine-jsi-store (from `../../x-engine-jsi-store`)
   - x-engine-jsi-ui (from `../../x-engine-jsi-ui`)
   - x-engine-jsi-vuex (from `../../x-engine-jsi-vuex`)
+  - x-engine-jsi-webcache (from `../../x-engine-jsi-webcache`)
   - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
   - x-engine-native-camera (from `../../x-engine-native-camera`)
   - x-engine-native-core (from `../../x-engine-native-core`)
@@ -145,13 +159,15 @@ DEPENDENCIES:
   - x-engine-native-direct_native (from `../../x-engine-native-direct_native`)
   - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
-  - x-engine-native-offline (from `../../x-engine-native-offline`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
   - x-engine-native-rest (from `../../x-engine-native-rest`)
   - x-engine-native-scan (from `../../x-engine-native-scan`)
   - x-engine-native-store (from `../../x-engine-native-store`)
   - x-engine-native-tabbar (from `../../x-engine-native-tabbar`)
+  - x-engine-native-toast (from `../../x-engine-native-toast`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
+  - x-engine-native-updator (from `../../x-engine-native-updator`)
+  - x-engine-native-webcache (from `../../x-engine-native-webcache`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
@@ -160,6 +176,8 @@ SPEC REPOS:
     - JSONModel
     - MJExtension
     - SSZipArchive
+    - Toast
+    - YYCache
 
 EXTERNAL SOURCES:
   x-engine-jsi-camera:
@@ -182,6 +200,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-ui"
   x-engine-jsi-vuex:
     :path: "../../x-engine-jsi-vuex"
+  x-engine-jsi-webcache:
+    :path: "../../x-engine-jsi-webcache"
   x-engine-native-broadcast:
     :path: "../../x-engine-native-broadcast"
   x-engine-native-camera:
@@ -204,8 +224,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-direct_omp"
   x-engine-native-jsi:
     :path: "../../x-engine-native-jsi"
-  x-engine-native-offline:
-    :path: "../../x-engine-native-offline"
   x-engine-native-protocols:
     :path: "../../x-engine-native-protocols"
   x-engine-native-rest:
@@ -216,8 +234,14 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-store"
   x-engine-native-tabbar:
     :path: "../../x-engine-native-tabbar"
+  x-engine-native-toast:
+    :path: "../../x-engine-native-toast"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
+  x-engine-native-updator:
+    :path: "../../x-engine-native-updator"
+  x-engine-native-webcache:
+    :path: "../../x-engine-native-webcache"
   ZBarSDK:
     :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
@@ -226,6 +250,7 @@ SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   x-engine-jsi-camera: 4f0e5cab50ec441c897161329c39e23f368a6a79
   x-engine-jsi-dev: a994ec59e759722c88c7d9f62a0417c5432c45f2
   x-engine-jsi-device: a87c73fef19882d46d4d141d151d6e943f012f3f
@@ -236,6 +261,7 @@ SPEC CHECKSUMS:
   x-engine-jsi-store: 002251070632235813a689713e4198c2aadb8ba8
   x-engine-jsi-ui: 92fa55529016c302008ad6f0cc27b1a07a7e95f5
   x-engine-jsi-vuex: 6fef234b0d5cedf9be023ae9130a550eab78ea98
+  x-engine-jsi-webcache: a7f20d21ef8af71c80ebfcbc37a387d8c7209f32
   x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
   x-engine-native-camera: f81c179d6c8995491cf118b26a69a3e7f03cec79
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
@@ -247,15 +273,18 @@ SPEC CHECKSUMS:
   x-engine-native-direct_native: c5ab0cfe8e1c54f2a04bef687df0d21ddc20611f
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
-  x-engine-native-offline: 253549e247682420e2688784980649b2e2ebf3f4
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-rest: 600cf890c6779cfbdb24efea44e5f1b42e9fe45c
   x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
   x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
+  x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
+  x-engine-native-updator: 143f2f6562c68c583f2631c3dd965a98ef6f6728
+  x-engine-native-webcache: 3b1fe4498b704f70bf45ad82e34fdf4863ca1a69
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 8ca9d7d882e82fc445534951b80810d5493cc634
+PODFILE CHECKSUM: ed1c42009bfb2df44df7ea1ae8faf5346a369ae4
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

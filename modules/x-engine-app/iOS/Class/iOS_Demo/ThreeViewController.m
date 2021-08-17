@@ -7,13 +7,12 @@
 //
 
 #import "ThreeViewController.h"
-#import "iOffline.h"
 #import <iDirectManager.h>
 #import <XENativeContext.h>
 
 
 @interface ThreeViewController ()
-@property (nonatomic, strong) id<iOffline>offline;
+
 @end
 
 @implementation ThreeViewController

@@ -21,7 +21,6 @@
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		581FB072262578AA00ED7DCC /* MergeDictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 581FB071262578AA00ED7DCC /* MergeDictTest.m */; };
 		58209E612624A54A00843DB5 /* Url2direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58209E602624A54A00843DB5 /* Url2direct.m */; };
-		583CCAAD26158D52000DFF1F /* com.gm.microapp.mine.1 in Resources */ = {isa = PBXBuildFile; fileRef = 583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */; };
 		5859B57426BA60D600BBF580 /* to-find.0 in Resources */ = {isa = PBXBuildFile; fileRef = 5859B57326BA60D600BBF580 /* to-find.0 */; };
 		5859B57C26BA654200BBF580 /* todo.0 in Resources */ = {isa = PBXBuildFile; fileRef = 5859B57B26BA654200BBF580 /* todo.0 */; };
 		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
@@ -33,7 +32,6 @@
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
 		58D20BD426138BEF0082ADC3 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
-		A4E9638126B9462F00C6A0DD /* microapp in Resources */ = {isa = PBXBuildFile; fileRef = A4E9638026B9462F00C6A0DD /* microapp */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -81,7 +79,6 @@
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
 		581FB071262578AA00ED7DCC /* MergeDictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeDictTest.m; sourceTree = "<group>"; };
 		58209E602624A54A00843DB5 /* Url2direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Url2direct.m; sourceTree = "<group>"; };
-		583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = com.gm.microapp.mine.1; path = Class/com.gm.microapp.mine.1; sourceTree = SOURCE_ROOT; };
 		5859B57326BA60D600BBF580 /* to-find.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "to-find.0"; path = "../../../../microApps/to-find.0"; sourceTree = "<group>"; };
 		5859B57B26BA654200BBF580 /* todo.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = todo.0; path = ../../../../microApps/todo.0; sourceTree = "<group>"; };
 		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
@@ -266,7 +263,6 @@
 			children = (
 				5859B57B26BA654200BBF580 /* todo.0 */,
 				5859B57326BA60D600BBF580 /* to-find.0 */,
-				583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */,
 				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
 			);
 			path = Class;
@@ -381,11 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
-				583CCAAD26158D52000DFF1F /* com.gm.microapp.mine.1 in Resources */,
 				5859B57C26BA654200BBF580 /* todo.0 in Resources */,
-				58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */,
-				58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */,
-				A48398AA261F100300D04124 /* microapp.json in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 				5859B57426BA60D600BBF580 /* to-find.0 in Resources */,
 			);

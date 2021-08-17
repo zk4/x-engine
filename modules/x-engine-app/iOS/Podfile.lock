@@ -17,6 +17,7 @@ PODS:
   - JSONModel (1.8.0)
   - MJExtension (3.2.4)
   - SSZipArchive (2.2.3)
+  - Toast (4.0.0)
   - x-engine-jsi-camera (2.8.1):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -114,6 +115,10 @@ PODS:
   - x-engine-native-tabbar (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-toast (1.0.0):
+    - Toast (~> 4.0.0)
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-ui (1.0.0):
     - JSONModel
     - x-engine-native-core
@@ -151,6 +156,7 @@ DEPENDENCIES:
   - x-engine-native-scan (from `../../x-engine-native-scan`)
   - x-engine-native-store (from `../../x-engine-native-store`)
   - x-engine-native-tabbar (from `../../x-engine-native-tabbar`)
+  - x-engine-native-toast (from `../../x-engine-native-toast`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
@@ -160,6 +166,7 @@ SPEC REPOS:
     - JSONModel
     - MJExtension
     - SSZipArchive
+    - Toast
 
 EXTERNAL SOURCES:
   x-engine-jsi-camera:
@@ -216,6 +223,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-store"
   x-engine-native-tabbar:
     :path: "../../x-engine-native-tabbar"
+  x-engine-native-toast:
+    :path: "../../x-engine-native-toast"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
   ZBarSDK:
@@ -226,6 +235,7 @@ SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   x-engine-jsi-camera: 4f0e5cab50ec441c897161329c39e23f368a6a79
   x-engine-jsi-dev: a994ec59e759722c88c7d9f62a0417c5432c45f2
   x-engine-jsi-device: a87c73fef19882d46d4d141d151d6e943f012f3f
@@ -253,9 +263,10 @@ SPEC CHECKSUMS:
   x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
   x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
+  x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 8ca9d7d882e82fc445534951b80810d5493cc634
+PODFILE CHECKSUM: 8d73151fae1e959f7e200c7642400daf536f706f
 
 COCOAPODS: 1.10.1

@@ -10,6 +10,7 @@
 #import "Native_camera.h"
 #import "XENativeContext.h"
 #import <ZKTY_TZImagePickerController.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "XTool.h"
 typedef void (^PhotoCallBack)(NSString *);
@@ -147,13 +148,32 @@ NATIVE_MODULE(Native_camera)
     imagePickerVc.allowPickingVideo = NO;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         
-//        NSLog(@"%@", photos);
-//        NSLog(@"%@", assets);
+        NSLog(@"%@", photos);
+        NSLog(@"%@", assets);
         
-//        for (PHAsset *asset in assets) {
-////            PHFetchOptions *options = [PHFetchOptions ]
-//            [PHAsset fetchAssetsInAssetCollection:asset options:includeAllBurstAssets];
-//        }
+//        PHFetchOptions *options = [[PHFetchOptions alloc] init];
+//        for (PHAsset *as in assets) {
+//            [[PHImageManager defaultManager] requestImageDataForAsset:as options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+//                NSLog(@"%@", imageData);
+//                NSLog(@"%@", dataUTI);
+//                NSLog(@"%@", info);
+//            }];
+//        };
+        
+        for (PHAsset *as in assets) {
+            PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+            options.synchronous = YES;
+            options.networkAccessAllowed = YES;
+            options.resizeMode = PHImageRequestOptionsResizeModeFast;
+            options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+            [[PHImageManager defaultManager] requestImageForAsset:as targetSize:CGSizeMake(200, 300) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                NSLog(@"%@", result);
+                NSLog(@"%@", info);
+                
+            }];
+        }
+        
+        
         NSMutableDictionary * ret = [NSMutableDictionary new];
         NSMutableArray * photoarrays=  [NSMutableArray new];
         NSDictionary* argsDic = dto.args;
@@ -179,6 +199,7 @@ NATIVE_MODULE(Native_camera)
 
 #pragma UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
     __weak typeof(self) weakself = self;
     [picker dismissViewControllerAnimated:YES completion:^{
         if(weakself.allowsEditing){

@@ -9,8 +9,7 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "XENativeContext.h"
-#import "GlobalState.h"
-#import "iSecurify.h"
+#import "iToast.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
 
@@ -145,31 +144,31 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
 {
-    if(!jsDialogBlock){
+//    if(!jsDialogBlock){
         completionHandler();
-    }
-    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
-                               @selector(webView:runJavaScriptAlertPanelWithMessage
-                                         :initiatedByFrame:completionHandler:)])
-    {
-        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
-                         initiatedByFrame:frame
-                        completionHandler:completionHandler];
-    }else{
+//    }
+//    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
+//                               @selector(webView:runJavaScriptAlertPanelWithMessage
+//                                         :initiatedByFrame:completionHandler:)])
+//    {
+//        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
+//                         initiatedByFrame:frame
+//                        completionHandler:completionHandler];
+//    }else{
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
-                                                                       message:message
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-            if(completionHandler){
-                completionHandler();
-            }
-        }];
-        [alert addAction:action];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-    }
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
+//                                                                       message:message
+//                                                                preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
+//                                                         style:UIAlertActionStyleDefault
+//                                                       handler:^(UIAlertAction * _Nonnull action) {
+//            if(completionHandler){
+//                completionHandler();
+//            }
+//        }];
+//        [alert addAction:action];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+//    }
 }
 
 -(void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message
@@ -252,14 +251,15 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)showErrorAlert:(NSString *)message
 {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [errorAlert addAction:sureAction];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
-        
-    }];
+    [XENP(iToast) toast:message duration:1.0];
+//    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    [errorAlert addAction:sureAction];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
+//
+//    }];
 }
 
 - (void) evalJavascript:(int) delay{
@@ -274,14 +274,24 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         }
     });
 }
+//字典转json格式字符串:
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+   
 
 -(id) convertDict:(id) obj {
     SEL selector = NSSelectorFromString(@"toDictionary");
     if([obj respondsToSelector:selector]){
         id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
         return   action(obj, selector);
-    }else {
-        return [NSString stringWithFormat:@"%@",obj ];
+    }else if ([obj isKindOfClass:NSDictionary.class]){
+        return [self dictionaryToJson:obj ];
+    }else{
+        return [NSString stringWithFormat:@"%@",obj];
     }
 }
 
@@ -733,12 +743,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     label.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1.0];
     label.textAlignment = NSTextAlignmentCenter;
     [view addSubview:label];
-    
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    panGesture.delegate = self;
-    [view addGestureRecognizer:panGesture];
-    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [UIApplication sharedApplication].keyWindow.rootViewController.navigationController.interactivePopGestureRecognizer.delegate = self;
+     
     [self addSubview:view];
 }
 

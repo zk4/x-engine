@@ -6,12 +6,6 @@
 #import "xengine_jsi_webcache.h"
 
 
-@implementation NamedDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
 
 
 
@@ -27,14 +21,18 @@
         return @"com.zkty.jsi.webcache";
     }
     
-    - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+    - (void) xhrRequest:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          [self _simpleMethod:^(BOOL complete) {
-                 completionHandler(nil,complete); 
+          NSDictionary* dto = [self convert:dict clazz:NSDictionary.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+
+          [self _xhrRequest:dto complete:^(NSDictionary* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
-      }
-  - (id) simpleMethod:(NSDictionary*) dict {
-   [self _simpleMethod];
-              return nil;
-    }
+        
+  }
   @end

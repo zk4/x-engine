@@ -11,18 +11,49 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
-end
+  pod 'x-engine-native-direct', :path => X_ENGINE_MODULES+'/x-engine-native-direct'
+  pod 'x-engine-native-direct_microapp', :path => X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
+  pod 'x-engine-native-direct_omp', :path => X_ENGINE_MODULES+'/x-engine-native-direct_omp'
 
-target 'direct_native' do
-  #use_frameworks!
-  shared_pods
-end
-target 'direct_nativeTests' do
-  #use_frameworks!
-  shared_pods
-end
-target 'direct_nativeUITests' do
-  # Pods for testing
-  shared_pods
+  pod 'x-engine-native-jsi', :path => X_ENGINE_MODULES+'/x-engine-native-jsi'
 
+end
+  target 'sit' do
+    shared_pods
+
+    #use_frameworks!
+  end
+  target 'uat' do
+    shared_pods
+    #use_frameworks!
+  end
+  target 'direct_native' do
+    shared_pods
+    #use_frameworks!
+  end
+
+  target 'direct_nativeTests' do
+    shared_pods
+    #use_frameworks!
+  end
+
+  target 'direct_nativeUITests' do
+    shared_pods
+    # Pods for testing
+    #shared_pods
+
+  end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if config.name == 'Debug'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1'
+      end
+      if config.name == 'Release'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) RELEASE=1'
+      end
+
+    end
+  end
 end

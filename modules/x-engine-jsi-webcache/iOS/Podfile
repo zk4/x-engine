@@ -20,6 +20,7 @@ def shared_pods
   pod 'x-engine-native-webcache', :path =>X_ENGINE_MODULES+'/x-engine-native-webcache'
   pod 'x-engine-native-rest', :path =>X_ENGINE_MODULES+'/x-engine-native-rest'
   pod 'x-engine-native-store', :path =>X_ENGINE_MODULES+'/x-engine-native-store'
+  pod 'x-engine-native-tabbar', :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
 
 
 end

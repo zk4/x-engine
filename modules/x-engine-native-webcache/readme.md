@@ -1,24 +1,39 @@
 
 
-
-
-``` mermaid
-graph TD
-A[web 请求?]-->O
-O{是否需要?} -->| YES| C
-O -->| NO| EE[直接网络?]
-C{是否有缓存?} -->|有| D[读缓存?] 
-C -->|没有| E[网络模块:请求网络?] --> CACHE[写缓存?]
-CACHE --> END[返回?]
-D --> END
-
-```
-
-这里有个怎么拦截的问题:
-
-我们只需要拦截 GET 请求, 只拦截  js, css , 不拦截 html. 图片, api 请求.
-
-但 html 则有一个问题,  初次不拦截, 后面得拦截.. 因为路由是改变的 url ,也就是会请求 html.
+  如果h5 是以formdata格式传输
+  例如:
+  ```json
+  {
+    "data": {
+      "a": {  
+        "type": "image/jpeg",
+        "name": "a.jpeg",
+        "content": "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAoHBwgHBgoICAg..." //一个base64字符串
+      },
+      "b": "a",
+      "c": "{\"d\":1}",
+      "f": "1"
+    },
+    "header": {
+      "Content-Type": "multipart/form-data"
+    },
+    "method": "POST",
+    "url": "/a.json"
+  }
+  ```
+  
+  如果是常规的json传输,native可能得到这样一组数据:
+  ```json
+    {
+      "data": "{a:1}" ,// (| null)
+      "header": {
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      "method": "POST",
+      "url": "/a.json"
+    }
+  ```
 
 
 

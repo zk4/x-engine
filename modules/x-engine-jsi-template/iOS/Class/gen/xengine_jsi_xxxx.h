@@ -7,84 +7,138 @@
 #import "JSONModel.h"
 
 @protocol NamedDTO;
-@protocol _0_com_zkty_jsi_xxxx_DTO;
-@protocol _1_com_zkty_jsi_xxxx_DTO;
-@protocol _2_com_zkty_jsi_xxxx_DTO;
-@protocol _3_com_zkty_jsi_xxxx_DTO;
+@protocol _nestedAnonymousObject0_DTO;
+@protocol _nestedAnonymousObject1_DTO;
+@protocol _namedObjectWithArgs0_DTO;
+@protocol _namedObjectWithArgs1_DTO;
+@protocol _complexAnoymousRetWithAnoymousArgs0_DTO;
+@protocol _complexAnoymousRetWithAnoymousArgs1_DTO;
+@protocol _complexAnoymousRetWithAnoymousArgs2_DTO;
+@protocol _complexAnoymousRetWithAnoymousArgs3_DTO;
+@protocol _complexAnoymousRetWithAnoymousArgs4_DTO;
+@protocol _complexAnoymousRetWithAnoymousArgs5_DTO;
 @class NamedDTO;
-@class _0_com_zkty_jsi_xxxx_DTO;
-@class _1_com_zkty_jsi_xxxx_DTO;
-@class _2_com_zkty_jsi_xxxx_DTO;
-@class _3_com_zkty_jsi_xxxx_DTO;
+@class _nestedAnonymousObject0_DTO;
+@class _nestedAnonymousObject1_DTO;
+@class _namedObjectWithArgs0_DTO;
+@class _namedObjectWithArgs1_DTO;
+@class _complexAnoymousRetWithAnoymousArgs0_DTO;
+@class _complexAnoymousRetWithAnoymousArgs1_DTO;
+@class _complexAnoymousRetWithAnoymousArgs2_DTO;
+@class _complexAnoymousRetWithAnoymousArgs3_DTO;
+@class _complexAnoymousRetWithAnoymousArgs4_DTO;
+@class _complexAnoymousRetWithAnoymousArgs5_DTO;
 
 @interface NamedDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
    	@property(nonatomic,assign) NSInteger titleSize;
 @end
-    
 
-@interface _0_com_zkty_jsi_xxxx_DTO: JSONModel
+
+@interface _nestedAnonymousObject0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* a;
-   	@property(nonatomic,strong) _1_com_zkty_jsi_xxxx_DTO* i;
+   	@property(nonatomic,strong) _nestedAnonymousObject1_DTO* i;
 @end
-    
 
-@interface _1_com_zkty_jsi_xxxx_DTO: JSONModel
+
+@interface _nestedAnonymousObject1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* n1;
 @end
-    
 
-@interface _2_com_zkty_jsi_xxxx_DTO: JSONModel
+
+@interface _namedObjectWithArgs0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* goodname;
    	@property(nonatomic,assign) NSInteger price;
 @end
-    
 
-@interface _3_com_zkty_jsi_xxxx_DTO: JSONModel
+
+@interface _namedObjectWithArgs1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* name;
    	@property(nonatomic,assign) NSInteger age;
 @end
-    
+
+
+@interface _complexAnoymousRetWithAnoymousArgs0_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,assign) NSInteger age;
+   	@property(nonatomic,strong) NSArray<_complexAnoymousRetWithAnoymousArgs1_DTO*><_complexAnoymousRetWithAnoymousArgs1_DTO>* houses;
+@end
+
+
+@interface _complexAnoymousRetWithAnoymousArgs1_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* address;
+   	@property(nonatomic,copy) NSString* longtitude;
+   	@property(nonatomic,copy) NSString* latitude;
+   	@property(nonatomic,strong) _complexAnoymousRetWithAnoymousArgs2_DTO* dealer;
+@end
+
+
+@interface _complexAnoymousRetWithAnoymousArgs2_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,assign) NSInteger age;
+@end
+
+
+@interface _complexAnoymousRetWithAnoymousArgs3_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,assign) NSInteger age;
+   	@property(nonatomic,strong) NSArray<_complexAnoymousRetWithAnoymousArgs4_DTO*><_complexAnoymousRetWithAnoymousArgs4_DTO>* houses;
+@end
+
+
+@interface _complexAnoymousRetWithAnoymousArgs4_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* address;
+   	@property(nonatomic,copy) NSString* longtitude;
+   	@property(nonatomic,copy) NSString* latitude;
+   	@property(nonatomic,strong) _complexAnoymousRetWithAnoymousArgs5_DTO* dealer;
+@end
+
+
+@interface _complexAnoymousRetWithAnoymousArgs5_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,assign) NSInteger age;
+@end
+
 
 
 @protocol xengine_jsi_xxxx_protocol
-       @required 
-       - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
-       @required 
-       - (void) _simpleMethod;
-    
-      @required 
-        - (void) _simpleArgMethod:(NSString*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
    @required 
-       - (NSString*) _simpleArgMethod:(NSString*)dto;
-    
-      @required 
-        - (void) _simpleArgNumberMethod:(NSInteger) dto complete:(void (^)(NSInteger result,BOOL complete)) completionHandler;
+    - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
    @required 
-       - (NSInteger) _simpleArgNumberMethod:(NSInteger)dto;
-    
-      @required 
-        - (void) _nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
-       @required 
-       - (_0_com_zkty_jsi_xxxx_DTO*) _nestedAnonymousObject;
-    
-      @required 
-        - (void) _namedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
-       @required 
-       - (NamedDTO*) _namedObject;
-    
-      @required 
-        - (void) _namedObjectWithNamedArgs:(NamedDTO*) dto complete:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
+    - (void) _simpleMethod;
+
    @required 
-       - (NamedDTO*) _namedObjectWithNamedArgs:(NamedDTO*)dto;
-    
-      @required 
-        - (void) _namedObjectWithArgs:(_3_com_zkty_jsi_xxxx_DTO*) dto complete:(void (^)(_2_com_zkty_jsi_xxxx_DTO* result,BOOL complete)) completionHandler;
+     - (void) _simpleArgMethod:(NSString*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
    @required 
-       - (_2_com_zkty_jsi_xxxx_DTO*) _namedObjectWithArgs:(_3_com_zkty_jsi_xxxx_DTO*)dto;
-    
+    - (NSString*) _simpleArgMethod:(NSString*)dto;
+
+   @required 
+     - (void) _nestedAnonymousObject:(void (^)(_nestedAnonymousObject0_DTO* result,BOOL complete)) completionHandler;
+   @required 
+    - (_nestedAnonymousObject0_DTO*) _nestedAnonymousObject;
+
+   @required 
+     - (void) _namedObject:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
+   @required 
+    - (NamedDTO*) _namedObject;
+
+   @required 
+     - (void) _namedObjectWithNamedArgs:(NamedDTO*) dto complete:(void (^)(NamedDTO* result,BOOL complete)) completionHandler;
+   @required 
+    - (NamedDTO*) _namedObjectWithNamedArgs:(NamedDTO*)dto;
+
+   @required 
+     - (void) _namedObjectWithArgs:(_namedObjectWithArgs1_DTO*) dto complete:(void (^)(_namedObjectWithArgs0_DTO* result,BOOL complete)) completionHandler;
+   @required 
+    - (_namedObjectWithArgs0_DTO*) _namedObjectWithArgs:(_namedObjectWithArgs1_DTO*)dto;
+
+   @required 
+     - (void) _complexAnoymousRetWithAnoymousArgs:(_complexAnoymousRetWithAnoymousArgs3_DTO*) dto complete:(void (^)(_complexAnoymousRetWithAnoymousArgs0_DTO* result,BOOL complete)) completionHandler;
+   @required 
+    - (_complexAnoymousRetWithAnoymousArgs0_DTO*) _complexAnoymousRetWithAnoymousArgs:(_complexAnoymousRetWithAnoymousArgs3_DTO*)dto;
+
 @end
-  
+
 
 
 @interface xengine_jsi_xxxx : JSIModule<xengine_jsi_xxxx_protocol>

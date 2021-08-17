@@ -11,13 +11,7 @@ function osCheck() {
   else {
 
     return  xengine.use("com.zkty.jsi.webcache", 
-    [
-  {
-    "name": "test_同步无返回",
-    "default_args": {},
-    "decorators": []
-  }
-]
+    []
 )}}
 
 export default osCheck();

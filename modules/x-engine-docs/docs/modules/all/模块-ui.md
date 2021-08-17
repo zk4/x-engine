@@ -7,7 +7,7 @@ hello, readme
 
 JSI Id: com.zkty.jsi.ui
 
-version: 0.1.13
+version: 2.8.1
 
 
 

@@ -9,13 +9,13 @@ public class StoreUtils {
     /**
      * 保存数据
      *
-     * @param context
      * @param key
      * @param object
      */
     private static final String NAME_SPACE = "x-localstorage";
 
     public static void put(String key, Object object) {
+        if (object == null) return;
         MMKV mmkv = getSp();
         if (object instanceof String) {
             mmkv.encode(key, (String) object);
@@ -36,7 +36,6 @@ public class StoreUtils {
     /**
      * 获取数据
      *
-     * @param context
      * @param key
      * @param defaultValue
      * @return
@@ -62,7 +61,6 @@ public class StoreUtils {
     /**
      * remove key
      *
-     * @param context
      * @param key
      */
     public static void remove(String key) {
@@ -72,7 +70,6 @@ public class StoreUtils {
     /**
      * 判断是否包含key
      *
-     * @param context
      * @param key
      * @return
      */
@@ -83,7 +80,6 @@ public class StoreUtils {
     /**
      * 清空数据
      *
-     * @param context
      */
     public static void clear() {
         getSp().clearAll();

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iTabbarDelegate.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainTabbarController : UITabBarController
+@interface MainTabbarController : UITabBarController <iTabbarDelegate>
 
 @end
 

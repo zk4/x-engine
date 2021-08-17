@@ -1,22 +1,33 @@
 PODS:
+  - JSONModel (1.8.0)
+  - WechatOpenSDK (1.8.7.1)
   - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
-  - x-engine-native-protocols (1.0.0)
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
 
 DEPENDENCIES:
-  - x-engine-native-core (from `../../x-engine-native-core`)
-  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - WechatOpenSDK (~> 1.8.6)
+  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JSONModel
+    - WechatOpenSDK
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "../../x-engine-native-core"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
   x-engine-native-protocols:
-    :path: "../../x-engine-native-protocols"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
 
 SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
-  x-engine-native-protocols: a419ec2df21e33bf6e33cdf403a650987b725e15
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
 
-PODFILE CHECKSUM: 5d4b1f3b5e40c2f311f71d92e3c8423b9dffba5d
+PODFILE CHECKSUM: 0a3fa91ae4dde01a2719879d9a3116c80a07331b
 
 COCOAPODS: 1.10.0

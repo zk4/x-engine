@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) order;
 - (void) afterAllJSIModuleInited;
 
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
+
+- (void)showErrorAlert:(NSString *)errorString;
+
 - (id) convert:(NSDictionary *)param  clazz:(Class)clazz;
 -(NSDictionary*) mergeDefault:(NSDictionary * _Nullable )dict defaultString:(NSString*)defaultString;
 - (NSDictionary*) merge:( NSDictionary* _Nullable) dest defaultDict:(NSDictionary* _Nullable) dv ;

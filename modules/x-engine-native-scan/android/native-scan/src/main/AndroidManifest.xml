@@ -12,5 +12,7 @@
             android:value="com.zkty.nativ.scan.NativeScan" />
         <activity android:name="com.zkty.nativ.scan.activity.ScanActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name="com.zkty.nativ.scan.activity.DefinedActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

@@ -2,11 +2,13 @@
 import camera from './index.js'
 import xengine from "@zkty-team/x-engine-core";
 
-window.test_openImagePicker = () => {
+window.test_aok = () => {
+}
+window.test_openImagePicker2 = () => {
 
   xengine.api(
     "com.zkty.jsi.camera",
-    "openImagePicker",
+    "openImagePicker2",
     {
       allowsEditing: true,
       savePhotosAlbum: false,
@@ -30,8 +32,36 @@ window.test_openImagePicker = () => {
     }
   );
 }
- document.getElementById("test_openImagePicker").click()
-      window.test_saveImageToPhotoAlbum = () => {
+window.test_openImagePicker = () => {
+
+  xengine.api(
+    "com.zkty.jsi.camera",
+    "openImagePicker",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        const image = document.createElement("img");
+        if (!photo.width || !photo.height) {
+          alert("要返回width,与height", photo);
+        }
+        image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        image.style.cssText = "width:100%";
+        document.body.appendChild(image);
+      }
+    }
+  );
+}
+window.test_saveImageToPhotoAlbum = () => {
 
   xengine.api(
     "com.zkty.jsi.camera",
@@ -46,6 +76,5 @@ window.test_openImagePicker = () => {
     }
   );
 }
- document.getElementById("test_saveImageToPhotoAlbum").click()
-      
+
     

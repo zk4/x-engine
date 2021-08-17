@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-globalstorage",
-  "version": "0.1.13",
+  "version": "2.8.1",
   "description": "globalstorage",
   "main": "h5/src/index.js",
   "license": "MIT",

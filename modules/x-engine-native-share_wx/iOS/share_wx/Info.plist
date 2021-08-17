@@ -16,8 +16,47 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>weixin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxa11a02e98f71d356</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mqq</string>
+		<string>weibo</string>
+		<string>mqqapi</string>
+		<string>tencent</string>
+		<string>tencentApiIdentifier</string>
+		<string>weixin</string>
+		<string>weixinULAPI</string>
+		<string>mqqbrowser</string>
+		<string>mttbrowser</string>
+		<string>mqqopensdkapiV2</string>
+		<string>mqqwpa</string>
+		<string>mqqopensdkapiV3</string>
+		<string>wtloginmqq2</string>
+		<string>alipay</string>
+		<string>alipaylogin</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>alipayshare</string>
+		<string>sinaweibo</string>
+		<string>sinaweibohd</string>
+		<string>weibosdk</string>
+		<string>weibosdk2.5</string>
+		<string>gomeplusapp</string>
+		<string>gome</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -30,5 +69,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>create bin</key>
+	<string></string>
 </dict>
 </plist>

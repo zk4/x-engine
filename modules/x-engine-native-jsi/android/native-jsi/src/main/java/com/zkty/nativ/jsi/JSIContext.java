@@ -11,7 +11,6 @@ import com.tencent.smtt.sdk.QbSdk;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.ArrayList;
@@ -68,7 +67,8 @@ public class JSIContext extends NativeModule {
         QbSdk.initTbsSettings(map);
 
         XWebViewPool.sharedInstance().init(XEngineApplication.getApplication());
-//        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
+////        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
+
         QbSdk.initX5Environment(XEngineApplication.getApplication(), new QbSdk.PreInitCallback() {
             @Override
             public void onCoreInitFinished() {
@@ -80,7 +80,6 @@ public class JSIContext extends NativeModule {
                 Log.d("initX5", "onViewInitFinished: " + b);
             }
         });
-
 
     }
 

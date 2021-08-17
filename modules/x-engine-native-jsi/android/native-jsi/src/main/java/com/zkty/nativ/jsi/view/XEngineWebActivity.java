@@ -33,6 +33,7 @@ import com.tencent.smtt.sdk.WebView;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.HistoryModel;
+import com.zkty.nativ.jsi.utils.AndroidBug5497Workaround;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
@@ -77,6 +78,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     private android.webkit.ValueCallback<Uri[]> mUploadCallbackAboveL;
     private PermissionsUtils permissionsUtils = new PermissionsUtils();
     public static final int FILECHOOSER_RESULTCODE = 10;// 表单的结果回调
+    public static final int XACTIVITY_REQUEST_CODE = 150;// 权限请求码
 
     private HistoryModel historyModel;
 
@@ -92,6 +94,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         setNavBarHidden(hideNavBar, false);
 
         setContentView(R.layout.activity_engine_webview);
+
+        AndroidBug5497Workaround.assistActivity(this);
         //关闭 关于文件uri暴露的检测（FileUriExposedException）
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -176,7 +180,9 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        if (requestCode == XACTIVITY_REQUEST_CODE) {
+            permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        }
     }
 
     @Override
@@ -252,11 +258,13 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     }
 
     public void showScreenCapture(boolean isShow) {
-        if (isShow) {
-            Bitmap bitmap = captureView(mRoot);
-            ivScreen.setImageBitmap(bitmap);
-        }
-        ivScreen.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        //todo 目前多webview 模式，不需要显示
+//        if (XWebViewPool.IS_MULTI_MODE)
+//        if (isShow) {
+//            Bitmap bitmap = captureView(mRoot);
+//            ivScreen.setImageBitmap(bitmap);
+//        }
+//        ivScreen.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
     private Bitmap captureView(View view) {
@@ -338,7 +346,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private void showSelectDialog() {
         permissionsUtils.checkPermissions(this, new String[]{Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, XACTIVITY_REQUEST_CODE, new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissions() {
                 CameraDialog bottomDialog = new CameraDialog(XEngineWebActivity.this);
@@ -372,7 +380,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private void choseFile() {
         permissionsUtils.checkPermissions(this, new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, XACTIVITY_REQUEST_CODE, new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissions() {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);

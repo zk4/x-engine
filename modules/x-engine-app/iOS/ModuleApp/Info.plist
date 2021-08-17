@@ -29,6 +29,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>访问您的相机</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>访问你的相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>访问您的相册</string>
 	<key>UILaunchStoryboardName</key>

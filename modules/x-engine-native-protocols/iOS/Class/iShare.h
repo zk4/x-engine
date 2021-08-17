@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ChannelDTO :JSONModel
 @property(nonatomic,copy) NSString *channel;
 @property(nonatomic,copy) NSString *shareType;
+@property(nonatomic,copy) NSString* shareImgData;
 @end
 
 @interface OpenShareUiDTO :JSONModel

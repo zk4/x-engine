@@ -1,12 +1,12 @@
 package com.zkty.nativ.direct;
 
 
-import android.text.TextUtils;
-
+import com.alibaba.fastjson.JSONObject;
+import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
-import com.zkty.nativ.jsi.webview.XEngineWebView;
-import com.zkty.nativ.jsi.webview.XWebViewPool;
+import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.core.utils.ToastUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,15 +44,26 @@ public class NativeDirect extends NativeModule implements IDirectManager {
 
     @Override
     public void push(String scheme, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
-        XEngineWebView xEngineWebView = XWebViewPool.sharedInstance().getCurrentWebView();
-        if (TextUtils.isEmpty(host) && xEngineWebView != null) {
-
-            host = xEngineWebView.getHistoryModel().host;
-            pathname = xEngineWebView.getHistoryModel().pathname;
-        }
 
         IDirect iDirect = directors.get(scheme);
+        if (iDirect == null) {
+            ToastUtils.showNormalShortToast("跳转地址错误");
+            return;
+        }
         iDirect.push(iDirect.protocol(), host, pathname, fragment, query, params);
+
+        if (params != null && params.containsKey("nativeParams")) {
+            try {
+                JSONObject nativeParams = JSONObject.parseObject(params.get("nativeParams"));
+                int goal = nativeParams.getIntValue("__deleteHistory__");
+                XEngineApplication.getCurrentActivity().runOnUiThread(() -> ActivityStackManager.getInstance().finishActivities(goal));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     @Override

@@ -2,7 +2,7 @@
 
 JSI Id: com.zkty.jsi.xxxx
 
-version: 2.0.3
+version: 2.8.1
 
 
 
@@ -33,20 +33,6 @@ version: 2.0.3
 **返回值**
 ``` js
 string
-``` 
-
-
-
-## simpleArgNumberMethod
-[`async`](/docs/modules/模块-规范?id=jsi-调用) [`sync`](/docs/modules/模块-规范?id=jsi-调用)
-
-
-
-**无参数**
-
-**返回值**
-``` js
-int
 ``` 
 
 
@@ -133,8 +119,44 @@ interface NamedDTO {
 **返回值**
 ``` js
  {
-goodname:string,
-price:int
+ goodname: string; price: int 
+}
+``` 
+
+
+
+## complexAnoymousRetWithAnoymousArgs
+[`sync`](/docs/modules/模块-规范?id=jsi-调用) [`async`](/docs/modules/模块-规范?id=jsi-调用)
+
+
+
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| name | string | 必填 |  |  |
+| age | int | 必填 |  |  |
+| houses | Array\<_11_com.zkty.jsi.xxxx_DTO\> | 必填 |  |  |
+**返回值**
+``` js
+ {
+
+  name: string;
+  age: int;
+  houses: Array<{
+
+    address: string;
+    longtitude: string;
+    latitude: string;
+    dealer: {
+
+      name: string;
+      age: int;
+    
+};
+  
+}>;
+
 }
 ``` 
 

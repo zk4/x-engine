@@ -8,14 +8,19 @@
 
 #import "Native_direct_microapp.h"
 #import "XENativeContext.h"
-#import "MicroAppLoader.h"
-#import "WebViewFactory.h"
 #import "Unity.h"
-#import "RecyleWebViewController.h"
-#import "GlobalState.h"
+#import "HistoryModel.h"
+#import "UIViewController+Tag.h"
+#import "iUpdator.h"
+#import "iToast.h"
+
+
+#define kDocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
 
 @interface Native_direct_microapp ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
+@property (nonatomic, strong) id<iToast> toast;
+
 @end
 @implementation Native_direct_microapp
 NATIVE_MODULE(Native_direct_microapp)
@@ -45,31 +50,31 @@ NATIVE_MODULE(Native_direct_microapp)
     }
 }
 
-- (void)back:(NSString*) host fragment:(NSString*) fragment{
-    [self.microappDirect back:host fragment:fragment];
-}
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        host:(NSString*) host
-        pathname:(NSString*) pathname
-        fragment:(NSString*) fragment
-        query:(NSDictionary<NSString*,id>*) query
-        params:(NSDictionary<NSString*,id>*) params  {
-
-    long version =0;
-    if (params && params[@"version"]){
-        version= [params[@"version"] longValue] ;
-    };
-    if(host){
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+ 
+ 
+    if(host && host.length>0){
         // microapp 的 host 要特殊处理.
         // 当第一次打开时, 因为这里传过来的时 microappid => host, pathname
-        pathname = [[MicroAppLoader sharedInstance] getMicroAppHost:host withVersion:version];
+        NSString* rootPath =  [XENP(iUpdator) getPath:host];
+        if(!rootPath){
+            NSString* errStr = [NSString stringWithFormat:@"找不到本地微应用:%@",host];
+            [_toast toast:errStr];
+            return nil;
+        }
+
+        pathname=  [NSString stringWithFormat:@"%@index.html", rootPath];
+        // 供后面构造字符串用,不会出现 nil
         host=@"";
     }else{
-       HistoryModel* hm= [[GlobalState sharedInstance] getLastHistory];
+       HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
        pathname=hm.pathname;
     }
-    [self.microappDirect push:[self protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];
+    
 }
 
+ 
+ 
 @end

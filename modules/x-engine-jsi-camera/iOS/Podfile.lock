@@ -1,10 +1,10 @@
 PODS:
-  - GCDWebServer (3.5.4):
-    - GCDWebServer/Core (= 3.5.4)
-  - GCDWebServer/Core (3.5.4)
   - JSONModel (1.8.0)
+  - Toast (4.0.0)
+  - x-engine-jsi-camera (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-camera (1.0.0):
-    - GCDWebServer
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
@@ -26,51 +26,76 @@ PODS:
   - x-engine-native-jsi (1.0.0):
     - JSONModel
     - x-engine-native-core
+    - x-engine-native-jsi/no-arc (= 1.0.0)
+    - x-engine-native-protocols
+  - x-engine-native-jsi/no-arc (1.0.0):
+    - JSONModel
+    - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
+  - x-engine-native-tabbar (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-toast (1.0.0):
+    - Toast (~> 4.0.0)
+    - x-engine-native-core
+    - x-engine-native-protocols
 
 DEPENDENCIES:
-  - x-engine-native-camera (from `../../x-engine-native-camera`)
-  - x-engine-native-core (from `../../x-engine-native-core`)
-  - x-engine-native-direct (from `../../x-engine-native-direct`)
-  - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
-  - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
-  - x-engine-native-jsi (from `../../x-engine-native-jsi`)
-  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - JSONModel
+  - x-engine-jsi-camera (from `../`)
+  - x-engine-native-camera (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-camera`)
+  - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-tabbar (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar`)
+  - x-engine-native-toast (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-toast`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - GCDWebServer
     - JSONModel
+    - Toast
 
 EXTERNAL SOURCES:
+  x-engine-jsi-camera:
+    :path: "../"
   x-engine-native-camera:
-    :path: "../../x-engine-native-camera"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-camera"
   x-engine-native-core:
-    :path: "../../x-engine-native-core"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core"
   x-engine-native-direct:
-    :path: "../../x-engine-native-direct"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct"
   x-engine-native-direct_microapp:
-    :path: "../../x-engine-native-direct_microapp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
-    :path: "../../x-engine-native-direct_omp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp"
   x-engine-native-jsi:
-    :path: "../../x-engine-native-jsi"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
-    :path: "../../x-engine-native-protocols"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
+  x-engine-native-tabbar:
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar"
+  x-engine-native-toast:
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-toast"
 
 SPEC CHECKSUMS:
-  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
-  x-engine-native-camera: 06050cc692cf66e5cc8d91e736544d3c9c483bed
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  x-engine-jsi-camera: 4f0e5cab50ec441c897161329c39e23f368a6a79
+  x-engine-native-camera: f81c179d6c8995491cf118b26a69a3e7f03cec79
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
   x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
-  x-engine-native-jsi: 92a9a72a45029df1ca8e61e0166e3731e672f523
+  x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
+  x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
 
-PODFILE CHECKSUM: 9425666239155856c571504d40302ed942d0f64c
+PODFILE CHECKSUM: 85e906ab1323bce274f8a6a20090d57eb9a8ee6c
 
 COCOAPODS: 1.10.1

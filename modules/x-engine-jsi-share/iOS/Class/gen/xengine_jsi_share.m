@@ -71,10 +71,10 @@
 
           ShareDTO* dto = [self convert:dict clazz:ShareDTO.class];
           
-          if(!dto) {
-            [self showErrorAlert: @"dto 转换为空"];
-            return nil;
-          }
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return ;
+        }
 
           [self _share:dto complete:^(_share0_DTO* result,  BOOL complete) {
             completionHandler(result,complete);

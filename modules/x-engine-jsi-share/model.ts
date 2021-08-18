@@ -136,6 +136,8 @@ function test_share() {
       title: "testTitle",
       desc: "description",
     },
+  },(ret)=>{
+  document.getElementById("debug_text").innerText = JSON.stringify(ret);
   });
 }
 
@@ -153,5 +155,7 @@ function test_share2() {
       imageurl: "",
       miniProgramType: 2,
     },
+  },(ret)=>{
+  document.getElementById("debug_text").innerText = JSON.stringify(ret);
   });
 }

@@ -22,10 +22,19 @@ JSI_MODULE(JSI_share)
     self.ishareManager = XENP(iShareManager);
 }
 
-- (void)_share:(ShareDTO *)dto complete:(void (^)(BOOL))completionHandler {
+//- (void)_share:(ShareDTO *)dto complete:(void (^)(BOOL))completionHandler {
+//
+//    [self.ishareManager shareWithType:dto.type channel:dto.channel posterInfo:dto.info complete:^(  BOOL complete) {
+//        completionHandler(TRUE);
+//    }];
+//}
 
-    [self.ishareManager shareWithType:dto.type channel:dto.channel posterInfo:dto.info complete:^(  BOOL complete) {
-        completionHandler(TRUE);
-    }];
+- (void)_share:(ShareDTO *)dto complete:(void (^)(_share0_DTO *, BOOL))completionHandler {
+    [self.ishareManager shareWithType:dto.type channel:dto.channel posterInfo:dto.info complete:^( BOOL complete) {
+            _share0_DTO* ret = [_share0_DTO new];
+            ret.code =10;
+          completionHandler(ret,TRUE);
+      }];
 }
+
 @end

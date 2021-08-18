@@ -105,13 +105,14 @@ JSI_MODULE(JSI_webcache)
                 NSHTTPURLResponse *response =nil;
                 response = (NSHTTPURLResponse *)r;
                 NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-                NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+//                NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
                 NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
     
     
                 NSDictionary* ret =@{
                     @"statusCode": statusCode,
-                    @"responseText":responseText,
+//                    @"responseText":responseText,
+                    @"response":[data base64EncodedStringWithOptions:0],
                     @"responseHeaders":headers
                 };
                 if(cacheKey)

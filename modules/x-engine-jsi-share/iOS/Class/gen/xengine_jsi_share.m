@@ -12,19 +12,19 @@
    	return NO;
     }
 @end
-    
+
   
 @implementation ShareTextDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
-    
+
   
 @implementation ShareImgDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
-    
+
   
 @implementation ShareLinkDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -33,7 +33,7 @@
    	return NO;
     }
 @end
-    
+
   
 @implementation ShareMiniProgramDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -45,7 +45,13 @@
    	return NO;
     }
 @end
-    
+
+  
+@implementation _share0_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+    }
+@end
+
 
 
 
@@ -64,8 +70,15 @@
     - (void) share:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           ShareDTO* dto = [self convert:dict clazz:ShareDTO.class];
-          [self _share:dto complete:^(BOOL complete) {
-             completionHandler(nil ,complete);
+          
+          if(!dto) {
+            [self showErrorAlert: @"dto 转换为空"];
+            return nil;
+          }
+
+          [self _share:dto complete:^(_share0_DTO* result,  BOOL complete) {
+            completionHandler(result,complete);
           }];
-      }
+        
+  }
   @end

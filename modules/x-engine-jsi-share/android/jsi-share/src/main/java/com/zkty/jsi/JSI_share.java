@@ -20,8 +20,9 @@ public class JSI_share extends xengine_jsi_share {
     }
 
 
+
     @Override
-    public void _share(ShareDTO dto, CompletionHandler<Nullable> handler) {
+    public void _share(ShareDTO dto, CompletionHandler<_0_com_zkty_jsi_share_DTO> handler) {
         if (shares != null) {
             shares.share(dto.channel, dto.type, dto.info);
         }

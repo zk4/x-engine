@@ -3,7 +3,7 @@ import share from './index.js'
 import xengine from "@zkty-team/x-engine-core";
 
 window.test_share = () => {
-
+ {
   xengine.api("com.zkty.jsi.share", "share", {
     channel: "wx_zone",
     type: "link",
@@ -13,10 +13,10 @@ window.test_share = () => {
       desc: "description",
     },
   });
-}
+}}
  document.getElementById("test_share").click()
         window.test_share2 = () => {
-
+ {
   xengine.api("com.zkty.jsi.share", "share", {
     channel: "wx_friend",
     type: "miniProgram",
@@ -30,7 +30,7 @@ window.test_share = () => {
       miniProgramType: 2,
     },
   });
-}
+}}
  document.getElementById("test_share2").click()
         
     

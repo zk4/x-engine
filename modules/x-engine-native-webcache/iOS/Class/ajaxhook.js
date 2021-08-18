@@ -200,8 +200,7 @@
         window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params, function (data) {
             data = JSON.parse(data)
             var statusCode = 1 * data["statusCode"];
-            // TODO: 现在只支持 text, 不支持 binary
-//            var responseText = data["responseText"];
+            var responseText = data["responseText"];
             var response = decode(data["response"]);
             var responseHeaders = data["responseHeaders"];
             var error = data["error"];
@@ -219,7 +218,7 @@
                 }
             } else {
                 xhr.status = statusCode;
-//                xhr.responseText = responseText;
+                xhr.responseText = responseText;
                 xhr.response =new Blob([response.buffer], { type: responseHeaders["Content-Type"] });
                 xhr.readyState = 4;
                 

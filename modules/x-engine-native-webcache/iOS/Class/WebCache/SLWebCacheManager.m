@@ -194,11 +194,13 @@
     NSLog(@"@saved => %@",request);
     BOOL result1 = [info writeToFile:[self filePathFromRequest:request isInfo:YES] atomically:YES];
     BOOL result2 = [cachedURLResponse.data writeToFile:[self filePathFromRequest:request isInfo:NO] atomically:YES];
+    if(info[@"MIMEType"] && [info[@"MIMEType"] containsString:@"image/"])
+        return result1 && result2;
     //写入内存
     [self.memoryCache setObject:cachedURLResponse.data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
     [self.memoryCache setObject:info forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
 //
-    return result1 & result2;
+    return result1 && result2;
  
     // yycache 没有返回值
 //    return TRUE;

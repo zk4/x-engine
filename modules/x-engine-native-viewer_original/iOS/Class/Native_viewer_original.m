@@ -211,7 +211,7 @@ NATIVE_MODULE(Native_viewer_original)
         _navigationView.backgroundColor = UIColor.whiteColor;
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.frame = CGRectMake(0, 0, 50, 50);
-        [backButton setImage:[UIImage imageNamed:@"gomezk_back@3x"] forState:(UIControlStateNormal)];
+        [backButton setImage:[UIImage imageNamed:@"app_back@3x"] forState:(UIControlStateNormal)];
         backButton.backgroundColor = UIColor.clearColor;
         [backButton addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
         [_navigationView addSubview:backButton];

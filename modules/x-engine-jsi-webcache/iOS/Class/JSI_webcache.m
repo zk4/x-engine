@@ -102,8 +102,6 @@ JSI_MODULE(JSI_webcache)
     __weak typeof(self) weakSelf = self;
         NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
             if (!error) {
-                NSString* body =     [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//                NSLog(@"%@",body);
                 NSHTTPURLResponse *response =nil;
                 response = (NSHTTPURLResponse *)r;
                 NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;

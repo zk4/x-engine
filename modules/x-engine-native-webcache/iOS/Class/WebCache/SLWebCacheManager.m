@@ -31,6 +31,7 @@
     dispatch_once(&onceToken, ^{
         instance = [[SLWebCacheManager alloc] init];
     });
+    instance.isUsingURLProtocol =TRUE;
     return instance;
 }
 ///启用缓存功能

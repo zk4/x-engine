@@ -105,14 +105,17 @@ JSI_MODULE(JSI_webcache)
                 NSHTTPURLResponse *response =nil;
                 response = (NSHTTPURLResponse *)r;
                 NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-                NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+//                NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
                 NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
-    
-    
+                
+                // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+                NSString* type =  headers[@"Content-Type"];
+                BOOL isBinary =type? !([type containsString:@"text/"] || [type containsString:@"/json"]): NO;
+
                 NSDictionary* ret =@{
                     @"statusCode": statusCode,
-                    @"responseText":responseText,
-                    @"response":[data base64EncodedStringWithOptions:0],
+                    @"isBinary":[NSNumber numberWithBool:isBinary],
+                    @"data":isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding],
                     @"responseHeaders":headers
                 };
                 if(cacheKey)

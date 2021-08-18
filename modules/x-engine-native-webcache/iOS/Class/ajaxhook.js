@@ -200,8 +200,8 @@
         window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params, function (data) {
             data = JSON.parse(data)
             var statusCode = 1 * data["statusCode"];
-            var responseText = data["responseText"];
-            var response = decode(data["response"]);
+            var isBinary = data["isBinary"];
+            var rawData = data["data"];
             var responseHeaders = data["responseHeaders"];
             var error = data["error"];
             
@@ -218,8 +218,12 @@
                 }
             } else {
                 xhr.status = statusCode;
-                xhr.responseText = responseText;
-                xhr.response =new Blob([response.buffer], { type: responseHeaders["Content-Type"] });
+                if(!isBinary){
+                    xhr.responseText =rawData;
+                }
+                else{
+                    xhr.response =new Blob([decode(rawData).buffer], { type: responseHeaders["Content-Type"] });
+                }
                 xhr.readyState = 4;
                 
                 xhr.omtResponseHeaders = responseHeaders;

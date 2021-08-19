@@ -1,13 +1,38 @@
 package com.zkty.nativ.media;
 
 public class CameraRetDTO {
+    private String thumbnail;
+    private String id;
+    private String type;
     private String retImage;
     private String fileName;
     private String contentType;
     private String width;
     private String height;
 
+    public String getThumbnail() {
+        return thumbnail;
+    }
 
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public boolean propertyIsOptional(String propertyName) {
         return false;

@@ -1,4 +1,4 @@
-package com.jianiao.test;
+package com.zkty.engine.jsi.media;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class FileProgressRequestBody extends RequestBody {
     private OnUploadListener fileUploadObserver;
 
     public FileProgressRequestBody(File file, OnUploadListener fileUploadObserver) {
-        this.mRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+        this.mRequestBody = RequestBody.create(MediaType.parse("image/png"), file);
         this.fileUploadObserver = fileUploadObserver;
     }
 

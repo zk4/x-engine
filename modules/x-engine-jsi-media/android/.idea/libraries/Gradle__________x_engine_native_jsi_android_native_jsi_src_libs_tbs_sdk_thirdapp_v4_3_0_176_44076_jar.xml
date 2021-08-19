@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: ./../../x-engine-native-jsi/android/native-jsi/src/libs/tbs_sdk_thirdapp_v4.3.0.176_44076.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../x-engine-native-jsi/android/native-jsi/src/libs/tbs_sdk_thirdapp_v4.3.0.176_44076.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

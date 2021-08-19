@@ -2,13 +2,15 @@ package com.zkty.engine.jsi.media;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.anthonynsimon.url.URL;
-import com.anthonynsimon.url.exceptions.MalformedURLException;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.utils.ImageUtils;
@@ -22,14 +24,26 @@ import com.zkty.nativ.media.cameraImpl.GlideLoader;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
 import com.zkty.nativ.media.cameraImpl.data.MediaFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Callback;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvMsg;
     private Nativemedia iMedia;
+    private String filePath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +88,83 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void upload(View view){
+        if(TextUtils.isEmpty(filePath)) return;
+        doUpload("https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",new FileProgressRequestBody.OnUploadListener() {
+            @Override
+            public void onUploadSuccess() {
+                Log.d("MainActivity","上传成功" );
+            }
+
+            @Override
+            public void onUploading(int progress) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvMsg.setText(progress + "%");
+                    }
+                });
+                Log.d("MainActivity",progress + "%" );
+            }
+
+            @Override
+            public void onUploadFailed() {
+                Log.d("MainActivity","上传失败" );
+            }
+        });
+    }
+
+
+    private void doUpload(String url, FileProgressRequestBody.OnUploadListener fileUploadObserver) {
+        try {
+            // 构造上传请求，模拟表单提交文件
+            File file = new File(filePath);
+            FileProgressRequestBody filePart = new FileProgressRequestBody(file,fileUploadObserver);
+
+
+            MultipartBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("file",file.getName(),filePart)
+                    .build();
+
+            // 创建Request对象
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
+
+            OkHttpClient httpClient = new OkHttpClient.Builder()
+                    //time out
+                    .connectTimeout(100, TimeUnit.SECONDS)
+                    .readTimeout(100, TimeUnit.SECONDS)
+                    .writeTimeout(100, TimeUnit.SECONDS)
+                    //失败重连
+                    .retryOnConnectionFailure(true)
+                    .build();
+            httpClient.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(okhttp3.Call call, IOException e) {
+                    // 下载失败
+                    Log.d("MainActivity","上传失败" + e.getMessage());
+                }
+
+                @Override
+                public void onResponse(okhttp3.Call call, Response response) throws IOException {
+
+                    ResponseBody body = response.body();
+                    byte[] bytes = body.bytes();
+                    //解密字符串
+                    String dataStr = new String(bytes, "UTF-8");
+
+                    Log.d("MainActivity","上传成功" + dataStr);
+                }
+            });
+        } catch (Exception ioe) {
+        }
+    }
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -83,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         ArrayList<String> items = data.getStringArrayListExtra(ImagePicker.EXTRA_SELECT_IMAGES);
                         tvMsg.setText(items.get(0));
+                        filePath = items.get(0);
                         //发送图片消息
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -102,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             XEngineWebActivityManager.sharedInstance().startXEngineActivity(MainActivity.this,scheme+  ":", url1.getHost(), url1.getPath(), url1.getFragment(), UrlUtils.getQueryMapFormString(url1.getQuery()), true);
 
             //URL解析的 fragment 包含query，eg：/mall2/orderlist?selectedIndex=0，故query传null
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

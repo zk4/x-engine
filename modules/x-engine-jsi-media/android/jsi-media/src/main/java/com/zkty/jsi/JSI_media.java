@@ -1,14 +1,18 @@
 package com.zkty.jsi;
 
 
+import androidx.annotation.Nullable;
+
 import com.zkty.jsi.xengine_jsi_media;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.media.CameraDTO;
 import com.zkty.nativ.media.Imedia;
 import com.zkty.nativ.media.Nativemedia;
+import com.zkty.nativ.media.PreImageCallBack;
 import com.zkty.nativ.media.SaveCallBack;
 
 public class JSI_media extends xengine_jsi_media {
@@ -22,8 +26,19 @@ public class JSI_media extends xengine_jsi_media {
     }
 
 
+
     @Override
-    public void _openImagePicker(_0_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
+    public void _previewImg(_0_com_zkty_jsi_media_DTO dto, CompletionHandler<Nullable> handler) {
+        iMedia.preImage(dto.imgList, dto.index, new PreImageCallBack() {
+            @Override
+            public void closeCallBack() {
+//                ToastUtils.showCenterToast("关闭");
+            }
+        });
+    }
+
+    @Override
+    public void _openImagePicker(_1_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
         CameraDTO cameraDTO = new CameraDTO();
         cameraDTO.setAllowsEditing(dto.allowsEditing);
         cameraDTO.setCameraDevice(dto.cameraDevice);
@@ -38,7 +53,7 @@ public class JSI_media extends xengine_jsi_media {
     }
 
     @Override
-    public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
+    public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
         iMedia.saveImageToAlbum(dto.imageData, dto.type, new SaveCallBack() {
             @Override
             public void saveCallBack() {

@@ -61,6 +61,9 @@ project(':native-geo_gaode').projectDir = new File('../../x-engine-native-geo_ga
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
+include ':native-webcache'
+project(':native-webcache').projectDir = new File('../../x-engine-native-webcache/android/native-webcache')
+
 include ':jsi-direct'
 project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')
 

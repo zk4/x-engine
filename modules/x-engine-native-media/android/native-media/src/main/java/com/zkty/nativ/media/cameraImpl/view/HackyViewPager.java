@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.view;
+package com.zkty.nativ.media.cameraImpl.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

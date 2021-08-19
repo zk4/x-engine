@@ -1,12 +1,12 @@
-package com.zkty.nativ.camera.cameraImpl.loader;
+package com.zkty.nativ.media.cameraImpl.loader;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.zkty.nativ.camera.cameraImpl.data.MediaFile;
-import com.zkty.nativ.camera.cameraImpl.manager.ConfigManager;
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 
 
 public class ImageScanner extends AbsMediaScanner<MediaFile> {

@@ -12,17 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zkty.nativ.camera.cameraImpl.data.ItemType;
-import com.zkty.nativ.camera.cameraImpl.data.MediaFile;
-import com.zkty.nativ.camera.cameraImpl.manager.ConfigManager;
-import com.zkty.nativ.camera.cameraImpl.manager.SelectionManager;
-import com.zkty.nativ.camera.cameraImpl.utils.Utils;
-import com.zkty.nativ.camera.cameraImpl.view.SquareImageView;
-import com.zkty.nativ.camera.cameraImpl.view.SquareRelativeLayout;
+import com.zkty.nativ.media.cameraImpl.data.ItemType;
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
+import com.zkty.nativ.media.cameraImpl.manager.SelectionManager;
+import com.zkty.nativ.media.cameraImpl.utils.Utils;
+import com.zkty.nativ.media.cameraImpl.view.SquareImageView;
+import com.zkty.nativ.media.cameraImpl.view.SquareRelativeLayout;
 
 import java.util.List;
 
-import nativ.camera.R;
+import module.media.R;
 
 
 public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.BaseHolder> {

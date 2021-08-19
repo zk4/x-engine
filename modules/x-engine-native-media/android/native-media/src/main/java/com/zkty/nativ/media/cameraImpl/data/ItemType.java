@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.data;
+package com.zkty.nativ.media.cameraImpl.data;
 
 public class ItemType {
     public static final int ITEM_TYPE_CAMERA = 1;

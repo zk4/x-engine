@@ -1,9 +1,10 @@
-package com.zkty.nativ.camera.cameraImpl.loader;
+package com.zkty.nativ.media.cameraImpl.loader;
 
 import android.content.Context;
 
-import com.zkty.nativ.camera.cameraImpl.data.MediaFile;
-import com.zkty.nativ.camera.cameraImpl.data.MediaFolder;
+
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
+import com.zkty.nativ.media.cameraImpl.data.MediaFolder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import nativ.camera.R;
+import module.media.R;
 
 
 public class MediaHandler {

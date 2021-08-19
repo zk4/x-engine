@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.view;
+package com.zkty.nativ.media.cameraImpl.view;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -10,13 +10,13 @@ import android.widget.PopupWindow;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zkty.nativ.camera.cameraImpl.adapter.ImageFoldersAdapter;
-import com.zkty.nativ.camera.cameraImpl.data.MediaFolder;
-import com.zkty.nativ.camera.cameraImpl.utils.Utils;
+import com.zkty.nativ.media.cameraImpl.adapter.ImageFoldersAdapter;
+import com.zkty.nativ.media.cameraImpl.data.MediaFolder;
+import com.zkty.nativ.media.cameraImpl.utils.Utils;
 
 import java.util.List;
 
-import nativ.camera.R;
+import module.media.R;
 
 
 public class ImageFolderPopupWindow extends PopupWindow {

@@ -1,6 +1,7 @@
-package com.zkty.nativ.camera.cameraImpl.manager;
+package com.zkty.nativ.media.cameraImpl.manager;
 
-import com.zkty.nativ.camera.cameraImpl.utils.MediaFileUtil;
+
+import com.zkty.nativ.media.cameraImpl.utils.MediaFileUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.zkty.nativ.camera.cameraImpl;
+package com.zkty.nativ.media.cameraImpl;
 
 import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.zkty.nativ.camera.cameraImpl.utils.ImageLoader;
 import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.media.cameraImpl.utils.ImageLoader;
 
 
 public class GlideLoader implements ImageLoader {

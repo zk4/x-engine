@@ -1,12 +1,12 @@
-package com.zkty.nativ.camera.cameraImpl;
+package com.zkty.nativ.media.cameraImpl;
 
 import android.app.Activity;
 import android.content.Intent;
 
 
-import com.zkty.nativ.camera.cameraImpl.activity.ImagePickerActivity;
-import com.zkty.nativ.camera.cameraImpl.manager.ConfigManager;
-import com.zkty.nativ.camera.cameraImpl.utils.ImageLoader;
+import com.zkty.nativ.media.cameraImpl.activity.ImagePickerActivity;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
+import com.zkty.nativ.media.cameraImpl.utils.ImageLoader;
 
 import java.util.ArrayList;
 

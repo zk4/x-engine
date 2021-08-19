@@ -1,13 +1,13 @@
-package com.zkty.nativ.camera.cameraImpl.task;
+package com.zkty.nativ.media.cameraImpl.task;
 
 import android.content.Context;
 
 
-import com.zkty.nativ.camera.cameraImpl.data.MediaFile;
-import com.zkty.nativ.camera.cameraImpl.listener.MediaLoadCallback;
-import com.zkty.nativ.camera.cameraImpl.loader.ImageScanner;
-import com.zkty.nativ.camera.cameraImpl.loader.MediaHandler;
-import com.zkty.nativ.camera.cameraImpl.loader.VideoScanner;
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
+import com.zkty.nativ.media.cameraImpl.listener.MediaLoadCallback;
+import com.zkty.nativ.media.cameraImpl.loader.ImageScanner;
+import com.zkty.nativ.media.cameraImpl.loader.MediaHandler;
+import com.zkty.nativ.media.cameraImpl.loader.VideoScanner;
 
 import java.util.ArrayList;
 

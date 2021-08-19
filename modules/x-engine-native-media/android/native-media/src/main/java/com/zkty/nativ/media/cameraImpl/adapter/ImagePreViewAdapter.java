@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.adapter;
+package com.zkty.nativ.media.cameraImpl.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.zkty.nativ.camera.cameraImpl.data.MediaFile;
-import com.zkty.nativ.camera.cameraImpl.manager.ConfigManager;
-import com.zkty.nativ.camera.cameraImpl.view.PinchImageView;
+
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
+import com.zkty.nativ.media.cameraImpl.view.PinchImageView;
 
 import java.util.LinkedList;
 import java.util.List;

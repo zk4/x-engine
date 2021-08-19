@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.activity;
+package com.zkty.nativ.media.cameraImpl.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
 
-import nativ.camera.R;
+import module.media.R;
 
 
 public abstract class BCameraActivity extends AppCompatActivity {

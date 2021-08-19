@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.activity;
+package com.zkty.nativ.media.cameraImpl.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,20 +13,19 @@ import android.widget.Toast;
 import androidx.core.content.FileProvider;
 import androidx.viewpager.widget.ViewPager;
 
-
-import com.zkty.nativ.camera.cameraImpl.adapter.ImagePreViewAdapter;
-import com.zkty.nativ.camera.cameraImpl.data.MediaFile;
-import com.zkty.nativ.camera.cameraImpl.manager.ConfigManager;
-import com.zkty.nativ.camera.cameraImpl.manager.SelectionManager;
-import com.zkty.nativ.camera.cameraImpl.utils.DataUtil;
-import com.zkty.nativ.camera.cameraImpl.view.HackyViewPager;
 import com.zkty.nativ.core.utils.XEngineProvider;
+import com.zkty.nativ.media.cameraImpl.adapter.ImagePreViewAdapter;
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
+import com.zkty.nativ.media.cameraImpl.manager.SelectionManager;
+import com.zkty.nativ.media.cameraImpl.utils.DataUtil;
+import com.zkty.nativ.media.cameraImpl.view.HackyViewPager;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import nativ.camera.R;
+import module.media.R;
 
 
 public class ImagePreActivity extends BCameraActivity {

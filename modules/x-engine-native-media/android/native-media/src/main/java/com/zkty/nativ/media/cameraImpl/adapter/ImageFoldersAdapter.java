@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.adapter;
+package com.zkty.nativ.media.cameraImpl.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -11,12 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zkty.nativ.camera.cameraImpl.data.MediaFolder;
-import com.zkty.nativ.camera.cameraImpl.manager.ConfigManager;
+
+import com.zkty.nativ.media.cameraImpl.data.MediaFolder;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 
 import java.util.List;
 
-import nativ.camera.R;
+import module.media.R;
 
 
 public class ImageFoldersAdapter extends RecyclerView.Adapter<ImageFoldersAdapter.ViewHolder> {

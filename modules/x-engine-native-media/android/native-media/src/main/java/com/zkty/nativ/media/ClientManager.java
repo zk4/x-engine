@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera;
+package com.zkty.nativ.media;
 
 import android.content.ContentValues;
 import android.content.Context;

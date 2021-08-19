@@ -1,6 +1,7 @@
 package com.zkty.engine.jsi.media;
 
-import com.zkty.modules.engine.XEngineApplication;
+
+import com.zkty.nativ.core.XEngineApplication;
 
 public class mediaApplication extends XEngineApplication {
     @Override

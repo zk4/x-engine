@@ -24,30 +24,30 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zkty.nativ.camera.cameraImpl.ImagePicker;
-import com.zkty.nativ.camera.cameraImpl.adapter.ImageFoldersAdapter;
-import com.zkty.nativ.camera.cameraImpl.adapter.ImagePickerAdapter;
-import com.zkty.nativ.camera.cameraImpl.data.MediaFile;
-import com.zkty.nativ.camera.cameraImpl.data.MediaFolder;
-import com.zkty.nativ.camera.cameraImpl.executors.CommonExecutor;
-import com.zkty.nativ.camera.cameraImpl.listener.MediaLoadCallback;
-import com.zkty.nativ.camera.cameraImpl.manager.ConfigManager;
-import com.zkty.nativ.camera.cameraImpl.manager.SelectionManager;
-import com.zkty.nativ.camera.cameraImpl.task.ImageLoadTask;
-import com.zkty.nativ.camera.cameraImpl.task.MediaLoadTask;
-import com.zkty.nativ.camera.cameraImpl.task.VideoLoadTask;
-import com.zkty.nativ.camera.cameraImpl.utils.DataUtil;
-import com.zkty.nativ.camera.cameraImpl.utils.MediaFileUtil;
-import com.zkty.nativ.camera.cameraImpl.utils.PermissionUtil;
-import com.zkty.nativ.camera.cameraImpl.utils.Utils;
-import com.zkty.nativ.camera.cameraImpl.view.ImageFolderPopupWindow;
 import com.zkty.nativ.core.utils.XEngineProvider;
+import com.zkty.nativ.media.cameraImpl.ImagePicker;
+import com.zkty.nativ.media.cameraImpl.adapter.ImageFoldersAdapter;
+import com.zkty.nativ.media.cameraImpl.adapter.ImagePickerAdapter;
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
+import com.zkty.nativ.media.cameraImpl.data.MediaFolder;
+import com.zkty.nativ.media.cameraImpl.executors.CommonExecutor;
+import com.zkty.nativ.media.cameraImpl.listener.MediaLoadCallback;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
+import com.zkty.nativ.media.cameraImpl.manager.SelectionManager;
+import com.zkty.nativ.media.cameraImpl.task.ImageLoadTask;
+import com.zkty.nativ.media.cameraImpl.task.MediaLoadTask;
+import com.zkty.nativ.media.cameraImpl.task.VideoLoadTask;
+import com.zkty.nativ.media.cameraImpl.utils.DataUtil;
+import com.zkty.nativ.media.cameraImpl.utils.MediaFileUtil;
+import com.zkty.nativ.media.cameraImpl.utils.PermissionUtil;
+import com.zkty.nativ.media.cameraImpl.utils.Utils;
+import com.zkty.nativ.media.cameraImpl.view.ImageFolderPopupWindow;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import nativ.camera.R;
+import module.media.R;
 
 
 public class ImagePickerActivity extends BCameraActivity implements ImagePickerAdapter.OnItemClickListener, ImageFoldersAdapter.OnImageFolderChangeListener {

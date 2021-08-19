@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.utils;
+package com.zkty.nativ.media.cameraImpl.utils;
 
 import android.Manifest;
 import android.content.Context;

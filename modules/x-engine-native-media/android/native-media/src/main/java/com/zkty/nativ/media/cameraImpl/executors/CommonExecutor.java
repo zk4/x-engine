@@ -1,4 +1,4 @@
-package com.zkty.nativ.camera.cameraImpl.executors;
+package com.zkty.nativ.media.cameraImpl.executors;
 
 
 import androidx.annotation.NonNull;

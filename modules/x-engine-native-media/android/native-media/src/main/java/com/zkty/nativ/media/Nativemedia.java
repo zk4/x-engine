@@ -33,6 +33,8 @@ import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
+import com.zkty.nativ.media.cameraImpl.dialog.FullImageDialog;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
 
 import java.io.File;
@@ -476,5 +478,15 @@ public class Nativemedia extends NativeModule implements Imedia {
             ImageUtils.savePictureByBase64(activity, imageData);
         }
         callBack.saveCallBack();
+    }
+
+    @Override
+    public void preImage(List<String> imageDataList, int index, PreImageCallBack callBack) {
+        ConfigManager.getInstance().setImageLoader(new GlideLoader());
+        new FullImageDialog(XEngineApplication.getCurrentActivity())
+                .Builder()
+                .setImageUrl(imageDataList, index)
+                .setOnDismissListener(callBack)
+                .show();
     }
 }

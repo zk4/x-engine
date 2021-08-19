@@ -10,93 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da414352-a4be-45cd-8939-7da1593d0f55" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/CameraDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/CameraRetDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/ClientManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/EditArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/OpenImageCallBack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/SaveCallBack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/GlideLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/ImagePicker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/activity/BCameraActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/activity/ImagePickerActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/activity/ImagePreActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/adapter/ImageFoldersAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/adapter/ImagePickerAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/adapter/ImagePreViewAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/data/ItemType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/data/MediaFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/data/MediaFolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/executors/CommonExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/listener/MediaLoadCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/loader/AbsMediaScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/loader/ImageScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/loader/MediaHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/loader/VideoScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/manager/ConfigManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/manager/SelectionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/task/ImageLoadTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/task/MediaLoadTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/task/VideoLoadTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/utils/DataUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/utils/ImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/utils/MediaFileUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/utils/PermissionUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/utils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/view/HackyViewPager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/view/ImageFolderPopupWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/view/PinchImageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/view/SquareImageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/view/SquareRelativeLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/drawable/bg_menu_selector.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/drawable/bg_search.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/drawable/camera_dialog_content.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/drawable/progress_style.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/drawable/selector_bt_commit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/activity_imagepicker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/activity_pre_image.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/bottom_dialog_camera_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/camera_dialog_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/fragment_x_engine.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/include_layout_actionbar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/item_menu.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/item_recyclerview_camera.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/item_recyclerview_folder.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/item_recyclerview_image.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/item_recyclerview_video.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/item_right_btn_more.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/layout_action_menu.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/layout_error_page.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/layout_search_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/window_image_folders.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_album_index.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_clear.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_gif.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_image_camera.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_image_check.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_image_checked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_image_default.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_image_folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_image_folder_checked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_search.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_video.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/mipmap-xxhdpi/icon_video_play.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/values/attrs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/values/dimens.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/PreImageCallBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/dialog/FullImageDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout/dialog_full_image.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/zkty/engine/jsi/media/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/zkty/engine/jsi/media/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/zkty/engine/jsi/media/mediaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/zkty/engine/jsi/media/mediaApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsi-media/src/main/java/com/zkty/jsi/JSI_media.java" beforeDir="false" afterPath="$PROJECT_DIR$/jsi-media/src/main/java/com/zkty/jsi/JSI_media.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/Imedia.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/Imedia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/Nativemedia.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/Nativemedia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/adapter/ImagePreViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/adapter/ImagePreViewAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +30,18 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
@@ -129,7 +63,7 @@
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media" />
     <property name="project.structure.last.edited" value="SDK Location" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -138,8 +72,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main" />
       <recent name="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media" />
+      <recent name="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl/adapter" />
+      <recent name="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main/java/com/zkty/nativ/media/cameraImpl" />
+      <recent name="$PROJECT_DIR$/../../x-engine-native-media/android/native-media/src/main" />
     </key>
   </component>
   <component name="RunManager">
@@ -239,10 +176,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2213" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1629354655060">
+    <state x="2213" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1629357647675">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2213" y="247" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1629354655059" />
+    <state x="2213" y="247" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1629357647675" />
     <state x="2171" y="281" key="AndroidProcessChooserDialog" timestamp="1629356032840">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -263,17 +200,17 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state width="1878" height="300" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1629356056385" />
-    <state width="409" height="221" key="javadoc.popup.new" timestamp="1629356439366">
+    <state width="409" height="221" key="javadoc.popup.new" timestamp="1629357729653">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state width="409" height="221" key="javadoc.popup.new/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1629356439366" />
+    <state width="409" height="221" key="javadoc.popup.new/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1629357729653" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/zkty/engine/jsi/media/MainActivity.java</url>
-          <line>76</line>
+          <line>78</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

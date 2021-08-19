@@ -1,0 +1,312 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+MERGED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-17:12
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-33:12
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-21:12
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-36:12
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
+MERGED from [com.gyf.barlibrary:barlibrary:2.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/a395750820b03a77b75ee9ec189a5741/jetified-barlibrary-2.3.0/AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.yalantis:ucrop:2.2.6] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/cf8ee0028be264b8c50c1ddd3d70b333/jetified-ucrop-2.2.6/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/4f9c7f78c15bb692cf0895b881aafbad/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/213ad6fce5ea38e5799c707ff664b050/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.bumptech.glide:glide:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9387c334b963c27bba857f38c4942055/jetified-glide-4.6.1/AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/bfe66e5c1e3890ed194fe4c90f780fb5/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/e9a886a277d45e4611014a26e73477d0/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/727f4567341fcf59ba6ec2fbb4290436/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/c85e1f195321245fafe1a599b5dddf47/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1aafd20561bc3ee9f58c28dfa8215062/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/3a40d00373143d317b2bee08071df362/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1f30c507ad647a41e33ed33c8e0ba570/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/89148e3dbb2482b98d2c6649d887f30f/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/a8ecbda6ffad5e6f54ae110042f6865e/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/da4859f2c8e5d53f282ea268af4c5fee/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0-rc01] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/c5b47aadbbf1047271b456c7072d50d2/transition-1.2.0-rc01/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/817a61a686dfd849f92445d1d98580bd/core-1.3.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/129d7c6539a600a7346451cc911530ca/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.tencent:mmkv-static:1.2.4] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9acb401bc029d21990d43634b1d38b91/jetified-mmkv-static-1.2.4/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/fa40148eab14a6d2386ba091992d3749/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9e4047f045ed9820904f9ba303f1a8df/jetified-gifdecoder-4.6.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/2ef7075f73d2e2de44abaa796f0222ce/lifecycle-runtime-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/ed731ef0ae48e67de128afa89bfb34a2/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/bf72a15a3ccfe7bc47129422d9cddb0c/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/2c4abb3c9f84da22a9da11e175a85c23/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/6474967b4c7525b39306234cf6eeeb9f/exifinterface-1.1.0-beta01/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/aaff256ac919a45448a380ca9a0003ca/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/06bc4641de51b04d4df94808d6e05292/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1b64911e987df0fea019408e241659d7/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/6131b6bd4c7f07422046f47512bfed9d/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+	package
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:4:5-40
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:1-28:12
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:6:5-67
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:6:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:7:5-81
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:7:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:8:5-80
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-80
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-80
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-80
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-80
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-80
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:8:22-77
+application
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:10:5-26:19
+MERGED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-15:19
+MERGED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-15:19
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-31:19
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-31:19
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-19:19
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-19:19
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-34:19
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-34:19
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-21:19
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-21:19
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/213ad6fce5ea38e5799c707ff664b050/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/213ad6fce5ea38e5799c707ff664b050/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:glide:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9387c334b963c27bba857f38c4942055/jetified-glide-4.6.1/AndroidManifest.xml:11:5-20
+MERGED from [com.github.bumptech.glide:glide:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9387c334b963c27bba857f38c4942055/jetified-glide-4.6.1/AndroidManifest.xml:11:5-20
+MERGED from [androidx.core:core:1.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/817a61a686dfd849f92445d1d98580bd/core-1.3.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/817a61a686dfd849f92445d1d98580bd/core-1.3.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/fa40148eab14a6d2386ba091992d3749/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/fa40148eab14a6d2386ba091992d3749/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9e4047f045ed9820904f9ba303f1a8df/jetified-gifdecoder-4.6.1/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9e4047f045ed9820904f9ba303f1a8df/jetified-gifdecoder-4.6.1/AndroidManifest.xml:9:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/817a61a686dfd849f92445d1d98580bd/core-1.3.0/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:16:9-35
+	android:label
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:14:9-41
+	android:roundIcon
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:15:9-54
+	android:icon
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:13:9-43
+	android:allowBackup
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:12:9-35
+		REJECTED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-36
+		REJECTED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:9-36
+	android:theme
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:17:9-59
+	tools:replace
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:18:9-44
+	android:usesCleartextTraffic
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-44
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:11:9-41
+activity#com.zkty.engine.jsi.media.MainActivity
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:19:9-25:20
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:19:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:20:13-24:29
+action#android.intent.action.MAIN
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:21:17-69
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:21:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:23:17-77
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml:23:27-74
+uses-sdk
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+MERGED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [com.gyf.barlibrary:barlibrary:2.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/a395750820b03a77b75ee9ec189a5741/jetified-barlibrary-2.3.0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.gyf.barlibrary:barlibrary:2.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/a395750820b03a77b75ee9ec189a5741/jetified-barlibrary-2.3.0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.yalantis:ucrop:2.2.6] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/cf8ee0028be264b8c50c1ddd3d70b333/jetified-ucrop-2.2.6/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yalantis:ucrop:2.2.6] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/cf8ee0028be264b8c50c1ddd3d70b333/jetified-ucrop-2.2.6/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/4f9c7f78c15bb692cf0895b881aafbad/appcompat-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/4f9c7f78c15bb692cf0895b881aafbad/appcompat-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/213ad6fce5ea38e5799c707ff664b050/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/213ad6fce5ea38e5799c707ff664b050/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9387c334b963c27bba857f38c4942055/jetified-glide-4.6.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.bumptech.glide:glide:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9387c334b963c27bba857f38c4942055/jetified-glide-4.6.1/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/bfe66e5c1e3890ed194fe4c90f780fb5/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/bfe66e5c1e3890ed194fe4c90f780fb5/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/e9a886a277d45e4611014a26e73477d0/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/e9a886a277d45e4611014a26e73477d0/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/727f4567341fcf59ba6ec2fbb4290436/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/727f4567341fcf59ba6ec2fbb4290436/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/c85e1f195321245fafe1a599b5dddf47/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/c85e1f195321245fafe1a599b5dddf47/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1aafd20561bc3ee9f58c28dfa8215062/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1aafd20561bc3ee9f58c28dfa8215062/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/3a40d00373143d317b2bee08071df362/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/3a40d00373143d317b2bee08071df362/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1f30c507ad647a41e33ed33c8e0ba570/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1f30c507ad647a41e33ed33c8e0ba570/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/89148e3dbb2482b98d2c6649d887f30f/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/89148e3dbb2482b98d2c6649d887f30f/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/a8ecbda6ffad5e6f54ae110042f6865e/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/a8ecbda6ffad5e6f54ae110042f6865e/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/da4859f2c8e5d53f282ea268af4c5fee/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/da4859f2c8e5d53f282ea268af4c5fee/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0-rc01] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/c5b47aadbbf1047271b456c7072d50d2/transition-1.2.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0-rc01] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/c5b47aadbbf1047271b456c7072d50d2/transition-1.2.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/817a61a686dfd849f92445d1d98580bd/core-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/817a61a686dfd849f92445d1d98580bd/core-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/129d7c6539a600a7346451cc911530ca/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/129d7c6539a600a7346451cc911530ca/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.tencent:mmkv-static:1.2.4] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9acb401bc029d21990d43634b1d38b91/jetified-mmkv-static-1.2.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.tencent:mmkv-static:1.2.4] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9acb401bc029d21990d43634b1d38b91/jetified-mmkv-static-1.2.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/fa40148eab14a6d2386ba091992d3749/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/fa40148eab14a6d2386ba091992d3749/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9e4047f045ed9820904f9ba303f1a8df/jetified-gifdecoder-4.6.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.6.1] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/9e4047f045ed9820904f9ba303f1a8df/jetified-gifdecoder-4.6.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/2ef7075f73d2e2de44abaa796f0222ce/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/2ef7075f73d2e2de44abaa796f0222ce/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/ed731ef0ae48e67de128afa89bfb34a2/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/ed731ef0ae48e67de128afa89bfb34a2/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/bf72a15a3ccfe7bc47129422d9cddb0c/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/bf72a15a3ccfe7bc47129422d9cddb0c/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/2c4abb3c9f84da22a9da11e175a85c23/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/2c4abb3c9f84da22a9da11e175a85c23/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/6474967b4c7525b39306234cf6eeeb9f/exifinterface-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/6474967b4c7525b39306234cf6eeeb9f/exifinterface-1.1.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/aaff256ac919a45448a380ca9a0003ca/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/aaff256ac919a45448a380ca9a0003ca/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/06bc4641de51b04d4df94808d6e05292/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/06bc4641de51b04d4df94808d6e05292/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1b64911e987df0fea019408e241659d7/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/1b64911e987df0fea019408e241659d7/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/6131b6bd4c7f07422046f47512bfed9d/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/mj/Library/Android/gradle-6.0/caches/transforms-2/files-2.1/6131b6bd4c7f07422046f47512bfed9d/multidex-2.0.0/AndroidManifest.xml:20:5-43
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/app/src/main/AndroidManifest.xml
+meta-data#com.zkty.jsi.media
+ADDED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-14:54
+	android:value
+		ADDED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-51
+	android:name
+		ADDED from [:jsi-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-46
+uses-permission#android.permission.CAMERA
+ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-65
+	android:name
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-62
+meta-data#com.zkty.native.media
+ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-19:64
+	android:value
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-61
+	android:name
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-49
+activity#com.zkty.nativ.media.cameraImpl.activity.ImagePickerActivity
+ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:9-23:52
+	android:screenOrientation
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-49
+	android:name
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-88
+activity#com.zkty.nativ.media.cameraImpl.activity.ImagePreActivity
+ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-26:52
+	android:screenOrientation
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-49
+	android:name
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-85
+activity#com.yalantis.ucrop.UCropActivity
+ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-30:72
+	android:screenOrientation
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:13-49
+	android:theme
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:30:13-69
+	android:name
+		ADDED from [:native-media] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-media/android/native-media/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-60
+meta-data#com.zkty.native.ui
+ADDED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-18:58
+	android:value
+		ADDED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-55
+	android:name
+		ADDED from [:native-ui] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-ui/android/native-ui/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-46
+activity#com.zkty.nativ.jsi.view.XEngineWebActivity
+ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-23:48
+	android:screenOrientation
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-49
+	android:theme
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-45
+	android:name
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-70
+service#com.tencent.smtt.export.external.DexClassLoaderProviderService
+ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:9-29:19
+	android:process
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-38
+	android:label
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-35
+	android:name
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-90
+meta-data#com.zkty.native.jsi
+ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:9-33:61
+	android:value
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:13-58
+	android:name
+		ADDED from [:native-jsi] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-jsi/android/native-jsi/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:13-47
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-79
+	android:name
+		ADDED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-76
+	android:name
+		ADDED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-73
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-75
+	android:name
+		ADDED from [:native-core] /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-core/android/native-core/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:22-72

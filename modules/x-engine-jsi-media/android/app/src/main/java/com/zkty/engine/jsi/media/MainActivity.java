@@ -9,11 +9,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.anthonynsimon.url.URL;
 import com.anthonynsimon.url.exceptions.MalformedURLException;
+import com.zkty.nativ.core.NativeContext;
+import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.media.Imedia;
+import com.zkty.nativ.media.Nativemedia;
+import com.zkty.nativ.media.PreImageCallBack;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
+import com.zkty.nativ.media.cameraImpl.data.MediaFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,14 +29,16 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvMsg;
-
+    private Nativemedia iMedia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         tvMsg = findViewById(R.id.tvMsg);
-
+        NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(Imedia.class);
+        if (module instanceof Nativemedia)
+            iMedia = (Nativemedia) module;
     }
 
     public void media(View view) {
@@ -49,6 +58,22 @@ public class MainActivity extends AppCompatActivity {
                 .start(MainActivity.this, ImageUtils.RESULT_CODE_PHOTO);//REQEST_SELECT_IMAGES_CODE为Intent调用的requestCode
     }
 
+    public void preImg(View view) {
+
+        ArrayList<String> images = new ArrayList<>();
+        images.add("https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240");
+        images.add("https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240");
+        images.add("https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240");
+
+        iMedia.preImage(images, 1, new PreImageCallBack() {
+            @Override
+            public void closeCallBack() {
+                ToastUtils.showCenterToast("关闭");
+            }
+        });
+
+
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

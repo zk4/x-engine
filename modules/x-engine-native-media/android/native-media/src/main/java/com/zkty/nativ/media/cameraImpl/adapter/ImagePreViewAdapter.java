@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-
+import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.media.cameraImpl.data.MediaFile;
 import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.media.cameraImpl.view.PinchImageView;
@@ -50,11 +50,27 @@ public class ImagePreViewAdapter extends PagerAdapter {
         }
         try {
             ConfigManager.getInstance().getImageLoader().loadPreImage(imageView, mMediaFileList.get(position).getPath());
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnClickListener.onClick(v);
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
         container.addView(imageView);
         return imageView;
+    }
+    /**
+     * 外界点击事件
+     *
+     * @see #setOnSingleClickListener(View.OnClickListener)
+     */
+    private View.OnClickListener mOnClickListener;
+    public void setOnSingleClickListener(View.OnClickListener l) {
+        //默认的click会在任何点击情况下都会触发，所以搞成自己的
+        mOnClickListener = l;
     }
 
     @Override

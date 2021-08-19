@@ -1,0 +1,23 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="jsi.media"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->/Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/src/main/AndroidManifest.xml
+10
+11    <application>
+11-->/Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/src/main/AndroidManifest.xml:3:2-7:17
+12        <meta-data
+12-->/Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/src/main/AndroidManifest.xml:4:5-6:50
+13            android:name="com.zkty.jsi.media"
+13-->/Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/src/main/AndroidManifest.xml:5:9-42
+14            android:value="com.zkty.jsi.JSI_media" />
+14-->/Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-jsi-media/android/jsi-media/src/main/AndroidManifest.xml:6:9-47
+15    </application>
+16
+17</manifest>

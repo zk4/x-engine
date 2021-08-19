@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.media.MediaScannerConnection;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -17,6 +18,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
 import com.alibaba.fastjson.JSON;
@@ -33,6 +35,8 @@ import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
+import com.zkty.nativ.media.cameraImpl.dialog.FullImageDialog;
+import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
 
 import java.io.File;
@@ -429,6 +433,7 @@ public class Nativemedia extends NativeModule implements Imedia {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void setResult(List<String> paths) {
 
 
@@ -442,17 +447,24 @@ public class Nativemedia extends NativeModule implements Imedia {
             cameraRetDTO.setWidth(String.valueOf(options.outWidth));
             cameraRetDTO.setHeight(String.valueOf(options.outHeight));
 
-            if (cameraDTO.isIsbase64()) {
-//                String ret = ClientManager.imageToBase64(paths.get(j));
-                String ret = ClientManager.bitmapToString(paths.get(j));
-                if (ret != null) {
-                    cameraRetDTO.setRetImage(ret);
-                } else {
-                    cameraRetDTO.setRetImage(ClientManager.imageToBase64(XEngineWebActivityManager.sharedInstance().getCurrent(), paths.get(j)));
-                }
-            } else {
-                cameraRetDTO.setRetImage(paths.get(j));
-            }
+//            if (cameraDTO.isIsbase64()) {
+////                String ret = ClientManager.imageToBase64(paths.get(j));
+//                String ret = ClientManager.bitmapToString(paths.get(j));
+//                if (ret != null) {
+//                    cameraRetDTO.setRetImage(ret);
+//                } else {
+//                    cameraRetDTO.setRetImage(ClientManager.imageToBase64(XEngineWebActivityManager.sharedInstance().getCurrent(), paths.get(j)));
+//                }
+//            } else {
+//                cameraRetDTO.setId(paths.get(j));
+//                Bitmap imageThumbnail = ThumbnailUtils.createImageThumbnail(paths.get(j), MediaStore.Images.Thumbnails.MICRO_KIND);
+//                cameraRetDTO.setThumbnail(ClientManager.bmpToBase64(imageThumbnail));
+//                cameraRetDTO.setType("image/jpeg");
+//            }
+            cameraRetDTO.setId(paths.get(j));
+            Bitmap imageThumbnail = ThumbnailUtils.createImageThumbnail(paths.get(j), MediaStore.Images.Thumbnails.MICRO_KIND);
+            cameraRetDTO.setThumbnail(ClientManager.bmpToBase64(imageThumbnail));
+            cameraRetDTO.setType("image/jpeg");
             cameraRetDTO.setContentType("image/jpeg");
             File temp = new File(paths.get(j));
             if (temp.exists())
@@ -462,6 +474,7 @@ public class Nativemedia extends NativeModule implements Imedia {
         }
         HashMap<String, List<CameraRetDTO>> map = new HashMap<>();
         map.put("data", results);
+        Log.d("MainActivity",JSON.toJSONString(map)  );
         callBack.success(JSON.toJSONString(map));
 
     }
@@ -476,5 +489,15 @@ public class Nativemedia extends NativeModule implements Imedia {
             ImageUtils.savePictureByBase64(activity, imageData);
         }
         callBack.saveCallBack();
+    }
+
+    @Override
+    public void preImage(List<String> imageDataList, int index, PreImageCallBack callBack) {
+        ConfigManager.getInstance().setImageLoader(new GlideLoader());
+        new FullImageDialog(XEngineApplication.getCurrentActivity())
+                .Builder()
+                .setImageUrl(imageDataList, index)
+                .setOnDismissListener(callBack)
+                .show();
     }
 }

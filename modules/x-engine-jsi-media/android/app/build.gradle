@@ -38,4 +38,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(':jsi-media')
     implementation project(':native-core')
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
 }

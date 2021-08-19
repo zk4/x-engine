@@ -12,21 +12,17 @@ version: 2.8.1
 **demo**
 ``` js
 
-  xengine.api(
-    "com.zkty.jsi.media",
-    "previewImg",
-    {
-      // 索引
-      index: 0,
-      // 图片数组
-      imgList: [
-        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
-        "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-        "https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-        "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-      ],
-    }
-  );
+  xengine.api("com.zkty.jsi.media", "previewImg", {
+    // 索引
+    index: 0,
+    // 图片数组
+    imgList: [
+      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
+      "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+      "https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+      "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+    ],
+  });
 
 ``` 
 
@@ -36,10 +32,7 @@ version: 2.8.1
 | --------------------------- | --------- | -------- | --------- |--------- |
 | index | int | 必填 |  | 索引 |
 | imgList | Array | 必填 |  | 图片数组 |
-**返回值**
-``` js
-void
-``` 
+**无返回值**
 
 
 
@@ -64,8 +57,7 @@ void
     (res) => {
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
-        let base64 =
-          "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        let base64 = "data:" + photo.type + ";base64,  " + photo.thumbnail;
         console.log(base64);
       }
     }

@@ -51,6 +51,8 @@
 - (void)openImagePicker:(MediaParamsDTO*) dto success:(void (^)(NSString* result))success;
 
 - (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto saveSuccess:(void (^)(NSString* result))success;
+
+- (void)previewImg;
 @end
 
 #endif

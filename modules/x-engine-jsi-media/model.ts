@@ -66,8 +66,7 @@ function openImagePicker(arg: {
     (res) => {
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
-        let base64 =
-          "data:" + photo.type + ";base64,  " + photo.thumbnail;
+        let base64 = "data:" + photo.type + ";base64,  " + photo.thumbnail;
         console.log(base64);
       }
     }
@@ -124,7 +123,8 @@ function test_openImagePicker() {
         }
         // image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
         image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
-        image.style.cssText = "width:100px; height:100px; margin-right:10px; border-radius:10px;";
+        image.style.cssText =
+          "width:100px; height:100px; margin-right:10px; border-radius:10px;";
         document.body.appendChild(image);
       }
     }

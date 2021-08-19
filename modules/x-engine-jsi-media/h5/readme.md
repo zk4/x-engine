@@ -57,8 +57,7 @@ version: 2.8.1
     (res) => {
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
-        let base64 =
-          "data:" + photo.type + ";base64,  " + photo.thumbnail;
+        let base64 = "data:" + photo.type + ";base64,  " + photo.thumbnail;
         console.log(base64);
       }
     }

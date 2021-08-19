@@ -36,8 +36,10 @@ NATIVE_MODULE(Native_media)
 }
 
 - (void)afterAllNativeModuleInited {}
+
 // 打开提示框
 - (void)openImagePicker:(MediaParamsDTO *)dto success:(void (^)(NSString *))success {
+    
     self.callback = success;
     self.mediaDto = dto;
     self.allowsEditing = dto.allowsEditing;
@@ -107,6 +109,7 @@ NATIVE_MODULE(Native_media)
 
 #pragma 调起相册
 - (void)choosePhotos:(MediaParamsDTO*)dto {
+    
     ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
@@ -160,44 +163,44 @@ NATIVE_MODULE(Native_media)
  
  // 拼接需要返回的数据
  - (NSMutableArray *)getImageInfoWithAssets:(NSArray *)assets {
-     NSMutableArray *tempSaveArr = [NSMutableArray array];
-     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-     option.resizeMode = PHImageRequestOptionsResizeModeExact;
-     // 如果图片在icloud上 下面的属性为yes可以获取 如果是no就获取不到
-     option.networkAccessAllowed = YES;
-     option.synchronous = YES;
-     
-     for (NSInteger i=0; i<assets.count; i++) {
-         NSMutableDictionary *tempSaveDict = [NSMutableDictionary dictionary];
-         // 原图地址
-         [[PHImageManager defaultManager] requestImageDataForAsset:assets[i] options:option resultHandler:^(NSData *data, NSString *uti, UIImageOrientation orientation, NSDictionary *_Nullable info) {
-             
-             //                获取localIdentifier
-             //                NSString *key = [NSString stringWithFormat:@"%@", info[@"PHImageResultRequestIDKey"]];
-             //                PHFetchResult *savedAssets = [PHAsset fetchAssetsWithLocalIdentifiers:@[key] options:nil];
-             //                NSLog(@"%@", savedAssets);
-             
-             // PHImageFileURLKey ios13之后不支持该属性
-             if (data != nil) {
-                 NSURL *photoPath = [info objectForKey:@"PHImageFileURLKey"];
-                 NSString *fileName = nil;
-                 if (photoPath) {
-                     fileName = [[photoPath absoluteString] lastPathComponent];
-                 }
-                 [tempSaveDict setObject:[NSString stringWithFormat:@"%@", photoPath] forKey:@"id"];
-                 [tempSaveDict setObject:fileName forKey:@"name"];
-                 [tempSaveDict setObject:@"image/png" forKey:@"type"];
-             }
-         }];
-         
-         // 缩略图
-         [[PHImageManager defaultManager] requestImageForAsset:assets[i] targetSize:CGSizeMake(200, 200) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-             NSString *base64String = [self UIImageToBase64Str:result];
-             [tempSaveDict setObject:base64String forKey:@"thumbnail"];
-         }];
-         [tempSaveArr insertObject:tempSaveDict atIndex:i];
-     }
-     return tempSaveArr;
+ NSMutableArray *tempSaveArr = [NSMutableArray array];
+ PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+ option.resizeMode = PHImageRequestOptionsResizeModeExact;
+ // 如果图片在icloud上 下面的属性为yes可以获取 如果是no就获取不到
+ option.networkAccessAllowed = YES;
+ option.synchronous = YES;
+ 
+ for (NSInteger i=0; i<assets.count; i++) {
+ NSMutableDictionary *tempSaveDict = [NSMutableDictionary dictionary];
+ // 原图地址
+ [[PHImageManager defaultManager] requestImageDataForAsset:assets[i] options:option resultHandler:^(NSData *data, NSString *uti, UIImageOrientation orientation, NSDictionary *_Nullable info) {
+ 
+ //                获取localIdentifier
+ //                NSString *key = [NSString stringWithFormat:@"%@", info[@"PHImageResultRequestIDKey"]];
+ //                PHFetchResult *savedAssets = [PHAsset fetchAssetsWithLocalIdentifiers:@[key] options:nil];
+ //                NSLog(@"%@", savedAssets);
+ 
+ // PHImageFileURLKey ios13之后不支持该属性
+ if (data != nil) {
+ NSURL *photoPath = [info objectForKey:@"PHImageFileURLKey"];
+ NSString *fileName = nil;
+ if (photoPath) {
+ fileName = [[photoPath absoluteString] lastPathComponent];
+ }
+ [tempSaveDict setObject:[NSString stringWithFormat:@"%@", photoPath] forKey:@"id"];
+ [tempSaveDict setObject:fileName forKey:@"name"];
+ [tempSaveDict setObject:@"image/png" forKey:@"type"];
+ }
+ }];
+ 
+ // 缩略图
+ [[PHImageManager defaultManager] requestImageForAsset:assets[i] targetSize:CGSizeMake(200, 200) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+ NSString *base64String = [self UIImageToBase64Str:result];
+ [tempSaveDict setObject:base64String forKey:@"thumbnail"];
+ }];
+ [tempSaveArr insertObject:tempSaveDict atIndex:i];
+ }
+ return tempSaveArr;
  }*/
 
 #pragma UIImagePickerControllerDelegate
@@ -224,17 +227,17 @@ NATIVE_MODULE(Native_media)
         }
         NSMutableDictionary *ret = [NSMutableDictionary new];
         if (!self.isbase64) {
-//            NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
-//            NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
-//            if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
-//            }
-//            NSDictionary * paramDic = @{
-//                @"retImage":[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr],
-//                @"contentType":@"image/png",
-//                @"fileName":photoAppendStr
-//            };
-//            ret[@"data"] = @[paramDic];
-//            [self sendParamtoWeb:ret];
+            //            NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
+            //            NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
+            //            if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
+            //            }
+            //            NSDictionary * paramDic = @{
+            //                @"retImage":[NSString stringWithFormat:@"%@Documents/%@",@"http://127.0.0.1:18129/",photoAppendStr],
+            //                @"contentType":@"image/png",
+            //                @"fileName":photoAppendStr
+            //            };
+            //            ret[@"data"] = @[paramDic];
+            //            [self sendParamtoWeb:ret];
         } else {
             NSDictionary * argsDic = self.mediaDto.args;
             float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
@@ -446,4 +449,4 @@ NATIVE_MODULE(Native_media)
 @end
 
 
- 
+

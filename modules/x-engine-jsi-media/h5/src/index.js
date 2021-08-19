@@ -36,6 +36,11 @@ function osCheck() {
     "name": "test_saveImageToPhotoAlbum",
     "default_args": {},
     "decorators": []
+  },
+  {
+    "name": "test_previewImg",
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

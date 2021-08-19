@@ -17,7 +17,6 @@
 JSI_MODULE(JSI_media)
 
 - (void)afterAllJSIModuleInited {
-    NSLog(@"%@", self.media);
     self.media = XENP(iMedia);
 }
 

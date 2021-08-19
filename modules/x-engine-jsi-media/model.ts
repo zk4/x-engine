@@ -14,6 +14,30 @@ const conf = {
 };
 
 
+// 预览图片
+function previewImg(arg: {
+  // 索引
+  index: int;
+  // 图片数组
+  imgList: Array;
+}): void {
+  xengine.api(
+    "com.zkty.jsi.media",
+    "previewImg",
+    {
+      // 索引
+      index: 0,
+      // 图片数组
+      imgList: [
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
+        "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+      ],
+    }
+  );
+}
+
 // 调用相机
 @async
 function openImagePicker(arg: {
@@ -28,7 +52,7 @@ function openImagePicker(arg: {
   //图片是否转为Base64,默认:true
   isbase64: boolean;
   //裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内;
-  args: Map<string, string>;
+  args?: Map<string, string>;
   // 图片选择张数
   photoCount?: int;
 }): string {
@@ -40,15 +64,16 @@ function openImagePicker(arg: {
       savePhotosAlbum: false,
       cameraFlashMode: -1,
       cameraDevice: "back",
-      photoCount: 9,
+      photoCount: 5,
       args: { bytes: "100" },
       isbase64: true,
     },
     (res) => {
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
-        let base64 = "data:" + photo.contentType + ";base64,  " + photo.retImage;
-        console.log(base64)
+        let base64 =
+          "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        console.log(base64);
       }
     }
   );
@@ -77,9 +102,9 @@ function saveImageToPhotoAlbum(arg: {
   );
 }
 
-function test_placeholder(){}
-function test_placeholder(){}
-function test_placeholder(){}
+function test_placeholder() {}
+function test_placeholder() {}
+function test_placeholder() {}
 // 打开picker选择相机和相册
 function test_openImagePicker() {
   xengine.api(
@@ -90,7 +115,8 @@ function test_openImagePicker() {
       savePhotosAlbum: false,
       cameraFlashMode: -1,
       cameraDevice: "back",
-      photoCount: 9,
+      photoCount: 5,
+      args: { bytes: "100" },
       isbase64: true,
     },
     (res) => {
@@ -121,6 +147,31 @@ function test_saveImageToPhotoAlbum() {
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
+    }
+  );
+}
+
+
+// 预览图片
+function test_previewImg(arg: {
+  // 索引
+  index: int;
+  // 图片数组
+  imgList: Array;
+}): void {
+  xengine.api(
+    "com.zkty.jsi.media",
+    "previewImg",
+    {
+      // 索引
+      index: 0,
+      // 图片数组
+      imgList: [
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
+        "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+      ],
     }
   );
 }

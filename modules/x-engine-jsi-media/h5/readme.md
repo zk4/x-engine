@@ -6,6 +6,43 @@ version: 2.8.1
 
 
 
+## previewImg
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
+> 预览图片
+**demo**
+``` js
+
+  xengine.api(
+    "com.zkty.jsi.media",
+    "previewImg",
+    {
+      // 索引
+      index: 0,
+      // 图片数组
+      imgList: [
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
+        "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+      ],
+    }
+  );
+
+``` 
+
+**参数说明**
+
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| index | int | 必填 |  | 索引 |
+| imgList | Array | 必填 |  | 图片数组 |
+**返回值**
+``` js
+void
+``` 
+
+
+
 ## openImagePicker
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 调用相机
@@ -20,15 +57,16 @@ version: 2.8.1
       savePhotosAlbum: false,
       cameraFlashMode: -1,
       cameraDevice: "back",
-      photoCount: 9,
+      photoCount: 5,
       args: { bytes: "100" },
       isbase64: true,
     },
     (res) => {
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
-        let base64 = "data:" + photo.contentType + ";base64,  " + photo.retImage;
-        console.log(base64)
+        let base64 =
+          "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        console.log(base64);
       }
     }
   );
@@ -44,7 +82,7 @@ version: 2.8.1
 | cameraFlashMode | int | optional |  | 闪光灯模式(-1:关闭状态,0:自动开关状态,1:打开状态),默认:-1 |
 | cameraDevice | string | optional |  | 设置前置或后置摄像头(front:前置,back:后置),默认:back |
 | isbase64 | bool | 必填 |  | 图片是否转为Base64,默认:true |
-| args | Map\<string,string\> | 必填 |  | 裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内; |
+| args | Map\<string,string\> | optional |  | 裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内; |
 | photoCount | int | optional |  | 图片选择张数 |
 **返回值**
 ``` js

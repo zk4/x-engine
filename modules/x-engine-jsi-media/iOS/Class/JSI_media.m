@@ -43,12 +43,12 @@ JSI_MODULE(JSI_media)
     }];
 }
 
+- (void)_previewImg:(_previewImg0_DTO *)dto {
+    
 
-- (void)_previewImg:(_previewImg0_DTO *)dto complete:(void (^)(BOOL))completionHandler {
-    NSLog(@"%@", dto);
-    [self.media previewImg];
+        NSLog(@"%@", dto);
+        [self.media previewImg];
+    
+
 }
-
-
-
 @end

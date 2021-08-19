@@ -14,6 +14,13 @@
 #import "XTool.h"
 typedef void (^PhotoCallBack)(NSString *);
 typedef void (^SaveCallBack)(NSString *);
+
+// cache路径
+#define kCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
+
+// 保存上传数据plist的路径
+#define kSaveDataCachePath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"saveUploadTempData.plist"]
+
 @interface Native_media()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
@@ -22,6 +29,7 @@ typedef void (^SaveCallBack)(NSString *);
 @property(nonatomic,strong) MediaParamsDTO * mediaDto;
 @property(nonatomic,copy) PhotoCallBack callback;
 @property(nonatomic,copy) SaveCallBack saveCallback;
+@property (nonatomic, strong) NSMutableArray *saveCacheDataArray;
 @end
 
 @implementation Native_media
@@ -35,11 +43,27 @@ NATIVE_MODULE(Native_media)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited {}
+- (NSMutableArray *)saveCacheDataArray {
+    if (!_saveCacheDataArray) {
+        _saveCacheDataArray = [NSMutableArray array];
+    }
+    return _saveCacheDataArray;
+}
+
+- (void)afterAllNativeModuleInited {
+    NSLog(@"%@", kSaveDataCachePath);
+    if (![[NSFileManager defaultManager] fileExistsAtPath:kSaveDataCachePath]) {
+        // 不存在就去创建plist
+        [_saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
+    } else {
+        // 存在不做任何操作
+        _saveCacheDataArray = [NSMutableArray arrayWithContentsOfFile:kSaveDataCachePath];
+        NSLog(@"%@", _saveCacheDataArray);
+    }
+}
 
 // 打开提示框
 - (void)openImagePicker:(MediaParamsDTO *)dto success:(void (^)(NSString *))success {
-    
     self.callback = success;
     self.mediaDto = dto;
     self.allowsEditing = dto.allowsEditing;
@@ -109,7 +133,6 @@ NATIVE_MODULE(Native_media)
 
 #pragma 调起相册
 - (void)choosePhotos:(MediaParamsDTO*)dto {
-    
     ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
@@ -132,85 +155,67 @@ NATIVE_MODULE(Native_media)
     option.synchronous = YES;
     for (NSInteger i=0; i<assets.count; i++) {
         PHAsset *asset = assets[i];
-        NSMutableDictionary *tempSaveDict = [NSMutableDictionary dictionary];
+        NSMutableDictionary *toH5Dict = [NSMutableDictionary dictionary];
+        NSMutableDictionary *toPlistDict = [NSMutableDictionary dictionary];
+        
         [[PHImageManager defaultManager] requestImageForAsset:assets[i] targetSize:CGSizeMake(200, 200) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            NSString *base64String = [self UIImageToBase64Str:result];
-            [tempSaveDict setObject:base64String forKey:@"thumbnail"];
-            [tempSaveDict setObject:asset.localIdentifier forKey:@"id"];
-            [tempSaveDict setObject:@"image/png" forKey:@"type"];
+            
+            NSString *uuid = [self uuidString];
+            NSString *type = @"image/png";
+            NSString *base64Str = [self UIImageToBase64Str:result];
+            NSString *localIdentifier = asset.localIdentifier;
+            
+            // 返给h5的值
+            [toH5Dict setObject:uuid forKey:@"id"];
+            [toH5Dict setObject:type forKey:@"type"];
+            [toH5Dict setObject:base64Str forKey:@"thumbnail"];
+            
+            // 写入plist的值
+            [toPlistDict setObject:uuid forKey:@"id"];
+            [toPlistDict setObject:type forKey:@"type"];
+            [toPlistDict setObject:localIdentifier forKey:@"path"];
         }];
-        [tempSaveArr insertObject:tempSaveDict atIndex:i];
+        // 返h5
+        [tempSaveArr insertObject:toH5Dict atIndex:i];
+        // 往plist加数据阿
+        [_saveCacheDataArray insertObject:toPlistDict atIndex:i];
     }
+    // 写plist
+    [_saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
     return tempSaveArr;
 }
-
-// PHImageFileURLKey ios13之后不支持该属性
-//                NSURL *photoPath = [info objectForKey:@"PHImageFileURLKey"];
-//                NSString *fileName = nil;
-//                if (photoPath) {
-//                    fileName = [[photoPath absoluteString] lastPathComponent];
-//                }
-// 原图地址
-//        [[PHImageManager defaultManager] requestImageDataForAsset:assets[i] options:option resultHandler:^(NSData *data, NSString *uti, UIImageOrientation orientation, NSDictionary *_Nullable info) {
-//            if (data != nil) {
-//                [tempSaveDict setObject:asset.location forKey:@"id"];
-//                [tempSaveDict setObject:@"image/png" forKey:@"type"];
-//            }
-//        }];
-
-
-/*
- 
- // 拼接需要返回的数据
- - (NSMutableArray *)getImageInfoWithAssets:(NSArray *)assets {
- NSMutableArray *tempSaveArr = [NSMutableArray array];
- PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
- option.resizeMode = PHImageRequestOptionsResizeModeExact;
- // 如果图片在icloud上 下面的属性为yes可以获取 如果是no就获取不到
- option.networkAccessAllowed = YES;
- option.synchronous = YES;
- 
- for (NSInteger i=0; i<assets.count; i++) {
- NSMutableDictionary *tempSaveDict = [NSMutableDictionary dictionary];
- // 原图地址
- [[PHImageManager defaultManager] requestImageDataForAsset:assets[i] options:option resultHandler:^(NSData *data, NSString *uti, UIImageOrientation orientation, NSDictionary *_Nullable info) {
- 
- //                获取localIdentifier
- //                NSString *key = [NSString stringWithFormat:@"%@", info[@"PHImageResultRequestIDKey"]];
- //                PHFetchResult *savedAssets = [PHAsset fetchAssetsWithLocalIdentifiers:@[key] options:nil];
- //                NSLog(@"%@", savedAssets);
- 
- // PHImageFileURLKey ios13之后不支持该属性
- if (data != nil) {
- NSURL *photoPath = [info objectForKey:@"PHImageFileURLKey"];
- NSString *fileName = nil;
- if (photoPath) {
- fileName = [[photoPath absoluteString] lastPathComponent];
- }
- [tempSaveDict setObject:[NSString stringWithFormat:@"%@", photoPath] forKey:@"id"];
- [tempSaveDict setObject:fileName forKey:@"name"];
- [tempSaveDict setObject:@"image/png" forKey:@"type"];
- }
- }];
- 
- // 缩略图
- [[PHImageManager defaultManager] requestImageForAsset:assets[i] targetSize:CGSizeMake(200, 200) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
- NSString *base64String = [self UIImageToBase64Str:result];
- [tempSaveDict setObject:base64String forKey:@"thumbnail"];
- }];
- [tempSaveArr insertObject:tempSaveDict atIndex:i];
- }
- return tempSaveArr;
- }*/
 
 #pragma UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     __weak typeof(self) weakself = self;
     [picker dismissViewControllerAnimated:YES completion:^{
         if(weakself.allowsEditing){
-            weakself.photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
+            
+            // 拿到图
+            UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+            weakself.photoImage = image;
+            
+            // 移动图到cache文件夹中
+            NSString *uuid = [self uuidString];
+            NSString *type = @"image/png";
+            NSString *path = [NSString stringWithFormat:@"%@/%@.png", kCachePath, uuid];
+            [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
+            
+            NSMutableDictionary *toPlistDict = [NSMutableDictionary dictionary];
+            [toPlistDict setObject:uuid forKey:@"id"];
+            [toPlistDict setObject:type forKey:@"type"];
+            [toPlistDict setObject:path forKey:@"path"];
+            
+            self.saveCacheDataArray = [NSMutableArray arrayWithContentsOfFile:kSaveDataCachePath];
+            [self.saveCacheDataArray insertObject:toPlistDict atIndex:0];
+            [self.saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
+        
+            NSLog(@"%@", self.saveCacheDataArray);
+            
         }else{
-            weakself.photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+            UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+            weakself.photoImage = image;
+//            UIImageWriteToSavedPhotosAlbum([info objectForKey:UIImagePickerControllerOriginalImage], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
         }
         if(weakself.savePhotosAlbum){
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -239,23 +244,23 @@ NATIVE_MODULE(Native_media)
             //            ret[@"data"] = @[paramDic];
             //            [self sendParamtoWeb:ret];
         } else {
-            NSDictionary * argsDic = self.mediaDto.args;
-            float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
-            float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
-            
-            //            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
-            NSData* imageData= [XToolImage compressImage:self.photoImage toMaxDataSizeKBytes:maxBytes miniQuality:q];
-            UIImage* image = [UIImage imageWithData:imageData];
-            NSDictionary * paramDic = @{
-                @"retImage":[self UIImageToBase64Str:image],
-                @"contentType":@"image/png",
-                @"width": [NSNumber numberWithDouble:image.size.width],
-                @"height":[NSNumber numberWithDouble:image.size.height],
-                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
-            };
-            ret[@"data"] = @[paramDic];
-            
-            [self H5CallBack:ret];
+//            NSDictionary * argsDic = self.mediaDto.args;
+//            float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
+//            float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
+//
+//            //            UIImage *image = [self cutImageWidth:argsDic[@"width"] height:argsDic[@"height"] quality:argsDic[@"quality"] bytes:argsDic[@"bytes"]];
+//            NSData* imageData= [XToolImage compressImage:self.photoImage toMaxDataSizeKBytes:maxBytes miniQuality:q];
+//            UIImage* image = [UIImage imageWithData:imageData];
+//            NSDictionary * paramDic = @{
+//                @"retImage":[self UIImageToBase64Str:image],
+//                @"contentType":@"image/png",
+//                @"width": [NSNumber numberWithDouble:image.size.width],
+//                @"height":[NSNumber numberWithDouble:image.size.height],
+//                @"fileName":[NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]]
+//            };
+//            ret[@"data"] = @[paramDic];
+//
+//            [self H5CallBack:ret];
         }
     }];
 }
@@ -349,7 +354,7 @@ NATIVE_MODULE(Native_media)
 //    return [UIImage imageWithData:imageData];
 //}
 
-//图片裁剪
+// 图片裁剪
 - (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize{
     UIGraphicsBeginImageContext(newSize);
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
@@ -357,7 +362,6 @@ NATIVE_MODULE(Native_media)
     UIGraphicsEndImageContext();
     return newImage;
 }
-
 
 // image转base64
 - (NSString *)UIImageToBase64Str:(UIImage *)image {
@@ -440,13 +444,25 @@ NATIVE_MODULE(Native_media)
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
+- (NSString *)uuidString {
+    CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+    NSString *uuid = [NSString stringWithString:(__bridge NSString *)uuid_string_ref];
+    CFRelease(uuid_ref);
+    CFRelease(uuid_string_ref);
+    return [uuid lowercaseString];
+}
+
+// 预览图片
+- (void)previewImg {
+    NSLog(@"previewImg");
+}
 
 
-//
+
+ 
+
 //- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
 //    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
 //}
 @end
-
-
-

@@ -7,7 +7,7 @@ version: 2.8.1
 
 
 ## previewImg
-[`async`](/docs/modules/模块-规范?id=jsi-调用)
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 > 预览图片
 **demo**
 ``` js

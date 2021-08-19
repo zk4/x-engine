@@ -14,6 +14,7 @@ const conf = {
 };
 
 // 预览图片
+@sync
 function previewImg(arg: {
   // 索引
   index: int;

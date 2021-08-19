@@ -17,3 +17,12 @@ const conf = {
 function xhrRequest(arg: Map):Map {
   //demo code
 }
+
+function test_xhr(){ }
+function test_xhr(){ }
+function test_xhr(){ }
+function test_xhr(){ }
+function test_xhr(){ }
+function test_xhr(){ }
+function test_xhr(){ }
+function test_xhr(){ }

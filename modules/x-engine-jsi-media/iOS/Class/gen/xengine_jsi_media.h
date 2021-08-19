@@ -6,10 +6,18 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
+@protocol _previewImg0_DTO;
 @protocol _openImagePicker0_DTO;
 @protocol _saveImageToPhotoAlbum0_DTO;
+@class _previewImg0_DTO;
 @class _openImagePicker0_DTO;
 @class _saveImageToPhotoAlbum0_DTO;
+
+@interface _previewImg0_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger index;
+   	@property(nonatomic,strong) NSArray* imgList;
+@end
+
 
 @interface _openImagePicker0_DTO: JSONModel
   	@property(nonatomic,assign) BOOL allowsEditing;
@@ -30,6 +38,9 @@
 
 
 @protocol xengine_jsi_media_protocol
+   @required 
+     - (void) _previewImg:(_previewImg0_DTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+
    @required 
      - (void) _openImagePicker:(_openImagePicker0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 

@@ -35,7 +35,7 @@
 		580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 580B91CC2694D10D006AD356 /* Info.uat.plist */; };
 		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		A4D7310726CD282800DAFBF8 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4D7310626CD282800DAFBF8 /* TZImagePickerController.bundle */; };
+		A4AF1AAA26CE3A750012A190 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4AF1AA926CE3A750012A190 /* TZImagePickerController.bundle */; };
 		A4D7312726CD282E00DAFBF8 /* ZKTY_TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D7310926CD282E00DAFBF8 /* ZKTY_TZPhotoPickerController.m */; };
 		A4D7312826CD282E00DAFBF8 /* ZKTY_NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D7310A26CD282E00DAFBF8 /* ZKTY_NSBundle+TZImagePicker.m */; };
 		A4D7312926CD282E00DAFBF8 /* ZKTY_TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D7310D26CD282E00DAFBF8 /* ZKTY_TZImageManager.m */; };
@@ -119,7 +119,7 @@
 		9272408DD3356C0889C56BE8 /* Pods-media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-media.release.xcconfig"; path = "Target Support Files/Pods-media/Pods-media.release.xcconfig"; sourceTree = "<group>"; };
 		931ED23C7F80F1DBDE07E3DB /* Pods-SharedLibs-media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedLibs-media.release.xcconfig"; path = "Target Support Files/Pods-SharedLibs-media/Pods-SharedLibs-media.release.xcconfig"; sourceTree = "<group>"; };
 		99E2791A9045AAC4D5BE8FBB /* libPods-mediaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mediaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4D7310626CD282800DAFBF8 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		A4AF1AA926CE3A750012A190 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
 		A4D7310926CD282E00DAFBF8 /* ZKTY_TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZPhotoPickerController.m; sourceTree = "<group>"; };
 		A4D7310A26CD282E00DAFBF8 /* ZKTY_NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKTY_NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
 		A4D7310B26CD282E00DAFBF8 /* ZKTY_TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZAssetCell.h; sourceTree = "<group>"; };
@@ -216,7 +216,6 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				A4D7310626CD282800DAFBF8 /* TZImagePickerController.bundle */,
 				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* media */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
@@ -314,6 +313,7 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				A4AF1AA826CE3A750012A190 /* resource */,
 				A4D7310826CD282E00DAFBF8 /* ZKTY_TZImagePickerController */,
 				581FAF352624CC1A00ED7DCC /* iMedia.h */,
 				38E983932615F6E8007F6BDF /* Native_media.h */,
@@ -321,6 +321,14 @@
 			);
 			path = Class;
 			sourceTree = "<group>";
+		};
+		A4AF1AA826CE3A750012A190 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				A4AF1AA926CE3A750012A190 /* TZImagePickerController.bundle */,
+			);
+			path = resource;
+			sourceTree = SOURCE_ROOT;
 		};
 		A4D7310826CD282E00DAFBF8 /* ZKTY_TZImagePickerController */ = {
 			isa = PBXGroup;
@@ -521,7 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
-				A4D7310726CD282800DAFBF8 /* TZImagePickerController.bundle in Resources */,
+				A4AF1AAA26CE3A750012A190 /* TZImagePickerController.bundle in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				580B918E2694CDB7006AD356 /* Info.sit.plist in Resources */,
 			);

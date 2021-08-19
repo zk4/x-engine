@@ -6,13 +6,20 @@
 #import "xengine_jsi_media.h"
 
 
+@implementation _previewImg0_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
+  
 @implementation _openImagePicker0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"allowsEditing"]) { return YES; }
    	if ([propertyName isEqualToString:@"savePhotosAlbum"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraFlashMode"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraDevice"]) { return YES; }
    
-   
+   	if ([propertyName isEqualToString:@"args"]) { return YES; }
    	if ([propertyName isEqualToString:@"photoCount"]) { return YES; }	return NO;
     }
 @end
@@ -39,12 +46,26 @@
         return @"com.zkty.jsi.media";
     }
     
+    - (void) previewImg:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          _previewImg0_DTO* dto = [self convert:dict clazz:_previewImg0_DTO.class];
+          
+          if(!dto) {
+            [self showErrorAlert: @"dto 转换为空"];
+            return nil;
+          }
+   
+          [self _previewImg:dto complete:^(BOOL complete) {
+             completionHandler(nil ,complete);
+          }];
+  }
     - (void) openImagePicker:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           _openImagePicker0_DTO* dto = [self convert:dict clazz:_openImagePicker0_DTO.class];
           
           if(!dto) {
             [self showErrorAlert: @"dto 转换为空"];
+            return nil;
           }
 
           [self _openImagePicker:dto complete:^(NSString* result,  BOOL complete) {
@@ -57,7 +78,8 @@
           _saveImageToPhotoAlbum0_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum0_DTO.class];
           
           if(!dto) {
-              [self showErrorAlert: @"dto 转换为空"];
+            [self showErrorAlert: @"dto 转换为空"];
+            return nil;
           }
 
           [self _saveImageToPhotoAlbum:dto complete:^(NSString* result,  BOOL complete) {

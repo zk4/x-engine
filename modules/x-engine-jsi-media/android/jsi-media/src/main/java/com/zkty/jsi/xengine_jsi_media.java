@@ -17,6 +17,12 @@
 
   
   class _0_com_zkty_jsi_media_DTO {
+    public Integer index;
+
+    public List imgList;
+  }
+  
+  class _1_com_zkty_jsi_media_DTO {
     @Optional
 		public boolean allowsEditing;
 
@@ -31,21 +37,23 @@
 
     public boolean isbase64;
 
-    public Map<String,String> args;
+    @Optional
+		public Map<String,String> args;
 
     @Optional
 		public Integer photoCount;
   }
   
-  class _1_com_zkty_jsi_media_DTO {
+  class _2_com_zkty_jsi_media_DTO {
     public String type;
 
     public String imageData;
   }
   
   interface xengine_jsi_media_protocol {
-    public void _openImagePicker(_0_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
-public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
+    public void _previewImg(_0_com_zkty_jsi_media_DTO dto, final CompletionHandler<Nullable> handler);
+public void _openImagePicker(_1_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
+public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
   }
   
   
@@ -56,8 +64,22 @@ public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_media_DTO dto, final Completi
     }
   
     @JavascriptInterface
-    final public void openImagePicker(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+    final public void previewImg(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       _0_com_zkty_jsi_media_DTO dto= convert(jsonobj,_0_com_zkty_jsi_media_DTO.class);
+      _previewImg(dto, new CompletionHandler<Nullable>() {
+        @Override
+        public void complete(Nullable retValue) { handler.complete(null); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void openImagePicker(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _1_com_zkty_jsi_media_DTO dto= convert(jsonobj,_1_com_zkty_jsi_media_DTO.class);
       _openImagePicker(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
@@ -71,7 +93,7 @@ public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_media_DTO dto, final Completi
 
     @JavascriptInterface
     final public void saveImageToPhotoAlbum(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _1_com_zkty_jsi_media_DTO dto= convert(jsonobj,_1_com_zkty_jsi_media_DTO.class);
+      _2_com_zkty_jsi_media_DTO dto= convert(jsonobj,_2_com_zkty_jsi_media_DTO.class);
       _saveImageToPhotoAlbum(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }

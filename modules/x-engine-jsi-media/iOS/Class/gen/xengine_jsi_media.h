@@ -39,7 +39,7 @@
 
 @protocol xengine_jsi_media_protocol
    @required 
-     - (void) _previewImg:(_previewImg0_DTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+    - (void) _previewImg:(_previewImg0_DTO*)dto;
 
    @required 
      - (void) _openImagePicker:(_openImagePicker0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;

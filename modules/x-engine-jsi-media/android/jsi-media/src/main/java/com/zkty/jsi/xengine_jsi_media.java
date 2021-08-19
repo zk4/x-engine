@@ -51,7 +51,8 @@
   }
   
   interface xengine_jsi_media_protocol {
-    public void _previewImg(_0_com_zkty_jsi_media_DTO dto, final CompletionHandler<Nullable> handler);
+    
+public void _previewImg(_0_com_zkty_jsi_media_DTO dto);
 public void _openImagePicker(_1_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
 public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
   }
@@ -63,19 +64,13 @@ public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final Completi
       return "com.zkty.jsi.media";
     }
   
-    @JavascriptInterface
-    final public void previewImg(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _0_com_zkty_jsi_media_DTO dto= convert(jsonobj,_0_com_zkty_jsi_media_DTO.class);
-      _previewImg(dto, new CompletionHandler<Nullable>() {
-        @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
-        @Override
-        public void complete() { handler.complete(); }
-        @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
-      });
-
-    }
+        @JavascriptInterface
+        public Object previewImg(JSONObject jsonobj) {
+          _0_com_zkty_jsi_media_DTO dto= convert(jsonobj,_0_com_zkty_jsi_media_DTO.class);
+          _previewImg(dto);
+          return null;
+        }
+        
 
     @JavascriptInterface
     final public void openImagePicker(JSONObject jsonobj, final CompletionHandler<Object> handler) {

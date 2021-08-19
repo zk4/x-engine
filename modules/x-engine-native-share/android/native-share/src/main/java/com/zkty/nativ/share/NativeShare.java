@@ -42,26 +42,26 @@ public class NativeShare extends NativeModule implements IShareManager {
 
 
     @Override
-    public void share(String channel, String type, Map<String, String> info) {
+    public void share(String channel, String type, Map<String, String> info, Ishare.CallBack callBack) {
         Ishare ishare = shares.get(channel);
         if (ishare != null) {
             try {
                 switch (type) {
                     case "text":
                         ShareText text = convert(info, ShareText.class);
-                        ishare.share(channel, text);
+                        ishare.share(channel, text, callBack);
                         break;
                     case "img":
                         ShareImg img = convert(info, ShareImg.class);
-                        ishare.share(channel, img);
+                        ishare.share(channel, img, callBack);
                         break;
                     case "link":
                         ShareLink link = convert(info, ShareLink.class);
-                        ishare.share(channel, link);
+                        ishare.share(channel, link, callBack);
                         break;
                     case "miniProgram":
                         ShareMiniProgram miniProgram = convert(info, ShareMiniProgram.class);
-                        ishare.share(miniProgram);
+                        ishare.share(miniProgram, callBack);
                         break;
                     default:
                         break;
@@ -74,7 +74,7 @@ public class NativeShare extends NativeModule implements IShareManager {
                         .setMessage(e.getMessage())
                         .setCancelable(true).create();
                 dialog.show();
-
+                callBack.onResult(-1);
             }
 
         }

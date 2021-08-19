@@ -59,8 +59,12 @@
     public String imgUrl;
   }
   
+  class _0_com_zkty_jsi_share_DTO {
+    public Integer code;
+  }
+  
   interface xengine_jsi_share_protocol {
-    public void _share(ShareDTO dto, final CompletionHandler<Nullable> handler);
+    public void _share(ShareDTO dto, final CompletionHandler<_0_com_zkty_jsi_share_DTO> handler);
   }
   
   
@@ -73,13 +77,13 @@
     @JavascriptInterface
     final public void share(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       ShareDTO dto= convert(jsonobj,ShareDTO.class);
-      _share(dto, new CompletionHandler<Nullable>() {
+      _share(dto, new CompletionHandler<_0_com_zkty_jsi_share_DTO>() {
         @Override
-        public void complete(Nullable retValue) { handler.complete(null); }
+        public void complete(_0_com_zkty_jsi_share_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(Nullable value) { handler.setProgressData(null); }
+        public void setProgressData(_0_com_zkty_jsi_share_DTO value) { handler.setProgressData(value); }
       });
 
     }

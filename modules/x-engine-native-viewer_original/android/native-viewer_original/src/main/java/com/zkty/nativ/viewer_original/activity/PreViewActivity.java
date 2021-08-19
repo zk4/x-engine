@@ -92,18 +92,8 @@ public class PreViewActivity extends BaseXEngineActivity {
         itemlist.add(map);
         itemlist.add(map1);
 
-        mXEngineNavBar.setNavRightMenuBtn("更多", "#121212", null, null, iconSize, itemlist, false, "100", new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtils.showCenterToast(itemlist.get(position).get("title"));
-            }
-        });
-        mXEngineNavBar.setLeftListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        mXEngineNavBar.setNavRightMenuBtn("更多", "#121212", null, null, iconSize, itemlist, false, "100", (parent, view, position, id) -> ToastUtils.showCenterToast(itemlist.get(position).get("title")));
+        mXEngineNavBar.setLeftListener(v -> finish());
 
         //设置标题
         mXEngineNavBar.setTitle(title,null,null);

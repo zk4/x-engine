@@ -50,10 +50,10 @@
 
           _previewImg0_DTO* dto = [self convert:dict clazz:_previewImg0_DTO.class];
           
-          if(!dto) {
-            [self showErrorAlert: @"dto 转换为空"];
-            return nil;
-          }
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
    
           [self _previewImg:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
@@ -63,10 +63,10 @@
 
           _openImagePicker0_DTO* dto = [self convert:dict clazz:_openImagePicker0_DTO.class];
           
-          if(!dto) {
-            [self showErrorAlert: @"dto 转换为空"];
-            return nil;
-          }
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
 
           [self _openImagePicker:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
@@ -77,10 +77,10 @@
 
           _saveImageToPhotoAlbum0_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum0_DTO.class];
           
-          if(!dto) {
-            [self showErrorAlert: @"dto 转换为空"];
-            return nil;
-          }
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
 
           [self _saveImageToPhotoAlbum:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);

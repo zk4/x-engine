@@ -31,6 +31,13 @@
     }
 @end
 
+  
+@implementation _uploadImage0_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
 
 
 
@@ -53,6 +60,7 @@
       
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
 
 
@@ -83,6 +91,20 @@
         }
 
           [self _saveImageToPhotoAlbum:dto complete:^(NSString* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+  }
+    - (void) uploadImage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          _uploadImage0_DTO* dto = [self convert:dict clazz:_uploadImage0_DTO.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+
+          [self _uploadImage:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

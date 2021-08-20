@@ -41,6 +41,13 @@ function osCheck() {
     "name": "test_previewImg",
     "default_args": {},
     "decorators": []
+  },
+  {
+    "name": "test_uploadImage",
+    "default_args": {},
+    "decorators": [
+      "async"
+    ]
   }
 ]
 )}}

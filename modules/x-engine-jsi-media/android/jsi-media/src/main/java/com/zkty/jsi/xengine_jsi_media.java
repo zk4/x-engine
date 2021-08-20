@@ -50,11 +50,18 @@
     public String imageData;
   }
   
+  class _3_com_zkty_jsi_media_DTO {
+    public String url;
+
+    public List ids;
+  }
+  
   interface xengine_jsi_media_protocol {
     
 public void _previewImg(_0_com_zkty_jsi_media_DTO dto);
 public void _openImagePicker(_1_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
 public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
+public void _uploadImage(_3_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
   }
   
   
@@ -90,6 +97,20 @@ public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final Completi
     final public void saveImageToPhotoAlbum(JSONObject jsonobj, final CompletionHandler<Object> handler) {
       _2_com_zkty_jsi_media_DTO dto= convert(jsonobj,_2_com_zkty_jsi_media_DTO.class);
       _saveImageToPhotoAlbum(dto, new CompletionHandler<String>() {
+        @Override
+        public void complete(String retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(String value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void uploadImage(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _3_com_zkty_jsi_media_DTO dto= convert(jsonobj,_3_com_zkty_jsi_media_DTO.class);
+      _uploadImage(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override

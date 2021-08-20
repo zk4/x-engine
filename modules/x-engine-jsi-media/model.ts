@@ -97,6 +97,41 @@ function saveImageToPhotoAlbum(arg: {
   );
 }
 
+
+/*
+{
+  // 状态 0 上传成功
+  //     -1 上传失败
+  status: 0,
+  // 上传的图片id
+  id: 1，
+  // 上传成功结果
+  result:Map<string,string>
+}
+*/
+
+// 上传图片
+@async
+function uploadImage(arg: {
+  // 请求的url
+  url: string;
+  // 拍照或者选择相册后返回id
+  ids: Array;
+}): string {
+  // demo code
+  xengine.api(
+    "com.zkty.jsi.media",
+    "uploadImage",
+    {
+      url:"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
+      "ids":['xxxx','xxxxx','xxxx', 'xxxx']
+    },
+    (res) => {
+      console.log(JSON.stringify(res));
+    }
+  );
+}
+
 function test_placeholder() {}
 function test_placeholder() {}
 function test_placeholder() {}
@@ -166,4 +201,26 @@ function test_previewImg(arg: {
       "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
     ],
   });
+}
+
+// 上传图片
+@async
+function test_uploadImage(arg: {
+  // 请求的url
+  url: string;
+  // 拍照或者选择相册后返回id
+  ids: Array;
+}): string {
+  // demo code
+  xengine.api(
+    "com.zkty.jsi.media",
+    "uploadImage",
+    {
+      url:"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
+      "ids":['xxxx','xxxxx','xxxx', 'xxxx']
+    },
+    (res) => {
+      console.log(JSON.stringify(res));
+    }
+  );
 }

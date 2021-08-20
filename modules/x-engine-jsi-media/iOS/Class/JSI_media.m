@@ -49,4 +49,10 @@ JSI_MODULE(JSI_media)
     model.imgList = dto.imgList;
     [self.media previewImg:model];
 }
+
+- (void)_uploadImage:(_uploadImage0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+    [self.media uploadImageWithUrl:dto.url WithImageList:dto.ids result:^(NSString *result) {
+        completionHandler(result, true);
+    }];
+}
 @end

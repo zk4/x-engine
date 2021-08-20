@@ -9,9 +9,11 @@
 @protocol _previewImg0_DTO;
 @protocol _openImagePicker0_DTO;
 @protocol _saveImageToPhotoAlbum0_DTO;
+@protocol _uploadImage0_DTO;
 @class _previewImg0_DTO;
 @class _openImagePicker0_DTO;
 @class _saveImageToPhotoAlbum0_DTO;
+@class _uploadImage0_DTO;
 
 @interface _previewImg0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger index;
@@ -36,6 +38,12 @@
 @end
 
 
+@interface _uploadImage0_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* url;
+   	@property(nonatomic,strong) NSArray* ids;
+@end
+
+
 
 @protocol xengine_jsi_media_protocol
    @required 
@@ -46,6 +54,9 @@
 
    @required 
      - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
+   @required 
+     - (void) _uploadImage:(_uploadImage0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
 @end
 

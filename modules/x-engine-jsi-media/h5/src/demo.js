@@ -74,5 +74,21 @@ window.test_placeholder = () => {
   });
 }
  document.getElementById("test_previewImg").click()
+        window.test_uploadImage = () => {
+
+  // demo code
+  xengine.api(
+    "com.zkty.jsi.media",
+    "uploadImage",
+    {
+      url:"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
+      "ids":['xxxx','xxxxx','xxxx', 'xxxx']
+    },
+    (res) => {
+      console.log(JSON.stringify(res));
+    }
+  );
+}
+ document.getElementById("test_uploadImage").click()
         
     

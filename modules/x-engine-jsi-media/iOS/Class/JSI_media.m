@@ -51,8 +51,14 @@ JSI_MODULE(JSI_media)
 }
 
 - (void)_uploadImage:(_uploadImage0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    [self.media uploadImageWithUrl:dto.url WithImageList:dto.ids result:^(NSString *result) {
-        completionHandler(result, true);
+    [self.media uploadImageWithUrl:dto.url WithImageList:dto.ids result:^(NSDictionary *result) {
+        completionHandler([self dictionaryToJson:result], true);
     }];
+}
+
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 @end

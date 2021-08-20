@@ -5,20 +5,6 @@
 //  Created by cwz on 2021/8/18.
 //
 
-
-//#import "JSONModel.h"
-//
-//
-//#import <Foundation/Foundation.h>
-//
-//NS_ASSUME_NONNULL_BEGIN
-//
-//@interface iMedia : NSObject
-//
-//@end
-//
-//NS_ASSUME_NONNULL_END
-
 #ifndef imedia_h
 #define imedia_h
 #import "JSONModel.h"
@@ -59,7 +45,7 @@
 
 - (void)previewImg:(MediaPhotoListDTO * )dto;
 
-- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList result:(void (^)(NSString* result))result;
+- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary* result))result;
 @end
 
 #endif

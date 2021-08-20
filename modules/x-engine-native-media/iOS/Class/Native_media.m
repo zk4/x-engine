@@ -337,13 +337,13 @@ NATIVE_MODULE(Native_media)
 }
 
 /*************************************上传图片************************************************/
-- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList success:(void (^)(NSString *))success {
+- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList success:(void (^)(NSDictionary *))success {
     for (NSDictionary *imgDict in imageList) {
         UIImage *image = imgDict[@"image"];
         NSData *data = [[NSData alloc] initWithBase64EncodedString:[self UIImageToBase64Str:image] options:NSDataBase64DecodingIgnoreUnknownCharacters];
         NSString *testUrl = @"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload";
         [self uploadImageWithUrl:testUrl data:data name:@"test" completion:^(NSDictionary *dict) {
-            success([self dictionaryToJson:dict]);
+            success(dict);
         }];
     }
 }

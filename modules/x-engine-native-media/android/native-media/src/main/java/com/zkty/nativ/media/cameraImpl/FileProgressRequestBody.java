@@ -75,6 +75,8 @@ public class FileProgressRequestBody extends RequestBody {
     protected final class CountingSink extends ForwardingSink {
 
         private long bytesWritten = 0;
+        //总字节长度，避免多次调用contentLength()方法
+        long contentLength = 0L;
 
         public CountingSink(Sink delegate) {
             super(delegate);
@@ -83,10 +85,13 @@ public class FileProgressRequestBody extends RequestBody {
         @Override
         public void write(Buffer source, long byteCount) throws IOException {
             super.write(source, byteCount);
+            if(contentLength == 0){
+                contentLength = contentLength();
+            }
 
             bytesWritten += byteCount;
             if (fileUploadObserver != null) {
-                fileUploadObserver.onUploading((int) (bytesWritten*100 / contentLength()));
+                fileUploadObserver.onUploading((int) (bytesWritten*100 / contentLength));
             }
 
         }

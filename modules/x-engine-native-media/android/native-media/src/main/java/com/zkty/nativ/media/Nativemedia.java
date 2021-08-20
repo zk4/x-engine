@@ -35,9 +35,11 @@ import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.media.cameraImpl.FileProgressRequestBody;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
 import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
+import com.zkty.nativ.media.cameraImpl.UploadUtils;
 import com.zkty.nativ.media.cameraImpl.dialog.FullImageDialog;
 import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
@@ -471,8 +473,6 @@ public class Nativemedia extends NativeModule implements Imedia {
             ImageCacheManager.put(key,paths.get(j));
             cameraRetDTO.setId(key);
 
-
-
             Bitmap imageThumbnail = null;
             String base64Str = "";
             try {
@@ -496,7 +496,6 @@ public class Nativemedia extends NativeModule implements Imedia {
         }
         HashMap<String, List<CameraRetDTO>> map = new HashMap<>();
         map.put("data", results);
-        Log.d("MainActivity",JSON.toJSONString(map)  );
         callBack.success(JSON.toJSONString(map));
 
     }
@@ -526,4 +525,32 @@ public class Nativemedia extends NativeModule implements Imedia {
                 .setOnDismissListener(callBack)
                 .show();
     }
+
+    @Override
+    public void upLoadImg(String filePath, UpLoadImgCallback callback) {
+        UploadUtils.doUpload(UploadUtils.upLoadUrl, filePath, new FileProgressRequestBody.OnUploadListener() {
+            @Override
+            public void onUploadSuccess(String dataStr) {
+                if(callback == null)return;
+                callback.onUpLoadSucces(dataStr);
+            }
+
+            @Override
+            public void onUploading(int progress) {
+                Log.d("Nativemedia",progress + "%");
+            }
+
+            @Override
+            public void onUploadFailed() {
+                if(callback == null)return;
+                callback.onUploadFail();
+            }
+        });
+    }
+
+    @Override
+    public void upLoadImgList(List<String> filePathList, UpLoadImgCallback callback) {
+
+    }
+
 }

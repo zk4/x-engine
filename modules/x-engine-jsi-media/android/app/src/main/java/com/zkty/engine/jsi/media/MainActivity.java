@@ -3,6 +3,7 @@ package com.zkty.engine.jsi.media;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anthonynsimon.url.URL;
+import com.bumptech.glide.Glide;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.utils.ImageUtils;
@@ -25,6 +27,7 @@ import com.zkty.nativ.media.Imedia;
 import com.zkty.nativ.media.Nativemedia;
 import com.zkty.nativ.media.OpenImageCallBack;
 import com.zkty.nativ.media.PreImageCallBack;
+import com.zkty.nativ.media.UpLoadImgCallback;
 import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
 
@@ -92,6 +95,8 @@ public class MainActivity extends BaseXEngineActivity {
                     String base64DataStr = imageDataBean.getData().get(0).getThumbnail();
                     ivImg.setImageBitmap(getBitmap(base64DataStr));
                     filePath = ImageCacheManager.get(imageDataBean.getData().get(0).getId());
+//                    filePath = imageDataBean.getData().get(0).getId();
+//                    Glide.with(MainActivity.this).load(new File(filePath)).into(ivImg);
                 }
                 if(imageDataBean.getData().size() > 1){
                     String base64DataStr = imageDataBean.getData().get(1).getThumbnail();
@@ -183,26 +188,15 @@ public class MainActivity extends BaseXEngineActivity {
     }
     public void upload(View view){
         if(TextUtils.isEmpty(filePath)) return;
-        doUpload("https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",new FileProgressRequestBody.OnUploadListener() {
+        iMedia.upLoadImg(filePath, new UpLoadImgCallback() {
             @Override
-            public void onUploadSuccess() {
-                Log.d("MainActivity","上传成功" );
+            public void onUpLoadSucces(String dataStr) {
+                Log.d("Nativemedia",dataStr);
             }
 
             @Override
-            public void onUploading(int progress) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvMsg.setText(progress + "%");
-                    }
-                });
-                Log.d("MainActivity",progress + "%" );
-            }
-
-            @Override
-            public void onUploadFailed() {
-                Log.d("MainActivity","上传失败" );
+            public void onUploadFail() {
+                Log.d("Nativemedia","上传失败");
             }
         });
     }

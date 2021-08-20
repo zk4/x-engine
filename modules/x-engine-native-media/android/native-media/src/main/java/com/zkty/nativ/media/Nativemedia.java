@@ -12,9 +12,11 @@ import android.media.MediaScannerConnection;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
+import android.os.CancellationSignal;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Size;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,8 +35,11 @@ import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.media.cameraImpl.FileProgressRequestBody;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
+import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
+import com.zkty.nativ.media.cameraImpl.UploadUtils;
 import com.zkty.nativ.media.cameraImpl.dialog.FullImageDialog;
 import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
@@ -45,6 +50,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Nativemedia extends NativeModule implements Imedia {
     private static final String TAG = "Nativemedia";
@@ -146,6 +152,7 @@ public class Nativemedia extends NativeModule implements Imedia {
                 lifeCycleListener = null;
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
                 Log.d(TAG, "onActivityResult---" + "requestCode:" + requestCode + "---resultCode:" + resultCode);
@@ -461,9 +468,24 @@ public class Nativemedia extends NativeModule implements Imedia {
 //                cameraRetDTO.setThumbnail(ClientManager.bmpToBase64(imageThumbnail));
 //                cameraRetDTO.setType("image/jpeg");
 //            }
-            cameraRetDTO.setId(paths.get(j));
-            Bitmap imageThumbnail = ThumbnailUtils.createImageThumbnail(paths.get(j), MediaStore.Images.Thumbnails.MICRO_KIND);
-            cameraRetDTO.setThumbnail(ClientManager.bmpToBase64(imageThumbnail));
+
+            String key = UUID.randomUUID().toString();
+            ImageCacheManager.put(key,paths.get(j));
+            cameraRetDTO.setId(key);
+
+            Bitmap imageThumbnail = null;
+            String base64Str = "";
+            try {
+                Size size = new Size(200,200);
+                if(!TextUtils.isEmpty(editArgs.getWidth()) && !TextUtils.isEmpty(editArgs.getHeight())){
+                    size = new Size(Integer.getInteger(editArgs.getWidth()),Integer.getInteger(editArgs.getHeight()));
+                }
+                imageThumbnail = ThumbnailUtils.createImageThumbnail(new File(paths.get(j)),size, new CancellationSignal());
+                base64Str = ClientManager.bmpToBase64(imageThumbnail);
+            } catch (IOException e) {
+                base64Str= ClientManager.bitmapToString(paths.get(j));
+            }
+            cameraRetDTO.setThumbnail(base64Str);
             cameraRetDTO.setType("image/jpeg");
             cameraRetDTO.setContentType("image/jpeg");
             File temp = new File(paths.get(j));
@@ -474,7 +496,6 @@ public class Nativemedia extends NativeModule implements Imedia {
         }
         HashMap<String, List<CameraRetDTO>> map = new HashMap<>();
         map.put("data", results);
-        Log.d("MainActivity",JSON.toJSONString(map)  );
         callBack.success(JSON.toJSONString(map));
 
     }
@@ -494,10 +515,42 @@ public class Nativemedia extends NativeModule implements Imedia {
     @Override
     public void preImage(List<String> imageDataList, int index, PreImageCallBack callBack) {
         ConfigManager.getInstance().setImageLoader(new GlideLoader());
+
+        for (int i = 0; i < imageDataList.size(); i++) {
+            imageDataList.set(i,ImageCacheManager.get(imageDataList.get(i)));
+        }
         new FullImageDialog(XEngineApplication.getCurrentActivity())
                 .Builder()
                 .setImageUrl(imageDataList, index)
                 .setOnDismissListener(callBack)
                 .show();
     }
+
+    @Override
+    public void upLoadImg(String filePath, UpLoadImgCallback callback) {
+        UploadUtils.doUpload(UploadUtils.upLoadUrl, filePath, new FileProgressRequestBody.OnUploadListener() {
+            @Override
+            public void onUploadSuccess(String dataStr) {
+                if(callback == null)return;
+                callback.onUpLoadSucces(dataStr);
+            }
+
+            @Override
+            public void onUploading(int progress) {
+                Log.d("Nativemedia",progress + "%");
+            }
+
+            @Override
+            public void onUploadFailed() {
+                if(callback == null)return;
+                callback.onUploadFail();
+            }
+        });
+    }
+
+    @Override
+    public void upLoadImgList(List<String> filePathList, UpLoadImgCallback callback) {
+
+    }
+
 }

@@ -27,8 +27,9 @@ public class JSI_media extends xengine_jsi_media {
 
 
 
+
     @Override
-    public void _previewImg(_0_com_zkty_jsi_media_DTO dto, CompletionHandler<Nullable> handler) {
+    public void _previewImg(_0_com_zkty_jsi_media_DTO dto) {
         iMedia.preImage(dto.imgList, dto.index, new PreImageCallBack() {
             @Override
             public void closeCallBack() {

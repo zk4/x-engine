@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/rl_root"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
     <Button
         android:id="@+id/tv_version"
         android:layout_width="match_parent"
@@ -45,6 +49,22 @@
         android:text="上传"
         android:onClick="upload"
         android:textColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/ivImg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        />
+    <ImageView
+        android:id="@+id/ivImg2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        />
+    <ImageView
+        android:id="@+id/ivImg3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        />
     <TextView
         android:id="@+id/tvMsg"
         android:layout_width="match_parent"
@@ -53,5 +73,5 @@
         android:layout_margin="20dp"
         android:onClick="openImg"
         android:textColor="@color/black" />
-
-</LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

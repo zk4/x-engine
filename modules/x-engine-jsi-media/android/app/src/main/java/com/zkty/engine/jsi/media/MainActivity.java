@@ -1,32 +1,38 @@
 package com.zkty.engine.jsi.media;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.anthonynsimon.url.URL;
+import com.bumptech.glide.Glide;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.utils.UrlUtils;
+import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
+import com.zkty.nativ.media.CameraDTO;
+import com.zkty.nativ.media.CameraRetDTO;
 import com.zkty.nativ.media.Imedia;
 import com.zkty.nativ.media.Nativemedia;
+import com.zkty.nativ.media.OpenImageCallBack;
 import com.zkty.nativ.media.PreImageCallBack;
-import com.zkty.nativ.media.cameraImpl.GlideLoader;
+import com.zkty.nativ.media.UpLoadImgCallback;
+import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
-import com.zkty.nativ.media.cameraImpl.data.MediaFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,17 +45,22 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseXEngineActivity {
 
     private TextView tvMsg;
     private Nativemedia iMedia;
     private String filePath;
+    private ImageView ivImg,ivImg2,ivImg3;
+    private ImageDataBean imageDataBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         tvMsg = findViewById(R.id.tvMsg);
+        ivImg = findViewById(R.id.ivImg);
+        ivImg2 = findViewById(R.id.ivImg2);
+        ivImg3 = findViewById(R.id.ivImg3);
         NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(Imedia.class);
         if (module instanceof Nativemedia)
             iMedia = (Nativemedia) module;
@@ -60,16 +71,103 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openImg(View view) {
-        ImagePicker.getInstance()
-                .setTitle("选择图片")//设置标题
-                .showCamera(true)//设置是否显示拍照按钮
-                .showImage(true)//设置是否展示图片
-                .showVideo(false)//设置是否展示视频
-                .filterGif(true)//设置是否过滤gif图片
-                .setMaxCount(1)//设置最大选择图片数目(默认为1，单选)
-                .setSingleType(true)//设置图片视频不能同时选择
-                .setImageLoader(new GlideLoader())//设置自定义图片加载器
-                .start(MainActivity.this, ImageUtils.RESULT_CODE_PHOTO);//REQEST_SELECT_IMAGES_CODE为Intent调用的requestCode
+
+        CameraDTO cameraDTO = new CameraDTO();
+        cameraDTO.setAllowsEditing(false);
+        cameraDTO.setCameraDevice("back");
+        cameraDTO.setCameraFlashMode(-1);
+        cameraDTO.setIsbase64(false);
+        cameraDTO.setPhotoCount(3);
+        cameraDTO.setSavePhotosAlbum(false);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("bytes","100");
+        cameraDTO.setArgs(map);
+
+        iMedia.openImagePicker(cameraDTO, new OpenImageCallBack() {
+
+            @Override
+            public void success(String data) {
+                imageDataBean = GsonUtil.fromJson(data, ImageDataBean.class);
+
+                if(imageDataBean.getData().size() > 0){
+
+                    String base64DataStr = imageDataBean.getData().get(0).getThumbnail();
+                    ivImg.setImageBitmap(getBitmap(base64DataStr));
+                    filePath = ImageCacheManager.get(imageDataBean.getData().get(0).getId());
+//                    filePath = imageDataBean.getData().get(0).getId();
+//                    Glide.with(MainActivity.this).load(new File(filePath)).into(ivImg);
+                }
+                if(imageDataBean.getData().size() > 1){
+                    String base64DataStr = imageDataBean.getData().get(1).getThumbnail();
+                    ivImg2.setImageBitmap(getBitmap(base64DataStr));
+                }
+                if(imageDataBean.getData().size() > 2){
+                    String base64DataStr = imageDataBean.getData().get(2).getThumbnail();
+                    ivImg3.setImageBitmap(getBitmap(base64DataStr));
+                }
+            }
+        });
+
+        ivImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> images = new ArrayList<>();
+                for (CameraRetDTO datum : imageDataBean.getData()) {
+                    images.add(datum.getId());
+                }
+                iMedia.preImage(images, 0, new PreImageCallBack() {
+                    @Override
+                    public void closeCallBack() {
+                        ToastUtils.showCenterToast("关闭");
+                    }
+                });
+            }
+        });
+
+
+        ivImg2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> images = new ArrayList<>();
+                for (CameraRetDTO datum : imageDataBean.getData()) {
+                    images.add(datum.getId());
+                }
+                iMedia.preImage(images, 1, new PreImageCallBack() {
+                    @Override
+                    public void closeCallBack() {
+                        ToastUtils.showCenterToast("关闭");
+                    }
+                });
+            }
+        });
+
+        ivImg3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> images = new ArrayList<>();
+                for (CameraRetDTO datum : imageDataBean.getData()) {
+                    images.add(datum.getId());
+                }
+                iMedia.preImage(images, 2, new PreImageCallBack() {
+                    @Override
+                    public void closeCallBack() {
+                        ToastUtils.showCenterToast("关闭");
+                    }
+                });
+            }
+        });
+
+
+
+
+    }
+
+    public Bitmap getBitmap(String base64DataStr){
+        String base64Str = base64DataStr.substring(base64DataStr.indexOf(",") + 1, base64DataStr.length());
+        byte[] bytes = Base64.decode(base64Str, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        return bitmap;
     }
 
     public void preImg(View view) {
@@ -90,26 +188,15 @@ public class MainActivity extends AppCompatActivity {
     }
     public void upload(View view){
         if(TextUtils.isEmpty(filePath)) return;
-        doUpload("https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",new FileProgressRequestBody.OnUploadListener() {
+        iMedia.upLoadImg(filePath, new UpLoadImgCallback() {
             @Override
-            public void onUploadSuccess() {
-                Log.d("MainActivity","上传成功" );
+            public void onUpLoadSucces(String dataStr) {
+                Log.d("Nativemedia",dataStr);
             }
 
             @Override
-            public void onUploading(int progress) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvMsg.setText(progress + "%");
-                    }
-                });
-                Log.d("MainActivity",progress + "%" );
-            }
-
-            @Override
-            public void onUploadFailed() {
-                Log.d("MainActivity","上传失败" );
+            public void onUploadFail() {
+                Log.d("Nativemedia","上传失败");
             }
         });
     }

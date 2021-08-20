@@ -7,6 +7,8 @@ import com.bumptech.glide.Glide;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.media.cameraImpl.utils.ImageLoader;
 
+import java.io.File;
+
 
 public class GlideLoader implements ImageLoader {
 
@@ -22,8 +24,7 @@ public class GlideLoader implements ImageLoader {
         if(imagePath.startsWith("http")){
             Glide.with(imageView.getContext()).load(imagePath).into(imageView);
         }else{
-            Uri uri = ImageUtils.getMediaUriFromPath(imageView.getContext(),imagePath);
-            Glide.with(imageView.getContext()).load(uri).into(imageView);
+            Glide.with(imageView.getContext()).load(new File(imagePath)).into(imageView);
         }
 
     }

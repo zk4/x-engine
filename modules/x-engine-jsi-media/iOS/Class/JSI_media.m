@@ -44,11 +44,9 @@ JSI_MODULE(JSI_media)
 }
 
 - (void)_previewImg:(_previewImg0_DTO *)dto {
-    
-
-        NSLog(@"%@", dto);
-        [self.media previewImg];
-    
-
+    MediaPhotoListDTO *model = [MediaPhotoListDTO new];
+    model.index = dto.index;
+    model.imgList = dto.imgList;
+    [self.media previewImg:model];
 }
 @end

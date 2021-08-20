@@ -46,13 +46,20 @@
 @property(nonatomic,copy) NSString* imageData;
 @end
 
+@interface MediaPhotoListDTO: JSONModel
+@property(nonatomic,assign) NSInteger index;
+@property(nonatomic,copy) NSArray* imgList;
+@end
+
 @protocol iMedia <NSObject>
 @required
 - (void)openImagePicker:(MediaParamsDTO*) dto success:(void (^)(NSString* result))success;
 
 - (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto saveSuccess:(void (^)(NSString* result))success;
 
-- (void)previewImg;
+- (void)previewImg:(MediaPhotoListDTO * )dto;
+
+- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList success:(void (^)(NSDictionary* result))success;
 @end
 
 #endif

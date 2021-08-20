@@ -31,3 +31,11 @@
     return NO;
 }
 @end
+
+@implementation MediaPhotoListDTO
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    if ([propertyName isEqualToString:@"index"]) { return YES; }
+    if ([propertyName isEqualToString:@"imgList"]) { return YES; }
+    return NO;
+}
+@end

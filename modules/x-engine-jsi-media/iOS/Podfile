@@ -17,7 +17,7 @@ def shared_pods
   pod 'x-engine-native-tabbar', :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
   pod 'x-engine-native-media', :path =>X_ENGINE_MODULES+'/x-engine-native-media'
   pod 'JSONModel'
-
+  pod 'SDWebImage'
 end
 
 target 'media' do

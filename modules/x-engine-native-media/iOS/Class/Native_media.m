@@ -12,8 +12,11 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "XTool.h"
+#import "GKPhotoBrowser.h"
+
 typedef void (^PhotoCallBack)(NSString *);
 typedef void (^SaveCallBack)(NSString *);
+typedef void (^UploadImageCallBack)(NSDictionary *);
 
 // cache路径
 #define kCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
@@ -21,7 +24,7 @@ typedef void (^SaveCallBack)(NSString *);
 // 保存上传数据plist的路径
 #define kSaveDataCachePath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"saveUploadTempData.plist"]
 
-@interface Native_media()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
+@interface Native_media()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate, NSURLSessionDelegate>
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
 @property(nonatomic,strong) UIImage * photoImage;
@@ -29,6 +32,7 @@ typedef void (^SaveCallBack)(NSString *);
 @property(nonatomic,strong) MediaParamsDTO * mediaDto;
 @property(nonatomic,copy) PhotoCallBack callback;
 @property(nonatomic,copy) SaveCallBack saveCallback;
+@property(nonatomic,copy) UploadImageCallBack uploadCallBack;
 @property (nonatomic, strong) NSMutableArray *saveCacheDataArray;
 @end
 
@@ -51,14 +55,12 @@ NATIVE_MODULE(Native_media)
 }
 
 - (void)afterAllNativeModuleInited {
-    NSLog(@"%@", kSaveDataCachePath);
     if (![[NSFileManager defaultManager] fileExistsAtPath:kSaveDataCachePath]) {
         // 不存在就去创建plist
         [_saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
     } else {
         // 存在不做任何操作
         _saveCacheDataArray = [NSMutableArray arrayWithContentsOfFile:kSaveDataCachePath];
-        NSLog(@"%@", _saveCacheDataArray);
     }
 }
 
@@ -210,13 +212,12 @@ NATIVE_MODULE(Native_media)
             [self.saveCacheDataArray insertObject:toPlistDict atIndex:0];
             [self.saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
         
-            NSLog(@"%@", self.saveCacheDataArray);
-            
-        }else{
+        } else {
             UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
             weakself.photoImage = image;
 //            UIImageWriteToSavedPhotosAlbum([info objectForKey:UIImagePickerControllerOriginalImage], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
         }
+        
         if(weakself.savePhotosAlbum){
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 if (status == PHAuthorizationStatusAuthorized){
@@ -230,8 +231,8 @@ NATIVE_MODULE(Native_media)
                 }
             }];
         }
-        NSMutableDictionary *ret = [NSMutableDictionary new];
-        if (!self.isbase64) {
+//        NSMutableDictionary *ret = [NSMutableDictionary new];
+//        if (!self.isbase64) {
             //            NSString* photoAppendStr = [NSString stringWithFormat:@"pic_%@.png",[weakself getDateFormatterString]];
             //            NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:photoAppendStr];
             //            if(filePath && filePath.length>0) {[UIImagePNGRepresentation(weakself.photoImage) writeToFile:filePath atomically:YES];
@@ -243,7 +244,7 @@ NATIVE_MODULE(Native_media)
             //            };
             //            ret[@"data"] = @[paramDic];
             //            [self sendParamtoWeb:ret];
-        } else {
+//        } else {
 //            NSDictionary * argsDic = self.mediaDto.args;
 //            float maxBytes = argsDic[@"bytes"]?[argsDic[@"bytes"] floatValue]:4000.0f;
 //            float q = argsDic[@"quality"]?[argsDic[@"quality"] floatValue]:1.0f;
@@ -261,7 +262,7 @@ NATIVE_MODULE(Native_media)
 //            ret[@"data"] = @[paramDic];
 //
 //            [self H5CallBack:ret];
-        }
+//        }
     }];
 }
 
@@ -321,7 +322,78 @@ NATIVE_MODULE(Native_media)
     }
 }
 
+/*************************************预览图片************************************************/
+- (void)previewImg:(MediaPhotoListDTO *)dto {
+    NSMutableArray *photos = [NSMutableArray new];
+    [dto.imgList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        GKPhoto *photo = [[GKPhoto alloc] init];
+        photo.url = [NSURL URLWithString:obj];
+        [photos addObject:photo];
+    }];
 
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:dto.index];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:[self currentViewController]];
+}
+
+/*************************************上传图片************************************************/
+- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList success:(void (^)(NSDictionary *))success {
+    for (NSDictionary *imgDict in imageList) {
+        UIImage *image = imgDict[@"image"];
+        NSData *data = [[NSData alloc] initWithBase64EncodedString:[self UIImageToBase64Str:image] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        NSString *testUrl = @"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload";
+        [self uploadImageWithUrl:testUrl data:data name:@"test" completion:^(NSDictionary *dict) {
+            success(dict);
+        }];
+    }
+}
+
+// 上传请求
+- (void)uploadImageWithUrl:(NSString *)URLString data:(NSData *)imageData name:(NSString*)name completion:(void (^)(NSDictionary *))dictBlock {
+    NSString *boundary = [NSString stringWithFormat:@"iOSFormBoundary%@", [self randomString:16]];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+    [request setHTTPMethod:@"POST"];
+    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
+    [request setTimeoutInterval:20];
+    
+    // content-type
+    NSString* headerString = [NSString stringWithFormat:@"multipart/form-data; boundary=----%@",boundary];
+    [request setValue:headerString forHTTPHeaderField:@"Content-Type"];
+    
+    // body
+    NSMutableData* requestMutableData = [NSMutableData data];
+    NSMutableString *bodyString = [NSMutableString string];
+    
+    // 开始
+    [bodyString appendString:[NSString stringWithFormat:@"\r\n------%@\r\n",boundary]];
+    [bodyString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@.png\"\r\n",name]];
+    [bodyString appendString:@"Content-Type: image/png\r\n\r\n"];
+    
+    // 转化为二进制数据
+    [requestMutableData appendData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    // 二进制图
+    [requestMutableData appendData:imageData];
+    //结尾
+    [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n------%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    request.HTTPBody = requestMutableData;
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForRequest = 20;
+    NSURLSession* session  = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
+    NSURLSessionDataTask *uploadtask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if (dictBlock) {
+                dictBlock(dict);
+            }
+        }
+    }];
+    
+    [uploadtask resume];
+}
+
+/*************************************utils************************************************/
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
@@ -335,24 +407,6 @@ NATIVE_MODULE(Native_media)
     return dic;
 }
 
-//- (UIImage*)parseImage:(UIImage *)image Width:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
-//    NSData *imageData;
-//    CGFloat width_height_per = image.size.width/image.size.height;
-//    CGFloat width = image.size.width;
-//    CGFloat height = image.size.height;
-//    NSString * w = [NSString stringWithFormat:@"%@",imageWidth];
-//    NSString * h = [NSString stringWithFormat:@"%@",imageHeight];
-//    if ([self getNoEmptyString:w])  width = w.floatValue;
-//    if ([self getNoEmptyString:h])  height = h.floatValue;
-//    if (![self getNoEmptyString:w]) width = height*width_height_per;
-//    if (![self getNoEmptyString:h]) height = width/width_height_per;
-//    image= [self imageWithImageSimple:image scaledToSize:CGSizeMake(width, height)];
-//
-//    NSString * quality = [NSString stringWithFormat:@"%@",imageQuality];
-//    NSString * bytes = [NSString stringWithFormat:@"%@",imageBytes];
-//    imageData = [self compressOriginalImage:image toMaxDataSizeKBytes:bytes withQuality:quality];
-//    return [UIImage imageWithData:imageData];
-//}
 
 // 图片裁剪
 - (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize{
@@ -377,7 +431,6 @@ NATIVE_MODULE(Native_media)
     }
     return NO;
 }
-
 
 // 压缩图片
 - (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(NSString*)size withQuality:(NSString *)q{
@@ -431,11 +484,8 @@ NATIVE_MODULE(Native_media)
 
 - (void)showPhotoOrCameraWarnAlert:(NSString *)message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}]];
     [alert addAction:[UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) {
             //设备系统为IOS 10.0或者以上的
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
@@ -453,14 +503,42 @@ NATIVE_MODULE(Native_media)
     return [uuid lowercaseString];
 }
 
-// 预览图片
-- (void)previewImg {
-    NSLog(@"previewImg");
+// 获取当前控制器
+- (UIViewController*)currentViewController {
+    UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController*)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController*)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        } else {
+            break;
+        }
+    }
+    return vc;
 }
 
+- (NSString *)randomString:(NSInteger)number {
+    NSString *ramdom;
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 1; i ; i ++) {
+        int a = (arc4random() % 122);
+        if (a > 96) {
+            char c = (char)a;
+            [array addObject:[NSString stringWithFormat:@"%c",c]];
+            if (array.count == number) {
+                break;
+            }
+        } else continue;
+    }
+    ramdom = [array componentsJoinedByString:@""];
+    return ramdom;
+}
 
-
- 
 
 //- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
 //    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];

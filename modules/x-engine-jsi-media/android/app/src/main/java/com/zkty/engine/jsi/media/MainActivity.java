@@ -30,11 +30,17 @@ import com.zkty.nativ.media.PreImageCallBack;
 import com.zkty.nativ.media.UpLoadImgCallback;
 import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
+import com.zkty.nativ.media.cameraImpl.UploadUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -188,10 +194,19 @@ public class MainActivity extends BaseXEngineActivity {
     }
     public void upload(View view){
         if(TextUtils.isEmpty(filePath)) return;
-        iMedia.upLoadImg(filePath, new UpLoadImgCallback() {
+        List<String> ids = new ArrayList<>();
+        for (int i = 0; i < imageDataBean.getData().size(); i++) {
+            ids.add(imageDataBean.getData().get(i).getId());
+        }
+        iMedia.upLoadImgList(UploadUtils.upLoadUrl,ids, new UpLoadImgCallback() {
+
             @Override
-            public void onUpLoadSucces(String dataStr) {
-                Log.d("Nativemedia",dataStr);
+            public void onUpLoadSucces(String status, String id, String dataStr) {
+                Map<String, String> jsonObject = new LinkedHashMap<>();
+                jsonObject.put("status", status);
+                jsonObject.put("id", id);
+                jsonObject.put("result", dataStr);
+                Log.d("Nativemediadata", GsonUtil.toJson(jsonObject));
             }
 
             @Override

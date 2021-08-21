@@ -526,15 +526,34 @@ public class Nativemedia extends NativeModule implements Imedia {
                 .show();
     }
 
+
     @Override
-    public void upLoadImg(String filePath, UpLoadImgCallback callback) {
-        UploadUtils.doUpload(UploadUtils.upLoadUrl, filePath, new FileProgressRequestBody.OnUploadListener() {
+    public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
+        if(TextUtils.isEmpty(url)){
+            url = UploadUtils.upLoadUrl;
+        }
+        upLoad(url,filePathList,0,callback);
+    }
+
+    /**
+     * 上传图片
+     * @param url
+     * @param filePathList
+     * @param index
+     * @param callback
+     */
+    private void upLoad(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
+        String imgkey = filePathList.get(index);
+        String filePath = ImageCacheManager.get(imgkey);
+        UploadUtils.doUpload(url, filePath, new FileProgressRequestBody.OnUploadListener() {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
-                callback.onUpLoadSucces(dataStr);
+                callback.onUpLoadSucces("0",imgkey,dataStr);
+                if(index < (filePathList.size() - 1)){
+                    upLoad(url,filePathList,index + 1,callback);
+                }
             }
-
             @Override
             public void onUploading(int progress) {
                 Log.d("Nativemedia",progress + "%");
@@ -548,9 +567,5 @@ public class Nativemedia extends NativeModule implements Imedia {
         });
     }
 
-    @Override
-    public void upLoadImgList(List<String> filePathList, UpLoadImgCallback callback) {
-
-    }
 
 }

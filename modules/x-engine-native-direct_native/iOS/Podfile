@@ -16,6 +16,7 @@ def shared_pods
   pod 'x-engine-native-direct_omp', :path => X_ENGINE_MODULES+'/x-engine-native-direct_omp'
 
   pod 'x-engine-native-jsi', :path => X_ENGINE_MODULES+'/x-engine-native-jsi'
+  pod 'x-engine-native-tabbar', :path => X_ENGINE_MODULES+'/x-engine-native-tabbar'
 
 end
   target 'sit' do

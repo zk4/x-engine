@@ -434,4 +434,23 @@ public class ClientManager {
         Log.d("d", "压缩后的大小=" + b.length);
         return Base64.encodeToString(b, Base64.DEFAULT);
     }
+
+    //把bitmap转换成String
+    public static String bitmapCompressToString(String filePath) {
+        Bitmap bm = openImage(filePath);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        //1.5M的压缩后在100Kb以内，测试得值,压缩后的大小=94486字节,压缩后的大小=74473字节
+        //这里的JPEG 如果换成PNG，那么压缩的就有600kB这样
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        Log.d("bitmapCompressToString", "压缩后的大小=" +  baos.toByteArray().length);
+        int options = 100;
+        while ( baos.toByteArray().length / 1024 / 1024 > 6) {    //循环判断如果压缩后图片是否大于6m,大于继续压缩
+            baos.reset();//重置baos即清空baos
+            options -= 10;//每次都减少10
+            bm.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            Log.d("bitmapCompressToString", options +" 压缩后的大小= " + baos.toByteArray().length);
+        }
+
+        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+    }
 }

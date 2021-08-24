@@ -53,7 +53,9 @@ public class ImagePreViewAdapter extends PagerAdapter {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnClickListener.onClick(v);
+                    if(mOnClickListener != null){
+                        mOnClickListener.onClick(v);
+                    }
                 }
             });
         } catch (Exception e) {

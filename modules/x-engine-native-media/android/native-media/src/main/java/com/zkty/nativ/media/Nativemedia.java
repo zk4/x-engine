@@ -455,7 +455,7 @@ public class Nativemedia extends NativeModule implements Imedia {
             cameraRetDTO.setHeight(String.valueOf(options.outHeight));
 
 //            if (cameraDTO.isIsbase64()) {
-////                String ret = ClientManager.imageToBase64(paths.get(j));
+//                String ret = ClientManager.imageToBase64(paths.get(j));
 //                String ret = ClientManager.bitmapToString(paths.get(j));
 //                if (ret != null) {
 //                    cameraRetDTO.setRetImage(ret);
@@ -468,7 +468,7 @@ public class Nativemedia extends NativeModule implements Imedia {
 //                cameraRetDTO.setThumbnail(ClientManager.bmpToBase64(imageThumbnail));
 //                cameraRetDTO.setType("image/jpeg");
 //            }
-
+//            String ret = ClientManager.bitmapCompressToString(paths.get(j));
             String key = UUID.randomUUID().toString();
             ImageCacheManager.put(key,paths.get(j));
             cameraRetDTO.setId(key);

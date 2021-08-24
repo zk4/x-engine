@@ -135,6 +135,7 @@ function uploadImage(arg: {
 function test_placeholder() {}
 function test_placeholder() {}
 function test_placeholder() {}
+
 // 打开picker选择相机和相册
 function test_openImagePicker() {
   xengine.api(
@@ -150,14 +151,16 @@ function test_openImagePicker() {
       isbase64: true,
     },
     (res) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
+      document.getElementById("debug_text").innerText = JSON.stringify(obj);
       let obj = JSON.parse(res);
+      alert(obj)
       for (let photo of obj.data) {
         const image = document.createElement("img");
-        if (!photo.width || !photo.height) {
-          alert("要返回width,与height", photo);
-        }
+        // if (!photo.width || !photo.height) {
+        //   alert("要返回width,与height", photo);
+        // }
         // image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        // 放入缩略图
         image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
         image.style.cssText =
           "width:100px; height:100px; margin-right:10px; border-radius:10px;";

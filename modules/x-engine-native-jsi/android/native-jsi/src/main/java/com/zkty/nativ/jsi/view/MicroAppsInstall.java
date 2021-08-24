@@ -3,12 +3,16 @@ package com.zkty.nativ.jsi.view;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.JsonReader;
 import android.util.Log;
 
 
+import com.alibaba.fastjson.JSON;
+import com.zkty.nativ.jsi.MicroAppJsonDto;
 import com.zkty.nativ.jsi.utils.FileUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -86,7 +90,6 @@ public class MicroAppsInstall {
 
     }
 
-
     /**
      * 预安装asset中的微应用
      */
@@ -99,37 +102,21 @@ public class MicroAppsInstall {
                     @Override
                     public void run() {
                         ArrayList<String> apps = new ArrayList<>();
-                        for (int i = 0; i < files.length; i++) {                //过滤所有符合微应用命名的zip安装包
-                            String item = files[i];
-                            String[] segment = item.split("\\.");
-                            if (segment != null && segment.length > 3 && segment[segment.length - 1].equals("zip") && isNumeric(segment[segment.length - 2])) {
-                                apps.add(item);
+                        for (String file : files) {                //不再校验微应用名字,只要压缩包默认都需要解压判断
+                            if (file.endsWith(".zip")) {
+                                apps.add(file);
                             }
                         }
                         if (apps.size() > 0) {
                             Log.d(TAG, "recognize apps count: " + apps.size());
-                            for (int i = 0; i < apps.size(); i++) {                                 //安装微应用
-                                String[] segment = apps.get(i).split("\\.");
-
-                                StringBuilder stringBuilder = new StringBuilder();
-                                for (int j = 0; j < segment.length - 2; j++) {
-                                    stringBuilder.append(segment[j]);
-                                    if (j != segment.length - 3) {
-                                        stringBuilder.append(".");
-                                    }
-                                }
-                                String app = stringBuilder.toString();
-
-
+                            for (String app : apps) {                                 //安装微应用
                                 try {
-                                    long version = Long.parseLong(segment[segment.length - 2]);
-                                    if (!isMicroAppExit(app, version)) {
-                                        Log.d(TAG, "start install apps:" + app + "." + version);
-                                        InputStream inputStream = context.getAssets().open(ASSET_APPS_DIR + "/" + apps.get(i));
-                                        installFormAsset(inputStream, app, version);
-                                    }
-                                } catch (IOException e) {
+                                    Log.d(TAG, "start install apps:" + app);
+                                    InputStream inputStream = context.getAssets().open(ASSET_APPS_DIR + "/" + app);
+                                    installFormAsset(inputStream, app);
 
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
                             }
                         } else {
@@ -141,7 +128,7 @@ public class MicroAppsInstall {
                 Log.d(TAG, "microApps dir is empty!");
             }
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -218,28 +205,6 @@ public class MicroAppsInstall {
         return exit;
     }
 
-    /**
-     * 检查指定版本的应用是否存在
-     *
-     * @param microAppId
-     * @param version
-     * @return
-     */
-    private boolean isMicroAppExit(String microAppId, long version) {
-        boolean exit = false;
-
-        File webAppDir = getWebAppRoot();
-        if (webAppDir.exists()) {                                           //微应用集合目录是否存在
-            File appDir = new File(webAppDir, microAppId);
-            if (appDir.exists()) {                                          //指定的微应用是否存在
-                File appVersionDir = new File(appDir, microAppId + "." + version);
-                if (appVersionDir.exists()) {                                   //指定的微应用版本包是否存在
-                    exit = true;
-                }
-            }
-        }
-        return exit;
-    }
 
     /**
      * 获取应用的本地路径
@@ -251,136 +216,12 @@ public class MicroAppsInstall {
         String path = null;
         if (!TextUtils.isEmpty(microAppId)) {
             if (isMicroAppExit(microAppId)) {
-                path = getMicroAppPath(microAppId, getHighMicroAppVersionCode(microAppId));
+                path = String.format("%s%s%s", getWebAppRoot().getPath(), File.separator, microAppId);
             }
         }
         return path;
     }
 
-    /**
-     * 获取应用的本地路径
-     *
-     * @param microAppId
-     * @param version
-     * @return
-     */
-    public String getMicroAppPath(String microAppId, long version) {
-        String path = null;
-        if (isMicroAppExit(microAppId)) {
-            if (isMicroAppExit(microAppId, version)) {
-                File appVersionPath = new File(new File(getWebAppRoot(), microAppId), microAppId + "." + version);
-                path = appVersionPath.getPath();
-            }
-        }
-
-        return path;
-    }
-
-    /**
-     * 列出指定应用的所有本地版本
-     *
-     * @param microAppId
-     * @return
-     */
-    private ArrayList<String> listMicroAppVersions(String microAppId) {
-        ArrayList<String> apps = new ArrayList<>();
-        if (isMicroAppExit(microAppId)) {
-            File dir = new File(getWebAppRoot(), microAppId);
-            String[] appdirs = dir.list(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return new File(dir, name).isDirectory();       //过滤目录
-                }
-            });
-            if (appdirs != null) {
-                for (int i = 0; i < appdirs.length; i++) {
-                    apps.add(appdirs[i]);
-                }
-            }
-        }
-        return apps;
-    }
-
-    /**
-     * 列出所有本地的应用
-     *
-     * @return
-     */
-    private ArrayList<String> listAllMicroApps() {
-        ArrayList<String> apps = new ArrayList<>();
-        File dir = getWebAppRoot();
-        if (dir.exists()) {
-            String[] dirs = dir.list(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return new File(dir, name).isDirectory();       //过滤目录
-                }
-            });
-            if (dirs != null) {
-                for (int i = 0; i < dirs.length; i++) {
-                    String file = dirs[i];
-                    apps.add(file);
-                }
-            }
-        }
-        return apps;
-    }
-
-
-    /**
-     * 获取本地保存的指定微应用的最高版本
-     *
-     * @param microAppId
-     * @return -1:不存在
-     */
-    private int getHighMicroAppVersionCode(String microAppId) {
-        int code = -1;
-        ArrayList<String> list = listMicroAppVersions(microAppId);
-        if (list != null && list.size() > 0) {
-            ArrayList<Integer> codes = new ArrayList<>();
-            for (int i = 0; i < list.size(); i++) {
-                int version = Integer.parseInt(list.get(i).replace(microAppId + ".", ""));
-                codes.add(version);
-            }
-            code = Collections.max(codes, new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    if (o1 > o2) {
-                        return 1;
-                    } else if (o1 < o2) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-                }
-            });
-        }
-
-        return code;
-    }
-
-    /**
-     * 保存应用到应用目录
-     *
-     * @param inputStream
-     * @param microAppId
-     * @param version
-     * @return
-     */
-    private String saveApp(InputStream inputStream, String microAppId, long version) {
-        String path = null;
-        if (inputStream != null && !TextUtils.isEmpty(microAppId)) {
-            if (getWebAppRoot() != null) {
-                File temp = new File(getWebAppRoot(), microAppId);
-                if (!temp.exists()) {
-                    temp.mkdirs();
-                }
-                String name = microAppId + "." + version + ".zip";
-                path = FileUtils.saveFile(inputStream, temp, name);
-            }
-        }
-        return path;
-    }
 
     /**
      * 安装微应用
@@ -391,10 +232,31 @@ public class MicroAppsInstall {
     private boolean installApp(File file) {
         boolean success = false;
         if (FileUtils.doUnzip(file.getParentFile(), file.getName())) {
-            if (FileUtils.deleteFile(file)) {
-                success = true;
+            String path = file.getPath();
+            if (path.endsWith(".zip")) path = path.substring(0, path.length() - 4);
+            File micro = new File(path);
+            if (micro.exists()) {
+                File microJson = new File(micro, "microapp.json");
+                File sitemapJson = new File(micro, "sitemap.json");
+                if (microJson.exists() && sitemapJson.exists()) {
+                    try {
+                        MicroAppJsonDto microAppJsonDto = JSON.parseObject(new FileInputStream(microJson), MicroAppJsonDto.class);
+                        if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
+                            micro.renameTo(new File(getWebAppRoot().getPath() + File.separator + microAppJsonDto.getId()));
+                            success = true;
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (micro.exists())
+                    micro.delete();
             }
+
+
         }
+        FileUtils.deleteFile(file);
         return success;
     }
 
@@ -412,29 +274,19 @@ public class MicroAppsInstall {
 
     /**
      * @param asset
-     * @param microAppId
-     * @param version
+     * @param fileName
      * @return
      */
-    private boolean installFormAsset(InputStream asset, String microAppId, long version) {
+    private boolean installFormAsset(InputStream asset, String fileName) {
         boolean success = false;
 
-        String app = microAppId;
-        String zip = microAppId + "." + version + ".zip";
-
-        File appDir = new File(getWebAppRoot(), app);
-        if (!appDir.exists()) {
-            appDir.mkdirs();
-        }
-        String path = FileUtils.saveFile(asset, appDir, zip);                 //先保存到应用目录中
-
+        String path = FileUtils.saveFile(asset, getWebAppRoot(), fileName);                 //先保存到应用目录中
         if (!TextUtils.isEmpty(path)) {
-            Log.d(TAG, "save path:" + path);
-            success = installApp(new File(appDir, zip));         //再安装应用
+            success = installApp(new File(getWebAppRoot(), fileName));         //再安装应用
             if (success) {
-                Log.d(TAG, "install success :" + app);
+                Log.d(TAG, "install success :" + fileName);
             } else {
-                Log.d(TAG, "install failed :" + app);
+                Log.d(TAG, "install failed :" + fileName);
             }
         } else {
             Log.d(TAG, "save path null");

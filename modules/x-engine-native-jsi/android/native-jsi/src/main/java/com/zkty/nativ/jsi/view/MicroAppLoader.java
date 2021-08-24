@@ -26,32 +26,21 @@ public class MicroAppLoader {
     }
 
 
-    public String getMicroAppHost(String host, long version) {
+    public String getMicroAppUrl(String host) {
         this.currentMicroAppId = host;
-        currentRootPath = MicroAppsInstall.sharedInstance().getMicroAppPath(host, version);
+        currentRootPath = MicroAppsInstall.sharedInstance().getMicroAppPath(host);
         currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
         return currentIndexPath;
     }
 
     public String getMicroAppHostFormAssets(String host) {
         this.currentMicroAppId = host;
-        currentRootPath = String.format(Locale.ENGLISH, "/android_asset/moduleApps/%s", host);
+        currentRootPath = MicroAppsInstall.sharedInstance().getMicroAppPath(host);
         currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
         return currentIndexPath;
     }
 
-
-    /**
-     * @param microAppId 微应用id
-     * @param version    指定版本号
-     * @return 指定版本微应用
-     */
-    public String getMicroAppByMicroAppIdAndVersion(String microAppId, long version) {
-        this.currentMicroAppId = microAppId;
-        currentRootPath = MicroAppsInstall.sharedInstance().getMicroAppPath(microAppId, version);
-        currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
-        return currentIndexPath;
-    }
+    
 
 
     public String getCurrentIndexPath() {

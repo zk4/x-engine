@@ -227,12 +227,9 @@ public class XEngineWebView extends DWebView {
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-                Log.d(TAG, "request url= " + s);
-
                 return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
                         interceptRequest(s));
             }
-
 
 
             @Override
@@ -240,7 +237,6 @@ public class XEngineWebView extends DWebView {
                 return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
                         interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
             }
-
 
         });
     }
@@ -444,7 +440,7 @@ public class XEngineWebView extends DWebView {
         StringBuilder sb = new StringBuilder();
         String hostR = model.host;
         if ("file:".equals(model.protocol)) {
-            hostR = MicroAppLoader.sharedInstance().getMicroAppHostFormAssets(model.host);
+            hostR = MicroAppLoader.sharedInstance().getMicroAppUrl(model.host);
         }
 
 

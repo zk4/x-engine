@@ -129,6 +129,64 @@ public class FileUtils {
     }
 
     /**
+     * @param source
+     * @param out
+     */
+    public static boolean moveFile(File source, File out) {
+        boolean success = false;
+        if (source.exists()) {
+            if (!out.exists()) {
+                out.mkdirs();
+            }
+
+            
+            FileInputStream fileInputStream = null;
+            FileOutputStream fileOutputStream = null;
+
+            if (out.exists()) {
+                out.delete();
+            }
+
+            try {
+                if (out.createNewFile()) {
+                    fileInputStream = new FileInputStream(source);
+                    fileOutputStream = new FileOutputStream(out);
+                    byte[] temp = new byte[1024];
+                    int count = 0;
+
+                    while (true) {
+                        count = fileInputStream.read(temp);
+                        if (count == -1) {
+                            break;
+                        } else {
+                            fileOutputStream.write(temp, 0, count);
+                        }
+                    }
+                    if (source.delete()) {             //删除原文件
+                        success = true;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fileInputStream != null) {
+                        fileInputStream.close();
+                    }
+                    if (fileOutputStream != null) {
+                        fileOutputStream.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            Log.d(TAG, "dir or filename is invalid!");
+        }
+        return success;
+    }
+
+    /**
      * @param dir
      * @param name
      * @param out

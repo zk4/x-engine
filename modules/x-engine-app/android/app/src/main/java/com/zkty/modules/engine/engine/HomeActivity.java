@@ -19,6 +19,7 @@ import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.DensityUtils;
 import com.zkty.nativ.direct.DirectManager;
 import com.zkty.nativ.jsi.view.MicroAppLoader;
+import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.scan.activity.ScanActivity;
@@ -42,8 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void nextPage(View view) {
-        String protocol = "http:";
-        String host = "uat.c.gomedc.com/gm-appc-home/";
+        String protocol = "file:";
+        String host = "com.gm.microapp.home";
 //          protocol = "http:";
 //         host = "10.2.128.89:8080";
 
@@ -75,14 +76,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void nextAct(View view) {
-        startActivity(new Intent(this, HomeActivity.class));
+        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
     }
 
     public void finishAct(View view) {
-
-        int num = Integer.parseInt(et_num.getText().toString());
-        ActivityStackManager.getInstance().finishActivities(num);
-        startActivity(new Intent(this, HomeActivity.class));
+        DataCleanManager.clearIntExtCache(this);
 
     }
 }

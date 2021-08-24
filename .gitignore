@@ -34,3 +34,6 @@ microApps/navigator-demo/node_modules
 node_modules
 app/App-B-Android/app/bugly
 app/App-B-Android/app/uat
+
+modules/.serverless/*
+

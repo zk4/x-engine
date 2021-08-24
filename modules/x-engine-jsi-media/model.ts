@@ -98,18 +98,6 @@ function saveImageToPhotoAlbum(arg: {
 }
 
 
-/*
-{
-  // 状态 0 上传成功
-  //     -1 上传失败
-  status: 0,
-  // 上传的图片id
-  id: 1，
-  // 上传成功结果
-  result:Map<string,string>
-}
-*/
-
 // 上传图片
 @async
 function uploadImage(arg: {

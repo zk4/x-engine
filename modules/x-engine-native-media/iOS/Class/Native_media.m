@@ -332,13 +332,21 @@ NATIVE_MODULE(Native_media)
 }
 
 /*************************************上传图片************************************************/
-- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList success:(void (^)(NSDictionary *))success {
-    for (NSDictionary *imgDict in imageList) {
-        UIImage *image = imgDict[@"image"];
-        NSData *data = [[NSData alloc] initWithBase64EncodedString:[self UIImageToBase64Str:image] options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        NSString *testUrl = @"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload";
-        [self uploadImageWithUrl:testUrl data:data name:@"test" completion:^(NSDictionary *dict) {
-            success(dict);
+- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary * dict))result {
+    NSString *requestURL = url != nil ? url : @"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload";
+    NSMutableArray *dataArr = [NSMutableArray new];
+    
+    [imageList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *url = [self getLocalPhotoPath:obj];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        [dataArr addObject:data];
+    }];
+    
+    for (NSData *data in dataArr) {
+//        UIImage *image = imgDict[@"image"];
+//        NSData *data = [[NSData alloc] initWithBase64EncodedString:[self UIImageToBase64Str:image] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        [self uploadImageWithUrl:requestURL data:data name:@"test" completion:^(NSDictionary *dict) {
+            result(dict);
         }];
     }
 }
@@ -382,6 +390,8 @@ NATIVE_MODULE(Native_media)
             if (dictBlock) {
                 dictBlock(dict);
             }
+        } else {
+            NSLog(@"%@", error);
         }
     }];
     

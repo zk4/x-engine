@@ -1,6 +1,8 @@
 package com.zkty.jsi;
 
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.alibaba.fastjson.JSON;
@@ -19,6 +21,9 @@ import com.zkty.nativ.media.UpLoadImgCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class JSI_media extends xengine_jsi_media {
     private Nativemedia iMedia;
@@ -75,12 +80,13 @@ public class JSI_media extends xengine_jsi_media {
             @Override
             public void onUpLoadSucces(String status, String id, String dataStr) {
                 try {
-                    JSONObject jsonObject = new JSONObject();
+                    Map<String, String> jsonObject = new LinkedHashMap<>();
                     jsonObject.put("status", status);
                     jsonObject.put("id", id);
                     jsonObject.put("result", dataStr);
+                    Log.d("Nativemedia",JSON.toJSONString(jsonObject));
                     handler.complete(JSON.toJSONString(jsonObject));
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

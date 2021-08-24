@@ -514,25 +514,30 @@ public class Nativemedia extends NativeModule implements Imedia {
 
     @Override
     public void preImage(List<String> imageDataList, int index, PreImageCallBack callBack) {
-        ConfigManager.getInstance().setImageLoader(new GlideLoader());
+        XEngineApplication.getCurrentActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ConfigManager.getInstance().setImageLoader(new GlideLoader());
+                for (int i = 0; i < imageDataList.size(); i++) {
+                    imageDataList.set(i,ImageCacheManager.get(imageDataList.get(i)));
+                }
+                new FullImageDialog(XEngineApplication.getCurrentActivity())
+                        .Builder()
+                        .setImageUrl(imageDataList, index)
+                        .setOnDismissListener(callBack)
+                        .show();
+            }
+        });
 
-        for (int i = 0; i < imageDataList.size(); i++) {
-            imageDataList.set(i,ImageCacheManager.get(imageDataList.get(i)));
-        }
-        new FullImageDialog(XEngineApplication.getCurrentActivity())
-                .Builder()
-                .setImageUrl(imageDataList, index)
-                .setOnDismissListener(callBack)
-                .show();
     }
 
 
     @Override
     public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
         if(TextUtils.isEmpty(url)){
-            url = UploadUtils.upLoadUrl;
+            url = UploadUtils.upLoadBase64Url;
         }
-        upLoad(url,filePathList,0,callback);
+        upLoadFile(url,filePathList,0,callback);
     }
 
     /**
@@ -542,16 +547,16 @@ public class Nativemedia extends NativeModule implements Imedia {
      * @param index
      * @param callback
      */
-    private void upLoad(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
+    private void upLoadFile(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
         String imgkey = filePathList.get(index);
         String filePath = ImageCacheManager.get(imgkey);
-        UploadUtils.doUpload(url, filePath, new FileProgressRequestBody.OnUploadListener() {
+        UploadUtils.doUploadFile(url, filePath, new FileProgressRequestBody.OnUploadListener() {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
                 callback.onUpLoadSucces("0",imgkey,dataStr);
                 if(index < (filePathList.size() - 1)){
-                    upLoad(url,filePathList,index + 1,callback);
+                    upLoadFile(url,filePathList,index + 1,callback);
                 }
             }
             @Override
@@ -567,5 +572,38 @@ public class Nativemedia extends NativeModule implements Imedia {
         });
     }
 
+    /**
+     * 上传图片
+     * @param url
+     * @param filePathList
+     * @param index
+     * @param callback
+     */
+    private void upLoadBase64(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
+        String imgkey = filePathList.get(index);
+        String filePath = ImageCacheManager.get(imgkey);
+        File file = new File(filePath);
+        String base64Str = ClientManager.bitmapCompressToString(filePath);
+        UploadUtils.doUploadBase64(url,file.getName(), base64Str, new FileProgressRequestBody.OnUploadListener() {
+            @Override
+            public void onUploadSuccess(String dataStr) {
+                if(callback == null)return;
+                callback.onUpLoadSucces("0",imgkey,dataStr);
+                if(index < (filePathList.size() - 1)){
+                    upLoadBase64(url,filePathList,index + 1,callback);
+                }
+            }
+            @Override
+            public void onUploading(int progress) {
+                Log.d("Nativemedia",progress + "%");
+            }
+
+            @Override
+            public void onUploadFailed() {
+                if(callback == null)return;
+                callback.onUploadFail();
+            }
+        });
+    }
 
 }

@@ -39,13 +39,13 @@
 
 @protocol iMedia <NSObject>
 @required
-- (void)openImagePicker:(MediaParamsDTO*) dto success:(void (^)(NSString* result))success;
+- (void)openImagePicker:(MediaParamsDTO*) dto result:(void (^)(NSDictionary* dict))result;
 
-- (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto saveSuccess:(void (^)(NSString* result))success;
+- (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto result:(void (^)(NSString* result))result;
 
 - (void)previewImg:(MediaPhotoListDTO * )dto;
 
-- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary* result))result;
+- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary *dict))result;
 @end
 
 #endif

@@ -29,8 +29,10 @@ JSI_MODULE(JSI_media)
     model.isbase64 = dto.isbase64;
     model.args = dto.args;
     model.photoCount = dto.photoCount;
-    [self.media openImagePicker:model success:^(NSString *result) {
-        completionHandler(result, TRUE);
+    [self.media openImagePicker:model result:^(NSDictionary *result) {
+        NSData *data = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        completionHandler(dataString, TRUE);
     }];
 }
 
@@ -38,8 +40,8 @@ JSI_MODULE(JSI_media)
     MediaSaveImageDTO *model = [MediaSaveImageDTO new];
     model.type = dto.type;
     model.imageData = dto.imageData;
-    [self.media saveImageToPhotoAlbum:model saveSuccess:^(NSString *result) {
-        completionHandler(result, TRUE);
+    [self.media saveImageToPhotoAlbum:model result:^(NSString *resultStr) {
+        completionHandler(resultStr, TRUE);
     }];
 }
 

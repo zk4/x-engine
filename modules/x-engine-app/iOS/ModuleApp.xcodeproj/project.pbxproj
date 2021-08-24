@@ -22,7 +22,6 @@
 		581FB072262578AA00ED7DCC /* MergeDictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 581FB071262578AA00ED7DCC /* MergeDictTest.m */; };
 		58209E612624A54A00843DB5 /* Url2direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58209E602624A54A00843DB5 /* Url2direct.m */; };
 		5859B57426BA60D600BBF580 /* to-find.0 in Resources */ = {isa = PBXBuildFile; fileRef = 5859B57326BA60D600BBF580 /* to-find.0 */; };
-		5859B57C26BA654200BBF580 /* todo.0 in Resources */ = {isa = PBXBuildFile; fileRef = 5859B57B26BA654200BBF580 /* todo.0 */; };
 		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
 		58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BBF26138BEF0082ADC3 /* OneViewController.m */; };
 		58D20BCF26138BEF0082ADC3 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC126138BEF0082ADC3 /* ThreeViewController.m */; };
@@ -32,6 +31,7 @@
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
 		58D20BD426138BEF0082ADC3 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
+		A42DA51326D4D33C00DF0527 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A42DA51226D4D33C00DF0527 /* TZImagePickerController.bundle */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -80,7 +80,6 @@
 		581FB071262578AA00ED7DCC /* MergeDictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeDictTest.m; sourceTree = "<group>"; };
 		58209E602624A54A00843DB5 /* Url2direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Url2direct.m; sourceTree = "<group>"; };
 		5859B57326BA60D600BBF580 /* to-find.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "to-find.0"; path = "../../../../microApps/to-find.0"; sourceTree = "<group>"; };
-		5859B57B26BA654200BBF580 /* todo.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = todo.0; path = ../../../../microApps/todo.0; sourceTree = "<group>"; };
 		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
 		58D20BBF26138BEF0082ADC3 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		58D20BC026138BEF0082ADC3 /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		58F6FD542620D46B00A482EF /* RegexTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A42DA51226D4D33C00DF0527 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
 		A4E9638026B9462F00C6A0DD /* microapp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = microapp; sourceTree = "<group>"; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +141,7 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
+				A42DA51226D4D33C00DF0527 /* TZImagePickerController.bundle */,
 				A4E9638026B9462F00C6A0DD /* microapp */,
 				00DFC6E224C84000006A53EE /* ModuleApp */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
@@ -261,7 +262,6 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				5859B57B26BA654200BBF580 /* todo.0 */,
 				5859B57326BA60D600BBF580 /* to-find.0 */,
 				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
 			);
@@ -377,7 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
-				5859B57C26BA654200BBF580 /* todo.0 in Resources */,
+				A42DA51326D4D33C00DF0527 /* TZImagePickerController.bundle in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 				5859B57426BA60D600BBF580 /* to-find.0 in Resources */,
 			);

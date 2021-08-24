@@ -21,7 +21,7 @@
 //    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8080" params:@{@"hideNavbar":@TRUE}];
 
 //    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.187:8081/" params:@{@"hideNavbar":@TRUE}];
-    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8081/" params:@{@"hideNavbar":@TRUE}];
+    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.78:8080/" params:@{@"hideNavbar":@TRUE}];
 }
 @end
 

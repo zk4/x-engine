@@ -2,8 +2,12 @@ package com.zkty.nativ.media.cameraImpl;
 
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Callback;
@@ -21,9 +25,14 @@ import okhttp3.ResponseBody;
  * dexc :
  */
 public class UploadUtils {
-    public static final String upLoadUrl = "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload";
 
-    public static void doUpload(String url,String filePath, FileProgressRequestBody.OnUploadListener fileUploadObserver) {
+    /**
+     * 上传文件
+     * @param url
+     * @param filePath
+     * @param fileUploadObserver
+     */
+    public static void doUploadFile(String url,String filePath, FileProgressRequestBody.OnUploadListener fileUploadObserver) {
         try {
             // 构造上传请求，模拟表单提交文件
             File file = new File(filePath);
@@ -42,6 +51,56 @@ public class UploadUtils {
                     .post(requestBody)
                     .build();
 
+            OkHttpClient httpClient = new OkHttpClient.Builder()
+                    //time out
+                    .connectTimeout(100, TimeUnit.SECONDS)
+                    .readTimeout(100, TimeUnit.SECONDS)
+                    .writeTimeout(100, TimeUnit.SECONDS)
+                    //失败重连
+                    .retryOnConnectionFailure(true)
+                    .build();
+            httpClient.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(okhttp3.Call call, IOException e) {
+                    // 下载失败
+                    fileUploadObserver.onUploadFailed();
+                }
+
+                @Override
+                public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                    ResponseBody body = response.body();
+                    byte[] bytes = body.bytes();
+                    //解密字符串
+                    String dataStr = new String(bytes, "UTF-8");
+                    fileUploadObserver.onUploadSuccess(dataStr);
+                }
+            });
+        } catch (Exception ioe) {
+        }
+    }
+
+
+    /**
+     * 上传banse64文件
+     * @param url
+     * @param fileName
+     * @param base64
+     * @param fileUploadObserver
+     */
+    public static void doUploadBase64(String url,String fileName,String base64, FileProgressRequestBody.OnUploadListener fileUploadObserver) {
+        try {
+            // 构造上传请求，模拟表单提交文件
+
+            Map<String,Object> jsonBody = new HashMap<>();
+            jsonBody.put("fileName",fileName);
+            jsonBody.put("base64Str",base64);
+            String s = JSON.toJSONString(jsonBody);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), JSON.toJSONString(jsonBody));
+            // 创建Request对象
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     //time out
                     .connectTimeout(100, TimeUnit.SECONDS)

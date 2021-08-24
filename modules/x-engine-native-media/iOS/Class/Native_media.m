@@ -134,6 +134,7 @@ NATIVE_MODULE(Native_media)
     imagePickerVc.allowPickingVideo = NO;
     
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        NSLog(@"%@", assets);
         NSArray *array = [self getImageInfoWithAssets:assets];
         [self H5CallBack:array];
     }];
@@ -153,13 +154,21 @@ NATIVE_MODULE(Native_media)
         NSMutableDictionary *toH5Dict = [NSMutableDictionary dictionary];
         NSMutableDictionary *toPlistDict = [NSMutableDictionary dictionary];
         
+        NSString *uuid = [self uuidString];
+        // 将图片保存到cache方便之后的获取
+        NSString *path = [NSString stringWithFormat:@"%@/%@.png", kCachePath, uuid];
+        
+        // 原图
+        [[PHImageManager defaultManager] requestImageForAsset:assets[i] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            [UIImagePNGRepresentation(result) writeToFile:path atomically:YES];
+        }];
+        
+        // 缩略图
         [[PHImageManager defaultManager] requestImageForAsset:assets[i] targetSize:CGSizeMake(200, 200) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            
-            NSString *uuid = [self uuidString];
             NSString *type = @"image/png";
             NSString *base64Str = [self UIImageToBase64Str:result];
             NSString *localIdentifier = asset.localIdentifier;
-            
+        
             // 返给h5的值
             [toH5Dict setObject:uuid forKey:@"id"];
             [toH5Dict setObject:type forKey:@"type"];
@@ -185,24 +194,23 @@ NATIVE_MODULE(Native_media)
     __weak typeof(self) weakself = self;
     NSMutableArray *tempSaveArr = [NSMutableArray array];
     [picker dismissViewControllerAnimated:YES completion:^{
-        
         UIImage *image = [UIImage new];
+        NSString *type = @"image/png";
+        NSString *uuid = [self uuidString];
+        NSString *path = [NSString stringWithFormat:@"%@/%@.png", kCachePath, uuid];
         
         // 如果拍照后需要编辑照片从UIImagePickerControllerEditedImage获取图片
         // 如果拍照后不需要编辑照片从UIImagePickerControllerOriginalImage获取图片
         if(weakself.allowsEditing){
             image = [info objectForKey:UIImagePickerControllerEditedImage];
+            // 移动图到cache文件夹中
+            [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
         } else {
             image = [info objectForKey:UIImagePickerControllerOriginalImage];
+            // 移动图到cache文件夹中
+            [UIImageJPEGRepresentation(image, 1) writeToFile:path atomically:YES];
         }
         weakself.photoImage = image;
-        
-        // 移动图到cache文件夹中
-        NSString *uuid = [self uuidString];
-        NSString *type = @"image/png";
-        NSString *path = [NSString stringWithFormat:@"%@/%@.png", kCachePath, uuid];
-        NSString *base64Str = [self UIImageToBase64Str:[self imageWithImageSimple:image scaledToSize:CGSizeMake(200, 200)]];
-        [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
         
         // 写入plist的值
         NSMutableDictionary *toPlistDict = [NSMutableDictionary dictionary];
@@ -211,6 +219,7 @@ NATIVE_MODULE(Native_media)
         [toPlistDict setObject:path forKey:@"path"];
         
         // 返给h5的值
+        NSString *base64Str = [self UIImageToBase64Str:[self imageWithImageSimple:image scaledToSize:CGSizeMake(200, 200)]];
         NSMutableDictionary *toH5Dict = [NSMutableDictionary dictionary];
         [toH5Dict setObject:uuid forKey:@"id"];
         [toH5Dict setObject:type forKey:@"type"];
@@ -299,62 +308,27 @@ NATIVE_MODULE(Native_media)
     }
 }
 
-
-//index : 0
-//imgList: [
-//          "5b559945-36af-42b8-96aa-d7ada02c273e",
-//          "c25367a6-b19d-481c-922c-1c67f02f978c",
-//          "8fb64e6c-9a35-41ab-afe0-2df463d71845",
-//          "deea946b-3741-409d-b2e2-55ee9a225c6d",
-//          "7800ee48-3ebe-4f3a-aa51-2807b160a40d",
-//          "1769344e-859c-421e-b9d1-aba60953748c",
-//          "b78c8b24-8d4b-44c7-97ac-0bd0ef4f3e4a",
-//          "b1f2790e-22e0-42dc-8160-564f9ade7bf0",
-//          "c7b36bef-a1fb-4f7e-9687-36e568d154f9",
-//          "308e58db-1484-4bb5-b95f-34fff17ab80c",
-//          "ee571969-fd9d-4454-9dab-8fb0982a4777",
-//          "bbe86cb4-3b0b-4dde-99fc-3a288b69e1b8"
-//]
 /*************************************预览图片************************************************/
 - (void)previewImg:(MediaPhotoListDTO *)dto {
-    NSMutableArray *photos = [NSMutableArray new];
+    NSMutableArray *photoPathArr = [NSMutableArray new];
     [dto.imgList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"%@", obj);
-        [self getLocalImgPath:obj];
-        
-//        GKPhoto *photo = [[GKPhoto alloc] init];
-//        photo.url = [NSURL URLWithString:obj];
-//        [photos addObject:photo];
+        [photoPathArr insertObject:[self getLocalPhotoPath:obj] atIndex:idx];
     }];
-
-//    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:dto.index];
-//    browser.showStyle = GKPhotoBrowserShowStyleNone;
-//    [browser showFromVC:[self currentViewController]];
+    NSMutableArray *photos = [NSMutableArray array];
+    [photoPathArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        GKPhoto *photo = [[GKPhoto alloc] init];
+        photo.url = [NSURL URLWithString:obj];
+        [photos insertObject:photo atIndex:idx];
+    }];
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:dto.index];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:[self currentViewController]];
 }
 
-- (NSString *)getLocalImgPath:(NSString *)id {
-    
-    for(NSDictionary *dict in _saveCacheDataArray){
-        NSLog(@"%@", dict);
-    }
-    
-    
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:kSaveDataCachePath]) {
-//        // 存在不做任何操作
-//        _saveCacheDataArray = [NSMutableArray arrayWithContentsOfFile:kSaveDataCachePath];
-//    }
-//    NSLog(@"%@", _saveCacheDataArray);
-//    [_saveCacheDataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSLog(@"%@", obj);
-//    }]
-//    NSLog(@"%@", _saveCacheDataArray);
-    
-//    [_saveCacheDataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSDictionary *dict = [NSDictionary dictionary];
-//        NSLog(@"%@", dict[@"id"]);
-//        NSLog(@"%@", dict[@"path"]);
-//    }];
-    return @"ok";
+// 获取cache中缓存的图片地址
+- (NSString *)getLocalPhotoPath:(NSString *)uuid {
+    NSString *localPath = [NSString stringWithFormat:@"file://%@/%@.png", kCachePath,uuid];
+    return localPath;
 }
 
 /*************************************上传图片************************************************/

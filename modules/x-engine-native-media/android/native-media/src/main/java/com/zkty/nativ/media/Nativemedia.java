@@ -535,7 +535,8 @@ public class Nativemedia extends NativeModule implements Imedia {
     @Override
     public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
         if(TextUtils.isEmpty(url)){
-            url = UploadUtils.upLoadBase64Url;
+            callback.onUpLoadSucces("2","","url 空");
+            return;
         }
         upLoadFile(url,filePathList,0,callback);
     }

@@ -25,8 +25,6 @@ import okhttp3.ResponseBody;
  * dexc :
  */
 public class UploadUtils {
-    public static final String upLoadFileUrl = "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload";
-    public static final String upLoadBase64Url = "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload/base64";
 
     /**
      * 上传文件
@@ -100,7 +98,7 @@ public class UploadUtils {
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), JSON.toJSONString(jsonBody));
             // 创建Request对象
             Request request = new Request.Builder()
-                    .url(UploadUtils.upLoadBase64Url)
+                    .url(url)
                     .post(requestBody)
                     .build();
             OkHttpClient httpClient = new OkHttpClient.Builder()

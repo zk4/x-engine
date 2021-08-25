@@ -25,7 +25,6 @@ import androidx.core.content.FileProvider;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.tencent.mmkv.MMKV;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ImageUtils;
@@ -34,7 +33,6 @@ import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
-import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 import com.zkty.nativ.media.cameraImpl.FileProgressRequestBody;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
 import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
@@ -43,6 +41,8 @@ import com.zkty.nativ.media.cameraImpl.UploadUtils;
 import com.zkty.nativ.media.cameraImpl.dialog.FullImageDialog;
 import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
+
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -535,7 +535,10 @@ public class Nativemedia extends NativeModule implements Imedia {
     @Override
     public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
         if(TextUtils.isEmpty(url)){
-            callback.onUpLoadSucces("2","","url 空");
+            HashMap<String, Object> result = new HashMap<>();
+            result.put("code","-1");
+            result.put("msg","url不能为空");
+            callback.onUpLoadSucces("-1","",JSON.toJSONString(result));
             return;
         }
         upLoadFile(url,filePathList,0,callback);
@@ -555,9 +558,18 @@ public class Nativemedia extends NativeModule implements Imedia {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
-                callback.onUpLoadSucces("0",imgkey,dataStr);
-                if(index < (filePathList.size() - 1)){
-                    upLoadFile(url,filePathList,index + 1,callback);
+                try {
+                    org.json.JSONObject obj = new org.json.JSONObject(dataStr);
+                    if (obj.getInt("code") == 0) {
+                        callback.onUpLoadSucces("0", imgkey, dataStr);
+                    } else {
+                        callback.onUpLoadSucces("-1", imgkey, obj.getString("message"));
+                    }
+                    if (index < (filePathList.size() - 1)) {
+                        upLoadBase64(url, filePathList, index + 1, callback);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
             @Override
@@ -568,7 +580,10 @@ public class Nativemedia extends NativeModule implements Imedia {
             @Override
             public void onUploadFailed() {
                 if(callback == null)return;
-                callback.onUploadFail();
+                HashMap<String, Object> result = new HashMap<>();
+                result.put("code","-1");
+                result.put("msg","上传失败");
+                callback.onUpLoadSucces("-1",imgkey,JSON.toJSONString(result));
             }
         });
     }
@@ -589,9 +604,18 @@ public class Nativemedia extends NativeModule implements Imedia {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
-                callback.onUpLoadSucces("0",imgkey,dataStr);
-                if(index < (filePathList.size() - 1)){
-                    upLoadBase64(url,filePathList,index + 1,callback);
+                try {
+                    org.json.JSONObject obj = new org.json.JSONObject(dataStr);
+                    if (obj.getInt("code") == 0) {
+                        callback.onUpLoadSucces("0", imgkey, dataStr);
+                    } else {
+                        callback.onUpLoadSucces("-1", imgkey, obj.getString("message"));
+                    }
+                    if (index < (filePathList.size() - 1)) {
+                        upLoadBase64(url, filePathList, index + 1, callback);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
             @Override
@@ -602,7 +626,10 @@ public class Nativemedia extends NativeModule implements Imedia {
             @Override
             public void onUploadFailed() {
                 if(callback == null)return;
-                callback.onUploadFail();
+                HashMap<String, Object> result = new HashMap<>();
+                result.put("code","-1");
+                result.put("msg","上传失败");
+                callback.onUpLoadSucces("-1",imgkey,JSON.toJSONString(result));
             }
         });
     }

@@ -25,19 +25,21 @@ import androidx.core.content.FileProvider;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.XEngineProvider;
+import com.zkty.nativ.gmupload.Igmupload;
+import com.zkty.nativ.gmupload.Nativegmupload;
+import com.zkty.nativ.gmupload.OnUploadListener;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
-import com.zkty.nativ.media.cameraImpl.FileProgressRequestBody;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
 import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
-import com.zkty.nativ.media.cameraImpl.UploadUtils;
 import com.zkty.nativ.media.cameraImpl.dialog.FullImageDialog;
 import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
@@ -531,7 +533,7 @@ public class Nativemedia extends NativeModule implements Imedia {
 
     }
 
-
+    Nativegmupload igmupload = null;
     @Override
     public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
         if(TextUtils.isEmpty(url)){
@@ -541,6 +543,20 @@ public class Nativemedia extends NativeModule implements Imedia {
             callback.onUpLoadSucces("-1","",JSON.toJSONString(result),true);
             return;
         }
+
+
+        NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(Igmupload.class);
+        if (module instanceof Nativegmupload)
+            igmupload = (Nativegmupload) module;
+
+        if(igmupload == null){
+            HashMap<String, Object> result = new HashMap<>();
+            result.put("code","-1");
+            result.put("msg","暂无引用上传模块");
+            callback.onUpLoadSucces("-1","",JSON.toJSONString(result),true);
+            return;
+        }
+
         upLoadFile(url,filePathList,0,callback);
     }
 
@@ -555,7 +571,8 @@ public class Nativemedia extends NativeModule implements Imedia {
         String imgkey = filePathList.get(index);
         String filePath = ImageCacheManager.get(imgkey);
         boolean falg = index == (filePathList.size() - 1);
-        UploadUtils.doUploadFile(url, filePath, new FileProgressRequestBody.OnUploadListener() {
+
+        igmupload.doUploadFile(url, filePath, new OnUploadListener() {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
@@ -574,6 +591,7 @@ public class Nativemedia extends NativeModule implements Imedia {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onUploading(int progress) {
                 Log.d("Nativemedia",progress + "%");

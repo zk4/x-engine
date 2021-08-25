@@ -1,4 +1,4 @@
-package com.zkty.nativ.media.cameraImpl;
+package com.zkty.nativ.gmupload;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,28 +18,6 @@ import okio.Sink;
  */
 public class FileProgressRequestBody extends RequestBody {
 
-    /**
-     * @author : MaJi
-     * @time : (5/26/21)
-     * dexc :
-     */
-    public interface OnUploadListener {
-        /**
-         * 下载成功
-         */
-        void onUploadSuccess(String dataStr);
-
-        /**
-         * @param progress
-         * 下载进度
-         */
-        void onUploading(int progress);
-
-        /**
-         * 下载失败
-         */
-        void onUploadFailed();
-    }
     private RequestBody mRequestBody;
     private OnUploadListener fileUploadObserver;
 

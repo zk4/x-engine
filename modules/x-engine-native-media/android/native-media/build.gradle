@@ -47,4 +47,5 @@ dependencies {
     implementation project(':native-core')
     implementation project(':native-jsi')
     implementation project(':native-ui')
+    implementation project(':native-gmupload')
 }

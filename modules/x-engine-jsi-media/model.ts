@@ -18,21 +18,20 @@ const conf = {
 function previewImg(arg: {
   // 索引
   index: int;
-  // 图片数组
-  imgList: Array;
-}) {
-  xengine.api("com.zkty.jsi.media", "previewImg", {
-    // 索引
-    index: 0,
-    // 图片数组
-    imgList: [
-      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
-      "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-      "https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-      "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-    ],
-  });
-}
+  // 图片数组, 多张用逗号分隔
+  imgList: Array<string>;
+});
+
+// 保存到相册
+// 返回值: 0 保存成功
+//       -1 保存失败
+@async
+function saveImageToPhotoAlbum(arg: {
+  //url或base64
+  type: string;
+  // 图片数据
+  imageData: string;
+}): {status: int};
 
 // 调用相机
 @async
@@ -74,29 +73,6 @@ function openImagePicker(arg: {
   );
 }
 
-// 保存到相册
-@async
-function saveImageToPhotoAlbum(arg: {
-  //url或base64
-  type: string;
-  // 图片数据
-  imageData: string;
-}): string {
-  // demo code
-  xengine.api(
-    "com.zkty.jsi.media",
-    "saveImageToPhotoAlbum",
-    {
-      type: "url",
-      imageData:
-        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
-    },
-    (res) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
-    }
-  );
-}
-
 // 上传图片
 @async
 function uploadImage(arg: {
@@ -126,38 +102,22 @@ function test_placeholder() {}
 function test_placeholder() {}
 function test_placeholder() {}
 
-// 打开picker选择相机和相册
-function test_openImagePicker() {
-  xengine.api(
-    "com.zkty.jsi.media",
-    "openImagePicker",
-    {
-      allowsEditing: true,
-      savePhotosAlbum: false,
-      cameraFlashMode: -1,
-      cameraDevice: "back",
-      photoCount: 5,
-      args: { bytes: "100" },
-      isbase64: true,
-    },
-    (res) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(obj);
-      let obj = JSON.parse(res);
-      alert(obj);
-      for (let photo of obj.data) {
-        const image = document.createElement("img");
-        // if (!photo.width || !photo.height) {
-        //   alert("要返回width,与height", photo);
-        // }
-        // image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
-        // 放入缩略图
-        image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
-        image.style.cssText =
-          "width:100px; height:100px; margin-right:10px; border-radius:10px;";
-        document.body.appendChild(image);
-      }
-    }
-  );
+// 预览图片
+function test_previewImg(arg: {
+  // 索引
+  index: int;
+  // 图片数组
+  imgList: Array<string>;
+}) {
+  xengine.api("com.zkty.jsi.media", "previewImg", {
+    // 索引
+    index: 0,
+    // 图片数组
+    imgList: [
+      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
+      "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+    ],
+  });
 }
 
 // 保存图片至相册
@@ -176,24 +136,38 @@ function test_saveImageToPhotoAlbum() {
   );
 }
 
-// 预览图片
-function test_previewImg(arg: {
-  // 索引
-  index: int;
-  // 图片数组
-  imgList: Array;
-}) {
-  xengine.api("com.zkty.jsi.media", "previewImg", {
-    // 索引
-    index: 0,
-    // 图片数组
-    imgList: [
-      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631950978&t=f96881f8b3efe3f4bffe9877ab942199",
-      "https://upload-images.jianshu.io/upload_images/5809200-7fe8c323e533f656.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-      "https://upload-images.jianshu.io/upload_images/5809200-736bc3917fe92142.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-      "https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-    ],
-  });
+// 打开picker选择相机和相册
+function test_openImagePicker() {
+  xengine.api(
+    "com.zkty.jsi.media",
+    "openImagePicker",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
+      let obj = JSON.parse(res);
+      alert(obj);
+      for (let photo of obj.data) {
+        const image = document.createElement("img");
+        // if (!photo.width || !photo.height) {
+        //   alert("要返回width,与height", photo);
+        // }
+        // image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        // 放入缩略图
+        image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
+        image.style.cssText =
+          "width:100px; height:100px; margin-right:10px; border-radius:10px;";
+        document.body.appendChild(image);
+      }
+    }
+  );
 }
 
 // 上传图片
@@ -201,8 +175,8 @@ function test_previewImg(arg: {
 function test_uploadImage(arg: {
   // 请求的url
   url: string;
-  // 拍照或者选择相册后返回id
-  ids: Array;
+  // 拍照或者选择相册后返回id, 多张用逗号分隔
+  ids: Array<string>;
   // 请求header
   header: Map<string, string>;
 }): string {

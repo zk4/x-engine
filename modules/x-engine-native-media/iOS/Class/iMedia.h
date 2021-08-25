@@ -41,7 +41,7 @@
 @required
 - (void)openImagePicker:(MediaParamsDTO*) dto result:(void (^)(NSDictionary* dict))result;
 
-- (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto result:(void (^)(NSString* result))result;
+- (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto result:(void (^)(int result))result;
 
 - (void)previewImg:(MediaPhotoListDTO * )dto;
 

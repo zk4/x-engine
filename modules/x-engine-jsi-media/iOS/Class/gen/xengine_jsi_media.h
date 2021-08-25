@@ -7,17 +7,30 @@
 #import "JSONModel.h"
 
 @protocol _previewImg0_DTO;
-@protocol _openImagePicker0_DTO;
 @protocol _saveImageToPhotoAlbum0_DTO;
+@protocol _saveImageToPhotoAlbum1_DTO;
+@protocol _openImagePicker0_DTO;
 @protocol _uploadImage0_DTO;
 @class _previewImg0_DTO;
-@class _openImagePicker0_DTO;
 @class _saveImageToPhotoAlbum0_DTO;
+@class _saveImageToPhotoAlbum1_DTO;
+@class _openImagePicker0_DTO;
 @class _uploadImage0_DTO;
 
 @interface _previewImg0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger index;
-   	@property(nonatomic,strong) NSArray* imgList;
+   	@property(nonatomic,strong) NSArray<NSString*>* imgList;
+@end
+
+
+@interface _saveImageToPhotoAlbum0_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger status;
+@end
+
+
+@interface _saveImageToPhotoAlbum1_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,copy) NSString* imageData;
 @end
 
 
@@ -29,12 +42,6 @@
    	@property(nonatomic,assign) BOOL isbase64;
    	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
    	@property(nonatomic,assign) NSInteger photoCount;
-@end
-
-
-@interface _saveImageToPhotoAlbum0_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,copy) NSString* imageData;
 @end
 
 
@@ -51,10 +58,10 @@
     - (void) _previewImg:(_previewImg0_DTO*)dto;
 
    @required 
-     - (void) _openImagePicker:(_openImagePicker0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO*) dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO* result,BOOL complete)) completionHandler;
 
    @required 
-     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+     - (void) _openImagePicker:(_openImagePicker0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
    @required 
      - (void) _uploadImage:(_uploadImage0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;

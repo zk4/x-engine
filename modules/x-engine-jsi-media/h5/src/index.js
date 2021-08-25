@@ -28,7 +28,7 @@ function osCheck() {
     "decorators": []
   },
   {
-    "name": "test_openImagePicker",
+    "name": "test_previewImg",
     "default_args": {},
     "decorators": []
   },
@@ -38,7 +38,7 @@ function osCheck() {
     "decorators": []
   },
   {
-    "name": "test_previewImg",
+    "name": "test_openImagePicker",
     "default_args": {},
     "decorators": []
   },

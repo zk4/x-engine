@@ -22,7 +22,7 @@ typedef void (^UploadImageCallBack)(NSDictionary *);
 #define kCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 
 // 保存上传数据plist的路径
-#define kSaveDataCachePath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"saveUploadTempData.plist"]
+//#define kSaveDataCachePath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"saveUploadTempData.plist"]
 
 @interface Native_media()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate, NSURLSessionDelegate>
 @property(nonatomic,assign) BOOL allowsEditing;
@@ -134,7 +134,6 @@ NATIVE_MODULE(Native_media)
     imagePickerVc.allowPickingVideo = NO;
     
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-        NSLog(@"%@", assets);
         NSArray *array = [self getImageInfoWithAssets:assets];
         [self H5CallBack:array];
     }];
@@ -152,7 +151,7 @@ NATIVE_MODULE(Native_media)
     for (NSInteger i=0; i<assets.count; i++) {
         PHAsset *asset = assets[i];
         NSMutableDictionary *toH5Dict = [NSMutableDictionary dictionary];
-        NSMutableDictionary *toPlistDict = [NSMutableDictionary dictionary];
+        NSMutableDictionary *toMemoryDict = [NSMutableDictionary dictionary];
         
         NSString *uuid = [self uuidString];
         // 将图片保存到cache方便之后的获取
@@ -174,15 +173,15 @@ NATIVE_MODULE(Native_media)
             [toH5Dict setObject:type forKey:@"type"];
             [toH5Dict setObject:base64Str forKey:@"thumbnail"];
             
-            // 写入plist的值
-            [toPlistDict setObject:uuid forKey:@"id"];
-            [toPlistDict setObject:type forKey:@"type"];
-            [toPlistDict setObject:localIdentifier forKey:@"path"];
+            // 存内存的数据
+            [toMemoryDict setObject:uuid forKey:@"id"];
+            [toMemoryDict setObject:type forKey:@"type"];
+            [toMemoryDict setObject:localIdentifier forKey:@"path"];
         }];
         // 返h5
         [tempSaveArr insertObject:toH5Dict atIndex:i];
-        // 往plist加数据
-        [_saveCacheDataArray addObject:toPlistDict];
+        // 存内存
+        [_saveCacheDataArray addObject:toMemoryDict];
     }
     // 写plist
 //    [_saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
@@ -212,11 +211,11 @@ NATIVE_MODULE(Native_media)
         }
         weakself.photoImage = image;
         
-        // 写入plist的值
-        NSMutableDictionary *toPlistDict = [NSMutableDictionary dictionary];
-        [toPlistDict setObject:uuid forKey:@"id"];
-        [toPlistDict setObject:type forKey:@"type"];
-        [toPlistDict setObject:path forKey:@"path"];
+        // 存入内存的值
+        NSMutableDictionary *toMemoryDict = [NSMutableDictionary dictionary];
+        [toMemoryDict setObject:uuid forKey:@"id"];
+        [toMemoryDict setObject:type forKey:@"type"];
+        [toMemoryDict setObject:path forKey:@"path"];
         
         // 返给h5的值
         NSString *base64Str = [self UIImageToBase64Str:[self imageWithImageSimple:image scaledToSize:CGSizeMake(200, 200)]];
@@ -225,7 +224,8 @@ NATIVE_MODULE(Native_media)
         [toH5Dict setObject:type forKey:@"type"];
         [toH5Dict setObject:base64Str forKey:@"thumbnail"];
         
-        [self.saveCacheDataArray addObject:toPlistDict];
+        // 存入内存
+        [self.saveCacheDataArray addObject:toMemoryDict];
         
 //        self.saveCacheDataArray = [NSMutableArray arrayWithContentsOfFile:kSaveDataCachePath];
 //        [self.saveCacheDataArray insertObject:toPlistDict atIndex:0];
@@ -341,17 +341,16 @@ NATIVE_MODULE(Native_media)
         result(dict);
     } else {
         requestURL = url;
-        
         NSMutableArray *dataArr = [NSMutableArray new];
-        
         [imageList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *url = [self getLocalPhotoPath:obj];
-            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-            [dataArr addObject:data];
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            dict[@"data"] = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self getLocalPhotoPath:obj]]];
+            dict[@"name"] = obj;
+            [dataArr addObject:dict];
         }];
-        
-        for (NSData *data in dataArr) {
-            [self sendRequestWithUrl:requestURL header:header data:data name:@"test" completion:^(NSDictionary *dict) {
+        for (NSDictionary *dict in dataArr) {
+            
+            [self sendRequestWithUrl:requestURL header:header data:dict[@"data"] name:dict[@"name"] completion:^(NSDictionary *dict) {
                 result(dict);
             }];
         }
@@ -362,7 +361,8 @@ NATIVE_MODULE(Native_media)
 - (void)sendRequestWithUrl:(NSString *)URLString header:(NSDictionary *)header data:(NSData *)imageData name:(NSString*)name completion:(void (^)(NSDictionary *))dictBlock {
     NSString *boundary = [NSString stringWithFormat:@"iOSFormBoundary%@", [self randomString:16]];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
-//    request setValue:(nullable NSString *) forHTTPHeaderField:(nonnull NSString *)
+    NSMutableDictionary *headerDict = [self makeSafeHeaders:header];
+    request.allHTTPHeaderFields = headerDict;
     [request setHTTPMethod:@"POST"];
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
     [request setTimeoutInterval:20];
@@ -384,21 +384,23 @@ NATIVE_MODULE(Native_media)
     [requestMutableData appendData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
     // 二进制图
     [requestMutableData appendData:imageData];
-    //结尾
+    // 结尾
     [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n------%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     request.HTTPBody = requestMutableData;
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    sessionConfig.timeoutIntervalForRequest = 20;
+    sessionConfig.timeoutIntervalForRequest = 2;
     NSURLSession* session  = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
     NSURLSessionDataTask *uploadtask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            NSLog(@"dict ==> %@", dict);
             if (dictBlock) {
                 dictBlock(dict);
             }
         } else {
+            NSLog(@"error ==> %@", error);
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             dict[@"code"] = @"-1";
             dict[@"msg"] = error;
@@ -412,6 +414,22 @@ NATIVE_MODULE(Native_media)
 }
 
 /*************************************utils************************************************/
+- (NSMutableDictionary *)makeSafeHeaders:(NSDictionary *)headers {
+    NSMutableDictionary* safeHeaders = [NSMutableDictionary new];
+    // 遍历 headers,将数字转为字符
+    for (NSString *headerField in headers.keyEnumerator) {
+        
+        if([headers[headerField] isKindOfClass:NSNumber.class]){
+            NSString* newVal = [NSString stringWithFormat:@"%@",headers[headerField]];
+            [safeHeaders setValue:newVal forKey:headerField];
+            
+        } else {
+            [safeHeaders setValue:headers[headerField] forKey:headerField];
+        }
+    }
+    return safeHeaders;
+}
+
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;

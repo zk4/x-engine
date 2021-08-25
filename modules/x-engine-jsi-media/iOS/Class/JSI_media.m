@@ -57,7 +57,7 @@ JSI_MODULE(JSI_media)
     self.upload_done_counts = dto.ids.count;
     [self.media uploadImageWithUrl:dto.url WithHeader:dto.header WithImageList:dto.ids result:^(NSDictionary *result) {
         self.upload_done_counts--;
-        if(self.upload_done_counts>0){
+        if(self.upload_done_counts > 0){
             completionHandler([self dictionaryToJson:result], false);
         }else{
             completionHandler([self dictionaryToJson:result], true);

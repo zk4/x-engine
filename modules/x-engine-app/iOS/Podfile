@@ -27,6 +27,8 @@ def shared_pods
   pod 'x-engine-native-toast', :path =>'../../x-engine-native-toast'
   pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
 #  pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
+
+  pod 'x-engine-native-gmupload', :path =>'../../x-engine-native-gmupload'
   
   # webcache
 #  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'

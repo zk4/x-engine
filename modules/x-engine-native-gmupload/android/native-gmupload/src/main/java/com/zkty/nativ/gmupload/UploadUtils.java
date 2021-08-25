@@ -1,6 +1,4 @@
-package com.zkty.nativ.media.cameraImpl;
-
-import android.util.Log;
+package com.zkty.nativ.gmupload;
 
 import com.alibaba.fastjson.JSON;
 
@@ -32,7 +30,7 @@ public class UploadUtils {
      * @param filePath
      * @param fileUploadObserver
      */
-    public static void doUploadFile(String url,String filePath, FileProgressRequestBody.OnUploadListener fileUploadObserver) {
+    public static void doUploadFile(String url,String filePath, OnUploadListener fileUploadObserver) {
         try {
             // 构造上传请求，模拟表单提交文件
             File file = new File(filePath);
@@ -87,7 +85,7 @@ public class UploadUtils {
      * @param base64
      * @param fileUploadObserver
      */
-    public static void doUploadBase64(String url,String fileName,String base64, FileProgressRequestBody.OnUploadListener fileUploadObserver) {
+    public static void doUploadBase64(String url,String fileName,String base64, OnUploadListener fileUploadObserver) {
         try {
             // 构造上传请求，模拟表单提交文件
 

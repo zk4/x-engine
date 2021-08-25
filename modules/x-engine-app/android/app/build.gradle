@@ -83,6 +83,8 @@ dependencies {
     implementation project(':native-geo')
     implementation project(':native-geo_gaode')
     implementation project(':native-media')
+    implementation project(':native-gmupload')
+
 
     implementation project(':jsi-direct')
     implementation project(':jsi-secret')

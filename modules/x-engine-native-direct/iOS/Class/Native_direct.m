@@ -177,16 +177,20 @@ NATIVE_MODULE(Native_direct)
             [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
             deleteHistory--;
         }
-        [navc pushViewController:container animated:YES];
-  
- 
-        HistoryModel* hm = [HistoryModel new];
-     
-        hm.fragment      = fragment;
-        hm.host          = host;
-        hm.pathname      = pathname;
-
-        [container setCurrentHistory:hm];
+        
+        if(navc){
+            [navc pushViewController:container animated:YES];
+            HistoryModel* hm = [HistoryModel new];
+            hm.fragment      = fragment;
+            hm.host          = host;
+            hm.pathname      = pathname;
+            [container setCurrentHistory:hm];
+        }else{
+            UIViewController* vc = [Unity sharedInstance].getCurrentVC;
+            [vc presentViewController:container animated:YES completion:^{
+                
+            }];
+        }
     }
 }
 

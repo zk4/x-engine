@@ -49,7 +49,7 @@ NATIVE_MODULE(Native_media)
 
 - (void)afterAllNativeModuleInited {
     _saveCacheDataArray = [NSMutableArray array];
-    self.gmUpload = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iGmupload)];
+    _gmUpload = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iGmupload)];
 }
 
 // 打开提示框
@@ -92,10 +92,7 @@ NATIVE_MODULE(Native_media)
         }];
     }];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"Cancel Action");
-    }];
-    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}];
     [alert addAction:xAction];
     [alert addAction:cancelAction];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
@@ -176,8 +173,6 @@ NATIVE_MODULE(Native_media)
         // 存内存
         [_saveCacheDataArray addObject:toMemoryDict];
     }
-    // 写plist
-//    [_saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
     return tempSaveArr;
 }
 
@@ -219,10 +214,6 @@ NATIVE_MODULE(Native_media)
         
         // 存入内存
         [self.saveCacheDataArray addObject:toMemoryDict];
-        
-//        self.saveCacheDataArray = [NSMutableArray arrayWithContentsOfFile:kSaveDataCachePath];
-//        [self.saveCacheDataArray insertObject:toPlistDict atIndex:0];
-//        [self.saveCacheDataArray writeToFile:kSaveDataCachePath atomically:YES];
         
         // 返h5
         [tempSaveArr insertObject:toH5Dict atIndex:0];
@@ -410,21 +401,6 @@ NATIVE_MODULE(Native_media)
 //}
 
 /*************************************utils************************************************/
-//- (NSMutableDictionary *)makeSafeHeaders:(NSDictionary *)headers {
-//    NSMutableDictionary* safeHeaders = [NSMutableDictionary new];
-//    // 遍历 headers,将数字转为字符
-//    for (NSString *headerField in headers.keyEnumerator) {
-//
-//        if([headers[headerField] isKindOfClass:NSNumber.class]){
-//            NSString* newVal = [NSString stringWithFormat:@"%@",headers[headerField]];
-//            [safeHeaders setValue:newVal forKey:headerField];
-//
-//        } else {
-//            [safeHeaders setValue:headers[headerField] forKey:headerField];
-//        }
-//    }
-//    return safeHeaders;
-//}
 
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
@@ -581,5 +557,22 @@ NATIVE_MODULE(Native_media)
 
 //- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
 //    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
+//}
+
+
+//- (NSMutableDictionary *)makeSafeHeaders:(NSDictionary *)headers {
+//    NSMutableDictionary* safeHeaders = [NSMutableDictionary new];
+//    // 遍历 headers,将数字转为字符
+//    for (NSString *headerField in headers.keyEnumerator) {
+//
+//        if([headers[headerField] isKindOfClass:NSNumber.class]){
+//            NSString* newVal = [NSString stringWithFormat:@"%@",headers[headerField]];
+//            [safeHeaders setValue:newVal forKey:headerField];
+//
+//        } else {
+//            [safeHeaders setValue:headers[headerField] forKey:headerField];
+//        }
+//    }
+//    return safeHeaders;
 //}
 @end

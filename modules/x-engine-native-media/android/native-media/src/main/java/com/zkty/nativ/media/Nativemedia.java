@@ -538,7 +538,7 @@ public class Nativemedia extends NativeModule implements Imedia {
             HashMap<String, Object> result = new HashMap<>();
             result.put("code","-1");
             result.put("msg","url不能为空");
-            callback.onUpLoadSucces("-1","",JSON.toJSONString(result));
+            callback.onUpLoadSucces("-1","",JSON.toJSONString(result),true);
             return;
         }
         upLoadFile(url,filePathList,0,callback);
@@ -554,19 +554,21 @@ public class Nativemedia extends NativeModule implements Imedia {
     private void upLoadFile(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
         String imgkey = filePathList.get(index);
         String filePath = ImageCacheManager.get(imgkey);
+        boolean falg = index == (filePathList.size() - 1);
         UploadUtils.doUploadFile(url, filePath, new FileProgressRequestBody.OnUploadListener() {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
                 try {
                     org.json.JSONObject obj = new org.json.JSONObject(dataStr);
+
                     if (obj.getInt("code") == 0) {
-                        callback.onUpLoadSucces("0", imgkey, dataStr);
+                        callback.onUpLoadSucces("0", imgkey, dataStr, falg);
                     } else {
-                        callback.onUpLoadSucces("-1", imgkey, obj.getString("message"));
+                        callback.onUpLoadSucces("-1", imgkey, dataStr,falg);
                     }
-                    if (index < (filePathList.size() - 1)) {
-                        upLoadBase64(url, filePathList, index + 1, callback);
+                    if (!falg) {
+                        upLoadFile(url, filePathList, index + 1, callback);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -583,53 +585,7 @@ public class Nativemedia extends NativeModule implements Imedia {
                 HashMap<String, Object> result = new HashMap<>();
                 result.put("code","-1");
                 result.put("msg","上传失败");
-                callback.onUpLoadSucces("-1",imgkey,JSON.toJSONString(result));
-            }
-        });
-    }
-
-    /**
-     * 上传图片
-     * @param url
-     * @param filePathList
-     * @param index
-     * @param callback
-     */
-    private void upLoadBase64(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
-        String imgkey = filePathList.get(index);
-        String filePath = ImageCacheManager.get(imgkey);
-        File file = new File(filePath);
-        String base64Str = ClientManager.bitmapCompressToString(filePath);
-        UploadUtils.doUploadBase64(url,file.getName(), base64Str, new FileProgressRequestBody.OnUploadListener() {
-            @Override
-            public void onUploadSuccess(String dataStr) {
-                if(callback == null)return;
-                try {
-                    org.json.JSONObject obj = new org.json.JSONObject(dataStr);
-                    if (obj.getInt("code") == 0) {
-                        callback.onUpLoadSucces("0", imgkey, dataStr);
-                    } else {
-                        callback.onUpLoadSucces("-1", imgkey, obj.getString("message"));
-                    }
-                    if (index < (filePathList.size() - 1)) {
-                        upLoadBase64(url, filePathList, index + 1, callback);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onUploading(int progress) {
-                Log.d("Nativemedia",progress + "%");
-            }
-
-            @Override
-            public void onUploadFailed() {
-                if(callback == null)return;
-                HashMap<String, Object> result = new HashMap<>();
-                result.put("code","-1");
-                result.put("msg","上传失败");
-                callback.onUpLoadSucces("-1",imgkey,JSON.toJSONString(result));
+                callback.onUpLoadSucces("-1",imgkey,JSON.toJSONString(result),false);
             }
         });
     }

@@ -78,14 +78,19 @@ public class JSI_media extends xengine_jsi_media {
 
         iMedia.upLoadImgList(dto.url, dto.ids, new UpLoadImgCallback() {
             @Override
-            public void onUpLoadSucces(String status, String id, String dataStr) {
+            public void onUpLoadSucces(String status, String id, String dataStr,boolean isCommplete) {
                 try {
                     Map<String, String> jsonObject = new LinkedHashMap<>();
                     jsonObject.put("status", status);
                     jsonObject.put("id", id);
                     jsonObject.put("result", dataStr);
-                    Log.d("Nativemedia",JSON.toJSONString(jsonObject));
-                    handler.complete(JSON.toJSONString(jsonObject));
+                    Log.d("Nativemedia",isCommplete + "   " +JSON.toJSONString(jsonObject));
+                    if(isCommplete){
+                        handler.complete(JSON.toJSONString(jsonObject));
+                    }else{
+                        handler.setProgressData(JSON.toJSONString(jsonObject));
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

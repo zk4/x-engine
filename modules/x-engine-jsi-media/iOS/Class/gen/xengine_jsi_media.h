@@ -40,6 +40,7 @@
 
 @interface _uploadImage0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* header;
    	@property(nonatomic,strong) NSArray* ids;
 @end
 

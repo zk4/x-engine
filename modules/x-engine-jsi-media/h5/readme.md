@@ -120,16 +120,7 @@ string
 
 ## uploadImage
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
-> {
-  // 状态 0 上传成功
-  //     -1 上传失败
-  status: 0,
-  // 上传的图片id
-  id: 1，
-  // 上传成功结果
-  result:Map<string,string>
-}
-*/<br>上传图片
+> 上传图片
 **demo**
 ``` js
 
@@ -138,8 +129,9 @@ string
     "com.zkty.jsi.media",
     "uploadImage",
     {
-      url:"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-      "ids":['xxxx','xxxxx','xxxx', 'xxxx']
+      url:
+        "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
+      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
     },
     (res) => {
       console.log(JSON.stringify(res));
@@ -153,6 +145,7 @@ string
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | 必填 |  | 请求的url |
+| header | Map\<string,string\> | 必填 |  | 请求header |
 | ids | Array | 必填 |  | 拍照或者选择相册后返回id |
 **返回值**
 ``` js

@@ -34,6 +34,7 @@
   
 @implementation _uploadImage0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
    	return NO;
     }
 @end
@@ -60,7 +61,6 @@
       
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];
-          return nil;
         }
 
 

@@ -97,12 +97,13 @@ function saveImageToPhotoAlbum(arg: {
   );
 }
 
-
 // 上传图片
 @async
 function uploadImage(arg: {
   // 请求的url
   url: string;
+  // 请求header
+  header: Map<string, string>;
   // 拍照或者选择相册后返回id
   ids: Array;
 }): string {
@@ -111,8 +112,9 @@ function uploadImage(arg: {
     "com.zkty.jsi.media",
     "uploadImage",
     {
-      url:"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-      "ids":['xxxx','xxxxx','xxxx', 'xxxx']
+      url:
+        "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
+      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
     },
     (res) => {
       console.log(JSON.stringify(res));
@@ -141,7 +143,7 @@ function test_openImagePicker() {
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(obj);
       let obj = JSON.parse(res);
-      alert(obj)
+      alert(obj);
       for (let photo of obj.data) {
         const image = document.createElement("img");
         // if (!photo.width || !photo.height) {
@@ -201,14 +203,17 @@ function test_uploadImage(arg: {
   url: string;
   // 拍照或者选择相册后返回id
   ids: Array;
+  // 请求header
+  header: Map<string, string>;
 }): string {
-  // demo code
   xengine.api(
     "com.zkty.jsi.media",
     "uploadImage",
     {
-      url:"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-      "ids":['xxxx','xxxxx','xxxx', 'xxxx']
+      url:
+        "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
+      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      header: {},
     },
     (res) => {
       console.log(JSON.stringify(res));

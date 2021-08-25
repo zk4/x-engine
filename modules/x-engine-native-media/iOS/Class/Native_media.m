@@ -332,29 +332,37 @@ NATIVE_MODULE(Native_media)
 }
 
 /*************************************上传图片************************************************/
-- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary * dict))result {
-    NSString *requestURL = url != nil ? url : @"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload";
-    NSMutableArray *dataArr = [NSMutableArray new];
-    
-    [imageList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *url = [self getLocalPhotoPath:obj];
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-        [dataArr addObject:data];
-    }];
-    
-    for (NSData *data in dataArr) {
-//        UIImage *image = imgDict[@"image"];
-//        NSData *data = [[NSData alloc] initWithBase64EncodedString:[self UIImageToBase64Str:image] options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        [self uploadImageWithUrl:requestURL data:data name:@"test" completion:^(NSDictionary *dict) {
-            result(dict);
+- (void)uploadImageWithUrl:(NSString *)url WithHeader:(NSDictionary *)header WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary * dict))result {
+    NSString *requestURL = nil;
+    if (url.length == 0) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"code"] = @"-1";
+        dict[@"msg"] = @"url不能为空";
+        result(dict);
+    } else {
+        requestURL = url;
+        
+        NSMutableArray *dataArr = [NSMutableArray new];
+        
+        [imageList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *url = [self getLocalPhotoPath:obj];
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+            [dataArr addObject:data];
         }];
+        
+        for (NSData *data in dataArr) {
+            [self sendRequestWithUrl:requestURL header:header data:data name:@"test" completion:^(NSDictionary *dict) {
+                result(dict);
+            }];
+        }
     }
 }
 
 // 上传请求
-- (void)uploadImageWithUrl:(NSString *)URLString data:(NSData *)imageData name:(NSString*)name completion:(void (^)(NSDictionary *))dictBlock {
+- (void)sendRequestWithUrl:(NSString *)URLString header:(NSDictionary *)header data:(NSData *)imageData name:(NSString*)name completion:(void (^)(NSDictionary *))dictBlock {
     NSString *boundary = [NSString stringWithFormat:@"iOSFormBoundary%@", [self randomString:16]];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+//    request setValue:(nullable NSString *) forHTTPHeaderField:(nonnull NSString *)
     [request setHTTPMethod:@"POST"];
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
     [request setTimeoutInterval:20];
@@ -391,7 +399,12 @@ NATIVE_MODULE(Native_media)
                 dictBlock(dict);
             }
         } else {
-            NSLog(@"%@", error);
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            dict[@"code"] = @"-1";
+            dict[@"msg"] = error;
+            if (dictBlock) {
+                dictBlock(dict);
+            }
         }
     }];
     

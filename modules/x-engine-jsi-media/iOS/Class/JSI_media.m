@@ -11,6 +11,7 @@
 
 @interface JSI_media()
 @property (nonatomic, strong) id<iMedia> media;
+@property (atomic, assign) unsigned long  upload_done_counts;
 @end
 
 @implementation JSI_media
@@ -53,8 +54,14 @@ JSI_MODULE(JSI_media)
 }
 
 - (void)_uploadImage:(_uploadImage0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-    [self.media uploadImageWithUrl:dto.url WithImageList:dto.ids result:^(NSDictionary *result) {
-        completionHandler([self dictionaryToJson:result], true);
+    self.upload_done_counts = dto.ids.count;
+    [self.media uploadImageWithUrl:dto.url WithHeader:dto.header WithImageList:dto.ids result:^(NSDictionary *result) {
+        self.upload_done_counts--;
+        if(self.upload_done_counts>0){
+            completionHandler([self dictionaryToJson:result], false);
+        }else{
+            completionHandler([self dictionaryToJson:result], true);
+        }
     }];
 }
 

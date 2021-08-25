@@ -53,6 +53,8 @@
   class _3_com_zkty_jsi_media_DTO {
     public String url;
 
+    public Map<String,String> header;
+
     public List ids;
   }
   

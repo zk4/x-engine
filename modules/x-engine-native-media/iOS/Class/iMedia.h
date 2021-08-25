@@ -45,7 +45,7 @@
 
 - (void)previewImg:(MediaPhotoListDTO * )dto;
 
-- (void)uploadImageWithUrl:(NSString *)url WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary *dict))result;
+- (void)uploadImageWithUrl:(NSString *)url WithHeader:(NSDictionary *)header WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary *dict))result;
 @end
 
 #endif

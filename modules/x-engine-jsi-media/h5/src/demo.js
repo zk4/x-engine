@@ -26,14 +26,16 @@ window.test_placeholder = () => {
       isbase64: true,
     },
     (res) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(res);
+      document.getElementById("debug_text").innerText = JSON.stringify(obj);
       let obj = JSON.parse(res);
+      alert(obj);
       for (let photo of obj.data) {
         const image = document.createElement("img");
-        if (!photo.width || !photo.height) {
-          alert("要返回width,与height", photo);
-        }
+        // if (!photo.width || !photo.height) {
+        //   alert("要返回width,与height", photo);
+        // }
         // image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        // 放入缩略图
         image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
         image.style.cssText =
           "width:100px; height:100px; margin-right:10px; border-radius:10px;";
@@ -76,13 +78,14 @@ window.test_placeholder = () => {
  document.getElementById("test_previewImg").click()
         window.test_uploadImage = () => {
 
-  // demo code
   xengine.api(
     "com.zkty.jsi.media",
     "uploadImage",
     {
-      url:"https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-      "ids":['xxxx','xxxxx','xxxx', 'xxxx']
+      url:
+        "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
+      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      header: {},
     },
     (res) => {
       console.log(JSON.stringify(res));

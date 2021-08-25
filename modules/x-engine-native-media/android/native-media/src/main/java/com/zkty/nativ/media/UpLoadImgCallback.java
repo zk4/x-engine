@@ -6,6 +6,6 @@ package com.zkty.nativ.media;
  * dexc :
  */
 public interface UpLoadImgCallback {
-    void onUpLoadSucces(String status,String id,String dataStr);
+    void onUpLoadSucces(String status,String id,String dataStr,boolean isCommplete);
     void onUploadFail();
 }

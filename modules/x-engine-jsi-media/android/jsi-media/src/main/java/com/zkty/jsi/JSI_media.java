@@ -48,8 +48,9 @@ public class JSI_media extends xengine_jsi_media {
         });
     }
 
+
     @Override
-    public void _openImagePicker(_1_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
+    public void _openImagePicker(_3_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
         CameraDTO cameraDTO = new CameraDTO();
         cameraDTO.setAllowsEditing(dto.allowsEditing);
         cameraDTO.setCameraDevice(dto.cameraDevice);
@@ -64,17 +65,19 @@ public class JSI_media extends xengine_jsi_media {
     }
 
     @Override
-    public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
+    public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, CompletionHandler<_1_com_zkty_jsi_media_DTO> handler) {
         iMedia.saveImageToAlbum(dto.imageData, dto.type, new SaveCallBack() {
             @Override
             public void saveCallBack() {
-                handler.complete("success");
+                _1_com_zkty_jsi_media_DTO com_zkty_jsi_media_dto = new _1_com_zkty_jsi_media_DTO();
+                com_zkty_jsi_media_dto.status = 0;
+                handler.complete(com_zkty_jsi_media_dto);
             }
         });
     }
 
     @Override
-    public void _uploadImage(_3_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
+    public void _uploadImage(_4_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
 
         iMedia.upLoadImgList(dto.url, dto.ids, new UpLoadImgCallback() {
             @Override

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.sensorsdata.analytics.android.sdk.SensorsDataAPI;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
@@ -54,6 +55,8 @@ public class XEngineFragment extends Fragment {
             HistoryModel historyModel = (HistoryModel) getArguments().getSerializable(ARG_PARAM_HISTORY_MODEL);
             int index = getArguments().getInt(ARG_PARAM_INDEX);
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
+            //增加神策埋点（webview初始化）
+            SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView,true);
             XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
             mRoot.addView(mWebView, 0);
 //            PermissionDto dto = MicroAppPermissionManager.sharedInstance().getPermission(mMicroAppId, "0");

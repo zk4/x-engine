@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.sensorsdata.analytics.android.sdk.SensorsDataAPI;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
@@ -111,6 +112,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         historyModel = (HistoryModel) getIntent().getSerializableExtra(HISTORYMODEL);
 
         mWebView = XWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
+        //增加神策埋点（webview初始化）
+        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView,true);
 
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 

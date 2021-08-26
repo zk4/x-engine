@@ -26,7 +26,7 @@ PODS:
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
-  - x-engine-native-store (1.0.0):
+  - x-engine-native-tabbar (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
 
@@ -37,7 +37,7 @@ DEPENDENCIES:
   - x-engine-native-direct_omp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp`)
   - x-engine-native-jsi (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi`)
   - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
-  - x-engine-native-store (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store`)
+  - x-engine-native-tabbar (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -56,8 +56,8 @@ EXTERNAL SOURCES:
     :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
     :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
-  x-engine-native-store:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store"
+  x-engine-native-tabbar:
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -67,8 +67,8 @@ SPEC CHECKSUMS:
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
-  x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
+  x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
 
-PODFILE CHECKSUM: 8ea2fafc52ef85ac943225e14c5845eb03d40b39
+PODFILE CHECKSUM: 440e243906ec1edf75deb734799d6f0950e0cb75
 
 COCOAPODS: 1.10.1

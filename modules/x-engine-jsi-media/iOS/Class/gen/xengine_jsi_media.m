@@ -14,8 +14,7 @@
 
   
 @implementation SaveAblumDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
 
@@ -27,7 +26,29 @@
 @end
 
   
+@implementation _saveImageToPhotoAlbum1_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
+  
 @implementation _openImagePicker0_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
+  
+@implementation _openImagePicker1_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   	return NO;
+    }
+@end
+
+  
+@implementation _openImagePicker2_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"allowsEditing"]) { return YES; }
    	if ([propertyName isEqualToString:@"savePhotosAlbum"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraFlashMode"]) { return YES; }
@@ -77,28 +98,28 @@
 }
     - (void) saveImageToPhotoAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _saveImageToPhotoAlbum0_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum0_DTO.class];
+          _saveImageToPhotoAlbum1_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum1_DTO.class];
           
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];
           return;
         }
 
-          [self _saveImageToPhotoAlbum:dto complete:^(SaveAblumDTO* result,  BOOL complete) {
+          [self _saveImageToPhotoAlbum:dto complete:^(_saveImageToPhotoAlbum0_DTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
   }
     - (void) openImagePicker:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _openImagePicker0_DTO* dto = [self convert:dict clazz:_openImagePicker0_DTO.class];
+          _openImagePicker2_DTO* dto = [self convert:dict clazz:_openImagePicker2_DTO.class];
           
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];
           return;
         }
 
-          [self _openImagePicker:dto complete:^(NSString* result,  BOOL complete) {
+          [self _openImagePicker:dto complete:^(_openImagePicker0_DTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

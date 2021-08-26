@@ -32,12 +32,7 @@ version: 2.8.1
 | imageData | string | 必填 |  | 图片数据 |
 **返回值**
 ``` js
-
-
-
-
-// 保存相册返回值
-interface SaveAblumDTO {
+ {
 
   // 状态码
   // status = 0  成功
@@ -53,32 +48,7 @@ interface SaveAblumDTO {
 
 ## openImagePicker
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
-> 调用相机
-**demo**
-``` js
-
-  xengine.api(
-    "com.zkty.jsi.media",
-    "openImagePicker",
-    {
-      allowsEditing: true,
-      savePhotosAlbum: false,
-      cameraFlashMode: -1,
-      cameraDevice: "back",
-      photoCount: 5,
-      args: { bytes: "100" },
-      isbase64: true,
-    },
-    (res) => {
-      let obj = JSON.parse(res);
-      for (let photo of obj.data) {
-        let base64 = "data:" + photo.type + ";base64,  " + photo.thumbnail;
-        console.log(base64);
-      }
-    }
-  );
-
-``` 
+> 打开picker选择相册或相机
 
 **参数说明**
 
@@ -93,7 +63,18 @@ interface SaveAblumDTO {
 | photoCount | int | optional |  | 图片选择张数 |
 **返回值**
 ``` js
-string
+ {
+
+  status: int;
+  data: Array<{
+
+    imgID: string;
+    type: string;
+    thumbnail: string;
+  
+}>;
+
+}
 ``` 
 
 
@@ -101,24 +82,6 @@ string
 ## uploadImage
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 上传图片
-**demo**
-``` js
-
-  // demo code
-  xengine.api(
-    "com.zkty.jsi.media",
-    "uploadImage",
-    {
-      url:
-        "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
-    },
-    (res) => {
-      console.log(JSON.stringify(res));
-    }
-  );
-
-``` 
 
 **参数说明**
 

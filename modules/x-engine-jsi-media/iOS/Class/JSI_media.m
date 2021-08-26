@@ -21,7 +21,7 @@ JSI_MODULE(JSI_media)
     self.media = XENP(iMedia);
 }
 
-- (void)_openImagePicker:(_openImagePicker0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+- (void)_openImagePicker:(_openImagePicker2_DTO *)dto complete:(void (^)(_openImagePicker0_DTO *, BOOL))completionHandler {
     MediaParamsDTO *model = [MediaParamsDTO new];
     model.allowsEditing = dto.allowsEditing;
     model.savePhotosAlbum = dto.savePhotosAlbum;
@@ -30,37 +30,33 @@ JSI_MODULE(JSI_media)
     model.isbase64 = dto.isbase64;
     model.args = dto.args;
     model.photoCount = dto.photoCount;
-    [self.media openImagePicker:model result:^(NSDictionary *result) {
-        NSData *data = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil];
-        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        completionHandler(dataString, TRUE);
+    
+    [self.media openImagePicker:model result:^(NSArray *array) {
+        _openImagePicker0_DTO *statusRet = [_openImagePicker0_DTO new];
+        statusRet.status = 0;
+        statusRet.data = [NSMutableArray<_openImagePicker1_DTO *><_openImagePicker1_DTO> new];
+        for (NSDictionary *dict in array) {
+            _openImagePicker1_DTO *contentDTO = [_openImagePicker1_DTO new];
+            contentDTO.imgID = dict[@"id"];
+            contentDTO.type = dict[@"type"];
+            contentDTO.thumbnail = dict[@"thumbnail"];
+            [statusRet.data addObject:contentDTO];
+        }
+        completionHandler(statusRet, TRUE);
     }];
 }
 
-
-- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO *)dto complete:(void (^)(SaveAblumDTO *, BOOL))completionHandler {
+- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO *)dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO *, BOOL))completionHandler {
     MediaSaveImageDTO *model = [MediaSaveImageDTO new];
     model.type = dto.type;
     model.imageData = dto.imageData;
     [self.media saveImageToPhotoAlbum:model result:^(NSMutableDictionary *dict) {
-        SaveAblumDTO *dto = [SaveAblumDTO new];
-        dto.status = [dict[@"status"] intValue];
-        dto.msg = dict[@"msg"];
-        completionHandler(dto, TRUE);
+        _saveImageToPhotoAlbum0_DTO *ret = [_saveImageToPhotoAlbum0_DTO new];
+        ret.status = [dict[@"status"] intValue];
+        ret.msg = dict[@"msg"];
+        completionHandler(ret, TRUE);
     }];
 }
-
-
-//- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO *)dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO*, BOOL))completionHandler {
-//    MediaSaveImageDTO *model = [MediaSaveImageDTO new];
-//    model.type = dto.type;
-//    model.imageData = dto.imageData;
-//    [self.media saveImageToPhotoAlbum:model result:^(int result) {
-//        _saveImageToPhotoAlbum0_DTO *dto = [_saveImageToPhotoAlbum0_DTO new];
-//        dto.status = result;
-//        completionHandler(dto, TRUE);
-//    }];
-//}
 
 - (void)_previewImg:(_previewImg0_DTO *)dto {
     MediaPhotoListDTO *model = [MediaPhotoListDTO new];
@@ -80,8 +76,6 @@ JSI_MODULE(JSI_media)
         }
     }];
 }
-
-
 
 - (NSString*)dictionaryToJson:(NSDictionary *)dic {
     NSError *parseError = nil;

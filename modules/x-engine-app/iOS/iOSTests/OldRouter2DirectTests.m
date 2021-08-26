@@ -7,9 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <x-engine-jsi-legacy/JSIOldRouterModule.h>
-
-
 
 @interface OldRouter2DirectTests : XCTestCase
 

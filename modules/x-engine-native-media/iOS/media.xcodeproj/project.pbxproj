@@ -45,7 +45,6 @@
 		A4A722CC26CF7C2600366595 /* GKPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A722BE26CF7C2600366595 /* GKPanGestureRecognizer.m */; };
 		A4A722CD26CF7C2600366595 /* GKSDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A722C026CF7C2600366595 /* GKSDWebImageManager.m */; };
 		A4A722CF26CF7C2600366595 /* GKPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4A722C526CF7C2600366595 /* GKPhotoBrowser.bundle */; };
-		A4AF1AAA26CE3A750012A190 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4AF1AA926CE3A750012A190 /* TZImagePickerController.bundle */; };
 		A4D7312726CD282E00DAFBF8 /* ZKTY_TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D7310926CD282E00DAFBF8 /* ZKTY_TZPhotoPickerController.m */; };
 		A4D7312826CD282E00DAFBF8 /* ZKTY_NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D7310A26CD282E00DAFBF8 /* ZKTY_NSBundle+TZImagePicker.m */; };
 		A4D7312926CD282E00DAFBF8 /* ZKTY_TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D7310D26CD282E00DAFBF8 /* ZKTY_TZImageManager.m */; };
@@ -148,7 +147,6 @@
 		A4A722C026CF7C2600366595 /* GKSDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKSDWebImageManager.m; sourceTree = "<group>"; };
 		A4A722C126CF7C2600366595 /* GKSDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKSDWebImageManager.h; sourceTree = "<group>"; };
 		A4A722C526CF7C2600366595 /* GKPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GKPhotoBrowser.bundle; sourceTree = "<group>"; };
-		A4AF1AA926CE3A750012A190 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
 		A4D7310926CD282E00DAFBF8 /* ZKTY_TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTY_TZPhotoPickerController.m; sourceTree = "<group>"; };
 		A4D7310A26CD282E00DAFBF8 /* ZKTY_NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKTY_NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
 		A4D7310B26CD282E00DAFBF8 /* ZKTY_TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTY_TZAssetCell.h; sourceTree = "<group>"; };
@@ -404,7 +402,6 @@
 		A4D7310826CD282E00DAFBF8 /* ZKTY_TZImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
-				A4AF1AA926CE3A750012A190 /* TZImagePickerController.bundle */,
 				A4D7310926CD282E00DAFBF8 /* ZKTY_TZPhotoPickerController.m */,
 				A4D7310A26CD282E00DAFBF8 /* ZKTY_NSBundle+TZImagePicker.m */,
 				A4D7310B26CD282E00DAFBF8 /* ZKTY_TZAssetCell.h */,
@@ -601,7 +598,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
-				A4AF1AAA26CE3A750012A190 /* TZImagePickerController.bundle in Resources */,
 				A4A722CF26CF7C2600366595 /* GKPhotoBrowser.bundle in Resources */,
 				A42DA50B26D4CF6100DF0527 /* TZImagePickerController.bundle in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,

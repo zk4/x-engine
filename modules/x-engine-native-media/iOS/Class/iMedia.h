@@ -39,7 +39,7 @@
 
 @protocol iMedia <NSObject>
 @required
-- (void)openImagePicker:(MediaParamsDTO*) dto result:(void (^)(NSDictionary* dict))result;
+- (void)openImagePicker:(MediaParamsDTO*) dto result:(void (^)(NSArray* array))result;
 
 - (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto result:(void (^)(NSMutableDictionary *dict))result;
 

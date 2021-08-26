@@ -9,47 +9,71 @@
 @protocol _previewImg0_DTO;
 @protocol SaveAblumDTO;
 @protocol _saveImageToPhotoAlbum0_DTO;
+@protocol _saveImageToPhotoAlbum1_DTO;
 @protocol _openImagePicker0_DTO;
+@protocol _openImagePicker1_DTO;
+@protocol _openImagePicker2_DTO;
 @protocol _uploadImage0_DTO;
 @class _previewImg0_DTO;
 @class SaveAblumDTO;
 @class _saveImageToPhotoAlbum0_DTO;
+@class _saveImageToPhotoAlbum1_DTO;
 @class _openImagePicker0_DTO;
+@class _openImagePicker1_DTO;
+@class _openImagePicker2_DTO;
 @class _uploadImage0_DTO;
 
 @interface _previewImg0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger index;
-   	@property(nonatomic,strong) NSArray<NSString*>* imgList;
+   	@property(nonatomic,strong) NSMutableArray<NSString*>* imgList;
 @end
 
 
 @interface SaveAblumDTO: JSONModel
+  
+@end
+
+
+@interface _saveImageToPhotoAlbum0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger status;
    	@property(nonatomic,copy) NSString* msg;
 @end
 
 
-@interface _saveImageToPhotoAlbum0_DTO: JSONModel
+@interface _saveImageToPhotoAlbum1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* type;
    	@property(nonatomic,copy) NSString* imageData;
 @end
 
 
 @interface _openImagePicker0_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger status;
+   	@property(nonatomic,strong) NSMutableArray<_openImagePicker1_DTO*><_openImagePicker1_DTO>* data;
+@end
+
+
+@interface _openImagePicker1_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* imgID;
+   	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,copy) NSString* thumbnail;
+@end
+
+
+@interface _openImagePicker2_DTO: JSONModel
   	@property(nonatomic,assign) BOOL allowsEditing;
    	@property(nonatomic,assign) BOOL savePhotosAlbum;
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
    	@property(nonatomic,copy) NSString* cameraDevice;
    	@property(nonatomic,assign) BOOL isbase64;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
+   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* args;
    	@property(nonatomic,assign) NSInteger photoCount;
 @end
 
 
 @interface _uploadImage0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* header;
-   	@property(nonatomic,strong) NSArray* ids;
+   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* header;
+   	@property(nonatomic,strong) NSMutableArray* ids;
 @end
 
 
@@ -59,10 +83,10 @@
     - (void) _previewImg:(_previewImg0_DTO*)dto;
 
    @required 
-     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO*) dto complete:(void (^)(SaveAblumDTO* result,BOOL complete)) completionHandler;
+     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO*) dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO* result,BOOL complete)) completionHandler;
 
    @required 
-     - (void) _openImagePicker:(_openImagePicker0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+     - (void) _openImagePicker:(_openImagePicker2_DTO*) dto complete:(void (^)(_openImagePicker0_DTO* result,BOOL complete)) completionHandler;
 
    @required 
      - (void) _uploadImage:(_uploadImage0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;

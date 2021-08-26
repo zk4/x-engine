@@ -61,15 +61,16 @@ export default {
         },
         (res) => {
           this.contentText = res
-          let obj = JSON.parse(res)
-          for (let photo of obj.data) {
-            const image = document.createElement("img")
-            image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail
-            image.style.cssText =
-              "width:100px; height:100px; margin-left:10px; border-radius:10px;"
-            document.body.appendChild(image)
-            this.chooseImgList.push(photo.id)
-          }
+          let imgList = res.data
+          if (res.status == 0)
+            for (let img of imgList) {
+              const image = document.createElement("img")
+              image.src = "data:" + img.type + ";base64," + img.thumbnail
+              image.style.cssText =
+                "width:100px; height:100px; margin-left:10px; border-radius:10px;"
+              document.body.appendChild(image)
+              this.chooseImgList.push(img.imgID)
+            }
         }
       )
     },
@@ -127,8 +128,11 @@ export default {
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
         },
         (res) => {
-          alert(res)
-          console.log(res)
+          if (res.status == 0) {
+            this.$toast.success(res.msg)
+          } else {
+            this.$toast.error(res.msg)
+          }
         }
       )
     },

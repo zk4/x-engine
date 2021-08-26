@@ -81,10 +81,4 @@ JSI_MODULE(JSI_media)
         }
     }];
 }
-
-- (NSString*)dictionaryToJson:(NSDictionary *)dic {
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
 @end

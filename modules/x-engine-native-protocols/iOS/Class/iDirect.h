@@ -33,7 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
         pathname:(NSString*) pathname
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
-        params:(nullable NSDictionary<NSString*,id>*) params;
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect) frame;
 
 @end
 

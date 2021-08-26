@@ -55,7 +55,11 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     }
 }
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
-                    withHiddenNavBar:(BOOL)isHidden
+                withHiddenNavBar:(BOOL)isHidden {
+    return [self initWithUrl:fileUrl withHiddenNavBar:isHidden webviewFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+}
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame
 {
     self = [super init];
     if (self){
@@ -65,6 +69,8 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
+        self.webview.frame=frame;
+
         self.webcache =XENP(iWebcache);
         if(self.webcache){
             [self.webcache enableCache];
@@ -73,7 +79,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.loadUrl = fileUrl;
 //        [self.webview loadUrl:self.loadUrl];
 //        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL URLWithString:self.loadUrl]];
-        self.webview.frame = [UIScreen mainScreen].bounds;
+//        self.webview.frame = [UIScreen mainScreen].bounds;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -193,7 +199,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 }
 
 - (void)drawFrame{
-    self.webview.frame = self.view.bounds;
+//    self.webview.frame = self.view.bounds;
     self.progresslayer.frame = CGRectMake(0, self.webview.frame.origin.y, self.view.frame.size.width, 1.5);
     float height = (self.view.bounds.size.width / 375.0) * 200;
     self.imageView404.frame = CGRectMake(0, (self.view.bounds.size.height - height) * 0.5, self.view.bounds.size.width, height);

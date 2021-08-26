@@ -51,7 +51,7 @@ NATIVE_MODULE(Native_direct_microapp)
 }
 
 
-- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
  
  
     if(host && host.length>0){
@@ -71,7 +71,7 @@ NATIVE_MODULE(Native_direct_microapp)
        HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
        pathname=hm.pathname;
     }
-    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params];
+    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
     
 }
 

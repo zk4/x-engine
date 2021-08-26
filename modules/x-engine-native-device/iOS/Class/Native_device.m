@@ -42,9 +42,8 @@ NATIVE_MODULE(Native_device)
 }
 
 
-- (NSString *)getTabbarHeight {
-    NSString *heightStr = [NSString stringWithFormat:@"%.2d", [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49];
-    return heightStr;
+- (float)getTabbarHeight {
+    return  [[UIApplication sharedApplication] statusBarFrame].size.height > 20.0f ? 83.0f : 49.0f;
 }
 
 - (NSString *)callPhone:(NSString *)phoneNum {

@@ -105,10 +105,8 @@ export default {
             this.contentText = res
             if (res.code == 0) {
               this.$toast(res)
-              console.log(JSON.stringify(res))
             } else {
               this.$toast(res)
-              console.log(JSON.stringify(res))
             }
           }
         )

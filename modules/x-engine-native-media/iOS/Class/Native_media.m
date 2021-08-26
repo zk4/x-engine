@@ -317,21 +317,28 @@ NATIVE_MODULE(Native_media)
     NSString *requestURL = nil;
     if (url.length == 0) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[@"code"] = @"-1";
+        dict[@"status"] = @"-1";
         dict[@"msg"] = @"url不能为空";
+        dict[@"imgID"] = @"";
+        dict[@"data"] = [NSDictionary dictionary];
         result(dict);
     } else {
         requestURL = url;
-        NSMutableArray *dataArr = [NSMutableArray new];
+        NSMutableArray *dataArr = [NSMutableArray array];
         [imageList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             dict[@"data"] = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self getLocalPhotoPath:obj]]];
             dict[@"name"] = obj;
             [dataArr addObject:dict];
         }];
-        for (NSDictionary *dict in dataArr) {
-            [_gmUpload sendUploadRequestWithUrl:requestURL header:header imageData:dict[@"data"] imageName:dict[@"name"] completion:^(NSDictionary *dict) {
-                result(dict);
+        for (NSDictionary *uploadDict in dataArr) {
+            [_gmUpload sendUploadRequestWithUrl:requestURL header:header imageData:uploadDict[@"data"] imageName:uploadDict[@"name"] completion:^(NSDictionary *dict) {
+                NSMutableDictionary *backDict = [NSMutableDictionary dictionary];
+                backDict[@"status"] = @"0";
+                backDict[@"msg"] = @"接口发送成功";
+                backDict[@"imgID"] = uploadDict[@"name"];
+                backDict[@"data"] = dict;
+                result(backDict);
             }];
         }
     }

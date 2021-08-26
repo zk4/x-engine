@@ -78,7 +78,13 @@ function uploadImage(arg: {
   header: Map<string, string>;
   // 拍照或者选择相册后返回id
   ids: Array;
-}): string;
+}): {
+  // 0 成功  -1 失败 message
+  status: int;
+  msg: string,
+  imgID: string,
+  data: Map<string, string>
+};
 
 function test_placeholder() {}
 function test_placeholder() {}

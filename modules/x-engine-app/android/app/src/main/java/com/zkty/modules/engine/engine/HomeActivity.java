@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,12 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.zkty.modules.engine.R;
 import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.core.utils.DensityUtils;
 import com.zkty.nativ.direct.DirectManager;
-import com.zkty.nativ.jsi.view.MicroAppLoader;
 import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
-import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.scan.activity.ScanActivity;
 
 import java.util.HashMap;
@@ -80,7 +76,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void finishAct(View view) {
-        DataCleanManager.clearIntExtCache(this);
 
+        String protocol = "file:";
+        String host = "com.zkty.microapp.demo";
+//          protocol = "http:";
+//         host = "10.2.128.89:8080";
+
+
+        String pathname = "";
+        String fragment = "";
+
+
+        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, null, true);
     }
 }

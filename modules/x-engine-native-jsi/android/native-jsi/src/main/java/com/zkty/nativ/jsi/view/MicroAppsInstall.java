@@ -3,24 +3,16 @@ package com.zkty.nativ.jsi.view;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.JsonReader;
 import android.util.Log;
-
 
 import com.alibaba.fastjson.JSON;
 import com.zkty.nativ.jsi.MicroAppJsonDto;
-import com.zkty.nativ.jsi.utils.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
-import static com.zkty.nativ.core.utils.Utils.isNumeric;
+import java.util.HashMap;
+import java.util.Locale;
 
 
 /**
@@ -39,36 +31,39 @@ public class MicroAppsInstall {
 
 
     /**
-     * 微应用集合目录结构
-     * --webapp
-     * ----------{appId0}.{packageName0}    <=> microAppId(微应用0)
-     * -----------------{appId0}.{packageName0}.{version0}(微应用0版本0)
-     * -------------------------index.html
-     * --------------------------main.js
-     * --------------------------main.js.map
-     * -----------------{appId1}.{packageName1}.{version1}(微应用0版本1)
-     * -------------------------index.html
-     * -------------------------main.js
-     * -------------------------main.js.map
-     * -----------------....
-     * -----------------...
-     * ----------{appId1}.{packageName1}    <=> microAppId(微应用1)
-     * ----------------{appId1}.{packageName1}.{version0}(微应用1版本0)
-     * -------------------------index.html
-     * -------------------------main.js
-     * -------------------------main.js.map
-     * ----------------{appId1}.{packageName1}.{version1}(微应用1版本1)
-     * ------------------------index.html
-     * ------------------------main.js
-     * ------------------------main.js.map
-     * -----------------...
-     * -----------------...
-     * ---------...
-     * ---------...
+     * assets及cache中所有微应用加载地址
+     * <p>
+     * <p>
+     * <p>
+     * key:id,value:{key:version,value:path}
      */
+    private HashMap<String, HashMap<Integer, String>> microApps;
+
+    /**
+     * assets下微应用目录
+     * --assets
+     * ----moduleApps
+     * ----com.aaa.bbb.ccc
+     * ------js
+     * ------static
+     * ------index.html
+     * ------microapp.json
+     * ------sitemap.json
+     * ----com.aaa.bbb.ddd
+     **/
+
+    /**
+     * cache中
+     * 。。/files/x-engine-dir/microApps
+     * --com.aaa.bbb.ccc
+     * ----1
+     * -------{js,index.html,microapp.json,sitemap.json}
+     * ----2
+     **/
 
 
     private MicroAppsInstall() {
+        microApps = new HashMap<>();
     }
 
     public static MicroAppsInstall sharedInstance() {
@@ -85,51 +80,13 @@ public class MicroAppsInstall {
     public void init(Application context) {
         this.context = context;
         initResourceDir();
-        preInstallAssets();
-
-
+        loadAppsFormAssetsAndCache();
     }
 
-    /**
-     * 预安装asset中的微应用
-     */
-    private void preInstallAssets() {
-        try {
-            String[] files = context.getAssets().list(ASSET_APPS_DIR);
-            if (files != null && files.length > 0) {
-                Log.d(TAG, "microApps has apps, count:" + files.length);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ArrayList<String> apps = new ArrayList<>();
-                        for (String file : files) {                //不再校验微应用名字,只要压缩包默认都需要解压判断
-                            if (file.endsWith(".zip")) {
-                                apps.add(file);
-                            }
-                        }
-                        if (apps.size() > 0) {
-                            Log.d(TAG, "recognize apps count: " + apps.size());
-                            for (String app : apps) {                                 //安装微应用
-                                try {
-                                    Log.d(TAG, "start install apps:" + app);
-                                    InputStream inputStream = context.getAssets().open(ASSET_APPS_DIR + "/" + app);
-                                    installFormAsset(inputStream, app);
+    private void loadAppsFormAssetsAndCache() {
+        loadAppsFormAssets();
+        loadAppsForCache();
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        } else {
-                            Log.d(TAG, "recognize apps count: 0");
-                        }
-                    }
-                }).start();
-            } else {
-                Log.d(TAG, "microApps dir is empty!");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void initResourceDir() {
@@ -143,6 +100,81 @@ public class MicroAppsInstall {
             }
         }
     }
+
+
+    /**
+     * 预加载asset中的微应用
+     */
+    private void loadAppsFormAssets() {
+
+        try {
+            String[] files = context.getAssets().list(ASSET_APPS_DIR);
+            if (files != null && files.length > 0) {
+
+                for (String file : files) {
+                    String[] segment = file.split("\\.");
+                    if (segment != null && segment.length == 4) {
+                        //安装微应用
+                        try {
+                            Log.d(TAG, "start install apps:" + file);
+                            InputStream inputStream = context.getAssets().open(String.format("%s/%s/%s", ASSET_APPS_DIR, file, "microapp.json"));
+                            InputStream inputStream2 = context.getAssets().open(String.format("%s/%s/%s", ASSET_APPS_DIR, file, "sitemap.json"));
+                            MicroAppJsonDto microAppJsonDto = JSON.parseObject(inputStream, MicroAppJsonDto.class);
+                            if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
+                                HashMap<Integer, String> microApp = microApps.get(microAppJsonDto.getId());
+                                if (microApp == null) microApp = new HashMap<>();
+                                microApp.put(microAppJsonDto.getVersion(), String.format(Locale.ENGLISH, "/android_asset/moduleApps/%s", microAppJsonDto.getId()));
+                                microApps.put(microAppJsonDto.getId(), microApp);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    /**
+     * 预加载cache中的微应用
+     */
+    private void loadAppsForCache() {
+
+        File[] microAppList = getWebAppRoot().listFiles();
+        String[] microAppStr = getWebAppRoot().list();
+        if (microAppList != null) {
+
+            for (int i = 0; i < microAppList.length; i++) {
+                HashMap<Integer, String> map = microApps.get(microAppStr[i]);
+                File[] apps = microAppList[i].listFiles();
+                String[] appstr = microAppList[i].list();
+                if (apps != null) {
+                    for (int j = 0; j < apps.length; j++) {
+
+                        if (map == null) map = new HashMap<>();
+                        try {
+                            map.put(Integer.parseInt(appstr[j]), String.format("%s/%s/%s", getWebAppRoot().getPath(), microAppStr[i], appstr[j]));
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    microApps.put(microAppStr[i], map);
+                }
+
+            }
+
+        }
+
+    }
+
 
     /**
      * 获取资源根目录
@@ -186,27 +218,6 @@ public class MicroAppsInstall {
 
 
     /**
-     * 检查指定应用是否存在
-     *
-     * @param microAppId
-     * @return
-     */
-    private boolean isMicroAppExit(String microAppId) {
-        boolean exit = false;
-        if (!TextUtils.isEmpty(microAppId)) {
-            File webAppDir = getWebAppRoot();
-            if (webAppDir.exists()) {                                           //微应用集合目录是否存在
-                File appDir = new File(webAppDir, microAppId);
-                if (appDir.exists()) {                                          //指定的微应用是否存在
-                    exit = true;
-                }
-            }
-        }
-        return exit;
-    }
-
-
-    /**
      * 获取应用的本地路径
      *
      * @param microAppId
@@ -215,83 +226,18 @@ public class MicroAppsInstall {
     public String getMicroAppPath(String microAppId) {
         String path = null;
         if (!TextUtils.isEmpty(microAppId)) {
-            if (isMicroAppExit(microAppId)) {
-                path = String.format("%s%s%s", getWebAppRoot().getPath(), File.separator, microAppId);
+            HashMap<Integer, String> apps = microApps.get(microAppId);
+            if (apps != null) {
+                int max = 0;
+                for (Integer key : apps.keySet()) {
+                    if (key > max) max = key;
+                }
+                return apps.get(max);
             }
+
+
         }
         return path;
-    }
-
-
-    /**
-     * 安装微应用
-     *
-     * @param file
-     * @return
-     */
-    private boolean installApp(File file) {
-        boolean success = false;
-        if (FileUtils.doUnzip(file.getParentFile(), file.getName())) {
-            String path = file.getPath();
-            if (path.endsWith(".zip")) path = path.substring(0, path.length() - 4);
-            File micro = new File(path);
-            if (micro.exists()) {
-                File microJson = new File(micro, "microapp.json");
-                File sitemapJson = new File(micro, "sitemap.json");
-                if (microJson.exists() && sitemapJson.exists()) {
-                    try {
-                        MicroAppJsonDto microAppJsonDto = JSON.parseObject(new FileInputStream(microJson), MicroAppJsonDto.class);
-                        if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
-                            micro.renameTo(new File(getWebAppRoot().getPath() + File.separator + microAppJsonDto.getId()));
-                            success = true;
-                        }
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (micro.exists())
-                    micro.delete();
-            }
-
-
-        }
-        FileUtils.deleteFile(file);
-        return success;
-    }
-
-    /**
-     * 卸载指定应用
-     *
-     * @param microAppId
-     */
-    public void uninstallApp(String microAppId) {
-        File app = new File(getWebAppRoot(), microAppId);
-        if (app.exists()) {
-            FileUtils.deleteFile(app);
-        }
-    }
-
-    /**
-     * @param asset
-     * @param fileName
-     * @return
-     */
-    private boolean installFormAsset(InputStream asset, String fileName) {
-        boolean success = false;
-
-        String path = FileUtils.saveFile(asset, getWebAppRoot(), fileName);                 //先保存到应用目录中
-        if (!TextUtils.isEmpty(path)) {
-            success = installApp(new File(getWebAppRoot(), fileName));         //再安装应用
-            if (success) {
-                Log.d(TAG, "install success :" + fileName);
-            } else {
-                Log.d(TAG, "install failed :" + fileName);
-            }
-        } else {
-            Log.d(TAG, "save path null");
-        }
-        return success;
     }
 
 

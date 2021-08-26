@@ -79,15 +79,15 @@
 
     public String imgID;
 
-    public Map<String,String> data;
+    public String data;
   }
   
   class _7_com_zkty_jsi_media_DTO {
     public String url;
 
-    public Map<String,String> header;
+    public String header;
 
-    public List ids;
+    public List<String> ids;
   }
   
   interface xengine_jsi_media_protocol {

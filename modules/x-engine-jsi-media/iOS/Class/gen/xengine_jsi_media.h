@@ -70,14 +70,14 @@
   	@property(nonatomic,assign) NSInteger status;
    	@property(nonatomic,copy) NSString* msg;
    	@property(nonatomic,copy) NSString* imgID;
-   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* data;
+   	@property(nonatomic,copy) NSString* data;
 @end
 
 
 @interface _uploadImage1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
-   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* header;
-   	@property(nonatomic,strong) NSMutableArray* ids;
+   	@property(nonatomic,copy) NSString* header;
+   	@property(nonatomic,strong) NSMutableArray<NSString*>* ids;
 @end
 
 

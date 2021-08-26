@@ -77,9 +77,9 @@ function uploadImage(arg: {
   // 请求的url
   url: string;
   // 请求header
-  header: Map<string, string>;
+  header: string;
   // 拍照或者选择相册后返回id
-  ids: Array;
+  ids: Array<string>;
 }): {
   // 函数状态码
   // status = 0  成功
@@ -90,7 +90,7 @@ function uploadImage(arg: {
   // 图片id
   imgID: string;
   // 服务器返回的数据
-  data: Map<string, string>;
+  data: string;
 };
 
 function test_placeholder() {}
@@ -202,7 +202,7 @@ function test_uploadImage(arg: {
   // 拍照或者选择相册后返回id, 多张用逗号分隔
   ids: Array<string>;
   // 请求header
-  header: Map<string, string>;
+  header: string;
 }): {
   // 函数状态码
   // status = 0  成功
@@ -213,7 +213,7 @@ function test_uploadImage(arg: {
   // 图片id
   imgID: string;
   // 服务器返回的数据
-  data: Map<string, string>;
+  data: string;
 } {
   xengine.api(
     "com.zkty.jsi.media",

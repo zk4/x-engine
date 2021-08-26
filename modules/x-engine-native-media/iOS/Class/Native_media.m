@@ -316,12 +316,12 @@ NATIVE_MODULE(Native_media)
 - (void)uploadImageWithUrl:(NSString *)url WithHeader:(NSDictionary *)header WithImageList:(NSArray *)imageList result:(void (^)(NSDictionary * dict))result {
     NSString *requestURL = nil;
     if (url.length == 0) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[@"status"] = @"-1";
-        dict[@"msg"] = @"url不能为空";
-        dict[@"imgID"] = @"";
-        dict[@"data"] = [NSDictionary dictionary];
-        result(dict);
+        NSMutableDictionary *backDict = [NSMutableDictionary dictionary];
+        backDict[@"status"] = @(-1);
+        backDict[@"msg"] = @"url不能为空";
+        backDict[@"imgID"] = @"";
+        backDict[@"data"] = @"";
+        result(backDict);
     } else {
         requestURL = url;
         NSMutableArray *dataArr = [NSMutableArray array];
@@ -334,10 +334,10 @@ NATIVE_MODULE(Native_media)
         for (NSDictionary *uploadDict in dataArr) {
             [_gmUpload sendUploadRequestWithUrl:requestURL header:header imageData:uploadDict[@"data"] imageName:uploadDict[@"name"] completion:^(NSDictionary *dict) {
                 NSMutableDictionary *backDict = [NSMutableDictionary dictionary];
-                backDict[@"status"] = @"0";
+                backDict[@"status"] = @(0);
                 backDict[@"msg"] = @"接口发送成功";
                 backDict[@"imgID"] = uploadDict[@"name"];
-                backDict[@"data"] = dict;
+                backDict[@"data"] = [self dictionaryToJson:dict];
                 result(backDict);
             }];
         }
@@ -345,6 +345,12 @@ NATIVE_MODULE(Native_media)
 }
 
 /*************************************utils************************************************/
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
@@ -357,14 +363,6 @@ NATIVE_MODULE(Native_media)
     }
     return dic;
 }
-
-- (NSString*)dictionaryToJson:(NSDictionary *)dic {
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
-    
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
-
 
 // 图片裁剪
 - (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize{
@@ -431,13 +429,6 @@ NATIVE_MODULE(Native_media)
         }
     }
     return data;
-}
-
-- (NSString * )getDateFormatterString{
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYYMMddHHmmssSS"];
-    return [dateFormatter stringFromDate:currentDate];
 }
 
 - (void)showPhotoOrCameraWarnAlert:(NSString *)message{

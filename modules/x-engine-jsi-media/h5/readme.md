@@ -93,8 +93,8 @@ version: 2.8.1
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | 必填 |  | 请求的url |
-| header | Map\<string,string\> | 必填 |  | 请求header |
-| ids | Array | 必填 |  | 拍照或者选择相册后返回id |
+| header | string | 必填 |  | 请求header |
+| ids | Array\<string\> | 必填 |  | 拍照或者选择相册后返回id |
 **返回值**
 ``` js
  {
@@ -108,8 +108,7 @@ version: 2.8.1
   // 图片id
   imgID: string;
   // 服务器返回的数据
-  data: Map<string,
- string>;
+  data: string;
 
 }
 ``` 

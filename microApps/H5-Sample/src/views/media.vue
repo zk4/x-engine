@@ -104,7 +104,7 @@ export default {
           (res) => {
             this.contentText = res
             if (res.status == 0) {
-              this.$toast(res.msg)
+              this.$toast(res.data)
             } else {
               this.$toast(res.msg)
             }

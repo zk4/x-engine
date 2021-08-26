@@ -93,7 +93,7 @@ version: 2.8.1
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | 必填 |  | 请求的url |
-| header | string | 必填 |  | 请求header |
+| header | Map\<string,string\> | 必填 |  | 请求header |
 | ids | Array\<string\> | 必填 |  | 拍照或者选择相册后返回id |
 **返回值**
 ``` js

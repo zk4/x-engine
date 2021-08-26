@@ -85,7 +85,7 @@
   class _7_com_zkty_jsi_media_DTO {
     public String url;
 
-    public String header;
+    public Map<String,String> header;
 
     public List<String> ids;
   }

@@ -13,8 +13,10 @@ import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.media.CameraDTO;
+import com.zkty.nativ.media.CameraRetDTO;
 import com.zkty.nativ.media.Imedia;
 import com.zkty.nativ.media.Nativemedia;
+import com.zkty.nativ.media.OpenImageCallBack;
 import com.zkty.nativ.media.PreImageCallBack;
 import com.zkty.nativ.media.SaveCallBack;
 import com.zkty.nativ.media.UpLoadImgCallback;
@@ -22,7 +24,9 @@ import com.zkty.nativ.media.UpLoadImgCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class JSI_media extends xengine_jsi_media {
@@ -49,20 +53,6 @@ public class JSI_media extends xengine_jsi_media {
     }
 
 
-    @Override
-    public void _openImagePicker(_3_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
-        CameraDTO cameraDTO = new CameraDTO();
-        cameraDTO.setAllowsEditing(dto.allowsEditing);
-        cameraDTO.setCameraDevice(dto.cameraDevice);
-        cameraDTO.setCameraFlashMode(dto.cameraFlashMode);
-        cameraDTO.setIsbase64(dto.isbase64);
-        cameraDTO.setPhotoCount(dto.photoCount);
-        cameraDTO.setSavePhotosAlbum(dto.savePhotosAlbum);
-        cameraDTO.setArgs(dto.args);
-        XEngineApplication.getCurrentActivity().runOnUiThread(() -> {
-            iMedia.openImagePicker(cameraDTO, dto1 -> handler.complete(dto1));
-        });
-    }
 
     @Override
     public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, CompletionHandler<_1_com_zkty_jsi_media_DTO> handler) {
@@ -77,21 +67,52 @@ public class JSI_media extends xengine_jsi_media {
     }
 
     @Override
-    public void _uploadImage(_4_com_zkty_jsi_media_DTO dto, CompletionHandler<String> handler) {
+    public void _openImagePicker(_5_com_zkty_jsi_media_DTO dto, CompletionHandler<_3_com_zkty_jsi_media_DTO> handler) {
+        CameraDTO cameraDTO = new CameraDTO();
+        cameraDTO.setAllowsEditing(dto.allowsEditing);
+        cameraDTO.setCameraDevice(dto.cameraDevice);
+        cameraDTO.setCameraFlashMode(dto.cameraFlashMode);
+        cameraDTO.setIsbase64(dto.isbase64);
+        cameraDTO.setPhotoCount(dto.photoCount);
+        cameraDTO.setSavePhotosAlbum(dto.savePhotosAlbum);
+        cameraDTO.setArgs(dto.args);
+        XEngineApplication.getCurrentActivity().runOnUiThread(() -> {
+            iMedia.openImagePicker(cameraDTO, new OpenImageCallBack() {
+                @Override
+                public void success(List<CameraRetDTO> data) {
+                    ArrayList<_4_com_zkty_jsi_media_DTO> imglist = new ArrayList<>();
+                    for (int i = 0; i < data.size(); i++) {
+                        _4_com_zkty_jsi_media_DTO  dto4 = new _4_com_zkty_jsi_media_DTO();
+                        dto4.imgID = data.get(i).getId();
+                        dto4.thumbnail = data.get(i).getThumbnail();
+                        dto4.type = data.get(i).getType();
+                        imglist.add(dto4);
+                    }
+                    _3_com_zkty_jsi_media_DTO dto1 = new _3_com_zkty_jsi_media_DTO();
+                    dto1.msg = "选择图片成功";
+                    dto1.status = 0;
+                    dto1.data = imglist;
+                    handler.complete(dto1);
+                }
+            });
+        });
+    }
 
+    @Override
+    public void _uploadImage(_7_com_zkty_jsi_media_DTO dto, CompletionHandler<_6_com_zkty_jsi_media_DTO> handler) {
         iMedia.upLoadImgList(dto.url, dto.ids, new UpLoadImgCallback() {
             @Override
-            public void onUpLoadSucces(String status, String id, String dataStr,boolean isCommplete) {
+            public void onUpLoadSucces(int status, String id,String msg, String dataStr,boolean isCommplete) {
                 try {
-                    Map<String, String> jsonObject = new LinkedHashMap<>();
-                    jsonObject.put("status", status);
-                    jsonObject.put("id", id);
-                    jsonObject.put("result", dataStr);
-                    Log.d("Nativemedia",isCommplete + "   " +JSON.toJSONString(jsonObject));
+                    _6_com_zkty_jsi_media_DTO dto1 = new _6_com_zkty_jsi_media_DTO();
+                    dto1.data = dataStr;
+                    dto1.status = status;
+                    dto1.imgID = id;
+                    dto1.msg = msg;
                     if(isCommplete){
-                        handler.complete(JSON.toJSONString(jsonObject));
+                        handler.complete(dto1);
                     }else{
-                        handler.setProgressData(JSON.toJSONString(jsonObject));
+                        handler.setProgressData(dto1);
                     }
 
                 } catch (Exception e) {
@@ -105,4 +126,5 @@ public class JSI_media extends xengine_jsi_media {
             }
         });
     }
+
 }

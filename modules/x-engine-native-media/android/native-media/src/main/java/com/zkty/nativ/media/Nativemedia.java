@@ -497,8 +497,7 @@ public class Nativemedia extends NativeModule implements Imedia {
             results.add(cameraRetDTO);
         }
         HashMap<String, List<CameraRetDTO>> map = new HashMap<>();
-        map.put("data", results);
-        callBack.success(JSON.toJSONString(map));
+        callBack.success(results);
 
     }
 
@@ -537,10 +536,7 @@ public class Nativemedia extends NativeModule implements Imedia {
     @Override
     public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
         if(TextUtils.isEmpty(url)){
-            HashMap<String, Object> result = new HashMap<>();
-            result.put("code","-1");
-            result.put("msg","url不能为空");
-            callback.onUpLoadSucces("-1","",JSON.toJSONString(result),true);
+            callback.onUpLoadSucces(-1,"","url不能为空","",true);
             return;
         }
 
@@ -553,7 +549,7 @@ public class Nativemedia extends NativeModule implements Imedia {
             HashMap<String, Object> result = new HashMap<>();
             result.put("code","-1");
             result.put("msg","暂无引用上传模块");
-            callback.onUpLoadSucces("-1","",JSON.toJSONString(result),true);
+            callback.onUpLoadSucces(-1,"","暂无引用上传模块","",true);
             return;
         }
 
@@ -579,11 +575,7 @@ public class Nativemedia extends NativeModule implements Imedia {
                 try {
                     org.json.JSONObject obj = new org.json.JSONObject(dataStr);
 
-                    if (obj.getInt("code") == 0) {
-                        callback.onUpLoadSucces("0", imgkey, dataStr, falg);
-                    } else {
-                        callback.onUpLoadSucces("-1", imgkey, dataStr,falg);
-                    }
+                    callback.onUpLoadSucces(0,imgkey,"接口发送成功",dataStr,falg);
                     if (!falg) {
                         upLoadFile(url, filePathList, index + 1, callback);
                     }
@@ -600,10 +592,7 @@ public class Nativemedia extends NativeModule implements Imedia {
             @Override
             public void onUploadFailed() {
                 if(callback == null)return;
-                HashMap<String, Object> result = new HashMap<>();
-                result.put("code","-1");
-                result.put("msg","上传失败");
-                callback.onUpLoadSucces("-1",imgkey,JSON.toJSONString(result),false);
+                callback.onUpLoadSucces(-1,imgkey,"上传失败","",falg);
             }
         });
     }

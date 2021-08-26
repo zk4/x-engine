@@ -37,6 +37,7 @@ Pod::Spec.new do |s|
 
     s.source_files  = "iOS/Class/**/*.{h,m}"
     s.public_header_files = "iOS/Class/**/*.h"
+    s.resources    = "iOS/resource/*.bundle"
    
     s.frameworks  = "CoreServices"
 

@@ -48,15 +48,6 @@ JSI_MODULE(JSI_media)
     }];
 }
 
-//- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-//    MediaSaveImageDTO *model = [MediaSaveImageDTO new];
-//    model.type = dto.type;
-//    model.imageData = dto.imageData;
-//    [self.media saveImageToPhotoAlbum:model result:^(NSString *resultStr) {
-//        completionHandler(resultStr, TRUE);
-//    }];
-//}
-
 - (void)_previewImg:(_previewImg0_DTO *)dto {
     MediaPhotoListDTO *model = [MediaPhotoListDTO new];
     model.index = dto.index;

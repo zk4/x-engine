@@ -157,7 +157,7 @@ NATIVE_MODULE(Native_media)
             NSString *type = @"image/png";
             NSString *base64Str = [self UIImageToBase64Str:result];
             NSString *localIdentifier = asset.localIdentifier;
-        
+            
             // 返给h5的值
             [toH5Dict setObject:uuid forKey:@"id"];
             [toH5Dict setObject:type forKey:@"type"];
@@ -244,7 +244,7 @@ NATIVE_MODULE(Native_media)
     }
 }
 
-#pragma ----------------------------------保存图片----------------------------------
+// ----------------------------------保存图片---------------------------------- // 
 - (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto result:(void (^)(int))result {
     self.saveCallback = result;
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -336,72 +336,11 @@ NATIVE_MODULE(Native_media)
             [_gmUpload sendUploadRequestWithUrl:requestURL header:header imageData:dict[@"data"] imageName:dict[@"name"] completion:^(NSDictionary *dict) {
                 result(dict);
             }];
-            
-//            [self sendRequestWithUrl:requestURL header:header data:dict[@"data"] name:dict[@"name"] completion:^(NSDictionary *dict) {
-//                result(dict);
-//            }];
         }
     }
 }
-//
-//// 上传请求
-//- (void)sendRequestWithUrl:(NSString *)URLString header:(NSDictionary *)header data:(NSData *)imageData name:(NSString*)name completion:(void (^)(NSDictionary *))dictBlock {
-//    NSString *boundary = [NSString stringWithFormat:@"iOSFormBoundary%@", [self randomString:16]];
-//    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
-//    NSMutableDictionary *headerDict = [self makeSafeHeaders:header];
-//    request.allHTTPHeaderFields = headerDict;
-//    [request setHTTPMethod:@"POST"];
-//    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
-//    [request setTimeoutInterval:20];
-//
-//    // content-type
-//    NSString* headerString = [NSString stringWithFormat:@"multipart/form-data; boundary=----%@",boundary];
-//    [request setValue:headerString forHTTPHeaderField:@"Content-Type"];
-//
-//    // body
-//    NSMutableData* requestMutableData = [NSMutableData data];
-//    NSMutableString *bodyString = [NSMutableString string];
-//
-//    // 开始
-//    [bodyString appendString:[NSString stringWithFormat:@"\r\n------%@\r\n",boundary]];
-//    [bodyString appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@.png\"\r\n",name]];
-//    [bodyString appendString:@"Content-Type: image/png\r\n\r\n"];
-//
-//    // 转化为二进制数据
-//    [requestMutableData appendData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
-//    // 二进制图
-//    [requestMutableData appendData:imageData];
-//    // 结尾
-//    [requestMutableData appendData:[[NSString stringWithFormat:@"\r\n------%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//
-//    request.HTTPBody = requestMutableData;
-//
-//    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    sessionConfig.timeoutIntervalForRequest = 2;
-//    NSURLSession* session  = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
-//    NSURLSessionDataTask *uploadtask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        if (!error) {
-//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-//            NSLog(@"dict ==> %@", dict);
-//            if (dictBlock) {
-//                dictBlock(dict);
-//            }
-//        } else {
-//            NSLog(@"error ==> %@", error);
-//            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//            dict[@"code"] = @"-1";
-//            dict[@"msg"] = error;
-//            if (dictBlock) {
-//                dictBlock(dict);
-//            }
-//        }
-//    }];
-//
-//    [uploadtask resume];
-//}
 
 /*************************************utils************************************************/
-
 - (NSMutableDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
@@ -418,7 +357,7 @@ NATIVE_MODULE(Native_media)
 - (NSString*)dictionaryToJson:(NSDictionary *)dic {
     NSError *parseError = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
-
+    
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
@@ -536,43 +475,4 @@ NATIVE_MODULE(Native_media)
     }
     return vc;
 }
-
-//- (NSString *)randomString:(NSInteger)number {
-//    NSString *ramdom;
-//    NSMutableArray *array = [NSMutableArray array];
-//    for (int i = 1; i ; i ++) {
-//        int a = (arc4random() % 122);
-//        if (a > 96) {
-//            char c = (char)a;
-//            [array addObject:[NSString stringWithFormat:@"%c",c]];
-//            if (array.count == number) {
-//                break;
-//            }
-//        } else continue;
-//    }
-//    ramdom = [array componentsJoinedByString:@""];
-//    return ramdom;
-//}
-
-
-//- (UIImage*)cutImageWidth:(NSString *)imageWidth height:(NSString *)imageHeight quality:(NSString *)imageQuality bytes:(NSString *)imageBytes{
-//    return [self parseImage:self.photoImage Width:imageWidth height:imageHeight quality:imageQuality bytes:imageBytes];
-//}
-
-
-//- (NSMutableDictionary *)makeSafeHeaders:(NSDictionary *)headers {
-//    NSMutableDictionary* safeHeaders = [NSMutableDictionary new];
-//    // 遍历 headers,将数字转为字符
-//    for (NSString *headerField in headers.keyEnumerator) {
-//
-//        if([headers[headerField] isKindOfClass:NSNumber.class]){
-//            NSString* newVal = [NSString stringWithFormat:@"%@",headers[headerField]];
-//            [safeHeaders setValue:newVal forKey:headerField];
-//
-//        } else {
-//            [safeHeaders setValue:headers[headerField] forKey:headerField];
-//        }
-//    }
-//    return safeHeaders;
-//}
 @end

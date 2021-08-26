@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,7 +21,6 @@
 		58D209A0261346360082ADC3 /* xengine_jsi_media.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2099F261346360082ADC3 /* xengine_jsi_media.m */; };
 		64354DB0471E360AC7A3B8A8 /* libPods-media.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8CA3713E96420DF83249E1 /* libPods-media.a */; };
 		6A6EA1E26D7AD8995610C648 /* libPods-mediaUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42511EECCA68257EBB3854A8 /* libPods-mediaUITests.a */; };
-		A42DA51126D4D2C100DF0527 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A42DA51026D4D2C100DF0527 /* TZImagePickerController.bundle */; };
 		A4AF1AA326CE2FFF0012A190 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AF1AA226CE2FFF0012A190 /* AssetsLibrary.framework */; };
 		E6482C9CFE9A42FEC2328834 /* libPods-mediaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15B7D44DF761F640EDBA44 /* libPods-mediaTests.a */; };
 /* End PBXBuildFile section */
@@ -82,7 +81,6 @@
 		8A4FCA27E7FE59204E44E83A /* Pods-abstract-mediaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-mediaTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-mediaTests/Pods-abstract-mediaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-media.release.xcconfig"; path = "Target Support Files/Pods-media/Pods-media.release.xcconfig"; sourceTree = "<group>"; };
 		9E8CA3713E96420DF83249E1 /* libPods-media.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-media.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A42DA51026D4D2C100DF0527 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
 		A4AF1AA226CE2FFF0012A190 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-mediaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-mediaUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-mediaUITests/Pods-abstract-mediaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				A42DA51026D4D2C100DF0527 /* TZImagePickerController.bundle */,
 				58E8333F24E1300E008DDFBE /* Class */,
 				00DFC6E224C84000006A53EE /* media */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
@@ -248,6 +245,7 @@
 				00DFC6A724C83F94006A53EE /* Frameworks */,
 				00DFC6A824C83F94006A53EE /* Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
+				0AEEC6FCF571E477BF01B6D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,6 +264,7 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
+				E3B46BE110E68099C3B9A8CA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +285,7 @@
 				00DFC6CD24C83F95006A53EE /* Frameworks */,
 				00DFC6CE24C83F95006A53EE /* Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
+				56D242421EFD7658EAF50B06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,7 +346,6 @@
 			files = (
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
-				A42DA51126D4D2C100DF0527 /* TZImagePickerController.bundle in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 			);
@@ -369,6 +368,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0AEEC6FCF571E477BF01B6D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-media/Pods-media-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-media/Pods-media-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-media/Pods-media-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0D35607985D032CA76333046 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,6 +427,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56D242421EFD7658EAF50B06 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mediaUITests/Pods-mediaUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mediaUITests/Pods-mediaUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mediaUITests/Pods-mediaUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5826725C24FFE896001D6CF3 /* ShellScript */ = {
@@ -467,6 +500,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3B46BE110E68099C3B9A8CA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mediaTests/Pods-mediaTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mediaTests/Pods-mediaTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mediaTests/Pods-mediaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

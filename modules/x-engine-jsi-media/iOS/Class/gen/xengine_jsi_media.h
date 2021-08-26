@@ -7,13 +7,13 @@
 #import "JSONModel.h"
 
 @protocol _previewImg0_DTO;
+@protocol SaveAblumDTO;
 @protocol _saveImageToPhotoAlbum0_DTO;
-@protocol _saveImageToPhotoAlbum1_DTO;
 @protocol _openImagePicker0_DTO;
 @protocol _uploadImage0_DTO;
 @class _previewImg0_DTO;
+@class SaveAblumDTO;
 @class _saveImageToPhotoAlbum0_DTO;
-@class _saveImageToPhotoAlbum1_DTO;
 @class _openImagePicker0_DTO;
 @class _uploadImage0_DTO;
 
@@ -23,12 +23,13 @@
 @end
 
 
-@interface _saveImageToPhotoAlbum0_DTO: JSONModel
+@interface SaveAblumDTO: JSONModel
   	@property(nonatomic,assign) NSInteger status;
+   	@property(nonatomic,copy) NSString* msg;
 @end
 
 
-@interface _saveImageToPhotoAlbum1_DTO: JSONModel
+@interface _saveImageToPhotoAlbum0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* type;
    	@property(nonatomic,copy) NSString* imageData;
 @end
@@ -58,7 +59,7 @@
     - (void) _previewImg:(_previewImg0_DTO*)dto;
 
    @required 
-     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO*) dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO* result,BOOL complete)) completionHandler;
+     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO*) dto complete:(void (^)(SaveAblumDTO* result,BOOL complete)) completionHandler;
 
    @required 
      - (void) _openImagePicker:(_openImagePicker0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;

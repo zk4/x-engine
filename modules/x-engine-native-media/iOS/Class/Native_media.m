@@ -16,7 +16,7 @@
 #import "iGmupload.h"
 
 typedef void (^PhotoCallBack)(NSDictionary *);
-typedef void (^SaveCallBack)(int);
+typedef void (^SaveCallBack)(NSMutableDictionary *);
 typedef void (^UploadImageCallBack)(NSDictionary *);
 
 // cache路径
@@ -244,8 +244,8 @@ NATIVE_MODULE(Native_media)
     }
 }
 
-// ----------------------------------保存图片---------------------------------- // 
-- (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto result:(void (^)(int))result {
+// ----------------------------------保存图片---------------------------------- //
+- (void)saveImageToPhotoAlbum:(MediaSaveImageDTO *)dto result:(void (^)(NSMutableDictionary *))result {
     self.saveCallback = result;
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized){
@@ -278,13 +278,19 @@ NATIVE_MODULE(Native_media)
 
 - (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error) {
-        _saveCallback(-1);
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"status"] = @(-1);
+        dict[@"msg"] = @"保存失败";
+        _saveCallback(dict);
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存失败" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
         [alert addAction:enter];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     } else {
-        _saveCallback(0);
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"status"] = @(0);
+        dict[@"msg"] = @"保存成功";
+        _saveCallback(dict);
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功,请前往相册查看" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
         [alert addAction:enter];

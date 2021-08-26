@@ -22,7 +22,7 @@ version: 2.8.1
 
 ## saveImageToPhotoAlbum
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
-> 保存到相册<br>返回值: 0 保存成功<br>1 保存失败
+> 保存到相册<br>返回值: 0 保存成功<br>-1 保存失败
 
 **参数说明**
 
@@ -32,8 +32,20 @@ version: 2.8.1
 | imageData | string | 必填 |  | 图片数据 |
 **返回值**
 ``` js
- {
-status: int
+
+
+
+
+// 保存相册返回值
+interface SaveAblumDTO {
+
+  // 状态码
+  // status = 0  成功
+  // status = -1 失败
+  status: int;
+  // 状态描述
+  msg: string;
+
 }
 ``` 
 

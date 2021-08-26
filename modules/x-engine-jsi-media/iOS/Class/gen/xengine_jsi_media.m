@@ -13,13 +13,14 @@
 @end
 
   
-@implementation _saveImageToPhotoAlbum0_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
+@implementation SaveAblumDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
     }
 @end
 
   
-@implementation _saveImageToPhotoAlbum1_DTO
+@implementation _saveImageToPhotoAlbum0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
@@ -76,14 +77,14 @@
 }
     - (void) saveImageToPhotoAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _saveImageToPhotoAlbum1_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum1_DTO.class];
+          _saveImageToPhotoAlbum0_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum0_DTO.class];
           
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];
           return;
         }
 
-          [self _saveImageToPhotoAlbum:dto complete:^(_saveImageToPhotoAlbum0_DTO* result,  BOOL complete) {
+          [self _saveImageToPhotoAlbum:dto complete:^(SaveAblumDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

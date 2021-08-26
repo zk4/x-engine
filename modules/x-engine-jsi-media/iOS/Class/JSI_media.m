@@ -37,16 +37,30 @@ JSI_MODULE(JSI_media)
     }];
 }
 
-- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO *)dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO*, BOOL))completionHandler {
+
+- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO *)dto complete:(void (^)(SaveAblumDTO *, BOOL))completionHandler {
     MediaSaveImageDTO *model = [MediaSaveImageDTO new];
     model.type = dto.type;
     model.imageData = dto.imageData;
-    [self.media saveImageToPhotoAlbum:model result:^(int result) {
-        _saveImageToPhotoAlbum0_DTO *dto = [_saveImageToPhotoAlbum0_DTO new];
-        dto.status = result;
+    [self.media saveImageToPhotoAlbum:model result:^(NSMutableDictionary *dict) {
+        SaveAblumDTO *dto = [SaveAblumDTO new];
+        dto.status = [dict[@"status"] intValue];
+        dto.msg = dict[@"msg"];
         completionHandler(dto, TRUE);
     }];
 }
+
+
+//- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO *)dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO*, BOOL))completionHandler {
+//    MediaSaveImageDTO *model = [MediaSaveImageDTO new];
+//    model.type = dto.type;
+//    model.imageData = dto.imageData;
+//    [self.media saveImageToPhotoAlbum:model result:^(int result) {
+//        _saveImageToPhotoAlbum0_DTO *dto = [_saveImageToPhotoAlbum0_DTO new];
+//        dto.status = result;
+//        completionHandler(dto, TRUE);
+//    }];
+//}
 
 - (void)_previewImg:(_previewImg0_DTO *)dto {
     MediaPhotoListDTO *model = [MediaPhotoListDTO new];
@@ -66,6 +80,8 @@ JSI_MODULE(JSI_media)
         }
     }];
 }
+
+
 
 - (NSString*)dictionaryToJson:(NSDictionary *)dic {
     NSError *parseError = nil;

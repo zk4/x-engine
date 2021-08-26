@@ -22,6 +22,18 @@ function previewImg(arg: {
   imgList: Array<string>;
 });
 
+
+
+// 保存相册返回值
+interface SaveAblumDTO {
+  // 状态码
+  // status = 0  成功
+  // status = -1 失败
+  status: int;
+  // 状态描述
+  msg: string;
+}
+
 // 保存到相册
 // 返回值: 0 保存成功
 //       -1 保存失败
@@ -31,7 +43,7 @@ function saveImageToPhotoAlbum(arg: {
   type: string;
   // 图片数据
   imageData: string;
-}): {status: int};
+}): SaveAblumDTO{};
 
 // 调用相机
 @async
@@ -132,6 +144,11 @@ function test_saveImageToPhotoAlbum() {
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
+      if (res.code == 0) {
+        alert(res.message)
+      } else {
+        alert(res.message)
+      }
     }
   );
 }

@@ -22,17 +22,19 @@
     public List<String> imgList;
   }
   
-  class _1_com_zkty_jsi_media_DTO {
+  class SaveAblumDTO {
     public Integer status;
+
+    public String msg;
   }
   
-  class _2_com_zkty_jsi_media_DTO {
+  class _1_com_zkty_jsi_media_DTO {
     public String type;
 
     public String imageData;
   }
   
-  class _3_com_zkty_jsi_media_DTO {
+  class _2_com_zkty_jsi_media_DTO {
     @Optional
 		public boolean allowsEditing;
 
@@ -54,7 +56,7 @@
 		public Integer photoCount;
   }
   
-  class _4_com_zkty_jsi_media_DTO {
+  class _3_com_zkty_jsi_media_DTO {
     public String url;
 
     public Map<String,String> header;
@@ -65,9 +67,9 @@
   interface xengine_jsi_media_protocol {
     
 public void _previewImg(_0_com_zkty_jsi_media_DTO dto);
-public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final CompletionHandler<_1_com_zkty_jsi_media_DTO> handler);
-public void _openImagePicker(_3_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
-public void _uploadImage(_4_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
+public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_media_DTO dto, final CompletionHandler<SaveAblumDTO> handler);
+public void _openImagePicker(_2_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
+public void _uploadImage(_3_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
   }
   
   
@@ -87,21 +89,21 @@ public void _uploadImage(_4_com_zkty_jsi_media_DTO dto, final CompletionHandler<
 
     @JavascriptInterface
     final public void saveImageToPhotoAlbum(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _2_com_zkty_jsi_media_DTO dto= convert(jsonobj,_2_com_zkty_jsi_media_DTO.class);
-      _saveImageToPhotoAlbum(dto, new CompletionHandler<_1_com_zkty_jsi_media_DTO>() {
+      _1_com_zkty_jsi_media_DTO dto= convert(jsonobj,_1_com_zkty_jsi_media_DTO.class);
+      _saveImageToPhotoAlbum(dto, new CompletionHandler<SaveAblumDTO>() {
         @Override
-        public void complete(_1_com_zkty_jsi_media_DTO retValue) { handler.complete(retValue); }
+        public void complete(SaveAblumDTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_1_com_zkty_jsi_media_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(SaveAblumDTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
     final public void openImagePicker(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _3_com_zkty_jsi_media_DTO dto= convert(jsonobj,_3_com_zkty_jsi_media_DTO.class);
+      _2_com_zkty_jsi_media_DTO dto= convert(jsonobj,_2_com_zkty_jsi_media_DTO.class);
       _openImagePicker(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
@@ -115,7 +117,7 @@ public void _uploadImage(_4_com_zkty_jsi_media_DTO dto, final CompletionHandler<
 
     @JavascriptInterface
     final public void uploadImage(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _4_com_zkty_jsi_media_DTO dto= convert(jsonobj,_4_com_zkty_jsi_media_DTO.class);
+      _3_com_zkty_jsi_media_DTO dto= convert(jsonobj,_3_com_zkty_jsi_media_DTO.class);
       _uploadImage(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }

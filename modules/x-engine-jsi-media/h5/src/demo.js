@@ -36,6 +36,11 @@ window.test_placeholder = () => {
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
+      if (res.code == 0) {
+        alert(res.message)
+      } else {
+        alert(res.message)
+      }
     }
   );
 }

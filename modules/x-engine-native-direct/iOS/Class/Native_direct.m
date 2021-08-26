@@ -177,16 +177,20 @@ NATIVE_MODULE(Native_direct)
             [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
             deleteHistory--;
         }
-        [navc pushViewController:container animated:YES];
-  
- 
-        HistoryModel* hm = [HistoryModel new];
-     
-        hm.fragment      = fragment;
-        hm.host          = host;
-        hm.pathname      = pathname;
-
-        [container setCurrentHistory:hm];
+        
+        if(navc){
+            [navc pushViewController:container animated:YES];
+            HistoryModel* hm = [HistoryModel new];
+            hm.fragment      = fragment;
+            hm.host          = host;
+            hm.pathname      = pathname;
+            [container setCurrentHistory:hm];
+        }else{
+            UIViewController* vc = [Unity sharedInstance].getCurrentVC;
+            [vc presentViewController:container animated:YES completion:^{
+                
+            }];
+        }
     }
 }
 
@@ -289,6 +293,7 @@ static NSString *const kSlash               = @"/";
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params{
     // convert SPA url hash router style to standard url style
     // TODO: 写这不合适. manager 理应不关心 port
+    
     NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
     NSNumber* port = url.port;
     if(!port){

@@ -34,11 +34,11 @@ version: 2.8.1
 ``` js
  {
 
-  // 状态码
+  // 函数状态码
   // status = 0  成功
   // status = -1 失败
   status: int;
-  // 状态描述
+  // 函数状态描述
   msg: string;
 
 }
@@ -65,7 +65,12 @@ version: 2.8.1
 ``` js
  {
 
+  // 函数状态码
+  // status = 0  成功
+  // status = -1 失败
   status: int;
+  // 函数状态描述
+  msg: string;
   data: Array<{
 
     imgID: string;
@@ -92,7 +97,21 @@ version: 2.8.1
 | ids | Array | 必填 |  | 拍照或者选择相册后返回id |
 **返回值**
 ``` js
-string
+ {
+
+  // 函数状态码
+  // status = 0  成功
+  // status = -1 失败
+  status: int;
+  // 函数状态描述
+  msg: string;
+  // 图片id
+  imgID: string;
+  // 服务器返回的数据
+  data: Map<string,
+ string>;
+
+}
 ``` 
 
 

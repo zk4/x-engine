@@ -65,14 +65,19 @@ JSI_MODULE(JSI_media)
     [self.media previewImg:model];
 }
 
-- (void)_uploadImage:(_uploadImage0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+- (void)_uploadImage:(_uploadImage1_DTO *)dto complete:(void (^)(_uploadImage0_DTO *, BOOL))completionHandler {
     self.upload_done_counts = dto.ids.count;
     [self.media uploadImageWithUrl:dto.url WithHeader:dto.header WithImageList:dto.ids result:^(NSDictionary *result) {
         self.upload_done_counts--;
+        _uploadImage0_DTO *ret = [_uploadImage0_DTO new];
+        ret.status = [result[@"status"] intValue];
+        ret.msg = result[@"msg"];
+        ret.imgID = result[@"imgID"];
+        ret.data = result[@"data"];
         if(self.upload_done_counts > 0){
-            completionHandler([self dictionaryToJson:result], false);
-        }else{
-            completionHandler([self dictionaryToJson:result], true);
+            completionHandler(ret, false);
+        } else {
+            completionHandler(ret, true);
         }
     }];
 }

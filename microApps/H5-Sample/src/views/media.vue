@@ -102,11 +102,13 @@ export default {
             header: {},
           },
           (res) => {
+            console.log(res);
             this.contentText = res
-            if (res.code == 0) {
-              this.$toast(res)
+
+            if (res.status == 0) {
+              this.$toast(res.msg)
             } else {
-              this.$toast(res)
+              this.$toast(res.msg)
             }
           }
         )

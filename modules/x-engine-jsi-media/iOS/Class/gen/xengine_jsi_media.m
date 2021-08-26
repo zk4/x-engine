@@ -13,12 +13,6 @@
 @end
 
   
-@implementation SaveAblumDTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
-    }
-@end
-
-  
 @implementation _saveImageToPhotoAlbum0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
@@ -35,6 +29,7 @@
   
 @implementation _openImagePicker0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
    	return NO;
     }
 @end
@@ -61,6 +56,15 @@
 
   
 @implementation _uploadImage0_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   
+   
+   	return NO;
+    }
+@end
+
+  
+@implementation _uploadImage1_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
    	return NO;
@@ -126,14 +130,14 @@
   }
     - (void) uploadImage:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _uploadImage0_DTO* dto = [self convert:dict clazz:_uploadImage0_DTO.class];
+          _uploadImage1_DTO* dto = [self convert:dict clazz:_uploadImage1_DTO.class];
           
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];
           return;
         }
 
-          [self _uploadImage:dto complete:^(NSString* result,  BOOL complete) {
+          [self _uploadImage:dto complete:^(_uploadImage0_DTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

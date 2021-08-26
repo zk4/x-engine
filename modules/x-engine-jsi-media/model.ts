@@ -22,9 +22,6 @@ function previewImg(arg: {
   imgList: Array<string>;
 });
 
-// 保存图片到相册返回值
-interface SaveAblumDTO {}
-
 // 保存到相册
 // 返回值: 0 保存成功
 //       -1 保存失败
@@ -35,11 +32,11 @@ function saveImageToPhotoAlbum(arg: {
   // 图片数据
   imageData: string;
 }): {
-  // 状态码
+  // 函数状态码
   // status = 0  成功
   // status = -1 失败
   status: int;
-  // 状态描述
+  // 函数状态描述
   msg: string;
 };
 
@@ -61,7 +58,12 @@ function openImagePicker(arg: {
   // 图片选择张数
   photoCount?: int;
 }): {
+  // 函数状态码
+  // status = 0  成功
+  // status = -1 失败
   status: int;
+  // 函数状态描述
+  msg: string;
   data: Array<{
     imgID: string;
     type: string;
@@ -79,11 +81,16 @@ function uploadImage(arg: {
   // 拍照或者选择相册后返回id
   ids: Array;
 }): {
-  // 0 成功  -1 失败 message
+  // 函数状态码
+  // status = 0  成功
+  // status = -1 失败
   status: int;
-  msg: string,
-  imgID: string,
-  data: Map<string, string>
+  // 函数状态描述
+  msg: string;
+  // 图片id
+  imgID: string;
+  // 服务器返回的数据
+  data: Map<string, string>;
 };
 
 function test_placeholder() {}
@@ -91,7 +98,12 @@ function test_placeholder() {}
 function test_placeholder() {}
 
 // 预览图片
-function test_previewImg(arg: { index: int; imgList: Array<string> }) {
+function test_previewImg(arg: {
+  // 索引
+  index: int;
+  // 图片数组, 多张用逗号分隔
+  imgList: Array<string>;
+}) {
   xengine.api("com.zkty.jsi.media", "previewImg", {
     index: 0,
     imgList: [
@@ -102,7 +114,12 @@ function test_previewImg(arg: { index: int; imgList: Array<string> }) {
 }
 
 // 保存图片至相册
-function test_saveImageToPhotoAlbum() {
+function test_saveImageToPhotoAlbum(arg: {
+  //url或base64
+  type: string;
+  // 图片数据
+  imageData: string;
+}) {
   xengine.api(
     "com.zkty.jsi.media",
     "saveImageToPhotoAlbum",
@@ -118,7 +135,34 @@ function test_saveImageToPhotoAlbum() {
 }
 
 // 打开picker选择相机和相册
-function test_openImagePicker() {
+function test_openImagePicker(arg: {
+  //是否允许编辑
+  allowsEditing?: boolean;
+  //是否保存图片到相册
+  savePhotosAlbum?: boolean;
+  //闪光灯模式(-1:关闭状态,0:自动开关状态,1:打开状态),默认:-1
+  cameraFlashMode?: int;
+  //设置前置或后置摄像头(front:前置,back:后置),默认:back
+  cameraDevice?: string;
+  //图片是否转为Base64,默认:true
+  isbase64: boolean;
+  //裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内;
+  args?: Map<string, string>;
+  // 图片选择张数
+  photoCount?: int;
+}): {
+  // 函数状态码
+  // status = 0  成功
+  // status = -1 失败
+  status: int;
+  // 函数状态描述
+  msg: string;
+  data: Array<{
+    imgID: string;
+    type: string;
+    thumbnail: string;
+  }>;
+} {
   xengine.api(
     "com.zkty.jsi.media",
     "openImagePicker",
@@ -134,7 +178,6 @@ function test_openImagePicker() {
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
       let obj = JSON.parse(res);
-      alert(obj);
       for (let photo of obj.data) {
         const image = document.createElement("img");
         // if (!photo.width || !photo.height) {
@@ -160,7 +203,18 @@ function test_uploadImage(arg: {
   ids: Array<string>;
   // 请求header
   header: Map<string, string>;
-}): string {
+}): {
+  // 函数状态码
+  // status = 0  成功
+  // status = -1 失败
+  status: int;
+  // 函数状态描述
+  msg: string;
+  // 图片id
+  imgID: string;
+  // 服务器返回的数据
+  data: Map<string, string>;
+} {
   xengine.api(
     "com.zkty.jsi.media",
     "uploadImage",

@@ -22,9 +22,6 @@
     public List<String> imgList;
   }
   
-  class SaveAblumDTO {
-      }
-  
   class _1_com_zkty_jsi_media_DTO {
     public Integer status;
 
@@ -39,6 +36,8 @@
   
   class _3_com_zkty_jsi_media_DTO {
     public Integer status;
+
+    public String msg;
 
     public List<_4_com_zkty_jsi_media_DTO> data;
   }
@@ -74,6 +73,16 @@
   }
   
   class _6_com_zkty_jsi_media_DTO {
+    public Integer status;
+
+    public String msg;
+
+    public String imgID;
+
+    public Map<String,String> data;
+  }
+  
+  class _7_com_zkty_jsi_media_DTO {
     public String url;
 
     public Map<String,String> header;
@@ -86,7 +95,7 @@
 public void _previewImg(_0_com_zkty_jsi_media_DTO dto);
 public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final CompletionHandler<_1_com_zkty_jsi_media_DTO> handler);
 public void _openImagePicker(_5_com_zkty_jsi_media_DTO dto, final CompletionHandler<_3_com_zkty_jsi_media_DTO> handler);
-public void _uploadImage(_6_com_zkty_jsi_media_DTO dto, final CompletionHandler<String> handler);
+public void _uploadImage(_7_com_zkty_jsi_media_DTO dto, final CompletionHandler<_6_com_zkty_jsi_media_DTO> handler);
   }
   
   
@@ -134,14 +143,14 @@ public void _uploadImage(_6_com_zkty_jsi_media_DTO dto, final CompletionHandler<
 
     @JavascriptInterface
     final public void uploadImage(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _6_com_zkty_jsi_media_DTO dto= convert(jsonobj,_6_com_zkty_jsi_media_DTO.class);
-      _uploadImage(dto, new CompletionHandler<String>() {
+      _7_com_zkty_jsi_media_DTO dto= convert(jsonobj,_7_com_zkty_jsi_media_DTO.class);
+      _uploadImage(dto, new CompletionHandler<_6_com_zkty_jsi_media_DTO>() {
         @Override
-        public void complete(String retValue) { handler.complete(retValue); }
+        public void complete(_6_com_zkty_jsi_media_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(String value) { handler.setProgressData(value); }
+        public void setProgressData(_6_com_zkty_jsi_media_DTO value) { handler.setProgressData(value); }
       });
 
     }

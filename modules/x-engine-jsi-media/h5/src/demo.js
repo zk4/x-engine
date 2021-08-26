@@ -55,7 +55,6 @@ window.test_placeholder = () => {
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
       let obj = JSON.parse(res);
-      alert(obj);
       for (let photo of obj.data) {
         const image = document.createElement("img");
         // if (!photo.width || !photo.height) {

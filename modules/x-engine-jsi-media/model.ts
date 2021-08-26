@@ -77,7 +77,7 @@ function uploadImage(arg: {
   // 请求的url
   url: string;
   // 请求header
-  header: string;
+  header: Map<string, string>;
   // 拍照或者选择相册后返回id
   ids: Array<string>;
 }): {
@@ -202,7 +202,7 @@ function test_uploadImage(arg: {
   // 拍照或者选择相册后返回id, 多张用逗号分隔
   ids: Array<string>;
   // 请求header
-  header: string;
+  header: Map<string, string>;
 }): {
   // 函数状态码
   // status = 0  成功

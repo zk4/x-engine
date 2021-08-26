@@ -238,7 +238,6 @@ NATIVE_MODULE(Native_media)
 
 // 返给h5的callback
 - (void)H5CallBack:(NSArray *)array {
-//    NSDictionary *result = @{@"data" : array};
     if(self.photoCallback) {
         self.photoCallback(array);
     }
@@ -293,7 +292,12 @@ NATIVE_MODULE(Native_media)
 - (void)previewImg:(MediaPhotoListDTO *)dto {
     NSMutableArray *photoPathArr = [NSMutableArray new];
     [dto.imgList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [photoPathArr insertObject:[self getLocalPhotoPath:obj] atIndex:idx];
+        NSString *uuid = [NSString stringWithFormat:@"%@", obj];
+        if ([uuid hasPrefix:@"https://"] || [uuid hasPrefix:@"http://"]) {
+            [photoPathArr insertObject:uuid atIndex:idx];
+        } else {
+            [photoPathArr insertObject:[self getLocalPhotoPath:uuid] atIndex:idx];
+        }
     }];
     NSMutableArray *photos = [NSMutableArray array];
     [photoPathArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -332,12 +336,18 @@ NATIVE_MODULE(Native_media)
             [dataArr addObject:dict];
         }];
         for (NSDictionary *uploadDict in dataArr) {
-            [_gmUpload sendUploadRequestWithUrl:requestURL header:header imageData:uploadDict[@"data"] imageName:uploadDict[@"name"] completion:^(NSDictionary *dict) {
-                NSMutableDictionary *backDict = [NSMutableDictionary dictionary];
+            NSMutableDictionary *backDict = [NSMutableDictionary dictionary];
+            [_gmUpload sendUploadRequestWithUrl:requestURL header:header imageData:uploadDict[@"data"] imageName:uploadDict[@"name"] success:^(NSDictionary *dict) {
                 backDict[@"status"] = @(0);
                 backDict[@"msg"] = @"接口发送成功";
                 backDict[@"imgID"] = uploadDict[@"name"];
                 backDict[@"data"] = [self dictionaryToJson:dict];
+                result(backDict);
+            } failure:^(NSDictionary *dict) {
+                backDict[@"status"] = @(-1);
+                backDict[@"msg"] = dict[@"msg"];
+                backDict[@"imgID"] = uploadDict[@"name"];
+                backDict[@"data"] = [NSMutableDictionary dictionary];
                 result(backDict);
             }];
         }

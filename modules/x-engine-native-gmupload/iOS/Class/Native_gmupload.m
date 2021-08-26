@@ -25,7 +25,7 @@ NATIVE_MODULE(Native_gmupload)
 - (void)afterAllNativeModuleInited{
 }
 
-- (void)sendUploadRequestWithUrl:(NSString *)url header:(NSDictionary *)header imageData:(NSData *)imageData imageName:(NSString *)imageName completion:(void (^)(NSDictionary *))result {
+-(void)sendUploadRequestWithUrl:(NSString *)url header:(NSDictionary *)header imageData:(NSData *)imageData imageName:(NSString *)imageName success:(void (^)(NSDictionary *))success failure:(void (^)(NSDictionary *))failure {
     NSString *boundary = [NSString stringWithFormat:@"iOSFormBoundary%@", [self randomString:16]];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSMutableDictionary *headerDict = [self makeSafeHeaders:header];
@@ -62,17 +62,15 @@ NATIVE_MODULE(Native_gmupload)
     NSURLSessionDataTask *uploadtask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            NSLog(@"dict ==> %@", dict);
-            if (result) {
-                result(dict);
+            if (success) {
+                success(dict);
             }
         } else {
-            NSLog(@"error ==> %@", error);
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            dict[@"code"] = @"-1";
+            dict[@"code"] = @(-1);
             dict[@"msg"] = error;
-            if (result) {
-                result(dict);
+            if (failure) {
+                failure(dict);
             }
         }
     }];

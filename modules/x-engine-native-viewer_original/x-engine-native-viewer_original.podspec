@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
     s.source      = { :git => 'https://github.com/zkty-team/x-engine-native-viewer_original.git',
   :tag => s.version.to_s }
 
+    s.resource     = "iOS/Class/*.png"
 
     s.source_files  = "iOS/Class/**/*.{h,m}"
     s.public_header_files = "iOS/Class/**/*.h"

@@ -58,7 +58,7 @@ static NSString *SLUrlProtocolHandled = @"SLUrlProtocolHandled";
     ///加载本地缓存数据
     NSCachedURLResponse *cachedURLResponse = [webCacheManager loadCachedResponeWithRequest:mutableReqeust];
     NSString* origin = self.request.allHTTPHeaderFields[@"origin"];
-    if(origin)
+    if(origin && cachedURLResponse)
         cachedURLResponse = [cachedURLResponse cors:origin];
 
     if (cachedURLResponse) {

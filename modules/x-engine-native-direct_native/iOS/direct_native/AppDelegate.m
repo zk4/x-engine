@@ -8,9 +8,9 @@
 #import "EntryViewController2.h"
 
 #import "XENativeContext.h"
-#import "MGJRouter.h"
+ 
 #import <x-engine-native-core/Unity.h>
-#import <iDirectManager.h>
+#import <iNativeRegister.h>
 
 @interface AppDelegate ()
 
@@ -24,12 +24,12 @@
     
     [[XENativeContext sharedInstance] start];
 
-    id<iDirectManager> dm = XENP(iDirectManager);
+    id<iNativeRegister> dm = XENP(iNativeRegister);
     
-    [dm registerNativeRouter:@"native://foo/bar2" nativeVCCreator:^UIViewController * _Nullable(NSString * _Nonnull host, NSString * _Nonnull pathname, NSString * _Nonnull fragment, NSDictionary * _Nonnull query, NSDictionary * _Nonnull params) {
-         return [[EntryViewController alloc] init];
+    
+    [dm registerNativeRouter:@"native://foo/bar2" nativeVCCreator:^UIViewController * _Nullable(NSString * _Nonnull protocol, NSString * _Nonnull host, NSString * _Nonnull pathname, NSString * _Nonnull fragment, NSDictionary * _Nonnull query, NSDictionary * _Nonnull params) {
+        return [[EntryViewController alloc] init];
     }];
-    
 
     EntryViewController *homePageVC = [[EntryViewController alloc] init];
        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];

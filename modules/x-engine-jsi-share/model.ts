@@ -72,7 +72,9 @@ interface ShareMiniProgramDTO {
 }
 
 // 分享
-function share(arg: ShareDTO) {
+@async
+function share(arg: ShareDTO) : {code: int}
+{
   // 分享链接
   xengine.api("com.zkty.jsi.share", "share", {
     channel: "wx_zone",
@@ -82,7 +84,12 @@ function share(arg: ShareDTO) {
       title: "testTitle",
       desc: "description",
     },
-  });
+  },
+  (res) => {
+      let obj = JSON.parse(res);
+	  let code = obj.code;
+      console.log(code)       
+    });
 
   // 分享小程序
   xengine.api("com.zkty.jsi.share", "share", {
@@ -97,7 +104,12 @@ function share(arg: ShareDTO) {
       imageurl: "",
       miniProgramType: 2,
     },
-  });
+  },
+  (res) => {
+      let obj = JSON.parse(res);
+	  let code = obj.code;
+      console.log(code)    
+    });
 
   // 分享图片
   xengine.api("com.zkty.jsi.share", "share", {
@@ -106,7 +118,12 @@ function share(arg: ShareDTO) {
     info: {
       imgData: "https://www.baidu.com",
     },
-  });
+  },
+  (res) => {
+      let obj = JSON.parse(res);
+	  let code = obj.code;
+      console.log(code)    
+    });
 }
 
 // 分享测试
@@ -119,6 +136,8 @@ function test_share() {
       title: "testTitle",
       desc: "description",
     },
+  },(ret)=>{
+  document.getElementById("debug_text").innerText = JSON.stringify(ret);
   });
 }
 
@@ -136,5 +155,7 @@ function test_share2() {
       imageurl: "",
       miniProgramType: 2,
     },
+  },(ret)=>{
+  document.getElementById("debug_text").innerText = JSON.stringify(ret);
   });
 }

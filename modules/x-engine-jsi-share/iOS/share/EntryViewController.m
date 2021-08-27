@@ -6,7 +6,7 @@
 #import "EntryViewController.h"
 #import "XENativeContext.h"
 #import "iDirectManager.h"
-#import "iGmshare.h"
+
 @interface EntryViewController ()
 
 @end
@@ -17,13 +17,13 @@
 }
 
 -(void) pushTestModule{
-    id<iGmshare> igmshare = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iGmshare)];
+//    id<iGmshare> igmshare = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iGmshare)];
 //    OpenShareUiDTO *openShare = [OpenShareUiDTO new];
     
 //    [igmshare openShareUi:openShare complete:^(ChannelStatusDTO * _Nonnull y, BOOL s) {
 //        NSLog(@"----");
 //    }];
-//    [director push:@"omp" host:@"192.168.1.15:9111" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
+    [XENP(iDirectManager) push:@"omp" host:@"10.2.128.64:9111" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
 }
 
 - (void)viewDidLoad {

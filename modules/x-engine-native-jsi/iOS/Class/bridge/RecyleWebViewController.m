@@ -63,6 +63,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
             return self;
      
         self.webview= [[WebViewFactory sharedInstance] createWebView];
+        self.webview.scrollView.bounces = NO;
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
         self.webcache =XENP(iWebcache);

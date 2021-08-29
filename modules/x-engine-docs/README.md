@@ -6,7 +6,9 @@ x-engine 是一个跨端模块管理框架. <span style="color:blue">管理原�
 
 通过 x-engine  我们提供一整套完善的前端解决方案。
 
-你可以基于 x-engine 开发原生 App。也可以基于 x-engine 开发 react-native 与原生的混合。
+你可以基于 x-engine 开发纯原生 App。
+
+也可以基于 x-engine 开发 react-native，weex,flutter,h5 与原生的混合。也就是集成任何可在原生上表现的 UI 框架。
 
 但最终：我们都要做 app 出来。
 
@@ -51,5 +53,7 @@ UI 层在最终呈现时，现在有 4 种方案
   
 
 ## 小程序呢
+
+不想把事情搞复杂。
 
 小程序的支持不应该由 x-engine 解决。而应该由 UI 方案自己解决。比如，基于 taro，vant-weapp。

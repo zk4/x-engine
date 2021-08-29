@@ -111,10 +111,10 @@ NATIVE_MODULE(Native_direct)
 }
 
 
-- (nonnull UIViewController *)getContainer:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params  frame:(CGRect)frame{
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
-    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
     return container;
     
 }
@@ -124,7 +124,8 @@ NATIVE_MODULE(Native_direct)
         pathname:(NSString*) pathname
         fragment:(NSString*) fragment
         query:(nullable NSDictionary<NSString*,NSString*>*) query
-        params:(NSDictionary<NSString*,id>*) params {
+        params:(NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame{
 
     // 复用上一次的 host
     if(host){
@@ -139,7 +140,7 @@ NATIVE_MODULE(Native_direct)
     id<iDirect> direct = [self.directors objectForKey:scheme];
 
     // 拿容器
-    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
+    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
     
     if(!container){
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
@@ -224,18 +225,17 @@ NATIVE_MODULE(Native_direct)
         pathname:(NSString*) pathname
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
-          params:(nullable NSDictionary<NSString*,id>*) params{
+          params:(nullable NSDictionary<NSString*,id>*) params frame:(CGRect)frame{
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
     
-    UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params];
-    
+    UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
  
     if(!container){
         // try fallback
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
         if(fallbackUrl){
-            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
+            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params frame:frame];
             return;
         }
     }
@@ -290,7 +290,7 @@ static NSString *const kSlash               = @"/";
 }
 
 
-- (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params{
+- (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
     // convert SPA url hash router style to standard url style
     // TODO: 写这不合适. manager 理应不关心 port
     
@@ -308,7 +308,7 @@ static NSString *const kSlash               = @"/";
     [self push:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
 }
 
-- (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
+- (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
     // convert SPA url hash router style to standard url style
     // TODO: 写这不合适. manager 理应不关心 port
     NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
@@ -323,10 +323,21 @@ static NSString *const kSlash               = @"/";
     NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
     
 
-    [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    [self addToTab:parent scheme:url.scheme host:host pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
     
 
 }
+
+- (void)push:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+    [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
+}
+
+
+- (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
+    [self push:uri params:params frame:[UIScreen mainScreen].bounds];
+}
+
+ 
  
 
 

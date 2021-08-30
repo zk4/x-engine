@@ -8,8 +8,8 @@
     - [分发与缓存](./docs/modules/分发与缓存.md)
     - [**JSI api**](./docs/modules/all/模块-device.md)
     
-  - [**React-Native**]
-  - [开发](./docs/rn/readme.md)
+  - [**其他Container模块**]
+  - [开发](./docs/other/readme.md)
   
 - [**[模板]**](./docs/modules/模块-开发.md)
 - [**工具**]

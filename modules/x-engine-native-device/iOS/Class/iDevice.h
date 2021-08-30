@@ -15,7 +15,7 @@
 - (NSString *)getStatusHeight;
 - (NSString *)getNavigationHeight;
 - (NSString *)getScreenHeight;
-- (NSString *)getTabbarHeight;
+- (float)getTabbarHeight;
 - (NSString *)callPhone:(NSString *)phoneNum;
 - (NSString *)sendMsgWithPhoneNum:(NSString *)phoneNum withMsg:(NSString *)phoneMsg;
 - (NSMutableDictionary *)getDeviceInfo;

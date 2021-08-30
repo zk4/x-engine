@@ -1,0 +1,77 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+	package
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:2:5-37
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:1-26:12
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:4:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:5:5-81
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:5:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:6:5-80
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:6:22-77
+application
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:8:5-25:19
+meta-data#com.zkty.native.viewer_original
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:10:9-12:84
+	android:value
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:12:13-81
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:11:13-59
+activity#com.zkty.nativ.viewer_original.activity.PreViewActivity
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:14:9-16:15
+	android:screenOrientation
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:15:13-49
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:14:19-89
+activity#com.zkty.nativ.viewer_original.activity.PrePdfViewActivity
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:17:9-19:15
+	android:screenOrientation
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:18:13-49
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:17:19-92
+service#com.tencent.smtt.export.external.DexClassLoaderProviderService
+ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:20:9-24:19
+	android:process
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:23:13-38
+	android:label
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:22:13-35
+	android:name
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml:21:13-90
+uses-sdk
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+		ADDED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml
+		INJECTED from /Users/mj/Documents/Android/guomei_workspace/x-engine/modules/x-engine-native-viewer_original/android/native-viewer_original/src/main/AndroidManifest.xml

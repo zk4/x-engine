@@ -11,16 +11,18 @@
 @protocol ShareImgDTO;
 @protocol ShareLinkDTO;
 @protocol ShareMiniProgramDTO;
+@protocol _share0_DTO;
 @class ShareDTO;
 @class ShareTextDTO;
 @class ShareImgDTO;
 @class ShareLinkDTO;
 @class ShareMiniProgramDTO;
+@class _share0_DTO;
 
 @interface ShareDTO: JSONModel
   	@property(nonatomic,copy) NSString* channel;
    	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* info;
+   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* info;
 @end
 
 
@@ -53,10 +55,15 @@
 @end
 
 
+@interface _share0_DTO: JSONModel
+  	@property(nonatomic,assign) NSInteger code;
+@end
+
+
 
 @protocol xengine_jsi_share_protocol
    @required 
-     - (void) _share:(ShareDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+     - (void) _share:(ShareDTO*) dto complete:(void (^)(_share0_DTO* result,BOOL complete)) completionHandler;
 
 @end
 

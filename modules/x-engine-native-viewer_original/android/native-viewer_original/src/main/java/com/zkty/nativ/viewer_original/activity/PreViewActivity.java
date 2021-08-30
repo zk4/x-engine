@@ -92,18 +92,8 @@ public class PreViewActivity extends BaseXEngineActivity {
         itemlist.add(map);
         itemlist.add(map1);
 
-        mXEngineNavBar.setNavRightMenuBtn("更多", "#121212", null, null, iconSize, itemlist, false, "100", new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtils.showCenterToast(itemlist.get(position).get("title"));
-            }
-        });
-        mXEngineNavBar.setLeftListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        mXEngineNavBar.setNavRightMenuBtn("更多", "#121212", null, null, iconSize, itemlist, false, "100", (parent, view, position, id) -> ToastUtils.showCenterToast(itemlist.get(position).get("title")));
+        mXEngineNavBar.setLeftListener(v -> finish());
 
         //设置标题
         mXEngineNavBar.setTitle(title,null,null);
@@ -112,68 +102,72 @@ public class PreViewActivity extends BaseXEngineActivity {
         if(QbSdk.canLoadX5(XEngineApplication.getApplication())){//是否支持 x5 浏览
             openFile(filePath, fileType);
         }else{
-            relLoadX5.setVisibility(View.VISIBLE);
-            //x5下载监听
-            QbSdk.setTbsListener(new TbsListener() {
-                @Override
-                public void onDownloadFinish(int i) {
-                    Log.d("initX5 prew", "onDownloadFinish -->下载X5内核完成：" + i);
-                    if(i != 100 && !TbsDownloader.isDownloading() && !QbSdk.canLoadX5(getApplicationContext())){
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                TbsDownloader.startDownload(getApplicationContext());
-                            }
-                        },10000);
-
-                    }else{
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvProgress.setText("浏览器安装中");
-                            }
-                        });
-                    }
-
-
-                }
-                @Override
-                public void onInstallFinish(int i) {
-                    //安装完成
-                    if(QbSdk.canLoadX5(getApplicationContext())){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                openFile(filePath, fileType);
-                            }
-                        });
-                    }
-
-                }
-                @Override
-                public void onDownloadProgress(int progress) {
-                    if(isFirst && progress > 20){
-                        maxProgress = 100 - progress;
-                        cunProgress = progress;
-                    }
-                    isFirst = false;
-                    float ratio = ((progress - cunProgress) / maxProgress);
-                    int pro = (int) (100 * ratio);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tvProgress.setText("浏览器加载中：" + pro + "%");
-                        }
-                    });
-                    Log.d("initX5  prew", "onDownloadProgress -->下载X5内核进度：" + progress);
-                }
-            });
-            //判断是否在下载中
-            Log.d("initX5 prew",  "是否正在下载X5内核 -->" +TbsDownloader.isDownloading() + "");
-            if(!TbsDownloader.isDownloading()){
-                Log.d("initX5 prew",  "下载X5内核 -->");
-                TbsDownloader.startDownload(getApplicationContext());
+            if(fileType.contains("pdf")){
+                PrePdfViewActivity.startAty(filePath,title,fileType);
+                finish();
             }
+//            relLoadX5.setVisibility(View.VISIBLE);
+//            //x5下载监听
+//            QbSdk.setTbsListener(new TbsListener() {
+//                @Override
+//                public void onDownloadFinish(int i) {
+//                    Log.d("initX5 prew", "onDownloadFinish -->下载X5内核完成：" + i);
+//                    if(i != 100 && !TbsDownloader.isDownloading() && !QbSdk.canLoadX5(getApplicationContext())){
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                TbsDownloader.startDownload(getApplicationContext());
+//                            }
+//                        },10000);
+//
+//                    }else{
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                tvProgress.setText("浏览器安装中");
+//                            }
+//                        });
+//                    }
+//
+//
+//                }
+//                @Override
+//                public void onInstallFinish(int i) {
+//                    //安装完成
+//                    if(QbSdk.canLoadX5(getApplicationContext())){
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                openFile(filePath, fileType);
+//                            }
+//                        });
+//                    }
+//
+//                }
+//                @Override
+//                public void onDownloadProgress(int progress) {
+//                    if(isFirst && progress > 20){
+//                        maxProgress = 100 - progress;
+//                        cunProgress = progress;
+//                    }
+//                    isFirst = false;
+//                    float ratio = ((progress - cunProgress) / maxProgress);
+//                    int pro = (int) (100 * ratio);
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            tvProgress.setText("浏览器加载中：" + pro + "%");
+//                        }
+//                    });
+//                    Log.d("initX5  prew", "onDownloadProgress -->下载X5内核进度：" + progress);
+//                }
+//            });
+//            //判断是否在下载中
+//            Log.d("initX5 prew",  "是否正在下载X5内核 -->" +TbsDownloader.isDownloading() + "");
+//            if(!TbsDownloader.isDownloading()){
+//                Log.d("initX5 prew",  "下载X5内核 -->");
+//                TbsDownloader.startDownload(getApplicationContext());
+//            }
         }
 
     }

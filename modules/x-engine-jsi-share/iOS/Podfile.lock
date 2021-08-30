@@ -40,15 +40,15 @@ PODS:
 
 DEPENDENCIES:
   - WechatOpenSDK
-  - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
-  - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
-  - x-engine-native-direct_microapp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp`)
-  - x-engine-native-direct_omp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp`)
-  - x-engine-native-jsi (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi`)
-  - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
-  - x-engine-native-share (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share`)
-  - x-engine-native-share_wx (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share_wx`)
-  - x-engine-native-store (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store`)
+  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-share (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-share`)
+  - x-engine-native-share_wx (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-share_wx`)
+  - x-engine-native-store (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-store`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -57,23 +57,23 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
   x-engine-native-direct:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct"
   x-engine-native-direct_microapp:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-direct_omp"
   x-engine-native-jsi:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
   x-engine-native-share:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-share"
   x-engine-native-share_wx:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share_wx"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-share_wx"
   x-engine-native-store:
-    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store"
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-store"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -90,4 +90,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 21d54bccd94c6c86922a1d40c739d465a448a589
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

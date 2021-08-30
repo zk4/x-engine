@@ -60,6 +60,7 @@
 }
 ///是否缓存该请求，该请求是否在白名单里或合法
 - (BOOL)canCacheRequest:(NSURLRequest *)request {
+    if([request.URL.absoluteString containsString:@"sockjs-node"]) return NO;
     //User-Agent来过滤
     if (self.whiteUserAgent.length > 0) {
         NSString *uAgent = [request.allHTTPHeaderFields objectForKey:@"User-Agent"];
@@ -77,20 +78,10 @@
     //只允许GET方法通过，因为post请求body数据被清空, post body  由 ajaxhook.js 拦截后由原生处理.
     //如果通过 registerSchemeForCustomProtocol 注册了 http(s) scheme, 那么由WKWebView发起的所有 http(s)请求都会通过 IPC 传给主进程NSURLProtocol处理，导致post请求body被清空
     
-    if ([request.HTTPMethod compare:@"GET"] != NSOrderedSame) {
+    if (![request.HTTPMethod containsString:@"GET"]) {
         return NO;
     }
-    // TODO: 现在还有跨域的问题
-    // 不代理 GET 的 json 请求.
-//    return NO;
-//    NSString* accept = request.allHTTPHeaderFields[@"Accpet"] ;
-//    if(accept && [accept rangeOfString:@"application/json"].location!=NSNotFound){
-//        return NO;
-//    }
-    NSString* content_type = request.allHTTPHeaderFields[@"Content-Type"] ;
-    if(content_type && [content_type rangeOfString:@"image"].location!=NSNotFound){
-        return NO;
-    }
+
     //对于域名黑名单的过滤
     if (self.blackListsHost.count > 0) {
         BOOL isExist = [self.blackListsHost containsObject:request.URL.host];
@@ -119,6 +110,8 @@
     } else {
         return NO;
     }
+    NSLog(@"@intercept => %@",request.URL);
+
     return YES;
 }
 
@@ -191,14 +184,15 @@
                            @"textEncodingName" : cachedURLResponse.response.textEncodingName == nil ? @"": cachedURLResponse.response.textEncodingName};
     
 //    //写入磁盘
-    NSLog(@"@saved => %@",request);
     BOOL result1 = [info writeToFile:[self filePathFromRequest:request isInfo:YES] atomically:YES];
     BOOL result2 = [cachedURLResponse.data writeToFile:[self filePathFromRequest:request isInfo:NO] atomically:YES];
+    if(info[@"MIMEType"] && [info[@"MIMEType"] containsString:@"image/"])
+        return result1 && result2;
     //写入内存
     [self.memoryCache setObject:cachedURLResponse.data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
     [self.memoryCache setObject:info forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
 //
-    return result1 & result2;
+    return result1 && result2;
  
     // yycache 没有返回值
 //    return TRUE;

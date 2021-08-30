@@ -1,21 +1,21 @@
 {
     "data": [
         {
-            "microappId": "com.gm.microapp.home",
+            "microappId": "home",
             "version": 3,
-            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.home.3.zip",
+            "downloadUrl": "http://127.0.0.1:9527/zip/home.3.zip",
             "isForce": false
         },
         {
-            "microappId": "com.gm.microapp.mall",
+            "microappId": "mall",
             "version": 2,
-            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.mall.2.zip",
+            "downloadUrl": "http://127.0.0.1:9527/zip/mall.2.zip",
             "isForce": false
         },
         {
-            "microappId": "com.gm.microapp.mine",
+            "microappId": "mine",
             "version": 2,
-            "downloadUrl": "http://127.0.0.1:9527/zip/com.gm.microapp.mine.2.zip",
+            "downloadUrl": "http://127.0.0.1:9527/zip/mine.2.zip",
             "isForce": false
         }
     ],

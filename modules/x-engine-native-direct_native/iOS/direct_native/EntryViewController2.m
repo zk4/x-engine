@@ -4,8 +4,7 @@
 //
 
 #import "EntryViewController2.h"
-#import "XENativeContext.h"
-#import "MGJRouter.h"
+#import "XENativeContext.h" 
 
 @interface EntryViewController2 ()
 

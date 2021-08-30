@@ -30,6 +30,9 @@
 @property (nonatomic, copy) NSString *encryptUrl;
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, strong) NSMutableDictionary *typeDict;
+//导航栏
+@property (nonatomic, strong) UIView *navigationView;
+
 @end
 
 @implementation Native_viewer_original
@@ -73,7 +76,13 @@ NATIVE_MODULE(Native_viewer_original)
     self.hud.userInteractionEnabled = YES;
     self.hud.removeFromSuperViewOnHide = YES;
     
-
+    //设置导航栏位置信息
+    CGFloat topHeight   = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat WIDTH       = [Unity sharedInstance].getCurrentVC.view.frame.size.width;
+    CGFloat HEIGHT      = [Unity sharedInstance].getCurrentVC.view.frame.size.height;
+    self.navigationView.frame = CGRectMake(0, topHeight, WIDTH, 44);
+    self.previewController.view.frame = CGRectMake(0, CGRectGetMaxY(self.navigationView.frame), WIDTH, HEIGHT-CGRectGetMaxY(self.navigationView.frame));
+    [[UIApplication sharedApplication].keyWindow addSubview:self.navigationView];
     // document
     // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     // caches
@@ -112,7 +121,8 @@ NATIVE_MODULE(Native_viewer_original)
                 NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
                 NSDictionary *dict = r.allHeaderFields;
                 if(dict[@"content-type"] == nil) {
-                    [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
+//                    [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
+                    [self addchild];
                 } else {
                     NSString *responseType = dict[@"content-type"];
                     if ([self.typeDict[responseType] isEqualToString:type]) {
@@ -134,7 +144,8 @@ NATIVE_MODULE(Native_viewer_original)
     } else {
         NSURL *documentsDirectoryURL = [fileManager URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         self.fileUrl = [[documentsDirectoryURL URLByAppendingPathComponent:localPath.lastPathComponent] absoluteString];
-        [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
+//        [[Unity sharedInstance].getCurrentVC presentViewController:self.previewController animated:YES completion:nil];
+        [self addchild];
     }
 }
 
@@ -192,6 +203,42 @@ NATIVE_MODULE(Native_viewer_original)
 
 - (BOOL)isDefault {
     return [[self.store get:DEFAULT_KEY ] boolValue];
+}
+
+- (UIView *)navigationView{
+    if (_navigationView == nil) {
+        _navigationView = [[UIView alloc] init];
+        _navigationView.backgroundColor = UIColor.whiteColor;
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame = CGRectMake(0, 0, 50, 50);
+        [backButton setImage:[UIImage imageNamed:@"gomezk_back@3x"] forState:(UIControlStateNormal)];
+        backButton.backgroundColor = UIColor.clearColor;
+        [backButton addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
+        [_navigationView addSubview:backButton];
+        UILabel *titleName = [[UILabel alloc]init];
+        titleName.frame = CGRectMake(80, 0, [Unity sharedInstance].getCurrentVC.view.frame.size.width-(80*2), 44);
+        titleName.text = _titleString;
+        titleName.textAlignment = NSTextAlignmentCenter;
+        titleName.numberOfLines = 1;
+        titleName.textColor = UIColor.blackColor;
+        [_navigationView addSubview:titleName];
+    }
+    return  _navigationView;
+}
+- (void)back{
+
+    [self.previewController willMoveToParentViewController:nil];
+    [self.previewController removeFromParentViewController];
+    [self.previewController.view  removeFromSuperview];
+
+    [self.navigationView removeFromSuperview];
+    self.navigationView = nil;
+
+}
+- (void)addchild {
+    [[Unity sharedInstance].getCurrentVC addChildViewController:self.previewController];
+    [[Unity sharedInstance].getCurrentVC.view addSubview:self.previewController.view];
+    [self.previewController didMoveToParentViewController:[Unity sharedInstance].getCurrentVC];
 }
 @end
 #undef  DEFAULT_KEY

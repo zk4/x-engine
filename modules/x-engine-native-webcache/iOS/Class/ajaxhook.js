@@ -20,7 +20,7 @@
               if(xmlHttp.readyState == 4)
               {
                   console.warn("注意,在 x-engine 里, 原生 form 提交已全局拦截, 将不再支持页面跳转! 若有兼容问题, 请修改业务代码.")
-                  console.log(xmlHttp.responseText);
+//                  console.log(xmlHttp.responseText);
               }
           }
           xmlHttp.open(form.method, form.action);
@@ -87,6 +87,7 @@
             bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
             bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
         }
+        return bytes;
     }
     // 需要 es5 支持
     //    toBase64(file) {
@@ -199,7 +200,8 @@
         window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params, function (data) {
             data = JSON.parse(data)
             var statusCode = 1 * data["statusCode"];
-            var responseText = data["responseText"];
+            var isBinary = data["isBinary"];
+            var rawData = data["data"];
             var responseHeaders = data["responseHeaders"];
             var error = data["error"];
             
@@ -216,7 +218,12 @@
                 }
             } else {
                 xhr.status = statusCode;
-                xhr.responseText = responseText;
+                if(!isBinary){
+                    xhr.responseText =rawData;
+                }
+                else{
+                    xhr.response =new Blob([decode(rawData).buffer], { type: responseHeaders["Content-Type"] });
+                }
                 xhr.readyState = 4;
                 
                 xhr.omtResponseHeaders = responseHeaders;

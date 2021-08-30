@@ -2,6 +2,7 @@ package com.zkty.nativ.share_wx;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -65,7 +66,13 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
 
 
     @Override
-    public void share(String channel, ShareText info) {
+    public void share(String channel, ShareText info, CallBack callBack) {
+
+        if (!isWxExited()) {
+            callBack.onResult(-1);
+            ToastUtils.showNormalShortToast("安装微信后分享");
+            return;
+        }
         IWXAPI iwxapi = createWXAPI();
         if (iwxapi == null) return;
 
@@ -83,11 +90,17 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
         req.scene = "wx_friend".equals(channel) ? SendMessageToWX.Req.WXSceneSession : SendMessageToWX.Req.WXSceneTimeline;
         //调用api接口，发送数据到微信
         iwxapi.sendReq(req);
+        callBack.onResult(0);
 
     }
 
     @Override
-    public void share(String channel, ShareImg info) {
+    public void share(String channel, ShareImg info, CallBack callBack) {
+        if (!isWxExited()) {
+            callBack.onResult(-1);
+            ToastUtils.showNormalShortToast("安装微信后分享");
+            return;
+        }
 
         IWXAPI iwxapi = createWXAPI();
         if (iwxapi == null) return;
@@ -126,11 +139,16 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
             }
         });
 
-
+        callBack.onResult(0);
     }
 
     @Override
-    public void share(String channel, ShareLink info) {
+    public void share(String channel, ShareLink info, CallBack callBack) {
+        if (!isWxExited()) {
+            callBack.onResult(-1);
+            ToastUtils.showNormalShortToast("安装微信后分享");
+            return;
+        }
 
         IWXAPI iwxapi = createWXAPI();
         if (iwxapi == null) return;
@@ -189,11 +207,16 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
             }
         });
 
-
+        callBack.onResult(0);
     }
 
     @Override
-    public void share(ShareMiniProgram info) {
+    public void share(ShareMiniProgram info, CallBack callBack) {
+        if (!isWxExited()) {
+            callBack.onResult(-1);
+            ToastUtils.showNormalShortToast("安装微信后分享");
+            return;
+        }
 
         IWXAPI iwxapi = createWXAPI();
         if (iwxapi == null) return;
@@ -249,7 +272,7 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
 
             }
         });
-
+        callBack.onResult(0);
     }
 
     private IWXAPI createWXAPI() {
@@ -274,6 +297,20 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
         return WXAPIFactory.createWXAPI(context, appId);
 
 
+    }
+
+    private boolean isWxExited() {
+        final PackageManager packageManager = XEngineApplication.getApplication().getPackageManager();// 获取packagemanager
+        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);// 获取所有已安装程序的包信息
+        if (pinfo != null) {
+            for (int i = 0; i < pinfo.size(); i++) {
+                String pn = pinfo.get(i).packageName;
+                if (pn.equals("com.tencent.mm")) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

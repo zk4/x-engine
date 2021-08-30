@@ -115,6 +115,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         //增加神策埋点（webview初始化）
         SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView,true);
 
+        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView, true);
+        
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 
         xEngineNavBar.setLeftListener(view -> {

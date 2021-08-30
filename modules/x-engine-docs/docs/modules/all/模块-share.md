@@ -6,7 +6,7 @@
 
 JSI Id: com.zkty.jsi.share
 
-version: 2.0.3
+version: 2.8.1
 
 
 

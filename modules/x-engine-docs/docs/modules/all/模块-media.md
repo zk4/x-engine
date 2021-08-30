@@ -1,5 +1,9 @@
 
 
+
+
+
+
 JSI Id: com.zkty.jsi.media
 
 version: 2.8.1
@@ -187,3 +191,9 @@ version: 2.8.1
 
 
     
+# iOS 注意事项
+- 需要在 info.list 开启相应权限
+  - Privacy - Photo Library Usage Description  /  App需要您的同意,才能访问相册
+  - Privacy - Camera Usage Description   /  App需要您的同意,才能启用相机
+
+

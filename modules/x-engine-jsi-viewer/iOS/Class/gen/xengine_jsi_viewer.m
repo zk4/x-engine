@@ -10,15 +10,15 @@
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
-    
+
   
-@implementation _0_com_zkty_jsi_viewer_DTO
+@implementation _openFileReader0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
    	return NO;
     }
 @end
-    
+
 
 
 
@@ -36,10 +36,16 @@
     
     - (void) openFileReader:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _0_com_zkty_jsi_viewer_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_viewer_DTO.class];
+          _openFileReader0_DTO* dto = [self convert:dict clazz:_openFileReader0_DTO.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+
           [self _openFileReader:dto complete:^(StatusDTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
-      }
+  }
   @end

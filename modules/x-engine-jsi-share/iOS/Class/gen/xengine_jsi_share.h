@@ -20,19 +20,19 @@
 @interface ShareDTO: JSONModel
   	@property(nonatomic,copy) NSString* channel;
    	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* info;
+   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* info;
 @end
-    
+
 
 @interface ShareTextDTO: JSONModel
   	@property(nonatomic,copy) NSString* text;
 @end
-    
+
 
 @interface ShareImgDTO: JSONModel
   	@property(nonatomic,copy) NSString* imgData;
 @end
-    
+
 
 @interface ShareLinkDTO: JSONModel
   	@property(nonatomic,copy) NSString* title;
@@ -40,7 +40,7 @@
    	@property(nonatomic,copy) NSString* imgUrl;
    	@property(nonatomic,copy) NSString* url;
 @end
-    
+
 
 @interface ShareMiniProgramDTO: JSONModel
   	@property(nonatomic,copy) NSString* userName;
@@ -51,15 +51,15 @@
    	@property(nonatomic,copy) NSString* desc;
    	@property(nonatomic,copy) NSString* imgUrl;
 @end
-    
+
 
 
 @protocol xengine_jsi_share_protocol
-       @required 
-        - (void) _share:(ShareDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
+   @required 
+     - (void) _share:(ShareDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+
 @end
-  
+
 
 
 @interface xengine_jsi_share : JSIModule<xengine_jsi_share_protocol>

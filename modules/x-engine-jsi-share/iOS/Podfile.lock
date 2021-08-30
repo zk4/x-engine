@@ -31,6 +31,7 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-share_wx (1.0.0):
+    - WechatOpenSDK (~> 1.8.6)
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-store (1.0.0):
@@ -39,15 +40,15 @@ PODS:
 
 DEPENDENCIES:
   - WechatOpenSDK
-  - x-engine-native-core (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-core`)
-  - x-engine-native-direct (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct`)
-  - x-engine-native-direct_microapp (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_microapp`)
-  - x-engine-native-direct_omp (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_omp`)
-  - x-engine-native-jsi (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-jsi`)
-  - x-engine-native-protocols (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-protocols`)
-  - x-engine-native-share (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share`)
-  - x-engine-native-share_wx (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share_wx`)
-  - x-engine-native-store (from `/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-store`)
+  - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-share (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share`)
+  - x-engine-native-share_wx (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share_wx`)
+  - x-engine-native-store (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -56,23 +57,23 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-core"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core"
   x-engine-native-direct:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct"
   x-engine-native-direct_microapp:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_microapp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_microapp"
   x-engine-native-direct_omp:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-direct_omp"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct_omp"
   x-engine-native-jsi:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-jsi"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-jsi"
   x-engine-native-protocols:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-protocols"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
   x-engine-native-share:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share"
   x-engine-native-share_wx:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-share_wx"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-share_wx"
   x-engine-native-store:
-    :path: "/Users/jabraknight/Documents/zkty/x-engine/modules/x-engine-native-store"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-store"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -84,7 +85,7 @@ SPEC CHECKSUMS:
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-share: 1318598548336dcd0c4f78a3dbb9478920e8f471
-  x-engine-native-share_wx: 18a012fb99d85f476ee99ba7404c98698532d144
+  x-engine-native-share_wx: 88c6934e24450b20b379ff458b4ea210dbeca28c
   x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
 
 PODFILE CHECKSUM: 21d54bccd94c6c86922a1d40c739d465a448a589

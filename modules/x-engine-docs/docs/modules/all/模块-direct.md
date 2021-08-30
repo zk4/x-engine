@@ -94,7 +94,7 @@ version: 2.8.1
   // 跳转microapp
   engine.api('com.zkty.jsi.direct', 'push', {
     scheme: "microapp",
-    host: "com.gm.microapp.mine",
+    host: "com.zkty.microapp.mine",
     pathname: "",
     fragment: "",
   })
@@ -102,7 +102,7 @@ version: 2.8.1
   // 跳转并删除当前页
   engine.api('com.zkty.jsi.direct', 'push', {
     scheme: "microapp",
-    host: "com.gm.microapp.mine",
+    host: "com.zkty.microapp.mine",
     pathname: "",
     fragment: "",
     params:{

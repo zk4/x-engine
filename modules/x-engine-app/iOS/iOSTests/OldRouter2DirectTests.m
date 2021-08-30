@@ -33,16 +33,15 @@
 
 - (void)testMicroappWithPathQuery {
 /// TODO: 数字不能过 value 测试。见：testMicroappWithPathQuery_数字问题
-///    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.gm.microapp.mine",@"path":@"/abc?a=b&c=3",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
 
-    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.gm.microapp.mine",@"path":@"/abc?a=b&c=abc",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
+    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.zkty.microapp.mine",@"path":@"/abc?a=b&c=abc",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
     
-    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.gm.microapp.mine" ,@"pathname":@"",@"fragment":@"/abc",@"query":@{@"a":@"b",@"c":@"abc"},@"params":@{@"hideNavbar":@TRUE}};
+    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.zkty.microapp.mine" ,@"pathname":@"",@"fragment":@"/abc",@"query":@{@"a":@"b",@"c":@"abc"},@"params":@{@"hideNavbar":@TRUE}};
     
      XCTAssertEqualObjects(should,[JSIOldRouterModule convertRouter2JSIModel:oldnavdto], @"should equal");
 }
 - (void)testMicroappWithPathQuery_数字问题 {
-    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.gm.microapp.mine",@"path":@"/abc?a=b&c=3",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
+    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.zkty.microapp.mine",@"path":@"/abc?a=b&c=3",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
 
     NSDictionary* converted = [JSIOldRouterModule convertRouter2JSIModel:oldnavdto];
     XCTAssertEqual(3,[converted[@"query"][@"c"] intValue], @"should equal");
@@ -51,24 +50,24 @@
 
 - (void)testMicroappWithPath {
     
-    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.gm.microapp.mine",@"path":@"/abc",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
+    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.zkty.microapp.mine",@"path":@"/abc",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
 
-    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.gm.microapp.mine",@"fragment":@"/abc",@"pathname":@"",@"params":@{@"hideNavbar":@TRUE}};
+    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.zkty.microapp.mine",@"fragment":@"/abc",@"pathname":@"",@"params":@{@"hideNavbar":@TRUE}};
     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
 - (void)testMicroappWithPath_中文query参数 {
     
-    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.gm.microapp.mine",@"path":@"/abc?a=我们",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
+    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.zkty.microapp.mine",@"path":@"/abc?a=我们",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
 
-    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.gm.microapp.mine",@"fragment":@"/abc",@"pathname":@"",@"params":@{@"hideNavbar":@TRUE},@"query":@{@"a":@"我们"}};
+    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.zkty.microapp.mine",@"fragment":@"/abc",@"pathname":@"",@"params":@{@"hideNavbar":@TRUE},@"query":@{@"a":@"我们"}};
     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
 - (void)testMicroappBasic {
     
-    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.gm.microapp.mine",@"path":@"/",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
-    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.gm.microapp.mine",@"fragment":@"/",@"pathname":@"",@"params":@{ @"hideNavbar":@TRUE}};
+    NSDictionary*  oldnavdto= @{@"type":@"microapp",@"uri":@"com.zkty.microapp.mine",@"path":@"/",@"fallback":@"",@"version":@0,@"hideNavbar":@TRUE,@"args":@{}};
+    NSDictionary*  should= @{@"scheme":@"microapp",@"host":@"com.zkty.microapp.mine",@"fragment":@"/",@"pathname":@"",@"params":@{ @"hideNavbar":@TRUE}};
 
-//    NSString* url2 = @"http://com.gm.microapp.mine.0/index.html#/testA?a=2&b=2";
+//    NSString* url2 = @"http://com.zkty.microapp.mine.0/index.html#/testA?a=2&b=2";
     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
 
@@ -78,7 +77,7 @@
 
     NSDictionary*  should= @{@"scheme":@"omp",@"host":@"192.168.1.12",@"fragment":@"/",@"pathname":@"",@"params":@{ @"hideNavbar":@TRUE}};
 
-//    NSString* url2 = @"http://com.gm.microapp.mine.0/index.html#/testA?a=2&b=2";
+//    NSString* url2 = @"http://com.zkty.microapp.mine.0/index.html#/testA?a=2&b=2";
     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
 
@@ -89,7 +88,7 @@
 
     NSDictionary*  should= @{@"scheme":@"omp",@"host":@"192.168.1.12",@"fragment":@"/",@"pathname":@"/",@"params":@{ @"hideNavbar":@TRUE}};
 
-//    NSString* url2 = @"http://com.gm.microapp.mine.0/index.html#/testA?a=2&b=2";
+//    NSString* url2 = @"http://com.zkty.microapp.mine.0/index.html#/testA?a=2&b=2";
     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
 
@@ -99,7 +98,7 @@
 
     NSDictionary*  should= @{@"scheme":@"omp",@"host":@"192.168.1.12",@"fragment":@"/",@"pathname":@"/index.html",@"params":@{ @"hideNavbar":@TRUE}};
 
-//    NSString* url2 = @"http://com.gm.microapp.mine.0/index.html#/testA?a=2&b=2";
+//    NSString* url2 = @"http://com.zkty.microapp.mine.0/index.html#/testA?a=2&b=2";
     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
  
@@ -109,7 +108,7 @@
 
     NSDictionary*  should= @{@"scheme":@"omp",@"host":@"192.168.1.12",@"fragment":@"/index.html",@"pathname":@"",@"params":@{ @"hideNavbar":@TRUE}};
 
-//    NSString* url2 = @"http://com.gm.microapp.mine.0/index.html#/testA?a=2&b=2";
+//    NSString* url2 = @"http://com.zkty.microapp.mine.0/index.html#/testA?a=2&b=2";
     XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
 
@@ -120,7 +119,7 @@
 
     NSDictionary*  should= @{@"scheme":@"omp",@"host":@"192.168.1.12",@"fragment":@"/index.html",@"pathname":@"",@"params":@{ @"hideNavbar":@TRUE},@"query":@{@"a":@"我们"}};
 
-//    NSString* url2 = @"http://com.gm.microapp.mine.0/index.html#/testA?a=2&b=2";
+//    NSString* url2 = @"http://com.zkty.microapp.mine.0/index.html#/testA?a=2&b=2";
    XCTAssertEqualObjects([JSIOldRouterModule convertRouter2JSIModel:oldnavdto],should, @"should equal");
 }
 

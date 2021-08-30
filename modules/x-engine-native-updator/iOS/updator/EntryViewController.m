@@ -19,13 +19,13 @@
 }
 
 -(void) pushTestModule{
-    [XENP(iDirectManager) push:@"microapp://com.gm.microapp.home" params:nil];
+    [XENP(iDirectManager) push:@"microapp://com.zkty.microapp.home" params:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self pushTestModule];
-//    [XENP(iDirectManager) push:@"microapp://com.gm.microapp.home" params:nil];
+//    [XENP(iDirectManager) push:@"microapp://com.zkty.microapp.home" params:nil];
     [XENP(iUpdator) updateMicroappsFromUrl:@"http://localhost:9527/data.json"];
 }
 

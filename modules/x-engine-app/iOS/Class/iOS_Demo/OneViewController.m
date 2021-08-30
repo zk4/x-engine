@@ -18,12 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8080" params:@{@"hideNavbar":@TRUE}];
-    
-//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.71:3000/" params:@{@"hideNavbar":@TRUE}];
     [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
 
 }
 @end
 
-//file:///var/mobile/Containers/Data/Application/14BE590E-8972-4A6E-9679-E3CF0440CDCF/Documents/com.gm.microapp.home.1/index.html

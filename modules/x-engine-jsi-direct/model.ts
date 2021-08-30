@@ -66,7 +66,7 @@ function push(arg: DirectPushDTO = {scheme:'omp',fragment:'/',params:{'hideNavba
   // 跳转microapp
   engine.api('com.zkty.jsi.direct', 'push', {
     scheme: "microapp",
-    host: "com.gm.microapp.mine",
+    host: "com.zkty.microapp.mine",
     pathname: "",
     fragment: "",
   })
@@ -74,7 +74,7 @@ function push(arg: DirectPushDTO = {scheme:'omp',fragment:'/',params:{'hideNavba
   // 跳转并删除当前页
   engine.api('com.zkty.jsi.direct', 'push', {
     scheme: "microapp",
-    host: "com.gm.microapp.mine",
+    host: "com.zkty.microapp.mine",
     pathname: "",
     fragment: "",
     params:{

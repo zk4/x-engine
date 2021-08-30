@@ -1,13 +1,5 @@
-<!--
- * @Author: sheng.wang
- * @Date: 2021-06-02 14:36:58
- * @LastEditTime: 2021-06-03 19:16:11
- * @LastEditors: sheng.wang
- * @Description: 
- * @FilePath: /x-engine/modules/x-engine-docs/_sidebar.md
--->
-- **[开发模式]**
-  - [h5 混合]
+ * **[开发模式]**
+- - [h5 混合]
     - [基于 Vue]
       - [Vue 模板开发](./docs/devProcess/Vue模板开发.md)
       - [Vue 模拟原生 UI](./docs/devProcess/公共组件.md)

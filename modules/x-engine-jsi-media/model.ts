@@ -20,7 +20,12 @@ function previewImg(arg: {
   index: int;
   // 图片数组, 多张用逗号分隔
   imgList: Array<string>;
-});
+}) {
+  xengine.api("com.zkty.jsi.media", "previewImg", {
+    index: 0,
+    imgList: ["http://xxxxxx", "https://xxxxxx"],
+  });
+}
 
 // 保存到相册
 // 返回值: 0 保存成功
@@ -38,7 +43,19 @@ function saveImageToPhotoAlbum(arg: {
   status: int;
   // 函数状态描述
   msg: string;
-};
+} {
+  xengine.api(
+    "com.zkty.jsi.media",
+    "saveImageToPhotoAlbum",
+    {
+      type: "url",
+      imageData: "http://xxx",
+    },
+    (res) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
+    }
+  );
+}
 
 // 打开picker选择相册或相机
 @async
@@ -69,17 +86,43 @@ function openImagePicker(arg: {
     type: string;
     thumbnail: string;
   }>;
-};
+} {
+  xengine.api(
+    "com.zkty.jsi.media",
+    "openImagePicker",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        const image = document.createElement("img");
+        // 使用缩略图来展示小图
+        image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
+        image.style.cssText =
+          "width:100px; height:100px; margin-right:10px; border-radius:10px;";
+        document.body.appendChild(image);
+      }
+    }
+  );
+}
 
 // 上传图片
 @async
 function uploadImage(arg: {
   // 请求的url
   url: string;
-  // 请求header
-  header: Map<string, string>;
   // 拍照或者选择相册后返回id
   ids: Array<string>;
+  // 请求header
+  header?: Map<string, string>;
 }): {
   // 函数状态码
   // status = 0  成功
@@ -91,7 +134,21 @@ function uploadImage(arg: {
   imgID: string;
   // 服务器返回的数据
   data: string;
-};
+} {
+  xengine.api(
+    "com.zkty.jsi.media",
+    "uploadImage",
+    {
+      url:
+        "http://xxx",
+      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+    },
+    (res) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
+    }
+  );
+}
+
 
 function test_placeholder() {}
 function test_placeholder() {}
@@ -119,7 +176,14 @@ function test_saveImageToPhotoAlbum(arg: {
   type: string;
   // 图片数据
   imageData: string;
-}) {
+}): {
+  // 函数状态码
+  // status = 0  成功
+  // status = -1 失败
+  status: int;
+  // 函数状态描述
+  msg: string;
+} {
   xengine.api(
     "com.zkty.jsi.media",
     "saveImageToPhotoAlbum",
@@ -180,11 +244,7 @@ function test_openImagePicker(arg: {
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
         const image = document.createElement("img");
-        // if (!photo.width || !photo.height) {
-        //   alert("要返回width,与height", photo);
-        // }
-        // image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
-        // 放入缩略图
+        // 使用缩略图来展示小图
         image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
         image.style.cssText =
           "width:100px; height:100px; margin-right:10px; border-radius:10px;";
@@ -225,7 +285,7 @@ function test_uploadImage(arg: {
       header: {},
     },
     (res) => {
-      console.log(JSON.stringify(res));
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
     }
   );
 }

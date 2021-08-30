@@ -57,11 +57,7 @@ window.test_placeholder = () => {
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
         const image = document.createElement("img");
-        // if (!photo.width || !photo.height) {
-        //   alert("要返回width,与height", photo);
-        // }
-        // image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
-        // 放入缩略图
+        // 使用缩略图来展示小图
         image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
         image.style.cssText =
           "width:100px; height:100px; margin-right:10px; border-radius:10px;";
@@ -83,7 +79,7 @@ window.test_placeholder = () => {
       header: {},
     },
     (res) => {
-      console.log(JSON.stringify(res));
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
     }
   );
 }

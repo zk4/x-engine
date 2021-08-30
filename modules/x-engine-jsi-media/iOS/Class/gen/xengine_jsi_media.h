@@ -76,8 +76,8 @@
 
 @interface _uploadImage1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
-   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* header;
    	@property(nonatomic,strong) NSMutableArray<NSString*>* ids;
+   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* header;
 @end
 
 

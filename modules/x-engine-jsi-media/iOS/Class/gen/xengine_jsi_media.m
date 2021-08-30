@@ -67,7 +67,7 @@
 @implementation _uploadImage1_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
-   	return NO;
+   	if ([propertyName isEqualToString:@"header"]) { return YES; }	return NO;
     }
 @end
 

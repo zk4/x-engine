@@ -53,6 +53,9 @@ PODS:
   - x-engine-jsi-vuex (2.8.1):
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-jsi-webcache (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-broadcast (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -128,6 +131,11 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-webcache (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+    - YYCache
+  - YYCache (1.0.4)
   - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
@@ -145,6 +153,7 @@ DEPENDENCIES:
   - x-engine-jsi-store (from `../../x-engine-jsi-store`)
   - x-engine-jsi-ui (from `../../x-engine-jsi-ui`)
   - x-engine-jsi-vuex (from `../../x-engine-jsi-vuex`)
+  - x-engine-jsi-webcache (from `../../x-engine-jsi-webcache`)
   - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-device (from `../../x-engine-native-device`)
@@ -165,6 +174,7 @@ DEPENDENCIES:
   - x-engine-native-tabbar (from `../../x-engine-native-tabbar`)
   - x-engine-native-toast (from `../../x-engine-native-toast`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
+  - x-engine-native-webcache (from `../../x-engine-native-webcache`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
@@ -175,6 +185,7 @@ SPEC REPOS:
     - SDWebImage
     - SSZipArchive
     - Toast
+    - YYCache
 
 EXTERNAL SOURCES:
   x-engine-jsi-dev:
@@ -197,6 +208,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-ui"
   x-engine-jsi-vuex:
     :path: "../../x-engine-jsi-vuex"
+  x-engine-jsi-webcache:
+    :path: "../../x-engine-jsi-webcache"
   x-engine-native-broadcast:
     :path: "../../x-engine-native-broadcast"
   x-engine-native-core:
@@ -237,6 +250,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-toast"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
+  x-engine-native-webcache:
+    :path: "../../x-engine-native-webcache"
   ZBarSDK:
     :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
@@ -257,6 +272,7 @@ SPEC CHECKSUMS:
   x-engine-jsi-store: 002251070632235813a689713e4198c2aadb8ba8
   x-engine-jsi-ui: 92fa55529016c302008ad6f0cc27b1a07a7e95f5
   x-engine-jsi-vuex: 6fef234b0d5cedf9be023ae9130a550eab78ea98
+  x-engine-jsi-webcache: a7f20d21ef8af71c80ebfcbc37a387d8c7209f32
   x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-device: 05280cc3d26c9e4f917ac4a5e5b38aa23122e978
@@ -277,8 +293,10 @@ SPEC CHECKSUMS:
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
   x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
+  x-engine-native-webcache: 3b1fe4498b704f70bf45ad82e34fdf4863ca1a69
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: faa35fb7e46ca4103db1bcdbf094ec7401e3748c
+PODFILE CHECKSUM: 14f34a00253e6deaa7807cbde9cf3513d91cc75d
 
 COCOAPODS: 1.10.1

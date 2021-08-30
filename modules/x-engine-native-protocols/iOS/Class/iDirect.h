@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class UIViewController;
 NS_ASSUME_NONNULL_BEGIN
  @protocol iDirect <NSObject>
 // scheme 形如
@@ -19,19 +20,21 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString*) scheme;
 
 // 注意 protocol 带:, 形如 http: https:
-// fragment 一定以 / 开头
 -(NSString*) protocol;
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
+- (void)push:(UIViewController*) container
+        params:(nullable NSDictionary<NSString*,id>*) params;  //　原生参数
+
+- (void)back:(NSString*) host fragment:(NSString*) fragment;
+
+// 创建容器，vc
+- (UIViewController*)getContainer:(NSString*) protocol
         host:(nullable NSString*) host
         pathname:(NSString*) pathname
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
-        params:(nullable NSDictionary<NSString*,id>*) params;
-
-
-
-- (void)back:(NSString*) host fragment:(NSString*) fragment;
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect) frame;
 
 @end
 

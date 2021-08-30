@@ -22,5 +22,6 @@ public interface IStore {
 /// @param merge 是否要 merge 已经存在的档案，当前档案将被覆盖
     void loadFromDisk(boolean merge);
 
-
+    //是否存在key
+    boolean has(String key);
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_root"
     android:layout_width="match_parent"
@@ -16,7 +16,63 @@
         android:padding="10dp"
         android:text="next page"
         android:textColor="@color/colorBlue"
-        android:textSize="@dimen/dp_20"
-        android:visibility="visible" />
+        android:textSize="@dimen/sp_14" />
 
-</RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_15"
+        android:onClick="scan"
+        android:padding="10dp"
+        android:text="扫一扫"
+        android:textColor="@color/colorBlue"
+        android:textSize="@dimen/sp_14" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_15"
+        android:onClick="nextAct"
+        android:padding="10dp"
+        android:text="next"
+        android:textColor="@color/colorBlue"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/tv_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_15"
+        android:textColor="@color/colorBlue"
+        android:textSize="@dimen/sp_14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_num"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/color_12"
+            android:inputType="number"
+           />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_15"
+            android:onClick="finishAct"
+            android:padding="10dp"
+            android:text="finishAct"
+            android:textColor="@color/colorBlue"
+            android:textSize="@dimen/sp_14" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

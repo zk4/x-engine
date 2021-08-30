@@ -6,7 +6,7 @@
 #import "xengine_jsi_camera.h"
 
 
-@implementation _0_com_zkty_jsi_camera_DTO
+@implementation _openImagePicker0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"allowsEditing"]) { return YES; }
    	if ([propertyName isEqualToString:@"savePhotosAlbum"]) { return YES; }
    	if ([propertyName isEqualToString:@"cameraFlashMode"]) { return YES; }
@@ -16,14 +16,40 @@
    	if ([propertyName isEqualToString:@"photoCount"]) { return YES; }	return NO;
     }
 @end
-    
+
   
-@implementation _1_com_zkty_jsi_camera_DTO
+@implementation _openImagePicker20_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
 @end
-    
+
+  
+@implementation _openImagePicker21_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
+  
+@implementation _openImagePicker22_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	if ([propertyName isEqualToString:@"allowsEditing"]) { return YES; }
+   	if ([propertyName isEqualToString:@"savePhotosAlbum"]) { return YES; }
+   	if ([propertyName isEqualToString:@"cameraFlashMode"]) { return YES; }
+   	if ([propertyName isEqualToString:@"cameraDevice"]) { return YES; }
+   
+   
+   	if ([propertyName isEqualToString:@"photoCount"]) { return YES; }	return NO;
+    }
+@end
+
+  
+@implementation _saveImageToPhotoAlbum0_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
 
 
 
@@ -41,18 +67,26 @@
     
     - (void) openImagePicker:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _0_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_camera_DTO.class];
+          _openImagePicker0_DTO* dto = [self convert:dict clazz:_openImagePicker0_DTO.class];
           [self _openImagePicker:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
-      }
+  }
+    - (void) openImagePicker2:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          _openImagePicker22_DTO* dto = [self convert:dict clazz:_openImagePicker22_DTO.class];
+          [self _openImagePicker2:dto complete:^(_openImagePicker20_DTO* result,  BOOL complete) {
+            completionHandler(result,complete);
+          }];
+        
+  }
     - (void) saveImageToPhotoAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _1_com_zkty_jsi_camera_DTO* dto = [self convert:dict clazz:_1_com_zkty_jsi_camera_DTO.class];
+          _saveImageToPhotoAlbum0_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum0_DTO.class];
           [self _saveImageToPhotoAlbum:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         
-      }
+  }
   @end

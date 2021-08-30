@@ -11,6 +11,8 @@
 #import <objc/message.h>
 #import "XEngineJSBUtil.h"
 #import "Unity.h"
+#import "iToast.h"
+#import "XENativeContext.h"
 # ifndef mustOverride
 #define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 #endif
@@ -24,20 +26,47 @@
 }
 - (void)afterAllJSIModuleInited {
 }
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+    
+}
 
 - (void)showErrorAlert:(NSString *)errorString
 {
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-    [ac addAction:action];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+//    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+//    [ac addAction:action];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+    [XENP(iToast) toast:errorString duration:1.0];
 }
 
 
 - (id)convert:(NSDictionary *)param clazz:(Class)clazz {
+    // 目标格式是字典不做转换
+    if(clazz && [NSDictionary.class isEqual:clazz])
+        return param;
     NSError *err;
     id dto = [clazz class];
+
     if([param isKindOfClass:NSString.class]){
+        return param;
+    }
+    if([param isKindOfClass:NSNumber.class]){
         return param;
     }
     dto = [[dto alloc] initWithDictionary:param error:&err];
@@ -92,10 +121,10 @@
     // 遍历 dest 的 key
     for(NSString* destKey in [dest allKeys]){
         id value = [dest objectForKey:destKey];
-
+        
         // default 里没有的相同 key
         if(![[dv allKeys] containsObject:destKey]){
-                value = dest[destKey];
+            value = dest[destKey];
         }
         // default 里有相同的 key
         else {
@@ -107,7 +136,7 @@
                 value = [self merge:dest[destKey] defaultDict:dv[destKey]];
             }
             else{
-            //  其他,使用 dest
+                //  其他,使用 dest
                 value = dest[destKey];
             }
         }

@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iDirectManager.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_direct : NativeModule <iDirectManager>
+@interface Native_direct : XENativeModule <iDirectManager>
  
 @end
 

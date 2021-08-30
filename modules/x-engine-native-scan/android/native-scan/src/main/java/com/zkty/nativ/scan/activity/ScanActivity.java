@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.barlibrary.ImmersionBar;
 import com.zkty.nativ.core.utils.ToastUtils;
 
@@ -23,7 +26,7 @@ import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
 import nativ.scan.R;
 
-
+@Route(path = "/scan/scan")
 public class ScanActivity extends AppCompatActivity {
     private static final String TAG = ScanActivity.class.getSimpleName();
 
@@ -48,6 +51,9 @@ public class ScanActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_layout);
+        ARouter.getInstance().inject(this);
+
+
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white)
@@ -61,10 +67,13 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onScanQRCodeSuccess(String result) {
                 Log.d(TAG, result);
-                Intent intent = new Intent();
-                intent.putExtra("result", result);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                new Handler().postDelayed(() -> {
+                    Intent intent = new Intent();
+                    intent.putExtra("result", result);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }, 500);
+
             }
 
             @Override
@@ -154,6 +163,13 @@ public class ScanActivity extends AppCompatActivity {
         zXingView.stopCamera(); // 关闭摄像头预览，并且隐藏扫描框
         super.onStop();
         zXingView.closeFlashlight();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+
     }
 
     @Override

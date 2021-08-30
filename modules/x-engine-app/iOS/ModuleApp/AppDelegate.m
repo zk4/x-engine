@@ -1,21 +1,28 @@
 #import "AppDelegate.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "JSIContext.h"
- 
+
 #import "MainTabbarController.h"
-@interface AppDelegate ()
-@end
+
+#import "JumpViewController.h"
+#import <Unity.h>
+#import <x-engine-native-protocols/iNativeRegister.h>
+#import <x-engine-native-core/micros.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[NativeContext sharedInstance] start];
-    [[JSIContext sharedInstance] start];
-//    id<iOpenManager> img = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iOpenManager)];
-//    [img open:@"h5" :@"com.gm.microapp.mine" :@"hello" :@{} :0 :FALSE];
+    [[XENativeContext sharedInstance] start];
     
-    // 为了看下启动页面图所以延迟1秒
-//    [NSThread sleepForTimeInterval:1];
+    [[JSIContext sharedInstance] start];
+
+    id<iNativeRegister> ir = XENP(iNativeRegister);
+    [ir registerNativeRouter:@"native://foo/bar" nativeVCCreator:^UIViewController * _Nullable(NSString * _Nonnull protocol, NSString * _Nonnull host, NSString * _Nonnull pathname, NSString * _Nonnull fragment, NSDictionary * _Nonnull query, NSDictionary * _Nonnull params) {
+        return [[JumpViewController alloc] init] ;
+    }];
+
+    //  为了看下启动页面图所以延迟1秒
+    //  [NSThread sleepForTimeInterval:1];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -25,8 +32,6 @@
     
     [self.window makeKeyAndVisible];
     
-
     return YES;
 }
- 
 @end

@@ -2,12 +2,12 @@
 
 JSI Id: com.zkty.jsi.ui
 
-version: 0.1.13
+version: 2.8.1
 
 
 
 ## setNavTitle
-`sync`,`async`
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 
 **demo**
 ``` js
@@ -31,7 +31,7 @@ version: 0.1.13
 
 
 ## setNavBarHidden
-`sync`,`async`
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
 > 使用push,或 nav 里 hideNavbar 参数控制状态的显示
 **demo**
 ``` js

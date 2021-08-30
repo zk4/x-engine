@@ -1,5 +1,6 @@
 <template>
   <div class="testone-class">
+    <div style="height:100px;"></div>
     <van-button type="primary" size="large" round @click="handlerPush">下一页</van-button>
     <van-button type="info" size="large" round @click="handlerBack">上一页</van-button>
     <van-button
@@ -19,28 +20,52 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+    console.log('windowwindowwindow._dswk', window._dswk)
+    // console.log("testOnePage-->mounted")
+    // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-mounted")
+  },
+  destroyed() {
+    // console.log("testOnePage-->destroyed")
+    // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-destroyed")
+  },
   methods: {
+    onNativeShow() {
+      alert("onePageCustom-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
+    },
+    onNativeHide() {
+      console.log("onePageCustom-->onNativeHide")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeHide"
+      )
+    },
+    onNativeDestroyed() {
+      console.log("onePageCustom-->onNativeDestroyed")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeDestroyed"
+      )
+    },
     handlerPush() {
       this.$router.push({
-        path: "/testtwo",
+        name: "testtwo",
         query: {
+          changeNavTitle: "第二页"
+        },
+        params: {
           id: 1,
           age: 18,
           name: "中文",
-          changeNavTitle: "上个页面修改的文字",
         },
       })
     },
     handlerBack() {
       this.$router.go(-1)
     },
-
-    // scheme tip:
-    // file
-    // omp
-    // http
-    // https
-    // microapp
     handlerOpenMicroApp() {
       this.$engine.api(
         "com.zkty.jsi.direct",
@@ -55,7 +80,7 @@ export default {
           },
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },
@@ -73,7 +98,7 @@ export default {
           },
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },
@@ -92,7 +117,7 @@ export default {
           },
         },
         function (res) {
-          console.log("res :>> ", res)
+          // console.log("res :>> ", res)
         }
       )
     },

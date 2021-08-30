@@ -4,7 +4,7 @@
 //
 
 #import "EntryViewController.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Native_store.h"
 @interface EntryViewController ()
 

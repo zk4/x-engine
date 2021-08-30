@@ -4,15 +4,15 @@
 
 
 #import <WebKit/WebKit.h>
-
+#import "HistoryModel.h"
  
 
-@interface XEngineWebView : WKWebView <WKUIDelegate,WKNavigationDelegate>
+@interface XEngineWebView : WKWebView <WKUIDelegate,WKNavigationDelegate, UIGestureRecognizerDelegate>
 @property (nullable, nonatomic, weak) id <WKNavigationDelegate> DSNavigationDelegate;
 @property (nullable, nonatomic, weak) id <WKUIDelegate> DSUIDelegate;
 @property (nonatomic, assign)  int index;
 @property (nonatomic, strong) UIActivityIndicatorView * _Nullable indicatorView;
-
+@property (nullable, nonatomic, strong)  HistoryModel*  model;
 - (void)loadUrl: (NSString * _Nonnull) url;
 
 // Call javascript handler
@@ -49,6 +49,9 @@
 
 // private method, the developer shoudn't call this method
 - (id _Nullable ) onMessage:(NSDictionary *_Nonnull) msg type:(int) type;
+
+// trigger vue life cycle
+- (void)triggerVueLifeCycleWithMethod:(NSString*_Nullable)method;
 
 @end
 

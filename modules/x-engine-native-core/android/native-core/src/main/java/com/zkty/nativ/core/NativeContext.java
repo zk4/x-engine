@@ -157,6 +157,9 @@ public class NativeContext {
         }
     }
 
+    public List<NativeModule> getModules() {
+        return modules;
+    }
 }
 
 

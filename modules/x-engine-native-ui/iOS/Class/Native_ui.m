@@ -7,7 +7,7 @@
 
 
 #import "Native_ui.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Unity.h"
 
 @interface Native_ui()
@@ -53,6 +53,7 @@ NATIVE_MODULE(Native_ui)
     [topVC.navigationController.navigationBar setTitleTextAttributes:dic];
 
 }
+
 
 + (UIColor *) colorFromHexCode:(NSString *)hexString {
     NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];

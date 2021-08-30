@@ -7,7 +7,7 @@
 //
 
 
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "JSI_direct.h"
 #import "JSIContext.h"
 #import "iDirectManager.h"
@@ -21,7 +21,7 @@ JSI_MODULE(JSI_direct)
 
  
 -(void)afterAllJSIModuleInited {
-    self.directors = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+    self.directors = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 }
 
 - (void)_back:(DirectBackDTO *)dto complete:(void (^)(BOOL))completionHandler {

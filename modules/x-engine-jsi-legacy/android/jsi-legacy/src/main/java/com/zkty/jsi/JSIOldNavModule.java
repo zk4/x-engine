@@ -3,9 +3,10 @@ package com.zkty.jsi;
 import android.webkit.JavascriptInterface;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zkty.engine.nativ.protocol.IDirectManager;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.direct.IDirectManager;
 import com.zkty.nativ.direct.NativeDirect;
 import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
@@ -34,8 +35,8 @@ public class JSIOldNavModule extends JSIModule {
     public void navigatorPush(JSONObject obj, final CompletionHandler<Object> handler) {
         String scheme = "microapp";
         if (directors != null) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("hideNavbar", obj.get("hideNavbar"));
+            Map<String, String> map = new HashMap<>();
+            map.put("hideNavbar", obj.getString("hideNavbar"));
             directors.push(scheme, null, null,
                     obj.getString("url"), null, map);
         }

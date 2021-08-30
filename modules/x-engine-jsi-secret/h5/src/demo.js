@@ -1,10 +1,10 @@
 
-import secrect from './index.js'
+import secret from './index.js'
 import xengine from "@zkty-team/x-engine-core";
 
 window.test_get = () => {
 
-  let val = xengine.api("com.zkty.jsi.secrect", "get",
+  let val = xengine.api("com.zkty.jsi.secret", "get",
     'TOKEN',
   );
 

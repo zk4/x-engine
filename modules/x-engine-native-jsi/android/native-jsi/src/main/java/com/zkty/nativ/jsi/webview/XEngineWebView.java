@@ -27,6 +27,8 @@ import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.bridge.DWebView;
 import com.zkty.nativ.jsi.exception.XEngineException;
+import com.zkty.nativ.jsi.utils.UrlUtils;
+import com.zkty.nativ.jsi.view.MicroAppLoader;
 import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.jsi.view.SchemeManager;
 
@@ -39,6 +41,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import nativ.jsi.BuildConfig;
+
 
 public class XEngineWebView extends DWebView {
     private Context mContext;
@@ -46,6 +50,7 @@ public class XEngineWebView extends DWebView {
 
     //自定义webview 历史记录
     private List<HistoryModel> historyModels;
+    private HistoryModel historyModel;
 
     public XEngineWebView(Context context) {
         super(context);
@@ -62,14 +67,24 @@ public class XEngineWebView extends DWebView {
     public void init() {
         historyModels = new ArrayList<>();
         getSettings().setJavaScriptEnabled(true);
+        if (getX5WebViewExtension() != null) {
+            getX5WebViewExtension().setHorizontalScrollBarEnabled(false);
+            getX5WebViewExtension().setVerticalScrollBarEnabled(false);
+        } else {
+            setHorizontalScrollBarEnabled(false);
+            setVerticalScrollBarEnabled(false);
+        }
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式(true);
         getSettings().setAppCacheEnabled(false);
         getSettings().setSupportZoom(false);
         getSettings().setUseWideViewPort(true);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         getSettings().setAllowFileAccess(true);
+        // 设置是否允许通过 file url 加载的 Javascript 可以访问其他的源(包括http、https等源)
+        getSettings().setAllowUniversalAccessFromFileURLs(true);
         getSettings().setAllowContentAccess(true);
         getSettings().setDomStorageEnabled(true);
+        setWebContentsDebuggingEnabled(!"release".equals(BuildConfig.BUILD_TYPE));
         ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         setLayoutParams(params);
@@ -77,7 +92,8 @@ public class XEngineWebView extends DWebView {
 
         setWebViewClient();
         // setErrorPage();
-        setOnLongClickListener();
+        //屏蔽长按图片保存功能
+//        setOnLongClickListener();
     }
 
 
@@ -116,6 +132,15 @@ public class XEngineWebView extends DWebView {
 
 
                 return super.shouldInterceptRequest(webView, s);
+            }
+
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                evaluateJavascript("window._dswk=true;");
+                super.onPageFinished(webView, s);
+                if (onPageStateListener != null) {
+                    onPageStateListener.onPageFinished();
+                }
             }
 
             @Override
@@ -207,8 +232,15 @@ public class XEngineWebView extends DWebView {
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
-                            throw new XEngineException(e.getMessage());
+                        if (isDebug) {
+                            if (e instanceof XEngineException) {
+                                PrintDebugInfo(e.getMessage());
+                            } else if (e instanceof InvocationTargetException) {
+                                if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
+                                    PrintDebugInfo(((InvocationTargetException) e).getTargetException().getMessage());
+                                }
+
+                            }
                         }
                     }
 
@@ -230,6 +262,7 @@ public class XEngineWebView extends DWebView {
         List<JSIModule> modules = JSIContext.sharedInstance().modules();
         for (JSIModule object : modules) {
             String tag = object.moduleId();
+            object.setEngineWebView(this);
             addJavascriptObject(object, tag);
         }
 
@@ -242,10 +275,10 @@ public class XEngineWebView extends DWebView {
         stopLoading();
 //        setWebChromeClient(null);
 //      setWebViewClient(null);
-        clearCache(true);
+//        clearCache(true);
         clearHistory();
-        loadUrl("about:blank");
-        this.destroy();
+//        loadUrl("about:blank");
+//        this.destroy();
 
     }
 
@@ -298,9 +331,11 @@ public class XEngineWebView extends DWebView {
 
 
     public void loadUrl(HistoryModel model) {
+        evaluateJavascript("window._dswk=true;");
         String url = getUrlByHistoryModel(model);
         loadUrl(url);
         historyModels.add(model);
+        this.historyModel = model;
     }
 
     public List<HistoryModel> getHistoryModels() {
@@ -310,15 +345,15 @@ public class XEngineWebView extends DWebView {
     @Override
     public void loadUrl(String url) {
         if (url.startsWith("/data")) url = "file://" + url;
-        if (getOriginalUrl() != null && getOriginalUrl().equals(url)) {
-            url = url.replaceAll("\\'", "");
-            if (url.contains("?")) {
-                url = url + "&timestamp=" + System.currentTimeMillis();
-            } else {
-                url = url + "?timestamp=" + System.currentTimeMillis();
-            }
-
-        }
+//        if (getOriginalUrl() != null && getOriginalUrl().equals(url)) {
+//            url = url.replaceAll("\\'", "");
+//            if (url.contains("?")) {
+//                url = url + "&timestamp=" + System.currentTimeMillis();
+//            } else {
+//                url = url + "?timestamp=" + System.currentTimeMillis();
+//            }
+//
+//        }
 
         Log.d("DWebView", "url=" + url);
         super.loadUrl(url);
@@ -374,15 +409,25 @@ public class XEngineWebView extends DWebView {
 
     }
 
+    public interface OnPageStateListener {
+        void onPageFinished();
+
+    }
+
     public interface OnScrollListener {
         void onScrollChange(int scrollX, int scrollY, int oldScrollX, int oldScrollY);
     }
 
     private OnScrollListener mScrollListener;
+    private OnPageStateListener onPageStateListener;
 
 
     public void setOnScrollListener(OnScrollListener listener) {
         this.mScrollListener = listener;
+    }
+
+    public void setOnPageStateListener(OnPageStateListener listener) {
+        this.onPageStateListener = listener;
     }
 
     public OnScrollListener getScrollListener() {
@@ -408,14 +453,31 @@ public class XEngineWebView extends DWebView {
     }
 
     private String getUrlByHistoryModel(HistoryModel model) {
-        if (TextUtils.isEmpty(model.pathname) && TextUtils.isEmpty(model.fragment))
-            return String.format("%s//%s", model.protocol, model.host);
-        if (TextUtils.isEmpty(model.pathname))
-            return String.format("%s//%s#%s", model.protocol, model.host, model.fragment);
-        if (TextUtils.isEmpty(model.fragment))
-            return String.format("%s//%s%s", model.protocol, model.host, model.pathname);
+        StringBuilder sb = new StringBuilder();
+        String hostR = model.host;
+        if ("file:".equals(model.protocol)) {
+            hostR = MicroAppLoader.sharedInstance().getMicroAppHostFormAssets(model.host);
+        }
 
-        return String.format("%s//%s%s#%s", model.protocol, model.host, model.pathname, model.fragment);
+
+        sb.append(model.protocol).append("//").append(TextUtils.isEmpty(hostR) ? "" : hostR);
+        if (!TextUtils.isEmpty(model.pathname) && !model.pathname.equals("/")) {
+            sb.append(model.pathname);
+        }
+        if (!TextUtils.isEmpty(model.fragment)) {
+            sb.append("#").append(model.fragment);
+        }
+
+        String query = UrlUtils.getQueryStringFormMap(model.query);
+        if (!TextUtils.isEmpty(query)) {
+            sb.append("?").append(query);
+        }
+
+        return sb.toString();
+    }
+
+    public HistoryModel getHistoryModel() {
+        return this.historyModel;
     }
 
 }

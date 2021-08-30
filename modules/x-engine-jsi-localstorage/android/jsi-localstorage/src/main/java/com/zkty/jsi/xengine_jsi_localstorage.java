@@ -13,7 +13,7 @@
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
-  import com.zkty.nativ.jsi.annotation.Optional;
+  import com.zkty.nativ.core.annotation.Optional;
 
   
   class _0_com_zkty_jsi_localstorage_DTO {
@@ -23,20 +23,22 @@
   }
   
   interface xengine_jsi_localstorage_protocol {
-        String _get(String dto);
-    void _set(_0_com_zkty_jsi_localstorage_DTO dto);
+    
+public String _get(String dto);
+
+public void _set(_0_com_zkty_jsi_localstorage_DTO dto);
   }
   
   
-  public abstract class xengine_jsi_localstorage extends JSIModule implements xengine_jsi_localstorage_protocol {
+    public abstract class xengine_jsi_localstorage extends JSIModule implements xengine_jsi_localstorage_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.localstorage";
     }
   
         @JavascriptInterface
-        public String get(JSONObject jsonobj) {
-          String dto= convert(jsonobj,String.class);
+        public String get(String dto) {
+          
           return _get(dto);
         }
         

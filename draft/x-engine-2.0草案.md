@@ -8,21 +8,19 @@
 
 - [x] 使用 protocol 来实现 direct 模块，统一 router 与 nav (刘正青，谢飞，陈武峥)
 
-- [ ] h5 页面生命周期告知，页面进入与离开
+- [x] 容器生命周期告知到 h5，页面进入与离开
 
-- [ ] vue-router 有没有更快的路由方法？不使用 loadurl
+- [x] ~~vue-router 有没有更快的路由方法？不使用 loadurl~~ 使用了多 webview.没这事了.
 
-- [ ] broadcast 增加数据结构
+- [x] broadcast 增加数据结构
 
-- [ ] mergeDict 写测试
+- [x] mergeDict 写测试
 
-- [ ] 代理 webview 缓存，现在每次都做了 304 请求。
+- [x] 代理 webview 缓存，现在每次都做了 304 请求。
 
 - [x] 打开不存在页面会卡死。
 
-- [ ] 参考 dcloud api
-
-- [ ] 带 microapp.json 功能
+- [x] 带 microapp.json 功能
 
   - [ ] 安全 feature/security
   - [ ] 网络 feature/security
@@ -39,20 +37,20 @@
 
 ### h5 端
 
-- [ ] 最佳本地 h5 规范 4.7 号 完成
+- [x] 最佳本地 h5 规范 4.7 号 完成
   - [x] 打包成一个文件
-  - [ ] 带 microapp.json
+  - [x] 带 microapp.json
   - [x] 更底层的 jsi api 调用，不再需要安装 npm 包
   - [ ] 秒开第一页（骨架屏）
-  - [ ] navbar 示例
-  - [ ] 打开另一个微应用示例
-  - [ ] 
-- [ ] 不同的webview间通信vuex,通过 postmessage? 或者通过原生中转.
+  - [x] navbar 示例
+  - [x] 打开另一个微应用示例
+  
+- [x] 不同的webview间通信vuex,通通过原生中转.
 - [ ] 最佳 vite 模板
 
 ### 风格
 
-- [ ] git 流程提交按 gitlab flow 流程运行.如果是在 github 里,按 github flow 运行.
+- [x] git 流程提交按 gitlab flow 流程运行.如果是在 github 里,按 github flow 运行.
 
 - [x] iOS 基于 xcode 的自动 indent
 - [ ] android 方案 (谢飞)
@@ -60,6 +58,12 @@
 
 
 ## 目标引导
+
+### 容器生命周期告知
+
+onActive
+
+onHide
 
 ### 基础架构重构
 
@@ -211,9 +215,9 @@ JSIContext 只管理实现了 JSIModule 的 JSI  模块。
       
       //执行以下命令， 出现 coge  x-engine-jsi-template @:app，则成功链接模板源
       coge
-
+      
       // 生成项目
-coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
+      coge x-engine-jsi-template module-xxxx:jsi-ui xxxx:ui @:x-engine-jsi-ui -w
         ```
       
         
@@ -333,7 +337,6 @@ $route.query 为 search=a#hash
 **参考**
 
 https://www.ruanyifeng.com/blog/2011/03/url_hash.html
-
 
 
 

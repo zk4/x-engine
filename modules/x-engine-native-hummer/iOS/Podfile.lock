@@ -1,0 +1,44 @@
+PODS:
+  - Hummer (0.2.3):
+    - Hummer/Core (= 0.2.3)
+  - Hummer/Core (0.2.3):
+    - SocketRocket (~> 0.1)
+    - Yoga (~> 1.14)
+  - JSONModel (1.8.0)
+  - SocketRocket (0.5.1)
+  - x-engine-native-core (1.0.0):
+    - x-engine-native-protocols
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
+  - Yoga (1.14.0)
+
+DEPENDENCIES:
+  - Hummer (from `../../../../Hummer`)
+  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JSONModel
+    - SocketRocket
+    - Yoga
+
+EXTERNAL SOURCES:
+  Hummer:
+    :path: "../../../../Hummer"
+  x-engine-native-core:
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
+  x-engine-native-protocols:
+    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
+
+SPEC CHECKSUMS:
+  Hummer: a977b3e376c5464f917cfcb1f304f87c95dc3e90
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
+
+PODFILE CHECKSUM: 54f2d99652c094d137976f4575b37eeb8dadb837
+
+COCOAPODS: 1.10.0

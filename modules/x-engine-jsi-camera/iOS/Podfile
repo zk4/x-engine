@@ -11,9 +11,14 @@ def shared_pods
   pod 'x-engine-native-camera', :path =>X_ENGINE_MODULES+'/x-engine-native-camera'
   pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
   pod 'x-engine-native-direct_microapp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
+  pod 'x-engine-native-direct_microapp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
+  
 
   pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
-  pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
+  pod 'x-engine-native-direct',    :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
+  pod 'x-engine-native-tabbar',    :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
+  pod 'x-engine-native-toast',     :path =>X_ENGINE_MODULES+'/x-engine-native-toast'
+  pod 'JSONModel'
 end
 
 target 'camera' do
@@ -22,7 +27,8 @@ target 'camera' do
 end
 target 'cameraTests' do
   #use_frameworks!
-  shared_pods
+  #shared_pods
+  pod 'x-engine-jsi-camera', :path=>"../"
 end
 target 'cameraUITests' do
   # Pods for testing

@@ -1,11 +1,6 @@
 {
-  "packages": [
-    "npm-modules/x-engine-core",
-    "npm-modules/x-engine-router",
-    "modules/x-engine-jsi-*",
-    "microApps/H5-Sample"
-  ],
-  "version": "0.1.13",
+  "packages": [],
+  "version": "2.8.1",
   "npmClient": "yarn",
   "command": {
     "publish": {
@@ -16,5 +11,6 @@
       "verifyRegistry": false,
       "message": "chore: publish"
     }
-  }
+  },
+  "useWorkspaces": true
 }

@@ -3,13 +3,13 @@
 //  ModuleApp
 //
 //  Created by cwz on 2021/3/23.
-//  Copyright © 2021 zkty-teamty-team. All rights reserved.
+//  Copyright © 2021 zkty-team. All rights reserved.
 //
 
 #import "OneViewController.h"
-#import "JumpViewController.h"
 #import "iDirectManager.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
+
 @interface OneViewController ()
 
 @end
@@ -18,32 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"模块1";
-    [self setupView];
-//    [self didClickBtn];
-}
-
-- (void)setupView {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 44);
-    btn.backgroundColor = [UIColor systemPinkColor];
-    [btn setTitle:@"jump" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(didClickBtn) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-}
-
-- (void)didClickBtn {
-    id<iDirectManager> director = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8080" params:@{@"hideNavbar":@TRUE}];
     
-    // 本地com.gm.microapp.mine包
-    [director push:@"microapp" host:@"com.gm.microapp.mine" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
+//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.71:3000/" params:@{@"hideNavbar":@TRUE}];
+    [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
 
-//     cwz 远程
-//    [director push:@"omp" host:@"10.2.129.112:8081" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-//    [director push:@"omp" host:@"192.168.3.12:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
-    
-    // zk4 远程 请替换host
-//    [director push:@"omp" host:@"10.2.128.89:8080" pathname:@""  fragment:@"/" query:nil  params:@{@"hideNavbar":@TRUE}];
 }
 @end
+
+//file:///var/mobile/Containers/Data/Application/14BE590E-8972-4A6E-9679-E3CF0440CDCF/Documents/com.gm.microapp.home.1/index.html

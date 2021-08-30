@@ -47,7 +47,6 @@ Pod::Spec.new do |s|
     s.dependency "x-engine-native-core"
     s.dependency "x-engine-native-protocols"
     s.dependency "JSONModel"
-    s.dependency "GCDWebServer"
     
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
 end

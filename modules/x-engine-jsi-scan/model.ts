@@ -13,12 +13,15 @@ const conf = {
   },
 };
 
-@async
-function // 打开扫码页面
-openScanView(): string {
-  function test_openScanView() {
-    xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
-      document.getElementById("debug_text").innerText = JSON.stringify(val);
-    });
-  }
+@async // 打开扫码页面
+function openScanView(): string {
+  xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
+    console.log(JSON.stringify(val))
+  });
+}
+
+function test_openScanView() {
+  xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
 }

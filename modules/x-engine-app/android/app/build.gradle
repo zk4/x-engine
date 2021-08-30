@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.zkty.modules.engine"
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -14,6 +14,11 @@ android {
             abiFilters"armeabi","armeabi-v7a","x86","mips"
         }
         multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -54,27 +59,44 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+
 
     implementation project(':native-core')
-    implementation project(':native-protocols')
     implementation project(':native-store')
     implementation project(':native-camera')
     implementation project(':native-ui')
     implementation project(':native-broadcast')
     implementation project(':native-device')
     implementation project(':native-scan')
-
-
     implementation project(':native-direct')
     implementation project(':native-direct_http')
     implementation project(':native-direct_https')
     implementation project(':native-direct_microapp')
     implementation project(':native-direct_omp')
+    implementation project(':native-direct_native')
     implementation project(':native-jsi')
+    implementation project(':native-share')
+    implementation project(':native-share_wx')
+    implementation project(':native-viewer')
+    implementation project(':native-viewer_original')
+    implementation project(':native-geo')
+    implementation project(':native-geo_gaode')
+
     implementation project(':jsi-direct')
-    implementation project(':jsi-store')
+    implementation project(':jsi-secret')
     implementation project(':jsi-device')
     implementation project(':jsi-legacy')
     implementation project(':jsi-camera')
     implementation project(':jsi-scan')
+    implementation project(':jsi-ui')
+    implementation project(':jsi-localstorage')
+    implementation project(':jsi-vuex')
+    implementation project(':jsi-broadcast')
+    implementation project(':jsi-share')
+    implementation project(':jsi-dev')
+    implementation project(':jsi-viewer')
+    implementation project(':jsi-globalstorage')
+    implementation project(':jsi-geo')
+
 }

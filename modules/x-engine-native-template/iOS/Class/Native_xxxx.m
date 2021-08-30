@@ -2,12 +2,10 @@
 //  Native_xxxx.m
 //  xxxx
 //
-//  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
 
 
 #import "Native_xxxx.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 @interface Native_xxxx()
 { }

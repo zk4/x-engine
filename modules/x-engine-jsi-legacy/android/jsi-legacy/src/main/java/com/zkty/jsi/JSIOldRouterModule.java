@@ -6,9 +6,10 @@ import android.webkit.JavascriptInterface;
 import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
 import com.anthonynsimon.url.exceptions.MalformedURLException;
-import com.zkty.engine.nativ.protocol.IDirectManager;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.direct.IDirectManager;
 import com.zkty.nativ.direct.NativeDirect;
 import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
@@ -117,8 +118,8 @@ public class JSIOldRouterModule extends JSIModule {
         if (directors != null) {
             directors.push(data.getString("scheme"), data.getString("host"), data.getString("pathname"),
                     data.getString("fragment"),
-                    data.get("query") == null ? null : (Map<String, Object>) data.get("query"),
-                    data.get("params") == null ? null : (Map<String, Object>) data.get("params"));
+                    data.get("query") == null ? null : (Map<String, String>) data.get("query"),
+                    data.get("params") == null ? null : (Map<String, String>) data.get("params"));
         }
         handler.complete();
 

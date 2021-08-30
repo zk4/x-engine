@@ -7,7 +7,7 @@
 
 
 #import "Native_scan.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "ScanViewController.h"
 
 @interface Native_scan()

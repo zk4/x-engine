@@ -6,11 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NativeModule.h"
+#import "XENativeModule.h"
 #import "iStore.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_store : NativeModule <iStore>
+@interface Native_store : XENativeModule <iStore>
  
 @end
 

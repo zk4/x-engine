@@ -12,6 +12,8 @@ import com.zkty.nativ.core.utils.DeviceUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import module.device.R;
+
 public class NativeDevice extends NativeModule implements IDevice {
 
     @Override
@@ -26,22 +28,22 @@ public class NativeDevice extends NativeModule implements IDevice {
 
     @Override
     public String getStatusBarHeight() {
-        return String.valueOf(DensityUtils.pixelsToDip(XEngineApplication.getApplication(), DensityUtils.getStatusBarHeight(XEngineApplication.getApplication())));
+        return String.valueOf((int)DensityUtils.pixelsToDip(XEngineApplication.getApplication(), DensityUtils.getStatusBarHeight(XEngineApplication.getApplication())));
     }
 
     @Override
     public String getNavigationHeight() {
-        return String.valueOf(DensityUtils.getNavigationBarHeightIfRoom(XEngineApplication.getApplication()));
+        return String.valueOf((int)DensityUtils.pixelsToDip(XEngineApplication.getApplication(),XEngineApplication.getApplication().getResources().getDimension(R.dimen.dp_65)));
     }
 
     @Override
     public String getScreenHeight() {
-        return String.valueOf(DensityUtils.getScreenHeight(XEngineApplication.getApplication()));
+        return String.valueOf((int)DensityUtils.pixelsToDip(XEngineApplication.getApplication(),DensityUtils.getScreenHeight(XEngineApplication.getApplication())));
     }
 
     @Override
     public String getTabbarHeight() {
-        return null;
+        return String.valueOf((int)DensityUtils.pixelsToDip(XEngineApplication.getApplication(),XEngineApplication.getApplication().getResources().getDimension(R.dimen.dp_70)));
     }
 
     @Override

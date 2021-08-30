@@ -2,21 +2,14 @@ package com.zkty.nativ.core;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.multidex.MultiDexApplication;
-
 
 import com.zkty.nativ.core.utils.IApplicationListener;
 import com.zkty.nativ.core.utils.Utils;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 public class XEngineApplication extends MultiDexApplication {
 
@@ -29,9 +22,10 @@ public class XEngineApplication extends MultiDexApplication {
         super.onCreate();
         application = this;
         //主进程中初始化引擎
-//        if (Utils.getCurProcessName(this).equals(getApplicationInfo().packageName)) {
+        if (Utils.getCurProcessName(this).equals(getApplicationInfo().packageName)) {
             NativeContext.sharedInstance().init(this);
-//        }
+        }
+        ActivityStackManager.getInstance().register(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -70,6 +64,22 @@ public class XEngineApplication extends MultiDexApplication {
         });
     }
 
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        ActivityStackManager.getInstance().unRegister(this);
+        List<NativeModule> modules = NativeContext.sharedInstance().getModules();
+        for (NativeModule module : modules) {
+            if (module instanceof IApplicationListener) {
+                IApplicationListener listener = (IApplicationListener) module;
+                if (listener != null) {
+                    listener.onTerminate();
+                }
+
+            }
+        }
+
+    }
 
     public static Application getApplication() {
         return application;

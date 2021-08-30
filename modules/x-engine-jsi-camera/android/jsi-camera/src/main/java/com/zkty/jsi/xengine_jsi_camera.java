@@ -13,7 +13,7 @@
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
-  import com.zkty.nativ.jsi.annotation.Optional;
+  import com.zkty.nativ.core.annotation.Optional;
 
   
   class _0_com_zkty_jsi_camera_DTO {
@@ -38,6 +38,39 @@
   }
   
   class _1_com_zkty_jsi_camera_DTO {
+    public Integer code;
+
+    public List<_2_com_zkty_jsi_camera_DTO> data;
+  }
+  
+  class _2_com_zkty_jsi_camera_DTO {
+    public String base64thumbnailStr;
+
+    public String tempPath;
+  }
+  
+  class _3_com_zkty_jsi_camera_DTO {
+    @Optional
+		public boolean allowsEditing;
+
+    @Optional
+		public boolean savePhotosAlbum;
+
+    @Optional
+		public Integer cameraFlashMode;
+
+    @Optional
+		public String cameraDevice;
+
+    public boolean isbase64;
+
+    public Map<String,String> args;
+
+    @Optional
+		public Integer photoCount;
+  }
+  
+  class _4_com_zkty_jsi_camera_DTO {
     public String type;
 
     public String imageData;
@@ -45,11 +78,12 @@
   
   interface xengine_jsi_camera_protocol {
     public void _openImagePicker(_0_com_zkty_jsi_camera_DTO dto, final CompletionHandler<String> handler);
-public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_camera_DTO dto, final CompletionHandler<String> handler);
+public void _openImagePicker2(_3_com_zkty_jsi_camera_DTO dto, final CompletionHandler<_1_com_zkty_jsi_camera_DTO> handler);
+public void _saveImageToPhotoAlbum(_4_com_zkty_jsi_camera_DTO dto, final CompletionHandler<String> handler);
   }
   
   
-  public abstract class xengine_jsi_camera extends JSIModule implements xengine_jsi_camera_protocol {
+    public abstract class xengine_jsi_camera extends JSIModule implements xengine_jsi_camera_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.camera";
@@ -70,8 +104,22 @@ public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_camera_DTO dto, final Complet
     }
 
     @JavascriptInterface
+    final public void openImagePicker2(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _3_com_zkty_jsi_camera_DTO dto= convert(jsonobj,_3_com_zkty_jsi_camera_DTO.class);
+      _openImagePicker2(dto, new CompletionHandler<_1_com_zkty_jsi_camera_DTO>() {
+        @Override
+        public void complete(_1_com_zkty_jsi_camera_DTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(_1_com_zkty_jsi_camera_DTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
     final public void saveImageToPhotoAlbum(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _1_com_zkty_jsi_camera_DTO dto= convert(jsonobj,_1_com_zkty_jsi_camera_DTO.class);
+      _4_com_zkty_jsi_camera_DTO dto= convert(jsonobj,_4_com_zkty_jsi_camera_DTO.class);
       _saveImageToPhotoAlbum(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }

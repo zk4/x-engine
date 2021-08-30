@@ -8,7 +8,7 @@
 
 #import "JSI_store.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iStore.h"
 
 @interface JSI_store()

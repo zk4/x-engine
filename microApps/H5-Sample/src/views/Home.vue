@@ -21,8 +21,9 @@
       color="linear-gradient(to right, #013656, #7e57c2)"
       size="large"
       round
-      @click="handlerRefreshData"
-    >刷新数据</van-button>
+      @click="handlerLocalStorage"
+    >localstorage</van-button>
+    <van-button color="linear-gradient(to right, #013656, #7e57c2)" @click="handlerRefreshData">刷新数据</van-button>
     <van-button type="danger" size="large" color="#7232dd" round @click="handlerSkeleton">骨架屏</van-button>
     <van-button type="warning" size="large" round @click="handlerGIF">GIF进入页面</van-button>
     <van-button
@@ -46,7 +47,15 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+    console.log(this.$statusHeight)
+  },
   methods: {
+    handlerLocalStorage() {
+      this.$router.push({
+        path: "/localstorage",
+      })
+    },
     handlerInput() {
       this.$router.push({
         path: "/input",

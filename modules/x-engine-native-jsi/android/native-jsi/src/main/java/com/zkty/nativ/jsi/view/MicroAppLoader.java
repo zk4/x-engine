@@ -33,6 +33,13 @@ public class MicroAppLoader {
         return currentIndexPath;
     }
 
+    public String getMicroAppHostFormAssets(String host) {
+        this.currentMicroAppId = host;
+        currentRootPath = String.format(Locale.ENGLISH, "/android_asset/moduleApps/%s", host);
+        currentIndexPath = String.format(Locale.ENGLISH, "%s/index.html", currentRootPath);
+        return currentIndexPath;
+    }
+
 
     /**
      * @param microAppId 微应用id

@@ -13,7 +13,7 @@
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
-  import com.zkty.nativ.jsi.annotation.Optional;
+  import com.zkty.nativ.core.annotation.Optional;
 
   
   class phoneDto {
@@ -33,17 +33,23 @@
   }
   
   interface xengine_jsi_device_protocol {
-        String _getStatusBarHeight();
-    String _getNavigationHeight();
-    String _getScreenHeight();
-    String _getTabbarHeight();
-    String _callPhone(phoneDto dto);
-    String _sendMessage(phoneDto dto);
+    
+public String _getStatusBarHeight();
+
+public String _getNavigationHeight();
+
+public String _getScreenHeight();
+
+public String _getTabbarHeight();
+
+public String _callPhone(phoneDto dto);
+
+public String _sendMessage(phoneDto dto);
 public void _getDeviceInfo(final CompletionHandler<DeviceDTO> handler);
   }
   
   
-  public abstract class xengine_jsi_device extends JSIModule implements xengine_jsi_device_protocol {
+    public abstract class xengine_jsi_device extends JSIModule implements xengine_jsi_device_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.device";

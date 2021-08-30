@@ -25,9 +25,6 @@ project(':native-scan').projectDir = new File('../../x-engine-native-scan/androi
 include ':native-broadcast'
 project(':native-broadcast').projectDir = new File('../../x-engine-native-broadcast/android/native-broadcast')
 
-include ':native-protocols'
-project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')
-
 include ':native-direct_http'
 project(':native-direct_http').projectDir = new File('../../x-engine-native-direct_http/android/native-direct_http')
 
@@ -40,14 +37,32 @@ project(':native-direct_omp').projectDir = new File('../../x-engine-native-direc
 include ':native-direct_microapp'
 project(':native-direct_microapp').projectDir = new File('../../x-engine-native-direct_microapp/android/native-direct_microapp')
 
+include ':native-direct_native'
+project(':native-direct_native').projectDir = new File('../../x-engine-native-direct_native/android/native-direct_native')
+
+include ':native-share'
+project(':native-share').projectDir = new File('../../x-engine-native-share/android/native-share')
+
+include ':native-share_wx'
+project(':native-share_wx').projectDir = new File('../../x-engine-native-share_wx/android/native-share_wx')
+
+include ':native-viewer'
+project(':native-viewer').projectDir = new File('../../x-engine-native-viewer/android/native-viewer')
+
+include ':native-viewer_original'
+project(':native-viewer_original').projectDir = new File('../../x-engine-native-viewer_original/android/native-viewer_original')
+
+include ':native-geo'
+project(':native-geo').projectDir = new File('../../x-engine-native-geo/android/native-geo')
+
+include ':native-geo_gaode'
+project(':native-geo_gaode').projectDir = new File('../../x-engine-native-geo_gaode/android/native-geo_gaode')
+
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
 include ':jsi-direct'
 project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')
-
-include ':jsi-store'
-project(':jsi-store').projectDir = new File('../../x-engine-jsi-store/android/jsi-store')
 
 include ':jsi-device'
 project(':jsi-device').projectDir = new File('../../x-engine-jsi-device/android/jsi-device')
@@ -63,3 +78,30 @@ project(':jsi-scan').projectDir = new File('../../x-engine-jsi-scan/android/jsi-
 
 include ':jsi-ui'
 project(':jsi-ui').projectDir = new File('../../x-engine-jsi-ui/android/jsi-ui')
+
+include ':jsi-localstorage'
+project(':jsi-localstorage').projectDir = new File('../../x-engine-jsi-localstorage/android/jsi-localstorage')
+
+include ':jsi-secret'
+project(':jsi-secret').projectDir = new File('../../x-engine-jsi-secret/android/jsi-secret')
+
+include ':jsi-vuex'
+project(':jsi-vuex').projectDir = new File('../../x-engine-jsi-vuex/android/jsi-vuex')
+
+include ':jsi-broadcast'
+project(':jsi-broadcast').projectDir = new File('../../x-engine-jsi-broadcast/android/jsi-broadcast')
+
+include ':jsi-share'
+project(':jsi-share').projectDir = new File('../../x-engine-jsi-share/android/jsi-share')
+
+include ':jsi-dev'
+project(':jsi-dev').projectDir = new File('../../x-engine-jsi-dev/android/jsi-dev')
+
+include ':jsi-viewer'
+project(':jsi-viewer').projectDir = new File('../../x-engine-jsi-viewer/android/jsi-viewer')
+
+include ':jsi-globalstorage'
+project(':jsi-globalstorage').projectDir = new File('../../x-engine-jsi-globalstorage/android/jsi-globalstorage')
+
+include ':jsi-geo'
+project(':jsi-geo').projectDir = new File('../../x-engine-jsi-geo/android/jsi-geo')

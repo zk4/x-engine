@@ -1,8 +1,7 @@
 package com.zkty.nativ.direct_https;
-
-import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
+import com.zkty.nativ.direct.IDirect;
 
 import java.util.List;
 import java.util.Map;
@@ -45,7 +44,7 @@ public class NativeDirectHttps extends NativeModule implements IDirect {
     }
 
     @Override
-    public void push(String protocol, String host, String pathname, String fragment, Map<String, Object> query, Map<String, Object> params) {
+    public void push(String protocol, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
         if (microappDirect != null)
             microappDirect.push(protocol(), host, pathname, fragment, query, params);
     }

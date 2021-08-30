@@ -7,12 +7,11 @@
 
 
 #import "Native_direct_https.h"
-#import "NativeContext.h"
-#import "MicroAppLoader.h"
+#import "XENativeContext.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
 #import "RecyleWebViewController.h"
-#import "GlobalState.h"
+ 
 
 @interface Native_direct_https ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
@@ -34,7 +33,7 @@ NATIVE_MODULE(Native_direct_https)
     return 0;
 }
 - (void)afterAllNativeModuleInited{
-   NSArray* modules= [[NativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
+   NSArray* modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
     for(id<iDirect> direct in modules){
         // 暂时 与 omp 使用相同的逻辑
         if([[direct scheme] isEqualToString:@"omp"]){
@@ -43,19 +42,11 @@ NATIVE_MODULE(Native_direct_https)
         }
     }
 }
+ 
 
-- (void)back:(NSString*) host fragment:(NSString*) fragment{
-    [self.microappDirect back:host fragment:fragment];
-}
 
-- (void)push:(NSString*) protocol  // 强制 protocol，非必须
-        host:(NSString*) host
-        pathname:(NSString*) pathname
-        fragment:(NSString*) fragment
-        query:(NSDictionary<NSString*,id>*) query
-        params:(NSDictionary<NSString*,id>*) params
-{
-    [self.microappDirect push:[self protocol] host:host pathname:pathname fragment:fragment  query:query params:params];
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect) frame{
+    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
 }
 
 @end

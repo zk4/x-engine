@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "x-engine",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "scripts": {
     "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",
     "build": "webpack  --config webpack.prod.js",
@@ -40,9 +40,10 @@
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "workspaces": [
-    "npm-modules/x-engine-core",
-    "npm-modules/x-engine-router",
     "modules/x-engine-jsi-*",
-    "microApps/H5-Sample"
+    "npm-modules/core",
+    "npm-modules/vue/*",
+    "microApps/H5-Sample",
+    "microApps/vue-app-c"
   ]
 }

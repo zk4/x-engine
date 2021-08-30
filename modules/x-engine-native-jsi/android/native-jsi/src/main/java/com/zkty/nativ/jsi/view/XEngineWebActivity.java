@@ -12,13 +12,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -29,15 +27,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.sensorsdata.analytics.android.sdk.SensorsDataAPI;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
-
-
-import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.core.utils.ImageUtils;
+import com.zkty.nativ.core.utils.PermissionsUtils;
+import com.zkty.nativ.jsi.HistoryModel;
+import com.zkty.nativ.jsi.utils.AndroidBug5497Workaround;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
-import com.zkty.nativ.jsi.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -46,14 +44,19 @@ import com.zkty.nativ.jsi.webview.XWebViewPool;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import nativ.jsi.R;
 
 public class XEngineWebActivity extends BaseXEngineActivity {
     private static final String TAG = XEngineWebActivity.class.getSimpleName();
+    private static final String VUE_LIFECYCLE_EVENT = "@@VUE_LIFECYCLE_EVENT";
+    private static final String ON_NATIVE_SHOW = "onNativeShow";
+    private static final String ON_NATIVE_HIDE = "onNativeHide";
+    private static final String ON_NATIVE_DESTROYED = "onNativeDestroyed";
+    private static final String ON_WEBVIEW_SHOW = "onWebviewShow";
 
     protected XEngineWebView mWebView;
     private RelativeLayout mRoot;
@@ -68,7 +71,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private boolean hideNavBar = false;//是否隐藏NavBar
 
-    //    private ArrayList<LifecycleListener> lifecycleListeners;
 
     private boolean isFirst = true;
     private boolean isResume = false;
@@ -77,6 +79,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     private android.webkit.ValueCallback<Uri[]> mUploadCallbackAboveL;
     private PermissionsUtils permissionsUtils = new PermissionsUtils();
     public static final int FILECHOOSER_RESULTCODE = 10;// 表单的结果回调
+    public static final int XACTIVITY_REQUEST_CODE = 150;// 权限请求码
 
     private HistoryModel historyModel;
 
@@ -88,32 +91,12 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
 
         hideNavBar = getIntent().getBooleanExtra(HIDE_NAV_BAR, false);
-        if (hideNavBar) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Window window = getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.TRANSPARENT);
-                window.setNavigationBarColor(Color.TRANSPARENT);
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                Window window = getWindow();
-                window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            }
-            StatusBarUtil.StatusBarLightMode(this);
-        } else {
-            ImmersionBar.with(this)
-                    .fitsSystemWindows(true)
-                    .statusBarColor(R.color.white)
-                    .statusBarDarkFont(true).init();
 
-        }
+        setNavBarHidden(hideNavBar, false);
 
         setContentView(R.layout.activity_engine_webview);
+
+        AndroidBug5497Workaround.assistActivity(this);
         //关闭 关于文件uri暴露的检测（FileUriExposedException）
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -130,6 +113,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         mWebView = XWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
 
+        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView, true);
+        
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 
         xEngineNavBar.setLeftListener(view -> {
@@ -142,17 +127,11 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
-        lifecycleListeners = new LinkedHashSet<>();
+
+        mWebView.setOnPageStateListener(() -> broadcast(ON_WEBVIEW_SHOW, ON_WEBVIEW_SHOW));
 
         mWebView.loadUrl(historyModel);
 
-    }
-
-
-    @Override
-    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
-//        SwipeBackHelper.onPostCreate(this);
     }
 
     @Override
@@ -199,35 +178,13 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             }
         }
 
-        if (lifecycleListeners != null) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onActivityResult(requestCode, resultCode, data);
-            }
-        }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-        if (lifecycleListeners != null) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
-        }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onRestart();
-            }
+        if (requestCode == XACTIVITY_REQUEST_CODE) {
+            permissionsUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
         }
     }
 
@@ -241,74 +198,39 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             new Handler().postDelayed(() ->
                             showScreenCapture(false)
                     , 400);
-            mWebView = XWebViewPool.sharedInstance().getLastWebView();
-            if (mWebView != null) {
-
-                if (mWebView.getParent() != null) {
-                    ((ViewGroup) mWebView.getParent()).removeView(mWebView);
-                }
-                ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
-            }
-
+//            mWebView = XWebViewPool.sharedInstance().getLastWebView();
+//            if (mWebView != null) {
+//
+//                if (mWebView.getParent() != null) {
+//                    ((ViewGroup) mWebView.getParent()).removeView(mWebView);
+//                }
+//                ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
+//            }
+            broadcast(ON_NATIVE_SHOW, ON_NATIVE_SHOW);
         }
 
         super.onResume();
         XEngineWebActivityManager.sharedInstance().setCurrent(this);
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onResume();
-            }
-        }
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         isResume = false;
-        Log.d(TAG, "onPause()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onPause();
-            }
-        }
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop()--" + (lifecycleListeners != null ? lifecycleListeners.size() : 0));
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onStop();
-            }
-        }
+        broadcast(ON_NATIVE_HIDE, ON_NATIVE_HIDE);
     }
 
     @Override
     protected void onDestroy() {
-        if (lifecycleListeners != null && !lifecycleListeners.isEmpty()) {
-            Iterator<LifecycleListener> iterator = lifecycleListeners.iterator();
-            while (iterator.hasNext()) {
-                iterator.next().onDestroy();
-            }
-        }
-
-        if (lifecycleListeners != null) {
-            lifecycleListeners.clear();
-        }
-        XEngineWebActivityManager.sharedInstance().clearActivity(this);
-        mWebView.goBack();
+        broadcast(ON_NATIVE_DESTROYED, ON_NATIVE_DESTROYED);
         EventBus.getDefault().post(new XEngineMessage(XEngineMessage.TYPE_SHOW_TABBAR));
         EventBus.getDefault().unregister(this);
-
         super.onDestroy();
-//        SwipeBackHelper.onDestroy(this);
+        XEngineWebActivityManager.sharedInstance().clearActivity(this);
+        mWebView.goBack();
 
+//        SwipeBackHelper.onDestroy(this);
+        removeAllLifeCycleListeners();
     }
 
 
@@ -323,8 +245,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     }
 
     public void backUp() {
-
-        Log.d(TAG, "backUp()");
         //模拟 KeyEvent.ACTION_DOWN事件,调用onKeyDown
         new Thread(new Runnable() {
             public void run() {
@@ -340,59 +260,14 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         }).start();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//
-////            if (TextUtils.isEmpty(mMicroAppId)) {
-////                if (mWebView.canGoBack()) {
-////                    mWebView.goBack();
-////                    return true;
-////                }
-////            } else {
-//
-//            if (mWebView.canGoBack()) {
-//
-//                XEngineWebActivity lastActivity = XEngineWebActivityManager.sharedInstance().getLastActivity();
-//                if (lastActivity != null) {
-//
-//                    if (TextUtils.isEmpty(lastActivity.getHistoryModel().fragment)) {
-//                        mWebView.goBackToIndexPage();
-//                    } else {
-//                        WebBackForwardList backForwardList = mWebView.copyBackForwardList();
-//                        if (backForwardList != null && backForwardList.getSize() != 0) {
-//                            int index = 0;
-//                            for (int i = backForwardList.getCurrentIndex(); i > -1; i--) {
-//                                String url = backForwardList.getItemAtIndex(i).getOriginalUrl();
-//                                if (lastActivity.getHistoryModel().fragment.equals(UrlUtils.getRouterFormUrl(url))) {
-//                                    break;
-//                                }
-//                                index++;
-//                            }
-//                            mWebView.goBackOrForward(-index);
-//                        }
-//                    }
-//
-//                }
-//
-//            } else {
-////                mWebView.historyBack();
-//            }
-//
-//            finish();
-//            return true;
-//
-////            }
-//        }
-        return super.onKeyDown(keyCode, event);
-    }
-
     public void showScreenCapture(boolean isShow) {
-        if (isShow) {
-            Bitmap bitmap = captureView(mRoot);
-            ivScreen.setImageBitmap(bitmap);
-        }
-        ivScreen.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        //todo 目前多webview 模式，不需要显示
+//        if (XWebViewPool.IS_MULTI_MODE)
+//        if (isShow) {
+//            Bitmap bitmap = captureView(mRoot);
+//            ivScreen.setImageBitmap(bitmap);
+//        }
+//        ivScreen.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
     private Bitmap captureView(View view) {
@@ -474,7 +349,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private void showSelectDialog() {
         permissionsUtils.checkPermissions(this, new String[]{Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, XACTIVITY_REQUEST_CODE, new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissions() {
                 CameraDialog bottomDialog = new CameraDialog(XEngineWebActivity.this);
@@ -508,7 +383,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     private void choseFile() {
         permissionsUtils.checkPermissions(this, new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsUtils.IPermissionsResult() {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, XACTIVITY_REQUEST_CODE, new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissions() {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);
@@ -560,8 +435,16 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     }
 
     private void broadcast(List<String> msg) {
-        Log.d(TAG, "发送全局广播：" + msg);
-        mWebView.callHandler("com.zkty.module.engine.broadcast", msg == null ? new Object[]{} : msg.toArray(), retValue -> Log.d(TAG, "broadcast:" + msg));
+        mWebView.callHandler("com.zkty.jsi.engine.lifecycle.notify", msg == null ? new Object[]{} : msg.toArray(), retValue -> Log.d(TAG, "broadcast:" + msg));
+    }
+
+    private void broadcast(String type, String payload) {
+//        Log.d("DWebView-Log", "broadcast：type=" + type + " ,payload = " + payload + "__" + mWebView.hashCode());
+        Map<String, String> bro = new HashMap<>();
+        bro.put("type", type);
+        bro.put("payload", payload);
+        mWebView.callHandler("com.zkty.jsi.engine.lifecycle.notify", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
+
     }
 
     private boolean broadcastAble = true;
@@ -588,6 +471,42 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
     public HistoryModel getHistoryModel() {
         return historyModel;
+    }
+
+    public void setNavBarHidden(boolean isHidden, boolean isAnimation) {
+
+        if (isHidden) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+                window.setNavigationBarColor(Color.TRANSPARENT);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Window window = getWindow();
+                window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
+            StatusBarUtil.StatusBarLightMode(this);
+        } else {
+            ImmersionBar.with(this)
+                    .fitsSystemWindows(true)
+                    .statusBarColor(R.color.white)
+                    .statusBarDarkFont(true).init();
+
+        }
+        if (xEngineNavBar != null)
+            xEngineNavBar.setVisibility(isHidden ? View.GONE : View.VISIBLE);
+
+    }
+
+    public void setNavTitle(String title, String color, int textSize) {
+        if (xEngineNavBar != null)
+            xEngineNavBar.setTitle(title, color, textSize);
     }
 
 }

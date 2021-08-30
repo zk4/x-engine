@@ -21,8 +21,8 @@
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		581FB072262578AA00ED7DCC /* MergeDictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 581FB071262578AA00ED7DCC /* MergeDictTest.m */; };
 		58209E612624A54A00843DB5 /* Url2direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58209E602624A54A00843DB5 /* Url2direct.m */; };
-		583CCAAD26158D52000DFF1F /* com.gm.microapp.mine.1 in Resources */ = {isa = PBXBuildFile; fileRef = 583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */; };
 		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
+		589E961326CB6C52009124FF /* microapps in Resources */ = {isa = PBXBuildFile; fileRef = 589E961226CB6C52009124FF /* microapps */; };
 		58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BBF26138BEF0082ADC3 /* OneViewController.m */; };
 		58D20BCF26138BEF0082ADC3 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC126138BEF0082ADC3 /* ThreeViewController.m */; };
 		58D20BD026138BEF0082ADC3 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC226138BEF0082ADC3 /* TwoViewController.m */; };
@@ -30,10 +30,7 @@
 		58D20BD226138BEF0082ADC3 /* MainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC826138BEF0082ADC3 /* MainTabbarController.m */; };
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
 		58D20BD426138BEF0082ADC3 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */; };
-		58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */; };
-		58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
-		A48398AA261F100300D04124 /* microapp.json in Resources */ = {isa = PBXBuildFile; fileRef = A48398A9261F100300D04124 /* microapp.json */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -81,8 +78,8 @@
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
 		581FB071262578AA00ED7DCC /* MergeDictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeDictTest.m; sourceTree = "<group>"; };
 		58209E602624A54A00843DB5 /* Url2direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Url2direct.m; sourceTree = "<group>"; };
-		583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = com.gm.microapp.mine.1; path = Class/com.gm.microapp.mine.1; sourceTree = SOURCE_ROOT; };
 		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
+		589E961226CB6C52009124FF /* microapps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = microapps; path = ../../../microApps/microapps; sourceTree = "<group>"; };
 		58D20BBF26138BEF0082ADC3 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		58D20BC026138BEF0082ADC3 /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
 		58D20BC126138BEF0082ADC3 /* ThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeViewController.m; sourceTree = "<group>"; };
@@ -97,12 +94,9 @@
 		58D20BCB26138BEF0082ADC3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		58D20BCC26138BEF0082ADC3 /* MainTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabbarController.h; sourceTree = "<group>"; };
 		58D20BCD26138BEF0082ADC3 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
-		58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.gm.microapp.home.0; sourceTree = SOURCE_ROOT; };
-		58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.gm.microapp.mine.0; sourceTree = SOURCE_ROOT; };
 		58F6FD542620D46B00A482EF /* RegexTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A48398A9261F100300D04124 /* microapp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = microapp.json; sourceTree = "<group>"; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,7 +138,7 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				A48398A9261F100300D04124 /* microapp.json */,
+				589E961226CB6C52009124FF /* microapps */,
 				00DFC6E224C84000006A53EE /* ModuleApp */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
 				00DFC6D324C83F95006A53EE /* iOSUITests */,
@@ -227,8 +221,8 @@
 				58D20BBF26138BEF0082ADC3 /* OneViewController.m */,
 				58D20BCD26138BEF0082ADC3 /* TwoViewController.h */,
 				58D20BC226138BEF0082ADC3 /* TwoViewController.m */,
-				58D20BC126138BEF0082ADC3 /* ThreeViewController.m */,
 				58D20BC426138BEF0082ADC3 /* ThreeViewController.h */,
+				58D20BC126138BEF0082ADC3 /* ThreeViewController.m */,
 				58D20BC026138BEF0082ADC3 /* JumpViewController.h */,
 				58D20BC526138BEF0082ADC3 /* JumpViewController.m */,
 				58D20BC626138BEF0082ADC3 /* Main */,
@@ -239,12 +233,12 @@
 		58D20BC626138BEF0082ADC3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				58D20BC726138BEF0082ADC3 /* MainNavigationController.h */,
-				58D20BC826138BEF0082ADC3 /* MainTabbarController.m */,
-				58D20BC926138BEF0082ADC3 /* MainViewController.m */,
-				58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */,
 				58D20BCB26138BEF0082ADC3 /* MainViewController.h */,
+				58D20BC926138BEF0082ADC3 /* MainViewController.m */,
 				58D20BCC26138BEF0082ADC3 /* MainTabbarController.h */,
+				58D20BC826138BEF0082ADC3 /* MainTabbarController.m */,
+				58D20BC726138BEF0082ADC3 /* MainNavigationController.h */,
+				58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -264,10 +258,7 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				583CCAAC26158D52000DFF1F /* com.gm.microapp.mine.1 */,
 				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
-				58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */,
-				58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */,
 			);
 			path = Class;
 			sourceTree = SOURCE_ROOT;
@@ -383,11 +374,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
-				583CCAAD26158D52000DFF1F /* com.gm.microapp.mine.1 in Resources */,
-				58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */,
-				58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */,
-				A48398AA261F100300D04124 /* microapp.json in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
+				589E961326CB6C52009124FF /* microapps in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,9 +729,10 @@
 				CLANG_ANALYZER_LIBKERN_RETAIN_COUNT = YES;
 				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MQSNCQR864;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -751,8 +740,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkty.app.demo;
 				PRODUCT_NAME = ModuleApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -765,9 +755,10 @@
 				CLANG_ANALYZER_LIBKERN_RETAIN_COUNT = YES;
 				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MQSNCQR864;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -775,8 +766,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zkty.app.demo;
 				PRODUCT_NAME = ModuleApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -787,7 +779,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -808,7 +800,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -827,8 +819,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = MQSNCQR864;
 				INFOPLIST_FILE = iOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -846,8 +839,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 217D06FE0D84220C418B75E6 /* Pods-ModuleAppUITests.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ML6NNJSH;
+				DEVELOPMENT_TEAM = MQSNCQR864;
 				INFOPLIST_FILE = iOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

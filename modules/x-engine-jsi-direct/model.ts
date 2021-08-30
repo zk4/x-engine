@@ -28,6 +28,10 @@ interface DirectPushDTO {
   query?:Map<string, string>;
 
   // 其他参数（做兼容用）
+  //\_\_deleteHistory\_\_: -1   在push　到下一页之前，　删除掉当前页
+  //\_\_deleteHistory\_\_: -2   在push　到下一页之前，　删除掉当前两页
+  //历史不足时，到 tab 历史为止。
+  //\_\_fallback\_\_: 'https://www.baidu.com/'   找不到路由时的 fallback
   params?:Map<string, string>;
 }
 
@@ -41,11 +45,11 @@ interface DirectBackDTO {
   // 5. microapp 使用 file 协议，打开本地微应用文件
   scheme: string;
   // 要注意：
-  // / 回头当前应用的首页
+  // / 回到当前应用的首页
   // 标准路由一定要以 / 开头
   // 一些特殊字段：
   // -1 回上一页
-  // 0  回头历史中的原生页
+  // 0  回到 tab 页
   fragment: string;
 }
 
@@ -65,6 +69,17 @@ function push(arg: DirectPushDTO = {scheme:'omp',fragment:'/',params:{'hideNavba
     host: "com.gm.microapp.mine",
     pathname: "",
     fragment: "",
+  })
+  
+  // 跳转并删除当前页
+  engine.api('com.zkty.jsi.direct', 'push', {
+    scheme: "microapp",
+    host: "com.gm.microapp.mine",
+    pathname: "",
+    fragment: "",
+    params:{
+      __deleteHistory__:1
+    }
   })
 
   // 跳转http

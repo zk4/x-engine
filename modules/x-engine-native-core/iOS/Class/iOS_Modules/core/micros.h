@@ -143,12 +143,21 @@
 
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
-#define concat(a,b)  [NSString initWithFormat:@"%@,%@", a, b ];
+#define XE_CONCAT(a,b) a##b
 
 #define WeakSelf(type) __weak typeof(type) weak##type = type;
-#define WeakSelfNamed(type,name) __weak typeof(type) weak##type##name = type;
-#define StrongSelfNamed(type,name) __strong typeof(type) type = weak##type##name;
+#define StrongSelf(type) __strong typeof(weak##type) strong##type = weak##type;
 
-#define StrongSelf(type) __strong typeof(type) type = weak##type;
+
+#define XE_ALERT(msg)\
+do{\
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",msg] preferredStyle:UIAlertControllerStyleAlert];\
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {\
+    }];\
+    [errorAlert addAction:sureAction];\
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{\
+    }];\
+}while(0)
+
 
 #endif /* micros_h */

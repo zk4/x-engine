@@ -8,16 +8,14 @@
 #import "XEngineCallInfo.h"
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
-#import "NativeContext.h"
-#import "GlobalState.h"
-#import "iSecurify.h"
+#import "XENativeContext.h"
+#import "iToast.h"
 
+#define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
 
 typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 
-@implementation XEngineWebView
-
-{
+@implementation XEngineWebView {
     void (^alertHandler)(void);
     void (^confirmHandler)(BOOL);
     void (^promptHandler)(NSString *);
@@ -71,15 +69,14 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     interalApis.webview=self;
     [self addJavascriptObject:interalApis namespace:@"_dsb"];
     
-    if (@available(iOS 13.0, *)) {
-        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
-    } else {
+//    if (@available(iOS 13.0, *)) {
+//        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+//    } else {
         // Fallback on earlier versions
         /// TODO: 上面的函数只支持iOS 13.0,保持低版本兼容 @cwz
-        
-    }
-    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
-    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
+//    }
+//    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
+//    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
     return self;
 }
 
@@ -147,31 +144,31 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
 {
-    if(!jsDialogBlock){
+//    if(!jsDialogBlock){
         completionHandler();
-    }
-    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
-                               @selector(webView:runJavaScriptAlertPanelWithMessage
-                                         :initiatedByFrame:completionHandler:)])
-    {
-        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
-                         initiatedByFrame:frame
-                        completionHandler:completionHandler];
-    }else{
+//    }
+//    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
+//                               @selector(webView:runJavaScriptAlertPanelWithMessage
+//                                         :initiatedByFrame:completionHandler:)])
+//    {
+//        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
+//                         initiatedByFrame:frame
+//                        completionHandler:completionHandler];
+//    }else{
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
-                                                                       message:message
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-            if(completionHandler){
-                completionHandler();
-            }
-        }];
-        [alert addAction:action];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-    }
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
+//                                                                       message:message
+//                                                                preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
+//                                                         style:UIAlertActionStyleDefault
+//                                                       handler:^(UIAlertAction * _Nonnull action) {
+//            if(completionHandler){
+//                completionHandler();
+//            }
+//        }];
+//        [alert addAction:action];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+//    }
 }
 
 -(void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message
@@ -254,14 +251,15 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)showErrorAlert:(NSString *)message
 {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [errorAlert addAction:sureAction];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
-        
-    }];
+    [XENP(iToast) toast:message duration:1.0];
+//    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    [errorAlert addAction:sureAction];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
+//
+//    }];
 }
 
 - (void) evalJavascript:(int) delay{
@@ -276,14 +274,24 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         }
     });
 }
+//字典转json格式字符串:
+- (NSString*)dictionaryToJson:(NSDictionary *)dic {
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+   
 
 -(id) convertDict:(id) obj {
     SEL selector = NSSelectorFromString(@"toDictionary");
     if([obj respondsToSelector:selector]){
         id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
         return   action(obj, selector);
-    }else {
-        return [NSString stringWithFormat:@"%@",obj ];
+    }else if ([obj isKindOfClass:NSDictionary.class]){
+        return [self dictionaryToJson:obj ];
+    }else{
+        return [NSString stringWithFormat:@"%@",obj];
     }
 }
 
@@ -295,22 +303,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     NSString* moduleName = nameStr[0];
     NSString* methodName = nameStr[1];
-//    if(![@"_dsb" isEqual:moduleName]){
-//        /// TODO: 这里有 bug, jsi.direct.back 返回时, microapp.json 不对.
-//        // 判断是否有microapp.json文件
-//        id<iSecurify> securify = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iSecurify)];
-//
-//        if(securify){
-//            BOOL isAvailable = [securify judgeModuleIsAvailableWithModuleName:moduleName];
-//            if (!isAvailable) {
-//                /// TODO: 挪到 security 模块里.
-//                [self showErrorAlert:@"%@模块未在 microapp.json 里注册, 请联系原生开发人员"];
-//                return nil;
-//            }
-//            
-//        }
-//    }
- 
+    
     id JavascriptInterfaceObject = javaScriptNamespaceInterfaces[moduleName];
     NSString *error = [NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
     NSMutableDictionary*result = [NSMutableDictionary dictionaryWithDictionary:
@@ -319,7 +312,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                                       @"data":@""
                                   }];
     if(!JavascriptInterfaceObject){
-//        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge called, but can't find %@ 模块, please check your code!",modulename]];
+        //        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge called, but can't find %@ 模块, please check your code!",modulename]];
         [self showErrorAlert:[NSString stringWithFormat:@"没有找到原生%@模块, 请联系原生开发人员", moduleName]];
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     } else {
@@ -365,7 +358,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
-//                    [GlobalState setCurrentWebView:self];
+                    //                    [GlobalState setCurrentWebView:self];
                     action(JavascriptInterfaceObject, selasyn, arg, completionHandler);
                     break;
                 }
@@ -442,8 +435,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void) dispatchJavascriptCall:(XEngineCallInfo*) info{
     NSString * json=[XEngineJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
                                                       @"data":[XEngineJSBUtil objToJsonString: info.args]}];
-    [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
-           completionHandler:nil];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
+               completionHandler:nil];
+    });
+    
 }
 
 - (void) addJavascriptObject:(id)object namespace:(NSString *)namespace{
@@ -551,58 +549,17 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }];
 }
 
+- (void)triggerVueLifeCycleWithMethod:(NSString *)method {
+    // BROADCAST_EVENT == @@VUE_LIFECYCLE_EVENT
+    [self callHandler:@"com.zkty.jsi.engine.lifecycle.notify" arguments:@{
+        @"type":method,
+        @"payload":[NSString stringWithFormat:@"%p:%@",self,method]
+    }
+    completionHandler:^(id  _Nullable value) {}];
+}
 
 #pragma mark - <WKWebView cycleLife>
-// 页面开始加载时调用
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    [self.indicatorView startAnimating];
-    if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
-        [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
-    }
-}
-
-// 页面加载完成后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    [self.indicatorView stopAnimating];
-    if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
-        [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
-    }
-}
-
-- (void)dealloc {
-    [self.indicatorView stopAnimating];
-}
-
-// 当内容开始返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-    NSLog(@"内容开始返回:%s",__FUNCTION__);
-}
-
-// 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [self.indicatorView stopAnimating];
-    NSLog(@"didFailProvisionalNavigation==>\n%@",error.debugDescription);
-}
-
-- (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
-    if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
-        NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
-        jsonStr= [jsonStr substringFromIndex:range.location+1];
-    }
-
-    jsonStr = [jsonStr stringByRemovingPercentEncoding];
-
-    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    NSError*err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    return dic;
-}
-
-// 接收到服务器跳转请求之后调用
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{}
-
-
-// 在发送请求之前，决定是否跳转
+// 1.1- 询问开发者是否下载并载入当前 URL
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     NSString * urlStr = [navigationAction.request.URL absoluteString];
     NSRange range = NSMakeRange(0, 0);
@@ -650,9 +607,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id module;
         if ([scheme isEqualToString:@"x-engine-call"]) {
             NSString* moduleId = [NSString stringWithFormat:@"%@",URL.host];
-            module =[[NativeContext sharedInstance] getModuleById:moduleId];
+            module =[[XENativeContext sharedInstance] getModuleById:moduleId];
         }else{
-            module =[[NativeContext sharedInstance] getModuleById:URL.host];
+            module =[[XENativeContext sharedInstance] getModuleById:URL.host];
         }
         
         NSString * selectorStr = [NSString stringWithFormat:@"%@:complete:",[URL.path substringFromIndex:1]];
@@ -662,21 +619,21 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
             XEngineCallBack  Cb=  ^(id data, BOOL ret){
                 if (callBackStr && callBackStr.length !=0) {
                     NSString * retDataStr = [self idFromObject:data];
-
-
+                    
+                    
                     NSString * str = [callBackStr stringByRemovingPercentEncoding];
                     str = [str stringByReplacingOccurrencesOfString:@"{ret}" withString:retDataStr];
                     str = [str stringByRemovingPercentEncoding];
                     str=[str stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
                     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
                     [weakSelf loadRequest:request];
-
+                    
                 }
             };
-
-
+            
+            
             [module performSelector:sel withObject:argsDic withObject:Cb];
-
+            
         }
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
@@ -686,6 +643,38 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     } else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
+}
+// 2.1- 开始下载指定 URL 的内容, 下载之前会调用一次 开始下载 回调
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+//    [self.indicatorView startAnimating];
+    if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
+        [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
+    }
+}
+
+// 2.2- 开始下载指定 URL 的内容, 下载之前会调用一次 开始下载 回调
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{ }
+
+
+// 3- 确定下载的内容被允许之后再载入视图。
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
+//    [self.indicatorView stopAnimating];
+    [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
+    if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
+        [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
+    }
+}
+
+// 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+//    [self.indicatorView stopAnimating];
+    [self addCustomView];
+}
+
+// 4.2- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+//    [self.indicatorView stopAnimating];
+    [self addCustomView];
 }
 
 //runtime model转字典转字符串
@@ -712,5 +701,64 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return str;
+}
+
+- (NSDictionary *)jsonToDictionary:(NSString * )jsonStr{
+    if ([jsonStr rangeOfString:@"="].location !=NSNotFound){
+        NSRange range = [jsonStr rangeOfString:@"="];//匹配得到的下标
+        jsonStr= [jsonStr substringFromIndex:range.location+1];
+    }
+    
+    jsonStr = [jsonStr stringByRemovingPercentEncoding];
+    
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSError*err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    return dic;
+}
+
+- (void)dealloc {
+//    [self.indicatorView stopAnimating];
+}
+
+// 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中
+// 添加自定义的view 在view上添加侧滑手势,返回上个页面
+- (void)addCustomView {
+    UIView *view = [[UIView alloc] init];
+    view.frame = self.frame;
+    view.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2 - 150, [UIScreen mainScreen].bounds.size.width, 200)];
+    img.image = [UIImage imageNamed:@"404"];
+    [view addSubview:img];
+    
+    
+    UILabel *label = [[UILabel alloc] init];
+    if (img.image) {
+        label.frame = CGRectMake(0, CGRectGetMaxY(img.frame) + 10, [UIScreen mainScreen].bounds.size.width, 16);
+    } else {
+        label.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2 , [UIScreen mainScreen].bounds.size.width, 16);
+    }
+    label.text = @"您访问的页面找不到了";
+    label.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:label];
+     
+    [self addSubview:view];
+}
+
+- (void)handleNavigationTransition:(UIPanGestureRecognizer *)pan {
+    [[self viewController].navigationController popViewControllerAnimated:YES];
+}
+
+- (UIViewController*)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController
+                                          class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
 }
 @end

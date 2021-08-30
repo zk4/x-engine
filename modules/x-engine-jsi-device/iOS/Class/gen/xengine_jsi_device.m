@@ -54,12 +54,14 @@
     }
   
   - (NSString*) callPhone:(NSDictionary*) dict {
-      phoneDto* dto = [self convert:dict clazz:phoneDto.class];
+      
+          phoneDto* dto = [self convert:dict clazz:phoneDto.class];
       return [self _callPhone:dto];
         }
   
   - (NSString*) sendMessage:(NSDictionary*) dict {
-      phoneDto* dto = [self convert:dict clazz:phoneDto.class];
+      
+          phoneDto* dto = [self convert:dict clazz:phoneDto.class];
       return [self _sendMessage:dto];
         }
     - (void) getDeviceInfo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {

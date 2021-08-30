@@ -1,25 +1,35 @@
 
 
-**基座扫描测试**
-<div id='modulename' style='display:none'>localstorage</div> <img id='qrimg' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://192.168.44.52:3000/docs/modules/all/dist/ui/index.html'></img>
-<a id='qrlink' href="about:none">link of QR</a>
 
+相当于浏览器里的 localstorage.  
+默认在 App 界面 Deactive 时,数据会进行持久化. 
 
+> 与 globalstorage 的区别在于,  A 微应用只能在 localstorage 对 A 的数据进行操作. 而不能对 B 的 localstorage 做任何操作.
+> globalstorage 则是全局的.
 
-# JS
 
 
 JSI Id: com.zkty.jsi.localstorage
 
-version: 0.1.13
+version: 2.8.1
 
 
 
 ## get
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
+**demo**
+``` js
+
+  let val = xengine.api("com.zkty.jsi.localstorage", "get",
+    'abc',
+  );
+  console.log(val);
+
+``` 
 
 **无参数**
+
 **返回值**
 ``` js
 string
@@ -28,8 +38,17 @@ string
 
 
 ## set
-`sync`
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
+**demo**
+``` js
+
+  xengine.api("com.zkty.jsi.localstorage", "set",{
+    key:'abc',
+    val:'world'
+  });
+
+``` 
 
 **参数说明**
 
@@ -41,10 +60,4 @@ string
 
 
     
-
-# iOS
-
-
-# android
-
 

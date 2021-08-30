@@ -1,11 +1,8 @@
 package com.zkty.nativ.direct_microapp;
 
-import android.text.TextUtils;
-
-import com.zkty.engine.nativ.protocol.IDirect;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
-import com.zkty.nativ.jsi.view.MicroAppLoader;
+import com.zkty.nativ.direct.IDirect;
 
 import java.util.List;
 import java.util.Map;
@@ -48,14 +45,12 @@ public class NativeDirecMicroapp extends NativeModule implements IDirect {
     }
 
     @Override
-    public void push(String protocol, String host, String pathname, String fragment, Map<String, Object> query, Map<String, Object> params) {
+    public void push(String protocol, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
         if (microappDirect != null) {
             long version = 0l;
             if (params != null && params.containsKey("version")) {
                 version = Long.parseLong(String.valueOf(params.get("version")));
             }
-            if (!TextUtils.isEmpty(host))
-                host = MicroAppLoader.sharedInstance().getMicroAppHost(host, version);
 
             microappDirect.push(protocol(), host, pathname, fragment, query, params);
         }

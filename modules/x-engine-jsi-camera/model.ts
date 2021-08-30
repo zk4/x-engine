@@ -30,7 +30,68 @@ function openImagePicker(arg: {
   args: Map<string, string>;
   // 图片选择张数
   photoCount?: int;
-}): string {}
+}): string {
+  xengine.api(
+    "com.zkty.jsi.camera",
+    "openImagePicker",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        let base64 = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        console.log(base64)
+      }
+    }
+  );
+}
+
+// 调用相机
+@async
+function openImagePicker2(arg: {
+  //是否允许编辑
+  allowsEditing?: boolean;
+  //是否保存图片到相册
+  savePhotosAlbum?: boolean;
+  //闪光灯模式(-1:关闭状态,0:自动开关状态,1:打开状态),默认:-1
+  cameraFlashMode?: int;
+  //设置前置或后置摄像头(front:前置,back:后置),默认:back
+  cameraDevice?: string;
+  //图片是否转为Base64,默认:true
+  isbase64: boolean;
+  //裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内;
+  args: Map<string, string>;
+  // 图片选择张数
+  photoCount?: int;
+}): {code: int, data:Array<{base64thumbnailStr:string,tempPath:string}>} {
+  xengine.api(
+    "com.zkty.jsi.camera",
+    "openImagePicker2",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        let base64 = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        console.log(base64)
+      }
+    }
+  );
+}
 
 // 保存到相册
 @async
@@ -54,7 +115,35 @@ function saveImageToPhotoAlbum(arg: {
     }
   );
 }
+function test_aok(){}
 
+function test_openImagePicker2() {
+  xengine.api(
+    "com.zkty.jsi.camera",
+    "openImagePicker2",
+    {
+      allowsEditing: true,
+      savePhotosAlbum: false,
+      cameraFlashMode: -1,
+      cameraDevice: "back",
+      photoCount: 5,
+      args: { bytes: "100" },
+      isbase64: true,
+    },
+    (res) => {
+      let obj = JSON.parse(res);
+      for (let photo of obj.data) {
+        const image = document.createElement("img");
+        if (!photo.width || !photo.height) {
+          alert("要返回width,与height", photo);
+        }
+        image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
+        image.style.cssText = "width:100%";
+        document.body.appendChild(image);
+      }
+    }
+  );
+}
 function test_openImagePicker() {
   xengine.api(
     "com.zkty.jsi.camera",
@@ -69,6 +158,7 @@ function test_openImagePicker() {
       isbase64: true,
     },
     (res) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
       let obj = JSON.parse(res);
       for (let photo of obj.data) {
         const image = document.createElement("img");
@@ -97,4 +187,3 @@ function test_saveImageToPhotoAlbum() {
     }
   );
 }
-

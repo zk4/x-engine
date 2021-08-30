@@ -3,17 +3,17 @@
 //  store
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
 
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 #import <micros.h>
-
+ 
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
 @interface Native_store ()
-@property (nonatomic, strong)   NSMutableDictionary<NSString *, id> * store;
+@property (atomic, strong)   NSMutableDictionary<NSString *, id> * store;
+
 @end
 
 @implementation Native_store
@@ -41,17 +41,17 @@ NATIVE_MODULE(Native_store)
          queue:nil
          usingBlock:^(NSNotification *note) {
             StrongSelf(self)
-            [self loadFromDisk:FALSE];
+            [strongself loadFromDisk:FALSE];
         }];
-        WeakSelfNamed(self,1)
+
         [[NSNotificationCenter defaultCenter]
          addObserverForName:UIApplicationDidEnterBackgroundNotification
          object:nil
          queue:nil
          usingBlock:^(NSNotification *note) {
             NSLog(@"save ");
-            StrongSelfNamed(self,1)
-            [self saveTodisk];
+            StrongSelf(self)
+            [strongself saveTodisk];
         }];
     }
     
@@ -64,12 +64,17 @@ NATIVE_MODULE(Native_store)
 }
 
 - (void)set:(NSString *)key val:(id)val {
+    if(!val)return;
     [_store setObject:val forKey:key];
 }
 
 - (void)del:(NSString*)key{
      [_store removeObjectForKey:key];
 }
+- (void)delAll{
+     [_store removeAllObjects];
+}
+
 
 - (void)saveTodisk{
     [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];

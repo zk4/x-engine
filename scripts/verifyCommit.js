@@ -17,8 +17,8 @@ if (!Merged.test(msg) && !releaseRE.test(msg) && !commitRE.test(msg)) {
       chalk.red(
         `  Proper commit message format is required for automated changelog generation. Examples:\n\n`
       ) +
-      `    ${chalk.green(`feat: add 'comments' option`)}\n` +
-      `    ${chalk.green(`fix: handle events on blur (close #28)`)}\n\n` +
+      `    ${chalk.green(`feat(xxx): add 'comments' option`)}\n` +
+      `    ${chalk.green(`fix(xxx): handle events on blur (close #28)`)}\n\n` +
       chalk.red(`  See .github/commit-convention.md for more details.\n`)
   )
   process.exit(1)

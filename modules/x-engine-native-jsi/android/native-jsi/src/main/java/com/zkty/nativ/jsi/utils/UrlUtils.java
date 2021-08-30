@@ -59,26 +59,15 @@ public class UrlUtils {
     /**
      * 解析url
      *
-     * @param url
+     * @param ie=UTF-8&wd=ARouter
      * @return
      */
-    public static Map<String, String> parseForParams(String url) {
+    public static Map<String, String> getQueryMapFormString(String query) {
         Map<String, String> map = new HashMap();
-        if (url == null) {
+        if (TextUtils.isEmpty(query)) {
             return map;
         }
-        url = url.trim();
-        if (url.equals("")) {
-            return map;
-        }
-        if (url.contains("?")) {
-            url = url.substring(url.indexOf("?") + 1);
-        } else {
-            return map;
-        }
-
-        //有参数
-        String[] params = url.split("&");
+        String[] params = query.split("&");
         for (String param : params) {
             String[] keyValue = param.split("=");
             if (keyValue.length > 1)
@@ -95,5 +84,26 @@ public class UrlUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    public static String getQueryStringFormMap(Map<String, String> map) {
+        if (map == null || map.size() == 0) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        }
+
+        if (sb.length() > 1) {
+            return sb.substring(0, sb.length() - 1);
+        }
+
+        return sb.toString();
+
+
     }
 }

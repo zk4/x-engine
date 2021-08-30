@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jsi.share">
+ <application>
+    <meta-data
+        android:name="com.zkty.jsi.share"
+        android:value="com.zkty.jsi.JSI_share" />
+  </application>
+</manifest>

@@ -22,10 +22,60 @@ NS_ASSUME_NONNULL_BEGIN
         pathname:(NSString*) pathname
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
+
+- (void)push: (NSString*) scheme
+        host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
+        query:(nullable NSDictionary<NSString*,id>*) query
         params:(nullable NSDictionary<NSString*,id>*) params;
 
-- (void)back: (NSString*) scheme host:(nullable NSString*) host                    fragment:(NSString*) fragment;
+// 特殊功能：在tab 上显示
+- (void)addToTab: (UIViewController*) parent
+        scheme:(NSString*) scheme
+        host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
+        query:(nullable NSDictionary<NSString*,id>*) query
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
 
+// 将 uri 转化为 addToTab的参数
+- (void)addToTab: (UIViewController*) parent
+        uri:(NSString*) uri
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
+
+
+
+// 将 uri 参数转化为上面 push 的参数
+- (void)push: (NSString*) uri
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
+
+- (void)push: (NSString*) uri
+        params:(nullable NSDictionary<NSString*,id>*) params;
+
+- (void)back: (NSString*) scheme 
+        host:(nullable NSString*) host                    
+    fragment:(NSString*) fragment;
+
+// 返回视图容器，vc,内部原生使用，不要暴露到JSI
+- (UIViewController*) getContainer:(NSString*) scheme
+    host:(nullable NSString*) host
+    pathname:(NSString*) pathname
+    fragment:(nullable NSString*) fragment
+    query:(nullable NSDictionary<NSString*,id>*) query
+    params:(nullable NSDictionary<NSString*,id>*) params
+    frame:(CGRect)frame;
+
+
+// 增加降级映射表
+- (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback;
 @end
+
+
 
 NS_ASSUME_NONNULL_END

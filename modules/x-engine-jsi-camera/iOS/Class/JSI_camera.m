@@ -8,7 +8,7 @@
 
 #import "JSI_camera.h"
 #import "JSIContext.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "iCamera.h"
 
 @interface JSI_camera()
@@ -22,7 +22,7 @@ JSI_MODULE(JSI_camera)
     self.camera = XENP(iCamera);
 }
 
-- (void)_openImagePicker:(_0_com_zkty_jsi_camera_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+- (void)_openImagePicker:(_openImagePicker0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
     CameraParamsDTO *model = [CameraParamsDTO new];
     model.allowsEditing = dto.allowsEditing;
     model.savePhotosAlbum = dto.savePhotosAlbum;
@@ -35,8 +35,8 @@ JSI_MODULE(JSI_camera)
         completionHandler(result, TRUE);
     }];
 }
-
-- (void)_saveImageToPhotoAlbum:(_1_com_zkty_jsi_camera_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
+ 
+- (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
     SaveImageDTO *model = [SaveImageDTO new];
     model.type = dto.type;
     model.imageData = dto.imageData;
@@ -44,4 +44,13 @@ JSI_MODULE(JSI_camera)
         completionHandler(result, TRUE);
     }];
 }
+
+- (void)_openImagePicker2:(_openImagePicker22_DTO *)dto complete:(void (^)(_openImagePicker20_DTO *, BOOL))completionHandler {
+    
+}
+
+ 
+ 
+ 
+
 @end

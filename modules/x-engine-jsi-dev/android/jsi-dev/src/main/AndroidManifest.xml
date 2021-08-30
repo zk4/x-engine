@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jsi.dev">
+ <application>
+    <meta-data
+        android:name="com.zkty.jsi.dev"
+        android:value="com.zkty.jsi.JSI_dev" />
+  </application>
+</manifest>

@@ -13,7 +13,7 @@
   import com.zkty.nativ.jsi.bridge.CompletionHandler;
   import com.zkty.nativ.jsi.JSIModule;
   import androidx.annotation.Nullable;
-  import com.zkty.nativ.jsi.annotation.Optional;
+  import com.zkty.nativ.core.annotation.Optional;
 
   
   
@@ -22,7 +22,7 @@
   }
   
   
-  public abstract class xengine_jsi_scan extends JSIModule implements xengine_jsi_scan_protocol {
+    public abstract class xengine_jsi_scan extends JSIModule implements xengine_jsi_scan_protocol {
     @Override
     public String moduleId() {
       return "com.zkty.jsi.scan";

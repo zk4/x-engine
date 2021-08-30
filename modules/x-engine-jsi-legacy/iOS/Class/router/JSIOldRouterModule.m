@@ -9,7 +9,7 @@
 #import "JSIOldRouterModule.h"
 #import "JSIContext.h"
 #import "iDirectManager.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "NSURL+QueryDictionary.h"
 
 @interface JSIOldRouterModule ()
@@ -23,7 +23,7 @@ JSI_MODULE(JSIOldRouterModule)
 }
 
 -(void)afterAllJSIModuleInited {
-    self.directors = [[NativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+    self.directors = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 }
 
 

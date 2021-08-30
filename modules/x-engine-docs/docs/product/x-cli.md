@@ -1,4 +1,6 @@
-## 安装 
+x-cli 主要是为了生成统一的 jsi 模块。根据 [model.ts](#model.ts语法)  唯一定义， 生成 oc， java， js 三端统一接口与 readme.md。 以及 h5 的自动测试。
+
+## 安装
 
  ```
 npm install @zkty-team/x-cli -g 
@@ -18,10 +20,7 @@ x-cli model model.ts -t 2 -n
 
 
 
-
 ### model
-
-根据 [model.ts](#model.ts语法)  定义， 生成 oc， java， js 三端统一接口与 readme.md。 
 
 h5:
 

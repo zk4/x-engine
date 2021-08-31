@@ -97,7 +97,7 @@ string
 ``` js
 
   xengine.api("com.zkty.jsi.device", "callPhone", {
-    phoneNum: "18637369306",
+    phoneNum: "xxx",
     phoneMsg: "",
   });
 
@@ -123,7 +123,7 @@ string
 ``` js
 
   xengine.api("com.zkty.jsi.device", "sendMessage", {
-    phoneNum: "18637369306",
+    phoneNum: "xxx",
     phoneMsg: "你好",
   });
 

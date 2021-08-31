@@ -12,11 +12,11 @@
 
 
 @protocol xengine_jsi_scan_protocol
-       @required 
-        - (void) _openScanView:(void (^)(NSString* result,BOOL complete)) completionHandler;
-    
+   @required 
+     - (void) _openScanView:(void (^)(NSString* result,BOOL complete)) completionHandler;
+
 @end
-  
+
 
 
 @interface xengine_jsi_scan : JSIModule<xengine_jsi_scan_protocol>

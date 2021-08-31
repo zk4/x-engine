@@ -205,4 +205,3 @@ function test_complex_sync() {
   });
   document.getElementById("debug_text").innerText = JSON.stringify(val);
 }
-

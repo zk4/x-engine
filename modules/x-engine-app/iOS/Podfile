@@ -31,8 +31,8 @@ def shared_pods
   pod 'x-engine-native-gmupload', :path =>'../../x-engine-native-gmupload'
   
   # webcache
-#  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
-#  pod 'x-engine-native-webcache', :path =>'../../x-engine-native-webcache'
+  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
+  pod 'x-engine-native-webcache', :path =>'../../x-engine-native-webcache'
 
   
   # jsi

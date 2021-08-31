@@ -22,6 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
         pathname:(NSString*) pathname
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
+
+- (void)push: (NSString*) scheme
+        host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
+        query:(nullable NSDictionary<NSString*,id>*) query
         params:(nullable NSDictionary<NSString*,id>*) params;
 
 // 特殊功能：在tab 上显示
@@ -31,16 +39,22 @@ NS_ASSUME_NONNULL_BEGIN
         pathname:(NSString*) pathname
         fragment:(nullable NSString*) fragment
         query:(nullable NSDictionary<NSString*,id>*) query
-        params:(nullable NSDictionary<NSString*,id>*) params;
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
 
 // 将 uri 转化为 addToTab的参数
 - (void)addToTab: (UIViewController*) parent
         uri:(NSString*) uri
-        params:(nullable NSDictionary<NSString*,id>*) params;
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
 
 
 
 // 将 uri 参数转化为上面 push 的参数
+- (void)push: (NSString*) uri
+        params:(nullable NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame;
+
 - (void)push: (NSString*) uri
         params:(nullable NSDictionary<NSString*,id>*) params;
 
@@ -54,7 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
     pathname:(NSString*) pathname
     fragment:(nullable NSString*) fragment
     query:(nullable NSDictionary<NSString*,id>*) query
-    params:(nullable NSDictionary<NSString*,id>*) params;
+    params:(nullable NSDictionary<NSString*,id>*) params
+    frame:(CGRect)frame;
 
 
 // 增加降级映射表

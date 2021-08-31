@@ -1,7 +1,7 @@
 //
 //   XTool.h
 //  只允许静态方法暴露, 不允许维护状态
- 
+#import <UIKit/UIKit.h>
 
 @interface  XToolError : NSObject
 // iOS更优雅的NSError的处理流程, 能够记住每一层的 NSError

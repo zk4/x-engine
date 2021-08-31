@@ -26,5 +26,5 @@
           [self _openScanView:^(NSString* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
-      }
+  }
   @end

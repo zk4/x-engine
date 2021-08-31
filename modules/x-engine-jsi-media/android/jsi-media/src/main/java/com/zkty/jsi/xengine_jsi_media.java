@@ -85,9 +85,10 @@
   class _7_com_zkty_jsi_media_DTO {
     public String url;
 
-    public Map<String,String> header;
-
     public List<String> ids;
+
+    @Optional
+		public Map<String,String> header;
   }
   
   interface xengine_jsi_media_protocol {

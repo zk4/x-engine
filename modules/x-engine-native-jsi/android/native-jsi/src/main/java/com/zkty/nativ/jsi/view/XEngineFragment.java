@@ -55,7 +55,6 @@ public class XEngineFragment extends Fragment {
             HistoryModel historyModel = (HistoryModel) getArguments().getSerializable(ARG_PARAM_HISTORY_MODEL);
             int index = getArguments().getInt(ARG_PARAM_INDEX);
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
-            //增加神策埋点（webview初始化）
             SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView,true);
             XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
             mRoot.addView(mWebView, 0);

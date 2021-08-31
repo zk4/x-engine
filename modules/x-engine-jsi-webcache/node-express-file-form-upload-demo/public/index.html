@@ -59,7 +59,7 @@
           <h1>submit form throught AJAX</h1>
 
            <!-- IMAGE UPLOAD FORM -->
-          <form  id="myForm" enctype="multipart/form-data" >
+          <form  id="myForm" method="POST"  action="upload" enctype="multipart/form-data" >
 
                 <div class="section">Note: Only image files are allowed.</div>
                 <div class="inner-wrap">
@@ -75,7 +75,7 @@
         </div>
       </div>
   </div>
-<form id="form">
+<form id="form" method="POST">
   <p id="error" hidden>Please fill out all fields.</p>
 
   <label for="city">City</label>
@@ -84,6 +84,9 @@
   <button type="submit">Submit</button>
 </form>
 <p id="thanks" hidden>Your data has been received. Thanks!</p>
+<img id="myImage">
+
+<input type="button" onclick="getImage()">
 
   <script src="user.js"></script>
   <script>

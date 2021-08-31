@@ -12,6 +12,7 @@
 @interface JSI_media()
 @property (nonatomic, strong) id<iMedia> media;
 @property (atomic, assign) unsigned long  upload_done_counts;
+@property (nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* cachingPic;
 @end
 
 @implementation JSI_media
@@ -19,6 +20,7 @@ JSI_MODULE(JSI_media)
 
 - (void)afterAllJSIModuleInited {
     self.media = XENP(iMedia);
+    self.cachingPic = [NSMutableDictionary dictionary];
 }
 
 - (void)_openImagePicker:(_openImagePicker2_DTO *)dto complete:(void (^)(_openImagePicker0_DTO *, BOOL))completionHandler {

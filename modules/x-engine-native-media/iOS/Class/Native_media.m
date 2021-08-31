@@ -13,7 +13,7 @@
 #import <Photos/Photos.h>
 #import "XTool.h"
 #import "GKPhotoBrowser.h"
-#import "iGmupload.h"
+#import <iMediaDelegate.h>
 
 typedef void (^PhotoCallBack)(NSArray *);
 typedef void (^SaveCallBack)(NSMutableDictionary *);
@@ -32,8 +32,6 @@ typedef void (^UploadImageCallBack)(NSDictionary *);
 @property(nonatomic,copy) SaveCallBack saveCallback;
 @property(nonatomic,copy) UploadImageCallBack uploadCallBack;
 @property (nonatomic, strong) NSMutableArray *saveCacheDataArray;
-@property (nonatomic, strong) id<iGmupload> gmUpload;
-
 @end
 
 @implementation Native_media
@@ -49,7 +47,6 @@ NATIVE_MODULE(Native_media)
 
 - (void)afterAllNativeModuleInited {
     _saveCacheDataArray = [NSMutableArray array];
-    _gmUpload = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iGmupload)];
 }
 
 // 打开提示框
@@ -337,7 +334,8 @@ NATIVE_MODULE(Native_media)
         }];
         for (NSDictionary *uploadDict in dataArr) {
             NSMutableDictionary *backDict = [NSMutableDictionary dictionary];
-            [_gmUpload sendUploadRequestWithUrl:requestURL header:header imageData:uploadDict[@"data"] imageName:uploadDict[@"name"] success:^(NSDictionary *dict) {
+            id<iMediaDelegate>media = XENP(iMediaDelegate);
+            [media sendUploadRequestWithUrl:requestURL header:header imageData:uploadDict[@"data"] imageName:uploadDict[@"name"] success:^(NSDictionary *dict) {
                 backDict[@"status"] = @(0);
                 backDict[@"msg"] = @"接口发送成功";
                 backDict[@"imgID"] = uploadDict[@"name"];

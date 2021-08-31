@@ -19,20 +19,17 @@ def shared_pods
   pod 'x-engine-native-device', :path =>'../../x-engine-native-device'
   pod 'x-engine-native-scan', :path =>'../../x-engine-native-scan'
   pod 'x-engine-native-store', :path =>'../../x-engine-native-store'
-#  pod 'x-engine-native-dev', :path =>'../../x-engine-native-dev'
+  pod 'x-engine-native-dev', :path =>'../../x-engine-native-dev'
   pod 'x-engine-native-rest', :path =>'../../x-engine-native-rest'
   pod 'x-engine-native-tabbar', :path =>'../../x-engine-native-tabbar'
   pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
   pod 'x-engine-native-offline', :path =>'../../x-engine-native-offline'
   pod 'x-engine-native-toast', :path =>'../../x-engine-native-toast'
-  pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
 #  pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
-
-  pod 'x-engine-native-gmupload', :path =>'../../x-engine-native-gmupload'
   
   # webcache
-  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
-  pod 'x-engine-native-webcache', :path =>'../../x-engine-native-webcache'
+#  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
+#  pod 'x-engine-native-webcache', :path =>'../../x-engine-native-webcache'
 
   
   # jsi
@@ -47,10 +44,10 @@ def shared_pods
   pod 'x-engine-jsi-localstorage', :path =>'../../x-engine-jsi-localstorage'
   pod 'x-engine-jsi-vuex', :path =>'../../x-engine-jsi-vuex'
 #  pod 'x-engine-jsi-camera', :path =>'../../x-engine-jsi-camera'
-  pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
- 
 
-  
+
+  pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
+  pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
   
   # legacy jsi
 #  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'

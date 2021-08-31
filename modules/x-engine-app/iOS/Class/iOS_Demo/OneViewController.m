@@ -19,9 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8080" params:@{@"hideNavbar":@TRUE}];
-    
-//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.71:3000/" params:@{@"hideNavbar":@TRUE}];
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
+//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.88:9111" params:nil frame:@{@"hideNavbar":@TRUE}];
+//    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.88:9111" params:@{@"hideNavbar":@TRUE}];
+//    [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
+    id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+
+        [director push:@"omp" host:@"10.2.128.91:8080" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
 
 }
 @end

@@ -65,7 +65,7 @@ include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
 include ':native-gmupload'
-project(':native-gmupload').projectDir = new File('../../x-engine-native-gmupload/android/native-gmupload')
+project(':native-gmupload').projectDir = new File('../../../../x-engine/modules/x-engine-native-gmupload/android/native-gmupload')
 
 include ':jsi-direct'
 project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')

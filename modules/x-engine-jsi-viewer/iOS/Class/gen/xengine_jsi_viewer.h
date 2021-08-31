@@ -7,16 +7,16 @@
 #import "JSONModel.h"
 
 @protocol StatusDTO;
-@protocol _openFileReader0_DTO;
+@protocol _openFileReader_com_zkty_jsi_viewer_0_DTO;
 @class StatusDTO;
-@class _openFileReader0_DTO;
+@class _openFileReader_com_zkty_jsi_viewer_0_DTO;
 
 @interface StatusDTO: JSONModel
   	@property(nonatomic,copy) NSString* resultMsg;
 @end
 
 
-@interface _openFileReader0_DTO: JSONModel
+@interface _openFileReader_com_zkty_jsi_viewer_0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* fileUrl;
    	@property(nonatomic,copy) NSString* fileType;
    	@property(nonatomic,copy) NSString* title;
@@ -26,7 +26,7 @@
 
 @protocol xengine_jsi_viewer_protocol
    @required 
-     - (void) _openFileReader:(_openFileReader0_DTO*) dto complete:(void (^)(StatusDTO* result,BOOL complete)) completionHandler;
+     - (void) _openFileReader:(_openFileReader_com_zkty_jsi_viewer_0_DTO*) dto complete:(void (^)(StatusDTO* result,BOOL complete)) completionHandler;
 
 @end
 

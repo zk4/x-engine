@@ -6,10 +6,10 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol _set0_DTO;
-@class _set0_DTO;
+@protocol _set_com_zkty_jsi_globalstorage_0_DTO;
+@class _set_com_zkty_jsi_globalstorage_0_DTO;
 
-@interface _set0_DTO: JSONModel
+@interface _set_com_zkty_jsi_globalstorage_0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* key;
    	@property(nonatomic,copy) NSString* val;
 @end
@@ -21,7 +21,7 @@
     - (NSString*) _get:(NSString*)dto;
 
    @required 
-    - (void) _set:(_set0_DTO*)dto;
+    - (void) _set:(_set_com_zkty_jsi_globalstorage_0_DTO*)dto;
 
    @required 
     - (void) _del:(NSString*)dto;

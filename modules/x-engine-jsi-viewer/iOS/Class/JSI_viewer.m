@@ -22,7 +22,7 @@ JSI_MODULE(JSI_viewer)
     self.iviewer = XENP(iViewer);
 }
 
-- (void)_openFileReader:(_0_com_zkty_jsi_viewer_DTO *)dto complete:(void (^)(StatusDTO *, BOOL))completionHandler {
+- (void)_openFileReader:(_openFileReader_com_zkty_jsi_viewer_0_DTO *)dto complete:(void (^)(StatusDTO *, BOOL))completionHandler {
     [self.iviewer openFileWithfileUrl:dto.fileUrl fileType:dto.fileType title:dto.title];
 }
 @end

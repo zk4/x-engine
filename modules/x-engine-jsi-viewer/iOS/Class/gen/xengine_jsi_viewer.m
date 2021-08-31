@@ -12,7 +12,7 @@
 @end
 
   
-@implementation _openFileReader0_DTO
+@implementation _openFileReader_com_zkty_jsi_viewer_0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    
    	return NO;
@@ -36,7 +36,7 @@
     
     - (void) openFileReader:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
-          _openFileReader0_DTO* dto = [self convert:dict clazz:_openFileReader0_DTO.class];
+          _openFileReader_com_zkty_jsi_viewer_0_DTO* dto = [self convert:dict clazz:_openFileReader_com_zkty_jsi_viewer_0_DTO.class];
           
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];

@@ -19,6 +19,9 @@
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSString*> * fallbackMappings;
 
+// 为了降低路由频率，用到的时间戳
+@property (nonatomic,assign ) UInt64 lastTimeStamp;
+
 @end
 
 @implementation Native_direct
@@ -45,6 +48,7 @@ NATIVE_MODULE(Native_direct)
     for(id<iDirect> direct in modules){
         [self.directors setObject:direct forKey:[direct scheme]];
     }
+   self.lastTimeStamp  = [[ NSDate date ] timeIntervalSince1970 ] * 1000;
 }
 
 - (void) _back:(NSString*) host fragment:(NSString*) fragment{
@@ -118,7 +122,7 @@ NATIVE_MODULE(Native_direct)
     return container;
     
 }
-
+ 
 - (void)push: (NSString*) scheme
         host:(nullable NSString*) host
         pathname:(NSString*) pathname
@@ -126,7 +130,15 @@ NATIVE_MODULE(Native_direct)
         query:(nullable NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,id>*) params
         frame:(CGRect)frame{
-
+    UInt64 now  = [[ NSDate date ] timeIntervalSince1970 ] * 1000;
+    // 1 秒 路由 throttle
+    if(now - self.lastTimeStamp<1000){
+        self.lastTimeStamp = now;
+        return;
+    }else{
+        self.lastTimeStamp = now;
+    }
+    
     // 复用上一次的 host
     if(host){
         pathname = pathname && (pathname.length!=0) ? pathname : @"/";

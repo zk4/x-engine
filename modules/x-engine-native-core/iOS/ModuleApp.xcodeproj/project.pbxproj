@@ -32,8 +32,8 @@
 		58DF377E260DC942002C1236 /* XEOneWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3777260DC942002C1236 /* XEOneWebViewPool.m */; };
 		58DF377F260DC942002C1236 /* RecyleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF3778260DC942002C1236 /* RecyleWebViewController.m */; };
 		58DF3781260DC942002C1236 /* XEOneWebViewPoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */; };
-		58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */; };
-		58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */; };
+		58DF3786260DCF36002C1236 /* com.zkty.microapp.home.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF3785260DCF36002C1236 /* com.zkty.microapp.home.0 */; };
+		58DF378B260DD339002C1236 /* com.zkty.microapp.mine.0 in Resources */ = {isa = PBXBuildFile; fileRef = 58DF378A260DD339002C1236 /* com.zkty.microapp.mine.0 */; };
 		58DF37BC260DE552002C1236 /* WKWebView+Custome.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37AC260DE552002C1236 /* WKWebView+Custome.m */; };
 		58DF37BD260DE552002C1236 /* XEngineJSBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37AE260DE552002C1236 /* XEngineJSBUtil.m */; };
 		58DF37BE260DE552002C1236 /* CustomURLSchemeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF37AF260DE552002C1236 /* CustomURLSchemeHandler.m */; };
@@ -132,8 +132,8 @@
 		58DF377A260DC942002C1236 /* XEOneWebViewPoolModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEOneWebViewPoolModel.m; sourceTree = "<group>"; };
 		58DF377B260DC942002C1236 /* XEOneWebViewPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEOneWebViewPool.h; sourceTree = "<group>"; };
 		58DF377C260DC942002C1236 /* RecyleWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecyleWebViewController.h; sourceTree = "<group>"; };
-		58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.gm.microapp.home.0; sourceTree = SOURCE_ROOT; };
-		58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.gm.microapp.mine.0; sourceTree = SOURCE_ROOT; };
+		58DF3785260DCF36002C1236 /* com.zkty.microapp.home.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.microapp.home.0; sourceTree = SOURCE_ROOT; };
+		58DF378A260DD339002C1236 /* com.zkty.microapp.mine.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.microapp.mine.0; sourceTree = SOURCE_ROOT; };
 		58DF37AA260DE552002C1236 /* XEngineBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEngineBridge.h; sourceTree = "<group>"; };
 		58DF37AB260DE552002C1236 /* XEngineWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEngineWebView.h; sourceTree = "<group>"; };
 		58DF37AC260DE552002C1236 /* WKWebView+Custome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+Custome.m"; sourceTree = "<group>"; };
@@ -612,8 +612,8 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				58DF378A260DD339002C1236 /* com.gm.microapp.mine.0 */,
-				58DF3785260DCF36002C1236 /* com.gm.microapp.home.0 */,
+				58DF378A260DD339002C1236 /* com.zkty.microapp.mine.0 */,
+				58DF3785260DCF36002C1236 /* com.zkty.microapp.home.0 */,
 				A4A695D02609DC4400074A24 /* iOS_Demo */,
 				A4A695AB2609DC3300074A24 /* iOS_Modules */,
 			);
@@ -727,8 +727,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
-				58DF378B260DD339002C1236 /* com.gm.microapp.mine.0 in Resources */,
-				58DF3786260DCF36002C1236 /* com.gm.microapp.home.0 in Resources */,
+				58DF378B260DD339002C1236 /* com.zkty.microapp.mine.0 in Resources */,
+				58DF3786260DCF36002C1236 /* com.zkty.microapp.home.0 in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

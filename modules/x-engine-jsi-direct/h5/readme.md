@@ -23,7 +23,7 @@ version: 2.8.1
   // 跳转microapp
   engine.api('com.zkty.jsi.direct', 'push', {
     scheme: "microapp",
-    host: "com.gm.microapp.mine",
+    host: "com.zkty.microapp.mine",
     pathname: "",
     fragment: "",
   })
@@ -31,7 +31,7 @@ version: 2.8.1
   // 跳转并删除当前页
   engine.api('com.zkty.jsi.direct', 'push', {
     scheme: "microapp",
-    host: "com.gm.microapp.mine",
+    host: "com.zkty.microapp.mine",
     pathname: "",
     fragment: "",
     params:{
@@ -66,7 +66,7 @@ version: 2.8.1
 | pathname | string | 必填 |  |  |
 | fragment | string | 必填 | / | 要注意：<br>一定要以 / 开头 |
 | query | Map\<string,string\> | optional |  | query 参数 |
-| params | Map\<string,string\> | optional | {"hideNavbar":true} | 其他参数（做兼容用）<br>\_\_deleteHistory\_\_: -1   在push　到下一页之前，　删除掉当前页<br>\_\_deleteHistory\_\_: -2   在push　到下一页之前，　删除掉当前两页<br>历史不足时，到 tab 历史为止。 |
+| params | Map\<string,string\> | optional | {"hideNavbar":true} | 其他参数（做兼容用）<br>\_\_deleteHistory\_\_: -1   在push　到下一页之前，　删除掉当前页<br>\_\_deleteHistory\_\_: -2   在push　到下一页之前，　删除掉当前两页<br>历史不足时，到 tab 历史为止。<br>\_\_fallback\_\_: 'https://www.baidu.com/'   找不到路由时的 fallback |
 **无返回值**
 
 

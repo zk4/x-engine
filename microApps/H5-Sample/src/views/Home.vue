@@ -1,6 +1,12 @@
 <template>
   <div class="testone-class">
     <van-button
+      color="linear-gradient(to right, #013656, #7e57c2)"
+      size="large"
+      round
+      @click="handlerMedia"
+    >Media</van-button>
+    <van-button
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
       size="large"
       round
@@ -51,6 +57,11 @@ export default {
     console.log(this.$statusHeight)
   },
   methods: {
+    handlerMedia() {
+      this.$router.push({
+        path: "/media",
+      })
+    },
     handlerLocalStorage() {
       this.$router.push({
         path: "/localstorage",

@@ -11,7 +11,7 @@
    	return NO;
     }
 @end
-    
+
   
 @implementation DeviceDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -20,7 +20,7 @@
    	return NO;
     }
 @end
-    
+
 
 
 
@@ -39,35 +39,49 @@
   
   - (NSString*) getStatusBarHeight:(NSDictionary*) dict {
   return [self _getStatusBarHeight];
-    }
+}
   
   - (NSString*) getNavigationHeight:(NSDictionary*) dict {
   return [self _getNavigationHeight];
-    }
+}
   
   - (NSString*) getScreenHeight:(NSDictionary*) dict {
   return [self _getScreenHeight];
-    }
+}
   
   - (NSString*) getTabbarHeight:(NSDictionary*) dict {
   return [self _getTabbarHeight];
-    }
+}
   
   - (NSString*) callPhone:(NSDictionary*) dict {
       
-          phoneDto* dto = [self convert:dict clazz:phoneDto.class];
-      return [self _callPhone:dto];
+      phoneDto* dto = [self convert:dict clazz:phoneDto.class];
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  return [self _callPhone:dto];
+}
   
   - (NSString*) sendMessage:(NSDictionary*) dict {
       
-          phoneDto* dto = [self convert:dict clazz:phoneDto.class];
-      return [self _sendMessage:dto];
+      phoneDto* dto = [self convert:dict clazz:phoneDto.class];
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  return [self _sendMessage:dto];
+}
     - (void) getDeviceInfo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           [self _getDeviceInfo:^(DeviceDTO* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
-      }
+  }
   @end

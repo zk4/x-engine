@@ -6,12 +6,12 @@
 #import "xengine_jsi_globalstorage.h"
 
 
-@implementation _0_com_zkty_jsi_globalstorage_DTO
+@implementation _set_com_zkty_jsi_globalstorage_0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
 @end
-    
+
 
 
 
@@ -30,21 +30,42 @@
   
   - (NSString*) get:(NSDictionary*) dict {
       
-          NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _get:dto];
+      NSString* dto = [self convert:dict clazz:NSString.class];
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  return [self _get:dto];
+}
   
   - (id) set:(NSDictionary*) dict {
       
-          _0_com_zkty_jsi_globalstorage_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_globalstorage_DTO.class];
-      [self _set:dto];
-                 return nil;
+      _set_com_zkty_jsi_globalstorage_0_DTO* dto = [self convert:dict clazz:_set_com_zkty_jsi_globalstorage_0_DTO.class];
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  [self _set:dto];
+         return nil;
+}
   
   - (id) del:(NSDictionary*) dict {
       
-          NSString* dto = [self convert:dict clazz:NSString.class];
-      [self _del:dto];
-                 return nil;
+      NSString* dto = [self convert:dict clazz:NSString.class];
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  [self _del:dto];
+         return nil;
+}
   @end

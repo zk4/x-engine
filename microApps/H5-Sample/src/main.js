@@ -22,8 +22,10 @@ import {
   PullRefresh,
   Form,
   Field,
+  Toast
 } from "vant";
 
+Vue.use(Toast);
 Vue.use(Cell);
 Vue.use(Form);
 Vue.use(List);

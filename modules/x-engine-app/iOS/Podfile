@@ -17,15 +17,18 @@ def shared_pods
   pod 'x-engine-native-direct_native', :path =>'../../x-engine-native-direct_native'
   pod 'x-engine-native-broadcast', :path =>'../../x-engine-native-broadcast'
   pod 'x-engine-native-device', :path =>'../../x-engine-native-device'
-  pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
   pod 'x-engine-native-scan', :path =>'../../x-engine-native-scan'
   pod 'x-engine-native-store', :path =>'../../x-engine-native-store'
-  pod 'x-engine-native-toast', :path =>'../../x-engine-native-toast'
 #  pod 'x-engine-native-dev', :path =>'../../x-engine-native-dev'
   pod 'x-engine-native-rest', :path =>'../../x-engine-native-rest'
   pod 'x-engine-native-tabbar', :path =>'../../x-engine-native-tabbar'
   pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
-  pod 'x-engine-native-updator', :path =>'../../x-engine-native-updator'
+  pod 'x-engine-native-offline', :path =>'../../x-engine-native-offline'
+  pod 'x-engine-native-toast', :path =>'../../x-engine-native-toast'
+  pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
+#  pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
+
+  pod 'x-engine-native-gmupload', :path =>'../../x-engine-native-gmupload'
   
   # webcache
   pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
@@ -38,22 +41,24 @@ def shared_pods
   pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
   pod 'x-engine-jsi-direct', :path =>'../../x-engine-jsi-direct'
   pod 'x-engine-jsi-device', :path =>'../../x-engine-jsi-device'
-  pod 'x-engine-jsi-camera', :path =>'../../x-engine-jsi-camera'
   pod 'x-engine-jsi-scan', :path =>'../../x-engine-jsi-scan'
   pod 'x-engine-jsi-secret', :path =>'../../x-engine-jsi-secret'
   pod 'x-engine-jsi-store', :path =>'../../x-engine-jsi-store'
   pod 'x-engine-jsi-localstorage', :path =>'../../x-engine-jsi-localstorage'
   pod 'x-engine-jsi-vuex', :path =>'../../x-engine-jsi-vuex'
+#  pod 'x-engine-jsi-camera', :path =>'../../x-engine-jsi-camera'
+  pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
  
 
   
   
   # legacy jsi
 #  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'
-
+	
   pod 'JSONModel'
   pod 'MJExtension'
   pod 'SSZipArchive'
+  pod 'SDWebImage'
 end
 
 target 'ModuleApp' do

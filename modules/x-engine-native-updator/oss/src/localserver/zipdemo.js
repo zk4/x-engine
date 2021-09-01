@@ -4,7 +4,7 @@ var fs = require("fs");
 var StreamZip = require("node-stream-zip");
 
 var zip = new StreamZip({
-  file: "../../zip/com.gm.microapp.home.2.zip",
+  file: "../../zip/com.zkty.microapp.home.2.zip",
   storeEntries: true,
 });
 

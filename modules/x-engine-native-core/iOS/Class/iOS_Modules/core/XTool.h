@@ -20,11 +20,26 @@
 /// @param size 不超过多少尺寸
 /// @param q   0 到 1. 最小接受多少压缩质量,在保障尺寸不超 size 的情况下,用最高质量
 + (NSData *)compressImage:(UIImage *)image toMaxDataSizeKBytes:(float)size miniQuality:(float)q;
-// image转base64
+
+/// UIImage转base64
+/// @param image 图片
 + (NSString *)imageToBase64Str:(UIImage *)image;
+
+/// base64转UIImage
+/// @param base64 base64字符串
++ (UIImage *)base64StrToimage:(NSString *)base64;
+
+/// UIImage(png类型)转换为NSData
+/// @param image 图片
++ (NSData *)dataToUIImageWithPNG:(UIImage *)image;
+
+/// UIImage(jpeg类型)转换为NSData
+/// @param image 图片
+/// @param compressionQuality //第二个参数为压缩倍数
++ (NSData *)dataToUIImageWithJPEG:(UIImage *)image WithCompressionQuality:(CGFloat)compressionQuality;
+
 // 图片裁剪
 + (UIImage *)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
-
 
 + (NSData *)thumbnail_64kbData:(NSString *)imgurl;
 + (UIImage *)thumbnail_64kb:(NSString *)imgurl;

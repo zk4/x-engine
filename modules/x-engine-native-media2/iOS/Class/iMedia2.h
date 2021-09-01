@@ -29,17 +29,34 @@
 /// 保存图片到相册
 /// @param image 图片
 /// @param result callback
-- (void)saveImageToPhotoAlbumWithImage:(UIImage *)image result:(void (^)(NSMutableDictionary *dict))result;
+- (void)saveImageToPhotoAlbumWithImage:(UIImage *)image
+                                result:(void (^)(NSMutableDictionary *dict))result;
 
 /// 预览图片
 /// @param images 图片数组
 /// @param selIndex 选中index
 /// @param loadType 需要加载的类型 支持 url 、 file 、 UIImage
-- (void)previewImg:(NSArray *)images andSelIndex:(NSInteger)selIndex andLoadType:(NSString *)loadType;
+- (void)previewImg:(NSArray *)images
+       andSelIndex:(NSInteger)selIndex
+       andLoadType:(NSString *)loadType;
 
-- (void)openImagePicker:(Media2ParamsDTO*) dto result:(void (^)(NSArray<UIImage*>* images, NSArray *assets))result;
+/// 打开picker
+/// @param dto dto
+/// @param result result result
+- (void)openImagePicker:(Media2ParamsDTO*)dto
+                 result:(void (^)(NSArray<UIImage*>* images, NSArray *assets))result;
 
-- (void)uploadImageWithImage:(UIImage *) image result:(void (^)(BOOL successful))cb;
+/// 上传图片
+/// @param url url
+/// @param image 图片
+/// @param imageName 图片名称
+/// @param success 成功
+/// @param failure 失败
+- (void)uploadImageWithUrl:(NSString *)url
+                 withImage:(UIImage *)image
+             withImageName:(NSString *)imageName
+                   success:(void (^)(NSDictionary *dict))success
+                   failure:(void (^)(NSString *errorString))failure;
 
 @end
 #endif /* iMedia2_h */

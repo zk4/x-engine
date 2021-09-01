@@ -48,8 +48,9 @@ NATIVE_MODULE(Native_media2)
 - (void)afterAllNativeModuleInited {
     self.mediaDelegate= XENP(iMedia2Delegate);
 } 
- 
 
+
+#pragma --- 打开picker
 /// 打开picker
 /// @param dto dto
 /// @param result callback
@@ -98,7 +99,9 @@ NATIVE_MODULE(Native_media2)
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma 调起相机
+
+/// 调起相机
+/// @param dto dto
 - (void)chooseCamera:(Media2ParamsDTO *)dto {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -165,6 +168,7 @@ NATIVE_MODULE(Native_media2)
     }];
 }
 
+#pragma --- 预览图片
 /// 预览图片
 /// @param images 图片数组
 /// @param selIndex 选中index
@@ -196,6 +200,7 @@ NATIVE_MODULE(Native_media2)
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
+#pragma --- 保存图片到相册
 /// 保存图片到相册
 /// @param image 图片
 /// @param result callback
@@ -231,13 +236,20 @@ NATIVE_MODULE(Native_media2)
     }
 }
 
-- (void)uploadImageWithImage:(UIImage *)image result:(void (^)(BOOL))cb {
-    if(!self.mediaDelegate){
-        //todo
-        return;
+#pragma --- 上传图片
+/// 上传图片
+/// @param url url
+/// @param image 图片
+/// @param imageName 图片名称
+/// @param success 成功
+/// @param failure 失败
+- (void)uploadImageWithUrl:(NSString *)url withImage:(UIImage *)image withImageName:(NSString *)imageName success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *errorString))failure {
+    if (self.mediaDelegate) {
+        [self.mediaDelegate sendUploadRequestWithUrl:url header:nil imageData:[XToolImage dataToUIImageWithPNG:image] imageName:imageName success:^(NSDictionary *dict) {
+            success(dict);
+        } failure:^(NSDictionary *dict) {
+            failure(dict);
+        }];
     }
-    // todo upload
-//    [_mediaDelegate sendUploadRequestWithUrl:<#(NSString *)#> header:<#(NSDictionary *)#> imageData:<#(NSData *)#> imageName:<#(NSString *)#> success:<#^(NSDictionary *dict)success#> failure:<#^(NSDictionary *dict)failure#>]
 }
 @end
- 

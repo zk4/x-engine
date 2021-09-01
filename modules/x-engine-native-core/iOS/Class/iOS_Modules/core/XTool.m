@@ -29,11 +29,39 @@
 
 #pragma mark - 图片处理
 @implementation  XToolImage
-// image转base64
+// UIImage转base64
 + (NSString *)imageToBase64Str:(UIImage *)image {
     NSData *data = UIImagePNGRepresentation(image);
     NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     return encodedImageStr;
+}
+
+// base64转UIImage
++ (UIImage *)base64StrToimage:(NSString *)base64 {
+    NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:base64 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
+    return decodedImage;
+}
+
+//UIImage转换为NSData
++ (NSData *)dataToUIImageWithPNG:(UIImage *)image WithCompressionQuality:(CGFloat)compressionQuality {
+    NSData *imageData = UIImageJPEGRepresentation(image,1.0f);//第二个参数为压缩倍数
+    return  imageData;
+}
+
+/// UIImage(png类型)转换为NSData
+/// @param image 图片
++ (NSData *)dataToUIImageWithPNG:(UIImage *)image {
+    NSData *imageData = UIImagePNGRepresentation(image);
+    return imageData;
+}
+
+/// UIImage(jpeg类型)转换为NSData
+/// @param image 图片
+/// @param compressionQuality //第二个参数为压缩倍数
++ (NSData *)dataToUIImageWithJPEG:(UIImage *)image WithCompressionQuality:(CGFloat)compressionQuality {
+    NSData *imageData = UIImageJPEGRepresentation(image, compressionQuality);
+    return imageData;
 }
     
 // 压缩图片 --> 这个方法性能如屎.
@@ -90,7 +118,6 @@
     perfEnd(img)
     return data;
 }
-
 
 + (NSData *)thumbnail_64kbData:(NSString *)imgurl {
     if(!imgurl){

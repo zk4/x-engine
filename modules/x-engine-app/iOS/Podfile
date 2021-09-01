@@ -30,7 +30,7 @@ def shared_pods
   # webcache
 #  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
 #  pod 'x-engine-native-webcache', :path =>'../../x-engine-native-webcache'
-
+  
   
   # jsi
   pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
@@ -48,6 +48,7 @@ def shared_pods
 
   pod 'x-engine-native-media2', :path =>'../../x-engine-native-media2'
   pod 'x-engine-jsi-media2', :path =>'../../x-engine-jsi-media2'
+  pod 'x-engine-native-gmupload', :path =>'../../../../gome-business/gm-modules/x-engine-native-gmupload'
   
   # legacy jsi
 #  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'

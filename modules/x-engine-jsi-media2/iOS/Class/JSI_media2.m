@@ -11,14 +11,13 @@
 #import <x-engine-native-core/XTool.h>
 #import <Photos/Photos.h>
 
-
 // cache路径
 #define kCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 
 @interface JSI_media2()
 @property (nonatomic, strong) id<iMedia2> media;
-@property (nonatomic, strong) NSMutableDictionary<NSString*,UIImage*>* imgCache;
 @property (nonatomic, strong) NSMutableArray *imgCacheArr;
+@property (atomic, assign) unsigned long  upload_done_counts;
 @end
 
 @implementation JSI_media2
@@ -26,8 +25,7 @@ JSI_MODULE(JSI_media2)
 
 - (void)afterAllJSIModuleInited {
     self.media=XENP(iMedia2);
-    self.imgCache = [NSMutableDictionary new];
-    _imgCacheArr = [NSMutableArray array];
+    self.imgCacheArr = [NSMutableArray array];
 }
 
 // 保存图片到相册
@@ -73,10 +71,6 @@ JSI_MODULE(JSI_media2)
         }
     }];
     [self.media previewImg:imgList andSelIndex:dto.index andLoadType:loadType];
-}
-
-// 上传图片
-- (void)_uploadImage:(_uploadImage_com_zkty_jsi_media2_1_DTO *)dto complete:(void (^)(_uploadImage_com_zkty_jsi_media2_0_DTO *, BOOL))completionHandler {
 }
 
 // 打开picker
@@ -148,7 +142,6 @@ JSI_MODULE(JSI_media2)
     return tempSaveArr;
 }
 
-
 // 获取相册需要返回的数据
 - (NSMutableArray *)getAlbumWithAssets:(NSArray *)assets {
     NSMutableArray *tempSaveArr = [NSMutableArray array];
@@ -196,4 +189,41 @@ JSI_MODULE(JSI_media2)
     return tempSaveArr;
 }
 
+// 上传图片
+- (void)_uploadImage:(_uploadImage_com_zkty_jsi_media2_1_DTO *)dto complete:(void (^)(_uploadImage_com_zkty_jsi_media2_0_DTO *, BOOL))completionHandler {
+    
+    self.upload_done_counts = dto.ids.count;
+    
+    [dto.ids enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *path = [NSString stringWithFormat:@"file://%@/%@.png", kCachePath,obj];
+        NSData *currentImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
+        UIImage *image = [UIImage imageWithData:currentImageData];
+        NSString *imageName = obj;
+        
+        self.upload_done_counts--;
+        [self.media uploadImageWithUrl:dto.url withImage:image withImageName:imageName success:^(NSDictionary *dict) {
+            _uploadImage_com_zkty_jsi_media2_0_DTO *h5CallBack = [_uploadImage_com_zkty_jsi_media2_0_DTO new];
+            h5CallBack.status = 0;
+            h5CallBack.msg = @"接口发送成功";
+            h5CallBack.imgID = imageName;
+            h5CallBack.data = [XToolDataConverter dictionaryToJson:dict];
+            if(self.upload_done_counts > 0){
+                completionHandler(h5CallBack,false);
+            } else {
+                completionHandler(h5CallBack,true);
+            }
+        } failure:^(NSString *errorString) {
+            _uploadImage_com_zkty_jsi_media2_0_DTO *h5CallBack = [_uploadImage_com_zkty_jsi_media2_0_DTO new];
+            h5CallBack.status = -1;
+            h5CallBack.msg = errorString;
+            h5CallBack.imgID = imageName;
+            h5CallBack.data = @"";
+            if(self.upload_done_counts > 0){
+                completionHandler(h5CallBack,false);
+            } else {
+                completionHandler(h5CallBack,true);
+            }
+        }];
+    }];
+}
 @end

@@ -24,7 +24,7 @@ export function install (_Vue) {
         if (type == ON_NATIVE_SHOW) {
           this.onNativeShow?.();
         } else if (type == ON_WEBVIEW_SHOW) {
-          this.onNativeShow?.();
+          this.onWebShow?.();
         } else if (type == ON_NATIVE_HIDE) {
           this.onNativeHide?.();
         } else if (type == ON_NATIVE_DESTROYED) {

@@ -48,7 +48,7 @@ export default {
     // 2. 相册
     openPicker() {
       this.$engine.api(
-        "com.zkty.jsi.media",
+        "com.zkty.jsi.media2",
         "openImagePicker",
         {
           allowsEditing: true,
@@ -62,7 +62,7 @@ export default {
         (res) => {
           this.contentText = res
           let imgList = res.data
-          if (res.status == 0)
+          if (res.status == 0) {
             for (let img of imgList) {
               const image = document.createElement("img")
               image.src = "data:" + img.type + ";base64," + img.thumbnail
@@ -71,6 +71,7 @@ export default {
               document.body.appendChild(image)
               this.chooseImgList.push(img.imgID)
             }
+          }
         }
       )
     },
@@ -78,7 +79,7 @@ export default {
     // 预览图片
     previewImg() {
       if (this.chooseImgList.length > 0) {
-        this.$engine.api("com.zkty.jsi.media", "previewImg", {
+        this.$engine.api("com.zkty.jsi.media2", "previewImg", {
           // 索引
           index: 0,
           // 图片数组
@@ -93,7 +94,7 @@ export default {
     uploadImage() {
       if (this.chooseImgList.length > 0) {
         this.$engine.api(
-          "com.zkty.jsi.media",
+          "com.zkty.jsi.media2",
           "uploadImage",
           {
             url:
@@ -118,7 +119,7 @@ export default {
     // 保存相册
     saveImage() {
       this.$engine.api(
-        "com.zkty.jsi.media",
+        "com.zkty.jsi.media2",
         "saveImageToPhotoAlbum",
         {
           type: "url",

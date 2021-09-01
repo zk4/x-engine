@@ -29,10 +29,14 @@
 
 #pragma mark - 图片处理
 @implementation  XToolImage
-
+// image转base64
++ (NSString *)imageToBase64Str:(UIImage *)image {
+    NSData *data = UIImagePNGRepresentation(image);
+    NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return encodedImageStr;
+}
     
-#pragma mark - 压缩图片
-// 这个方法性能如屎.
+// 压缩图片 --> 这个方法性能如屎.
 + (NSData *)compressImage:(UIImage *)image toMaxDataSizeKBytes:(float)size miniQuality:(float)q{
     static float KB = 1024;
     
@@ -88,7 +92,7 @@
 }
 
 
-+(NSData *)thumbnail_64kbData:(NSString *)imgurl {
++ (NSData *)thumbnail_64kbData:(NSString *)imgurl {
     if(!imgurl){
         return nil;
     }
@@ -103,18 +107,42 @@
     UIImage*  thumbImg = [[UIImage alloc] initWithData:data];
     return thumbImg;
 }
+
++ (UIImage *)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 @end
 
 
 @implementation  XToolDataConverter
 
-//字典转json格式字符串:
-+ (NSString*)dictionaryToJson:(NSDictionary *)dic {
+/// 字典转json格式字符串
+/// @param dict 字典
++ (NSString*)dictionaryToJson:(NSDictionary *)dict {
     NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&parseError];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
+/// json格式字符串转字典:
+/// @param jsonString json
++ (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
  
 + (NSString*)SPAUrl2StandardUrl:(NSString*)raw {
     int questionMark = -1;
@@ -177,4 +205,38 @@
   return result;
 }
 
+@end
+
+@implementation XToolVC
+// 获取当前控制器
++ (UIViewController*)getCurrentViewController {
+   UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+   while (1) {
+       if ([vc isKindOfClass:[UITabBarController class]]) {
+           vc = ((UITabBarController*)vc).selectedViewController;
+       }
+       if ([vc isKindOfClass:[UINavigationController class]]) {
+           vc = ((UINavigationController*)vc).visibleViewController;
+       }
+       if (vc.presentedViewController) {
+           vc = vc.presentedViewController;
+       } else {
+           break;
+       }
+   }
+   return vc;
+}
+
+@end
+
+@implementation XToolStringConverter :NSObject
+/// uuid
++ (NSString *)uuidString{
+   CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+   CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+   NSString *uuid = [NSString stringWithString:(__bridge NSString *)uuid_string_ref];
+   CFRelease(uuid_ref);
+   CFRelease(uuid_string_ref);
+   return [uuid lowercaseString];
+}
 @end

@@ -46,8 +46,8 @@ def shared_pods
 #  pod 'x-engine-jsi-camera', :path =>'../../x-engine-jsi-camera'
 
 
-  pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
-  pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
+  pod 'x-engine-native-media2', :path =>'../../x-engine-native-media2'
+  pod 'x-engine-jsi-media2', :path =>'../../x-engine-jsi-media2'
   
   # legacy jsi
 #  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'

@@ -72,8 +72,12 @@ xengine.api("com.zkty.jsi.device",	"getTabbarHeight"), function (res) {
 ---
 
 ### x-engine-lifecycle
-
-![image-20210529175621971](assets/image-20210529175621971.png)
+``` js
+const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示
+const ON_WEBVIEW_SHOW = "onWebviewShow"; // 原生显示
+const ON_NATIVE_HIDE = "onNativeHide"; // 原生隐藏
+const ON_NATIVE_DESTROYED = "onNativeDestroyed"; // 原生销毁
+```
 
 1. 安装方式:
 
@@ -93,6 +97,7 @@ Vue.use(lifeCycle);
 ```javascript
 methods: {
   onNativeShow() {},
+  onWebShow() {},
   onNativeHide() {},
   onNativeDestroyed() {},
 }

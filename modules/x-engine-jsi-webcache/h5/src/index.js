@@ -11,7 +11,28 @@ function osCheck() {
   else {
 
     return  xengine.use("com.zkty.jsi.webcache", 
-    []
+    [
+  {
+    "name": "test_xhr",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_xhr",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_xhr",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_xhr",
+    "default_args": {},
+    "decorators": []
+  }
+]
 )}}
 
 export default osCheck();

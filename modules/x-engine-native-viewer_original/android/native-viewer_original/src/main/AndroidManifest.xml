@@ -14,7 +14,9 @@
         <activity android:name="com.zkty.nativ.viewer_original.activity.PreViewActivity"
             android:screenOrientation="portrait"
             />
-
+        <activity android:name="com.zkty.nativ.viewer_original.activity.PrePdfViewActivity"
+            android:screenOrientation="portrait"
+            />
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"

@@ -21,13 +21,18 @@ public interface Ishare {
 //    void share(String channel, String type, Map<String, String> info);
 
 
-    void share(String channel, ShareText info);
+    void share(String channel, ShareText info, CallBack callBack);
 
-    void share(String channel, ShareImg info);
+    void share(String channel, ShareImg info, CallBack callBack);
 
-    void share(String channel, ShareLink info);
+    void share(String channel, ShareLink info, CallBack callBack);
 
-    void share(ShareMiniProgram info);
+    void share(ShareMiniProgram info, CallBack callBack);
+
+
+    interface CallBack {
+        void onResult(int code);
+    }
 
 
 }

@@ -518,7 +518,7 @@ public class ImageUtils {
                         bitmap = Glide.with(XEngineApplication.getCurrentActivity())
                                 .asBitmap()
                                 .load(path)
-                                .into(150, 150).get();
+                                .into(250, 250).get();
                         if (bitmap != null) {
 
                             callback.onSuccess(bitmap);
@@ -529,8 +529,10 @@ public class ImageUtils {
 
                     } catch (ExecutionException e) {
                         e.printStackTrace();
+                        callback.onFail();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        callback.onFail();
                     }
                 }
             }.start();

@@ -28,6 +28,7 @@ NATIVE_MODULE(Native_store)
 }
 
 - (void)afterAllNativeModuleInited {
+    
     [self loadFromDisk:FALSE];
 }
 
@@ -36,6 +37,7 @@ NATIVE_MODULE(Native_store)
     if (self) {
         _store = [NSMutableDictionary new];
         
+        WeakSelf(self)
         [[NSNotificationCenter defaultCenter]
          addObserverForName:UIApplicationDidEnterBackgroundNotification
          object:nil

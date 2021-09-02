@@ -27,7 +27,10 @@ NATIVE_MODULE(Native_store)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited {}
+- (void)afterAllNativeModuleInited {
+    
+    [self loadFromDisk:FALSE];
+}
 
 - (instancetype)init {
     self = [super init];
@@ -35,15 +38,6 @@ NATIVE_MODULE(Native_store)
         _store = [NSMutableDictionary new];
         
         WeakSelf(self)
-        [[NSNotificationCenter defaultCenter]
-         addObserverForName:UIApplicationDidFinishLaunchingNotification
-         object:nil
-         queue:nil
-         usingBlock:^(NSNotification *note) {
-            StrongSelf(self)
-            [strongself loadFromDisk:FALSE];
-        }];
-
         [[NSNotificationCenter defaultCenter]
          addObserverForName:UIApplicationDidEnterBackgroundNotification
          object:nil

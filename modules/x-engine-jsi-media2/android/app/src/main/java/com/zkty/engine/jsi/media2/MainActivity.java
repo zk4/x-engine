@@ -167,7 +167,11 @@ public class MainActivity extends BaseXEngineActivity {
         for (int i = 0; i < imgData.size(); i++) {
             ids.add(imgData.get(i).getId());
         }
-        iMedia.upLoadImgList("https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",ids, new UpLoadImgCallback() {
+        Map<String, String> header = new HashMap<>();
+        header.put("head1","head1");
+        header.put("head2","head2");
+
+        iMedia.upLoadImgList("https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",ids,header, new UpLoadImgCallback() {
 
             @Override
             public void onUpLoadSucces(int status, String id, String msg, String dataStr, boolean isCommplete) {

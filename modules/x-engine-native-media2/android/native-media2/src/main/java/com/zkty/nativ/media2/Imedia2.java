@@ -3,6 +3,7 @@ package com.zkty.nativ.media2;
 import android.graphics.Bitmap;
 
 import java.util.List;
+import java.util.Map;
 
 public interface Imedia2 {
     void openImagePicker(CameraDTO dto, OpenImageCallBack callBack);
@@ -13,5 +14,5 @@ public interface Imedia2 {
 
     void preImage(List<String> imageDataList, int index, PreImageCallBack callBack);
 
-    void upLoadImgList(String url, List<String> filePathList, UpLoadImgCallback callback);
+    void upLoadImgList(String url, List<String> filePathList, Map<String,String> header, UpLoadImgCallback callback);
 }

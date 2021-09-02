@@ -51,6 +51,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Nativemedia2 extends NativeModule implements Imedia2 {
     private static final String TAG = "Nativemedia";
@@ -548,7 +549,7 @@ public class Nativemedia2 extends NativeModule implements Imedia2 {
 
     Nativegmupload igmupload = null;
     @Override
-    public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
+    public void upLoadImgList(String url, List<String> filePathList, Map<String,String> header, UpLoadImgCallback callback) {
         if(TextUtils.isEmpty(url)){
             callback.onUpLoadSucces(-1,"","url不能为空","",true);
             return;
@@ -567,7 +568,7 @@ public class Nativemedia2 extends NativeModule implements Imedia2 {
             return;
         }
 
-        upLoadFile(url,filePathList,0,callback);
+        upLoadFile(url,header,filePathList,0,callback);
     }
 
     /**
@@ -577,17 +578,17 @@ public class Nativemedia2 extends NativeModule implements Imedia2 {
      * @param index
      * @param callback
      */
-    private void upLoadFile(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
+    private void upLoadFile(String url, Map<String,String> header, List<String> filePathList,int index, UpLoadImgCallback callback){
         String filePath = filePathList.get(index);
         boolean falg = index == (filePathList.size() - 1);
-        igmupload.doUploadFile(url, filePath, new OnUploadListener() {
+        igmupload.doUploadFile(url,header, filePath, new OnUploadListener() {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
                 try {
                     callback.onUpLoadSucces(0,filePath,"接口发送成功",dataStr,falg);
                     if (!falg) {
-                        upLoadFile(url, filePathList, index + 1, callback);
+                        upLoadFile(url, header, filePathList, index + 1, callback);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

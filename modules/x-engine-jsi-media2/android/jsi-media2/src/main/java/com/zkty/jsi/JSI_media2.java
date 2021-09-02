@@ -122,7 +122,7 @@ public class JSI_media2 extends xengine_jsi_media2 {
         }
         //上传图片
         final int[] index = {0};
-        iMedia.upLoadImgList(dto.url, images, new UpLoadImgCallback() {
+        iMedia.upLoadImgList(dto.url, images, dto.header,new UpLoadImgCallback() {
             @Override
             public void onUpLoadSucces(int status, String id,String msg, String dataStr,boolean isCommplete) {
                 try {

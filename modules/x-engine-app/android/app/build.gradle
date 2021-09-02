@@ -83,6 +83,7 @@ dependencies {
     implementation project(':native-geo')
     implementation project(':native-geo_gaode')
     implementation project(':native-media')
+    implementation project(':native-media2')
     implementation project(':native-gmupload')
 
 
@@ -102,4 +103,5 @@ dependencies {
     implementation project(':jsi-globalstorage')
     implementation project(':jsi-geo')
     implementation project(':jsi-media')
+    implementation project(':jsi-media2')
 }

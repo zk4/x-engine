@@ -18,7 +18,7 @@
 #define kCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 
 typedef void (^PhotoCallBack)(NSArray *images, NSArray *assets);
-typedef void (^SaveCallBack)(NSMutableDictionary *);
+typedef void (^SaveCallBack)(UIImage *image, NSError *error);
 typedef void (^UploadImageCallBack)(NSDictionary *);
 
 @interface Native_media2() <UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
@@ -204,7 +204,7 @@ NATIVE_MODULE(Native_media2)
 /// 保存图片到相册
 /// @param image 图片
 /// @param result callback
-- (void)saveImageToPhotoAlbumWithImage:(UIImage *)image result:(void (^)(NSMutableDictionary *))result {
+- (void)saveImageToPhotoAlbumWithImage:(UIImage *)image result:(void (^)(UIImage *, NSError *))result {
     self.saveCallback = result;
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized){
@@ -224,15 +224,8 @@ NATIVE_MODULE(Native_media2)
 /// @param error error
 /// @param contextInfo contextInfo
 - (void)image:(UIImage * )image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    if (!error) {
-        dict[@"status"] = @(0);
-        dict[@"msg"] = @"保存成功";
-        _saveCallback(dict);
-    } else {
-        dict[@"status"] = @(-1);
-        dict[@"msg"] = @"保存失败";
-        _saveCallback(dict);
+    if (self.saveCallback) {
+        self.saveCallback(image, error);
     }
 }
 

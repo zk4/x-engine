@@ -44,11 +44,16 @@ JSI_MODULE(JSI_media2)
     }
     
     if (image != nil) {
-        [self.media saveImageToPhotoAlbumWithImage:image result:^(NSMutableDictionary *dict) {
+        [self.media saveImageToPhotoAlbumWithImage:image result:^(UIImage *image, NSError *error) {
             _saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO *cb = [_saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO new];
-            cb.status = [dict[@"status"] intValue];
-            cb.msg = dict[@"msg"];
-            completionHandler(cb, true);;
+            if (error) {
+                cb.status = -1;
+                cb.msg = [NSString stringWithFormat:@"%@", error];
+            } else {
+                cb.status = 0;
+                cb.msg = @"保存成功";
+            }
+            completionHandler(cb, true);
         }];
     } else {
         @throw @"图片不可为nil";

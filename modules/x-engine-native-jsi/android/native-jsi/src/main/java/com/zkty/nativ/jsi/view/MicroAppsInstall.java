@@ -224,7 +224,19 @@ public class MicroAppsInstall {
      * @return null 或 微应用的最高版本目录
      */
     public String getMicroAppPath(String microAppId) {
-        String path = null;
+
+        if (!TextUtils.isEmpty(microAppId)) {
+            HashMap<Integer, String> apps = microApps.get(microAppId);
+            if (apps != null) {
+                return apps.get(getHighestVersionOfMicroApp(microAppId));
+            }
+
+        }
+        return null;
+    }
+
+    public int getHighestVersionOfMicroApp(String microAppId) {
+
         if (!TextUtils.isEmpty(microAppId)) {
             HashMap<Integer, String> apps = microApps.get(microAppId);
             if (apps != null) {
@@ -232,12 +244,17 @@ public class MicroAppsInstall {
                 for (Integer key : apps.keySet()) {
                     if (key > max) max = key;
                 }
-                return apps.get(max);
+                return max;
             }
-
-
         }
-        return path;
+        return 0;
+
+
+    }
+
+    public void downloadMicroApp(String url) {
+        
+
     }
 
 

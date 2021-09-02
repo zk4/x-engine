@@ -30,7 +30,7 @@
 /// @param image 图片
 /// @param result callback
 - (void)saveImageToPhotoAlbumWithImage:(UIImage *)image
-                                result:(void (^)(NSMutableDictionary *dict))result;
+                                result:(void (^)(UIImage *image, NSError *error))result;
 
 /// 预览图片
 /// @param images 图片数组

@@ -37,4 +37,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(':jsi-media2')
+    implementation project(':native-media2')
+    implementation project(':native-core')
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 }

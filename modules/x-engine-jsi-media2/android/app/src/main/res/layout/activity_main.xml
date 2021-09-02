@@ -1,20 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/rl_root"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/tv_version"
+    <LinearLayout
+        android:id="@+id/rl_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="20dp"
-        android:text="media2"
-        android:onClick="media2"
-        android:textColor="#ffffff" />
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/tv_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:onClick="media"
+            android:text="media"
+            android:textColor="#ffffff" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/tvopenImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:onClick="openImg"
+            android:text="打开相册"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/tvpreImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:onClick="preImg"
+            android:text="预览相册"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:onClick="upload"
+            android:text="上传"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:onClick="saveImg"
+            android:text="保存图片"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:id="@+id/ivImg"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+        <ImageView
+            android:id="@+id/ivImg2"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+        <ImageView
+            android:id="@+id/ivImg3"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:onClick="openImg"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -52,7 +52,7 @@ JSI_MODULE(JSI_media2)
 - (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum_com_zkty_jsi_media2_1_DTO *)dto complete:(void (^)(_saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO *, BOOL))completionHandler {
     UIImage *image = [UIImage new];
     NSURL *downloadUrl = [NSURL URLWithString:dto.imageUrl];
-    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:downloadUrl]];    
+    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:downloadUrl]];
     if (image != nil) {
         [self.media saveImageToPhotoAlbumWithImage:image result:^(UIImage *image, NSError *error) {
             _saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO *cb = [_saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO new];
@@ -189,9 +189,9 @@ JSI_MODULE(JSI_media2)
 // 上传图片
 - (void)_uploadImage:(_uploadImage_com_zkty_jsi_media2_1_DTO *)dto complete:(void (^)(_uploadImage_com_zkty_jsi_media2_0_DTO *, BOOL))completionHandler {
     
-    self.upload_done_counts = dto.ids.count;
+    self.upload_done_counts = dto.imgIds.count;
     
-    [dto.ids enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dto.imgIds enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *path = [NSString stringWithFormat:@"file://%@/%@.png", kCachePath,obj];
         NSData *currentImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
         UIImage *image = [UIImage imageWithData:currentImageData];

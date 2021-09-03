@@ -75,7 +75,7 @@
 
 @interface _uploadImage_com_zkty_jsi_media2_1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
-   	@property(nonatomic,strong) NSMutableArray<NSString*>* ids;
+   	@property(nonatomic,strong) NSMutableArray<NSString*>* imgIds;
    	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* header;
 @end
 

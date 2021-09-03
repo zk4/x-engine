@@ -85,7 +85,7 @@ function openImagePicker(arg: {
     type: string;
     // 缩略图
     thumbnail: string;
-  }>;
+  };
 } {
   xengine.api(
     "com.zkty.jsi.media2",
@@ -121,7 +121,7 @@ function uploadImage(arg: {
   // 请求的url
   url: string;
   // 拍照或者选择相册后返回id
-  ids: Array<string>;
+  imgIds: Array<string>;
   // 请求header
   header?: Map<string, string>;
 }): {
@@ -141,7 +141,7 @@ function uploadImage(arg: {
     "uploadImage",
     {
       url: "http://xxx",
-      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      imgIds: ["xxxx", "xxxxx", "xxxx", "xxxx"],
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -224,7 +224,7 @@ function test_openImagePicker(arg: {
     type: string;
     // 缩略图
     thumbnail: string;
-  }>;
+  };
 } {
   xengine.api(
     "com.zkty.jsi.media2",

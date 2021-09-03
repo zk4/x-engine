@@ -134,7 +134,7 @@ version: 2.8.1
     // 缩略图
     thumbnail: string;
   
-}>;
+};
 
 }
 ``` 
@@ -152,7 +152,7 @@ version: 2.8.1
     "uploadImage",
     {
       url: "http://xxx",
-      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      imgIds: ["xxxx", "xxxxx", "xxxx", "xxxx"],
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -166,7 +166,7 @@ version: 2.8.1
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | 必填 |  | 请求的url |
-| ids | Array\<string\> | 必填 |  | 拍照或者选择相册后返回id |
+| imgIds | Array\<string\> | 必填 |  | 拍照或者选择相册后返回id |
 | header | Map\<string,string\> | optional |  | 请求header |
 **返回值**
 ``` js

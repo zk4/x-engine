@@ -53,25 +53,14 @@ public class JSI_media2 extends xengine_jsi_media2 {
     @Override
     public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media2_DTO dto, CompletionHandler<_1_com_zkty_jsi_media2_DTO> handler) {
         _1_com_zkty_jsi_media2_DTO com_zkty_jsi_media_dto = new _1_com_zkty_jsi_media2_DTO();
-        if ("url".equals(dto.type)) {
-            iMedia.saveImageUrlToAlbum(dto.imageData,new SaveCallBack() {
-                @Override
-                public void saveCallBack(int status, String msg) {
-                    com_zkty_jsi_media_dto.status = status;
-                    com_zkty_jsi_media_dto.msg = msg;
-                    handler.complete(com_zkty_jsi_media_dto);
-                }
-            });
-        } else {
-            iMedia.saveImageBase64ToAlbum( dto.imageData, new SaveCallBack() {
-                @Override
-                public void saveCallBack(int status, String msg) {
-                    com_zkty_jsi_media_dto.status = status;
-                    com_zkty_jsi_media_dto.msg = msg;
-                    handler.complete(com_zkty_jsi_media_dto);
-                }
-            });
-        }
+        iMedia.saveImageUrlToAlbum(dto.imgUrl,new SaveCallBack() {
+            @Override
+            public void saveCallBack(int status, String msg) {
+                com_zkty_jsi_media_dto.status = status;
+                com_zkty_jsi_media_dto.msg = msg;
+                handler.complete(com_zkty_jsi_media_dto);
+            }
+        });
     }
 
     @Override
@@ -96,7 +85,7 @@ public class JSI_media2 extends xengine_jsi_media2 {
                         ImageCacheManager.put(key,data.get(i).getId());
                         dto4.imgID = key;
                         dto4.thumbnail = data.get(i).getThumbnail();
-                        dto4.type = data.get(i).getType();
+                        dto4.imgType = data.get(i).getType();
                         imglist.add(dto4);
                     }
                     _3_com_zkty_jsi_media2_DTO dto1 = new _3_com_zkty_jsi_media2_DTO();
@@ -113,8 +102,8 @@ public class JSI_media2 extends xengine_jsi_media2 {
     public void _uploadImage(_7_com_zkty_jsi_media2_DTO dto, CompletionHandler<_6_com_zkty_jsi_media2_DTO> handler) {
         //获取 缓存中的 本体图片路径
         List<String> images = new ArrayList<>();
-        for (int i = 0; i < dto.ids.size(); i++) {
-            String imgpath = dto.ids.get(i);
+        for (int i = 0; i < dto.imgIds.size(); i++) {
+            String imgpath = dto.imgIds.get(i);
             if(imgpath.startsWith(CUSTOMID)){
                 imgpath = ImageCacheManager.get(imgpath);
             }
@@ -129,7 +118,7 @@ public class JSI_media2 extends xengine_jsi_media2 {
                     _6_com_zkty_jsi_media2_DTO dto1 = new _6_com_zkty_jsi_media2_DTO();
                     dto1.data = dataStr;
                     dto1.status = status;
-                    dto1.imgID = dto.ids.get(index[0]);
+                    dto1.imgID = dto.imgIds.get(index[0]);
                     dto1.msg = msg;
                     index[0]++;
                     if(isCommplete){

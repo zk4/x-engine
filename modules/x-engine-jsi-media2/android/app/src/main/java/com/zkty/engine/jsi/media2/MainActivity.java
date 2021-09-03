@@ -53,7 +53,7 @@ public class MainActivity extends BaseXEngineActivity {
     }
 
     public void media(View view) {
-        pushMicroapp("http://10.2.47.9:9111");
+        pushMicroapp("http://10.2.129.16:8080/#/");
     }
     //打开相册
     public void openImg(View view) {

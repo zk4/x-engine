@@ -550,6 +550,9 @@ public class Nativemedia2 extends NativeModule implements Imedia2 {
     Nativegmupload igmupload = null;
     @Override
     public void upLoadImgList(String url, List<String> filePathList, Map<String,String> header, UpLoadImgCallback callback) {
+        if(header == null){
+            header = new HashMap<>();
+        }
         if(TextUtils.isEmpty(url)){
             callback.onUpLoadSucces(-1,"","url不能为空","",true);
             return;

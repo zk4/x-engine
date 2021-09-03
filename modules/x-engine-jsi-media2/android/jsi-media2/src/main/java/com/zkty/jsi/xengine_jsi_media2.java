@@ -43,7 +43,7 @@
   class _4_com_zkty_jsi_media2_DTO {
     public String imgID;
 
-    public String type;
+    public String imgType;
 
     public String thumbnail;
   }

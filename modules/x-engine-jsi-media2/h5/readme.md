@@ -130,7 +130,7 @@ version: 2.8.1
     // 图片id
     imgID: string;
     // 图片类型
-    type: string;
+    imgType: string;
     // 缩略图
     thumbnail: string;
   

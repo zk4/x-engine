@@ -49,7 +49,7 @@
 
 @interface _openImagePicker_com_zkty_jsi_media2_1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* imgID;
-   	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,copy) NSString* imgType;
    	@property(nonatomic,copy) NSString* thumbnail;
 @end
 

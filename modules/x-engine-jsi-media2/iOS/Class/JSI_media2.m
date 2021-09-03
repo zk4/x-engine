@@ -90,7 +90,7 @@ JSI_MODULE(JSI_media2)
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 _openImagePicker_com_zkty_jsi_media2_1_DTO * imgObj = [_openImagePicker_com_zkty_jsi_media2_1_DTO new];
                 imgObj.imgID = obj[@"id"];
-                imgObj.type = obj[@"type"];
+                imgObj.imgType = obj[@"type"];
                 imgObj.thumbnail = obj[@"thumbnail"];
                 [jsiRet.data addObject:imgObj];
             }];
@@ -99,7 +99,7 @@ JSI_MODULE(JSI_media2)
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 _openImagePicker_com_zkty_jsi_media2_1_DTO * imgObj = [_openImagePicker_com_zkty_jsi_media2_1_DTO new];
                 imgObj.imgID = obj[@"id"];
-                imgObj.type = obj[@"type"];
+                imgObj.imgType = obj[@"type"];
                 imgObj.thumbnail = obj[@"thumbnail"];
                 [jsiRet.data addObject:imgObj];
             }];

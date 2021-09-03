@@ -60,7 +60,7 @@
                  withImage:(UIImage *)image
              withImageName:(NSString *)imageName
                    success:(void (^)(NSDictionary *dict))success
-                   failure:(void (^)(NSString *errorString))failure;
+                   failure:(void (^)(NSError *error))failure;
 
 @end
 #endif /* iMedia2_h */

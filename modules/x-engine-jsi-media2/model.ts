@@ -33,7 +33,7 @@ function previewImg(arg: {
 @async
 function saveImageToPhotoAlbum(arg: {
   // 图片地址
-  imageUrl: string;
+  imgUrl: string;
 }): {
   // 函数状态码
   // status = 0  成功
@@ -46,7 +46,7 @@ function saveImageToPhotoAlbum(arg: {
     "com.zkty.jsi.media2",
     "saveImageToPhotoAlbum",
     {
-      imageUrl: "http://xxx",
+      imgUrl: "http://xxx",
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -172,7 +172,7 @@ function test_previewImg(arg: {
 // 保存图片至相册
 function test_saveImageToPhotoAlbum(arg: {
   // 图片地址
-  imageUrl: string;
+  imgUrl: string;
 }): {
   // 函数状态码
   // status = 0  成功
@@ -185,7 +185,7 @@ function test_saveImageToPhotoAlbum(arg: {
     "com.zkty.jsi.media2",
     "saveImageToPhotoAlbum",
     {
-      imageUrl:
+      imgUrl:
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
     },
     (res) => {

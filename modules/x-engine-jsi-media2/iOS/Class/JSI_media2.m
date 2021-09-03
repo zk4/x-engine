@@ -51,7 +51,7 @@ JSI_MODULE(JSI_media2)
 // 保存图片到相册
 - (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum_com_zkty_jsi_media2_1_DTO *)dto complete:(void (^)(_saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO *, BOOL))completionHandler {
     UIImage *image = [UIImage new];
-    NSURL *downloadUrl = [NSURL URLWithString:dto.imageUrl];
+    NSURL *downloadUrl = [NSURL URLWithString:dto.imgUrl];
     image = [UIImage imageWithData:[NSData dataWithContentsOfURL:downloadUrl]];
     if (image != nil) {
         [self.media saveImageToPhotoAlbumWithImage:image result:^(UIImage *image, NSError *error) {
@@ -84,7 +84,6 @@ JSI_MODULE(JSI_media2)
         jsiRet.status = 0;
         jsiRet.msg = @"";
         jsiRet.data = [NSMutableArray<_openImagePicker_com_zkty_jsi_media2_1_DTO *><_openImagePicker_com_zkty_jsi_media2_1_DTO> array];
-        
         if (assets) {// 相册
             NSArray *array = [self getAlbumWithAssets:assets];
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -198,6 +197,7 @@ JSI_MODULE(JSI_media2)
         NSString *imageName = obj;
         
         self.upload_done_counts--;
+        
         [self.media uploadImageWithUrl:dto.url withImage:image withImageName:imageName success:^(NSDictionary *dict) {
             _uploadImage_com_zkty_jsi_media2_0_DTO *h5CallBack = [_uploadImage_com_zkty_jsi_media2_0_DTO new];
             h5CallBack.status = 0;
@@ -209,10 +209,10 @@ JSI_MODULE(JSI_media2)
             } else {
                 completionHandler(h5CallBack,true);
             }
-        } failure:^(NSString *errorString) {
+        } failure:^(NSError *error) {
             _uploadImage_com_zkty_jsi_media2_0_DTO *h5CallBack = [_uploadImage_com_zkty_jsi_media2_0_DTO new];
             h5CallBack.status = -1;
-            h5CallBack.msg = errorString;
+            h5CallBack.msg = [NSString stringWithFormat:@"%@", error];
             h5CallBack.imgID = imageName;
             h5CallBack.data = @"";
             if(self.upload_done_counts > 0){

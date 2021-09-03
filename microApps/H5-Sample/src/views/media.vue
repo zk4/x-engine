@@ -44,8 +44,6 @@ export default {
   mounted() {},
   methods: {
     // 打开picker
-    // 1. 相机
-    // 2. 相册
     openPicker() {
       this.$engine.api(
         "com.zkty.jsi.media2",
@@ -80,7 +78,7 @@ export default {
     previewImg() {
       if (this.chooseImgList.length > 0) {
         this.$engine.api("com.zkty.jsi.media2", "previewImg", {
-          // 索引
+          // 用户点击的索引
           index: 0,
           // 图片数组
           imgList: this.chooseImgList,
@@ -99,8 +97,7 @@ export default {
           {
             url:
               "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-            ids: this.chooseImgList,
-            header: {},
+            imgIds: this.chooseImgList,
           },
           (res) => {
             this.contentText = res
@@ -122,8 +119,7 @@ export default {
         "com.zkty.jsi.media2",
         "saveImageToPhotoAlbum",
         {
-          type: "url",
-          imageData:
+          imgUrl:
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
         },
         (res) => {

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param imageName 图片名称
 /// @param success 成功结果
 /// @param failure 失败结果
-- (void)sendUploadRequestWithUrl:(NSString *)url header:(NSDictionary *)header imageData:(NSData *)imageData imageName:(NSString *)imageName success:(void (^)(NSDictionary *dict))success failure:(void (^)(NSDictionary *dict))failure;
+- (void)sendUploadRequestWithUrl:(NSString *)url header:(NSDictionary *)header imageData:(NSData *)imageData imageName:(NSString *)imageName success:(void (^)(NSDictionary *dict))success failure:(void (^)(NSError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

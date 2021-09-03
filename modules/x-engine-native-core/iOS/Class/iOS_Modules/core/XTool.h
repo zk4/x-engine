@@ -73,4 +73,7 @@
 @interface  XToolStringConverter: NSObject
 /// uuid
 + (NSString *)uuidString;
+
+// 随机数
++ (NSString *)randomString:(NSInteger)number;
 @end

@@ -246,8 +246,9 @@ NATIVE_MODULE(Native_media2)
 /// @param imageName 图片名称
 /// @param success 成功
 /// @param failure 失败
-- (void)uploadImageWithUrl:(NSString *)url withImage:(UIImage *)image withImageName:(NSString *)imageName success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *errorString))failure {
+- (void)uploadImageWithUrl:(NSString *)url withImage:(UIImage *)image withImageName:(NSString *)imageName success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
     if (self.mediaDelegate) {
+        
         [self.mediaDelegate sendUploadRequestWithUrl:url header:nil imageData:[XToolImage dataToUIImageWithPNG:image] imageName:imageName success:^(NSDictionary *dict) {
             success(dict);
         } failure:^(NSDictionary *dict) {

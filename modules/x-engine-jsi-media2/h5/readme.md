@@ -39,7 +39,7 @@ version: 2.8.1
     "com.zkty.jsi.media2",
     "saveImageToPhotoAlbum",
     {
-      imageUrl: "http://xxx",
+      imgUrl: "http://xxx",
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -52,7 +52,7 @@ version: 2.8.1
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| imageUrl | string | 必填 |  | 图片地址 |
+| imgUrl | string | 必填 |  | 图片地址 |
 **返回值**
 ``` js
  {

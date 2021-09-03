@@ -266,4 +266,23 @@
    CFRelease(uuid_string_ref);
    return [uuid lowercaseString];
 }
+
+/// 随机数
++ (NSString *)randomString:(NSInteger)number {
+    NSString *ramdom;
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 1; i ; i ++) {
+        int a = (arc4random() % 122);
+        if (a > 96) {
+            char c = (char)a;
+            [array addObject:[NSString stringWithFormat:@"%c",c]];
+            if (array.count == number) {
+                break;
+            }
+        } else continue;
+    }
+    ramdom = [array componentsJoinedByString:@""];
+    return ramdom;
+}
+
 @end

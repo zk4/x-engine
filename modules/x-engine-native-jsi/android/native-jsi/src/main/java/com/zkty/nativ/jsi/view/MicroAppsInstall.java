@@ -7,8 +7,11 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.zkty.nativ.jsi.MicroAppJsonDto;
+import com.zkty.nativ.jsi.utils.FileUtils;
+import com.zkty.nativ.jsi.utils.MicroAppDownloader;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -24,6 +27,8 @@ public class MicroAppsInstall {
     private static final String ROOT = "x-engine-dir";
     private static final String ASSET_APPS_DIR = "moduleApps";
     private static final String MICRO_APPS_ROOT = "microApps";       //microApp安装包目录，目录下每个微应用按照微应用包名建目录，微应用目录下包含此应用的各版本目录
+
+    private static final String ZIPS_ROOT = "zips";       //下载的zip 地址
 
 
     private static Context context;
@@ -247,14 +252,82 @@ public class MicroAppsInstall {
                 return max;
             }
         }
-        return 0;
+        return -1;
 
 
     }
 
-    public void downloadMicroApp(String url) {
-        
+    /**
+     * 获取zip目录
+     *
+     * @return
+     */
+    private File getZipRoot() {
+        File temp = null;
+        File root = new File(context.getCacheDir(), ZIPS_ROOT);
+        if (!root.exists()) {
+            if (root.mkdirs()) {
+                temp = root;
+            }
+        } else {
+            temp = root;
+        }
+        return temp;
+    }
 
+    private boolean isMicroAppValid(File file) {
+
+        File file1 = new File(file, "microapp.json");
+        File file2 = new File(file, "sitemap.json");
+        return file1.exists() && file2.exists();
+
+
+    }
+
+
+    public void downloadMicroApp(String url) {
+        String fileName = System.currentTimeMillis() + ".zip";
+
+        String savePath = new File(getZipRoot(), fileName).getPath();
+
+        MicroAppDownloader.get().download(url, savePath, new MicroAppDownloader.OnDownloadListener() {
+            @Override
+            public void onDownloadSuccess() {
+                if (FileUtils.doUnzip(getZipRoot(), fileName)) {
+                    File file = new File(getZipRoot(), savePath.replaceAll(".zip", ""));
+                    if (isMicroAppValid(file)) {
+                        File file1 = new File(file, "microapp.json");
+                        try {
+                            MicroAppJsonDto microAppJsonDto = JSON.parseObject(new FileInputStream(file1), MicroAppJsonDto.class);
+                            if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
+
+//                                File file2 = new File()
+
+
+
+                            }
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onDownloading(int progress) {
+
+            }
+
+            @Override
+            public void onDownloadFailed(String msg) {
+
+            }
+        });
     }
 
 

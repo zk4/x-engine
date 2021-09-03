@@ -84,6 +84,7 @@ public class XEngineWebView extends DWebView {
         getSettings().setAllowUniversalAccessFromFileURLs(true);
         getSettings().setAllowContentAccess(true);
         getSettings().setDomStorageEnabled(true);
+        getSettings().setDatabaseEnabled(true);
         setWebContentsDebuggingEnabled(!"release".equals(BuildConfig.BUILD_TYPE));
         ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);

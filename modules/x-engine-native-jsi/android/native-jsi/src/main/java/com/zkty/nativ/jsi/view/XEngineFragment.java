@@ -29,7 +29,7 @@ public class XEngineFragment extends Fragment {
     private XEngineWebView mWebView;
     private RelativeLayout mRoot;
 
-    private XEngineFragment() {
+    public XEngineFragment() {
     }
 
     public static XEngineFragment newInstance(int index, HistoryModel historyModel) {

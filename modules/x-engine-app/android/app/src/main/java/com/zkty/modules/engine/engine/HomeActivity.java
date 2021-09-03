@@ -24,23 +24,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
-    private TextView tv_page;
-    private EditText et_num;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        tv_page = findViewById(R.id.tv_page);
-        et_num = findViewById(R.id.et_num);
-        tv_page.setText("page:" + ActivityStackManager.getInstance().getActivityNum());
+
 
     }
 
     public void nextPage(View view) {
         String protocol = "file:";
-        String host = "com.gm.microapp.home";
+        String host = "com.zkty.microapp.demo";
 //          protocol = "http:";
 //         host = "10.2.128.89:8080";
 
@@ -75,18 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
     }
 
-    public void finishAct(View view) {
-
-        String protocol = "file:";
-        String host = "com.zkty.microapp.demo";
-//          protocol = "http:";
-//         host = "10.2.128.89:8080";
-
-
-        String pathname = "";
-        String fragment = "";
-
-
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, null, true);
+    public void download(View view) {
+        MicroAppsInstall.sharedInstance().downloadMicroApp("http://10.2.128.72:8000/desktop/11.zip");
     }
 }

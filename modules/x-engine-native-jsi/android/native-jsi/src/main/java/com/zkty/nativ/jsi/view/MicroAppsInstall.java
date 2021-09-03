@@ -68,7 +68,7 @@ public class MicroAppsInstall {
 
 
     private MicroAppsInstall() {
-        microApps = new HashMap<>();
+
     }
 
     public static MicroAppsInstall sharedInstance() {
@@ -89,6 +89,7 @@ public class MicroAppsInstall {
     }
 
     private void loadAppsFormAssetsAndCache() {
+        microApps = new HashMap<>();
         loadAppsFormAssets();
         loadAppsForCache();
 
@@ -301,20 +302,16 @@ public class MicroAppsInstall {
                             MicroAppJsonDto microAppJsonDto = JSON.parseObject(new FileInputStream(file1), MicroAppJsonDto.class);
                             if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
 
-//                                File file2 = new File()
-
-
-
+                                File file2 = new File(getWebAppRoot(), microAppJsonDto.getId());
+                                File file3 = new File(file2, String.valueOf(microAppJsonDto.getVersion()));
+                                if (FileUtils.copy(file.getPath(), file3.getPath()) == 0) {
+                                    loadAppsFormAssetsAndCache();
+                                }
                             }
-
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
                     }
-
-
                 }
             }
 

@@ -10,5 +10,16 @@
         <meta-data
             android:name="com.zkty.native.media2"
             android:value="com.zkty.nativ.media2.Nativemedia2" />
+
+        <activity
+            android:name="com.zkty.nativ.media2.cameraImpl.activity.ImagePickerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zkty.nativ.media2.cameraImpl.activity.ImagePreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 </manifest>

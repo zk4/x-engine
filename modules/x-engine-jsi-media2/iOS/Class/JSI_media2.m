@@ -28,21 +28,31 @@ JSI_MODULE(JSI_media2)
     self.imgCacheArr = [NSMutableArray array];
 }
 
+
+// 预览图片
+- (void)_previewImg:(_previewImg_com_zkty_jsi_media2_0_DTO *)dto {
+    NSMutableArray *urlList = [NSMutableArray array];
+    NSMutableString *loadType = [NSMutableString string];
+    [dto.imgList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *uuid = [NSString stringWithFormat:@"%@", obj];
+        if ([uuid hasPrefix:@"https://"] || [uuid hasPrefix:@"http://"]) {
+            [urlList insertObject:obj atIndex:idx];
+            [loadType setString:@"url"];
+        } else {
+            NSString *localPath = [NSString stringWithFormat:@"file://%@/%@.png", kCachePath,uuid];
+            [urlList insertObject:localPath atIndex:idx];
+            [loadType setString:@"file"];
+        }
+    }];
+    [self.media previewImgWithUrl:urlList andSelIndex:dto.index];
+}
+
+
 // 保存图片到相册
 - (void)_saveImageToPhotoAlbum:(_saveImageToPhotoAlbum_com_zkty_jsi_media2_1_DTO *)dto complete:(void (^)(_saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO *, BOOL))completionHandler {
     UIImage *image = [UIImage new];
-    if ([dto.type isEqualToString:@"url"]) {
-        NSURL *downloadUrl = [NSURL URLWithString:dto.imageData];
-        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:downloadUrl]];
-    } else {
-        if  ([dto.imageData rangeOfString:@"base64,"].location != NSNotFound) {
-            NSRange range = [dto.imageData rangeOfString:@"base64, "];
-            dto.imageData = [dto.imageData substringFromIndex:range.location+range.length];
-        }
-        NSData *imageData = [[NSData alloc] initWithBase64EncodedString:dto.imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        image = [UIImage imageWithData:imageData];
-    }
-    
+    NSURL *downloadUrl = [NSURL URLWithString:dto.imageUrl];
+    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:downloadUrl]];    
     if (image != nil) {
         [self.media saveImageToPhotoAlbumWithImage:image result:^(UIImage *image, NSError *error) {
             _saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO *cb = [_saveImageToPhotoAlbum_com_zkty_jsi_media2_0_DTO new];
@@ -58,24 +68,6 @@ JSI_MODULE(JSI_media2)
     } else {
         @throw @"图片不可为nil";
     }
-}
-
-// 预览图片
-- (void)_previewImg:(_previewImg_com_zkty_jsi_media2_0_DTO *)dto {
-    NSMutableArray *imgList = [NSMutableArray array];
-    NSMutableString *loadType = [NSMutableString string];
-    [dto.imgList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *uuid = [NSString stringWithFormat:@"%@", obj];
-        if ([uuid hasPrefix:@"https://"] || [uuid hasPrefix:@"http://"]) {
-            [imgList insertObject:obj atIndex:idx];
-            [loadType setString:@"url"];
-        } else {
-            NSString *localPath = [NSString stringWithFormat:@"file://%@/%@.png", kCachePath,uuid];
-            [imgList insertObject:localPath atIndex:idx];
-            [loadType setString:@"file"];
-        }
-    }];
-    [self.media previewImg:imgList andSelIndex:dto.index andLoadType:loadType];
 }
 
 // 打开picker

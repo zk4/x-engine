@@ -21,8 +21,7 @@
 
   
 @implementation _saveImageToPhotoAlbum_com_zkty_jsi_media2_1_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
 

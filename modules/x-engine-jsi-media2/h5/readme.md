@@ -23,7 +23,7 @@ version: 2.8.1
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| index | int | 必填 |  | 索引 |
+| index | int | 必填 |  | 用户点击索引 |
 | imgList | Array\<string\> | 必填 |  | 图片数组, 多张用逗号分隔 |
 **无返回值**
 
@@ -39,8 +39,7 @@ version: 2.8.1
     "com.zkty.jsi.media2",
     "saveImageToPhotoAlbum",
     {
-      type: "url",
-      imageData: "http://xxx",
+      imageUrl: "http://xxx",
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -53,8 +52,7 @@ version: 2.8.1
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| type | string | 必填 |  | url或base64 |
-| imageData | string | 必填 |  | 图片数据 |
+| imageUrl | string | 必填 |  | 图片地址 |
 **返回值**
 ``` js
  {
@@ -91,7 +89,7 @@ version: 2.8.1
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
-      let imgList = JSON.parse(res);
+      let imgList = res.data;
       if (res.status == 0) {
         for (let img of imgList) {
           const image = document.createElement("img");
@@ -129,8 +127,11 @@ version: 2.8.1
   msg: string;
   data: Array<{
 
+    // 图片id
     imgID: string;
+    // 图片类型
     type: string;
+    // 缩略图
     thumbnail: string;
   
 }>;

@@ -36,8 +36,7 @@
 
 
 @interface _saveImageToPhotoAlbum_com_zkty_jsi_media2_1_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,copy) NSString* imageData;
+  	@property(nonatomic,copy) NSString* imageUrl;
 @end
 
 

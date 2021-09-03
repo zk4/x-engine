@@ -29,9 +29,7 @@
   }
   
   class _2_com_zkty_jsi_media2_DTO {
-    public String type;
-
-    public String imageData;
+    public String imageUrl;
   }
   
   class _3_com_zkty_jsi_media2_DTO {

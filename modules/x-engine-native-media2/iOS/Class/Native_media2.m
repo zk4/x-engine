@@ -169,19 +169,29 @@ NATIVE_MODULE(Native_media2)
 }
 
 #pragma --- 预览图片
-/// 预览图片
-/// @param images 图片数组
+/// 预览图片url加载
+/// @param urlArray url数组
 /// @param selIndex 选中index
-/// @param loadType 需要加载的类型 支持 url 、 file 、 UIImage
-- (void)previewImg:(NSArray<UIImage *> *)images andSelIndex:(NSInteger)selIndex andLoadType:(NSString *)loadType {
+- (void)previewImgWithUrl:(NSArray *)urlArray andSelIndex:(NSInteger)selIndex {
     NSMutableArray *photos = [NSMutableArray array];
-    [images enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [urlArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         GKPhoto *photo = [[GKPhoto alloc] init];
-        if ([loadType isEqualToString:@"UIImage"]) {
-            photo.image = obj;
-        } else {
-            photo.url = [NSURL URLWithString:obj];
-        }
+        photo.url = [NSURL URLWithString:obj];
+        [photos insertObject:photo atIndex:idx];
+    }];
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:selIndex];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:[XToolVC getCurrentViewController]];
+}
+
+/// 预览图片UIImage
+/// @param imageArray 图片数组
+/// @param selIndex 选中index
+- (void)previewImg:(NSArray<UIImage *> *)imageArray andSelIndex:(NSInteger)selIndex andLoadType:(NSString *)loadType {
+    NSMutableArray *photos = [NSMutableArray array];
+    [imageArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        GKPhoto *photo = [[GKPhoto alloc] init];
+        photo.image = obj;
         [photos insertObject:photo atIndex:idx];
     }];
     GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:selIndex];

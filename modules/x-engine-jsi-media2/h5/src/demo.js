@@ -28,8 +28,7 @@ window.test_placeholder = () => {
     "com.zkty.jsi.media2",
     "saveImageToPhotoAlbum",
     {
-      type: "url",
-      imageData:
+      imageUrl:
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
     },
     (res) => {
@@ -54,7 +53,7 @@ window.test_placeholder = () => {
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
-      let imgList = res.data
+      let imgList = res.data;
       if (res.status == 0) {
         for (let img of imgList) {
           const image = document.createElement("img");
@@ -76,7 +75,7 @@ window.test_placeholder = () => {
     {
       url:
         "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      imgIds: ["xxxx", "xxxxx", "xxxx", "xxxx"],
       header: {},
     },
     (res) => {

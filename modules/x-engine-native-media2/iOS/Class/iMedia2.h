@@ -32,13 +32,17 @@
 - (void)saveImageToPhotoAlbumWithImage:(UIImage *)image
                                 result:(void (^)(UIImage *image, NSError *error))result;
 
-/// 预览图片
-/// @param images 图片数组
+/// 预览图片url加载
+/// @param urlArray url数组
 /// @param selIndex 选中index
-/// @param loadType 需要加载的类型 支持 url 、 file 、 UIImage
-- (void)previewImg:(NSArray *)images
-       andSelIndex:(NSInteger)selIndex
-       andLoadType:(NSString *)loadType;
+- (void)previewImgWithUrl:(NSArray *)urlArray
+              andSelIndex:(NSInteger)selIndex;
+
+/// 预览图片UIImage加载
+/// @param imageArray 图片数组
+/// @param selIndex 选中index
+- (void)previewImgWithImages:(NSArray *)imageArray
+                 andSelIndex:(NSInteger)selIndex;
 
 /// 打开picker
 /// @param dto dto

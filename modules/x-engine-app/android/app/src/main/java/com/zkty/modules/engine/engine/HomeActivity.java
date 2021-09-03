@@ -25,18 +25,21 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private EditText et_content;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        et_content = findViewById(R.id.et_content);
 
 
     }
 
     public void nextPage(View view) {
         String protocol = "file:";
-        String host = "com.zkty.microapp.demo";
+        String host = et_content.getText().toString();
 //          protocol = "http:";
 //         host = "10.2.128.89:8080";
 
@@ -72,6 +75,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void download(View view) {
-        MicroAppsInstall.sharedInstance().downloadMicroApp("http://10.2.128.72:8000/desktop/11.zip");
+        MicroAppsInstall.sharedInstance().downloadMicroApp("http://10.2.128.72:8000/11.zip");
     }
 }

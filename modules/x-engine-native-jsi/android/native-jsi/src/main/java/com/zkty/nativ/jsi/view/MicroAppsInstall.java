@@ -129,7 +129,7 @@ public class MicroAppsInstall {
                             if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
                                 HashMap<Integer, String> microApp = microApps.get(microAppJsonDto.getId());
                                 if (microApp == null) microApp = new HashMap<>();
-                                microApp.put(microAppJsonDto.getVersion(), String.format(Locale.ENGLISH, "/android_asset/moduleApps/%s", microAppJsonDto.getId()));
+                                microApp.put(microAppJsonDto.getVersion(), String.format(Locale.ENGLISH, "/android_asset/moduleApps/%s", file));
                                 microApps.put(microAppJsonDto.getId(), microApp);
                             }
                         } catch (IOException e) {
@@ -294,8 +294,9 @@ public class MicroAppsInstall {
         MicroAppDownloader.get().download(url, savePath, new MicroAppDownloader.OnDownloadListener() {
             @Override
             public void onDownloadSuccess() {
+                Log.d(TAG, "onDownloadSuccess: ");
                 if (FileUtils.doUnzip(getZipRoot(), fileName)) {
-                    File file = new File(getZipRoot(), savePath.replaceAll(".zip", ""));
+                    File file = new File(getZipRoot(), fileName.replaceAll(".zip", ""));
                     if (isMicroAppValid(file)) {
                         File file1 = new File(file, "microapp.json");
                         try {
@@ -303,8 +304,9 @@ public class MicroAppsInstall {
                             if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
 
                                 File file2 = new File(getWebAppRoot(), microAppJsonDto.getId());
+                                if (!file2.exists()) file2.mkdirs();
                                 File file3 = new File(file2, String.valueOf(microAppJsonDto.getVersion()));
-                                if (FileUtils.copy(file.getPath(), file3.getPath()) == 0) {
+                                if (FileUtils.copy(file.getPath(), file3.getPath() + File.separator) == 0) {
                                     loadAppsFormAssetsAndCache();
                                 }
                             }
@@ -317,12 +319,12 @@ public class MicroAppsInstall {
 
             @Override
             public void onDownloading(int progress) {
-
+                Log.d(TAG, "progress: " + progress);
             }
 
             @Override
             public void onDownloadFailed(String msg) {
-
+                Log.d(TAG, "onDownloadFailed: " + msg);
             }
         });
     }

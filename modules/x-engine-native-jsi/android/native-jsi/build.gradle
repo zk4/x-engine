@@ -48,5 +48,7 @@ dependencies {
     api 'com.github.anthonynsimon:jurl:v0.4.2'
 
     api 'com.sensorsdata.analytics.android:SensorsAnalyticsSDK:5.3.1'
+    //神策sdk
+    api 'com.gome.ecmall:ganalysis:3.6.9-plus@aar'
     compile project(':native-core')
 }

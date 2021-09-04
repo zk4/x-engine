@@ -1,8 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jsi.media2">
- <application>
-    <meta-data
-        android:name="com.zkty.jsi.media2"
-        android:value="com.zkty.jsi.JSI_media2" />
-  </application>
-</manifest>

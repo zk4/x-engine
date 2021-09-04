@@ -82,8 +82,8 @@ dependencies {
     implementation project(':native-viewer_original')
     implementation project(':native-geo')
     implementation project(':native-geo_gaode')
-//    implementation project(':native-media')
-    implementation project(':native-media2')
+    implementation project(':native-media')
+//    implementation project(':native-media2')
     implementation project(':native-gmupload')
 
 
@@ -102,6 +102,6 @@ dependencies {
     implementation project(':jsi-viewer')
     implementation project(':jsi-globalstorage')
     implementation project(':jsi-geo')
-//    implementation project(':jsi-media')
-    implementation project(':jsi-media2')
+    implementation project(':jsi-media')
+//    implementation project(':jsi-media2')
 }

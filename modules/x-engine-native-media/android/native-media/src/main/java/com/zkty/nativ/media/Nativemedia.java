@@ -551,7 +551,9 @@ public class Nativemedia extends NativeModule implements Imedia {
             callback.onUpLoadSucces(-1,"","url不能为空","",true);
             return;
         }
-
+        if(header == null){
+            header = new HashMap<>();
+        }
 
         NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(Igmupload.class);
         if (module instanceof Nativegmupload)

@@ -16,31 +16,31 @@
   import com.zkty.nativ.core.annotation.Optional;
 
   
-  class _0_com_zkty_jsi_media_DTO {
+  class _0_com_zkty_jsi_media2_DTO {
     public Integer index;
 
     public List<String> imgList;
   }
   
-  class _1_com_zkty_jsi_media_DTO {
+  class _1_com_zkty_jsi_media2_DTO {
     public Integer status;
 
     public String msg;
   }
   
-  class _2_com_zkty_jsi_media_DTO {
+  class _2_com_zkty_jsi_media2_DTO {
     public String imgUrl;
   }
   
-  class _3_com_zkty_jsi_media_DTO {
+  class _3_com_zkty_jsi_media2_DTO {
     public Integer status;
 
     public String msg;
 
-    public List<_4_com_zkty_jsi_media_DTO> data;
+    public List<_4_com_zkty_jsi_media2_DTO> data;
   }
   
-  class _4_com_zkty_jsi_media_DTO {
+  class _4_com_zkty_jsi_media2_DTO {
     public String imgID;
 
     public String imgType;
@@ -48,7 +48,7 @@
     public String thumbnail;
   }
   
-  class _5_com_zkty_jsi_media_DTO {
+  class _5_com_zkty_jsi_media2_DTO {
     @Optional
 		public boolean allowsEditing;
 
@@ -70,7 +70,7 @@
 		public Integer photoCount;
   }
   
-  class _6_com_zkty_jsi_media_DTO {
+  class _6_com_zkty_jsi_media2_DTO {
     public Integer status;
 
     public String msg;
@@ -80,7 +80,7 @@
     public String data;
   }
   
-  class _7_com_zkty_jsi_media_DTO {
+  class _7_com_zkty_jsi_media2_DTO {
     public String url;
 
     public List<String> imgIds;
@@ -89,24 +89,24 @@
 		public Map<String,String> header;
   }
   
-  interface xengine_jsi_media_protocol {
+  interface xengine_jsi_media2_protocol {
     
-public void _previewImg(_0_com_zkty_jsi_media_DTO dto);
-public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, final CompletionHandler<_1_com_zkty_jsi_media_DTO> handler);
-public void _openImagePicker(_5_com_zkty_jsi_media_DTO dto, final CompletionHandler<_3_com_zkty_jsi_media_DTO> handler);
-public void _uploadImage(_7_com_zkty_jsi_media_DTO dto, final CompletionHandler<_6_com_zkty_jsi_media_DTO> handler);
+public void _previewImg(_0_com_zkty_jsi_media2_DTO dto);
+public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media2_DTO dto, final CompletionHandler<_1_com_zkty_jsi_media2_DTO> handler);
+public void _openImagePicker(_5_com_zkty_jsi_media2_DTO dto, final CompletionHandler<_3_com_zkty_jsi_media2_DTO> handler);
+public void _uploadImage(_7_com_zkty_jsi_media2_DTO dto, final CompletionHandler<_6_com_zkty_jsi_media2_DTO> handler);
   }
   
   
-    public abstract class xengine_jsi_media extends JSIModule implements xengine_jsi_media_protocol {
+    public abstract class xengine_jsi_media2 extends JSIModule implements xengine_jsi_media2_protocol {
     @Override
     public String moduleId() {
-      return "com.zkty.jsi.media";
+      return "com.zkty.jsi.media2";
     }
   
         @JavascriptInterface
         public Object previewImg(JSONObject jsonobj) {
-          _0_com_zkty_jsi_media_DTO dto= convert(jsonobj,_0_com_zkty_jsi_media_DTO.class);
+          _0_com_zkty_jsi_media2_DTO dto= convert(jsonobj,_0_com_zkty_jsi_media2_DTO.class);
           _previewImg(dto);
           return null;
         }
@@ -114,42 +114,42 @@ public void _uploadImage(_7_com_zkty_jsi_media_DTO dto, final CompletionHandler<
 
     @JavascriptInterface
     final public void saveImageToPhotoAlbum(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _2_com_zkty_jsi_media_DTO dto= convert(jsonobj,_2_com_zkty_jsi_media_DTO.class);
-      _saveImageToPhotoAlbum(dto, new CompletionHandler<_1_com_zkty_jsi_media_DTO>() {
+      _2_com_zkty_jsi_media2_DTO dto= convert(jsonobj,_2_com_zkty_jsi_media2_DTO.class);
+      _saveImageToPhotoAlbum(dto, new CompletionHandler<_1_com_zkty_jsi_media2_DTO>() {
         @Override
-        public void complete(_1_com_zkty_jsi_media_DTO retValue) { handler.complete(retValue); }
+        public void complete(_1_com_zkty_jsi_media2_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_1_com_zkty_jsi_media_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(_1_com_zkty_jsi_media2_DTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
     final public void openImagePicker(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _5_com_zkty_jsi_media_DTO dto= convert(jsonobj,_5_com_zkty_jsi_media_DTO.class);
-      _openImagePicker(dto, new CompletionHandler<_3_com_zkty_jsi_media_DTO>() {
+      _5_com_zkty_jsi_media2_DTO dto= convert(jsonobj,_5_com_zkty_jsi_media2_DTO.class);
+      _openImagePicker(dto, new CompletionHandler<_3_com_zkty_jsi_media2_DTO>() {
         @Override
-        public void complete(_3_com_zkty_jsi_media_DTO retValue) { handler.complete(retValue); }
+        public void complete(_3_com_zkty_jsi_media2_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_3_com_zkty_jsi_media_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(_3_com_zkty_jsi_media2_DTO value) { handler.setProgressData(value); }
       });
 
     }
 
     @JavascriptInterface
     final public void uploadImage(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _7_com_zkty_jsi_media_DTO dto= convert(jsonobj,_7_com_zkty_jsi_media_DTO.class);
-      _uploadImage(dto, new CompletionHandler<_6_com_zkty_jsi_media_DTO>() {
+      _7_com_zkty_jsi_media2_DTO dto= convert(jsonobj,_7_com_zkty_jsi_media2_DTO.class);
+      _uploadImage(dto, new CompletionHandler<_6_com_zkty_jsi_media2_DTO>() {
         @Override
-        public void complete(_6_com_zkty_jsi_media_DTO retValue) { handler.complete(retValue); }
+        public void complete(_6_com_zkty_jsi_media2_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_6_com_zkty_jsi_media_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(_6_com_zkty_jsi_media2_DTO value) { handler.setProgressData(value); }
       });
 
     }

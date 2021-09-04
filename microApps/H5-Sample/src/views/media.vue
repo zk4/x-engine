@@ -46,7 +46,7 @@ export default {
     // 打开picker
     openPicker() {
       this.$engine.api(
-        "com.zkty.jsi.media2",
+        "com.zkty.jsi.media",
         "openImagePicker",
         {
           allowsEditing: true,
@@ -77,7 +77,7 @@ export default {
     // 预览图片
     previewImg() {
       if (this.chooseImgList.length > 0) {
-        this.$engine.api("com.zkty.jsi.media2", "previewImg", {
+        this.$engine.api("com.zkty.jsi.media", "previewImg", {
           // 用户点击的索引
           index: 0,
           // 图片数组
@@ -92,7 +92,7 @@ export default {
     uploadImage() {
       if (this.chooseImgList.length > 0) {
         this.$engine.api(
-          "com.zkty.jsi.media2",
+          "com.zkty.jsi.media",
           "uploadImage",
           {
             url:
@@ -116,7 +116,7 @@ export default {
     // 保存相册
     saveImage() {
       this.$engine.api(
-        "com.zkty.jsi.media2",
+        "com.zkty.jsi.media",
         "saveImageToPhotoAlbum",
         {
           imgUrl:

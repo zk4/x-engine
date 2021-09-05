@@ -53,6 +53,15 @@ NATIVE_MODULE(Native_direct)
 
 - (void) _back:(NSString*) host fragment:(NSString*) fragment{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
+
+    // 是 present　出来的,不关注历史
+    if(!navC){
+        UIViewController* vc = [Unity sharedInstance].getCurrentVC;
+        [vc dismissViewControllerAnimated:TRUE completion:^{
+        }];
+        return;
+    }
+    
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
  
  
@@ -199,6 +208,7 @@ NATIVE_MODULE(Native_direct)
             hm.pathname      = pathname;
             [container setCurrentHistory:hm];
         }else{
+            // present　出来的，　不关注历史
             UIViewController* vc = [Unity sharedInstance].getCurrentVC;
             [vc presentViewController:container animated:YES completion:^{
                 

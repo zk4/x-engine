@@ -15,7 +15,9 @@
 #import "UIViewController+Tag.h"
 #import "iToast.h"
 
-@interface Native_direct()
+@interface Native_direct(){
+    UINavigationController *_viewController;
+}
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSString*> * fallbackMappings;
 
@@ -200,13 +202,38 @@ NATIVE_MODULE(Native_direct)
             [container setCurrentHistory:hm];
         }else{
             UIViewController* vc = [Unity sharedInstance].getCurrentVC;
-            [vc presentViewController:container animated:YES completion:^{
-                
-            }];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
+            container.navigationItem.title = @"用户协议";
+            [vc addChildViewController:nav];
+            [vc.view addSubview:nav.view];
+            CGFloat bottmom = 0.0;
+            if (@available(iOS 11.0, *)) {
+                bottmom = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
+            }
+            nav.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-bottmom);
+            [nav didMoveToParentViewController:vc];
+            CATransition *animation = [CATransition animation];
+            animation.duration = 0.4f;
+            animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            animation.fillMode = kCAFillModeForwards;
+            animation.type = kCATransitionMoveIn;
+            animation.subtype = kCATransitionFromTop;
+            [nav.view.layer addAnimation:animation forKey:@"animation"];
+            _viewController = nav;
+            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [backButton setTitle:@"返回" forState:UIControlStateNormal];
+            [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+            container.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         }
     }
 }
-
+- (void)back
+{
+    [_viewController willMoveToParentViewController:nil];
+    [_viewController removeFromParentViewController];
+    [_viewController.view removeFromSuperview];
+}
 - (NSURL *)fallback:(NSString * _Nullable)host params:(NSDictionary<NSString *,id> * _Nullable)params pathname:(NSString * _Nonnull)pathname scheme:(NSString * _Nonnull)scheme {
     static NSString* FALL_BACK_KEY = @"__fallback__";
     NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];

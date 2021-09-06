@@ -140,8 +140,8 @@ NATIVE_MODULE(Native_updator)
 }
 
 - (void)updateMicroappsFromUrl:(NSString *)url {
-//    [self lazyAfnetworking:url];
-    [[AFHTTPSessionManager manager] GET:@"/data.json" parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+    [[AFHTTPSessionManager manager] GET:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if(responseObject && responseObject[@"data"]){
                 for(id entry in responseObject[@"data"]){
                     NSLog(@"%@",entry);

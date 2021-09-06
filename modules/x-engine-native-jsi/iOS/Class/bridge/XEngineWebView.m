@@ -761,4 +761,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     return nil;
 }
+
+///禁止弹出复制粘切弹框
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[UIMenuController sharedMenuController] setMenuVisible:NO animated:NO];
+    }];
+    return [super canPerformAction:action withSender:sender];
+}
 @end

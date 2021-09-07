@@ -42,12 +42,8 @@ public class HomeActivity extends AppCompatActivity {
         String host = et_content.getText().toString();
 //          protocol = "http:";
 //         host = "10.2.128.89:8080";
-
-
         String pathname = "";
         String fragment = "";
-
-
         XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, null, true);
     }
 
@@ -75,6 +71,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void download(View view) {
-        MicroAppsInstall.sharedInstance().downloadMicroApp("http://10.2.128.72:8000/11.zip");
+        MicroAppsInstall.sharedInstance().downloadMicroApp("http://10.2.128.10:8000/11.zip");
     }
 }

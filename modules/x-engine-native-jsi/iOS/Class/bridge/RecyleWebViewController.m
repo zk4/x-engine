@@ -30,21 +30,12 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
-@property (nonatomic, strong) UIView *screenView;
-@property (nonatomic, strong) UIImageView *navBarHairlineImageView;
 @property (nonatomic, strong) id<iWebcache> webcache;
 
 @end
 
 @implementation RecyleWebViewController
 
-//- (void)handleNavigationTransition:(UIGestureRecognizer *)gap{
-//    if (self.webview.canGoBack==YES) {
-//        [self.webview goBack];
-//    }else{
-//        NSLog(@"此时不能左滑");
-//    }
-//}
 
 - (void)webViewLoadFail:(NSNotification *)notifi{
     NSDictionary *dic = notifi.object;
@@ -78,9 +69,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         }
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
-//        [self.webview loadUrl:self.loadUrl];
-//        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL URLWithString:self.loadUrl]];
-//        self.webview.frame = [UIScreen mainScreen].bounds;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -110,41 +98,12 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-//     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
         [self.webview loadUrl:self.loadUrl];
     }
 }
 
 #pragma mark - <callback>
-//- (void)goback:(UIButton *)sender {
-//    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-//        if(self.navigationController.viewControllers.count > 1){
-//            RecyleWebViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-//            if([vc isKindOfClass:[RecyleWebViewController class]]){
-//                if(self.webview.backForwardList.backList.count > 0){
-//                    WKBackForwardListItem *item = self.webview.backForwardList.backList[self.webview.backForwardList.backList.count - 1];
-//                    if([[vc.loadUrl lowercaseString] isEqualToString:[item.URL.absoluteString lowercaseString]] ||
-//                       [[NSString stringWithFormat:@"%@#/", [vc.loadUrl lowercaseString]] isEqualToString:[item.URL.absoluteString lowercaseString]]){
-//                        [self.navigationController popViewControllerAnimated:YES];
-//                        return;
-//                    }
-//                }
-//            }
-//        }
-//        if([self.webview canGoBack]){
-//            // fixme 临时解决一下, webview 自己跳转后, 返回问题
-//            WKBackForwardList* list = [self.webview backForwardList];
-//            if([self.loadUrl hasPrefix:@"http"] && [[list.backItem.URL absoluteString] isEqual:self.loadUrl]){
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }else
-//                [self.webview goBack];
-//        }else{
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//    }else{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
-//}
+
 
 - (void)close:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -239,28 +198,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
 }
 
-//- (void)setupBackButton {
-//    UIButton *backButton = [[UIButton alloc] init];
-//    [backButton setImage: [UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
-//    [backButton sizeToFit];
-//
-//    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-//        NSString *closePath = [[NSBundle mainBundle] pathForResource:@"close_black" ofType:@"png"];
-//        UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 34, 0)];
-//        UIImageView *img2 = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:closePath]]];
-//        img2.userInteractionEnabled = NO;
-//        img2.frame = CGRectMake(4, 6, 22, 22);
-//        [closeButton addSubview:img2];
-//        [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
-//        self.navigationItem.leftBarButtonItems = @[
-//            [[UIBarButtonItem alloc] initWithCustomView:backButton],
-//            [[UIBarButtonItem alloc] initWithCustomView:closeButton]
-//        ];
-//    } else {
-//        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-//    }
-//}
 
 - (void)setupProgressLayer  {
     self.progresslayer = [[UIProgressView alloc] init];

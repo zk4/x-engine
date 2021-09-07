@@ -17,12 +17,17 @@ public class AppUtils {
         int pid = android.os.Process.myPid();
         String packageName = context.getPackageName();
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> infos = am.getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo info : infos) {
-            if (info.pid == pid && info.processName.equals(packageName)) {
-                return true;
+        if(am != null){
+            List<ActivityManager.RunningAppProcessInfo> infos = am.getRunningAppProcesses();
+            if(infos != null){
+                for (ActivityManager.RunningAppProcessInfo info : infos) {
+                    if (info.pid == pid && info.processName.equals(packageName)) {
+                        return true;
+                    }
+                }
             }
         }
+
         return false;
     }
 }

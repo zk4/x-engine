@@ -21,7 +21,7 @@ NSString * const OnNativeHide = @"onNativeHide";
 NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 
-@interface RecyleWebViewController () < WKNavigationDelegate>
+@interface RecyleWebViewController () < WKNavigationDelegate,UIScrollViewDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
@@ -69,6 +69,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
+        self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
 
         self.webcache =XENP(iWebcache);
@@ -334,4 +335,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 - (void)dealloc {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
 }
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+}
+
 @end

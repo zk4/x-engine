@@ -1,8 +1,10 @@
 package com.zkty.nativ.jsi.view;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,11 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.gome.analysis.AnalysisManager;
-import com.sensorsdata.analytics.android.sdk.SensorsDataAPI;
+import com.zkty.nativ.core.utils.DensityUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
@@ -48,6 +51,7 @@ public class XEngineFragment extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,10 +62,18 @@ public class XEngineFragment extends Fragment {
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
             AnalysisManager.getInstance().initX5WebView(mWebView);
             XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
-            mRoot.addView(mWebView, 0);
+            if (historyModel.protocol == null && historyModel.host == null && historyModel.pathname == null) {
+                View view1 = getLayoutInflater().inflate(R.layout.layout_notfound_page, null);
+                mRoot.addView(view1, 0);
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                view1.setLayoutParams(lp);
+
+            } else {
+                mRoot.addView(mWebView, 0);
 //            PermissionDto dto = MicroAppPermissionManager.sharedInstance().getPermission(mMicroAppId, "0");
 //            mWebView.setPermission(dto);
-            mWebView.loadUrl(historyModel);
+                mWebView.loadUrl(historyModel);
+            }
         }
 
     }
@@ -73,7 +85,7 @@ public class XEngineFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
         }
     }

@@ -13,6 +13,7 @@
 #import "Unity.h"
 #import "UIViewController+Tag.h"
 #import "HistoryModel.h"
+#import "XEngineWebView.h"
 
 
 @interface JSI_localstorage()
@@ -29,7 +30,9 @@ JSI_MODULE(JSI_localstorage)
 
 - (NSString *) genkey:(NSString*) key{
      assert(key!=nil);
-    HistoryModel* hm= [[Unity sharedInstance].getCurrentVC getLastHistory];
+    
+    XEngineWebView* webview = [self currentWebView];
+    HistoryModel* hm=webview.model ;
      assert(hm!=nil);
      return  [NSString stringWithFormat:@"%@%@:%@", hm.host?hm.host:@"",hm.pathname?hm.pathname:@"", key];
 }

@@ -365,7 +365,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
             }else if([JavascriptInterfaceObject respondsToSelector:sel]){
                 id ret;
                 id(*action)(id,SEL,id) = (id(*)(id,SEL,id))objc_msgSend;
+            
+                [JavascriptInterfaceObject performSelector:NSSelectorFromString(@"lockCurrentWebView:") withObject:self];
                 ret=action(JavascriptInterfaceObject,sel,arg);
+                [JavascriptInterfaceObject performSelector:NSSelectorFromString(@"unlockCurrentWebView:") withObject:self];
                 [result setValue:@0 forKey:@"code"];
                 if(ret!=nil){
                     [result setValue:[self convertDict:ret] forKey:@"data"];
@@ -396,6 +399,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void)loadUrl: (NSString *)url
 {
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURL* nsurl = [NSURL URLWithString:url];
+    if(!self.model){
+        self.model = [HistoryModel new];
+    }
+    self.model.host= nsurl.host;
+    self.model.fragment=nsurl.fragment;
+    self.model.pathname=nsurl.path;
     [self loadRequest:request];
 }
 

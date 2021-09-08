@@ -9,6 +9,7 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "XENativeContext.h"
+#import "JSIModule.h"
 #import "iToast.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
@@ -358,18 +359,26 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
-                    //                    [GlobalState setCurrentWebView:self];
+                    JSIModule* jsi = (JSIModule*) JavascriptInterfaceObject;
+                    [jsi lockCurrentWebView:self];
                     action(JavascriptInterfaceObject, selasyn, arg, completionHandler);
+                    [jsi unlockCurrentWebView:self];
+
                     break;
                 }
             }else if([JavascriptInterfaceObject respondsToSelector:sel]){
                 id ret;
                 id(*action)(id,SEL,id) = (id(*)(id,SEL,id))objc_msgSend;
+            
+                JSIModule* jsi = (JSIModule*) JavascriptInterfaceObject;
+                [jsi lockCurrentWebView:self];
                 ret=action(JavascriptInterfaceObject,sel,arg);
+                [jsi unlockCurrentWebView:self];
                 [result setValue:@0 forKey:@"code"];
                 if(ret!=nil){
                     [result setValue:[self convertDict:ret] forKey:@"data"];
                 }
+
                 break;
             }
             NSString *js = [error stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -396,6 +405,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void)loadUrl: (NSString *)url
 {
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURL* nsurl = [NSURL URLWithString:url];
+    if(!self.model){
+        self.model = [HistoryModel new];
+    }
+    self.model.host= nsurl.host;
+    self.model.fragment=nsurl.fragment;
+    self.model.pathname=nsurl.path;
     [self loadRequest:request];
 }
 

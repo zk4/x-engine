@@ -89,21 +89,19 @@ NATIVE_MODULE(Native_updator)
             NSLog(@"%f",1.0 * downloadProgress.completedUnitCount/downloadProgress.totalUnitCount);
         
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        
-        NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-               NSString *fullPath = [filePath stringByAppendingPathComponent:response.suggestedFilename];
-               
-               NSLog(@"%@",fullPath);
-               return [NSURL fileURLWithPath:fullPath];
+
+        NSString *fullPath = [targetPath.absoluteString stringByAppendingString:@".zip"];
+        return [NSURL URLWithString:fullPath];
                
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         
         if(filePath && !error){
-            NSLog(@"%@",filePath);
+            (@"%@",filePath);
 
             [self unzipCacheZipToDocument:filePath.path];
         }
         else{
+            [XENP(iToast) toast:[NSString stringWithFormat:@"下载失败: %@", downloadUrl]];
             NSLog(@"completionHandler----%@",error);
         }
     } ];
@@ -114,7 +112,7 @@ NATIVE_MODULE(Native_updator)
     
     NSString *UUID = [[NSUUID UUID] UUIDString];
     NSString *tmp_sandboxMicroappPath= [NSString stringWithFormat:@"%@/microapps/%@" ,kDocumentPath,UUID];
-    NSString *tmp_microappjsonFilePath= [NSString stringWithFormat:@"%@/microapps/%@/microapp.json" ,kDocumentPath,UUID];
+//    NSString *tmp_microappjsonFilePath= [NSString stringWithFormat:@"%@/microapps/%@/microapp.json" ,kDocumentPath,UUID];
 
     __weak __typeof(self)weakSelf = self;
     [SSZipArchive unzipFileAtPath:cachedZipUrl toDestination:tmp_sandboxMicroappPath progressHandler:nil completionHandler:^(NSString * _Nonnull path, BOOL succeeded, NSError * _Nullable error) {
@@ -142,11 +140,15 @@ NATIVE_MODULE(Native_updator)
                     [self updateMicroappsInfos];
                     NSString* msg = [NSString stringWithFormat:@"%@ 安装成功,重新打开微应用将使用最新",folderName];
                     [strongSelf.toast toast:msg];
+            
 //                }
-                
+#ifdef DEBUG
+                [strongSelf.toast toast:path];
+#endif
            
             } else {
-                NSLog(@"解压失败==>%@", error);
+                NSString* msg = [NSString stringWithFormat:@"解压失败==>%@", error];
+                [XENP(iToast) toast:msg];
             }
     }];
 }
@@ -157,7 +159,7 @@ NATIVE_MODULE(Native_updator)
     [manger setResponseSerializer:[AFJSONResponseSerializer serializer]];
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"multipart/form-data", nil];
 
-    [manger POST:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manger GET:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if(responseObject && responseObject[@"data"]){
                 for(id entry in responseObject[@"data"][@"list"]){
                     NSLog(@"%@",entry);

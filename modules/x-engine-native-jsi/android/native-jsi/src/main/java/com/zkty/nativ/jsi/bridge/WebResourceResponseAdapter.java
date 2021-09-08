@@ -1,28 +1,29 @@
 package com.zkty.nativ.jsi.bridge;
 
 import android.os.Build;
+import android.webkit.WebResourceResponse;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.io.InputStream;
 import java.util.Map;
 
 
-public class WebResourceResponseAdapter extends com.tencent.smtt.export.external.interfaces.WebResourceResponse {
+public class WebResourceResponseAdapter extends WebResourceResponse {
 
     private android.webkit.WebResourceResponse mWebResourceResponse;
 
-    private WebResourceResponseAdapter(android.webkit.WebResourceResponse webResourceResponse){
-        mWebResourceResponse = webResourceResponse;
+    public WebResourceResponseAdapter(String mimeType, String encoding, InputStream data) {
+        super(mimeType, encoding, data);
     }
 
-    public static WebResourceResponseAdapter adapter(android.webkit.WebResourceResponse webResourceResponse){
-        if (webResourceResponse == null){
-            return null;
-        }
-        return new WebResourceResponseAdapter(webResourceResponse);
-
+    public WebResourceResponseAdapter(String mimeType, String encoding, int statusCode, @NonNull String reasonPhrase, Map<String, String> responseHeaders, InputStream data) {
+        super(mimeType, encoding, statusCode, reasonPhrase, responseHeaders, data);
     }
+
+
+
 
     @Override
     public String getMimeType() {

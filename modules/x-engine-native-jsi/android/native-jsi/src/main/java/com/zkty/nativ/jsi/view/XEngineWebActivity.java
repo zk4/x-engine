@@ -19,6 +19,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -29,9 +32,6 @@ import androidx.annotation.Nullable;
 import com.gome.analysis.AnalysisManager;
 import com.gyf.barlibrary.ImmersionBar;
 import com.sensorsdata.analytics.android.sdk.SensorsDataAPI;
-import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebView;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.HistoryModel;
@@ -329,11 +329,6 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             super.onProgressChanged(webView, i);
         }
 
-        @Override
-        public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {
-            mUploadMessage = valueCallback;
-            showSelectDialog();
-        }
 
         @Override
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {

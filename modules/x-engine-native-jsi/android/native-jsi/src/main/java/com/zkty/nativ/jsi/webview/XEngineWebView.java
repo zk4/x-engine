@@ -4,22 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.core.utils.Utils;
@@ -28,14 +25,11 @@ import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.bridge.DWebView;
-import com.zkty.nativ.jsi.bridge.WebResourceRequestAdapter;
-import com.zkty.nativ.jsi.bridge.WebResourceResponseAdapter;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.view.MicroAppLoader;
 import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.jsi.view.SchemeManager;
-import com.zkty.nativ.webcache.lib.WebViewCacheInterceptorInst;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
@@ -72,13 +66,10 @@ public class XEngineWebView extends DWebView {
     public void init() {
         historyModels = new ArrayList<>();
         getSettings().setJavaScriptEnabled(true);
-        if (getX5WebViewExtension() != null) {
-            getX5WebViewExtension().setHorizontalScrollBarEnabled(false);
-            getX5WebViewExtension().setVerticalScrollBarEnabled(false);
-        } else {
-            setHorizontalScrollBarEnabled(false);
-            setVerticalScrollBarEnabled(false);
-        }
+
+        setHorizontalScrollBarEnabled(false);
+        setVerticalScrollBarEnabled(false);
+
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式(true);
         getSettings().setAppCacheEnabled(false);
         getSettings().setSupportZoom(false);
@@ -226,18 +217,6 @@ public class XEngineWebView extends DWebView {
                 return false;
             }
 
-            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-                        interceptRequest(s));
-            }
-
-
-            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-                        interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
-            }
 
         });
     }
@@ -375,19 +354,9 @@ public class XEngineWebView extends DWebView {
     public void smoothScrollToTop(int scrollY) {
 
         if (scrollY < 1) return;
-        if (scrollY < speed) {
-            if (getX5WebViewExtension() != null) {
-                getX5WebViewExtension().scrollTo(0, 0);
-            } else {
-                scrollTo(0, 0);
-            }
-            return;
-        }
-        if (getX5WebViewExtension() != null) {
-            getX5WebViewExtension().scrollTo(0, scrollY - speed);
-        } else {
-            scrollTo(0, scrollY - speed);
-        }
+
+        scrollTo(0, scrollY - speed);
+
 
         new Handler().postDelayed(() -> smoothScrollToTop(scrollY - speed), 5);
 

@@ -6,8 +6,7 @@ import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.tencent.smtt.export.external.TbsCoreSettings;
-import com.tencent.smtt.sdk.QbSdk;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
@@ -62,26 +61,11 @@ public class JSIContext extends NativeModule {
     private void initWebView() {
         // 设置开启优化方案
         // 在调用TBS初始化、创建WebView之前进行如下配置
-        QbSdk.setDownloadWithoutWifi(true);
-        Map<String, Object> map = new HashMap<>();
-        map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
-        map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
-        QbSdk.initTbsSettings(map);
+
 
         XWebViewPool.sharedInstance().init(XEngineApplication.getApplication());
 ////        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
 
-        QbSdk.initX5Environment(XEngineApplication.getApplication(), new QbSdk.PreInitCallback() {
-            @Override
-            public void onCoreInitFinished() {
-                Log.d("initX5", "onCoreInitFinished");
-            }
-
-            @Override
-            public void onViewInitFinished(boolean b) {
-                Log.d("initX5", "onViewInitFinished: " + b);
-            }
-        });
 
     }
 

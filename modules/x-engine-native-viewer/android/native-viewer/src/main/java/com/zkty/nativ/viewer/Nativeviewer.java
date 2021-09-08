@@ -3,7 +3,7 @@ package com.zkty.nativ.viewer;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.tencent.smtt.utils.Md5Utils;
+
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
@@ -42,7 +42,7 @@ public class Nativeviewer extends NativeModule implements Iviewer {
     public void openFileReader(String fileUrl, String fileType,String title,CallBack callBack) {
         this.callBack = callBack;
         this.fileType = fileType;
-        this.fileName = Md5Utils.getMD5(fileUrl);
+//        this.fileName = Md5Utils.getMD5(fileUrl);
         this.fileUrl = fileUrl;
         this.title = title;
 

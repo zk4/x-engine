@@ -1,5 +1,7 @@
 package com.zkty.nativ.jsi.bridge;
 
+import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,10 +17,17 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
+import android.webkit.ConsoleMessage;
+import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebStorage;
+import android.webkit.WebView;
 import android.widget.EditText;
 
 import androidx.annotation.Keep;
@@ -26,17 +35,6 @@ import androidx.annotation.Keep;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.tencent.smtt.export.external.interfaces.ConsoleMessage;
-import com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback;
-import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
-import com.tencent.smtt.export.external.interfaces.JsPromptResult;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.sdk.CookieManager;
-import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebStorage;
-import com.tencent.smtt.sdk.WebView;
 import com.zkty.nativ.core.XEngineApplication;
 
 import java.io.File;
@@ -47,10 +45,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import nativ.jsi.BuildConfig;
-
-import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 
 
 public class DWebView extends WebView {
@@ -671,24 +666,7 @@ public class DWebView extends WebView {
             }
         }
 
-        @Override
-        public void onShowCustomView(View view, IX5WebChromeClient.CustomViewCallback callback) {
-            if (webChromeClient != null) {
-                webChromeClient.onShowCustomView(view, callback);
-            } else {
-                super.onShowCustomView(view, callback);
-            }
-        }
 
-        @Override
-        public void onShowCustomView(View view, int requestedOrientation,
-                                     IX5WebChromeClient.CustomViewCallback callback) {
-            if (webChromeClient != null) {
-                webChromeClient.onShowCustomView(view, requestedOrientation, callback);
-            } else {
-                super.onShowCustomView(view, requestedOrientation, callback);
-            }
-        }
 
         @Override
         public void onHideCustomView() {
@@ -832,13 +810,7 @@ public class DWebView extends WebView {
                         .setPositiveButton(android.R.string.ok, listener)
                         .setNegativeButton(android.R.string.cancel, listener)
                         .show();
-                LayoutParams layoutParams = new LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-                int t = (int) (dpi * 16);
-                layoutParams.setMargins(t, 0, t, 0);
-                layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
-                editText.setLayoutParams(layoutParams);
+
                 int padding = (int) (15 * dpi);
                 editText.setPadding(padding - (int) (5 * dpi), padding, padding, padding);
                 return true;
@@ -876,14 +848,6 @@ public class DWebView extends WebView {
             super.onReachedMaxAppCacheSize(requiredStorage, quota, quotaUpdater);
         }
 
-        @Override
-        public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissionsCallback callback) {
-            if (webChromeClient != null) {
-                webChromeClient.onGeolocationPermissionsShowPrompt(origin, callback);
-            } else {
-                super.onGeolocationPermissionsShowPrompt(origin, callback);
-            }
-        }
 
         @Override
         public void onGeolocationPermissionsHidePrompt() {
@@ -938,14 +902,6 @@ public class DWebView extends WebView {
             }
         }
 
-        @Override
-        public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {
-            if (webChromeClient != null) {
-                webChromeClient.openFileChooser(valueCallback, s, s1);
-                return;
-            }
-            super.openFileChooser(valueCallback, s, s1);
-        }
 
         @Override
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback,

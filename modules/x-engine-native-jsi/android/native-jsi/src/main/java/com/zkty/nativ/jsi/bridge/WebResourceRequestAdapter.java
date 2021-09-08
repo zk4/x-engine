@@ -3,6 +3,7 @@ package com.zkty.nativ.jsi.bridge;
 import android.annotation.TargetApi;
 import android.net.Uri;
 import android.os.Build;
+import android.webkit.WebResourceRequest;
 
 import java.util.Map;
 
@@ -10,13 +11,13 @@ import java.util.Map;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class WebResourceRequestAdapter implements android.webkit.WebResourceRequest {
 
-    private com.tencent.smtt.export.external.interfaces.WebResourceRequest mWebResourceRequest;
+    private WebResourceRequest mWebResourceRequest;
 
-    private WebResourceRequestAdapter(com.tencent.smtt.export.external.interfaces.WebResourceRequest x5Request){
+    private WebResourceRequestAdapter(WebResourceRequest x5Request) {
         mWebResourceRequest = x5Request;
     }
 
-    public static WebResourceRequestAdapter adapter(com.tencent.smtt.export.external.interfaces.WebResourceRequest x5Request){
+    public static WebResourceRequestAdapter adapter(WebResourceRequest x5Request) {
         return new WebResourceRequestAdapter(x5Request);
     }
 

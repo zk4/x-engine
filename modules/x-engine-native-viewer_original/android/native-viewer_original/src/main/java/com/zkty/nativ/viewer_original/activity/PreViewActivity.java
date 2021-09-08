@@ -14,11 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.tencent.smtt.sdk.QbSdk;
-import com.tencent.smtt.sdk.TbsDownloader;
-import com.tencent.smtt.sdk.TbsListener;
-import com.tencent.smtt.sdk.TbsReaderView;
-import com.tencent.smtt.sdk.ValueCallback;
+
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
@@ -45,7 +41,7 @@ public class PreViewActivity extends BaseXEngineActivity {
     public static final String TITLE = "title";
     private LinearLayout llContent;
     private XEngineNavBar mXEngineNavBar;
-    private TbsReaderView tbsReaderView;
+
     private RelativeLayout relLoadX5;
     private TextView tvProgress;
     private String filePath,downLoadUrl;
@@ -99,13 +95,13 @@ public class PreViewActivity extends BaseXEngineActivity {
         mXEngineNavBar.setTitle(title,null,null);
 
         //打开文件
-        if(QbSdk.canLoadX5(XEngineApplication.getApplication())){//是否支持 x5 浏览
-            openFile(filePath, fileType);
-        }else{
-            if(fileType.contains("pdf")){
-                PrePdfViewActivity.startAty(filePath,title,fileType);
-                finish();
-            }
+//        if(QbSdk.canLoadX5(XEngineApplication.getApplication())){//是否支持 x5 浏览
+//            openFile(filePath, fileType);
+//        }else{
+//            if(fileType.contains("pdf")){
+//                PrePdfViewActivity.startAty(filePath,title,fileType);
+//                finish();
+//            }
 //            relLoadX5.setVisibility(View.VISIBLE);
 //            //x5下载监听
 //            QbSdk.setTbsListener(new TbsListener() {
@@ -170,7 +166,7 @@ public class PreViewActivity extends BaseXEngineActivity {
 //            }
         }
 
-    }
+//    }
 
 
     /**
@@ -178,40 +174,40 @@ public class PreViewActivity extends BaseXEngineActivity {
      * @param path
      */
     private void openFile(String path,String fileType) {
-        relLoadX5.setVisibility(View.GONE);
-        tbsReaderView = new TbsReaderView(this, readerCallback);
-        llContent.addView(tbsReaderView,new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        Bundle bundle = new Bundle();
-        //文件路径
-        bundle.putString("filePath", path);
-        //临时文件的路径，必须设置，否则会报错
-        bundle.putString("tempPath", Environment.getExternalStorageDirectory().getAbsolutePath()+"腾讯文件TBS");
-        //准备
-        boolean result = tbsReaderView.preOpen(fileType, false);
-        if (result) {
-            //预览文件
-            tbsReaderView.openFile(bundle);
-        }
+//        relLoadX5.setVisibility(View.GONE);
+//        tbsReaderView = new TbsReaderView(this, readerCallback);
+//        llContent.addView(tbsReaderView,new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        Bundle bundle = new Bundle();
+//        //文件路径
+//        bundle.putString("filePath", path);
+//        //临时文件的路径，必须设置，否则会报错
+//        bundle.putString("tempPath", Environment.getExternalStorageDirectory().getAbsolutePath()+"腾讯文件TBS");
+//        //准备
+//        boolean result = tbsReaderView.preOpen(fileType, false);
+//        if (result) {
+//            //预览文件
+//            tbsReaderView.openFile(bundle);
+//        }
     }
 
 
     /**
      * 下面的回调必须要实现，暂时没找到此回调的用处
-     */
-    TbsReaderView.ReaderCallback readerCallback = new TbsReaderView.ReaderCallback() {
-        @Override
-        public void onCallBackAction(Integer integer, Object o, Object o1) {
+//     */
+//    TbsReaderView.ReaderCallback readerCallback = new TbsReaderView.ReaderCallback() {
+//        @Override
+//        public void onCallBackAction(Integer integer, Object o, Object o1) {
+//
+//        }
+//    };
 
-        }
-    };
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //需要将预览服务停止，一定不要忘了
-        if(tbsReaderView != null){
-            tbsReaderView.onStop();
-        }
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        //需要将预览服务停止，一定不要忘了
+//        if(tbsReaderView != null){
+//            tbsReaderView.onStop();
+//        }
+//    }
 
 }

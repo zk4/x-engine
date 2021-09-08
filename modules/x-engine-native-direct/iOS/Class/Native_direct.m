@@ -224,7 +224,7 @@ NATIVE_MODULE(Native_direct)
     if(nativeParams){
         id _fallback = [nativeParams objectForKey:FALL_BACK_KEY];
         if(_fallback){
-            fallback =[_fallback string];
+            fallback =_fallback;
             // 必须删除,防止循环 fallback
             [[nativeParams mutableCopy] removeObjectForKey:FALL_BACK_KEY];
         }
@@ -257,6 +257,10 @@ NATIVE_MODULE(Native_direct)
         // try fallback
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
         if(fallbackUrl){
+            #ifdef DEBUG
+                NSString* msg =[NSString stringWithFormat:@"fallback:%@",fallbackUrl];
+                [XENP(iToast) toast:msg];
+            #endif
             [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params frame:frame];
             return;
         }
@@ -267,6 +271,7 @@ NATIVE_MODULE(Native_direct)
     NSAssert(container,@"why here, where is your container?");
     if(!container)return;
  
+
     [parent addChildViewController:container];
     container.view.frame = parent.view.frame;
     [parent.view addSubview:container.view];

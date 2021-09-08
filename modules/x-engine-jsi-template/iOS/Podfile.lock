@@ -1,0 +1,74 @@
+PODS:
+  - JSONModel (1.8.0)
+  - x-engine-native-core (1.0.0):
+    - x-engine-native-protocols
+  - x-engine-native-direct (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_microapp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi
+    - x-engine-native-protocols
+  - x-engine-native-direct_omp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-jsi (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi/no-arc (= 1.0.0)
+    - x-engine-native-protocols
+  - x-engine-native-jsi/no-arc (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
+  - x-engine-native-tabbar (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+
+DEPENDENCIES:
+  - x-engine-native-core (from `/Users/zk/git/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-direct (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_microapp (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_omp (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/zk/git/working/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-protocols (from `/Users/zk/git/working/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-tabbar (from `/Users/zk/git/working/x-engine/modules/x-engine-native-tabbar`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JSONModel
+
+EXTERNAL SOURCES:
+  x-engine-native-core:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-core"
+  x-engine-native-direct:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct"
+  x-engine-native-direct_microapp:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct_microapp"
+  x-engine-native-direct_omp:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct_omp"
+  x-engine-native-jsi:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-jsi"
+  x-engine-native-protocols:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-protocols"
+  x-engine-native-tabbar:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-tabbar"
+
+SPEC CHECKSUMS:
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
+  x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
+  x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
+  x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
+
+PODFILE CHECKSUM: 440e243906ec1edf75deb734799d6f0950e0cb75
+
+COCOAPODS: 1.10.2

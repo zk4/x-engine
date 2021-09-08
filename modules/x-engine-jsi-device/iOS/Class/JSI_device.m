@@ -35,7 +35,7 @@ JSI_MODULE(JSI_device)
 }
 
 - (NSString *)_getTabbarHeight {
-    return [self.device getTabbarHeight];
+    return [NSString stringWithFormat:@"%.2f" ,[self.device getTabbarHeight]];
 }
 
 - (NSString *)_callPhone:(phoneDto *)dto {

@@ -68,7 +68,7 @@ JSI_MODULE(JSI_webcache)
 
     
     // 仅缓存 GET, 如果有更新,则会会二次返回,
-    if([_cache objectForKey:cacheKey]){
+    if(cacheKey && [_cache objectForKey:cacheKey]){
         NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
         completionHandler(_cache[cacheKey],TRUE);
         return;
@@ -97,6 +97,7 @@ JSI_MODULE(JSI_webcache)
     }
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
+    //WARNING: 想换成其他网络请求库时请请注意json 序列化的问题。不要转多遍。jsonStr 里的 '浮点类型'，在转为原生类型时，会丢失精度。再转为 jsonStr 时就不是你要的值了。如 str: '{a:.3}' -> objc: @{@"a":.299999999999}  ->  str '{"a":.29999999999}'
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:nil];
 
     __weak typeof(self) weakSelf = self;
@@ -105,7 +106,6 @@ JSI_MODULE(JSI_webcache)
                 NSHTTPURLResponse *response =nil;
                 response = (NSHTTPURLResponse *)r;
                 NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-//                NSString* responseText = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
                 NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
                 
                 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types

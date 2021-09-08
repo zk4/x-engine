@@ -16,24 +16,24 @@
    	@property(nonatomic,copy) NSString* titleColor;
    	@property(nonatomic,assign) NSInteger titleSize;
 @end
-    
+
 
 @interface NavHiddenBarDTO: JSONModel
   	@property(nonatomic,assign) BOOL isHidden;
    	@property(nonatomic,assign) BOOL isAnimation;
 @end
-    
+
 
 
 @protocol xengine_jsi_ui_protocol
-       @required 
-        - (void) _setNavTitle:(NavTitleDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
-      @required 
-        - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
-    
+   @required 
+     - (void) _setNavTitle:(NavTitleDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+
+   @required 
+     - (void) _setNavBarHidden:(NavHiddenBarDTO*) dto complete:(void (^)(BOOL complete)) completionHandler;
+
 @end
-  
+
 
 
 @interface xengine_jsi_ui : JSIModule<xengine_jsi_ui_protocol>

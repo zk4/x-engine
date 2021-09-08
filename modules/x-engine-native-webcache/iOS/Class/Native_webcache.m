@@ -55,7 +55,7 @@ NATIVE_MODULE(Native_webcache)
 
 
 - (void)enableCache {
-//    self.cacheManager.isUsingURLProtocol = YES;
+    self.cacheManager.isUsingURLProtocol = YES;
     [self.cacheManager openCache];
 }
 

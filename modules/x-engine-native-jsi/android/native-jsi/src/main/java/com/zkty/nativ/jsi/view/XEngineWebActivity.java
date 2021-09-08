@@ -113,6 +113,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         historyModel = (HistoryModel) getIntent().getSerializableExtra(HISTORYMODEL);
 
         mWebView = XWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
+        //增加神策埋点（webview初始化）
+        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView,true);
 
         AnalysisManager.getInstance().initX5WebView(mWebView);
         

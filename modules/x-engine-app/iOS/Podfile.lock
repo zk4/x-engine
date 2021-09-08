@@ -16,11 +16,11 @@ PODS:
     - AFNetworking/NSURLSession
   - JSONModel (1.8.0)
   - MJExtension (3.2.4)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
   - SSZipArchive (2.2.3)
   - Toast (4.0.0)
-  - x-engine-jsi-camera (2.8.1):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-jsi-dev (2.8.1):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -32,6 +32,9 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-jsi-localstorage (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-media (2.8.1):
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-jsi-scan (2.8.1):
@@ -54,10 +57,6 @@ PODS:
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-broadcast (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-camera (1.0.0):
-    - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-core (1.0.0):
@@ -89,6 +88,9 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
+  - x-engine-native-gmupload (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-jsi (1.0.0):
     - JSONModel
     - x-engine-native-core
@@ -96,6 +98,12 @@ PODS:
     - x-engine-native-protocols
   - x-engine-native-jsi/no-arc (1.0.0):
     - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-media (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-offline (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
@@ -123,9 +131,6 @@ PODS:
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-updator (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-webcache (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -136,12 +141,13 @@ PODS:
 DEPENDENCIES:
   - JSONModel
   - MJExtension
+  - SDWebImage
   - SSZipArchive
-  - x-engine-jsi-camera (from `../../x-engine-jsi-camera`)
   - x-engine-jsi-dev (from `../../x-engine-jsi-dev`)
   - x-engine-jsi-device (from `../../x-engine-jsi-device`)
   - x-engine-jsi-direct (from `../../x-engine-jsi-direct`)
   - x-engine-jsi-localstorage (from `../../x-engine-jsi-localstorage`)
+  - x-engine-jsi-media (from `../../x-engine-jsi-media`)
   - x-engine-jsi-scan (from `../../x-engine-jsi-scan`)
   - x-engine-jsi-secret (from `../../x-engine-jsi-secret`)
   - x-engine-jsi-store (from `../../x-engine-jsi-store`)
@@ -149,7 +155,6 @@ DEPENDENCIES:
   - x-engine-jsi-vuex (from `../../x-engine-jsi-vuex`)
   - x-engine-jsi-webcache (from `../../x-engine-jsi-webcache`)
   - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
-  - x-engine-native-camera (from `../../x-engine-native-camera`)
   - x-engine-native-core (from `../../x-engine-native-core`)
   - x-engine-native-device (from `../../x-engine-native-device`)
   - x-engine-native-direct (from `../../x-engine-native-direct`)
@@ -158,7 +163,10 @@ DEPENDENCIES:
   - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
   - x-engine-native-direct_native (from `../../x-engine-native-direct_native`)
   - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
+  - x-engine-native-gmupload (from `../../x-engine-native-gmupload`)
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
+  - x-engine-native-media (from `../../x-engine-native-media`)
+  - x-engine-native-offline (from `../../x-engine-native-offline`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
   - x-engine-native-rest (from `../../x-engine-native-rest`)
   - x-engine-native-scan (from `../../x-engine-native-scan`)
@@ -166,7 +174,6 @@ DEPENDENCIES:
   - x-engine-native-tabbar (from `../../x-engine-native-tabbar`)
   - x-engine-native-toast (from `../../x-engine-native-toast`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
-  - x-engine-native-updator (from `../../x-engine-native-updator`)
   - x-engine-native-webcache (from `../../x-engine-native-webcache`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
@@ -175,13 +182,12 @@ SPEC REPOS:
     - AFNetworking
     - JSONModel
     - MJExtension
+    - SDWebImage
     - SSZipArchive
     - Toast
     - YYCache
 
 EXTERNAL SOURCES:
-  x-engine-jsi-camera:
-    :path: "../../x-engine-jsi-camera"
   x-engine-jsi-dev:
     :path: "../../x-engine-jsi-dev"
   x-engine-jsi-device:
@@ -190,6 +196,8 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-direct"
   x-engine-jsi-localstorage:
     :path: "../../x-engine-jsi-localstorage"
+  x-engine-jsi-media:
+    :path: "../../x-engine-jsi-media"
   x-engine-jsi-scan:
     :path: "../../x-engine-jsi-scan"
   x-engine-jsi-secret:
@@ -204,8 +212,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-jsi-webcache"
   x-engine-native-broadcast:
     :path: "../../x-engine-native-broadcast"
-  x-engine-native-camera:
-    :path: "../../x-engine-native-camera"
   x-engine-native-core:
     :path: "../../x-engine-native-core"
   x-engine-native-device:
@@ -222,8 +228,14 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-direct_native"
   x-engine-native-direct_omp:
     :path: "../../x-engine-native-direct_omp"
+  x-engine-native-gmupload:
+    :path: "../../x-engine-native-gmupload"
   x-engine-native-jsi:
     :path: "../../x-engine-native-jsi"
+  x-engine-native-media:
+    :path: "../../x-engine-native-media"
+  x-engine-native-offline:
+    :path: "../../x-engine-native-offline"
   x-engine-native-protocols:
     :path: "../../x-engine-native-protocols"
   x-engine-native-rest:
@@ -238,8 +250,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-toast"
   x-engine-native-ui:
     :path: "../../x-engine-native-ui"
-  x-engine-native-updator:
-    :path: "../../x-engine-native-updator"
   x-engine-native-webcache:
     :path: "../../x-engine-native-webcache"
   ZBarSDK:
@@ -249,13 +259,14 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  x-engine-jsi-camera: 4f0e5cab50ec441c897161329c39e23f368a6a79
   x-engine-jsi-dev: a994ec59e759722c88c7d9f62a0417c5432c45f2
   x-engine-jsi-device: a87c73fef19882d46d4d141d151d6e943f012f3f
   x-engine-jsi-direct: 036a2afda244738f0a11862acf175adb1b4a7cbe
   x-engine-jsi-localstorage: 6c03c55a8a0e88d08aa9b04432c10b81e0314f3a
+  x-engine-jsi-media: 29777a06673b273123e97a77685c442bd2741ccd
   x-engine-jsi-scan: df1eda3a48bf1ad9dae23a2a46d183c573395f5b
   x-engine-jsi-secret: 55ccc5030e4b6cd2fe4e5f8741f0f74213ffac15
   x-engine-jsi-store: 002251070632235813a689713e4198c2aadb8ba8
@@ -263,7 +274,6 @@ SPEC CHECKSUMS:
   x-engine-jsi-vuex: 6fef234b0d5cedf9be023ae9130a550eab78ea98
   x-engine-jsi-webcache: a7f20d21ef8af71c80ebfcbc37a387d8c7209f32
   x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
-  x-engine-native-camera: f81c179d6c8995491cf118b26a69a3e7f03cec79
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-device: 05280cc3d26c9e4f917ac4a5e5b38aa23122e978
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
@@ -272,7 +282,10 @@ SPEC CHECKSUMS:
   x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
   x-engine-native-direct_native: c5ab0cfe8e1c54f2a04bef687df0d21ddc20611f
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
+  x-engine-native-gmupload: 0cac55546d22e80a98aac3d0260da321eddc04cc
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
+  x-engine-native-media: 753c387923896ac99721e230173fb31038b6c32d
+  x-engine-native-offline: 253549e247682420e2688784980649b2e2ebf3f4
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-rest: 600cf890c6779cfbdb24efea44e5f1b42e9fe45c
   x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
@@ -280,11 +293,10 @@ SPEC CHECKSUMS:
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
   x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
-  x-engine-native-updator: 143f2f6562c68c583f2631c3dd965a98ef6f6728
   x-engine-native-webcache: 3b1fe4498b704f70bf45ad82e34fdf4863ca1a69
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: ed1c42009bfb2df44df7ea1ae8faf5346a369ae4
+PODFILE CHECKSUM: 14f34a00253e6deaa7807cbde9cf3513d91cc75d
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

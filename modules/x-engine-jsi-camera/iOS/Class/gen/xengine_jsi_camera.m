@@ -68,6 +68,12 @@
     - (void) openImagePicker:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           _openImagePicker0_DTO* dto = [self convert:dict clazz:_openImagePicker0_DTO.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+
           [self _openImagePicker:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
@@ -76,6 +82,12 @@
     - (void) openImagePicker2:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           _openImagePicker22_DTO* dto = [self convert:dict clazz:_openImagePicker22_DTO.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+
           [self _openImagePicker2:dto complete:^(_openImagePicker20_DTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
@@ -84,6 +96,12 @@
     - (void) saveImageToPhotoAlbum:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           _saveImageToPhotoAlbum0_DTO* dto = [self convert:dict clazz:_saveImageToPhotoAlbum0_DTO.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+
           [self _saveImageToPhotoAlbum:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
           }];

@@ -248,7 +248,9 @@ NATIVE_MODULE(Native_updator)
         dto.microappId = microappId;
         dto.localpath = rootPath;
         dto.rawMicroappInfo = dict;
-        [microappInfos setObject:dto forKey:microappId];
+        MicroappInfoDTO* oldDto = [microappInfos objectForKey:microappId];
+        if(!oldDto  || oldDto.version< version)
+            [microappInfos setObject:dto forKey:microappId];
  
     }
     return microappInfos;

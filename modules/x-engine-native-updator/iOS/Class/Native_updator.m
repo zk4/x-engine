@@ -174,8 +174,7 @@ NATIVE_MODULE(Native_updator)
                         NSInteger version = [entry[@"version"] intValue];
                         if(version > dto.version)
                         {
-                            NSString* msg = [NSString stringWithFormat:@"微应用有更新：%@ %ld",microappId,version];
-                            [XENP(iToast) toast:msg];
+                       
                             NSString* downloadUrl = entry[@"downloadUrl"];
                             // TODO: 实现 force
                             BOOL force =  entry[@"isForce"]?[entry[@"isForce"] boolValue]:NO;

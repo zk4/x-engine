@@ -110,8 +110,18 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-//     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-        [self.webview loadUrl:self.loadUrl];
+        if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+            [self.webview loadUrl:self.loadUrl];
+        }else{
+             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+             NSURL *fileURL = [NSURL URLWithString:self.loadUrl];
+             NSArray* compnents=  [fileURL.absoluteString componentsSeparatedByString:@"/"];
+            //file:///var/mobile/Containers/Data/Application/7331AB63-239D-4AA2-A909-1B10D9EE73D3/Documents/microapps/7493305D-CAA7-43D0-A4FD-2DCECC71820D/index.html
+             NSString* folder = [NSString stringWithFormat:@"/%@/%@/",compnents[10],compnents[11]];
+             NSString *accessPath = [paths[0] stringByAppendingPathComponent:folder];
+             NSURL *accessURL = [NSURL fileURLWithPath:accessPath];
+             [self.webview loadFileURL:fileURL allowingReadAccessToURL:accessURL];
+        }
     }
 }
 

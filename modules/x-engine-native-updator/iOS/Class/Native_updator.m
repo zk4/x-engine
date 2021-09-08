@@ -159,7 +159,7 @@ NATIVE_MODULE(Native_updator)
     [manger setResponseSerializer:[AFJSONResponseSerializer serializer]];
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"multipart/form-data", nil];
 
-    [manger GET:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manger POST:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if(responseObject && responseObject[@"data"]){
                 for(id entry in responseObject[@"data"][@"list"]){
                     NSLog(@"%@",entry);

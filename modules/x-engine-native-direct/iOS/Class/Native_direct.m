@@ -141,7 +141,7 @@ NATIVE_MODULE(Native_direct)
         frame:(CGRect)frame{
     UInt64 now  = [[ NSDate date ] timeIntervalSince1970 ] * 1000;
     // 1 秒 路由 throttle
-    if(now - self.lastTimeStamp<1000){
+    if(now - self.lastTimeStamp<500){
         self.lastTimeStamp = now;
         return;
     }else{

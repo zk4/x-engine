@@ -51,19 +51,31 @@ NATIVE_MODULE(Native_updator)
 
 
 - (void) updateMicroappsInfos{
-
     @synchronized (self) {
     // 1. 扫描工程文件夹 microapps
     NSString *prjRootMicroappsPath = [[NSBundle mainBundle] pathForResource:@"microapps" ofType:@""];
     NSMutableDictionary* prjDict = [self scanPath:prjRootMicroappsPath];
-
+ 
+    [self.microappInfos addEntriesFromDictionary:prjDict];
+            
     // 2. 扫描沙盒文件夹 {sandbox}/Documents/microapps
     NSString *sandboxMicroappPath= [NSString stringWithFormat:@"%@/microapps" ,kDocumentPath] ;
     NSMutableDictionary* sandboxDict =  [self scanPath:sandboxMicroappPath];
 
     // 3. MERGE
-    [self.microappInfos addEntriesFromDictionary:prjDict];
-    [self.microappInfos addEntriesFromDictionary:sandboxDict];
+    [self mergeDictWithBiggerVersion:sandboxDict];
+
+    }
+}
+- (void) mergeDictWithBiggerVersion:(NSMutableDictionary*) dict{
+    for (id key in dict) {
+        MicroappInfoDTO* newDto = dict[key];
+        MicroappInfoDTO* oldDto = self.microappInfos[key];
+        // old 不存在　或者　新　version　的比旧的大
+        if(!oldDto || newDto.version  > oldDto.version){
+            [self.microappInfos setObject:newDto forKey:key];
+        }
+        NSLog(@"%@",key);
     }
 }
  
@@ -145,9 +157,9 @@ NATIVE_MODULE(Native_updator)
     [manger setResponseSerializer:[AFJSONResponseSerializer serializer]];
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"multipart/form-data", nil];
 
-    [manger GET:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manger POST:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if(responseObject && responseObject[@"data"]){
-                for(id entry in responseObject[@"data"]){
+                for(id entry in responseObject[@"data"][@"list"]){
                     NSLog(@"%@",entry);
                     NSString* microappId = entry[@"microappId"];
                     MicroappInfoDTO* dto = [self.microappInfos objectForKey:microappId];
@@ -162,6 +174,8 @@ NATIVE_MODULE(Native_updator)
                         NSInteger version = [entry[@"version"] intValue];
                         if(version > dto.version)
                         {
+                            NSString* msg = [NSString stringWithFormat:@"微应用有更新：%@ %ld",microappId,version];
+                            [XENP(iToast) toast:msg];
                             NSString* downloadUrl = entry[@"downloadUrl"];
                             // TODO: 实现 force
                             BOOL force =  entry[@"isForce"]?[entry[@"isForce"] boolValue]:NO;

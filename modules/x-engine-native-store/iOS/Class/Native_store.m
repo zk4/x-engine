@@ -59,27 +59,39 @@ NATIVE_MODULE(Native_store)
 
 - (void)set:(NSString *)key val:(id)val {
     if(!val)return;
-    [_store setObject:val forKey:key];
+
+    id object = ![val isEqual:[NSNull null]] ? val:@"";
+    [_store setObject:object forKey:key];
+    
 }
 
 - (void)del:(NSString*)key{
+   
      [_store removeObjectForKey:key];
+    
 }
 - (void)delAll{
+    @synchronized (self) {
      [_store removeAllObjects];
+    }
 }
 
 
 - (void)saveTodisk{
-    [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    @synchronized (self) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
 }
 
 - (void)loadFromDisk:(BOOL)merge {
-    if(!merge){
-        [self.store removeAllObjects];
+    @synchronized (self) {
+        if(!merge){
+            [self.store removeAllObjects];
+        }
+        [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
     }
-    [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
 }
 @end
 

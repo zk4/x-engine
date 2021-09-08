@@ -18,7 +18,7 @@ typedef void (^xScanBlock)(NSString *);
 @interface Native_scan__hms() <CustomizedScanDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSTimer *_timer;
 }
-@property ( nonatomic) xScanBlock block;
+@property ( nonatomic) __block xScanBlock block;
 @property (nonatomic, strong) HmsCustomScanViewController *hmsCustomScanViewController;
 @property (nonatomic, strong) QRCodeScanPreviewView *scanView;
 @property (nonatomic, assign) CGRect areaRect;
@@ -229,8 +229,10 @@ NATIVE_MODULE(Native_scan__hms)
      // 在主线程内处理数据
         [self stopTimer:timer];
         NSString* jsonStr =  resultDic[@"text"];
-        self.block(jsonStr?jsonStr:@"");
-        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:NO completion:^{}];
+        
+        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:NO completion:^{
+            self.block(jsonStr?jsonStr:@"");
+        }];
 
    });
 }

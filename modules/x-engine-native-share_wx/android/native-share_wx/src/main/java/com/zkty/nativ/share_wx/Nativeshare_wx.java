@@ -167,7 +167,10 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                     msg3.title = info.title;
                     msg3.description = info.desc;
 
-                    msg3.thumbData = ImageUtils.bitmapToBytes(bitmap);
+                    if(bitmap != null){
+                        msg3.thumbData = ImageUtils.bitmapToBytes(bitmap);
+                    }
+
 
                     //构造一个Req
                     SendMessageToWX.Req req3 = new SendMessageToWX.Req();

@@ -222,16 +222,16 @@ NATIVE_MODULE(Native_scan__hms)
 }
 
 - (void)customizedScanDelegateForResult:(NSDictionary *)resultDic{
-    //不是所有的地方都需要弱Timer
-    __block NSTimer *timer;
-    timer = _timer;
     dispatch_async(dispatch_get_main_queue(), ^{
-     // 在主线程内处理数据
-        [self stopTimer:timer];
         NSString* jsonStr =  resultDic[@"text"];
+        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                self.block(jsonStr?jsonStr:@"");
+            });
+            
+
         
-        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:NO completion:^{
-            self.block(jsonStr?jsonStr:@"");
         }];
 
    });

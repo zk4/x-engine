@@ -9,6 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.3.7'
         
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -21,6 +22,14 @@ allprojects {
         jcenter()
         maven { url 'https://jitpack.io' }
         maven {url 'https://developer.huawei.com/repo/'}
+
+        maven {
+            url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
+            credentials {
+                username = "deployment"
+                password = "qiudongchao1988"
+            }
+        }
     }
 }
 

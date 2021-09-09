@@ -505,8 +505,7 @@ public class ImageUtils {
 
     }
 
-
-    public static void getBitmap(String path, BitmapCallback callback) {
+    public static void getBitmap(String path, int width, int height, BitmapCallback callback) {
         if (TextUtils.isEmpty(path)) callback.onFail();
 
         if (path.startsWith("http")) {
@@ -518,7 +517,7 @@ public class ImageUtils {
                         bitmap = Glide.with(XEngineApplication.getCurrentActivity())
                                 .asBitmap()
                                 .load(path)
-                                .into(250, 250).get();
+                                .into(width, height).get();
                         if (bitmap != null) {
 
                             callback.onSuccess(bitmap);
@@ -547,6 +546,12 @@ public class ImageUtils {
 
         }
 
+    }
+
+
+    public static void getBitmap(String path, BitmapCallback callback) {
+
+        getBitmap(path, 250, 250, callback);
     }
 
     public static byte[] bitmapToBytes(Bitmap bitmap) {

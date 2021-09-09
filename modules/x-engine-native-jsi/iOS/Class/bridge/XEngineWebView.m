@@ -78,7 +78,18 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 //    }
 //    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
 //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
+
+    // 添加webview手势 如果recyleVc失效 就启用这个的
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
+    panGesture.delegate = self;
+    [self addGestureRecognizer:panGesture];
+    
     return self;
+}
+
+// 一定要返回yes 让手势能往下传递
+- (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt

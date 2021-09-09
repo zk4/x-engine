@@ -80,9 +80,10 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
 
     // 添加webview手势 如果recyleVc失效 就启用这个的
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    panGesture.delegate = self;
-    [self addGestureRecognizer:panGesture];
+    UISwipeGestureRecognizer *swiperGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
+    swiperGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    swiperGesture.delegate = self;
+    [self addGestureRecognizer:swiperGesture];
     
     return self;
 }

@@ -92,7 +92,7 @@ NATIVE_MODULE(Native_direct_omp)
     
    
     NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#");
-    fragment = fragment ? [NSString stringWithFormat:@"#%@",fragment] : @"";
+    fragment = (fragment && fragment.length>0) ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
 
 

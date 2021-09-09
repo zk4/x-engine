@@ -96,7 +96,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 - (void)loadFileUrl {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
+        [self.webview _loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
  
         if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
@@ -109,7 +109,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
              NSString* folder = [NSString stringWithFormat:@"/%@/%@/",compnents[10],compnents[11]];
              NSString *accessPath = [paths[0] stringByAppendingPathComponent:folder];
              NSURL *accessURL = [NSURL fileURLWithPath:accessPath];
-             [self.webview loadFileURL:fileURL allowingReadAccessToURL:accessURL];
+             [self.webview _loadFileURL:fileURL allowingReadAccessToURL:accessURL];
         }
  
     }

@@ -401,7 +401,27 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void)setDebugMode:(bool)debug{
     isDebug=debug;
 }
+-(void) _loadRequest:(NSURLRequest*) req{
+    NSURL * url = req.URL;
+    if(!self.model){
+        self.model = [HistoryModel new];
+    }
+    self.model.host= url.host;
+    self.model.fragment=url.fragment;
+    self.model.pathname=url.path;
+    [self loadRequest:req];
 
+}
+
+- (void) _loadFileURL:(NSURL*)fileURL allowingReadAccessToURL:(NSURL*) accessURL{
+    if(!self.model){
+        self.model = [HistoryModel new];
+    }
+    self.model.host= fileURL.host;
+    self.model.fragment=fileURL.fragment;
+    self.model.pathname=fileURL.path;
+    [self loadFileURL:fileURL allowingReadAccessToURL:accessURL];
+}
 - (void)loadUrl: (NSString *)url
 {
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];

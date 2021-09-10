@@ -10,7 +10,7 @@
 #import "XTool.h"
 
 @interface JSI_webcache()
-@property (nonatomic, strong) NSMutableDictionary* cache;
+@property (atomic, strong) NSMutableDictionary* cache;
 
 @end
 
@@ -62,8 +62,11 @@ JSI_MODULE(JSI_webcache)
         if(dict && ![self isNull:dict key:@"data"] && dict[@"data"])
             cacheKey = [NSString stringWithFormat:@"%@%@%@",method, url ,dict[@"data"]];
         cacheKey =url;
-    }else{
-   //     cacheKey = [NSString stringWithFormat:@"%@%@",method ,url];
+    }else if([method isEqualToString:@"POST"]){
+        if(   [url containsString:@"goods/c/app/product/productDetail"]
+           || [url containsString:@"/router-service/"]
+           || [url containsString:@"/serviceProduct/detail"])
+            cacheKey = [NSString stringWithFormat:@"%@%@%@",method ,url,dict[@"data"]];
     }
 
     
@@ -97,8 +100,14 @@ JSI_MODULE(JSI_webcache)
     }
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
+    
+    NSURLSessionConfiguration* config
+     = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.HTTPMaximumConnectionsPerHost=10;
+
+    
     //WARNING: 想换成其他网络请求库时请请注意json 序列化的问题。不要转多遍。jsonStr 里的 '浮点类型'，在转为原生类型时，会丢失精度。再转为 jsonStr 时就不是你要的值了。如 str: '{a:.3}' -> objc: @{@"a":.299999999999}  ->  str '{"a":.29999999999}'
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:nil];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
 
     __weak typeof(self) weakSelf = self;
         NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {

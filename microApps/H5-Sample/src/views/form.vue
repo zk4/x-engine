@@ -19,6 +19,7 @@
       <van-button round block type="info" native-type="submit">提交</van-button>
     </div>
   </van-form>
+  
 </template>
 
 <script>

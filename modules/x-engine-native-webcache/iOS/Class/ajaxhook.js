@@ -12,8 +12,8 @@
     }
     document.body.addEventListener("click", function (event) {
         const target = event.target
-        if (target.type == "submit") {
-            if(window.location.href !== target.formAction) {
+        if (target.type == "submit") { // /home  host+ '/home'
+            if(window.location.href !== target.form.action ) {
                 event.preventDefault();
                 let form = getOuterForm(target);
                 let formData = new FormData(form);

@@ -3,6 +3,7 @@
     // 拦截 webview 直接提交的 form.
     function getOuterForm (node) {
         let parentNode = node.parentNode;
+        
         if (parentNode.nodeName == "FORM") {
             return parentNode;
         } else {
@@ -10,20 +11,22 @@
         }
     }
     document.body.addEventListener("click", function (event) {
-        if (event.target.type == "submit") {
-            event.preventDefault();
-            let form = getOuterForm(event.target);
-            let formData = new FormData(form);
-            let xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function () {
-                if (xmlHttp.readyState == 4) {
-                    console.warn("注意,在 x-engine 里, 原生 form 提交已全局拦截, 将不再支持页面跳转! 若有兼容问题, 请修改业务代码.")
-                    //                  console.log(xmlHttp.responseText);
+        const target = event.target
+        if (target.type == "submit") {
+            if(window.location.href !== target.formAction) {
+                event.preventDefault();
+                let form = getOuterForm(target);
+                let formData = new FormData(form);
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4) {
+                        console.warn("注意,在 x-engine 里, 原生 form 提交已全局拦截, 将不再支持页面跳转! 若有兼容问题, 请修改业务代码.")
+                        //                  console.log(xmlHttp.responseText);
+                    }
                 }
+                xmlHttp.open(form.method, form.action);
+                xmlHttp.send(formData);
             }
-            xmlHttp.open(form.method, form.action);
-            xmlHttp.send(formData);
-
         }
     });
 
@@ -40,7 +43,7 @@
         lookup[chars.charCodeAt(i)] = i;
     }
 
-    encode = function (arraybuffer) {
+    let encode = function (arraybuffer) {
         var bytes = new Uint8Array(arraybuffer),
             i, len = bytes.length, base64 = "";
 
@@ -87,15 +90,7 @@
         }
         return bytes;
     }
-    // 需要 es5 支持
-    //    toBase64(file) {
-    //      return new Promise((resolve, reject) => {
-    //        const reader = new FileReader();
-    //        reader.readAsDataURL(file);
-    //        reader.onload = () => resolve(reader.result);
-    //        reader.onerror = (error) => reject(error);
-    //      });
-    //    },
+    
     function textToArrayBuffer (s) {
         var i = s.length;
         var n = 0;
@@ -153,25 +148,13 @@
         for (let i = 0; i < parts.length; i++) {
             const item = parts[i];
             if (item instanceof ArrayBuffer) {
-                result[i] = item
+                result[i] = encode(item)
             } else {
-                result[i] = textToArrayBuffer(item)
+                result[i] = encode(textToArrayBuffer(item))
             }
         }
-        const newParts = []
-        for (i = 0; i < result.length; i++) {
-            const item = result[i];
-            newParts[i] = encode(item)
-        }
-        // const test = []
-        // for (i = 0; i < newParts.length; i++) {
-        //  const item = newParts[i];
-        //  console.log('item: ', item);
-        //  test[i] = decode(item)
-        // }
-        // console.log('test: ', test);
-        params.data = newParts
-        //        console.log('object ------ params: ', params);
+       
+        params.data = result
     }
 
     function nativeRequest (xhr, params) {
@@ -215,8 +198,7 @@
             }
 
         });
-//        return true;
-
+        return true;
     }
 
 
@@ -349,7 +331,6 @@
                     'Content-Type': `multipart/form-data;boundary=${boundary}`
                 }
             }
-            //        console.log('params: ', params);
             // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
             return nativeRequest(that, params);
         },

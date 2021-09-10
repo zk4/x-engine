@@ -1,5 +1,11 @@
 <template>
   <div class="testone-class">
+     <van-button
+      color="linear-gradient(to right, #4bb0ff, #6149f6)"
+      size="large"
+      round
+      @click="handleForm"
+    >form表单</van-button>
     <van-button
       color="linear-gradient(to right, #4bb0ff, #6149f6)"
       size="large"
@@ -51,6 +57,9 @@ export default {
     console.log(this.$statusHeight)
   },
   methods: {
+    handleForm() {
+      this.$router.push({path: '/form'})
+    },
     handlerLocalStorage() {
       this.$router.push({
         path: "/localstorage",

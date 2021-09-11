@@ -14,181 +14,266 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - AlipaySDK-iOS (15.7.9)
-  - BMKLocationKit (2.0.0)
-  - GCDWebServer (3.5.4):
-    - GCDWebServer/Core (= 3.5.4)
-  - GCDWebServer/Core (3.5.4)
   - JSONModel (1.8.0)
-  - Masonry (1.3.0)
-  - MBProgressHUD (1.2.0)
-  - MJExtension (3.2.2)
-  - MJRefresh (3.5.0)
-  - SDWebImage (5.10.0):
-    - SDWebImage/Core (= 5.10.0)
-  - SDWebImage/Core (5.10.0)
-  - SSZipArchive (2.2.3)
-  - UniBoost (3.0.7)
-  - WechatOpenSDK (1.8.7.1)
-  - x-engine-module-camera (0.0.1):
-    - GCDWebServer (~> 3.0)
+  - Masonry (1.1.0)
+  - MJExtension (3.3.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SSZipArchive (2.4.2)
+  - Toast (4.0.0)
+  - x-engine-jsi-dev (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-device (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-direct (2.8.1):
     - JSONModel
-    - x-engine-module-engine
-    - x-engine-module-tools
-  - x-engine-module-dcloud (0.0.1):
-    - x-engine-module-engine
-    - x-engine-module-tools
-  - x-engine-module-device (0.0.1):
-    - x-engine-module-engine
-    - x-engine-module-tools
-  - x-engine-module-engine (0.1.11):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-localstorage (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-scan (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-secret (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-store (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-ui (2.8.1):
     - JSONModel
-    - Masonry
-    - MBProgressHUD
-    - MJRefresh
-    - SSZipArchive
-  - x-engine-module-localstorage (1.0.5):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-vuex (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-jsi-webcache (2.8.1):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-broadcast (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-core (1.0.0):
+    - x-engine-native-protocols
+  - x-engine-native-device (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct (1.0.0):
     - JSONModel
-    - x-engine-module-engine
-  - x-engine-module-lope (0.1.11):
-    - x-engine-module-engine
-  - x-engine-module-nav (1.1.1):
-    - x-engine-module-engine
-    - x-engine-module-protocols
-  - x-engine-module-network (0.0.4):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_http (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_https (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_microapp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi
+    - x-engine-native-protocols
+  - x-engine-native-direct_native (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-direct_omp (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-jsi (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-jsi/no-arc (= 1.0.0)
+    - x-engine-native-protocols
+  - x-engine-native-jsi/no-arc (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-offline (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-protocols (1.0.0):
+    - JSONModel
+  - x-engine-native-rest (1.0.0):
     - AFNetworking (~> 4.0.0)
-    - x-engine-module-engine
-    - x-engine-module-protocols
-  - x-engine-module-protocols (0.0.9):
-    - BMKLocationKit
-  - x-engine-module-router (0.1.11):
-    - WechatOpenSDK
-    - x-engine-module-engine
-  - x-engine-module-scan (0.1.11):
-    - x-engine-module-engine
-  - x-engine-module-share (0.1.11):
-    - x-engine-module-engine
-  - x-engine-module-tools (1.0.0):
-    - SSZipArchive
-    - WechatOpenSDK
-    - x-engine-module-engine
-    - x-engine-module-protocols
-  - x-engine-module-ui (1.1.1):
-    - x-engine-module-engine
-    - x-engine-module-tools
-  - x-engine-module-yjzdbill (0.1.11):
-    - AFNetworking
-    - AlipaySDK-iOS
-    - MJExtension
-    - WechatOpenSDK
-    - x-engine-module-engine
-  - ZBarSDK (1.5.2)
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-scan (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+    - ZBarSDK
+  - x-engine-native-store (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-tabbar (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-toast (1.0.0):
+    - Toast (~> 4.0.0)
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-ui (1.0.0):
+    - JSONModel
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - x-engine-native-webcache (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
+  - ZBarSDK (1.3.1)
 
 DEPENDENCIES:
-  - Masonry (from `../../app/ios-thirdlib/Masonry`)
+  - JSONModel
+  - Masonry
+  - MJExtension
   - SDWebImage
-  - UniBoost (from `../../../UniBoost`)
-  - WechatOpenSDK (= 1.8.7.1)
-  - x-engine-module-camera (from `../../modules/x-engine-module-camera`)
-  - x-engine-module-dcloud (from `../../modules/x-engine-module-dcloud`)
-  - x-engine-module-device (from `../../modules/x-engine-module-device`)
-  - x-engine-module-engine (from `../../modules/x-engine-module-engine`)
-  - x-engine-module-localstorage (from `../../modules/x-engine-module-localstorage`)
-  - x-engine-module-lope (from `../../modules/x-engine-module-lope`)
-  - x-engine-module-nav (from `../../modules/x-engine-module-nav`)
-  - x-engine-module-network (from `../../modules/x-engine-module-network`)
-  - x-engine-module-protocols (from `../../modules/x-engine-module-protocols/`)
-  - x-engine-module-router (from `../../modules/x-engine-module-router/`)
-  - x-engine-module-scan (from `../../modules/x-engine-module-scan`)
-  - x-engine-module-share (from `../../modules/x-engine-module-share`)
-  - x-engine-module-tools (from `../../modules/x-engine-module-tools/`)
-  - x-engine-module-ui (from `../../modules/x-engine-module-ui`)
-  - x-engine-module-yjzdbill (from `../../modules/x-engine-module-yjzdbill`)
-  - ZBarSDK (from `../../app/ios-thirdlib/ZBarSDK`)
+  - SSZipArchive
+  - x-engine-jsi-dev (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-dev`)
+  - x-engine-jsi-device (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-device`)
+  - x-engine-jsi-direct (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-direct`)
+  - x-engine-jsi-localstorage (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-localstorage`)
+  - x-engine-jsi-scan (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-scan`)
+  - x-engine-jsi-secret (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-secret`)
+  - x-engine-jsi-store (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-store`)
+  - x-engine-jsi-ui (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-ui`)
+  - x-engine-jsi-vuex (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-vuex`)
+  - x-engine-jsi-webcache (from `/Users/zk/git/working/x-engine/modules/x-engine-jsi-webcache`)
+  - x-engine-native-broadcast (from `/Users/zk/git/working/x-engine/modules/x-engine-native-broadcast`)
+  - x-engine-native-core (from `/Users/zk/git/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-device (from `/Users/zk/git/working/x-engine/modules/x-engine-native-device`)
+  - x-engine-native-direct (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-direct_http (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct_http`)
+  - x-engine-native-direct_https (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct_https`)
+  - x-engine-native-direct_microapp (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct_microapp`)
+  - x-engine-native-direct_native (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct_native`)
+  - x-engine-native-direct_omp (from `/Users/zk/git/working/x-engine/modules/x-engine-native-direct_omp`)
+  - x-engine-native-jsi (from `/Users/zk/git/working/x-engine/modules/x-engine-native-jsi`)
+  - x-engine-native-offline (from `/Users/zk/git/working/x-engine/modules/x-engine-native-offline`)
+  - x-engine-native-protocols (from `/Users/zk/git/working/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-rest (from `/Users/zk/git/working/x-engine/modules/x-engine-native-rest`)
+  - x-engine-native-scan (from `/Users/zk/git/working/x-engine/modules/x-engine-native-scan`)
+  - x-engine-native-store (from `/Users/zk/git/working/x-engine/modules/x-engine-native-store`)
+  - x-engine-native-tabbar (from `/Users/zk/git/working/x-engine/modules/x-engine-native-tabbar`)
+  - x-engine-native-toast (from `/Users/zk/git/working/x-engine/modules/x-engine-native-toast`)
+  - x-engine-native-ui (from `/Users/zk/git/working/x-engine/modules/x-engine-native-ui`)
+  - x-engine-native-webcache (from `/Users/zk/git/working/x-engine/modules/x-engine-native-webcache`)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
-    - AlipaySDK-iOS
-    - BMKLocationKit
-    - GCDWebServer
     - JSONModel
-    - MBProgressHUD
+    - Masonry
     - MJExtension
-    - MJRefresh
     - SDWebImage
     - SSZipArchive
-    - WechatOpenSDK
+    - Toast
+    - ZBarSDK
 
 EXTERNAL SOURCES:
-  Masonry:
-    :path: "../../app/ios-thirdlib/Masonry"
-  UniBoost:
-    :path: "../../../UniBoost"
-  x-engine-module-camera:
-    :path: "../../modules/x-engine-module-camera"
-  x-engine-module-dcloud:
-    :path: "../../modules/x-engine-module-dcloud"
-  x-engine-module-device:
-    :path: "../../modules/x-engine-module-device"
-  x-engine-module-engine:
-    :path: "../../modules/x-engine-module-engine"
-  x-engine-module-localstorage:
-    :path: "../../modules/x-engine-module-localstorage"
-  x-engine-module-lope:
-    :path: "../../modules/x-engine-module-lope"
-  x-engine-module-nav:
-    :path: "../../modules/x-engine-module-nav"
-  x-engine-module-network:
-    :path: "../../modules/x-engine-module-network"
-  x-engine-module-protocols:
-    :path: "../../modules/x-engine-module-protocols/"
-  x-engine-module-router:
-    :path: "../../modules/x-engine-module-router/"
-  x-engine-module-scan:
-    :path: "../../modules/x-engine-module-scan"
-  x-engine-module-share:
-    :path: "../../modules/x-engine-module-share"
-  x-engine-module-tools:
-    :path: "../../modules/x-engine-module-tools/"
-  x-engine-module-ui:
-    :path: "../../modules/x-engine-module-ui"
-  x-engine-module-yjzdbill:
-    :path: "../../modules/x-engine-module-yjzdbill"
-  ZBarSDK:
-    :path: "../../app/ios-thirdlib/ZBarSDK"
+  x-engine-jsi-dev:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-dev"
+  x-engine-jsi-device:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-device"
+  x-engine-jsi-direct:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-direct"
+  x-engine-jsi-localstorage:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-localstorage"
+  x-engine-jsi-scan:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-scan"
+  x-engine-jsi-secret:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-secret"
+  x-engine-jsi-store:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-store"
+  x-engine-jsi-ui:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-ui"
+  x-engine-jsi-vuex:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-vuex"
+  x-engine-jsi-webcache:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-jsi-webcache"
+  x-engine-native-broadcast:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-broadcast"
+  x-engine-native-core:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-core"
+  x-engine-native-device:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-device"
+  x-engine-native-direct:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct"
+  x-engine-native-direct_http:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct_http"
+  x-engine-native-direct_https:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct_https"
+  x-engine-native-direct_microapp:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct_microapp"
+  x-engine-native-direct_native:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct_native"
+  x-engine-native-direct_omp:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-direct_omp"
+  x-engine-native-jsi:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-jsi"
+  x-engine-native-offline:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-offline"
+  x-engine-native-protocols:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-protocols"
+  x-engine-native-rest:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-rest"
+  x-engine-native-scan:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-scan"
+  x-engine-native-store:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-store"
+  x-engine-native-tabbar:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-tabbar"
+  x-engine-native-toast:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-toast"
+  x-engine-native-ui:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-ui"
+  x-engine-native-webcache:
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-webcache"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  AlipaySDK-iOS: 94ff4c0e17c5e7d126b8207596d5033006534c25
-  BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
-  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
-  Masonry: 6bf7660606c75ec234846166756901ddb5a22128
-  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
-  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
-  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  UniBoost: dc3cbe86a18285e477aa69a472d611d1bb18dfb6
-  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
-  x-engine-module-camera: 310cfca6469908f0d5b9f2e8b64b3d24875bd30e
-  x-engine-module-dcloud: 6f3a5b5e5ca2a53c9acfa5e558b46ede4b7f52cf
-  x-engine-module-device: 5aaea67cf2dc9e6c8e64d4d1a3a0df1696bd9106
-  x-engine-module-engine: d0cadace94a7b202df1ea4a099e973e7f96d26d6
-  x-engine-module-localstorage: 185961699495e0c7de351fa06a086eea10aae9ef
-  x-engine-module-lope: d558d1670c678aedbbe7a1a87bfd0138bc7ad0cc
-  x-engine-module-nav: f300800fa0146fb83b52cc01f2c5549504117988
-  x-engine-module-network: c91ab154d7760385096a6299b9d8bbe030091128
-  x-engine-module-protocols: 072e592f218be2db0310cb3f853cd862588831e6
-  x-engine-module-router: 6f5d93cac403027755b68013e7aecc190f68d5b0
-  x-engine-module-scan: 16a987d0f9a9fd3a1734d4346d8aaa912075fb69
-  x-engine-module-share: 3bd9bba195de6a524a67a440eb0dca33e846467e
-  x-engine-module-tools: 6d31f6c3070beaa41ef864d61fc9f367d13514ce
-  x-engine-module-ui: 62dacd7d9a25a868e874db76dd049c9e0a926b5e
-  x-engine-module-yjzdbill: c62a67bb0ae79470524e91ee686e5f2777535847
-  ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SSZipArchive: e7b4f3d9e780c2acc1764cd88fbf2de28f26e5b2
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  x-engine-jsi-dev: a994ec59e759722c88c7d9f62a0417c5432c45f2
+  x-engine-jsi-device: a87c73fef19882d46d4d141d151d6e943f012f3f
+  x-engine-jsi-direct: 036a2afda244738f0a11862acf175adb1b4a7cbe
+  x-engine-jsi-localstorage: 6c03c55a8a0e88d08aa9b04432c10b81e0314f3a
+  x-engine-jsi-scan: df1eda3a48bf1ad9dae23a2a46d183c573395f5b
+  x-engine-jsi-secret: 55ccc5030e4b6cd2fe4e5f8741f0f74213ffac15
+  x-engine-jsi-store: 002251070632235813a689713e4198c2aadb8ba8
+  x-engine-jsi-ui: 92fa55529016c302008ad6f0cc27b1a07a7e95f5
+  x-engine-jsi-vuex: 6fef234b0d5cedf9be023ae9130a550eab78ea98
+  x-engine-jsi-webcache: a7f20d21ef8af71c80ebfcbc37a387d8c7209f32
+  x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
+  x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
+  x-engine-native-device: 05280cc3d26c9e4f917ac4a5e5b38aa23122e978
+  x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
+  x-engine-native-direct_http: 0a8c48c42b87664030ec554515c2edf6e879aab0
+  x-engine-native-direct_https: 2bcc4661bb2d6247baebfd950f169c00a0573665
+  x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
+  x-engine-native-direct_native: c5ab0cfe8e1c54f2a04bef687df0d21ddc20611f
+  x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
+  x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
+  x-engine-native-offline: 253549e247682420e2688784980649b2e2ebf3f4
+  x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-rest: 600cf890c6779cfbdb24efea44e5f1b42e9fe45c
+  x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
+  x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
+  x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
+  x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
+  x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
+  x-engine-native-webcache: 06ea0dfdcfd2a88577643b4844ba5129d5190323
+  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: 5d4f0548520abe2fd08dbf4c6b125d5aa0ca700d
+PODFILE CHECKSUM: 266d37be39ebfd3eb207050ab2a36ec926cff551
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.2

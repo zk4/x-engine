@@ -1,19 +1,63 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
- 
-#source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
 
-#load './ModulePods.rb'
-target 'motherboard' do
-  pod 'x-engine-jsi-engine', :path =>'../../modules/x-engine-jsi-engine'
-  pod 'x-engine-jsi-protocols', :path =>'../../modules/x-engine-jsi-protocols/'
-  pod 'ZBarSDK', :path =>'../../app/ios-thirdlib/ZBarSDK'
-  pod 'x-engine-jsi-camera', :path =>'../../modules/x-engine-jsi-camera'
-  pod 'x-engine-jsi-device', :path =>'../../modules/x-engine-jsi-device'
-  pod 'x-engine-jsi-scan', :path =>'../../modules/x-engine-jsi-scan'
+X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
+def shared_pods
+  pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
+  pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
+  # native
+
+  pod 'x-engine-native-jsi', :path =>X_ENGINE_MODULES+'/x-engine-native-jsi'
+  pod 'x-engine-native-ui', :path =>X_ENGINE_MODULES+'/x-engine-native-ui'
+  pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
+  pod 'x-engine-native-direct_http', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_http'
+  pod 'x-engine-native-direct_https', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_https'
+  pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
+  pod 'x-engine-native-direct_microapp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_microapp'
+  pod 'x-engine-native-direct_native', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_native'
+  pod 'x-engine-native-broadcast', :path =>X_ENGINE_MODULES+'/x-engine-native-broadcast'
+  pod 'x-engine-native-device', :path =>X_ENGINE_MODULES+'/x-engine-native-device'
+  pod 'x-engine-native-scan', :path =>X_ENGINE_MODULES+'/x-engine-native-scan'
+  pod 'x-engine-native-store', :path =>X_ENGINE_MODULES+'/x-engine-native-store'
+  pod 'x-engine-native-rest', :path =>X_ENGINE_MODULES+'/x-engine-native-rest'
+  pod 'x-engine-native-tabbar', :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
+  pod 'x-engine-native-offline', :path =>X_ENGINE_MODULES+'/x-engine-native-offline'
+  pod 'x-engine-native-toast', :path =>X_ENGINE_MODULES+'/x-engine-native-toast'
 
   
-  target 'motherboardUITests' do
-  end
+  # webcache
+  pod 'x-engine-jsi-webcache',           :path =>X_ENGINE_MODULES+'/x-engine-jsi-webcache'
+  pod 'x-engine-native-webcache', :path =>X_ENGINE_MODULES+'/x-engine-native-webcache'
 
+  
+  # jsi
+  pod 'x-engine-jsi-dev', :path =>X_ENGINE_MODULES+'/x-engine-jsi-dev'
+  pod 'x-engine-jsi-ui', :path =>X_ENGINE_MODULES+'/x-engine-jsi-ui'
+  pod 'x-engine-jsi-dev', :path =>X_ENGINE_MODULES+'/x-engine-jsi-dev'
+  pod 'x-engine-jsi-direct', :path =>X_ENGINE_MODULES+'/x-engine-jsi-direct'
+  pod 'x-engine-jsi-device', :path =>X_ENGINE_MODULES+'/x-engine-jsi-device'
+  pod 'x-engine-jsi-scan', :path =>X_ENGINE_MODULES+'/x-engine-jsi-scan'
+  pod 'x-engine-jsi-secret', :path =>X_ENGINE_MODULES+'/x-engine-jsi-secret'
+  pod 'x-engine-jsi-store', :path =>X_ENGINE_MODULES+'/x-engine-jsi-store'
+  pod 'x-engine-jsi-localstorage', :path =>X_ENGINE_MODULES+'/x-engine-jsi-localstorage'
+  pod 'x-engine-jsi-vuex', :path =>X_ENGINE_MODULES+'/x-engine-jsi-vuex'
+#  pod 'x-engine-jsi-camera', :path =>X_ENGINE_MODULES+'/x-engine-jsi-camera'
+  # pod 'x-engine-jsi-media', :path =>X_ENGINE_MODULES+'/x-engine-jsi-media'
+ 
+
+  
+  
+  # legacy jsi
+#  pod 'x-engine-jsi-legacy', :path =>X_ENGINE_MODULES+'/x-engine-jsi-legacy'
+	
+  pod 'JSONModel'
+  pod 'MJExtension'
+  pod 'SSZipArchive'
+  pod 'SDWebImage'
+  pod 'Masonry'
 end
+
+target 'motherboard' do
+  shared_pods
+end
+

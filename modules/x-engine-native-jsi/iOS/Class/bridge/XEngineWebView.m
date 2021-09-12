@@ -11,6 +11,7 @@
 #import "XENativeContext.h"
 #import "JSIModule.h"
 #import "iToast.h"
+#import "XTool.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
 
@@ -302,7 +303,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
         return   action(obj, selector);
     }else if ([obj isKindOfClass:NSDictionary.class]){
-        return [self dictionaryToJson:obj ];
+        return [XToolDataConverter dictionaryToJson:obj ];
     }else{
         return [NSString stringWithFormat:@"%@",obj];
     }

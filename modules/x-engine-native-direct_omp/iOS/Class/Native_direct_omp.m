@@ -16,6 +16,7 @@
 #import "iStore.h"
 #import <x-engine-native-direct/UINavigationController+Completion.h>
 #import "UIViewController+Tag.h"
+#import "XTool.h"
 
 
 @interface Native_direct_omp()
@@ -60,17 +61,10 @@ NATIVE_MODULE(Native_direct_omp)
 - (void)judgeParamsWithDict:(NSDictionary<NSString*,id>*)params {
     if (params[@"nativeParams"]) {
         id<iStore>store = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iStore)];
-        [store set:@"__native__params__" val:[self dictionaryToJson:params[@"nativeParams"]]];
+        [store set:@"__native__params__" val:[XToolDataConverter dictionaryToJson:params[@"nativeParams"]]];
     }
 }
-
-//字典转json格式字符串:
-- (NSString*)dictionaryToJson:(NSDictionary *)dic {
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
-
+ 
 - (nonnull NSString *)scheme {
     return @"omp";
 }

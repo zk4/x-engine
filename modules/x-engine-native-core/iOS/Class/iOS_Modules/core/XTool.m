@@ -134,12 +134,12 @@
     if(questionMark != -1 && hashtagMark != -1){
         NSString* sub1= [raw substringToIndex:hashtagMark];
         NSString* sub2= [raw substringWithRange:NSMakeRange(hashtagMark, questionMark-hashtagMark)];
-        NSString* sub3=[ [raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSString* sub3=[[raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
     }
     return raw;
 }
-
+ 
 @end
 
 

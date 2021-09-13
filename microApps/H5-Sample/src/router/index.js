@@ -13,7 +13,6 @@ const routes = [
       textIsCenter: true,
       isWhiteColor: true,
     },
-<<<<<<< HEAD
     component: () => import('../views/Home.vue'),
 },
 {
@@ -28,13 +27,6 @@ const routes = [
 {
     path: '/modulesIntroduce',
     name: 'modulesIntroduce',
-=======
-    component: () => import("../views/Home.vue"),
-  },
-  {
-    path: "/modulesIntroduce",
-    name: "modulesIntroduce",
->>>>>>> develop
     meta: {
       title: "模块介绍",
       customBgcImg: require("@/static/image/navBJ.png"),

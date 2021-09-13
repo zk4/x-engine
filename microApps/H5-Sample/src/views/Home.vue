@@ -63,15 +63,13 @@ export default {
     console.log(this.$statusHeight)
   },
   methods: {
-<<<<<<< HEAD
     handleForm() {
       this.$router.push({path: '/form'})
-=======
+    },
     handlerMedia() {
       this.$router.push({
         path: "/media",
       })
->>>>>>> develop
     },
     handlerLocalStorage() {
       this.$router.push({

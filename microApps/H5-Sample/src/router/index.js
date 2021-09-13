@@ -13,11 +13,20 @@ const routes = [
       textIsCenter: true,
       isWhiteColor: true,
     },
-    component: () => import("../views/Home.vue"),
-  },
-  {
-    path: "/modulesIntroduce",
-    name: "modulesIntroduce",
+    component: () => import('../views/Home.vue'),
+},
+{
+    path: '/form',
+    name: 'form',
+    meta: {
+        title: "模块介绍",
+        customBgcImg: require('@/static/image/navBJ.png')
+    },
+    component: () => import('../views/form.vue')
+},
+{
+    path: '/modulesIntroduce',
+    name: 'modulesIntroduce',
     meta: {
       title: "模块介绍",
       customBgcImg: require("@/static/image/navBJ.png"),

@@ -22,7 +22,7 @@
 @interface Native_updator() <NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
     @property (nonatomic, strong) NSMutableDictionary<NSString*,MicroappInfoDTO*> * microappInfos;
 @property (nonatomic, strong) id<iToast> toast;
-
+@property (nonatomic, strong) AFHTTPSessionManager* manager;
 @end
 
 @implementation Native_updator
@@ -38,12 +38,18 @@ NATIVE_MODULE(Native_updator)
 
 
 - (void)afterAllNativeModuleInited {
-    
     _toast = XENP(iToast);
+    
+    self.manager = [AFHTTPSessionManager manager];
+    [self.manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
+    [self.manager setResponseSerializer:[AFJSONResponseSerializer serializer]];
+     self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"multipart/form-data", nil];
+
 }
 - (NSDictionary *)microappInfos {
     if (!_microappInfos) {
         _microappInfos = [NSMutableDictionary new];
+      
         [self updateMicroappsInfos];
     }
     return _microappInfos;
@@ -154,12 +160,8 @@ NATIVE_MODULE(Native_updator)
 }
 
 - (void)updateMicroappsFromUrl:(NSString *)url {
-    AFHTTPSessionManager * manger = [AFHTTPSessionManager manager];
-    [manger setRequestSerializer:[AFJSONRequestSerializer serializer]];
-    [manger setResponseSerializer:[AFJSONResponseSerializer serializer]];
-    manger.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"multipart/form-data", nil];
 
-    [manger POST:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self.manager POST:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if(responseObject && responseObject[@"data"]){
                 for(id entry in responseObject[@"data"][@"list"]){
                     NSLog(@"%@",entry);

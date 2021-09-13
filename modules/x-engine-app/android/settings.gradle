@@ -16,8 +16,8 @@ project(':native-ui').projectDir = new File('../../x-engine-native-ui/android/na
 include ':native-device'
 project(':native-device').projectDir = new File('../../x-engine-native-device/android/native-device')
 
-include ':native-camera'
-project(':native-camera').projectDir = new File('../../x-engine-native-camera/android/native-camera')
+//include ':native-camera'
+//project(':native-camera').projectDir = new File('../../x-engine-native-camera/android/native-camera')
 
 include ':native-scan'
 project(':native-scan').projectDir = new File('../../x-engine-native-scan/android/native-scan')
@@ -55,11 +55,17 @@ project(':native-viewer_original').projectDir = new File('../../x-engine-native-
 include ':native-geo'
 project(':native-geo').projectDir = new File('../../x-engine-native-geo/android/native-geo')
 
+include ':native-media'
+project(':native-media').projectDir = new File('../../x-engine-native-media/android/native-media')
+
 include ':native-geo_gaode'
 project(':native-geo_gaode').projectDir = new File('../../x-engine-native-geo_gaode/android/native-geo_gaode')
 
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
+
+include ':native-gmupload'
+project(':native-gmupload').projectDir = new File('../../../../x-engine/modules/x-engine-native-gmupload/android/native-gmupload')
 
 include ':jsi-direct'
 project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')
@@ -70,8 +76,8 @@ project(':jsi-device').projectDir = new File('../../x-engine-jsi-device/android/
 include ':jsi-legacy'
 project(':jsi-legacy').projectDir = new File('../../x-engine-jsi-legacy/android/jsi-legacy')
 
-include ':jsi-camera'
-project(':jsi-camera').projectDir = new File('../../x-engine-jsi-camera/android/jsi-camera')
+//include ':jsi-camera'
+//project(':jsi-camera').projectDir = new File('../../x-engine-jsi-camera/android/jsi-camera')
 
 include ':jsi-scan'
 project(':jsi-scan').projectDir = new File('../../x-engine-jsi-scan/android/jsi-scan')
@@ -105,3 +111,6 @@ project(':jsi-globalstorage').projectDir = new File('../../x-engine-jsi-globalst
 
 include ':jsi-geo'
 project(':jsi-geo').projectDir = new File('../../x-engine-jsi-geo/android/jsi-geo')
+
+include ':jsi-media'
+project(':jsi-media').projectDir = new File('../../x-engine-jsi-media/android/jsi-media')

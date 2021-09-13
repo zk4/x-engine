@@ -15,7 +15,7 @@
   	@property(nonatomic,copy) NSString* phoneNum;
    	@property(nonatomic,copy) NSString* phoneMsg;
 @end
-    
+
 
 @interface DeviceDTO: JSONModel
   	@property(nonatomic,copy) NSString* type;
@@ -23,33 +23,33 @@
    	@property(nonatomic,copy) NSString* language;
    	@property(nonatomic,copy) NSString* UUID;
 @end
-    
+
 
 
 @protocol xengine_jsi_device_protocol
-       @required 
-       - (NSString*) _getStatusBarHeight;
-    
-      @required 
-       - (NSString*) _getNavigationHeight;
-    
-      @required 
-       - (NSString*) _getScreenHeight;
-    
-      @required 
-       - (NSString*) _getTabbarHeight;
-    
-      @required 
-       - (NSString*) _callPhone:(phoneDto*)dto;
-    
-      @required 
-       - (NSString*) _sendMessage:(phoneDto*)dto;
-    
-      @required 
-        - (void) _getDeviceInfo:(void (^)(DeviceDTO* result,BOOL complete)) completionHandler;
-    
+   @required 
+    - (NSString*) _getStatusBarHeight;
+
+   @required 
+    - (NSString*) _getNavigationHeight;
+
+   @required 
+    - (NSString*) _getScreenHeight;
+
+   @required 
+    - (NSString*) _getTabbarHeight;
+
+   @required 
+    - (NSString*) _callPhone:(phoneDto*)dto;
+
+   @required 
+    - (NSString*) _sendMessage:(phoneDto*)dto;
+
+   @required 
+     - (void) _getDeviceInfo:(void (^)(DeviceDTO* result,BOOL complete)) completionHandler;
+
 @end
-  
+
 
 
 @interface xengine_jsi_device : JSIModule<xengine_jsi_device_protocol>

@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+<<<<<<< HEAD
 //    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.61:8080" params:@{@"hideNavbar":@TRUE}];
 //    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.88:9111" params:nil frame:@{@"hideNavbar":@TRUE}];
 //    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.88:9111" params:@{@"hideNavbar":@TRUE}];
@@ -25,9 +26,11 @@
     id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 //
 //        [director push:@"omp" host:@"localhost:3000" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
+=======
+    [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
+>>>>>>> develop
 
     [director push:@"http://10.2.128.54:8080" params:@{@"hideNavbar":@YES}];
 }
 @end
 
-//file:///var/mobile/Containers/Data/Application/14BE590E-8972-4A6E-9679-E3CF0440CDCF/Documents/com.gm.microapp.home.1/index.html

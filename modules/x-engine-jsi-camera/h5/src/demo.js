@@ -4,7 +4,8 @@ import xengine from "@zkty-team/x-engine-core";
 
 window.test_aok = () => {
 }
-window.test_openImagePicker2 = () => {
+ document.getElementById("test_aok").click()
+        window.test_openImagePicker2 = () => {
 
   xengine.api(
     "com.zkty.jsi.camera",
@@ -32,7 +33,8 @@ window.test_openImagePicker2 = () => {
     }
   );
 }
-window.test_openImagePicker = () => {
+ document.getElementById("test_openImagePicker2").click()
+        window.test_openImagePicker = () => {
 
   xengine.api(
     "com.zkty.jsi.camera",
@@ -61,7 +63,8 @@ window.test_openImagePicker = () => {
     }
   );
 }
-window.test_saveImageToPhotoAlbum = () => {
+ document.getElementById("test_openImagePicker").click()
+        window.test_saveImageToPhotoAlbum = () => {
 
   xengine.api(
     "com.zkty.jsi.camera",
@@ -76,5 +79,6 @@ window.test_saveImageToPhotoAlbum = () => {
     }
   );
 }
-
+ document.getElementById("test_saveImageToPhotoAlbum").click()
+        
     

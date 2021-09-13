@@ -10,7 +10,7 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "iStore.h"
-
+ 
 
 
 @interface JSI_globalstorage()
@@ -32,7 +32,7 @@ JSI_MODULE(JSI_globalstorage)
     return [_store get:[self genkey:dto]];
 }
 
-- (void)_set:(_0_com_zkty_jsi_globalstorage_DTO *)dto {
+- (void)_set:(_set_com_zkty_jsi_globalstorage_0_DTO *)dto {
     if(dto == nil){
         return;
     }

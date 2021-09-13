@@ -15,10 +15,10 @@ PODS:
     - x-engine-native-protocols
 
 DEPENDENCIES:
-  - x-engine-native-core (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-core`)
-  - x-engine-native-dev (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-dev`)
-  - x-engine-native-protocols (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols`)
-  - x-engine-native-ui (from `/Users/zk/git/company/working/x-engine/modules/x-engine-native-ui`)
+  - x-engine-native-core (from `/Users/zk/git/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-dev (from `/Users/zk/git/working/x-engine/modules/x-engine-native-dev`)
+  - x-engine-native-protocols (from `/Users/zk/git/working/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-ui (from `/Users/zk/git/working/x-engine/modules/x-engine-native-ui`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -27,13 +27,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-core"
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-core"
   x-engine-native-dev:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-dev"
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-dev"
   x-engine-native-protocols:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-protocols"
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-protocols"
   x-engine-native-ui:
-    :path: "/Users/zk/git/company/working/x-engine/modules/x-engine-native-ui"
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-ui"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -45,4 +45,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f51a6450f0ad2ef98a204c9567562b267eb91df2
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.2

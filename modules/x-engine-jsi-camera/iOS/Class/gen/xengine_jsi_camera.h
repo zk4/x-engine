@@ -23,14 +23,14 @@
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
    	@property(nonatomic,copy) NSString* cameraDevice;
    	@property(nonatomic,assign) BOOL isbase64;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
+   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* args;
    	@property(nonatomic,assign) NSInteger photoCount;
 @end
 
 
 @interface _openImagePicker20_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger code;
-   	@property(nonatomic,strong) NSArray<_openImagePicker21_DTO*><_openImagePicker21_DTO>* data;
+   	@property(nonatomic,strong) NSMutableArray<_openImagePicker21_DTO*><_openImagePicker21_DTO>* data;
 @end
 
 
@@ -46,7 +46,7 @@
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
    	@property(nonatomic,copy) NSString* cameraDevice;
    	@property(nonatomic,assign) BOOL isbase64;
-   	@property(nonatomic,strong) NSDictionary<NSString*,NSString*>* args;
+   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* args;
    	@property(nonatomic,assign) NSInteger photoCount;
 @end
 

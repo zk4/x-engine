@@ -65,7 +65,7 @@ function getTabbarHeight(): string {
 @sync
 function callPhone(arg: phoneDto): string {
   xengine.api("com.zkty.jsi.device", "callPhone", {
-    phoneNum: "18637369306",
+    phoneNum: "xxx",
     phoneMsg: "",
   });
 }
@@ -73,7 +73,7 @@ function callPhone(arg: phoneDto): string {
 @sync
 function sendMessage(arg: phoneDto): string {
   xengine.api("com.zkty.jsi.device", "sendMessage", {
-    phoneNum: "18637369306",
+    phoneNum: "xxx",
     phoneMsg: "你好",
   });
 }

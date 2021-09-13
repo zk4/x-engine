@@ -15,14 +15,14 @@
    	if ([propertyName isEqualToString:@"params"]) { return YES; }	return NO;
     }
 @end
-    
+
   
 @implementation DirectBackDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
 @end
-    
+
 
 
 
@@ -41,17 +41,29 @@
     - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"omp\",  \"fragment\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
-    
+
           DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+   
           [self _push:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
-      }
+  }
     - (void) back:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           DirectBackDTO* dto = [self convert:dict clazz:DirectBackDTO.class];
+          
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return;
+        }
+   
           [self _back:dto complete:^(BOOL complete) {
              completionHandler(nil ,complete);
           }];
-      }
+  }
   @end

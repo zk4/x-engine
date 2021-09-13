@@ -218,9 +218,9 @@
             data = [NSData dataWithContentsOfFile:filePath];
           
             //写入内存
-            if([self cacheRequestFileName:request.URL.absoluteString])
+            if(data)
                 [self.memoryCache setObject:data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
-            if([self cacheRequestOtherInfoFileName:request.URL.absoluteString])
+            if(otherInfo)
                 [self.memoryCache setObject:otherInfo forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
         }else {
             //磁盘里也没有cache

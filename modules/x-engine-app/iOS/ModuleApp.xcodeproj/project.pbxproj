@@ -22,6 +22,7 @@
 		581FB072262578AA00ED7DCC /* MergeDictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 581FB071262578AA00ED7DCC /* MergeDictTest.m */; };
 		58209E612624A54A00843DB5 /* Url2direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58209E602624A54A00843DB5 /* Url2direct.m */; };
 		5859B57426BA60D600BBF580 /* to-find.0 in Resources */ = {isa = PBXBuildFile; fileRef = 5859B57326BA60D600BBF580 /* to-find.0 */; };
+		588E74F426EF683C00474846 /* microapps in Resources */ = {isa = PBXBuildFile; fileRef = 588E74F326EF683C00474846 /* microapps */; };
 		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
 		58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BBF26138BEF0082ADC3 /* OneViewController.m */; };
 		58D20BCF26138BEF0082ADC3 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC126138BEF0082ADC3 /* ThreeViewController.m */; };
@@ -79,6 +80,7 @@
 		581FB071262578AA00ED7DCC /* MergeDictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeDictTest.m; sourceTree = "<group>"; };
 		58209E602624A54A00843DB5 /* Url2direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Url2direct.m; sourceTree = "<group>"; };
 		5859B57326BA60D600BBF580 /* to-find.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "to-find.0"; path = "../../../../microApps/to-find.0"; sourceTree = "<group>"; };
+		588E74F326EF683C00474846 /* microapps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = microapps; path = ../../../microApps/microapps; sourceTree = "<group>"; };
 		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
 		58D20BBF26138BEF0082ADC3 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		58D20BC026138BEF0082ADC3 /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
@@ -97,7 +99,6 @@
 		58F6FD542620D46B00A482EF /* RegexTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A4E9638026B9462F00C6A0DD /* microapp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = microapp; sourceTree = "<group>"; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,7 +140,7 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				A4E9638026B9462F00C6A0DD /* microapp */,
+				588E74F326EF683C00474846 /* microapps */,
 				00DFC6E224C84000006A53EE /* ModuleApp */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
 				00DFC6D324C83F95006A53EE /* iOSUITests */,
@@ -376,6 +377,7 @@
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
 				5859B57426BA60D600BBF580 /* to-find.0 in Resources */,
+				588E74F426EF683C00474846 /* microapps in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,7 +707,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZE56AMZE7;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -731,7 +733,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZE56AMZE7;
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/ModuleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

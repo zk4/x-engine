@@ -1,6 +1,10 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
 
+install! 'cocoapods', :deterministic_uuids => true, :integrate_targets => true
+install! 'cocoapods', :disable_input_output_paths => true
+
+
 X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
@@ -41,8 +45,6 @@ def shared_pods
   pod 'x-engine-jsi-store', :path =>X_ENGINE_MODULES+'/x-engine-jsi-store'
   pod 'x-engine-jsi-localstorage', :path =>X_ENGINE_MODULES+'/x-engine-jsi-localstorage'
   pod 'x-engine-jsi-vuex', :path =>X_ENGINE_MODULES+'/x-engine-jsi-vuex'
-#  pod 'x-engine-jsi-camera', :path =>X_ENGINE_MODULES+'/x-engine-jsi-camera'
-  # pod 'x-engine-jsi-media', :path =>X_ENGINE_MODULES+'/x-engine-jsi-media'
  
 
   

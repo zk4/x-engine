@@ -10,22 +10,21 @@
       }
     }
     document.body.addEventListener("click", function(event) {
-      if (event.target.type == "submit") {
-        event.preventDefault();
-        let form = getOuterForm(event.target);
-        let formData = new FormData(form);
-        let xmlHttp = new XMLHttpRequest();
-          xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState == 4)
-              {
-                  console.warn("注意,在 x-engine 里, 原生 form 提交已全局拦截, 将不再支持页面跳转! 若有兼容问题, 请修改业务代码.")
-//                  console.log(xmlHttp.responseText);
-              }
-          }
-          xmlHttp.open(form.method, form.action);
-          xmlHttp.send(formData);
- 
+			if (event.target.type == "submit") {
+				if (window.location.href !== target.form.action) {
+					event.preventDefault();
+					let form = getOuterForm(event.target);
+					let formData = new FormData(form);
+					let xmlHttp = new XMLHttpRequest();
+					xmlHttp.onreadystatechange = function () {
+						if (xmlHttp.readyState == 4) {
+							console.warn("注意,在 x-engine 里, 原生 form 提交已全局拦截, 将不再支持页面跳转! 若有兼容问题, 请修改业务代码.")
+							//                  console.log(xmlHttp.responseText);
+						}
+					}
+					xmlHttp.open(form.method, form.action);
+					xmlHttp.send(formData);
+				}
       }
     });
 

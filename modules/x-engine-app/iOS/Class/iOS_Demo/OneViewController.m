@@ -18,8 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
-
+    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.128.33:8080" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 }
 @end
 

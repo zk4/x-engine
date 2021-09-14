@@ -28,13 +28,13 @@ NATIVE_MODULE(Native_direct_native)
     self.routes = [NSMutableDictionary new];
 }  
 
-- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
     
     // TODO: find matching url nativeCreator
     NSString* url = [NSString stringWithFormat:@"%@//%@%@",protocol,host,pathname];
     NativeVCCreator nv = [self.routes objectForKey:url];
     NSAssert(nv, @"没注册这个路由");
-    UIViewController* vc = nv(protocol,   host,  pathname,   fragment,  query,  params);
+    UIViewController* vc = nv(protocol,   host,  pathname,   fragment,  query,  params,frame);
     return vc;
 }
 

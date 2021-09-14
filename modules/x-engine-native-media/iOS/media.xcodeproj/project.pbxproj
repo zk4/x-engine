@@ -117,7 +117,6 @@
 		580B918D2694CDB7006AD356 /* Info.sit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.sit.plist; sourceTree = "<group>"; };
 		580B91C02694D0DA006AD356 /* uat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		580B91CC2694D10D006AD356 /* Info.uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.uat.plist; sourceTree = "<group>"; };
-		581FAF352624CC1A00ED7DCC /* iMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iMedia.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-mediaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mediaTests.release.xcconfig"; path = "Target Support Files/Pods-mediaTests/Pods-mediaTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-media.release.xcconfig"; path = "Target Support Files/Pods-abstract-media/Pods-abstract-media.release.xcconfig"; sourceTree = "<group>"; };
@@ -343,7 +342,6 @@
 				A42DA50926D4CF6100DF0527 /* resource */,
 				A4A722AE26CF7C2600366595 /* GKPhotoBrowser */,
 				A4D7310826CD282E00DAFBF8 /* ZKTY_TZImagePickerController */,
-				581FAF352624CC1A00ED7DCC /* iMedia.h */,
 				38E983932615F6E8007F6BDF /* Native_media.h */,
 				38E983922615F6E8007F6BDF /* Native_media.m */,
 			);

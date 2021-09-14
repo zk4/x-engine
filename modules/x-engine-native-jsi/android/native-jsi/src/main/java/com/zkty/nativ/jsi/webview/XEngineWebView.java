@@ -358,9 +358,19 @@ public class XEngineWebView extends DWebView {
 //                    new Thread(() -> {
                     if (result != null && result.getExtra() != null) {
                         if (result.getExtra().toLowerCase().startsWith("http")) {
-                            ImageUtils.savePictureByUrl(mContext, result.getExtra());
+                            ImageUtils.savePictureByUrl(mContext, result.getExtra(), new ImageUtils.SaveCallBack() {
+                                @Override
+                                public void saveCallBack(int status, String msg) {
+                                    ToastUtils.showCenterToast(msg);
+                                }
+                            });
                         } else {
-                            ImageUtils.savePictureByBase64(mContext, result.getExtra());
+                            ImageUtils.savePictureByBase64(mContext, result.getExtra(),new ImageUtils.SaveCallBack() {
+                                @Override
+                                public void saveCallBack(int status, String msg) {
+                                    ToastUtils.showCenterToast(msg);
+                                }
+                            });
                         }
                     }
 //                    }).start();

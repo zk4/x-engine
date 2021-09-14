@@ -6,5 +6,5 @@ package com.zkty.nativ.media;
  * dexc :
  */
 public interface SaveCallBack {
-    void saveCallBack();
+    void saveCallBack(int status,String msg);
 }

@@ -21,7 +21,7 @@ NSString * const OnNativeHide = @"onNativeHide";
 NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 
-@interface RecyleWebViewController () < WKNavigationDelegate,UIScrollViewDelegate>
+@interface RecyleWebViewController () < WKNavigationDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
@@ -116,8 +116,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 }
 
 #pragma mark - <callback>
-
-
 - (void)close:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -126,6 +124,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

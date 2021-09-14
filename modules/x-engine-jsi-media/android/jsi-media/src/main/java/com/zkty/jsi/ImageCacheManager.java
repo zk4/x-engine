@@ -1,4 +1,4 @@
-package com.zkty.nativ.media.cameraImpl;
+package com.zkty.jsi;
 
 import android.util.LruCache;
 

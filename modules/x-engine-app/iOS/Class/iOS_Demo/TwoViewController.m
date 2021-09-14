@@ -13,9 +13,7 @@
 @interface TwoViewController ()
 @end
 
-
 @implementation TwoViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"模块2";

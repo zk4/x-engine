@@ -16,7 +16,7 @@ const conf = {
 // 预览图片
 @sync
 function previewImg(arg: {
-  // 索引
+  // 用户点击索引
   index: int;
   // 图片数组, 多张用逗号分隔
   imgList: Array<string>;
@@ -32,10 +32,8 @@ function previewImg(arg: {
 //       -1 保存失败
 @async
 function saveImageToPhotoAlbum(arg: {
-  //url或base64
-  type: string;
-  // 图片数据
-  imageData: string;
+  // 图片地址
+  imgUrl: string;
 }): {
   // 函数状态码
   // status = 0  成功
@@ -48,8 +46,7 @@ function saveImageToPhotoAlbum(arg: {
     "com.zkty.jsi.media",
     "saveImageToPhotoAlbum",
     {
-      type: "url",
-      imageData: "http://xxx",
+      imgUrl: "http://xxx",
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -82,10 +79,13 @@ function openImagePicker(arg: {
   // 函数状态描述
   msg: string;
   data: Array<{
+    // 图片id
     imgID: string;
-    type: string;
+    // 图片类型
+    imgType: string;
+    // 缩略图
     thumbnail: string;
-  }>;
+  };
 } {
   xengine.api(
     "com.zkty.jsi.media",
@@ -101,14 +101,15 @@ function openImagePicker(arg: {
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
-      let obj = JSON.parse(res);
-      for (let photo of obj.data) {
-        const image = document.createElement("img");
-        // 使用缩略图来展示小图
-        image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
-        image.style.cssText =
-          "width:100px; height:100px; margin-right:10px; border-radius:10px;";
-        document.body.appendChild(image);
+      let imgList = res.data;
+      if (res.status == 0) {
+        for (let img of imgList) {
+          const image = document.createElement("img");
+          image.src = "data:" + img.type + ";base64," + img.thumbnail;
+          image.style.cssText =
+            "width:100px; height:100px; margin-left:10px; border-radius:10px;";
+          document.body.appendChild(image);
+        }
       }
     }
   );
@@ -120,7 +121,7 @@ function uploadImage(arg: {
   // 请求的url
   url: string;
   // 拍照或者选择相册后返回id
-  ids: Array<string>;
+  imgIds: Array<string>;
   // 请求header
   header?: Map<string, string>;
 }): {
@@ -139,9 +140,8 @@ function uploadImage(arg: {
     "com.zkty.jsi.media",
     "uploadImage",
     {
-      url:
-        "http://xxx",
-      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      url: "http://xxx",
+      imgIds: ["xxxx", "xxxxx", "xxxx", "xxxx"],
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -149,14 +149,13 @@ function uploadImage(arg: {
   );
 }
 
-
 function test_placeholder() {}
 function test_placeholder() {}
 function test_placeholder() {}
 
 // 预览图片
 function test_previewImg(arg: {
-  // 索引
+  // 用户点击索引
   index: int;
   // 图片数组, 多张用逗号分隔
   imgList: Array<string>;
@@ -172,10 +171,8 @@ function test_previewImg(arg: {
 
 // 保存图片至相册
 function test_saveImageToPhotoAlbum(arg: {
-  //url或base64
-  type: string;
-  // 图片数据
-  imageData: string;
+  // 图片地址
+  imgUrl: string;
 }): {
   // 函数状态码
   // status = 0  成功
@@ -188,8 +185,7 @@ function test_saveImageToPhotoAlbum(arg: {
     "com.zkty.jsi.media",
     "saveImageToPhotoAlbum",
     {
-      type: "url",
-      imageData:
+      imgUrl:
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201410%2F20%2F20141020162058_UrMNe.jpeg&refer=http%3A%2F%2Fcdn.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611307946&t=175b540644bac34ec738e48ff42f8034",
     },
     (res) => {
@@ -222,10 +218,13 @@ function test_openImagePicker(arg: {
   // 函数状态描述
   msg: string;
   data: Array<{
+    // 图片id
     imgID: string;
-    type: string;
+    // 图片类型
+    imgType: string;
+    // 缩略图
     thumbnail: string;
-  }>;
+  };
 } {
   xengine.api(
     "com.zkty.jsi.media",
@@ -241,14 +240,15 @@ function test_openImagePicker(arg: {
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
-      let obj = JSON.parse(res);
-      for (let photo of obj.data) {
-        const image = document.createElement("img");
-        // 使用缩略图来展示小图
-        image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
-        image.style.cssText =
-          "width:100px; height:100px; margin-right:10px; border-radius:10px;";
-        document.body.appendChild(image);
+      let imgList = res.data;
+      if (res.status == 0) {
+        for (let img of imgList) {
+          const image = document.createElement("img");
+          image.src = "data:" + img.type + ";base64," + img.thumbnail;
+          image.style.cssText =
+            "width:100px; height:100px; margin-left:10px; border-radius:10px;";
+          document.body.appendChild(image);
+        }
       }
     }
   );
@@ -260,7 +260,7 @@ function test_uploadImage(arg: {
   // 请求的url
   url: string;
   // 拍照或者选择相册后返回id, 多张用逗号分隔
-  ids: Array<string>;
+  imgIds: Array<string>;
   // 请求header
   header: Map<string, string>;
 }): {
@@ -281,7 +281,7 @@ function test_uploadImage(arg: {
     {
       url:
         "https://api-uat.lohashow.com/gm-nxcloud-resource/api/nxcloud/res/upload",
-      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      imgIds: ["xxxx", "xxxxx", "xxxx", "xxxx"],
       header: {},
     },
     (res) => {

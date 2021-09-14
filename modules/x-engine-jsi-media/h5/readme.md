@@ -23,7 +23,7 @@ version: 2.8.1
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| index | int | 必填 |  | 索引 |
+| index | int | 必填 |  | 用户点击索引 |
 | imgList | Array\<string\> | 必填 |  | 图片数组, 多张用逗号分隔 |
 **无返回值**
 
@@ -39,8 +39,7 @@ version: 2.8.1
     "com.zkty.jsi.media",
     "saveImageToPhotoAlbum",
     {
-      type: "url",
-      imageData: "http://xxx",
+      imgUrl: "http://xxx",
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -53,8 +52,7 @@ version: 2.8.1
 
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
-| type | string | 必填 |  | url或base64 |
-| imageData | string | 必填 |  | 图片数据 |
+| imgUrl | string | 必填 |  | 图片地址 |
 **返回值**
 ``` js
  {
@@ -91,14 +89,15 @@ version: 2.8.1
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
-      let obj = JSON.parse(res);
-      for (let photo of obj.data) {
-        const image = document.createElement("img");
-        // 使用缩略图来展示小图
-        image.src = "data:" + photo.type + ";base64,  " + photo.thumbnail;
-        image.style.cssText =
-          "width:100px; height:100px; margin-right:10px; border-radius:10px;";
-        document.body.appendChild(image);
+      let imgList = res.data;
+      if (res.status == 0) {
+        for (let img of imgList) {
+          const image = document.createElement("img");
+          image.src = "data:" + img.type + ";base64," + img.thumbnail;
+          image.style.cssText =
+            "width:100px; height:100px; margin-left:10px; border-radius:10px;";
+          document.body.appendChild(image);
+        }
       }
     }
   );
@@ -128,11 +127,14 @@ version: 2.8.1
   msg: string;
   data: Array<{
 
+    // 图片id
     imgID: string;
-    type: string;
+    // 图片类型
+    imgType: string;
+    // 缩略图
     thumbnail: string;
   
-}>;
+};
 
 }
 ``` 
@@ -149,9 +151,8 @@ version: 2.8.1
     "com.zkty.jsi.media",
     "uploadImage",
     {
-      url:
-        "http://xxx",
-      ids: ["xxxx", "xxxxx", "xxxx", "xxxx"],
+      url: "http://xxx",
+      imgIds: ["xxxx", "xxxxx", "xxxx", "xxxx"],
     },
     (res) => {
       document.getElementById("debug_text").innerText = JSON.stringify(res);
@@ -165,7 +166,7 @@ version: 2.8.1
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | url | string | 必填 |  | 请求的url |
-| ids | Array\<string\> | 必填 |  | 拍照或者选择相册后返回id |
+| imgIds | Array\<string\> | 必填 |  | 拍照或者选择相册后返回id |
 | header | Map\<string,string\> | optional |  | 请求header |
 **返回值**
 ``` js

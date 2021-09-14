@@ -6,56 +6,55 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol _previewImg0_DTO;
-@protocol _saveImageToPhotoAlbum0_DTO;
-@protocol _saveImageToPhotoAlbum1_DTO;
-@protocol _openImagePicker0_DTO;
-@protocol _openImagePicker1_DTO;
-@protocol _openImagePicker2_DTO;
-@protocol _uploadImage0_DTO;
-@protocol _uploadImage1_DTO;
-@class _previewImg0_DTO;
-@class _saveImageToPhotoAlbum0_DTO;
-@class _saveImageToPhotoAlbum1_DTO;
-@class _openImagePicker0_DTO;
-@class _openImagePicker1_DTO;
-@class _openImagePicker2_DTO;
-@class _uploadImage0_DTO;
-@class _uploadImage1_DTO;
+@protocol _previewImg_com_zkty_jsi_media_0_DTO;
+@protocol _saveImageToPhotoAlbum_com_zkty_jsi_media_0_DTO;
+@protocol _saveImageToPhotoAlbum_com_zkty_jsi_media_1_DTO;
+@protocol _openImagePicker_com_zkty_jsi_media_0_DTO;
+@protocol _openImagePicker_com_zkty_jsi_media_1_DTO;
+@protocol _openImagePicker_com_zkty_jsi_media_2_DTO;
+@protocol _uploadImage_com_zkty_jsi_media_0_DTO;
+@protocol _uploadImage_com_zkty_jsi_media_1_DTO;
+@class _previewImg_com_zkty_jsi_media_0_DTO;
+@class _saveImageToPhotoAlbum_com_zkty_jsi_media_0_DTO;
+@class _saveImageToPhotoAlbum_com_zkty_jsi_media_1_DTO;
+@class _openImagePicker_com_zkty_jsi_media_0_DTO;
+@class _openImagePicker_com_zkty_jsi_media_1_DTO;
+@class _openImagePicker_com_zkty_jsi_media_2_DTO;
+@class _uploadImage_com_zkty_jsi_media_0_DTO;
+@class _uploadImage_com_zkty_jsi_media_1_DTO;
 
-@interface _previewImg0_DTO: JSONModel
+@interface _previewImg_com_zkty_jsi_media_0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger index;
    	@property(nonatomic,strong) NSMutableArray<NSString*>* imgList;
 @end
 
 
-@interface _saveImageToPhotoAlbum0_DTO: JSONModel
+@interface _saveImageToPhotoAlbum_com_zkty_jsi_media_0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger status;
    	@property(nonatomic,copy) NSString* msg;
 @end
 
 
-@interface _saveImageToPhotoAlbum1_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* type;
-   	@property(nonatomic,copy) NSString* imageData;
+@interface _saveImageToPhotoAlbum_com_zkty_jsi_media_1_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* imgUrl;
 @end
 
 
-@interface _openImagePicker0_DTO: JSONModel
+@interface _openImagePicker_com_zkty_jsi_media_0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger status;
    	@property(nonatomic,copy) NSString* msg;
-   	@property(nonatomic,strong) NSMutableArray<_openImagePicker1_DTO*><_openImagePicker1_DTO>* data;
+   	@property(nonatomic,strong) NSMutableArray<_openImagePicker_com_zkty_jsi_media_1_DTO*><_openImagePicker_com_zkty_jsi_media_1_DTO>* data;
 @end
 
 
-@interface _openImagePicker1_DTO: JSONModel
+@interface _openImagePicker_com_zkty_jsi_media_1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* imgID;
-   	@property(nonatomic,copy) NSString* type;
+   	@property(nonatomic,copy) NSString* imgType;
    	@property(nonatomic,copy) NSString* thumbnail;
 @end
 
 
-@interface _openImagePicker2_DTO: JSONModel
+@interface _openImagePicker_com_zkty_jsi_media_2_DTO: JSONModel
   	@property(nonatomic,assign) BOOL allowsEditing;
    	@property(nonatomic,assign) BOOL savePhotosAlbum;
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
@@ -66,7 +65,7 @@
 @end
 
 
-@interface _uploadImage0_DTO: JSONModel
+@interface _uploadImage_com_zkty_jsi_media_0_DTO: JSONModel
   	@property(nonatomic,assign) NSInteger status;
    	@property(nonatomic,copy) NSString* msg;
    	@property(nonatomic,copy) NSString* imgID;
@@ -74,9 +73,9 @@
 @end
 
 
-@interface _uploadImage1_DTO: JSONModel
+@interface _uploadImage_com_zkty_jsi_media_1_DTO: JSONModel
   	@property(nonatomic,copy) NSString* url;
-   	@property(nonatomic,strong) NSMutableArray<NSString*>* ids;
+   	@property(nonatomic,strong) NSMutableArray<NSString*>* imgIds;
    	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* header;
 @end
 
@@ -84,16 +83,16 @@
 
 @protocol xengine_jsi_media_protocol
    @required 
-    - (void) _previewImg:(_previewImg0_DTO*)dto;
+    - (void) _previewImg:(_previewImg_com_zkty_jsi_media_0_DTO*)dto;
 
    @required 
-     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum1_DTO*) dto complete:(void (^)(_saveImageToPhotoAlbum0_DTO* result,BOOL complete)) completionHandler;
+     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum_com_zkty_jsi_media_1_DTO*) dto complete:(void (^)(_saveImageToPhotoAlbum_com_zkty_jsi_media_0_DTO* result,BOOL complete)) completionHandler;
 
    @required 
-     - (void) _openImagePicker:(_openImagePicker2_DTO*) dto complete:(void (^)(_openImagePicker0_DTO* result,BOOL complete)) completionHandler;
+     - (void) _openImagePicker:(_openImagePicker_com_zkty_jsi_media_2_DTO*) dto complete:(void (^)(_openImagePicker_com_zkty_jsi_media_0_DTO* result,BOOL complete)) completionHandler;
 
    @required 
-     - (void) _uploadImage:(_uploadImage1_DTO*) dto complete:(void (^)(_uploadImage0_DTO* result,BOOL complete)) completionHandler;
+     - (void) _uploadImage:(_uploadImage_com_zkty_jsi_media_1_DTO*) dto complete:(void (^)(_uploadImage_com_zkty_jsi_media_0_DTO* result,BOOL complete)) completionHandler;
 
 @end
 

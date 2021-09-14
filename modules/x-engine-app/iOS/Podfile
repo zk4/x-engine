@@ -53,7 +53,6 @@ def shared_pods
 
   pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
   pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
-  pod 'x-engine-native-gmupload', :path =>'../../../../gome-business/gm-modules/x-engine-native-gmupload'
   
   # legacy jsi
 #  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'

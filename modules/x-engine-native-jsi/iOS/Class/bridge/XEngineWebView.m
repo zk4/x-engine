@@ -81,18 +81,18 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
 //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
 
     // 添加webview手势 如果recyleVc失效 就启用这个的
-    UISwipeGestureRecognizer *swiperGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    swiperGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    swiperGesture.delegate = self;
-    [self addGestureRecognizer:swiperGesture];
+//    UISwipeGestureRecognizer *swiperGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
+//    swiperGesture.direction = UISwipeGestureRecognizerDirectionRight;
+//    swiperGesture.delegate = self;
+//    [self addGestureRecognizer:swiperGesture];
     
     return self;
 }
 
 // 一定要返回yes 让手势能往下传递
-- (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
+//- (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//    return YES;
+//}
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt
     defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame

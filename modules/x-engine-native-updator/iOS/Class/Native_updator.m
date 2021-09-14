@@ -100,10 +100,7 @@ NATIVE_MODULE(Native_updator)
         return [NSURL URLWithString:fullPath];
                
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        
         if(filePath && !error){
-            (@"%@",filePath);
-
             [self unzipCacheZipToDocument:filePath.path];
         }
         else{
@@ -118,7 +115,6 @@ NATIVE_MODULE(Native_updator)
     
     NSString *UUID = [[NSUUID UUID] UUIDString];
     NSString *tmp_sandboxMicroappPath= [NSString stringWithFormat:@"%@/microapps/%@" ,kDocumentPath,UUID];
-//    NSString *tmp_microappjsonFilePath= [NSString stringWithFormat:@"%@/microapps/%@/microapp.json" ,kDocumentPath,UUID];
 
     __weak __typeof(self)weakSelf = self;
     [SSZipArchive unzipFileAtPath:cachedZipUrl toDestination:tmp_sandboxMicroappPath progressHandler:nil completionHandler:^(NSString * _Nonnull path, BOOL succeeded, NSError * _Nullable error) {
@@ -271,5 +267,6 @@ NATIVE_MODULE(Native_updator)
  
     return  nil;
 }
+ 
 
 @end

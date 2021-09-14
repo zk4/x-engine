@@ -1,4 +1,4 @@
-另一个简单的混合框架. 
+另一个简单的 iOS /android 模块管理框架. 支持混合应用开发，任意 UI 方案的混合。
 文档: http://x-engine-1257400556.cos-website.ap-guangzhou.myqcloud.com/#/
 
 ``` 

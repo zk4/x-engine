@@ -16,7 +16,8 @@ window.test_share = () => {
   document.getElementById("debug_text").innerText = JSON.stringify(ret);
   });
 }
-window.test_share2 = () => {
+ document.getElementById("test_share").click()
+        window.test_share2 = () => {
 
   xengine.api("com.zkty.jsi.share", "share", {
     channel: "wx_friend",
@@ -34,5 +35,6 @@ window.test_share2 = () => {
   document.getElementById("debug_text").innerText = JSON.stringify(ret);
   });
 }
-
+ document.getElementById("test_share2").click()
+        
     

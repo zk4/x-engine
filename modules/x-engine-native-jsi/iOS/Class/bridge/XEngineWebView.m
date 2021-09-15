@@ -334,10 +334,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                 if([JavascriptInterfaceObject respondsToSelector:selasyn]){
                     __weak typeof(self) weakSelf = self;
                     void (^completionHandler)(id,BOOL) = ^(id value,BOOL complete){
+                        __strong typeof(self) strongSelf = weakSelf;
+
                         NSString *del=@"";
                         result[@"code"]=@0;
                         if(value!=nil){
-                            result[@"data"]=[self convertDict:value];
+                            result[@"data"]=[strongSelf convertDict:value];
                         }
                         value = [XEngineJSBUtil objToJsonString:result];
                         value = [value stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -345,14 +347,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                             del=[@"delete window." stringByAppendingString:cb];
                         }
                         NSString *js = [NSString stringWithFormat:@"try {%@(JSON.parse(decodeURIComponent(\"%@\")).data);%@; } catch(e){};",cb,(value == nil) ? @"" : value,del];
-                        __strong typeof(self) strongSelf = weakSelf;
                         @synchronized(self) {
                             UInt64  t=[[NSDate date] timeIntervalSince1970]*1000;
-                            self->jsCache=[self->jsCache stringByAppendingString:js];
-                            if(t-self->lastCallTime<50){
-                                if(!self->isPending){
+                            strongSelf->jsCache=[strongSelf->jsCache stringByAppendingString:js];
+                            if(t-strongSelf->lastCallTime<50){
+                                if(!strongSelf->isPending){
                                     [strongSelf evalJavascript:50];
-                                    self->isPending=true;
+                                    strongSelf->isPending=true;
                                 }
                             }else{
                                 [strongSelf evalJavascript:0];

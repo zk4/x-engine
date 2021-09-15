@@ -1,6 +1,9 @@
 //
 //  XEngineWebView.m
-//  BIG THX TO DSBRIDGE. 
+//  BIG THX TO DSBRIDGE.
+//  此代码大部分取自 DsBridge。
+//  由于 DsBridge 在很多第三库里都有依赖。经常会报类冲突。遂改名。
+//  源代码在 https://github.com/wendux/DSBridge-IOS
 
 
 #import "XEngineWebView.h"

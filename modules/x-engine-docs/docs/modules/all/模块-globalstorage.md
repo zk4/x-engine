@@ -15,7 +15,9 @@ version: 2.8.1
 ## get
 [`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
-**demo**
+
+
+> **demo**
 ``` js
 
   let val = xengine.api("com.zkty.jsi.globalstorage", "get",
@@ -27,6 +29,7 @@ version: 2.8.1
 
 **无参数**
 
+
 **返回值**
 ``` js
 string
@@ -37,7 +40,9 @@ string
 ## set
 [`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
-**demo**
+
+
+> **demo**
 ``` js
 
   xengine.api("com.zkty.jsi.globalstorage", "set",{
@@ -53,6 +58,7 @@ string
 | --------------------------- | --------- | -------- | --------- |--------- |
 | key | string | 必填 |  |  |
 | val | string | 必填 |  |  |
+
 **无返回值**
 
 
@@ -60,7 +66,9 @@ string
 ## del
 [`sync`](/docs/modules/模块-规范?id=jsi-调用)
 
-**demo**
+
+
+> **demo**
 ``` js
 
  xengine.api("com.zkty.jsi.globalstorage", "del",
@@ -70,6 +78,7 @@ string
 ``` 
 
 **无参数**
+
 
 **无返回值**
 

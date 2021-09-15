@@ -8,8 +8,10 @@ version: 2.8.1
 
 ## previewImg
 [`sync`](/docs/modules/模块-规范?id=jsi-调用)
-> 预览图片
-**demo**
+ 预览图片
+
+
+> **demo**
 ``` js
 
   xengine.api("com.zkty.jsi.media", "previewImg", {
@@ -25,14 +27,17 @@ version: 2.8.1
 | --------------------------- | --------- | -------- | --------- |--------- |
 | index | int | 必填 |  | 用户点击索引 |
 | imgList | Array\<string\> | 必填 |  | 图片数组, 多张用逗号分隔 |
+
 **无返回值**
 
 
 
 ## saveImageToPhotoAlbum
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
-> 保存到相册<br>返回值: 0 保存成功<br>-1 保存失败
-**demo**
+ 保存到相册<br>返回值: 0 保存成功<br>-1 保存失败
+
+
+> **demo**
 ``` js
 
   xengine.api(
@@ -53,6 +58,7 @@ version: 2.8.1
 | name                        | type      | optional | default   | comment  |
 | --------------------------- | --------- | -------- | --------- |--------- |
 | imgUrl | string | 必填 |  | 图片地址 |
+
 **返回值**
 ``` js
  {
@@ -71,8 +77,10 @@ version: 2.8.1
 
 ## openImagePicker
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
-> 打开picker选择相册或相机
-**demo**
+ 打开picker选择相册或相机
+
+
+> **demo**
 ``` js
 
   xengine.api(
@@ -115,6 +123,7 @@ version: 2.8.1
 | isbase64 | bool | 必填 |  | 图片是否转为Base64,默认:true |
 | args | Map\<string,string\> | optional |  | 裁剪参数 width:裁剪宽度; height:裁剪高度; quality:压缩质量; bytes:压缩到多少kb以内; |
 | photoCount | int | optional |  | 图片选择张数 |
+
 **返回值**
 ``` js
  {
@@ -143,8 +152,10 @@ version: 2.8.1
 
 ## uploadImage
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
-> 上传图片
-**demo**
+ 上传图片
+
+
+> **demo**
 ``` js
 
   xengine.api(
@@ -168,6 +179,7 @@ version: 2.8.1
 | url | string | 必填 |  | 请求的url |
 | imgIds | Array\<string\> | 必填 |  | 拍照或者选择相册后返回id |
 | header | Map\<string,string\> | optional |  | 请求header |
+
 **返回值**
 ``` js
  {

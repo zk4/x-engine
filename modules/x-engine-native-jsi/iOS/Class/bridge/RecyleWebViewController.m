@@ -33,8 +33,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) id<iWebcache> webcache;
 /** 标记使用状态 */
 @property (nonatomic, assign) BOOL tagState;
-@property (nonatomic, assign) BOOL tagRestoreState;
-@property (nonatomic, assign) float currentPostion;
 
 @end
 

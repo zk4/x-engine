@@ -401,9 +401,9 @@
         _memoryCache = [[NSCache alloc] init];
         _memoryCache.delegate = self;
         //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
-        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
+        _memoryCache.totalCostLimit =10;//self.memoryCapacity;
         //能够缓存的对象的最大数量。默认值为0，表示没有限制
-        _memoryCache.countLimit = 1000;
+        _memoryCache.countLimit = 10;
 //        _memoryCache=[YYCache cacheWithName:@"XENGINE_YY_Cache"];
     }
     return _memoryCache;

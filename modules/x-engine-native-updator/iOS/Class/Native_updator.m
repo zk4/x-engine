@@ -104,8 +104,10 @@ NATIVE_MODULE(Native_updator)
             [self unzipCacheZipToDocument:filePath.path];
         }
         else{
+#ifdef DEBUG
             [XENP(iToast) toast:[NSString stringWithFormat:@"下载失败: %@", downloadUrl]];
             NSLog(@"completionHandler----%@",error);
+#endif
         }
     } ];
     [downTask resume];
@@ -120,37 +122,19 @@ NATIVE_MODULE(Native_updator)
     [SSZipArchive unzipFileAtPath:cachedZipUrl toDestination:tmp_sandboxMicroappPath progressHandler:nil completionHandler:^(NSString * _Nonnull path, BOOL succeeded, NSError * _Nullable error) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
             if (!error) {
-                NSLog(@"解压成功%@",folderName);
-                // 重命名文件夹 microappid.version
-//                // TODO: 使用 microapp.json 里的版本号与 id
-//                NSError * err = NULL;
-//                NSFileManager * fm = [[NSFileManager alloc] init];
-//
-//                NSDictionary* microappjsonDict=  [self readMicroappjsonFile:tmp_microappjsonFilePath];
-//                NSString* folderName =  microappjsonDict[@"id"];
-//                NSInteger version =  [microappjsonDict[@"version"] intValue];
-//                NSString *sandboxMicroappPath= [NSString stringWithFormat:@"%@/microapps/%@.%ld" ,kDocumentPath,folderName,version];
-//
-//                BOOL result = [fm moveItemAtPath:tmp_sandboxMicroappPath toPath:sandboxMicroappPath error:&err];
-//                if(!result){
-//                    NSString* msg = [NSString stringWithFormat:@"重命名失败:%@",err.localizedDescription];
-//                    [strongSelf.toast toast:msg];
-//                }
-//                else{
-//                    NSString* msg = [NSString stringWithFormat:@"%@ -> %@",tmp_sandboxMicroappPath,sandboxMicroappPath];
-//                    [self toast:msg];
+                    NSLog(@"解压成功%@",folderName);
                     [self updateMicroappsInfos];
                     NSString* msg = [NSString stringWithFormat:@"%@ 安装成功,重新打开微应用将使用最新",folderName];
-                    [strongSelf.toast toast:msg];
-            
-//                }
 #ifdef DEBUG
+                [strongSelf.toast toast:msg];
                 [strongSelf.toast toast:path];
 #endif
            
             } else {
                 NSString* msg = [NSString stringWithFormat:@"解压失败==>%@", error];
+#ifdef DEBUG
                 [XENP(iToast) toast:msg];
+#endif
             }
     }];
 }
@@ -208,8 +192,9 @@ NATIVE_MODULE(Native_updator)
             msg= [NSString stringWithFormat:@"工程\n%@ 不存在",packagename];
         }
       
-        // toggle queueing behavior
+#ifdef DEBUG
         [XENP(iToast) toast:msg];
+#endif
         
         return nil;
     }

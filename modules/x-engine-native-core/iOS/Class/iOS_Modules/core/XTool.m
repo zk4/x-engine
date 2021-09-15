@@ -232,6 +232,57 @@
   return result;
 }
 
+
+
++(void)addSelector:(Class)class withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
+    
+    Method origMethod = class_getClassMethod(class, oldSel);
+    Method altMethod = class_getClassMethod(class, newSel);
+    
+    if (!origMethod || !altMethod) {
+        return;
+    }
+    Class metaClass = object_getClass(class);
+    BOOL didAddMethod = class_addMethod(metaClass,
+                                        oldSel,
+                                        method_getImplementation(altMethod),
+                                        method_getTypeEncoding(altMethod));
+    
+    if (didAddMethod) {
+        class_replaceMethod(metaClass,
+                            newSel,
+                            method_getImplementation(origMethod),
+                            method_getTypeEncoding(origMethod));
+    } else {
+        method_exchangeImplementations(origMethod, altMethod);
+    }
+}
+
++(void)addInstanceFunc:(Class)class fakeClass:(Class)fakeClass withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
+    
+    Method origMethod = class_getInstanceMethod(class, oldSel);
+    Method altMethod = class_getInstanceMethod(fakeClass, newSel);
+    if (!origMethod || !altMethod) {
+        return;
+    }
+    Class metaClass = class;
+    BOOL didAddMethod = class_addMethod(metaClass,
+                                        oldSel,
+                                        method_getImplementation(altMethod),
+                                        method_getTypeEncoding(altMethod));
+    
+    if (didAddMethod) {
+        class_replaceMethod(metaClass,
+                            newSel,
+                            method_getImplementation(origMethod),
+                            method_getTypeEncoding(origMethod));
+    } else {
+        method_exchangeImplementations(origMethod, altMethod);
+    }
+}
+
+
+
 @end
 
 @implementation XToolVC

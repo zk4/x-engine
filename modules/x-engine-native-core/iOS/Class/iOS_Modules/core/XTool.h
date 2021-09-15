@@ -61,6 +61,8 @@
 
 @interface XToolRuntime : NSObject
 + (NSArray *) getSubclasses:(Class) parentClass;
++(void)addSelector:(Class)class withOldSel:(SEL)oldSel withNewSel:(SEL)newSel;
++(void)addInstanceFunc:(Class)class fakeClass:(Class)fakeClass withOldSel:(SEL)oldSel withNewSel:(SEL)newSel;
 @end
 
 

@@ -94,26 +94,13 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
   
 }
 - (void)webViewScrollerToTop{
-    self.webview.scrollView.contentOffset = CGPointZero;
+    [self.webview.scrollView setContentOffset:CGPointZero animated:YES];
+//    NSString *script = @"window.scrollTo(0, 0)";
+//    [self.webview evaluateJavaScript:script completionHandler:NULL];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {
         CGFloat y = self.webview.scrollView.contentOffset.y;
-//        CGFloat pageHeight = self.webview.frame.size.height;
-//        CGFloat currentPostion = y;
-//        NSInteger page = currentPostion / pageHeight;
-//        if (page >= 1) {
-//            if (currentPostion - _lastPosition > 25) {
-//                _lastPosition = currentPostion;
-//                NSLog(@"ScrollUp now");
-//            }
-//        }else{
-//            if (_lastPosition - currentPostion > 25){
-//                _lastPosition = currentPostion;
-//                NSLog(@"ScrollDown now");
-//            }
-//        }
-//
 
         if (self.bWebviewOnTop && y>0) {
             self.bWebviewOnTop = false;

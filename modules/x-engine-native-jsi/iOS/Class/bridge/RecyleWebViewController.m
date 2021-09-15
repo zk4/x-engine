@@ -31,7 +31,8 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
 @property (nonatomic, strong) id<iWebcache> webcache;
-
+/** 标记使用状态 */
+@property (nonatomic, assign) BOOL tagState;
 @end
 
 @implementation RecyleWebViewController
@@ -82,12 +83,31 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         [self loadFileUrl];
         
         
-        
-     
+        [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webViewScrollerToTop) name:@"kWebViewToTopOffset" object:nil];
+
         
     }
     return self;
   
+}
+- (void)webViewScrollerToTop{
+    self.webview.scrollView.contentOffset = CGPointZero;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {
+        CGFloat y = self.webview.scrollView.contentOffset.y;
+        if (y >= 150) {
+            if (!self.tagState) {
+                self.tagState = YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"kWebViewScrollerToTop" object:nil userInfo:nil];
+            }
+        }
+        else{
+            self.tagState = NO;
+        }
+    }
 }
 -(void) refresh {
     [self.webview reload];
@@ -283,6 +303,10 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 - (void)dealloc {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
+    
+    [self.webview.scrollView removeObserver:self forKeyPath:@"contentOffset" context:@"selfClassContextNotSuper"];
+        
+    [[NSNotificationCenter defaultCenter] removeObserver: self forKeyPath: @"kWebViewScrollerToTop"];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{

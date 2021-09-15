@@ -33,6 +33,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) id<iWebcache> webcache;
 /** 标记使用状态 */
 @property (nonatomic, assign) BOOL tagState;
+@property (nonatomic, assign) BOOL tagRestoreState;
+@property (nonatomic, assign) float currentPostion;
+
 @end
 
 @implementation RecyleWebViewController
@@ -104,11 +107,15 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"kWebViewScrollerToTop" object:nil userInfo:nil];
             }
         }
+        if (y < 5 && y > 2){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kRestoreStateOffset" object:nil userInfo:nil];
+        }
         else{
             self.tagState = NO;
         }
     }
 }
+
 -(void) refresh {
     [self.webview reload];
 }
@@ -305,8 +312,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
     
     [self.webview.scrollView removeObserver:self forKeyPath:@"contentOffset" context:@"selfClassContextNotSuper"];
-        
-    [[NSNotificationCenter defaultCenter] removeObserver: self forKeyPath: @"kWebViewScrollerToTop"];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{

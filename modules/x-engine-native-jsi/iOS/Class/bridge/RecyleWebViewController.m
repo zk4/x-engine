@@ -94,7 +94,9 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
   
 }
 - (void)webViewScrollerToTop{
-    self.webview.scrollView.contentOffset = CGPointZero;
+    [self.webview.scrollView setContentOffset:CGPointZero animated:YES];
+//    NSString *script = @"window.scrollTo(0, 0)";
+//    [self.webview evaluateJavaScript:script completionHandler:NULL];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {

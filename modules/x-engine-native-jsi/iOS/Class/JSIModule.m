@@ -8,11 +8,11 @@
 
 #import "JSONModel.h"
 #import "JSIModule.h"
-#import <objc/message.h>
 #import "XEngineJSBUtil.h"
 #import "Unity.h"
 #import "iToast.h"
 #import "XENativeContext.h"
+#import <objc/message.h>
 #import <os/lock.h>
 
 # ifndef mustOverride
@@ -163,7 +163,11 @@ static  XEngineWebView* s_webview = nil;
 
 - (void) lockCurrentWebView:(XEngineWebView*) webview{
     if(webview == s_webview)return;
-    while(!os_unfair_lock_trylock(&s_webviewlock)){};
+    while(!os_unfair_lock_trylock(&s_webviewlock)){
+#ifdef DEBUG
+        [XENP(iToast) toast:@"try lock webview again!" duration:.2];
+#endif
+    };
     s_webview = webview;
 }
 - (void) unlockCurrentWebView:(XEngineWebView*) webview{

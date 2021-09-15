@@ -32,7 +32,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) UILabel *tipLabel404;
 @property (nonatomic, strong) id<iWebcache> webcache;
 /** 标记使用状态 */
-@property (nonatomic, assign) BOOL tagState;
+@property (nonatomic, assign) BOOL bWebviewOnTop;
 
 @end
 
@@ -58,7 +58,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     if (self){
         if(fileUrl.length == 0)
             return self;
-     
+        self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
         self.webview.navigationDelegate = self;
@@ -99,17 +99,29 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {
         CGFloat y = self.webview.scrollView.contentOffset.y;
-        if (y >= 150) {
-            if (!self.tagState) {
-                self.tagState = YES;
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"kWebViewScrollerToTop" object:nil userInfo:nil];
-            }
+//        CGFloat pageHeight = self.webview.frame.size.height;
+//        CGFloat currentPostion = y;
+//        NSInteger page = currentPostion / pageHeight;
+//        if (page >= 1) {
+//            if (currentPostion - _lastPosition > 25) {
+//                _lastPosition = currentPostion;
+//                NSLog(@"ScrollUp now");
+//            }
+//        }else{
+//            if (_lastPosition - currentPostion > 25){
+//                _lastPosition = currentPostion;
+//                NSLog(@"ScrollDown now");
+//            }
+//        }
+//
+
+        if (self.bWebviewOnTop && y>0) {
+            self.bWebviewOnTop = false;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_NOT_ON_TOP" object:nil userInfo:nil];
         }
-        if (y < 5 && y > 2){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"kRestoreStateOffset" object:nil userInfo:nil];
-        }
-        else{
-            self.tagState = NO;
+        if(!self.bWebviewOnTop && y==0){
+            self.bWebviewOnTop = true;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_ON_TOP" object:nil userInfo:nil];
         }
     }
 }

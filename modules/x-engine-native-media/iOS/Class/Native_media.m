@@ -8,11 +8,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import "XENativeContext.h"
 #import "ZKTY_TZImagePickerController.h"
+#import "TZImagePickerController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "XTool.h"
 #import "GKPhotoBrowser.h"
-#import <iMediaDelegate.h>
+#import "iMediaDelegate.h"
 
 // cache路径
 #define kCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
@@ -21,7 +22,7 @@ typedef void (^PhotoCallBack)(NSArray *images, NSArray *assets);
 typedef void (^SaveCallBack)(UIImage *image, NSError *error);
 typedef void (^UploadImageCallBack)(NSDictionary *);
 
-@interface Native_media() <UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
+@interface Native_media() <UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) id<iMediaDelegate> mediaDelegate;
 @property(nonatomic,copy) PhotoCallBack photoCallback;
 @property(nonatomic,copy) SaveCallBack saveCallback;
@@ -32,6 +33,7 @@ typedef void (^UploadImageCallBack)(NSDictionary *);
 @property(nonatomic,strong) UIImage * photoImage;
 @property(nonatomic,assign) BOOL isbase64;
 @property(nonatomic,strong) MediaParamsDTO * mediaDto;
+@property (nonatomic, strong) UIAlertController *alert;
 @end
 
 @implementation Native_media
@@ -62,7 +64,7 @@ NATIVE_MODULE(Native_media)
     self.isbase64 = dto.isbase64;
     
     __weak typeof(self) weakself = self;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    _alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [AVCaptureDevice requestAccessForMediaType:
          AVMediaTypeVideo completionHandler:^(BOOL granted) {//相机权限
@@ -93,10 +95,10 @@ NATIVE_MODULE(Native_media)
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}];
     
-    [alert addAction:cameraAction];
-    [alert addAction:photoAction];
-    [alert addAction:cancelAction];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    [_alert addAction:cameraAction];
+    [_alert addAction:photoAction];
+    [_alert addAction:cancelAction];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_alert animated:YES completion:nil];
 }
 
 
@@ -120,10 +122,12 @@ NATIVE_MODULE(Native_media)
     }
 }
 
-/// 调起相册/以及相册的回调
+
+/// 相册的回调
 /// @param dto dto
 - (void)choosePhotos:(MediaParamsDTO*)dto {
-    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+//    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
@@ -134,7 +138,7 @@ NATIVE_MODULE(Native_media)
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
-/// UIImagePickerControllerDelegate/相机的回调
+/// 相机的回调
 /// @param picker picker
 /// @param info info
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -255,4 +259,5 @@ NATIVE_MODULE(Native_media)
         }];
     }
 }
+
 @end

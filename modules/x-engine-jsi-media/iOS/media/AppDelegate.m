@@ -7,6 +7,7 @@
 #import "EntryViewController.h"
 #import "XENativeContext.h"
 #import "JSIContext.h"
+#import "PLeakSniffer.h"
 @interface AppDelegate ()
 
 @end
@@ -22,7 +23,10 @@
     // Override point for customization after application launch.
     [[XENativeContext sharedInstance] start];
     [[JSIContext sharedInstance] start];
-
+    
+    [[PLeakSniffer sharedInstance] installLeakSniffer];
+    [[PLeakSniffer sharedInstance] addIgnoreList:@[]];
+    
     EntryViewController *homePageVC = [[EntryViewController alloc] init];
        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];
      self.window.rootViewController = nav;

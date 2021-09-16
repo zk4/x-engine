@@ -1,5 +1,6 @@
 PODS:
   - JSONModel (1.8.0)
+  - PLeakSniffer (0.1.0)
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
@@ -38,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - JSONModel
+  - PLeakSniffer
   - SDWebImage
   - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
   - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
@@ -51,6 +53,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JSONModel
+    - PLeakSniffer
     - SDWebImage
 
 EXTERNAL SOURCES:
@@ -73,6 +76,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  PLeakSniffer: f7eb13cd3a36150e0a2fd5fe8a33ca83bd2646d4
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
@@ -83,6 +87,6 @@ SPEC CHECKSUMS:
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
 
-PODFILE CHECKSUM: df2f555bb065433d4ef00c9542fb9d2d49920b71
+PODFILE CHECKSUM: 9ad91fdfa4c9b63f2c3739db741b1503c69a96a8
 
 COCOAPODS: 1.10.1

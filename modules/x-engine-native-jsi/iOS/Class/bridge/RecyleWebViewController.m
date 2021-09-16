@@ -282,6 +282,7 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 }
 
 - (void)dealloc {
+    NSLog(@"-----------------");
     [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
 }
 

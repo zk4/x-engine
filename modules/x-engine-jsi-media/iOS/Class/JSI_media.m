@@ -93,6 +93,8 @@ JSI_MODULE(JSI_media)
                 imgObj.thumbnail = obj[@"thumbnail"];
                 [jsiRet.data addObject:imgObj];
             }];
+            completionHandler(jsiRet ,TRUE);
+            
         } else {// 相机
             NSArray *array = [self getCameraWithImages:images];
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -102,9 +104,9 @@ JSI_MODULE(JSI_media)
                 imgObj.thumbnail = obj[@"thumbnail"];
                 [jsiRet.data addObject:imgObj];
             }];
+            completionHandler(jsiRet ,TRUE);
         }
         
-        completionHandler(jsiRet ,TRUE);
     }];
 }
 

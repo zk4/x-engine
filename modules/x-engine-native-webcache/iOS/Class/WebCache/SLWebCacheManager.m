@@ -11,6 +11,8 @@
 #import "SLUrlCache.h"
 #import "SLUrlProtocol.h"
 #import "WKWebView+SLExtension.h"
+#import "XENativeContext.h"
+#import "iToast.h"
 //#import "YYCache.h"
 
 //实现原理参考 戴明大神：https://github.com/ming1016/STMURLCache
@@ -268,6 +270,9 @@
           
             if (error) {
                 cachedResponse = nil;
+#ifdef DEBUG
+        [XENP(iToast) toast:[NSString stringWithFormat:@"%@", error]];
+#endif
             } else {
                 cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
                 //写入本地缓存

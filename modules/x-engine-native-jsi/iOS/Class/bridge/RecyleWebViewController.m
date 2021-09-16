@@ -104,11 +104,11 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
         if (self.bWebviewOnTop && y>0) {
             self.bWebviewOnTop = false;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_NOT_ON_TOP" object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_NOT_ON_TOP" object:nil userInfo:self.webview];
         }
         if(!self.bWebviewOnTop && y==0){
             self.bWebviewOnTop = true;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_ON_TOP" object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_ON_TOP" object:nil userInfo:self.webview];
         }
     }
 }

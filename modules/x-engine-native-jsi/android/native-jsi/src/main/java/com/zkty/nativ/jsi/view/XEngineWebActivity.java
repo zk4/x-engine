@@ -37,6 +37,7 @@ import com.zkty.nativ.core.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.utils.AndroidBug5497Workaround;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
+import com.zkty.nativ.jsi.utils.ScreenListener;
 import com.zkty.nativ.jsi.utils.StatusBarUtil;
 import com.zkty.nativ.jsi.utils.XEngineMessage;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -83,6 +84,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
     public static final int XACTIVITY_REQUEST_CODE = 150;// 权限请求码
 
     private HistoryModel historyModel;
+    private ScreenListener screenListener;
 
 
     @Override
@@ -114,10 +116,10 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         mWebView = XWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
         //增加神策埋点（webview初始化）
-        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView,true);
+        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView, true);
 
         AnalysisManager.getInstance().initX5WebView(mWebView);
-        
+
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 
         xEngineNavBar.setLeftListener(view -> {
@@ -134,6 +136,31 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         mWebView.setOnPageStateListener(() -> broadcast(ON_WEBVIEW_SHOW, ON_WEBVIEW_SHOW));
 
         mWebView.loadUrl(historyModel);
+
+        registerScreenListener();
+
+    }
+
+    private void registerScreenListener() {
+        screenListener = new ScreenListener(this);
+        screenListener.begin(new ScreenListener.ScreenStateListener() {
+            @Override
+            public void onScreenOn() {
+
+            }
+
+            @Override
+            public void onScreenOff() {
+//                KeyBoardUtils.closeKeybord(mWebView, XEngineWebActivity.this);
+            }
+
+            @Override
+            public void onUserPresent() {
+                if (KeyBoardUtils.isSoftKeyboardShowed(XEngineWebActivity.this))
+                    KeyBoardUtils.openKeybord(mWebView, XEngineWebActivity.this);
+            }
+        });
+
 
     }
 

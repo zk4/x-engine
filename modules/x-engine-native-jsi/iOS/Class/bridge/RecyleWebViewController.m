@@ -16,10 +16,11 @@
  RecyleWebViewController 只负责载着 view 做转场动画。
  */
 
-NSString * const OnNativeShow = @"onNativeShow";
-NSString * const OnNativeHide = @"onNativeHide";
-NSString * const OnNativeDestroyed = @"onNativeDestroyed";
-
+static NSString * const OnNativeShow = @"onNativeShow";
+static NSString * const OnNativeHide = @"onNativeHide";
+static NSString * const OnNativeDestroyed = @"onNativeDestroyed";
+static NSString * const kWEBVIEW_STATUS_NOT_ON_TOP =@"kWEBVIEW_STATUS_NOT_ON_TOP";
+static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
 @interface RecyleWebViewController () < WKNavigationDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
@@ -82,21 +83,16 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
         [self loadFileUrl];
-        
+
         
         [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webViewScrollerToTop) name:@"kWebViewToTopOffset" object:nil];
-
-        
     }
     return self;
   
 }
 - (void)webViewScrollerToTop{
     [self.webview.scrollView setContentOffset:CGPointZero animated:YES];
-//    NSString *script = @"window.scrollTo(0, 0)";
-//    [self.webview evaluateJavaScript:script completionHandler:NULL];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {
@@ -104,11 +100,11 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
         if (self.bWebviewOnTop && y>0) {
             self.bWebviewOnTop = false;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_NOT_ON_TOP" object:nil userInfo:self.webview];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kWEBVIEW_STATUS_NOT_ON_TOP object:nil userInfo:@{@"webview":self.webview}];
         }
         if(!self.bWebviewOnTop && y==0){
             self.bWebviewOnTop = true;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWEBVIEW_STATUS_ON_TOP" object:nil userInfo:self.webview];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kWEBVIEW_STATUS_ON_TOP object:nil userInfo:@{@"webview":self.webview}];
         }
     }
 }
@@ -147,45 +143,29 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 #pragma mark - <life cycle>
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self onCreated];
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    [self.webview.scrollView setShowsVerticalScrollIndicator:NO];
-    [self.webview.scrollView setShowsHorizontalScrollIndicator:NO];
+    [self beforeShow];
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    if(self.firstDidAppearCbIgnored) {
-        self.firstDidAppearCbIgnored = NO;
-    } else {
-        [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
-    }
-   
-    
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    
-    [self.webcache enableCache];
-
-
+    [self afterShow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
-    [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
-    
+    [self beforeHide];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.webcache disableCache];
+    [self afterHide];
 }
 
 
@@ -274,45 +254,50 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         }
     }
 }
-
-#pragma mark - < utils --> json->dic / dic->json >
-/**
- *  JSON字符串转NSDictionary
- *  @param jsonString JSON字符串
- *  @return NSDictionary
- */
-- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
-    if (jsonString == nil) {
-        return nil;
-    }
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    if(error) {
-        NSLog(@"json解析失败：%@",error);
-        return nil;
-    }
-    return dic;
-}
-/**
- *  字典转JSON字符串
- *  @param dic 字典
- *  @return JSON字符串
- */
-- (NSString*)dictionaryToJson:(NSDictionary *)dic{
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
-
+ 
 - (void)dealloc {
-    [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
-    
-    [self.webview.scrollView removeObserver:self forKeyPath:@"contentOffset" context:@"selfClassContextNotSuper"];
+    [self beforeDead];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
+
+- (void)afterHide {
+    [self.webcache disableCache];
+}
+
+- (void)afterShow {
+    if(self.firstDidAppearCbIgnored) {
+        self.firstDidAppearCbIgnored = NO;
+    } else {
+        [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
+    }
+
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
+    
+    [self.webcache enableCache];
+}
+
+- (void)beforeDead {
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
+    [self.webview.scrollView removeObserver:self forKeyPath:@"contentOffset" context:@"selfClassContextNotSuper"];
+}
+
+- (void)beforeHide {
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
+}
+
+- (void)beforeShow {
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
+    [self.webview.scrollView setShowsVerticalScrollIndicator:NO];
+    [self.webview.scrollView setShowsHorizontalScrollIndicator:NO];
+}
+
+- (void)onCreated {
+    [self setupUI];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+}
+ 
 
 @end

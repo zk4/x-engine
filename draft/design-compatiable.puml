@@ -98,7 +98,7 @@ package 协议模块 {
 
 }
 package iContainer {
-   interface iConatiner {
+   interface iContainer {
     - (void) onCreated;
     - (void) beforeShow;
     - (void) afterShow; 

@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import "iContainer.h"
 @class XEngineWebView;
-@interface RecyleWebViewController : UIViewController
+@interface RecyleWebViewController : UIViewController<iContainer>
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
                     withHiddenNavBar:(BOOL)isHidden;
 

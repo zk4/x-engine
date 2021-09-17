@@ -172,8 +172,10 @@ NATIVE_MODULE(Native_direct)
         }
     }
     if(!container){
+#ifdef DEBUG
         NSString* msg = [NSString stringWithFormat:@"找不到路径: %@://%@%@",scheme,host,pathname];
         [XENP(iToast) toast:msg duration:.5f];
+#endif
         return;
     }
     // 实在找不到,跳到默认错误页

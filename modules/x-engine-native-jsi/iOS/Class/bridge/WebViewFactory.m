@@ -65,6 +65,14 @@
     WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
     [webview.configuration.userContentController addUserScript:noneSelectScript];
     }
+    ///web禁止双击
+    {
+    NSMutableString *javascript = [NSMutableString string];
+    [javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];
+    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+    [webview.configuration.userContentController addUserScript:noneSelectScript];
+    }
+    
     // webcache 插件
     id<iWebcache> webcache= XENP(iWebcache);
     if(webview)

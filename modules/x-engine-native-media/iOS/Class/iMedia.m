@@ -18,24 +18,10 @@
 }
 @end
 
-@implementation MediaResultDTO
-+ (BOOL)propertyIsOptional:(NSString *)propertyName {
-    return NO;
-}
-@end
-
 @implementation MediaSaveImageDTO
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     if ([propertyName isEqualToString:@"type"]) { return YES; }
     if ([propertyName isEqualToString:@"imageData"]) { return YES; }
-    return NO;
-}
-@end
-
-@implementation MediaPhotoListDTO
-+ (BOOL)propertyIsOptional:(NSString *)propertyName {
-    if ([propertyName isEqualToString:@"index"]) { return YES; }
-    if ([propertyName isEqualToString:@"imgList"]) { return YES; }
     return NO;
 }
 @end

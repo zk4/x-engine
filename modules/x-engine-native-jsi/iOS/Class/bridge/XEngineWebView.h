@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIActivityIndicatorView * _Nullable indicatorView;
 @property (nullable, nonatomic, strong)  HistoryModel*  model;
 - (void)loadUrl: (NSString * _Nonnull) url;
+- (void) _loadFileURL:(NSURL*)fileURL allowingReadAccessToURL:(NSURL*) accessURL;
+- (void) _loadRequest:(NSURLRequest*) req;
 
 // Call javascript handler
 -(void) callHandler:(NSString * _Nonnull) methodName  arguments:(id  _Nullable) args;

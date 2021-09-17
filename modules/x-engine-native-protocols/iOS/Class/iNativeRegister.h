@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
  @protocol iNativeRegister <NSObject>
-typedef UIViewController* _Nullable (^NativeVCCreator)(NSString* protocol,NSString* host, NSString* pathname, NSString* fragment, NSDictionary* query, NSDictionary* params);
+typedef UIViewController* _Nullable (^NativeVCCreator)(NSString* protocol,NSString* host, NSString* pathname, NSString* fragment, NSDictionary* query, NSDictionary* params, CGRect frame);
 // 注册原生路由
 - (void) registerNativeRouter:(NSString*) urlPattern nativeVCCreator:(NativeVCCreator) nativeVCCreator;
 @end

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.anthonynsimon.url.URL;
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -26,11 +28,14 @@ import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.bridge.DWebView;
+import com.zkty.nativ.jsi.bridge.WebResourceRequestAdapter;
+import com.zkty.nativ.jsi.bridge.WebResourceResponseAdapter;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.view.MicroAppLoader;
 import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.jsi.view.SchemeManager;
+import com.zkty.nativ.webcache.lib.WebViewCacheInterceptorInst;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
@@ -84,6 +89,7 @@ public class XEngineWebView extends DWebView {
         getSettings().setAllowUniversalAccessFromFileURLs(true);
         getSettings().setAllowContentAccess(true);
         getSettings().setDomStorageEnabled(true);
+        getSettings().setDatabaseEnabled(true);
         setWebContentsDebuggingEnabled(!"release".equals(BuildConfig.BUILD_TYPE));
         ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
@@ -99,40 +105,6 @@ public class XEngineWebView extends DWebView {
 
     private void setWebViewClient() {
         setWebViewClient(new WebViewClient() {
-            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-                Log.d(TAG, "request url= " + s);
-                if (!s.startsWith("file")) {
-                    //配置存在，切需要拦截
-                    if (mPermission != null
-                            && mPermission.getPermission() != null
-                            && mPermission.getPermission().getNetwork() != null
-                            && mPermission.getPermission().getNetwork().isStrict()) {
-                        //在白名单内
-                        if (mPermission.getPermission().getNetwork().getWhite_host_list() != null
-                                && mPermission.getPermission().getNetwork().getWhite_host_list().size() > 0) {
-                            try {
-                                URL url = URL.parse(s);
-                                if (url != null) {
-                                    String host = url.getHost();
-                                    if (mPermission.getPermission().getNetwork().getWhite_host_list().contains(host)) {
-                                        return super.shouldInterceptRequest(webView, s);
-                                    }
-                                }
-                            } catch (Exception e) {
-
-                            }
-                        }
-
-                        //不在白名单
-                        alertDebugInfo("请求host不在白名单，请检查配置文件");
-                        return new WebResourceResponse();
-                    }
-                }
-
-
-                return super.shouldInterceptRequest(webView, s);
-            }
 
             @Override
             public void onPageFinished(WebView webView, String s) {
@@ -254,6 +226,19 @@ public class XEngineWebView extends DWebView {
                 return false;
             }
 
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
+                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                        interceptRequest(s));
+            }
+
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                        interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
+            }
+
         });
     }
 
@@ -373,9 +358,19 @@ public class XEngineWebView extends DWebView {
 //                    new Thread(() -> {
                     if (result != null && result.getExtra() != null) {
                         if (result.getExtra().toLowerCase().startsWith("http")) {
-                            ImageUtils.savePictureByUrl(mContext, result.getExtra());
+                            ImageUtils.savePictureByUrl(mContext, result.getExtra(), new ImageUtils.SaveCallBack() {
+                                @Override
+                                public void saveCallBack(int status, String msg) {
+                                    ToastUtils.showCenterToast(msg);
+                                }
+                            });
                         } else {
-                            ImageUtils.savePictureByBase64(mContext, result.getExtra());
+                            ImageUtils.savePictureByBase64(mContext, result.getExtra(),new ImageUtils.SaveCallBack() {
+                                @Override
+                                public void saveCallBack(int status, String msg) {
+                                    ToastUtils.showCenterToast(msg);
+                                }
+                            });
                         }
                     }
 //                    }).start();
@@ -456,7 +451,7 @@ public class XEngineWebView extends DWebView {
         StringBuilder sb = new StringBuilder();
         String hostR = model.host;
         if ("file:".equals(model.protocol)) {
-            hostR = MicroAppLoader.sharedInstance().getMicroAppHostFormAssets(model.host);
+            hostR = MicroAppLoader.sharedInstance().getMicroAppUrl(model.host);
         }
 
 

@@ -18,11 +18,6 @@ function osCheck() {
     "decorators": []
   },
   {
-    "name": "test_openImagePicker2",
-    "default_args": {},
-    "decorators": []
-  },
-  {
     "name": "test_openImagePicker",
     "default_args": {},
     "decorators": []

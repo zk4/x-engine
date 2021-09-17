@@ -1,6 +1,9 @@
 //
 //  XEngineWebView.m
-
+//  BIG THX TO DSBRIDGE.
+//  此代码大部分取自 DsBridge。
+//  由于 DsBridge 在很多第三库里都有依赖。经常会报类冲突。遂改名。
+//  源代码在 https://github.com/wendux/DSBridge-IOS
 
 
 #import "XEngineWebView.h"
@@ -9,7 +12,9 @@
 #import "XEngineInternalApis.h"
 #import <objc/message.h>
 #import "XENativeContext.h"
+#import "JSIModule.h"
 #import "iToast.h"
+#import "XTool.h"
 
 #define BROADCAST_EVENT @"@@VUE_LIFECYCLE_EVENT"
 
@@ -69,14 +74,15 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     interalApis.webview=self;
     [self addJavascriptObject:interalApis namespace:@"_dsb"];
     
-//    if (@available(iOS 13.0, *)) {
-//        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
-//    } else {
-        // Fallback on earlier versions
-        /// TODO: 上面的函数只支持iOS 13.0,保持低版本兼容 @cwz
-//    }
-//    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
-//    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
+    //    if (@available(iOS 13.0, *)) {
+    //        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    //    } else {
+    // Fallback on earlier versions
+    /// TODO: 上面的函数只支持iOS 13.0,保持低版本兼容 @cwz
+    //    }
+    //    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
+    //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
+    
     return self;
 }
 
@@ -144,31 +150,31 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
 {
-//    if(!jsDialogBlock){
-        completionHandler();
-//    }
-//    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
-//                               @selector(webView:runJavaScriptAlertPanelWithMessage
-//                                         :initiatedByFrame:completionHandler:)])
-//    {
-//        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
-//                         initiatedByFrame:frame
-//                        completionHandler:completionHandler];
-//    }else{
-        
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
-//                                                                       message:message
-//                                                                preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
-//                                                         style:UIAlertActionStyleDefault
-//                                                       handler:^(UIAlertAction * _Nonnull action) {
-//            if(completionHandler){
-//                completionHandler();
-//            }
-//        }];
-//        [alert addAction:action];
-//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-//    }
+    //    if(!jsDialogBlock){
+    completionHandler();
+    //    }
+    //    if( self.DSUIDelegate &&  [self.DSUIDelegate respondsToSelector:
+    //                               @selector(webView:runJavaScriptAlertPanelWithMessage
+    //                                         :initiatedByFrame:completionHandler:)])
+    //    {
+    //        return [self.DSUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message
+    //                         initiatedByFrame:frame
+    //                        completionHandler:completionHandler];
+    //    }else{
+    
+    //        UIAlertController *alert = [UIAlertController alertControllerWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
+    //                                                                       message:message
+    //                                                                preferredStyle:UIAlertControllerStyleAlert];
+    //        UIAlertAction *action = [UIAlertAction actionWithTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
+    //                                                         style:UIAlertActionStyleDefault
+    //                                                       handler:^(UIAlertAction * _Nonnull action) {
+    //            if(completionHandler){
+    //                completionHandler();
+    //            }
+    //        }];
+    //        [alert addAction:action];
+    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    //    }
 }
 
 -(void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message
@@ -252,14 +258,14 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void)showErrorAlert:(NSString *)message
 {
     [XENP(iToast) toast:message duration:1.0];
-//    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//
-//    }];
-//    [errorAlert addAction:sureAction];
-//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
-//
-//    }];
+    //    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
+    //    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    //
+    //    }];
+    //    [errorAlert addAction:sureAction];
+    //    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:errorAlert animated:YES completion:^{
+    //
+    //    }];
 }
 
 - (void) evalJavascript:(int) delay{
@@ -281,7 +287,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-   
+
 
 -(id) convertDict:(id) obj {
     SEL selector = NSSelectorFromString(@"toDictionary");
@@ -289,7 +295,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         id(*action)(id,SEL) = (id(*)(id,SEL))objc_msgSend;
         return   action(obj, selector);
     }else if ([obj isKindOfClass:NSDictionary.class]){
-        return [self dictionaryToJson:obj ];
+        return [XToolDataConverter dictionaryToJson:obj ];
     }else{
         return [NSString stringWithFormat:@"%@",obj];
     }
@@ -331,10 +337,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                 if([JavascriptInterfaceObject respondsToSelector:selasyn]){
                     __weak typeof(self) weakSelf = self;
                     void (^completionHandler)(id,BOOL) = ^(id value,BOOL complete){
+                        __strong typeof(self) strongSelf = weakSelf;
+                        
                         NSString *del=@"";
                         result[@"code"]=@0;
                         if(value!=nil){
-                            result[@"data"]=[self convertDict:value];
+                            result[@"data"]=[strongSelf convertDict:value];
                         }
                         value = [XEngineJSBUtil objToJsonString:result];
                         value = [value stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -342,14 +350,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                             del=[@"delete window." stringByAppendingString:cb];
                         }
                         NSString *js = [NSString stringWithFormat:@"try {%@(JSON.parse(decodeURIComponent(\"%@\")).data);%@; } catch(e){};",cb,(value == nil) ? @"" : value,del];
-                        __strong typeof(self) strongSelf = weakSelf;
                         @synchronized(self) {
                             UInt64  t=[[NSDate date] timeIntervalSince1970]*1000;
-                            self->jsCache=[self->jsCache stringByAppendingString:js];
-                            if(t-self->lastCallTime<50){
-                                if(!self->isPending){
+                            strongSelf->jsCache=[strongSelf->jsCache stringByAppendingString:js];
+                            if(t-strongSelf->lastCallTime<50){
+                                if(!strongSelf->isPending){
                                     [strongSelf evalJavascript:50];
-                                    self->isPending=true;
+                                    strongSelf->isPending=true;
                                 }
                             }else{
                                 [strongSelf evalJavascript:0];
@@ -358,18 +365,26 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                     };
                     
                     void(*action)(id,SEL,id,id) = (void(*)(id,SEL,id,id))objc_msgSend;
-                    //                    [GlobalState setCurrentWebView:self];
+                    JSIModule* jsi = (JSIModule*) JavascriptInterfaceObject;
+                    [jsi lockCurrentWebView:self];
                     action(JavascriptInterfaceObject, selasyn, arg, completionHandler);
+                    [jsi unlockCurrentWebView:self];
+                    
                     break;
                 }
             }else if([JavascriptInterfaceObject respondsToSelector:sel]){
                 id ret;
                 id(*action)(id,SEL,id) = (id(*)(id,SEL,id))objc_msgSend;
+                
+                JSIModule* jsi = (JSIModule*) JavascriptInterfaceObject;
+                [jsi lockCurrentWebView:self];
                 ret=action(JavascriptInterfaceObject,sel,arg);
+                [jsi unlockCurrentWebView:self];
                 [result setValue:@0 forKey:@"code"];
                 if(ret!=nil){
                     [result setValue:[self convertDict:ret] forKey:@"data"];
                 }
+                
                 break;
             }
             NSString *js = [error stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -392,10 +407,37 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 - (void)setDebugMode:(bool)debug{
     isDebug=debug;
 }
+-(void) _loadRequest:(NSURLRequest*) req{
+    NSURL * url = req.URL;
+    if(!self.model){
+        self.model = [HistoryModel new];
+    }
+    self.model.host= url.host;
+    self.model.fragment=url.fragment;
+    self.model.pathname=url.path;
+    [self loadRequest:req];
+    
+}
 
+- (void) _loadFileURL:(NSURL*)fileURL allowingReadAccessToURL:(NSURL*) accessURL{
+    if(!self.model){
+        self.model = [HistoryModel new];
+    }
+    self.model.host= fileURL.host;
+    self.model.fragment=fileURL.fragment;
+    self.model.pathname=fileURL.path;
+    [self loadFileURL:fileURL allowingReadAccessToURL:accessURL];
+}
 - (void)loadUrl: (NSString *)url
 {
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURL* nsurl = [NSURL URLWithString:url];
+    if(!self.model){
+        self.model = [HistoryModel new];
+    }
+    self.model.host= nsurl.host;
+    self.model.fragment=nsurl.fragment;
+    self.model.pathname=nsurl.path;
     [self loadRequest:request];
 }
 
@@ -439,7 +481,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
-               completionHandler:nil];
+                   completionHandler:nil];
     });
     
 }
@@ -646,7 +688,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 // 2.1- 开始下载指定 URL 的内容, 下载之前会调用一次 开始下载 回调
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-//    [self.indicatorView startAnimating];
+    //    [self.indicatorView startAnimating];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
         [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
     }
@@ -658,7 +700,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 3- 确定下载的内容被允许之后再载入视图。
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-//    [self.indicatorView stopAnimating];
+    //    [self.indicatorView stopAnimating];
     [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
@@ -667,13 +709,13 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-//    [self.indicatorView stopAnimating];
+    //    [self.indicatorView stopAnimating];
     [self addCustomView];
 }
 
 // 4.2- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-//    [self.indicatorView stopAnimating];
+    //    [self.indicatorView stopAnimating];
     [self addCustomView];
 }
 
@@ -718,7 +760,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (void)dealloc {
-//    [self.indicatorView stopAnimating];
+    //    [self.indicatorView stopAnimating];
 }
 
 // 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中
@@ -743,7 +785,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     label.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1.0];
     label.textAlignment = NSTextAlignmentCenter;
     [view addSubview:label];
-     
+    
     [self addSubview:view];
 }
 
@@ -761,4 +803,5 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     return nil;
 }
+
 @end

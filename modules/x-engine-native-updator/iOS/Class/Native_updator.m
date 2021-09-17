@@ -22,7 +22,7 @@
 @interface Native_updator() <NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
     @property (nonatomic, strong) NSMutableDictionary<NSString*,MicroappInfoDTO*> * microappInfos;
 @property (nonatomic, strong) id<iToast> toast;
-
+@property (nonatomic, strong) AFHTTPSessionManager* manager;
 @end
 
 @implementation Native_updator
@@ -38,12 +38,18 @@ NATIVE_MODULE(Native_updator)
 
 
 - (void)afterAllNativeModuleInited {
-    
     _toast = XENP(iToast);
+    
+    self.manager = [AFHTTPSessionManager manager];
+    [self.manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
+    [self.manager setResponseSerializer:[AFJSONResponseSerializer serializer]];
+     self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",@"multipart/form-data", nil];
+
 }
 - (NSDictionary *)microappInfos {
     if (!_microappInfos) {
         _microappInfos = [NSMutableDictionary new];
+      
         [self updateMicroappsInfos];
     }
     return _microappInfos;
@@ -51,19 +57,31 @@ NATIVE_MODULE(Native_updator)
 
 
 - (void) updateMicroappsInfos{
-
     @synchronized (self) {
     // 1. 扫描工程文件夹 microapps
     NSString *prjRootMicroappsPath = [[NSBundle mainBundle] pathForResource:@"microapps" ofType:@""];
     NSMutableDictionary* prjDict = [self scanPath:prjRootMicroappsPath];
-
+ 
+    [self.microappInfos addEntriesFromDictionary:prjDict];
+            
     // 2. 扫描沙盒文件夹 {sandbox}/Documents/microapps
     NSString *sandboxMicroappPath= [NSString stringWithFormat:@"%@/microapps" ,kDocumentPath] ;
     NSMutableDictionary* sandboxDict =  [self scanPath:sandboxMicroappPath];
 
     // 3. MERGE
-    [self.microappInfos addEntriesFromDictionary:prjDict];
-    [self.microappInfos addEntriesFromDictionary:sandboxDict];
+    [self mergeDictWithBiggerVersion:sandboxDict];
+
+    }
+}
+- (void) mergeDictWithBiggerVersion:(NSMutableDictionary*) dict{
+    for (id key in dict) {
+        MicroappInfoDTO* newDto = dict[key];
+        MicroappInfoDTO* oldDto = self.microappInfos[key];
+        // old 不存在　或者　新　version　的比旧的大
+        if(!oldDto || newDto.version  > oldDto.version){
+            [self.microappInfos setObject:newDto forKey:key];
+        }
+        NSLog(@"%@",key);
     }
 }
  
@@ -77,22 +95,19 @@ NATIVE_MODULE(Native_updator)
             NSLog(@"%f",1.0 * downloadProgress.completedUnitCount/downloadProgress.totalUnitCount);
         
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        
-        NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-               NSString *fullPath = [filePath stringByAppendingPathComponent:response.suggestedFilename];
-               
-               NSLog(@"%@",fullPath);
-               return [NSURL fileURLWithPath:fullPath];
+
+        NSString *fullPath = [targetPath.absoluteString stringByAppendingString:@".zip"];
+        return [NSURL URLWithString:fullPath];
                
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        
         if(filePath && !error){
-            NSLog(@"%@",filePath);
-
             [self unzipCacheZipToDocument:filePath.path];
         }
         else{
+#ifdef DEBUG
+            [XENP(iToast) toast:[NSString stringWithFormat:@"下载失败: %@", downloadUrl]];
             NSLog(@"completionHandler----%@",error);
+#endif
         }
     } ];
     [downTask resume];
@@ -102,48 +117,33 @@ NATIVE_MODULE(Native_updator)
     
     NSString *UUID = [[NSUUID UUID] UUIDString];
     NSString *tmp_sandboxMicroappPath= [NSString stringWithFormat:@"%@/microapps/%@" ,kDocumentPath,UUID];
-    NSString *tmp_microappjsonFilePath= [NSString stringWithFormat:@"%@/microapps/%@/microapp.json" ,kDocumentPath,UUID];
 
     __weak __typeof(self)weakSelf = self;
     [SSZipArchive unzipFileAtPath:cachedZipUrl toDestination:tmp_sandboxMicroappPath progressHandler:nil completionHandler:^(NSString * _Nonnull path, BOOL succeeded, NSError * _Nullable error) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
             if (!error) {
-                NSLog(@"解压成功%@",folderName);
-                // 重命名文件夹 microappid.version
-//                // TODO: 使用 microapp.json 里的版本号与 id
-//                NSError * err = NULL;
-//                NSFileManager * fm = [[NSFileManager alloc] init];
-//
-//                NSDictionary* microappjsonDict=  [self readMicroappjsonFile:tmp_microappjsonFilePath];
-//                NSString* folderName =  microappjsonDict[@"id"];
-//                NSInteger version =  [microappjsonDict[@"version"] intValue];
-//                NSString *sandboxMicroappPath= [NSString stringWithFormat:@"%@/microapps/%@.%ld" ,kDocumentPath,folderName,version];
-//
-//                BOOL result = [fm moveItemAtPath:tmp_sandboxMicroappPath toPath:sandboxMicroappPath error:&err];
-//                if(!result){
-//                    NSString* msg = [NSString stringWithFormat:@"重命名失败:%@",err.localizedDescription];
-//                    [strongSelf.toast toast:msg];
-//                }
-//                else{
-//                    NSString* msg = [NSString stringWithFormat:@"%@ -> %@",tmp_sandboxMicroappPath,sandboxMicroappPath];
-//                    [self toast:msg];
+                    NSLog(@"解压成功%@",folderName);
                     [self updateMicroappsInfos];
                     NSString* msg = [NSString stringWithFormat:@"%@ 安装成功,重新打开微应用将使用最新",folderName];
-                    [strongSelf.toast toast:msg];
-//                }
-                
+#ifdef DEBUG
+                [strongSelf.toast toast:msg];
+                [strongSelf.toast toast:path];
+#endif
            
             } else {
-                NSLog(@"解压失败==>%@", error);
+                NSString* msg = [NSString stringWithFormat:@"解压失败==>%@", error];
+#ifdef DEBUG
+                [XENP(iToast) toast:msg];
+#endif
             }
     }];
 }
 
 - (void)updateMicroappsFromUrl:(NSString *)url {
-//    [self lazyAfnetworking:url];
-    [[AFHTTPSessionManager manager] GET:@"/data.json" parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+    [self.manager POST:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if(responseObject && responseObject[@"data"]){
-                for(id entry in responseObject[@"data"]){
+                for(id entry in responseObject[@"data"][@"list"]){
                     NSLog(@"%@",entry);
                     NSString* microappId = entry[@"microappId"];
                     MicroappInfoDTO* dto = [self.microappInfos objectForKey:microappId];
@@ -158,6 +158,7 @@ NATIVE_MODULE(Native_updator)
                         NSInteger version = [entry[@"version"] intValue];
                         if(version > dto.version)
                         {
+                       
                             NSString* downloadUrl = entry[@"downloadUrl"];
                             // TODO: 实现 force
                             BOOL force =  entry[@"isForce"]?[entry[@"isForce"] boolValue]:NO;
@@ -191,8 +192,9 @@ NATIVE_MODULE(Native_updator)
             msg= [NSString stringWithFormat:@"工程\n%@ 不存在",packagename];
         }
       
-        // toggle queueing behavior
+#ifdef DEBUG
         [XENP(iToast) toast:msg];
+#endif
         
         return nil;
     }
@@ -229,7 +231,9 @@ NATIVE_MODULE(Native_updator)
         dto.microappId = microappId;
         dto.localpath = rootPath;
         dto.rawMicroappInfo = dict;
-        [microappInfos setObject:dto forKey:microappId];
+        MicroappInfoDTO* oldDto = [microappInfos objectForKey:microappId];
+        if(!oldDto  || oldDto.version< version)
+            [microappInfos setObject:dto forKey:microappId];
  
     }
     return microappInfos;
@@ -248,5 +252,6 @@ NATIVE_MODULE(Native_updator)
  
     return  nil;
 }
+ 
 
 @end

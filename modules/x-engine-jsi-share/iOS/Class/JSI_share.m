@@ -29,9 +29,9 @@ JSI_MODULE(JSI_share)
 //    }];
 //}
 
-- (void)_share:(ShareDTO *)dto complete:(void (^)(_share0_DTO *, BOOL))completionHandler {
+- (void)_share:(ShareDTO *)dto complete:(void (^)(_share_com_zkty_jsi_share_0_DTO *, BOOL))completionHandler {
     [self.ishareManager shareWithType:dto.type channel:dto.channel posterInfo:dto.info complete:^( BOOL complete) {
-            _share0_DTO* ret = [_share0_DTO new];
+            _share_com_zkty_jsi_share_0_DTO* ret = [_share_com_zkty_jsi_share_0_DTO new];
             ret.code =0;
           completionHandler(ret,TRUE);
       }];

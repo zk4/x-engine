@@ -9,7 +9,9 @@ version: 2.8.1
 ## openScanView
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
 
-**demo**
+
+
+> **demo**
 ``` js
 
   xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
@@ -19,6 +21,7 @@ version: 2.8.1
 ``` 
 
 **无参数**
+
 
 **返回值**
 ``` js

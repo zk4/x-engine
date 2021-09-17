@@ -8,14 +8,21 @@
 
 #import "JSONModel.h"
 #import "JSIModule.h"
-#import <objc/message.h>
 #import "XEngineJSBUtil.h"
 #import "Unity.h"
 #import "iToast.h"
 #import "XENativeContext.h"
+#import <objc/message.h>
+#import <os/lock.h>
+
 # ifndef mustOverride
 #define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 #endif
+
+static  os_unfair_lock s_webviewlock = OS_UNFAIR_LOCK_INIT;
+static  XEngineWebView* s_webview = nil;
+
+
 @implementation JSIModule
 
 - (NSString *)moduleId {
@@ -48,10 +55,6 @@
 
 - (void)showErrorAlert:(NSString *)errorString
 {
-//    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:errorString preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-//    [ac addAction:action];
-//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
     [XENP(iToast) toast:errorString duration:1.0];
 }
 
@@ -158,4 +161,23 @@
 }
 
 
+- (void) lockCurrentWebView:(XEngineWebView*) webview{
+    if(webview == s_webview)return;
+    while(!os_unfair_lock_trylock(&s_webviewlock)){
+#ifdef DEBUG
+        [XENP(iToast) toast:@"try lock webview again!" duration:.2];
+#endif
+    };
+    s_webview = webview;
+}
+- (void) unlockCurrentWebView:(XEngineWebView*) webview{
+    if(s_webview==nil)return;
+    s_webview =nil;
+    os_unfair_lock_unlock(&s_webviewlock);
+}
+
+- (XEngineWebView*) currentWebView{
+    NSAssert(s_webview, @"如果为空，你调用个啥？");
+    return s_webview;
+}
 @end

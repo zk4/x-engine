@@ -9,6 +9,7 @@
 #import "OneViewController.h"
 #import "iDirectManager.h"
 #import "XENativeContext.h"
+#import "iDevice.h"
 
 @interface OneViewController ()
 
@@ -18,8 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://todo" params:@{@"hideNavbar":@TRUE}];
+    id<iDevice> device = XENP(iDevice);
+    float tabbarHeight= [device getTabbarHeight];
+    NSString* navHeight =[device getNavigationHeight];
+    float fCost = [navHeight floatValue];
+
+    CGRect frame =   CGRectMake(0, fCost, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
+
+    [XENP(iDirectManager) addToTab:self uri:@"microapp://to.find" params:@{@"hideNavbar":@TRUE} frame:frame];
 
 }
 @end
-

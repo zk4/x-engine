@@ -1,16 +1,9 @@
 package com.zkty.jsi;
 
 
-import android.util.Log;
-
-import androidx.annotation.Nullable;
-
-import com.alibaba.fastjson.JSON;
-import com.zkty.jsi.xengine_jsi_media;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
-import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.media.CameraDTO;
 import com.zkty.nativ.media.CameraRetDTO;
@@ -21,15 +14,12 @@ import com.zkty.nativ.media.PreImageCallBack;
 import com.zkty.nativ.media.SaveCallBack;
 import com.zkty.nativ.media.UpLoadImgCallback;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 public class JSI_media extends xengine_jsi_media {
+    private static final String CUSTOMID = "customid";
     private Nativemedia iMedia;
 
     @Override
@@ -41,9 +31,16 @@ public class JSI_media extends xengine_jsi_media {
 
 
 
-
     @Override
     public void _previewImg(_0_com_zkty_jsi_media_DTO dto) {
+        for (int i = 0; i < dto.imgList.size(); i++) {
+            String imgUrl = dto.imgList.get(i);
+            //如果是存储的ID  则 从缓存中 获取 真是图片路径
+            if(imgUrl.startsWith(CUSTOMID)){
+                imgUrl = ImageCacheManager.get(imgUrl);
+            }
+            dto.imgList.set(i,imgUrl);
+        }
         iMedia.preImage(dto.imgList, dto.index, new PreImageCallBack() {
             @Override
             public void closeCallBack() {
@@ -52,15 +49,14 @@ public class JSI_media extends xengine_jsi_media {
         });
     }
 
-
-
     @Override
     public void _saveImageToPhotoAlbum(_2_com_zkty_jsi_media_DTO dto, CompletionHandler<_1_com_zkty_jsi_media_DTO> handler) {
-        iMedia.saveImageToAlbum(dto.imageData, dto.type, new SaveCallBack() {
+        _1_com_zkty_jsi_media_DTO com_zkty_jsi_media_dto = new _1_com_zkty_jsi_media_DTO();
+        iMedia.saveImageUrlToAlbum(dto.imgUrl,new SaveCallBack() {
             @Override
-            public void saveCallBack() {
-                _1_com_zkty_jsi_media_DTO com_zkty_jsi_media_dto = new _1_com_zkty_jsi_media_DTO();
-                com_zkty_jsi_media_dto.status = 0;
+            public void saveCallBack(int status, String msg) {
+                com_zkty_jsi_media_dto.status = status;
+                com_zkty_jsi_media_dto.msg = msg;
                 handler.complete(com_zkty_jsi_media_dto);
             }
         });
@@ -83,9 +79,12 @@ public class JSI_media extends xengine_jsi_media {
                     ArrayList<_4_com_zkty_jsi_media_DTO> imglist = new ArrayList<>();
                     for (int i = 0; i < data.size(); i++) {
                         _4_com_zkty_jsi_media_DTO  dto4 = new _4_com_zkty_jsi_media_DTO();
-                        dto4.imgID = data.get(i).getId();
+                        //转换key
+                        String key = CUSTOMID + "//" + UUID.randomUUID().toString();
+                        ImageCacheManager.put(key,data.get(i).getId());
+                        dto4.imgID = key;
                         dto4.thumbnail = data.get(i).getThumbnail();
-                        dto4.type = data.get(i).getType();
+                        dto4.imgType = data.get(i).getType();
                         imglist.add(dto4);
                     }
                     _3_com_zkty_jsi_media_DTO dto1 = new _3_com_zkty_jsi_media_DTO();
@@ -100,15 +99,27 @@ public class JSI_media extends xengine_jsi_media {
 
     @Override
     public void _uploadImage(_7_com_zkty_jsi_media_DTO dto, CompletionHandler<_6_com_zkty_jsi_media_DTO> handler) {
-        iMedia.upLoadImgList(dto.url, dto.ids, new UpLoadImgCallback() {
+        //获取 缓存中的 本体图片路径
+        List<String> images = new ArrayList<>();
+        for (int i = 0; i < dto.imgIds.size(); i++) {
+            String imgpath = dto.imgIds.get(i);
+            if(imgpath.startsWith(CUSTOMID)){
+                imgpath = ImageCacheManager.get(imgpath);
+            }
+            images.add(imgpath);
+        }
+        //上传图片
+        final int[] index = {0};
+        iMedia.upLoadImgList(dto.url, images, dto.header,new UpLoadImgCallback() {
             @Override
             public void onUpLoadSucces(int status, String id,String msg, String dataStr,boolean isCommplete) {
                 try {
                     _6_com_zkty_jsi_media_DTO dto1 = new _6_com_zkty_jsi_media_DTO();
                     dto1.data = dataStr;
                     dto1.status = status;
-                    dto1.imgID = id;
+                    dto1.imgID = dto.imgIds.get(index[0]);
                     dto1.msg = msg;
+                    index[0]++;
                     if(isCommplete){
                         handler.complete(dto1);
                     }else{

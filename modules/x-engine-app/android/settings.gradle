@@ -58,6 +58,9 @@ project(':native-geo').projectDir = new File('../../x-engine-native-geo/android/
 include ':native-media'
 project(':native-media').projectDir = new File('../../x-engine-native-media/android/native-media')
 
+//include ':native-media2'
+//project(':native-media2').projectDir = new File('../../x-engine-native-media2/android/native-media2')
+
 include ':native-geo_gaode'
 project(':native-geo_gaode').projectDir = new File('../../x-engine-native-geo_gaode/android/native-geo_gaode')
 
@@ -65,7 +68,7 @@ include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
 include ':native-gmupload'
-project(':native-gmupload').projectDir = new File('../../../../x-engine/modules/x-engine-native-gmupload/android/native-gmupload')
+project(':native-gmupload').projectDir = new File('../../../../gome-business/gm-modules/x-engine-native-gmupload/android/native-gmupload')
 
 include ':jsi-direct'
 project(':jsi-direct').projectDir = new File('../../x-engine-jsi-direct/android/jsi-direct')
@@ -114,3 +117,6 @@ project(':jsi-geo').projectDir = new File('../../x-engine-jsi-geo/android/jsi-ge
 
 include ':jsi-media'
 project(':jsi-media').projectDir = new File('../../x-engine-jsi-media/android/jsi-media')
+
+//include ':jsi-media2'
+//project(':jsi-media2').projectDir = new File('../../x-engine-jsi-media2/android/jsi-media2')

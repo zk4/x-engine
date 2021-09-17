@@ -28,6 +28,8 @@ package 原生模块(jsi) {
 
     + (string) {abstract}  moduleId;
   }
+
+  
 } 
 
 package JSI模块(gen) {
@@ -76,24 +78,43 @@ package 协议模块 {
   package 原生模块(direct) {
   class Native_direct_http   extends NativeModule implements iDirect{
     - (string) moduleId;
-    - (Container) getContainer;
+    - (iContainer) getContainer;
     - (void)push:(...);
     - (void)back:(...);
   }
     class Native_direct_react   extends NativeModule implements iDirect{
     - (string) moduleId;
-    - (Container) getContainer;
+    - (iContainer) getContainer;
     - (void)push:(...);
     - (void)back:(...);
   } 
     class Native_direct_omp   extends NativeModule implements iDirect{
   - (string) moduleId;
-  - (Container) getContainer;
+  - (iContainer) getContainer;
   - (void)push:(...);
   - (void)back:(...);
 } 
-   
+
+
 }
+package iContainer {
+   interface iContainer {
+    - (void) onCreated;
+    - (void) beforeShow;
+    - (void) afterShow; 
+    - (void) beforeHide;
+    - (void) afterHide;
+    - (void) beforeDead;
+    - (void) onRefreshTriggered;
+  }
+
+   interface iContainerAction {
+   
+   }
+}
+
+  class  XXUIVieController implements iConatiner {
+  }
  
  
 

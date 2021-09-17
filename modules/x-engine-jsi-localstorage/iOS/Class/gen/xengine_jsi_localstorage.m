@@ -6,7 +6,7 @@
 #import "xengine_jsi_localstorage.h"
 
 
-@implementation _set0_DTO
+@implementation _set_com_zkty_jsi_localstorage_0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
@@ -43,7 +43,7 @@
   
   - (id) set:(NSDictionary*) dict {
       
-      _set0_DTO* dto = [self convert:dict clazz:_set0_DTO.class];
+      _set_com_zkty_jsi_localstorage_0_DTO* dto = [self convert:dict clazz:_set_com_zkty_jsi_localstorage_0_DTO.class];
       
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];

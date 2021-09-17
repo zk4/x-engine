@@ -9,6 +9,8 @@
 #import "SLUrlProtocol.h"
 #import "SLWebCacheManager.h"
 #import "NSCachedURLResponse+Modifier.h"
+#import "XENativeContext.h"
+#import "iToast.h"
 
 static NSString *SLUrlProtocolHandled = @"SLUrlProtocolHandled";
 
@@ -115,6 +117,9 @@ didReceiveResponse:(NSURLResponse *)response
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
     if (error) {
+#ifdef DEBUG
+        [XENP(iToast) toast:[NSString stringWithFormat:@"%@", error]];
+#endif
         [self.client URLProtocol:self didFailWithError:error];
     } else {
         [self.client URLProtocolDidFinishLoading:self];

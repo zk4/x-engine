@@ -47,7 +47,7 @@
 @end
 
   
-@implementation _share0_DTO
+@implementation _share_com_zkty_jsi_share_0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {	return NO;
     }
 @end
@@ -73,10 +73,10 @@
           
         if(!dto) {
           [self showErrorAlert: @"dto 转换为空"];
-          return ;
+          return;
         }
 
-          [self _share:dto complete:^(_share0_DTO* result,  BOOL complete) {
+          [self _share:dto complete:^(_share_com_zkty_jsi_share_0_DTO* result,  BOOL complete) {
             completionHandler(result,complete);
           }];
         

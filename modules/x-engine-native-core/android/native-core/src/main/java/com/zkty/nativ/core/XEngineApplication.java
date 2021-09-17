@@ -62,6 +62,18 @@ public class XEngineApplication extends MultiDexApplication {
 
             }
         });
+
+        List<NativeModule> modules = NativeContext.sharedInstance().getModules();
+        for (NativeModule module : modules) {
+            if (module instanceof IApplicationListener) {
+                IApplicationListener listener = (IApplicationListener) module;
+                if (listener != null) {
+                    listener.onAppCreate(this);
+                }
+
+            }
+        }
+
     }
 
     @Override

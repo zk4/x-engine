@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -93,6 +94,64 @@ public class FileUtils {
                 if (file.createNewFile()) {
                     fileInputStream = new FileInputStream(source);
                     fileOutputStream = new FileOutputStream(file);
+                    byte[] temp = new byte[1024];
+                    int count = 0;
+
+                    while (true) {
+                        count = fileInputStream.read(temp);
+                        if (count == -1) {
+                            break;
+                        } else {
+                            fileOutputStream.write(temp, 0, count);
+                        }
+                    }
+                    if (source.delete()) {             //删除原文件
+                        success = true;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fileInputStream != null) {
+                        fileInputStream.close();
+                    }
+                    if (fileOutputStream != null) {
+                        fileOutputStream.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            Log.d(TAG, "dir or filename is invalid!");
+        }
+        return success;
+    }
+
+    /**
+     * @param source
+     * @param out
+     */
+    public static boolean moveFile(File source, File out) {
+        boolean success = false;
+        if (source.exists()) {
+            if (!out.exists()) {
+                out.mkdirs();
+            }
+
+
+            FileInputStream fileInputStream = null;
+            FileOutputStream fileOutputStream = null;
+
+            if (out.exists()) {
+                out.delete();
+            }
+
+            try {
+                if (out.createNewFile()) {
+                    fileInputStream = new FileInputStream(source);
+                    fileOutputStream = new FileOutputStream(out);
                     byte[] temp = new byte[1024];
                     int count = 0;
 
@@ -550,6 +609,61 @@ public class FileUtils {
         }
         File file = new File(img_path);
         return file;
+    }
+
+
+    public static int copy(String fromFile, String toFile) {
+        //要复制的文件目录
+        File[] currentFiles;
+        File root = new File(fromFile);
+        //如同判断SD卡是否存在或者文件是否存在
+        //如果不存在则 return出去
+        if (!root.exists()) {
+            return -1;
+        }
+        //如果存在则获取当前目录下的全部文件 填充数组
+        currentFiles = root.listFiles();
+
+        //目标目录
+        File targetDir = new File(toFile);
+        //创建目录
+        if (!targetDir.exists()) {
+            targetDir.mkdirs();
+        }
+        //遍历要复制该目录下的全部文件
+        for (int i = 0; i < currentFiles.length; i++) {
+            if (currentFiles[i].isDirectory())//如果当前项为子目录 进行递归
+            {
+                copy(currentFiles[i].getPath() + "/", toFile + currentFiles[i].getName() + "/");
+
+            } else//如果当前项为文件则进行文件拷贝
+            {
+                CopySdcardFile(currentFiles[i].getPath(), toFile + currentFiles[i].getName());
+            }
+        }
+        return 0;
+    }
+
+
+    //文件拷贝
+    //要复制的目录下的所有非子目录(文件夹)文件拷贝
+    public static int CopySdcardFile(String fromFile, String toFile) {
+
+        try {
+            InputStream fosfrom = new FileInputStream(fromFile);
+            OutputStream fosto = new FileOutputStream(toFile);
+            byte bt[] = new byte[1024];
+            int c;
+            while ((c = fosfrom.read(bt)) > 0) {
+                fosto.write(bt, 0, c);
+            }
+            fosfrom.close();
+            fosto.close();
+            return 0;
+
+        } catch (Exception ex) {
+            return -1;
+        }
     }
 
 

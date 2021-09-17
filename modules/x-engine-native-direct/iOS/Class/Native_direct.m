@@ -14,6 +14,7 @@
 #import "Unity.h"
 #import "UIViewController+Tag.h"
 #import "iToast.h"
+#import "XTool.h"
 
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
@@ -53,6 +54,15 @@ NATIVE_MODULE(Native_direct)
 
 - (void) _back:(NSString*) host fragment:(NSString*) fragment{
     UINavigationController* navC=[Unity sharedInstance].getCurrentVC.navigationController;
+
+    // 是 present　出来的,不关注历史
+    if(!navC){
+        UIViewController* vc = [Unity sharedInstance].getCurrentVC;
+        [vc dismissViewControllerAnimated:TRUE completion:^{
+        }];
+        return;
+    }
+    
     NSArray *ary = [Unity sharedInstance].getCurrentVC.navigationController.viewControllers;
  
  
@@ -131,8 +141,8 @@ NATIVE_MODULE(Native_direct)
         params:(NSDictionary<NSString*,id>*) params
         frame:(CGRect)frame{
     UInt64 now  = [[ NSDate date ] timeIntervalSince1970 ] * 1000;
-    // 1 秒 路由 throttle
-    if(now - self.lastTimeStamp<1000){
+    // 路由 throttle
+    if(now - self.lastTimeStamp<500){
         self.lastTimeStamp = now;
         return;
     }else{
@@ -199,6 +209,7 @@ NATIVE_MODULE(Native_direct)
             hm.pathname      = pathname;
             [container setCurrentHistory:hm];
         }else{
+            // present　出来的，　不关注历史
             UIViewController* vc = [Unity sharedInstance].getCurrentVC;
             [vc presentViewController:container animated:YES completion:^{
                 
@@ -214,7 +225,7 @@ NATIVE_MODULE(Native_direct)
     if(nativeParams){
         id _fallback = [nativeParams objectForKey:FALL_BACK_KEY];
         if(_fallback){
-            fallback =[_fallback string];
+            fallback =_fallback;
             // 必须删除,防止循环 fallback
             [[nativeParams mutableCopy] removeObjectForKey:FALL_BACK_KEY];
         }
@@ -247,6 +258,10 @@ NATIVE_MODULE(Native_direct)
         // try fallback
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
         if(fallbackUrl){
+            #ifdef DEBUG
+                NSString* msg =[NSString stringWithFormat:@"fallback:%@",fallbackUrl];
+                [XENP(iToast) toast:msg];
+            #endif
             [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params frame:frame];
             return;
         }
@@ -257,6 +272,7 @@ NATIVE_MODULE(Native_direct)
     NSAssert(container,@"why here, where is your container?");
     if(!container)return;
  
+
     [parent addChildViewController:container];
     container.view.frame = parent.view.frame;
     [parent.view addSubview:container.view];
@@ -272,41 +288,15 @@ NATIVE_MODULE(Native_direct)
 - (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback{
     [self.fallbackMappings setObject:fallback forKey:schemeHostPath];
 }
-
-static NSString *const kQueryBegin          = @"?";
-static NSString *const kFragmentBegin       = @"#";
-static NSString *const kSlash               = @"/";
-
-- (NSString*)SPAUrl2StandardUrl:(NSString*)raw {
-    int questionMark = -1;
-    int hashtagMark = -1;
-
-    for (int i=0;i< raw.length;i++){
-        char cc= [raw characterAtIndex:i];
-
-        if(cc == '#' && hashtagMark == -1){
-            hashtagMark=i;
-        }
-        // 仅当找到 hashtag 后才再找?, 不然不是 SPA url
-        if(hashtagMark != -1 && cc == '?' && questionMark == -1){
-            questionMark=i;
-        }
-    }
-    if(questionMark != -1 && hashtagMark != -1){
-        NSString* sub1= [raw substringToIndex:hashtagMark];
-        NSString* sub2= [raw substringWithRange:NSMakeRange(hashtagMark, questionMark-hashtagMark)];
-        NSString* sub3=[[raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
-    }
-    return raw;
-}
+ 
+ 
 
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
     // convert SPA url hash router style to standard url style
     // TODO: 写这不合适. manager 理应不关心 port
     
-    NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
+    NSURL* url = [NSURL URLWithString:[XToolDataConverter SPAUrl2StandardUrl:uri]];
     NSNumber* port = url.port;
     if(!port){
         if([url.scheme isEqualToString:@"https"])
@@ -323,7 +313,7 @@ static NSString *const kSlash               = @"/";
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
     // convert SPA url hash router style to standard url style
     // TODO: 写这不合适. manager 理应不关心 port
-    NSURL* url = [NSURL URLWithString:[self SPAUrl2StandardUrl:uri]];
+    NSURL* url = [NSURL URLWithString:[XToolDataConverter SPAUrl2StandardUrl:uri]];
     NSNumber* port = url.port;
     if(!port){
         if([url.scheme isEqualToString:@"https"])

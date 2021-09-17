@@ -11,6 +11,8 @@
 #import "SLUrlCache.h"
 #import "SLUrlProtocol.h"
 #import "WKWebView+SLExtension.h"
+#import "XENativeContext.h"
+#import "iToast.h"
 //#import "YYCache.h"
 
 //实现原理参考 戴明大神：https://github.com/ming1016/STMURLCache
@@ -218,8 +220,10 @@
             data = [NSData dataWithContentsOfFile:filePath];
           
             //写入内存
-            [self.memoryCache setObject:data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
-            [self.memoryCache setObject:otherInfo forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
+            if(data)
+                [self.memoryCache setObject:data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
+            if(otherInfo)
+                [self.memoryCache setObject:otherInfo forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
         }else {
             //磁盘里也没有cache
             return nil;
@@ -266,6 +270,9 @@
           
             if (error) {
                 cachedResponse = nil;
+#ifdef DEBUG
+        [XENP(iToast) toast:[NSString stringWithFormat:@"%@", error]];
+#endif
             } else {
                 cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
                 //写入本地缓存
@@ -399,9 +406,9 @@
         _memoryCache = [[NSCache alloc] init];
         _memoryCache.delegate = self;
         //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
-        _memoryCache.totalCostLimit =0;//self.memoryCapacity;
+        _memoryCache.totalCostLimit =10;//self.memoryCapacity;
         //能够缓存的对象的最大数量。默认值为0，表示没有限制
-        _memoryCache.countLimit = 1000;
+        _memoryCache.countLimit = 10;
 //        _memoryCache=[YYCache cacheWithName:@"XENGINE_YY_Cache"];
     }
     return _memoryCache;

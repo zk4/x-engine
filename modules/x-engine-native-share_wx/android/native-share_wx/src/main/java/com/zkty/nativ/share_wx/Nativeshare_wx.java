@@ -5,27 +5,18 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
-import android.renderscript.ScriptIntrinsicConvolve3x3;
 import android.text.TextUtils;
-import android.util.Base64;
-import android.util.Log;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.util.Util;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXMiniProgramObject;
-import com.tencent.mm.opensdk.modelmsg.WXMusicObject;
 import com.tencent.mm.opensdk.modelmsg.WXTextObject;
-import com.tencent.mm.opensdk.modelmsg.WXVideoObject;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.tencent.mmkv.MMKV;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.ImageUtils;
@@ -36,13 +27,8 @@ import com.zkty.nativ.share.dto.ShareLink;
 import com.zkty.nativ.share.dto.ShareMiniProgram;
 import com.zkty.nativ.share.dto.ShareText;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import module.share_wx.R;
 
 public class Nativeshare_wx extends NativeModule implements Ishare {
 
@@ -153,7 +139,7 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
         IWXAPI iwxapi = createWXAPI();
         if (iwxapi == null) return;
         Handler handler = new Handler(Looper.getMainLooper());
-        ImageUtils.getBitmap(info.imgUrl, new ImageUtils.BitmapCallback() {
+        ImageUtils.getBitmap(info.imgUrl, 150, 150, new ImageUtils.BitmapCallback() {
             @Override
             public void onSuccess(Bitmap bitmap) {
 
@@ -166,8 +152,8 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                     WXMediaMessage msg3 = new WXMediaMessage(webpage);
                     msg3.title = info.title;
                     msg3.description = info.desc;
-
-                    msg3.thumbData = ImageUtils.bitmapToBytes(bitmap);
+                    if (bitmap != null)
+                        msg3.thumbData = ImageUtils.bitmapToBytes(bitmap);
 
                     //构造一个Req
                     SendMessageToWX.Req req3 = new SendMessageToWX.Req();

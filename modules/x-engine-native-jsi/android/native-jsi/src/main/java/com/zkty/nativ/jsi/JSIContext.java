@@ -11,6 +11,7 @@ import com.tencent.smtt.sdk.QbSdk;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class JSIContext extends NativeModule {
         initJSIForQuick(XEngineApplication.getApplication());
         initModules();
         initWebView();
+        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
         for (JSIModule module : modules) {
             module.afterAllJSIModuleInited();
         }

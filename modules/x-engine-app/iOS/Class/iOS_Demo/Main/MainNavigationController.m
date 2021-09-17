@@ -43,7 +43,6 @@
 }
 
 #pragma mark -- UIGestureRecognizerDelegate
-
 // 什么时候调用：每次触发手势之前都会询问下代理，是否触发。
 // 作用：拦截手势触发
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
@@ -55,6 +54,7 @@
     }
     return YES;
 }
+
 //触发之后是否响应手势事件
 //处理侧滑返回与UISlider的拖动手势冲突
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -64,6 +64,7 @@
     }
     return YES;
 }
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.childViewControllers.count > 0) { // 如果push进来的不是第一个控制器
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -71,7 +72,6 @@
         [button setImage:[UIImage imageNamed:@"globalBackArrow"] forState:UIControlStateHighlighted];
         [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-     
     }
     
     // 这句super的push要放在后面, 让viewController可以覆盖上面设置的leftBarButtonItem

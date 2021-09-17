@@ -6,18 +6,12 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol _openImagePicker0_DTO;
-@protocol _openImagePicker20_DTO;
-@protocol _openImagePicker21_DTO;
-@protocol _openImagePicker22_DTO;
-@protocol _saveImageToPhotoAlbum0_DTO;
-@class _openImagePicker0_DTO;
-@class _openImagePicker20_DTO;
-@class _openImagePicker21_DTO;
-@class _openImagePicker22_DTO;
-@class _saveImageToPhotoAlbum0_DTO;
+@protocol _openImagePicker_com_zkty_jsi_camera_0_DTO;
+@protocol _saveImageToPhotoAlbum_com_zkty_jsi_camera_0_DTO;
+@class _openImagePicker_com_zkty_jsi_camera_0_DTO;
+@class _saveImageToPhotoAlbum_com_zkty_jsi_camera_0_DTO;
 
-@interface _openImagePicker0_DTO: JSONModel
+@interface _openImagePicker_com_zkty_jsi_camera_0_DTO: JSONModel
   	@property(nonatomic,assign) BOOL allowsEditing;
    	@property(nonatomic,assign) BOOL savePhotosAlbum;
    	@property(nonatomic,assign) NSInteger cameraFlashMode;
@@ -28,30 +22,7 @@
 @end
 
 
-@interface _openImagePicker20_DTO: JSONModel
-  	@property(nonatomic,assign) NSInteger code;
-   	@property(nonatomic,strong) NSMutableArray<_openImagePicker21_DTO*><_openImagePicker21_DTO>* data;
-@end
-
-
-@interface _openImagePicker21_DTO: JSONModel
-  	@property(nonatomic,copy) NSString* base64thumbnailStr;
-   	@property(nonatomic,copy) NSString* tempPath;
-@end
-
-
-@interface _openImagePicker22_DTO: JSONModel
-  	@property(nonatomic,assign) BOOL allowsEditing;
-   	@property(nonatomic,assign) BOOL savePhotosAlbum;
-   	@property(nonatomic,assign) NSInteger cameraFlashMode;
-   	@property(nonatomic,copy) NSString* cameraDevice;
-   	@property(nonatomic,assign) BOOL isbase64;
-   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* args;
-   	@property(nonatomic,assign) NSInteger photoCount;
-@end
-
-
-@interface _saveImageToPhotoAlbum0_DTO: JSONModel
+@interface _saveImageToPhotoAlbum_com_zkty_jsi_camera_0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* type;
    	@property(nonatomic,copy) NSString* imageData;
 @end
@@ -60,13 +31,10 @@
 
 @protocol xengine_jsi_camera_protocol
    @required 
-     - (void) _openImagePicker:(_openImagePicker0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+     - (void) _openImagePicker:(_openImagePicker_com_zkty_jsi_camera_0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
    @required 
-     - (void) _openImagePicker2:(_openImagePicker22_DTO*) dto complete:(void (^)(_openImagePicker20_DTO* result,BOOL complete)) completionHandler;
-
-   @required 
-     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
+     - (void) _saveImageToPhotoAlbum:(_saveImageToPhotoAlbum_com_zkty_jsi_camera_0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler;
 
 @end
 

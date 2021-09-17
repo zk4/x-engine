@@ -45,7 +45,6 @@
     [self setupChildVc:[[TwoViewController alloc] init] title:@"模块2" image:@"two-nor" selectedImage:@"two-sel"];
     
     [self setupChildVc:[[ThreeViewController alloc] init] title:@"模块3" image:@"three-nor" selectedImage:@"three-sel"];
-    
 }
 
 - (void)setupChildVc:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {

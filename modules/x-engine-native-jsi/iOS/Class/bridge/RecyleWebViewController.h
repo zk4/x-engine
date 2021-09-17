@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import "iContainer.h"
+#import <x-engine-native-protocols/iContainer.h>
 @class XEngineWebView;
 @interface RecyleWebViewController : UIViewController<iContainer>
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl

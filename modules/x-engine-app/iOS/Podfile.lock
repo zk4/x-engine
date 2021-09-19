@@ -130,6 +130,10 @@ PODS:
   - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
+  - Flutter (from `../flutter_library/.ios/Flutter/engine`)
+  - flutter_library (from `../flutter_library/.ios/Flutter`)
+  - FlutterEngine (from `../flutter_library`)
+  - FlutterPluginRegistrant (from `../flutter_library/.ios/Flutter/FlutterPluginRegistrant`)
   - JSONModel
   - MJExtension
   - SDWebImage
@@ -175,6 +179,16 @@ SPEC REPOS:
     - Toast
 
 EXTERNAL SOURCES:
+  Flutter:
+    :path: "../flutter_library/.ios/Flutter/engine"
+  flutter_library:
+    :path: "../flutter_library/.ios/Flutter"
+  FlutterEngine:
+    :path: "../flutter_library"
+  FlutterPluginRegistrant:
+    :path: "../flutter_library/.ios/Flutter/FlutterPluginRegistrant"
+  x-engine-jsi-camera:
+    :path: "../../x-engine-jsi-camera"
   x-engine-jsi-dev:
     :path: "../../x-engine-jsi-dev"
   x-engine-jsi-device:

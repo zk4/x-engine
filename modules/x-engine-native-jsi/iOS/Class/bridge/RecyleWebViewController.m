@@ -130,7 +130,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
             NSTextCheckingResult *match = [regex firstMatchInString:self.loadUrl
                                                             options:0
                                                               range:NSMakeRange(0, [self.loadUrl length])];
-            if(!match || [match numberOfRanges]==0){
+            if(error || !match || [match numberOfRanges]==0){
 #ifdef DEBUG
                 NSString* msg = [NSString stringWithFormat:@"路径不对: %@", self.loadUrl];
                 [XENP(iToast) toast: msg];

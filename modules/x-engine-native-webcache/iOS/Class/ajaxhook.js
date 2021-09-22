@@ -212,6 +212,11 @@
             
             if (error) {
                 xhr.readyState = 1;
+                
+                if (xhr.onreadystatechange) {
+                    xhr.onreadystatechange();
+                }
+                
                 if (xhr.onerror) {
                     console.error(error);
                     xhr.onerror();

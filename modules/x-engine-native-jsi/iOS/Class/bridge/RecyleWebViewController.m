@@ -7,6 +7,7 @@
 #import "WebViewFactory.h"
 #import "XENativeContext.h"
 #import "iWebcache.h"
+#import "iToast.h"
 
 
 /// TODO: webview refactor
@@ -122,14 +123,23 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
         if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
             [self.webview loadUrl:self.loadUrl];
         }else{
-             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
              NSURL *fileURL = [NSURL URLWithString:self.loadUrl];
-             NSArray* components=  [fileURL.absoluteString componentsSeparatedByString:@"/"];
-            //file:///var/mobile/Containers/Data/Application/7331AB63-239D-4AA2-A909-1B10D9EE73D3/Documents/microapps/7493305D-CAA7-43D0-A4FD-2DCECC71820D/index.html
-             NSString* folder = [NSString stringWithFormat:@"/%@/%@/",components[10],components[11]];
-             NSString *accessPath = [paths[0] stringByAppendingPathComponent:folder];
-             NSURL *accessURL = [NSURL fileURLWithPath:accessPath];
-             [self.webview _loadFileURL:fileURL allowingReadAccessToURL:accessURL];
+            NSError *error = nil;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"microapps/.*?/" options:0 error:&error];
+            NSTextCheckingResult *match = [regex firstMatchInString:self.loadUrl
+                                                            options:0
+                                                              range:NSMakeRange(0, [self.loadUrl length])];
+            if(!match || [match numberOfRanges]==0){
+#ifdef DEBUG
+                NSString* msg = [NSString stringWithFormat:@"路径不对: %@", self.loadUrl];
+                [XENP(iToast) toast: msg];
+#endif
+                return;
+            }
+            NSRange matchRange = [match rangeAtIndex:0];
+            NSString *safeZone = [self.loadUrl substringWithRange:NSMakeRange(0, matchRange.location+matchRange.length)];
+            [self.webview _loadFileURL:fileURL allowingReadAccessToURL:[NSURL URLWithString:safeZone]];
         }
  
     }

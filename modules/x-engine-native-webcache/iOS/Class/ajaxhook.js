@@ -234,6 +234,10 @@
                 if (xhr.onload) {
                     xhr.onload();
                 }
+             
+            }
+            if (xhr.onloadend) {
+                xhr.onloadend();
             }
             
         });

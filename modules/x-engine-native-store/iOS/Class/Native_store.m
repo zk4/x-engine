@@ -73,10 +73,11 @@ NATIVE_MODULE(Native_store)
 
 
 - (void)saveTodisk{
-    @synchronized (self) {
+    dispatch_async(dispatch_get_main_queue(), ^{
         [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];
         [[NSUserDefaults standardUserDefaults] synchronize];
-    }
+
+    });
 }
 
 - (void)loadFromDisk:(BOOL)merge {

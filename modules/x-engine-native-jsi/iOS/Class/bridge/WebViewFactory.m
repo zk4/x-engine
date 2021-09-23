@@ -75,8 +75,10 @@
     
     // webcache 插件
     id<iWebcache> webcache= XENP(iWebcache);
-    if(webview)
+    if(webview){
         [webcache enableXHRIntercept:webview];
+        [webcache enableFormIntercept:webview];
+    }
     
     for (JSIModule *baseModule in modules){
         [webview addJavascriptObject:baseModule namespace:baseModule.moduleId];

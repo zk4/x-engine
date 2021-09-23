@@ -43,10 +43,19 @@ NATIVE_MODULE(Native_webcache)
 
     NSString *ajaxhookjs = [[NSBundle mainBundle] pathForResource:@"ajaxhook" ofType:@"js"];
     NSString *ajaxhookjs_content = [NSString stringWithContentsOfFile:ajaxhookjs encoding:NSUTF8StringEncoding error:nil];
-    WKUserScript *script = [[WKUserScript alloc] initWithSource:ajaxhookjs_content injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:ajaxhookjs_content injectionTime:WKUserScriptInjectionTimeAtDocumentStart  forMainFrameOnly:YES];
     [webview.configuration.userContentController addUserScript:script];
 
 }
+- (void)enableFormIntercept:(WKWebView*)webview {
+
+    NSString *formjs = [[NSBundle mainBundle] pathForResource:@"forminject" ofType:@"js"];
+    NSString *formjs_content = [NSString stringWithContentsOfFile:formjs encoding:NSUTF8StringEncoding error:nil];
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:formjs_content injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+    [webview.configuration.userContentController addUserScript:script];
+
+}
+
 
 - (void)disableCache {
     self.cacheManager.isUsingURLProtocol = YES;

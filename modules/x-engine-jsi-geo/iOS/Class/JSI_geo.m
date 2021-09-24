@@ -27,9 +27,9 @@ JSI_MODULE(JSI_geo)
     
 - (void)_locate:(void (^)(LocationDTO *, BOOL))completionHandler {
     LocationDTO* last = (LocationDTO*)[self.store get:JSI_GEO_LAST_LOCATION];
-    if(last){
-        completionHandler(last,NO);
-    }
+
+    completionHandler(last,NO);
+
     [self.geo geoSinglePositionResult:^(NSDictionary *reDic) {
         if (reDic == nil) {
             completionHandler(NULL,YES);

@@ -84,6 +84,11 @@
         return NO;
     }
 
+    // 不缓存视频
+    if ([request.URL.absoluteString.pathExtension isEqualToString:@"mp4"]) {
+        return NO;
+    }
+    
     //对于域名黑名单的过滤
     if (self.blackListsHost.count > 0) {
         BOOL isExist = [self.blackListsHost containsObject:request.URL.host];

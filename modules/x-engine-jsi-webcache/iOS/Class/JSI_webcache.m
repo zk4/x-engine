@@ -11,7 +11,7 @@
 
 @interface JSI_webcache()
 @property (atomic, strong) NSMutableDictionary* cache;
-
+@property (nonatomic, strong) NSURLSession *session;
 @end
 
 @implementation JSI_webcache
@@ -19,6 +19,12 @@ JSI_MODULE(JSI_webcache)
 
 - (void)afterAllJSIModuleInited {
     _cache=[NSMutableDictionary new];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.HTTPMaximumConnectionsPerHost=10;
+
+   self.session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
+
 }
 
 -(BOOL)isNull:(NSDictionary *)dict key:(NSString*)key{
@@ -101,16 +107,11 @@ JSI_MODULE(JSI_webcache)
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
     
-    NSURLSessionConfiguration* config
-     = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.HTTPMaximumConnectionsPerHost=10;
-
     
     //WARNING: 想换成其他网络请求库时请请注意json 序列化的问题。不要转多遍。jsonStr 里的 '浮点类型'，在转为原生类型时，会丢失精度。再转为 jsonStr 时就不是你要的值了。如 str: '{a:.3}' -> objc: @{@"a":.299999999999}  ->  str '{"a":.29999999999}'
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
 
     __weak typeof(self) weakSelf = self;
-        NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
+        NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
             if (!error) {
                 NSHTTPURLResponse *response =nil;
                 response = (NSHTTPURLResponse *)r;

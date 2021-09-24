@@ -57,6 +57,31 @@ export default {
     console.log(this.$statusHeight)
   },
   methods: {
+    onNativeShow() {
+      console.log("onePageCustom-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
+    },
+    onWebviewShow(){
+      console.log("onWebviewShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "onWebviewShow")
+
+    },
+    onNativeHide() {
+      console.log("onePageCustom-->onNativeHide")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeHide"
+      )
+    },
+    onNativeDestroyed() {
+      console.log("onePageCustom-->onNativeDestroyed")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeDestroyed"
+      )
+    },
     handlerMedia() {
       this.$router.push({
         path: "/media",

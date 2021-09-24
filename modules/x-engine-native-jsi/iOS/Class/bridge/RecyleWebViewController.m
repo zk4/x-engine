@@ -63,7 +63,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
         self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
-        self.webview.navigationDelegate = self;
+//        self.webview.navigationDelegate = self;
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
 
@@ -278,11 +278,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
 
 - (void)afterShow {
-    if(self.firstDidAppearCbIgnored) {
-        self.firstDidAppearCbIgnored = NO;
-    } else {
+//    if(self.firstDidAppearCbIgnored) {
+//        self.firstDidAppearCbIgnored = NO;
+//    } else {
         [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
-    }
+//    }
 
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     

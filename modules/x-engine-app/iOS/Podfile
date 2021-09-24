@@ -30,8 +30,7 @@ def shared_pods
   pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
   pod 'x-engine-native-offline', :path =>'../../x-engine-native-offline'
   pod 'x-engine-native-toast', :path =>'../../x-engine-native-toast'
-  # pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
-#  pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
+ pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
   pod 'x-engine-native-updator', :path =>'../../x-engine-native-updator'
 
   

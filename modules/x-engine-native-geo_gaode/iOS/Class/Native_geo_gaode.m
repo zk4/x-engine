@@ -29,7 +29,7 @@ NATIVE_MODULE(Native_geo_gaode)
     
     _locationManager = [[AMapLocationManager alloc] init];
     // 带逆地理信息的一次定位（返回坐标和地址信息）
-    [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
     //   定位超时时间，最低2s，此处设置为2s
     _locationManager.locationTimeout =2;
     //   逆地理请求超时时间，最低2s，此处设置为2s

@@ -30,7 +30,6 @@
 		58D20BD126138BEF0082ADC3 /* JumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC526138BEF0082ADC3 /* JumpViewController.m */; };
 		58D20BD226138BEF0082ADC3 /* MainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC826138BEF0082ADC3 /* MainTabbarController.m */; };
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
-		58D20BD426138BEF0082ADC3 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
@@ -89,10 +88,8 @@
 		58D20BC326138BEF0082ADC3 /* OneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		58D20BC426138BEF0082ADC3 /* ThreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeViewController.h; sourceTree = "<group>"; };
 		58D20BC526138BEF0082ADC3 /* JumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpViewController.m; sourceTree = "<group>"; };
-		58D20BC726138BEF0082ADC3 /* MainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
 		58D20BC826138BEF0082ADC3 /* MainTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabbarController.m; sourceTree = "<group>"; };
 		58D20BC926138BEF0082ADC3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
 		58D20BCB26138BEF0082ADC3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		58D20BCC26138BEF0082ADC3 /* MainTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabbarController.h; sourceTree = "<group>"; };
 		58D20BCD26138BEF0082ADC3 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
@@ -239,8 +236,6 @@
 				58D20BC926138BEF0082ADC3 /* MainViewController.m */,
 				58D20BCC26138BEF0082ADC3 /* MainTabbarController.h */,
 				58D20BC826138BEF0082ADC3 /* MainTabbarController.m */,
-				58D20BC726138BEF0082ADC3 /* MainNavigationController.h */,
-				58D20BCA26138BEF0082ADC3 /* MainNavigationController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -527,7 +522,6 @@
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
-				58D20BD426138BEF0082ADC3 /* MainNavigationController.m in Sources */,
 				58D20BD026138BEF0082ADC3 /* TwoViewController.m in Sources */,
 				58D20BD226138BEF0082ADC3 /* MainTabbarController.m in Sources */,
 				58D20BCF26138BEF0082ADC3 /* ThreeViewController.m in Sources */,

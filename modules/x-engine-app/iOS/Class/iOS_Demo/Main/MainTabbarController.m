@@ -10,7 +10,6 @@
 #import "OneViewController.h"
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
-#import "MainNavigationController.h"
 #import <x-engine-native-tabbar/iTabbar.h>
 #import <x-engine-native-core/XENativeContext.h>
 #import <x-engine-native-ui/SafeGestureNavigationController.h>

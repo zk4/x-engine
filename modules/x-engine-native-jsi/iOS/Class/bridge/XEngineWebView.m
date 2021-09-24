@@ -700,7 +700,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 3- 确定下载的内容被允许之后再载入视图。
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    [self triggerVueLifeCycleWithMethod:@"onWebLoaded"];
+    [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }

@@ -1,50 +1,32 @@
 package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.alibaba.fastjson.JSONObject;
-import com.anthonynsimon.url.URL;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 import com.zkty.nativ.core.utils.ImageUtils;
-import com.zkty.nativ.core.utils.ToastUtils;
-import com.zkty.nativ.core.utils.Utils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
-import com.zkty.nativ.jsi.bridge.CompletionHandler;
 import com.zkty.nativ.jsi.bridge.DWebView;
 import com.zkty.nativ.jsi.bridge.WebResourceRequestAdapter;
 import com.zkty.nativ.jsi.bridge.WebResourceResponseAdapter;
-import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.utils.UrlUtils;
 import com.zkty.nativ.jsi.view.MicroAppLoader;
 import com.zkty.nativ.jsi.view.PermissionDto;
-import com.zkty.nativ.jsi.view.SchemeManager;
 import com.zkty.nativ.webcache.lib.WebViewCacheInterceptorInst;
 
-import java.lang.reflect.InvocationTargetException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import nativ.jsi.BuildConfig;
 
@@ -80,7 +62,10 @@ public class XEngineWebView extends DWebView {
             setVerticalScrollBarEnabled(false);
         }
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式(true);
-        getSettings().setAppCacheEnabled(false);
+        getSettings().setAppCacheEnabled(true);
+        getSettings().setAppCacheMaxSize(Long.MAX_VALUE);
+        getSettings().setAppCachePath(mContext.getDir("appcache", 0).getPath());
+        getSettings().setDatabasePath(mContext.getDir("databases", 0).getPath());
         getSettings().setSupportZoom(false);
         getSettings().setUseWideViewPort(true);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
@@ -115,119 +100,20 @@ public class XEngineWebView extends DWebView {
                 }
             }
 
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-                Log.d(TAG, "response url= " + s);
-
-                if (s.contains("tenpay")) {
-
-                    Map<String, String> webviewHead = new HashMap<>();
-                    webviewHead.put("referer", "http://linli580.com");
-                    webView.loadUrl(s, webviewHead);
-                    return true;
-                }
-                if (s.startsWith("weixin://")) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.setData(Uri.parse(s));
-                    mContext.startActivity(intent);
-                    return true;
-                }
-                if (s.startsWith("alipay://") || s.startsWith("alipays://")) {
-                    if (Utils.checkAliPayInstalled(mContext)) {
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.setData(Uri.parse(s));
-                        mContext.startActivity(intent);
-                    } else {
-                        ToastUtils.showNormalShortToast("请下载支付宝客户端");
-                    }
-                    return true;
-                }
-                if (s.startsWith("x-engine-json://") || s.startsWith("x-engine-call://")) {
-
-                    try {
-//                        String sss = "x-engine://share/share?title=title1&desc=desc1&link=link1&imageUrl=imageUrl1&type=wx&dataUrl=dataUrl1";
-                        URL base = URL.parse(s);
-
-                        String moduleName = base.getHost();
-                        String method = base.getPath().replace("/", "");
-
-
-                        Map<String, Collection<String>> params = base.getQueryPairs();
-                        String args = null;
-                        String callback = null;
-                        if (params != null && params.size() > 0) {
-
-                            if (params.containsKey("args") && params.get("args") != null && params.get("args").size() > 0) {
-                                args = (String) params.get("args").toArray()[0];
-                            }
-
-                            if (params.containsKey("callback") && params.get("callback") != null && params.get("callback").size() > 0) {
-                                callback = (String) params.get("callback").toArray()[0];
-
-                            }
-                        }
-
-                        if (callback != null) {
-                            callback = URLDecoder.decode(callback);
-                        }
-
-                        final String callbackUrl = callback;
-
-
-                        JSONObject jsonObject = JSONObject.parseObject(URLDecoder.decode(args));
-
-                        CompletionHandler completionHandler = new CompletionHandler() {
-                            @Override
-                            public void complete(Object retValue) {
-                                String callbackTemp = callbackUrl;
-                                if (!TextUtils.isEmpty(callbackTemp)) {
-                                    final String callbackTemp2 = callbackTemp.replaceAll("\\{ret\\}", URLEncoder.encode(JSONObject.toJSONString(retValue)));
-                                    Handler handler = new Handler(Looper.getMainLooper());
-                                    handler.post(() -> webView.loadUrl(callbackTemp2));
-                                }
-                            }
-
-                            @Override
-                            public void complete() {
-                            }
-
-                            @Override
-                            public void setProgressData(Object value) {
-                            }
-                        };
-
-                        SchemeManager.sharedInstance().invoke(moduleName, method, jsonObject, completionHandler);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        if (isDebug) {
-                            if (e instanceof XEngineException) {
-                                PrintDebugInfo(e.getMessage());
-                            } else if (e instanceof InvocationTargetException) {
-                                if (((InvocationTargetException) e).getTargetException() instanceof XEngineException) {
-                                    PrintDebugInfo(((InvocationTargetException) e).getTargetException().getMessage());
-                                }
-
-                            }
-                        }
-                    }
-
-                    return true;
-                }
-
-                if (Build.VERSION.SDK_INT < 26) {
-                    webView.loadUrl(s);
-                    return true;
-                }
-                return false;
-            }
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
+//                Log.d("CacheWebView", "request url= " + s.replace("http://",""));
+//
+//                if (Build.VERSION.SDK_INT < 26) {
+//                    webView.loadUrl(s);
+//                    return true;
+//                }
+//                return false;
+//            }
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
+                Log.d("CacheWebView", "shouldInterceptRequest url= " + s.replace("http://",""));
                 return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
                         interceptRequest(s));
             }
@@ -261,48 +147,14 @@ public class XEngineWebView extends DWebView {
 //        setWebChromeClient(null);
 //      setWebViewClient(null);
 //        clearCache(true);
-        clearHistory();
+//        clearHistory();
 //        loadUrl("about:blank");
 //        this.destroy();
 
     }
 
-    //回微应用首页
-//    public void goBackToIndexPage() {
-//        XEngineWebView webView = XOneWebViewPool.sharedInstance().getFirstWebView();
-//        if (webView == null) return;
-//
-//        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-//        activity.showScreenCapture(true);
-//
-//        if (webView.getHistoryModels().size() > 1) {
-//            webView.getHistoryModels().subList(0, 1);
-//            String url = getUrlByHistoryModel(webView.getHistoryModels().get(0));
-//            webView.loadUrl(url);
-//        } else {
-//            throw new XEngineException("当前已是微应用首页");
-//        }
-//
-//
-//    }
 
-    //回指定页面
-//    public void backToPage(String host, String fragment) {
-//
-//        XEngineWebView webView = XOneWebViewPool.sharedInstance().getWebViewFromPool(host);
-//        if (webView == null) return;
-//
-//        XEngineWebActivity activity = XEngineWebActivityManager.sharedInstance().getCurrent();
-//        activity.showScreenCapture(true);
-//
-//        ViewGroup parent = (ViewGroup) webView.getParent();
-//        if (parent != null) {
-//            parent.removeAllViews();
-//        }
-//
-//
-//
-//    }
+
 
     public void goBack() {
         super.goBack();
@@ -330,16 +182,6 @@ public class XEngineWebView extends DWebView {
     @Override
     public void loadUrl(String url) {
         if (url.startsWith("/data")) url = "file://" + url;
-//        if (getOriginalUrl() != null && getOriginalUrl().equals(url)) {
-//            url = url.replaceAll("\\'", "");
-//            if (url.contains("?")) {
-//                url = url + "&timestamp=" + System.currentTimeMillis();
-//            } else {
-//                url = url + "?timestamp=" + System.currentTimeMillis();
-//            }
-//
-//        }
-
         Log.d("DWebView", "url=" + url);
         super.loadUrl(url);
 

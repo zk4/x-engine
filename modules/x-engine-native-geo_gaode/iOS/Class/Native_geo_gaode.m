@@ -6,6 +6,7 @@
 
 #import "Native_geo_gaode.h"
 #import "XENativeContext.h"
+#import <x-engine-native-protocols/iToast.h>
 #import <objc/runtime.h>
 
 
@@ -26,6 +27,11 @@ NATIVE_MODULE(Native_geo_gaode)
     return 0;
 }
 -(void) initSDK:(NSString*) key{
+    if(!key){
+        [XENP(iToast) toast:@" apikey 为空"];
+        return;
+    }
+    self.apikey = key;
     
     _locationManager = [[AMapLocationManager alloc] init];
     // 带逆地理信息的一次定位（返回坐标和地址信息）
@@ -37,6 +43,7 @@ NATIVE_MODULE(Native_geo_gaode)
     
     _locationManager.delegate = self;
     [[AMapServices sharedServices] setEnableHTTPS:YES];
+    
     [AMapServices sharedServices].apiKey = key;
 }
 - (void)afterAllNativeModuleInited{
@@ -46,7 +53,11 @@ NATIVE_MODULE(Native_geo_gaode)
 /**
  单次定位
  */
--(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult;{
+-(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult{
+    if(!self.apikey){
+        [XENP(iToast) toast:@"未设 apikey，高德没有初始化，请使用[XENP(iGeo_gaode) initSDK:] 初始化"];
+        return;
+    }
     // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error || !regeocode)

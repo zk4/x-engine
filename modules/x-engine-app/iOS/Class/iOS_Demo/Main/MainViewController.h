@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HideBarViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainViewController : UIViewController
+@interface MainViewController : HideBarViewController
 
 @end
 

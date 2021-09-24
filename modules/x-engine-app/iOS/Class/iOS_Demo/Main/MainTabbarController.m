@@ -13,7 +13,8 @@
 #import "MainNavigationController.h"
 #import <x-engine-native-tabbar/iTabbar.h>
 #import <x-engine-native-core/XENativeContext.h>
-#import "ATNavigationController.h"
+#import <x-engine-native-ui/SafeGestureNavigationController.h>
+
 
 
 @interface MainTabbarController ()
@@ -53,7 +54,7 @@
     vc.tabBarItem.selectedImage = [UIImage imageNamed:selectedImage];
     
     // 包装一个导航控制器, 添加导航控制器为tabbarcontroller的子控制器
-    ATNavigationController *nav = [[ATNavigationController alloc] initWithRootViewController:vc];
+    SafeGestureNavigationController *nav = [[SafeGestureNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];
 }
 - (UIViewController*)getCurrentTabItemVC{

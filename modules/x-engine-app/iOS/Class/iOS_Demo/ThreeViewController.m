@@ -11,7 +11,7 @@
 #import <XENativeContext.h>
 
 
-#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
+//#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
 
 
 @interface ThreeViewController ()

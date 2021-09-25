@@ -62,7 +62,7 @@
 }
 ///是否缓存该请求，该请求是否在白名单里或合法
 - (BOOL)canCacheRequest:(NSURLRequest *)request {
-    if([request.URL.absoluteString containsString:@"sockjs-node"]) return NO;
+    if([[self genKey:request] containsString:@"sockjs-node"]) return NO;
     //User-Agent来过滤
     if (self.whiteUserAgent.length > 0) {
         NSString *uAgent = [request.allHTTPHeaderFields objectForKey:@"User-Agent"];
@@ -85,9 +85,9 @@
     }
 
     // 不缓存视频
-    if ([request.URL.absoluteString.pathExtension isEqualToString:@"mp4"]) {
-        return NO;
-    }
+//    if ([request.URL.absoluteString.pathExtension isEqualToString:@"mp4"]) {
+//        return NO;
+//    }
     
     //对于域名黑名单的过滤
     if (self.blackListsHost.count > 0) {
@@ -118,6 +118,7 @@
         return NO;
     }
     NSLog(@"@intercept => %@",request.URL);
+    NSLog(@"@headers => %@",request.allHTTPHeaderFields);
 
     return YES;
 }
@@ -142,6 +143,10 @@
 ///缓存其他信息的文件名
 - (NSString *)cacheRequestOtherInfoFileName:(NSString *)requestUrl {
     return [SLWebCacheManager md5Hash:[NSString stringWithFormat:@"%@-otherInfo",requestUrl]];
+}
+///缓存 headers
+- (NSString *)cacheRequestHeadersName:(NSString *)requestUrl {
+    return [SLWebCacheManager md5Hash:[NSString stringWithFormat:@"%@-headers",requestUrl]];
 }
 ///缓存的文件路径
 - (NSString *)cacheFilePath:(NSString *)file {
@@ -186,9 +191,14 @@
 ///写入缓存数据   内存和磁盘
 - (BOOL)writeCacheData:(NSCachedURLResponse *)cachedURLResponse withRequest:(NSURLRequest *)request {
     NSDate *date = [NSDate date];
+    NSHTTPURLResponse* httpres = (NSHTTPURLResponse*)cachedURLResponse.response;
+    NSDictionary* headers = httpres.allHeaderFields?httpres.allHeaderFields:@{};
     NSDictionary *info = @{@"time" : [NSString stringWithFormat:@"%f",[date timeIntervalSince1970]],
                            @"MIMEType" : cachedURLResponse.response.MIMEType ? cachedURLResponse.response.MIMEType :@"application/octet-stream",
-                           @"textEncodingName" : cachedURLResponse.response.textEncodingName == nil ? @"": cachedURLResponse.response.textEncodingName};
+                           @"textEncodingName" : cachedURLResponse.response.textEncodingName == nil ? @"": cachedURLResponse.response.textEncodingName,
+                           @"headers": headers,
+                           @"statuscode": @(httpres.statusCode)
+    };
     
 //    //写入磁盘
     BOOL result1 = [info writeToFile:[self filePathFromRequest:request isInfo:YES] atomically:YES];
@@ -196,21 +206,31 @@
     if(info[@"MIMEType"] && [info[@"MIMEType"] containsString:@"image/"])
         return result1 && result2;
     //写入内存
-    [self.memoryCache setObject:cachedURLResponse.data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
-    [self.memoryCache setObject:info forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
+    [self.memoryCache setObject:cachedURLResponse.data forKey:[self cacheRequestFileName:[self genKey:request]]];
+    [self.memoryCache setObject:info forKey:[self cacheRequestOtherInfoFileName:[self genKey:request]]];
 //
     return result1 && result2;
  
     // yycache 没有返回值
 //    return TRUE;
 }
+-(NSString*)genKey:(NSURLRequest*) request {
+    NSString* range = request.allHTTPHeaderFields[@"Range"];
+    if(range){
+        // 是视频
+        NSString* key = [NSString stringWithFormat:@"%@%@",request.URL.absoluteString, range];
+        return key;
+    }else{
+        return request.URL.absoluteString;
+    }
+}
 ///加载缓存数据   内存 -> 磁盘 ->网络
 - (NSCachedURLResponse *)loadCachedResponeWithRequest:(NSURLRequest *)request {
     
     //加载内存cache
     BOOL isMemory = NO; //是否在内存中
-    NSData *data = [self.memoryCache objectForKey:[self cacheRequestFileName:request.URL.absoluteString]];
-    NSDictionary *otherInfo = [self.memoryCache objectForKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
+    NSData *data = [self.memoryCache objectForKey:[self cacheRequestFileName:[self genKey:request]]];
+    NSDictionary *otherInfo = [self.memoryCache objectForKey:[self cacheRequestOtherInfoFileName:[self genKey:request]]];
     if (data != nil) isMemory = YES;
     
     NSDate *date = [NSDate date];
@@ -226,9 +246,9 @@
           
             //写入内存
             if(data)
-                [self.memoryCache setObject:data forKey:[self cacheRequestFileName:request.URL.absoluteString]];
+                [self.memoryCache setObject:data forKey:[self cacheRequestFileName:[self genKey:request]]];
             if(otherInfo)
-                [self.memoryCache setObject:otherInfo forKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
+                [self.memoryCache setObject:otherInfo forKey:[self cacheRequestOtherInfoFileName:[self genKey:request]]];
         }else {
             //磁盘里也没有cache
             return nil;
@@ -247,7 +267,8 @@
 
         // 写入 header 的问题 https://www.coder.work/article/455876
         //cache没过期
-        NSURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:request.URL MIMEType:[otherInfo objectForKey:@"MIMEType"] expectedContentLength:data.length textEncodingName:[otherInfo objectForKey:@"textEncodingName"]];
+//        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:request.URL MIMEType:[otherInfo objectForKey:@"MIMEType"] expectedContentLength:data.length textEncodingName:[otherInfo objectForKey:@"textEncodingName"]];
+        NSHTTPURLResponse *response  =[[NSHTTPURLResponse alloc] initWithURL:request.URL statusCode:[[otherInfo objectForKey:@"statuscode"] intValue] HTTPVersion:@"HTTP/1.1" headerFields:[otherInfo objectForKey:@"headers"]];
    
         NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
 
@@ -265,9 +286,9 @@
 ///从网络读取数据并写入本地
 - (NSCachedURLResponse *)requestNetworkData:(NSURLRequest *)request{
     __block NSCachedURLResponse *cachedResponse = nil;
-    id isExist = [self.responseDic objectForKey:request.URL.absoluteString];
+    id isExist = [self.responseDic objectForKey:[self genKey:request] ];
     if (isExist == nil) {
-        [self.responseDic setValue:[NSNumber numberWithBool:TRUE] forKey:request.URL.absoluteString];
+        [self.responseDic setValue:[NSNumber numberWithBool:TRUE] forKey:[self genKey:request]];
         
         NSLog(@"req => %@:%@",request.URL, request.HTTPMethod);
         NSURLSession *session = [NSURLSession sharedSession];
@@ -292,8 +313,8 @@
 ///移除缓存文件
 - (void)removeCacheFileWithRequest:(NSURLRequest *)request {
     //清除内存cache
-    [self.memoryCache removeObjectForKey:[self cacheRequestFileName:request.URL.absoluteString]];
-    [self.memoryCache removeObjectForKey:[self cacheRequestOtherInfoFileName:request.URL.absoluteString]];
+    [self.memoryCache removeObjectForKey:[self cacheRequestFileName:[self genKey:request]]];
+    [self.memoryCache removeObjectForKey:[self cacheRequestOtherInfoFileName:[self genKey:request]]];
     //清除磁盘cache
     NSString *filePath = [self filePathFromRequest:request isInfo:NO];
     NSString *otherInfoFilePath = [self filePathFromRequest:request isInfo:YES];

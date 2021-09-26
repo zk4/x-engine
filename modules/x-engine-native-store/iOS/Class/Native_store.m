@@ -8,6 +8,7 @@
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 #import <micros.h>
+#import "JSONModel.h"
  
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
@@ -57,11 +58,8 @@ NATIVE_MODULE(Native_store)
 }
 
 - (void)set:(NSString *)key val:(id)val {
-    if(!val || !key)return;
-
-    id object = ![val isEqual:[NSNull null]] ? val:@"";
-    [_store setObject:object forKey:key];
-    
+    if(!val || [val isEqual:[NSNull null]] || !key)return;
+    [_store setObject:val forKey:key];
 }
 
 - (void)del:(NSString*)key{

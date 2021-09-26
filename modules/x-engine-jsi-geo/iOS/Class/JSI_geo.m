@@ -9,6 +9,8 @@
 #import "XENativeContext.h"
 #import "iGeo.h"
 #import "iStore.h"
+#import "JSONModel.h"
+
 #define JSI_GEO_LAST_LOCATION @"JSI_GEO_LAST_LOCATION"
 
 @interface JSI_geo()
@@ -26,9 +28,14 @@ JSI_MODULE(JSI_geo)
  
     
 - (void)_locate:(void (^)(LocationDTO *, BOOL))completionHandler {
-    LocationDTO* last = (LocationDTO*)[self.store get:JSI_GEO_LAST_LOCATION];
-
-    completionHandler(last,NO);
+    NSDictionary* d = [self.store get:JSI_GEO_LAST_LOCATION];
+    NSError* err;
+    if(d){
+        LocationDTO* last = [[LocationDTO alloc] initWithDictionary:d error:&err];
+        if(!err){
+            completionHandler(last,NO);
+        }
+    }
 
     [self.geo geoSinglePositionResult:^(NSDictionary *reDic) {
         if (reDic == nil) {
@@ -45,7 +52,7 @@ JSI_MODULE(JSI_geo)
             dto.district = reDic[@"district"];
             dto.street = reDic[@"street"];
             completionHandler(dto,YES);
-            [self.store set:JSI_GEO_LAST_LOCATION val:dto];
+            [self.store set:JSI_GEO_LAST_LOCATION val:dto.toDictionary];
         }
     }];
 }

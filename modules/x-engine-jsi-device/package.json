@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-device",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "description": "device",
   "main": "h5/src/index.js",
   "license": "MIT",

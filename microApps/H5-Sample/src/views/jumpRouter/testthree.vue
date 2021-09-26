@@ -13,6 +13,32 @@ export default {
     }
   },
   methods: {
+      onNativeShow() {
+      console.log("three: onePageCustom-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
+    },
+    onWebviewShow(){
+      console.log("three: onWebviewShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "onWebviewShow")
+
+    },
+    onNativeHide() {
+      console.log("three: onePageCustom-->onNativeHide")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeHide"
+      )
+    },
+    onNativeDestroyed() {
+      console.log("three: onePageCustom-->onNativeDestroyed")
+      this.$engine.api(
+        "com.zkty.jsi.dev",
+        "log",
+        "onePageCustom-->onNativeDestroyed"
+      )
+    },
+
   pushAndDelete(){
       this.$router.push({
         path: "/testfour",

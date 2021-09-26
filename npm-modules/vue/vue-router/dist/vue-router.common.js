@@ -1,5 +1,5 @@
 /*!
-  * vue-router v2.8.0
+  * vue-router v2.8.1
   * (c) 2021 Capricorn
   * @license MIT
   */
@@ -3205,7 +3205,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '2.8.0';
+VueRouter.version = '2.8.1';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 VueRouter.START_LOCATION = START;

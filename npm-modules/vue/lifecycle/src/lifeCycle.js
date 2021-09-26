@@ -20,17 +20,21 @@ export function install (_Vue) {
   }
   Vue.mixin({
     mounted () {
-      xengine.onLifecycle((type, payload) => {
-        if (type == ON_NATIVE_SHOW) {
-          this.onNativeShow?.();
-        } else if (type == ON_NATIVE_HIDE) {
-          this.onNativeHide?.();
-        } else if (type == ON_WEBVIEW_SHOW) {
-          this.onWebviewShow?.();
-        } else if (type == ON_NATIVE_DESTROYED) {
-          this.onNativeDestroyed?.();
-        }
-      });
+      let that = this;
+      if(that.onNativeShow || that.onNativeHide || that.onWebviewShow || that.onNativeDestroyed){
+        xengine.onLifecycle((type, payload) => {
+          console.log(type,payload)
+          if (type == ON_NATIVE_SHOW) {
+            that.onNativeShow?.();
+          } else if (type == ON_NATIVE_HIDE) {
+            that.onNativeHide?.();
+          } else if (type == ON_WEBVIEW_SHOW) {
+            that.onWebviewShow?.();
+          } else if (type == ON_NATIVE_DESTROYED) {
+            that.onNativeDestroyed?.();
+          }
+        });
+      }
     },
   });
 }

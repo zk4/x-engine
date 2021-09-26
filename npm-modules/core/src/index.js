@@ -37,13 +37,17 @@ let xengine = {
 };
 
 // lifecycle
-let __onLifeCycleCB;
+let __onLifeCycleCB=[];
 function onLifecycle (cb) {
-  __onLifeCycleCB = cb;
+  __onLifeCycleCB.push(cb);
 }
 xengine.bridge.register("com.zkty.jsi.engine.lifecycle.notify", (res) => {
-  if (__onLifeCycleCB) __onLifeCycleCB(res.type, res.payload);
-  else throw "未注册 lifecycle";
+  // if (__onLifeCycleCB) __onLifeCycleCB(res.type, res.payload);
+  // else throw "未注册 lifecycle";
+    for (const cb of __onLifeCycleCB) {
+      cb(res.type, res.payload);
+    }
+    console.log("onlifecycle count:", __onLifeCycleCB.length);
 });
 
 function xassert (targetID, expression) {

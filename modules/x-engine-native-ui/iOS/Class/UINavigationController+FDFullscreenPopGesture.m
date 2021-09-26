@@ -235,14 +235,12 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
 
 - (BOOL)fd_viewControllerBasedNavigationBarAppearanceEnabled
 {
-    //TODO using the comment one
-    return NO;
-//    NSNumber *number = objc_getAssociatedObject(self, _cmd);
-//    if (number) {
-//        return number.boolValue;
-//    }
-//    self.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-//    return YES;
+    NSNumber *number = objc_getAssociatedObject(self, _cmd);
+    if (number) {
+        return number.boolValue;
+    }
+    self.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
+    return YES;
 }
 
 - (void)setFd_viewControllerBasedNavigationBarAppearanceEnabled:(BOOL)enabled
@@ -267,9 +265,7 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
 
 - (BOOL)fd_prefersNavigationBarHidden
 {
-    //TODO using the comment one
-    return YES;
-//    return [objc_getAssociatedObject(self, _cmd) boolValue];
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 - (void)setFd_prefersNavigationBarHidden:(BOOL)hidden

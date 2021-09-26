@@ -8,6 +8,7 @@
 #import "XENativeContext.h"
 #import "iWebcache.h"
 #import "iToast.h"
+#import "SafeGestureNavigationController.h"
 
 
 /// TODO: webview refactor
@@ -63,7 +64,8 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
         self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
-//        self.webview.navigationDelegate = self;
+        self.fd_prefersNavigationBarHidden=YES;
+
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
 

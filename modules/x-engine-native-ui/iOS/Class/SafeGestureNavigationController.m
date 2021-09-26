@@ -2,7 +2,6 @@
 //  SafeGestureNavigationController.m
 
 #import "SafeGestureNavigationController.h"
-#import "UINavigationController+FDFullscreenPopGesture.h"
 @interface SafeGestureNavigationController ()
 
 @end
@@ -15,23 +14,23 @@
     self.navigationBar.backgroundColor = [UIColor whiteColor];
     //设置全局右滑返回
 //    [self setupRightPanReturn];
-    
-    [self.navigationItem setHidesBackButton:YES];
-    
+//    [self.navigationItem setHidesBackButton:YES];
 //    self.delegate = self;
+    self.fd_viewControllerBasedNavigationBarAppearanceEnabled=NO;
+    self.fd_prefersNavigationBarHidden=NO;
 }
 
 
 //
 //#pragma mark ---每次push之后生成返回按钮----
 //- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-// 
+//
 //    // push的时候禁用手势
 //    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
 //        self.interactivePopGestureRecognizer.enabled = NO;
 //        self.backGestureEnable = NO;
 //    }
-//    
+//
 //    [super pushViewController:viewController animated:animated];
 //}
 //
@@ -43,7 +42,7 @@
 //        self.interactivePopGestureRecognizer.enabled = NO;
 //        self.backGestureEnable = NO;
 //    }
-//    
+//
 //    [super setViewControllers:viewControllers animated:animated];
 //}
 //
@@ -58,7 +57,7 @@
 //    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
 //        self.interactivePopGestureRecognizer.enabled = NO;
 //    }
-//    
+//
 //    return [super popViewControllerAnimated:animated];
 //}
 //
@@ -69,7 +68,7 @@
 //    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
 //        self.interactivePopGestureRecognizer.enabled = NO;
 //    }
-//    
+//
 //    return [super popToRootViewControllerAnimated:animated];
 //}
 //
@@ -78,7 +77,7 @@
 //
 //    // push完成后的时候判断是否在根控制器启用手势
 //    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-//        
+//
 //        if ([navigationController.viewControllers count] == 1) {
 //            navigationController.interactivePopGestureRecognizer.enabled = NO;
 //        } else {
@@ -87,8 +86,8 @@
 //                self.backGestureEnable = YES;
 //                navigationController.interactivePopGestureRecognizer.enabled = YES;
 //            });
-//            
-//        
+//
+//
 //        }
 //    }
 //}
@@ -103,12 +102,12 @@
 //    SEL handler = NSSelectorFromString(@"handleNavigationTransition:");
 //    //  获取添加系统边缘触发手势的View
 //        UIView *targetView = self.interactivePopGestureRecognizer.view;
-//    
+//
 //    //  创建pan手势 作用范围是全屏
 //    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:handler];
 //    pan.delegate = self;
 //    [targetView addGestureRecognizer:pan];
-//    
+//
 //    // 关闭边缘触发手势 防止和原有边缘手势冲突
 //    [self.interactivePopGestureRecognizer setEnabled:NO];
 //}
@@ -116,7 +115,7 @@
 //// 什么时候调用：每次触发手势之前都会询问下代理，是否触发。
 //// 作用：拦截手势触发
 //- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
-//    
+//
 //    //解决与左滑手势冲突
 //    CGPoint translation = [gestureRecognizer translationInView:gestureRecognizer.view];
 //    if (translation.x <= 0 || !self.isBackGestureEnable) {

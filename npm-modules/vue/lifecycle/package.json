@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-lifecycle",
-  "version": "2.9.0",
+  "version": "3.0.0",
   "description": "解决原生APP跨webView不刷新mounted问题",
   "main": "dist/lifeCycle.common.js",
   "keywords": [
@@ -24,5 +24,5 @@
     "microbundle": "^0.13.0",
     "rimraf": "^3.0.2"
   },
-  "gitHead": "24ece4195e7ea543f508ce9f9c35a6f6651f2fa9"
+  "gitHead": "126ca1aa64f77fb085456d49babef70ad27430aa"
 }

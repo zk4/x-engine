@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-share",
-  "version": "2.8.2",
+  "version": "2.9.0",
   "description": "share",
   "main": "h5/src/index.js",
   "license": "MIT",
@@ -36,5 +36,5 @@
   "dependencies": {
     "@zkty-team/x-cli": "^1.26.0"
   },
-  "gitHead": "1fea4cec0219638167d1ff9d5670ebe36d44b20c"
+  "gitHead": "24ece4195e7ea543f508ce9f9c35a6f6651f2fa9"
 }

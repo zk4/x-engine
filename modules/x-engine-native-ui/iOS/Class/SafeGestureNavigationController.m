@@ -17,7 +17,7 @@
 //    [self.navigationItem setHidesBackButton:YES];
 //    self.delegate = self;
     self.fd_viewControllerBasedNavigationBarAppearanceEnabled=NO;
-    self.fd_prefersNavigationBarHidden=NO;
+    self.fd_prefersNavigationBarHidden=YES;
 }
 
 

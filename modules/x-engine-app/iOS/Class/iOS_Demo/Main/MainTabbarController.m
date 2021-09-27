@@ -51,7 +51,6 @@
     vc.tabBarItem.title = title;
     vc.tabBarItem.image = [UIImage imageNamed:image];
     vc.tabBarItem.selectedImage = [UIImage imageNamed:selectedImage];
-    vc.fd_prefersNavigationBarHidden=YES;
     // 包装一个导航控制器, 添加导航控制器为tabbarcontroller的子控制器
     SafeGestureNavigationController *nav = [[SafeGestureNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];

@@ -64,7 +64,6 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
         self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
-        self.fd_prefersNavigationBarHidden=YES;
 
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;

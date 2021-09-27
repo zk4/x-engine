@@ -315,7 +315,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSMutableDictionary*result = [NSMutableDictionary dictionaryWithDictionary:
                                   @{
                                       @"code":@-1,
-                                      @"data":@""
+                                      @"data":[NSNull null]
                                   }];
     if(!JavascriptInterfaceObject){
         //        [self showErrorAlert:[NSString stringWithFormat:@"Js bridge called, but can't find %@ 模块, please check your code!",modulename]];

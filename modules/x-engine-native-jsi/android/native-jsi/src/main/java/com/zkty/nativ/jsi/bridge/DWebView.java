@@ -1,5 +1,7 @@
 package com.zkty.nativ.jsi.bridge;
 
+import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +28,7 @@ import androidx.annotation.Keep;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.tencent.smtt.export.external.interfaces.ConsoleMessage;
 import com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
@@ -47,10 +50,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import nativ.jsi.BuildConfig;
-
-import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 
 
 public class DWebView extends WebView {
@@ -100,7 +100,7 @@ public class DWebView extends WebView {
                     "> is not registered in App!";
             if (jsb == null) {
                 PrintDebugInfo(error);
-                return ret.toString();
+                return JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue);
             }
 
             /**
@@ -139,7 +139,7 @@ public class DWebView extends WebView {
                 error = String.format("call method: \"%s\" failed: DSBridge inner error!", methodName);
                 PrintDebugInfo(error);
                 e.printStackTrace();
-                return ret.toString();
+                return JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue);
             }
 
 
@@ -207,7 +207,7 @@ public class DWebView extends WebView {
                                 //retValue = URLEncoder.encode(ret.toString(), "UTF-8").replaceAll("\\+", "%20");
                                 if (cb != null) {
                                     //String script = String.format("%s(JSON.parse(decodeURIComponent(\"%s\")).data);", cb, retValue);
-                                    String script = String.format("%s(%s.data);", cb, ret.toString());
+                                    String script = String.format("%s(%s.data);", cb, JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue));
                                     if (complete) {
                                         script += "delete window." + cb;
                                     }
@@ -231,20 +231,20 @@ public class DWebView extends WebView {
 
                     ret.put("code", 0);
                     ret.put("data", retData);
-                    return ret.toString();
+                    return JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue);
                 }
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
                 error = String.format("Call failed0：The parameter of \"%s\" in Java is invalid:%s", methodName, e.getTargetException().getMessage());
                 PrintDebugInfo(error);
-                return ret.toString();
+                return JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue);
             } catch (Exception e) {
                 e.printStackTrace();
                 error = String.format("Call failed1：The parameter of \"%s\" in Java is invalid", methodName);
                 PrintDebugInfo(error);
-                return ret.toString();
+                return JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue);
             }
-            return ret.toString();
+            return JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue);
         }
 
     }
@@ -471,7 +471,7 @@ public class DWebView extends WebView {
                 }
 
                 DWebView.super.loadUrl(url);
-               mUrl = url;
+                mUrl = url;
             }
         });
     }

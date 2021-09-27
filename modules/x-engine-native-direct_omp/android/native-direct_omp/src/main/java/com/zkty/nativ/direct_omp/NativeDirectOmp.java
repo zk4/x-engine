@@ -1,5 +1,6 @@
 package com.zkty.nativ.direct_omp;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.text.TextUtils;
 
@@ -71,24 +72,21 @@ public class NativeDirectOmp extends NativeModule implements IDirect {
                 iStore.set("__native__params__", params.get("nativeParams"));
             }
         }
-        XEngineWebActivity mActivity = XEngineWebActivityManager.sharedInstance().getCurrent();
+        Activity mActivity = XEngineApplication.getCurrentActivity();
 
-        if (mActivity != null) {
-            if (KeyBoardUtils.isSoftKeyboardShowed(mActivity)) {
-                mActivity.backUp();
-                String finalPathname = pathname;
-                String finalHost = host;
-                String finalProtocol = protocol;
-                new Handler().postDelayed(() -> {
-                    XEngineWebActivityManager.sharedInstance().startXEngineActivity(mActivity, finalProtocol, finalHost, finalPathname, fragment, query, hideNavbar);
-                }, 200);
-                return;
-            }
+        if (mActivity instanceof XEngineWebActivity && KeyBoardUtils.isSoftKeyboardShowed(mActivity)) {
+            ((XEngineWebActivity) mActivity).closeKeyboard();
+            String finalPathname = pathname;
+            String finalHost = host;
+            String finalProtocol = protocol;
+            new Handler().postDelayed(() -> {
+                XEngineWebActivityManager.sharedInstance().startXEngineActivity(mActivity, finalProtocol, finalHost, finalPathname, fragment, query, hideNavbar);
+            }, 100);
+
+        } else {
+            XEngineWebActivityManager.sharedInstance().startXEngineActivity(mActivity, protocol, host, pathname, fragment, query, hideNavbar);
 
         }
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(XEngineApplication.getCurrentActivity(), protocol, host, pathname, fragment, query, hideNavbar);
-
-
     }
 
     @Override

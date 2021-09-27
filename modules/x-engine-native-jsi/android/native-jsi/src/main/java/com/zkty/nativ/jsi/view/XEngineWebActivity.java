@@ -539,4 +539,9 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             xEngineNavBar.setTitle(title, color, textSize);
     }
 
+    public void closeKeyboard() {
+        KeyBoardUtils.closeKeybord(mWebView, this);
+
+    }
+
 }

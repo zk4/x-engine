@@ -13,22 +13,22 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.globalstorage", 
     [
   {
-    "name": "test_set_haha",
+    "name": "test_set_abc_world",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "test_set",
+    "name": "test_get_abc",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "test_get",
+    "name": "test_del_abc",
     "default_args": {},
     "decorators": []
   },
   {
-    "name": "test_del",
+    "name": "test_2_get_abc",
     "default_args": {},
     "decorators": []
   }

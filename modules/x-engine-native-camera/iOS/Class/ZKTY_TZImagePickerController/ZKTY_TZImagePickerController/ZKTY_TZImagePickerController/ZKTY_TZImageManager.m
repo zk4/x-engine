@@ -810,7 +810,7 @@ static dispatch_once_t onceToken;
 - (ZKTY_TZAlbumModel *)modelWithResult:(PHFetchResult *)result collection:(PHAssetCollection *)collection isCameraRoll:(BOOL)isCameraRoll needFetchAssets:(BOOL)needFetchAssets options:(PHFetchOptions *)options {
     ZKTY_TZAlbumModel *model = [[ZKTY_TZAlbumModel alloc] init];
     [model setResult:result needFetchAssets:needFetchAssets];
-    model.name = collection.localizedTitle;
+    model.name = [NSBundle tz_localizedStringForKey:collection.localizedTitle];//collection.localizedTitle;
     model.collection = collection;
     model.options = options;
     model.isCameraRoll = isCameraRoll;

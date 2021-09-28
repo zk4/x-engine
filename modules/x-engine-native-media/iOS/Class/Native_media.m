@@ -7,7 +7,7 @@
 #import "Native_media.h"
 #import <AVFoundation/AVFoundation.h>
 #import "XENativeContext.h"
-#import "ZKTY_TZImagePickerController.h"
+#import "TZImagePickerController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "XTool.h"
@@ -21,7 +21,7 @@ typedef void (^PhotoCallBack)(NSArray *images, NSArray *assets);
 typedef void (^SaveCallBack)(UIImage *image, NSError *error);
 typedef void (^UploadImageCallBack)(NSDictionary *);
 
-@interface Native_media() <UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
+@interface Native_media() <UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) id<iMediaDelegate> mediaDelegate;
 @property(nonatomic,copy) PhotoCallBack photoCallback;
 @property(nonatomic,copy) SaveCallBack saveCallback;
@@ -123,7 +123,7 @@ NATIVE_MODULE(Native_media)
 /// 调起相册/以及相册的回调
 /// @param dto dto
 - (void)choosePhotos:(MediaParamsDTO*)dto {
-    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {

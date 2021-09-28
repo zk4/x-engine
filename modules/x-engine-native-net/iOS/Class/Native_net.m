@@ -47,8 +47,6 @@ NATIVE_MODULE(Native_net)
 - (void)afterAllNativeModuleInited{
 } 
  
-
-
 - (nonnull id<iNetAgent>) one {
     return [OKHttp new];
 }

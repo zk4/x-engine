@@ -82,8 +82,7 @@
             [XENP(iToast) toast:[error localizedDescription]];
         }else{
             NSLog(@"%@", @"success");
-            
-            NSLog(@"back::::::%@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
+            NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
         }
     }];
 }

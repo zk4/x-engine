@@ -15,7 +15,7 @@ def shared_pods
   pod 'x-engine-native-ui', :path => X_ENGINE_MODULES+'/x-engine-native-ui'
   pod 'x-engine-native-toast', :path => X_ENGINE_MODULES+'/x-engine-native-toast'
 
-  pod 'AFNetworking'
+#  pod 'AFNetworking'
 end
   target 'sit' do
     shared_pods

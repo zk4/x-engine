@@ -17,11 +17,13 @@
 @implementation HTTpSerializeInterceptor
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(nonnull FilterChain *)chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 0;
-    [XENP(iToast) toast:@"before request"];
-    response([@"hello,modified" dataUsingEncoding:NSUTF8StringEncoding],nil,nil);
-    return;
-    [chain doFilter:session request:request response:response];
+    [XENP(iToast) toast:@"request start"];
+    ZKResponse newResponse = ^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error){
+        response(data,res,error);
+        [XENP(iToast) toast:@"response back"];
+    };
 
+    [chain doFilter:session request:request response:newResponse];
 }
 @end
 

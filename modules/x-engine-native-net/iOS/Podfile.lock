@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (4.0.1):
-    - AFNetworking/NSURLSession (= 4.0.1)
-    - AFNetworking/Reachability (= 4.0.1)
-    - AFNetworking/Security (= 4.0.1)
-    - AFNetworking/Serialization (= 4.0.1)
-    - AFNetworking/UIKit (= 4.0.1)
-  - AFNetworking/NSURLSession (4.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.1)
-  - AFNetworking/Security (4.0.1)
-  - AFNetworking/Serialization (4.0.1)
-  - AFNetworking/UIKit (4.0.1):
-    - AFNetworking/NSURLSession
   - JSONModel (1.8.0)
   - Toast (4.0.0)
   - WHDebugTool (2.4)
@@ -35,7 +20,6 @@ PODS:
     - x-engine-native-protocols
 
 DEPENDENCIES:
-  - AFNetworking
   - x-engine-native-core (from `/Users/zk/git/working/x-engine/modules/x-engine-native-core`)
   - x-engine-native-dev (from `/Users/zk/git/working/x-engine/modules/x-engine-native-dev`)
   - x-engine-native-protocols (from `/Users/zk/git/working/x-engine/modules/x-engine-native-protocols`)
@@ -44,7 +28,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
     - JSONModel
     - Toast
     - WHDebugTool
@@ -62,7 +45,6 @@ EXTERNAL SOURCES:
     :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-ui"
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   WHDebugTool: faf6568befe85cc87ed7123eb1ae43b1f0f7bf7a
@@ -72,6 +54,6 @@ SPEC CHECKSUMS:
   x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
-PODFILE CHECKSUM: 6c1323abf34d9dfa8a8fd8a9b0673d6cb0e16436
+PODFILE CHECKSUM: a74f6b482bdf4905c790f4265921f744ad592fba
 
 COCOAPODS: 1.10.2

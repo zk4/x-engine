@@ -73,14 +73,9 @@
     return self;
 }
 -(OKHttp*) send:(ZKResponse) block{
-  
-    
     [self.chain doFilter:self.session request:self.request response:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
     return self;
 }
-
-
-
 @end

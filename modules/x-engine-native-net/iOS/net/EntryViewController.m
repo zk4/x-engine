@@ -26,13 +26,17 @@
 @implementation LoggingFilter
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 0;
-
+    
     NSLog(@"%@", @"request start");
     ZKResponse newResponse = ^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error){
-        response(data,res,error);
-        NSLog(@"%@", @"response end");
+        
+        NSString *str  = [[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSUTF8StringEncoding];
+        NSString* newStr= [NSString stringWithFormat:@"%@%@",str,@"back 1"];
+        
+        NSData* newData =  [newStr dataUsingEncoding:NSUTF8StringEncoding];
+        response(newData,res,error);
     };
-
+    
     [chain doFilter:session request:request response:newResponse];
 }
 @end
@@ -45,10 +49,11 @@
     
     NSLog(@"%@", @"request start 2");
     ZKResponse newResponse = ^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error){
-        response(data,res,error);
-        NSLog(@"%@", @"response end 2");
+        NSData* newData =  [@"back 2" dataUsingEncoding:NSUTF8StringEncoding];
+        response(newData,res,error);
+        
     };
-
+    
     [chain doFilter:session request:request response:newResponse];
 }
 @end
@@ -70,15 +75,15 @@
     [ok addFilter:[ConfigFilter new]];
     [ok addFilter:[LoggingFilter new]];
     [ok addFilter:[LoggingFilter2 new]];
-
+    
     
     [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             [XENP(iToast) toast:[error localizedDescription]];
         }else{
             NSLog(@"%@", @"success");
-
-//            NSLog(@"%@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
+            
+            NSLog(@"back::::::%@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
         }
     }];
 }

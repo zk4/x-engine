@@ -11,30 +11,22 @@
 #import "OKHttp.h"
 
 
-@interface HTTpSerializeInterceptor:NSObject <iInterceptor>
-
+@interface HTTpSerializeInterceptor:NSObject <iFilter>
 @end
-@implementation HTTpSerializeInterceptor {
-    
-}
-- (nonnull NSMutableURLRequest *)intercept:(nonnull AFHTTPSessionManager *)af withRequest:(nonnull iRequest *)request {
-    af.requestSerializer  = [AFHTTPRequestSerializer serializer];
-    af.responseSerializer = [AFHTTPResponseSerializer serializer];
 
-    af.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
-
-    [af.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    [af.requestSerializer setTimeoutInterval:15];
-    return nil;
+@implementation HTTpSerializeInterceptor
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(nonnull FilterChain *)chain {
+    session.configuration.HTTPMaximumConnectionsPerHost = 0;
+    [XENP(iToast) toast:@"before request"];
+    response([@"hello,modified" dataUsingEncoding:NSUTF8StringEncoding],nil,nil);
+    return;
+    [chain doFilter:session request:request response:response];
 
 }
-
 @end
 
 
-//////////////////////////
 @interface EntryViewController ()
-
 @end
 
 @implementation EntryViewController
@@ -43,21 +35,19 @@
 }
 
 -(void) pushTestModule{
-    id ok = [OKHttp new];
-    [ok addInterceptor:[HTTpSerializeInterceptor new]];
-    [ok build:({
-            iRequest* request = [iRequest new];
-            request.method=@"GET";
-            request.baseurl=@"https://www.baidu.com";
-            request.path=@"/";
-            request;
-        })
-    ];
-    [ok send:^(id  _Nonnull result, NSError * _Nonnull error) {
+    id ok = [[OKHttp new] build:({
+        NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+        req;
+    })];
+    [ok addFilter:[HTTpSerializeInterceptor new]];
+   
+    
+    [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             [XENP(iToast) toast:[error localizedDescription]];
         }else{
             [XENP(iToast) toast:@"success"];
+            NSLog(@"%@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
         }
     }];
 }
@@ -70,8 +60,6 @@
     [dev log:@"world"];
     // 切换 Build Configuration　里的　Debug 　与 Release
     [dev xlog:@"world"];
-    
-    
 }
 
 @end

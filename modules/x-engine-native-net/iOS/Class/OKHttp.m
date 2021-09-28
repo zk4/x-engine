@@ -7,42 +7,76 @@
 //
 
 #import "OKHttp.h"
-
-@implementation iRequest
-
+@interface FilterChain()
+@property (nonatomic, strong)   NSMutableArray*  filters;
+@property (nonatomic, assign)   int pos;
+@property (nonatomic, strong)   OKHttp* http;
 @end
 
+@implementation FilterChain
+- (instancetype)init {
+    if (self = [super init]) {
+        self.pos = 0;
+    }
+    return self;
+}
+
+-(void) setOKHttp:(OKHttp*) okhttp{
+    self.http = okhttp;
+}
+
+-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse{
+    if(self.pos<self.filters.count){
+        id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
+        [filter doFilter:session request:request  response:zkResponse chain:self];
+    }else{
+        [self.http _internalSend:zkResponse];
+    }
+}
+-(FilterChain*) addFilter:(id<iFilter>) filter {
+    if(!self.filters){
+        self.filters=[NSMutableArray new];
+    }
+    [self.filters addObject:filter];
+    return self;
+}
+@end
+
+
 @interface OKHttp()
-    @property (nonatomic, strong)   iRequest* request;
-    @property (nonatomic, strong)   NSMutableArray*  interceptors;
-    @property (nonatomic, strong)   AFHTTPSessionManager* af;
+@property (nonatomic, strong)   NSMutableURLRequest* request;
+@property (nonatomic, strong)   NSURLSession *session;
+@property (nonatomic, strong)   FilterChain *chain;
 @end
 
 @implementation OKHttp
--(OKHttp*) build:(iRequest*) request{
+
+-(OKHttp*) build:(NSMutableURLRequest*) request{
     self.request = request;
     return self;
 }
 
-// userInterceptor1 -> userInterceptor2 -> realReuqest -> realResponse
-// userInterceptor1 <- userInterceptor2 <- realReuqest <- realResponse
--(OKHttp*) addInterceptor:(id<iInterceptor>) interceptor {
-    if(!self.interceptors){
-        self.interceptors=[NSMutableArray new];
+-(OKHttp*) addFilter:(id<iFilter>) filter{
+    if(!self.chain){
+        self.chain = [FilterChain new];
+        [self.chain setOKHttp:self];
     }
-    [self.interceptors addObject:interceptor];
+    [self.chain addFilter:filter];
     return self;
 }
 
--(OKHttp*) send:(ZKRequestCallBack) block{
-    self.af = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString: self.request.baseurl]];
-    for(id<iInterceptor> interceptor in self.interceptors){
-        [interceptor intercept:self.af withRequest:self.request];
-    }
-    [self.af GET:self.request.path parameters:self.request.queries  headers:self.request.headers   progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        block(responseObject,nil);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        block(nil,error);
+-(OKHttp*) _internalSend:(ZKResponse)block{
+    self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:nil];
+    
+    NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:self.request completionHandler:block];
+    [sessionTask resume];
+    return self;
+}
+-(OKHttp*) send:(ZKResponse) block{
+  
+    
+    [self.chain doFilter:self.session request:self.request response:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        block(data,response,error);
     }];
     return self;
 }

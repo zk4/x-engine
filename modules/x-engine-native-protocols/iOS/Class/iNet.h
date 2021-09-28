@@ -9,12 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FilterChain;
+@protocol FilterChain;
 
 typedef void (^ZKResponse)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
-@protocol iFilter <NSObject>
-    -(void) doFilter:(NSURLSession*) session request:(NSMutableURLRequest*) request  response:(ZKResponse) response chain:(FilterChain*) chain;
+@protocol iFilter
+    -(void) doFilter:(NSURLSession*) session request:(NSMutableURLRequest*) request  response:(ZKResponse) response chain:(id<FilterChain>) chain;
 @end
 
 
@@ -23,6 +23,7 @@ typedef void (^ZKResponse)(NSData * _Nullable data, NSURLResponse * _Nullable re
 -(id<iNetAgent>) build:(NSMutableURLRequest*) request;
 -(id<iNetAgent>) send:(ZKResponse) block;
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter;
+-(id<iNetAgent>) _internalSend:(ZKResponse)block;
  @end
 
 // 供引擎使用拿到 agent
@@ -30,6 +31,10 @@ typedef void (^ZKResponse)(NSData * _Nullable data, NSURLResponse * _Nullable re
 - (nonnull id<iNetAgent>) one;
 @end
 
-
+@protocol iFilterChain
+-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse;
+-(id<iFilterChain>) addFilter:(id<iFilter>) filter;
+-(void) setNetAgent:(id<iNetAgent>) agent;
+@end
 
 NS_ASSUME_NONNULL_END

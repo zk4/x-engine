@@ -34,6 +34,9 @@
 		580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 580B91CC2694D10D006AD356 /* Info.uat.plist */; };
+		58C3AF0827032F1400DBE122 /* FilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0727032F1400DBE122 /* FilterChain.m */; };
+		58C3AF0927032F1400DBE122 /* FilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0727032F1400DBE122 /* FilterChain.m */; };
+		58C3AF0A27032F1400DBE122 /* FilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0727032F1400DBE122 /* FilterChain.m */; };
 		58E3F1EC2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
 		58E3F1ED2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
 		58E3F1EE2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
@@ -95,6 +98,8 @@
 		580B918D2694CDB7006AD356 /* Info.sit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.sit.plist; sourceTree = "<group>"; };
 		580B91C02694D0DA006AD356 /* uat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		580B91CC2694D10D006AD356 /* Info.uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.uat.plist; sourceTree = "<group>"; };
+		58C3AF0627032F1400DBE122 /* FilterChain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterChain.h; sourceTree = "<group>"; };
+		58C3AF0727032F1400DBE122 /* FilterChain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterChain.m; sourceTree = "<group>"; };
 		58E3F1EA2702D4BB00DDD251 /* OKHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKHttp.h; sourceTree = "<group>"; };
 		58E3F1EB2702D4BB00DDD251 /* OKHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKHttp.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -274,6 +279,8 @@
 				58E3F1EA2702D4BB00DDD251 /* OKHttp.h */,
 				58E3F1EB2702D4BB00DDD251 /* OKHttp.m */,
 				38E983922615F6E8007F6BDF /* Native_net.m */,
+				58C3AF0627032F1400DBE122 /* FilterChain.h */,
+				58C3AF0727032F1400DBE122 /* FilterChain.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -669,6 +676,7 @@
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				58E3F1EC2702D4BB00DDD251 /* OKHttp.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
+				58C3AF0827032F1400DBE122 /* FilterChain.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_net.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);
@@ -697,6 +705,7 @@
 				580B91632694CCEA006AD356 /* AppDelegate.m in Sources */,
 				580B91642694CCEA006AD356 /* EntryViewController.m in Sources */,
 				580B91652694CCEA006AD356 /* Native_net.m in Sources */,
+				58C3AF0927032F1400DBE122 /* FilterChain.m in Sources */,
 				580B91662694CCEA006AD356 /* main.m in Sources */,
 				58E3F1ED2702D4BB00DDD251 /* OKHttp.m in Sources */,
 			);
@@ -709,6 +718,7 @@
 				580B91B22694D0DA006AD356 /* AppDelegate.m in Sources */,
 				580B91B32694D0DA006AD356 /* EntryViewController.m in Sources */,
 				580B91B42694D0DA006AD356 /* Native_net.m in Sources */,
+				58C3AF0A27032F1400DBE122 /* FilterChain.m in Sources */,
 				580B91B52694D0DA006AD356 /* main.m in Sources */,
 				58E3F1EE2702D4BB00DDD251 /* OKHttp.m in Sources */,
 			);

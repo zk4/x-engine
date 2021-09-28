@@ -10,17 +10,6 @@
 #import <iNet.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class FilterChain;
-@class OKHttp;
-
-
-
-@interface FilterChain :NSObject
--(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse;
--(FilterChain*) addFilter:(id<iFilter>) filter;
--(void) setOKHttp:(OKHttp*) okhttp;
-@end
-
 
 @interface OKHttp : NSObject <iNetAgent>
 -(OKHttp*) build:(NSMutableURLRequest*) request;

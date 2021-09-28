@@ -7,6 +7,7 @@
 #import "XENativeContext.h"
 #import "iToast.h"
 #import "iNet.h"
+
 @interface ConfigFilter:NSObject <iFilter>
 @end
 
@@ -16,6 +17,44 @@
     [chain doFilter:session request:request response:response];
 }
 @end
+
+@interface MergeRequestFilter:NSObject <iFilter>
+@property (atomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
+@end
+
+@implementation MergeRequestFilter
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.requests=[NSMutableDictionary new];
+    }
+    return self;
+}
+
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+    NSString* key = request.URL.absoluteString;
+    id queue =  [self.requests objectForKey:key];
+    if([self.requests objectForKey:key]){
+        [XENP(iToast) toast:@"merged request"];
+        [queue addObject:response];
+        return;
+    }else{
+        NSMutableArray* queue = [NSMutableArray new];
+        [queue addObject:response];
+        [self.requests setObject:queue forKey:key];
+        [chain doFilter:session request:request response:^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+            NSMutableArray* queue =  [self.requests objectForKey:key];
+            for (ZKResponse r in queue) {
+                r(data,res,error);
+            }
+            [self.requests removeObjectForKey:key];
+            
+        }];
+    }
+}
+
+@end
+
 
 
 @interface LoggingFilter:NSObject <iFilter>
@@ -66,23 +105,28 @@
 }
 
 -(void) pushTestModule{
-    id ok = [[XENP(iNetManager) one] build:({
-        NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
-        req;
-    })];
-    [ok addFilter:[ConfigFilter new]];
-    [ok addFilter:[LoggingFilter new]];
-    [ok addFilter:[LoggingFilter2 new]];
+
+    id config = [ConfigFilter new];
+    id merged = [MergeRequestFilter new];
+ 
     
-    
-    [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if(error){
-            [XENP(iToast) toast:[error localizedDescription]];
-        }else{
-            NSLog(@"%@", @"success");
-            NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
-        }
-    }];
+    for (int i =0; i<10; i++) {
+        id ok = [[XENP(iNetManager) one] build:({
+            NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+            req;
+        })];
+        [ok addFilter:config];
+        [ok addFilter:merged];
+        [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if(error){
+                [XENP(iToast) toast:[error localizedDescription]];
+            }else{
+                NSLog(@"%@", @"success");
+                [XENP(iToast) toast:@"success"];
+                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
+            }
+        }];
+    }
 }
 
 - (void)viewDidLoad {

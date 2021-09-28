@@ -25,9 +25,9 @@
 
 #import "FilterChain.h"
 @interface FilterChain()
-@property (nonatomic, strong)   NSMutableArray*  filters;
+@property (atomic, strong)   NSMutableArray*  filters;
 @property (nonatomic, assign)   int pos;
-@property (nonatomic, strong)   id<iNetAgent> http;
+@property (nonatomic, weak)   id<iNetAgent> http;
 @end
 
 @implementation FilterChain

@@ -5,7 +5,6 @@
 
 #import "EntryViewController.h"
 #import "XENativeContext.h"
-#import "iToast.h"
 #import "iNet.h"
 
 #import "MergeRequestFilter.h"
@@ -84,10 +83,9 @@
         [ok addFilter:merged];
         [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if(error){
-                [XENP(iToast) toast:[error localizedDescription]];
+                NSLog(@"error");
             }else{
                 NSLog(@"%@", @"success");
-                [XENP(iToast) toast:@"success"];
                 NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
             }
         }];

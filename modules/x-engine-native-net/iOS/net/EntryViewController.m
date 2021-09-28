@@ -21,6 +21,21 @@
 
 
 
+
+@interface AddTokenFilter:NSObject <iFilter>
+@end
+
+@implementation AddTokenFilter
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+    NSMutableDictionary* newHeaders= [NSMutableDictionary dictionaryWithDictionary:request.allHTTPHeaderFields];
+    newHeaders[@"Bearer"]=@"TOKEN";
+    request.allHTTPHeaderFields=newHeaders;
+    [chain doFilter:session request:request response:response];
+}
+@end
+
+
+
 @interface LoggingFilter:NSObject <iFilter>
 @end
 
@@ -72,7 +87,7 @@
 
     id config = [ConfigFilter new];
     id merged = [MergeRequestFilter new];
- 
+    id token  = [AddTokenFilter new];
     
     for (int i =0; i<1000; i++) {
         id ok = [[XENP(iNetManager) one] build:({
@@ -81,6 +96,8 @@
         })];
         [ok addFilter:config];
         [ok addFilter:merged];
+        [ok addFilter:token];
+        
         [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if(error){
                 NSLog(@"error");

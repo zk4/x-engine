@@ -9,13 +9,13 @@
 #import <Photos/Photos.h>
 #import "Native_camera.h"
 #import "XENativeContext.h"
-#import <ZKTY_TZImagePickerController.h>
+#import <TZImagePickerController.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "XTool.h"
 typedef void (^PhotoCallBack)(NSString *);
 typedef void (^SaveCallBack)(NSString *);
-@interface Native_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZKTY_TZImagePickerControllerDelegate>
+@interface Native_camera()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 @property(nonatomic,assign) BOOL allowsEditing;
 @property(nonatomic,assign) BOOL savePhotosAlbum;
 @property(nonatomic,strong) UIImage * photoImage;
@@ -143,7 +143,7 @@ NATIVE_MODULE(Native_camera)
 #pragma 调起相册
 - (void)choosePhotos:(CameraParamsDTO*)dto {
     __weak typeof(self) weakself = self;
-    ZKTY_TZImagePickerController *imagePickerVc = [[ZKTY_TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:dto.photoCount delegate:self];
     imagePickerVc.allowTakeVideo = NO;
     imagePickerVc.allowPickingVideo = NO;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {

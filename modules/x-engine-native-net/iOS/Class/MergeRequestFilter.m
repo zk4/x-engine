@@ -45,14 +45,14 @@
         NSMutableArray* queue = [NSMutableArray new];
         [queue addObject:response];
         [self.requests setObject:queue forKey:key];
-        __weak typeof(self) weakSelf = self;
+//        __weak typeof(self) weakSelf = self;
         [chain doFilter:session request:request response:^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
 //            __strong typeof(self) strongSelf = weakSelf;
-            NSMutableArray* queue =  [weakSelf.requests objectForKey:key];
+            NSMutableArray* queue =  [self.requests objectForKey:key];
             for (ZKResponse r in queue) {
                 r(data,res,error);
             }
-            [weakSelf.requests removeObjectForKey:key];
+            [self.requests removeObjectForKey:key];
         }];
     }
 }

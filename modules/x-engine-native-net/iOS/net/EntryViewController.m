@@ -74,7 +74,7 @@
     id merged = [MergeRequestFilter new];
  
     
-    for (int i =0; i<10; i++) {
+    for (int i =0; i<1000; i++) {
         id ok = [[XENP(iNetManager) one] build:({
             NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
             req;

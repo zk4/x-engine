@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^ZKResponse)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
 @protocol iFilter
-    -(void) doFilter:(NSURLSession*) session request:(NSMutableURLRequest*) request  response:(ZKResponse) response chain:(id<iFilterChain>) chain;
+    -(void) doFilter:(NSURLSession*) session request:(NSMutableURLRequest*) req  response:(ZKResponse) res chain:(id<iFilterChain>) chain;
 @end
 
 

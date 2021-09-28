@@ -8,6 +8,8 @@
 #import "iToast.h"
 #import "iNet.h"
 
+#import "MergeRequestFilter.h"
+
 @interface ConfigFilter:NSObject <iFilter>
 @end
 
@@ -16,43 +18,6 @@
     session.configuration.HTTPMaximumConnectionsPerHost = 0;
     [chain doFilter:session request:request response:response];
 }
-@end
-
-@interface MergeRequestFilter:NSObject <iFilter>
-@property (atomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
-@end
-
-@implementation MergeRequestFilter
-
-- (instancetype)init {
-    if (self = [super init]) {
-        self.requests=[NSMutableDictionary new];
-    }
-    return self;
-}
-
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
-    NSString* key = request.URL.absoluteString;
-    id queue =  [self.requests objectForKey:key];
-    if(queue){
-        NSLog(@"merged request %ld",((NSMutableArray*)queue).count);
-        [queue addObject:response];
-        return;
-    }else{
-        NSMutableArray* queue = [NSMutableArray new];
-        [queue addObject:response];
-        [self.requests setObject:queue forKey:key];
-        [chain doFilter:session request:request response:^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-            NSMutableArray* queue =  [self.requests objectForKey:key];
-            for (ZKResponse r in queue) {
-                r(data,res,error);
-            }
-            [self.requests removeObjectForKey:key];
-            
-        }];
-    }
-}
-
 @end
 
 
@@ -112,7 +77,7 @@
     
     for (int i =0; i<10; i++) {
         id ok = [[XENP(iNetManager) one] build:({
-            NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+            NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
             req;
         })];
         [ok addFilter:config];

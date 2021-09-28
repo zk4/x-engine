@@ -25,8 +25,18 @@
 
 #import "GlobalJsonFilter.h"
 #import "XTool.h"
+
 @implementation GlobalJsonFilter
- 
+
++ (instancetype)sharedInstance {
+    static GlobalJsonFilter * ins = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ins = [[GlobalJsonFilter alloc] init];
+    });
+    return ins;
+}
+
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];

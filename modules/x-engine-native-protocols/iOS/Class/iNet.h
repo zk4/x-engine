@@ -15,6 +15,18 @@ typedef void (^ZKResponse)(id _Nullable data, NSURLResponse * _Nullable res, NSE
 
 @protocol iFilter
     -(void) doFilter:(NSURLSession*) session request:(NSMutableURLRequest*) request  response:(ZKResponse) zkResponse chain:(id<iFilterChain>) chain;
+    // DEMO: 过滤服务器错误
+    //[chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+    //    NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;
+    //    if(hres.statusCode != 200){
+    //        NSString* msg =[NSString stringWithFormat:@"服务器错误，返回了%ld, 不会回调到业务，开发人员请注意。" ,hres.statusCode];
+    //        NSLog(@"%@",msg);
+    //        [XENP(iToast) toast:msg];
+    //        return;
+    //    }else{
+    //        response(data,res,error);
+    //    }
+    //}];
 @end
 
 

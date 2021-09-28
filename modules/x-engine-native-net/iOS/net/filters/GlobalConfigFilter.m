@@ -26,6 +26,7 @@
 #import "GlobalConfigFilter.h"
 
 @implementation GlobalConfigFilter
+
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 0;
     [chain doFilter:session request:request response:response];

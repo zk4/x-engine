@@ -6,6 +6,7 @@
 #import "EntryViewController.h"
 #import "XENativeContext.h"
 #import "iNet.h"
+#import "iToast.h"
 
 #import "GlobalMergeRequestFilter.h"
 #import "GlobalConfigFilter.h"
@@ -15,6 +16,7 @@
 #import "JSONModel.h"
 #import "XTool.h"
 #import "NSMutableURLRequest+Filter.h"
+
  
 
 //@interface AddTokenFilter:NSObject <iFilter>
@@ -83,11 +85,14 @@
     id req = [NSMutableURLRequest new];
     [req addFilter:[GlobalConfigFilter new]];
     [req addFilter:[GlobalServerErrorWithoutCallbackFilter new]];
-    [req addFilter:[GlobalJsonFilter new]];
+    [req addFilter:[GlobalJsonFilter sharedInstance]];
+
     [req setURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
 
     [req send:^(id  _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"%@", data);
+        NSDictionary* dict =(NSDictionary*)data;
+        [XENP(iToast) toast:[XToolDataConverter dictionaryToJson:dict]];
     }];
     
     

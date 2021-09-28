@@ -29,7 +29,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GlobalJsonFilter:NSObject <iFilter>
-
++ (instancetype)sharedInstance;
 @end
+
 
 NS_ASSUME_NONNULL_END

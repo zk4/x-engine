@@ -11,10 +11,10 @@
 #import "OKHttp.h"
 
 
-@interface HTTpSerializeInterceptor:NSObject <iFilter>
+@interface LoggingFilter:NSObject <iFilter>
 @end
 
-@implementation HTTpSerializeInterceptor
+@implementation LoggingFilter
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(nonnull FilterChain *)chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 0;
     [XENP(iToast) toast:@"request start"];
@@ -41,7 +41,7 @@
         NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
         req;
     })];
-    [ok addFilter:[HTTpSerializeInterceptor new]];
+    [ok addFilter:[LoggingFilter new]];
    
     
     [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

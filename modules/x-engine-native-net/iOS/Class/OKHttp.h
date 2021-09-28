@@ -7,17 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <iNet.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class FilterChain;
 @class OKHttp;
 
-//typedef void (^ZKSimpleResponse)(id _Nullable result, NSError* _Nullable error);
-typedef void (^ZKResponse)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
-
-@protocol iFilter <NSObject>
-    -(void) doFilter:(NSURLSession*) session request:(NSMutableURLRequest*) request  response:(ZKResponse) response chain:(FilterChain*) chain;
-@end
 
 
 @interface FilterChain :NSObject

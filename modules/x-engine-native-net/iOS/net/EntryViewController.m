@@ -34,8 +34,8 @@
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
     NSString* key = request.URL.absoluteString;
     id queue =  [self.requests objectForKey:key];
-    if([self.requests objectForKey:key]){
-        [XENP(iToast) toast:@"merged request"];
+    if(queue){
+        NSLog(@"merged request %ld",((NSMutableArray*)queue).count);
         [queue addObject:response];
         return;
     }else{

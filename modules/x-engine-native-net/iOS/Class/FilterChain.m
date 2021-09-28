@@ -50,7 +50,7 @@
         [self.http _internalSend:zkResponse];
     }
 }
--(FilterChain*) addFilter:(id<iFilter>) filter {
+-(id<iFilterChain>) addFilter:(id<iFilter>) filter {
     if(!self.filters){
         self.filters=[NSMutableArray new];
     }

@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FilterChain :NSObject <iFilterChain>
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse;
--(FilterChain*) addFilter:(id<iFilter>) filter;
+-(id<iFilterChain>) addFilter:(id<iFilter>) filter;
 -(void) setNetAgent:(id<iNetAgent>) agent;
 @end
 

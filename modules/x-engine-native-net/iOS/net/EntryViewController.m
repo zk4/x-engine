@@ -11,13 +11,12 @@
 #import "OKHttp.h"
 
 
-@interface MyInterceptor:NSObject <iInterceptor>
+@interface HTTpSerializeInterceptor:NSObject <iInterceptor>
 
 @end
-@implementation MyInterceptor {
+@implementation HTTpSerializeInterceptor {
     
 }
- 
 - (nonnull NSMutableURLRequest *)intercept:(nonnull AFHTTPSessionManager *)af withRequest:(nonnull iRequest *)request {
     af.requestSerializer  = [AFHTTPRequestSerializer serializer];
     af.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -45,7 +44,7 @@
 
 -(void) pushTestModule{
     id ok = [OKHttp new];
-    [ok addInterceptor:[MyInterceptor new]];
+    [ok addInterceptor:[HTTpSerializeInterceptor new]];
     [ok build:({
             iRequest* request = [iRequest new];
             request.method=@"GET";

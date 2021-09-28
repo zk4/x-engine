@@ -27,7 +27,9 @@
 @interface FilterChain()
 @property (atomic, strong)   NSMutableArray*  filters;
 @property (nonatomic, assign)   int pos;
-@property (nonatomic, weak)   id<iNetAgent> http;
+// agent is hold by it's self. weak it
+// if agent die. filters chains should die along.
+@property (nonatomic, weak)   id<iNetAgent> agent;
 @end
 
 @implementation FilterChain
@@ -39,7 +41,7 @@
 }
 
 -(void) setNetAgent:(id<iNetAgent>) agent{
-    self.http= agent;
+    self.agent= agent;
 }
 
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse{
@@ -47,7 +49,7 @@
         id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
         [filter doFilter:session request:request  response:zkResponse chain:self];
     }else{
-        [self.http _internalSend:zkResponse];
+        [self.agent _internalSend:zkResponse];
     }
 }
 -(id<iFilterChain>) addFilter:(id<iFilter>) filter {

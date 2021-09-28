@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface OKHttp : NSObject
+@interface OKHttp : NSObject <iNetAgent>
 -(OKHttp*) build:(NSMutableURLRequest*) request;
 -(OKHttp*) send:(ZKResponse) block;
 -(OKHttp*) addFilter:(id<iFilter>) filter;

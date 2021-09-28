@@ -25,9 +25,12 @@
 
 #import "Native_net.h"
 #import "XENativeContext.h"
+#import "OKHttp.h"
 
 @interface Native_net()
-{ }
+{
+
+}
 @end
 
 @implementation Native_net
@@ -43,8 +46,12 @@ NATIVE_MODULE(Native_net)
 
 - (void)afterAllNativeModuleInited{
 } 
--(NSString*) test{
-    return @"test";
+ 
+
+
+- (nonnull id<iNetAgent>) one {
+    return [OKHttp new];
 }
+
 @end
  

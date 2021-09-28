@@ -37,7 +37,7 @@
 }
 
 -(void) pushTestModule{
-    id ok = [[OKHttp new] build:({
+    id ok = [[XENP(iNetManager) one] build:({
         NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
         req;
     })];

@@ -24,10 +24,10 @@
 
 #import <Foundation/Foundation.h>
 #import "XENativeModule.h"
-#import <iNet.h>
+#import "iNet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_net : XENativeModule <iNet>
+@interface Native_net : XENativeModule <iNetManager>
  
 @end
 

@@ -37,9 +37,25 @@
 		58C3AF0827032F1400DBE122 /* FilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0727032F1400DBE122 /* FilterChain.m */; };
 		58C3AF0927032F1400DBE122 /* FilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0727032F1400DBE122 /* FilterChain.m */; };
 		58C3AF0A27032F1400DBE122 /* FilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0727032F1400DBE122 /* FilterChain.m */; };
-		58C3AF0D2703472800DBE122 /* MergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0C2703472800DBE122 /* MergeRequestFilter.m */; };
-		58C3AF0E2703472800DBE122 /* MergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0C2703472800DBE122 /* MergeRequestFilter.m */; };
-		58C3AF0F2703472800DBE122 /* MergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF0C2703472800DBE122 /* MergeRequestFilter.m */; };
+		58C3AF12270381D400DBE122 /* NSMutableURLRequest+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF11270381D400DBE122 /* NSMutableURLRequest+Filter.m */; };
+		58C3AF13270381D400DBE122 /* NSMutableURLRequest+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF11270381D400DBE122 /* NSMutableURLRequest+Filter.m */; };
+		58C3AF14270381D400DBE122 /* NSMutableURLRequest+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF11270381D400DBE122 /* NSMutableURLRequest+Filter.m */; };
+		58C3AF40270392F200DBE122 /* GlobalConfigFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3A270392F200DBE122 /* GlobalConfigFilter.m */; };
+		58C3AF41270392F200DBE122 /* GlobalConfigFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3A270392F200DBE122 /* GlobalConfigFilter.m */; };
+		58C3AF42270392F200DBE122 /* GlobalConfigFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3A270392F200DBE122 /* GlobalConfigFilter.m */; };
+		58C3AF43270392F200DBE122 /* GlobalConfigFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3A270392F200DBE122 /* GlobalConfigFilter.m */; };
+		58C3AF44270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3B270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m */; };
+		58C3AF45270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3B270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m */; };
+		58C3AF46270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3B270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m */; };
+		58C3AF47270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3B270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m */; };
+		58C3AF48270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3F270392F200DBE122 /* GlobalMergeRequestFilter.m */; };
+		58C3AF49270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3F270392F200DBE122 /* GlobalMergeRequestFilter.m */; };
+		58C3AF4A270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3F270392F200DBE122 /* GlobalMergeRequestFilter.m */; };
+		58C3AF4B270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF3F270392F200DBE122 /* GlobalMergeRequestFilter.m */; };
+		58C3AF4E2703A68100DBE122 /* GlobalJsonFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF4D2703A68100DBE122 /* GlobalJsonFilter.m */; };
+		58C3AF4F2703A68100DBE122 /* GlobalJsonFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF4D2703A68100DBE122 /* GlobalJsonFilter.m */; };
+		58C3AF502703A68100DBE122 /* GlobalJsonFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF4D2703A68100DBE122 /* GlobalJsonFilter.m */; };
+		58C3AF512703A68100DBE122 /* GlobalJsonFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C3AF4D2703A68100DBE122 /* GlobalJsonFilter.m */; };
 		58E3F1EC2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
 		58E3F1ED2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
 		58E3F1EE2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
@@ -103,8 +119,16 @@
 		580B91CC2694D10D006AD356 /* Info.uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.uat.plist; sourceTree = "<group>"; };
 		58C3AF0627032F1400DBE122 /* FilterChain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterChain.h; sourceTree = "<group>"; };
 		58C3AF0727032F1400DBE122 /* FilterChain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterChain.m; sourceTree = "<group>"; };
-		58C3AF0B2703472800DBE122 /* MergeRequestFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MergeRequestFilter.h; sourceTree = "<group>"; };
-		58C3AF0C2703472800DBE122 /* MergeRequestFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MergeRequestFilter.m; sourceTree = "<group>"; };
+		58C3AF10270381D400DBE122 /* NSMutableURLRequest+Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Filter.h"; sourceTree = "<group>"; };
+		58C3AF11270381D400DBE122 /* NSMutableURLRequest+Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Filter.m"; sourceTree = "<group>"; };
+		58C3AF3A270392F200DBE122 /* GlobalConfigFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalConfigFilter.m; sourceTree = "<group>"; };
+		58C3AF3B270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalServerErrorWithoutCallbackFilter.m; sourceTree = "<group>"; };
+		58C3AF3C270392F200DBE122 /* GlobalMergeRequestFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMergeRequestFilter.h; sourceTree = "<group>"; };
+		58C3AF3D270392F200DBE122 /* GlobalConfigFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConfigFilter.h; sourceTree = "<group>"; };
+		58C3AF3E270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalServerErrorWithoutCallbackFilter.h; sourceTree = "<group>"; };
+		58C3AF3F270392F200DBE122 /* GlobalMergeRequestFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMergeRequestFilter.m; sourceTree = "<group>"; };
+		58C3AF4C2703A68100DBE122 /* GlobalJsonFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalJsonFilter.h; sourceTree = "<group>"; };
+		58C3AF4D2703A68100DBE122 /* GlobalJsonFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalJsonFilter.m; sourceTree = "<group>"; };
 		58E3F1EA2702D4BB00DDD251 /* OKHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKHttp.h; sourceTree = "<group>"; };
 		58E3F1EB2702D4BB00DDD251 /* OKHttp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKHttp.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -233,6 +257,7 @@
 				580B91CC2694D10D006AD356 /* Info.uat.plist */,
 				580B918D2694CDB7006AD356 /* Info.sit.plist */,
 				00DFC6EB24C84000006A53EE /* main.m */,
+				58C3AF39270392F200DBE122 /* filters */,
 				00DFC6F824C841FD006A53EE /* EntryViewController.h */,
 				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
 				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
@@ -277,6 +302,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		58C3AF39270392F200DBE122 /* filters */ = {
+			isa = PBXGroup;
+			children = (
+				58C3AF4C2703A68100DBE122 /* GlobalJsonFilter.h */,
+				58C3AF4D2703A68100DBE122 /* GlobalJsonFilter.m */,
+				58C3AF3D270392F200DBE122 /* GlobalConfigFilter.h */,
+				58C3AF3A270392F200DBE122 /* GlobalConfigFilter.m */,
+				58C3AF3C270392F200DBE122 /* GlobalMergeRequestFilter.h */,
+				58C3AF3F270392F200DBE122 /* GlobalMergeRequestFilter.m */,
+				58C3AF3E270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.h */,
+				58C3AF3B270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m */,
+			);
+			path = filters;
+			sourceTree = "<group>";
+		};
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,8 +325,8 @@
 				58E3F1EB2702D4BB00DDD251 /* OKHttp.m */,
 				38E983922615F6E8007F6BDF /* Native_net.m */,
 				58C3AF0627032F1400DBE122 /* FilterChain.h */,
-				58C3AF0B2703472800DBE122 /* MergeRequestFilter.h */,
-				58C3AF0C2703472800DBE122 /* MergeRequestFilter.m */,
+				58C3AF10270381D400DBE122 /* NSMutableURLRequest+Filter.h */,
+				58C3AF11270381D400DBE122 /* NSMutableURLRequest+Filter.m */,
 				58C3AF0727032F1400DBE122 /* FilterChain.m */,
 			);
 			path = Class;
@@ -681,12 +721,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
+				58C3AF4E2703A68100DBE122 /* GlobalJsonFilter.m in Sources */,
 				58E3F1EC2702D4BB00DDD251 /* OKHttp.m in Sources */,
-				58C3AF0D2703472800DBE122 /* MergeRequestFilter.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				58C3AF0827032F1400DBE122 /* FilterChain.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_net.m in Sources */,
+				58C3AF40270392F200DBE122 /* GlobalConfigFilter.m in Sources */,
+				58C3AF48270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
+				58C3AF12270381D400DBE122 /* NSMutableURLRequest+Filter.m in Sources */,
+				58C3AF44270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +739,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6CA24C83F95006A53EE /* iNetTests.m in Sources */,
+				58C3AF41270392F200DBE122 /* GlobalConfigFilter.m in Sources */,
+				58C3AF49270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */,
+				58C3AF45270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */,
+				58C3AF4F2703A68100DBE122 /* GlobalJsonFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,12 +759,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				580B91632694CCEA006AD356 /* AppDelegate.m in Sources */,
+				58C3AF502703A68100DBE122 /* GlobalJsonFilter.m in Sources */,
 				580B91642694CCEA006AD356 /* EntryViewController.m in Sources */,
-				58C3AF0E2703472800DBE122 /* MergeRequestFilter.m in Sources */,
 				580B91652694CCEA006AD356 /* Native_net.m in Sources */,
 				58C3AF0927032F1400DBE122 /* FilterChain.m in Sources */,
 				580B91662694CCEA006AD356 /* main.m in Sources */,
+				58C3AF42270392F200DBE122 /* GlobalConfigFilter.m in Sources */,
+				58C3AF4A270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */,
 				58E3F1ED2702D4BB00DDD251 /* OKHttp.m in Sources */,
+				58C3AF13270381D400DBE122 /* NSMutableURLRequest+Filter.m in Sources */,
+				58C3AF46270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,12 +777,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				580B91B22694D0DA006AD356 /* AppDelegate.m in Sources */,
+				58C3AF512703A68100DBE122 /* GlobalJsonFilter.m in Sources */,
 				580B91B32694D0DA006AD356 /* EntryViewController.m in Sources */,
-				58C3AF0F2703472800DBE122 /* MergeRequestFilter.m in Sources */,
 				580B91B42694D0DA006AD356 /* Native_net.m in Sources */,
 				58C3AF0A27032F1400DBE122 /* FilterChain.m in Sources */,
 				580B91B52694D0DA006AD356 /* main.m in Sources */,
+				58C3AF43270392F200DBE122 /* GlobalConfigFilter.m in Sources */,
+				58C3AF4B270392F200DBE122 /* GlobalMergeRequestFilter.m in Sources */,
 				58E3F1EE2702D4BB00DDD251 /* OKHttp.m in Sources */,
+				58C3AF14270381D400DBE122 /* NSMutableURLRequest+Filter.m in Sources */,
+				58C3AF47270392F200DBE122 /* GlobalServerErrorWithoutCallbackFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

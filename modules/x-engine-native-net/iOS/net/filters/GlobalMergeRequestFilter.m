@@ -1,5 +1,5 @@
 //
-//  MergeRequestFilter.m
+//  GlobalMergeRequestFilter.m
 //  net
 //
 //  Created by zk on 2021/9/28.
@@ -23,9 +23,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "MergeRequestFilter.h"
+#import "GlobalMergeRequestFilter.h"
 
-@implementation MergeRequestFilter
+@implementation GlobalMergeRequestFilter
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -35,6 +35,10 @@
 }
 
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+    if(![request.HTTPMethod isEqualToString:@"GET"]){
+        [chain doFilter:session request:request response:response];
+        return;
+    }
     NSString* key = request.URL.absoluteString;
     id queue =  [self.requests objectForKey:key];
     if(queue){
@@ -45,7 +49,7 @@
         NSMutableArray* queue = [NSMutableArray new];
         [queue addObject:response];
         [self.requests setObject:queue forKey:key];
-        [chain doFilter:session request:request response:^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             NSMutableArray* queue =  [self.requests objectForKey:key];
             for (ZKResponse r in queue) {
                 r(data,res,error);

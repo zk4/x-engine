@@ -1,9 +1,9 @@
 //
-//  XENetClient.h
+//  NSMutableURLRequest+Filter.h
 //  net
 //
-//  Created by zk on 2021/9/28.
-//  Copyright © 2021 x-engine. All rights reserved.
+//  Created by zk on 2021/9/29.
+//  Copyright © 2021 zk. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +24,12 @@
 // THE SOFTWARE./
 
 #import <Foundation/Foundation.h>
-#import <iNet.h>
-
+#import "iNet.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OKHttp<reqType,resType>: NSObject <iNetAgent>
--(id<iNetAgent>) build:(NSMutableURLRequest*) request;
--(id<iNetAgent>) send:(ZKResponse) block;
+@interface NSMutableURLRequest(ZKFilter)
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter;
--(id<iNetAgent>) _internalSend:(ZKResponse)block;
-
+-(id<iNetAgent>) send:(ZKResponse) block;
 @end
 
 NS_ASSUME_NONNULL_END

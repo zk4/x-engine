@@ -1,9 +1,9 @@
 //
-//  XENetClient.h
+//  GlobalConfigFilter.m
 //  net
 //
-//  Created by zk on 2021/9/28.
-//  Copyright © 2021 x-engine. All rights reserved.
+//  Created by zk on 2021/9/29.
+//  Copyright © 2021 zk. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import <Foundation/Foundation.h>
-#import <iNet.h>
+#import "GlobalConfigFilter.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface OKHttp<reqType,resType>: NSObject <iNetAgent>
--(id<iNetAgent>) build:(NSMutableURLRequest*) request;
--(id<iNetAgent>) send:(ZKResponse) block;
--(id<iNetAgent>) addFilter:(id<iFilter>) filter;
--(id<iNetAgent>) _internalSend:(ZKResponse)block;
-
+@implementation GlobalConfigFilter
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+    session.configuration.HTTPMaximumConnectionsPerHost = 0;
+    [chain doFilter:session request:request response:response];
+}
 @end
-
-NS_ASSUME_NONNULL_END

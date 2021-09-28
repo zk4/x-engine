@@ -1,9 +1,9 @@
 //
-//  OKHttp.m
+//  NSMutableURLRequest+Filter.m
 //  net
 //
-//  Created by zk on 2021/9/28.
-//  Copyright © 2021 x-engine. All rights reserved.
+//  Created by zk on 2021/9/29.
+//  Copyright © 2021 zk. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,41 +23,45 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "OKHttp.h"
-#import "FilterChain.h"
+#import "NSMutableURLRequest+Filter.h"
+#import <objc/runtime.h>
+#import "XENativeContext.h"
 
-@interface OKHttp()
-@property (nonatomic, strong)   NSMutableURLRequest* request;
-@property (nonatomic, strong)   NSURLSession *session;
-@property (nonatomic, strong)   id<iFilterChain> chain;
+
+@interface NSMutableURLRequest(ZKFilter)
+@property (nonatomic, strong) id<iNetAgent> zkagent;
 @end
+@implementation NSMutableURLRequest(ZKFilter)
 
-@implementation OKHttp
-
--(id<iNetAgent>) build:(NSMutableURLRequest*) request{
-    self.request = request;
-    return self;
+- (id<iNetAgent>)zkagent
+{
+    return objc_getAssociatedObject(self, _cmd);
 }
+
+- (void)setZkagent:(id<iNetAgent>)agent
+{
+    objc_setAssociatedObject(self, @selector(zkagent), agent, OBJC_ASSOCIATION_RETAIN);
+}
+
 
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
-    if(!self.chain){
-        self.chain = [FilterChain new];
-        [self.chain setNetAgent:self];
+    @synchronized (self) {
+        if(!self.zkagent){
+            self.zkagent = [[XENP(iNetManager) one] build:self];
+        }
     }
-    [self.chain addFilter:filter];
-    return self;
-}
-
--(id<iNetAgent>) _internalSend:(ZKResponse)block{
-    self.session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:self.request completionHandler:block];
-    [sessionTask resume];
-    return self;
+    [self.zkagent addFilter:filter];
+    return self.zkagent;
 }
 -(id<iNetAgent>) send:(ZKResponse) block{
-    [self.chain doFilter:self.session request:self.request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    @synchronized (self) {
+        if(!self.zkagent){
+            self.zkagent = [[XENP(iNetManager) one] build:self];
+        }
+    }
+    [self.zkagent send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
-    return self;
+    return self.zkagent;
 }
 @end

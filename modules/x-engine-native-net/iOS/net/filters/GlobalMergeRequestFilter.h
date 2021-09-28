@@ -1,5 +1,5 @@
 //
-//  OKHttp.m
+//  GlobalMergeRequestFilter.h
 //  net
 //
 //  Created by zk on 2021/9/28.
@@ -23,41 +23,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "OKHttp.h"
-#import "FilterChain.h"
+#import <Foundation/Foundation.h>
+#import "iNet.h"
 
-@interface OKHttp()
-@property (nonatomic, strong)   NSMutableURLRequest* request;
-@property (nonatomic, strong)   NSURLSession *session;
-@property (nonatomic, strong)   id<iFilterChain> chain;
+NS_ASSUME_NONNULL_BEGIN
+@interface GlobalMergeRequestFilter:NSObject <iFilter>
+@property (atomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
 @end
-
-@implementation OKHttp
-
--(id<iNetAgent>) build:(NSMutableURLRequest*) request{
-    self.request = request;
-    return self;
-}
-
--(id<iNetAgent>) addFilter:(id<iFilter>) filter{
-    if(!self.chain){
-        self.chain = [FilterChain new];
-        [self.chain setNetAgent:self];
-    }
-    [self.chain addFilter:filter];
-    return self;
-}
-
--(id<iNetAgent>) _internalSend:(ZKResponse)block{
-    self.session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:self.request completionHandler:block];
-    [sessionTask resume];
-    return self;
-}
--(id<iNetAgent>) send:(ZKResponse) block{
-    [self.chain doFilter:self.session request:self.request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        block(data,response,error);
-    }];
-    return self;
-}
-@end
+NS_ASSUME_NONNULL_END

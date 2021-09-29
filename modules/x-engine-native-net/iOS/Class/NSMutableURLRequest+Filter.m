@@ -40,7 +40,7 @@
 
 - (void)setZkagent:(id<iNetAgent>)agent
 {
-    objc_setAssociatedObject(self, @selector(zkagent), agent, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(zkagent), agent, OBJC_ASSOCIATION_ASSIGN);
 }
 
 

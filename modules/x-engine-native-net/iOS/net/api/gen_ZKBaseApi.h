@@ -10,6 +10,11 @@
 #import "xengine_jsi_undefined.h"
 #import "ZKBaseApi.h"
 
+#define USING_GOOGLE_PROMISE 1
+#ifdef USING_GOOGLE_PROMISE
+#import "FBLPromises.h"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class Post;
@@ -22,6 +27,9 @@ typedef void (^PostApiResponse)(Post* _Nullable data, NSURLResponse * _Nullable 
 - (void) setPost:(Post*) arg;
 - (NSString*) getMethod;
 - (void) request:(PostApiResponse) response;
+#ifdef USING_GOOGLE_PROMISE
+- (FBLPromise<Post *>*) promise;
+#endif
 @end
 
 NS_ASSUME_NONNULL_END

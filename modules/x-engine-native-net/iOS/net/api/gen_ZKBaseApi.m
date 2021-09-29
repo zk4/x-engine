@@ -31,5 +31,24 @@
     [self addLocalFilter:self.req];
     [self.req send:response];
 }
+#ifdef USING_GOOGLE_PROMISE
+- (FBLPromise<Post *>*) promise{
+    FBLPromise<Post *>* promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
+        self.req = [NSMutableURLRequest new];
+        self.req.URL =[NSURL URLWithString:[self getUrl]];
+        self.req.HTTPMethod = [self getMethod];
+        self.req.HTTPBody = self.reqArg.toJSONData;
+        [self addLocalFilter:self.req];
+        [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+            if(!error){
+                fulfill(data);
+            }else{
+                reject(error);
+            }
+        }];
+    }];
+    return promise;
+}
 
+#endif
 @end

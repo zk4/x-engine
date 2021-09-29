@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSMutableURLRequest+Filter.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZKBaseApi : NSObject
 
+@property(nonatomic,strong) NSMutableURLRequest* req;
+- (NSString*) getMethod;
+- (void) addLocalFilter:(NSMutableURLRequest*) req;
+- (NSString*) getUrl;
 @end
 
 NS_ASSUME_NONNULL_END

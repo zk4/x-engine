@@ -7,11 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "xengine_jsi_undefined.h"
+#import "ZKBaseApi.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface gen_ZKBaseApi : NSObject
+@class Post;
+@interface gen_ZKBaseApi : ZKBaseApi
 
+@property (nonatomic, strong) Post* reqArg;
+
+typedef void (^PostApiResponse)(Post* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
+
+- (void) setPost:(Post*) arg;
+- (NSString*) getMethod;
+- (void) request:(PostApiResponse) response;
 @end
 
 NS_ASSUME_NONNULL_END

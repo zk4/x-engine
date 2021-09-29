@@ -7,8 +7,8 @@
 
 #import "iNet.h"
 #import "Native_net.h"
-#import "GlobalConfigFilter.h"
-#import "GlobalServerErrorWithoutCallbackFilter.h"
+//#import "GlobalConfigFilter.h"
+#import "GlobalStatusCodeNot2xxFilter.h"
 @interface iOSTests : XCTestCase
 @end
 
@@ -44,10 +44,10 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request should succeed"];
     id req = [NSMutableURLRequest new];
     [req addFilter:[GlobalConfigFilter new]];
-    [req addFilter:[GlobalServerErrorWithoutCallbackFilter new]];
+    [req addFilter:[GlobalStatusCodeNot2xxFilter new]];
     [req setURL:[NSURL URLWithString:@"https://httpbin.org/status/504"]];
     [req send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        // 这里不会有回调，错误由全局 GlobalServerErrorWithoutCallbackFilter 拦截处理了。
+        // 这里不会有回调，错误由全局 GlobalStatusCodeNot2xxFilter 拦截处理了。
         NSAssert(FALSE, @"should not be called");
     }];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -10,14 +10,16 @@
 
 #import "GlobalMergeRequestFilter.h"
 #import "GlobalConfigFilter.h"
-#import "GlobalServerErrorWithoutCallbackFilter.h"
+#import "GlobalStatusCodeNot2xxFilter.h"
 #import "GlobalJsonFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalNoResponseFilter.h"
-"
+
 #import "JSONModel.h"
 #import "XTool.h"
 
+#import "TodoApi.h"
+#import "PostApi.h"
 
  
 
@@ -82,23 +84,29 @@
     [self pushTestModule];
 }
 
-- (void)test1 {
-    for (int i =0; i<1000; i++) {
-        
-        id req = [NSMutableURLRequest new];
-        [req addFilter:[GlobalConfigFilter sharedInstance]];
-        [req addFilter:[GlobalServerErrorWithoutCallbackFilter sharedInstance]];
-        [req addFilter:[GlobalNoResponseFilter sharedInstance]];
-        [req addFilter:[GlobalMergeRequestFilter sharedInstance]];
-        [req addFilter:[GlobalJsonFilter sharedInstance]];
-        
-        [req setURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
-        
-        [req send:^(id  _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSLog(@"%@", data);
-         }];
+- (void)test0 {
+    for (int i =1; i<2; i++) {
+        PostApi* api = [PostApi new];
+        Post* post = [Post new];
+        post.title=@"hello,world";
+        [api setPost:post];
+        [api request:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+            NSLog(@"%@",data);
+
+        }];
     }
 }
+//
+//- (void)test1 {
+//    for (int i =1; i<100; i++) {
+//        TodoApi* api = [TodoApi new];
+//        api.tid=i;
+//        [api request:^(Hello * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+//            NSLog(@"%@",data);
+//            [XENP(iToast) toast:[data toJSONString]];
+//        }];
+//    }
+//}
 
 - (void)test2 {
     for (int i =0; i<1000; i++) {
@@ -107,28 +115,31 @@
             req;
         })];
         [ok addFilter:[GlobalConfigFilter sharedInstance]];
-        [ok addFilter:[GlobalServerErrorWithoutCallbackFilter sharedInstance]];
+        [ok addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
         [ok addFilter:[GlobalMergeRequestFilter sharedInstance]];
         [ok addFilter:[GlobalJsonFilter sharedInstance]];
-        
-        
-        [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if(error){
-                NSLog(@"error");
-            }else{
-                NSLog(@"%@", data);
-                
-                //                        NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-                //                        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonString:str];
-                
-                //                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
-            }
+        [ok send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+            
         }];
+//
+//        [ok send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//            if(error){
+//                NSLog(@"error");
+//            }else{
+//                NSLog(@"%@", data);
+//
+//                //                        NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+//                //                        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonString:str];
+//
+//                //                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
+//            }
+//        }];
     }
 }
 
 -(void) pushTestModule{
-    [self test1];
+    [self test0];
+//    [self test1];
      
     
 //    [self test2];

@@ -38,10 +38,24 @@
 }
 
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+
+    NSParameterAssert(request);
+    // set header as application/json
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        // handle response
         NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonString:str];
-        response(model,res,error);
+        NSError* jsonError=nil;
+        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonStringWithError:str error:&jsonError];
+        if(jsonError){
+#ifdef DEUBG
+            NSString* msg =[NSString stringWithFormat:@"返回值 JSON 解析失败, 不会回调到业务，开发人员请注意。\n%@" ,str];
+            [XENP(iToast) toast:msg];
+#endif
+            return;
+        }else{
+            response(model,res,error);
+        }
     }];
 }
 

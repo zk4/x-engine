@@ -1,5 +1,5 @@
 //
-//  GlobalStatusCodeNot200Filter.h
+//  GlobalStatusCodeNot2xxFilter.h
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -28,7 +28,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GlobalStatusCodeNot200Filter:NSObject <iFilter>
+@interface GlobalStatusCodeNot2xxFilter:NSObject <iFilter>
 + (id)sharedInstance;
 @end
 

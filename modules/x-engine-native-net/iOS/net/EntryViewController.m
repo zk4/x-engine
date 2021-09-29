@@ -93,50 +93,47 @@
         
         [req send:^(id  _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             NSLog(@"%@", data);
-            NSDictionary* dict =(NSDictionary*)data;
-//            [XENP(iToast) toast:[XToolDataConverter dictionaryToJson:dict]];
+          
+         }];
+    }
+}
+
+- (void)test2 {
+    for (int i =0; i<1000; i++) {
+        id ok = [[XENP(iNetManager) one] build:({
+            NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
+            req;
+        })];
+        [ok addFilter:[GlobalConfigFilter sharedInstance]];
+        [ok addFilter:[GlobalServerErrorWithoutCallbackFilter sharedInstance]];
+        [ok addFilter:[GlobalMergeRequestFilter sharedInstance]];
+        [ok addFilter:[GlobalJsonFilter sharedInstance]];
+        
+        
+        [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if(error){
+                NSLog(@"error");
+            }else{
+                NSLog(@"%@", data);
+                
+                //                        NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+                //                        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonString:str];
+                
+                //                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
+            }
         }];
     }
 }
 
 -(void) pushTestModule{
     [self test1];
+     
     
-    
-//    [req send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        // 这里不会有回调，错误由全局 GlobalServerErrorWithoutCallbackFilter 拦截处理了。
-//        NSAssert(FALSE, @"should not  called");
-//    }];
-//
-//    id config = [GlobalConfigFilter new];
-//    id merged = [GlobalMergeRequestFilter new];
-//    id token  = [AddTokenFilter new];
-    
-//    for (int i =0; i<10; i++) {
-////        id ok = [[XENP(iNetManager) one] build:({
-////            NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
-////            req;
-////        })];
-////        [ok addFilter:config];
-////        [ok addFilter:merged];
-////        [ok addFilter:token];
-////
-////
-////        [ok send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-////            if(error){
-////                NSLog(@"error");
-////            }else{
-////                //                        NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-////                //                        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonString:str];
-////
-////                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
-////            }
-////        }];
-//
-//
-//        /////////////////////////////////////////////////////////////////////// the second writing style
-//
-////                NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
+//    [self test2];
+
+        /////////////////////////////////////////////////////////////////////// the second writing style
+
+//                NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
 //
 //        id req = [NSMutableURLRequest new];
 //        [req setURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
@@ -151,7 +148,7 @@
 //                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
 //            }
 //        }];
-//    }
+    
 }
 
 - (void)viewDidLoad {

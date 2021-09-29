@@ -55,6 +55,12 @@
 /// @param jsonString json
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
 
+
+/// json格式字符串转字典:
+/// @param jsonString json
++ (NSDictionary *)dictionaryWithJsonStringWithError:(NSString *)jsonString error:(NSError**)error;
+
+
 /// 将 spa 地址转换为标准 url
 + (NSString*)SPAUrl2StandardUrl:(NSString*)raw;
 @end

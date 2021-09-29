@@ -158,14 +158,18 @@
 /// json格式字符串转字典:
 /// @param jsonString json
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    NSError* error;
+    return [self dictionaryWithJsonStringWithError:jsonString error:&error];
+}
+
++ (NSDictionary *)dictionaryWithJsonStringWithError:(NSString *)jsonString error:(NSError**)error{
     if (jsonString == nil) {
         return nil;
     }
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    if(err) {
-        NSLog(@"json解析失败：%@",err);
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:error];
+    if(*error) {
+        NSLog(@"json解析失败：%@",*error);
         return nil;
     }
     return dic;

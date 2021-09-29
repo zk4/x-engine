@@ -1,5 +1,5 @@
 //
-//  GlobalServerErrorWithoutCallbackFilter.h
+//  GlobalStatusCodeNot200Filter.h
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -28,7 +28,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GlobalServerErrorWithoutCallbackFilter:NSObject <iFilter>
+@interface GlobalStatusCodeNot200Filter:NSObject <iFilter>
 + (id)sharedInstance;
 @end
 

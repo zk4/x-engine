@@ -1,5 +1,5 @@
 //
-//  GlobalServerErrorWithoutCallbackFilter.m
+//  GlobalStatusCodeNot200Filter.m
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -23,13 +23,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "GlobalServerErrorWithoutCallbackFilter.h"
+#import "GlobalStatusCodeNot200Filter.h"
 #import "XENativeContext.h"
 #import "iToast.h"
-@implementation GlobalServerErrorWithoutCallbackFilter
+@implementation GlobalStatusCodeNot200Filter
 + (id)sharedInstance
 {
-    static GlobalServerErrorWithoutCallbackFilter *sharedInstance = nil;
+    static GlobalStatusCodeNot200Filter *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
@@ -40,10 +40,12 @@
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;
-        if(hres.statusCode != 200){
+        if(!(hres.statusCode >= 200 && hres.statusCode < 300)){
+#ifdef DEUBG
             NSString* msg =[NSString stringWithFormat:@"服务器错误，返回了%ld, 不会回调到业务，开发人员请注意。" ,hres.statusCode];
             NSLog(@"%@",msg);
             [XENP(iToast) toast:msg];
+#endif
             return;
         }else{
             response(data,res,error);

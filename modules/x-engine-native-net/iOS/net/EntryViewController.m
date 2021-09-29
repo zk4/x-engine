@@ -16,6 +16,7 @@
 #import "JSONModel.h"
 #import "XTool.h"
 #import "NSMutableURLRequest+Filter.h"
+#import "GlobalNoResponseFilter.h"
 
  
 
@@ -86,6 +87,7 @@
         id req = [NSMutableURLRequest new];
         [req addFilter:[GlobalConfigFilter sharedInstance]];
         [req addFilter:[GlobalServerErrorWithoutCallbackFilter sharedInstance]];
+        [req addFilter:[GlobalNoResponseFilter sharedInstance]];
         [req addFilter:[GlobalMergeRequestFilter sharedInstance]];
         [req addFilter:[GlobalJsonFilter sharedInstance]];
         
@@ -93,7 +95,6 @@
         
         [req send:^(id  _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             NSLog(@"%@", data);
-          
          }];
     }
 }

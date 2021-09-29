@@ -29,7 +29,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GlobalConfigFilter:NSObject <iFilter>
-
++ (instancetype)sharedInstance;
 @end
 
 NS_ASSUME_NONNULL_END

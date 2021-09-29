@@ -27,6 +27,16 @@
 #import "XENativeContext.h"
 #import "iToast.h"
 @implementation GlobalServerErrorWithoutCallbackFilter
++ (id)sharedInstance
+{
+    static GlobalServerErrorWithoutCallbackFilter *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;

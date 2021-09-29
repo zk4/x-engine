@@ -47,7 +47,8 @@
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse{
     if(self.pos<self.filters.count){
         id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
-        [filter doFilter:session request:request  response:zkResponse chain:self];
+        __weak typeof(self) weakSelf = self;
+        [filter doFilter:session request:request  response:zkResponse chain:weakSelf];
     }else{
         [self.agent _internalSend:zkResponse];
     }

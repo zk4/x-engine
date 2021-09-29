@@ -25,16 +25,25 @@
 
 #import "GlobalMergeRequestFilter.h"
 
+@interface GlobalMergeRequestFilter()
+@property (atomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
+@end
 @implementation GlobalMergeRequestFilter
-
-- (instancetype)init {
-    if (self = [super init]) {
-        self.requests=[[NSMutableDictionary alloc] init];
-    }
-    return self;
++ (id)sharedInstance
+{
+    static GlobalMergeRequestFilter *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+        sharedInstance.requests=[[NSMutableDictionary alloc] init];
+        
+    });
+    return sharedInstance;
 }
 
+
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+    
     if(![request.HTTPMethod isEqualToString:@"GET"]){
         [chain doFilter:session request:request response:response];
         return;
@@ -46,15 +55,23 @@
         [queue addObject:response];
         return;
     }else{
-        NSMutableArray* queue = [NSMutableArray new];
-        [queue addObject:response];
-        [self.requests setObject:queue forKey:key];
+        @synchronized (self){
+            NSMutableArray* queue = [NSMutableArray new];
+            [queue addObject:response];
+            [self.requests setObject:queue forKey:key];
+        }
+        __weak typeof(self) weakSelf = self;
         [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-            NSMutableArray* queue =  [self.requests objectForKey:key];
-            for (ZKResponse r in queue) {
-                r(data,res,error);
+             NSMutableArray* queue =  [weakSelf.requests objectForKey:key];
+            @synchronized (queue){
+                for (long i = queue.count-1 ; i >= 0 ; i--) {
+                    ZKResponse r = queue[i];
+                    r(data,res,error);
+                    r = nil;
+                }
+                [queue removeAllObjects];
             }
-            [self.requests removeObjectForKey:key];
+            [weakSelf.requests removeObjectForKey:key];
         }];
     }
 }

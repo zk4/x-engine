@@ -59,7 +59,7 @@
 		58E3F1EC2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
 		58E3F1ED2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
 		58E3F1EE2702D4BB00DDD251 /* OKHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3F1EB2702D4BB00DDD251 /* OKHttp.m */; };
-		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-netTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-netTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-net.a */; };
 		E8FCBD124B8B0CAA64512CFB /* libPods-uat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1324DE619428EB3AFBB1044B /* libPods-uat.a */; };
@@ -187,7 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				580B91682694CCEA006AD356 /* libc++.tbd in Frameworks */,
-				A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */,
+				A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */,
 				565DD27B989F5FB8F69BF75F /* libPods-sit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -922,9 +922,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/net/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -933,7 +933,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc.000.0;
 				PRODUCT_NAME = net;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -946,9 +946,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2GBSCJ7C97;
 				INFOPLIST_FILE = "$(SRCROOT)/net/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -957,7 +957,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lohashow.appc.000.0;
 				PRODUCT_NAME = net;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

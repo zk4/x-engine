@@ -28,6 +28,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface GlobalMergeRequestFilter:NSObject <iFilter>
-@property (atomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
++ (id)sharedInstance;
 @end
 NS_ASSUME_NONNULL_END

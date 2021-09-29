@@ -26,7 +26,14 @@
 #import "GlobalConfigFilter.h"
 
 @implementation GlobalConfigFilter
-
++ (instancetype)sharedInstance {
+    static GlobalConfigFilter * ins = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ins = [[GlobalConfigFilter alloc] init];
+    });
+    return ins;
+}
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 0;
     [chain doFilter:session request:request response:response];

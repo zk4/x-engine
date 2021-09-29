@@ -80,20 +80,27 @@
     [self pushTestModule];
 }
 
+- (void)test1 {
+    for (int i =0; i<1000; i++) {
+        
+        id req = [NSMutableURLRequest new];
+        [req addFilter:[GlobalConfigFilter sharedInstance]];
+        [req addFilter:[GlobalServerErrorWithoutCallbackFilter sharedInstance]];
+        [req addFilter:[GlobalMergeRequestFilter sharedInstance]];
+        [req addFilter:[GlobalJsonFilter sharedInstance]];
+        
+        [req setURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
+        
+        [req send:^(id  _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSLog(@"%@", data);
+            NSDictionary* dict =(NSDictionary*)data;
+//            [XENP(iToast) toast:[XToolDataConverter dictionaryToJson:dict]];
+        }];
+    }
+}
+
 -(void) pushTestModule{
-    
-    id req = [NSMutableURLRequest new];
-    [req addFilter:[GlobalConfigFilter new]];
-    [req addFilter:[GlobalServerErrorWithoutCallbackFilter new]];
-    [req addFilter:[GlobalJsonFilter sharedInstance]];
-
-    [req setURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
-
-    [req send:^(id  _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@", data);
-        NSDictionary* dict =(NSDictionary*)data;
-        [XENP(iToast) toast:[XToolDataConverter dictionaryToJson:dict]];
-    }];
+    [self test1];
     
     
 //    [req send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

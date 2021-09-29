@@ -96,7 +96,7 @@
 
     if (data.length/1024 < size) {
         perfEnd(img)
-        NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %u",size, preCompressSize,data.length/1024);
+        NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %lu",size, preCompressSize,data.length/1024);
         return data;
     }
     
@@ -114,7 +114,7 @@
         UIGraphicsEndImageContext();
         data = UIImageJPEGRepresentation(resultImage, compression);
     }
-    NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %u",size, preCompressSize,data.length/1024);
+    NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %lu",size, preCompressSize,data.length/1024);
     perfEnd(img)
     return data;
 }

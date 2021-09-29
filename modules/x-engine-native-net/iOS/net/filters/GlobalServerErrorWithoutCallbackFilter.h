@@ -29,7 +29,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GlobalServerErrorWithoutCallbackFilter:NSObject <iFilter>
-
++ (id)sharedInstance;
 @end
 
 NS_ASSUME_NONNULL_END

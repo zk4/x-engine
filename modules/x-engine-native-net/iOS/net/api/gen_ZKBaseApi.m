@@ -7,7 +7,7 @@
 //
 
 #import "gen_ZKBaseApi.h"
-
+#import "XTool.h"
 
 
 @implementation gen_ZKBaseApi
@@ -29,7 +29,11 @@
     self.req.HTTPMethod = [self getMethod];
     self.req.HTTPBody = self.reqArg.toJSONData;
     [self addLocalFilter:self.req];
-    [self.req send:response];
+    [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        NSError* err;
+        ResPost* resPost = [[ResPost alloc] initWithDictionary:data error:&err];
+        response(resPost,res,[XToolError wrapper:error underlyingError:err]);
+    }];
 }
 #ifdef USING_GOOGLE_PROMISE
 - (FBLPromise<Post *>*) promise{
@@ -41,7 +45,12 @@
         [self addLocalFilter:self.req];
         [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             if(!error){
-                fulfill(data);
+                NSError* err;
+                ResPost* resPost = [[ResPost alloc] initWithDictionary:data error:&err];
+                if(!err)
+                 fulfill(resPost);
+                else
+                    reject(err);
             }else{
                 reject(error);
             }

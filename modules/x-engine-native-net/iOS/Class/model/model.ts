@@ -8,7 +8,7 @@ interface Post {
 }
 
 interface ResPost {
-  arags: Map<string,string>;
+  args: Map<string,string>;
   data: string;
   files: Map<string,string>;
   form: Map<string,string>;

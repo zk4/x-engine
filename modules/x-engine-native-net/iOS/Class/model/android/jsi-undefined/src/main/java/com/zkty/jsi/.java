@@ -29,7 +29,7 @@ class Post {
   }
   
 class ResPost {
-  public Map<String,String> arags;
+  public Map<String,String> args;
 
     public String data;
 

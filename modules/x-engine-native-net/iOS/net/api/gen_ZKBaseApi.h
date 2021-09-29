@@ -21,8 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface gen_ZKBaseApi : ZKBaseApi
 
 @property (nonatomic, strong) Post* reqArg;
+@property (nonatomic, strong) ResPost* postResponse;
 
-typedef void (^PostApiResponse)(Post* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
+typedef void (^PostApiResponse)(ResPost* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
 
 - (void) setPost:(Post*) arg;
 - (NSString*) getMethod;

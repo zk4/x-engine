@@ -8,10 +8,18 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "XTool.h"
+#import "NSMutableURLRequest+Filter.h"
+
+#import "GlobalMergeRequestFilter.h"
+#import "GlobalConfigFilter.h"
+#import "GlobalServerErrorWithoutCallbackFilter.h"
+#import "GlobalJsonFilter.h"
+#import "NSMutableURLRequest+Filter.h"
+#import "GlobalNoResponseFilter.h"
 
 @interface JSI_webcache()
 @property (atomic, strong) NSMutableDictionary* cache;
-@property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSMutableURLRequest *request;
 @end
 
 @implementation JSI_webcache
@@ -20,10 +28,9 @@ JSI_MODULE(JSI_webcache)
 - (void)afterAllJSIModuleInited {
     _cache=[NSMutableDictionary new];
     
-    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.HTTPMaximumConnectionsPerHost=10;
-
-   self.session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
+//    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    config.HTTPMaximumConnectionsPerHost=10;
+//
 
 }
 
@@ -85,7 +92,7 @@ JSI_MODULE(JSI_webcache)
 
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
+
     request.HTTPMethod = method;
     request.allHTTPHeaderFields= [self makeSafeHeaders:headers];
     
@@ -111,38 +118,41 @@ JSI_MODULE(JSI_webcache)
     //WARNING: 想换成其他网络请求库时请请注意json 序列化的问题。不要转多遍。jsonStr 里的 '浮点类型'，在转为原生类型时，会丢失精度。再转为 jsonStr 时就不是你要的值了。如 str: '{a:.3}' -> objc: @{@"a":.299999999999}  ->  str '{"a":.29999999999}'
 
     __weak typeof(self) weakSelf = self;
-        NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
-            if (!error) {
-                NSHTTPURLResponse *response =nil;
-                response = (NSHTTPURLResponse *)r;
-                NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-                NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
-                
-                // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-                NSString* type =  headers[@"Content-Type"];
-                BOOL isBinary =type? !([type containsString:@"text/"] || [type containsString:@"/json"]): NO;
+    [request addFilter:[GlobalConfigFilter sharedInstance]];
+    [request addFilter:[GlobalServerErrorWithoutCallbackFilter sharedInstance]];
+    [request addFilter:[GlobalNoResponseFilter sharedInstance]];
+    [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
 
-                NSDictionary* ret =@{
-                    @"statusCode": statusCode,
-                    @"isBinary":[NSNumber numberWithBool:isBinary],
-                    @"data":isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding],
-                    @"responseHeaders":headers
-                };
-                if(cacheKey)
-                    weakSelf.cache[cacheKey] = ret;
-                completionHandler(ret,TRUE);
-    
-            } else {
-                NSDictionary* ret =@{
-    
-                    @"error":[NSString stringWithFormat:@"%@", error]
-                };
-                completionHandler(ret,TRUE);
-            }
-        }];
+    [request send:^(id  _Nullable data, NSURLResponse * _Nullable r, NSError * _Nullable error) {
+        if (!error) {
+            NSHTTPURLResponse *response =nil;
+            response = (NSHTTPURLResponse *)r;
+            NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
+            NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
+            
+            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+            NSString* type =  headers[@"Content-Type"];
+            BOOL isBinary =type? !([type containsString:@"text/"] || [type containsString:@"/json"]): NO;
 
+            NSDictionary* ret =@{
+                @"statusCode": statusCode,
+                @"isBinary":[NSNumber numberWithBool:isBinary],
+                @"data":isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding],
+                @"responseHeaders":headers
+            };
+            if(cacheKey)
+                weakSelf.cache[cacheKey] = ret;
+            completionHandler(ret,TRUE);
 
-    [sessionTask resume];
+        } else {
+            NSDictionary* ret =@{
+
+                @"error":[NSString stringWithFormat:@"%@", error]
+            };
+            completionHandler(ret,TRUE);
+        }
+    }];
+ 
 }
 
  

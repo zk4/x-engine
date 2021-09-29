@@ -63,13 +63,12 @@
         __weak typeof(self) weakSelf = self;
         [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
              NSMutableArray* queue =  [weakSelf.requests objectForKey:key];
-            @synchronized (queue){
+            @synchronized (weakSelf){
                 for (long i = queue.count-1 ; i >= 0 ; i--) {
                     ZKResponse r = queue[i];
                     r(data,res,error);
                     r = nil;
                 }
-                [queue removeAllObjects];
             }
             [weakSelf.requests removeObjectForKey:key];
         }];

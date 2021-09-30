@@ -1,7 +1,9 @@
 
 const apiName = "Post";
+const apiUrl = "https://httpbin.org/post"
+const apiMethod ="POST"
 
-@request
+ 
 interface PostReq {
   userId: string;
   tid?: int;
@@ -10,9 +12,14 @@ interface PostReq {
   message: string;
   moreMsg: string;
   ext: string;
+  hello: {
+    world:{
+      inner:string
+    }
+  }
 }
 
-@response
+ 
 interface PostRes {
   // 参数
   args: Map<string,string>;

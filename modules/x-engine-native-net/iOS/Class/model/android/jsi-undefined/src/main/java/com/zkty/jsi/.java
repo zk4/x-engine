@@ -30,6 +30,16 @@ class PostReq {
     public String moreMsg;
 
     public String ext;
+
+    public _0__DTO hello;
+  }
+  
+class _0__DTO {
+  public _1__DTO world;
+  }
+  
+class _1__DTO {
+  public String inner;
   }
   
 class PostRes {

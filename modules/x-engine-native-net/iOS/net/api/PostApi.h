@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "gen_ZKBaseApi.h"
+#import "xengine_dto_Post.h"
+
+ 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostApi :gen_ZKBaseApi
+@interface PostApi :gen_PostApi
 @end
 NS_ASSUME_NONNULL_END

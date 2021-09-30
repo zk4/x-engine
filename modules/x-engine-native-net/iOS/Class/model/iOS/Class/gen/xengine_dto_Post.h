@@ -6,8 +6,12 @@
 #import "JSONModel.h"
 
 @protocol PostReq;
+@protocol PostReq_hello;
+@protocol PostReq_hello_helloworld;
 @protocol PostRes;
 @class PostReq;
+@class PostReq_hello;
+@class PostReq_hello_helloworld;
 @class PostRes;
 
 @interface PostReq: JSONModel
@@ -18,6 +22,17 @@
    	@property(nonatomic,copy) NSString* message;
    	@property(nonatomic,copy) NSString* moreMsg;
    	@property(nonatomic,copy) NSString* ext;
+   	@property(nonatomic,strong) PostReq_hello* hello;
+@end
+
+
+@interface PostReq_hello: JSONModel
+  	@property(nonatomic,strong) PostReq_hello_helloworld* world;
+@end
+
+
+@interface PostReq_hello_helloworld: JSONModel
+  	@property(nonatomic,copy) NSString* inner;
 @end
 
 
@@ -32,3 +47,27 @@
    	@property(nonatomic,copy) NSString* url;
 @end
 
+
+
+  #import <Foundation/Foundation.h>
+  #import "xengine_dto_Post.h"
+  #import "ZKBaseApi.h"
+  #import "FBLPromises.h"
+  
+    
+  @interface gen_PostApi : ZKBaseApi
+  
+  @property (nonatomic, strong) PostReq* postReq;
+  @property (nonatomic, strong) PostRes* postRes;
+  
+  typedef void (^PostApiResponse)( PostRes* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
+  
+  - (void) request:(PostApiResponse) response;
+
+  - (FBLPromise<PostRes *>*) promise;
+  - (FBLPromise<PostRes *>*) promise:(PostReq*) postReq;
+
+  @end
+  
+
+    

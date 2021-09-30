@@ -11,6 +11,9 @@
       if ([propertyName isEqualToString:@"tid"]) { return YES; }
       return NO;
     }
+    
+    - (PostReq_hello* )hello{ if(!_hello){ _hello = [PostReq_hello new];}return _hello;}
+    
 @end
 
   
@@ -19,6 +22,9 @@
       
       return NO;
     }
+    
+    - (PostReq_hello_helloworld* )world{ if(!_world){ _world = [PostReq_hello_helloworld new];}return _world;}
+    
 @end
 
   
@@ -27,6 +33,7 @@
       
       return NO;
     }
+    
 @end
 
   
@@ -35,6 +42,7 @@
       
       return NO;
     }
+    
 @end
 
 

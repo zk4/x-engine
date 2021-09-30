@@ -76,6 +76,7 @@
 //@end
 
 
+
 @interface EntryViewController ()
 @end
 
@@ -88,8 +89,10 @@
     for (int i =1; i<2; i++) {
         PostApi* api = [PostApi  new];
         PostReq* postReq = [PostReq new];
+        
         postReq.title=@"hello,world";
         postReq.moreMsg =@"more msg";
+        postReq.hello.world.inner =@"inner is here";
 
 
         //        [api request:^(PostRes * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
@@ -141,6 +144,7 @@
         [ok send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             
         }];
+        
         //
         //        [ok send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         //            if(error){

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "xengine_jsi_undefined.h"
+#import "xengine_dto_Post.h"
 #import "ZKBaseApi.h"
 
 #define USING_GOOGLE_PROMISE 1
@@ -17,19 +17,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class Post;
+ 
 @interface gen_ZKBaseApi : ZKBaseApi
 
-@property (nonatomic, strong) Post* reqArg;
-@property (nonatomic, strong) ResPost* postResponse;
+@property (nonatomic, strong) PostReq* postReq;
+@property (nonatomic, strong) PostRes* postRes;
 
-typedef void (^PostApiResponse)(ResPost* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
+typedef void (^PostApiResponse)(PostRes* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
 
-- (void) setPost:(Post*) arg;
+- (void) setPostReq:(PostReq*) arg;
 - (NSString*) getMethod;
 - (void) request:(PostApiResponse) response;
 #ifdef USING_GOOGLE_PROMISE
-- (FBLPromise<Post *>*) promise;
+- (FBLPromise<PostRes *>*) promise;
 #endif
 @end
 

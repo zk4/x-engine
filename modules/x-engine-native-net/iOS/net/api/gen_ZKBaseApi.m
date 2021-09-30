@@ -15,9 +15,7 @@
 - (NSString*) getMethod{
     return @"POST";
 }
-- (void) setPost:(Post*) arg{
-    self.reqArg = arg;
-}
+
 
 - (NSString*) getUrl{
    return [NSString stringWithFormat:@"https://httpbin.org/post"];
@@ -27,26 +25,26 @@
     self.req = [NSMutableURLRequest new];
     self.req.URL =[NSURL URLWithString:[self getUrl]];
     self.req.HTTPMethod = [self getMethod];
-    self.req.HTTPBody = self.reqArg.toJSONData;
+    self.req.HTTPBody = self.postReq.toJSONData;
     [self addLocalFilter:self.req];
     [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
-        ResPost* resPost = [[ResPost alloc] initWithDictionary:data error:&err];
+        PostRes* resPost = [[PostRes alloc] initWithDictionary:data error:&err];
         response(resPost,res,[XToolError wrapper:error underlyingError:err]);
     }];
 }
 #ifdef USING_GOOGLE_PROMISE
-- (FBLPromise<Post *>*) promise{
-    FBLPromise<Post *>* promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
+- (FBLPromise<PostRes *>*) promise{
+    FBLPromise<PostRes *>* promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
         self.req = [NSMutableURLRequest new];
         self.req.URL =[NSURL URLWithString:[self getUrl]];
         self.req.HTTPMethod = [self getMethod];
-        self.req.HTTPBody = self.reqArg.toJSONData;
+        self.req.HTTPBody = self.postReq.toJSONData;
         [self addLocalFilter:self.req];
         [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             if(!error){
                 NSError* err;
-                ResPost* resPost = [[ResPost alloc] initWithDictionary:data error:&err];
+                PostRes* resPost = [[PostRes alloc] initWithDictionary:data error:&err];
                 if(!err)
                  fulfill(resPost);
                 else

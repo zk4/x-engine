@@ -52,7 +52,7 @@
     self.session = [NSURLSession sharedSession];
     NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:self.request completionHandler:block];
     [sessionTask resume];
-    [self.session finishTasksAndInvalidate];
+//    [self.session finishTasksAndInvalidate];
     return self;
 }
 -(id<iNetAgent>) send:(ZKResponse) block{

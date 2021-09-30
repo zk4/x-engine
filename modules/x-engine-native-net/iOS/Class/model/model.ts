@@ -1,13 +1,17 @@
 
-interface Post {
+const apiName = "Post";
+
+interface PostReq {
   userId: string;
   tid?: int;
   title: string;
   completed: boolean;
   message: string;
+  moreMsg: string;
+  ext: string;
 }
 
-interface ResPost {
+interface PostRes {
   args: Map<string,string>;
   data: string;
   files: Map<string,string>;

@@ -86,19 +86,20 @@
 
 - (void)test0 {
     for (int i =1; i<200; i++) {
-        PostApi* api = [PostApi new];
-        Post* post = [Post new];
+        PostApi* api = [PostApi  new];
+        PostReq* post = [PostReq new];
         post.title=@"hello,world";
-        [api setPost:post];
-//        [api request:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-//            NSLog(@"%@",data);
-//
-//        }];
+        post.moreMsg =@"more msg";
+        [api setPostReq:post];
+        [api request:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+            NSLog(@"%@",data);
 
-        [[api promise] then:^id _Nullable(Post * _Nullable value) {
-            NSLog(@"%@",value);
-            return nil;
         }];
+
+//        [[api promise] then:^id _Nullable(Post * _Nullable value) {
+//            NSLog(@"%@",value);
+//            return nil;
+//        }];
     }
 }
 //

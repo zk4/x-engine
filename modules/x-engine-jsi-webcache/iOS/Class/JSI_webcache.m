@@ -12,7 +12,7 @@
 
 #import "GlobalMergeRequestFilter.h"
 #import "GlobalConfigFilter.h"
-#import "GlobalServerErrorWithoutCallbackFilter.h"
+#import "GlobalStatusCodeNot2xxFilter.h"
 #import "GlobalJsonFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalNoResponseFilter.h"
@@ -119,7 +119,7 @@ JSI_MODULE(JSI_webcache)
 
     __weak typeof(self) weakSelf = self;
     [request addFilter:[GlobalConfigFilter sharedInstance]];
-    [request addFilter:[GlobalServerErrorWithoutCallbackFilter sharedInstance]];
+    [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
     [request addFilter:[GlobalNoResponseFilter sharedInstance]];
     [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
 

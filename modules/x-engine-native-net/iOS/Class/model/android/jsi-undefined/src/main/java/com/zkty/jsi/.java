@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import com.zkty.nativ.core.annotation.Optional;
 
 
-class Post {
+class PostReq {
   public String userId;
 
     @Optional
@@ -26,9 +26,11 @@ class Post {
     public boolean completed;
 
     public String message;
+
+    public String moreMsg;
   }
   
-class ResPost {
+class PostRes {
   public Map<String,String> args;
 
     public String data;

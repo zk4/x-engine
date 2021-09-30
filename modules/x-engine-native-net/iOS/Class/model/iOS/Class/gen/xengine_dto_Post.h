@@ -5,21 +5,22 @@
 
 #import "JSONModel.h"
 
-@protocol Post;
-@protocol ResPost;
-@class Post;
-@class ResPost;
+@protocol PostReq;
+@protocol PostRes;
+@class PostReq;
+@class PostRes;
 
-@interface Post: JSONModel
+@interface PostReq: JSONModel
   	@property(nonatomic,copy) NSString* userId;
    	@property(nonatomic,assign) NSInteger tid;
    	@property(nonatomic,copy) NSString* title;
    	@property(nonatomic,assign) BOOL completed;
    	@property(nonatomic,copy) NSString* message;
+   	@property(nonatomic,copy) NSString* moreMsg;
 @end
 
 
-@interface ResPost: JSONModel
+@interface PostRes: JSONModel
   	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* args;
    	@property(nonatomic,copy) NSString* data;
    	@property(nonatomic,strong) NSMutableDictionary<NSString*,NSString*>* files;

@@ -1,6 +1,7 @@
 
 const apiName = "Post";
 
+@request
 interface PostReq {
   userId: string;
   tid?: int;
@@ -11,7 +12,9 @@ interface PostReq {
   ext: string;
 }
 
+@response
 interface PostRes {
+  // 参数
   args: Map<string,string>;
   data: string;
   files: Map<string,string>;
@@ -20,5 +23,4 @@ interface PostRes {
   json: Map<string,string>;
   origin: string;
   url: string;
-
 }

@@ -28,6 +28,8 @@ class PostReq {
     public String message;
 
     public String moreMsg;
+
+    public String ext;
   }
   
 class PostRes {

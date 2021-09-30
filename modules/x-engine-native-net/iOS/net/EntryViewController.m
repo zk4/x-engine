@@ -85,33 +85,34 @@
 }
 
 - (void)test0 {
-    for (int i =1; i<200; i++) {
+    for (int i =1; i<2; i++) {
         PostApi* api = [PostApi  new];
-        PostReq* post = [PostReq new];
-        post.title=@"hello,world";
-        post.moreMsg =@"more msg";
-        [api setPostReq:post];
-        
+        PostReq* postReq = [PostReq new];
+        postReq.title=@"hello,world";
+        postReq.moreMsg =@"more msg";
+
         //        [api request:^(PostRes * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         //            NSLog(@"%@",data.toDictionary);
         //        }];
-        [[[[[api promise] then:^id _Nullable(PostRes * _Nullable value) {
+        [[[[[[api promise: postReq] then:^id _Nullable(PostRes * _Nullable value) {
             NSLog(@"%@",value.toDictionary);
             return @"hello";
         }]
-           then:^id _Nullable(id  _Nullable value) {
+            then:^id _Nullable(id  _Nullable value) {
             NSLog(@"%@",value);
             return @"world";
         }]
-          then:^id _Nullable(id  _Nullable value) {
+           then:^id _Nullable(id  _Nullable value) {
             NSLog(@"%@",value);
             return @"end";
         }]
-         then:^id _Nullable(id  _Nullable value) {
-            NSLog(@"%@",value);
+          then:^id _Nullable(id  _Nullable value) {
+            return [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
             return nil;
         }]
-        ;
+         catch:^(NSError * _Nonnull error) {
+            NSLog(@"%ld",error.code);
+        }] ;
     }
 }
 //

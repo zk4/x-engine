@@ -17,6 +17,7 @@
    	@property(nonatomic,assign) BOOL completed;
    	@property(nonatomic,copy) NSString* message;
    	@property(nonatomic,copy) NSString* moreMsg;
+   	@property(nonatomic,copy) NSString* ext;
 @end
 
 

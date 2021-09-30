@@ -22,26 +22,27 @@
 }
 
 - (void) request:(PostApiResponse) response{
-    self.req = [NSMutableURLRequest new];
-    self.req.URL =[NSURL URLWithString:[self getUrl]];
-    self.req.HTTPMethod = [self getMethod];
-    self.req.HTTPBody = self.postReq.toJSONData;
-    [self addLocalFilter:self.req];
-    [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+    self.network = [NSMutableURLRequest new];
+    self.network.URL =[NSURL URLWithString:[self getUrl]];
+    self.network.HTTPMethod = [self getMethod];
+    self.network.HTTPBody = self.postReq.toJSONData;
+    [self addLocalFilter:self.network];
+    [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
         id resPost = [[PostRes alloc] initWithDictionary:data error:&err];
         response(resPost,res,[XToolError wrapper:error underlyingError:err]);
     }];
 }
 #ifdef USING_GOOGLE_PROMISE
-- (FBLPromise<PostRes *>*) promise{
+
+- (FBLPromise<PostRes *>*) promise:(PostReq*) postReq{
     FBLPromise<PostRes *>* promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
-        self.req = [NSMutableURLRequest new];
-        self.req.URL =[NSURL URLWithString:[self getUrl]];
-        self.req.HTTPMethod = [self getMethod];
-        self.req.HTTPBody = self.postReq.toJSONData;
-        [self addLocalFilter:self.req];
-        [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        self.network = [NSMutableURLRequest new];
+        self.network.URL =[NSURL URLWithString:[self getUrl]];
+        self.network.HTTPMethod = [self getMethod];
+        self.network.HTTPBody = postReq.toJSONData;
+        [self addLocalFilter:self.network];
+        [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             if(!error){
                 NSError* err;
                 id resPost = [[PostRes alloc] initWithDictionary:data error:&err];
@@ -55,6 +56,10 @@
         }];
     }];
     return promise;
+}
+
+- (FBLPromise<PostRes *>*) promise{
+    return [self promise:self.postReq];
 }
 
 #endif

@@ -32,14 +32,14 @@
 //}
 //
 //- (TodoApi*) request:(TodoApiResponse) todoResponse{
-//    self.req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self url]]];
-//    [self.req addFilter:[GlobalConfigFilter sharedInstance]];
-//    [self.req addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-//    [self.req addFilter:[GlobalNoResponseFilter sharedInstance]];
-//    [self.req addFilter:[GlobalMergeRequestFilter sharedInstance]];
-//    [self.req addFilter:[GlobalJsonFilter sharedInstance]];
+//    self.network = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self url]]];
+//    [self.network addFilter:[GlobalConfigFilter sharedInstance]];
+//    [self.network addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+//    [self.network addFilter:[GlobalNoResponseFilter sharedInstance]];
+//    [self.network addFilter:[GlobalMergeRequestFilter sharedInstance]];
+//    [self.network addFilter:[GlobalJsonFilter sharedInstance]];
 //    
-//    [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+//    [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
 //        NSDictionary* dict = (NSDictionary*) data;
 //        NSError *err;
 //        Post* post = [[Post alloc] initWithDictionary:dict error:&err];

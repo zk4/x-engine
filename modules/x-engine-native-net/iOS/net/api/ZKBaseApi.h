@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZKBaseApi : NSObject
 
-@property(nonatomic,strong) NSMutableURLRequest* req;
+@property(nonatomic,strong) NSMutableURLRequest* network;
 - (NSString*) getMethod;
-- (void) addLocalFilter:(NSMutableURLRequest*) req;
+- (void) addLocalFilter:(NSMutableURLRequest*) network;
 - (NSString*) getUrl;
 @end
 

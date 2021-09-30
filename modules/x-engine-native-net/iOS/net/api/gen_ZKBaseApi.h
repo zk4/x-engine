@@ -25,11 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^PostApiResponse)(PostRes* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
 
-- (void) setPostReq:(PostReq*) arg;
-- (NSString*) getMethod;
 - (void) request:(PostApiResponse) response;
+
 #ifdef USING_GOOGLE_PROMISE
 - (FBLPromise<PostRes *>*) promise;
+- (FBLPromise<PostRes *>*) promise:(PostReq*) postReq;
 #endif
 @end
 

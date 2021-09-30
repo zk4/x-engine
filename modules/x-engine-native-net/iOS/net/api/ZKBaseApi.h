@@ -11,12 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZKBaseApi : NSObject
+typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
+static GlobalFilterConfiger __globalFiltersConfig;
 
-@property(nonatomic,strong) NSMutableURLRequest* network;
-- (NSString*) getMethod;
-- (void) addLocalFilter:(NSMutableURLRequest*) network;
-- (NSString*) getUrl;
+@interface ZKBaseApi : NSObject
+    @property(nonatomic,strong) NSMutableURLRequest* network;
+
+    + (void) configGlobalFiltersWithNetwork:(GlobalFilterConfiger) config;
+    - (NSString*) getMethod;
+    - (void) addFiltersWithNetwork:(NSMutableURLRequest*) network;
+    - (NSString*) getUrl;
+    -(NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError;
 @end
 
 NS_ASSUME_NONNULL_END

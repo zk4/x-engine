@@ -20,6 +20,7 @@
 
 #import "TodoApi.h"
 #import "PostApi.h"
+#import "xengine_dto_Simple.h"
 
 
 
@@ -86,7 +87,28 @@
 }
 
 - (void)test0 {
+    
+   
+    [ZKBaseApi configGlobalFiltersWithNetwork:^(NSMutableURLRequest * _Nonnull request) {
+        [request addFilter:[GlobalConfigFilter sharedInstance]];
+        [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+        [request addFilter:[GlobalNoResponseFilter sharedInstance]];
+        [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
+        [request addFilter:[GlobalJsonFilter sharedInstance]];
+    }];
+    
     for (int i =1; i<2; i++) {
+        {
+            id sapi= [gen_SimpleApi new];
+            SimpleReq* reqa = [SimpleReq new];
+            reqa.userId =@"zk";
+            [[sapi promise:reqa] then:^id _Nullable(SimpleRes * _Nullable value) {
+                NSLog(@"%@",value);
+                return nil;
+            }];
+            
+        }
+        
         PostApi* api = [PostApi  new];
         PostReq* postReq = [PostReq new];
         

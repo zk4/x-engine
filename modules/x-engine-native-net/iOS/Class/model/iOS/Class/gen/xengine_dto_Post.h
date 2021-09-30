@@ -50,22 +50,20 @@
 
 
   #import <Foundation/Foundation.h>
-  #import "xengine_dto_Post.h"
   #import "ZKBaseApi.h"
   #import "FBLPromises.h"
   
     
   @interface gen_PostApi : ZKBaseApi
   
-  @property (nonatomic, strong) PostReq* postReq;
-  @property (nonatomic, strong) PostRes* postRes;
+  @property (nonatomic, strong) PostReq* reqDTO;
   
   typedef void (^PostApiResponse)( PostRes* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
   
   - (void) request:(PostApiResponse) response;
 
   - (FBLPromise<PostRes *>*) promise;
-  - (FBLPromise<PostRes *>*) promise:(PostReq*) postReq;
+  - (FBLPromise<PostRes *>*) promise:(PostReq*) reqDTO;
 
   @end
   

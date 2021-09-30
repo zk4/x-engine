@@ -7,21 +7,17 @@
 //
 
 #import "PostApi.h"
-#import "GlobalMergeRequestFilter.h"
-#import "GlobalConfigFilter.h"
-#import "GlobalStatusCodeNot2xxFilter.h"
-#import "GlobalJsonFilter.h"
-#import "GlobalNoResponseFilter.h"
+#import "LoggingFilter.h"
  
 
  
 @implementation PostApi
  
-- (void) addLocalFilter:(NSMutableURLRequest*) req{
-    [req addFilter:[GlobalConfigFilter sharedInstance]];
-    [req addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-    [req addFilter:[GlobalNoResponseFilter sharedInstance]];
-    [req addFilter:[GlobalMergeRequestFilter sharedInstance]];
-    [req addFilter:[GlobalJsonFilter sharedInstance]];
+- (void) addFiltersWithNetwork:(NSMutableURLRequest*) req{
+//  使用全局 filter
+    [super addFiltersWithNetwork:req];
+
+//   增加自定义 filter
+    [req addFilter:[LoggingFilter new]];
 }
 @end

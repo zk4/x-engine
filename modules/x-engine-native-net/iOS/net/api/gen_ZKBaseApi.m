@@ -29,7 +29,7 @@
     [self addLocalFilter:self.req];
     [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
-        PostRes* resPost = [[PostRes alloc] initWithDictionary:data error:&err];
+        id resPost = [[PostRes alloc] initWithDictionary:data error:&err];
         response(resPost,res,[XToolError wrapper:error underlyingError:err]);
     }];
 }
@@ -44,7 +44,7 @@
         [self.req send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             if(!error){
                 NSError* err;
-                PostRes* resPost = [[PostRes alloc] initWithDictionary:data error:&err];
+                id resPost = [[PostRes alloc] initWithDictionary:data error:&err];
                 if(!err)
                  fulfill(resPost);
                 else

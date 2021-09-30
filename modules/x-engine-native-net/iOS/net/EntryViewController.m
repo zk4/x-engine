@@ -21,7 +21,7 @@
 #import "TodoApi.h"
 #import "PostApi.h"
 
- 
+
 
 //@interface AddTokenFilter:NSObject <iFilter>
 //@end
@@ -91,15 +91,27 @@
         post.title=@"hello,world";
         post.moreMsg =@"more msg";
         [api setPostReq:post];
-        [api request:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-            NSLog(@"%@",data);
-
-        }];
-
-//        [[api promise] then:^id _Nullable(Post * _Nullable value) {
-//            NSLog(@"%@",value);
-//            return nil;
-//        }];
+        
+        //        [api request:^(PostRes * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        //            NSLog(@"%@",data.toDictionary);
+        //        }];
+        [[[[[api promise] then:^id _Nullable(PostRes * _Nullable value) {
+            NSLog(@"%@",value.toDictionary);
+            return @"hello";
+        }]
+           then:^id _Nullable(id  _Nullable value) {
+            NSLog(@"%@",value);
+            return @"world";
+        }]
+          then:^id _Nullable(id  _Nullable value) {
+            NSLog(@"%@",value);
+            return @"end";
+        }]
+         then:^id _Nullable(id  _Nullable value) {
+            NSLog(@"%@",value);
+            return nil;
+        }]
+        ;
     }
 }
 //
@@ -127,46 +139,46 @@
         [ok send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             
         }];
-//
-//        [ok send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//            if(error){
-//                NSLog(@"error");
-//            }else{
-//                NSLog(@"%@", data);
-//
-//                //                        NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-//                //                        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonString:str];
-//
-//                //                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
-//            }
-//        }];
+        //
+        //        [ok send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //            if(error){
+        //                NSLog(@"error");
+        //            }else{
+        //                NSLog(@"%@", data);
+        //
+        //                //                        NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+        //                //                        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonString:str];
+        //
+        //                //                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
+        //            }
+        //        }];
     }
 }
 
 -(void) pushTestModule{
     [self test0];
-//    [self test1];
-     
+    //    [self test1];
     
-//    [self test2];
-
-        /////////////////////////////////////////////////////////////////////// the second writing style
-
-//                NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
-//
-//        id req = [NSMutableURLRequest new];
-//        [req setURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
-//        [req addFilter:config];
-//        [req addFilter:merged];
-//        [req addFilter:token];
-//        [req send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//            // 仅当服务器返回时，才会进到这
-//            if(error){
-//                NSLog(@"error");
-//            }else{
-//                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
-//            }
-//        }];
+    
+    //    [self test2];
+    
+    /////////////////////////////////////////////////////////////////////// the second writing style
+    
+    //                NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
+    //
+    //        id req = [NSMutableURLRequest new];
+    //        [req setURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
+    //        [req addFilter:config];
+    //        [req addFilter:merged];
+    //        [req addFilter:token];
+    //        [req send:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    //            // 仅当服务器返回时，才会进到这
+    //            if(error){
+    //                NSLog(@"error");
+    //            }else{
+    //                NSLog(@"back -> %@",[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding]);
+    //            }
+    //        }];
     
 }
 

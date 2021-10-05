@@ -15,49 +15,41 @@ import androidx.annotation.Nullable;
 import com.zkty.nativ.core.annotation.Optional;
 
 
-class PostReq {
-  public String userId;
+class x_api_gm_general_appVersion_checkUpdate_Req {
+  @Optional
+		public String os;
 
     @Optional
-		public Integer tid;
+		public String platform;
 
-    public String title;
+    @Optional
+		public Integer versionCode;
 
-    public boolean completed;
-
-    public String message;
-
-    public String moreMsg;
-
-    public String ext;
-
-    public _0__DTO hello;
+    @Optional
+		public String versionName;
   }
   
-class _0__DTO {
-  public _1__DTO world;
-  }
-  
-class _1__DTO {
-  public String inner;
-  }
-  
-class PostRes {
-  public Map<String,String> args;
+class x_api_gm_general_appVersion_checkUpdate_Res {
+  @Optional
+		public String digest;
 
-    public String data;
+    @Optional
+		public String externalUrl;
 
-    public Map<String,String> files;
+    @Optional
+		public boolean isUpdate;
 
-    public Map<String,String> form;
+    @Optional
+		public String remark;
 
-    public Map<String,String> headers;
+    @Optional
+		public String resUrl;
 
-    public Map<String,String> json;
+    @Optional
+		public String title;
 
-    public String origin;
-
-    public String url;
+    @Optional
+		public Integer type;
   }
 
 interface undefined_protocol {

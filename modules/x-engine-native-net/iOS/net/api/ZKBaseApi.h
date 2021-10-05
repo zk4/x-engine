@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
 static GlobalFilterConfiger __globalFiltersConfig;
-
+extern NSString*  __globalSchemaHost;
 @interface ZKBaseApi : NSObject
     @property(nonatomic,strong) NSMutableURLRequest* network;
-
+    + (void) configSchemaHost:(NSString*) schemaHost;
     + (void) configGlobalFiltersWithNetwork:(GlobalFilterConfiger) config;
     - (NSString*) getMethod;
     - (void) addFiltersWithNetwork:(NSMutableURLRequest*) network;

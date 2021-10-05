@@ -1,5 +1,5 @@
 //
-//  XENetClient.h
+//  KOFilterChain.m
 //  net
 //
 //  Created by zk on 2021/9/28.
@@ -23,17 +23,42 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import <Foundation/Foundation.h>
-#import <iNet.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface OKHttp<reqType,resType>: NSObject <iNetAgent>
--(id<iNetAgent>) build:(NSMutableURLRequest*) request;
--(id<iNetAgent>) send:(ZKResponse) block;
--(id<iNetAgent>) addFilter:(id<iFilter>) filter;
--(id<iNetAgent>) _internalSend:(ZKResponse)block;
-
+#import "KOFilterChain.h"
+@interface KOFilterChain()
+@property (atomic, strong)   NSMutableArray*  filters;
+@property (nonatomic, assign)   int pos;
+// agent is hold by it's self. weak it
+// if agent die. filters chains should die along.
+@property (nonatomic, weak)   id<iNetAgent> agent;
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation KOFilterChain
+- (instancetype)init {
+    if (self = [super init]) {
+        self.pos = 0;
+    }
+    return self;
+}
+
+-(void) setNetAgent:(id<iNetAgent>) agent{
+    self.agent= agent;
+}
+
+-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse{
+    if(self.pos<self.filters.count){
+        id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
+        __weak typeof(self) weakSelf = self;
+        [filter doFilter:session request:request  response:zkResponse chain:weakSelf];
+    }else{
+        [self.agent _internalSend:zkResponse];
+    }
+}
+-(id<iFilterChain>) addFilter:(id<iFilter>) filter {
+    if(!self.filters){
+        self.filters=[NSMutableArray new];
+    }
+    [self.filters addObject:filter];
+    return self;
+}
+@end
+

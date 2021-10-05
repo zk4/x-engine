@@ -48,7 +48,7 @@
 #endif
             return;
         }else{
-            response(data,res,error);
+            response(data[@"data"],res,error);
         }
     }];
 }

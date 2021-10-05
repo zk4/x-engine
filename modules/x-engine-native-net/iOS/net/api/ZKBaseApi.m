@@ -7,10 +7,14 @@
 //
 
 #import "ZKBaseApi.h"
+NSString*  __globalSchemaHost;
 
 @implementation ZKBaseApi
 + (void) configGlobalFiltersWithNetwork:(GlobalFilterConfiger) config{
     __globalFiltersConfig=config;
+}
++ (void) configSchemaHost:(NSString*) schemaHost{
+    __globalSchemaHost = schemaHost;
 }
 -(NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError{
   if (!error) {

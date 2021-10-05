@@ -25,7 +25,7 @@
 
 #import "Native_net.h"
 #import "XENativeContext.h"
-#import "OKHttp.h"
+#import "KOHttp.h"
 
 @interface Native_net()
 {
@@ -48,7 +48,7 @@ NATIVE_MODULE(Native_net)
 } 
  
 - (nonnull id<iNetAgent>) one {
-    return [OKHttp new];
+    return [KOHttp new];
 }
 
 @end

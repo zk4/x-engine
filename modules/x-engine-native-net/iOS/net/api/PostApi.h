@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "xengine_dto_Post.h"
+#import "x_api_Post.h"
 
  
 

@@ -20,7 +20,8 @@
 
 #import "TodoApi.h"
 #import "PostApi.h"
-#import "xengine_dto_Simple.h"
+#import "x_api_Simple.h"
+#import "x_api_gm_general_appVersion_checkUpdate.h"
 
 
 
@@ -38,45 +39,52 @@
 //
 //
 //
-//@interface LoggingFilter:NSObject <iFilter>
-//@end
-//
-//@implementation LoggingFilter
-//- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
-//    session.configuration.HTTPMaximumConnectionsPerHost = 0;
-//
-//    NSLog(@"%@", @"request start");
-//    ZKResponse newResponse = ^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error){
-//
-//        NSString *str  = [[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSUTF8StringEncoding];
-//        NSString* newStr= [NSString stringWithFormat:@"%@%@",str,@"back 1"];
-//
-//        NSData* newData =  [newStr dataUsingEncoding:NSUTF8StringEncoding];
-//        response(newData,res,error);
-//    };
-//
-//    [chain doFilter:session request:request response:newResponse];
-//}
-//@end
-//
-//@interface LoggingFilter2:NSObject <iFilter>
-//@end
-//
-//@implementation LoggingFilter2
-//- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
-//
-//    NSLog(@"%@", @"request start 2");
-//    ZKResponse newResponse = ^(NSData * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error){
-//        NSData* newData =  [@"back 2" dataUsingEncoding:NSUTF8StringEncoding];
-//        response(newData,res,error);
-//
-//    };
-//
-//    [chain doFilter:session request:request response:newResponse];
-//}
-//@end
+@interface LoggingFilter0:NSObject <iFilter>
+@end
 
+@implementation LoggingFilter0
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+    session.configuration.HTTPMaximumConnectionsPerHost = 0;
 
+    NSLog(@"%@", @"logging 1 start");
+    [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        NSLog(@"logging 1 end");
+        response(data,res,error);
+
+    }];
+
+}
+@end
+//
+@interface LoggingFilter2:NSObject <iFilter>
+@end
+
+@implementation LoggingFilter2
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+
+    NSLog(@"%@", @"logging 2 start");
+    [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        NSLog(@"logging 2 end");
+        response(data,res,error);
+
+    }];
+}
+@end
+
+@interface LoggingFilter3:NSObject <iFilter>
+@end
+
+@implementation LoggingFilter3
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+
+    NSLog(@"%@", @"logging 3 start");
+    [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        NSLog(@"logging 3 end");
+        response(data,res,error);
+
+    }];
+}
+@end
 
 @interface EntryViewController ()
 @end
@@ -88,58 +96,78 @@
 
 - (void)test0 {
     
-   
+    [ZKBaseApi configSchemaHost:@"http://10.115.91.71:32563/bff-m"];
     [ZKBaseApi configGlobalFiltersWithNetwork:^(NSMutableURLRequest * _Nonnull request) {
         [request addFilter:[GlobalConfigFilter sharedInstance]];
         [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+        [request addFilter:[LoggingFilter0 new]];
+        [request addFilter:[LoggingFilter2 new]];
+        [request addFilter:[LoggingFilter3 new]];
         [request addFilter:[GlobalNoResponseFilter sharedInstance]];
         [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
         [request addFilter:[GlobalJsonFilter sharedInstance]];
+
+    }];
+
+    x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
+    req.os=@"ios";
+    req.platform=@"ios";
+    req.versionCode=0;
+    req.versionName=@"";
+    [[[x_api_gm_general_appVersion_checkUpdate new] promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
+        NSLog(@"%@",value);
+        return nil;
     }];
     
-    for (int i =1; i<2; i++) {
-        {
-            id sapi= [gen_SimpleApi new];
-            SimpleReq* reqa = [SimpleReq new];
-            reqa.userId =@"zk";
-            [[sapi promise:reqa] then:^id _Nullable(SimpleRes * _Nullable value) {
-                NSLog(@"%@",value);
-                return nil;
-            }];
-            
-        }
-        
-        PostApi* api = [PostApi  new];
-        PostReq* postReq = [PostReq new];
-        
-        postReq.title=@"hello,world";
-        postReq.moreMsg =@"more msg";
-        postReq.hello.world.inner =@"inner is here";
-
-
-        //        [api request:^(PostRes * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-        //            NSLog(@"%@",data.toDictionary);
-        //        }];
-        [[[[[[api promise: postReq] then:^id _Nullable(PostRes * _Nullable value) {
-            NSLog(@"%@",value.toDictionary);
-            return @"hello";
-        }]
-            then:^id _Nullable(id  _Nullable value) {
-            NSLog(@"%@",value);
-            return @"world";
-        }]
-           then:^id _Nullable(id  _Nullable value) {
-            NSLog(@"%@",value);
-            return @"end";
-        }]
-          then:^id _Nullable(id  _Nullable value) {
-            return [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
-            return nil;
-        }]
-         catch:^(NSError * _Nonnull error) {
-            NSLog(@"%ld",error.code);
-        }] ;
-    }
+//    SimpleReq* arg = [SimpleReq new];
+//    arg.userId =@"zk";
+//    [[[gen_SimpleApi new] promise:arg] then:^id _Nullable(SimpleRes * _Nullable value) {
+//        NSLog(@"data returned");
+//        return nil;
+//    }];
+//    for (int i =1; i<2; i++) {
+//        {
+//            id sapi= [gen_SimpleApi new];
+//            SimpleReq* reqa = [SimpleReq new];
+//            reqa.userId =@"zk";
+//            [[sapi promise:reqa] then:^id _Nullable(SimpleRes * _Nullable value) {
+//                NSLog(@"%@",value);
+//                return nil;
+//            }];
+//
+//        }
+//
+//        PostApi* api = [PostApi  new];
+//        PostReq* postReq = [PostReq new];
+//
+//        postReq.title=@"hello,world";
+//        postReq.moreMsg =@"more msg";
+//        postReq.hello.world.inner =@"inner is here";
+//
+//
+//        //        [api request:^(PostRes * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+//        //            NSLog(@"%@",data.toDictionary);
+//        //        }];
+//        [[[[[[api promise: postReq] then:^id _Nullable(PostRes * _Nullable value) {
+//            NSLog(@"%@",value.toDictionary);
+//            return @"hello";
+//        }]
+//            then:^id _Nullable(id  _Nullable value) {
+//            NSLog(@"%@",value);
+//            return @"world";
+//        }]
+//           then:^id _Nullable(id  _Nullable value) {
+//            NSLog(@"%@",value);
+//            return @"end";
+//        }]
+//          then:^id _Nullable(id  _Nullable value) {
+//            return [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
+//            return nil;
+//        }]
+//         catch:^(NSError * _Nonnull error) {
+//            NSLog(@"%ld",error.code);
+//        }] ;
+//    }
 }
 //
 //- (void)test1 {

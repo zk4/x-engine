@@ -8,12 +8,12 @@
 //
 //#import <Foundation/Foundation.h>
 //#import "iNet.h"
-//#import "ZKBaseApi.h"
+//#import "KOBaseApi.h"
 //#import "xengine_jsi_undefined.h"
 //
 //NS_ASSUME_NONNULL_BEGIN
 //
-//@interface TodoApi :ZKBaseApi
+//@interface TodoApi :KOBaseApi
 //@property (nonatomic, assign) int tid;
 //typedef void (^TodoApiResponse)(Hello* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
 //

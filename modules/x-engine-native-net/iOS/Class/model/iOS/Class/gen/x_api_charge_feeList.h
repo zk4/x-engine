@@ -167,11 +167,11 @@
 
   #import <Foundation/Foundation.h>
   #import "x_api_charge_feeList.h"
-  #import "ZKBaseApi.h"
+  #import "KOBaseApi.h"
   #import "FBLPromises.h"
   
     
-  @interface gen_charge_feeListApi : ZKBaseApi
+  @interface gen_charge_feeListApi : KOBaseApi
   
   @property (nonatomic, strong) netdto_charge_feeListReq* dtoReq;
   @property (nonatomic, strong) netdto_charge_feeListRes* dtoRes;

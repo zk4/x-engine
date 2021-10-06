@@ -8,7 +8,7 @@
 //
 //#import <Foundation/Foundation.h>
 //#import "xengine_dto_Post.h"
-//#import "ZKBaseApi.h"
+//#import "KOBaseApi.h"
 //
 //#define USING_GOOGLE_PROMISE 1
 //#ifdef USING_GOOGLE_PROMISE
@@ -18,7 +18,7 @@
 //NS_ASSUME_NONNULL_BEGIN
 //
 // 
-//@interface gen_ZKBaseApi : ZKBaseApi
+//@interface gen_ZKBaseApi : KOBaseApi
 //
 //@property (nonatomic, strong) PostReq* postReq;
 //@property (nonatomic, strong) PostRes* postRes;

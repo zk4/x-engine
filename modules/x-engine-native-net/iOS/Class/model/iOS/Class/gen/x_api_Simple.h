@@ -39,11 +39,11 @@
 
   #import <Foundation/Foundation.h>
   #import "x_api_Simple.h"
-  #import "ZKBaseApi.h"
+  #import "KOBaseApi.h"
   #import "FBLPromises.h"
   
     
-  @interface gen_SimpleApi : ZKBaseApi
+  @interface gen_SimpleApi : KOBaseApi
   
   @property (nonatomic, strong) SimpleReq* dtoReq;
   @property (nonatomic, strong) SimpleRes* dtoRes;

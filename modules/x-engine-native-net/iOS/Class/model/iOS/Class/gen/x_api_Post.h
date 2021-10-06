@@ -69,11 +69,11 @@
 
   #import <Foundation/Foundation.h>
   #import "x_api_Post.h"
-  #import "ZKBaseApi.h"
+  #import "KOBaseApi.h"
   #import "FBLPromises.h"
   
     
-  @interface gen_PostApi : ZKBaseApi
+  @interface gen_PostApi : KOBaseApi
   
   @property (nonatomic, strong) PostReq* dtoReq;
   @property (nonatomic, strong) PostRes* dtoRes;

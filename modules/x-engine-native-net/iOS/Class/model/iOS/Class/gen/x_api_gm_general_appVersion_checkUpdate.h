@@ -43,11 +43,11 @@
 
   #import <Foundation/Foundation.h>
   #import "x_api_gm_general_appVersion_checkUpdate.h"
-  #import "ZKBaseApi.h"
+  #import "KOBaseApi.h"
   #import "FBLPromises.h"
   
     
-  @interface x_api_gm_general_appVersion_checkUpdate : ZKBaseApi
+  @interface x_api_gm_general_appVersion_checkUpdate : KOBaseApi
   
   @property (nonatomic, strong) x_api_gm_general_appVersion_checkUpdate_Req* dtoReq;
   @property (nonatomic, strong) x_api_gm_general_appVersion_checkUpdate_Res* dtoRes;

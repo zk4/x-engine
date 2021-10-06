@@ -44,9 +44,6 @@
 		58F37F7A2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
 		58F37F7B2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
 		58F37F7C2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
-		58F37F7F2704550900EADBBB /* ZKBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F7E2704550900EADBBB /* ZKBaseApi.m */; };
-		58F37F802704550900EADBBB /* ZKBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F7E2704550900EADBBB /* ZKBaseApi.m */; };
-		58F37F812704550900EADBBB /* ZKBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F7E2704550900EADBBB /* ZKBaseApi.m */; };
 		58F37F89270464B500EADBBB /* KOFilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F83270464B500EADBBB /* KOFilterChain.m */; };
 		58F37F8A270464B500EADBBB /* KOFilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F83270464B500EADBBB /* KOFilterChain.m */; };
 		58F37F8B270464B500EADBBB /* KOFilterChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F83270464B500EADBBB /* KOFilterChain.m */; };
@@ -66,6 +63,7 @@
 		58F37FAD270C842900EADBBB /* x_api_Simple.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FAA270C842900EADBBB /* x_api_Simple.m */; };
 		58F37FB0270C87E300EADBBB /* x_api_charge_feeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FAE270C87E300EADBBB /* x_api_charge_feeList.m */; };
 		58F37FB3270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */; };
+		58F37FBC270E177A00EADBBB /* ZKBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FBB270E177A00EADBBB /* ZKBaseApi.m */; };
 		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-netTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-netTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-net.a */; };
@@ -136,8 +134,6 @@
 		58F37F6D270441E200EADBBB /* .java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .java; sourceTree = "<group>"; };
 		58F37F782704496800EADBBB /* TodoApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoApi.h; sourceTree = "<group>"; };
 		58F37F792704496800EADBBB /* TodoApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoApi.m; sourceTree = "<group>"; };
-		58F37F7D2704550900EADBBB /* ZKBaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKBaseApi.h; sourceTree = "<group>"; };
-		58F37F7E2704550900EADBBB /* ZKBaseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKBaseApi.m; sourceTree = "<group>"; };
 		58F37F83270464B500EADBBB /* KOFilterChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOFilterChain.m; sourceTree = "<group>"; };
 		58F37F84270464B500EADBBB /* KOHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOHttp.m; sourceTree = "<group>"; };
 		58F37F85270464B500EADBBB /* NSMutableURLRequest+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Filter.h"; sourceTree = "<group>"; };
@@ -159,6 +155,8 @@
 		58F37FAF270C87E300EADBBB /* x_api_charge_feeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_charge_feeList.h; sourceTree = "<group>"; };
 		58F37FB1270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_gm_general_appVersion_checkUpdate.h; sourceTree = "<group>"; };
 		58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_gm_general_appVersion_checkUpdate.m; sourceTree = "<group>"; };
+		58F37FBA270E177A00EADBBB /* ZKBaseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseApi.h; sourceTree = "<group>"; };
+		58F37FBB270E177A00EADBBB /* ZKBaseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseApi.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-netTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-netTests.release.xcconfig"; path = "Target Support Files/Pods-netTests/Pods-netTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-net.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-net.release.xcconfig"; path = "Target Support Files/Pods-abstract-net/Pods-abstract-net.release.xcconfig"; sourceTree = "<group>"; };
@@ -474,8 +472,6 @@
 				58F37F98270481D100EADBBB /* gen_ZKBaseApi.m */,
 				58F37F782704496800EADBBB /* TodoApi.h */,
 				58F37F792704496800EADBBB /* TodoApi.m */,
-				58F37F7D2704550900EADBBB /* ZKBaseApi.h */,
-				58F37F7E2704550900EADBBB /* ZKBaseApi.m */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -487,6 +483,8 @@
 				58F37F83270464B500EADBBB /* KOFilterChain.m */,
 				58F37F87270464B500EADBBB /* KOHttp.h */,
 				58F37F84270464B500EADBBB /* KOHttp.m */,
+				58F37FBA270E177A00EADBBB /* ZKBaseApi.h */,
+				58F37FBB270E177A00EADBBB /* ZKBaseApi.m */,
 				58F37F85270464B500EADBBB /* NSMutableURLRequest+Filter.h */,
 				58F37F88270464B500EADBBB /* NSMutableURLRequest+Filter.m */,
 			);
@@ -884,6 +882,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58F37FBC270E177A00EADBBB /* ZKBaseApi.m in Sources */,
 				58F37F7A2704496800EADBBB /* TodoApi.m in Sources */,
 				58F37F8C270464B500EADBBB /* KOHttp.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
@@ -891,7 +890,6 @@
 				58F37F8F270464B500EADBBB /* NSMutableURLRequest+Filter.m in Sources */,
 				58F37F9B2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m in Sources */,
 				58732F5E27042D930098F18C /* GlobalMergeRequestFilter.m in Sources */,
-				58F37F7F2704550900EADBBB /* ZKBaseApi.m in Sources */,
 				58732F5F27042D930098F18C /* GlobalConfigFilter.m in Sources */,
 				58F37FAC270C842900EADBBB /* x_api_Post.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
@@ -933,7 +931,6 @@
 				58F37F8A270464B500EADBBB /* KOFilterChain.m in Sources */,
 				580B91642694CCEA006AD356 /* EntryViewController.m in Sources */,
 				580B91652694CCEA006AD356 /* Native_net.m in Sources */,
-				58F37F802704550900EADBBB /* ZKBaseApi.m in Sources */,
 				580B91662694CCEA006AD356 /* main.m in Sources */,
 				58F37F8D270464B500EADBBB /* KOHttp.m in Sources */,
 				58F37F7B2704496800EADBBB /* TodoApi.m in Sources */,
@@ -950,7 +947,6 @@
 				58F37F8B270464B500EADBBB /* KOFilterChain.m in Sources */,
 				580B91B32694D0DA006AD356 /* EntryViewController.m in Sources */,
 				580B91B42694D0DA006AD356 /* Native_net.m in Sources */,
-				58F37F812704550900EADBBB /* ZKBaseApi.m in Sources */,
 				580B91B52694D0DA006AD356 /* main.m in Sources */,
 				58F37F8E270464B500EADBBB /* KOHttp.m in Sources */,
 				58F37F7C2704496800EADBBB /* TodoApi.m in Sources */,

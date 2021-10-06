@@ -96,7 +96,7 @@
 
 - (void)test0 {
     
-    [KOBaseApi configSchemaHost:@"http://10.115.91.71:32563/bff-m"];
+    [KOBaseApi configGlobalUrlPrefix:@"http://10.115.91.71:32563/bff-m"];
     [KOBaseApi configGlobalFiltersWithNetwork:^(NSMutableURLRequest * _Nonnull request) {
         [request addFilter:[GlobalConfigFilter sharedInstance]];
         [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];

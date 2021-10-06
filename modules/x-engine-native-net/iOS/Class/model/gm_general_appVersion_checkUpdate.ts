@@ -1,6 +1,6 @@
 
           const apiName = "gm_general_appVersion_checkUpdate";
-          const apiBaseUrl = ""
+          const apiUrlPrefix = ""
           const apiPath = "/gm/general/appVersion/checkUpdate"
           const apiMethod ="POST"
         interface x_api_gm_general_appVersion_checkUpdate_Req  {

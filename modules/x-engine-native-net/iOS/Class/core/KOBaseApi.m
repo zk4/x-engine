@@ -7,14 +7,16 @@
 //
 
 #import "KOBaseApi.h"
-NSString*  __globalSchemaHost;
+NSString*  __globalUrlPrefix;
 
+@interface KOBaseApi()
+@end
 @implementation KOBaseApi
 + (void) configGlobalFiltersWithNetwork:(GlobalFilterConfiger) config{
     __globalFiltersConfig=config;
 }
-+ (void) configSchemaHost:(NSString*) schemaHost{
-    __globalSchemaHost = schemaHost;
++ (void) configGlobalUrlPrefix:(NSString*) urlPrefix{
+    __globalUrlPrefix = urlPrefix;
 }
 -(NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError{
   if (!error) {

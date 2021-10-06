@@ -40,26 +40,44 @@
     return @"POST";
 }
 
+- (NSString*) getContentType{
+    return @"application/json";
+}
 
-- (NSString*) getUrl{
-  #ifdef RELEASE
-    NSAssert(__globalSchemaHost, @"未设置 __globalSchemaHost");
-  #endif
-    if(__globalSchemaHost)
-    {
-      return [NSString stringWithFormat:@"%@%@",__globalSchemaHost,@"/gm/general/appVersion/checkUpdate"];
-    }else{
-    #ifdef DEBUG
-      return [NSString stringWithFormat:@"%@%@",@"",@"/gm/general/appVersion/checkUpdate"];
-    #endif 
+- (NSData*) getBody{
+    if([[self getContentType] isEqualToString:@"application/json"])
+        return  self.dtoReq.toJSONData;
+    else{
+        NSAssert(nil, @"请覆盖此方法,怎么序列化参数到 body");
+        return nil;
     }
 }
+- (NSString*) getPath{
+  return @"/gm/general/appVersion/checkUpdate";
+}
+
+- (NSString*) getFinalUrl{
+    // 逻辑如下：
+    // 1. 优先使用 localUrlPrefix， 也就是通过代码设置的
+    // 2. 其次使用全局， 也是由代码设置
+    // 3. 最后使用自动生成的
+    // 4. 实在不满足你，直接覆盖getUrl 函数即可
+    if(self.localUrlPrefix) {
+        return [NSString stringWithFormat:@"%@%@",@"",[self getPath]];
+    }
+    if(__globalUrlPrefix) {
+        return [NSString stringWithFormat:@"%@%@",__globalUrlPrefix,[self getPath]];
+    }
+    // 配置文件里没有 apiUrlPrefix, 将不会自动生成
+    return @"";
+}
+
 
 - (void) request:(x_api_gm_general_appVersion_checkUpdateApiResponse) response{
     self.network = [NSMutableURLRequest new];
-    self.network.URL =[NSURL URLWithString:[self getUrl]];
+    self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
     self.network.HTTPMethod = [self getMethod];
-    self.network.HTTPBody = self.dtoReq.toJSONData;
+    self.network.HTTPBody = [self getBody];
     [self addFiltersWithNetwork:self.network];
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
@@ -69,20 +87,11 @@
 }
 
 - (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>*) promise:(x_api_gm_general_appVersion_checkUpdate_Req*) dtoReq{
+    self.dtoReq = dtoReq;
     FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>* promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
-        self.network = [NSMutableURLRequest new];
-        self.network.URL =[NSURL URLWithString:[self getUrl]];
-        self.network.HTTPMethod = [self getMethod];
-        self.network.HTTPBody = dtoReq.toJSONData;
-        [self addFiltersWithNetwork:self.network];
-        [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+      [self request:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             if(!error){
-                NSError* err;
-                id resPost = [[x_api_gm_general_appVersion_checkUpdate_Res alloc] initWithDictionary:data error:&err];
-                if(!err)
-                 fulfill(resPost);
-                else
-                    reject(err);
+                fulfill(data);
             }else{
                 reject(error);
             }

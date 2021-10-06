@@ -113,11 +113,11 @@
 
 - (NSString*) getUrl{
   #ifdef RELEASE
-    NSAssert(__globalSchemaHost, @"未设置 __globalSchemaHost");
+    NSAssert(__globalUrlPrefix, @"未设置 __globalUrlPrefix");
   #endif
-    if(__globalSchemaHost)
+    if(__globalUrlPrefix)
     {
-      return [NSString stringWithFormat:@"%@%@",__globalSchemaHost,@"/charge/feeList"];
+      return [NSString stringWithFormat:@"%@%@",__globalUrlPrefix,@"/charge/feeList"];
     }else{
     #ifdef DEBUG
       return [NSString stringWithFormat:@"%@%@",@"",@"/charge/feeList"];

@@ -23,8 +23,7 @@ typedef void (^ZKResponse)(id _Nullable data, NSURLResponse * _Nullable res, NSE
 -(id<iNetAgent>) build:(NSMutableURLRequest*) request;
 -(id<iNetAgent>) send:(ZKResponse) block;
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter;
--(id<iNetAgent>) _internalSend:(ZKResponse)block;
- @end
+@end
 
 // 供引擎使用拿到 agent
 @protocol iNetManager

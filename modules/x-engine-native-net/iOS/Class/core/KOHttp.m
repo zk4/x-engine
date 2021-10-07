@@ -41,16 +41,12 @@
 }
 
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
-//    if(!self.chain){
-//        self.chain = [KOFilterChain new];
-//        [self.chain setNetAgent:self];
-//    }
-//    [self addFilter:filter];
-    if(!self.filters){
-        self.filters=[NSMutableArray new];
+    @synchronized (self) {
+        if(!self.filters){
+            self.filters=[NSMutableArray new];
+        }
     }
     [self.filters addObject:filter];
-
     return self;
 }
 

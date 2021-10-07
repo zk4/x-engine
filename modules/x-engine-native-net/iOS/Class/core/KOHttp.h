@@ -29,11 +29,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KOHttp<reqType,resType>: NSObject <iNetAgent,iFilterChain>
--(id<iNetAgent>) build:(NSMutableURLRequest*) request;
--(id<iNetAgent>) send:(ZKResponse) block;
--(id<iNetAgent>) addFilter:(id<iFilter>) filter;
--(id<iNetAgent>) _internalSend:(ZKResponse)block;
-
 @end
 
 NS_ASSUME_NONNULL_END

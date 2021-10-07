@@ -24,12 +24,13 @@
 // THE SOFTWARE./
 
 #import "KOHttp.h"
-#import "KOFilterChain.h"
 
 @interface KOHttp()
 @property (nonatomic, strong)   NSMutableURLRequest* request;
 @property (nonatomic, strong)   NSURLSession *session;
-@property (nonatomic, strong)   id<iFilterChain> chain;
+
+@property (atomic, strong)   NSMutableArray*  filters;
+@property (nonatomic, assign)   int pos;
 @end
 
 @implementation KOHttp
@@ -40,12 +41,27 @@
 }
 
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
-    if(!self.chain){
-        self.chain = [KOFilterChain new];
-        [self.chain setNetAgent:self];
+//    if(!self.chain){
+//        self.chain = [KOFilterChain new];
+//        [self.chain setNetAgent:self];
+//    }
+//    [self addFilter:filter];
+    if(!self.filters){
+        self.filters=[NSMutableArray new];
     }
-    [self.chain addFilter:filter];
+    [self.filters addObject:filter];
+
     return self;
+}
+
+-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse{
+    if(self.pos<self.filters.count){
+        id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
+        __weak typeof(self) weakSelf = self;
+        [filter doFilter:session request:request  response:zkResponse chain:weakSelf];
+    }else{
+        [self _internalSend:zkResponse];
+    }
 }
 
 -(id<iNetAgent>) _internalSend:(ZKResponse)block{
@@ -55,7 +71,7 @@
     return self;
 }
 -(id<iNetAgent>) send:(ZKResponse) block{
-    [self.chain doFilter:self.session request:self.request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self doFilter:self.session request:self.request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
     return self;

@@ -33,8 +33,6 @@ typedef void (^ZKResponse)(id _Nullable data, NSURLResponse * _Nullable res, NSE
 
 @protocol iFilterChain
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse;
--(id<iFilterChain>) addFilter:(id<iFilter>) filter;
--(void) setNetAgent:(id<iNetAgent>) agent;
 @end
 
 NS_ASSUME_NONNULL_END

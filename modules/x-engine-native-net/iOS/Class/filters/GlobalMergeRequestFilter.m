@@ -75,4 +75,8 @@
     }
 }
 
+- (nonnull NSString *)name {
+    return @"全局合并请求 filter";
+}
+
 @end

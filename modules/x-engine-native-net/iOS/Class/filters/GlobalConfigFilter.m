@@ -39,4 +39,9 @@
     session.configuration.shouldUseExtendedBackgroundIdleMode  = YES;
     [chain doFilter:session request:request response:response];
 }
+
+
+- (nonnull NSString *)name {
+    return @"全局网络配置 filter";
+}
 @end

@@ -25,6 +25,16 @@
 
 #import "KOHttp.h"
 
+#ifdef DEBUG
+#  define NSLog(fmt, ...) do {                                            \
+NSString* file = [[NSString alloc] initWithFormat:@"%s", __FILE__]; \
+NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
+} while(0)
+#else
+# define NSLog(...);
+#endif
+
+
 @interface KOHttp()
 @property (nonatomic, strong)   NSMutableURLRequest* request;
 @property (nonatomic, strong)   NSURLSession *session;
@@ -50,10 +60,16 @@
     return self;
 }
 
+- (nonnull id<iNetAgent>)activePipeline:(nonnull KOPipeline)pipeline {
+    self.filters = pipeline;
+    return self;
+}
+
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(KOResponse) KOResponse{
     if(self.pos<self.filters.count){
         id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
         __weak typeof(self) weakSelf = self;
+        NSLog(@"%@ 处理中...",[filter name]);
         [filter doFilter:session request:request  response:KOResponse chain:weakSelf];
     }else{
         [self _internalSend:KOResponse];
@@ -72,4 +88,5 @@
     }];
     return self;
 }
+
 @end

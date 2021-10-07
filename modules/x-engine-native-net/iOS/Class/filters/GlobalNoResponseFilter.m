@@ -49,4 +49,9 @@
         }
     }];
 }
+
+- (nonnull NSString *)name {
+    return @"全局无返回 filter";
+}
+
 @end

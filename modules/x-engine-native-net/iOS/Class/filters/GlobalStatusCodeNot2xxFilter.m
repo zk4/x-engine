@@ -48,8 +48,11 @@
 #endif
             return;
         }else{
-            response(data[@"data"],res,error);
+            response(data,res,error);
         }
     }];
+}
+- (nonnull NSString *)name {
+    return @"全局非2xx 处理 filter";
 }
 @end

@@ -59,4 +59,8 @@
     }];
 }
 
+- (nonnull NSString *)name {
+    return @"全局JSON 转换 filter";
+}
+
 @end

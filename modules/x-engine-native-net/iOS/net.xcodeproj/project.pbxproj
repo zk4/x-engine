@@ -59,9 +59,6 @@
 		58F37F99270481D100EADBBB /* gen_ZKBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F98270481D100EADBBB /* gen_ZKBaseApi.m */; };
 		58F37F9B2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F9A2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m */; };
 		58F37FA727062EDD00EADBBB /* LoggingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FA527062EDD00EADBBB /* LoggingFilter.m */; };
-		58F37FAC270C842900EADBBB /* x_api_Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FA9270C842900EADBBB /* x_api_Post.m */; };
-		58F37FAD270C842900EADBBB /* x_api_Simple.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FAA270C842900EADBBB /* x_api_Simple.m */; };
-		58F37FB0270C87E300EADBBB /* x_api_charge_feeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FAE270C87E300EADBBB /* x_api_charge_feeList.m */; };
 		58F37FB3270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */; };
 		58F37FBC270E177A00EADBBB /* KOBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FBB270E177A00EADBBB /* KOBaseApi.m */; };
 		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -147,12 +144,6 @@
 		58F37F9A2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalStatusCodeNot2xxFilter.m; sourceTree = "<group>"; };
 		58F37FA527062EDD00EADBBB /* LoggingFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingFilter.m; sourceTree = "<group>"; };
 		58F37FA627062EDD00EADBBB /* LoggingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingFilter.h; sourceTree = "<group>"; };
-		58F37FA8270C842900EADBBB /* x_api_Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_Post.h; sourceTree = "<group>"; };
-		58F37FA9270C842900EADBBB /* x_api_Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_Post.m; sourceTree = "<group>"; };
-		58F37FAA270C842900EADBBB /* x_api_Simple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_Simple.m; sourceTree = "<group>"; };
-		58F37FAB270C842900EADBBB /* x_api_Simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_Simple.h; sourceTree = "<group>"; };
-		58F37FAE270C87E300EADBBB /* x_api_charge_feeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_charge_feeList.m; sourceTree = "<group>"; };
-		58F37FAF270C87E300EADBBB /* x_api_charge_feeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_charge_feeList.h; sourceTree = "<group>"; };
 		58F37FB1270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_gm_general_appVersion_checkUpdate.h; sourceTree = "<group>"; };
 		58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_gm_general_appVersion_checkUpdate.m; sourceTree = "<group>"; };
 		58F37FBA270E177A00EADBBB /* KOBaseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOBaseApi.h; sourceTree = "<group>"; };
@@ -387,12 +378,6 @@
 			children = (
 				58F37FB1270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */,
 				58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */,
-				58F37FAF270C87E300EADBBB /* x_api_charge_feeList.h */,
-				58F37FAE270C87E300EADBBB /* x_api_charge_feeList.m */,
-				58F37FA8270C842900EADBBB /* x_api_Post.h */,
-				58F37FA9270C842900EADBBB /* x_api_Post.m */,
-				58F37FAB270C842900EADBBB /* x_api_Simple.h */,
-				58F37FAA270C842900EADBBB /* x_api_Simple.m */,
 			);
 			path = gen;
 			sourceTree = "<group>";
@@ -891,7 +876,6 @@
 				58F37F9B2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m in Sources */,
 				58732F5E27042D930098F18C /* GlobalMergeRequestFilter.m in Sources */,
 				58732F5F27042D930098F18C /* GlobalConfigFilter.m in Sources */,
-				58F37FAC270C842900EADBBB /* x_api_Post.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				58732F6127042D930098F18C /* GlobalJsonFilter.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_net.m in Sources */,
@@ -900,8 +884,6 @@
 				58F37F89270464B500EADBBB /* KOFilterChain.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 				58732F5D27042D930098F18C /* GlobalNoResponseFilter.m in Sources */,
-				58F37FB0270C87E300EADBBB /* x_api_charge_feeList.m in Sources */,
-				58F37FAD270C842900EADBBB /* x_api_Simple.m in Sources */,
 				58F37FB3270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

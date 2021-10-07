@@ -53,6 +53,15 @@
     [self.zkagent addFilter:filter];
     return self.zkagent;
 }
+-(id<iNetAgent>) activePipeline:(KOPipeline) pipeline{
+    @synchronized (self) {
+        if(!self.zkagent){
+            self.zkagent = [[XENP(iNetManager) one] build:self];
+        }
+    }
+    [self.zkagent activePipeline:pipeline];
+    return self.zkagent;
+}
 -(id<iNetAgent>) send:(KOResponse) block{
     @synchronized (self) {
         if(!self.zkagent){

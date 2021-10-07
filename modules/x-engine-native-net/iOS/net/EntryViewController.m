@@ -20,7 +20,7 @@
 
 #import "TodoApi.h"
 #import "PostApi.h"
-#import "x_api_Simple.h"
+
 #import "x_api_gm_general_appVersion_checkUpdate.h"
 
 
@@ -54,6 +54,10 @@
     }];
 
 }
+- (nonnull NSString *)name {
+    return @"自定义日志 filter 1";
+}
+
 @end
 //
 @interface LoggingFilter2:NSObject <iFilter>
@@ -69,21 +73,27 @@
 
     }];
 }
+
+- (nonnull NSString *)name {
+    return @"自定义日志 filter 2";
+}
+
 @end
 
-@interface LoggingFilter3:NSObject <iFilter>
+@interface BusinessFilter:NSObject <iFilter>
 @end
 
-@implementation LoggingFilter3
+@implementation BusinessFilter
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
-
-    NSLog(@"%@", @"logging 3 start");
+    
     [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-        NSLog(@"logging 3 end");
-        response(data,res,error);
-
+        response(data[@"data"],res,error);
     }];
 }
+- (nonnull NSString *)name {
+    return @"提取 data 数据 filter";
+}
+
 @end
 
 @interface EntryViewController ()
@@ -96,18 +106,17 @@
 
 - (void)test0 {
     
-    [KOBaseApi configGlobalUrlPrefix:@"http://10.115.91.71:32563/bff-m"];
-    [KOBaseApi configGlobalFiltersWithNetwork:^(NSMutableURLRequest * _Nonnull request) {
-        [request addFilter:[GlobalConfigFilter sharedInstance]];
-        [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-        [request addFilter:[LoggingFilter0 new]];
-        [request addFilter:[LoggingFilter2 new]];
-        [request addFilter:[LoggingFilter3 new]];
-        [request addFilter:[GlobalNoResponseFilter sharedInstance]];
-        [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
-        [request addFilter:[GlobalJsonFilter sharedInstance]];
-
-    }];
+//    [KOBaseApi configGlobalFiltersWithNetwork:^(NSMutableURLRequest * _Nonnull request) {
+//        [request addFilter:[GlobalConfigFilter sharedInstance]];
+//        [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+//        [request addFilter:[LoggingFilter0 new]];
+//        [request addFilter:[LoggingFilter2 new]];
+//        [request addFilter:[LoggingFilter3 new]];
+//        [request addFilter:[GlobalNoResponseFilter sharedInstance]];
+//        [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
+//        [request addFilter:[GlobalJsonFilter sharedInstance]];
+//
+//    }];
 
     x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
     req.os=@"ios";
@@ -240,6 +249,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [KOBaseApi configGlobalUrlPrefix:@"http://10.115.91.71:32563/bff-m"];
+    [KOBaseApi configPipelineByName:@"DEFAULT" pipeline:({
+        id pipeline =  [NSMutableArray new];
+        [pipeline addObject:[GlobalConfigFilter sharedInstance]];
+        [pipeline addObject:[LoggingFilter0 new]];
+        [pipeline addObject:[BusinessFilter new]];
+        [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
+        [pipeline addObject:[GlobalJsonFilter sharedInstance]];
+        [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+        pipeline;
+    })];
+    
     [self pushTestModule];
 }
 

@@ -74,11 +74,10 @@
 
 
 - (void) request:(x_api_gm_general_appVersion_checkUpdateApiResponse) response{
-    self.network = [NSMutableURLRequest new];
     self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
     self.network.HTTPMethod = [self getMethod];
     self.network.HTTPBody = [self getBody];
-    [self addFiltersWithNetwork:self.network];
+    [self activePipeline:@"DEFAULT"];
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
         id resPost = [[x_api_gm_general_appVersion_checkUpdate_Res alloc] initWithDictionary:data error:&err];

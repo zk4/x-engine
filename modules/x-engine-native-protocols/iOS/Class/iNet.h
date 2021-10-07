@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^KOResponse)(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
 
 @protocol iFilter
+    // for debug
+    -(NSString*) name;
     -(void) doFilter:(NSURLSession*) session request:(NSMutableURLRequest*) request  response:(KOResponse) KOResponse chain:(id<iFilterChain>) chain;
 @end
 

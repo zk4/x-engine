@@ -42,7 +42,7 @@
 }
 
 
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull ZKResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
     
     if(![request.HTTPMethod isEqualToString:@"GET"]){
         [chain doFilter:session request:request response:response];
@@ -65,7 +65,7 @@
              NSMutableArray* queue =  [weakSelf.requests objectForKey:key];
             @synchronized (weakSelf){
                 for (long i = queue.count-1 ; i >= 0 ; i--) {
-                    ZKResponse r = queue[i];
+                    KOResponse r = queue[i];
                     r(data,res,error);
                     r = nil;
                 }

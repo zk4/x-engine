@@ -53,7 +53,7 @@
     [self.zkagent addFilter:filter];
     return self.zkagent;
 }
--(id<iNetAgent>) send:(ZKResponse) block{
+-(id<iNetAgent>) send:(KOResponse) block{
     @synchronized (self) {
         if(!self.zkagent){
             self.zkagent = [[XENP(iNetManager) one] build:self];

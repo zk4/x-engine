@@ -44,13 +44,13 @@
 //    self.agent= agent;
 //}
 //
-//-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse{
+//-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(KOResponse) KOResponse{
 //    if(self.pos<self.filters.count){
 //        id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
 //        __weak typeof(self) weakSelf = self;
-//        [filter doFilter:session request:request  response:zkResponse chain:weakSelf];
+//        [filter doFilter:session request:request  response:KOResponse chain:weakSelf];
 //    }else{
-//        [self.agent _internalSend:zkResponse];
+//        [self.agent _internalSend:KOResponse];
 //    }
 //}
 //-(id<iFilterChain>) addFilter:(id<iFilter>) filter {

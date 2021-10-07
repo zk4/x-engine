@@ -50,23 +50,23 @@
     return self;
 }
 
--(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse{
+-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(KOResponse) KOResponse{
     if(self.pos<self.filters.count){
         id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
         __weak typeof(self) weakSelf = self;
-        [filter doFilter:session request:request  response:zkResponse chain:weakSelf];
+        [filter doFilter:session request:request  response:KOResponse chain:weakSelf];
     }else{
-        [self _internalSend:zkResponse];
+        [self _internalSend:KOResponse];
     }
 }
 
--(id<iNetAgent>) _internalSend:(ZKResponse)block{
+-(id<iNetAgent>) _internalSend:(KOResponse)block{
     self.session = [NSURLSession sharedSession];
     NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:self.request completionHandler:block];
     [sessionTask resume];
     return self;
 }
--(id<iNetAgent>) send:(ZKResponse) block{
+-(id<iNetAgent>) send:(KOResponse) block{
     [self doFilter:self.session request:self.request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];

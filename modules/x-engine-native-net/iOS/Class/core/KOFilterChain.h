@@ -29,7 +29,7 @@
 //NS_ASSUME_NONNULL_BEGIN
 //
 //@interface KOFilterChain :NSObject <iFilterChain>
-//-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(ZKResponse) zkResponse;
+//-(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(KOResponse) KOResponse;
 //-(id<iFilterChain>) addFilter:(id<iFilter>) filter;
 //-(void) setNetAgent:(id<iNetAgent>) agent;
 //@end

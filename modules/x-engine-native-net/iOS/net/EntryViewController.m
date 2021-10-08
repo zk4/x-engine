@@ -108,12 +108,13 @@
     
     for (int i =1; i<20; i++) {
         x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
+
         req.os=@"ios";
         req.platform=@"ios";
         req.versionCode=0;
         req.versionName=@"";
         id api = [x_api_gm_general_appVersion_checkUpdate new];
-        [api activePipelineByName:@"SIMPLE"];
+      
         [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
             NSLog(@"%@",value);
             return nil;
@@ -195,7 +196,7 @@
         [ok addFilter:[GlobalJsonFilter sharedInstance]];
         NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
         [ok send:req response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-            
+            NSLog(@"%@",data);
         }];
         
         //
@@ -248,12 +249,13 @@
     [KOBaseApi ko_configPipelineByName:@"DEFAULT" pipeline:({
         id pipeline =  [NSMutableArray new];
         [pipeline addObject:[GlobalConfigFilter sharedInstance]];
-//        [pipeline addObject:[LoggingFilter0 new]];
+        [pipeline addObject:[LoggingFilter0 new]];
         [pipeline addObject:[BusinessFilter new]];
         [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
         [pipeline addObject:[GlobalJsonFilter sharedInstance]];
         [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
         [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+
         pipeline;
     })];
     
@@ -261,11 +263,12 @@
     [KOBaseApi ko_configPipelineByName:@"SIMPLE" pipeline:({
         id pipeline =  [NSMutableArray new];
         [pipeline addObject:[GlobalConfigFilter sharedInstance]];
+        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+
         [pipeline addObject:[LoggingFilter0 new]];
         [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
         [pipeline addObject:[GlobalJsonFilter sharedInstance]];
         [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
         pipeline;
     })];
     

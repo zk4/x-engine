@@ -11,7 +11,7 @@
 @class x_api_gm_general_appVersion_checkUpdate_Res;
 
 @interface x_api_gm_general_appVersion_checkUpdate_Req: JSONModel
-  // 操作系统（Android、IOS）
+  // request<br>操作系统（Android、IOS）
 	@property(nonatomic,copy) NSString* os;
    // 平台（App、POS等）
 	@property(nonatomic,copy) NSString* platform;
@@ -54,10 +54,11 @@
   
   typedef void (^x_api_gm_general_appVersion_checkUpdateApiResponse)( x_api_gm_general_appVersion_checkUpdate_Res* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
   
-  - (void) request:(x_api_gm_general_appVersion_checkUpdateApiResponse) response;
+  - (void) request:(x_api_gm_general_appVersion_checkUpdateApiResponse _Nullable) response;
+  - (void) request:(x_api_gm_general_appVersion_checkUpdate_Req* _Nullable) dtoReq response:(x_api_gm_general_appVersion_checkUpdateApiResponse _Nullable) response;
 
-  - (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>*) promise;
-  - (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>*) promise:(x_api_gm_general_appVersion_checkUpdate_Req*) dtoReq;
+  - (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>* _Nullable) promise;
+  - (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>* _Nullable) promise:(x_api_gm_general_appVersion_checkUpdate_Req* _Nullable) dtoReq;
 
   @end
   

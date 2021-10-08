@@ -144,7 +144,6 @@
 		58F37FD027100D2D00EADBBB /* Simple.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Simple.ts; sourceTree = "<group>"; };
 		58F37FD127100D2D00EADBBB /* gm_general_appVersion_checkUpdate.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm_general_appVersion_checkUpdate.ts; sourceTree = "<group>"; };
 		58F37FD527100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_gm_general_appVersion_checkUpdate.m; sourceTree = "<group>"; };
-		58F37FD627100D2D00EADBBB /* x_api_undefined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_undefined.h; sourceTree = "<group>"; };
 		58F37FD727100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_gm_general_appVersion_checkUpdate.h; sourceTree = "<group>"; };
 		58F37FE027100D2D00EADBBB /* .java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .java; sourceTree = "<group>"; };
 		58F37FE127100D2D00EADBBB /* Post.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Post.ts; sourceTree = "<group>"; };
@@ -414,7 +413,6 @@
 			isa = PBXGroup;
 			children = (
 				58F37FD527100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */,
-				58F37FD627100D2D00EADBBB /* x_api_undefined.h */,
 				58F37FD727100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */,
 			);
 			path = gen;

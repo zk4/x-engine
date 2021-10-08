@@ -36,6 +36,7 @@
 @implementation x_api_gm_general_appVersion_checkUpdate
 
 
+
 - (NSString*) getMethod{
     return @"POST";
 }
@@ -44,9 +45,9 @@
     return @"application/json";
 }
 
-- (NSData*) getBody{
+- (NSData*) getBody:(x_api_gm_general_appVersion_checkUpdate_Req*) dtoReq{
     if([[self getContentType] isEqualToString:@"application/json"])
-        return  self.dtoReq.toJSONData;
+        return  dtoReq.toJSONData;
     else{
         NSAssert(nil, @"请覆盖此方法,怎么序列化参数到 body");
         return nil;
@@ -55,7 +56,6 @@
 - (NSString*) getPath{
   return @"/gm/general/appVersion/checkUpdate";
 }
-
 
 - (NSString*) getFinalUrl{
     // 逻辑如下：
@@ -74,24 +74,26 @@
 }
 
 
-- (void) request:(x_api_gm_general_appVersion_checkUpdateApiResponse) response{
+- (void) request:(x_api_gm_general_appVersion_checkUpdate_Req* _Nullable) dtoReq response:(x_api_gm_general_appVersion_checkUpdateApiResponse _Nullable) response{
+    self.network = [NSMutableURLRequest new];
     self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
     self.network.HTTPMethod = [self getMethod];
-    self.network.HTTPBody = [self getBody];
+    self.network.HTTPBody = [self getBody:dtoReq];
     [self activePipelineByName:[self getPipelineName]];
-    __weak typeof(self) weakSelf = self;
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
         id resPost = [[x_api_gm_general_appVersion_checkUpdate_Res alloc] initWithDictionary:data error:&err];
-        response(resPost,res,[weakSelf errorWrapper:error underlyingError:err]);
+        response(resPost,res,[self errorWrapper:error underlyingError:err]);
     }];
 }
 
-- (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>*) promise:(x_api_gm_general_appVersion_checkUpdate_Req*) dtoReq{
-    self.dtoReq = dtoReq;
+- (void) request:(x_api_gm_general_appVersion_checkUpdateApiResponse _Nullable) response{
+    [self request:self.dtoReq response:response];
+}
+
+- (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>* _Nullable) promise:(x_api_gm_general_appVersion_checkUpdate_Req* _Nullable) dtoReq{
     FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>* promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
-        __weak typeof(self) weakSelf = self;
-      [weakSelf request:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+      [self request:dtoReq response:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             if(!error){
                 fulfill(data);
             }else{
@@ -102,11 +104,9 @@
     return promise;
 }
 
-- (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>*) promise{
+- (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>* _Nullable) promise{
     return [self promise:self.dtoReq];
 }
-
-
 
 @end
 

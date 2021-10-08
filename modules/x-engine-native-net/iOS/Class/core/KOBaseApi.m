@@ -87,20 +87,7 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
         if (!d || d.allKeys.count == 0) {
             return [NSData new];
         }
-        NSString* encoded = d.uq_URLQueryString;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_7_0 || __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_9
-        encoded = [encoded stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
-#else
-        encoded =  (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                 NULL,
-                                                                                 (__bridge CFStringRef)encoded,
-                                                                                 NULL,
-                                                                                 (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                 kCFStringEncodingUTF8));
-#endif
-        
-       return [encoded dataUsingEncoding:NSUTF8StringEncoding];
+       return [d.uq_URLQueryString dataUsingEncoding:NSUTF8StringEncoding];
     }
     else{
         NSAssert(nil, @"请覆盖此方法,怎么序列化参数到 body");

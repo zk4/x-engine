@@ -106,10 +106,6 @@
     return [self promise:self.dtoReq];
 }
 
-- (void)dealloc{
-    NSLog(@"dealloc");
-
-}
 
 
 @end

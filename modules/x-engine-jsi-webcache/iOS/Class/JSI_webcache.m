@@ -13,13 +13,14 @@
 #import "GlobalMergeRequestFilter.h"
 #import "GlobalConfigFilter.h"
 #import "GlobalStatusCodeNot2xxFilter.h"
-#import "GlobalJsonFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalNoResponseFilter.h"
+
 
 @interface JSI_webcache()
 @property (atomic, strong) NSMutableDictionary* cache;
 @property (nonatomic, strong) NSMutableURLRequest *request;
+@property (nonatomic,strong) KOPipeline  pipeline;
 @end
 
 @implementation JSI_webcache
@@ -27,11 +28,12 @@ JSI_MODULE(JSI_webcache)
 
 - (void)afterAllJSIModuleInited {
     _cache=[NSMutableDictionary new];
-    
-//    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    config.HTTPMaximumConnectionsPerHost=10;
-//
-
+ 
+    self.pipeline = [NSMutableArray new];
+    [self.pipeline addObject:[GlobalConfigFilter sharedInstance]];
+    [self.pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+    [self.pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+    [self.pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
 }
 
 -(BOOL)isNull:(NSDictionary *)dict key:(NSString*)key{
@@ -118,11 +120,7 @@ JSI_MODULE(JSI_webcache)
     //WARNING: 想换成其他网络请求库时请请注意json 序列化的问题。不要转多遍。jsonStr 里的 '浮点类型'，在转为原生类型时，会丢失精度。再转为 jsonStr 时就不是你要的值了。如 str: '{a:.3}' -> objc: @{@"a":.299999999999}  ->  str '{"a":.29999999999}'
 
     __weak typeof(self) weakSelf = self;
-    [request addFilter:[GlobalConfigFilter sharedInstance]];
-    [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-    [request addFilter:[GlobalNoResponseFilter sharedInstance]];
-    [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
-
+    [request activePipeline:self.pipeline];
     [request send:^(id  _Nullable data, NSURLResponse * _Nullable r, NSError * _Nullable error) {
         if (!error) {
             NSHTTPURLResponse *response =nil;

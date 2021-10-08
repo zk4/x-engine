@@ -24,7 +24,9 @@
 // THE SOFTWARE./
 
 #import "GlobalJsonFilter.h"
+#import "XENativeContext.h"
 #import "XTool.h"
+#import "iToast.h"
 
 @implementation GlobalJsonFilter
 

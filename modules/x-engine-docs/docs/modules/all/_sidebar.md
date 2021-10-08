@@ -5,6 +5,4 @@
 - [media](./docs/modules/all/模块-media.md)
 - [share](./docs/modules/all/模块-share.md)
 - [localstorage](./docs/modules/all/模块-localstorage.md)
-- [ui](./docs/modules/all/模块-ui.md)
 - [direct](./docs/modules/all/模块-direct.md)
-- [camera](./docs/modules/all/模块-camera.md)

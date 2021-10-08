@@ -10,9 +10,10 @@
 #import "OneViewController.h"
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
-#import "MainNavigationController.h"
 #import <x-engine-native-tabbar/iTabbar.h>
 #import <x-engine-native-core/XENativeContext.h>
+#import <x-engine-native-ui/SafeGestureNavigationController.h>
+
 
 
 @interface MainTabbarController ()
@@ -44,16 +45,14 @@
     [self setupChildVc:[[TwoViewController alloc] init] title:@"模块2" image:@"two-nor" selectedImage:@"two-sel"];
     
     [self setupChildVc:[[ThreeViewController alloc] init] title:@"模块3" image:@"three-nor" selectedImage:@"three-sel"];
-    
 }
 
 - (void)setupChildVc:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {
     vc.tabBarItem.title = title;
     vc.tabBarItem.image = [UIImage imageNamed:image];
     vc.tabBarItem.selectedImage = [UIImage imageNamed:selectedImage];
-    
     // 包装一个导航控制器, 添加导航控制器为tabbarcontroller的子控制器
-    MainNavigationController *nav = [[MainNavigationController alloc] initWithRootViewController:vc];
+    SafeGestureNavigationController *nav = [[SafeGestureNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];
 }
 - (UIViewController*)getCurrentTabItemVC{

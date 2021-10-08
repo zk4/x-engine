@@ -8,8 +8,10 @@
 #import "iGeo_gaode.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
+#import "iGeo.h"
+
 NS_ASSUME_NONNULL_BEGIN
-@interface Native_geo_gaode : XENativeModule <iGeo_gaode,AMapLocationManagerDelegate>
+@interface Native_geo_gaode : XENativeModule <iGeo,iGeo_gaode,AMapLocationManagerDelegate>
  
 @end
 

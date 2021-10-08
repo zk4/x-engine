@@ -5,35 +5,6 @@ import xengine from "@zkty-team/x-engine-core";
 window.test_aok = () => {
 }
  document.getElementById("test_aok").click()
-        window.test_openImagePicker2 = () => {
-
-  xengine.api(
-    "com.zkty.jsi.camera",
-    "openImagePicker2",
-    {
-      allowsEditing: true,
-      savePhotosAlbum: false,
-      cameraFlashMode: -1,
-      cameraDevice: "back",
-      photoCount: 5,
-      args: { bytes: "100" },
-      isbase64: true,
-    },
-    (res) => {
-      let obj = JSON.parse(res);
-      for (let photo of obj.data) {
-        const image = document.createElement("img");
-        if (!photo.width || !photo.height) {
-          alert("要返回width,与height", photo);
-        }
-        image.src = "data:" + photo.contentType + ";base64,  " + photo.retImage;
-        image.style.cssText = "width:100%";
-        document.body.appendChild(image);
-      }
-    }
-  );
-}
- document.getElementById("test_openImagePicker2").click()
         window.test_openImagePicker = () => {
 
   xengine.api(

@@ -17,7 +17,9 @@
     [[JSIContext sharedInstance] start];
 
     id<iNativeRegister> ir = XENP(iNativeRegister);
-    [ir registerNativeRouter:@"native://foo/bar" nativeVCCreator:^UIViewController * _Nullable(NSString * _Nonnull protocol, NSString * _Nonnull host, NSString * _Nonnull pathname, NSString * _Nonnull fragment, NSDictionary * _Nonnull query, NSDictionary * _Nonnull params) {
+    [ir registerNativeRouter:@"native://foo/bar" nativeVCCreator:^UIViewController * _Nullable(NSString * _Nonnull protocol, NSString * _Nonnull host, NSString * _Nonnull pathname, NSString * _Nonnull fragment, NSDictionary * _Nonnull query, NSDictionary * _Nonnull params ,CGRect frame) {
+        
+        
         return [[JumpViewController alloc] init] ;
     }];
 

@@ -11,6 +11,9 @@
 #import <XENativeContext.h>
 
 
+//#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
+
+
 @interface ThreeViewController ()
 
 @end
@@ -20,6 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.zkty.microapp.mine" params:@{@"hideNavbar":@TRUE}];
+//    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.zkty.microapp.mine" params:@{@"hideNavbar":@TRUE}];
 }
 @end

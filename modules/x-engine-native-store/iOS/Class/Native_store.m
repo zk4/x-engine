@@ -8,6 +8,7 @@
 #import "Native_store.h"
 #import <UIKit/UIKit.h>
 #import <micros.h>
+
  
 #define X_ENGINE_STORE_KEY @"@@x-engine-store"
 
@@ -28,7 +29,6 @@ NATIVE_MODULE(Native_store)
 }
 
 - (void)afterAllNativeModuleInited {
-    
     [self loadFromDisk:FALSE];
 }
 
@@ -53,33 +53,36 @@ NATIVE_MODULE(Native_store)
 }
  
 - (id)get:(NSString *)key {
-
+    if(!key) return nil;
     return [_store objectForKey:key];
 }
 
 - (void)set:(NSString *)key val:(id)val {
-    if(!val)return;
+    if(!val || [val isEqual:[NSNull null]] || !key)return;
     [_store setObject:val forKey:key];
 }
 
 - (void)del:(NSString*)key{
-     [_store removeObjectForKey:key];
+    [self.store removeObjectForKey:key];
 }
 - (void)delAll{
-     [_store removeAllObjects];
+    [self.store removeAllObjects];
 }
 
 
 - (void)saveTodisk{
-    [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSUserDefaults standardUserDefaults] setObject:self.store forKey:X_ENGINE_STORE_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+    });
 }
 
 - (void)loadFromDisk:(BOOL)merge {
-    if(!merge){
-        [self.store removeAllObjects];
-    }
-    [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
+        if(!merge){
+            [self.store removeAllObjects];
+        }
+        [self.store addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:X_ENGINE_STORE_KEY]];
 }
 @end
 

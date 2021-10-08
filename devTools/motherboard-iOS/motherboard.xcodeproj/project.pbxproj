@@ -20,7 +20,6 @@
 		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		00DFC70024C843A3006A53EE /* xengine_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FF24C843A3006A53EE /* xengine_config.json */; };
 		36644A9B6347D8F3F465E2F2 /* libPods-motherboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64777595404EB1F495371D9F /* libPods-motherboard.a */; };
-		538009B44D3E4E8C337189A9 /* libPods-motherboard-motherboardUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8D19D09EC03B26C734EC3 /* libPods-motherboard-motherboardUITests.a */; };
 		C94A62202542C96900F9CD56 /* ZYDL_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A621F2542C96900F9CD56 /* ZYDL_TabBarController.m */; };
 		C94A62252542D20500F9CD56 /* ZKMicroAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94A62232542D20500F9CD56 /* ZKMicroAppViewController.m */; };
 		C94A62262542D20500F9CD56 /* ZKMicroAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C94A62242542D20500F9CD56 /* ZKMicroAppViewController.xib */; };
@@ -37,13 +36,7 @@
 		C9C4A62E25469A050018D71B /* __UNI__11E9B73.wgt in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A62C25469A050018D71B /* __UNI__11E9B73.wgt */; };
 		C9C4A6442546A02C0018D71B /* com.zkty.module.nav.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6432546A02C0018D71B /* com.zkty.module.nav.0 */; };
 		C9C4A6572546CC180018D71B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C4A6562546CC180018D71B /* CoreBluetooth.framework */; };
-		C9C4A6692546D1BB0018D71B /* com.zkty.module.network.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */; };
-		C9C4A66B2546D3BB0018D71B /* com.zkty.module.router.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */; };
-		C9C4A66F2546D6790018D71B /* com.zkty.module.UI.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */; };
-		C9C4A6812547D3F10018D71B /* com.zkty.module.scan.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */; };
 		C9C4A6862547F0220018D71B /* __UNI__86C4327.wgt in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6852547F0220018D71B /* __UNI__86C4327.wgt */; };
-		C9C4A6B72548139A0018D71B /* com.zkty.module.lope.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6B62548139A0018D71B /* com.zkty.module.lope.0 */; };
-		C9C4A6B92548148E0018D71B /* com.zkty.module.dcloud.0 in Resources */ = {isa = PBXBuildFile; fileRef = C9C4A6B82548148E0018D71B /* com.zkty.module.dcloud.0 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,9 +80,7 @@
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
-		60F8D19D09EC03B26C734EC3 /* libPods-motherboard-motherboardUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motherboard-motherboardUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64777595404EB1F495371D9F /* libPods-motherboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motherboard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		884143ABEFD722050DDC70A3 /* Pods-motherboard-motherboardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard-motherboardUITests.release.xcconfig"; path = "Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-motherboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard.release.xcconfig"; path = "Target Support Files/Pods-motherboard/Pods-motherboard.release.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C94A62152542B8AA00F9CD56 /* Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
@@ -114,16 +105,9 @@
 		C9C4A62C25469A050018D71B /* __UNI__11E9B73.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__11E9B73.wgt; sourceTree = "<group>"; };
 		C9C4A6432546A02C0018D71B /* com.zkty.module.nav.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.zkty.module.nav.0; sourceTree = "<group>"; };
 		C9C4A6562546CC180018D71B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.network.0; path = "../../../modules/x-engine-module-network/h5/com.zkty.module.network.0"; sourceTree = "<group>"; };
-		C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.router.0; path = "../../../modules/x-engine-module-router/h5/com.zkty.module.router.0"; sourceTree = "<group>"; };
-		C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.UI.0; path = "../../../modules/x-engine-module-ui/h5/com.zkty.module.UI.0"; sourceTree = "<group>"; };
-		C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.scan.0; path = "../../../modules/x-engine-module-scan/h5/com.zkty.module.scan.0"; sourceTree = "<group>"; };
 		C9C4A6852547F0220018D71B /* __UNI__86C4327.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__86C4327.wgt; sourceTree = "<group>"; };
 		C9C4A68B2547F3FA0018D71B /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibNativeUI.a; path = "../../../modules/x-engine-module-dcloud/iOS/liblibNativeUI.a"; sourceTree = "<group>"; };
-		C9C4A6B62548139A0018D71B /* com.zkty.module.lope.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.lope.0; path = "../../../modules/x-engine-module-lope/h5/com.zkty.module.lope.0"; sourceTree = "<group>"; };
-		C9C4A6B82548148E0018D71B /* com.zkty.module.dcloud.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = com.zkty.module.dcloud.0; path = "../../../modules/x-engine-module-dcloud/h5/com.zkty.module.dcloud.0"; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-motherboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard.debug.xcconfig"; path = "Target Support Files/Pods-motherboard/Pods-motherboard.debug.xcconfig"; sourceTree = "<group>"; };
-		F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motherboard-motherboardUITests.debug.xcconfig"; path = "Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +132,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				538009B44D3E4E8C337189A9 /* libPods-motherboard-motherboardUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,12 +184,6 @@
 		00DFC6E224C84000006A53EE /* motherboard */ = {
 			isa = PBXGroup;
 			children = (
-				C9C4A6B82548148E0018D71B /* com.zkty.module.dcloud.0 */,
-				C9C4A6B62548139A0018D71B /* com.zkty.module.lope.0 */,
-				C9C4A6802547D3F10018D71B /* com.zkty.module.scan.0 */,
-				C9C4A66E2546D6780018D71B /* com.zkty.module.UI.0 */,
-				C9C4A66A2546D3BB0018D71B /* com.zkty.module.router.0 */,
-				C9C4A6682546D1BB0018D71B /* com.zkty.module.network.0 */,
 				C9C4A6432546A02C0018D71B /* com.zkty.module.nav.0 */,
 				C9C4A6202546983B0018D71B /* com.zkty.module.bluetooth.0 */,
 				C9C4A6212546983B0018D71B /* com.zkty.module.device.0 */,
@@ -241,8 +218,6 @@
 				484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */,
 				DC24F7764E32FC4DBD8E03D7 /* Pods-motherboard.debug.xcconfig */,
 				9272408DD3356C0889C56BE8 /* Pods-motherboard.release.xcconfig */,
-				F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */,
-				884143ABEFD722050DDC70A3 /* Pods-motherboard-motherboardUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -254,7 +229,6 @@
 				C9C4A6562546CC180018D71B /* CoreBluetooth.framework */,
 				003F95D924DA4A6100633E1F /* libc++.tbd */,
 				64777595404EB1F495371D9F /* libPods-motherboard.a */,
-				60F8D19D09EC03B26C734EC3 /* libPods-motherboard-motherboardUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -306,7 +280,6 @@
 				00DFC6A824C83F94006A53EE /* Resources */,
 				0C7B32A76B4E99D3BF8E9903 /* [CP] Copy Pods Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
-				735A7AC5FCBE6E04102F50D2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,13 +312,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "motherboardUITests" */;
 			buildPhases = (
-				50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */,
 				00DFC6CC24C83F95006A53EE /* Sources */,
 				00DFC6CD24C83F95006A53EE /* Frameworks */,
 				00DFC6CE24C83F95006A53EE /* Resources */,
-				2B8EBC06553ECFFD01EDB8CD /* [CP] Copy Pods Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
-				DC3270E431D4350205CC0C2D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -407,12 +377,7 @@
 				C94A62262542D20500F9CD56 /* ZKMicroAppViewController.xib in Resources */,
 				C94A62332542D34E00F9CD56 /* moduleTableViewCell.xib in Resources */,
 				00DFC6F424C84000006A53EE /* Main.storyboard in Resources */,
-				C9C4A66B2546D3BB0018D71B /* com.zkty.module.router.0 in Resources */,
-				C9C4A6692546D1BB0018D71B /* com.zkty.module.network.0 in Resources */,
 				C9C4A62A2546983C0018D71B /* come.zkty.module.camera.0 in Resources */,
-				C9C4A6812547D3F10018D71B /* com.zkty.module.scan.0 in Resources */,
-				C9C4A6B92548148E0018D71B /* com.zkty.module.dcloud.0 in Resources */,
-				C9C4A6B72548139A0018D71B /* com.zkty.module.lope.0 in Resources */,
 				C9C4A6272546983C0018D71B /* com.zkty.module.device.0 in Resources */,
 				C9C4A61E254697E40018D71B /* com.zkty.module.navpush.0 in Resources */,
 				C9C4A6862547F0220018D71B /* __UNI__86C4327.wgt in Resources */,
@@ -420,7 +385,6 @@
 				C9C4A6292546983C0018D71B /* com.zkty.module.localstorage.0 in Resources */,
 				C9C4A6262546983C0018D71B /* com.zkty.module.bluetooth.0 in Resources */,
 				0036519424CEF32B0057D976 /* com.zkty.microapp.moduledemo.0 in Resources */,
-				C9C4A66F2546D6790018D71B /* com.zkty.module.UI.0 in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				C9C4A62E25469A050018D71B /* __UNI__11E9B73.wgt in Resources */,
@@ -453,11 +417,9 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -480,45 +442,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-motherboard-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2B8EBC06553ECFFD01EDB8CD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-motherboard-motherboardUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -558,40 +481,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport SERVER_IP=`ipconfig getifaddr en0`\n";
-		};
-		735A7AC5FCBE6E04102F50D2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-motherboard/Pods-motherboard-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC3270E431D4350205CC0C2D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-motherboard-motherboardUITests/Pods-motherboard-motherboardUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -880,7 +769,6 @@
 		};
 		00DFC6E024C83F95006A53EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F625F7C354D7561221903338 /* Pods-motherboard-motherboardUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -899,7 +787,6 @@
 		};
 		00DFC6E124C83F95006A53EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 884143ABEFD722050DDC70A3 /* Pods-motherboard-motherboardUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;

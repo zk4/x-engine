@@ -7,6 +7,8 @@
 #import "WebViewFactory.h"
 #import "XENativeContext.h"
 #import "iWebcache.h"
+#import "iToast.h"
+#import "SafeGestureNavigationController.h"
 
 
 /// TODO: webview refactor
@@ -16,12 +18,13 @@
  RecyleWebViewController 只负责载着 view 做转场动画。
  */
 
-NSString * const OnNativeShow = @"onNativeShow";
-NSString * const OnNativeHide = @"onNativeHide";
-NSString * const OnNativeDestroyed = @"onNativeDestroyed";
+static NSString * const OnNativeShow = @"onNativeShow";
+static NSString * const OnNativeHide = @"onNativeHide";
+static NSString * const OnNativeDestroyed = @"onNativeDestroyed";
+static NSString * const kWEBVIEW_STATUS_NOT_ON_TOP =@"kWEBVIEW_STATUS_NOT_ON_TOP";
+static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
-
-@interface RecyleWebViewController () < WKNavigationDelegate,UIScrollViewDelegate>
+@interface RecyleWebViewController () < WKNavigationDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
 @property (nonatomic, copy)   NSString *customTitle;
 @property (nonatomic, strong) XEngineWebView * _Nullable webview;
@@ -30,21 +33,14 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 @property (nonatomic, strong) UIProgressView *progresslayer;
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
-@property (nonatomic, strong) UIView *screenView;
-@property (nonatomic, strong) UIImageView *navBarHairlineImageView;
 @property (nonatomic, strong) id<iWebcache> webcache;
+/** 标记使用状态 */
+@property (nonatomic, assign) BOOL bWebviewOnTop;
 
 @end
 
 @implementation RecyleWebViewController
 
-//- (void)handleNavigationTransition:(UIGestureRecognizer *)gap{
-//    if (self.webview.canGoBack==YES) {
-//        [self.webview goBack];
-//    }else{
-//        NSLog(@"此时不能左滑");
-//    }
-//}
 
 - (void)webViewLoadFail:(NSNotification *)notifi{
     NSDictionary *dic = notifi.object;
@@ -65,10 +61,10 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     if (self){
         if(fileUrl.length == 0)
             return self;
-     
+        self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView];
         self.webview.allowsBackForwardNavigationGestures = YES;
-        self.webview.navigationDelegate = self;
+
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
 
@@ -78,9 +74,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         }
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
-//        [self.webview loadUrl:self.loadUrl];
-//        [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL URLWithString:self.loadUrl]];
-//        self.webview.frame = [UIScreen mainScreen].bounds;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(webViewProgressChange:)
@@ -92,15 +85,32 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
         [self loadFileUrl];
+
         
-        
-        
-     
-        
+        [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
+
     }
     return self;
   
 }
+- (void)webViewScrollerToTop{
+    [self.webview.scrollView setContentOffset:CGPointZero animated:YES];
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {
+        CGFloat y = self.webview.scrollView.contentOffset.y;
+
+        if (self.bWebviewOnTop && y>0) {
+            self.bWebviewOnTop = false;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kWEBVIEW_STATUS_NOT_ON_TOP object:nil userInfo:@{@"webview":self.webview}];
+        }
+        if(!self.bWebviewOnTop && y==0){
+            self.bWebviewOnTop = true;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kWEBVIEW_STATUS_ON_TOP object:nil userInfo:@{@"webview":self.webview}];
+        }
+    }
+}
+
 -(void) refresh {
     [self.webview reload];
 }
@@ -108,44 +118,35 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 
 - (void)loadFileUrl {
     if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
+        [self.webview _loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]]];
     }else{
-//     [self.webview loadFileURL:[NSURL URLWithString:self.loadUrl] allowingReadAccessToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-        [self.webview loadUrl:self.loadUrl];
+ 
+        if([self.loadUrl rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+            [self.webview loadUrl:self.loadUrl];
+        }else{
+//             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+             NSURL *fileURL = [NSURL URLWithString:self.loadUrl];
+            NSError *error = nil;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"microapps/.*?/" options:0 error:&error];
+            NSTextCheckingResult *match = [regex firstMatchInString:self.loadUrl
+                                                            options:0
+                                                              range:NSMakeRange(0, [self.loadUrl length])];
+            if(error || !match || [match numberOfRanges]==0){
+#ifdef DEBUG
+                NSString* msg = [NSString stringWithFormat:@"路径不对: %@", self.loadUrl];
+                [XENP(iToast) toast: msg];
+#endif
+                return;
+            }
+            NSRange matchRange = [match rangeAtIndex:0];
+            NSString *safeZone = [self.loadUrl substringWithRange:NSMakeRange(0, matchRange.location+matchRange.length)];
+            [self.webview _loadFileURL:fileURL allowingReadAccessToURL:[NSURL URLWithString:safeZone]];
+        }
+ 
     }
 }
 
 #pragma mark - <callback>
-//- (void)goback:(UIButton *)sender {
-//    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-//        if(self.navigationController.viewControllers.count > 1){
-//            RecyleWebViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-//            if([vc isKindOfClass:[RecyleWebViewController class]]){
-//                if(self.webview.backForwardList.backList.count > 0){
-//                    WKBackForwardListItem *item = self.webview.backForwardList.backList[self.webview.backForwardList.backList.count - 1];
-//                    if([[vc.loadUrl lowercaseString] isEqualToString:[item.URL.absoluteString lowercaseString]] ||
-//                       [[NSString stringWithFormat:@"%@#/", [vc.loadUrl lowercaseString]] isEqualToString:[item.URL.absoluteString lowercaseString]]){
-//                        [self.navigationController popViewControllerAnimated:YES];
-//                        return;
-//                    }
-//                }
-//            }
-//        }
-//        if([self.webview canGoBack]){
-//            // fixme 临时解决一下, webview 自己跳转后, 返回问题
-//            WKBackForwardList* list = [self.webview backForwardList];
-//            if([self.loadUrl hasPrefix:@"http"] && [[list.backItem.URL absoluteString] isEqual:self.loadUrl]){
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }else
-//                [self.webview goBack];
-//        }else{
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//    }else{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
-//}
-
 - (void)close:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -153,44 +154,29 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
 #pragma mark - <life cycle>
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
+    [self onCreated];
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    [self.webview.scrollView setShowsVerticalScrollIndicator:NO];
-    [self.webview.scrollView setShowsHorizontalScrollIndicator:NO];
+    [self beforeShow];
 }
 
 #pragma mark 自定义导航按钮支持侧滑手势处理
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    if(self.firstDidAppearCbIgnored) {
-        self.firstDidAppearCbIgnored = NO;
-    } else {
-        [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
-    }
-   
-    
-    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    
-    [self.webcache enableCache];
-
-
+    [self afterShow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
-    [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
-    
+    [self beforeHide];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.webcache disableCache];
+    [self afterHide];
 }
 
 
@@ -239,28 +225,6 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
 }
 
-//- (void)setupBackButton {
-//    UIButton *backButton = [[UIButton alloc] init];
-//    [backButton setImage: [UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
-//    [backButton sizeToFit];
-//
-//    if([[self.loadUrl lowercaseString] hasPrefix:@"http"]){
-//        NSString *closePath = [[NSBundle mainBundle] pathForResource:@"close_black" ofType:@"png"];
-//        UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 34, 0)];
-//        UIImageView *img2 = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:closePath]]];
-//        img2.userInteractionEnabled = NO;
-//        img2.frame = CGRectMake(4, 6, 22, 22);
-//        [closeButton addSubview:img2];
-//        [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
-//        self.navigationItem.leftBarButtonItems = @[
-//            [[UIBarButtonItem alloc] initWithCustomView:backButton],
-//            [[UIBarButtonItem alloc] initWithCustomView:closeButton]
-//        ];
-//    } else {
-//        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-//    }
-//}
 
 - (void)setupProgressLayer  {
     self.progresslayer = [[UIProgressView alloc] init];
@@ -301,43 +265,50 @@ NSString * const OnNativeDestroyed = @"onNativeDestroyed";
         }
     }
 }
-
-#pragma mark - < utils --> json->dic / dic->json >
-/**
- *  JSON字符串转NSDictionary
- *  @param jsonString JSON字符串
- *  @return NSDictionary
- */
-- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
-    if (jsonString == nil) {
-        return nil;
-    }
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    if(error) {
-        NSLog(@"json解析失败：%@",error);
-        return nil;
-    }
-    return dic;
-}
-/**
- *  字典转JSON字符串
- *  @param dic 字典
- *  @return JSON字符串
- */
-- (NSString*)dictionaryToJson:(NSDictionary *)dic{
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
-
+ 
 - (void)dealloc {
-    [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
+    [self beforeDead];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
+
+- (void)afterHide {
+    [self.webcache disableCache];
+}
+
+- (void)afterShow {
+//    if(self.firstDidAppearCbIgnored) {
+//        self.firstDidAppearCbIgnored = NO;
+//    } else {
+        [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
+//    }
+
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
+    
+    [self.webcache enableCache];
+}
+
+- (void)beforeDead {
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeDestroyed];
+    [self.webview.scrollView removeObserver:self forKeyPath:@"contentOffset" context:@"selfClassContextNotSuper"];
+}
+
+- (void)beforeHide {
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
+}
+
+- (void)beforeShow {
+    [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
+    [self.webview.scrollView setShowsVerticalScrollIndicator:NO];
+    [self.webview.scrollView setShowsHorizontalScrollIndicator:NO];
+}
+
+- (void)onCreated {
+    [self setupUI];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+}
+ 
 
 @end

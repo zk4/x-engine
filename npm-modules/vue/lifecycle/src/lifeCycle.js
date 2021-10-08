@@ -9,8 +9,8 @@
 import xengine from "@zkty-team/x-engine-core";
 
 const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示
-const ON_WEBVIEW_SHOW = "onWebviewShow"; // 原生显示
 const ON_NATIVE_HIDE = "onNativeHide"; // 原生隐藏
+const ON_WEBVIEW_SHOW = "onWebviewShow"; // webview 显示
 const ON_NATIVE_DESTROYED = "onNativeDestroyed"; // 原生销毁
 
 let Vue;
@@ -20,17 +20,21 @@ export function install (_Vue) {
   }
   Vue.mixin({
     mounted () {
-      xengine.onLifecycle((type, payload) => {
-        if (type == ON_NATIVE_SHOW) {
-          this.onNativeShow?.();
-        } else if (type == ON_WEBVIEW_SHOW) {
-          this.onWebShow?.();
-        } else if (type == ON_NATIVE_HIDE) {
-          this.onNativeHide?.();
-        } else if (type == ON_NATIVE_DESTROYED) {
-          this.onNativeDestroyed?.();
-        }
-      });
+      let that = this;
+      if(that.onNativeShow || that.onNativeHide || that.onWebviewShow || that.onNativeDestroyed){
+        xengine.onLifecycle((type, payload) => {
+          console.log(type,payload)
+          if (type == ON_NATIVE_SHOW) {
+            that.onNativeShow?.();
+          } else if (type == ON_NATIVE_HIDE) {
+            that.onNativeHide?.();
+          } else if (type == ON_WEBVIEW_SHOW) {
+            that.onWebviewShow?.();
+          } else if (type == ON_NATIVE_DESTROYED) {
+            that.onNativeDestroyed?.();
+          }
+        });
+      }
     },
   });
 }

@@ -3,7 +3,7 @@
 
 #import "UIViewController+Tag.h"
 #import <objc/runtime.h>
-#import "iTabBar.h"
+#import "iTabbar.h"
 #import "XENativeContext.h"
 static const  char* KEY_HISTORY_MODEL="KEY_HISTORY_MODEL";
 static HistoryModel* lastModel = NULL;

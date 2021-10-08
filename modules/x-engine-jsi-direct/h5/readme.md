@@ -9,7 +9,9 @@ version: 2.8.1
 ## push
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
 
-**demo**
+
+
+> **demo**
 ``` js
 
   // 跳转omp
@@ -67,6 +69,7 @@ version: 2.8.1
 | fragment | string | 必填 | / | 要注意：<br>一定要以 / 开头 |
 | query | Map\<string,string\> | optional |  | query 参数 |
 | params | Map\<string,string\> | optional | {"hideNavbar":true} | 其他参数（做兼容用）<br>\_\_deleteHistory\_\_: -1   在push　到下一页之前，　删除掉当前页<br>\_\_deleteHistory\_\_: -2   在push　到下一页之前，　删除掉当前两页<br>历史不足时，到 tab 历史为止。<br>\_\_fallback\_\_: 'https://www.baidu.com/'   找不到路由时的 fallback |
+
 **无返回值**
 
 
@@ -74,7 +77,9 @@ version: 2.8.1
 ## back
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
 
-**demo**
+
+
+> **demo**
 ``` js
 
     engine.api('com.zkty.jsi.direct','back',{
@@ -90,6 +95,7 @@ version: 2.8.1
 | --------------------------- | --------- | -------- | --------- |--------- |
 | scheme | string | 必填 |  | scheme 类型：由原生类实现<br>当前可用:<br>1. omp 使用 http 协议，webview 带原生 api 功能<br>2. omps 使用 https 协议，webview 带原生 api 功能<br>3. http 普通 webview<br>4. https 普通 webview<br>5. microapp 使用 file 协议，打开本地微应用文件 |
 | fragment | string | 必填 |  | 要注意：<br>/ 回到当前应用的首页<br>标准路由一定要以 / 开头<br>一些特殊字段：<br>-1 回上一页<br>0  回到 tab 页 |
+
 **无返回值**
 
 

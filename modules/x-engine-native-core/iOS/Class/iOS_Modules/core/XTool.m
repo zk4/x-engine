@@ -29,10 +29,42 @@
 
 #pragma mark - 图片处理
 @implementation  XToolImage
+// UIImage转base64
++ (NSString *)imageToBase64Str:(UIImage *)image {
+    NSData *data = UIImagePNGRepresentation(image);
+    NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return encodedImageStr;
+}
 
+// base64转UIImage
++ (UIImage *)base64StrToimage:(NSString *)base64 {
+    NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:base64 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
+    return decodedImage;
+}
+
+//UIImage转换为NSData
++ (NSData *)dataToUIImageWithPNG:(UIImage *)image WithCompressionQuality:(CGFloat)compressionQuality {
+    NSData *imageData = UIImageJPEGRepresentation(image,1.0f);//第二个参数为压缩倍数
+    return  imageData;
+}
+
+/// UIImage(png类型)转换为NSData
+/// @param image 图片
++ (NSData *)dataToUIImageWithPNG:(UIImage *)image {
+    NSData *imageData = UIImagePNGRepresentation(image);
+    return imageData;
+}
+
+/// UIImage(jpeg类型)转换为NSData
+/// @param image 图片
+/// @param compressionQuality //第二个参数为压缩倍数
++ (NSData *)dataToUIImageWithJPEG:(UIImage *)image WithCompressionQuality:(CGFloat)compressionQuality {
+    NSData *imageData = UIImageJPEGRepresentation(image, compressionQuality);
+    return imageData;
+}
     
-#pragma mark - 压缩图片
-// 这个方法性能如屎.
+// 压缩图片 --> 这个方法性能如屎.
 + (NSData *)compressImage:(UIImage *)image toMaxDataSizeKBytes:(float)size miniQuality:(float)q{
     static float KB = 1024;
     
@@ -64,7 +96,7 @@
 
     if (data.length/1024 < size) {
         perfEnd(img)
-        NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %u",size, preCompressSize,data.length/1024);
+        NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %lu",size, preCompressSize,data.length/1024);
         return data;
     }
     
@@ -82,13 +114,12 @@
         UIGraphicsEndImageContext();
         data = UIImageJPEGRepresentation(resultImage, compression);
     }
-    NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %u",size, preCompressSize,data.length/1024);
+    NSLog(@"预想:%f ,压缩前大小: %f, 压缩后大小: %lu",size, preCompressSize,data.length/1024);
     perfEnd(img)
     return data;
 }
 
-
-+(NSData *)thumbnail_64kbData:(NSString *)imgurl {
++ (NSData *)thumbnail_64kbData:(NSString *)imgurl {
     if(!imgurl){
         return nil;
     }
@@ -103,18 +134,42 @@
     UIImage*  thumbImg = [[UIImage alloc] initWithData:data];
     return thumbImg;
 }
+
++ (UIImage *)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 @end
 
 
 @implementation  XToolDataConverter
 
-//字典转json格式字符串:
-+ (NSString*)dictionaryToJson:(NSDictionary *)dic {
+/// 字典转json格式字符串
+/// @param dict 字典
++ (NSString*)dictionaryToJson:(NSDictionary *)dict {
     NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&parseError];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
+/// json格式字符串转字典:
+/// @param jsonString json
++ (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
  
 + (NSString*)SPAUrl2StandardUrl:(NSString*)raw {
     int questionMark = -1;
@@ -134,12 +189,12 @@
     if(questionMark != -1 && hashtagMark != -1){
         NSString* sub1= [raw substringToIndex:hashtagMark];
         NSString* sub2= [raw substringWithRange:NSMakeRange(hashtagMark, questionMark-hashtagMark)];
-        NSString* sub3=[ [raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSString* sub3=[[raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
     }
     return raw;
 }
-
+ 
 @end
 
 
@@ -175,6 +230,110 @@
   free(classes);
 
   return result;
+}
+
+
+
++(void)addSelector:(Class)class withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
+    
+    Method origMethod = class_getClassMethod(class, oldSel);
+    Method altMethod = class_getClassMethod(class, newSel);
+    
+    if (!origMethod || !altMethod) {
+        return;
+    }
+    Class metaClass = object_getClass(class);
+    BOOL didAddMethod = class_addMethod(metaClass,
+                                        oldSel,
+                                        method_getImplementation(altMethod),
+                                        method_getTypeEncoding(altMethod));
+    
+    if (didAddMethod) {
+        class_replaceMethod(metaClass,
+                            newSel,
+                            method_getImplementation(origMethod),
+                            method_getTypeEncoding(origMethod));
+    } else {
+        method_exchangeImplementations(origMethod, altMethod);
+    }
+}
+
++(void)addInstanceFunc:(Class)class fakeClass:(Class)fakeClass withOldSel:(SEL)oldSel withNewSel:(SEL)newSel{
+    
+    Method origMethod = class_getInstanceMethod(class, oldSel);
+    Method altMethod = class_getInstanceMethod(fakeClass, newSel);
+    if (!origMethod || !altMethod) {
+        return;
+    }
+    Class metaClass = class;
+    BOOL didAddMethod = class_addMethod(metaClass,
+                                        oldSel,
+                                        method_getImplementation(altMethod),
+                                        method_getTypeEncoding(altMethod));
+    
+    if (didAddMethod) {
+        class_replaceMethod(metaClass,
+                            newSel,
+                            method_getImplementation(origMethod),
+                            method_getTypeEncoding(origMethod));
+    } else {
+        method_exchangeImplementations(origMethod, altMethod);
+    }
+}
+
+
+
+@end
+
+@implementation XToolVC
+// 获取当前控制器
++ (UIViewController*)getCurrentViewController {
+   UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+   while (1) {
+       if ([vc isKindOfClass:[UITabBarController class]]) {
+           vc = ((UITabBarController*)vc).selectedViewController;
+       }
+       if ([vc isKindOfClass:[UINavigationController class]]) {
+           vc = ((UINavigationController*)vc).visibleViewController;
+       }
+       if (vc.presentedViewController) {
+           vc = vc.presentedViewController;
+       } else {
+           break;
+       }
+   }
+   return vc;
+}
+
+@end
+
+@implementation XToolStringConverter :NSObject
+/// uuid
++ (NSString *)uuidString{
+   CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+   CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+   NSString *uuid = [NSString stringWithString:(__bridge NSString *)uuid_string_ref];
+   CFRelease(uuid_ref);
+   CFRelease(uuid_string_ref);
+   return [uuid lowercaseString];
+}
+
+/// 随机数
++ (NSString *)randomString:(NSInteger)number {
+    NSString *ramdom;
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 1; i ; i ++) {
+        int a = (arc4random() % 122);
+        if (a > 96) {
+            char c = (char)a;
+            [array addObject:[NSString stringWithFormat:@"%c",c]];
+            if (array.count == number) {
+                break;
+            }
+        } else continue;
+    }
+    ramdom = [array componentsJoinedByString:@""];
+    return ramdom;
 }
 
 @end

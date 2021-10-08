@@ -7,11 +7,12 @@
 //
 
 #import "ZKMicroAppViewController.h"
+#import <x-engine-native-core/XENativeContext.h>
+#import <x-engine-native-protocols/iDirectManager.h>
+#import <x-engine-native-protocols/iScan.h>
 #import <Masonry/Masonry.h>
 #import "Prefix.h"
-#import <ZKScanViewController.h>
-#import <x-engine-module-router/XERouterManager.h>
-
+ 
 @interface ZKMicroAppViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong,nonatomic) UIButton * scanBtn;
@@ -70,8 +71,10 @@
             [self.scanResultArr addObject:dataDic];
         }
         [self reloadUIView];
-        
-        [XERouterManager routerToTarget:@"h5" withUri:self.searchBar.text withPath:nil withArgs:nil withVersion:nil];
+ 
+       
+        [XENP(iDirectManager) push:self.searchBar.text params:nil];
+
         self.hidesBottomBarWhenPushed = YES;
         self.hidesBottomBarWhenPushed = NO;
     }
@@ -79,30 +82,28 @@
 }
 
 -(void)scanAction{
-    ZKScanViewController *vc = [[ZKScanViewController alloc] init];
-    __weak typeof(self) weakSelf = self;
-    vc.block = ^(NSString *data) {
-        [XERouterManager routerToTarget:@"h5" withUri:data withPath:nil withArgs:nil withVersion:nil];
-        
-        self.hidesBottomBarWhenPushed = YES;
-        self.hidesBottomBarWhenPushed = NO;
-        
-        self.searchBar.text = data;
-        NSDictionary * dataDic = @{
-            @"image":@"1",
-            @"url":data
-        };
-        BOOL containBool = [self.scanResultArr containsObject:dataDic];
-        if (!containBool) {
-            [weakSelf.scanResultArr addObject:dataDic];
-        }
-        [weakSelf reloadUIView];
-        
-    };
+    __weak typeof(self) weakself = self;
+
+    [XENP(iScan) openScanView:^(NSString *res) {
+        [XENP(iDirectManager) push:res params:nil];
+
+       self.hidesBottomBarWhenPushed = YES;
+       self.hidesBottomBarWhenPushed = NO;
+       
+       self.searchBar.text = res;
+       NSDictionary * dataDic = @{
+           @"image":@"1",
+           @"url":res
+       };
+       BOOL containBool = [self.scanResultArr containsObject:dataDic];
+       if (!containBool) {
+           [weakself.scanResultArr addObject:dataDic];
+       }
+       [weakself reloadUIView];
+       
+    }];
+       
     
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 -(void)reloadUIView{
@@ -121,7 +122,8 @@
 }
 
 -(void)goWebAction:(UIButton *)sender{
-    [XERouterManager routerToTarget:@"h5" withUri:self.scanResultArr[sender.tag][@"url"] withPath:nil withArgs:nil withVersion:nil];
+
+    [XENP(iDirectManager) push:self.scanResultArr[sender.tag][@"url"] params:nil];
     self.hidesBottomBarWhenPushed = YES;
     self.hidesBottomBarWhenPushed = NO;
 }

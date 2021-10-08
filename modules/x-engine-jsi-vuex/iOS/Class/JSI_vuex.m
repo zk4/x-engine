@@ -36,7 +36,10 @@ JSI_MODULE(JSI_vuex)
 
 - (NSString *) genkey:(NSString*) key{
      assert(key!=nil);
-     HistoryModel* hm= [[Unity sharedInstance].getCurrentVC  getLastHistory];
+   
+
+    XEngineWebView* webview = [self currentWebView];
+    HistoryModel* hm=webview.model ;
      assert(hm!=nil);
      return  [NSString stringWithFormat:@"%@%@%@:%@",VUEX_STORE_KEY, hm.host?hm.host:@"",hm.pathname?hm.pathname:@"", key];
 }

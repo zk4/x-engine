@@ -16,10 +16,6 @@
  * @url 请求后台地址
  */
 - (void)updateMicroappsFromUrl:(NSString *)url;
-
-- (NSDictionary *)getRootPackageJsonInfo ;
-- (void) updateMicroappsInfos;
-
 - (NSString*)getPath:(NSString*) microappId;
 @end
 #endif /* iUpdator_h */

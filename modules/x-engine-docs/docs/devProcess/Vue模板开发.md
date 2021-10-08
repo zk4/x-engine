@@ -73,8 +73,7 @@ xengine.api("com.zkty.jsi.device",	"getTabbarHeight"), function (res) {
 
 ### x-engine-lifecycle
 ``` js
-const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示
-const ON_WEBVIEW_SHOW = "onWebviewShow"; // 原生显示
+const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示, 有可能 webview 还没有加载完成。 需要自行判断
 const ON_NATIVE_HIDE = "onNativeHide"; // 原生隐藏
 const ON_NATIVE_DESTROYED = "onNativeDestroyed"; // 原生销毁
 ```
@@ -97,7 +96,6 @@ Vue.use(lifeCycle);
 ```javascript
 methods: {
   onNativeShow() {},
-  onWebShow() {},
   onNativeHide() {},
   onNativeDestroyed() {},
 }

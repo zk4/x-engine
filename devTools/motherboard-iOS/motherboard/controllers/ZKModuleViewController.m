@@ -7,10 +7,10 @@
 //
 
 #import "ZKModuleViewController.h"
-#import <XEngineContext.h>
-#import <x-engine-module-router/XERouterManager.h>
-//#import "UIViewController+.h"
+#import <x-engine-native-core/XENativeContext.h>
 #import "moduleTableViewCell.h"
+#import "iDirectManager.h"
+
 
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
@@ -134,10 +134,10 @@
     [self pushTestModule:@"com.zkty.module.tzcash"];
 }
 - (void)pushTestModule:(NSString*) appid {
-//    MircroAppController *webLaderVC = [[MircroAppController alloc] initWithMicroAppId:appid ];
-//    [self pushViewController:webLaderVC];
+ 
     self.hidesBottomBarWhenPushed = YES;
-    [XERouterManager routerToTarget:@"microapp" withUri:appid withPath:nil withArgs:nil withVersion:0];
+//    [XERouterManager routerToTarget:@"microapp" withUri:appid withPath:nil withArgs:nil withVersion:0];
+    
     self.hidesBottomBarWhenPushed = NO;
 
 }

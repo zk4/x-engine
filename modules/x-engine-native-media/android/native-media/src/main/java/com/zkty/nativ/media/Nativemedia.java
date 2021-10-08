@@ -23,7 +23,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
@@ -38,13 +37,10 @@ import com.zkty.nativ.jsi.utils.FileUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 import com.zkty.nativ.media.cameraImpl.GlideLoader;
-import com.zkty.nativ.media.cameraImpl.ImageCacheManager;
 import com.zkty.nativ.media.cameraImpl.ImagePicker;
 import com.zkty.nativ.media.cameraImpl.dialog.FullImageDialog;
 import com.zkty.nativ.media.cameraImpl.manager.ConfigManager;
 import com.zkty.nativ.ui.view.dialog.BottomDialog;
-
-import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -52,7 +48,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 public class Nativemedia extends NativeModule implements Imedia {
     private static final String TAG = "Nativemedia";
@@ -75,7 +71,7 @@ public class Nativemedia extends NativeModule implements Imedia {
     private File outCrop;
     @Override
     public String moduleId() {
-        return "com.zkty.native.media";
+        return "com.zkty.native.media2";
     }
 
     @Override
@@ -280,6 +276,32 @@ public class Nativemedia extends NativeModule implements Imedia {
         }
     }
 
+    @Override
+    public void saveImageUrlToAlbum(String imageData, SaveCallBack callBack) {
+        Activity activity = XEngineApplication.getCurrentActivity();
+        ImageUtils.savePictureByUrl(activity,imageData, new ImageUtils.SaveCallBack() {
+            @Override
+            public void saveCallBack(int status, String msg) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callBack.saveCallBack(status,msg);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void saveImageBase64ToAlbum(String imageData, SaveCallBack callBack) {
+        ImageUtils.savePictureByBase64(XEngineApplication.getCurrentActivity(),imageData, new ImageUtils.SaveCallBack() {
+            @Override
+            public void saveCallBack(int status, String msg) {
+                callBack.saveCallBack(status,msg);
+            }
+        });
+    }
+
     /**
      * @param act
      */
@@ -404,7 +426,7 @@ public class Nativemedia extends NativeModule implements Imedia {
         }
 
         Uri photoUri;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             photoUri = FileProvider.getUriForFile(activity, XEngineProvider.getProvider(), outCrop);
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setClipData(ClipData.newRawUri(MediaStore.EXTRA_OUTPUT, photoUri));
@@ -471,9 +493,8 @@ public class Nativemedia extends NativeModule implements Imedia {
 //                cameraRetDTO.setType("image/jpeg");
 //            }
 //            String ret = ClientManager.bitmapCompressToString(paths.get(j));
-            String key = UUID.randomUUID().toString();
-            ImageCacheManager.put(key,paths.get(j));
-            cameraRetDTO.setId(key);
+
+            cameraRetDTO.setId(paths.get(j));
 
             Bitmap imageThumbnail = null;
             String base64Str = "";
@@ -502,16 +523,10 @@ public class Nativemedia extends NativeModule implements Imedia {
     }
 
 
-    @Override
-    public void saveImageToAlbum(String imageData, String type, SaveCallBack callBack) {
-        Activity activity = XEngineApplication.getCurrentActivity();
-        if ("url".equals(type)) {
-            ImageUtils.savePictureByUrl(activity, imageData);
-        } else {
-            ImageUtils.savePictureByBase64(activity, imageData);
-        }
-        callBack.saveCallBack();
-    }
+
+
+
+
 
     @Override
     public void preImage(List<String> imageDataList, int index, PreImageCallBack callBack) {
@@ -519,9 +534,6 @@ public class Nativemedia extends NativeModule implements Imedia {
             @Override
             public void run() {
                 ConfigManager.getInstance().setImageLoader(new GlideLoader());
-                for (int i = 0; i < imageDataList.size(); i++) {
-                    imageDataList.set(i,ImageCacheManager.get(imageDataList.get(i)));
-                }
                 new FullImageDialog(XEngineApplication.getCurrentActivity())
                         .Builder()
                         .setImageUrl(imageDataList, index)
@@ -534,12 +546,14 @@ public class Nativemedia extends NativeModule implements Imedia {
 
     Nativegmupload igmupload = null;
     @Override
-    public void upLoadImgList(String url,List<String> filePathList, UpLoadImgCallback callback) {
+    public void upLoadImgList(String url, List<String> filePathList, Map<String,String> header, UpLoadImgCallback callback) {
         if(TextUtils.isEmpty(url)){
             callback.onUpLoadSucces(-1,"","url不能为空","",true);
             return;
         }
-
+        if(header == null){
+            header = new HashMap<>();
+        }
 
         NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(Igmupload.class);
         if (module instanceof Nativegmupload)
@@ -553,7 +567,7 @@ public class Nativemedia extends NativeModule implements Imedia {
             return;
         }
 
-        upLoadFile(url,filePathList,0,callback);
+        upLoadFile(url,header,filePathList,0,callback);
     }
 
     /**
@@ -563,23 +577,19 @@ public class Nativemedia extends NativeModule implements Imedia {
      * @param index
      * @param callback
      */
-    private void upLoadFile(String url,List<String> filePathList,int index, UpLoadImgCallback callback){
-        String imgkey = filePathList.get(index);
-        String filePath = ImageCacheManager.get(imgkey);
+    private void upLoadFile(String url, Map<String,String> header, List<String> filePathList,int index, UpLoadImgCallback callback){
+        String filePath = filePathList.get(index);
         boolean falg = index == (filePathList.size() - 1);
-
-        igmupload.doUploadFile(url, filePath, new OnUploadListener() {
+        igmupload.doUploadFile(url,header, filePath, new OnUploadListener() {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;
                 try {
-                    org.json.JSONObject obj = new org.json.JSONObject(dataStr);
-
-                    callback.onUpLoadSucces(0,imgkey,"接口发送成功",dataStr,falg);
+                    callback.onUpLoadSucces(0,filePath,"接口发送成功",dataStr,falg);
                     if (!falg) {
-                        upLoadFile(url, filePathList, index + 1, callback);
+                        upLoadFile(url, header, filePathList, index + 1, callback);
                     }
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -592,7 +602,7 @@ public class Nativemedia extends NativeModule implements Imedia {
             @Override
             public void onUploadFailed() {
                 if(callback == null)return;
-                callback.onUpLoadSucces(-1,imgkey,"上传失败","",falg);
+                callback.onUpLoadSucces(-1,filePath,"上传失败","",falg);
             }
         });
     }

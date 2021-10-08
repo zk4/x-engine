@@ -19,7 +19,7 @@
 -(void) pushTestModule{
     id<iDirectManager> director = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
 
-    [director push:@"omp" host:@"10.2.128.71:9111" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
+    [director push:@"omp" host:@"0.0.0.0:9111" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
 }
 
 - (void)viewDidLoad {

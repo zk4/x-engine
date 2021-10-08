@@ -29,9 +29,7 @@
   }
   
   class _2_com_zkty_jsi_media_DTO {
-    public String type;
-
-    public String imageData;
+    public String imgUrl;
   }
   
   class _3_com_zkty_jsi_media_DTO {
@@ -45,7 +43,7 @@
   class _4_com_zkty_jsi_media_DTO {
     public String imgID;
 
-    public String type;
+    public String imgType;
 
     public String thumbnail;
   }
@@ -85,7 +83,7 @@
   class _7_com_zkty_jsi_media_DTO {
     public String url;
 
-    public List<String> ids;
+    public List<String> imgIds;
 
     @Optional
 		public Map<String,String> header;

@@ -9,6 +9,8 @@
 #import "SLUrlProtocol.h"
 #import "SLWebCacheManager.h"
 #import "NSCachedURLResponse+Modifier.h"
+#import "XENativeContext.h"
+#import "iToast.h"
 
 static NSString *SLUrlProtocolHandled = @"SLUrlProtocolHandled";
 
@@ -63,6 +65,9 @@ static NSString *SLUrlProtocolHandled = @"SLUrlProtocolHandled";
 
     if (cachedURLResponse) {
         NSLog(@"@cache =>%@",self.request.URL);
+        NSHTTPURLResponse* res =(NSHTTPURLResponse*)(cachedURLResponse.response);
+        NSLog(@"@responseheaders =>%@",res.allHeaderFields);
+
         [self.client URLProtocol:self didReceiveResponse:cachedURLResponse.response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
         [self.client URLProtocol:self didLoadData:cachedURLResponse.data];
         [self.client URLProtocolDidFinishLoading:self];
@@ -115,6 +120,9 @@ didReceiveResponse:(NSURLResponse *)response
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
     if (error) {
+#ifdef DEBUG
+        [XENP(iToast) toast:[NSString stringWithFormat:@"%@", error]];
+#endif
         [self.client URLProtocol:self didFailWithError:error];
     } else {
         [self.client URLProtocolDidFinishLoading:self];

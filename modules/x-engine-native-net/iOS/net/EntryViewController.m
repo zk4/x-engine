@@ -188,15 +188,13 @@
 
 - (void)test2 {
     for (int i =0; i<1000; i++) {
-        id ok = [[XENP(iNetManager) one] build:({
-            NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
-            req;
-        })];
+        id ok = [XENP(iNetManager) one];
         [ok addFilter:[GlobalConfigFilter sharedInstance]];
         [ok addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
         [ok addFilter:[GlobalMergeRequestFilter sharedInstance]];
         [ok addFilter:[GlobalJsonFilter sharedInstance]];
-        [ok send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
+        [ok send:req response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             
         }];
         
@@ -217,11 +215,11 @@
 }
 
 -(void) pushTestModule{
-    [self test0];
+//    [self test0];
     //    [self test1];
     
     
-    //    [self test2];
+        [self test2];
     
     /////////////////////////////////////////////////////////////////////// the second writing style
     

@@ -28,7 +28,6 @@
 #import "XENativeContext.h"
 #import "KOHttp.h"
 
-// 有个问题，如果这个类做主类使用， 则 KOHTTP 里的 NSMutableURLRequest 则不能是强引用。。 不然 KOHTTP 无法释放
 @interface NSMutableURLRequest(KOFilter)
 @end
 
@@ -48,7 +47,7 @@
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
 
     if(!self.koagent){
-        self.koagent = [[KOHttp new] build:self];
+        self.koagent = [KOHttp new];
     }
 
     [self.koagent addFilter:filter];
@@ -57,7 +56,7 @@
 -(id<iNetAgent>) activePipeline:(KOPipeline) pipeline{
 
     if(!self.koagent){
-        self.koagent = [[KOHttp new] build:self];
+        self.koagent = [KOHttp new];
     }
 
     [self.koagent activePipeline:pipeline];
@@ -66,10 +65,10 @@
 -(id<iNetAgent>) send:(KOResponse) block{
 
     if(!self.koagent){
-        self.koagent = [[KOHttp new] build:self];
+        self.koagent = [KOHttp new];
     }
 
-    [self.koagent send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self.koagent send:self response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
     return self.koagent;

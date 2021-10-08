@@ -36,19 +36,14 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 
 
 @interface KOHttp()
-@property (nonatomic, strong)   NSMutableURLRequest* request;
 @property (nonatomic, strong)   NSURLSession *session;
-
 @property (atomic, strong)   NSMutableArray*  filters;
 @property (nonatomic, assign)   int pos;
 @end
 
 @implementation KOHttp
 
--(id<iNetAgent>) build:(NSMutableURLRequest*) request{
-    self.request = request;
-    return self;
-}
+ 
 
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
     @synchronized (self) {
@@ -72,18 +67,18 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
         NSLog(@"%@ 处理中...",[filter name]);
         [filter doFilter:session request:request  response:KOResponse chain:weakSelf];
     }else{
-        [self _internalSend:KOResponse];
+        [self _internalSend:request response:KOResponse];
     }
 }
 
--(id<iNetAgent>) _internalSend:(KOResponse)block{
+-(id<iNetAgent>) _internalSend:(NSMutableURLRequest*) request response:(KOResponse)block{
     self.session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:self.request completionHandler:block];
+    NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:block];
     [sessionTask resume];
     return self;
 }
--(id<iNetAgent>) send:(KOResponse) block{
-    [self doFilter:self.session request:self.request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+-(id<iNetAgent>) send:(NSMutableURLRequest*) request response:(KOResponse) block{
+    [self doFilter:self.session request:request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
     return self;

@@ -76,6 +76,5 @@
 
 - (void)dealloc{
     objc_setAssociatedObject(self, @selector(koagent), nil, OBJC_ASSOCIATION_ASSIGN);
-    NSLog(@"hello");
 }
 @end

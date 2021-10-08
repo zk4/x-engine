@@ -35,9 +35,6 @@
 		58732F5E27042D930098F18C /* GlobalMergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58732F5427042D920098F18C /* GlobalMergeRequestFilter.m */; };
 		58732F5F27042D930098F18C /* GlobalConfigFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58732F5527042D920098F18C /* GlobalConfigFilter.m */; };
 		58732F6127042D930098F18C /* GlobalJsonFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58732F5B27042D930098F18C /* GlobalJsonFilter.m */; };
-		58F37F74270441E200EADBBB /* .java in Resources */ = {isa = PBXBuildFile; fileRef = 58F37F6D270441E200EADBBB /* .java */; };
-		58F37F75270441E200EADBBB /* .java in Resources */ = {isa = PBXBuildFile; fileRef = 58F37F6D270441E200EADBBB /* .java */; };
-		58F37F76270441E200EADBBB /* .java in Resources */ = {isa = PBXBuildFile; fileRef = 58F37F6D270441E200EADBBB /* .java */; };
 		58F37F7A2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
 		58F37F7B2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
 		58F37F7C2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
@@ -53,9 +50,15 @@
 		58F37F99270481D100EADBBB /* gen_ZKBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F98270481D100EADBBB /* gen_ZKBaseApi.m */; };
 		58F37F9B2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F9A2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m */; };
 		58F37FA727062EDD00EADBBB /* LoggingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FA527062EDD00EADBBB /* LoggingFilter.m */; };
-		58F37FB3270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */; };
 		58F37FBC270E177A00EADBBB /* KOBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FBB270E177A00EADBBB /* KOBaseApi.m */; };
 		58F37FCE2710076600EADBBB /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FCD2710076500EADBBB /* EntryViewController.m */; };
+		58F37FE427100D2D00EADBBB /* Simple.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FD027100D2D00EADBBB /* Simple.ts */; };
+		58F37FE527100D2D00EADBBB /* gm_general_appVersion_checkUpdate.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FD127100D2D00EADBBB /* gm_general_appVersion_checkUpdate.ts */; };
+		58F37FE627100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FD527100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */; };
+		58F37FE727100D2D00EADBBB /* .java in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FE027100D2D00EADBBB /* .java */; };
+		58F37FE827100D2D00EADBBB /* Post.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FE127100D2D00EADBBB /* Post.ts */; };
+		58F37FE927100D2D00EADBBB /* swagger.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FE227100D2D00EADBBB /* swagger.ts */; };
+		58F37FEA27100D2D00EADBBB /* update.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FE327100D2D00EADBBB /* update.ts */; };
 		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-netTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-netTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-net.a */; };
@@ -122,7 +125,6 @@
 		58732F5A27042D930098F18C /* GlobalNoResponseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalNoResponseFilter.h; sourceTree = "<group>"; };
 		58732F5B27042D930098F18C /* GlobalJsonFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalJsonFilter.m; sourceTree = "<group>"; };
 		58732F5C27042D930098F18C /* GlobalStatusCodeNot2xxFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalStatusCodeNot2xxFilter.h; sourceTree = "<group>"; };
-		58F37F6D270441E200EADBBB /* .java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .java; sourceTree = "<group>"; };
 		58F37F782704496800EADBBB /* TodoApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoApi.h; sourceTree = "<group>"; };
 		58F37F792704496800EADBBB /* TodoApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoApi.m; sourceTree = "<group>"; };
 		58F37F84270464B500EADBBB /* KOHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOHttp.m; sourceTree = "<group>"; };
@@ -136,11 +138,18 @@
 		58F37F9A2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalStatusCodeNot2xxFilter.m; sourceTree = "<group>"; };
 		58F37FA527062EDD00EADBBB /* LoggingFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingFilter.m; sourceTree = "<group>"; };
 		58F37FA627062EDD00EADBBB /* LoggingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingFilter.h; sourceTree = "<group>"; };
-		58F37FB1270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_gm_general_appVersion_checkUpdate.h; sourceTree = "<group>"; };
-		58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_gm_general_appVersion_checkUpdate.m; sourceTree = "<group>"; };
 		58F37FBA270E177A00EADBBB /* KOBaseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOBaseApi.h; sourceTree = "<group>"; };
 		58F37FBB270E177A00EADBBB /* KOBaseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOBaseApi.m; sourceTree = "<group>"; };
 		58F37FCD2710076500EADBBB /* EntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryViewController.m; sourceTree = "<group>"; };
+		58F37FD027100D2D00EADBBB /* Simple.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Simple.ts; sourceTree = "<group>"; };
+		58F37FD127100D2D00EADBBB /* gm_general_appVersion_checkUpdate.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm_general_appVersion_checkUpdate.ts; sourceTree = "<group>"; };
+		58F37FD527100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_gm_general_appVersion_checkUpdate.m; sourceTree = "<group>"; };
+		58F37FD627100D2D00EADBBB /* x_api_undefined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_undefined.h; sourceTree = "<group>"; };
+		58F37FD727100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_gm_general_appVersion_checkUpdate.h; sourceTree = "<group>"; };
+		58F37FE027100D2D00EADBBB /* .java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .java; sourceTree = "<group>"; };
+		58F37FE127100D2D00EADBBB /* Post.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Post.ts; sourceTree = "<group>"; };
+		58F37FE227100D2D00EADBBB /* swagger.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swagger.ts; sourceTree = "<group>"; };
+		58F37FE327100D2D00EADBBB /* update.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update.ts; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-netTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-netTests.release.xcconfig"; path = "Target Support Files/Pods-netTests/Pods-netTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-net.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-net.release.xcconfig"; path = "Target Support Files/Pods-abstract-net/Pods-abstract-net.release.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +269,7 @@
 		00DFC6E224C84000006A53EE /* net */ = {
 			isa = PBXGroup;
 			children = (
+				58F37FCF27100D2D00EADBBB /* model */,
 				58F37F772704495C00EADBBB /* api */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
@@ -333,110 +343,11 @@
 			isa = PBXGroup;
 			children = (
 				58F37F82270464B500EADBBB /* core */,
-				58F37F5E270441E200EADBBB /* model */,
 				58732F5227042D920098F18C /* filters */,
 				38E983932615F6E8007F6BDF /* Native_net.h */,
 				38E983922615F6E8007F6BDF /* Native_net.m */,
 			);
 			path = Class;
-			sourceTree = "<group>";
-		};
-		58F37F5E270441E200EADBBB /* model */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F60270441E200EADBBB /* iOS */,
-				58F37F65270441E200EADBBB /* android */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		58F37F60270441E200EADBBB /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F61270441E200EADBBB /* Class */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		58F37F61270441E200EADBBB /* Class */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F62270441E200EADBBB /* gen */,
-			);
-			path = Class;
-			sourceTree = "<group>";
-		};
-		58F37F62270441E200EADBBB /* gen */ = {
-			isa = PBXGroup;
-			children = (
-				58F37FB1270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */,
-				58F37FB2270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */,
-			);
-			path = gen;
-			sourceTree = "<group>";
-		};
-		58F37F65270441E200EADBBB /* android */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F66270441E200EADBBB /* jsi-undefined */,
-			);
-			path = android;
-			sourceTree = "<group>";
-		};
-		58F37F66270441E200EADBBB /* jsi-undefined */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F67270441E200EADBBB /* src */,
-			);
-			path = "jsi-undefined";
-			sourceTree = "<group>";
-		};
-		58F37F67270441E200EADBBB /* src */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F68270441E200EADBBB /* main */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		58F37F68270441E200EADBBB /* main */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F69270441E200EADBBB /* java */,
-			);
-			path = main;
-			sourceTree = "<group>";
-		};
-		58F37F69270441E200EADBBB /* java */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F6A270441E200EADBBB /* com */,
-			);
-			path = java;
-			sourceTree = "<group>";
-		};
-		58F37F6A270441E200EADBBB /* com */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F6B270441E200EADBBB /* zkty */,
-			);
-			path = com;
-			sourceTree = "<group>";
-		};
-		58F37F6B270441E200EADBBB /* zkty */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F6C270441E200EADBBB /* jsi */,
-			);
-			path = zkty;
-			sourceTree = "<group>";
-		};
-		58F37F6C270441E200EADBBB /* jsi */ = {
-			isa = PBXGroup;
-			children = (
-				58F37F6D270441E200EADBBB /* .java */,
-			);
-			path = jsi;
 			sourceTree = "<group>";
 		};
 		58F37F772704495C00EADBBB /* api */ = {
@@ -465,6 +376,110 @@
 				58F37F88270464B500EADBBB /* NSMutableURLRequest+Filter.m */,
 			);
 			path = core;
+			sourceTree = "<group>";
+		};
+		58F37FCF27100D2D00EADBBB /* model */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FD027100D2D00EADBBB /* Simple.ts */,
+				58F37FD127100D2D00EADBBB /* gm_general_appVersion_checkUpdate.ts */,
+				58F37FD227100D2D00EADBBB /* iOS */,
+				58F37FD827100D2D00EADBBB /* android */,
+				58F37FE127100D2D00EADBBB /* Post.ts */,
+				58F37FE227100D2D00EADBBB /* swagger.ts */,
+				58F37FE327100D2D00EADBBB /* update.ts */,
+			);
+			path = model;
+			sourceTree = SOURCE_ROOT;
+		};
+		58F37FD227100D2D00EADBBB /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FD327100D2D00EADBBB /* Class */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		58F37FD327100D2D00EADBBB /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FD427100D2D00EADBBB /* gen */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		58F37FD427100D2D00EADBBB /* gen */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FD527100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */,
+				58F37FD627100D2D00EADBBB /* x_api_undefined.h */,
+				58F37FD727100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.h */,
+			);
+			path = gen;
+			sourceTree = "<group>";
+		};
+		58F37FD827100D2D00EADBBB /* android */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FD927100D2D00EADBBB /* jsi-undefined */,
+			);
+			path = android;
+			sourceTree = "<group>";
+		};
+		58F37FD927100D2D00EADBBB /* jsi-undefined */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FDA27100D2D00EADBBB /* src */,
+			);
+			path = "jsi-undefined";
+			sourceTree = "<group>";
+		};
+		58F37FDA27100D2D00EADBBB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FDB27100D2D00EADBBB /* main */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		58F37FDB27100D2D00EADBBB /* main */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FDC27100D2D00EADBBB /* java */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		58F37FDC27100D2D00EADBBB /* java */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FDD27100D2D00EADBBB /* com */,
+			);
+			path = java;
+			sourceTree = "<group>";
+		};
+		58F37FDD27100D2D00EADBBB /* com */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FDE27100D2D00EADBBB /* zkty */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		58F37FDE27100D2D00EADBBB /* zkty */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FDF27100D2D00EADBBB /* jsi */,
+			);
+			path = zkty;
+			sourceTree = "<group>";
+		};
+		58F37FDF27100D2D00EADBBB /* jsi */ = {
+			isa = PBXGroup;
+			children = (
+				58F37FE027100D2D00EADBBB /* .java */,
+			);
+			path = jsi;
 			sourceTree = "<group>";
 		};
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
@@ -628,10 +643,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58F37F74270441E200EADBBB /* .java in Resources */,
+				58F37FE427100D2D00EADBBB /* Simple.ts in Resources */,
+				58F37FE527100D2D00EADBBB /* gm_general_appVersion_checkUpdate.ts in Resources */,
 				00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */,
+				58F37FE727100D2D00EADBBB /* .java in Resources */,
+				58F37FE827100D2D00EADBBB /* Post.ts in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
+				58F37FEA27100D2D00EADBBB /* update.ts in Resources */,
 				580B918E2694CDB7006AD356 /* Info.sit.plist in Resources */,
+				58F37FE927100D2D00EADBBB /* swagger.ts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +674,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				580B916B2694CCEA006AD356 /* EntryViewController.xib in Resources */,
-				58F37F75270441E200EADBBB /* .java in Resources */,
 				580B916C2694CCEA006AD356 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,7 +682,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58F37F76270441E200EADBBB /* .java in Resources */,
 				580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */,
 				580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */,
 				580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */,
@@ -872,9 +890,9 @@
 				38E983942615F6E8007F6BDF /* Native_net.m in Sources */,
 				58F37FA727062EDD00EADBBB /* LoggingFilter.m in Sources */,
 				58F37F99270481D100EADBBB /* gen_ZKBaseApi.m in Sources */,
+				58F37FE627100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 				58732F5D27042D930098F18C /* GlobalNoResponseFilter.m in Sources */,
-				58F37FB3270CA4BD00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

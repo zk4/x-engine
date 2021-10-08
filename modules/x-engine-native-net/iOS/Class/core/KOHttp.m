@@ -84,7 +84,5 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
     return self;
 }
 
-- (void)dealloc{
-    NSLog(@"KOHttp dealloc");
-}
+ 
 @end

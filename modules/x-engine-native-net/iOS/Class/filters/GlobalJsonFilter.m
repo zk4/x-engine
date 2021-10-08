@@ -48,7 +48,7 @@
         NSError* jsonError=nil;
         NSDictionary* model  = [XToolDataConverter dictionaryWithJsonStringWithError:str error:&jsonError];
         if(jsonError){
-#ifdef DEUBG
+#ifdef DEBUG
             NSString* msg =[NSString stringWithFormat:@"返回值 JSON 解析失败, 不会回调到业务，开发人员请注意。\n%@" ,str];
             [XENP(iToast) toast:msg];
 #endif

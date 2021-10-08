@@ -41,7 +41,7 @@
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;
         if(!(hres.statusCode >= 200 && hres.statusCode < 300)){
-#ifdef DEUBG
+#ifdef DEBUG
             NSString* msg =[NSString stringWithFormat:@"服务器状态码为 %ld, 当前不会回调到业务，开发人员请注意。" ,hres.statusCode];
             NSLog(@"%@",msg);
             [XENP(iToast) toast:msg];

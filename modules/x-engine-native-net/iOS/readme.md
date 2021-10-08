@@ -11,7 +11,13 @@
 
 ## 核心逻辑
 
-<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211008144219218.png" alt="image-20211008144219218" style="zoom: 33%;" />
+<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211008152122113.png" alt="image-20211008152122113" style="zoom:50%;" />
+
+## Pipeline
+
+一组 filter 可以组成 pipeline 可以方便切换
+
+<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211008152206298.png" alt="image-20211008152206298" style="zoom:50%;" />
 
 ## 代码自动生成
 

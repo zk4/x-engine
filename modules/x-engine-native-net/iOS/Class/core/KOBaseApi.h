@@ -25,7 +25,7 @@ typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
     + (void) ko_configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline;
 
     - (NSString*) getMethod;
-    - (NSString*) getFinalUrl;
+    - (NSString*) getFinalUrl:(JSONModel*) dto;
     - (NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError;
     - (void) activePipelineByName:(NSString*) name;
     - (NSString*) getPipelineName;

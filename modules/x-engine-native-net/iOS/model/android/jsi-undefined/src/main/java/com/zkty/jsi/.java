@@ -15,61 +15,49 @@ import androidx.annotation.Nullable;
 import com.zkty.nativ.core.annotation.Optional;
 
 
-class x_api_gm_general_login_Req {
-  @Optional
-		public Integer ldapId;
+class PostReq {
+  public String userId;
 
     @Optional
-		public String password;
+		public Integer tid;
 
-    @Optional
-		public String username;
-  }
-  
-class x_api_gm_general_login_Res {
-  @Optional
-		public String sessionToken;
+    public String title;
 
-    @Optional
-		public String userToken;
+    public boolean completed;
 
-    @Optional
-		public _0__DTO bizUser;
+    public String message;
+
+    public String moreMsg;
+
+    public String ext;
+
+    public _0__DTO hello;
   }
   
 class _0__DTO {
-  @Optional
-		public String avatar;
+  public _1__DTO world;
+  }
+  
+class _1__DTO {
+  public String inner;
+  }
+  
+class PostRes {
+  public Map<String,String> args;
 
-    @Optional
-		public String createdTime;
+    public String data;
 
-    @Optional
-		public String email;
+    public Map<String,String> files;
 
-    @Optional
-		public String genderType;
+    public Map<String,String> form;
 
-    @Optional
-		public Integer id;
+    public Map<String,String> headers;
 
-    @Optional
-		public String nickname;
+    public Map<String,String> json;
 
-    @Optional
-		public String phoneNum;
+    public String origin;
 
-    @Optional
-		public String realname;
-
-    @Optional
-		public Integer status;
-
-    @Optional
-		public String updatedTime;
-
-    @Optional
-		public String userKey;
+    public String url;
   }
 
 interface undefined_protocol {
@@ -78,6 +66,15 @@ interface undefined_protocol {
   
 
     public abstract class undefined extends JSIModule implements undefined_protocol {
+    @Override
+    public String moduleId() {
+      return "undefined";
+    }
+  
+  }
+  
+
+  lic abstract class undefined extends JSIModule implements undefined_protocol {
     @Override
     public String moduleId() {
       return "undefined";

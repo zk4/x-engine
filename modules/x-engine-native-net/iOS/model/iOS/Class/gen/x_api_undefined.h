@@ -12,21 +12,22 @@
 
   #import <Foundation/Foundation.h>
   #import "x_api_undefined.h"
-  #import "ZKBaseApi.h"
+  #import "KOBaseApi.h"
   #import "FBLPromises.h"
   
     
-  @interface x_api_undefinedApi : ZKBaseApi
+  @interface x_api_undefined : KOBaseApi
   
   @property (nonatomic, strong) undefined* dtoReq;
   @property (nonatomic, strong) undefined* dtoRes;
   
   typedef void (^x_api_undefinedApiResponse)( undefined* _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
   
-  - (void) request:(x_api_undefinedApiResponse) response;
+  - (void) request:(x_api_undefinedApiResponse _Nullable) response;
+  - (void) request:(undefined* _Nullable) dtoReq response:(x_api_undefinedApiResponse _Nullable) response;
 
-  - (FBLPromise<undefined *>*) promise;
-  - (FBLPromise<undefined *>*) promise:(undefined*) dtoReq;
+  - (FBLPromise<undefined *>* _Nullable) promise;
+  - (FBLPromise<undefined *>* _Nullable) promise:(undefined* _Nullable) dtoReq;
 
   @end
   

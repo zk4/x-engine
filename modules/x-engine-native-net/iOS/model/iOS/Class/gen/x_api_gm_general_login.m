@@ -4,6 +4,7 @@
 
 
 #import "x_api_gm_general_login.h"
+#import "NSURL+QueryDictionary.h"
 
 
 @implementation x_api_gm_general_login_Req
@@ -62,36 +63,51 @@
 }
 
 - (NSString*) getContentType{
-    return @"application/x-www-form-urlencoded";
+  // 如果觉得生成实现不对，请继承 getContentType 类，实现此方法即可。
+  return @"application/x-www-form-urlencoded";
 }
 
 - (NSData*) getBody:(x_api_gm_general_login_Req*) dtoReq{
- return [super getBody:dtoReq];
+  // 如果觉得生成实现不对，请继承 x_api_gm_general_login 类，实现此方法即可。
+  if([[self getMethod] isEqualToString:@"GET"]){
+      return [NSData new];
+  }
+  return [super getBody:dtoReq];
 }
 
-- (NSString*) getPath{
-  return @"/login/ldap/1";
+- (NSString*) getPath:(x_api_gm_general_login_Req*) dtoReq{
+  // 如果觉得生成实现不对，请继承 x_api_gm_general_login 类，实现此方法即可。
+  NSString* path = @"/login/ldap/1";
+  if([[self getMethod] isEqualToString:@"GET"]){
+    return [NSString stringWithFormat:@"%@?%@",path,dtoReq.toDictionary.uq_URLQueryString];
+  }else{
+      return path;
+  }
+
 }
 
-- (NSString*) getFinalUrl{
-    // 逻辑如下：
-    // 1. 优先使用 localUrlPrefix， 也就是通过代码设置的
-    // 2. 其次使用全局， 也是由代码设置
-    // 3. 最后使用自动生成的
-    // 4. 实在不满足你，直接覆盖getUrl 函数即可
-    if(self.localUrlPrefix) {
-        return [NSString stringWithFormat:@"%@%@",self.localUrlPrefix,[self getPath]];
-    }
-    if([KOBaseApi ko_getGlobalUrlPrefix]) {
-        return [NSString stringWithFormat:@"%@%@",[KOBaseApi ko_getGlobalUrlPrefix],[self getPath]];
-    }
-    return [NSString stringWithFormat:@"%@%@",@"http://10.115.91.95:9530/bff-b",[self getPath]];
+- (NSString*) getFinalUrl:(x_api_gm_general_login_Req*) dtoReq{
+  // 如果觉得生成实现不对，请继承 x_api_gm_general_login 类，实现此方法即可。
+  
+  // 逻辑如下：
+  // 1. 优先使用 localUrlPrefix， 也就是通过代码设置的
+  // 2. 其次使用全局， 也是由代码设置
+  // 3. 最后使用自动生成的
+  // 4. 实在不满足你，直接覆盖getUrl 函数即可
+  
+  if(self.localUrlPrefix) {
+      return [NSString stringWithFormat:@"%@%@",self.localUrlPrefix,[self getPath:dtoReq]];
+  }
+  if([KOBaseApi ko_getGlobalUrlPrefix]) {
+      return [NSString stringWithFormat:@"%@%@",[KOBaseApi ko_getGlobalUrlPrefix],[self getPath:dtoReq]];
+  }
+  return [NSString stringWithFormat:@"%@%@",@"http://10.115.91.95:9530/bff-b",[self getPath:dtoReq]];
 }
 
 
 - (void) request:(x_api_gm_general_login_Req* _Nullable) dtoReq response:(x_api_gm_general_loginApiResponse _Nullable) response{
     self.network = [NSMutableURLRequest new];
-    self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
+    self.network.URL =[NSURL URLWithString:[self getFinalUrl:dtoReq]];
     self.network.HTTPMethod = [self getMethod];
     self.network.HTTPBody = [self getBody:dtoReq];
     [self.network setValue:[self getContentType] forHTTPHeaderField:@"Content-Type"];

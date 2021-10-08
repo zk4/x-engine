@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
-
+@class JSONModel;
 @interface KOBaseApi : NSObject
     @property(nonatomic,strong) NSMutableURLRequest* network;
     @property (nonatomic,strong) NSString* localUrlPrefix;
@@ -31,6 +31,7 @@ typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
     - (NSString*) getPipelineName;
     - (NSString*) getContentType;
     - (NSDictionary*) getHeaders;
+    - (NSData*) getBody:(JSONModel*) dto;
 @end
 
 NS_ASSUME_NONNULL_END

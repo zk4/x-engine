@@ -4,7 +4,7 @@
 
 
 #import "x_api_gm_general_login.h"
-#import "NSURL+QueryDictionary.h"
+
 
 @implementation x_api_gm_general_login_Req
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -66,17 +66,9 @@
 }
 
 - (NSData*) getBody:(x_api_gm_general_login_Req*) dtoReq{
-    if([[self getContentType] isEqualToString:@"application/json"])
-        return  dtoReq.toJSONData;
-    else if([[self getContentType] isEqualToString:@"application/x-www-form-urlencoded"]){
-       NSDictionary* d =  dtoReq.toDictionary;
-       return [d.uq_URLQueryString dataUsingEncoding:NSUTF8StringEncoding];
-    }
-    else{
-        NSAssert(nil, @"请覆盖此方法,怎么序列化参数到 body");
-        return nil;
-    }
+ return [super getBody:dtoReq];
 }
+
 - (NSString*) getPath{
   return @"/login/ldap/1";
 }
@@ -100,8 +92,8 @@
 - (void) request:(x_api_gm_general_login_Req* _Nullable) dtoReq response:(x_api_gm_general_loginApiResponse _Nullable) response{
     self.network = [NSMutableURLRequest new];
     self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
-    self.network.allHTTPHeaderFields = [self getHeaders];
     self.network.HTTPMethod = [self getMethod];
+    [self.network setValue:[self getContentType] forHTTPHeaderField:@"Content-Type"];
     self.network.HTTPBody = [self getBody:dtoReq];
     [self activePipelineByName:[self getPipelineName]];
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {

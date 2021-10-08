@@ -7,6 +7,9 @@
 //
 
 #import "KOBaseApi.h"
+#import "JSONModel.h"
+#import "NSURL+QueryDictionary.h"
+
 NSString*  __globalUrlPrefix;
 NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 
@@ -73,6 +76,19 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
     NSMutableDictionary* dict=  [NSMutableDictionary new];
     dict[@"Content-Type"]=[self getContentType];
     return  [dict copy];
+}
+
+- (NSData*) getBody:(JSONModel*) dto {
+    if([[self getContentType] isEqualToString:@"application/json"])
+        return  dto.toJSONData;
+    else if([[self getContentType] isEqualToString:@"application/x-www-form-urlencoded"]){
+       NSDictionary* d =  dto.toDictionary;
+       return [d.uq_URLQueryString dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    else{
+        NSAssert(nil, @"请覆盖此方法,怎么序列化参数到 body");
+        return nil;
+    }
 }
 
 

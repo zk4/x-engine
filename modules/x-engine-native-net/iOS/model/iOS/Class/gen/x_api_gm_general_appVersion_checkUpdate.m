@@ -46,13 +46,9 @@
 }
 
 - (NSData*) getBody:(x_api_gm_general_appVersion_checkUpdate_Req*) dtoReq{
-    if([[self getContentType] isEqualToString:@"application/json"])
-        return  dtoReq.toJSONData;
-    else{
-        NSAssert(nil, @"请覆盖此方法,怎么序列化参数到 body");
-        return nil;
-    }
+ return [super getBody:dtoReq];
 }
+
 - (NSString*) getPath{
   return @"/gm/general/appVersion/checkUpdate";
 }
@@ -78,7 +74,9 @@
     self.network = [NSMutableURLRequest new];
     self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
     self.network.HTTPMethod = [self getMethod];
+    [self.network setValue:[self getContentType] forHTTPHeaderField:@"Content-Type"];
     self.network.HTTPBody = [self getBody:dtoReq];
+    
     [self activePipelineByName:[self getPipelineName]];
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;

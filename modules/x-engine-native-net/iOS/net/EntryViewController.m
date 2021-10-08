@@ -107,16 +107,16 @@
 
 - (void)test0 {
     
-    x_api_gm_general_login_Req *req = [x_api_gm_general_login_Req new];
-        req.username = @"zhangguoqin-xphl@gome.inc";
-        req.password = @"97654-qcwgz";
-        req.ldapId = 1;
-
-        [[[x_api_gm_general_login new] promise:req] then:^id _Nullable(x_api_gm_general_login_Res * _Nullable value) {
-            NSLog(@"%@", value);
-            return nil;
-        }];
-    
+//    x_api_gm_general_login_Req *req = [x_api_gm_general_login_Req new];
+//        req.username = @"zhangguoqin-xphl@gome.inc";
+//        req.password = @"97654-qcwgz";
+//        req.ldapId = 1;
+//
+//        [[[x_api_gm_general_login new] promise:req] then:^id _Nullable(x_api_gm_general_login_Res * _Nullable value) {
+//            NSLog(@"%@", value);
+//            return nil;
+//        }];
+//
     for (int i =1; i<20; i++) {
         x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
 
@@ -128,15 +128,15 @@
  NSString *version = [NSString stringWithFormat:@"%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"]];
  [dic setValue:version forKey:@"versionName"];
  */
-//        req.os=@"IOS";
-//        req.platform=@"App-C";
-//        req.versionName=@"1.0.0";
-//        id api = [x_api_gm_general_appVersion_checkUpdate new];
-//        [api setLocalUrlPrefix:@"https://api.lohashow.com/bff-c"];
-//        [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
-//            NSLog(@"%@",value);
-//            return nil;
-//        }];
+        req.os=@"IOS";
+        req.platform=@"App-C";
+        req.versionName=@"1.0.0";
+        id api = [x_api_gm_general_appVersion_checkUpdate new];
+        [api setLocalUrlPrefix:@"https://api.lohashow.com/bff-c"];
+        [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
+            NSLog(@"%@",value);
+            return nil;
+        }];
 //        [api setDtoReq:req];
 //        [api request:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
 //            NSLog(@"%@",data);

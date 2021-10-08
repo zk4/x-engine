@@ -64,7 +64,7 @@
     // 3. 最后使用自动生成的
     // 4. 实在不满足你，直接覆盖getUrl 函数即可
     if(self.localUrlPrefix) {
-        return [NSString stringWithFormat:@"%@%@",@"",[self getPath]];
+        return [NSString stringWithFormat:@"%@%@",self.localUrlPrefix,[self getPath]];
     }
     if([KOBaseApi ko_getGlobalUrlPrefix]) {
         return [NSString stringWithFormat:@"%@%@",[KOBaseApi ko_getGlobalUrlPrefix],[self getPath]];

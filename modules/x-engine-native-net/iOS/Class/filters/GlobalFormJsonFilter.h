@@ -1,5 +1,5 @@
 //
-//  GlobalJsonFilter.h
+//  GlobalFormJsonFilter.h
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -28,7 +28,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GlobalJsonFilter:NSObject <iKOFilter>
+@interface GlobalFormJsonFilter:NSObject <iKOFilter>
 + (instancetype)sharedInstance;
 @end
 

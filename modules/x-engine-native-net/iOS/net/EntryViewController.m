@@ -11,7 +11,7 @@
 #import "GlobalMergeRequestFilter.h"
 #import "GlobalConfigFilter.h"
 #import "GlobalStatusCodeNot2xxFilter.h"
-#import "GlobalJsonFilter.h"
+#import "GlobalResponseDictionaryFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalNoResponseFilter.h"
 
@@ -22,6 +22,7 @@
 #import "PostApi.h"
 
 #import "x_api_gm_general_appVersion_checkUpdate.h"
+#import "x_api_gm_general_login.h"
 
 
 
@@ -106,19 +107,36 @@
 
 - (void)test0 {
     
+    x_api_gm_general_login_Req *req = [x_api_gm_general_login_Req new];
+        req.username = @"zhangguoqin-xphl@gome.inc";
+        req.password = @"97654-qcwgz";
+        req.ldapId = 1;
+
+        [[[x_api_gm_general_login new] promise:req] then:^id _Nullable(x_api_gm_general_login_Res * _Nullable value) {
+            NSLog(@"%@", value);
+            return nil;
+        }];
+    
     for (int i =1; i<20; i++) {
         x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
 
-        req.os=@"ios";
-        req.platform=@"ios";
-        req.versionCode=0;
-        req.versionName=@"";
-        id api = [x_api_gm_general_appVersion_checkUpdate new];
-      
-        [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
-            NSLog(@"%@",value);
-            return nil;
-        }];
+/*
+ NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+ [dic setValue:@"IOS" forKey:@"os"];
+ [dic setValue:@"App-C" forKey:@"platform"];
+ NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+ NSString *version = [NSString stringWithFormat:@"%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"]];
+ [dic setValue:version forKey:@"versionName"];
+ */
+//        req.os=@"IOS";
+//        req.platform=@"App-C";
+//        req.versionName=@"1.0.0";
+//        id api = [x_api_gm_general_appVersion_checkUpdate new];
+//        [api setLocalUrlPrefix:@"https://api.lohashow.com/bff-c"];
+//        [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
+//            NSLog(@"%@",value);
+//            return nil;
+//        }];
 //        [api setDtoReq:req];
 //        [api request:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
 //            NSLog(@"%@",data);
@@ -193,7 +211,7 @@
         [ok addFilter:[GlobalConfigFilter sharedInstance]];
         [ok addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
         [ok addFilter:[GlobalMergeRequestFilter sharedInstance]];
-        [ok addFilter:[GlobalJsonFilter sharedInstance]];
+        [ok addFilter:[GlobalResponseDictionaryFilter sharedInstance]];
         NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
         [ok send:req response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             NSLog(@"%@",data);
@@ -245,14 +263,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [KOBaseApi ko_configGlobalUrlPrefix:@"http://10.115.91.71:32563/bff-m"];
+//    [KOBaseApi ko_configGlobalUrlPrefix:@"https://api.lohashow.com/bff-c"];
     [KOBaseApi ko_configPipelineByName:@"DEFAULT" pipeline:({
         id pipeline =  [NSMutableArray new];
         [pipeline addObject:[GlobalConfigFilter sharedInstance]];
         [pipeline addObject:[LoggingFilter0 new]];
         [pipeline addObject:[BusinessFilter new]];
         [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
-        [pipeline addObject:[GlobalJsonFilter sharedInstance]];
+        [pipeline addObject:[GlobalResponseDictionaryFilter sharedInstance]];
         [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
         [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
 
@@ -267,7 +285,7 @@
 
         [pipeline addObject:[LoggingFilter0 new]];
         [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
-        [pipeline addObject:[GlobalJsonFilter sharedInstance]];
+        [pipeline addObject:[GlobalResponseDictionaryFilter sharedInstance]];
         [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
         pipeline;
     })];

@@ -29,7 +29,8 @@ typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
     - (NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError;
     - (void) activePipelineByName:(NSString*) name;
     - (NSString*) getPipelineName;
-
+    - (NSString*) getContentType;
+    - (NSDictionary*) getHeaders;
 @end
 
 NS_ASSUME_NONNULL_END

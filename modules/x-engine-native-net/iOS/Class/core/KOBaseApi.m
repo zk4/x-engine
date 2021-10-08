@@ -69,6 +69,11 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
     return self._localPipelineName;
 }
 
+- (NSDictionary*) getHeaders{
+    NSMutableDictionary* dict=  [NSMutableDictionary new];
+    dict[@"Content-Type"]=[self getContentType];
+    return  [dict copy];
+}
 
 
 @end

@@ -1,5 +1,5 @@
 //
-//  GlobalJsonFilter.m
+//  GlobalFormJsonFilter.m
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -23,18 +23,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "GlobalJsonFilter.h"
+#import "GlobalFormJsonFilter.h"
 #import "XENativeContext.h"
 #import "XTool.h"
 #import "iToast.h"
 
-@implementation GlobalJsonFilter
+@implementation GlobalFormJsonFilter
 
 + (instancetype)sharedInstance {
-    static GlobalJsonFilter * ins = nil;
+    static GlobalFormJsonFilter * ins = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        ins = [[GlobalJsonFilter alloc] init];
+        ins = [[GlobalFormJsonFilter alloc] init];
     });
     return ins;
 }

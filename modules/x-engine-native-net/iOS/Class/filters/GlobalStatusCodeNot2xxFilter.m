@@ -37,7 +37,7 @@
     return sharedInstance;
 }
 
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;
         if(!(hres.statusCode >= 200 && hres.statusCode < 300)){

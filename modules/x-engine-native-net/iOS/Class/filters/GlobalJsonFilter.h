@@ -24,11 +24,11 @@
 // THE SOFTWARE./
 
 #import <Foundation/Foundation.h>
-#import "iNet.h"
+#import "iKONet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GlobalJsonFilter:NSObject <iFilter>
+@interface GlobalJsonFilter:NSObject <iKOFilter>
 + (instancetype)sharedInstance;
 @end
 

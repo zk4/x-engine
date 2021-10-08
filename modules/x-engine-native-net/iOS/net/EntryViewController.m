@@ -5,7 +5,7 @@
 
 #import "EntryViewController.h"
 #import "XENativeContext.h"
-#import "iNet.h"
+#import "iKONet.h"
 #import "iToast.h"
 
 #import "GlobalMergeRequestFilter.h"
@@ -25,11 +25,11 @@
 
 
 
-//@interface AddTokenFilter:NSObject <iFilter>
+//@interface AddTokenFilter:NSObject <iKOFilter>
 //@end
 //
 //@implementation AddTokenFilter
-//- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+//- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
 //    NSMutableDictionary* newHeaders= [NSMutableDictionary dictionaryWithDictionary:request.allHTTPHeaderFields];
 //    newHeaders[@"Bearer"]=@"TOKEN";
 //    request.allHTTPHeaderFields=newHeaders;
@@ -39,11 +39,11 @@
 //
 //
 //
-@interface LoggingFilter0:NSObject <iFilter>
+@interface LoggingFilter0:NSObject <iKOFilter>
 @end
 
 @implementation LoggingFilter0
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 0;
 
     NSLog(@"%@", @"logging 1 start");
@@ -60,11 +60,11 @@
 
 @end
 //
-@interface LoggingFilter2:NSObject <iFilter>
+@interface LoggingFilter2:NSObject <iKOFilter>
 @end
 
 @implementation LoggingFilter2
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
 
     NSLog(@"%@", @"logging 2 start");
     [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
@@ -80,11 +80,11 @@
 
 @end
 
-@interface BusinessFilter:NSObject <iFilter>
+@interface BusinessFilter:NSObject <iKOFilter>
 @end
 
 @implementation BusinessFilter
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     
     [chain doFilter:session request:request response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         response(data[@"data"],res,error);
@@ -188,7 +188,7 @@
 
 - (void)test2 {
     for (int i =0; i<1000; i++) {
-        id ok = [XENP(iNetManager) one];
+        id ok = [XENP(iKONetManager) one];
         [ok addFilter:[GlobalConfigFilter sharedInstance]];
         [ok addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
         [ok addFilter:[GlobalMergeRequestFilter sharedInstance]];

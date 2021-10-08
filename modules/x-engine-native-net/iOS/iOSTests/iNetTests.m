@@ -5,7 +5,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "iNet.h"
+#import "iKONet.h"
 #import "Native_net.h"
 //#import "GlobalConfigFilter.h"
 #import "GlobalStatusCodeNot2xxFilter.h"

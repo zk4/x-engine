@@ -150,6 +150,7 @@
 		58F37FE127100D2D00EADBBB /* Post.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Post.ts; sourceTree = "<group>"; };
 		58F37FE227100D2D00EADBBB /* swagger.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swagger.ts; sourceTree = "<group>"; };
 		58F37FE327100D2D00EADBBB /* update.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update.ts; sourceTree = "<group>"; };
+		58F37FEB27100F8900EADBBB /* iKONet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iKONet.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-netTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-netTests.release.xcconfig"; path = "Target Support Files/Pods-netTests/Pods-netTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-net.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-net.release.xcconfig"; path = "Target Support Files/Pods-abstract-net/Pods-abstract-net.release.xcconfig"; sourceTree = "<group>"; };
@@ -368,6 +369,7 @@
 		58F37F82270464B500EADBBB /* core */ = {
 			isa = PBXGroup;
 			children = (
+				58F37FEB27100F8900EADBBB /* iKONet.h */,
 				58F37F87270464B500EADBBB /* KOHttp.h */,
 				58F37F84270464B500EADBBB /* KOHttp.m */,
 				58F37FBA270E177A00EADBBB /* KOBaseApi.h */,

@@ -24,11 +24,11 @@
 // THE SOFTWARE./
 
 #import <Foundation/Foundation.h>
-#import "iNet.h"
+#import "iKONet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GlobalNoResponseFilter:NSObject <iFilter>
+@interface GlobalNoResponseFilter:NSObject <iKOFilter>
 + (id)sharedInstance;
 @end
 

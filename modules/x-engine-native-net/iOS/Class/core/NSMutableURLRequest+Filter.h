@@ -24,13 +24,13 @@
 // THE SOFTWARE./
 
 #import <Foundation/Foundation.h>
-#import "iNet.h"
+#import "iKONet.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableURLRequest(KOFilter)
--(id<iNetAgent>) addFilter:(id<iFilter>) filter;
--(id<iNetAgent>) activePipeline:(KOPipeline) pipeline;
--(id<iNetAgent>) send:(KOResponse) block;
+-(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter;
+-(id<iKONetAgent>) activePipeline:(KOPipeline) pipeline;
+-(id<iKONetAgent>) send:(KOResponse) block;
 @end
 
 NS_ASSUME_NONNULL_END

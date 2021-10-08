@@ -7,7 +7,7 @@
 ////
 //
 //#import <Foundation/Foundation.h>
-//#import "iNet.h"
+//#import "iKONet.h"
 //#import "KOBaseApi.h"
 //#import "xengine_jsi_undefined.h"
 //

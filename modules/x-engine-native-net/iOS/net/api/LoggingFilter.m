@@ -41,7 +41,7 @@
     return ins;
 }
 
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     NSParameterAssert(request);
     
     [XENP(iToast) toast:@"请求开始。"];

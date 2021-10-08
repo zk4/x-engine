@@ -24,11 +24,11 @@
 // THE SOFTWARE./
 
 #import <Foundation/Foundation.h>
-#import <iNet.h>
+#import "iKONet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KOHttp<reqType,resType>: NSObject <iNetAgent,iFilterChain>
+@interface KOHttp<reqType,resType>: NSObject <iKONetAgent,iKOFilterChain>
 @end
 
 NS_ASSUME_NONNULL_END

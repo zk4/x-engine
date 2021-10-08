@@ -34,7 +34,7 @@
     });
     return ins;
 }
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 10;
     session.configuration.shouldUseExtendedBackgroundIdleMode  = YES;
     [chain doFilter:session request:request response:response];

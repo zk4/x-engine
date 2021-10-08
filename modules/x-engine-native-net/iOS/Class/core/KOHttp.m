@@ -45,7 +45,7 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 
  
 
--(id<iNetAgent>) addFilter:(id<iFilter>) filter{
+-(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter{
     @synchronized (self) {
         if(!self.filters){
             self.filters=[NSMutableArray new];
@@ -55,14 +55,14 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
     return self;
 }
 
-- (nonnull id<iNetAgent>) activePipeline:(nonnull KOPipeline)pipeline {
+- (nonnull id<iKONetAgent>) activePipeline:(nonnull KOPipeline)pipeline {
     self.filters = pipeline;
     return self;
 }
 
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(KOResponse) KOResponse{
     if(self.pos<self.filters.count){
-        id<iFilter> filter =  [self.filters objectAtIndex:self.pos++];
+        id<iKOFilter> filter =  [self.filters objectAtIndex:self.pos++];
         __weak typeof(self) weakSelf = self;
         NSLog(@"%@ 处理中...",[filter name]);
         [filter doFilter:session request:request  response:KOResponse chain:weakSelf];
@@ -71,18 +71,20 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
     }
 }
 
--(id<iNetAgent>) _internalSend:(NSMutableURLRequest*) request response:(KOResponse)block{
+-(id<iKONetAgent>) _internalSend:(NSMutableURLRequest*) request response:(KOResponse)block{
     self.session = [NSURLSession sharedSession];
     NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:block];
     [sessionTask resume];
     return self;
 }
--(id<iNetAgent>) send:(NSMutableURLRequest*) request response:(KOResponse) block{
+-(id<iKONetAgent>) send:(NSMutableURLRequest*) request response:(KOResponse) block{
     [self doFilter:self.session request:request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
     return self;
 }
+
+
 
  
 @end

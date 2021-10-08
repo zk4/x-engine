@@ -47,7 +47,7 @@ NATIVE_MODULE(Native_net)
 - (void)afterAllNativeModuleInited{
 } 
  
-- (nonnull id<iNetAgent>) one {
+- (nonnull id<iKONetAgent>) one {
     return [KOHttp new];
 }
 

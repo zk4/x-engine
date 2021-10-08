@@ -25,7 +25,6 @@
 
 #import "NSMutableURLRequest+Filter.h"
 #import <objc/runtime.h>
-#import "XENativeContext.h"
 #import "KOHttp.h"
 
 @interface NSMutableURLRequest(KOFilter)
@@ -33,18 +32,18 @@
 
 @implementation NSMutableURLRequest(KOFilter)
 
-- (id<iNetAgent>)koagent
+- (id<iKONetAgent>)koagent
 {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setKoagent:(id<iNetAgent>)agent
+- (void)setKoagent:(id<iKONetAgent>)agent
 {
     objc_setAssociatedObject(self, @selector(koagent), agent, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
--(id<iNetAgent>) addFilter:(id<iFilter>) filter{
+-(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter{
 
     if(!self.koagent){
         self.koagent = [KOHttp new];
@@ -53,7 +52,7 @@
     [self.koagent addFilter:filter];
     return self.koagent;
 }
--(id<iNetAgent>) activePipeline:(KOPipeline) pipeline{
+-(id<iKONetAgent>) activePipeline:(KOPipeline) pipeline{
 
     if(!self.koagent){
         self.koagent = [KOHttp new];
@@ -62,7 +61,7 @@
     [self.koagent activePipeline:pipeline];
     return self.koagent;
 }
--(id<iNetAgent>) send:(KOResponse) block{
+-(id<iKONetAgent>) send:(KOResponse) block{
 
     if(!self.koagent){
         self.koagent = [KOHttp new];

@@ -24,10 +24,10 @@
 // THE SOFTWARE./
 
 #import <Foundation/Foundation.h>
-#import "iNet.h"
+#import "iKONet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface GlobalMergeRequestFilter:NSObject <iFilter>
+@interface GlobalMergeRequestFilter:NSObject <iKOFilter>
 + (id)sharedInstance;
 @end
 NS_ASSUME_NONNULL_END

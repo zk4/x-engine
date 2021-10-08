@@ -37,7 +37,7 @@
     return sharedInstance;
 }
 
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iFilterChain>) chain {
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         if(error){
             NSString* msg =[NSString stringWithFormat:@"网络错误，不会回调到业务，开发人员请注意。%@" ,[error localizedDescription]];

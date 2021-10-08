@@ -106,19 +106,23 @@
 
 - (void)test0 {
     
-
-
-    x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
-    req.os=@"ios";
-    req.platform=@"ios";
-    req.versionCode=0;
-    req.versionName=@"";
-    id api = [x_api_gm_general_appVersion_checkUpdate new];
-    [api activePipelineByName:@"SIMPLE"];
-    [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
-        NSLog(@"%@",value);
-        return nil;
-    }];
+    for (int i =1; i<20; i++) {
+        x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
+        req.os=@"ios";
+        req.platform=@"ios";
+        req.versionCode=0;
+        req.versionName=@"";
+        id api = [x_api_gm_general_appVersion_checkUpdate new];
+        [api activePipelineByName:@"SIMPLE"];
+        [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
+            NSLog(@"%@",value);
+            return nil;
+        }];
+//        [api setDtoReq:req];
+//        [api request:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+//            NSLog(@"%@",data);
+//        }];
+    }
     
 //    SimpleReq* arg = [SimpleReq new];
 //    arg.userId =@"zk";

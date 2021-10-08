@@ -28,10 +28,10 @@
 #import "XENativeContext.h"
 
 
-@interface NSMutableURLRequest(ZKFilter)
-@property (nonatomic, weak) id<iNetAgent> koagent;
+@interface NSMutableURLRequest(KOFilter)
+//@property (nonatomic, copy) id<iNetAgent> koagent;
 @end
-@implementation NSMutableURLRequest(ZKFilter)
+@implementation NSMutableURLRequest(KOFilter)
 
 - (id<iNetAgent>)koagent
 {
@@ -40,14 +40,15 @@
 
 - (void)setKoagent:(id<iNetAgent>)agent
 {
-    objc_setAssociatedObject(self, @selector(koagent), agent, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(koagent), agent, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
     @synchronized (self) {
         if(!self.koagent){
-            self.koagent = [[XENP(iNetManager) one] build:self];
+            __weak typeof(self) weakSelf = self;
+            self.koagent = [[XENP(iNetManager) one] build:weakSelf];
         }
     }
     [self.koagent addFilter:filter];
@@ -56,7 +57,8 @@
 -(id<iNetAgent>) activePipeline:(KOPipeline) pipeline{
     @synchronized (self) {
         if(!self.koagent){
-            self.koagent = [[XENP(iNetManager) one] build:self];
+            __weak typeof(self) weakSelf = self;
+            self.koagent = [[XENP(iNetManager) one] build:weakSelf];
         }
     }
     [self.koagent activePipeline:pipeline];
@@ -65,7 +67,8 @@
 -(id<iNetAgent>) send:(KOResponse) block{
     @synchronized (self) {
         if(!self.koagent){
-            self.koagent = [[XENP(iNetManager) one] build:self];
+            __weak typeof(self) weakSelf = self;
+            self.koagent = [[XENP(iNetManager) one] build:weakSelf];
         }
     }
     [self.koagent send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

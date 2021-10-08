@@ -27,7 +27,7 @@
 #import "iNet.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSMutableURLRequest(ZKFilter)
+@interface NSMutableURLRequest(KOFilter)
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter;
 -(id<iNetAgent>) activePipeline:(KOPipeline) pipeline;
 -(id<iNetAgent>) send:(KOResponse) block;

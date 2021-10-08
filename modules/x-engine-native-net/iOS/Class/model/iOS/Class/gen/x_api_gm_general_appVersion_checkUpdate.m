@@ -79,17 +79,19 @@
     self.network.HTTPMethod = [self getMethod];
     self.network.HTTPBody = [self getBody];
     [self activePipelineByName:[self getPipelineName]];
+    __weak typeof(self) weakSelf = self;
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
         id resPost = [[x_api_gm_general_appVersion_checkUpdate_Res alloc] initWithDictionary:data error:&err];
-        response(resPost,res,[self errorWrapper:error underlyingError:err]);
+        response(resPost,res,[weakSelf errorWrapper:error underlyingError:err]);
     }];
 }
 
 - (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>*) promise:(x_api_gm_general_appVersion_checkUpdate_Req*) dtoReq{
     self.dtoReq = dtoReq;
     FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>* promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
-      [self request:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        __weak typeof(self) weakSelf = self;
+      [weakSelf request:^(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             if(!error){
                 fulfill(data);
             }else{
@@ -103,6 +105,12 @@
 - (FBLPromise<x_api_gm_general_appVersion_checkUpdate_Res *>*) promise{
     return [self promise:self.dtoReq];
 }
+
+- (void)dealloc{
+    NSLog(@"dealloc");
+
+}
+
 
 @end
 

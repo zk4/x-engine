@@ -12,23 +12,23 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
-static GlobalFilterConfiger __globalFiltersConfig;
-
-extern NSString*  __globalUrlPrefix;
 
 @interface KOBaseApi : NSObject
     @property(nonatomic,strong) NSMutableURLRequest* network;
     @property (nonatomic,strong) NSString* localUrlPrefix;
-    // 主要是用来切换全局环境用，之所以不使用 baseurl，是因为，环境不一定是只有 scheme 和 host， 有可能带有一点 path。
-    + (void) configGlobalUrlPrefix:(NSString*) urlPrefix;
-    + (void) configGlobalFiltersWithNetwork:(GlobalFilterConfiger) config;
-    + (void) configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline;
+
+    + (void) ko_configGlobalUrlPrefix:(NSString*) urlPrefix;
+    + (NSString*) ko_getGlobalUrlPrefix;
+
+    // 绑定 pipelineName 与 pipeline
+    // 使用 activePipeline 方法激活
+    + (void) ko_configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline;
 
     - (NSString*) getMethod;
-    - (void) activeGlobalFilters;
     - (NSString*) getFinalUrl;
-    -(NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError;
-    - (void) activePipeline:(NSString*) name;
+    - (NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError;
+    - (void) activePipelineByName:(NSString*) name;
+    - (NSString*) getPipelineName;
 
 @end
 

@@ -60,7 +60,7 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
     return self;
 }
 
-- (nonnull id<iNetAgent>)activePipeline:(nonnull KOPipeline)pipeline {
+- (nonnull id<iNetAgent>) activePipeline:(nonnull KOPipeline)pipeline {
     self.filters = pipeline;
     return self;
 }

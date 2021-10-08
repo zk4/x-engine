@@ -29,48 +29,48 @@
 
 
 @interface NSMutableURLRequest(ZKFilter)
-@property (nonatomic, strong) id<iNetAgent> zkagent;
+@property (nonatomic, weak) id<iNetAgent> koagent;
 @end
 @implementation NSMutableURLRequest(ZKFilter)
 
-- (id<iNetAgent>)zkagent
+- (id<iNetAgent>)koagent
 {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setZkagent:(id<iNetAgent>)agent
+- (void)setKoagent:(id<iNetAgent>)agent
 {
-    objc_setAssociatedObject(self, @selector(zkagent), agent, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(koagent), agent, OBJC_ASSOCIATION_RETAIN);
 }
 
 
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
     @synchronized (self) {
-        if(!self.zkagent){
-            self.zkagent = [[XENP(iNetManager) one] build:self];
+        if(!self.koagent){
+            self.koagent = [[XENP(iNetManager) one] build:self];
         }
     }
-    [self.zkagent addFilter:filter];
-    return self.zkagent;
+    [self.koagent addFilter:filter];
+    return self.koagent;
 }
 -(id<iNetAgent>) activePipeline:(KOPipeline) pipeline{
     @synchronized (self) {
-        if(!self.zkagent){
-            self.zkagent = [[XENP(iNetManager) one] build:self];
+        if(!self.koagent){
+            self.koagent = [[XENP(iNetManager) one] build:self];
         }
     }
-    [self.zkagent activePipeline:pipeline];
-    return self.zkagent;
+    [self.koagent activePipeline:pipeline];
+    return self.koagent;
 }
 -(id<iNetAgent>) send:(KOResponse) block{
     @synchronized (self) {
-        if(!self.zkagent){
-            self.zkagent = [[XENP(iNetManager) one] build:self];
+        if(!self.koagent){
+            self.koagent = [[XENP(iNetManager) one] build:self];
         }
     }
-    [self.zkagent send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self.koagent send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
-    return self.zkagent;
+    return self.koagent;
 }
 @end

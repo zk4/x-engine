@@ -106,24 +106,16 @@
 
 - (void)test0 {
     
-//    [KOBaseApi configGlobalFiltersWithNetwork:^(NSMutableURLRequest * _Nonnull request) {
-//        [request addFilter:[GlobalConfigFilter sharedInstance]];
-//        [request addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-//        [request addFilter:[LoggingFilter0 new]];
-//        [request addFilter:[LoggingFilter2 new]];
-//        [request addFilter:[LoggingFilter3 new]];
-//        [request addFilter:[GlobalNoResponseFilter sharedInstance]];
-//        [request addFilter:[GlobalMergeRequestFilter sharedInstance]];
-//        [request addFilter:[GlobalJsonFilter sharedInstance]];
-//
-//    }];
+
 
     x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
     req.os=@"ios";
     req.platform=@"ios";
     req.versionCode=0;
     req.versionName=@"";
-    [[[x_api_gm_general_appVersion_checkUpdate new] promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
+    id api = [x_api_gm_general_appVersion_checkUpdate new];
+    [api activePipelineByName:@"SIMPLE"];
+    [[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
         NSLog(@"%@",value);
         return nil;
     }];
@@ -250,12 +242,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [KOBaseApi configGlobalUrlPrefix:@"http://10.115.91.71:32563/bff-m"];
-    [KOBaseApi configPipelineByName:@"DEFAULT" pipeline:({
+    [KOBaseApi ko_configGlobalUrlPrefix:@"http://10.115.91.71:32563/bff-m"];
+    [KOBaseApi ko_configPipelineByName:@"DEFAULT" pipeline:({
+        id pipeline =  [NSMutableArray new];
+        [pipeline addObject:[GlobalConfigFilter sharedInstance]];
+//        [pipeline addObject:[LoggingFilter0 new]];
+        [pipeline addObject:[BusinessFilter new]];
+        [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
+        [pipeline addObject:[GlobalJsonFilter sharedInstance]];
+        [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+        pipeline;
+    })];
+    
+    
+    [KOBaseApi ko_configPipelineByName:@"SIMPLE" pipeline:({
         id pipeline =  [NSMutableArray new];
         [pipeline addObject:[GlobalConfigFilter sharedInstance]];
         [pipeline addObject:[LoggingFilter0 new]];
-        [pipeline addObject:[BusinessFilter new]];
         [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
         [pipeline addObject:[GlobalJsonFilter sharedInstance]];
         [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];

@@ -56,6 +56,7 @@
   return @"/gm/general/appVersion/checkUpdate";
 }
 
+
 - (NSString*) getFinalUrl{
     // 逻辑如下：
     // 1. 优先使用 localUrlPrefix， 也就是通过代码设置的
@@ -65,8 +66,8 @@
     if(self.localUrlPrefix) {
         return [NSString stringWithFormat:@"%@%@",@"",[self getPath]];
     }
-    if(__globalUrlPrefix) {
-        return [NSString stringWithFormat:@"%@%@",__globalUrlPrefix,[self getPath]];
+    if([KOBaseApi ko_getGlobalUrlPrefix]) {
+        return [NSString stringWithFormat:@"%@%@",[KOBaseApi ko_getGlobalUrlPrefix],[self getPath]];
     }
     // 配置文件里没有 apiUrlPrefix, 将不会自动生成
     return @"";
@@ -77,7 +78,7 @@
     self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
     self.network.HTTPMethod = [self getMethod];
     self.network.HTTPBody = [self getBody];
-    [self activePipeline:@"DEFAULT"];
+    [self activePipelineByName:[self getPipelineName]];
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;
         id resPost = [[x_api_gm_general_appVersion_checkUpdate_Res alloc] initWithDictionary:data error:&err];

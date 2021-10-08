@@ -11,16 +11,21 @@ NSString*  __globalUrlPrefix;
 NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 
 @interface KOBaseApi()
+@property(nonatomic,strong) NSString* _localPipelineName;
+
 @end
 @implementation KOBaseApi
 
-+ (void) configGlobalFiltersWithNetwork:(GlobalFilterConfiger) config{
-    __globalFiltersConfig=config;
-}
-+ (void) configGlobalUrlPrefix:(NSString*) urlPrefix{
+
++ (void) ko_configGlobalUrlPrefix:(NSString*) urlPrefix {
     __globalUrlPrefix = urlPrefix;
 }
-+ (void) configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline{
+
++ (NSString*) ko_getGlobalUrlPrefix {
+    return __globalUrlPrefix;
+}
+
++ (void) ko_configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline{
     if(!__ko_Pipelines){
         __ko_Pipelines = [NSMutableDictionary new];
     }
@@ -46,14 +51,24 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
   return [[NSError alloc] initWithDomain:error.domain code:error.code userInfo:mutableUserInfo];
 }
 
-- (void) activeGlobalFilters{
-    __globalFiltersConfig(self.network);
-}
-- (void) activePipeline:(NSString*) name{
+
+- (void) activePipelineByName:(NSString*) name{
     KOPipeline pipeline =  __ko_Pipelines[name];
     NSAssert(pipeline, @"没有 pipeline");
+    
     if(pipeline){
+        self._localPipelineName = name;
         [self.network activePipeline:pipeline];
     }
 }
+
+- (NSString*) getPipelineName{
+    if(!self._localPipelineName){
+        self._localPipelineName= @"DEFAULT";
+    }
+    return self._localPipelineName;
+}
+
+
+
 @end

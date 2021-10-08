@@ -15,41 +15,61 @@ import androidx.annotation.Nullable;
 import com.zkty.nativ.core.annotation.Optional;
 
 
-class x_api_gm_general_appVersion_checkUpdate_Req {
+class x_api_gm_general_login_Req {
   @Optional
-		public String os;
+		public Integer ldapId;
 
     @Optional
-		public String platform;
+		public String password;
 
     @Optional
-		public Integer versionCode;
-
-    @Optional
-		public String versionName;
+		public String username;
   }
   
-class x_api_gm_general_appVersion_checkUpdate_Res {
+class x_api_gm_general_login_Res {
   @Optional
-		public String digest;
+		public String sessionToken;
 
     @Optional
-		public String externalUrl;
+		public String userToken;
 
     @Optional
-		public boolean isUpdate;
+		public _0__DTO bizUser;
+  }
+  
+class _0__DTO {
+  @Optional
+		public String avatar;
 
     @Optional
-		public String remark;
+		public String createdTime;
 
     @Optional
-		public String resUrl;
+		public String email;
 
     @Optional
-		public String title;
+		public String genderType;
 
     @Optional
-		public Integer type;
+		public Integer id;
+
+    @Optional
+		public String nickname;
+
+    @Optional
+		public String phoneNum;
+
+    @Optional
+		public String realname;
+
+    @Optional
+		public Integer status;
+
+    @Optional
+		public String updatedTime;
+
+    @Optional
+		public String userKey;
   }
 
 interface undefined_protocol {

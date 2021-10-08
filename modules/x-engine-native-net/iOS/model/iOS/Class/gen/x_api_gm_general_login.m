@@ -93,8 +93,8 @@
     self.network = [NSMutableURLRequest new];
     self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
     self.network.HTTPMethod = [self getMethod];
-    [self.network setValue:[self getContentType] forHTTPHeaderField:@"Content-Type"];
     self.network.HTTPBody = [self getBody:dtoReq];
+    [self.network setValue:[self getContentType] forHTTPHeaderField:@"Content-Type"];
     [self activePipelineByName:[self getPipelineName]];
     [self.network send:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
         NSError* err;

@@ -215,11 +215,11 @@
 }
 
 -(void) pushTestModule{
-//    [self test0];
+    [self test0];
     //    [self test1];
     
     
-        [self test2];
+//        [self test2];
     
     /////////////////////////////////////////////////////////////////////// the second writing style
     

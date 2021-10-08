@@ -27,9 +27,7 @@
 #import "iKONet.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSMutableURLRequest(KOFilter)
--(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter;
--(id<iKONetAgent>) activePipeline:(KOPipeline) pipeline;
+@interface NSMutableURLRequest(KOFilter)<iKONetAgent>
 -(id<iKONetAgent>) send:(KOResponse) block;
 @end
 

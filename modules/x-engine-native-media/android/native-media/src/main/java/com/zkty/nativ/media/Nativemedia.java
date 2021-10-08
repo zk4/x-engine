@@ -580,7 +580,7 @@ public class Nativemedia extends NativeModule implements Imedia {
     private void upLoadFile(String url, Map<String,String> header, List<String> filePathList,int index, UpLoadImgCallback callback){
         String filePath = filePathList.get(index);
         boolean falg = index == (filePathList.size() - 1);
-        igmupload.doUploadFile(url,header, filePath, new OnUploadListener() {
+        igmupload.doUploadFile(url, filePath, new OnUploadListener() {
             @Override
             public void onUploadSuccess(String dataStr) {
                 if(callback == null)return;

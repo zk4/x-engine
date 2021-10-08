@@ -468,9 +468,9 @@ public class NativeCamera extends NativeModule implements ICamera {
     public void saveImageToAlbum(String imageData, String type, SaveCallBack callBack) {
         Activity activity = XEngineApplication.getCurrentActivity();
         if ("url".equals(type)) {
-            ImageUtils.savePictureByUrl(activity, imageData);
+            ImageUtils.savePictureByUrl(activity, imageData,(status, msg) -> {});
         } else {
-            ImageUtils.savePictureByBase64(activity, imageData);
+            ImageUtils.savePictureByBase64(activity, imageData,(status, msg) -> {});
         }
         callBack.saveCallBack();
     }

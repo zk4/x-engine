@@ -26,10 +26,10 @@
 #import "NSMutableURLRequest+Filter.h"
 #import <objc/runtime.h>
 #import "XENativeContext.h"
+#import "KOHttp.h"
 
 
 @interface NSMutableURLRequest(KOFilter)
-//@property (nonatomic, copy) id<iNetAgent> koagent;
 @end
 @implementation NSMutableURLRequest(KOFilter)
 
@@ -45,35 +45,38 @@
 
 
 -(id<iNetAgent>) addFilter:(id<iFilter>) filter{
-    @synchronized (self) {
+
         if(!self.koagent){
-            __weak typeof(self) weakSelf = self;
-            self.koagent = [[XENP(iNetManager) one] build:weakSelf];
+//            __weak typeof(self) weakSelf = self;
+            self.koagent = [[KOHttp new] build:self];
         }
-    }
+
     [self.koagent addFilter:filter];
     return self.koagent;
 }
 -(id<iNetAgent>) activePipeline:(KOPipeline) pipeline{
-    @synchronized (self) {
+
         if(!self.koagent){
-            __weak typeof(self) weakSelf = self;
-            self.koagent = [[XENP(iNetManager) one] build:weakSelf];
+            self.koagent = [[KOHttp new] build:self];
         }
-    }
+
     [self.koagent activePipeline:pipeline];
     return self.koagent;
 }
 -(id<iNetAgent>) send:(KOResponse) block{
-    @synchronized (self) {
+
         if(!self.koagent){
-            __weak typeof(self) weakSelf = self;
-            self.koagent = [[XENP(iNetManager) one] build:weakSelf];
+            self.koagent = [[KOHttp new] build:self];
         }
-    }
+
     [self.koagent send:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
     return self.koagent;
+}
+
+- (void)dealloc{
+    objc_setAssociatedObject(self, @selector(koagent), nil, OBJC_ASSOCIATION_ASSIGN);
+    NSLog(@"hello");
 }
 @end

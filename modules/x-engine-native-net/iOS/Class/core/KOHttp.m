@@ -36,7 +36,7 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 
 
 @interface KOHttp()
-@property (nonatomic, strong)   NSMutableURLRequest* request;
+@property (nonatomic, weak)   NSMutableURLRequest* request;
 @property (nonatomic, strong)   NSURLSession *session;
 
 @property (atomic, strong)   NSMutableArray*  filters;
@@ -90,6 +90,6 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 }
 
 - (void)dealloc{
-    NSLog(@"dealloc");
+    NSLog(@"KOHttp dealloc");
 }
 @end

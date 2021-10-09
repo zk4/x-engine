@@ -17,12 +17,6 @@ typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
     @property(nonatomic,strong) NSMutableURLRequest* network;
     @property (nonatomic,strong) NSString* localUrlPrefix;
 
-    + (void) ko_configGlobalUrlPrefix:(NSString*) urlPrefix;
-    + (NSString*) ko_getGlobalUrlPrefix;
-
-    // 绑定 pipelineName 与 pipeline
-    // 使用 activePipeline 方法激活
-    + (void) ko_configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline;
 
     - (NSString*) getMethod;
     - (NSString*) getFinalUrl:(JSONModel*) dto;

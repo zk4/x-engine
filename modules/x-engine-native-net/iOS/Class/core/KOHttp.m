@@ -34,6 +34,8 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 # define NSLog(...);
 #endif
 
+NSString*  __globalUrlPrefix;
+NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 
 @interface KOHttp()
 @property (nonatomic, strong)   NSURLSession *session;
@@ -42,8 +44,27 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 @end
 
 @implementation KOHttp
-
++(NSMutableDictionary<NSString*,NSMutableArray*>*)  ko_globalPipelines{
+    if(!__ko_Pipelines){
+        __ko_Pipelines = [NSMutableDictionary new];
+    }
+    return __ko_Pipelines;
+}
  
++ (void) ko_configGlobalUrlPrefix:(NSString*) urlPrefix {
+    __globalUrlPrefix = urlPrefix;
+}
+
++ (NSString*) ko_getGlobalUrlPrefix {
+    return __globalUrlPrefix;
+}
+
++ (void) ko_configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline{
+    if(!__ko_Pipelines){
+        __ko_Pipelines = [NSMutableDictionary new];
+    }
+    __ko_Pipelines[name] =  pipeline;
+}
 
 -(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter{
     @synchronized (self) {

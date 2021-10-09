@@ -5,7 +5,7 @@
 
 #import "x_api_gm_general_login.h"
 #import "NSURL+QueryDictionary.h"
-
+#import "KOHttp.h"
 
 @implementation x_api_gm_general_login_Req
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -102,8 +102,8 @@
   if(self.localUrlPrefix) {
       return [NSString stringWithFormat:@"%@%@",self.localUrlPrefix,[self getPath:dtoReq]];
   }
-  if([KOBaseApi ko_getGlobalUrlPrefix]) {
-      return [NSString stringWithFormat:@"%@%@",[KOBaseApi ko_getGlobalUrlPrefix],[self getPath:dtoReq]];
+  if([KOHttp ko_getGlobalUrlPrefix]) {
+      return [NSString stringWithFormat:@"%@%@",[KOHttp ko_getGlobalUrlPrefix],[self getPath:dtoReq]];
   }
   return [NSString stringWithFormat:@"%@%@",@"http://10.115.91.95:9530/bff-b",[self getPath:dtoReq]];
 }

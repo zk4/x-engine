@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableURLRequest(KOFilter)<iKONetAgent>
 -(id<iKONetAgent>) send:(KOResponse) block;
+ 
 @end
 
 NS_ASSUME_NONNULL_END

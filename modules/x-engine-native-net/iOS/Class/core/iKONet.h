@@ -26,6 +26,7 @@ typedef NSMutableArray* KOPipeline;
     -(id<iKONetAgent>) send:(NSMutableURLRequest*)reqeust response:(KOResponse) block;
     -(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter;
     -(id<iKONetAgent>) activePipeline:(KOPipeline) pipeline;
+    - (void) activePipelineByName:(NSString*) name;
 @end
 
 // 供引擎使用拿到 agent

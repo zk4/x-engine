@@ -61,6 +61,19 @@
     [self.koagent activePipeline:pipeline];
     return self.koagent;
 }
+
+- (void) activePipelineByName:(NSString*) name{
+    if(!self.koagent){
+        self.koagent = [KOHttp new];
+    }
+    
+    KOPipeline pipeline =  [KOHttp ko_globalPipelines][name];
+    NSAssert(pipeline, @"没有 pipeline");
+    
+    if(pipeline){
+        [self.koagent activePipeline:pipeline];
+    }
+}
 -(id<iKONetAgent>) send:(KOResponse) block{
 
     if(!self.koagent){

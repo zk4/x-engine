@@ -29,6 +29,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KOHttp<reqType,resType>: NSObject <iKONetAgent,iKOFilterChain>
+
++ (void) ko_configGlobalUrlPrefix:(NSString*) urlPrefix;
++ (NSString*) ko_getGlobalUrlPrefix;
+
+// 绑定 pipelineName 与 pipeline
+// 使用 activePipeline 方法激活
++ (void) ko_configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline;
++(NSMutableDictionary<NSString*,NSMutableArray*>*)  ko_globalPipelines;
 @end
 
 NS_ASSUME_NONNULL_END

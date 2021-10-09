@@ -5,7 +5,7 @@
 
 #import "x_api_ParameterInUrl.h"
 #import "NSURL+QueryDictionary.h"
-
+#import "KOHttp.h"
 
 @implementation ParameterInUrlReq
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -73,8 +73,8 @@
   if(self.localUrlPrefix) {
       return [NSString stringWithFormat:@"%@%@",self.localUrlPrefix,[self getPath:dtoReq]];
   }
-  if([KOBaseApi ko_getGlobalUrlPrefix]) {
-      return [NSString stringWithFormat:@"%@%@",[KOBaseApi ko_getGlobalUrlPrefix],[self getPath:dtoReq]];
+  if([KOHttp ko_getGlobalUrlPrefix]) {
+      return [NSString stringWithFormat:@"%@%@",[KOHttp ko_getGlobalUrlPrefix],[self getPath:dtoReq]];
   }
   return [NSString stringWithFormat:@"%@%@",@"https://httpbin.org",[self getPath:dtoReq]];
 }

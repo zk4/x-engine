@@ -14,6 +14,7 @@
 #import "GlobalResponseDictionaryFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalNoResponseFilter.h"
+#import "KOHttp.h"
 
 #import "JSONModel.h"
 #import "XTool.h"
@@ -113,16 +114,18 @@
 
 - (void)test0 {
     
-//    x_api_gm_general_login_Req *req = [x_api_gm_general_login_Req new];
-//        req.username = @"zhangguoqin-xphl@gome.inc";
-//        req.password = @"97654-qcwgz";
-//        req.ldapId = 1;
-//
-//        [[[x_api_gm_general_login new] promise:req] then:^id _Nullable(x_api_gm_general_login_Res * _Nullable value) {
-//            NSLog(@"%@", value);
-//            return nil;
-//        }];
-//
+    x_api_gm_general_login_Req *req = [x_api_gm_general_login_Req new];
+        req.username = @"zhangguoqin-xphl@gome.inc";
+        req.password = @"97654-qcwgz";
+        req.ldapId = 1;
+        
+    id api = [x_api_gm_general_login new];
+    [api setLocalUrlPrefix:@"http://10.115.91.95:9530/bff-b"];
+    [[api promise:req] then:^id _Nullable(x_api_gm_general_login_Res * _Nullable value) {
+        NSLog(@"%@", value);
+        return nil;
+    }];
+
     for (int i =1; i<20; i++) {
 //        x_api_gm_general_appVersion_checkUpdate_Req* req= [x_api_gm_general_appVersion_checkUpdate_Req new];
 
@@ -240,7 +243,7 @@
 }
 
 -(void) pushTestModule{
-//    [self test0];
+    [self test0];
     //    [self test1];
     
     
@@ -257,8 +260,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [KOBaseApi ko_configGlobalUrlPrefix:@"https://api.lohashow.com/bff-c"];
-    [KOBaseApi ko_configPipelineByName:@"DEFAULT" pipeline:({
+    [KOHttp ko_configGlobalUrlPrefix:@"https://api.lohashow.com/bff-c"];
+    [KOHttp ko_configPipelineByName:@"DEFAULT" pipeline:({
         id pipeline =  [NSMutableArray new];
         [pipeline addObject:[GlobalConfigFilter sharedInstance]];
         [pipeline addObject:[LoggingFilter0 new]];
@@ -272,7 +275,7 @@
     })];
     
     
-    [KOBaseApi ko_configPipelineByName:@"SIMPLE" pipeline:({
+    [KOHttp ko_configPipelineByName:@"SIMPLE" pipeline:({
         id pipeline =  [NSMutableArray new];
         [pipeline addObject:[GlobalConfigFilter sharedInstance]];
         [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];

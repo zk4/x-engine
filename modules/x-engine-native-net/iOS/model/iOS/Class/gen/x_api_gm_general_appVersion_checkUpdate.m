@@ -5,7 +5,7 @@
 
 #import "x_api_gm_general_appVersion_checkUpdate.h"
 #import "NSURL+QueryDictionary.h"
-
+#import "KOHttp.h"
 
 @implementation x_api_gm_general_appVersion_checkUpdate_Req
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -82,8 +82,8 @@
   if(self.localUrlPrefix) {
       return [NSString stringWithFormat:@"%@%@",self.localUrlPrefix,[self getPath:dtoReq]];
   }
-  if([KOBaseApi ko_getGlobalUrlPrefix]) {
-      return [NSString stringWithFormat:@"%@%@",[KOBaseApi ko_getGlobalUrlPrefix],[self getPath:dtoReq]];
+  if([KOHttp ko_getGlobalUrlPrefix]) {
+      return [NSString stringWithFormat:@"%@%@",[KOHttp ko_getGlobalUrlPrefix],[self getPath:dtoReq]];
   }
   // 配置文件里没有 apiUrlPrefix, 将不会自动生成
       return @"";

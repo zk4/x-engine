@@ -8,10 +8,10 @@
 
 #import "KOBaseApi.h"
 #import "JSONModel.h"
+#import "KOHttp.h"
 #import "NSURL+QueryDictionary.h"
 
-NSString*  __globalUrlPrefix;
-NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
+
 
 @interface KOBaseApi()
 @property(nonatomic,strong) NSString* _localPipelineName;
@@ -20,20 +20,6 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 @implementation KOBaseApi
 
 
-+ (void) ko_configGlobalUrlPrefix:(NSString*) urlPrefix {
-    __globalUrlPrefix = urlPrefix;
-}
-
-+ (NSString*) ko_getGlobalUrlPrefix {
-    return __globalUrlPrefix;
-}
-
-+ (void) ko_configPipelineByName:(NSString*) name pipeline:(KOPipeline) pipeline{
-    if(!__ko_Pipelines){
-        __ko_Pipelines = [NSMutableDictionary new];
-    }
-    __ko_Pipelines[name] =  pipeline;
-}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -56,7 +42,7 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 
 
 - (void) activePipelineByName:(NSString*) name {
-    KOPipeline pipeline =  __ko_Pipelines[name];
+    KOPipeline pipeline =  [KOHttp ko_globalPipelines][name];
     NSAssert(pipeline, @"没有 pipeline");
     
     if(pipeline){
@@ -87,6 +73,13 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
         if (!d || d.allKeys.count == 0) {
             return [NSData new];
         }
+        // handle file
+        for(NSString* str in d){
+            if([str hasPrefix:@"file://"]){
+                // TOOD convert file to 
+            }
+        }
+
        return [d.uq_URLQueryString dataUsingEncoding:NSUTF8StringEncoding];
     }
     else{

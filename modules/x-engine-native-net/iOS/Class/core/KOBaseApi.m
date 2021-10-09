@@ -83,7 +83,7 @@
        return [d.uq_URLQueryString dataUsingEncoding:NSUTF8StringEncoding];
     }
     else{
-        NSAssert(nil, @"请覆盖此方法,怎么序列化参数到 body");
+        NSAssert(nil, @"覆盖此方法,怎么序列化参数到 body");
         return nil;
     }
 }

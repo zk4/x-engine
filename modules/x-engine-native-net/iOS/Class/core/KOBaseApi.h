@@ -17,7 +17,6 @@ typedef void (^GlobalFilterConfiger)(NSMutableURLRequest*  request);
     @property(nonatomic,strong) NSMutableURLRequest* network;
     @property (nonatomic,strong) NSString* localUrlPrefix;
 
-
     - (NSString*) getMethod;
     - (NSString*) getFinalUrl:(JSONModel*) dto;
     - (NSError *) errorWrapper:(NSError *) error  underlyingError:(NSError*) underlyingError;

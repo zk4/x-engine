@@ -81,11 +81,19 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
     return self;
 }
 
+- (void) activePipelineByName:(NSString*) name {
+    KOPipeline pipeline =  [KOHttp ko_globalPipelines][name];
+    NSAssert(pipeline, @"没有 pipeline");
+    
+    if(pipeline){
+        [self activePipeline:pipeline];
+    }
+}
+
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(KOResponse) KOResponse{
     if(self.pos<self.filters.count){
         id<iKOFilter> filter =  [self.filters objectAtIndex:self.pos++];
         __weak typeof(self) weakSelf = self;
-        NSLog(@"%@ 处理中...",[filter name]);
         [filter doFilter:session request:request  response:KOResponse chain:weakSelf];
     }else{
         [self _internalSend:request response:KOResponse];

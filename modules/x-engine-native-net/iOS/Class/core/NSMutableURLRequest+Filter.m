@@ -28,6 +28,7 @@
 #import "KOHttp.h"
 
 @interface NSMutableURLRequest(KOFilter)
+
 @end
 
 @implementation NSMutableURLRequest(KOFilter)
@@ -43,23 +44,19 @@
 }
 
 
--(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter{
+-(void) addFilter:(id<iKOFilter>) filter{
 
     if(!self.koagent){
         self.koagent = [KOHttp new];
     }
-
     [self.koagent addFilter:filter];
-    return self.koagent;
 }
--(id<iKONetAgent>) activePipeline:(KOPipeline) pipeline{
+-(void) activePipeline:(KOPipeline) pipeline{
 
     if(!self.koagent){
         self.koagent = [KOHttp new];
     }
-
     [self.koagent activePipeline:pipeline];
-    return self.koagent;
 }
 
 - (void) activePipelineByName:(NSString*) name{
@@ -74,19 +71,22 @@
         [self.koagent activePipeline:pipeline];
     }
 }
--(id<iKONetAgent>) send:(KOResponse) block{
+
+ 
+-(void) send:(KOResponse) block{
 
     if(!self.koagent){
         self.koagent = [KOHttp new];
     }
-
     [self.koagent send:self response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];
-    return self.koagent;
+
 }
+
 
 - (void)dealloc{
     objc_setAssociatedObject(self, @selector(koagent), nil, OBJC_ASSOCIATION_ASSIGN);
 }
+
 @end

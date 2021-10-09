@@ -22,7 +22,7 @@ typedef void (^KOResponse)(id _Nullable data, NSURLResponse * _Nullable res, NSE
 
 //网络的实现类
 @protocol iKONetAgent
-typedef NSMutableArray* KOPipeline;
+    typedef NSMutableArray* KOPipeline;
     -(id<iKONetAgent>) send:(NSMutableURLRequest*)reqeust response:(KOResponse) block;
     -(id<iKONetAgent>) addFilter:(id<iKOFilter>) filter;
     -(id<iKONetAgent>) activePipeline:(KOPipeline) pipeline;

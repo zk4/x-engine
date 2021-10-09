@@ -118,8 +118,8 @@
     } else {
         return NO;
     }
-    NSLog(@"@intercept => %@",request.URL);
-    NSLog(@"@headers => %@",request.allHTTPHeaderFields);
+//    NSLog(@"@intercept => %@",request.URL);
+//    NSLog(@"@headers => %@",request.allHTTPHeaderFields);
 
     return YES;
 }

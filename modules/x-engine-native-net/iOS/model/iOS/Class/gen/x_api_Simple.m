@@ -50,11 +50,15 @@
   // 如果觉得生成实现不对，请继承 x_api_gm_general_login 类，实现此方法即可。
   NSString* path = @"undefined";
   if([[self getMethod] isEqualToString:@"GET"]){
-    return [NSString stringWithFormat:@"%@?%@",path,dtoReq.toDictionary.uq_URLQueryString];
+     NSString* queryStr = dtoReq.toDictionary.uq_URLQueryString;
+      if(nil  == queryStr || queryStr.length == 0){
+          return [NSString stringWithFormat:@"%@",path];
+      }else{
+          return [NSString stringWithFormat:@"%@?%@",path,queryStr];
+      }
   }else{
       return path;
   }
-
 }
 
 - (NSString*) getFinalUrl:(SimpleReq*) dtoReq{
@@ -78,8 +82,13 @@
 
 
 - (void) request:(SimpleReq* _Nullable) dtoReq response:(x_api_SimpleApiResponse _Nullable) response{
+    NSURL* url =[NSURL URLWithString:[self getFinalUrl:dtoReq]];
+    if(!url){
+        NSLog(@"url 没转换出来，为空，查看参数有没问题");
+        return;
+    }
     self.network = [NSMutableURLRequest new];
-    self.network.URL =[NSURL URLWithString:[self getFinalUrl]];
+    self.network.URL = url;
     self.network.HTTPMethod = [self getMethod];
     self.network.HTTPBody = [self getBody:dtoReq];
     [self.network setValue:[self getContentType] forHTTPHeaderField:@"Content-Type"];

@@ -5,9 +5,13 @@
 
 
 - 基于模型自动生成网络 api
+
   - 强类型
   - 类型校验
-- 支持 filter
+
+- 支持 filter，可以基于 filter 构建可复用的 pipeline，开发只用关心正确的业务逻辑。
+
+  
 
 
 
@@ -93,6 +97,10 @@ x-cli dto xxxx.ts
 
 
 
+增加一个数据转换的 filter 
+
+
+
 使用方式：
 
 方式 1： 基于 google 的 promise 形式
@@ -104,9 +112,8 @@ req.os=@"ios";
 req.platform=@"ios";
 req.versionCode=0;
 req.versionName=@"";
-id api = [x_api_gm_general_appVersion_checkUpdate new];
 
-[[api promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
+[[[x_api_gm_general_appVersion_checkUpdate new] promise:req] then:^id _Nullable(x_api_gm_general_appVersion_checkUpdate_Res * _Nullable value) {
   NSLog(@"%@",value);
   return nil;
 }];
@@ -143,3 +150,54 @@ x-cli swagger openapi.ts
 
 <img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211008143502554.png" alt="image-20211008143502554" style="zoom: 50%;" />
 
+
+
+
+
+## 请求情形
+
+主要的区分点在于参数是在 url 里，在 header 里， 在 body 里。
+
+
+
+GET /group
+
+GET /group/{gid}/{uid}
+
+GET /group/{gid}/{uid}?qa={qa}&qb={qb}
+
+
+
+POST /group  
+
+  +body  form-urlencody
+
+  +body  json 
+
+  +body formdata
+
+  +body  stream
+
+
+
+POST /group/{gid}/{uid}
+
+  +body  form-urlencody
+
+  +body  json 
+
+  +body formdata
+
+  +body  stream
+
+
+
+POST /group/{gid}/{uid}
+
+  +body  form-urlencody
+
+  +body  json 
+
+  +body formdata
+
+  +body  stream

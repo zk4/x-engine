@@ -60,6 +60,7 @@
 		58F37FE927100D2D00EADBBB /* swagger.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FE227100D2D00EADBBB /* swagger.ts */; };
 		58F37FEA27100D2D00EADBBB /* update.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FE327100D2D00EADBBB /* update.ts */; };
 		58F37FEE271043A700EADBBB /* x_api_gm_general_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FEC271043A700EADBBB /* x_api_gm_general_login.m */; };
+		58F38022271154DC00EADBBB /* x_api_ParameterInUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F38021271154DC00EADBBB /* x_api_ParameterInUrl.m */; };
 		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-netTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-netTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-net.a */; };
@@ -153,6 +154,8 @@
 		58F37FEB27100F8900EADBBB /* iKONet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iKONet.h; sourceTree = "<group>"; };
 		58F37FEC271043A700EADBBB /* x_api_gm_general_login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_gm_general_login.m; sourceTree = "<group>"; };
 		58F37FED271043A700EADBBB /* x_api_gm_general_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_gm_general_login.h; sourceTree = "<group>"; };
+		58F38020271154DC00EADBBB /* x_api_ParameterInUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_api_ParameterInUrl.h; sourceTree = "<group>"; };
+		58F38021271154DC00EADBBB /* x_api_ParameterInUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = x_api_ParameterInUrl.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-netTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-netTests.release.xcconfig"; path = "Target Support Files/Pods-netTests/Pods-netTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BC4EC306FCA064B296EDD37 /* Pods-abstract-net.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-net.release.xcconfig"; path = "Target Support Files/Pods-abstract-net/Pods-abstract-net.release.xcconfig"; sourceTree = "<group>"; };
@@ -415,6 +418,8 @@
 		58F37FD427100D2D00EADBBB /* gen */ = {
 			isa = PBXGroup;
 			children = (
+				58F38020271154DC00EADBBB /* x_api_ParameterInUrl.h */,
+				58F38021271154DC00EADBBB /* x_api_ParameterInUrl.m */,
 				58F37FED271043A700EADBBB /* x_api_gm_general_login.h */,
 				58F37FEC271043A700EADBBB /* x_api_gm_general_login.m */,
 				58F37FD527100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m */,
@@ -885,6 +890,7 @@
 				58F37FBC270E177A00EADBBB /* KOBaseApi.m in Sources */,
 				58F37F7A2704496800EADBBB /* TodoApi.m in Sources */,
 				58F37F8C270464B500EADBBB /* KOHttp.m in Sources */,
+				58F38022271154DC00EADBBB /* x_api_ParameterInUrl.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				58F37F9427046B9B00EADBBB /* PostApi.m in Sources */,
 				58F37F8F270464B500EADBBB /* NSMutableURLRequest+Filter.m in Sources */,

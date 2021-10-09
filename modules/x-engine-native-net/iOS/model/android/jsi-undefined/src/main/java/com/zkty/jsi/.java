@@ -15,49 +15,46 @@ import androidx.annotation.Nullable;
 import com.zkty.nativ.core.annotation.Optional;
 
 
-class PostReq {
-  public String userId;
+class ParameterInUrlReq {
+    }
+  
+class ParameterInUrlRes {
+    }
+
+interface undefined_protocol {
+  
+}
+  
+
+    public abstract class undefined extends JSIModule implements undefined_protocol {
+    @Override
+    public String moduleId() {
+      return "undefined";
+    }
+  
+  }
+  
+
+  
+		public String digest;
 
     @Optional
-		public Integer tid;
+		public String externalUrl;
 
-    public String title;
+    @Optional
+		public boolean isUpdate;
 
-    public boolean completed;
+    @Optional
+		public String remark;
 
-    public String message;
+    @Optional
+		public String resUrl;
 
-    public String moreMsg;
+    @Optional
+		public String title;
 
-    public String ext;
-
-    public _0__DTO hello;
-  }
-  
-class _0__DTO {
-  public _1__DTO world;
-  }
-  
-class _1__DTO {
-  public String inner;
-  }
-  
-class PostRes {
-  public Map<String,String> args;
-
-    public String data;
-
-    public Map<String,String> files;
-
-    public Map<String,String> form;
-
-    public Map<String,String> headers;
-
-    public Map<String,String> json;
-
-    public String origin;
-
-    public String url;
+    @Optional
+		public Integer type;
   }
 
 interface undefined_protocol {
@@ -74,7 +71,15 @@ interface undefined_protocol {
   }
   
 
-  lic abstract class undefined extends JSIModule implements undefined_protocol {
+  c String userKey;
+  }
+
+interface undefined_protocol {
+  
+}
+  
+
+    public abstract class undefined extends JSIModule implements undefined_protocol {
     @Override
     public String moduleId() {
       return "undefined";

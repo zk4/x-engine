@@ -42,7 +42,7 @@
         NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;
         if(!(hres.statusCode >= 200 && hres.statusCode < 300)){
 #ifdef DEBUG
-            NSString* msg =[NSString stringWithFormat:@"服务器状态码为 %ld, 当前不会回调到业务，开发人员请注意。" ,hres.statusCode];
+            NSString* msg =[NSString stringWithFormat:@"服务器状态码为 %ld, 当前不会回调到业务，开发人员请注意。\n%@\n%@\n%@" ,hres.statusCode, request.URL, request.allHTTPHeaderFields, request.HTTPBody];
             NSLog(@"%@",msg);
             [XENP(iToast) toast:msg];
 #endif

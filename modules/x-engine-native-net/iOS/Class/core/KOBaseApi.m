@@ -55,7 +55,7 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 }
 
 
-- (void) activePipelineByName:(NSString*) name{
+- (void) activePipelineByName:(NSString*) name {
     KOPipeline pipeline =  __ko_Pipelines[name];
     NSAssert(pipeline, @"没有 pipeline");
     

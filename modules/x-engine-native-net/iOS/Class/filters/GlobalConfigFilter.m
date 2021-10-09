@@ -37,6 +37,7 @@
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     session.configuration.HTTPMaximumConnectionsPerHost = 10;
     session.configuration.shouldUseExtendedBackgroundIdleMode  = YES;
+//    request.timeoutInterval =3;
     [chain doFilter:session request:request response:response];
 }
 

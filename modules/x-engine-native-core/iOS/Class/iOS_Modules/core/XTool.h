@@ -63,6 +63,9 @@
 
 /// 将 spa 地址转换为标准 url
 + (NSString*)SPAUrl2StandardUrl:(NSString*)raw;
+
+
++ (NSString *) md5:(NSData*)body;
 @end
 
 @interface XToolRuntime : NSObject

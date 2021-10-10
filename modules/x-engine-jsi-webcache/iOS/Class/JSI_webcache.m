@@ -15,25 +15,17 @@
 #import "GlobalStatusCodeNot2xxFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalNoResponseFilter.h"
-
+ 
 
 @interface JSI_webcache()
-@property (atomic, strong) NSMutableDictionary* cache;
 @property (nonatomic, strong) NSMutableURLRequest *request;
-@property (nonatomic,strong) KOPipeline  pipeline;
 @end
 
 @implementation JSI_webcache
 JSI_MODULE(JSI_webcache)
 
 - (void)afterAllJSIModuleInited {
-    _cache=[NSMutableDictionary new];
- 
-    self.pipeline = [NSMutableArray new];
-    [self.pipeline addObject:[GlobalConfigFilter sharedInstance]];
-    [self.pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-    [self.pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
-    [self.pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
+
 }
 
 -(BOOL)isNull:(NSDictionary *)dict key:(NSString*)key{
@@ -72,27 +64,6 @@ JSI_MODULE(JSI_webcache)
     NSString* url = dict[@"url"];
     NSString* method = dict[@"method"];
 
-    NSString* cacheKey=nil;
-    if([method isEqualToString:@"GET"]){
-        if(dict && ![self isNull:dict key:@"data"] && dict[@"data"])
-            cacheKey = [NSString stringWithFormat:@"%@%@%@",method, url ,dict[@"data"]];
-        cacheKey =url;
-    }else if([method isEqualToString:@"POST"]){
-        if(   [url containsString:@"goods/c/app/product/productDetail"]
-           || [url containsString:@"/router-service/"]
-           || [url containsString:@"/serviceProduct/detail"])
-            cacheKey = [NSString stringWithFormat:@"%@%@%@",method ,url,dict[@"data"]];
-    }
-
-    
-    // 仅缓存 GET, 如果有更新,则会会二次返回,
-    if(cacheKey && [_cache objectForKey:cacheKey]){
-        NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
-        completionHandler(_cache[cacheKey],TRUE);
-        return;
-    }
-
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
 
     request.HTTPMethod = method;
@@ -115,12 +86,9 @@ JSI_MODULE(JSI_webcache)
     }
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
-    
-    
     //WARNING: 想换成其他网络请求库时请请注意json 序列化的问题。不要转多遍。jsonStr 里的 '浮点类型'，在转为原生类型时，会丢失精度。再转为 jsonStr 时就不是你要的值了。如 str: '{a:.3}' -> objc: @{@"a":.299999999999}  ->  str '{"a":.29999999999}'
 
-    __weak typeof(self) weakSelf = self;
-    [request activePipeline:self.pipeline];
+    [request activePipelineByName:@"WEB_CACHE"];
     [request send:^(id  _Nullable data, NSURLResponse * _Nullable r, NSError * _Nullable error) {
         if (!error) {
             NSHTTPURLResponse *response =nil;
@@ -138,13 +106,9 @@ JSI_MODULE(JSI_webcache)
                 @"data":isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding],
                 @"responseHeaders":headers
             };
-            if(cacheKey)
-                weakSelf.cache[cacheKey] = ret;
             completionHandler(ret,TRUE);
-
         } else {
             NSDictionary* ret =@{
-
                 @"error":[NSString stringWithFormat:@"%@", error]
             };
             completionHandler(ret,TRUE);

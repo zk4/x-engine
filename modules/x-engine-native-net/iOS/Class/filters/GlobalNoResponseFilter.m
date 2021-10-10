@@ -45,9 +45,6 @@
             [XENP(iToast) toast:msg];
             return;
         }else{
-          
-            NSLog(@"%@",  [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies);
-            
             response(data,res,error);
         }
     }];

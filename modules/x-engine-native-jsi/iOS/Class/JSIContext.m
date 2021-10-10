@@ -10,9 +10,9 @@
 #import "XENativeContext.h"
 #import "JSIModule.h"
 
-
+static NSMutableSet<Class> *moduleClasses;
 @interface JSIContext ()
-@property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
+//@property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
 @property (nonatomic, strong) NSMutableArray<JSIModule *> *modules;
 @end
 
@@ -22,33 +22,20 @@ NATIVE_MODULE(JSIContext)
     return @"com.zkty.native.jsicontext";
 }
 
-+ (instancetype)sharedInstance {
-    static JSIContext *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      sharedInstance = [[JSIContext alloc] init];
-      sharedInstance.moduleClasses =[NSMutableSet new];
-      sharedInstance.modules = [NSMutableArray array];
-
-
-    });
-    return sharedInstance;
-}
-- (void)start {
+ 
+- (void) afterAllNativeModuleInited{
+    self.modules  = [NSMutableArray new];
     [self initModules];
-    [self afterAllJSIModuleInited];
-}
-- (void) afterAllJSIModuleInited{
     for (JSIModule *module in self.modules) {
         [module afterAllJSIModuleInited];
     }
 }
-- (NSMutableArray *)modules {
+- (NSMutableArray *)getJSIModules {
     return _modules;
 }
  
 - (void)initModules {
-    for (Class cls in self.moduleClasses) {
+    for (Class cls in moduleClasses) {
         id rawmoduleClass = [[cls alloc] init];
         JSIModule *moduleClass = (JSIModule *)rawmoduleClass;
 
@@ -65,10 +52,13 @@ NATIVE_MODULE(JSIContext)
       return NSOrderedSame;
     }] mutableCopy];
 }
-- (void)registerModuleByClass:(Class)cls {
-    if([self.moduleClasses containsObject:cls]){
++ (void)registerModuleByClass:(Class)cls {
+    if(!moduleClasses){
+        moduleClasses= [NSMutableSet new];
+    }
+    if([moduleClasses containsObject:cls]){
         @throw [NSException exceptionWithName:@"重复注册JSI moduleId" reason:@"不允许同名 JSI moduleId" userInfo:nil];
     }
-    [self.moduleClasses addObject:cls];
+    [moduleClasses addObject:cls];
 }
 @end

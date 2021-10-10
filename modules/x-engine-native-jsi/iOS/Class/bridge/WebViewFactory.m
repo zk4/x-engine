@@ -38,7 +38,7 @@
 }
 
 - (XEngineWebView *)createWebView {
-    NSMutableArray *modules = [[JSIContext sharedInstance] modules];
+    NSMutableArray *modules = [XENP(iJSIContext) getJSIModules] ;
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
     configuration.websiteDataStore = [WKWebsiteDataStore nonPersistentDataStore];

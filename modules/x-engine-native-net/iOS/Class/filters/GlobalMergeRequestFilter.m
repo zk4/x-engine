@@ -44,11 +44,11 @@
 
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     
-    if(![request.HTTPMethod isEqualToString:@"GET"]){
-        [chain doFilter:session request:request response:response];
-        return;
-    }
-    NSString* key = request.URL.absoluteString;
+//    if(![request.HTTPMethod isEqualToString:@"GET"]){
+//        [chain doFilter:session request:request response:response];
+//        return;
+//    }
+    NSString* key = [NSString stringWithFormat:@"%@%@",request.URL.absoluteString, request.allHTTPHeaderFields];
     id queue =  [self.requests objectForKey:key];
     if(queue){
         NSLog(@"merged request %ld",((NSMutableArray*)queue).count);

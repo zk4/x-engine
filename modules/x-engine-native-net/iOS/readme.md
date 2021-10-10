@@ -1,17 +1,56 @@
+## WHY
+
+### 为什么不直接用 Afnetworking ？
+
+1. 设计不灵活。加个 logging 功能还需要修改源码库。
+
+2. 封装并不比系统自带的好用。
+
+3. 让对网络不了解的 iOS 程序员更加加深了对网络的不了解。而在大部分情况下，af 只是用来请求 REST 接口。
+
+   
+
+### YTKNetworking 呢？
+
+总体设计我觉得思路至少是对的。但有几点我不认同。
+
+**接口 异步调用的编排不应该由网络库来做。而应该由比如 GooglePromise 这种来编排。**
+
+缓存，cdn 这种东西不应该在网络请求类里。应该由插件做。
+
+
+
+YTKNetworking 说是为大工程而生，在我看起来就是手动要码的太多。
+
+我不知道 YTKNetworking 内部的网络请求类是不是自动生成。
+
+但如果每个接口已经单独拎出来一个类来隔离。那为什么不直接生成这个类？
+
+如果可以生成类，那 android 也可以生成类似的类，多开心。
+
+生成模板可以使用 swagger OPEN API。这样，能与服务端保持高度一致。
+
+
+
 
 
 ## KOHttp
 
+### 需求与设计
+
+1. 希望能够随意定义一个请求的流程。从构造到最终返回。 那我们可以参考经典的 tomcat 的 filter chain 的设计。
+2. 希望网络的异步 api 的编排能够比较灵活好用。那直接就选 google promise 了。
+3. 希望可以任意切换流程，我们定义请求流程处理类的 filter 集合为管线，Pipeline。只要切换管线我们，就可以任意切换一个请求的流程。
+4. 能够基于模板生成平台 api。至少现阶段 iOS 要能用。 未来可以生成 android，js。 模板语言选一种强类型语言即可，处理 AST 比较方便的。比如 typescript。 
+5. 希望能够自动生成模板。。 那就可以利用上 swagger OPEN API 这类标准。
+6. 希望能在任意层面使用 KOHttp，可以基于生成的代码，可以基于直接 KOHttp，甚至，直接使用系统自带的 NSURLMutableRequest.  方便做原始工程的网络库迁移。
+7. 希望功能不够时。。 牛 b 的程序员能自己扩展。而不用动 KOHttp 的代码。
 
 
-- 基于模型自动生成网络 api
 
-  - 强类型
-  - 类型校验
+### 其他的想法
 
-- 支持 filter，可以基于 filter 构建可复用的 pipeline，开发只用关心正确的业务逻辑。
-
-  
+1. 需不需要对网络做一层抽象。以支持开发者替换任意的网络请求库。感觉上是没啥必要。因为不管是 Afnetworking 还是 YTKNetworking  都是基于系统库。
 
 
 
@@ -46,8 +85,6 @@ const apiMethod = "POST"
 
 // 请求的参数模型，一定要以 Req 结尾
 interface x_api_gm_general_appVersion_checkUpdate_Req {
-  // request
-  undefined: {
     // 操作系统（Android、IOS）
     os?: string;
     // 平台（App、POS等）
@@ -56,7 +93,6 @@ interface x_api_gm_general_appVersion_checkUpdate_Req {
     versionCode?: int;
     // 版本名称
     versionName?: string;
-  };
 }
 
 // 返回的参数模型，一定要以 Res 结尾

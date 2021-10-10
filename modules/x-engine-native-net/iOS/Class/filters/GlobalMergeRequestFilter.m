@@ -24,6 +24,7 @@
 // THE SOFTWARE./
 
 #import "GlobalMergeRequestFilter.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface GlobalMergeRequestFilter()
 @property (atomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
@@ -40,7 +41,21 @@
     });
     return sharedInstance;
 }
-
+- (NSString *)md5:(NSData*)body {
+    if(!body) return @"";
+    // Create byte array of unsigned chars
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+        
+    // Create 16 byte MD5 hash value, store in buffer
+    CC_MD5(body.bytes, (unsigned int)body.length, md5Buffer);
+        
+    // Convert unsigned char buffer to NSString of hex values
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x",md5Buffer[i]];
+    
+    return output;
+}
 
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     
@@ -48,7 +63,7 @@
 //        [chain doFilter:session request:request response:response];
 //        return;
 //    }
-    NSString* key = [NSString stringWithFormat:@"%@%@",request.URL.absoluteString, request.allHTTPHeaderFields];
+    NSString* key = [NSString stringWithFormat:@"%@%@%@",request.URL.absoluteString, request.allHTTPHeaderFields,[self md5:request.HTTPBody] ];
     id queue =  [self.requests objectForKey:key];
     if(queue){
         NSLog(@"merged request %ld",((NSMutableArray*)queue).count);

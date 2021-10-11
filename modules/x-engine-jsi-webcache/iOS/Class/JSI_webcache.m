@@ -15,7 +15,7 @@
 #import "GlobalStatusCodeNot2xxFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalNoResponseFilter.h"
- 
+#import "KOHttp.h"
 
 @interface JSI_webcache()
 @property (nonatomic, strong) NSMutableURLRequest *request;
@@ -25,7 +25,14 @@
 JSI_MODULE(JSI_webcache)
 
 - (void)afterAllJSIModuleInited {
-
+    [KOHttp ko_configPipelineByName:@"WEB_CACHE" pipeline:({
+        NSMutableArray* pipeline  =[NSMutableArray new];
+        [pipeline addObject:[GlobalConfigFilter sharedInstance]];
+        [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+        [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
+        pipeline;
+    })];
 }
 
 -(BOOL)isNull:(NSDictionary *)dict key:(NSString*)key{

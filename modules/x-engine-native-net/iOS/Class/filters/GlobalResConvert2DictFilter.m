@@ -1,5 +1,5 @@
 //
-//  GlobalStatusCodeNot2xxFilter.m
+//  GlobalResConvert2DictFilter.m
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -23,36 +23,46 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "GlobalStatusCodeNot2xxFilter.h"
+#import "GlobalResConvert2DictFilter.h"
 #import "XENativeContext.h"
+#import "XTool.h"
 #import "iToast.h"
-@implementation GlobalStatusCodeNot2xxFilter
-+ (id)sharedInstance
-{
-    static GlobalStatusCodeNot2xxFilter *sharedInstance = nil;
+
+@implementation GlobalResConvert2DictFilter
+
++ (instancetype)sharedInstance {
+    static GlobalResConvert2DictFilter * ins = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
+        ins = [[GlobalResConvert2DictFilter alloc] init];
     });
-    return sharedInstance;
+    return ins;
 }
 
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
+
+    NSParameterAssert(request);
+    // set header as application/json
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-        NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;
-        if(!(hres.statusCode >= 200 && hres.statusCode < 300)){
+        // handle response
+        NSString* str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+        NSError* jsonError=nil;
+        NSDictionary* model  = [XToolDataConverter dictionaryWithJsonStringWithError:str error:&jsonError];
+        if(jsonError){
 #ifdef DEBUG
-            NSString* msg =[NSString stringWithFormat:@"服务器状态码为 %ld, 当前不会回调到业务，开发人员请注意。\n%@\n%@\n%@" ,hres.statusCode, request.URL, request.allHTTPHeaderFields, request.HTTPBody];
-            NSLog(@"%@",msg);
+            NSString* msg =[NSString stringWithFormat:@"返回值 Dictionary 解析失败, 不会回调到业务，开发人员请注意。\n%@" ,str];
             [XENP(iToast) toast:msg];
 #endif
             return;
         }else{
-            response(data,res,error);
+            response(model,res,error);
         }
     }];
 }
+
 - (nonnull NSString *)name {
-    return @"全局非2xx 处理 filter";
+    return @"全局JSON 转换 filter";
 }
+
 @end

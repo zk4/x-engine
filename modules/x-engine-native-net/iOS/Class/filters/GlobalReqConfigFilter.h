@@ -1,9 +1,9 @@
 //
-//  GlobalMergeRequestFilter.h
+//  GlobalReqConfigFilter.h
 //  net
 //
-//  Created by zk on 2021/9/28.
-//  Copyright © 2021 x-engine. All rights reserved.
+//  Created by zk on 2021/9/29.
+//  Copyright © 2021 zk. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,9 @@
 #import "iKONet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface GlobalMergeRequestFilter:NSObject <iKOFilter>
-+ (id)sharedInstance;
+
+@interface GlobalReqConfigFilter:NSObject <iKOFilter>
++ (instancetype)sharedInstance;
 @end
+
 NS_ASSUME_NONNULL_END

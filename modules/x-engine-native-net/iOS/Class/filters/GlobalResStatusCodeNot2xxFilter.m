@@ -1,5 +1,5 @@
 //
-//  GlobalConfigFilter.m
+//  GlobalResStatusCodeNot2xxFilter.m
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -23,26 +23,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "GlobalConfigFilter.h"
-
-@implementation GlobalConfigFilter
-+ (instancetype)sharedInstance {
-    static GlobalConfigFilter * ins = nil;
+#import "GlobalResStatusCodeNot2xxFilter.h"
+#import "XENativeContext.h"
+#import "iToast.h"
+@implementation GlobalResStatusCodeNot2xxFilter
++ (id)sharedInstance
+{
+    static GlobalResStatusCodeNot2xxFilter *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        ins = [[GlobalConfigFilter alloc] init];
+        sharedInstance = [[self alloc] init];
     });
-    return ins;
+    return sharedInstance;
 }
+
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
-    session.configuration.HTTPMaximumConnectionsPerHost = 10;
-    session.configuration.shouldUseExtendedBackgroundIdleMode  = YES;
-//    request.timeoutInterval =3;
-    [chain doFilter:session request:request response:response];
+    [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
+        NSHTTPURLResponse* hres = (NSHTTPURLResponse*) res;
+        if(!(hres.statusCode >= 200 && hres.statusCode < 300)){
+#ifdef DEBUG
+            NSString* msg =[NSString stringWithFormat:@"服务器状态码为 %ld, 当前不会回调到业务，开发人员请注意。\n%@\n%@\n%@" ,hres.statusCode, request.URL, request.allHTTPHeaderFields, request.HTTPBody];
+            NSLog(@"%@",msg);
+            [XENP(iToast) toast:msg];
+#endif
+            return;
+        }else{
+            response(data,res,error);
+        }
+    }];
 }
-
-
 - (nonnull NSString *)name {
-    return @"全局网络配置 filter";
+    return @"全局非2xx 处理 filter";
 }
 @end

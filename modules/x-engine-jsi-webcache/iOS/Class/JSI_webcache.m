@@ -10,11 +10,11 @@
 #import "XTool.h"
 #import "NSMutableURLRequest+Filter.h"
 
-#import "GlobalMergeRequestFilter.h"
-#import "GlobalConfigFilter.h"
-#import "GlobalStatusCodeNot2xxFilter.h"
+#import "GlobalReqMergeRequestFilter.h"
+#import "GlobalReqConfigFilter.h"
+#import "GlobalResStatusCodeNot2xxFilter.h"
 #import "NSMutableURLRequest+Filter.h"
-#import "GlobalNoResponseFilter.h"
+#import "GlobalResNoResponseFilter.h"
 #import "KOHttp.h"
 
 @interface JSI_webcache()
@@ -27,10 +27,10 @@ JSI_MODULE(JSI_webcache)
 - (void)afterAllJSIModuleInited {
     [KOHttp ko_configPipelineByName:@"WEB_CACHE" pipeline:({
         NSMutableArray* pipeline  =[NSMutableArray new];
-        [pipeline addObject:[GlobalConfigFilter sharedInstance]];
-        [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
-        [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
+        [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqMergeRequestFilter sharedInstance]];
         pipeline;
     })];
 }

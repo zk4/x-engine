@@ -1,5 +1,5 @@
 //
-//  GlobalConfigFilter.h
+//  GlobalReqConfigFilter.m
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -23,13 +23,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import <Foundation/Foundation.h>
-#import "iKONet.h"
+#import "GlobalReqConfigFilter.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation GlobalReqConfigFilter
++ (instancetype)sharedInstance {
+    static GlobalReqConfigFilter * ins = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ins = [[GlobalReqConfigFilter alloc] init];
+    });
+    return ins;
+}
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
+    session.configuration.HTTPMaximumConnectionsPerHost = 10;
+    session.configuration.shouldUseExtendedBackgroundIdleMode  = YES;
+//    request.timeoutInterval =3;
+    [chain doFilter:session request:request response:response];
+}
 
-@interface GlobalConfigFilter:NSObject <iKOFilter>
-+ (instancetype)sharedInstance;
+
+- (nonnull NSString *)name {
+    return @"全局网络配置 filter";
+}
 @end
-
-NS_ASSUME_NONNULL_END

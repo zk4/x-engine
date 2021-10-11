@@ -1,9 +1,9 @@
 //
-//  GlobalStatusCodeNot2xxFilter.h
+//  GlobalReqMergeRequestFilter.h
 //  net
 //
-//  Created by zk on 2021/9/29.
-//  Copyright © 2021 zk. All rights reserved.
+//  Created by zk on 2021/9/28.
+//  Copyright © 2021 x-engine. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,7 @@
 #import "iKONet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface GlobalStatusCodeNot2xxFilter:NSObject <iKOFilter>
+@interface GlobalReqMergeRequestFilter:NSObject <iKOFilter>
 + (id)sharedInstance;
 @end
-
 NS_ASSUME_NONNULL_END

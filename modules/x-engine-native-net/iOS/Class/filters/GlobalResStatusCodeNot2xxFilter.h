@@ -1,5 +1,5 @@
 //
-//  GlobalResponseDictionaryFilter.h
+//  GlobalResStatusCodeNot2xxFilter.h
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -28,9 +28,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GlobalResponseDictionaryFilter:NSObject <iKOFilter>
-+ (instancetype)sharedInstance;
+@interface GlobalResStatusCodeNot2xxFilter:NSObject <iKOFilter>
++ (id)sharedInstance;
 @end
-
 
 NS_ASSUME_NONNULL_END

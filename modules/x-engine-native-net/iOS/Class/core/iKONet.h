@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol iKOFilterChain;
 
-typedef void (^KOResponse)(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error);
+typedef void (^KOResponse)(id _Nullable d, NSURLResponse * _Nullable r, NSError * _Nullable e);
 
 @protocol iKOFilter
     // for debug

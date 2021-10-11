@@ -1,5 +1,5 @@
 //
-//  GlobalNoResponseFilter.m
+//  GlobalResConvert2DictFilter.h
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -23,35 +23,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "GlobalNoResponseFilter.h"
-#import "XENativeContext.h"
-#import "iToast.h"
-@implementation GlobalNoResponseFilter
-+ (id)sharedInstance
-{
-    static GlobalNoResponseFilter *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    return sharedInstance;
-}
+#import <Foundation/Foundation.h>
+#import "iKONet.h"
 
-- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
-    [chain doFilter:session request:request response:^(id _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-        if(error){
-            NSString* msg =[NSString stringWithFormat:@"网络错误，不会回调到业务，开发人员请注意。%@" ,[error localizedDescription]];
-            NSLog(@"%@",msg);
-            [XENP(iToast) toast:msg];
-            return;
-        }else{
-            response(data,res,error);
-        }
-    }];
-}
+NS_ASSUME_NONNULL_BEGIN
 
-- (nonnull NSString *)name {
-    return @"全局无返回 filter";
-}
-
+@interface GlobalResConvert2DictFilter:NSObject <iKOFilter>
++ (instancetype)sharedInstance;
 @end
+
+
+NS_ASSUME_NONNULL_END

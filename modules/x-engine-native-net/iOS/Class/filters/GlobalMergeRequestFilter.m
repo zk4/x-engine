@@ -26,8 +26,8 @@
 #import "GlobalMergeRequestFilter.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@interface GlobalMergeRequestFilter()
-@property (atomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
+@interface GlobalMergeRequestFilter()<NSCacheDelegate>
+@property (nonatomic, strong)   NSCache<NSString*,NSMutableArray*>* requests;
 @end
 @implementation GlobalMergeRequestFilter
 + (id)sharedInstance
@@ -36,11 +36,30 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-        sharedInstance.requests=[[NSMutableDictionary alloc] init];
+//        sharedInstance.requests=[[NSCache alloc] init];
         
     });
     return sharedInstance;
 }
+
+- (void)cache:(NSCache *)cache willEvictObject:(id)obj{
+    NSLog(@"cache evict");
+}
+- (NSCache *)requests{
+    if (!_requests) {
+        _requests = [[NSCache alloc] init];
+        _requests.delegate = self;
+        //缓存空间的最大总成本，超出上限会自动回收对象。默认值为0，表示没有限制
+        _requests.totalCostLimit =10;//self.memoryCapacity;
+        //能够缓存的对象的最大数量。默认值为0，表示没有限制
+        _requests.countLimit = 10;
+//        _memoryCache=[YYCache cacheWithName:@"XENGINE_YY_Cache"];
+    }
+    return _requests;
+}
+
+
+
 - (NSString *)md5:(NSData*)body {
     if(!body) return @"";
     // Create byte array of unsigned chars

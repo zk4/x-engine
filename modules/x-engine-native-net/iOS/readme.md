@@ -36,6 +36,10 @@ YTKNetworking 说是为大工程而生，在我看起来就是手动要码的太
 
 ## KOHttp
 
+
+
+<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211011150621026.png" alt="image-20211011150621026" style="zoom: 50%;" />
+
 ### 需求与设计
 
 1. 希望能够随意定义一个请求的流程。从构造到最终返回。 那我们可以参考经典的 tomcat 的 filter chain 的设计。

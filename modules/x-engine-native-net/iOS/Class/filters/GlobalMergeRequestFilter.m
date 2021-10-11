@@ -63,7 +63,7 @@
 //        [chain doFilter:session request:request response:response];
 //        return;
 //    }
-    NSString* key = [NSString stringWithFormat:@"%@%@%@",request.URL.absoluteString, request.allHTTPHeaderFields,[self md5:request.HTTPBody] ];
+    NSString* key = [NSString stringWithFormat:@"%@%@%@",request.HTTPMethod, request.URL.absoluteString, [self md5:request.HTTPBody] ];
     id queue =  [self.requests objectForKey:key];
     if(queue){
         NSLog(@"merged request %ld",((NSMutableArray*)queue).count);

@@ -400,7 +400,7 @@ public class ImageUtils {
     /*
      * 保存文件，文件名为当前日期
      */
-    private static boolean saveBitmap(Context context, Bitmap bitmap, String bitName,SaveCallBack callBack) {
+    public static boolean saveBitmap(Context context, Bitmap bitmap, String bitName,SaveCallBack callBack) {
         String fileName;
         File file;
         String brand = Build.BRAND;

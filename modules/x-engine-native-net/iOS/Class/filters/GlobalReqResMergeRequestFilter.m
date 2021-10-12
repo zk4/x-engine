@@ -36,7 +36,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-        
+        sharedInstance.requests = [NSMutableDictionary new];
     });
     return sharedInstance;
 }

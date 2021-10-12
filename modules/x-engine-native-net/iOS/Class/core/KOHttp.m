@@ -91,7 +91,7 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 }
 
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)KOResponse chain:(nonnull id<iKOFilterChain>)chain {
-    self.session = [NSURLSession sharedSession];
+  
     NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:KOResponse];
     [sessionTask resume];
      
@@ -110,6 +110,7 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 
  
 -(id<iKONetAgent>) send:(NSMutableURLRequest*) request response:(KOResponse) block{
+    self.session = [NSURLSession sharedSession];
     [self doFilter:self.session request:request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];

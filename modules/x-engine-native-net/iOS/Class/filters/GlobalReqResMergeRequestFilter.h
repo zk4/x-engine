@@ -1,5 +1,5 @@
 //
-//  GlobalReqMergeRequestFilter.h
+//  GlobalReqResMergeRequestFilter.h
 //  net
 //
 //  Created by zk on 2021/9/28.
@@ -27,7 +27,7 @@
 #import "iKONet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface GlobalReqMergeRequestFilter:NSObject <iKOFilter>
+@interface GlobalReqResMergeRequestFilter:NSObject <iKOFilter>
 + (id)sharedInstance;
 @end
 NS_ASSUME_NONNULL_END

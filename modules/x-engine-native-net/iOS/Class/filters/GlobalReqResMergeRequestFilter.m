@@ -1,5 +1,5 @@
 //
-//  GlobalReqMergeRequestFilter.m
+//  GlobalReqResMergeRequestFilter.m
 //  net
 //
 //  Created by zk on 2021/9/28.
@@ -23,16 +23,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "GlobalReqMergeRequestFilter.h"
+#import "GlobalReqResMergeRequestFilter.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@interface GlobalReqMergeRequestFilter()<NSCacheDelegate>
+@interface GlobalReqResMergeRequestFilter()<NSCacheDelegate>
 @property (nonatomic, strong)   NSCache<NSString*,NSMutableArray*>* requests;
 @end
-@implementation GlobalReqMergeRequestFilter
+@implementation GlobalReqResMergeRequestFilter
 + (id)sharedInstance
 {
-    static GlobalReqMergeRequestFilter *sharedInstance = nil;
+    static GlobalReqResMergeRequestFilter *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];

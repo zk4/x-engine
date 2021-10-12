@@ -28,7 +28,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KOHttp<reqType,resType>: NSObject <iKONetAgent,iKOFilterChain>
+@interface KOHttp<reqType,resType>: NSObject <iKONetAgent,iKOFilterChain,iKOFilter>
 
 // 配置全局 urlPrefix
 + (void) ko_configGlobalUrlPrefix:(NSString*) urlPrefix;

@@ -90,22 +90,25 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
     }
 }
 
+- (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)KOResponse chain:(nonnull id<iKOFilterChain>)chain {
+    self.session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:KOResponse];
+    [sessionTask resume];
+     
+}
+
 -(void) doFilter:(NSURLSession*)session request:(NSMutableURLRequest*) request response:(KOResponse) KOResponse{
     if(self.pos<self.filters.count){
         id<iKOFilter> filter =  [self.filters objectAtIndex:self.pos++];
         __weak typeof(self) weakSelf = self;
         [filter doFilter:session request:request  response:KOResponse chain:weakSelf];
     }else{
-        [self _internalSend:request response:KOResponse];
+        __weak typeof(self) weakSelf = self;
+        [self doFilter:session request:request response:KOResponse chain:weakSelf];
     }
 }
 
--(id<iKONetAgent>) _internalSend:(NSMutableURLRequest*) request response:(KOResponse)block{
-    self.session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:block];
-    [sessionTask resume];
-    return self;
-}
+ 
 -(id<iKONetAgent>) send:(NSMutableURLRequest*) request response:(KOResponse) block{
     [self doFilter:self.session request:request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
@@ -115,5 +118,9 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
 
 
 
- 
+
+- (nonnull NSString *)name {
+    return @"I am the real networking!";
+}
+
 @end

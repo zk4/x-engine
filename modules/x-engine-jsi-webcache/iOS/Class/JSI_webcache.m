@@ -10,7 +10,7 @@
 #import "XTool.h"
 #import "NSMutableURLRequest+Filter.h"
 
-#import "GlobalReqMergeRequestFilter.h"
+#import "GlobalReqResMergeRequestFilter.h"
 #import "GlobalReqConfigFilter.h"
 #import "GlobalResStatusCodeNot2xxFilter.h"
 #import "NSMutableURLRequest+Filter.h"
@@ -30,7 +30,7 @@ JSI_MODULE(JSI_webcache)
         [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
         [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
         [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
-        [pipeline addObject:[GlobalReqMergeRequestFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
         pipeline;
     })];
 }

@@ -28,7 +28,9 @@
 
     CGRect frame =   CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
 
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://microapp.demo" params:@{@"hideNavbar":@TRUE} frame:frame];
+    [XENP(iDirectManager) addToTab:self uri:@"http://10.2.129.40:8081" params:@{@"hideNavbar":@TRUE} frame:frame];
+
+//    [XENP(iDirectManager) addToTab:self uri:@"microapp://microapp.demo" params:@{@"hideNavbar":@TRUE} frame:frame];
 
 }
 @end

@@ -11,6 +11,7 @@
 @property (nonatomic, strong) NSPointerArray* webviews;
     + (instancetype)sharedInstance;
     -(XEngineWebView *)createWebView;
+- (XEngineWebView *)createWebView:(BOOL)isLooseNetwork;
 
 @end
 

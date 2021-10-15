@@ -62,7 +62,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
         if(fileUrl.length == 0)
             return self;
         self.bWebviewOnTop = YES;
-        self.webview= [[WebViewFactory sharedInstance] createWebView];
+        self.webview= [[WebViewFactory sharedInstance] createWebView:NO];
         self.webview.allowsBackForwardNavigationGestures = YES;
 
         self.webview.scrollView.delegate = self;
@@ -93,9 +93,53 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     return self;
   
 }
+
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork {
+    self = [super init];
+    if (self){
+        if(fileUrl.length == 0)
+            return self;
+
+        self.bWebviewOnTop = YES;
+        self.webview= [[WebViewFactory sharedInstance] createWebView:isLooseNetwork];
+        self.webview.allowsBackForwardNavigationGestures = YES;
+
+        self.webview.scrollView.delegate = self;
+        self.webview.frame=frame;
+
+        if(!isLooseNetwork) {
+            self.webcache =XENP(iWebcache);
+            if(self.webcache){
+                [self.webcache enableCache];
+            }
+        }
+        self.isHiddenNavbar = isHidden;
+        self.loadUrl = fileUrl;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewProgressChange:)
+                                                     name:@"XEWebViewProgressChangeNotification"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadFail:)
+                                                     name:@"XEWebViewLoadFailNotification"
+                                                   object:nil];
+        [self loadFileUrl];
+
+        
+        [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
+
+    }
+    return self;
+}
+
+
 - (void)webViewScrollerToTop{
     [self.webview.scrollView setContentOffset:CGPointZero animated:YES];
 }
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {
         CGFloat y = self.webview.scrollView.contentOffset.y;

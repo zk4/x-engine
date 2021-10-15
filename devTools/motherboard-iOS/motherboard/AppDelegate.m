@@ -47,8 +47,7 @@
     [self redirectSTD:STDERR_FILENO];
  
     [[XENativeContext sharedInstance] start];
-    [[JSIContext sharedInstance] start];
-     self.window.rootViewController = [[ZYDL_TabBarController alloc] init];
+    self.window.rootViewController = [[ZYDL_TabBarController alloc] init];
     
     
     return YES;

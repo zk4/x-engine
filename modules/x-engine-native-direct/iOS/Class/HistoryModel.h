@@ -3,7 +3,7 @@
 //  ModuleApp
 //
 //  Created by zk on 2021/3/27.
-//  Copyright © 2021 zkty-team. All rights reserved.
+//  Copyright © 2021 x-engine. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
     @property (nonatomic, copy) NSString *host;
     @property (nonatomic, copy) NSString *pathname;
     @property (nonatomic, copy) NSString *fragment;
+
 //    @property (nonatomic, assign) BOOL onTab;
 
     -(NSString*) getKey;

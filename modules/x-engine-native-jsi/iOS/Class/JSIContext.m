@@ -12,7 +12,6 @@
 
 static NSMutableSet<Class> *moduleClasses;
 @interface JSIContext ()
-//@property (nonatomic, strong) NSMutableSet<Class> *moduleClasses;
 @property (nonatomic, strong) NSMutableArray<JSIModule *> *modules;
 @end
 

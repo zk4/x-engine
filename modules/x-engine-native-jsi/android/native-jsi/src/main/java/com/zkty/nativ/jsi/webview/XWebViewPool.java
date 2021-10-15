@@ -154,4 +154,7 @@ public class XWebViewPool {
         this.currentTabWebView = webView;
     }
 
+    public XEngineWebView getCurrentTabWebView() {
+        return currentTabWebView;
+    }
 }

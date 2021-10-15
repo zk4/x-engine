@@ -89,13 +89,11 @@ NATIVE_MODULE(Native_direct_omp)
     fragment = (fragment && fragment.length>0) ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
     
-    // 判断params是否传入了isOpenWebCache属性
     NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
     
-    BOOL isLooseNetwork = [nativeParams objectForKey:@"isOpenWebCache"];
-    
-//    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame];
-    
+    // 判断params是否传入了isOpenWebCache属性
+    BOOL isLooseNetwork = [nativeParams objectForKey:@"isLooseNetwork"];
+
     RecyleWebViewController *vc =  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame looseNetwork:isLooseNetwork];
     vc.hidesBottomBarWhenPushed = YES;
 

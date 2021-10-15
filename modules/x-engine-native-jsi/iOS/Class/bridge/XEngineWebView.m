@@ -38,6 +38,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     NSString *moduleId;
     bool isPending;
     bool isDebug;
+    dispatch_semaphore_t semaphore_webloaded;
 }
 
 
@@ -58,6 +59,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     isPending=false;
     isDebug=false;
     dialogTextDic=@{};
+    semaphore_webloaded = dispatch_semaphore_create(0);
     
     WKUserScript *script = [[WKUserScript alloc] initWithSource:@"window._dswk=true;"
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
@@ -150,6 +152,7 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
 {
+    [XENP(iToast) toastCurrentView:message duration:0.5f];
     //    if(!jsDialogBlock){
     completionHandler();
     //    }
@@ -479,9 +482,16 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                                                       @"data":[XEngineJSBUtil objToJsonString: info.args]}];
     
     __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
-                   completionHandler:nil];
+    // TODO: FIXME: 要这么复杂？ 想要实现的功能，
+    // 等待 webviewload 完再，再evaljavascript。 但 evaljavascript 看上去要在主线程里执行才行。
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        __strong typeof(self) strongSelf = weakSelf;
+        dispatch_semaphore_wait(strongSelf->semaphore_webloaded, DISPATCH_TIME_FOREVER);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [strongSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
+                       completionHandler:nil];
+            });
+        dispatch_semaphore_signal(strongSelf->semaphore_webloaded);
     });
     
 }
@@ -591,13 +601,14 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }];
 }
 
+// CAUTION: 要保证 webview 先触发才可能触发其他生命周期，不然没有意义，有可能页面还没加载未完成
 - (void)triggerVueLifeCycleWithMethod:(NSString *)method {
-    // BROADCAST_EVENT == @@VUE_LIFECYCLE_EVENT
     [self callHandler:@"com.zkty.jsi.engine.lifecycle.notify" arguments:@{
         @"type":method,
         @"payload":[NSString stringWithFormat:@"%p:%@",self,method]
     }
     completionHandler:^(id  _Nullable value) {}];
+ 
 }
 
 #pragma mark - <WKWebView cycleLife>
@@ -700,6 +711,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 3- 确定下载的内容被允许之后再载入视图。
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
+    dispatch_semaphore_signal(semaphore_webloaded);
     [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];

@@ -4,17 +4,17 @@
 
 x-engine 是一个跨端模块管理框架. <span style="color:blue">管理原生模块(iOS/android)</span>。 所有功能特性均由模块支撑。
 
-通过 x-engine  我们提供一整套完善的前端解决方案。
+通过 x-engine  我们提供一整套完善的前端解决方案。 
 
 你可以基于 x-engine 开发纯原生 App。
 
 也可以基于 x-engine 开发 react-native，weex,flutter,h5 与原生的混合。也就是集成任何可在原生上表现的 UI 框架。
 
-但最终：我们都要做 app 出来。
 
-而 app = UI + 逻辑。
 
-UI 层在最终呈现时，现在有 4 种方案
+app = UI + 逻辑。
+
+UI 层在最终呈现时，现在主流有 4 种方案.x-engine 都可以支持.
 
 1. 原生语言 -> 原生布局引擎 -> 原生绘制引擎  -> UI
 2. 自定义语言 -> 浏览器布局引擎 -> 浏览器绘制引擎  -> UI，常见于 hybrid 方案
@@ -36,12 +36,13 @@ UI 层在最终呈现时，现在有 4 种方案
 
 
 
-
 <!-- tabs:start -->
 
 ## **架构图**
 
-<img src="assets/image-20210524132643378.png" alt="image-20210524132643378" style="zoom:50%;" />
+
+
+![image-20211018130654138](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211018130654138.png)
 
 #### **类图**
 
@@ -52,10 +53,19 @@ UI 层在最终呈现时，现在有 4 种方案
 
   
 
+## 举例: RN container api 调用
 
+RN Container 调用原生相机
+
+![image-20211018132618053](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211018132618053.png)
+
+ 
+
+> 其中RNCamera 就是原始的 RN 原生模块.由 RNContext 自己管理. 但 RN Camera 的实现由 Native 模块统一管理.
 
 ## 小程序呢
 
-不想把事情搞复杂。
-
 小程序的支持不应该由 x-engine 解决。而应该由 UI 方案自己解决。比如，基于 taro，vant-weapp。
+
+
+

@@ -39,6 +39,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     bool isPending;
     bool isDebug;
     dispatch_semaphore_t semaphore_webloaded;
+    UISwipeGestureRecognizer *swiperGesture;
 }
 
 
@@ -85,7 +86,17 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     //    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
     //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
     
+    // 添加webview手势 如果recyleVc失效 就启用这个的
+    self->swiperGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
+    self->swiperGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    self->swiperGesture.delegate = self;
+    [self addGestureRecognizer:self->swiperGesture];
     return self;
+}
+
+// 一定要返回yes 让手势能往下传递
+- (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt
@@ -716,6 +727,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
+    [self removeGestureRecognizer:swiperGesture];
 }
 
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
@@ -772,6 +784,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)dealloc {
     //    [self.indicatorView stopAnimating];
+    NSLog(@"dealloc webview");
 }
 
 // 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中
@@ -814,5 +827,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     return nil;
 }
+
 
 @end

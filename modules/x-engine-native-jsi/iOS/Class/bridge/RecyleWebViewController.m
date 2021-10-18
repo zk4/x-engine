@@ -127,7 +127,8 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
         [self loadFileUrl];
-
+        
+        self.navigationController.interactivePopGestureRecognizer.delegate = self;
         
         [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
 

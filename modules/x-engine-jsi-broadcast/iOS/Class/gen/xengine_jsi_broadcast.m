@@ -48,4 +48,9 @@
   [self _triggerBroadcast:dto];
          return nil;
 }
+  
+  - (id) triggerNativeBroadcastNull:(NSDictionary*) dict {
+   [self _triggerNativeBroadcastNull];
+          return nil;
+}
   @end

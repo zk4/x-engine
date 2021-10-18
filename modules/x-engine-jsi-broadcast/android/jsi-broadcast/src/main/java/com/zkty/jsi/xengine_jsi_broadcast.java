@@ -30,6 +30,8 @@ class _0_com_zkty_jsi_broadcast_DTO {
 interface xengine_jsi_broadcast_protocol {
   
 public void _triggerBroadcast(_0_com_zkty_jsi_broadcast_DTO dto);
+  
+public void _triggerNativeBroadcastNull();
 }
   
 
@@ -43,6 +45,14 @@ public void _triggerBroadcast(_0_com_zkty_jsi_broadcast_DTO dto);
         public Object triggerBroadcast(JSONObject jsonobj) {
           _0_com_zkty_jsi_broadcast_DTO dto= convert(jsonobj,_0_com_zkty_jsi_broadcast_DTO.class);
           _triggerBroadcast(dto);
+          return null;
+        }
+        
+
+        @JavascriptInterface
+        public Object triggerNativeBroadcastNull(JSONObject jsonobj) {
+          
+          _triggerNativeBroadcastNull();
           return null;
         }
         

@@ -20,4 +20,15 @@ version: 2.9.0
 **无返回值**
 
 
+
+## triggerNativeBroadcastNull
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
+
+
+**无参数**
+
+
+**无返回值**
+
+
     

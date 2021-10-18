@@ -32,4 +32,10 @@ JSI_MODULE(JSI_broadcast)
 
 }
 
+// 测试用, 不应该使用
+- (void)_triggerNativeBroadcastNull {
+    [_broadcast broadcast:@"native_null"  payload:[NSNull null]];
+}
+
+
 @end

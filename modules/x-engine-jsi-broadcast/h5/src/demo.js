@@ -2,7 +2,25 @@
 import broadcast from './index.js'
 import xengine from "@zkty-team/x-engine-core";
 
-window.test_triggerbroadcast = () => {
+window.test_triggerNativeBroadcastNull = () => {
+
+  xengine.api('com.zkty.jsi.broadcast', 'triggerNativeBroadcastNull')
+
+}
+ document.getElementById("test_triggerNativeBroadcastNull").click()
+        window.test_ontriggerNativeBroadcastNull = () => {
+
+  xengine.broadcastOn((type, payload) => {
+    if (type === 'native_null') {
+      console.log(type, payload)
+      document.getElementById("debug_text").innerText = type + payload;
+      xengine.assert('test_ontriggerNativeBroadcastNull', payload === null )
+    }
+
+  })
+}
+ document.getElementById("test_ontriggerNativeBroadcastNull").click()
+        window.test_triggerbroadcast = () => {
 
   xengine.api('com.zkty.jsi.broadcast', 'triggerBroadcast', {type: 'hello', payload: 'world'})
 }

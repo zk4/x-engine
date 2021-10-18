@@ -8,7 +8,7 @@
 #import "XENativeContext.h"
 #import "iWebcache.h"
 #import "iToast.h"
-#import "SafeGestureNavigationController.h"
+
 
 
 /// TODO: webview refactor

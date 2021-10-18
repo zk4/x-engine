@@ -21,6 +21,16 @@ function osCheck() {
     "name": "test_onbroadcast",
     "default_args": {},
     "decorators": []
+  },
+  {
+    "name": "test_triggerbroadcast_null",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_onbroadcast_null",
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

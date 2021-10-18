@@ -2,13 +2,13 @@
 
 JSI Id: com.zkty.jsi.broadcast
 
-version: 0.1.13
+version: 2.9.0
 
 
 
 ## triggerBroadcast
-`sync`
-> 这个 JSI 只供测试用,不要暴露 broadcast 方法
+[`sync`](/docs/modules/模块-规范?id=jsi-调用)
+ 这个 JSI 只供测试用,不要暴露 broadcast 方法
 
 **参数说明**
 
@@ -16,6 +16,7 @@ version: 0.1.13
 | --------------------------- | --------- | -------- | --------- |--------- |
 | type | string | 必填 |  |  |
 | payload | string | 必填 |  |  |
+
 **无返回值**
 
 

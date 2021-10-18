@@ -492,17 +492,17 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSString * json=[XEngineJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
                                                       @"data":[XEngineJSBUtil objToJsonString: info.args]}];
     
-    __weak typeof(self) weakSelf = self;
+
     // TODO: FIXME: 要这么复杂？ 想要实现的功能，
     // 等待 webviewload 完再，再evaljavascript。 但 evaljavascript 看上去要在主线程里执行才行。
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        __strong typeof(self) strongSelf = weakSelf;
-        dispatch_semaphore_wait(strongSelf->semaphore_webloaded, DISPATCH_TIME_FOREVER);
+
+        dispatch_semaphore_wait(self->semaphore_webloaded, DISPATCH_TIME_FOREVER);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [strongSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
+            [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
                        completionHandler:nil];
             });
-        dispatch_semaphore_signal(strongSelf->semaphore_webloaded);
+        dispatch_semaphore_signal(self->semaphore_webloaded);
     });
     
 }

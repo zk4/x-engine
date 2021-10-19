@@ -55,6 +55,9 @@ project(':native-viewer_original').projectDir = new File('../../x-engine-native-
 include ':native-geo'
 project(':native-geo').projectDir = new File('../../x-engine-native-geo/android/native-geo')
 
+include ':native-webcache'
+project(':native-webcache').projectDir = new File('../../x-engine-native-webcache/android/native-webcache')
+
 include ':native-media'
 project(':native-media').projectDir = new File('../../x-engine-native-media/android/native-media')
 

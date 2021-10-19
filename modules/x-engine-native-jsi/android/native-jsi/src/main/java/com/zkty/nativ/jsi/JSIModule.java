@@ -133,5 +133,15 @@ public abstract class JSIModule {
         }
     }
 
+    protected boolean isSameMicroApp(XEngineWebView webView, XEngineWebView webView2) {
+        if (webView == null || webView2 == null) {
+            return false;
+        }
+        if (webView.getHistoryModel() != null && webView2.getHistoryModel() != null) {
+            String host = webView.getHistoryModel().host;
+            return host != null && host.equals(webView2.getHistoryModel().host);
+        }
+        return false;
+    }
 
 }

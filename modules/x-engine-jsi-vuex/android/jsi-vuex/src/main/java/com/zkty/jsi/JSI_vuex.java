@@ -6,7 +6,6 @@ import com.zkty.nativ.broadcast.NativeBroadcast;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.jsi.HistoryModel;
-import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 import com.zkty.nativ.store.IStore;
 import com.zkty.nativ.store.NativeStore;
@@ -15,7 +14,7 @@ public class JSI_vuex extends xengine_jsi_vuex {
     private NativeStore iStore;
     private NativeBroadcast iBroadcast;
     private static final String VUEX_STORE_KEY = "@@VUEX_STORE_KEY";
-    private static final String BROADCAST_EVENT = "VUEX_STORE_EVENT";
+    private static final String BROADCAST_EVENT = "@@VUEX_STORE_EVENT";
 
     @Override
     protected void afterAllJSIModuleInited() {
@@ -39,7 +38,20 @@ public class JSI_vuex extends xengine_jsi_vuex {
     @Override
     public void _set(_0_com_zkty_jsi_vuex_DTO dto) {
         iStore.set(genKey(dto.key), dto.val);
-        iBroadcast.broadcast(BROADCAST_EVENT, dto.val);
+//        iBroadcast.broadcast(BROADCAST_EVENT, dto.val);
+
+
+//        Map<String, String> bro = new HashMap<>();
+//        bro.put("type", BROADCAST_EVENT);
+//        bro.put("payload", dto.val);
+//        for (XEngineWebView webView : XWebViewPool.sharedInstance().getWebViews()) {
+//            if (isSameMicroApp(xEngineWebView, webView))
+//                webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast return:" + retValue));
+//        }
+//        for (XEngineWebView webView : XWebViewPool.sharedInstance().getTabWebViewList()) {
+//            if (isSameMicroApp(xEngineWebView, webView))
+//                webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast return:" + retValue));
+//        }
     }
 
     private String genKey(String key) {

@@ -384,7 +384,7 @@ public class ClientManager {
      * @param bitmap
      * @return Bitmap
      */
-    public static Bitmap rotaingImageView(int angle, Bitmap bitmap) {
+    public static Bitmap rotateBitmap(int angle, Bitmap bitmap) {
         //旋转图片 动作
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
@@ -422,9 +422,12 @@ public class ClientManager {
         return inSampleSize;
     }
 
-    //把bitmap转换成String
+    //把路径转换成base64String
     public static String bitmapToString(String filePath) {
+        int degree = readPictureDegree(filePath);
+
         Bitmap bm = getSmallBitmap(filePath);
+        bm = rotateBitmap(degree, bm);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         //1.5M的压缩后在100Kb以内，测试得值,压缩后的大小=94486字节,压缩后的大小=74473字节

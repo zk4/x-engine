@@ -132,7 +132,7 @@ public class MicroAppsInstall {
                                 microApp.put(microAppJsonDto.getVersion(), String.format(Locale.ENGLISH, "/android_asset/moduleApps/%s", file));
                                 microApps.put(microAppJsonDto.getId(), microApp);
                             }
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

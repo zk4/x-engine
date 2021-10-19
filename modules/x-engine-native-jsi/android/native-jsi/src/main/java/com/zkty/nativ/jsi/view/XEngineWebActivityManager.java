@@ -83,13 +83,14 @@ public class XEngineWebActivityManager {
     }
 
     public void exitAllXWebPage() {
-        XEngineWebActivity current = XEngineWebActivityManager.sharedInstance().getCurrent();
-        current.showScreenCapture(true);
+        if (current != null)
+            current.showScreenCapture(true);
         XWebViewPool.sharedInstance().cleanWebView();
 
         for (XEngineWebActivity activity : activityList) {
             activity.finish();
         }
+        activityList.clear();
     }
 
     public void backToIndexPage() {

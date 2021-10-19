@@ -4,7 +4,6 @@ package com.zkty.nativ.jsi.view;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,12 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.gome.analysis.AnalysisManager;
-import com.zkty.nativ.core.utils.DensityUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import nativ.jsi.R;
 
@@ -28,6 +29,11 @@ public class XEngineFragment extends Fragment {
     private String TAG = XEngineFragment.class.getSimpleName();
     private static final String ARG_PARAM_HISTORY_MODEL = "arg_param_history_model";
     private static final String ARG_PARAM_INDEX = "arg_param_index";
+
+    private static final String ON_NATIVE_SHOW = "onNativeShow";
+    private static final String ON_NATIVE_HIDE = "onNativeHide";
+    private static final String ON_NATIVE_DESTROYED = "onNativeDestroyed";
+    private static final String ON_WEBVIEW_SHOW = "onWebviewShow";
 
     private XEngineWebView mWebView;
     private RelativeLayout mRoot;
@@ -74,6 +80,7 @@ public class XEngineFragment extends Fragment {
 //            mWebView.setPermission(dto);
                 mWebView.loadUrl(historyModel);
             }
+            mWebView.setOnPageStateListener(() -> broadcast(ON_WEBVIEW_SHOW, ON_WEBVIEW_SHOW));
         }
 
     }
@@ -87,18 +94,25 @@ public class XEngineFragment extends Fragment {
         super.onHiddenChanged(hidden);
         if (!hidden) {
             XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
+            broadcast(ON_NATIVE_SHOW, ON_NATIVE_SHOW);
+        } else {
+            broadcast(ON_NATIVE_HIDE, ON_NATIVE_HIDE);
         }
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onDestroy() {
+        broadcast(ON_NATIVE_DESTROYED, ON_NATIVE_DESTROYED);
+        super.onDestroy();
     }
 
-    public void broadcast(String msg) {
-        Log.d(TAG, "发送全局广播：" + msg);
-        if (mWebView != null)
-            mWebView.callHandler("com.zkty.module.engine.broadcast", new Object[]{msg}, retValue -> Log.d(TAG, "broadcast:" + msg));
+    private void broadcast(String type, String payload) {
+//        Log.d("DWebView-Log", "broadcast：type=" + type + " ,payload = " + payload + "__" + mWebView.hashCode());
+        Map<String, String> bro = new HashMap<>();
+        bro.put("type", type);
+        bro.put("payload", payload);
+        mWebView.callHandler("com.zkty.jsi.engine.lifecycle.notify", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast:" + payload));
+
     }
 
 

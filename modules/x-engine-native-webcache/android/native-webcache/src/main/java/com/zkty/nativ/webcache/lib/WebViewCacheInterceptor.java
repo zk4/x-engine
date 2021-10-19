@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.webkit.URLUtil;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -152,7 +153,7 @@ public class WebViewCacheInterceptor implements WebViewRequestInterceptor {
         return interceptRequest(url, buildHeaders());
     }
 
-    private boolean checkUrl(String url) {
+    private boolean checkUrl(String url, Map<String, String> headers) {
         if (TextUtils.isEmpty(url)) {
             return false;
         }
@@ -163,6 +164,18 @@ public class WebViewCacheInterceptor implements WebViewRequestInterceptor {
 
         if (mResourceInterceptor != null && !mResourceInterceptor.interceptor(url)) {
             return false;
+        }
+        if (headers != null && headers.containsKey("Accept")) {
+            Log.d("CacheWebView", "checkUrl---->" + url);
+            Log.d("CacheWebView", "checkUrl accept---->" + headers.get("Accept"));
+
+
+            if (headers.get("Accept") != null
+//                    && ("image/webp,image/apng,image/*,*/*;q=0.8".equalsIgnoreCase(headers.get("Accept"))
+//                    || "image/webp,image/tpg,image/*,*/*;q=0.8".equalsIgnoreCase(headers.get("Accept")))) {
+                    && headers.get("Accept").startsWith("image/webp")) {
+                return true;
+            }
         }
 
         String extension = MimeTypeMapUtils.getFileExtensionFromUrl(url);
@@ -266,11 +279,11 @@ public class WebViewCacheInterceptor implements WebViewRequestInterceptor {
     }
 
     private WebResourceResponse interceptRequest(String url, Map<String, String> headers) {
-
+        Log.d("CacheWebView", "interceptRequest url= " + url);
         if (mCacheType == CacheType.NORMAL) {
             return null;
         }
-        if (!checkUrl(url)) {
+        if (!checkUrl(url, headers)) {
             return null;
         }
 

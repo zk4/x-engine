@@ -38,10 +38,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void nextPage(View view) {
-        String protocol = "file:";
+        String protocol = "http:";
         String host = et_content.getText().toString();
-//          protocol = "http:";
-//         host = "10.2.128.89:8080";
+          protocol = "http:";
+         host = "10.2.129.82:9111";
         String pathname = "";
         String fragment = "";
         XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, null, true);

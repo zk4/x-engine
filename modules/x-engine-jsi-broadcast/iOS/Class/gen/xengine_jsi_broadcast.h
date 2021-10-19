@@ -28,9 +28,6 @@
    @required 
     - (void) _triggerBroadcast:(_triggerBroadcast_com_zkty_jsi_broadcast_0_DTO*)dto;
 
-   @required 
-    - (void) _triggerNativeBroadcastNull;
-
 @end
 
 

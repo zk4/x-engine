@@ -47,11 +47,13 @@ JSI_MODULE(JSI_vuex)
 - (NSString *)_get:(NSString *)dto {
     NSString* key = [self genkey:dto];
     NSString* ret = [_store get:key];
+    NSLog(@"vuex get: %@", ret);
     return ret;
 }
 
-- (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {
+- (void)_set:(_set_com_zkty_jsi_vuex_0_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
+    NSLog(@"vuex set: %@ | %@",dto.key, dto.val);
     // TODO:  仅对同样的微应用广播
     for (UIViewController* vc in [Unity sharedInstance].getCurrentVC.navigationController.viewControllers){
         if([vc isKindOfClass:[RecyleWebViewController class]]){

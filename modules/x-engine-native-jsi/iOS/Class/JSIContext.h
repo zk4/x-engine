@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "XENativeModule.h"
+#import "iJSIContext.h"
 NS_ASSUME_NONNULL_BEGIN
 #define JSI_MODULE(clz) + (void)load{ \
-    [[JSIContext sharedInstance] registerModuleByClass:clz.class];}\
+    [JSIContext  registerModuleByClass:clz.class];}\
 
 #ifdef DEBUG
 
@@ -22,11 +23,9 @@ NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
 # define NSLog(...);
 #endif
 
-@interface JSIContext : XENativeModule
-+ (instancetype)sharedInstance;
-- (void) registerModuleByClass:(Class)clazz;
-- (void) start;
-- (NSMutableArray *)modules;
+@interface JSIContext : XENativeModule <iJSIContext>
++ (void) registerModuleByClass:(Class)clazz;
+- (NSMutableArray *)getJSIModules;
 @end
 
 NS_ASSUME_NONNULL_END

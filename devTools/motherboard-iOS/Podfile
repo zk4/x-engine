@@ -21,12 +21,13 @@ def shared_pods
   pod 'x-engine-native-direct_native', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_native'
   pod 'x-engine-native-broadcast', :path =>X_ENGINE_MODULES+'/x-engine-native-broadcast'
   pod 'x-engine-native-device', :path =>X_ENGINE_MODULES+'/x-engine-native-device'
-  pod 'x-engine-native-scan', :path =>X_ENGINE_MODULES+'/x-engine-native-scan'
   pod 'x-engine-native-store', :path =>X_ENGINE_MODULES+'/x-engine-native-store'
   pod 'x-engine-native-rest', :path =>X_ENGINE_MODULES+'/x-engine-native-rest'
   pod 'x-engine-native-tabbar', :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
-  pod 'x-engine-native-offline', :path =>X_ENGINE_MODULES+'/x-engine-native-offline'
+  pod 'x-engine-native-updator', :path =>X_ENGINE_MODULES+'/x-engine-native-updator'
   pod 'x-engine-native-toast', :path =>X_ENGINE_MODULES+'/x-engine-native-toast'
+  pod 'x-engine-native-net', :path =>X_ENGINE_MODULES+'/x-engine-native-net'
+  pod 'x-engine-native-scan', :path =>X_ENGINE_MODULES+'/x-engine-native-scan'
 
   
   # webcache
@@ -45,13 +46,8 @@ def shared_pods
   pod 'x-engine-jsi-store', :path =>X_ENGINE_MODULES+'/x-engine-jsi-store'
   pod 'x-engine-jsi-localstorage', :path =>X_ENGINE_MODULES+'/x-engine-jsi-localstorage'
   pod 'x-engine-jsi-vuex', :path =>X_ENGINE_MODULES+'/x-engine-jsi-vuex'
- 
-
   
   
-  # legacy jsi
-#  pod 'x-engine-jsi-legacy', :path =>X_ENGINE_MODULES+'/x-engine-jsi-legacy'
-	
   pod 'JSONModel'
   pod 'MJExtension'
   pod 'SSZipArchive'

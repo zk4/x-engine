@@ -13,12 +13,32 @@ function osCheck() {
     return  xengine.use("com.zkty.jsi.broadcast", 
     [
   {
+    "name": "test_triggerNativeBroadcastNull",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_ontriggerNativeBroadcastNull",
+    "default_args": {},
+    "decorators": []
+  },
+  {
     "name": "test_triggerbroadcast",
     "default_args": {},
     "decorators": []
   },
   {
     "name": "test_onbroadcast",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_triggerbroadcast_null",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_onbroadcast_null",
     "default_args": {},
     "decorators": []
   }

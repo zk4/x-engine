@@ -6,25 +6,25 @@
 #import "JSIModule.h"
 #import "JSONModel.h"
 
-@protocol _0_com_zkty_jsi_vuex_DTO;
-@class _0_com_zkty_jsi_vuex_DTO;
+@protocol _set_com_zkty_jsi_vuex_0_DTO;
+@class _set_com_zkty_jsi_vuex_0_DTO;
 
-@interface _0_com_zkty_jsi_vuex_DTO: JSONModel
+@interface _set_com_zkty_jsi_vuex_0_DTO: JSONModel
   	@property(nonatomic,copy) NSString* key;
    	@property(nonatomic,copy) NSString* val;
 @end
-    
+
 
 
 @protocol xengine_jsi_vuex_protocol
+   @required 
+    - (NSString*) _get:(NSString*)dto;
 
-       - (NSString*) _get:(NSString*)dto;
-    
+   @required 
+    - (void) _set:(_set_com_zkty_jsi_vuex_0_DTO*)dto;
 
-       - (void) _set:(_0_com_zkty_jsi_vuex_DTO*)dto;
-    
 @end
-  
+
 
 
 @interface xengine_jsi_vuex : JSIModule<xengine_jsi_vuex_protocol>

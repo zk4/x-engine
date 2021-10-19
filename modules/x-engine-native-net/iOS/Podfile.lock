@@ -1,5 +1,6 @@
 PODS:
   - JSONModel (1.8.0)
+  - PromisesObjC (2.0.0)
   - Toast (4.0.0)
   - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
@@ -15,6 +16,7 @@ PODS:
     - x-engine-native-protocols
 
 DEPENDENCIES:
+  - PromisesObjC
   - x-engine-native-core (from `/Users/zk/git/working/x-engine/modules/x-engine-native-core`)
   - x-engine-native-protocols (from `/Users/zk/git/working/x-engine/modules/x-engine-native-protocols`)
   - x-engine-native-toast (from `/Users/zk/git/working/x-engine/modules/x-engine-native-toast`)
@@ -23,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JSONModel
+    - PromisesObjC
     - Toast
 
 EXTERNAL SOURCES:
@@ -37,12 +40,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
   x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
 
-PODFILE CHECKSUM: 04716ec9cf267506fedf78a60973e1c36bf6844e
+PODFILE CHECKSUM: 05435a93303511766339c0fe11153a0a98189d46
 
 COCOAPODS: 1.10.2

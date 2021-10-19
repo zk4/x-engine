@@ -42,5 +42,16 @@ NATIVE_MODULE(Native_toast)
                                                position:CSToastPositionTop];
     });
 }
+
+- (void)toastCurrentView:(NSString *)msg duration:(NSTimeInterval)duration{
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+    [[Unity sharedInstance].getCurrentVC.view makeToast:msg
+                                               duration:duration
+                                               position:CSToastPositionTop];
+    });
+}
+
+
 @end
  

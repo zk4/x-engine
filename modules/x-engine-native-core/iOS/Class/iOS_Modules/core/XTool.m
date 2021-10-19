@@ -1,7 +1,7 @@
 #import "XTool.h"
 #import "micros.h"
 #import <objc/runtime.h>
-
+#import <CommonCrypto/CommonDigest.h>
 #pragma mark - 错误处理
 @implementation XToolError
 + (NSError *) wrapper:(NSError *)error  underlyingError:(NSError *) underlyingError {
@@ -147,6 +147,22 @@
 
 @implementation  XToolDataConverter
 
++ (NSString *)md5:(NSData*)body {
+    if(!body) return @"";
+    // Create byte array of unsigned chars
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+        
+    // Create 16 byte MD5 hash value, store in buffer
+    CC_MD5(body.bytes, (unsigned int)body.length, md5Buffer);
+        
+    // Convert unsigned char buffer to NSString of hex values
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x",md5Buffer[i]];
+
+    return output;
+}
+
 /// 字典转json格式字符串
 /// @param dict 字典
 + (NSString*)dictionaryToJson:(NSDictionary *)dict {
@@ -158,14 +174,18 @@
 /// json格式字符串转字典:
 /// @param jsonString json
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    NSError* error;
+    return [self dictionaryWithJsonStringWithError:jsonString error:&error];
+}
+
++ (NSDictionary *)dictionaryWithJsonStringWithError:(NSString *)jsonString error:(NSError**)error{
     if (jsonString == nil) {
         return nil;
     }
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    if(err) {
-        NSLog(@"json解析失败：%@",err);
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:error];
+    if(*error) {
+        NSLog(@"json解析失败：%@",*error);
         return nil;
     }
     return dic;

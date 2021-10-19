@@ -65,8 +65,8 @@ static NSString *SLUrlProtocolHandled = @"SLUrlProtocolHandled";
 
     if (cachedURLResponse) {
         NSLog(@"@cache =>%@",self.request.URL);
-        NSHTTPURLResponse* res =(NSHTTPURLResponse*)(cachedURLResponse.response);
-        NSLog(@"@responseheaders =>%@",res.allHeaderFields);
+//        NSHTTPURLResponse* res =(NSHTTPURLResponse*)(cachedURLResponse.response);
+//        NSLog(@"@responseheaders =>%@",res.allHeaderFields);
 
         [self.client URLProtocol:self didReceiveResponse:cachedURLResponse.response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
         [self.client URLProtocol:self didLoadData:cachedURLResponse.data];

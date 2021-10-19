@@ -18,7 +18,22 @@ function osCheck() {
     "decorators": []
   },
   {
-    "name": "test_get",
+    "name": "test_get_abc",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_get_empty_str",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_get_non_exist",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_set_null",
     "default_args": {},
     "decorators": []
   }

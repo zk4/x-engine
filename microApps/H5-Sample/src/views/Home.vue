@@ -58,28 +58,28 @@ export default {
   },
   methods: {
     onNativeShow() {
-      console.log("onePageCustom-->onNativeShow")
-      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
+      console.log("home-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "home-onNativeShow")
     },
     onWebviewShow(){
       console.log("onWebviewShow")
-      this.$engine.api("com.zkty.jsi.dev", "log", "onWebviewShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "home-onWebviewShow")
 
     },
     onNativeHide() {
-      console.log("onePageCustom-->onNativeHide")
+      console.log("home-->onNativeHide")
       this.$engine.api(
         "com.zkty.jsi.dev",
         "log",
-        "onePageCustom-->onNativeHide"
+        "home-->onNativeHide"
       )
     },
     onNativeDestroyed() {
-      console.log("onePageCustom-->onNativeDestroyed")
+      console.log("home-->onNativeDestroyed")
       this.$engine.api(
         "com.zkty.jsi.dev",
         "log",
-        "onePageCustom-->onNativeDestroyed"
+        "home-->onNativeDestroyed"
       )
     },
     handlerMedia() {

@@ -142,7 +142,7 @@ NATIVE_MODULE(Native_updator)
 - (void)updateMicroappsFromUrl:(NSString *)url {
 
     [self.manager POST:url parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if(responseObject && responseObject[@"data"]){
+            if(responseObject  ){
                 for(id entry in responseObject[@"data"][@"list"]){
                     NSLog(@"%@",entry);
                     NSString* microappId = entry[@"microappId"];

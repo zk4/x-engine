@@ -6,12 +6,12 @@
 #import "xengine_jsi_vuex.h"
 
 
-@implementation _0_com_zkty_jsi_vuex_DTO
+@implementation _set_com_zkty_jsi_vuex_0_DTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
 @end
-    
+
 
 
 
@@ -29,13 +29,29 @@
     
   
   - (NSString*) get:(NSDictionary*) dict {
+      
       NSString* dto = [self convert:dict clazz:NSString.class];
-      return [self _get:dto];
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  return [self _get:dto];
+}
   
   - (id) set:(NSDictionary*) dict {
-      _0_com_zkty_jsi_vuex_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_vuex_DTO.class];
-      [self _set:dto];
-                 return nil;
+      
+      _set_com_zkty_jsi_vuex_0_DTO* dto = [self convert:dict clazz:_set_com_zkty_jsi_vuex_0_DTO.class];
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  [self _set:dto];
+         return nil;
+}
   @end

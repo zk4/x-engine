@@ -14,8 +14,8 @@ export default {
   },
   methods: {
       onNativeShow() {
-      console.log("three: onePageCustom-->onNativeShow")
-      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
+      console.log("three: three-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "three-onNativeShow")
     },
     onWebviewShow(){
       console.log("three: onWebviewShow")
@@ -23,19 +23,19 @@ export default {
 
     },
     onNativeHide() {
-      console.log("three: onePageCustom-->onNativeHide")
+      console.log("three: three-->onNativeHide")
       this.$engine.api(
         "com.zkty.jsi.dev",
         "log",
-        "onePageCustom-->onNativeHide"
+        "three-->onNativeHide"
       )
     },
     onNativeDestroyed() {
-      console.log("three: onePageCustom-->onNativeDestroyed")
+      console.log("three: three-->onNativeDestroyed")
       this.$engine.api(
         "com.zkty.jsi.dev",
         "log",
-        "onePageCustom-->onNativeDestroyed"
+        "three-->onNativeDestroyed"
       )
     },
 

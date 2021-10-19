@@ -8,23 +8,31 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "XTool.h"
+#import "NSMutableURLRequest+Filter.h"
+
+#import "GlobalReqResMergeRequestFilter.h"
+#import "GlobalReqConfigFilter.h"
+#import "GlobalResStatusCodeNot2xxFilter.h"
+#import "NSMutableURLRequest+Filter.h"
+#import "GlobalResNoResponseFilter.h"
+#import "KOHttp.h"
 
 @interface JSI_webcache()
-@property (atomic, strong) NSMutableDictionary* cache;
-@property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSMutableURLRequest *request;
 @end
 
 @implementation JSI_webcache
 JSI_MODULE(JSI_webcache)
 
 - (void)afterAllJSIModuleInited {
-    _cache=[NSMutableDictionary new];
-    
-    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.HTTPMaximumConnectionsPerHost=10;
-
-   self.session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
-
+    [KOHttp ko_configPipelineByName:@"WEB_CACHE" pipeline:({
+        NSMutableArray* pipeline  =[NSMutableArray new];
+        [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
+        [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
+        pipeline;
+    })];
 }
 
 -(BOOL)isNull:(NSDictionary *)dict key:(NSString*)key{
@@ -63,29 +71,8 @@ JSI_MODULE(JSI_webcache)
     NSString* url = dict[@"url"];
     NSString* method = dict[@"method"];
 
-    NSString* cacheKey=nil;
-    if([method isEqualToString:@"GET"]){
-        if(dict && ![self isNull:dict key:@"data"] && dict[@"data"])
-            cacheKey = [NSString stringWithFormat:@"%@%@%@",method, url ,dict[@"data"]];
-        cacheKey =url;
-    }else if([method isEqualToString:@"POST"]){
-        if(   [url containsString:@"goods/c/app/product/productDetail"]
-           || [url containsString:@"/router-service/"]
-           || [url containsString:@"/serviceProduct/detail"])
-            cacheKey = [NSString stringWithFormat:@"%@%@%@",method ,url,dict[@"data"]];
-    }
-
-    
-    // 仅缓存 GET, 如果有更新,则会会二次返回,
-    if(cacheKey && [_cache objectForKey:cacheKey]){
-        NSLog(@"cache+jsi =>%@:%@",method, cacheKey);
-        completionHandler(_cache[cacheKey],TRUE);
-        return;
-    }
-
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
+
     request.HTTPMethod = method;
     request.allHTTPHeaderFields= [self makeSafeHeaders:headers];
     
@@ -106,43 +93,35 @@ JSI_MODULE(JSI_webcache)
     }
     
     NSLog(@"jsi:%@ => %@:%@",request.HTTPMethod, request.URL, request.HTTPMethod);
-    
-    
     //WARNING: 想换成其他网络请求库时请请注意json 序列化的问题。不要转多遍。jsonStr 里的 '浮点类型'，在转为原生类型时，会丢失精度。再转为 jsonStr 时就不是你要的值了。如 str: '{a:.3}' -> objc: @{@"a":.299999999999}  ->  str '{"a":.29999999999}'
 
-    __weak typeof(self) weakSelf = self;
-        NSURLSessionDataTask *sessionTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *r, NSError *error) {
-            if (!error) {
-                NSHTTPURLResponse *response =nil;
-                response = (NSHTTPURLResponse *)r;
-                NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
-                NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
-                
-                // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-                NSString* type =  headers[@"Content-Type"];
-                BOOL isBinary =type? !([type containsString:@"text/"] || [type containsString:@"/json"]): NO;
+    [request activePipelineByName:@"WEB_CACHE"];
+    [request send:^(id  _Nullable data, NSURLResponse * _Nullable r, NSError * _Nullable error) {
+        if (!error) {
+            NSHTTPURLResponse *response =nil;
+            response = (NSHTTPURLResponse *)r;
+            NSString* statusCode =[NSString stringWithFormat:@"%zd",[response statusCode]] ;
+            NSDictionary* headers = response.allHeaderFields?response.allHeaderFields:@{};
+            
+            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+            NSString* type =  headers[@"Content-Type"];
+            BOOL isBinary =type? !([type containsString:@"text/"] || [type containsString:@"/json"]): NO;
 
-                NSDictionary* ret =@{
-                    @"statusCode": statusCode,
-                    @"isBinary":[NSNumber numberWithBool:isBinary],
-                    @"data":isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding],
-                    @"responseHeaders":headers
-                };
-                if(cacheKey)
-                    weakSelf.cache[cacheKey] = ret;
-                completionHandler(ret,TRUE);
-    
-            } else {
-                NSDictionary* ret =@{
-    
-                    @"error":[NSString stringWithFormat:@"%@", error]
-                };
-                completionHandler(ret,TRUE);
-            }
-        }];
-
-
-    [sessionTask resume];
+            NSDictionary* ret =@{
+                @"statusCode": statusCode,
+                @"isBinary":[NSNumber numberWithBool:isBinary],
+                @"data":isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding],
+                @"responseHeaders":headers
+            };
+            completionHandler(ret,TRUE);
+        } else {
+            NSDictionary* ret =@{
+                @"error":[NSString stringWithFormat:@"%@", error]
+            };
+            completionHandler(ret,TRUE);
+        }
+    }];
+ 
 }
 
  

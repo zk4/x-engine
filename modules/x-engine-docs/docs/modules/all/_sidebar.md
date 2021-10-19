@@ -1,6 +1,7 @@
 - [viewer](./docs/modules/all/模块-viewer.md)
 - [globalstorage](./docs/modules/all/模块-globalstorage.md)
 - [device](./docs/modules/all/模块-device.md)
+- [broadcast](./docs/modules/all/模块-broadcast.md)
 - [scan](./docs/modules/all/模块-scan.md)
 - [media](./docs/modules/all/模块-media.md)
 - [share](./docs/modules/all/模块-share.md)

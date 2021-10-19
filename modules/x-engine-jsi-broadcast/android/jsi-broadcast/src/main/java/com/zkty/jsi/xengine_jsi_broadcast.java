@@ -15,13 +15,7 @@ import androidx.annotation.Nullable;
 import com.zkty.nativ.core.annotation.Optional;
 
 
-class NamedDTO {
-  public String title;
-
-    public Integer titleSize;
-  }
-  
-class _0_com_zkty_jsi_broadcast_DTO {
+class BroadcastDTO {
   public String type;
 
     public String payload;
@@ -29,7 +23,6 @@ class _0_com_zkty_jsi_broadcast_DTO {
 
 interface xengine_jsi_broadcast_protocol {
   
-public void _triggerBroadcast(_0_com_zkty_jsi_broadcast_DTO dto);
 }
   
 
@@ -39,13 +32,6 @@ public void _triggerBroadcast(_0_com_zkty_jsi_broadcast_DTO dto);
       return "com.zkty.jsi.broadcast";
     }
   
-        @JavascriptInterface
-        public Object triggerBroadcast(JSONObject jsonobj) {
-          _0_com_zkty_jsi_broadcast_DTO dto= convert(jsonobj,_0_com_zkty_jsi_broadcast_DTO.class);
-          _triggerBroadcast(dto);
-          return null;
-        }
-        
   }
   
 

@@ -13,17 +13,11 @@ const conf = {
   },
 };
 
-interface NamedDTO {
-  //文字
-  title: string;
-  //大小
-  titleSize: int;
-}
-
+interface BroadcastDTO{type: string, payload: string}
 
 // 这个 JSI 只供测试用,不要暴露 broadcast 方法
-@sync
-function triggerBroadcast(arg: {type: string, payload: string}) {}
+// @sync
+// function triggerBroadcast(arg: BroadcastDTO) {}
 //
 // @sync
 // function triggerNativeBroadcastNull() {}
@@ -43,33 +37,33 @@ function triggerBroadcast(arg: {type: string, payload: string}) {}
 //   })
 // }
 
-function test_triggerbroadcast() {
-  xengine.api('com.zkty.jsi.broadcast', 'triggerBroadcast', {type: 'hello', payload: 'world'})
-}
-
-function test_onbroadcast() {
-  xengine.broadcastOn((type, payload) => {
-    if (type === 'hello') {
-      document.getElementById("debug_text").innerText = type + payload;
-      xengine.assert('test_onbroadcast', type === 'hello' && payload === 'world')
-    }
-  })
-}
-
-function test_triggerbroadcast_null() {
-  xengine.api('com.zkty.jsi.broadcast', 'triggerBroadcast', {type: 'isnull', payload: null})
-}
-
-function test_onbroadcast_null() {
-  xengine.broadcastOn((type, payload) => {
-    if (type === 'isnull') {
-      console.log(type, payload)
-      document.getElementById("debug_text").innerText = type + payload;
-      xengine.assert('test_onbroadcast_null', false )
-    }
-
-  })
-        xengine.assert('test_onbroadcast_null', true )
-
-}
-
+// function test_triggerbroadcast() {
+//   xengine.api('com.zkty.jsi.broadcast', 'triggerBroadcast', {type: 'hello', payload: 'world'})
+// }
+//
+// function test_onbroadcast() {
+//   xengine.broadcastOn((type, payload) => {
+//     if (type === 'hello') {
+//       document.getElementById("debug_text").innerText = type + payload;
+//       xengine.assert('test_onbroadcast', type === 'hello' && payload === 'world')
+//     }
+//   })
+// }
+//
+// function test_triggerbroadcast_null() {
+//   xengine.api('com.zkty.jsi.broadcast', 'triggerBroadcast', {type: 'isnull', payload: null})
+// }
+//
+// function test_onbroadcast_null() {
+//   xengine.broadcastOn((type, payload) => {
+//     if (type === 'isnull') {
+//       console.log(type, payload)
+//       document.getElementById("debug_text").innerText = type + payload;
+//       xengine.assert('test_onbroadcast_null', false )
+//     }
+//
+//   })
+//         xengine.assert('test_onbroadcast_null', true )
+//
+// }
+//

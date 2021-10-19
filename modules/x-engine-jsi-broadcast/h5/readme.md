@@ -6,18 +6,4 @@ version: 2.9.0
 
 
 
-## triggerBroadcast
-[`sync`](/docs/modules/模块-规范?id=jsi-调用)
- 这个 JSI 只供测试用,不要暴露 broadcast 方法
-
-**参数说明**
-
-| name                        | type      | optional | default   | comment  |
-| --------------------------- | --------- | -------- | --------- |--------- |
-| type | string | 必填 |  |  |
-| payload | string | 必填 |  |  |
-
-**无返回值**
-
-
     

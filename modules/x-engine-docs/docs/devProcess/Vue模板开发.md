@@ -72,6 +72,9 @@ xengine.api("com.zkty.jsi.device",	"getTabbarHeight"), function (res) {
 ---
 
 ### x-engine-lifecycle
+
+! 生命周期将会回调当前页面所有的注册过的web页面.这个要特别注意. 比如: 你在当前 web 里有 5 个组件,都在 methods 里写了 onNativeShow 那就会有 5 次回调.
+
 ``` js
 const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示, 有可能 webview 还没有加载完成。 需要自行判断
 const ON_NATIVE_HIDE = "onNativeHide"; // 原生隐藏

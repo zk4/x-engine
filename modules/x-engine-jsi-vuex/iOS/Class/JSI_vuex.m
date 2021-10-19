@@ -19,7 +19,7 @@
 #import "UIViewController+Tag.h"
 #import "RecyleWebViewController.h"
 #import "XEngineWebView.h"
-
+#import "WebViewFactory.h"
 #define VUEX_STORE_KEY @"@@VUEX_STORE_KEY"
 #define BROADCAST_EVENT @"@@VUEX_STORE_EVENT"
 
@@ -54,10 +54,14 @@ JSI_MODULE(JSI_vuex)
 - (void)_set:(_set_com_zkty_jsi_vuex_0_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
     NSLog(@"vuex set: %@ | %@",dto.key, dto.val);
-    // TODO:  仅对同样的微应用广播
-    for (UIViewController* vc in [Unity sharedInstance].getCurrentVC.navigationController.viewControllers){
-        if([vc isKindOfClass:[RecyleWebViewController class]]){
-            XEngineWebView* webview = [(RecyleWebViewController*)vc getWebView];
+    
+    // 仅对同样的微应用广播
+    for (XEngineWebView* webview in [WebViewFactory sharedInstance].webviews){
+        bool hit =  self.currentWebView.model.host
+        ? ([self.currentWebView.model.host isEqualToString:webview.model.host]
+        && [self.currentWebView.model.pathname isEqualToString:webview.model.pathname])
+        : [self.currentWebView.model.pathname isEqualToString:webview.model.pathname];
+        if(hit){
             [webview callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
                 @"type":BROADCAST_EVENT,
                 @"payload":dto.val
@@ -66,6 +70,7 @@ JSI_MODULE(JSI_vuex)
                 NSLog(@"js return value %@",value);
             }];
         }
+
     }
 }
 

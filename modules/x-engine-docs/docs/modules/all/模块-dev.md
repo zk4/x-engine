@@ -1,5 +1,10 @@
 
 
+
+打印日志到原生端,供调试用
+
+
+
 JSI Id: com.zkty.jsi.dev
 
 version: 2.9.0
@@ -24,3 +29,4 @@ version: 2.9.0
 
 
     
+

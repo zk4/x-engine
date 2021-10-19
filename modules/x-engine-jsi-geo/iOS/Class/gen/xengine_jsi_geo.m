@@ -17,7 +17,7 @@
    	return NO;
     }
 @end
-    
+
 
 
 
@@ -38,5 +38,5 @@
           [self _locate:^(LocationDTO* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
-      }
+  }
   @end

@@ -23,8 +23,16 @@
     
   
   - (id) log:(NSDictionary*) dict {
+      
       NSString* dto = [self convert:dict clazz:NSString.class];
-      [self _log:dto];
-                 return nil;
+      
+        if(!dto) {
+          [self showErrorAlert: @"dto 转换为空"];
+          return nil;
         }
+
+
+  [self _log:dto];
+         return nil;
+}
   @end

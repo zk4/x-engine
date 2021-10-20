@@ -1,5 +1,5 @@
 //
-//  GlobalReqInnerNetworkDectorFilter.m
+//  GlobalReqInnerNetworkDetectorFilter.m
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -23,13 +23,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import "GlobalReqInnerNetworkDectorFilter.h"
+#import "GlobalReqInnerNetworkDetectorFilter.h"
 #import <arpa/inet.h>
 #include <netdb.h>
 #include <sys/socket.h>
 #import "XENativeContext.h"
 #import "iToast.h"
-@implementation GlobalReqInnerNetworkDectorFilter
+@implementation GlobalReqInnerNetworkDetectorFilter
 
 +(int)isInnerIP:(NSString *)hostName
 {
@@ -90,16 +90,16 @@ bool IsInner(unsigned int userIp, unsigned int begin, unsigned int end)
     return (userIp >= begin) && (userIp <= end);
 }
 + (instancetype)sharedInstance {
-    static GlobalReqInnerNetworkDectorFilter * ins = nil;
+    static GlobalReqInnerNetworkDetectorFilter * ins = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        ins = [[GlobalReqInnerNetworkDectorFilter alloc] init];
+        ins = [[GlobalReqInnerNetworkDetectorFilter alloc] init];
     });
     return ins;
 }
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
     
-    if([GlobalReqInnerNetworkDectorFilter isInnerIP:request.URL.host]){
+    if([GlobalReqInnerNetworkDetectorFilter isInnerIP:request.URL.host]){
         NSString* msg = [NSString stringWithFormat:@"%@ 解析到了内网地址",request.URL.absoluteString];
         [XENP(iToast) toast:msg];
     }

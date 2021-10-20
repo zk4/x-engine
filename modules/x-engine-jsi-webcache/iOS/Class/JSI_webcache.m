@@ -15,7 +15,7 @@
 #import "GlobalResStatusCodeNot2xxFilter.h"
 #import "NSMutableURLRequest+Filter.h"
 #import "GlobalResNoResponseFilter.h"
-#import "GlobalReqInnerNetworkDectorFilter.h"
+#import "GlobalReqInnerNetworkDetectorFilter.h"
 
 #import "KOHttp.h"
 
@@ -29,7 +29,7 @@ JSI_MODULE(JSI_webcache)
 - (void)afterAllJSIModuleInited {
     [KOHttp ko_configPipelineByName:@"WEB_CACHE" pipeline:({
         NSMutableArray* pipeline  =[NSMutableArray new];
-        [pipeline addObject:[GlobalReqInnerNetworkDectorFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqInnerNetworkDetectorFilter sharedInstance]];
         [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
         [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
         [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];

@@ -1,5 +1,5 @@
 //
-//  GlobalReqInnerNetworkDectorFilter.h
+//  GlobalReqInnerNetworkDetectorFilter.h
 //  net
 //
 //  Created by zk on 2021/9/29.
@@ -28,7 +28,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GlobalReqInnerNetworkDectorFilter:NSObject <iKOFilter>
+@interface GlobalReqInnerNetworkDetectorFilter:NSObject <iKOFilter>
 + (instancetype)sharedInstance;
 @end
 

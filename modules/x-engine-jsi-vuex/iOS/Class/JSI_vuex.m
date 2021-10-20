@@ -53,7 +53,6 @@ JSI_MODULE(JSI_vuex)
 
 - (void)_set:(_set_com_zkty_jsi_vuex_0_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
-    NSLog(@"vuex set: %@ | %@",dto.key, dto.val);
     
     // 仅对同样的微应用广播
     for (XEngineWebView* webview in [WebViewFactory sharedInstance].webviews){

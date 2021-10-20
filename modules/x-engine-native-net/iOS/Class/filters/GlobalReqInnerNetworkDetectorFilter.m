@@ -98,11 +98,13 @@ bool IsInner(unsigned int userIp, unsigned int begin, unsigned int end)
     return ins;
 }
 - (void)doFilter:(nonnull NSURLSession *)session request:(nonnull NSMutableURLRequest *)request response:(nonnull KOResponse)response chain:(id<iKOFilterChain>) chain {
-    
+    //仅在生产且 debug 环境下生效
+#if defined(DEBUG)
     if([GlobalReqInnerNetworkDetectorFilter isInnerIP:request.URL.host]){
         NSString* msg = [NSString stringWithFormat:@"%@ 解析到了内网地址",request.URL.absoluteString];
         [XENP(iToast) toast:msg];
     }
+#endif
     [chain doFilter:session request:request response:response];
 }
 

@@ -24,6 +24,8 @@
 // THE SOFTWARE./
 
 #import "GlobalReqResMergeRequestFilter.h"
+#import "XENativeContext.h"
+#import "iToast.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @interface GlobalReqResMergeRequestFilter()
@@ -69,6 +71,10 @@
     NSString* key = [NSString stringWithFormat:@"%@%@%@",request.HTTPMethod, request.URL.absoluteString, [self md5:request.HTTPBody] ];
     id queue =  [self.requests objectForKey:key];
     if(queue){
+#ifdef DEBUG
+        NSString* msg = [NSString stringWithFormat:@"请求过于频繁, 合并请求:%@:%@",request.HTTPMethod,request.URL.absoluteString];
+        [XENP(iToast) toast:msg];
+#endif
         NSLog(@"merged request %ld",((NSMutableArray*)queue).count);
         [queue addObject:response];
         return;

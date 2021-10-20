@@ -30,7 +30,7 @@ JSI_MODULE(JSI_webcache)
         [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
         [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
         [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
-        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
+//        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
         pipeline;
     })];
 }

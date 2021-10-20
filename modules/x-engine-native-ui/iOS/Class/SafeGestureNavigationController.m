@@ -86,13 +86,11 @@
         if ([navigationController.viewControllers count] == 1) {
             navigationController.interactivePopGestureRecognizer.enabled = NO;
         } else {
-            // 延迟手势启用，防止在 push 的时候同时 pop。
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+            if(![[self valueForKey:@"_isTransitioning"] boolValue]){
                 self.backGestureEnable = YES;
                 navigationController.interactivePopGestureRecognizer.enabled = YES;
-            });
-            
-        
+            }
         }
     }
 }

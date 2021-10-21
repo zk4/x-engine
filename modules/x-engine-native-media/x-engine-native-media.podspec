@@ -9,41 +9,44 @@
 Pod::Spec.new do |s|
 
 
-    s.name         = "x-engine-native-media"
-    s.version      = "1.0.0"
-    s.summary      = "x-engine-native-media"
+  s.name         = "x-engine-native-media"
+  s.version      = "1.0.0"
+  s.summary      = "x-engine-native-media"
 
-     s.description  = <<-DESC
-            description
-                     DESC
+   s.description  = <<-DESC
+          description
+                   DESC
 
-    s.homepage     = "https://github.com/zkty-team/x-engine-native-media"
-
-
-   
-    s.license      = { :type => "MIT", :file => "LICENSE" }
-
-    s.requires_arc = true
-
-    s.author             = { "zkty-team" => "liuzq7@gmail.com" }
-
-    s.cocoapods_version      = ">= 1.2.0"
-    s.platform     = :ios, "10.0"
-    s.ios.deployment_target = "10.0"
-
-    s.source      = { :git => 'https://github.com/zkty-team/x-engine-native-media.git',
-  :tag => s.version.to_s }
+  s.homepage     = "https://github.com/zkty-team/x-engine-native-media"
 
 
-    s.source_files  = "iOS/Class/**/*.{h,m}"
-    s.public_header_files = "iOS/Class/**/*.h"
-   
-    s.frameworks  = "CoreServices"
+ 
+  s.license      = { :type => "MIT", :file => "LICENSE" }
 
-    # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
-    # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
-    s.dependency "x-engine-native-camera"
-    
-    s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
+  s.requires_arc = true
+
+  s.author             = { "zkty-team" => "liuzq7@gmail.com" }
+
+  s.cocoapods_version      = ">= 1.2.0"
+  s.platform     = :ios, "10.0"
+  s.ios.deployment_target = "10.0"
+
+  s.source      = { :git => 'https://github.com/zkty-team/x-engine-native-media.git',
+:tag => s.version.to_s }
+
+
+  s.source_files  = "iOS/Class/**/*.{h,m}"
+  s.public_header_files = "iOS/Class/**/*.h"
+  s.resources    = "iOS/resource/*.bundle"
+ 
+  s.frameworks  = "CoreServices"
+
+  # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
+  # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
+  s.dependency "x-engine-native-core"
+  s.dependency "x-engine-native-protocols"
+  s.dependency "TZImagePickerController"
+  
+  s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
 end
 

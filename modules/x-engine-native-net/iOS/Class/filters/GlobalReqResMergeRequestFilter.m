@@ -28,6 +28,7 @@
 #import "iToast.h"
 #import <CommonCrypto/CommonDigest.h>
 
+// 注意,使用此模块时,不能过早丢失请求
 @interface GlobalReqResMergeRequestFilter()
 @property (nonatomic, strong)   NSMutableDictionary<NSString*,NSMutableArray*>* requests;
 @end

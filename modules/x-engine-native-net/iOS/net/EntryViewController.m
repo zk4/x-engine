@@ -24,6 +24,7 @@
 
 #import "x_api_gm_general_appVersion_checkUpdate.h"
 #import "x_api_gm_general_login.h"
+#import "iWebcache.h"
 
 
 
@@ -215,15 +216,18 @@
 //}
 
 - (void)test2 {
-    for (int i =0; i<1000; i++) {
-        id ok = [XENP(iKONetManager) one];
-        [ok addFilter:[GlobalReqConfigFilter sharedInstance]];
-        [ok addFilter:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
-        [ok addFilter:[GlobalReqResMergeRequestFilter sharedInstance]];
-        [ok addFilter:[GlobalResConvert2DictFilter sharedInstance]];
-        NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
+    id ok = [XENP(iKONetManager) one];
+    id urls =@[@"http://127.0.0.1:8080/",@"https://www.baidu.com"];
+    for (int i =0; i<2; i++) {
+       
+//        [ok addFilter:[GlobalReqConfigFilter sharedInstance]];
+//        [ok addFilter:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
+//        [ok addFilter:[GlobalReqResMergeRequestFilter sharedInstance]];
+//        [ok addFilter:[GlobalResConvert2DictFilter sharedInstance]];
+        NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urls[0]]];
         [ok send:req response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
-            NSLog(@"%@",data);
+            id  a= [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",a);
         }];
         
         //
@@ -243,11 +247,11 @@
 }
 
 -(void) pushTestModule{
-    [self test0];
+//    [self test0];
     //    [self test1];
     
     
-//        [self test2];
+        [self test2];
     
     /////////////////////////////////////////////////////////////////////// the second writing style
     
@@ -259,6 +263,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [XENP(iWebcache) enableCache];
     
     [KOHttp ko_configGlobalUrlPrefix:@"https://api.lohashow.com/bff-c"];
     [KOHttp ko_configPipelineByName:@"DEFAULT" pipeline:({
@@ -266,11 +271,10 @@
         [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
         [pipeline addObject:[LoggingFilter0 new]];
         [pipeline addObject:[BusinessFilter new]];
-        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
         [pipeline addObject:[GlobalResConvert2DictFilter sharedInstance]];
         [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
         [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
-
+        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
         pipeline;
     })];
     
@@ -281,9 +285,10 @@
         [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
 
         [pipeline addObject:[LoggingFilter0 new]];
-        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
         [pipeline addObject:[GlobalResConvert2DictFilter sharedInstance]];
         [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
+
         pipeline;
     })];
     

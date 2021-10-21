@@ -107,10 +107,22 @@ NSMutableDictionary<NSString*,NSMutableArray*>*  __ko_Pipelines;
         [self doFilter:session request:request response:KOResponse chain:weakSelf];
     }
 }
++ (id)sharedSession
+{
+    static NSURLSession *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        sharedInstance = [NSURLSession sessionWithConfiguration:configuration];
+    });
+    return sharedInstance;
+}
+ 
 
  
+ 
 -(id<iKONetAgent>) send:(NSMutableURLRequest*) request response:(KOResponse) block{
-    self.session = [NSURLSession sharedSession];
+    self.session= [KOHttp sharedSession];
     [self doFilter:self.session request:request response:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         block(data,response,error);
     }];

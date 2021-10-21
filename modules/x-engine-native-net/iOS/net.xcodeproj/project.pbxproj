@@ -63,7 +63,7 @@
 		58F37FEA27100D2D00EADBBB /* update.ts in Resources */ = {isa = PBXBuildFile; fileRef = 58F37FE327100D2D00EADBBB /* update.ts */; };
 		58F37FEE271043A700EADBBB /* x_api_gm_general_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FEC271043A700EADBBB /* x_api_gm_general_login.m */; };
 		58F38022271154DC00EADBBB /* x_api_ParameterInUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F38021271154DC00EADBBB /* x_api_ParameterInUrl.m */; };
-		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		B716B8680FFBE4A942FBAD7C /* libPods-netTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-netTests.a */; };
 		D6471BA55410F7E7C1EA2B21 /* libPods-net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38BE0094CCAF71EEF19C922 /* libPods-net.a */; };
 		E8FCBD124B8B0CAA64512CFB /* libPods-uat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1324DE619428EB3AFBB1044B /* libPods-uat.a */; };
@@ -218,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				580B91682694CCEA006AD356 /* libc++.tbd in Frameworks */,
-				A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */,
+				A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */,
 				565DD27B989F5FB8F69BF75F /* libPods-sit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

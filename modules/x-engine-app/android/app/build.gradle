@@ -10,9 +10,9 @@ android {
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        ndk {
-            abiFilters"armeabi","armeabi-v7a","x86","mips"
-        }
+//        ndk {
+//            abiFilters"armeabi","armeabi-v7a","x86","mips"
+//        }
         multiDexEnabled true
         javaCompileOptions {
             annotationProcessorOptions {
@@ -34,14 +34,14 @@ android {
                 outputFileName = "x-engine_v${variant.versionName}_${releaseTime()}.apk"
             }
     }
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'x86', 'armeabi-v7a', 'x86_64'
-            universalApk true
-        }
-    }
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+//            include 'x86', 'armeabi-v7a', 'x86_64'
+//            universalApk true
+//        }
+//    }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8

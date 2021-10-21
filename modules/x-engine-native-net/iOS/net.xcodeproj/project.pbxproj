@@ -31,10 +31,13 @@
 		580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 580B91CC2694D10D006AD356 /* Info.uat.plist */; };
-		58732F5D27042D930098F18C /* GlobalNoResponseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58732F5327042D920098F18C /* GlobalNoResponseFilter.m */; };
-		58732F5E27042D930098F18C /* GlobalMergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58732F5427042D920098F18C /* GlobalMergeRequestFilter.m */; };
-		58732F5F27042D930098F18C /* GlobalConfigFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58732F5527042D920098F18C /* GlobalConfigFilter.m */; };
-		58732F6127042D930098F18C /* GlobalResponseDictionaryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58732F5B27042D930098F18C /* GlobalResponseDictionaryFilter.m */; };
+		5820B61227212D2D00586B33 /* GlobalDiskCacheRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820B60427212D2C00586B33 /* GlobalDiskCacheRequestFilter.m */; };
+		5820B61327212D2D00586B33 /* GlobalReqResMergeRequestFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820B60627212D2C00586B33 /* GlobalReqResMergeRequestFilter.m */; };
+		5820B61427212D2D00586B33 /* GlobalResStatusCodeNot2xxFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820B60827212D2C00586B33 /* GlobalResStatusCodeNot2xxFilter.m */; };
+		5820B61527212D2D00586B33 /* GlobalReqInnerNetworkDetectorFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820B60B27212D2C00586B33 /* GlobalReqInnerNetworkDetectorFilter.m */; };
+		5820B61627212D2D00586B33 /* GlobalResNoResponseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820B60D27212D2C00586B33 /* GlobalResNoResponseFilter.m */; };
+		5820B61727212D2D00586B33 /* GlobalReqConfigFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820B60E27212D2C00586B33 /* GlobalReqConfigFilter.m */; };
+		5820B61827212D2D00586B33 /* GlobalResConvert2DictFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820B61027212D2D00586B33 /* GlobalResConvert2DictFilter.m */; };
 		58F37F7A2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
 		58F37F7B2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
 		58F37F7C2704496800EADBBB /* TodoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F792704496800EADBBB /* TodoApi.m */; };
@@ -48,7 +51,6 @@
 		58F37F9527046B9B00EADBBB /* PostApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F9227046B9A00EADBBB /* PostApi.m */; };
 		58F37F9627046B9B00EADBBB /* PostApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F9227046B9A00EADBBB /* PostApi.m */; };
 		58F37F99270481D100EADBBB /* gen_ZKBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F98270481D100EADBBB /* gen_ZKBaseApi.m */; };
-		58F37F9B2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37F9A2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m */; };
 		58F37FA727062EDD00EADBBB /* LoggingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FA527062EDD00EADBBB /* LoggingFilter.m */; };
 		58F37FBC270E177A00EADBBB /* KOBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FBB270E177A00EADBBB /* KOBaseApi.m */; };
 		58F37FCE2710076600EADBBB /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F37FCD2710076500EADBBB /* EntryViewController.m */; };
@@ -118,15 +120,20 @@
 		580B918D2694CDB7006AD356 /* Info.sit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.sit.plist; sourceTree = "<group>"; };
 		580B91C02694D0DA006AD356 /* uat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		580B91CC2694D10D006AD356 /* Info.uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.uat.plist; sourceTree = "<group>"; };
-		58732F5327042D920098F18C /* GlobalNoResponseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalNoResponseFilter.m; sourceTree = "<group>"; };
-		58732F5427042D920098F18C /* GlobalMergeRequestFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMergeRequestFilter.m; sourceTree = "<group>"; };
-		58732F5527042D920098F18C /* GlobalConfigFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalConfigFilter.m; sourceTree = "<group>"; };
-		58732F5727042D920098F18C /* GlobalResponseDictionaryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalResponseDictionaryFilter.h; sourceTree = "<group>"; };
-		58732F5827042D920098F18C /* GlobalConfigFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConfigFilter.h; sourceTree = "<group>"; };
-		58732F5927042D930098F18C /* GlobalMergeRequestFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMergeRequestFilter.h; sourceTree = "<group>"; };
-		58732F5A27042D930098F18C /* GlobalNoResponseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalNoResponseFilter.h; sourceTree = "<group>"; };
-		58732F5B27042D930098F18C /* GlobalResponseDictionaryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalResponseDictionaryFilter.m; sourceTree = "<group>"; };
-		58732F5C27042D930098F18C /* GlobalStatusCodeNot2xxFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalStatusCodeNot2xxFilter.h; sourceTree = "<group>"; };
+		5820B60427212D2C00586B33 /* GlobalDiskCacheRequestFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalDiskCacheRequestFilter.m; sourceTree = "<group>"; };
+		5820B60527212D2C00586B33 /* GlobalResNoResponseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalResNoResponseFilter.h; sourceTree = "<group>"; };
+		5820B60627212D2C00586B33 /* GlobalReqResMergeRequestFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalReqResMergeRequestFilter.m; sourceTree = "<group>"; };
+		5820B60727212D2C00586B33 /* GlobalReqResMergeRequestFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalReqResMergeRequestFilter.h; sourceTree = "<group>"; };
+		5820B60827212D2C00586B33 /* GlobalResStatusCodeNot2xxFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalResStatusCodeNot2xxFilter.m; sourceTree = "<group>"; };
+		5820B60927212D2C00586B33 /* GlobalDiskCacheRequestFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDiskCacheRequestFilter.h; sourceTree = "<group>"; };
+		5820B60A27212D2C00586B33 /* GlobalResStatusCodeNot2xxFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalResStatusCodeNot2xxFilter.h; sourceTree = "<group>"; };
+		5820B60B27212D2C00586B33 /* GlobalReqInnerNetworkDetectorFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalReqInnerNetworkDetectorFilter.m; sourceTree = "<group>"; };
+		5820B60C27212D2C00586B33 /* GlobalReqConfigFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalReqConfigFilter.h; sourceTree = "<group>"; };
+		5820B60D27212D2C00586B33 /* GlobalResNoResponseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalResNoResponseFilter.m; sourceTree = "<group>"; };
+		5820B60E27212D2C00586B33 /* GlobalReqConfigFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalReqConfigFilter.m; sourceTree = "<group>"; };
+		5820B60F27212D2D00586B33 /* GlobalReqInnerNetworkDetectorFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalReqInnerNetworkDetectorFilter.h; sourceTree = "<group>"; };
+		5820B61027212D2D00586B33 /* GlobalResConvert2DictFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalResConvert2DictFilter.m; sourceTree = "<group>"; };
+		5820B61127212D2D00586B33 /* GlobalResConvert2DictFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalResConvert2DictFilter.h; sourceTree = "<group>"; };
 		58F37F782704496800EADBBB /* TodoApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoApi.h; sourceTree = "<group>"; };
 		58F37F792704496800EADBBB /* TodoApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoApi.m; sourceTree = "<group>"; };
 		58F37F84270464B500EADBBB /* KOHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOHttp.m; sourceTree = "<group>"; };
@@ -137,7 +144,6 @@
 		58F37F9327046B9A00EADBBB /* PostApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostApi.h; sourceTree = "<group>"; };
 		58F37F97270481D100EADBBB /* gen_ZKBaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gen_ZKBaseApi.h; sourceTree = "<group>"; };
 		58F37F98270481D100EADBBB /* gen_ZKBaseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gen_ZKBaseApi.m; sourceTree = "<group>"; };
-		58F37F9A2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalStatusCodeNot2xxFilter.m; sourceTree = "<group>"; };
 		58F37FA527062EDD00EADBBB /* LoggingFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingFilter.m; sourceTree = "<group>"; };
 		58F37FA627062EDD00EADBBB /* LoggingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingFilter.h; sourceTree = "<group>"; };
 		58F37FBA270E177A00EADBBB /* KOBaseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOBaseApi.h; sourceTree = "<group>"; };
@@ -331,16 +337,20 @@
 		58732F5227042D920098F18C /* filters */ = {
 			isa = PBXGroup;
 			children = (
-				58732F5327042D920098F18C /* GlobalNoResponseFilter.m */,
-				58732F5427042D920098F18C /* GlobalMergeRequestFilter.m */,
-				58732F5527042D920098F18C /* GlobalConfigFilter.m */,
-				58732F5827042D920098F18C /* GlobalConfigFilter.h */,
-				58732F5927042D930098F18C /* GlobalMergeRequestFilter.h */,
-				58732F5A27042D930098F18C /* GlobalNoResponseFilter.h */,
-				58732F5727042D920098F18C /* GlobalResponseDictionaryFilter.h */,
-				58732F5B27042D930098F18C /* GlobalResponseDictionaryFilter.m */,
-				58732F5C27042D930098F18C /* GlobalStatusCodeNot2xxFilter.h */,
-				58F37F9A2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m */,
+				5820B60927212D2C00586B33 /* GlobalDiskCacheRequestFilter.h */,
+				5820B60427212D2C00586B33 /* GlobalDiskCacheRequestFilter.m */,
+				5820B60C27212D2C00586B33 /* GlobalReqConfigFilter.h */,
+				5820B60E27212D2C00586B33 /* GlobalReqConfigFilter.m */,
+				5820B60F27212D2D00586B33 /* GlobalReqInnerNetworkDetectorFilter.h */,
+				5820B60B27212D2C00586B33 /* GlobalReqInnerNetworkDetectorFilter.m */,
+				5820B60727212D2C00586B33 /* GlobalReqResMergeRequestFilter.h */,
+				5820B60627212D2C00586B33 /* GlobalReqResMergeRequestFilter.m */,
+				5820B61127212D2D00586B33 /* GlobalResConvert2DictFilter.h */,
+				5820B61027212D2D00586B33 /* GlobalResConvert2DictFilter.m */,
+				5820B60527212D2C00586B33 /* GlobalResNoResponseFilter.h */,
+				5820B60D27212D2C00586B33 /* GlobalResNoResponseFilter.m */,
+				5820B60A27212D2C00586B33 /* GlobalResStatusCodeNot2xxFilter.h */,
+				5820B60827212D2C00586B33 /* GlobalResStatusCodeNot2xxFilter.m */,
 			);
 			path = filters;
 			sourceTree = "<group>";
@@ -886,25 +896,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5820B61227212D2D00586B33 /* GlobalDiskCacheRequestFilter.m in Sources */,
+				5820B61527212D2D00586B33 /* GlobalReqInnerNetworkDetectorFilter.m in Sources */,
 				58F37FEE271043A700EADBBB /* x_api_gm_general_login.m in Sources */,
+				5820B61627212D2D00586B33 /* GlobalResNoResponseFilter.m in Sources */,
 				58F37FBC270E177A00EADBBB /* KOBaseApi.m in Sources */,
 				58F37F7A2704496800EADBBB /* TodoApi.m in Sources */,
+				5820B61827212D2D00586B33 /* GlobalResConvert2DictFilter.m in Sources */,
 				58F37F8C270464B500EADBBB /* KOHttp.m in Sources */,
+				5820B61727212D2D00586B33 /* GlobalReqConfigFilter.m in Sources */,
 				58F38022271154DC00EADBBB /* x_api_ParameterInUrl.m in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				58F37F9427046B9B00EADBBB /* PostApi.m in Sources */,
 				58F37F8F270464B500EADBBB /* NSMutableURLRequest+Filter.m in Sources */,
-				58F37F9B2704DB3C00EADBBB /* GlobalStatusCodeNot2xxFilter.m in Sources */,
-				58732F5E27042D930098F18C /* GlobalMergeRequestFilter.m in Sources */,
-				58732F5F27042D930098F18C /* GlobalConfigFilter.m in Sources */,
-				58732F6127042D930098F18C /* GlobalResponseDictionaryFilter.m in Sources */,
 				58F37FCE2710076600EADBBB /* EntryViewController.m in Sources */,
+				5820B61427212D2D00586B33 /* GlobalResStatusCodeNot2xxFilter.m in Sources */,
+				5820B61327212D2D00586B33 /* GlobalReqResMergeRequestFilter.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_net.m in Sources */,
 				58F37FA727062EDD00EADBBB /* LoggingFilter.m in Sources */,
 				58F37F99270481D100EADBBB /* gen_ZKBaseApi.m in Sources */,
 				58F37FE627100D2D00EADBBB /* x_api_gm_general_appVersion_checkUpdate.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
-				58732F5D27042D930098F18C /* GlobalNoResponseFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

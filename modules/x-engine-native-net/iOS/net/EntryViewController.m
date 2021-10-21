@@ -8,12 +8,12 @@
 #import "iKONet.h"
 #import "iToast.h"
 
-#import "GlobalMergeRequestFilter.h"
-#import "GlobalConfigFilter.h"
-#import "GlobalStatusCodeNot2xxFilter.h"
-#import "GlobalResponseDictionaryFilter.h"
+#import "GlobalReqResMergeRequestFilter.h"
+#import "GlobalReqConfigFilter.h"
+#import "GlobalResStatusCodeNot2xxFilter.h"
+#import "GlobalResConvert2DictFilter.h"
 #import "NSMutableURLRequest+Filter.h"
-#import "GlobalNoResponseFilter.h"
+#import "GlobalResNoResponseFilter.h"
 #import "KOHttp.h"
 
 #import "JSONModel.h"
@@ -217,10 +217,10 @@
 - (void)test2 {
     for (int i =0; i<1000; i++) {
         id ok = [XENP(iKONetManager) one];
-        [ok addFilter:[GlobalConfigFilter sharedInstance]];
-        [ok addFilter:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-        [ok addFilter:[GlobalMergeRequestFilter sharedInstance]];
-        [ok addFilter:[GlobalResponseDictionaryFilter sharedInstance]];
+        [ok addFilter:[GlobalReqConfigFilter sharedInstance]];
+        [ok addFilter:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
+        [ok addFilter:[GlobalReqResMergeRequestFilter sharedInstance]];
+        [ok addFilter:[GlobalResConvert2DictFilter sharedInstance]];
         NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://httpbin.org/get"]];
         [ok send:req response:^(id  _Nullable data, NSURLResponse * _Nullable res, NSError * _Nullable error) {
             NSLog(@"%@",data);
@@ -263,13 +263,13 @@
     [KOHttp ko_configGlobalUrlPrefix:@"https://api.lohashow.com/bff-c"];
     [KOHttp ko_configPipelineByName:@"DEFAULT" pipeline:({
         id pipeline =  [NSMutableArray new];
-        [pipeline addObject:[GlobalConfigFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
         [pipeline addObject:[LoggingFilter0 new]];
         [pipeline addObject:[BusinessFilter new]];
-        [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
-        [pipeline addObject:[GlobalResponseDictionaryFilter sharedInstance]];
-        [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
-        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
+        [pipeline addObject:[GlobalResConvert2DictFilter sharedInstance]];
+        [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
 
         pipeline;
     })];
@@ -277,13 +277,13 @@
     
     [KOHttp ko_configPipelineByName:@"SIMPLE" pipeline:({
         id pipeline =  [NSMutableArray new];
-        [pipeline addObject:[GlobalConfigFilter sharedInstance]];
-        [pipeline addObject:[GlobalNoResponseFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
+        [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
 
         [pipeline addObject:[LoggingFilter0 new]];
-        [pipeline addObject:[GlobalMergeRequestFilter sharedInstance]];
-        [pipeline addObject:[GlobalResponseDictionaryFilter sharedInstance]];
-        [pipeline addObject:[GlobalStatusCodeNot2xxFilter sharedInstance]];
+        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
+        [pipeline addObject:[GlobalResConvert2DictFilter sharedInstance]];
+        [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
         pipeline;
     })];
     

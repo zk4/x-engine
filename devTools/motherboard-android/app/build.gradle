@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.zkty.demo.pedestal"
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdkVersion 23
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -30,23 +30,23 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.android.support:multidex:1.0.3'
 
+//    implementation project(':native-core')
+//    implementation project(':native-ui')
+//    implementation project(':native-scan')
+//    implementation project(':native-direct')
+//    implementation project(':native-direct_http')
+//    implementation project(':native-direct_https')
+//    implementation project(':native-direct_microapp')
+//    implementation project(':native-direct_omp')
+//    implementation project(':native-direct_native')
+//    implementation project(':native-jsi')
 
-    implementation project(':module-engine')
-    implementation project(':module-nav')
-    implementation project(':module-localstorage')
-    implementation project(':module-device')
-    implementation project(':module-network')
-    implementation project(':module-camera')
-    implementation project(':module-ui')
-    implementation project(':module-router')
-    implementation project(':module-scan')
-    implementation project(':module-dcloud')
-    implementation project(':module-share')
 //    implementation project(':module-yjzdbill')
 
     //butterknife
@@ -54,5 +54,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     // EventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
+
+    implementation 'com.huawei.hms:scan:2.0.0.300'
+
+    implementation 'com.gyf.immersionbar:immersionbar:2.3.3'
 
 }

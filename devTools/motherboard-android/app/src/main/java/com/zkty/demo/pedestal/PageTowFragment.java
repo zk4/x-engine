@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.zkty.modules.loaded.jsapi.RouterMaster;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -65,10 +64,10 @@ public class PageTowFragment extends Fragment {
 
         }
         if (microAppId != null) {
-            RouterMaster.openTargetRouter(getActivity(), "microapp", microAppId, null, null, null,false);
+//            RouterMaster.openTargetRouter(getActivity(), "microapp", microAppId, null, null, null,false);
 
         } else if (url != null) {
-            RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null,false);
+//            RouterMaster.openTargetRouter(getActivity(), "h5", url, null, null, null,false);
 
         }
 

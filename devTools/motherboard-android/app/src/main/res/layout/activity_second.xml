@@ -10,5 +10,5 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="second activity"
-        android:textColor="@color/text_color_34" />
+        android:textColor="#343434" />
 </RelativeLayout>

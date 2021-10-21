@@ -2,29 +2,38 @@ include ':app'
 rootProject.name = "motherboard-android"
 
 
-include ':module-engine'
-project(':module-engine').projectDir = new File('../../modules/x-engine-module-engine/android/module-engine')
-include ':module-nav'
-project(':module-nav').projectDir = new File('../../modules/x-engine-module-nav/android/module-nav')
-include ':module-localstorage'
-project(':module-localstorage').projectDir = new File('../../modules/x-engine-module-localStorage/android/module-localstorage')
-include ':module-device'
-project(':module-device').projectDir = new File('../../modules/x-engine-module-device/android/module-device')
-include ':module-camera'
-project(':module-camera').projectDir = new File('../../modules/x-engine-module-camera/android/module-camera')
-include ':module-network'
-project(':module-network').projectDir = new File('../../modules/x-engine-module-network/android/module-network')
-include ':module-ui'
-project(':module-ui').projectDir = new File('../../modules/x-engine-module-ui/android/module-ui')
-include ':module-router'
-project(':module-router').projectDir = new File('../../modules/x-engine-module-router/android/module-router')
-include ':module-scan'
-project(':module-scan').projectDir = new File('../../modules/x-engine-module-scan/android/module-scan')
-include ':module-dcloud'
-project(':module-dcloud').projectDir = new File('../../modules/x-engine-module-dcloud/android/module-dcloud')
-include ':module-share'
-project(':module-share').projectDir = new File('../../modules/x-engine-module-share/android/module-share')
-//include ':module-yjzdbill'
-//project(':module-yjzdbill').projectDir = new File('../../modules/x-engine-module-yjzdbill/android/module-yjzdbill')
+//include ':native-core'
+//project(':native-core').projectDir = new File('../../modules/x-engine-native-core/android/native-core')
+//
+//include ':native-store'
+//project(':native-store').projectDir = new File('../../modules/x-engine-native-store/android/native-store')
 
+//include ':native-direct'
+//project(':native-direct').projectDir = new File('../../modules/x-engine-native-direct/android/native-direct')
 
+//include ':native-ui'
+//project(':native-ui').projectDir = new File('../../modules/x-engine-native-ui/android/native-ui')
+//
+//include ':native-scan'
+//project(':native-scan').projectDir = new File('../../modules/x-engine-native-scan/android/native-scan')
+
+//include ':native-direct_http'
+//project(':native-direct_http').projectDir = new File('../../modules/x-engine-native-direct_http/android/native-direct_http')
+//
+//include ':native-direct_https'
+//project(':native-direct_https').projectDir = new File('../../modules/x-engine-native-direct_https/android/native-direct_https')
+//
+//include ':native-direct_omp'
+//project(':native-direct_omp').projectDir = new File('../../modules/x-engine-native-direct_omp/android/native-direct_omp')
+//
+//include ':native-direct_microapp'
+//project(':native-direct_microapp').projectDir = new File('../../modules/x-engine-native-direct_microapp/android/native-direct_microapp')
+//
+//include ':native-direct_native'
+//project(':native-direct_native').projectDir = new File('../../modules/x-engine-native-direct_native/android/native-direct_native')
+//
+//include ':native-jsi'
+//project(':native-jsi').projectDir = new File('../../modules/x-engine-native-jsi/android/native-jsi')
+//
+//include ':native-webcache'
+//project(':native-webcache').projectDir = new File('../../modules/x-engine-native-webcache/android/native-webcache')

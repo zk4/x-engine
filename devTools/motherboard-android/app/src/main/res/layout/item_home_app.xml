@@ -3,9 +3,9 @@
     android:id="@+id/item_content"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:layout_margin="@dimen/dp_8"
-    android:background="@color/color_e6"
-    android:elevation="@dimen/dp_2"
+    android:layout_margin="8dp"
+    android:background="#e6e6e6"
+    android:elevation="2dp"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -16,9 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:padding="@dimen/dp_8"
+        android:padding="8dp"
         android:text="title"
         android:textColor="@color/color_12"
-        android:textSize="@dimen/sp_12" />
+        android:textSize="12sp" />
 
 </RelativeLayout>

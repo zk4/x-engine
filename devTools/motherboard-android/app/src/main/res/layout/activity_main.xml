@@ -34,8 +34,8 @@
             android:layout_weight="1"
             android:hint="请输入网址"
             android:inputType="textUri"
-            android:textColor="@color/ab_color_43"
-            android:textColorHint="@color/color_66"
+            android:textColor="#434343"
+            android:textColorHint="#666666"
             android:textSize="14sp" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:background="@drawable/bg_button"
             android:onClick="load"
             android:text="load"
-            android:textColor="@color/ab_color_43"
+            android:textColor="#434343"
             android:textSize="14sp" />
 
     </LinearLayout>

@@ -1,27 +1,18 @@
 package com.zkty.demo.pedestal;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.gyf.barlibrary.ImmersionBar;
-import com.zkty.modules.engine.utils.XEngineWebActivityManager;
-import com.zkty.modules.loaded.jsapi.RouterMaster;
 
-import activity.ScanActivity;
 
 public class MainActivity extends AppCompatActivity implements MyTabWidget.OnTabSelectedListener {
 
@@ -37,11 +28,11 @@ public class MainActivity extends AppCompatActivity implements MyTabWidget.OnTab
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)
-                .statusBarColor(module.engine.R.color.white)
+                .statusBarColor(R.color.white)
                 .statusBarDarkFont(true).init();
+        setContentView(R.layout.activity_home);
         initView();
 
 

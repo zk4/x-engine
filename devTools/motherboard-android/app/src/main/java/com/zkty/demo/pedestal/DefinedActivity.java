@@ -15,9 +15,11 @@
  */
 package com.zkty.demo.pedestal;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -56,6 +58,7 @@ public class DefinedActivity extends Activity {
     //Declare the key. It is used to obtain the value returned from Scan Kit.
     public static final String SCAN_RESULT = "scanResult";
     public static final int REQUEST_CODE_PHOTO = 0X1113;
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +111,7 @@ public class DefinedActivity extends Activity {
                     Intent intent = new Intent();
                     intent.putExtra(SCAN_RESULT, result[0]);
                     setResult(RESULT_OK, intent);
-                     com.zkty.nativ.scan.activity.DefinedActivity.this.finish();
+                     DefinedActivity.this.finish();
                 }
             }
         });
@@ -133,7 +136,7 @@ public class DefinedActivity extends Activity {
                 Intent pickIntent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                com.zkty.nativ.scan.activity.DefinedActivity.this.startActivityForResult(pickIntent, REQUEST_CODE_PHOTO);
+                DefinedActivity.this.startActivityForResult(pickIntent, REQUEST_CODE_PHOTO);
 
             }
         });
@@ -159,7 +162,7 @@ public class DefinedActivity extends Activity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                com.zkty.nativ.scan.activity.DefinedActivity.this.finish();
+                DefinedActivity.this.finish();
             }
         });
     }
@@ -213,12 +216,12 @@ public class DefinedActivity extends Activity {
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_PHOTO) {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
-                HmsScan[] hmsScans = ScanUtil.decodeWithBitmap(com.zkty.nativ.scan.activity.DefinedActivity.this, bitmap, new HmsScanAnalyzerOptions.Creator().setPhotoMode(true).create());
+                HmsScan[] hmsScans = ScanUtil.decodeWithBitmap(DefinedActivity.this, bitmap, new HmsScanAnalyzerOptions.Creator().setPhotoMode(true).create());
                 if (hmsScans != null && hmsScans.length > 0 && hmsScans[0] != null && !TextUtils.isEmpty(hmsScans[0].getOriginalValue())) {
                     Intent intent = new Intent();
                     intent.putExtra(SCAN_RESULT, hmsScans[0]);
                     setResult(RESULT_OK, intent);
-                    com.zkty.nativ.scan.activity.DefinedActivity.this.finish();
+                    DefinedActivity.this.finish();
                 }
             } catch (IOException e) {
                 e.printStackTrace();

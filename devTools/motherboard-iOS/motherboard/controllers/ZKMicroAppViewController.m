@@ -73,7 +73,7 @@
         [self reloadUIView];
  
        
-        [XENP(iDirectManager) push:self.searchBar.text params:nil];
+        [XENP(iDirectManager) push:self.searchBar.text  params:@{@"hideNavbar":@TRUE}];
 
         self.hidesBottomBarWhenPushed = YES;
         self.hidesBottomBarWhenPushed = NO;
@@ -85,7 +85,7 @@
     __weak typeof(self) weakself = self;
 
     [XENP(iScan) openScanView:^(NSString *res) {
-        [XENP(iDirectManager) push:res params:nil];
+        [XENP(iDirectManager) push:res  params:@{@"hideNavbar":@TRUE}];
 
        self.hidesBottomBarWhenPushed = YES;
        self.hidesBottomBarWhenPushed = NO;
@@ -123,9 +123,9 @@
 
 -(void)goWebAction:(UIButton *)sender{
 
-    [XENP(iDirectManager) push:self.scanResultArr[sender.tag][@"url"] params:nil];
+    [XENP(iDirectManager) push:self.scanResultArr[sender.tag][@"url"] params:@{@"hideNavbar":@TRUE}];
     self.hidesBottomBarWhenPushed = YES;
-    self.hidesBottomBarWhenPushed = NO;
+
 }
 
 -(void)dismissKeyBoard{

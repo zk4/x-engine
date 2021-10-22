@@ -40,7 +40,6 @@
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "workspaces": [
-    "modules/x-engine-jsi-*",
     "npm-modules/core",
     "npm-modules/vue/*",
     "microApps/H5-Sample",

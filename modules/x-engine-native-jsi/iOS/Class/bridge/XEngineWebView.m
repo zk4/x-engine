@@ -271,7 +271,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)showErrorAlert:(NSString *)message
 {
-    [XENP(iToast) toast:message duration:1.0];
+    [XENP(iToast) toastCurrentView:message duration:1.0];
     //    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
     //    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     //
@@ -473,11 +473,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     if(completionHandler){
         [handerMap setObject:completionHandler forKey:callInfo.id];
     }
-    if(callInfoList!=nil){
-        [callInfoList addObject:callInfo];
-    }else{
-        [self dispatchJavascriptCall:callInfo];
-    }
+//    if(callInfoList!=nil){
+//        [callInfoList addObject:callInfo];
+//    }else{
+//        [self dispatchJavascriptCall:callInfo];
+//    }
+    [self dispatchJavascriptCall:callInfo];
 }
 
 - (void)dispatchStartupQueue{
@@ -613,6 +614,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 // CAUTION: 要保证 webview 先触发才可能触发其他生命周期，不然没有意义，有可能页面还没加载未完成
+// WARNING: 在连接远程 url 时,有可能会触发两次 onNativeShow, 原因是:
+// 如果 url 没有加载完成, callHanlder 内部维护了一个事件队列.会将投递的事件存起来,在下一次trigger 时投递.
 - (void)triggerVueLifeCycleWithMethod:(NSString *)method {
     [self callHandler:@"com.zkty.jsi.engine.lifecycle.notify" arguments:@{
         @"type":method,
@@ -780,11 +783,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     NSError*err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     return dic;
-}
-
-- (void)dealloc {
-    //    [self.indicatorView stopAnimating];
-    NSLog(@"dealloc webview");
 }
 
 // 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中

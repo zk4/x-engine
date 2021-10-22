@@ -324,12 +324,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
 
 - (void)afterShow {
-//    if(self.firstDidAppearCbIgnored) {
-//        self.firstDidAppearCbIgnored = NO;
-//    } else {
-        [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
-//    }
-
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     
     [self.webcache enableCache];

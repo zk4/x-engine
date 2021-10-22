@@ -57,14 +57,17 @@ export default {
     console.log(this.$statusHeight)
   },
   methods: {
+    onWebviewShow(){
+      alert("home-->onWebviewShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "home-ononWebviewShow")
+    },
     onNativeShow() {
-      console.log("home-->onNativeShow")
+      alert("home-->onNativeShow")
       this.$engine.api("com.zkty.jsi.dev", "log", "home-onNativeShow")
     },
-    onWebviewShow(){
-      console.log("onWebviewShow")
-      this.$engine.api("com.zkty.jsi.dev", "log", "home-onWebviewShow")
-
+    onNativeShow() {
+      alert("home-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "home-onNativeShow")
     },
     onNativeHide() {
       console.log("home-->onNativeHide")
@@ -72,14 +75,6 @@ export default {
         "com.zkty.jsi.dev",
         "log",
         "home-->onNativeHide"
-      )
-    },
-    onNativeDestroyed() {
-      console.log("home-->onNativeDestroyed")
-      this.$engine.api(
-        "com.zkty.jsi.dev",
-        "log",
-        "home-->onNativeDestroyed"
       )
     },
     handlerMedia() {

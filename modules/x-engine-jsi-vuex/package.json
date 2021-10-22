@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-vuex",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "description": "vuex",
   "main": "h5/src/index.js",
   "license": "MIT",
@@ -37,5 +37,5 @@
     "@zkty-team/x-cli": "^1.26.0",
     "@zkty-team/x-engine-core": "^0.1.13"
   },
-  "gitHead": "126ca1aa64f77fb085456d49babef70ad27430aa"
+  "gitHead": "b1c49e994f084a6d69661dc5ef07c4ea5b581b54"
 }

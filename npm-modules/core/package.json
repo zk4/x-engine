@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-core",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "连接原生native和js之间的重要模块",
   "main": "dist/bridge.common.js",
   "scripts": {
@@ -17,5 +17,5 @@
     "microbundle": "^0.13.0",
     "rimraf": "^3.0.2"
   },
-  "gitHead": "126ca1aa64f77fb085456d49babef70ad27430aa"
+  "gitHead": "b1c49e994f084a6d69661dc5ef07c4ea5b581b54"
 }

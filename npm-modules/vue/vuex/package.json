@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/vuex",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "与使用纯H5 SPA页面没有任何改变的 Vuex",
   "sideEffects": false,
   "files": [
@@ -26,5 +26,5 @@
   "peerDependencies": {
     "vue": "^2.0.0"
   },
-  "gitHead": "b1c49e994f084a6d69661dc5ef07c4ea5b581b54"
+  "gitHead": "34c89869efddc496e03329310dab8d05497922b4"
 }

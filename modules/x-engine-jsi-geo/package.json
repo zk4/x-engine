@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-geo",
-  "version": "2.9.0",
+  "version": "3.0.1",
   "description": "geo",
   "main": "h5/src/index.js",
   "license": "MIT",

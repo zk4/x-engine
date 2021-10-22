@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/vue-router",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Official router for Vue.js 2",
   "author": "Capricorn",
   "license": "MIT",
@@ -104,9 +104,6 @@
     "webpack": "^4.35.2",
     "webpack-dev-middleware": "^3.7.0",
     "yorkie": "^2.0.0"
-  },
-  "peerDependencies": {
-    "@zkty-team/x-engine-core": "^2.0.1"
   },
   "gitHead": "126ca1aa64f77fb085456d49babef70ad27430aa"
 }

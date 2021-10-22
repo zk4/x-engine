@@ -497,10 +497,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     // TODO: FIXME: 要这么复杂？ 想要实现的功能，
     // 等待 webviewload 完再，再evaljavascript。 但 evaljavascript 看上去要在主线程里执行才行。
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-
         dispatch_semaphore_wait(self->semaphore_webloaded, DISPATCH_TIME_FOREVER);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
+            [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative && window._handleMessageFromNative(%@)",json]
                        completionHandler:nil];
             });
         dispatch_semaphore_signal(self->semaphore_webloaded);

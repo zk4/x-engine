@@ -128,7 +128,6 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
                                                    object:nil];
         [self loadFileUrl];
         
-        self.navigationController.interactivePopGestureRecognizer.delegate = self;
         
         [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
 
@@ -326,7 +325,8 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 - (void)afterShow {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     [self.webcache enableCache];
 }
 
@@ -347,8 +347,24 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
 - (void)onCreated {
     [self setupUI];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
  
+
+
+#pragma mark ---处理全局右滑返回---
+ 
+
+// 什么时候调用：每次触发手势之前都会询问下代理，是否触发。
+// 作用：拦截手势触发
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
+
+
+    // Ignore pan gesture when the navigation controller is currently in transition.
+    if ([[self.navigationController valueForKey:@"_isTransitioning"] boolValue]) {
+        return NO;
+    }
+
+    return self.navigationController.childViewControllers.count == 1 ? NO : YES;
+}
 
 @end

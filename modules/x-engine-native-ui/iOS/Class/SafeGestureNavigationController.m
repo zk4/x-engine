@@ -21,6 +21,7 @@
     
     [self.navigationItem setHidesBackButton:YES];
     
+//    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 //    self.delegate = self;
 }
 
@@ -37,8 +38,8 @@
 //
 //    [super pushViewController:viewController animated:animated];
 //}
-//
-//
+////
+////
 //- (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated{
 //
 //    // push的时候禁用手势
@@ -55,7 +56,7 @@
 //    [self popViewControllerAnimated:YES];
 //}
 //
-//
+
 //- (UIViewController *)popViewControllerAnimated:(BOOL)animated{
 //    // pop的时候禁用手势
 //    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -96,7 +97,7 @@
 //        }
 //    }
 //}
-//
+
 //
 //#pragma mark ---处理全局右滑返回---
 //- (void)setupRightPanReturn{

@@ -480,14 +480,14 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 //    }
     [self dispatchJavascriptCall:callInfo];
 }
-
-- (void)dispatchStartupQueue{
-    if(callInfoList==nil) return;
-    for (XEngineCallInfo * callInfo in callInfoList) {
-        [self dispatchJavascriptCall:callInfo];
-    }
-    callInfoList=nil;
-}
+// 下面这段函数已经没有意义, 原来在 dsbridge 的作用是想等待页面的 js 初始化完成后,执行所有原生的callapi.已经使用信号量替代
+//- (void)dispatchStartupQueue{
+//    if(callInfoList==nil) return;
+//    for (XEngineCallInfo * callInfo in callInfoList) {
+//        [self dispatchJavascriptCall:callInfo];
+//    }
+//    callInfoList=nil;
+//}
 
 - (void) dispatchJavascriptCall:(XEngineCallInfo*) info{
     NSString * json=[XEngineJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
@@ -599,7 +599,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (id) dsinit:(NSDictionary *) args{
-    [self dispatchStartupQueue];
+//    [self dispatchStartupQueue];
     return nil;
 }
 

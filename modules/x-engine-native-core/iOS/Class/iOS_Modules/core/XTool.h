@@ -64,7 +64,8 @@
 /// 将 spa 地址转换为标准 url
 + (NSString*)SPAUrl2StandardUrl:(NSString*)raw;
 
-
+/// 将 spa 地址转换为标准 url ,同时带上标准 port
++ (NSURL*)SPAUrl2StandardUrlWithPort:(NSString*)raw;
 + (NSString *) md5:(NSData*)body;
 @end
 

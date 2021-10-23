@@ -19,6 +19,7 @@
 @interface Native_direct()
 @property (nonatomic, strong) NSMutableDictionary<NSString*, id<iDirect>> * directors;
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSString*> * fallbackMappings;
+@property (nonatomic, strong) NSMutableDictionary<NSString*, NSString*> * forceMappings;
 
 // 为了降低路由频率，用到的时间戳
 @property (nonatomic,assign ) UInt64 lastTimeStamp;
@@ -41,6 +42,7 @@ NATIVE_MODULE(Native_direct)
     self = [super init];
     self.directors=[NSMutableDictionary new];
     self.fallbackMappings = [NSMutableDictionary new];
+    self.forceMappings = [NSMutableDictionary new];
     return self;
 }
 
@@ -109,7 +111,6 @@ NATIVE_MODULE(Native_direct)
             }
         }
     } else {
-        /// TODO: alert
         NSLog(@"what the fuck? %@",fragment);
     }
 }
@@ -160,14 +161,30 @@ NATIVE_MODULE(Native_direct)
     }
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
+    
+    // 强制路由
 
+    NSString* schemeAuthority = [NSString stringWithFormat:@"%@://%@",scheme,host];
+    NSString* forceschemeAuthority= [self.forceMappings objectForKey:schemeAuthority];
+    if(forceschemeAuthority){
+        NSURL * u = [NSURL URLWithString:forceschemeAuthority];
+        scheme = u.scheme;
+        host = u.host;
+        if(u.port){
+            host = [NSString stringWithFormat:@"%@:%@",u.host,u.port];
+        }
+//        direct = [self.directors objectForKey:scheme];
+        [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
+        return;
+    }
+    
     // 拿容器
     UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
     
     if(!container){
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
         if(fallbackUrl){
-            [self push:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params];
+            [self push:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fragment query:query params:params];
             return;
         }
     }
@@ -220,6 +237,62 @@ NATIVE_MODULE(Native_direct)
     }
 }
 
+- (void)addToTab: (UIViewController*) parent
+        scheme:(NSString*) scheme
+        host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
+        query:(nullable NSDictionary<NSString*,id>*) query
+          params:(nullable NSDictionary<NSString*,id>*) params frame:(CGRect)frame{
+    
+    id<iDirect> direct = [self.directors objectForKey:scheme];
+    
+    // 路由 mapping
+
+    NSString* schemeAuthority = [NSString stringWithFormat:@"%@://%@",scheme,host];
+    NSString* forceschemeAuthority= [self.forceMappings objectForKey:schemeAuthority];
+    if(forceschemeAuthority){
+        NSURL * u = [NSURL URLWithString:forceschemeAuthority];
+        scheme = u.scheme;
+        host = u.host;
+        if(u.port){
+            host = [NSString stringWithFormat:@"%@:%@",u.host,u.port];
+        }
+        [self addToTab:parent scheme:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
+        return;
+    }
+    
+    UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
+ 
+    if(!container){
+        // try fallback
+        NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
+        if(fallbackUrl){
+            #ifdef DEBUG
+                NSString* msg =[NSString stringWithFormat:@"fallback:%@",fallbackUrl];
+                [XENP(iToast) toast:msg];
+            #endif
+            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fragment query:query params:params frame:frame];
+            return;
+        }
+    }
+    // 实在找不到,跳到默认错误页
+    NSAssert(container,@"why here, where is your container?");
+    if(!container)return;
+ 
+
+    [parent addChildViewController:container];
+    container.view.frame = parent.view.frame;
+    [parent.view addSubview:container.view];
+    // TODO: 这里有时机问题.
+    HistoryModel* hm = [HistoryModel new];
+ 
+    hm.fragment      = fragment;
+    hm.host          = host;
+    hm.pathname      = pathname;
+    [parent setCurrentHistory:hm];
+}
+
 - (NSURL *)fallback:(NSString * _Nullable)host params:(NSDictionary<NSString *,id> * _Nullable)params pathname:(NSString * _Nonnull)pathname scheme:(NSString * _Nonnull)scheme {
     static NSString* FALL_BACK_KEY = @"__fallback__";
     NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
@@ -243,101 +316,34 @@ NATIVE_MODULE(Native_direct)
     }
     return fallbackUrl;
 }
-
-- (void)addToTab: (UIViewController*) parent
-        scheme:(NSString*) scheme
-        host:(nullable NSString*) host
-        pathname:(NSString*) pathname
-        fragment:(nullable NSString*) fragment
-        query:(nullable NSDictionary<NSString*,id>*) query
-          params:(nullable NSDictionary<NSString*,id>*) params frame:(CGRect)frame{
-    
-    id<iDirect> direct = [self.directors objectForKey:scheme];
-    
-    UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
- 
-    if(!container){
-        // try fallback
-        NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
-        if(fallbackUrl){
-            #ifdef DEBUG
-                NSString* msg =[NSString stringWithFormat:@"fallback:%@",fallbackUrl];
-                [XENP(iToast) toast:msg];
-            #endif
-            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fallbackUrl.fragment query:query params:params frame:frame];
-            return;
-        }
-    }
- 
-     
-    // 实在找不到,跳到默认错误页
-    NSAssert(container,@"why here, where is your container?");
-    if(!container)return;
- 
-
-    [parent addChildViewController:container];
-    container.view.frame = parent.view.frame;
-    [parent.view addSubview:container.view];
-    // TODO: 这里有时机问题.
-    HistoryModel* hm = [HistoryModel new];
- 
-    hm.fragment      = fragment;
-    hm.host          = host;
-    hm.pathname      = pathname;
-    [parent setCurrentHistory:hm];
-
-}
 - (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback{
     [self.fallbackMappings setObject:fallback forKey:schemeHostPath];
 }
  
- 
+- (void) addMappingRouter:(NSString*) schemeHostPath mappingHostPath:(NSString*) mapping{
+    [self.forceMappings setObject:mapping forKey:schemeHostPath];
+}
 
+- (NSString *)formAuthority:(NSURL *)url {
+    NSString* authority = [NSString stringWithFormat:@"%@%@%@",url.host,url.port?@":":@"",url.port?url.port:@""];
+    return authority;
+}
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
-    // convert SPA url hash router style to standard url style
-    // TODO: 写这不合适. manager 理应不关心 port
-    
-    NSURL* url = [NSURL URLWithString:[XToolDataConverter SPAUrl2StandardUrl:uri]];
-    NSNumber* port = url.port;
-    if(!port){
-        if([url.scheme isEqualToString:@"https"])
-            port = @443;
-        else if([url.scheme isEqualToString:@"http"])
-            port = @80;
-        
-    }
-    NSString* authority = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
-    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
-
-    [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
+    NSString * authority = [self formAuthority:url];
+    [self push:url.scheme host:authority pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
 }
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
-    // convert SPA url hash router style to standard url style
-    // TODO: 写这不合适. manager 理应不关心 port
-    NSURL* url = [NSURL URLWithString:[XToolDataConverter SPAUrl2StandardUrl:uri]];
-    NSNumber* port = url.port;
-    if(!port){
-        if([url.scheme isEqualToString:@"https"])
-            port = @443;
-        else if([url.scheme isEqualToString:@"http"])
-            port = @80;
-        
-    }
-    NSString* authority = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
-    
-    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
-
-    [self addToTab:parent scheme:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
-    
-
+    NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
+    NSString * authority = [self formAuthority:url];
+    [self addToTab:parent scheme:url.scheme host:authority pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
 }
 
 - (void)push:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
     [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
 }
-
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
     [self push:uri params:params frame:[UIScreen mainScreen].bounds];

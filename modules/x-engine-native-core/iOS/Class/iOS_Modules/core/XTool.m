@@ -215,6 +215,23 @@
     return raw;
 }
  
++ (NSURL*)SPAUrl2StandardUrlWithPort:(NSString*)raw{
+    
+    NSURL* url = [NSURL URLWithString:[XToolDataConverter SPAUrl2StandardUrl:raw]];
+
+    NSURLComponents * c = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO] ;
+        
+    NSNumber* port = url.port;
+    if(!port){
+        if([c.scheme isEqualToString:@"https"])
+            c.port = @443;
+        else if([url.scheme isEqualToString:@"http"])
+            c.port = @80;
+    }
+    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
+    c.path = path;
+    return c.URL;
+}
 @end
 
 

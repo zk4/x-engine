@@ -73,7 +73,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 // 增加降级映射表
+// 将在打开容器失败后替换
 - (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback;
+
+// 增加强制映射表
+// 将在路由前直强制替换
+- (void) addMappingRouter:(NSString*) schemeHostPath mappingHostPath:(NSString*) mapping;
+
 @end
 
 

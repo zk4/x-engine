@@ -1,5 +1,5 @@
 /*!
-  * vue-router v2.8.1
+  * vue-router v3.0.5
   * (c) 2021 Capricorn
   * @license MIT
   */
@@ -1339,7 +1339,8 @@
 
   var checkScheme = function () {
     var protocol = window.location.protocol;
-    if (/^(http|https):/.test(protocol)) { return 'omp' }
+    if (/^http:/.test(protocol)) { return 'omp' }
+    if (/^https:/.test(protocol)) { return 'omps' }
     else { return 'microapp' }
   };
 
@@ -3206,7 +3207,7 @@
   }
 
   VueRouter.install = install;
-  VueRouter.version = '2.8.1';
+  VueRouter.version = '3.0.5';
   VueRouter.isNavigationFailure = isNavigationFailure;
   VueRouter.NavigationFailureType = NavigationFailureType;
   VueRouter.START_LOCATION = START;

@@ -307,10 +307,10 @@ NATIVE_MODULE(Native_direct)
             port = @80;
         
     }
-    NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
+    NSString* authority = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
     NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
 
-    [self push:url.scheme host:host pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
 }
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
@@ -325,11 +325,11 @@ NATIVE_MODULE(Native_direct)
             port = @80;
         
     }
-    NSString* host = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
+    NSString* authority = [NSString stringWithFormat:@"%@%@%@",url.host,port?@":":@"",port?port:@""];
     
     NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
 
-    [self addToTab:parent scheme:url.scheme host:host pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
+    [self addToTab:parent scheme:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
     
 
 }

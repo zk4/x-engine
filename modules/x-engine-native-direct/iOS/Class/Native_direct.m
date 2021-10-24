@@ -162,7 +162,7 @@ NATIVE_MODULE(Native_direct)
     
     id<iDirect> direct = [self.directors objectForKey:scheme];
     
-    // 强制路由
+    // 路由mapping
 
     NSString* schemeAuthority = [NSString stringWithFormat:@"%@://%@",scheme,host];
     NSString* forceschemeAuthority= [self.forceMappings objectForKey:schemeAuthority];
@@ -173,7 +173,6 @@ NATIVE_MODULE(Native_direct)
         if(u.port){
             host = [NSString stringWithFormat:@"%@:%@",u.host,u.port];
         }
-//        direct = [self.directors objectForKey:scheme];
         [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
         return;
     }
@@ -230,9 +229,7 @@ NATIVE_MODULE(Native_direct)
         }else{
             // present　出来的，　不关注历史
             UIViewController* vc = [Unity sharedInstance].getCurrentVC;
-            [vc presentViewController:container animated:YES completion:^{
-                
-            }];
+            [vc presentViewController:container animated:YES completion:^{}];
         }
     }
 }
@@ -283,10 +280,9 @@ NATIVE_MODULE(Native_direct)
 
     [parent addChildViewController:container];
     container.view.frame = parent.view.frame;
+    
     [parent.view addSubview:container.view];
-    // TODO: 这里有时机问题.
     HistoryModel* hm = [HistoryModel new];
- 
     hm.fragment      = fragment;
     hm.host          = host;
     hm.pathname      = pathname;
@@ -332,13 +328,15 @@ NATIVE_MODULE(Native_direct)
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
     NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
     NSString * authority = [self formAuthority:url];
-    [self push:url.scheme host:authority pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
+    [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
 }
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
     NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
     NSString * authority = [self formAuthority:url];
-    [self addToTab:parent scheme:url.scheme host:authority pathname:url.path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
+    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
+    [self addToTab:parent scheme:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
 }
 
 - (void)push:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {

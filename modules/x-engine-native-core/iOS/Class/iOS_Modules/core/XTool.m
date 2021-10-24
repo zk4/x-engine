@@ -228,9 +228,7 @@
         else if([url.scheme isEqualToString:@"http"])
             c.port = @80;
     }
-    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
-    c.path = path;
-    return c.URL;
+     return c.URL;
 }
 @end
 

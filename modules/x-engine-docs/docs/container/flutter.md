@@ -1,6 +1,4 @@
-比如你要集成 flutter 容器到引擎
-
-你只需要实现在源码工程 modules/x-engine-native-protocols 里的 idrect 接口即可。
+只需要实现在源码工程 modules/x-engine-native-protocols 里的 idrect 接口即可。
 
 1. 生成工程
 ``` 
@@ -13,5 +11,4 @@ coge x-engine-native-template  xxxx:rn @x-engine-native-direct_flutter
 
 
 完事。 
-
 

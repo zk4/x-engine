@@ -359,6 +359,9 @@
         // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
         if( nativeRequest(that, params))
             return true;
+        else{
+            xhr.send(arg[0]);
+        }
     },
     abort: function (arg, xhr) {
         if (xhr.onabort) {

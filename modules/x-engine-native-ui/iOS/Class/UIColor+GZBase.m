@@ -195,11 +195,5 @@
 +(UIColor *)colorC1C1CA{
     return [UIColor colorWithRed:193/255.0 green:193/255.0 blue:202/255.0 alpha:1.0];
 }
-+(UIColor *)colorF7F8FA{
-    return [UIColor colorWithRed:247/255.0 green:248/255.0 blue:250/255.0 alpha:1.0];
-}
-+(UIColor *)colorFF5F3B{
-    return [UIColor colorWithRed:255/255.0 green:95/255.0 blue:59/255.0 alpha:1.0];
-}
 
 @end

@@ -42,7 +42,7 @@ UI 层在最终呈现时，现在主流有 4 种方案.x-engine 都可以支持.
 
 
 
-![](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211018130654138.png)
+![image-20211026010158237](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211026010158237.png)
 
 #### **类图**
 

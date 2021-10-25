@@ -128,6 +128,9 @@ didCompleteWithError:(nullable NSError *)error {
         [self.client URLProtocolDidFinishLoading:self];
         //开始写入缓存数据
         NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:task.response data:[self.data mutableCopy]];
+        NSHTTPURLResponse* res= (NSHTTPURLResponse*)cachedResponse.response;
+        NSString* ct =  res.allHeaderFields[@"Content-Type"];
+        if(![ct containsString:@"json"])
         [[SLWebCacheManager shareInstance] writeCacheData:cachedResponse withRequest:[self.request mutableCopy]];
     }
     [self clear];

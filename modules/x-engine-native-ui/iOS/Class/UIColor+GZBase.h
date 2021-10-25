@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIColor *)colorF9F9F9;
 +(UIColor *)color757575;
 +(UIColor *)colorC1C1CA;
++(UIColor *)colorF7F8FA;
++(UIColor *)colorFF5F3B;
 @end
 
 NS_ASSUME_NONNULL_END

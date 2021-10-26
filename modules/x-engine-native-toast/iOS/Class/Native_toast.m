@@ -25,11 +25,19 @@ NATIVE_MODULE(Native_toast)
 
 - (void)afterAllNativeModuleInited{
     [CSToastManager setQueueEnabled:YES];
-} 
+}
+
+- (void)toastWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2){
+      va_list args;
+      va_start(args, format);
+      NSString *s = [[NSString alloc] initWithFormat:format arguments:args] ;
+      va_end(args);
+      [self toast:s];
+}
+
+
 - (void)toast:(NSString *)msg{
     dispatch_async(dispatch_get_main_queue(), ^{
-
-//    [[UIApplication sharedApplication].keyWindow makeToast:msg
      [[Unity sharedInstance].getCurrentVC.view makeToast:msg
                                                duration:3.0
                                                position:CSToastPositionTop];
@@ -37,7 +45,6 @@ NATIVE_MODULE(Native_toast)
 }
 - (void)toast:(NSString *)msg duration:(NSTimeInterval)duration{
     dispatch_async(dispatch_get_main_queue(), ^{
-
         [[Unity sharedInstance].getCurrentVC.view makeToast:msg
                                                duration:duration
                                                position:CSToastPositionTop];

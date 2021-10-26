@@ -29,6 +29,8 @@ class DeviceDTO {
     public String language;
 
     public String UUID;
+
+    public String photoType;
   }
 
 interface xengine_jsi_device_protocol {

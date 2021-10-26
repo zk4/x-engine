@@ -5,7 +5,7 @@
 
 #import "AppDelegate.h"
 #import "EntryViewController.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 #import "JSIContext.h"
 @interface AppDelegate ()
 
@@ -20,8 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[NativeContext sharedInstance] start];
-    [[JSIContext sharedInstance] start];
+    [[XENativeContext sharedInstance] start];
 
     EntryViewController *homePageVC = [[EntryViewController alloc] init];
        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];

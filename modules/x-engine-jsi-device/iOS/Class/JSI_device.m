@@ -52,6 +52,7 @@ JSI_MODULE(JSI_device)
     dto.UUID = dict[@"UUID"];
     dto.type = dict[@"type"];
     dto.language = dict[@"language"];
+    dto.photoType = dict[@"photoType"];
     dto.systemVersion = dict[@"systemVersion"];
     completionHandler(dto, true);
 }

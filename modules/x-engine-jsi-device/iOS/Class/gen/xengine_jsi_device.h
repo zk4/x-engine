@@ -22,6 +22,7 @@
    	@property(nonatomic,copy) NSString* systemVersion;
    	@property(nonatomic,copy) NSString* language;
    	@property(nonatomic,copy) NSString* UUID;
+   	@property(nonatomic,copy) NSString* photoType;
 @end
 
 

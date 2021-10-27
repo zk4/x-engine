@@ -108,12 +108,17 @@ JSI_MODULE(JSI_webcache)
             
             // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
             NSString* type =  headers[@"Content-Type"];
-            BOOL isBinary =type? !([type containsString:@"text/"] || [type containsString:@"/json"]): NO;
+            BOOL isBinary = NO;
+            if(type){
+             isBinary =type? !([type containsString:@"text/"] || [type containsString:@"/json"]): NO;
+            }
 
+            NSString* sdata =isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+            if(!sdata) sdata = @"";
             NSDictionary* ret =@{
                 @"statusCode": statusCode,
                 @"isBinary":[NSNumber numberWithBool:isBinary],
-                @"data":isBinary?[data base64EncodedStringWithOptions:0]:[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding],
+                @"data":sdata,
                 @"responseHeaders":headers
             };
             completionHandler(ret,TRUE);

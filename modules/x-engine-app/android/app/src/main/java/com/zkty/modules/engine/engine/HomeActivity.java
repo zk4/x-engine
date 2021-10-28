@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         String protocol = "http:";
         String host = et_content.getText().toString();
           protocol = "http:";
-         host = "10.2.129.82:9111";
+         host = "10.2.46.17:8848/%E8%B0%83%E8%AF%95/index.html";
         String pathname = "";
         String fragment = "";
         XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, null, true);

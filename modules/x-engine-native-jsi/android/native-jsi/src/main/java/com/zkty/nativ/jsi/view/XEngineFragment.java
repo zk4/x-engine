@@ -14,8 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.gome.analysis.AnalysisManager;
 import com.zkty.nativ.jsi.HistoryModel;
+import com.zkty.nativ.jsi.WebViewManager;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 import com.zkty.nativ.jsi.webview.XWebViewPool;
 
@@ -66,7 +66,9 @@ public class XEngineFragment extends Fragment {
             HistoryModel historyModel = (HistoryModel) getArguments().getSerializable(ARG_PARAM_HISTORY_MODEL);
             int index = getArguments().getInt(ARG_PARAM_INDEX);
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
-            AnalysisManager.getInstance().initX5WebView(mWebView);
+//            AnalysisManager.getInstance().initX5WebView(mWebView);
+            if(WebViewManager.getInstance().getWebViewManagerImi() != null)WebViewManager.getInstance().getWebViewManagerImi().fragmentCreateWevView(mWebView);
+
             XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
             if (historyModel.protocol == null && historyModel.host == null && historyModel.pathname == null) {
                 View view1 = getLayoutInflater().inflate(R.layout.layout_notfound_page, null);

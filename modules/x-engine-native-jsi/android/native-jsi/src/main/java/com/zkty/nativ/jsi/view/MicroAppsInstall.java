@@ -124,7 +124,7 @@ public class MicroAppsInstall {
                         try {
                             Log.d(TAG, "start install apps:" + file);
                             InputStream inputStream = context.getAssets().open(String.format("%s/%s/%s", ASSET_APPS_DIR, file, "microapp.json"));
-                            InputStream inputStream2 = context.getAssets().open(String.format("%s/%s/%s", ASSET_APPS_DIR, file, "sitemap.json"));
+//                            InputStream inputStream2 = context.getAssets().open(String.format("%s/%s/%s", ASSET_APPS_DIR, file, "sitemap.json"));
                             MicroAppJsonDto microAppJsonDto = JSON.parseObject(inputStream, MicroAppJsonDto.class);
                             if (microAppJsonDto != null && microAppJsonDto.getId() != null) {
                                 HashMap<Integer, String> microApp = microApps.get(microAppJsonDto.getId());

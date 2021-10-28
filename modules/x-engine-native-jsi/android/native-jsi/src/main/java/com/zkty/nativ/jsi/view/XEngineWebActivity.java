@@ -26,15 +26,14 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.gome.analysis.AnalysisManager;
 import com.gyf.barlibrary.ImmersionBar;
-import com.sensorsdata.analytics.android.sdk.SensorsDataAPI;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.core.utils.PermissionsUtils;
 import com.zkty.nativ.jsi.HistoryModel;
+import com.zkty.nativ.jsi.WebViewManager;
 import com.zkty.nativ.jsi.utils.AndroidBug5497Workaround;
 import com.zkty.nativ.jsi.utils.KeyBoardUtils;
 import com.zkty.nativ.jsi.utils.ScreenListener;
@@ -116,9 +115,10 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         mWebView = XWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
         //增加神策埋点（webview初始化）
-        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView, true);
+//        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView, true);
 
-        AnalysisManager.getInstance().initX5WebView(mWebView);
+//        AnalysisManager.getInstance().initX5WebView(mWebView);
+        if(WebViewManager.getInstance().getWebViewManagerImi() != null)WebViewManager.getInstance().getWebViewManagerImi().activityCreateWevView(mWebView);
 
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 

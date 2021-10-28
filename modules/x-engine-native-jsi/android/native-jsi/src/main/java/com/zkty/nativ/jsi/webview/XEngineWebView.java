@@ -1,6 +1,8 @@
 package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -27,7 +29,9 @@ import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.webcache.lib.WebViewCacheInterceptorInst;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import nativ.jsi.BuildConfig;
 
@@ -103,18 +107,30 @@ public class XEngineWebView extends DWebView {
 
 //            @Override
 //            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-//                Log.d("CacheWebView", "request url= " + s.replace("http://",""));
 //
-//                if (Build.VERSION.SDK_INT < 26) {
-//                    webView.loadUrl(s);
+//                Log.d("DWebview", "shouldOverrideUrlLoading  = " + s);
+//                if (s.contains("tenpay")) {
+//
+//                    Map<String, String> webviewHead = new HashMap<>();
+//                    webviewHead.put("referer", "http://gmj-c.gomeuat.com.cn");
+//                    webView.loadUrl(s, webviewHead);
 //                    return true;
 //                }
-//                return false;
+//                if (s.startsWith("weixin://")) {
+//                    Intent intent = new Intent();
+//                    intent.setAction(Intent.ACTION_VIEW);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    intent.setData(Uri.parse(s));
+//                    mContext.startActivity(intent);
+//                    return true;
+//                }
+//
+//                return super.shouldOverrideUrlLoading(webView, s);
 //            }
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-                Log.d("CacheWebView", "shouldInterceptRequest url= " + s.replace("http://",""));
+
                 return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
                         interceptRequest(s));
             }
@@ -153,8 +169,6 @@ public class XEngineWebView extends DWebView {
 //        this.destroy();
 
     }
-
-
 
 
     public void goBack() {
@@ -208,7 +222,7 @@ public class XEngineWebView extends DWebView {
                                 }
                             });
                         } else {
-                            ImageUtils.savePictureByBase64(mContext, result.getExtra(),new ImageUtils.SaveCallBack() {
+                            ImageUtils.savePictureByBase64(mContext, result.getExtra(), new ImageUtils.SaveCallBack() {
                                 @Override
                                 public void saveCallBack(int status, String msg) {
                                     ToastUtils.showCenterToast(msg);

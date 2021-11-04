@@ -1,0 +1,11 @@
+include ':app'
+include ':native-direct_https_insecure'
+
+include ':native-core'
+project(':native-core').projectDir = new File('../../x-engine-native-core/android/native-core')
+
+include ':native-direct'
+project(':native-direct').projectDir = new File('../../x-engine-native-direct/android/native-direct')
+
+include ':native-protocols'
+project(':native-protocols').projectDir = new File('../../x-engine-native-protocols/android/native-protocols')

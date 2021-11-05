@@ -2,6 +2,7 @@ package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -98,35 +99,39 @@ public class XEngineWebView extends DWebView {
 
             @Override
             public void onPageFinished(WebView webView, String s) {
-                evaluateJavascript("window._dswk=true;");
                 super.onPageFinished(webView, s);
                 if (onPageStateListener != null) {
                     onPageStateListener.onPageFinished();
                 }
             }
 
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-//
-//                Log.d("DWebview", "shouldOverrideUrlLoading  = " + s);
-//                if (s.contains("tenpay")) {
-//
-//                    Map<String, String> webviewHead = new HashMap<>();
-//                    webviewHead.put("referer", "http://gmj-c.gomeuat.com.cn");
-//                    webView.loadUrl(s, webviewHead);
-//                    return true;
-//                }
-//                if (s.startsWith("weixin://")) {
-//                    Intent intent = new Intent();
-//                    intent.setAction(Intent.ACTION_VIEW);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    intent.setData(Uri.parse(s));
-//                    mContext.startActivity(intent);
-//                    return true;
-//                }
-//
-//                return super.shouldOverrideUrlLoading(webView, s);
-//            }
+            @Override
+            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+                evaluateJavascript("window._dswk=true;");
+                super.onPageStarted(webView, s, bitmap);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
+                Log.d("DWebview", "shouldOverrideUrlLoading  = " + s);
+                if (s.contains("tenpay")) {
+
+                    Map<String, String> webviewHead = new HashMap<>();
+                    webviewHead.put("referer", "http://gmj-c.gomeuat.com.cn");
+                    webView.loadUrl(s, webviewHead);
+                    return true;
+                }
+                if (s.startsWith("weixin://")) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.setData(Uri.parse(s));
+                    mContext.startActivity(intent);
+                    return true;
+                }
+
+                return super.shouldOverrideUrlLoading(webView, s);
+            }
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
@@ -183,7 +188,6 @@ public class XEngineWebView extends DWebView {
 
 
     public void loadUrl(HistoryModel model) {
-        evaluateJavascript("window._dswk=true;");
         String url = getUrlByHistoryModel(model);
         loadUrl(url);
         historyModels.add(model);

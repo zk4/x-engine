@@ -1,5 +1,5 @@
 只需要实现在源码工程 modules/x-engine-native-protocols 里的 idrect 接口即可。
-
+路由以 xe-flutter:// 开头
 1. 生成工程
 ``` 
 coge x-engine-native-template  xxxx:rn @x-engine-native-direct_flutter

@@ -3,7 +3,7 @@
   - [omp / microapp 容器](./docs/container/omp.md)
     - [bridge](./docs/devProcess/bridge.md)
     - [Vue开发建议](./docs/devProcess/Vue开发建议.md)
-    - [版本库迁移](./docs/devProcess/版本库迁移.md)
+    - [旧Vue项目迁移](./docs/devProcess/版本库迁移.md)
     - [api 调用](./docs/modules/jsi-调用.md)
     - [分发与缓存](./docs/modules/分发与缓存.md)
   - [h5 容器](./docs/container/h5.md)

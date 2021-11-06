@@ -178,8 +178,8 @@ NATIVE_MODULE(Native_direct)
     }
     
     // 拿容器
-    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
-    
+    UIViewController *container = [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
+
     if(!container){
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
         if(fallbackUrl){
@@ -233,6 +233,109 @@ NATIVE_MODULE(Native_direct)
         }
     }
 }
+
+// rn
+- (void)push: (NSString*) scheme
+        host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(NSString*) fragment
+        query:(nullable NSDictionary<NSString*,NSString*>*) query
+        params:(NSDictionary<NSString*,id>*) params
+        frame:(CGRect)frame
+        moduleName:(NSString *)name {
+    UInt64 now  = [[ NSDate date ] timeIntervalSince1970 ] * 1000;
+    // 路由 throttle
+    if(now - self.lastTimeStamp<500){
+        self.lastTimeStamp = now;
+        return;
+    }else{
+        self.lastTimeStamp = now;
+    }
+    
+    // 复用上一次的 host
+    if(host){
+        pathname = pathname && (pathname.length!=0) ? pathname : @"/";
+    } else {
+        HistoryModel* hm= [[Unity sharedInstance].getCurrentVC.navigationController.viewControllers.lastObject getLastHistory];
+        host = hm.host;
+        NSAssert(host!=nil, @"host 不可为 nil");
+        pathname = hm.pathname && (hm.pathname.length!=0) ? hm.pathname : @"/";
+    }
+    
+    id<iDirect> direct = [self.directors objectForKey:scheme];
+    
+    // 路由mapping
+
+    NSString* schemeAuthority = [NSString stringWithFormat:@"%@://%@",scheme,host];
+    NSString* forceschemeAuthority= [self.forceMappings objectForKey:schemeAuthority];
+    if(forceschemeAuthority){
+        NSURL * u = [NSURL URLWithString:forceschemeAuthority];
+        scheme = u.scheme;
+        host = u.host;
+        if(u.port){
+            host = [NSString stringWithFormat:@"%@:%@",u.host,u.port];
+        }
+        [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
+        return;
+    }
+    
+    // 获取rn容器
+    UIViewController *container = [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds moduleName:name];
+
+    if(!container){
+        NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
+        if(fallbackUrl){
+            [self push:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fragment query:query params:params];
+            return;
+        }
+    }
+    if(!container){
+#ifdef DEBUG
+        NSString* msg = [NSString stringWithFormat:@"找不到路径: %@://%@%@",scheme,host,pathname];
+        [XENP(iToast) toast:msg duration:.5f];
+#endif
+        return;
+    }
+    // 实在找不到,跳到默认错误页
+//    NSAssert(container,@"why here, where is your container?");
+
+
+    if([direct respondsToSelector:@selector(push:params:)]){
+        [direct push:container params:params];
+    }else{
+
+        UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
+
+        //  删除历史逻辑
+        NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
+        int deleteHistory = 0;
+        if(nativeParams){
+            id deletable = [nativeParams objectForKey:@"__deleteHistory__"];
+            if(deletable)
+                deleteHistory =[deletable intValue];
+        }
+        deleteHistory = abs(deleteHistory);
+//        NSAssert(deleteHistory>=0, @"__deleteHistory__ 必须大于等于 0");
+        while(deleteHistory>0){
+            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
+            deleteHistory--;
+        }
+        
+        if(navc){
+            [navc pushViewController:container animated:YES];
+            HistoryModel* hm = [HistoryModel new];
+            hm.fragment      = fragment;
+            hm.host          = host;
+            hm.pathname      = pathname;
+            [container setCurrentHistory:hm];
+        }else{
+            // present　出来的，　不关注历史
+            UIViewController* vc = [Unity sharedInstance].getCurrentVC;
+            [vc presentViewController:container animated:YES completion:^{}];
+        }
+    }
+}
+
 
 - (void)addToTab: (UIViewController*) parent
         scheme:(NSString*) scheme
@@ -332,6 +435,20 @@ NATIVE_MODULE(Native_direct)
     [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
 }
 
+// rn
+- (void)push:(NSString *)uri moduleName:(NSString *)name params:(NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
+    NSLog(@"%@", uri);
+    NSLog(@"%@", name);
+    NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
+    NSString * authority = [self formAuthority:url];
+    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
+    [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params moduleName:name];
+}
+
+- (void)push:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params moduleName:(NSString *)name {
+    [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds moduleName:name];
+}
+
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
     NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
     NSString * authority = [self formAuthority:url];
@@ -343,13 +460,10 @@ NATIVE_MODULE(Native_direct)
     [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
 }
 
+
+
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
     [self push:uri params:params frame:[UIScreen mainScreen].bounds];
 }
-
- 
- 
-
-
 @end
  

@@ -8,18 +8,26 @@
 
 #import "Native_direct_rn.h"
 #import "XENativeContext.h"
+#import "Unity.h"
+#import "NSURL+QueryDictionary.h"
 #import <x-engine-native-core/Unity.h>
-#import <React/RCTRootView.h>
+//#import "ReactNativeViewController.h"
 
 @interface Native_direct_rn()
-{ }
+@property (nonatomic, strong) id<iDirect>  rnDirect;
 @end
 
 @implementation Native_direct_rn
 NATIVE_MODULE(Native_direct_rn)
 
- - (NSString*) moduleId{
+- (NSString*) moduleId{
     return @"com.zkty.native.direct_rn";
+}
+- (nonnull NSString *)protocol {
+    return @"rn:";
+}
+-(NSString*) scheme{
+    return @"rn";
 }
 
 - (int) order{
@@ -29,51 +37,27 @@ NATIVE_MODULE(Native_direct_rn)
 - (void)afterAllNativeModuleInited{
 }
 
- 
-- (void)back:(nonnull NSString *)host fragment:(nonnull NSString *)fragment {
-    /// TODO
-}
-
-- (nonnull NSString *)protocol {
-    return @"http:";
-}
-
-- (void)push:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
-    NSString * finalUrl = @"";
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame moduleName:(NSString *)name {
     
-    pathname = pathname?pathname:@"";
-    fragment = fragment?[NSString stringWithFormat:@"#%@",fragment]:@"";
-    
-    if (query) {
-        NSArray *keys = query.allKeys;
-        NSArray *values = query.allValues;
-        NSString *forString = [NSString string];
-        for (NSInteger i = 0; i<keys.count; i++) {
-            forString = [forString stringByAppendingFormat:@"%@=%@&", keys[i], values[i]];
-        }
-        NSString *cutString = [forString substringWithRange:NSMakeRange(0, [forString length] - 1)];
-        NSString *finalQueryString;
-        finalQueryString = [cutString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
-        finalUrl = [NSString stringWithFormat:@"%@//%@%@%@?%@",protocol,host,pathname,fragment,finalQueryString];
-    } else {
-        finalUrl = [NSString stringWithFormat:@"%@//%@%@%@",protocol,host,pathname,fragment];
+    if(!protocol){
+        protocol = [self protocol];
     }
-    NSURL *jsCodeLocation = [NSURL URLWithString:finalUrl];
-
-    RCTRootView *rootView =
-      [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
-                                  moduleName: @"RNHighScores"
-                           initialProperties:
-                             params
-                               launchOptions: nil];
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.view = rootView;
-    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:vc animated:YES ];
-}
-
-- (nonnull NSString *)scheme {
-    return @"rn";
+    
+    BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
+    NSString *finalUrl = @"";
+    
+    
+    NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#");
+    fragment = (fragment && fragment.length>0) ? [NSString stringWithFormat:@"#%@",fragment] : @"";
+    NSString* queryStr   = query.uq_URLQueryString && query.uq_URLQueryString.length>0 ? [NSString stringWithFormat:@"?%@",query.uq_URLQueryString]:@"";
+    
+    finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryStr];
+    
+    ReactNativeViewController *vc =  [[ReactNativeViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame];
+    vc.moduleName = name;
+    vc.hidesBottomBarWhenPushed = YES;
+    return  vc;
 }
 
 @end
- 
+

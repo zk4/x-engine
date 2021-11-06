@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		037077DA0CF9AB0139DD4CB0 /* libPods-direct_rnUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8350D989E9DC64C10250A7DE /* libPods-direct_rnUITests.a */; };
 		38E983942615F6E8007F6BDF /* Native_direct_rn.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_direct_rn.m */; };
 		8DE2BE0D911D179E746F70B9 /* libPods-direct_rnTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6766A91E76375D29D7BBF318 /* libPods-direct_rnTests.a */; };
+		A488779A273686CE0040D845 /* ReactNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4887799273686CE0040D845 /* ReactNativeViewController.m */; };
 		EE1E8D9093AC7168C6D0E863 /* libPods-direct_rn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9BE71C3752AAE7FEAFE2CF /* libPods-direct_rn.a */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +62,6 @@
 		38E983922615F6E8007F6BDF /* Native_direct_rn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Native_direct_rn.m; sourceTree = "<group>"; };
 		38E983932615F6E8007F6BDF /* Native_direct_rn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Native_direct_rn.h; sourceTree = "<group>"; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		581FAF352624CC1A00ED7DCC /* iDirect_rn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDirect_rn.h; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		63DE3BD3E28F9EAAA98AA143 /* Pods-direct_rnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rnTests.release.xcconfig"; path = "Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests.release.xcconfig"; sourceTree = "<group>"; };
 		6766A91E76375D29D7BBF318 /* libPods-direct_rnTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-direct_rnTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +73,8 @@
 		8A4FCA27E7FE59204E44E83A /* Pods-abstract-direct_rnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct_rnTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-direct_rnTests/Pods-abstract-direct_rnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-direct_rn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rn.release.xcconfig"; path = "Target Support Files/Pods-direct_rn/Pods-direct_rn.release.xcconfig"; sourceTree = "<group>"; };
 		9B9BE71C3752AAE7FEAFE2CF /* libPods-direct_rn.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-direct_rn.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4887798273686CD0040D845 /* ReactNativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeViewController.h; sourceTree = "<group>"; };
+		A4887799273686CE0040D845 /* ReactNativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeViewController.m; sourceTree = "<group>"; };
 		A5D13A8E4F88C6229E85D0A4 /* Pods-direct_rnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rnTests.debug.xcconfig"; path = "Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-direct_rnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct_rnUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-direct_rnUITests/Pods-abstract-direct_rnUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9328813DA9AD9B20D713E0 /* Pods-direct_rnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rnUITests.debug.xcconfig"; path = "Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,9 +196,10 @@
 		58E8333F24E1300E008DDFBE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				581FAF352624CC1A00ED7DCC /* iDirect_rn.h */,
 				38E983932615F6E8007F6BDF /* Native_direct_rn.h */,
 				38E983922615F6E8007F6BDF /* Native_direct_rn.m */,
+				A4887798273686CD0040D845 /* ReactNativeViewController.h */,
+				A4887799273686CE0040D845 /* ReactNativeViewController.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				00DFC6A824C83F94006A53EE /* Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
 				9E7123BA26A80DFA8CEF965E /* [CP] Copy Pods Resources */,
+				762793DB439BC0CB07F9CE25 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,6 +248,7 @@
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
 				0781C10CF8BE51E368FC5A57 /* [CP] Copy Pods Resources */,
+				7B68597C613AE9FA280ECE4D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,6 +270,7 @@
 				00DFC6CE24C83F95006A53EE /* Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
 				A6A9358CE376EB2BFB5DFAF8 /* [CP] Copy Pods Resources */,
+				91939D69B61B4A75C889058C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -440,6 +446,57 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport SERVER_IP=`ipconfig getifaddr en0`\n";
 		};
+		762793DB439BC0CB07F9CE25 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B68597C613AE9FA280ECE4D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91939D69B61B4A75C889058C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9E7123BA26A80DFA8CEF965E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,6 +563,7 @@
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_direct_rn.m in Sources */,
+				A488779A273686CE0040D845 /* ReactNativeViewController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

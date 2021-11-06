@@ -1,0 +1,2 @@
+include ':app'
+include ':native-direct_http_insecure'

@@ -6,6 +6,11 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
+
+require_relative './node_modules/react-native/scripts/react_native_pods.rb'
+require_relative './node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+
 Pod::Spec.new do |s|
 
 

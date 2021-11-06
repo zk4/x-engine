@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="nativ.direct.http">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application>
+        <meta-data
+            android:name="com.zkty.native.direct_http_insecure"
+            android:value="com.zkty.nativ.direct_http_insecure.NativeDirectHttp" />
+    </application>
+</manifest>

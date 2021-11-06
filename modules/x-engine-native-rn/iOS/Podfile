@@ -22,17 +22,17 @@ end
     shared_pods
     #use_frameworks!
   end
-  target 'native-rn' do
+  target 'rn' do
     shared_pods
     #use_frameworks!
   end
 
-  target 'native-rnTests' do
+  target 'rnTests' do
     shared_pods
     #use_frameworks!
   end
 
-  target 'native-rnUITests' do
+  target 'rnUITests' do
     shared_pods
     # Pods for testing
     #shared_pods

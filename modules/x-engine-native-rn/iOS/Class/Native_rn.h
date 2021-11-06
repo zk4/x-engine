@@ -1,6 +1,6 @@
 //
-//  Native_native-rn.m
-//  native-rn
+//  Native_rn.h
+//  rn
 //
 // Copyright (c) 2021 x-engine
 // 
@@ -22,29 +22,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-
-#import "Native_native-rn.h"
-#import "XENativeContext.h"
-
-@interface Native_native-rn()
-{ }
-@end
-
-@implementation Native_native-rn
-NATIVE_MODULE(Native_native-rn)
-
- - (NSString*) moduleId{
-    return @"com.zkty.native.native-rn";
-}
-
-- (int) order{
-    return 0;
-}
-
-- (void)afterAllNativeModuleInited{
-} 
--(NSString*) test{
-    return @"test";
-}
-@end
+#import <Foundation/Foundation.h>
+#import "XENativeModule.h"
+#import "iRn.h"
+NS_ASSUME_NONNULL_BEGIN
+@interface Native_rn : XENativeModule <iRn>
  
+@end
+
+NS_ASSUME_NONNULL_END

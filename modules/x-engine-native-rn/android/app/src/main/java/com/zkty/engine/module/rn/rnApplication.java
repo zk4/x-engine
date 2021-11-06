@@ -1,8 +1,8 @@
-package com.zkty.engine.module.native-rn;
+package com.zkty.engine.module.rn;
 
 import com.zkty.modules.engine.XEngineApplication;
 
-public class native-rnApplication extends XEngineApplication {
+public class rnApplication extends XEngineApplication {
     @Override
     public void onCreate() {
         super.onCreate();

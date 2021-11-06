@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-               BuildableName = "native-rn.app"
-               BlueprintName = "native-rn"
-               ReferencedContainer = "container:native-rn.xcodeproj">
+               BlueprintIdentifier = "580B91602694CCEA006AD356"
+               BuildableName = "sit.app"
+               BlueprintName = "sit"
+               ReferencedContainer = "container:rn.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00DFC6C424C83F95006A53EE"
-               BuildableName = "native-rnTests.xctest"
-               BlueprintName = "native-rnTests"
-               ReferencedContainer = "container:native-rn.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00DFC6CF24C83F95006A53EE"
-               BuildableName = "native-rnUITests.xctest"
-               BlueprintName = "native-rnUITests"
-               ReferencedContainer = "container:native-rn.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-            BuildableName = "native-rn.app"
-            BlueprintName = "native-rn"
-            ReferencedContainer = "container:native-rn.xcodeproj">
+            BlueprintIdentifier = "580B91602694CCEA006AD356"
+            BuildableName = "sit.app"
+            BlueprintName = "sit"
+            ReferencedContainer = "container:rn.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -81,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-            BuildableName = "native-rn.app"
-            BlueprintName = "native-rn"
-            ReferencedContainer = "container:native-rn.xcodeproj">
+            BlueprintIdentifier = "580B91602694CCEA006AD356"
+            BuildableName = "sit.app"
+            BlueprintName = "sit"
+            ReferencedContainer = "container:rn.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

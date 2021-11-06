@@ -1,6 +1,6 @@
 //
-//  Native_native-rn.h
-//  native-rn
+//  iRn.h
+//  Rn
 //
 // Copyright (c) 2021 x-engine
 // 
@@ -22,12 +22,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import <Foundation/Foundation.h>
-#import "XENativeModule.h"
-#import "iNative-rn.h"
-NS_ASSUME_NONNULL_BEGIN
-@interface Native_native-rn : XENativeModule <iNative-rn>
- 
+#ifndef iRn_h
+#define iRn_h
+@protocol iRn <NSObject>
+-(NSString*) test;
 @end
-
-NS_ASSUME_NONNULL_END
+#endif /* iRn_h */

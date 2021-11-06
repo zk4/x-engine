@@ -1,6 +1,6 @@
 //
-//  iNative-rn.h
-//  Native-rn
+//  Native_rn.m
+//  rn
 //
 // Copyright (c) 2021 x-engine
 // 
@@ -22,9 +22,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#ifndef iNative-rn_h
-#define iNative-rn_h
-@protocol iNative-rn <NSObject>
--(NSString*) test;
+
+#import "Native_rn.h"
+#import "XENativeContext.h"
+
+@interface Native_rn()
+{ }
 @end
-#endif /* iNative-rn_h */
+
+@implementation Native_rn
+NATIVE_MODULE(Native_rn)
+
+ - (NSString*) moduleId{
+    return @"com.zkty.native.rn";
+}
+
+- (int) order{
+    return 0;
+}
+
+- (void)afterAllNativeModuleInited{
+} 
+-(NSString*) test{
+    return @"test";
+}
+@end
+ 

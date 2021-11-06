@@ -1,4 +1,4 @@
-package com.zkty.engine.module.native-rn;
+package com.zkty.engine.module.rn;
 
 import org.junit.Test;
 

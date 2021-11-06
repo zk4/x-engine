@@ -1,4 +1,4 @@
-package com.zkty.nativ.native-rn;
+package com.zkty.nativ.rn;
 
 import android.util.Log;
 
@@ -8,11 +8,11 @@ import com.zkty.nativ.core.XEngineApplication;
 
 import java.io.File;
 
-public class Nativenative-rn extends NativeModule implements Inative-rn {
+public class Nativern extends NativeModule implements Irn {
 
     @Override
     public String moduleId() {
-        return "com.zkty.native.native-rn";
+        return "com.zkty.native.rn";
     }
 
     @Override

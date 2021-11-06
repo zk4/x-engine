@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "580B91602694CCEA006AD356"
-               BuildableName = "sit.app"
-               BlueprintName = "sit"
-               ReferencedContainer = "container:native-rn.xcodeproj">
+               BlueprintIdentifier = "580B91AF2694D0DA006AD356"
+               BuildableName = "uat.app"
+               BlueprintName = "uat"
+               ReferencedContainer = "container:rn.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "580B91602694CCEA006AD356"
-            BuildableName = "sit.app"
-            BlueprintName = "sit"
-            ReferencedContainer = "container:native-rn.xcodeproj">
+            BlueprintIdentifier = "580B91AF2694D0DA006AD356"
+            BuildableName = "uat.app"
+            BlueprintName = "uat"
+            ReferencedContainer = "container:rn.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "580B91602694CCEA006AD356"
-            BuildableName = "sit.app"
-            BlueprintName = "sit"
-            ReferencedContainer = "container:native-rn.xcodeproj">
+            BlueprintIdentifier = "580B91AF2694D0DA006AD356"
+            BuildableName = "uat.app"
+            BlueprintName = "uat"
+            ReferencedContainer = "container:rn.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

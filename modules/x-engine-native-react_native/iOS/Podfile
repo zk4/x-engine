@@ -1,0 +1,54 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+# 在环境变量里指向 x-engine 本地路径
+# export X_ENGINE_MODULES=/Users/zk/git/company/working/x-engine/modules
+
+X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
+
+def shared_pods
+  pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
+  pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'x-engine-native-dev', :path => X_ENGINE_MODULES+'/x-engine-native-dev'
+end
+  target 'sit' do
+    shared_pods
+    pod 'x-engine-native-ui', :path => X_ENGINE_MODULES+'/x-engine-native-ui'
+    #use_frameworks!
+  end
+  target 'uat' do
+    shared_pods
+    #use_frameworks!
+  end
+  target 'react_native' do
+    shared_pods
+    #use_frameworks!
+  end
+
+  target 'react_nativeTests' do
+    shared_pods
+    #use_frameworks!
+  end
+
+  target 'react_nativeUITests' do
+    shared_pods
+    # Pods for testing
+    #shared_pods
+
+  end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if config.name == 'Debug'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1'
+      end
+      if config.name == 'Release'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) RELEASE=1'
+      end
+
+    end
+  end
+end

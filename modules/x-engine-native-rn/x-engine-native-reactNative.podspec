@@ -9,15 +9,15 @@
 Pod::Spec.new do |s|
 
 
-    s.name         = "x-engine-native-rn"
+    s.name         = "x-engine-native-reactNative"
     s.version      = "1.0.0"
-    s.summary      = "x-engine-native-rn"
+    s.summary      = "x-engine-native-reactNative"
 
      s.description  = <<-DESC
             description
                      DESC
 
-    s.homepage     = "https://github.com/zkty-team/x-engine-native-rn"
+    s.homepage     = "https://github.com/zkty-team/x-engine-native-reactNative"
 
 
    
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "10.0"
     s.ios.deployment_target = "10.0"
 
-    s.source      = { :git => 'https://github.com/zkty-team/x-engine-native-rn.git',
+    s.source      = { :git => 'https://github.com/zkty-team/x-engine-native-reactNative.git',
   :tag => s.version.to_s }
 
 

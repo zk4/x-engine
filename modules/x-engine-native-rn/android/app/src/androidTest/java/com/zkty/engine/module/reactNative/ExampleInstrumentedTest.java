@@ -1,4 +1,4 @@
-package com.zkty.engine.module.rn;
+package com.zkty.engine.module.reactNative;
 
 import android.content.Context;
 

@@ -17,7 +17,7 @@
                BlueprintIdentifier = "580B91602694CCEA006AD356"
                BuildableName = "sit.app"
                BlueprintName = "sit"
-               ReferencedContainer = "container:rn.xcodeproj">
+               ReferencedContainer = "container:reactNative.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "580B91602694CCEA006AD356"
             BuildableName = "sit.app"
             BlueprintName = "sit"
-            ReferencedContainer = "container:rn.xcodeproj">
+            ReferencedContainer = "container:reactNative.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "580B91602694CCEA006AD356"
             BuildableName = "sit.app"
             BlueprintName = "sit"
-            ReferencedContainer = "container:rn.xcodeproj">
+            ReferencedContainer = "container:reactNative.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-               BuildableName = "rn.app"
-               BlueprintName = "rn"
-               ReferencedContainer = "container:rn.xcodeproj">
+               BlueprintIdentifier = "580B91AF2694D0DA006AD356"
+               BuildableName = "uat.app"
+               BlueprintName = "uat"
+               ReferencedContainer = "container:reactNative.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00DFC6C424C83F95006A53EE"
-               BuildableName = "rnTests.xctest"
-               BlueprintName = "rnTests"
-               ReferencedContainer = "container:rn.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00DFC6CF24C83F95006A53EE"
-               BuildableName = "rnUITests.xctest"
-               BlueprintName = "rnUITests"
-               ReferencedContainer = "container:rn.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-            BuildableName = "rn.app"
-            BlueprintName = "rn"
-            ReferencedContainer = "container:rn.xcodeproj">
+            BlueprintIdentifier = "580B91AF2694D0DA006AD356"
+            BuildableName = "uat.app"
+            BlueprintName = "uat"
+            ReferencedContainer = "container:reactNative.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -81,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00DFC6A924C83F94006A53EE"
-            BuildableName = "rn.app"
-            BlueprintName = "rn"
-            ReferencedContainer = "container:rn.xcodeproj">
+            BlueprintIdentifier = "580B91AF2694D0DA006AD356"
+            BuildableName = "uat.app"
+            BlueprintName = "uat"
+            ReferencedContainer = "container:reactNative.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

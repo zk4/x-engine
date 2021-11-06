@@ -1,6 +1,6 @@
 //
-//  Native_rn.h
-//  rn
+//  iReactNative.h
+//  ReactNative
 //
 // Copyright (c) 2021 x-engine
 // 
@@ -22,12 +22,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE./
 
-#import <Foundation/Foundation.h>
-#import "XENativeModule.h"
-#import "iRn.h"
-NS_ASSUME_NONNULL_BEGIN
-@interface Native_rn : XENativeModule <iRn>
- 
+#ifndef iReactNative_h
+#define iReactNative_h
+@protocol iReactNative <NSObject>
+-(NSString*) test;
 @end
-
-NS_ASSUME_NONNULL_END
+#endif /* iReactNative_h */

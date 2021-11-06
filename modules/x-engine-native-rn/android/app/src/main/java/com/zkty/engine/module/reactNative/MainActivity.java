@@ -1,4 +1,4 @@
-package com.zkty.engine.module.rn;
+package com.zkty.engine.module.reactNative;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void rn(View view) {
+    public void reactNative(View view) {
         XEngineWebActivityManager.sharedInstance().startH5EngineActivity(this, "http://www.baidu.com");
     }
 }

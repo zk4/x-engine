@@ -4,17 +4,17 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "iRn.h"
-#import "Native_rn.h"
+#import "iReactNative.h"
+#import "Native_reactNative.h"
 @interface iOSTests : XCTestCase
-@property(nonatomic,strong) id<iRn> rn;
+@property(nonatomic,strong) id<iReactNative> reactNative;
 @end
 
 @implementation iOSTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    _rn = [Native_rn new];
+    _reactNative = [Native_reactNative new];
 }
 
 - (void)tearDown {

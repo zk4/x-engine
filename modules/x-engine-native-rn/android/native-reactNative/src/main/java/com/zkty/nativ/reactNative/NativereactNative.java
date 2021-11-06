@@ -1,4 +1,4 @@
-package com.zkty.nativ.rn;
+package com.zkty.nativ.reactNative;
 
 import android.util.Log;
 
@@ -8,11 +8,11 @@ import com.zkty.nativ.core.XEngineApplication;
 
 import java.io.File;
 
-public class Nativern extends NativeModule implements Irn {
+public class NativereactNative extends NativeModule implements IreactNative {
 
     @Override
     public String moduleId() {
-        return "com.zkty.native.rn";
+        return "com.zkty.native.reactNative";
     }
 
     @Override

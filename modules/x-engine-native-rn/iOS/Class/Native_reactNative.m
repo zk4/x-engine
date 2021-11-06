@@ -1,6 +1,6 @@
 //
-//  Native_rn.m
-//  rn
+//  Native_reactNative.m
+//  reactNative
 //
 // Copyright (c) 2021 x-engine
 // 
@@ -23,18 +23,18 @@
 // THE SOFTWARE./
 
 
-#import "Native_rn.h"
+#import "Native_reactNative.h"
 #import "XENativeContext.h"
 
-@interface Native_rn()
+@interface Native_reactNative()
 { }
 @end
 
-@implementation Native_rn
-NATIVE_MODULE(Native_rn)
+@implementation Native_reactNative
+NATIVE_MODULE(Native_reactNative)
 
  - (NSString*) moduleId{
-    return @"com.zkty.native.rn";
+    return @"com.zkty.native.reactNative";
 }
 
 - (int) order{

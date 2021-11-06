@@ -1,8 +1,8 @@
-package com.zkty.engine.module.rn;
+package com.zkty.engine.module.reactNative;
 
 import com.zkty.modules.engine.XEngineApplication;
 
-public class rnApplication extends XEngineApplication {
+public class reactNativeApplication extends XEngineApplication {
     @Override
     public void onCreate() {
         super.onCreate();

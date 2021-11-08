@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-camera",
-  "version": "2.9.0",
+  "version": "3.0.3",
   "description": "camera",
   "main": "h5/src/index.js",
   "license": "MIT",
@@ -37,5 +37,5 @@
     "@zkty-team/x-cli": "^1.27.0",
     "@zkty-team/x-engine-core": "^0.1.13"
   },
-  "gitHead": "126ca1aa64f77fb085456d49babef70ad27430aa"
+  "gitHead": "34c89869efddc496e03329310dab8d05497922b4"
 }

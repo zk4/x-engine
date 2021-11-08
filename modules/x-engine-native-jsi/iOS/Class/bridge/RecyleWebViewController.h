@@ -5,10 +5,11 @@
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
                     withHiddenNavBar:(BOOL)isHidden;
 
-
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
                     withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame;
 
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork;
 
 - (XEngineWebView* _Nonnull) getWebView;
 @end

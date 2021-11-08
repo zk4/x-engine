@@ -3,7 +3,7 @@
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
-//  Copyright © 2021 zkty-team. All rights reserved.
+//  Copyright © 2021 x-engine. All rights reserved.
 //
 
 #import "Native_direct_omp.h"
@@ -88,13 +88,15 @@ NATIVE_MODULE(Native_direct_omp)
     NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#");
     fragment = (fragment && fragment.length>0) ? [NSString stringWithFormat:@"#%@",fragment] : @"";
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryString];
-
-
-    RecyleWebViewController * vc=  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame];
-    vc.hidesBottomBarWhenPushed = YES;
     
+    NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
+    
+    // 判断params是否传入了isOpenWebCache属性
+    BOOL isLooseNetwork = [nativeParams objectForKey:@"isLooseNetwork"];
+
+    RecyleWebViewController *vc =  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame looseNetwork:isLooseNetwork];
+    vc.hidesBottomBarWhenPushed = YES;
 
     return  vc;
 }
-
 @end

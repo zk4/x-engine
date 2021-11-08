@@ -2,23 +2,26 @@
 
 JSI Id: com.zkty.jsi.geo
 
-version: 2.0.3
+version: 2.9.0
 
 
 
 ## locate
 [`async`](/docs/modules/模块-规范?id=jsi-调用)
-> 获取单次定位信息
-**demo**
+ 获取单次定位信息
+
+
+> **demo**
 ``` js
-  {
+
   xengine.api("com.zkty.jsi.geo", "locate",(val)=>{
   document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
-}
+
 ``` 
 
 **无参数**
+
 
 **返回值**
 ``` js

@@ -12,11 +12,11 @@
 
 
 @protocol xengine_jsi_dev_protocol
-       @required 
-       - (void) _log:(NSString*)dto;
-    
+   @required 
+    - (void) _log:(NSString*)dto;
+
 @end
-  
+
 
 
 @interface xengine_jsi_dev : JSIModule<xengine_jsi_dev_protocol>

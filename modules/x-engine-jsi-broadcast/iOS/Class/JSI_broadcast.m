@@ -27,9 +27,15 @@ JSI_MODULE(JSI_broadcast)
    
   
  
-- (void)_triggerBroadcast:(_0_com_zkty_jsi_broadcast_DTO *)dto {
+- (void)_triggerBroadcast:(_triggerBroadcast_com_zkty_jsi_broadcast_0_DTO *)dto {
     [_broadcast broadcast:dto.type  payload:dto.payload];
 
 }
+
+// 测试用, 不应该使用
+- (void)_triggerNativeBroadcastNull {
+    [_broadcast broadcast:@"native_null"  payload:[NSNull null]];
+}
+
 
 @end

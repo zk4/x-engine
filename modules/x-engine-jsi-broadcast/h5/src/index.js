@@ -11,18 +11,7 @@ function osCheck() {
   else {
 
     return  xengine.use("com.zkty.jsi.broadcast", 
-    [
-  {
-    "name": "test_triggerbroadcast",
-    "default_args": {},
-    "decorators": []
-  },
-  {
-    "name": "test_onbroadcast",
-    "default_args": {},
-    "decorators": []
-  }
-]
+    []
 )}}
 
 export default osCheck();

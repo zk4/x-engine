@@ -2,7 +2,7 @@
 //  iNativeRegister.h
 //
 //  Created by zk on 2021/3/23.
-//  Copyright © 2021 zkty-team. All rights reserved.
+//  Copyright © 2021 x-engine. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

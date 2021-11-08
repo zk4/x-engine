@@ -31,6 +31,8 @@ interface DeviceDTO {
   language: string;
   // 设备版本
   UUID: string;
+  // 手机类型
+  photoType: string;
 }
 
 // 获取状态栏高度

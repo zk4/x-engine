@@ -37,8 +37,8 @@
     return self;
 }
 
-- (XEngineWebView *)createWebView {
-    NSMutableArray *modules = [[JSIContext sharedInstance] modules];
+- (XEngineWebView *)createWebView:(BOOL)isLooseNetwork {
+    NSMutableArray *modules = [XENP(iJSIContext) getJSIModules];
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
     configuration.websiteDataStore = [WKWebsiteDataStore nonPersistentDataStore];
@@ -74,10 +74,12 @@
     }
     
     // webcache 插件
-    id<iWebcache> webcache= XENP(iWebcache);
-    if(webview){
-        [webcache enableXHRIntercept:webview];
-        [webcache enableFormIntercept:webview];
+    if (!isLooseNetwork) {
+        id<iWebcache> webcache= XENP(iWebcache);
+        if(webview){
+            [webcache enableXHRIntercept:webview];
+            [webcache enableFormIntercept:webview];
+        }
     }
     
     for (JSIModule *baseModule in modules){

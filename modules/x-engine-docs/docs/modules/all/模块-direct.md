@@ -73,7 +73,7 @@ this.$router.go(0)
 
 JSI Id: com.zkty.jsi.direct
 
-version: 2.8.1
+version: 2.9.0
 
 
 

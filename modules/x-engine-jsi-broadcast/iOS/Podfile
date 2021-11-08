@@ -14,6 +14,8 @@ def shared_pods
   pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
   pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
   pod 'x-engine-native-broadcast', :path =>X_ENGINE_MODULES+'/x-engine-native-broadcast'
+  pod 'x-engine-native-tabbar', :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
+  pod 'x-engine-native-toast', :path =>X_ENGINE_MODULES+'/x-engine-native-toast'
 
 end
 

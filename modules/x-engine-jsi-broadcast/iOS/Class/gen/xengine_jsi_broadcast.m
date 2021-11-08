@@ -6,19 +6,12 @@
 #import "xengine_jsi_broadcast.h"
 
 
-@implementation NamedDTO
+@implementation BroadcastDTO
     + (BOOL)propertyIsOptional:(NSString *)propertyName {
    	return NO;
     }
 @end
-    
-  
-@implementation _0_com_zkty_jsi_broadcast_DTO
-    + (BOOL)propertyIsOptional:(NSString *)propertyName {
-   	return NO;
-    }
-@end
-    
+
 
 
 
@@ -35,9 +28,4 @@
     }
     
   
-  - (id) triggerBroadcast:(NSDictionary*) dict {
-      _0_com_zkty_jsi_broadcast_DTO* dto = [self convert:dict clazz:_0_com_zkty_jsi_broadcast_DTO.class];
-      [self _triggerBroadcast:dto];
-                 return nil;
-        }
   @end

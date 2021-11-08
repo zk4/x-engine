@@ -17,8 +17,8 @@ public class JSI_broadcast extends xengine_jsi_broadcast {
 
     }
 
-    @Override
-    public void _triggerBroadcast(_0_com_zkty_jsi_broadcast_DTO dto) {
-        iBroadcast.broadcast(dto.type, dto.payload);
-    }
+//    @Override
+//    public void _triggerBroadcast(_0_com_zkty_jsi_broadcast_DTO dto) {
+//        iBroadcast.broadcast(dto.type, dto.payload);
+//    }
 }

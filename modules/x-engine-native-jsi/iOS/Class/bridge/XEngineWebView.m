@@ -38,6 +38,8 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     NSString *moduleId;
     bool isPending;
     bool isDebug;
+    dispatch_semaphore_t semaphore_webloaded;
+    UISwipeGestureRecognizer *swiperGesture;
 }
 
 
@@ -58,6 +60,7 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     isPending=false;
     isDebug=false;
     dialogTextDic=@{};
+    semaphore_webloaded = dispatch_semaphore_create(0);
     
     WKUserScript *script = [[WKUserScript alloc] initWithSource:@"window._dswk=true;"
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
@@ -83,7 +86,17 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     //    self.indicatorView.center = [UIApplication sharedApplication].keyWindow.rootViewController.view.center;
     //    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview: self.indicatorView];
     
+    // 添加webview手势 如果recyleVc失效 就启用这个的
+    self->swiperGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
+    self->swiperGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    self->swiperGesture.delegate = self;
+    [self addGestureRecognizer:self->swiperGesture];
     return self;
+}
+
+// 一定要返回yes 让手势能往下传递
+- (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt
@@ -150,6 +163,7 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
 {
+    [XENP(iToast) toastCurrentView:message duration:0.5f];
     //    if(!jsDialogBlock){
     completionHandler();
     //    }
@@ -257,7 +271,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)showErrorAlert:(NSString *)message
 {
-    [XENP(iToast) toast:message duration:1.0];
+    [XENP(iToast) toastCurrentView:message duration:1.0];
     //    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@",message] preferredStyle:UIAlertControllerStyleAlert];
     //    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     //
@@ -459,29 +473,36 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     if(completionHandler){
         [handerMap setObject:completionHandler forKey:callInfo.id];
     }
-    if(callInfoList!=nil){
-        [callInfoList addObject:callInfo];
-    }else{
-        [self dispatchJavascriptCall:callInfo];
-    }
+//    if(callInfoList!=nil){
+//        [callInfoList addObject:callInfo];
+//    }else{
+//        [self dispatchJavascriptCall:callInfo];
+//    }
+    [self dispatchJavascriptCall:callInfo];
 }
-
-- (void)dispatchStartupQueue{
-    if(callInfoList==nil) return;
-    for (XEngineCallInfo * callInfo in callInfoList) {
-        [self dispatchJavascriptCall:callInfo];
-    }
-    callInfoList=nil;
-}
+// 下面这段函数已经没有意义, 原来在 dsbridge 的作用是想等待页面的 js 初始化完成后,执行所有原生的callapi.已经使用信号量替代
+//- (void)dispatchStartupQueue{
+//    if(callInfoList==nil) return;
+//    for (XEngineCallInfo * callInfo in callInfoList) {
+//        [self dispatchJavascriptCall:callInfo];
+//    }
+//    callInfoList=nil;
+//}
 
 - (void) dispatchJavascriptCall:(XEngineCallInfo*) info{
     NSString * json=[XEngineJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
                                                       @"data":[XEngineJSBUtil objToJsonString: info.args]}];
     
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
-                   completionHandler:nil];
+
+    // TODO: FIXME: 要这么复杂？ 想要实现的功能，
+    // 等待 webviewload 完再，再evaljavascript。 但 evaljavascript 看上去要在主线程里执行才行。
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        dispatch_semaphore_wait(self->semaphore_webloaded, DISPATCH_TIME_FOREVER);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative && window._handleMessageFromNative(%@)",json]
+                       completionHandler:nil];
+            });
+        dispatch_semaphore_signal(self->semaphore_webloaded);
     });
     
 }
@@ -577,7 +598,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (id) dsinit:(NSDictionary *) args{
-    [self dispatchStartupQueue];
+//    [self dispatchStartupQueue];
     return nil;
 }
 
@@ -591,13 +612,16 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }];
 }
 
+// CAUTION: 要保证 webview 先触发才可能触发其他生命周期，不然没有意义，有可能页面还没加载未完成
+// WARNING: 在连接远程 url 时,有可能会触发两次 onNativeShow, 原因是:
+// 如果 url 没有加载完成, callHanlder 内部维护了一个事件队列.会将投递的事件存起来,在下一次trigger 时投递.
 - (void)triggerVueLifeCycleWithMethod:(NSString *)method {
-    // BROADCAST_EVENT == @@VUE_LIFECYCLE_EVENT
     [self callHandler:@"com.zkty.jsi.engine.lifecycle.notify" arguments:@{
         @"type":method,
         @"payload":[NSString stringWithFormat:@"%p:%@",self,method]
     }
     completionHandler:^(id  _Nullable value) {}];
+ 
 }
 
 #pragma mark - <WKWebView cycleLife>
@@ -700,10 +724,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 3- 确定下载的内容被允许之后再载入视图。
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
+    dispatch_semaphore_signal(semaphore_webloaded);
     [self triggerVueLifeCycleWithMethod:@"onWebviewShow"];
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]){
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
+    [self removeGestureRecognizer:swiperGesture];
 }
 
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
@@ -758,10 +784,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     return dic;
 }
 
-- (void)dealloc {
-    //    [self.indicatorView stopAnimating];
-}
-
 // 如果WKWebView失效的话, 在WKWebView代理方法didFailProvisionalNavigation中
 // 添加自定义的view 在view上添加侧滑手势,返回上个页面
 - (void)addCustomView {
@@ -802,5 +824,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     }
     return nil;
 }
+
 
 @end

@@ -3,15 +3,15 @@
 //  direct_http
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
+//  Copyright © 2020 x-engine. All rights reserved.
 
 
 #import "Native_direct_http.h"
 #import "XENativeContext.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
-#import "RecyleWebViewController.h"
-
+#import "NormalWebViewController.h"
+#import "NSURL+QueryDictionary.h"
 
 @interface Native_direct_http ()
 @property (nonatomic, strong) id<iDirect>  microappDirect;
@@ -33,20 +33,32 @@ NATIVE_MODULE(Native_direct_http)
     return 0;
 }
 - (void)afterAllNativeModuleInited{
-   NSArray* modules= [[XENativeContext sharedInstance]  getModulesByProtocol:@protocol(iDirect)];
-    for(id<iDirect> direct in modules){
-        // 暂时 与 omp 使用相同的逻辑
-        if([[direct scheme] isEqualToString:@"omp"]){
-            self.microappDirect = direct;
-            return;
-        }
-    }
+ 
 }
 
 
 
+ 
+
 - (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
-    return [self.microappDirect getContainer:protocol host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
+    
+    if(!protocol){
+        protocol = [self protocol];
+    }
+    
+    BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
+    NSString *finalUrl = @"";
+
+   
+    NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#");
+    fragment = (fragment && fragment.length>0) ? [NSString stringWithFormat:@"#%@",fragment] : @"";
+    NSString* queryStr   = query.uq_URLQueryString && query.uq_URLQueryString.length>0 ? [NSString stringWithFormat:@"?%@",query.uq_URLQueryString]:@"";
+    
+    finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryStr];
+
+    NormalWebViewController *vc =  [[NormalWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame];
+    vc.hidesBottomBarWhenPushed = YES;
+    return  vc;
 }
 @end
  

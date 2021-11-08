@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-ui",
-  "version": "3.0.0",
+  "version": "3.0.6",
   "private": false,
   "author": "Cwz.",
   "main": "lib/Header.common.js",
@@ -34,9 +34,6 @@
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11"
   },
-  "peerDependencies": {
-    "@zkty-team/x-engine-core": "^2.0.1"
-  },
   "eslintConfig": {
     "root": true,
     "env": {
@@ -56,5 +53,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "gitHead": "126ca1aa64f77fb085456d49babef70ad27430aa"
+  "gitHead": "34c89869efddc496e03329310dab8d05497922b4"
 }

@@ -166,7 +166,10 @@
     }
     
     function nativeRequest (xhr, params) {
-        if (!window.dsBridge) return false;
+        if (!window.dsBridge) {
+            console.warn("没有找到 bridge");
+            return false
+        };
         //  请求 native
         window.dsBridge.call("com.zkty.jsi.webcache.xhrRequest", params, function (data) {
             data = JSON.parse(data)
@@ -354,7 +357,11 @@
         }
 //        console.log('params: ', params);
         // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
-        return nativeRequest(that, params);
+        if( nativeRequest(that, params))
+            return true;
+        else{
+            xhr.send(arg[0]);
+        }
     },
     abort: function (arg, xhr) {
         if (xhr.onabort) {

@@ -52,10 +52,9 @@
 - (void)closeCache {
     [WKWebView sl_unregisterSchemeForSupportHttpProtocol];
     if (self.isUsingURLProtocol) {
-        [NSURLProtocol registerClass:[NSURLProtocol class]];
+        [NSURLProtocol unregisterClass:[NSURLProtocol class]];
     }else {
-        NSURLCache* urlCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:0];
-        [NSURLCache setSharedURLCache:urlCache];
+//        [NSURLCache setSharedURLCache:nil];
     }
     //移除观察者
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -65,8 +64,8 @@
     NSString *key = [self genKey:request];
     if([key containsString:@"sockjs-node"]) return NO;
     //User-Agent来过滤
+    NSString *uAgent = [request.allHTTPHeaderFields objectForKey:@"User-Agent"];
     if (self.whiteUserAgent.length > 0) {
-        NSString *uAgent = [request.allHTTPHeaderFields objectForKey:@"User-Agent"];
         if (uAgent) {
             if (![uAgent hasSuffix:self.whiteUserAgent]) {
                 return NO;
@@ -74,6 +73,11 @@
         } else {
             return NO;
         }
+    }
+    
+    if(![uAgent containsString:@"Mozilla"]) // not webview
+    {
+        return NO;
     }
     
   
@@ -118,8 +122,8 @@
     } else {
         return NO;
     }
-    NSLog(@"@intercept => %@",request.URL);
-    NSLog(@"@headers => %@",request.allHTTPHeaderFields);
+//    NSLog(@"@intercept => %@",request.URL);
+//    NSLog(@"@headers => %@",request.allHTTPHeaderFields);
 
     return YES;
 }

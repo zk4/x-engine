@@ -21,7 +21,7 @@
     <van-button type="primary" size="large" round @click="handlerPushRouter">router跳转</van-button>
     <van-button type="danger" size="large" round @click="handlerHeader">重写HEADER</van-button>
     <!-- <van-button size="large" round color="#aaa0dd" @click="handlerCustomLayout">layout</van-button> -->
-    <van-button color="#aaa0dd" size="large" round @click="handlerPhoto">拍照选择相册</van-button>
+ <!--   <van-button color="#aaa0dd" size="large" round @click="handlerPhoto">拍照选择相册</van-button> -->
     <van-button type="warning" size="large" round @click="hanlderScan">扫码</van-button>
     <van-button
       color="linear-gradient(to right, #013656, #7e57c2)"
@@ -57,29 +57,24 @@ export default {
     console.log(this.$statusHeight)
   },
   methods: {
-    onNativeShow() {
-      console.log("onePageCustom-->onNativeShow")
-      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
-    },
     onWebviewShow(){
-      console.log("onWebviewShow")
-      this.$engine.api("com.zkty.jsi.dev", "log", "onWebviewShow")
-
+      alert("home-->onWebviewShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "home-ononWebviewShow")
+    },
+    onNativeShow() {
+      alert("home-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "home-onNativeShow")
+    },
+    onNativeShow() {
+      alert("home-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "home-onNativeShow")
     },
     onNativeHide() {
-      console.log("onePageCustom-->onNativeHide")
+      console.log("home-->onNativeHide")
       this.$engine.api(
         "com.zkty.jsi.dev",
         "log",
-        "onePageCustom-->onNativeHide"
-      )
-    },
-    onNativeDestroyed() {
-      console.log("onePageCustom-->onNativeDestroyed")
-      this.$engine.api(
-        "com.zkty.jsi.dev",
-        "log",
-        "onePageCustom-->onNativeDestroyed"
+        "home-->onNativeHide"
       )
     },
     handlerMedia() {
@@ -147,11 +142,11 @@ export default {
         path: "/modulesIntroduce",
       })
     },
-    handlerPhoto() {
-      this.$router.push({
-        path: "/photo",
-      })
-    },
+    /* handlerPhoto() { */
+    /*   this.$router.push({ */
+    /*     path: "/photo", */
+    /*   }) */
+    /* }, */
     hanlderScan() {
       this.$router.push({
         path: "/scan",

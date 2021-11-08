@@ -3,7 +3,7 @@
 //  ModuleApp
 //
 //  Created by zk on 2021/3/23.
-//  Copyright © 2021 zkty-team. All rights reserved.
+//  Copyright © 2021 x-engine. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -73,7 +73,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 // 增加降级映射表
+// 将在打开容器失败后替换
 - (void) addFallbackRouter:(NSString*) schemeHostPath fallback:(NSString*) fallback;
+
+// 增加强制映射表
+// 将在路由前直强制替换
+- (void) addMappingRouter:(NSString*) schemeHostPath mappingHostPath:(NSString*) mapping;
+
 @end
 
 

@@ -8,7 +8,7 @@
 #import "XENativeContext.h"
 #import "iWebcache.h"
 #import "iToast.h"
-#import "SafeGestureNavigationController.h"
+
 
 
 /// TODO: webview refactor
@@ -62,7 +62,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
         if(fileUrl.length == 0)
             return self;
         self.bWebviewOnTop = YES;
-        self.webview= [[WebViewFactory sharedInstance] createWebView];
+        self.webview= [[WebViewFactory sharedInstance] createWebView:NO];
         self.webview.allowsBackForwardNavigationGestures = YES;
 
         self.webview.scrollView.delegate = self;
@@ -93,9 +93,53 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     return self;
   
 }
+
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork {
+    self = [super init];
+    if (self){
+        if(fileUrl.length == 0)
+            return self;
+
+        self.bWebviewOnTop = YES;
+        self.webview= [[WebViewFactory sharedInstance] createWebView:isLooseNetwork];
+        self.webview.allowsBackForwardNavigationGestures = YES;
+
+        self.webview.scrollView.delegate = self;
+        self.webview.frame=frame;
+
+        if(!isLooseNetwork) {
+            self.webcache =XENP(iWebcache);
+            if(self.webcache){
+                [self.webcache enableCache];
+            }
+        }
+        self.isHiddenNavbar = isHidden;
+        self.loadUrl = fileUrl;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewProgressChange:)
+                                                     name:@"XEWebViewProgressChangeNotification"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadFail:)
+                                                     name:@"XEWebViewLoadFailNotification"
+                                                   object:nil];
+        [self loadFileUrl];
+        
+        
+        [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
+
+    }
+    return self;
+}
+
+
 - (void)webViewScrollerToTop{
     [self.webview.scrollView setContentOffset:CGPointZero animated:YES];
 }
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.webview.scrollView && [keyPath isEqualToString:@"contentOffset"]) {
         CGFloat y = self.webview.scrollView.contentOffset.y;
@@ -279,14 +323,10 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
 
 - (void)afterShow {
-//    if(self.firstDidAppearCbIgnored) {
-//        self.firstDidAppearCbIgnored = NO;
-//    } else {
-        [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
-//    }
-
+    [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
-    
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     [self.webcache enableCache];
 }
 
@@ -307,8 +347,24 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
 - (void)onCreated {
     [self setupUI];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
  
+
+
+#pragma mark ---处理全局右滑返回---
+ 
+
+// 什么时候调用：每次触发手势之前都会询问下代理，是否触发。
+// 作用：拦截手势触发
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
+
+
+    // Ignore pan gesture when the navigation controller is currently in transition.
+    if ([[self.navigationController valueForKey:@"_isTransitioning"] boolValue]) {
+        return NO;
+    }
+
+    return self.navigationController.childViewControllers.count == 1 ? NO : YES;
+}
 
 @end

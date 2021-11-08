@@ -6,7 +6,7 @@
 
 JSI Id: com.zkty.jsi.viewer
 
-version: 2.8.1
+version: 2.9.0
 
 
 

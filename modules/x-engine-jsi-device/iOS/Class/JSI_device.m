@@ -3,7 +3,7 @@
 //  device
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
+//  Copyright © 2020 x-engine. All rights reserved.
 
 
 #import "JSI_device.h"
@@ -52,6 +52,7 @@ JSI_MODULE(JSI_device)
     dto.UUID = dict[@"UUID"];
     dto.type = dict[@"type"];
     dto.language = dict[@"language"];
+    dto.photoType = dict[@"photoType"];
     dto.systemVersion = dict[@"systemVersion"];
     completionHandler(dto, true);
 }

@@ -21,7 +21,7 @@ export default {
     return {}
   },
   mounted() {
-    console.log('windowwindowwindow._dswk', window._dswk)
+    /* console.log('windowwindowwindow._dswk', window._dswk) */
     // console.log("testOnePage-->mounted")
     // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-mounted")
   },
@@ -30,24 +30,32 @@ export default {
     // this.$engine.api("com.zkty.jsi.dev", "log", "onepage-destroyed")
   },
   methods: {
+    onWebviewShow(){
+      alert("testone-->onWebviewShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "testone-ononWebviewShow")
+    },
     onNativeShow() {
-      alert("onePageCustom-->onNativeShow")
-      this.$engine.api("com.zkty.jsi.dev", "log", "onepage-onNativeShow")
+      alert("testone-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "testone-onNativeShow")
+    },
+    onNativeShow() {
+      alert("testone-->onNativeShow")
+      this.$engine.api("com.zkty.jsi.dev", "log", "testone-onNativeShow")
     },
     onNativeHide() {
-      console.log("onePageCustom-->onNativeHide")
+      console.log("testone-->onNativeHide")
       this.$engine.api(
         "com.zkty.jsi.dev",
         "log",
-        "onePageCustom-->onNativeHide"
+        "testone-->onNativeHide"
       )
     },
     onNativeDestroyed() {
-      console.log("onePageCustom-->onNativeDestroyed")
+      console.log("testone-->onNativeDestroyed")
       this.$engine.api(
         "com.zkty.jsi.dev",
         "log",
-        "onePageCustom-->onNativeDestroyed"
+        "testone-->onNativeDestroyed"
       )
     },
     handlerPush() {

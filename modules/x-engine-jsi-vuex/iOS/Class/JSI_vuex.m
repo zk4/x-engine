@@ -3,7 +3,7 @@
 //  vuex
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
+//  Copyright © 2020 x-engine. All rights reserved.
 
 //  这个 JSI 模块与 localstorage 区别在于,
 //  1. 在 key 上多加了一串值 @@VUEX_STORE_KEY, 为了标明这是一个专为 vuex 存储的 store.
@@ -19,7 +19,7 @@
 #import "UIViewController+Tag.h"
 #import "RecyleWebViewController.h"
 #import "XEngineWebView.h"
-
+#import "WebViewFactory.h"
 #define VUEX_STORE_KEY @"@@VUEX_STORE_KEY"
 #define BROADCAST_EVENT @"@@VUEX_STORE_EVENT"
 
@@ -47,15 +47,20 @@ JSI_MODULE(JSI_vuex)
 - (NSString *)_get:(NSString *)dto {
     NSString* key = [self genkey:dto];
     NSString* ret = [_store get:key];
+    NSLog(@"vuex get: %@", ret);
     return ret;
 }
 
-- (void)_set:(_0_com_zkty_jsi_vuex_DTO *)dto {
+- (void)_set:(_set_com_zkty_jsi_vuex_0_DTO *)dto {
     [_store set:[self genkey:dto.key] val:dto.val];
-    // TODO:  仅对同样的微应用广播
-    for (UIViewController* vc in [Unity sharedInstance].getCurrentVC.navigationController.viewControllers){
-        if([vc isKindOfClass:[RecyleWebViewController class]]){
-            XEngineWebView* webview = [(RecyleWebViewController*)vc getWebView];
+    
+    // 仅对同样的微应用广播
+    for (XEngineWebView* webview in [WebViewFactory sharedInstance].webviews){
+        bool hit =  self.currentWebView.model.host
+        ? ([self.currentWebView.model.host isEqualToString:webview.model.host]
+        && [self.currentWebView.model.pathname isEqualToString:webview.model.pathname])
+        : [self.currentWebView.model.pathname isEqualToString:webview.model.pathname];
+        if(hit){
             [webview callHandler:@"com.zkty.module.engine.broadcast" arguments:@{
                 @"type":BROADCAST_EVENT,
                 @"payload":dto.val
@@ -64,6 +69,7 @@ JSI_MODULE(JSI_vuex)
                 NSLog(@"js return value %@",value);
             }];
         }
+
     }
 }
 

@@ -3,7 +3,7 @@
 //  viewer
 //
 //  Created by zk on 2020/9/7.
-//  Copyright © 2020 edz. All rights reserved.
+//  Copyright © 2020 x-engine. All rights reserved.
 
 
 #import "JSI_viewer.h"

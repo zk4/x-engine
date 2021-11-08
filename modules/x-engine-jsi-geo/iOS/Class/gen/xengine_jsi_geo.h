@@ -19,15 +19,15 @@
    	@property(nonatomic,copy) NSString* district;
    	@property(nonatomic,copy) NSString* street;
 @end
-    
+
 
 
 @protocol xengine_jsi_geo_protocol
-       @required 
-        - (void) _locate:(void (^)(LocationDTO* result,BOOL complete)) completionHandler;
-    
+   @required 
+     - (void) _locate:(void (^)(LocationDTO* result,BOOL complete)) completionHandler;
+
 @end
-  
+
 
 
 @interface xengine_jsi_geo : JSIModule<xengine_jsi_geo_protocol>

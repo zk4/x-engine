@@ -19,6 +19,7 @@
 		38E983942615F6E8007F6BDF /* Native_direct_rn.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_direct_rn.m */; };
 		8DE2BE0D911D179E746F70B9 /* libPods-direct_rnTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6766A91E76375D29D7BBF318 /* libPods-direct_rnTests.a */; };
 		A488779A273686CE0040D845 /* ReactNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4887799273686CE0040D845 /* ReactNativeViewController.m */; };
+		A488779D27368FA00040D845 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A488779C27368FA00040D845 /* SwiftBridge.swift */; };
 		EE1E8D9093AC7168C6D0E863 /* libPods-direct_rn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9BE71C3752AAE7FEAFE2CF /* libPods-direct_rn.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,8 @@
 		9B9BE71C3752AAE7FEAFE2CF /* libPods-direct_rn.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-direct_rn.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4887798273686CD0040D845 /* ReactNativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeViewController.h; sourceTree = "<group>"; };
 		A4887799273686CE0040D845 /* ReactNativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeViewController.m; sourceTree = "<group>"; };
+		A488779B27368F9F0040D845 /* direct_rn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "direct_rn-Bridging-Header.h"; sourceTree = "<group>"; };
+		A488779C27368FA00040D845 /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		A5D13A8E4F88C6229E85D0A4 /* Pods-direct_rnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rnTests.debug.xcconfig"; path = "Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-direct_rnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct_rnUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-direct_rnUITests/Pods-abstract-direct_rnUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9328813DA9AD9B20D713E0 /* Pods-direct_rnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rnUITests.debug.xcconfig"; path = "Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				00DFC6F824C841FD006A53EE /* EntryViewController.h */,
 				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
 				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
+				A488779C27368FA00040D845 /* SwiftBridge.swift */,
+				A488779B27368F9F0040D845 /* direct_rn-Bridging-Header.h */,
 			);
 			path = direct_rn;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				TargetAttributes = {
 					00DFC6A924C83F94006A53EE = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1310;
 					};
 					00DFC6C424C83F95006A53EE = {
 						CreatedOnToolsVersion = 11.5;
@@ -562,6 +568,7 @@
 			files = (
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
+				A488779D27368FA00040D845 /* SwiftBridge.swift in Sources */,
 				38E983942615F6E8007F6BDF /* Native_direct_rn.m in Sources */,
 				A488779A273686CE0040D845 /* ReactNativeViewController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
@@ -715,6 +722,7 @@
 			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-direct_rn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -728,6 +736,9 @@
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
 				PRODUCT_NAME = direct_rn;
+				SWIFT_OBJC_BRIDGING_HEADER = "direct_rn/direct_rn-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -737,6 +748,7 @@
 			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-direct_rn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -750,6 +762,8 @@
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
 				PRODUCT_NAME = direct_rn;
+				SWIFT_OBJC_BRIDGING_HEADER = "direct_rn/direct_rn-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -758,6 +772,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5D13A8E4F88C6229E85D0A4 /* Pods-direct_rnTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -779,6 +794,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63DE3BD3E28F9EAAA98AA143 /* Pods-direct_rnTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -800,6 +816,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BC9328813DA9AD9B20D713E0 /* Pods-direct_rnUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
 				INFOPLIST_FILE = iOSUITests/Info.plist;
@@ -819,6 +836,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 29A8E4C45DA829D493BB387D /* Pods-direct_rnUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
 				INFOPLIST_FILE = iOSUITests/Info.plist;

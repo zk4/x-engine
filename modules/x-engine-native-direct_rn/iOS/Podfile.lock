@@ -351,6 +351,9 @@ PODS:
     - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
+  - x-engine-native-react_native (1.0.0):
+    - x-engine-native-core
+    - x-engine-native-protocols
   - x-engine-native-tabbar (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
@@ -415,6 +418,7 @@ DEPENDENCIES:
   - x-engine-native-dev (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-dev`)
   - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
   - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-react_native (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-react_native`)
   - x-engine-native-tabbar (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -504,6 +508,8 @@ EXTERNAL SOURCES:
     :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct"
   x-engine-native-protocols:
     :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
+  x-engine-native-react_native:
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-react_native"
   x-engine-native-tabbar:
     :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar"
   Yoga:
@@ -558,10 +564,11 @@ SPEC CHECKSUMS:
   x-engine-native-dev: a71f3b8ae114477a086ab269bed514ea26432d50
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
+  x-engine-native-react_native: 8190a102230376bf839137191a8fe7d357ed12ab
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 2241ea77474f222c8c18a585f188dffd5f32469b
+PODFILE CHECKSUM: cda10d01faa6679b652218f9101ce49806d40858
 
 COCOAPODS: 1.10.1

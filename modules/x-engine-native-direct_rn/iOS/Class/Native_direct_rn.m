@@ -11,7 +11,7 @@
 #import "Unity.h"
 #import "NSURL+QueryDictionary.h"
 #import <x-engine-native-core/Unity.h>
-//#import "ReactNativeViewController.h"
+#import "ReactNativeViewController.h"
 
 @interface Native_direct_rn()
 @property (nonatomic, strong) id<iDirect>  rnDirect;
@@ -53,8 +53,7 @@ NATIVE_MODULE(Native_direct_rn)
     
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryStr];
     
-    ReactNativeViewController *vc =  [[ReactNativeViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame];
-    vc.moduleName = name;
+    ReactNativeViewController *vc =  [[ReactNativeViewController alloc] initWithUrl:finalUrl withHiddenNavBar:isHideNavBar webviewFrame:frame moduleName:name];
     vc.hidesBottomBarWhenPushed = YES;
     return  vc;
 }

@@ -16,7 +16,7 @@
 }
 
 - (void)pushTestModule{
-    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
+    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"ReactNativeDemo" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
     
 //    [director push:@"rn" host:@"192.168.1.15:8081" pathname:@"/index.bundle"  fragment:nil query:@{@"platform":@"ios"}  params:@{
 //        @"scores" : @[

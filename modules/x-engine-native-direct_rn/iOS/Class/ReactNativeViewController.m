@@ -9,13 +9,6 @@
 #import <React/RCTRootView.h>
 #import <React/RCTBridge.h>
 
-
-//static NSString * const OnNativeShow = @"onNativeShow";
-//static NSString * const OnNativeHide = @"onNativeHide";
-//static NSString * const OnNativeDestroyed = @"onNativeDestroyed";
-//static NSString * const kWEBVIEW_STATUS_NOT_ON_TOP =@"kWEBVIEW_STATUS_NOT_ON_TOP";
-//static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
-
 @interface ReactNativeViewController () <UIScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, copy)   NSString * _Nullable loadUrl;
 @property (nonatomic, copy)   NSString * _Nullable moduleName;

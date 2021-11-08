@@ -8,7 +8,7 @@
 
 JSI Id: com.zkty.jsi.globalstorage
 
-version: 2.9.0
+version: 3.0.3
 
 
 

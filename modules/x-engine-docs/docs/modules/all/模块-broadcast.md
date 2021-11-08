@@ -16,7 +16,7 @@ xengine.broadcastOn((type, payload) => {
 
 JSI Id: com.zkty.jsi.broadcast
 
-version: 2.9.0
+version: 3.0.3
 
 
 

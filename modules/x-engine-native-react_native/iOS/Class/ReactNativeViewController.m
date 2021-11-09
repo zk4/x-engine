@@ -38,5 +38,4 @@
     }
     return self.navigationController.childViewControllers.count == 1 ? NO : YES;
 }
-
 @end

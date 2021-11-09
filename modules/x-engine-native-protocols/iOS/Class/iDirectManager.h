@@ -53,12 +53,30 @@ NS_ASSUME_NONNULL_BEGIN
           params:(nullable NSDictionary<NSString*,id>*) params
            frame:(CGRect)frame;
 
+// 特殊功能：rn在tab 上显示
+- (void)addToTab: (UIViewController*) parent
+          scheme:(NSString*) scheme
+            host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
+           query:(nullable NSDictionary<NSString*,id>*) query
+          params:(nullable NSDictionary<NSString*,id>*) params
+           frame:(CGRect)frame
+      moduleName:(NSString *)name;
+
 // 将 uri 转化为 addToTab的参数
 - (void)addToTab: (UIViewController*) parent
              uri:(NSString*) uri
           params:(nullable NSDictionary<NSString*,id>*) params
            frame:(CGRect)frame;
 
+
+// rn add tab
+- (void)addToTab: (UIViewController*) parent
+             uri:(NSString*) uri
+      moduleName:(NSString *)name
+          params:(nullable NSDictionary<NSString*,id>*) params
+           frame:(CGRect)frame;
 
 
 // 将 uri 参数转化为上面 push 的参数

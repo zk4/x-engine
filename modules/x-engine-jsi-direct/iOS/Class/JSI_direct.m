@@ -40,6 +40,7 @@ JSI_MODULE(JSI_direct)
     return @"";
 }
 
+
 - (id)_push:(DirectPushDTO *)dto {
     [self.directors push:dto.scheme host:dto.host pathname:dto.pathname fragment:dto.fragment query:dto.query params:dto.params];
     return @"";

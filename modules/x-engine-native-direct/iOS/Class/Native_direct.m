@@ -392,6 +392,66 @@ NATIVE_MODULE(Native_direct)
     [parent setCurrentHistory:hm];
 }
 
+
+// rn
+- (void)addToTab: (UIViewController*) parent
+          scheme:(NSString*) scheme
+            host:(nullable NSString*) host
+        pathname:(NSString*) pathname
+        fragment:(nullable NSString*) fragment
+           query:(nullable NSDictionary<NSString*,id>*) query
+          params:(nullable NSDictionary<NSString*,id>*) params
+           frame:(CGRect)frame
+      moduleName:(nonnull NSString *)name {
+    
+    id<iDirect> direct = [self.directors objectForKey:scheme];
+    
+    // 路由 mapping
+
+    NSString* schemeAuthority = [NSString stringWithFormat:@"%@://%@",scheme,host];
+    NSString* forceschemeAuthority= [self.forceMappings objectForKey:schemeAuthority];
+    if(forceschemeAuthority){
+        NSURL * u = [NSURL URLWithString:forceschemeAuthority];
+        scheme = u.scheme;
+        host = u.host;
+        if(u.port){
+            host = [NSString stringWithFormat:@"%@:%@",u.host,u.port];
+        }
+        [self addToTab:parent scheme:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
+        return;
+    }
+    
+    UIViewController* container =  [direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:frame moduleName:name];
+    
+    if(!container){
+        // try fallback
+        NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
+        if(fallbackUrl){
+            #ifdef DEBUG
+                NSString* msg =[NSString stringWithFormat:@"fallback:%@",fallbackUrl];
+                [XENP(iToast) toast:msg];
+            #endif
+            [self addToTab:parent scheme:fallbackUrl.scheme host:fallbackUrl.host pathname:fallbackUrl.path fragment:fragment query:query params:params frame:frame];
+            return;
+        }
+    }
+    // 实在找不到,跳到默认错误页
+    NSAssert(container,@"why here, where is your container?");
+    if(!container)return;
+ 
+
+    [parent addChildViewController:container];
+    container.view.frame = parent.view.frame;
+    
+    [parent.view addSubview:container.view];
+    HistoryModel* hm = [HistoryModel new];
+    hm.fragment      = fragment;
+    hm.host          = host;
+    hm.pathname      = pathname;
+    [parent setCurrentHistory:hm];
+}
+
+
 - (NSURL *)fallback:(NSString * _Nullable)host params:(NSDictionary<NSString *,id> * _Nullable)params pathname:(NSString * _Nonnull)pathname scheme:(NSString * _Nonnull)scheme {
     static NSString* FALL_BACK_KEY = @"__fallback__";
     NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
@@ -437,8 +497,6 @@ NATIVE_MODULE(Native_direct)
 
 // rn
 - (void)push:(NSString *)uri moduleName:(NSString *)name params:(NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
-    NSLog(@"%@", uri);
-    NSLog(@"%@", name);
     NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
     NSString * authority = [self formAuthority:url];
     NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
@@ -454,6 +512,13 @@ NATIVE_MODULE(Native_direct)
     NSString * authority = [self formAuthority:url];
     NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
     [self addToTab:parent scheme:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame];
+}
+
+- (void)addToTab:(UIViewController *)parent uri:(NSString *)uri moduleName:(NSString *)name params:(NSDictionary<NSString *,id> *)params frame:(CGRect)frame {
+    NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
+    NSString * authority = [self formAuthority:url];
+    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
+    [self addToTab:parent scheme:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params frame:frame moduleName:name];
 }
 
 - (void)push:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {

@@ -5,8 +5,7 @@
 
 #import "EntryViewController.h"
 #import "XENativeContext.h"
-#import <x-engine-native-ui/Native_ui.h>
-#import <iDev.h>
+#import "iDirectManager.h"
 @interface EntryViewController ()
 
 @end
@@ -17,19 +16,11 @@
 }
 
 -(void) pushTestModule{
-   
+    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self pushTestModule];
-    id<iDev> dev = XENP(iDev);
-
-    [dev log:@"world"];
-    // 切换 Build Configuration　里的　Debug 　与 Release
-    [dev xlog:@"world"];
-
-
 }
-
 @end

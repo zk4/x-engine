@@ -6,9 +6,8 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
+
 Pod::Spec.new do |s|
-
-
     s.name         = "x-engine-native-react_native"
     s.version      = "1.0.0"
     s.summary      = "x-engine-native-react_native"
@@ -32,7 +31,7 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = "10.0"
 
     s.source      = { :git => 'https://github.com/zkty-team/x-engine-native-react_native.git',
-  :tag => s.version.to_s }
+  :tag => s.version.to_s}
 
 
     s.source_files  = "iOS/Class/**/*.{h,m}"
@@ -40,11 +39,15 @@ Pod::Spec.new do |s|
    
     s.frameworks  = "CoreServices"
 
+    
+
     # 不需pod 仓库里有文件，只需要在 Podifle 指定本地路径即可
     # https://stackoverflow.com/questions/16905112/cocoapods-dependency-in-pod-spec-not-working
     s.dependency "x-engine-native-core"
     s.dependency "x-engine-native-protocols"
     
     s.pod_target_xcconfig = {'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'}
+
+    
 end
 

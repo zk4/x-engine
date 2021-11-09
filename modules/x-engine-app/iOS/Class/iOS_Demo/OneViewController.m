@@ -20,16 +20,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    id<iDevice> device = XENP(iDevice);
-//    float tabbarHeight= [device getTabbarHeight];
-//    NSString* navHeight =[device getNavigationHeight];
-//    float fCost = [navHeight floatValue];
-//
-//    CGRect frame =   CGRectMake(0, fCost, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
-//
-//    [XENP(iDirectManager) addToTab:self uri:@"microapp://to.find" params:@{@"hideNavbar":@TRUE} frame:frame];
+    [self setupUI];
     
-    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
+    // tab
+//    [XENP(iDirectManager) addToTab:self uri:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
+    
+    // push
+//    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
+}
 
+- (void)setupUI {
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(200, 200, 200, 200);
+    [btn setTitle:@"click me" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(gotoRn) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
+
+- (void)gotoRn {
+    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 }
 @end

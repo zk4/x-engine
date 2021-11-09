@@ -31,6 +31,7 @@
 		58D20BD226138BEF0082ADC3 /* MainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC826138BEF0082ADC3 /* MainTabbarController.m */; };
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
+		A46895A8273A7D9600D4DA8A /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,8 @@
 		58F6FD542620D46B00A482EF /* RegexTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A46895A6273A7D9600D4DA8A /* ModuleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModuleApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 			children = (
 				5859B57326BA60D600BBF580 /* to-find.0 */,
 				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
+				A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */,
+				A46895A6273A7D9600D4DA8A /* ModuleApp-Bridging-Header.h */,
 			);
 			path = Class;
 			sourceTree = SOURCE_ROOT;
@@ -337,6 +342,7 @@
 				TargetAttributes = {
 					00DFC6A924C83F94006A53EE = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1310;
 					};
 					00DFC6C424C83F95006A53EE = {
 						CreatedOnToolsVersion = 11.5;
@@ -573,6 +579,7 @@
 			files = (
 				58D20BD126138BEF0082ADC3 /* JumpViewController.m in Sources */,
 				58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */,
+				A46895A8273A7D9600D4DA8A /* SwiftBridge.swift in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
@@ -752,6 +759,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LIBKERN_RETAIN_COUNT = YES;
 				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -767,6 +775,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkty.app.demo;
 				PRODUCT_NAME = ModuleApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Class/ModuleApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -779,6 +790,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LIBKERN_RETAIN_COUNT = YES;
 				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -794,6 +806,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zkty.app.demo;
 				PRODUCT_NAME = ModuleApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Class/ModuleApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

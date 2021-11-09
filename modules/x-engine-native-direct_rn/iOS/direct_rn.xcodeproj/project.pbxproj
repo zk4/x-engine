@@ -18,8 +18,8 @@
 		037077DA0CF9AB0139DD4CB0 /* libPods-direct_rnUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8350D989E9DC64C10250A7DE /* libPods-direct_rnUITests.a */; };
 		38E983942615F6E8007F6BDF /* Native_direct_rn.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E983922615F6E8007F6BDF /* Native_direct_rn.m */; };
 		8DE2BE0D911D179E746F70B9 /* libPods-direct_rnTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6766A91E76375D29D7BBF318 /* libPods-direct_rnTests.a */; };
-		A488779A273686CE0040D845 /* ReactNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4887799273686CE0040D845 /* ReactNativeViewController.m */; };
 		A488779D27368FA00040D845 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A488779C27368FA00040D845 /* SwiftBridge.swift */; };
+		A4F567952739394200675340 /* ReactNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F567932739394200675340 /* ReactNativeViewController.m */; };
 		EE1E8D9093AC7168C6D0E863 /* libPods-direct_rn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9BE71C3752AAE7FEAFE2CF /* libPods-direct_rn.a */; };
 /* End PBXBuildFile section */
 
@@ -74,10 +74,10 @@
 		8A4FCA27E7FE59204E44E83A /* Pods-abstract-direct_rnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct_rnTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-direct_rnTests/Pods-abstract-direct_rnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-direct_rn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rn.release.xcconfig"; path = "Target Support Files/Pods-direct_rn/Pods-direct_rn.release.xcconfig"; sourceTree = "<group>"; };
 		9B9BE71C3752AAE7FEAFE2CF /* libPods-direct_rn.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-direct_rn.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4887798273686CD0040D845 /* ReactNativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeViewController.h; sourceTree = "<group>"; };
-		A4887799273686CE0040D845 /* ReactNativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeViewController.m; sourceTree = "<group>"; };
 		A488779B27368F9F0040D845 /* direct_rn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "direct_rn-Bridging-Header.h"; sourceTree = "<group>"; };
 		A488779C27368FA00040D845 /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
+		A4F567932739394200675340 /* ReactNativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeViewController.m; sourceTree = "<group>"; };
+		A4F567942739394200675340 /* ReactNativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeViewController.h; sourceTree = "<group>"; };
 		A5D13A8E4F88C6229E85D0A4 /* Pods-direct_rnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rnTests.debug.xcconfig"; path = "Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-direct_rnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct_rnUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-direct_rnUITests/Pods-abstract-direct_rnUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9328813DA9AD9B20D713E0 /* Pods-direct_rnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct_rnUITests.debug.xcconfig"; path = "Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,8 +203,8 @@
 			children = (
 				38E983932615F6E8007F6BDF /* Native_direct_rn.h */,
 				38E983922615F6E8007F6BDF /* Native_direct_rn.m */,
-				A4887798273686CD0040D845 /* ReactNativeViewController.h */,
-				A4887799273686CE0040D845 /* ReactNativeViewController.m */,
+				A4F567942739394200675340 /* ReactNativeViewController.h */,
+				A4F567932739394200675340 /* ReactNativeViewController.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -232,8 +232,8 @@
 				00DFC6A724C83F94006A53EE /* Frameworks */,
 				00DFC6A824C83F94006A53EE /* Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
-				9E7123BA26A80DFA8CEF965E /* [CP] Copy Pods Resources */,
-				762793DB439BC0CB07F9CE25 /* [CP] Embed Pods Frameworks */,
+				2D883E49F822DC1606E1F46A /* [CP] Embed Pods Frameworks */,
+				12423B7A304895AD921BA924 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,8 +252,8 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
-				0781C10CF8BE51E368FC5A57 /* [CP] Copy Pods Resources */,
-				7B68597C613AE9FA280ECE4D /* [CP] Embed Pods Frameworks */,
+				F9FC5A202C123F8D119F9707 /* [CP] Embed Pods Frameworks */,
+				6DA0A68806DDBEABEB14FA66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -274,8 +274,8 @@
 				00DFC6CD24C83F95006A53EE /* Frameworks */,
 				00DFC6CE24C83F95006A53EE /* Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
-				A6A9358CE376EB2BFB5DFAF8 /* [CP] Copy Pods Resources */,
-				91939D69B61B4A75C889058C /* [CP] Embed Pods Frameworks */,
+				FD5489809B8DE86ABAD26B27 /* [CP] Embed Pods Frameworks */,
+				27AEC51205322D9DE20F0A5A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -357,23 +357,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0781C10CF8BE51E368FC5A57 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0D35607985D032CA76333046 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +377,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		12423B7A304895AD921BA924 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		27AEC51205322D9DE20F0A5A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D883E49F822DC1606E1F46A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */ = {
@@ -452,89 +486,21 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport SERVER_IP=`ipconfig getifaddr en0`\n";
 		};
-		762793DB439BC0CB07F9CE25 /* [CP] Embed Pods Frameworks */ = {
+		6DA0A68806DDBEABEB14FA66 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7B68597C613AE9FA280ECE4D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91939D69B61B4A75C889058C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9E7123BA26A80DFA8CEF965E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rn/Pods-direct_rn-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A6A9358CE376EB2BFB5DFAF8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC6219C06A1F8CEF4D860D79 /* [CP] Check Pods Manifest.lock */ = {
@@ -559,6 +525,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F9FC5A202C123F8D119F9707 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnTests/Pods-direct_rnTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD5489809B8DE86ABAD26B27 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_rnUITests/Pods-direct_rnUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -569,8 +569,8 @@
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				A488779D27368FA00040D845 /* SwiftBridge.swift in Sources */,
+				A4F567952739394200675340 /* ReactNativeViewController.m in Sources */,
 				38E983942615F6E8007F6BDF /* Native_direct_rn.m in Sources */,
-				A488779A273686CE0040D845 /* ReactNativeViewController.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

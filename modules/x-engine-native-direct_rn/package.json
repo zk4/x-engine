@@ -6,10 +6,12 @@
     "start": "yarn react-native start"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "@zkty-team/x-engine-core": "^3.0.6",
     "react": "16.13.1",
     "react-native": "^0.66.2",
-    "react-native-gesture-handler": "^1.4.1",
-    "react-navigation": "^4.0.7",
-    "react-navigation-stack": "^1.8.1"
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.9.0"
   }
 }

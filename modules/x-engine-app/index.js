@@ -3,13 +3,8 @@ import { View, NativeModules, Button, AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// sample : NativeModules.OpenNative && NativeModules.OpenNative.createCat("小花猫", "母", 3);
-const pushClick = () => {
-  NativeModules.DirectNative.pushNative();
-};
-
-const backClick = () => {
-  NativeModules.DirectNative.backNative();
+const buttonClick = () => {
+  NativeModules.CreatCat && NativeModules.CreatCat.createCat("小花猫", "母", 3);
 };
 
 const Stack = createNativeStackNavigator();
@@ -18,16 +13,8 @@ function Page1Screen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Button
-        title="Go to react native page2 screen"
+        title="Go to page2 screen"
         onPress={() => navigation.push("page2")}
-      />
-      <Button
-        title="push to Native"
-        onPress={pushClick}
-      />
-      <Button
-        title="back to Native"
-        onPress={backClick}
       />
     </View>
   );
@@ -66,5 +53,4 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
 AppRegistry.registerComponent("App", () => App);

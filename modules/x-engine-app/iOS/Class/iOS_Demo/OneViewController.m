@@ -20,14 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    id<iDevice> device = XENP(iDevice);
-    float tabbarHeight= [device getTabbarHeight];
-    NSString* navHeight =[device getNavigationHeight];
-    float fCost = [navHeight floatValue];
-
-    CGRect frame =   CGRectMake(0, fCost, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
-
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://to.find" params:@{@"hideNavbar":@TRUE} frame:frame];
+//    id<iDevice> device = XENP(iDevice);
+//    float tabbarHeight= [device getTabbarHeight];
+//    NSString* navHeight =[device getNavigationHeight];
+//    float fCost = [navHeight floatValue];
+//
+//    CGRect frame =   CGRectMake(0, fCost, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
+//
+//    [XENP(iDirectManager) addToTab:self uri:@"microapp://to.find" params:@{@"hideNavbar":@TRUE} frame:frame];
+    
+    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 
 }
 @end

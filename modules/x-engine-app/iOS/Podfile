@@ -1,17 +1,29 @@
-# Uncomment thj next line to define a global platform for your project
-#
-platform :ios, '10.0'
+require_relative '../node_modules/react-native/scripts/react_native_pods.rb'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-# flutter_application_path = '../flutter_library'
-# load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+platform :ios, '11.0'
 
+source 'https://github.com/CocoaPods/Specs.git'
+
+X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 
 def shared_pods
+  config = use_native_modules!
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
+  
+  inherit! :complete
+  
+  use_flipper!()
+  
+  
   pod 'x-engine-native-core', :path =>'../../x-engine-native-core'
   pod 'x-engine-native-protocols', :path =>'../../x-engine-native-protocols'
   
   # native
-
   pod 'x-engine-native-jsi', :path =>'../../x-engine-native-jsi'
   pod 'x-engine-native-ui', :path =>'../../x-engine-native-ui'
   pod 'x-engine-native-direct', :path =>'../../x-engine-native-direct'
@@ -30,12 +42,13 @@ def shared_pods
   pod 'ZBarSDK', :path =>'../../x-engine-native-scan/iOS/ZBarSDK'
   pod 'x-engine-native-offline', :path =>'../../x-engine-native-offline'
   pod 'x-engine-native-toast', :path =>'../../x-engine-native-toast'
- pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
+  pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
   pod 'x-engine-native-updator', :path =>'../../x-engine-native-updator'
   
-  pod 'x-engine-native-react_native', :path =>'../../x-engine-native-react_native'
-  pod 'x-engine-native-direct_rn', :path =>'../../x-engine-native-direct_rn'
 
+  pod 'x-engine-native-direct_rn', :path =>'../../x-engine-native-direct_rn'
+  pod 'x-engine-native-react_native', :path =>'../../x-engine-native-react_native'
+  
   
   # webcache
 #  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
@@ -53,13 +66,8 @@ def shared_pods
   pod 'x-engine-jsi-store', :path =>'../../x-engine-jsi-store'
   pod 'x-engine-jsi-localstorage', :path =>'../../x-engine-jsi-localstorage'
   pod 'x-engine-jsi-vuex', :path =>'../../x-engine-jsi-vuex'
-#  pod 'x-engine-jsi-camera', :path =>'../../x-engine-jsi-camera'
-  # pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
- 
-
-
-  pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
-  pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
+#  pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
+#  pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
   
   # legacy jsi
 #  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'
@@ -67,12 +75,10 @@ def shared_pods
   pod 'JSONModel'
   pod 'MJExtension'
   pod 'SSZipArchive'
-  pod 'SDWebImage'
+#  pod 'SDWebImage'
 end
 
 target 'ModuleApp' do
-  # install_all_flutter_pods(flutter_application_path)
-  # pod 'FlutterEngine', :path => '../flutter_library'
   shared_pods
 end
 

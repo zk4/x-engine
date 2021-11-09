@@ -19,11 +19,10 @@
     
     [[XENativeContext sharedInstance] start];
 
-    EntryViewController *homePageVC = [[EntryViewController alloc] init];
-       UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];
-     self.window.rootViewController = nav;
+    EntryViewController *vc = [[EntryViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
-
     return YES;
 }
   

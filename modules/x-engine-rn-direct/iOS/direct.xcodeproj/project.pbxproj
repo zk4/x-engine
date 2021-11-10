@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		58D209A0261346360082ADC3 /* xengine_rn_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2099F261346360082ADC3 /* xengine_rn_direct.m */; };
 		64354DB0471E360AC7A3B8A8 /* libPods-direct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8CA3713E96420DF83249E1 /* libPods-direct.a */; };
 		6A6EA1E26D7AD8995610C648 /* libPods-directUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42511EECCA68257EBB3854A8 /* libPods-directUITests.a */; };
+		A4F2D560273BF22B000455AF /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F2D55F273BF22B000455AF /* SwiftBridge.swift */; };
 		E6482C9CFE9A42FEC2328834 /* libPods-directTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15B7D44DF761F640EDBA44 /* libPods-directTests.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,8 @@
 		8A4FCA27E7FE59204E44E83A /* Pods-abstract-directTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-directTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-directTests/Pods-abstract-directTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9272408DD3356C0889C56BE8 /* Pods-direct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct.release.xcconfig"; path = "Target Support Files/Pods-direct/Pods-direct.release.xcconfig"; sourceTree = "<group>"; };
 		9E8CA3713E96420DF83249E1 /* libPods-direct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-direct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4F2D55E273BF22B000455AF /* direct-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "direct-Bridging-Header.h"; sourceTree = "<group>"; };
+		A4F2D55F273BF22B000455AF /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA61277E946A43DAD1657AED /* Pods-abstract-directUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-directUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-directUITests/Pods-abstract-directUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DC24F7764E32FC4DBD8E03D7 /* Pods-direct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct.debug.xcconfig"; path = "Target Support Files/Pods-direct/Pods-direct.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				00DFC6F824C841FD006A53EE /* EntryViewController.h */,
 				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
 				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
+				A4F2D55F273BF22B000455AF /* SwiftBridge.swift */,
+				A4F2D55E273BF22B000455AF /* direct-Bridging-Header.h */,
 			);
 			path = direct;
 			sourceTree = "<group>";
@@ -241,6 +246,8 @@
 				00DFC6A724C83F94006A53EE /* Frameworks */,
 				00DFC6A824C83F94006A53EE /* Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
+				95B274C5319E6862A56FE90D /* [CP] Embed Pods Frameworks */,
+				4025525F41102159C8894C41 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +266,8 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
+				9B1D9BA5E15D762887E7D9C2 /* [CP] Embed Pods Frameworks */,
+				96B2A2915868C6801FBF4268 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,6 +288,8 @@
 				00DFC6CD24C83F95006A53EE /* Frameworks */,
 				00DFC6CE24C83F95006A53EE /* Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
+				A7EBE865631397D8C7CF1E68 /* [CP] Embed Pods Frameworks */,
+				B6A1335A31E2DF162DA324D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -301,6 +312,7 @@
 				TargetAttributes = {
 					00DFC6A924C83F94006A53EE = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1310;
 					};
 					00DFC6C424C83F95006A53EE = {
 						CreatedOnToolsVersion = 11.5;
@@ -383,6 +395,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4025525F41102159C8894C41 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct/Pods-direct-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct/Pods-direct-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct/Pods-direct-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,6 +468,91 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport SERVER_IP=`ipconfig getifaddr en0`\n";
 		};
+		95B274C5319E6862A56FE90D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct/Pods-direct-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-direct/Pods-direct-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct/Pods-direct-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96B2A2915868C6801FBF4268 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directTests/Pods-directTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directTests/Pods-directTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-directTests/Pods-directTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B1D9BA5E15D762887E7D9C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directTests/Pods-directTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directTests/Pods-directTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-directTests/Pods-directTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7EBE865631397D8C7CF1E68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directUITests/Pods-directUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directUITests/Pods-directUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-directUITests/Pods-directUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6A1335A31E2DF162DA324D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directUITests/Pods-directUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-directUITests/Pods-directUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-directUITests/Pods-directUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CC6219C06A1F8CEF4D860D79 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,6 +584,7 @@
 			files = (
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				58D209A0261346360082ADC3 /* xengine_rn_direct.m in Sources */,
+				A4F2D560273BF22B000455AF /* SwiftBridge.swift in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
 				587F741B250669A300F515BD /* RN_direct.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
@@ -642,6 +757,7 @@
 			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-direct.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -655,6 +771,9 @@
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
 				PRODUCT_NAME = direct;
+				SWIFT_OBJC_BRIDGING_HEADER = "direct/direct-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -664,6 +783,7 @@
 			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-direct.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -677,6 +797,8 @@
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
 				PRODUCT_NAME = direct;
+				SWIFT_OBJC_BRIDGING_HEADER = "direct/direct-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -685,6 +807,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31134337467E1785D6055B8E /* Pods-directTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -706,6 +829,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7CC0726738C56069430E5BC7 /* Pods-directTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -727,6 +851,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7B26ABABF3D195F8750969C /* Pods-directUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
 				INFOPLIST_FILE = iOSUITests/Info.plist;
@@ -746,6 +871,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 06D59A1D5CE827D8CEB27C8C /* Pods-directUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
 				INFOPLIST_FILE = iOSUITests/Info.plist;

@@ -4,125 +4,124 @@
 //
 // Copyright (c) 2021 x-engine
 // 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE./
-
 
 #import "RN_direct.h"
 #import "JSIContext.h"
 #import "XENativeContext.h"
+#import "iDirectManager.h"
 
 @interface RN_direct()
+//@property (nonatomic, strong)   id<iDirectManager>  directorManager;
 @end
 
 @implementation RN_direct
-JSI_MODULE(RN_direct)
 
-- (void)afterAllJSIModuleInited {
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(pushNative:(NSString *)viewController) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *vcName = [NSString stringWithFormat:@"%@", viewController];
+        UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
+        vc.view.backgroundColor = [UIColor whiteColor];
+        [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
+    });
 }
 
-   
-//
-//
-//- (void)_simpleMethod:(void (^)(BOOL))completionHandler {
-//    NSLog(@"hello,_simpleMethod");
-//}
-//
-//- (void)_simpleMethod {
-//    NSLog(@"hello,_simpleMethod");
-//
-//}
-//
-//- (NamedDTO *)_namedObject {
-//    NamedDTO* ret = [NamedDTO new];
-//    ret.title=@"_namedObject sync";
-//    ret.titleSize=10000;
-//    return ret;
-//}
-//
-//
-//- (void)_namedObject:(void (^)(NamedDTO *, BOOL))completionHandler {
-//    NamedDTO* ret = [NamedDTO new];
-//    ret.title=@"_namedObject async";
-//    ret.titleSize=10000;
-//    completionHandler(ret,TRUE);
-//}
-//
-//
-//- (_0_com_zkty_rn_direct_DTO *)_nestedAnonymousObject {
-//    _0_com_zkty_rn_direct_DTO * ret =[_0_com_zkty_rn_direct_DTO new];
-//    ret.a=@"hello";
-//    ret.i =[_1_com_zkty_rn_direct_DTO new];
-//    ret.i.n1=@"_nestedAnonymousObject sync";
-//    return ret;
-//}
-//
-//
-//- (void)_nestedAnonymousObject:(void (^)(_0_com_zkty_rn_direct_DTO *, BOOL))completionHandler {
-//    _0_com_zkty_rn_direct_DTO * ret =[_0_com_zkty_rn_direct_DTO new];
-//    ret.a=@"hello";
-//    ret.i =[_1_com_zkty_rn_direct_DTO new];
-//    ret.i.n1=@"_nestedAnonymousObject async";
-//    completionHandler(ret,TRUE);
-//}
-//
-//- (NSString *)_simpleArgMethod:(NSString *)dto {
-//    return @"from native sync";
-//}
-//
-//
-//- (void)_simpleArgMethod:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-//    completionHandler(@"from native async",TRUE);
-//}
-//
-//
-//- (NSInteger)_simpleArgNumberMethod:(NSInteger)dto {
-//    return dto;
-//}
-//
-//
-//- (void)_simpleArgNumberMethod:(NSInteger)dto complete:(void (^)(NSInteger, BOOL))completionHandler {
-//    completionHandler(dto,TRUE);
-//}
-//
-
- 
-
- 
-- (_complexAnoymousRetWithAnoymousArgs0_DTO *)_complexAnoymousRetWithAnoymousArgs:(_complexAnoymousRetWithAnoymousArgs3_DTO *)dto {
-  [_complexAnoymousRetWithAnoymousArgs3_DTO new];
-    NSString* retstr= [dto toJSONString];
-    _complexAnoymousRetWithAnoymousArgs0_DTO* ret =  [[_complexAnoymousRetWithAnoymousArgs0_DTO alloc] initWithString:retstr error:nil];
-    return ret;
+RCT_EXPORT_METHOD(pushMicroapp:(NSString *)microapp) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        [nav setHidesBottomBarWhenPushed:YES];
+        UIViewController *vc = [UIViewController new];
+        vc.view.backgroundColor = [UIColor orangeColor];
+        [nav pushViewController:vc animated:YES];
+    });
 }
 
-- (void)_complexAnoymousRetWithAnoymousArgs:(_complexAnoymousRetWithAnoymousArgs3_DTO *)dto complete:(void (^)(_complexAnoymousRetWithAnoymousArgs0_DTO *, BOOL))completionHandler {
-    completionHandler([self _complexAnoymousRetWithAnoymousArgs:dto],TRUE);
-}
- 
-- (NSInteger)_simpleArgNumberMethod:(NSInteger)dto {
-    return dto;
+RCT_EXPORT_METHOD(pushHttp:(NSString *)http) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        [nav setHidesBottomBarWhenPushed:YES];
+        UIViewController *vc = [UIViewController new];
+        vc.view.backgroundColor = [UIColor orangeColor];
+        [nav pushViewController:vc animated:YES];
+    });
 }
 
-
-- (void)_simpleArgNumberMethod:(NSInteger)dto complete:(void (^)(NSInteger, BOOL))completionHandler {
-    completionHandler(dto,TRUE);
+RCT_EXPORT_METHOD(backNative) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[self getCurrentVC].navigationController popToRootViewControllerAnimated:YES];
+    });
 }
- 
+
+//获取当前屏幕显示的viewcontroller
+- (UIViewController *)getCurrentVC {
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
+    return currentVC;
+}
+
+- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC {
+    UIViewController *currentVC;
+    if ([rootVC presentedViewController]) {
+        // 视图是被presented出来的
+        rootVC = [rootVC presentedViewController];
+    }
+
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        // 根视图为UITabBarController
+        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
+    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
+        // 根视图为UINavigationController
+        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
+    } else {
+        // 根视图为非导航类
+        currentVC = rootVC;
+    }
+    return currentVC;
+}
+
+- (UIViewController *)getActivityViewController:(NSString *)controllerName {
+    UIViewController *topVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (topVC.presentedViewController) {
+        topVC = topVC.presentedViewController;
+        if ([[topVC.class description] isEqualToString:@"UINavigationController"]) {
+            UINavigationController *navi = (UINavigationController *)topVC;
+            if (navi && navi.viewControllers && navi.viewControllers.count > 0) {
+                NSInteger count = navi.viewControllers.count;
+                for (NSInteger i=count-1; i>=0; i--) {
+                    UIViewController *controller = [navi.viewControllers objectAtIndex:i];
+                    if ([[controller.class description] isEqualToString:controllerName]) {
+                        return controller;
+                    }
+                }
+            }
+        }
+    }
+    return nil;
+}
+
+//JSI_MODULE(RN_direct)
+//
+//- (void)afterAllJSIModuleInited {
+//    self.directorManager = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+//}
+//
+//// 跳转原生
+//- (void)pushNative {}
+//
+//// 返回原生
+//- (void)backNative {}
+//
+//// 跳转微应用
+//- (void)pushMicroapp {}
+//
+//// 返回微应用
+//- (void)backMicroapp {}
+//
+//// 跳转omp
+//- (void)pushOmp {}
+//
+//// 返回omp
+//- (void)backOmp {}
 
 @end

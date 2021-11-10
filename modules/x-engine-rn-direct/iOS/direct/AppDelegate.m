@@ -6,7 +6,6 @@
 #import "AppDelegate.h"
 #import "EntryViewController.h"
 #import "XENativeContext.h"
-#import "JSIContext.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +15,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [[XENativeContext sharedInstance] start];
-    [[JSIContext sharedInstance] start];
 
     EntryViewController *homePageVC = [[EntryViewController alloc] init];
        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];

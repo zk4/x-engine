@@ -1,4 +1,6 @@
-# Uncomment the next line to define a global platform for your project
+require_relative '../node_modules/react-native/scripts/react_native_pods.rb'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
 platform :ios, '11.0'
  
 source 'https://github.com/CocoaPods/Specs.git'
@@ -7,6 +9,18 @@ install! 'cocoapods', :deterministic_uuids => false
 X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 
 def shared_pods
+  
+  config = use_native_modules!
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
+  
+  inherit! :complete
+  
+  use_flipper!()
+  
   pod 'x-engine-native-core', :path =>X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-jsi', :path =>X_ENGINE_MODULES+'/x-engine-native-jsi'
   pod 'x-engine-native-direct_omp', :path =>X_ENGINE_MODULES+'/x-engine-native-direct_omp'
@@ -15,6 +29,8 @@ def shared_pods
   pod 'x-engine-native-protocols', :path =>X_ENGINE_MODULES+'/x-engine-native-protocols'
   pod 'x-engine-native-direct', :path =>X_ENGINE_MODULES+'/x-engine-native-direct'
   pod 'x-engine-native-tabbar', :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
+  pod 'x-engine-native-react_native', :path =>'../../x-engine-native-react_native'
+  pod 'x-engine-native-direct_rn', :path =>'../../x-engine-native-direct_rn'
 
 end
 

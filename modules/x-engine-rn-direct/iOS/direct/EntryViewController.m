@@ -16,8 +16,9 @@
     [self pushTestModule];
 }
 
--(void) pushTestModule{
-    [XENP(iDirectManager) push:@"omp" host:@"10.2.128.67:9111" pathname:@"" fragment:@"/" query:nil params:@{@"hideNavbar":@YES}];
+- (void) pushTestModule {
+    NSLog(@"123");
+    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 }
 
 - (void)viewDidLoad {

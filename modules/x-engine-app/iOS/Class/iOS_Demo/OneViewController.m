@@ -21,18 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-    
-    // tab
-//    [XENP(iDirectManager) addToTab:self uri:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
-    
-    // push
-//    [XENP(iDirectManager) push:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 }
 
 - (void)setupUI {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 100, [UIScreen mainScreen].bounds.size.height / 2 - 200, 200, 200);
-    [btn setTitle:@"click me" forState:UIControlStateNormal];
+    btn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 100, [UIScreen mainScreen].bounds.size.height / 2 - 200, 200, 80);
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 15.0;
+    btn.layer.borderWidth = 2;
+    btn.layer.borderColor = [UIColor blackColor].CGColor;
+    [btn setTitle:@"Push React Native" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(gotoRn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];

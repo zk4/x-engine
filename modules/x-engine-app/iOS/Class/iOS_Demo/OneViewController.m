@@ -31,7 +31,7 @@
 
 - (void)setupUI {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(200, 200, 200, 200);
+    btn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 100, [UIScreen mainScreen].bounds.size.height / 2 - 200, 200, 200);
     [btn setTitle:@"click me" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(gotoRn) forControlEvents:UIControlEventTouchUpInside];

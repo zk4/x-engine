@@ -2,7 +2,7 @@
 const parserVersion = "1.0.0";
 
 // 命名空间
-const moduleID = "com.zkty.jsi.rn_direct";
+const moduleID = "com.zkty.jsi.direct";
 
 const conf = {
   args: {},
@@ -79,13 +79,13 @@ function complexAnoymousRetWithAnoymousArgs(arg: {
 
 // test function
 function test_同步无返回() {
-  let val = xengine.api("com.zkty.jsi.rn_direct", "simpleMethod");
+  let val = xengine.api("com.zkty.jsi.direct", "simpleMethod");
   document.getElementById("debug_text").innerText = "无返回,查看原生控制台打印";
 }
 // test function
 function test_同步简单参数() {
   let val = xengine.api(
-    "com.zkty.jsi.rn_direct",
+    "com.zkty.jsi.direct",
     "simpleArgMethod",
     "hello,from js"
   );
@@ -93,31 +93,31 @@ function test_同步简单参数() {
 }
 // test function
 function test_同步简单数字参数() {
-  let val = xengine.api("com.zkty.jsi.rn_direct", "simpleArgNumberMethod", 1000);
+  let val = xengine.api("com.zkty.jsi.direct", "simpleArgNumberMethod", 1000);
   document.getElementById("debug_text").innerText = val;
 }
 
 function test_同步返回命名对象() {
-  let val = xengine.api("com.zkty.jsi.rn_direct", "namedObject", {});
+  let val = xengine.api("com.zkty.jsi.direct", "namedObject", {});
   document.getElementById("debug_text").innerText =
     typeof val + ":" + val.title + "," + val.titleSize;
 }
 
 function test_同步返回匿名嵌套对象() {
-  let val = xengine.api("com.zkty.jsi.rn_direct", "nestedAnonymousObject", {});
+  let val = xengine.api("com.zkty.jsi.direct", "nestedAnonymousObject", {});
   document.getElementById("debug_text").innerText =
     typeof val + ":" + val.a + "," + val.i.n1;
 }
 
 function test_异步返回命名对象() {
-  xengine.api("com.zkty.jsi.rn_direct", "namedObject", {}, (val) => {
+  xengine.api("com.zkty.jsi.direct", "namedObject", {}, (val) => {
     document.getElementById("debug_text").innerText =
       typeof val + ":" + val.title + "," + val.titleSize;
   });
 }
 function test_异步简单参数() {
   xengine.api(
-    "com.zkty.jsi.rn_direct",
+    "com.zkty.jsi.direct",
     "simpleArgMethod",
     "hello,from js",
     (val) => {
@@ -126,20 +126,20 @@ function test_异步简单参数() {
   );
 }
 function test_异步简单数字参数() {
-  xengine.api("com.zkty.jsi.rn_direct", "simpleArgNumberMethod", 1000, (val) => {
+  xengine.api("com.zkty.jsi.direct", "simpleArgNumberMethod", 1000, (val) => {
     document.getElementById("debug_text").innerText = val;
   });
 }
 
 function test_异步返回命名对象() {
-  xengine.api("com.zkty.jsi.rn_direct", "namedObject", {}, (val) => {
+  xengine.api("com.zkty.jsi.direct", "namedObject", {}, (val) => {
     document.getElementById("debug_text").innerText =
       typeof val + ":" + val.title + "," + val.titleSize;
   });
 }
 
 function test_异步返回匿名嵌套对象() {
-  xengine.api("com.zkty.jsi.rn_direct", "nestedAnonymousObject", {}, (val) => {
+  xengine.api("com.zkty.jsi.direct", "nestedAnonymousObject", {}, (val) => {
     document.getElementById("debug_text").innerText =
       typeof val + ":" + val.a + "," + val.i.n1;
   });
@@ -164,7 +164,7 @@ function test_异步返回匿名嵌套对象() {
 //} {}
 function test_complex_async() {
   xengine.api(
-    "com.zkty.jsi.rn_direct",
+    "com.zkty.jsi.direct",
     "complexAnoymousRetWithAnoymousArgs",
     {
       name: "zk",
@@ -188,7 +188,7 @@ function test_complex_async() {
 }
 
 function test_complex_sync() {
-  val = xengine.api("com.zkty.jsi.rn_direct", "complexAnoymousRetWithAnoymousArgs", {
+  val = xengine.api("com.zkty.jsi.direct", "complexAnoymousRetWithAnoymousArgs", {
     name: "zk",
     age: 12,
     houses: [

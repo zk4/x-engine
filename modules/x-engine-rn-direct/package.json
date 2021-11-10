@@ -1,7 +1,7 @@
 {
-  "name": "@zkty-team/x-engine-jsi-rn_direct",
+  "name": "@zkty-team/x-engine-rn-direct",
   "version": "3.0.3",
-  "description": "rn_direct",
+  "description": "direct",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {

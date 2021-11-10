@@ -17,11 +17,11 @@
 		00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6EC24C84000006A53EE /* AppDelegate.m */; };
 		00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DFC6F924C841FD006A53EE /* EntryViewController.m */; };
 		00DFC6FC24C841FD006A53EE /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
-		587F741B250669A300F515BD /* JSI_rn_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* JSI_rn_direct.m */; };
-		58D209A0261346360082ADC3 /* xengine_jsi_rn_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2099F261346360082ADC3 /* xengine_jsi_rn_direct.m */; };
-		64354DB0471E360AC7A3B8A8 /* libPods-rn_direct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8CA3713E96420DF83249E1 /* libPods-rn_direct.a */; };
-		6A6EA1E26D7AD8995610C648 /* libPods-rn_directUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42511EECCA68257EBB3854A8 /* libPods-rn_directUITests.a */; };
-		E6482C9CFE9A42FEC2328834 /* libPods-rn_directTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15B7D44DF761F640EDBA44 /* libPods-rn_directTests.a */; };
+		587F741B250669A300F515BD /* RN_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 587F741A250669A300F515BD /* RN_direct.m */; };
+		58D209A0261346360082ADC3 /* xengine_rn_direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2099F261346360082ADC3 /* xengine_rn_direct.m */; };
+		64354DB0471E360AC7A3B8A8 /* libPods-direct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8CA3713E96420DF83249E1 /* libPods-direct.a */; };
+		6A6EA1E26D7AD8995610C648 /* libPods-directUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42511EECCA68257EBB3854A8 /* libPods-directUITests.a */; };
+		E6482C9CFE9A42FEC2328834 /* libPods-directTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15B7D44DF761F640EDBA44 /* libPods-directTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +43,11 @@
 
 /* Begin PBXFileReference section */
 		003F95D924DA4A6100633E1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		00DFC6AA24C83F94006A53EE /* rn_direct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rn_direct.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		00DFC6C524C83F95006A53EE /* rn_directTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rn_directTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DFC6AA24C83F94006A53EE /* direct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = direct.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DFC6C524C83F95006A53EE /* directTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = directTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6C924C83F95006A53EE /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		00DFC6CB24C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00DFC6D024C83F95006A53EE /* rn_directUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rn_directUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DFC6D024C83F95006A53EE /* directUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = directUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DFC6D424C83F95006A53EE /* iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSUITests.m; sourceTree = "<group>"; };
 		00DFC6D624C83F95006A53EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00DFC6E324C84000006A53EE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,31 +60,31 @@
 		00DFC6F824C841FD006A53EE /* EntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntryViewController.h; sourceTree = "<group>"; };
 		00DFC6F924C841FD006A53EE /* EntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntryViewController.m; sourceTree = "<group>"; };
 		00DFC6FA24C841FD006A53EE /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryViewController.xib; sourceTree = "<group>"; };
-		06D59A1D5CE827D8CEB27C8C /* Pods-rn_directUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_directUITests.release.xcconfig"; path = "Target Support Files/Pods-rn_directUITests/Pods-rn_directUITests.release.xcconfig"; sourceTree = "<group>"; };
+		06D59A1D5CE827D8CEB27C8C /* Pods-directUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-directUITests.release.xcconfig"; path = "Target Support Files/Pods-directUITests/Pods-directUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2DCA87AAE86E310D57FEEBFE /* Pods-abstract-rn_directTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-rn_directTests.release.xcconfig"; path = "Target Support Files/Pods-abstract-rn_directTests/Pods-abstract-rn_directTests.release.xcconfig"; sourceTree = "<group>"; };
-		31134337467E1785D6055B8E /* Pods-rn_directTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_directTests.debug.xcconfig"; path = "Target Support Files/Pods-rn_directTests/Pods-rn_directTests.debug.xcconfig"; sourceTree = "<group>"; };
-		42511EECCA68257EBB3854A8 /* libPods-rn_directUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rn_directUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DCA87AAE86E310D57FEEBFE /* Pods-abstract-directTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-directTests.release.xcconfig"; path = "Target Support Files/Pods-abstract-directTests/Pods-abstract-directTests.release.xcconfig"; sourceTree = "<group>"; };
+		31134337467E1785D6055B8E /* Pods-directTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-directTests.debug.xcconfig"; path = "Target Support Files/Pods-directTests/Pods-directTests.debug.xcconfig"; sourceTree = "<group>"; };
+		42511EECCA68257EBB3854A8 /* libPods-directUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-directUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp-ModuleAppUITests/Pods-ModuleApp-ModuleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		587F7419250669A300F515BD /* JSI_rn_direct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSI_rn_direct.h; sourceTree = "<group>"; };
-		587F741A250669A300F515BD /* JSI_rn_direct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSI_rn_direct.m; sourceTree = "<group>"; };
-		58D2099E261346360082ADC3 /* xengine_jsi_rn_direct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine_jsi_rn_direct.h; sourceTree = "<group>"; };
-		58D2099F261346360082ADC3 /* xengine_jsi_rn_direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine_jsi_rn_direct.m; sourceTree = "<group>"; };
+		587F7419250669A300F515BD /* RN_direct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RN_direct.h; sourceTree = "<group>"; };
+		587F741A250669A300F515BD /* RN_direct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RN_direct.m; sourceTree = "<group>"; };
+		58D2099E261346360082ADC3 /* xengine_rn_direct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xengine_rn_direct.h; sourceTree = "<group>"; };
+		58D2099F261346360082ADC3 /* xengine_rn_direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xengine_rn_direct.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
-		6BC4EC306FCA064B296EDD37 /* Pods-abstract-rn_direct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-rn_direct.release.xcconfig"; path = "Target Support Files/Pods-abstract-rn_direct/Pods-abstract-rn_direct.release.xcconfig"; sourceTree = "<group>"; };
-		6D15B7D44DF761F640EDBA44 /* libPods-rn_directTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rn_directTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		72641C340A39E3023A427808 /* Pods-abstract-rn_directUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-rn_directUITests.release.xcconfig"; path = "Target Support Files/Pods-abstract-rn_directUITests/Pods-abstract-rn_directUITests.release.xcconfig"; sourceTree = "<group>"; };
-		7B83CD0102A64A432A92EE16 /* Pods-abstract-rn_direct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-rn_direct.debug.xcconfig"; path = "Target Support Files/Pods-abstract-rn_direct/Pods-abstract-rn_direct.debug.xcconfig"; sourceTree = "<group>"; };
-		7CC0726738C56069430E5BC7 /* Pods-rn_directTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_directTests.release.xcconfig"; path = "Target Support Files/Pods-rn_directTests/Pods-rn_directTests.release.xcconfig"; sourceTree = "<group>"; };
-		884143ABEFD722050DDC70A3 /* Pods-rn_direct-rn_directUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_direct-rn_directUITests.release.xcconfig"; path = "Target Support Files/Pods-rn_direct-rn_directUITests/Pods-rn_direct-rn_directUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8A4FCA27E7FE59204E44E83A /* Pods-abstract-rn_directTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-rn_directTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-rn_directTests/Pods-abstract-rn_directTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9272408DD3356C0889C56BE8 /* Pods-rn_direct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_direct.release.xcconfig"; path = "Target Support Files/Pods-rn_direct/Pods-rn_direct.release.xcconfig"; sourceTree = "<group>"; };
-		9E8CA3713E96420DF83249E1 /* libPods-rn_direct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rn_direct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA61277E946A43DAD1657AED /* Pods-abstract-rn_directUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-rn_directUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-rn_directUITests/Pods-abstract-rn_directUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6BC4EC306FCA064B296EDD37 /* Pods-abstract-direct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct.release.xcconfig"; path = "Target Support Files/Pods-abstract-direct/Pods-abstract-direct.release.xcconfig"; sourceTree = "<group>"; };
+		6D15B7D44DF761F640EDBA44 /* libPods-directTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-directTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		72641C340A39E3023A427808 /* Pods-abstract-directUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-directUITests.release.xcconfig"; path = "Target Support Files/Pods-abstract-directUITests/Pods-abstract-directUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7B83CD0102A64A432A92EE16 /* Pods-abstract-direct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-direct.debug.xcconfig"; path = "Target Support Files/Pods-abstract-direct/Pods-abstract-direct.debug.xcconfig"; sourceTree = "<group>"; };
+		7CC0726738C56069430E5BC7 /* Pods-directTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-directTests.release.xcconfig"; path = "Target Support Files/Pods-directTests/Pods-directTests.release.xcconfig"; sourceTree = "<group>"; };
+		884143ABEFD722050DDC70A3 /* Pods-direct-directUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct-directUITests.release.xcconfig"; path = "Target Support Files/Pods-direct-directUITests/Pods-direct-directUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8A4FCA27E7FE59204E44E83A /* Pods-abstract-directTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-directTests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-directTests/Pods-abstract-directTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9272408DD3356C0889C56BE8 /* Pods-direct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct.release.xcconfig"; path = "Target Support Files/Pods-direct/Pods-direct.release.xcconfig"; sourceTree = "<group>"; };
+		9E8CA3713E96420DF83249E1 /* libPods-direct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-direct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA61277E946A43DAD1657AED /* Pods-abstract-directUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-directUITests.debug.xcconfig"; path = "Target Support Files/Pods-abstract-directUITests/Pods-abstract-directUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		DC24F7764E32FC4DBD8E03D7 /* Pods-rn_direct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_direct.debug.xcconfig"; path = "Target Support Files/Pods-rn_direct/Pods-rn_direct.debug.xcconfig"; sourceTree = "<group>"; };
-		F625F7C354D7561221903338 /* Pods-rn_direct-rn_directUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_direct-rn_directUITests.debug.xcconfig"; path = "Target Support Files/Pods-rn_direct-rn_directUITests/Pods-rn_direct-rn_directUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F7B26ABABF3D195F8750969C /* Pods-rn_directUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_directUITests.debug.xcconfig"; path = "Target Support Files/Pods-rn_directUITests/Pods-rn_directUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC24F7764E32FC4DBD8E03D7 /* Pods-direct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct.debug.xcconfig"; path = "Target Support Files/Pods-direct/Pods-direct.debug.xcconfig"; sourceTree = "<group>"; };
+		F625F7C354D7561221903338 /* Pods-direct-directUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-direct-directUITests.debug.xcconfig"; path = "Target Support Files/Pods-direct-directUITests/Pods-direct-directUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F7B26ABABF3D195F8750969C /* Pods-directUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-directUITests.debug.xcconfig"; path = "Target Support Files/Pods-directUITests/Pods-directUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				003F95DA24DA4A6100633E1F /* libc++.tbd in Frameworks */,
-				64354DB0471E360AC7A3B8A8 /* libPods-rn_direct.a in Frameworks */,
+				64354DB0471E360AC7A3B8A8 /* libPods-direct.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6482C9CFE9A42FEC2328834 /* libPods-rn_directTests.a in Frameworks */,
+				E6482C9CFE9A42FEC2328834 /* libPods-directTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A6EA1E26D7AD8995610C648 /* libPods-rn_directUITests.a in Frameworks */,
+				6A6EA1E26D7AD8995610C648 /* libPods-directUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				58E8333F24E1300E008DDFBE /* Class */,
-				00DFC6E224C84000006A53EE /* rn_direct */,
+				00DFC6E224C84000006A53EE /* direct */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
 				00DFC6D324C83F95006A53EE /* iOSUITests */,
 				00DFC6AB24C83F94006A53EE /* Products */,
@@ -132,9 +132,9 @@
 		00DFC6AB24C83F94006A53EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00DFC6AA24C83F94006A53EE /* rn_direct.app */,
-				00DFC6C524C83F95006A53EE /* rn_directTests.xctest */,
-				00DFC6D024C83F95006A53EE /* rn_directUITests.xctest */,
+				00DFC6AA24C83F94006A53EE /* direct.app */,
+				00DFC6C524C83F95006A53EE /* directTests.xctest */,
+				00DFC6D024C83F95006A53EE /* directUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 			path = iOSUITests;
 			sourceTree = "<group>";
 		};
-		00DFC6E224C84000006A53EE /* rn_direct */ = {
+		00DFC6E224C84000006A53EE /* direct */ = {
 			isa = PBXGroup;
 			children = (
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
@@ -171,7 +171,7 @@
 				00DFC6F924C841FD006A53EE /* EntryViewController.m */,
 				00DFC6FA24C841FD006A53EE /* EntryViewController.xib */,
 			);
-			path = rn_direct;
+			path = direct;
 			sourceTree = "<group>";
 		};
 		5566DC63F412C2C1E9076389 /* Pods */ = {
@@ -181,20 +181,20 @@
 				5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */,
 				1192C7DE17F5AB93E35B08A2 /* Pods-ModuleApp-ModuleAppUITests.debug.xcconfig */,
 				484AA2DB9663D6A0841C0481 /* Pods-ModuleApp-ModuleAppUITests.release.xcconfig */,
-				DC24F7764E32FC4DBD8E03D7 /* Pods-rn_direct.debug.xcconfig */,
-				9272408DD3356C0889C56BE8 /* Pods-rn_direct.release.xcconfig */,
-				F625F7C354D7561221903338 /* Pods-rn_direct-rn_directUITests.debug.xcconfig */,
-				884143ABEFD722050DDC70A3 /* Pods-rn_direct-rn_directUITests.release.xcconfig */,
-				7B83CD0102A64A432A92EE16 /* Pods-abstract-rn_direct.debug.xcconfig */,
-				6BC4EC306FCA064B296EDD37 /* Pods-abstract-rn_direct.release.xcconfig */,
-				8A4FCA27E7FE59204E44E83A /* Pods-abstract-rn_directTests.debug.xcconfig */,
-				2DCA87AAE86E310D57FEEBFE /* Pods-abstract-rn_directTests.release.xcconfig */,
-				AA61277E946A43DAD1657AED /* Pods-abstract-rn_directUITests.debug.xcconfig */,
-				72641C340A39E3023A427808 /* Pods-abstract-rn_directUITests.release.xcconfig */,
-				31134337467E1785D6055B8E /* Pods-rn_directTests.debug.xcconfig */,
-				7CC0726738C56069430E5BC7 /* Pods-rn_directTests.release.xcconfig */,
-				F7B26ABABF3D195F8750969C /* Pods-rn_directUITests.debug.xcconfig */,
-				06D59A1D5CE827D8CEB27C8C /* Pods-rn_directUITests.release.xcconfig */,
+				DC24F7764E32FC4DBD8E03D7 /* Pods-direct.debug.xcconfig */,
+				9272408DD3356C0889C56BE8 /* Pods-direct.release.xcconfig */,
+				F625F7C354D7561221903338 /* Pods-direct-directUITests.debug.xcconfig */,
+				884143ABEFD722050DDC70A3 /* Pods-direct-directUITests.release.xcconfig */,
+				7B83CD0102A64A432A92EE16 /* Pods-abstract-direct.debug.xcconfig */,
+				6BC4EC306FCA064B296EDD37 /* Pods-abstract-direct.release.xcconfig */,
+				8A4FCA27E7FE59204E44E83A /* Pods-abstract-directTests.debug.xcconfig */,
+				2DCA87AAE86E310D57FEEBFE /* Pods-abstract-directTests.release.xcconfig */,
+				AA61277E946A43DAD1657AED /* Pods-abstract-directUITests.debug.xcconfig */,
+				72641C340A39E3023A427808 /* Pods-abstract-directUITests.release.xcconfig */,
+				31134337467E1785D6055B8E /* Pods-directTests.debug.xcconfig */,
+				7CC0726738C56069430E5BC7 /* Pods-directTests.release.xcconfig */,
+				F7B26ABABF3D195F8750969C /* Pods-directUITests.debug.xcconfig */,
+				06D59A1D5CE827D8CEB27C8C /* Pods-directUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -202,8 +202,8 @@
 		587F74202506737700F515BD /* gen */ = {
 			isa = PBXGroup;
 			children = (
-				58D2099E261346360082ADC3 /* xengine_jsi_rn_direct.h */,
-				58D2099F261346360082ADC3 /* xengine_jsi_rn_direct.m */,
+				58D2099E261346360082ADC3 /* xengine_rn_direct.h */,
+				58D2099F261346360082ADC3 /* xengine_rn_direct.m */,
 			);
 			path = gen;
 			sourceTree = "<group>";
@@ -212,8 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				587F74202506737700F515BD /* gen */,
-				587F7419250669A300F515BD /* JSI_rn_direct.h */,
-				587F741A250669A300F515BD /* JSI_rn_direct.m */,
+				587F7419250669A300F515BD /* RN_direct.h */,
+				587F741A250669A300F515BD /* RN_direct.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -222,9 +222,9 @@
 			isa = PBXGroup;
 			children = (
 				003F95D924DA4A6100633E1F /* libc++.tbd */,
-				9E8CA3713E96420DF83249E1 /* libPods-rn_direct.a */,
-				6D15B7D44DF761F640EDBA44 /* libPods-rn_directTests.a */,
-				42511EECCA68257EBB3854A8 /* libPods-rn_directUITests.a */,
+				9E8CA3713E96420DF83249E1 /* libPods-direct.a */,
+				6D15B7D44DF761F640EDBA44 /* libPods-directTests.a */,
+				42511EECCA68257EBB3854A8 /* libPods-directUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -232,9 +232,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00DFC6A924C83F94006A53EE /* rn_direct */ = {
+		00DFC6A924C83F94006A53EE /* direct */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00DFC6D924C83F95006A53EE /* Build configuration list for PBXNativeTarget "rn_direct" */;
+			buildConfigurationList = 00DFC6D924C83F95006A53EE /* Build configuration list for PBXNativeTarget "direct" */;
 			buildPhases = (
 				0D35607985D032CA76333046 /* [CP] Check Pods Manifest.lock */,
 				00DFC6A624C83F94006A53EE /* Sources */,
@@ -246,14 +246,14 @@
 			);
 			dependencies = (
 			);
-			name = rn_direct;
+			name = direct;
 			productName = iOS;
-			productReference = 00DFC6AA24C83F94006A53EE /* rn_direct.app */;
+			productReference = 00DFC6AA24C83F94006A53EE /* direct.app */;
 			productType = "com.apple.product-type.application";
 		};
-		00DFC6C424C83F95006A53EE /* rn_directTests */ = {
+		00DFC6C424C83F95006A53EE /* directTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00DFC6DC24C83F95006A53EE /* Build configuration list for PBXNativeTarget "rn_directTests" */;
+			buildConfigurationList = 00DFC6DC24C83F95006A53EE /* Build configuration list for PBXNativeTarget "directTests" */;
 			buildPhases = (
 				CC6219C06A1F8CEF4D860D79 /* [CP] Check Pods Manifest.lock */,
 				00DFC6C124C83F95006A53EE /* Sources */,
@@ -265,14 +265,14 @@
 			dependencies = (
 				00DFC6C724C83F95006A53EE /* PBXTargetDependency */,
 			);
-			name = rn_directTests;
+			name = directTests;
 			productName = iOSTests;
-			productReference = 00DFC6C524C83F95006A53EE /* rn_directTests.xctest */;
+			productReference = 00DFC6C524C83F95006A53EE /* directTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		00DFC6CF24C83F95006A53EE /* rn_directUITests */ = {
+		00DFC6CF24C83F95006A53EE /* directUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "rn_directUITests" */;
+			buildConfigurationList = 00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "directUITests" */;
 			buildPhases = (
 				50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */,
 				00DFC6CC24C83F95006A53EE /* Sources */,
@@ -285,9 +285,9 @@
 			dependencies = (
 				00DFC6D224C83F95006A53EE /* PBXTargetDependency */,
 			);
-			name = rn_directUITests;
+			name = directUITests;
 			productName = iOSUITests;
-			productReference = 00DFC6D024C83F95006A53EE /* rn_directUITests.xctest */;
+			productReference = 00DFC6D024C83F95006A53EE /* directUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -312,7 +312,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "rn_direct" */;
+			buildConfigurationList = 00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "direct" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -325,9 +325,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00DFC6A924C83F94006A53EE /* rn_direct */,
-				00DFC6C424C83F95006A53EE /* rn_directTests */,
-				00DFC6CF24C83F95006A53EE /* rn_directUITests */,
+				00DFC6A924C83F94006A53EE /* direct */,
+				00DFC6C424C83F95006A53EE /* directTests */,
+				00DFC6CF24C83F95006A53EE /* directUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,7 +376,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-rn_direct-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-direct-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -398,7 +398,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-rn_directUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-directUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -454,7 +454,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-rn_directTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-directTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -469,9 +469,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
-				58D209A0261346360082ADC3 /* xengine_jsi_rn_direct.m in Sources */,
+				58D209A0261346360082ADC3 /* xengine_rn_direct.m in Sources */,
 				00DFC6FB24C841FD006A53EE /* EntryViewController.m in Sources */,
-				587F741B250669A300F515BD /* JSI_rn_direct.m in Sources */,
+				587F741B250669A300F515BD /* RN_direct.m in Sources */,
 				00DFC6F524C84000006A53EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,12 +497,12 @@
 /* Begin PBXTargetDependency section */
 		00DFC6C724C83F95006A53EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00DFC6A924C83F94006A53EE /* rn_direct */;
+			target = 00DFC6A924C83F94006A53EE /* direct */;
 			targetProxy = 00DFC6C624C83F95006A53EE /* PBXContainerItemProxy */;
 		};
 		00DFC6D224C83F95006A53EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00DFC6A924C83F94006A53EE /* rn_direct */;
+			target = 00DFC6A924C83F94006A53EE /* direct */;
 			targetProxy = 00DFC6D124C83F95006A53EE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -639,13 +639,13 @@
 		};
 		00DFC6DA24C83F95006A53EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-rn_direct.debug.xcconfig */;
+			baseConfigurationReference = DC24F7764E32FC4DBD8E03D7 /* Pods-direct.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
-				INFOPLIST_FILE = "$(SRCROOT)/rn_direct/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/direct/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -654,20 +654,20 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
-				PRODUCT_NAME = rn_direct;
+				PRODUCT_NAME = direct;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		00DFC6DB24C83F95006A53EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-rn_direct.release.xcconfig */;
+			baseConfigurationReference = 9272408DD3356C0889C56BE8 /* Pods-direct.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
-				INFOPLIST_FILE = "$(SRCROOT)/rn_direct/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/direct/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -676,14 +676,14 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-DSERVER_IP=`${SERVER_IP}`";
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOS;
-				PRODUCT_NAME = rn_direct;
+				PRODUCT_NAME = direct;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		00DFC6DD24C83F95006A53EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31134337467E1785D6055B8E /* Pods-rn_directTests.debug.xcconfig */;
+			baseConfigurationReference = 31134337467E1785D6055B8E /* Pods-directTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -698,13 +698,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rn_direct.app/rn_direct";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/direct.app/direct";
 			};
 			name = Debug;
 		};
 		00DFC6DE24C83F95006A53EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CC0726738C56069430E5BC7 /* Pods-rn_directTests.release.xcconfig */;
+			baseConfigurationReference = 7CC0726738C56069430E5BC7 /* Pods-directTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -719,13 +719,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edz.iOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rn_direct.app/rn_direct";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/direct.app/direct";
 			};
 			name = Release;
 		};
 		00DFC6E024C83F95006A53EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7B26ABABF3D195F8750969C /* Pods-rn_directUITests.debug.xcconfig */;
+			baseConfigurationReference = F7B26ABABF3D195F8750969C /* Pods-directUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -744,7 +744,7 @@
 		};
 		00DFC6E124C83F95006A53EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06D59A1D5CE827D8CEB27C8C /* Pods-rn_directUITests.release.xcconfig */;
+			baseConfigurationReference = 06D59A1D5CE827D8CEB27C8C /* Pods-directUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3ML6NNJSH;
@@ -764,7 +764,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "rn_direct" */ = {
+		00DFC6A524C83F94006A53EE /* Build configuration list for PBXProject "direct" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00DFC6D724C83F95006A53EE /* Debug */,
@@ -773,7 +773,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00DFC6D924C83F95006A53EE /* Build configuration list for PBXNativeTarget "rn_direct" */ = {
+		00DFC6D924C83F95006A53EE /* Build configuration list for PBXNativeTarget "direct" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00DFC6DA24C83F95006A53EE /* Debug */,
@@ -782,7 +782,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00DFC6DC24C83F95006A53EE /* Build configuration list for PBXNativeTarget "rn_directTests" */ = {
+		00DFC6DC24C83F95006A53EE /* Build configuration list for PBXNativeTarget "directTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00DFC6DD24C83F95006A53EE /* Debug */,
@@ -791,7 +791,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "rn_directUITests" */ = {
+		00DFC6DF24C83F95006A53EE /* Build configuration list for PBXNativeTarget "directUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00DFC6E024C83F95006A53EE /* Debug */,

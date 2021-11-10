@@ -10,7 +10,7 @@ function osCheck() {
 } 
   else {
 
-    return  xengine.use("com.zkty.jsi.rn_direct", 
+    return  xengine.use("com.zkty.jsi.direct", 
     [
   {
     "name": "test_同步无返回",

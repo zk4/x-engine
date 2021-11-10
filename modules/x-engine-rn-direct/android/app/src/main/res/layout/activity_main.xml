@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="20dp"
-        android:text="rn_direct"
-        android:onClick="rn_direct"
+        android:text="direct"
+        android:onClick="direct"
         android:textColor="#ffffff" />
 
 

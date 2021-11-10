@@ -1,4 +1,4 @@
-package com.zkty.engine.jsi.rn_direct;
+package com.zkty.engine.jsi.direct;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void rn_direct(View view) {
+    public void direct(View view) {
 //        XEngineWebActivityManager.sharedInstance().startH5EngineActivity(this, "http://www.baidu.com");
     }
 }

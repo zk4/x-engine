@@ -101,7 +101,7 @@
 
 
 
-@protocol xengine_jsi_rn_direct_protocol
+@protocol xengine_rn_direct_protocol
    @required 
     - (void) _simpleMethod:(void (^)(BOOL complete)) completionHandler;
    @required 
@@ -141,6 +141,6 @@
 
 
 
-@interface xengine_jsi_rn_direct : JSIModule<xengine_jsi_rn_direct_protocol>
+@interface xengine_rn_direct : JSIModule<xengine_rn_direct_protocol>
 @end
 

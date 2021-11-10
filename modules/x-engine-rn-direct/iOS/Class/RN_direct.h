@@ -1,6 +1,6 @@
 //
-//  JSI_rn_direct.h
-//  rn_direct
+//  RN_direct.h
+//  direct
 //
 // Copyright (c) 2021 x-engine
 // 
@@ -23,11 +23,11 @@
 // THE SOFTWARE./
 
 #import <Foundation/Foundation.h>
-#import "xengine_jsi_rn_direct.h"
+#import "xengine_rn_direct.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSI_rn_direct : xengine_jsi_rn_direct
+@interface RN_direct : xengine_rn_direct
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,8 +1,8 @@
-package com.zkty.engine.jsi.rn_direct;
+package com.zkty.engine.jsi.direct;
 
 import com.zkty.modules.engine.XEngineApplication;
 
-public class rn_directApplication extends XEngineApplication {
+public class directApplication extends XEngineApplication {
     @Override
     public void onCreate() {
         super.onCreate();

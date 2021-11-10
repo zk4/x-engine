@@ -22,98 +22,98 @@
     public Integer titleSize;
   }
   
-  class _0_com_zkty_jsi_rn_direct_DTO {
+  class _0_com_zkty_rn_direct_DTO {
     public String a;
 
-    public _1_com_zkty_jsi_rn_direct_DTO i;
+    public _1_com_zkty_rn_direct_DTO i;
   }
   
-  class _1_com_zkty_jsi_rn_direct_DTO {
+  class _1_com_zkty_rn_direct_DTO {
     public String n1;
   }
   
-  class _2_com_zkty_jsi_rn_direct_DTO {
+  class _2_com_zkty_rn_direct_DTO {
     public String goodname;
 
     public Integer price;
   }
   
-  class _3_com_zkty_jsi_rn_direct_DTO {
+  class _3_com_zkty_rn_direct_DTO {
     public String name;
 
     public Integer age;
   }
   
-  class _4_com_zkty_jsi_rn_direct_DTO {
+  class _4_com_zkty_rn_direct_DTO {
     public String name;
 
     public Integer age;
 
-    public List<_5_com_zkty_jsi_rn_direct_DTO> houses;
+    public List<_5_com_zkty_rn_direct_DTO> houses;
   }
   
-  class _5_com_zkty_jsi_rn_direct_DTO {
+  class _5_com_zkty_rn_direct_DTO {
     public String address;
 
     public String longtitude;
 
     public String latitude;
 
-    public _6_com_zkty_jsi_rn_direct_DTO dealer;
+    public _6_com_zkty_rn_direct_DTO dealer;
   }
   
-  class _6_com_zkty_jsi_rn_direct_DTO {
+  class _6_com_zkty_rn_direct_DTO {
     public String name;
 
     public Integer age;
   }
   
-  class _7_com_zkty_jsi_rn_direct_DTO {
+  class _7_com_zkty_rn_direct_DTO {
     public String name;
 
     public Integer age;
 
-    public List<_8_com_zkty_jsi_rn_direct_DTO> houses;
+    public List<_8_com_zkty_rn_direct_DTO> houses;
   }
   
-  class _8_com_zkty_jsi_rn_direct_DTO {
+  class _8_com_zkty_rn_direct_DTO {
     public String address;
 
     public String longtitude;
 
     public String latitude;
 
-    public _9_com_zkty_jsi_rn_direct_DTO dealer;
+    public _9_com_zkty_rn_direct_DTO dealer;
   }
   
-  class _9_com_zkty_jsi_rn_direct_DTO {
+  class _9_com_zkty_rn_direct_DTO {
     public String name;
 
     public Integer age;
   }
   
-  interface xengine_jsi_rn_direct_protocol {
+  interface xengine_rn_direct_protocol {
     public void _simpleMethod(final CompletionHandler<Nullable> handler);
 public void _simpleMethod();
 public void _simpleArgMethod(String dto, final CompletionHandler<String> handler);
 public String _simpleArgMethod(String dto);
-public void _nestedAnonymousObject(final CompletionHandler<_0_com_zkty_jsi_rn_direct_DTO> handler);
-public _0_com_zkty_jsi_rn_direct_DTO _nestedAnonymousObject();
+public void _nestedAnonymousObject(final CompletionHandler<_0_com_zkty_rn_direct_DTO> handler);
+public _0_com_zkty_rn_direct_DTO _nestedAnonymousObject();
 public void _namedObject(final CompletionHandler<NamedDTO> handler);
 public NamedDTO _namedObject();
 public void _namedObjectWithNamedArgs(NamedDTO dto, final CompletionHandler<NamedDTO> handler);
 public NamedDTO _namedObjectWithNamedArgs(NamedDTO dto);
-public void _namedObjectWithArgs(_3_com_zkty_jsi_rn_direct_DTO dto, final CompletionHandler<_2_com_zkty_jsi_rn_direct_DTO> handler);
-public _2_com_zkty_jsi_rn_direct_DTO _namedObjectWithArgs(_3_com_zkty_jsi_rn_direct_DTO dto);
-public void _complexAnoymousRetWithAnoymousArgs(_7_com_zkty_jsi_rn_direct_DTO dto, final CompletionHandler<_4_com_zkty_jsi_rn_direct_DTO> handler);
-public _4_com_zkty_jsi_rn_direct_DTO _complexAnoymousRetWithAnoymousArgs(_7_com_zkty_jsi_rn_direct_DTO dto);
+public void _namedObjectWithArgs(_3_com_zkty_rn_direct_DTO dto, final CompletionHandler<_2_com_zkty_rn_direct_DTO> handler);
+public _2_com_zkty_rn_direct_DTO _namedObjectWithArgs(_3_com_zkty_rn_direct_DTO dto);
+public void _complexAnoymousRetWithAnoymousArgs(_7_com_zkty_rn_direct_DTO dto, final CompletionHandler<_4_com_zkty_rn_direct_DTO> handler);
+public _4_com_zkty_rn_direct_DTO _complexAnoymousRetWithAnoymousArgs(_7_com_zkty_rn_direct_DTO dto);
   }
   
   
-    public abstract class xengine_jsi_rn_direct extends JSIModule implements xengine_jsi_rn_direct_protocol {
+    public abstract class xengine_rn_direct extends JSIModule implements xengine_rn_direct_protocol {
     @Override
     public String moduleId() {
-      return "com.zkty.jsi.rn_direct";
+      return "com.zkty.jsi.direct";
     }
   
     @JavascriptInterface
@@ -158,18 +158,18 @@ public _4_com_zkty_jsi_rn_direct_DTO _complexAnoymousRetWithAnoymousArgs(_7_com_
 
     @JavascriptInterface
     final public void nestedAnonymousObject(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _nestedAnonymousObject(new CompletionHandler<_0_com_zkty_jsi_rn_direct_DTO>() {
+      _nestedAnonymousObject(new CompletionHandler<_0_com_zkty_rn_direct_DTO>() {
         @Override
-        public void complete(_0_com_zkty_jsi_rn_direct_DTO retValue) { handler.complete(retValue); }
+        public void complete(_0_com_zkty_rn_direct_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_0_com_zkty_jsi_rn_direct_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(_0_com_zkty_rn_direct_DTO value) { handler.setProgressData(value); }
       });
 
     }
         @JavascriptInterface
-        public _0_com_zkty_jsi_rn_direct_DTO nestedAnonymousObject(JSONObject jsonobj) {
+        public _0_com_zkty_rn_direct_DTO nestedAnonymousObject(JSONObject jsonobj) {
           
           return _nestedAnonymousObject();
         }
@@ -216,40 +216,40 @@ public _4_com_zkty_jsi_rn_direct_DTO _complexAnoymousRetWithAnoymousArgs(_7_com_
 
     @JavascriptInterface
     final public void namedObjectWithArgs(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _3_com_zkty_jsi_rn_direct_DTO dto= convert(jsonobj,_3_com_zkty_jsi_rn_direct_DTO.class);
-      _namedObjectWithArgs(dto, new CompletionHandler<_2_com_zkty_jsi_rn_direct_DTO>() {
+      _3_com_zkty_rn_direct_DTO dto= convert(jsonobj,_3_com_zkty_rn_direct_DTO.class);
+      _namedObjectWithArgs(dto, new CompletionHandler<_2_com_zkty_rn_direct_DTO>() {
         @Override
-        public void complete(_2_com_zkty_jsi_rn_direct_DTO retValue) { handler.complete(retValue); }
+        public void complete(_2_com_zkty_rn_direct_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_2_com_zkty_jsi_rn_direct_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(_2_com_zkty_rn_direct_DTO value) { handler.setProgressData(value); }
       });
 
     }
         @JavascriptInterface
-        public _2_com_zkty_jsi_rn_direct_DTO namedObjectWithArgs(JSONObject jsonobj) {
-          _3_com_zkty_jsi_rn_direct_DTO dto= convert(jsonobj,_3_com_zkty_jsi_rn_direct_DTO.class);
+        public _2_com_zkty_rn_direct_DTO namedObjectWithArgs(JSONObject jsonobj) {
+          _3_com_zkty_rn_direct_DTO dto= convert(jsonobj,_3_com_zkty_rn_direct_DTO.class);
           return _namedObjectWithArgs(dto);
         }
         
 
     @JavascriptInterface
     final public void complexAnoymousRetWithAnoymousArgs(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _7_com_zkty_jsi_rn_direct_DTO dto= convert(jsonobj,_7_com_zkty_jsi_rn_direct_DTO.class);
-      _complexAnoymousRetWithAnoymousArgs(dto, new CompletionHandler<_4_com_zkty_jsi_rn_direct_DTO>() {
+      _7_com_zkty_rn_direct_DTO dto= convert(jsonobj,_7_com_zkty_rn_direct_DTO.class);
+      _complexAnoymousRetWithAnoymousArgs(dto, new CompletionHandler<_4_com_zkty_rn_direct_DTO>() {
         @Override
-        public void complete(_4_com_zkty_jsi_rn_direct_DTO retValue) { handler.complete(retValue); }
+        public void complete(_4_com_zkty_rn_direct_DTO retValue) { handler.complete(retValue); }
         @Override
         public void complete() { handler.complete(); }
         @Override
-        public void setProgressData(_4_com_zkty_jsi_rn_direct_DTO value) { handler.setProgressData(value); }
+        public void setProgressData(_4_com_zkty_rn_direct_DTO value) { handler.setProgressData(value); }
       });
 
     }
         @JavascriptInterface
-        public _4_com_zkty_jsi_rn_direct_DTO complexAnoymousRetWithAnoymousArgs(JSONObject jsonobj) {
-          _7_com_zkty_jsi_rn_direct_DTO dto= convert(jsonobj,_7_com_zkty_jsi_rn_direct_DTO.class);
+        public _4_com_zkty_rn_direct_DTO complexAnoymousRetWithAnoymousArgs(JSONObject jsonobj) {
+          _7_com_zkty_rn_direct_DTO dto= convert(jsonobj,_7_com_zkty_rn_direct_DTO.class);
           return _complexAnoymousRetWithAnoymousArgs(dto);
         }
         

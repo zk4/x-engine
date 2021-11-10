@@ -1,8 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jsi.rn_direct">
- <application>
-    <meta-data
-        android:name="com.zkty.jsi.rn_direct"
-        android:value="com.zkty.jsi.JSI_rn_direct" />
-  </application>
-</manifest>

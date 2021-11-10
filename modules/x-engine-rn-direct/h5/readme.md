@@ -1,6 +1,6 @@
 
 
-JSI Id: com.zkty.jsi.rn_direct
+JSI Id: com.zkty.jsi.direct
 
 version: 2.8.1
 
@@ -136,7 +136,7 @@ interface NamedDTO {
 | --------------------------- | --------- | -------- | --------- |--------- |
 | name | string | 必填 |  |  |
 | age | int | 必填 |  |  |
-| houses | Array\<_11_com.zkty.jsi.rn_direct_DTO\> | 必填 |  |  |
+| houses | Array\<_11_com.zkty.jsi.direct_DTO\> | 必填 |  |  |
 **返回值**
 ``` js
  {

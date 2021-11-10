@@ -1,6 +1,6 @@
 //
-//  JSI_rn_direct.m
-//  rn_direct
+//  RN_direct.m
+//  direct
 //
 // Copyright (c) 2021 x-engine
 // 
@@ -23,15 +23,15 @@
 // THE SOFTWARE./
 
 
-#import "JSI_rn_direct.h"
+#import "RN_direct.h"
 #import "JSIContext.h"
 #import "XENativeContext.h"
 
-@interface JSI_rn_direct()
+@interface RN_direct()
 @end
 
-@implementation JSI_rn_direct
-JSI_MODULE(JSI_rn_direct)
+@implementation RN_direct
+JSI_MODULE(RN_direct)
 
 - (void)afterAllJSIModuleInited {
 }
@@ -64,19 +64,19 @@ JSI_MODULE(JSI_rn_direct)
 //}
 //
 //
-//- (_0_com_zkty_jsi_rn_direct_DTO *)_nestedAnonymousObject {
-//    _0_com_zkty_jsi_rn_direct_DTO * ret =[_0_com_zkty_jsi_rn_direct_DTO new];
+//- (_0_com_zkty_rn_direct_DTO *)_nestedAnonymousObject {
+//    _0_com_zkty_rn_direct_DTO * ret =[_0_com_zkty_rn_direct_DTO new];
 //    ret.a=@"hello";
-//    ret.i =[_1_com_zkty_jsi_rn_direct_DTO new];
+//    ret.i =[_1_com_zkty_rn_direct_DTO new];
 //    ret.i.n1=@"_nestedAnonymousObject sync";
 //    return ret;
 //}
 //
 //
-//- (void)_nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_rn_direct_DTO *, BOOL))completionHandler {
-//    _0_com_zkty_jsi_rn_direct_DTO * ret =[_0_com_zkty_jsi_rn_direct_DTO new];
+//- (void)_nestedAnonymousObject:(void (^)(_0_com_zkty_rn_direct_DTO *, BOOL))completionHandler {
+//    _0_com_zkty_rn_direct_DTO * ret =[_0_com_zkty_rn_direct_DTO new];
 //    ret.a=@"hello";
-//    ret.i =[_1_com_zkty_jsi_rn_direct_DTO new];
+//    ret.i =[_1_com_zkty_rn_direct_DTO new];
 //    ret.i.n1=@"_nestedAnonymousObject async";
 //    completionHandler(ret,TRUE);
 //}

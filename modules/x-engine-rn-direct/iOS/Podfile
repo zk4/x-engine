@@ -18,15 +18,15 @@ def shared_pods
 
 end
 
-target 'rn_direct' do
+target 'direct' do
   #use_frameworks!
   shared_pods
 end
-target 'rn_directTests' do
+target 'directTests' do
   #use_frameworks!
   shared_pods
 end
-target 'rn_directUITests' do
+target 'directUITests' do
   # Pods for testing
   shared_pods
 

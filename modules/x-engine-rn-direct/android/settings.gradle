@@ -1,5 +1,5 @@
 include ':app'
-include ':jsi-rn_direct'
+include ':rn-direct'
 
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')

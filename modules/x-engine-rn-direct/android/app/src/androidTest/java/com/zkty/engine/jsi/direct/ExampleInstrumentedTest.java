@@ -1,4 +1,4 @@
-package com.zkty.engine.jsi.rn_direct;
+package com.zkty.engine.jsi.direct;
 
 import android.content.Context;
 

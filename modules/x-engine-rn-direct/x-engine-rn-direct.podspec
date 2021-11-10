@@ -13,7 +13,7 @@ version = package['version']
 Pod::Spec.new do |s|
 
 
-    s.name         = "x-engine-jsi-rn_direct"
+    s.name         = "x-engine-rn-direct"
     s.version      = version
     s.summary      = package["description"]
 
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
             description
                      DESC
 
-    s.homepage     = "https://github.com/zkty-team/x-engine-jsi-rn_direct"
+    s.homepage     = "https://github.com/zkty-team/x-engine-rn-direct"
 
 
    
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "10.0"
     s.ios.deployment_target = "10.0"
 
-    s.source      = { :git => 'https://github.com/zkty-team/x-engine-jsi-rn_direct.git',
+    s.source      = { :git => 'https://github.com/zkty-team/x-engine-rn-direct.git',
   :tag => s.version.to_s }
 
 

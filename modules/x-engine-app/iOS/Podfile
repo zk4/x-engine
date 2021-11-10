@@ -44,6 +44,7 @@ def shared_pods
   pod 'x-engine-native-toast', :path =>'../../x-engine-native-toast'
   pod 'x-engine-native-camera', :path =>'../../x-engine-native-camera'
   pod 'x-engine-native-updator', :path =>'../../x-engine-native-updator'
+  pod 'x-engine-rn-direct', :path =>'../../x-engine-rn-direct'
   pod 'x-engine-native-direct_rn', :path =>'../../x-engine-native-direct_rn'
   pod 'x-engine-native-react_native', :path =>'../../x-engine-native-react_native'
   

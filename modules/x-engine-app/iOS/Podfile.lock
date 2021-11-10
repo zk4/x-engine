@@ -481,9 +481,6 @@ PODS:
   - x-engine-native-updator (1.0.0):
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-rn-direct (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -579,7 +576,6 @@ DEPENDENCIES:
   - x-engine-native-toast (from `../../x-engine-native-toast`)
   - x-engine-native-ui (from `../../x-engine-native-ui`)
   - x-engine-native-updator (from `../../x-engine-native-updator`)
-  - x-engine-rn-direct (from `../../x-engine-rn-direct`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
   - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
@@ -734,8 +730,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-ui"
   x-engine-native-updator:
     :path: "../../x-engine-native-updator"
-  x-engine-rn-direct:
-    :path: "../../x-engine-rn-direct"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
   ZBarSDK:
@@ -825,11 +819,10 @@ SPEC CHECKSUMS:
   x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
   x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
   x-engine-native-updator: 143f2f6562c68c583f2631c3dd965a98ef6f6728
-  x-engine-rn-direct: 88fc464b701f1316f42c0f6b7a16d3fa64e0bd23
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: 5dab4b6162f7ff46d1ce56f88efcf0d32e3cc5ce
+PODFILE CHECKSUM: a795ef4a87fdd2feb4b45bddf38fc2d1f3033e9a
 
 COCOAPODS: 1.10.1

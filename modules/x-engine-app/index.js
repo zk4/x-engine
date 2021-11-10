@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // sample : NativeModules.OpenNative && NativeModules.OpenNative.createCat("小花猫", "母", 3);
 const pushClick = () => {
-  NativeModules.DirectNative.pushNative("UIViewController");
+  NativeModules.RN_direct.pushNative();
 };
 
 const backClick = () => {

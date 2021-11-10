@@ -10,8 +10,69 @@ function osCheck() {
 } 
   else {
 
-    return  xengine.use("com.zkty.jsi.direct", 
-    []
+    return  xengine.use("com.zkty.jsi.rn_direct", 
+    [
+  {
+    "name": "test_同步无返回",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_同步简单参数",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_同步简单数字参数",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_同步返回命名对象",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_同步返回匿名嵌套对象",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_异步返回命名对象",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_异步简单参数",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_异步简单数字参数",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_异步返回命名对象",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_异步返回匿名嵌套对象",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_complex_async",
+    "default_args": {},
+    "decorators": []
+  },
+  {
+    "name": "test_complex_sync",
+    "default_args": {},
+    "decorators": []
+  }
+]
 )}}
 
 export default osCheck();

@@ -8,7 +8,7 @@ const vConsolePlugin = require("vconsole-webpack-plugin");
 module.exports = {
   devtool: "source-map",
   entry: {
-    main: "./h5/src/demo.js",
+    main: "../h5/src/demo.js",
   },
   output: {
     // [name] will follow the dir name

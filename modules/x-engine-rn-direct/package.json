@@ -1,7 +1,7 @@
 {
-  "name": "@zkty-team/x-engine-rn-direct",
+  "name": "@zkty-team/x-engine-jsi-rn_direct",
   "version": "3.0.3",
-  "description": "direct",
+  "description": "rn_direct",
   "main": "h5/src/index.js",
   "license": "MIT",
   "scripts": {
@@ -34,6 +34,7 @@
     "webpack-dev-server-qr-code": "^1.2.0"
   },
   "dependencies": {
+    "@zkty-team/x-cli": "^1.26.0",
     "@zkty-team/x-engine-core": "^0.1.13"
   },
   "gitHead": "34c89869efddc496e03329310dab8d05497922b4"

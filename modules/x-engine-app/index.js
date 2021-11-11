@@ -3,13 +3,34 @@ import { View, NativeModules, Button, AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// sample : NativeModules.OpenNative && NativeModules.OpenNative.createCat("小花猫", "母", 3);
-const pushClick = () => {
-  NativeModules.RN_direct.pushNative();
+// 跳原生
+const pushNativeClick = () => {
+  // NativeModules.RN_direct.pushNative("UIViewController");
+  NativeModules.RN_direct.pushNative({
+    scheme:"http",
+    host:"www.baidu.com",
+    path:"/",
+    pathname:"",
+    fragment:"",
+    query:{},
+    params:{},
+  });  
 };
 
+
+// 跳微应用
+const pushMicroappClick = () => {
+  NativeModules.RN_direct.pushMicroapp("com.zkty.microapp.home")
+};
+
+// 跳http
+const pushHttpClick = () => {
+  NativeModules.RN_direct.pushHttp("http://www.baidu.com")
+};
+
+// back
 const backClick = () => {
-  NativeModules.DirectNative.backNative();
+  NativeModules.RN_direct.backNative();
 };
 
 const Stack = createNativeStackNavigator();
@@ -23,7 +44,15 @@ function Page1Screen({ navigation }) {
       />
       <Button
         title="push to Native"
-        onPress={pushClick}
+        onPress={pushNativeClick}
+      />
+      <Button
+        title="push to microapp"
+        onPress={pushMicroappClick}
+      />
+      <Button
+        title="push to http"
+        onPress={pushHttpClick}
       />
       <Button
         title="back to Native"

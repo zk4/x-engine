@@ -8,10 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "xengine_rn_direct.h"
 #import <React/RCTBridgeModule.h>
+#import "JSI_direct.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RN_direct : xengine_rn_direct <RCTBridgeModule>
+@interface RN_direct : xengine_rn_direct <RCTBridgeModule, xengine_jsi_direct_protocol>
 @end
 
 NS_ASSUME_NONNULL_END

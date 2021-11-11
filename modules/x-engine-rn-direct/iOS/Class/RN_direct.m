@@ -9,21 +9,21 @@
 #import "JSIContext.h"
 #import "XENativeContext.h"
 #import "iDirectManager.h"
+#import "JSI_direct.h"
 
 @interface RN_direct()
-//@property (nonatomic, strong)   id<iDirectManager>  directorManager;
+@property (nonatomic, strong) id<iDirectManager> directorManager;
 @end
 
 @implementation RN_direct
-
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(pushNative:(NSString *)viewController) {
+RCT_EXPORT_METHOD(push:(NSDictionary *)dict) {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *vcName = [NSString stringWithFormat:@"%@", viewController];
-        UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
-        vc.view.backgroundColor = [UIColor whiteColor];
-        [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
+//        NSString *vcName = [NSString stringWithFormat:@"%@"];
+//        UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
+//        vc.view.backgroundColor = [UIColor whiteColor];
+//        [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
     });
 }
 
@@ -102,10 +102,7 @@ RCT_EXPORT_METHOD(backNative) {
 
 //JSI_MODULE(RN_direct)
 //
-//- (void)afterAllJSIModuleInited {
-//    self.directorManager = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
-//}
-//
+
 //// 跳转原生
 //- (void)pushNative {}
 //
@@ -123,5 +120,26 @@ RCT_EXPORT_METHOD(backNative) {
 //
 //// 返回omp
 //- (void)backOmp {}
-
+//
+//- (void)_back:(DirectBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
+//    [XENP(iDirectManager) back:dto.scheme host:nil fragment:dto.fragment];
+//    completionHandler(YES);
+//
+//}
+//
+//- (void)_push:(DirectPushDTO *)dto complete:(void (^)(BOOL))completionHandler {
+//    [(iDirectManager) push:dto.scheme host:dto.host pathname:dto.pathname fragment:dto.fragment query:dto.query params:dto.params];
+//    completionHandler(YES);
+//}
+//
+//- (id)_back:(DirectBackDTO *)dto{
+//     [(iDirectManager) back:dto.scheme host:nil fragment:dto.fragment];
+//    return @"";
+//}
+//
+//
+//- (id)_push:(DirectPushDTO *)dto {
+//    [(iDirectManager) push:dto.scheme host:dto.host pathname:dto.pathname fragment:dto.fragment query:dto.query params:dto.params];
+//    return @"";
+//}
 @end

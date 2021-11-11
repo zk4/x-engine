@@ -121,5 +121,8 @@ project(':jsi-geo').projectDir = new File('../../x-engine-jsi-geo/android/jsi-ge
 include ':jsi-media'
 project(':jsi-media').projectDir = new File('../../x-engine-jsi-media/android/jsi-media')
 
+include ':jsi-enviroment'
+project(':jsi-enviroment').projectDir = new File('../../x-engine-jsi-enviroment/android/jsi-enviroment')
+
 //include ':jsi-media2'
 //project(':jsi-media2').projectDir = new File('../../x-engine-jsi-media2/android/jsi-media2')

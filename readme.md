@@ -9,7 +9,8 @@ jsi-* 与 native-jsi 模块可帮助你快速开发 h5 混合应用。详细可�
 实现 idrect 接口即可。
 
 
-文档: http://x-engine-1257400556.cos-website.ap-guangzhou.myqcloud.com
+文档: 
+http://x-engine-1257400556.cos-website.ap-guangzhou.myqcloud.com
 
 ``` 
 ├── Makefile

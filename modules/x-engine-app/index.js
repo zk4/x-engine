@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // 跳原生
 const pushNativeClick = () => {
   // NativeModules.RN_direct.pushNative("UIViewController");
-  NativeModules.RN_direct.pushNative({
+  NativeModules.RN_direct.push({
     scheme:"http",
     host:"www.baidu.com",
     path:"/",
@@ -16,7 +16,6 @@ const pushNativeClick = () => {
     params:{},
   });  
 };
-
 
 // 跳微应用
 const pushMicroappClick = () => {

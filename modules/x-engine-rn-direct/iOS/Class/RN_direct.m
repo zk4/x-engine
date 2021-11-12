@@ -16,40 +16,23 @@
 @end
 
 @implementation RN_direct
-RCT_EXPORT_MODULE();
+
+- (void)afterAllJSIModuleInited {
+    self.directorManager = [[XENativeContext sharedInstance] getModuleByProtocol:@protocol(iDirectManager)];
+}
+
+RCT_EXPORT_MODULE() ;
 
 RCT_EXPORT_METHOD(push:(NSDictionary *)dict) {
     dispatch_async(dispatch_get_main_queue(), ^{
-//        NSString *vcName = [NSString stringWithFormat:@"%@"];
-//        UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
-//        vc.view.backgroundColor = [UIColor whiteColor];
-//        [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
+        NSLog(@"%@", dict);
+        [self.directorManager push:dict[@"scheme"] host:dict[@"host"] pathname:dict[@"pathname"] fragment:dict[@"fragment"] query:dict[@"query"] params:dict[@"params"]];
     });
 }
 
-RCT_EXPORT_METHOD(pushMicroapp:(NSString *)microapp) {
+RCT_EXPORT_METHOD(back) {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav setHidesBottomBarWhenPushed:YES];
-        UIViewController *vc = [UIViewController new];
-        vc.view.backgroundColor = [UIColor orangeColor];
-        [nav pushViewController:vc animated:YES];
-    });
-}
-
-RCT_EXPORT_METHOD(pushHttp:(NSString *)http) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav setHidesBottomBarWhenPushed:YES];
-        UIViewController *vc = [UIViewController new];
-        vc.view.backgroundColor = [UIColor orangeColor];
-        [nav pushViewController:vc animated:YES];
-    });
-}
-
-RCT_EXPORT_METHOD(backNative) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[self getCurrentVC].navigationController popToRootViewControllerAnimated:YES];
+        
     });
 }
 
@@ -100,31 +83,9 @@ RCT_EXPORT_METHOD(backNative) {
     return nil;
 }
 
-//JSI_MODULE(RN_direct)
-//
-
-//// 跳转原生
-//- (void)pushNative {}
-//
-//// 返回原生
-//- (void)backNative {}
-//
-//// 跳转微应用
-//- (void)pushMicroapp {}
-//
-//// 返回微应用
-//- (void)backMicroapp {}
-//
-//// 跳转omp
-//- (void)pushOmp {}
-//
-//// 返回omp
-//- (void)backOmp {}
-//
 //- (void)_back:(DirectBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
 //    [XENP(iDirectManager) back:dto.scheme host:nil fragment:dto.fragment];
 //    completionHandler(YES);
-//
 //}
 //
 //- (void)_push:(DirectPushDTO *)dto complete:(void (^)(BOOL))completionHandler {
@@ -143,3 +104,4 @@ RCT_EXPORT_METHOD(backNative) {
 //    return @"";
 //}
 @end
+

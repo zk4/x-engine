@@ -27,7 +27,6 @@ JSI_MODULE(JSI_direct)
 - (void)_back:(DirectBackDTO *)dto complete:(void (^)(BOOL))completionHandler {
     [self.directors back:dto.scheme host:nil fragment:dto.fragment];
     completionHandler(YES);
-  
 }
 
 - (void)_push:(DirectPushDTO *)dto complete:(void (^)(BOOL))completionHandler {  

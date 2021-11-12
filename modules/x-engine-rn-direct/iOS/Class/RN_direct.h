@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RN_direct : xengine_rn_direct <RCTBridgeModule, xengine_jsi_direct_protocol>
+@interface RN_direct : xengine_rn_direct <RCTBridgeModule>
 @end
 
 NS_ASSUME_NONNULL_END

@@ -99,7 +99,7 @@
     }
 
     - (NSString *)moduleId{
-        return @"com.zkty.jsi.direct";
+        return @"com.zkty.rn.direct";
     }
     
     - (void) simpleMethod:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {

@@ -52,8 +52,6 @@ def shared_pods
   # webcache
 #  pod 'x-engine-jsi-webcache',           :path =>'../../x-engine-jsi-webcache'
 #  pod 'x-engine-native-webcache', :path =>'../../x-engine-native-webcache'
-  
-  
   # jsi
   pod 'x-engine-jsi-dev', :path =>'../../x-engine-jsi-dev'
   pod 'x-engine-jsi-ui', :path =>'../../x-engine-jsi-ui'

@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (4.0.1):
-    - AFNetworking/NSURLSession (= 4.0.1)
-    - AFNetworking/Reachability (= 4.0.1)
-    - AFNetworking/Security (= 4.0.1)
-    - AFNetworking/Serialization (= 4.0.1)
-    - AFNetworking/UIKit (= 4.0.1)
-  - AFNetworking/NSURLSession (4.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.1)
-  - AFNetworking/Security (4.0.1)
-  - AFNetworking/Serialization (4.0.1)
-  - AFNetworking/UIKit (4.0.1):
-    - AFNetworking/NSURLSession
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
@@ -89,7 +74,6 @@ PODS:
   - glog (0.3.5)
   - JSONModel (1.8.0)
   - libevent (2.1.12)
-  - MJExtension (3.3.0)
   - OpenSSL-Universal (1.1.180)
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -356,143 +340,28 @@ PODS:
     - React-jsi (= 0.66.2)
     - React-logger (= 0.66.2)
     - React-perflogger (= 0.66.2)
-  - RNScreens (3.9.0):
+  - LRnScreens (3.9.0):
     - React-Core
     - React-RCTImage
-  - SSZipArchive (2.4.2)
-  - Toast (4.0.0)
-  - TZImagePickerController (3.6.6)
   - WHDebugTool (2.5)
-  - x-engine-jsi-dev (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-device (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-direct (3.0.3):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-localstorage (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-scan (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-secret (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-store (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-ui (3.0.3):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-jsi-vuex (3.0.3):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-broadcast (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-camera (1.0.0):
-    - JSONModel
-    - TZImagePickerController
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-core (1.0.0):
     - x-engine-native-protocols
   - x-engine-native-dev (1.0.0):
     - WHDebugTool
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-device (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-direct (1.0.0):
     - JSONModel
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-direct_http (1.0.0):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-direct_https (1.0.0):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-direct_lrn (1.0.0):
-    - React-Core
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-direct_microapp (1.0.0):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-jsi
-    - x-engine-native-protocols
-  - x-engine-native-direct_native (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-direct_omp (1.0.0):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-direct_rn (1.0.0):
-    - React-Core
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-jsi (1.0.0):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-jsi/no-arc (= 1.0.0)
-    - x-engine-native-protocols
-  - x-engine-native-jsi/no-arc (1.0.0):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-offline (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-protocols (1.0.0):
     - JSONModel
-  - x-engine-native-react_native (1.0.0):
-    - React-Core
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-rest (1.0.0):
-    - AFNetworking (~> 4.0.0)
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-scan (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
-    - ZBarSDK
-  - x-engine-native-store (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-tabbar (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-toast (1.0.0):
-    - Toast (~> 4.0.0)
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-ui (1.0.0):
-    - JSONModel
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-updator (1.0.0):
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-rn-direct (0.0.1):
-    - React-Core
     - x-engine-native-core
     - x-engine-native-protocols
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
-  - ZBarSDK (1.5.2)
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
@@ -521,8 +390,6 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.99.0)
   - FlipperKit/SKIOSNetworkPlugin (= 0.99.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - JSONModel
-  - MJExtension
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -550,48 +417,16 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - RNScreens (from `../node_modules/react-native-screens`)
-  - SSZipArchive
-  - x-engine-jsi-dev (from `../../x-engine-jsi-dev`)
-  - x-engine-jsi-device (from `../../x-engine-jsi-device`)
-  - x-engine-jsi-direct (from `../../x-engine-jsi-direct`)
-  - x-engine-jsi-localstorage (from `../../x-engine-jsi-localstorage`)
-  - x-engine-jsi-scan (from `../../x-engine-jsi-scan`)
-  - x-engine-jsi-secret (from `../../x-engine-jsi-secret`)
-  - x-engine-jsi-store (from `../../x-engine-jsi-store`)
-  - x-engine-jsi-ui (from `../../x-engine-jsi-ui`)
-  - x-engine-jsi-vuex (from `../../x-engine-jsi-vuex`)
-  - x-engine-native-broadcast (from `../../x-engine-native-broadcast`)
-  - x-engine-native-camera (from `../../x-engine-native-camera`)
-  - x-engine-native-core (from `../../x-engine-native-core`)
-  - x-engine-native-dev (from `../../x-engine-native-dev`)
-  - x-engine-native-device (from `../../x-engine-native-device`)
-  - x-engine-native-direct (from `../../x-engine-native-direct`)
-  - x-engine-native-direct_http (from `../../x-engine-native-direct_http`)
-  - x-engine-native-direct_https (from `../../x-engine-native-direct_https`)
-  - x-engine-native-direct_lrn (from `../../x-engine-native-direct_lrn`)
-  - x-engine-native-direct_microapp (from `../../x-engine-native-direct_microapp`)
-  - x-engine-native-direct_native (from `../../x-engine-native-direct_native`)
-  - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
-  - x-engine-native-direct_rn (from `../../x-engine-native-direct_rn`)
-  - x-engine-native-jsi (from `../../x-engine-native-jsi`)
-  - x-engine-native-offline (from `../../x-engine-native-offline`)
-  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
-  - x-engine-native-react_native (from `../../x-engine-native-react_native`)
-  - x-engine-native-rest (from `../../x-engine-native-rest`)
-  - x-engine-native-scan (from `../../x-engine-native-scan`)
-  - x-engine-native-store (from `../../x-engine-native-store`)
-  - x-engine-native-tabbar (from `../../x-engine-native-tabbar`)
-  - x-engine-native-toast (from `../../x-engine-native-toast`)
-  - x-engine-native-ui (from `../../x-engine-native-ui`)
-  - x-engine-native-updator (from `../../x-engine-native-updator`)
-  - x-engine-rn-direct (from `../../x-engine-rn-direct`)
+  - LRnScreens (from `../node_modules/react-native-screens`)
+  - x-engine-native-core (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-dev (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-dev`)
+  - x-engine-native-direct (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct`)
+  - x-engine-native-protocols (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols`)
+  - x-engine-native-tabbar (from `/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
-  - ZBarSDK (from `../../x-engine-native-scan/iOS/ZBarSDK`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
     - CocoaAsyncSocket
     - Flipper
     - Flipper-Boost-iOSX
@@ -605,15 +440,11 @@ SPEC REPOS:
     - fmt
     - JSONModel
     - libevent
-    - MJExtension
     - OpenSSL-Universal
-    - SSZipArchive
-    - Toast
-    - TZImagePickerController
     - WHDebugTool
     - YogaKit
 
-EXTERNAL SOURCES:
+EXTELRnAL SOURCES:
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
   DoubleConversion:
@@ -674,83 +505,22 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  RNScreens:
+  LRnScreens:
     :path: "../node_modules/react-native-screens"
-  x-engine-jsi-dev:
-    :path: "../../x-engine-jsi-dev"
-  x-engine-jsi-device:
-    :path: "../../x-engine-jsi-device"
-  x-engine-jsi-direct:
-    :path: "../../x-engine-jsi-direct"
-  x-engine-jsi-localstorage:
-    :path: "../../x-engine-jsi-localstorage"
-  x-engine-jsi-scan:
-    :path: "../../x-engine-jsi-scan"
-  x-engine-jsi-secret:
-    :path: "../../x-engine-jsi-secret"
-  x-engine-jsi-store:
-    :path: "../../x-engine-jsi-store"
-  x-engine-jsi-ui:
-    :path: "../../x-engine-jsi-ui"
-  x-engine-jsi-vuex:
-    :path: "../../x-engine-jsi-vuex"
-  x-engine-native-broadcast:
-    :path: "../../x-engine-native-broadcast"
-  x-engine-native-camera:
-    :path: "../../x-engine-native-camera"
   x-engine-native-core:
-    :path: "../../x-engine-native-core"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-core"
   x-engine-native-dev:
-    :path: "../../x-engine-native-dev"
-  x-engine-native-device:
-    :path: "../../x-engine-native-device"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-dev"
   x-engine-native-direct:
-    :path: "../../x-engine-native-direct"
-  x-engine-native-direct_http:
-    :path: "../../x-engine-native-direct_http"
-  x-engine-native-direct_https:
-    :path: "../../x-engine-native-direct_https"
-  x-engine-native-direct_lrn:
-    :path: "../../x-engine-native-direct_lrn"
-  x-engine-native-direct_microapp:
-    :path: "../../x-engine-native-direct_microapp"
-  x-engine-native-direct_native:
-    :path: "../../x-engine-native-direct_native"
-  x-engine-native-direct_omp:
-    :path: "../../x-engine-native-direct_omp"
-  x-engine-native-direct_rn:
-    :path: "../../x-engine-native-direct_rn"
-  x-engine-native-jsi:
-    :path: "../../x-engine-native-jsi"
-  x-engine-native-offline:
-    :path: "../../x-engine-native-offline"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-direct"
   x-engine-native-protocols:
-    :path: "../../x-engine-native-protocols"
-  x-engine-native-react_native:
-    :path: "../../x-engine-native-react_native"
-  x-engine-native-rest:
-    :path: "../../x-engine-native-rest"
-  x-engine-native-scan:
-    :path: "../../x-engine-native-scan"
-  x-engine-native-store:
-    :path: "../../x-engine-native-store"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-protocols"
   x-engine-native-tabbar:
-    :path: "../../x-engine-native-tabbar"
-  x-engine-native-toast:
-    :path: "../../x-engine-native-toast"
-  x-engine-native-ui:
-    :path: "../../x-engine-native-ui"
-  x-engine-native-updator:
-    :path: "../../x-engine-native-updator"
-  x-engine-rn-direct:
-    :path: "../../x-engine-rn-direct"
+    :path: "/Users/cwz/work/1-Zkty/x-engine/modules/x-engine-native-tabbar"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
-  ZBarSDK:
-    :path: "../../x-engine-native-scan/iOS/ZBarSDK"
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
@@ -769,7 +539,6 @@ SPEC CHECKSUMS:
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: 5e9e85f48da8dd447f5834ce14c6799ea8c7f41a
@@ -796,49 +565,16 @@ SPEC CHECKSUMS:
   React-RCTVibration: 3e815c3d2dd2e0e931b68595b5b92d23ba38b3fb
   React-runtimeexecutor: 393e26602c1b248683372051e34db63e359e3b01
   ReactCommon: c0263c1a41509aeb94be3214fa7bc3b71eae5ef6
-  RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
-  SSZipArchive: e7b4f3d9e780c2acc1764cd88fbf2de28f26e5b2
-  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  TZImagePickerController: edf61b8e87f26e3e445aa50eb66254bd7f4859db
+  LRnScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
   WHDebugTool: 8ff09b8c6e1e4ae4f0268740eab8d72bb4c23bc2
-  x-engine-jsi-dev: 54b0a7e384fbecd066f8e8ec193ad98d7ab20306
-  x-engine-jsi-device: 636fd4a2391dcba7543b6a3cbbfe11a177e01534
-  x-engine-jsi-direct: 42226681064ddfb3da7c76d995c7146bf84a2316
-  x-engine-jsi-localstorage: b6d2f3655aacf91952b1a0a18588b33c29951f05
-  x-engine-jsi-scan: 04d6149984f98da49f961b40f5c69a7be290fb85
-  x-engine-jsi-secret: 804f6811e9d35b67d94fbdd964a7d73e6085dc77
-  x-engine-jsi-store: 675cbc1ef7fe446bf55a07c04bfcc27a8bf67504
-  x-engine-jsi-ui: 8efd582e0571128e85d80156a78d703807212306
-  x-engine-jsi-vuex: 36373571c12ebe686099d58bf872cb76b05ca573
-  x-engine-native-broadcast: 9f125a793dc948f3df44e6ca064ccb931080c81c
-  x-engine-native-camera: 028f9f859c8f6093551a5b74248f804f5f8482d9
   x-engine-native-core: 7fa925c39f2e8664dabf44a0aba8b2f5552dc4ed
   x-engine-native-dev: a71f3b8ae114477a086ab269bed514ea26432d50
-  x-engine-native-device: 05280cc3d26c9e4f917ac4a5e5b38aa23122e978
   x-engine-native-direct: 731998d936fbeacbc36a07a68741e5ada1258946
-  x-engine-native-direct_http: 0a8c48c42b87664030ec554515c2edf6e879aab0
-  x-engine-native-direct_https: 2bcc4661bb2d6247baebfd950f169c00a0573665
-  x-engine-native-direct_lrn: 8ca3af0770f0e6937de8a268a8a87d8d34175174
-  x-engine-native-direct_microapp: 31ffc322d8e871861194c2391bee26765da8cb7a
-  x-engine-native-direct_native: c5ab0cfe8e1c54f2a04bef687df0d21ddc20611f
-  x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
-  x-engine-native-direct_rn: f038e4b373cd5b8b742009364479887a6fc081f5
-  x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
-  x-engine-native-offline: 253549e247682420e2688784980649b2e2ebf3f4
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
-  x-engine-native-react_native: 2245c77c7a6a7e03ccd857a88dcf52291afac06c
-  x-engine-native-rest: 600cf890c6779cfbdb24efea44e5f1b42e9fe45c
-  x-engine-native-scan: f6dd1c35bde6e2d2fc0fd6cca316bfb5c0613634
-  x-engine-native-store: 2ae96af253b062c135e1066472c34cf26918fc54
   x-engine-native-tabbar: 7b4b3e9a3c218dfd5bc7516032fc994dc0e1d15d
-  x-engine-native-toast: 3c8b247661a414c40e0c25235fd45ad6d850af36
-  x-engine-native-ui: c57bb70d138391a6d62fcc2ce2b14c327726cc5a
-  x-engine-native-updator: 143f2f6562c68c583f2631c3dd965a98ef6f6728
-  x-engine-rn-direct: d219a617d168557464a8f3290d74f09ace3fda2e
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
-  ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: b1ea19f2d6f82f2467a27a570cb4ac255e003be1
+PODFILE CHECKSUM: 9652565448dd5c17397fa4aac9779dc8c1df51a8
 
 COCOAPODS: 1.10.1

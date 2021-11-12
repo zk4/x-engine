@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="module.direct_lrn">
+
+    <uses-permission android:name="android.permission.INTELRnET" />
+    <uses-permission android:name="android.permission.WRITE_EXTELRnAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTELRnAL_STORAGE" />
+
+    <application>
+
+        <meta-data
+            android:name="com.zkty.native.direct_lrn"
+            android:value="com.zkty.nativ.direct_lrn.Nativedirect_lrn" />
+    </application>
+</manifest>

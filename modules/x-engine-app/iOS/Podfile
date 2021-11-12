@@ -46,7 +46,10 @@ def shared_pods
   
   pod 'x-engine-native-react_native', :path =>'../../x-engine-native-react_native'
   pod 'x-engine-native-direct_rn', :path =>'../../x-engine-native-direct_rn'
+  pod 'x-engine-native-direct_lrn', :path =>'../../x-engine-native-direct_lrn'
   pod 'x-engine-rn-direct', :path =>'../../x-engine-rn-direct'
+  
+  
   
   
   # webcache

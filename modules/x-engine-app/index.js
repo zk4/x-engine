@@ -20,7 +20,7 @@ const pushHttpClick = () => {
 const pushMicroappClick = () => {
   NativeModules.RN_direct.push({
     scheme:"microapp",
-    host:"to-find.0",
+    host:"com.test.microapp.home",
     pathname:"",
     fragment:"",
     query:{},

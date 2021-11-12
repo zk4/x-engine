@@ -20,8 +20,16 @@
 - (instancetype)initWithUrl:(NSString *)fileUrl withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect)frame moduleName:(NSString *)name {
     self = [super init];
     if (self) {
-        NSString *url = [NSString stringWithFormat:@"http%@", [fileUrl substringFromIndex:2]];
-        RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:[NSURL URLWithString:url] moduleName:name initialProperties:nil launchOptions:nil];
+        NSURL *url = [NSURL URLWithString:fileUrl];
+        RCTRootView *rootView = nil;
+        if ([url.scheme isEqualToString:@"rn"]) {
+            NSString *url = [NSString stringWithFormat:@"http%@", [fileUrl substringFromIndex:2]];
+            rootView = [[RCTRootView alloc] initWithBundleURL:[NSURL URLWithString:url] moduleName:name initialProperties:nil launchOptions:nil];
+        } else if ([url.scheme isEqualToString:@"lrn"]){
+            NSString *string = [NSString stringWithFormat:@"%@", [fileUrl substringFromIndex:6]];
+            NSURL *url = [[NSBundle mainBundle] URLForResource:string withExtension:nil];
+            rootView = [[RCTRootView alloc] initWithBundleURL:url moduleName:name initialProperties:nil launchOptions:nil];
+        }
         rootView.frame = frame;
         [self.view addSubview:rootView];
     }

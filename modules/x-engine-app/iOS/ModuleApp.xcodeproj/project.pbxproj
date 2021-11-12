@@ -31,6 +31,7 @@
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
 		A46895A8273A7D9600D4DA8A /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */; };
 		A4C9824A273E754D008B7691 /* microapps in Resources */ = {isa = PBXBuildFile; fileRef = A4C98248273E74F3008B7691 /* microapps */; };
+		A4C9824C273E7DAB008B7691 /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4C9824B273E7DAB008B7691 /* bundle */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		A46895A6273A7D9600D4DA8A /* ModuleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModuleApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		A4C98248273E74F3008B7691 /* microapps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = microapps; sourceTree = SOURCE_ROOT; };
+		A4C9824B273E7DAB008B7691 /* bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bundle; sourceTree = SOURCE_ROOT; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		00DFC6E224C84000006A53EE /* ModuleApp */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9824B273E7DAB008B7691 /* bundle */,
 				A4C98248273E74F3008B7691 /* microapps */,
 				DD0A7B4625381FEC00107280 /* Class */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
@@ -375,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4C9824C273E7DAB008B7691 /* bundle in Resources */,
 				A4C9824A273E754D008B7691 /* microapps in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,

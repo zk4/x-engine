@@ -9,6 +9,8 @@
 #import "ThreeViewController.h"
 #import <iDirectManager.h>
 #import <XENativeContext.h>
+#import <React/RCTRootView.h>
+#import <React/RCTBridge.h>
 
 
 //#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
@@ -22,7 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.test.microapp.home.0" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
+    
+    // 本地bundle加载reactnative
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"bundle/index.jsbundle" withExtension:nil];
+//    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:url moduleName:@"App" initialProperties:nil launchOptions:nil];
+//    rootView.frame = self.view.frame;
+//    [self.view addSubview:rootView];
+    
+    // 本地地址加载rn
+    [XENP(iDirectManager) push:@"lrn://bundle/index.jsbundle"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"App"}} frame:[UIScreen mainScreen].bounds];
 }
 @end

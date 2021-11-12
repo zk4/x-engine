@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "yarn react-native start"
+    "start": "yarn react-native start",
+    "bundle-ios":"node node_modules/react-native/local-cli/cli.js bundle --entry-file index.ios.js  --platform ios --dev false --bundle-output ios/bundle/index.ios.jsbundle --assets-dest ios/bundle"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.6",

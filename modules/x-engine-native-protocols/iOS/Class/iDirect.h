@@ -36,17 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
         query:(nullable NSDictionary<NSString*,id>*) query
         params:(nullable NSDictionary<NSString*,id>*) params
         frame:(CGRect) frame;
-
-//  创建rn容器
-- (UIViewController*)getContainer:(NSString*) protocol
-                             host:(nullable NSString*) host
-                         pathname:(NSString*) pathname
-                         fragment:(nullable NSString*) fragment
-                            query:(nullable NSDictionary<NSString*,id>*) query
-                           params:(nullable NSDictionary<NSString*,id>*) params
-                            frame:(CGRect) frame
-                       moduleName:(NSString *)name;
-
 @end
 
 NS_ASSUME_NONNULL_END

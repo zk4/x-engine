@@ -37,11 +37,20 @@ NATIVE_MODULE(Native_direct_rn)
 - (void)afterAllNativeModuleInited{
 }
 
-- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame moduleName:(NSString *)name {
+- (nonnull UIViewController *)getContainer:(nonnull NSString *)protocol host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame   {
     
     if(!protocol){
         protocol = [self protocol];
     }
+    
+    id rn_params = params[@"__RN__"];
+    NSAssert(rn_params  , @"__RN__ 不存在");
+    if(!rn_params) return nil;
+    
+    id moduleName = rn_params[@"moduleName"];
+    NSAssert(moduleName  , @"moduleName 不存在");
+    if(!moduleName) return nil;
+
     
     BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
     NSString *finalUrl = @"";
@@ -53,7 +62,7 @@ NATIVE_MODULE(Native_direct_rn)
     
     finalUrl = [NSString stringWithFormat:@"%@//%@%@%@%@",protocol,host,pathname,fragment,queryStr];
     
-    ReactNativeViewController *vc =  [[ReactNativeViewController alloc] initWithUrl:finalUrl withHiddenNavBar:isHideNavBar webviewFrame:frame moduleName:name];
+    ReactNativeViewController *vc =  [[ReactNativeViewController alloc] initWithUrl:finalUrl withHiddenNavBar:isHideNavBar webviewFrame:frame moduleName:moduleName];
     vc.hidesBottomBarWhenPushed = YES;
     return  vc;
 }

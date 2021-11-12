@@ -21,8 +21,6 @@
 		580EB2D3260B385200EE0694 /* JSIContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580EB2D2260B385200EE0694 /* JSIContextTests.m */; };
 		581FB072262578AA00ED7DCC /* MergeDictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 581FB071262578AA00ED7DCC /* MergeDictTest.m */; };
 		58209E612624A54A00843DB5 /* Url2direct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58209E602624A54A00843DB5 /* Url2direct.m */; };
-		5859B57426BA60D600BBF580 /* to-find.0 in Resources */ = {isa = PBXBuildFile; fileRef = 5859B57326BA60D600BBF580 /* to-find.0 */; };
-		588E74F426EF683C00474846 /* microapps in Resources */ = {isa = PBXBuildFile; fileRef = 588E74F326EF683C00474846 /* microapps */; };
 		58953B1F2614C4A700F2914C /* OldRouter2DirectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */; };
 		58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BBF26138BEF0082ADC3 /* OneViewController.m */; };
 		58D20BCF26138BEF0082ADC3 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC126138BEF0082ADC3 /* ThreeViewController.m */; };
@@ -32,6 +30,7 @@
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
 		A46895A8273A7D9600D4DA8A /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */; };
+		A4C9824A273E754D008B7691 /* microapps in Resources */ = {isa = PBXBuildFile; fileRef = A4C98248273E74F3008B7691 /* microapps */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -79,8 +78,6 @@
 		580EB2D2260B385200EE0694 /* JSIContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSIContextTests.m; sourceTree = "<group>"; };
 		581FB071262578AA00ED7DCC /* MergeDictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeDictTest.m; sourceTree = "<group>"; };
 		58209E602624A54A00843DB5 /* Url2direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Url2direct.m; sourceTree = "<group>"; };
-		5859B57326BA60D600BBF580 /* to-find.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "to-find.0"; path = "../../../../microApps/to-find.0"; sourceTree = "<group>"; };
-		588E74F326EF683C00474846 /* microapps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = microapps; path = ../../../microApps/microapps; sourceTree = "<group>"; };
 		58953B1E2614C4A700F2914C /* OldRouter2DirectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldRouter2DirectTests.m; sourceTree = "<group>"; };
 		58D20BBF26138BEF0082ADC3 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		58D20BC026138BEF0082ADC3 /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
@@ -99,6 +96,7 @@
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A46895A6273A7D9600D4DA8A /* ModuleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModuleApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
+		A4C98248273E74F3008B7691 /* microapps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = microapps; sourceTree = SOURCE_ROOT; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 		00DFC6A124C83F94006A53EE = {
 			isa = PBXGroup;
 			children = (
-				588E74F326EF683C00474846 /* microapps */,
 				00DFC6E224C84000006A53EE /* ModuleApp */,
 				00DFC6C824C83F95006A53EE /* iOSTests */,
 				00DFC6D324C83F95006A53EE /* iOSUITests */,
@@ -188,6 +185,7 @@
 		00DFC6E224C84000006A53EE /* ModuleApp */ = {
 			isa = PBXGroup;
 			children = (
+				A4C98248273E74F3008B7691 /* microapps */,
 				DD0A7B4625381FEC00107280 /* Class */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
 				00DFC6EC24C84000006A53EE /* AppDelegate.m */,
@@ -258,7 +256,6 @@
 		DD0A7B4625381FEC00107280 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				5859B57326BA60D600BBF580 /* to-find.0 */,
 				58D20BBE26138BEF0082ADC3 /* iOS_Demo */,
 				A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */,
 				A46895A6273A7D9600D4DA8A /* ModuleApp-Bridging-Header.h */,
@@ -378,10 +375,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4C9824A273E754D008B7691 /* microapps in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
-				5859B57426BA60D600BBF580 /* to-find.0 in Resources */,
-				588E74F426EF683C00474846 /* microapps in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

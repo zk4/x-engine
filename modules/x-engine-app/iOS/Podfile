@@ -65,7 +65,7 @@ def shared_pods
   pod 'x-engine-jsi-vuex', :path =>'../../x-engine-jsi-vuex'
 #  pod 'x-engine-jsi-media', :path =>'../../x-engine-jsi-media'
 #  pod 'x-engine-native-media', :path =>'../../x-engine-native-media'
-  
+
   # legacy jsi
 #  pod 'x-engine-jsi-legacy', :path =>'../../x-engine-jsi-legacy'
 	

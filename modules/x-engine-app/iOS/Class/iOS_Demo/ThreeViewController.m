@@ -23,6 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.zkty.microapp.mine" params:@{@"hideNavbar":@TRUE}];
+    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.test.microapp.home.0" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 }
 @end

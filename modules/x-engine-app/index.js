@@ -2,10 +2,13 @@ import React from "react";
 import { View, NativeModules, Button, AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Picker from 'react-native-picker';
+// import ImagePicker from 'react-native-image-crop-picker';
+
+
 
 // 跳http
 const pushHttpClick = () => {
-  // NativeModules.RN_direct.pushNative("UIViewController");
   NativeModules.RN_direct.push({
     scheme:"omp",
     host:"10.2.128.24:8080",
@@ -28,15 +31,49 @@ const pushMicroappClick = () => {
   });
 };
 
-
 // back
 const backClick = () => {
   NativeModules.RN_direct.back({
     scheme:"",
     fragment:"-1",
-    // http://10.2.128.24:8081/index.bundle?platform=ios
   });
 };
+
+
+const picker = () => {
+  let data = [];
+  for(var i=0;i<100;i++){
+      data.push(i);
+  }
+
+  Picker.init({
+      pickerData: data,
+      selectedValue: [59],
+      onPickerConfirm: data => {
+          console.log(data);
+          Picker.hide()
+      },
+      onPickerCancel: data => {
+          console.log(data);
+          Picker.hide()
+      },
+      onPickerSelect: data => {
+          console.log(data);
+          Picker.hide()
+      }
+  });
+  Picker.show();
+}
+
+// const ImagePicker = () => {
+//   ImagePicker.openPicker({
+//     width: 300,
+//     height: 400,
+//     cropping: true
+//   }).then(image => {
+//     console.log(image);
+//   });
+// }
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +96,14 @@ function Page1Screen({ navigation }) {
         title="back to Native"
         onPress={backClick}
       />
+      <Button
+        title="third packager ==> picker"
+        onPress={picker}
+      />
+      {/* <Button
+        title="third packager ==> ImagePicker"
+        onPress={ImagePicker}
+      /> */}
     </View>
   );
 }

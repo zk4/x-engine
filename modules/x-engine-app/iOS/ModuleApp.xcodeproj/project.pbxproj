@@ -51,6 +51,20 @@
 			remoteGlobalIDString = 00DFC6A924C83F94006A53EE;
 			remoteInfo = iOS;
 		};
+		A4322BF9274240AA0026F398 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4322BF4274240A90026F398 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
+		A4322BFB274240AA0026F398 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4322BF4274240A90026F398 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
+			remoteInfo = "RNDeviceInfo-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +109,7 @@
 		58F6FD542620D46B00A482EF /* RegexTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4322BF4274240A90026F398 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		A46895A6273A7D9600D4DA8A /* ModuleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModuleApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		A4C98248273E74F3008B7691 /* microapps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = microapps; sourceTree = SOURCE_ROOT; };
@@ -244,9 +259,19 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		A4322BF5274240A90026F398 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A4322BFA274240AA0026F398 /* libRNDeviceInfo.a */,
+				A4322BFC274240AA0026F398 /* libRNDeviceInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B1C6B1D81743291D8E148429 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4322BF4274240A90026F398 /* RNDeviceInfo.xcodeproj */,
 				580EB23B260A214900EE0694 /* CoreData.framework */,
 				0058BFBB24D2B3B30061B72A /* libc++.tbd */,
 				B371A8283691795B1B748D89 /* libPods-ModuleApp.a */,
@@ -364,6 +389,12 @@
 			mainGroup = 00DFC6A124C83F94006A53EE;
 			productRefGroup = 00DFC6AB24C83F94006A53EE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A4322BF5274240A90026F398 /* Products */;
+					ProjectRef = A4322BF4274240A90026F398 /* RNDeviceInfo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				00DFC6A924C83F94006A53EE /* ModuleApp */,
@@ -372,6 +403,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A4322BFA274240AA0026F398 /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = A4322BF9274240AA0026F398 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A4322BFC274240AA0026F398 /* libRNDeviceInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNDeviceInfo-tvOS.a";
+			remoteRef = A4322BFB274240AA0026F398 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00DFC6A824C83F94006A53EE /* Resources */ = {

@@ -91,6 +91,10 @@ PODS:
   - libevent (2.1.12)
   - MJExtension (3.3.0)
   - OpenSSL-Universal (1.1.180)
+  - Picker (4.3.7):
+    - Picker/Core (= 4.3.7)
+  - Picker/Core (4.3.7):
+    - React
   - RCT-Folly (2021.06.28.00-v2):
     - boost
     - DoubleConversion
@@ -445,14 +449,6 @@ PODS:
     - React-Core
     - x-engine-native-core
     - x-engine-native-protocols
-  - x-engine-native-direct_rn (1.0.0):
-    - React-Core
-    - x-engine-native-core
-    - x-engine-native-protocols
-  - x-engine-native-direct_rns (1.0.0):
-    - React-Core
-    - x-engine-native-core
-    - x-engine-native-protocols
   - x-engine-native-jsi (1.0.0):
     - JSONModel
     - x-engine-native-core
@@ -535,6 +531,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - JSONModel
   - MJExtension
+  - Picker (from `../node_modules/react-native-picker`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -587,8 +584,6 @@ DEPENDENCIES:
   - x-engine-native-direct_omp (from `../../x-engine-native-direct_omp`)
   - x-engine-native-direct_orn (from `../../x-engine-native-direct_orn`)
   - x-engine-native-direct_orns (from `../../x-engine-native-direct_orns`)
-  - x-engine-native-direct_rn (from `../../x-engine-native-direct_rn`)
-  - x-engine-native-direct_rns (from `../../x-engine-native-direct_rns`)
   - x-engine-native-jsi (from `../../x-engine-native-jsi`)
   - x-engine-native-offline (from `../../x-engine-native-offline`)
   - x-engine-native-protocols (from `../../x-engine-native-protocols`)
@@ -639,6 +634,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Picker:
+    :path: "../node_modules/react-native-picker"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -737,10 +734,6 @@ EXTERNAL SOURCES:
     :path: "../../x-engine-native-direct_orn"
   x-engine-native-direct_orns:
     :path: "../../x-engine-native-direct_orns"
-  x-engine-native-direct_rn:
-    :path: "../../x-engine-native-direct_rn"
-  x-engine-native-direct_rns:
-    :path: "../../x-engine-native-direct_rns"
   x-engine-native-jsi:
     :path: "../../x-engine-native-jsi"
   x-engine-native-offline:
@@ -792,6 +785,7 @@ SPEC CHECKSUMS:
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
+  Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: 5e9e85f48da8dd447f5834ce14c6799ea8c7f41a
   RCTTypeSafety: aba333d04d88d1f954e93666a08d7ae57a87ab30
@@ -845,8 +839,6 @@ SPEC CHECKSUMS:
   x-engine-native-direct_omp: d0e9f039a46ec21e20d56abcd58e681621e367b2
   x-engine-native-direct_orn: 61c0732938fdc803fb70073146a7e3a7f4b6e7a8
   x-engine-native-direct_orns: 465e62ce3c5284f7068b93a09b902a6dadb968af
-  x-engine-native-direct_rn: f038e4b373cd5b8b742009364479887a6fc081f5
-  x-engine-native-direct_rns: 08c42d6fb88e4269941a3ec289067f2678155424
   x-engine-native-jsi: de8ec07ba9253330b7ca0c1e3abfeb775b7f6eae
   x-engine-native-offline: 253549e247682420e2688784980649b2e2ebf3f4
   x-engine-native-protocols: 3fce367890ca46435a6c64b0bcd7d03a427ab27b
@@ -863,6 +855,6 @@ SPEC CHECKSUMS:
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
   ZBarSDK: d8a7e9debf0888bae3a1d4f1f19929bf2155cefc
 
-PODFILE CHECKSUM: a0caa338bdb3b91da8588ce8b077402db4e16814
+PODFILE CHECKSUM: 6214a201916787f161b1aac8bdfa89185855fe37
 
 COCOAPODS: 1.10.1

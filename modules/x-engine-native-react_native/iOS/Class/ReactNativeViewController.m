@@ -22,10 +22,13 @@
     if (self) {
         NSURL *url = [NSURL URLWithString:fileUrl];
         RCTRootView *rootView = nil;
-        if ([url.scheme isEqualToString:@"rn"]) {
-            NSString *url = [NSString stringWithFormat:@"http%@", [fileUrl substringFromIndex:2]];
+        if ([url.scheme isEqualToString:@"orn"]) {
+            NSString *url = [NSString stringWithFormat:@"http%@", [fileUrl substringFromIndex:3]];
             rootView = [[RCTRootView alloc] initWithBundleURL:[NSURL URLWithString:url] moduleName:name initialProperties:nil launchOptions:nil];
-        } else if ([url.scheme isEqualToString:@"lrn"]){
+        } else if ([url.scheme isEqualToString:@"orns"]){
+            NSString *url = [NSString stringWithFormat:@"https%@", [fileUrl substringFromIndex:4]];
+            rootView = [[RCTRootView alloc] initWithBundleURL:[NSURL URLWithString:url] moduleName:name initialProperties:nil launchOptions:nil];
+        } else { // lrn
             NSString *string = [NSString stringWithFormat:@"%@", [fileUrl substringFromIndex:6]];
             NSURL *url = [[NSBundle mainBundle] URLForResource:string withExtension:nil];
             rootView = [[RCTRootView alloc] initWithBundleURL:url moduleName:name initialProperties:nil launchOptions:nil];

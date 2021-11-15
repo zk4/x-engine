@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="module.direct_orns">
+
+    <uses-permission android:name="android.permission.INTEORnsET" />
+    <uses-permission android:name="android.permission.WRITE_EXTEORnsAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTEORnsAL_STORAGE" />
+
+    <application>
+
+        <meta-data
+            android:name="com.zkty.native.direct_orns"
+            android:value="com.zkty.nativ.direct_orns.Nativedirect_orns" />
+    </application>
+</manifest>

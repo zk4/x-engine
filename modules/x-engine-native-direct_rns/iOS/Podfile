@@ -1,0 +1,49 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods.rb'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+ 
+source 'https://github.com/CocoaPods/Specs.git'
+
+# 在环境变量里指向 x-engine 本地路径
+# export X_ENGINE_MODULES=/Users/zk/git/company/working/x-engine/modules
+
+X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
+
+def shared_pods
+  config = use_native_modules!
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
+  
+  inherit! :complete
+  
+  use_flipper!()
+  
+  pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
+  pod 'x-engine-native-direct', :path => X_ENGINE_MODULES+'/x-engine-native-direct'
+  pod 'x-engine-native-dev', :path => X_ENGINE_MODULES+'/x-engine-native-dev'
+#  pod 'x-engine-native-react_native', :path => X_ENGINE_MODULES+'/x-engine-native-react_native'
+
+  pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'x-engine-native-tabbar', :path =>X_ENGINE_MODULES+'/x-engine-native-tabbar'
+  
+  
+#  pod 'AFNetworking', '~> 4.0.0'
+end
+
+target 'direct_rns' do
+  #use_frameworks!
+  shared_pods
+end
+target 'direct_rnsTests' do
+  #use_frameworks!
+  shared_pods
+end
+target 'direct_rnsUITests' do
+  # Pods for testing
+  shared_pods
+
+end

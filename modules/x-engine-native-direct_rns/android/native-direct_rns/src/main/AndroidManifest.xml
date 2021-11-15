@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="module.direct_rns">
+
+    <uses-permission android:name="android.permission.INTERNsET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNsAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNsAL_STORAGE" />
+
+    <application>
+
+        <meta-data
+            android:name="com.zkty.native.direct_rns"
+            android:value="com.zkty.nativ.direct_rns.Nativedirect_rns" />
+    </application>
+</manifest>

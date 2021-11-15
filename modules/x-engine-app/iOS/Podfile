@@ -45,7 +45,8 @@ def shared_pods
   pod 'x-engine-native-updator', :path =>'../../x-engine-native-updator'
   
   pod 'x-engine-native-react_native', :path =>'../../x-engine-native-react_native'
-  pod 'x-engine-native-direct_rn', :path =>'../../x-engine-native-direct_rn'
+  pod 'x-engine-native-direct_orn', :path =>'../../x-engine-native-direct_orn'
+  pod 'x-engine-native-direct_orns', :path =>'../../x-engine-native-direct_orns'
   pod 'x-engine-native-direct_lrn', :path =>'../../x-engine-native-direct_lrn'
   pod 'x-engine-rn-direct', :path =>'../../x-engine-rn-direct'
   

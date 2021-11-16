@@ -1,5 +1,14 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods.rb'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# taro rn
+#require_relative '../../../microApps/finish-taro-demo/node_modules/react-native/scripts/react_native_pods.rb'
+#require_relative '../../../microApps/finish-taro-demo/node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+# taro rn
+#require_relative '../taro-demo/node_modules/react-native/scripts/react_native_pods.rb'
+#require_relative '../taro-demo/node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+# react native
+require_relative '../../../microApps/finish-react-native/node_modules/react-native/scripts/react_native_pods.rb'
+require_relative '../../../microApps/finish-react-native/node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '11.0'
 

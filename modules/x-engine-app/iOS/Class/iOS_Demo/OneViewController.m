@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-//    [self customRNView];
 }
 
 - (void)setupUI {
@@ -41,6 +40,8 @@
 
 - (void)gotoRn {
     // 远程地址加载rn
-    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"taroDemo"}} frame:[UIScreen mainScreen].bounds];
+    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"App"}} frame:[UIScreen mainScreen].bounds];
+    
+//    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"taroDemo"}} frame:[UIScreen mainScreen].bounds];
 }
 @end

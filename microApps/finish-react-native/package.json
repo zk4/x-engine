@@ -1,0 +1,19 @@
+{
+  "name": "MyReactNativeApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "yarn react-native start",
+    "bundle-ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.js  --platform ios --dev false --bundle-output ios/bundle/index.jsbundle --assets-dest ios/bundle"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "@zkty-team/x-engine-core": "^3.0.6",
+    "react": "16.13.1",
+    "react-native": "^0.66.2",
+    "react-native-picker": "^4.3.7",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.9.0"
+  }
+}

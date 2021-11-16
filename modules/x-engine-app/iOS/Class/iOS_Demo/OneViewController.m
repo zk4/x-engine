@@ -10,6 +10,8 @@
 #import "iDirectManager.h"
 #import "XENativeContext.h"
 #import "iDevice.h"
+#import <React/RCTRootView.h>
+#import <React/RCTBridge.h>
  
 
 @interface OneViewController ()
@@ -17,10 +19,11 @@
 @end
 
 @implementation OneViewController
-
+    
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+//    [self customRNView];
 }
 
 - (void)setupUI {
@@ -38,6 +41,6 @@
 
 - (void)gotoRn {
     // 远程地址加载rn
-    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"App"}} frame:[UIScreen mainScreen].bounds];
+    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"taroDemo"}} frame:[UIScreen mainScreen].bounds];
 }
 @end

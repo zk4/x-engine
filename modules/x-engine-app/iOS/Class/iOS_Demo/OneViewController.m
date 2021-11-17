@@ -39,9 +39,11 @@
 }
 
 - (void)gotoRn {
-    // 远程地址加载rn
 //    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"App"}} frame:[UIScreen mainScreen].bounds];
     
-    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"taroDemo"}} frame:[UIScreen mainScreen].bounds];
+//    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"taroDemo"}} frame:[UIScreen mainScreen].bounds];
+    
+    NSString *url = @"omp://10.2.148.80:10086/#/pages/index/index";
+    [XENP(iDirectManager) push:url params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
 }
 @end

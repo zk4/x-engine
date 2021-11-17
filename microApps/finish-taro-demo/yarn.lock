@@ -1222,7 +1222,7 @@
     core-js-pure "^3.19.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.11.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.7.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.11.2", "@babel/runtime@^7.13.10", "@babel/runtime@^7.7.6", "@babel/runtime@^7.7.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.16.3"
   resolved "https://registry.npmmirror.com/@babel/runtime/download/@babel/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
   integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
@@ -1839,6 +1839,21 @@
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@tarojs/runtime" "3.3.5"
+
+"@tarojs/components-react@^3.3.14":
+  version "3.3.14"
+  resolved "https://registry.npmmirror.com/@tarojs/components-react/download/@tarojs/components-react-3.3.14.tgz#1e57c44141f1874aacbdcf66f60389494a2b0023"
+  integrity sha512-QBjVpOJtSxPu1iMWngNn9iykfGaskh7umgcXkwIjtBUIP/x2ea+nzfg/MSEsF0DsucsB3qs49oglGu7GDk0Rnw==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@tarojs/taro" "3.3.14"
+    "@tarojs/taro-h5" "3.3.14"
+    better-scroll "^1.14.1"
+    classnames "^2.2.5"
+    intersection-observer "^0.7.0"
+    resolve-pathname "^3.0.0"
+    swiper "6.8.0"
+    weui "^1.1.2"
 
 "@tarojs/components-rn@3.3.12":
   version "3.3.12"

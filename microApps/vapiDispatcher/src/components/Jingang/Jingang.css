@@ -1,0 +1,14 @@
+.jingang-class {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.block {
+    background: red;
+    width: calc(calc(100% / 4) - 10px);
+    margin: 5px;
+    height: 180px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+}

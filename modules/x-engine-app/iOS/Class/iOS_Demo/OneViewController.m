@@ -10,8 +10,6 @@
 #import "iDirectManager.h"
 #import "XENativeContext.h"
 #import "iDevice.h"
-#import <React/RCTRootView.h>
-#import <React/RCTBridge.h>
  
 
 @interface OneViewController ()

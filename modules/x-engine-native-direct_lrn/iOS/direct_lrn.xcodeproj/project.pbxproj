@@ -237,7 +237,6 @@
 				00DFC6A724C83F94006A53EE /* Frameworks */,
 				00DFC6A824C83F94006A53EE /* Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
-				2D883E49F822DC1606E1F46A /* [CP] Embed Pods Frameworks */,
 				12423B7A304895AD921BA924 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -257,7 +256,6 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
-				F9FC5A202C123F8D119F9707 /* [CP] Embed Pods Frameworks */,
 				6DA0A68806DDBEABEB14FA66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -279,7 +277,6 @@
 				00DFC6CD24C83F95006A53EE /* Frameworks */,
 				00DFC6CE24C83F95006A53EE /* Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
-				FD5489809B8DE86ABAD26B27 /* [CP] Embed Pods Frameworks */,
 				27AEC51205322D9DE20F0A5A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -418,23 +415,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_lrnUITests/Pods-direct_lrnUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D883E49F822DC1606E1F46A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_lrn/Pods-direct_lrn-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_lrn/Pods-direct_lrn-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_lrn/Pods-direct_lrn-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		50B5EEA1395DD2A9E90ADE51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -528,40 +508,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F9FC5A202C123F8D119F9707 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_lrnTests/Pods-direct_lrnTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_lrnTests/Pods-direct_lrnTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_lrnTests/Pods-direct_lrnTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FD5489809B8DE86ABAD26B27 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_lrnUITests/Pods-direct_lrnUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-direct_lrnUITests/Pods-direct_lrnUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-direct_lrnUITests/Pods-direct_lrnUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -24,7 +24,7 @@ NATIVE_MODULE(Native_direct_orns)
     return @"com.zkty.native.direct_orns";
 }
 - (nonnull NSString *)protocol {
-    return @"orns:";
+    return @"https:";
 }
 -(NSString*) scheme{
     return @"orns";

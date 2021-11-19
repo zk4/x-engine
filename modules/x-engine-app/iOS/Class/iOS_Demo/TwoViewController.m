@@ -20,9 +20,7 @@
     id<iDevice> device = XENP(iDevice);
     float tabbarHeight= [device getTabbarHeight];
     CGRect frame =  CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
-    [XENP(iDirectManager) addToTab:self uri:@"microapp://com.test.microapp.home" params:@{@"hideNavbar":@TRUE} frame:frame];
     
-//    // tab
-//    [XENP(iDirectManager) addToTab:self uri:@"rn://localhost:8081/index.bundle?platform=ios" moduleName:@"App" params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
+    [XENP(iDirectManager) addToTab:self uri:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"taroDemo"}} frame:frame];
 }
 @end

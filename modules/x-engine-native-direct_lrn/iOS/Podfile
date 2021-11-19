@@ -20,7 +20,7 @@ def shared_pods
   
   inherit! :complete
   
-  use_flipper!()
+#  use_flipper!()
   
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-direct', :path => X_ENGINE_MODULES+'/x-engine-native-direct'

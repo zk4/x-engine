@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { View, Button, Text} from "@tarojs/components";
+import { View, Button, Text } from "@tarojs/components";
 import { NativeModules } from "react-native";
 import "./index.css";
 
@@ -15,14 +15,28 @@ export default class Index extends Component {
   componentDidHide() {}
 
   // 跳http
+  // httpClick() {
+  //   NativeModules.RN_direct.push({
+  //     scheme: "omp",
+  //     host: "www.baidu.com",
+  //     pathname: "",
+  //     fragment: "",
+  //     query: {},
+  //     params: {}
+  //   });
+  // }
+
+  // 跳http
   httpClick() {
     NativeModules.RN_direct.push({
       scheme: "omp",
-      host: "www.baidu.com",
+      host: "10.2.148.80:8080",
       pathname: "",
       fragment: "",
       query: {},
-      params: {}
+      params: {
+        hideNavbar: "true"
+      }
     });
   }
 
@@ -34,19 +48,20 @@ export default class Index extends Component {
       pathname: "",
       fragment: "",
       query: {},
-      params: {}
+      params: {
+        hideNavbar: "true"
+      }
     });
   };
 
   render() {
     return (
       <View className="index">
-        <Text>1234</Text>
         <Button onClick={() => this.httpClick()} className="button-class">
-          http
+          omp
         </Button>
         <Button onClick={() => this.microappClick()} className="button-class">
-          microappClick
+          microapp
         </Button>
       </View>
     );

@@ -29,9 +29,10 @@
 		58D20BD226138BEF0082ADC3 /* MainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC826138BEF0082ADC3 /* MainTabbarController.m */; };
 		58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D20BC926138BEF0082ADC3 /* MainViewController.m */; };
 		58F6FD552620D46B00A482EF /* RegexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F6FD542620D46B00A482EF /* RegexTests.m */; };
+		A40AEEAC274776ED00F95736 /* FourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40AEEAB274776ED00F95736 /* FourViewController.m */; };
+		A40AEEBE2747AA2200F95736 /* rnapps in Resources */ = {isa = PBXBuildFile; fileRef = A40AEEBB2747AA2200F95736 /* rnapps */; };
 		A46895A8273A7D9600D4DA8A /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */; };
 		A4C9824A273E754D008B7691 /* microapps in Resources */ = {isa = PBXBuildFile; fileRef = A4C98248273E74F3008B7691 /* microapps */; };
-		A4C9824C273E7DAB008B7691 /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4C9824B273E7DAB008B7691 /* bundle */; };
 		CE81469CEFF10F0824A2412D /* libPods-ModuleAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343AD3EDD295F2D72B04E5D3 /* libPods-ModuleAppUITests.a */; };
 		D83116A9FC52394BDE9544AB /* libPods-ModuleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B371A8283691795B1B748D89 /* libPods-ModuleApp.a */; };
 /* End PBXBuildFile section */
@@ -109,11 +110,13 @@
 		58F6FD542620D46B00A482EF /* RegexTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexTests.m; sourceTree = "<group>"; };
 		5BADAF100E4D8E7C05B5C5BB /* Pods-ModuleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.release.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.release.xcconfig"; sourceTree = "<group>"; };
 		708635941CC6319BBE1E5F27 /* Pods-ModuleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ModuleAppUITests/Pods-ModuleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A40AEEAA274776ED00F95736 /* FourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourViewController.h; sourceTree = "<group>"; };
+		A40AEEAB274776ED00F95736 /* FourViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FourViewController.m; sourceTree = "<group>"; };
+		A40AEEBB2747AA2200F95736 /* rnapps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rnapps; sourceTree = SOURCE_ROOT; };
 		A4322BF4274240A90026F398 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		A46895A6273A7D9600D4DA8A /* ModuleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModuleApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		A46895A7273A7D9600D4DA8A /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		A4C98248273E74F3008B7691 /* microapps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = microapps; sourceTree = SOURCE_ROOT; };
-		A4C9824B273E7DAB008B7691 /* bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bundle; sourceTree = SOURCE_ROOT; };
 		B371A8283691795B1B748D89 /* libPods-ModuleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModuleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BD34806B6619ACBB99D5D /* Pods-ModuleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleApp.debug.xcconfig"; path = "Target Support Files/Pods-ModuleApp/Pods-ModuleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE07C6D6391AAE68F4E89D3 /* Pods-ModuleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModuleAppTests.release.xcconfig"; path = "Target Support Files/Pods-ModuleAppTests/Pods-ModuleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -202,7 +205,7 @@
 		00DFC6E224C84000006A53EE /* ModuleApp */ = {
 			isa = PBXGroup;
 			children = (
-				A4C9824B273E7DAB008B7691 /* bundle */,
+				A40AEEBB2747AA2200F95736 /* rnapps */,
 				A4C98248273E74F3008B7691 /* microapps */,
 				DD0A7B4625381FEC00107280 /* Class */,
 				00DFC6E324C84000006A53EE /* AppDelegate.h */,
@@ -241,6 +244,8 @@
 				58D20BC226138BEF0082ADC3 /* TwoViewController.m */,
 				58D20BC426138BEF0082ADC3 /* ThreeViewController.h */,
 				58D20BC126138BEF0082ADC3 /* ThreeViewController.m */,
+				A40AEEAA274776ED00F95736 /* FourViewController.h */,
+				A40AEEAB274776ED00F95736 /* FourViewController.m */,
 				58D20BC026138BEF0082ADC3 /* JumpViewController.h */,
 				58D20BC526138BEF0082ADC3 /* JumpViewController.m */,
 				58D20BC626138BEF0082ADC3 /* Main */,
@@ -423,7 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4C9824C273E7DAB008B7691 /* bundle in Resources */,
+				A40AEEBE2747AA2200F95736 /* rnapps in Resources */,
 				A4C9824A273E754D008B7691 /* microapps in Resources */,
 				00DFC6F024C84000006A53EE /* Assets.xcassets in Resources */,
 				00DFC6F324C84000006A53EE /* LaunchScreen.storyboard in Resources */,
@@ -573,6 +578,7 @@
 			files = (
 				58D20BD126138BEF0082ADC3 /* JumpViewController.m in Sources */,
 				58D20BCE26138BEF0082ADC3 /* OneViewController.m in Sources */,
+				A40AEEAC274776ED00F95736 /* FourViewController.m in Sources */,
 				A46895A8273A7D9600D4DA8A /* SwiftBridge.swift in Sources */,
 				00DFC6F624C84000006A53EE /* AppDelegate.m in Sources */,
 				58D20BD326138BEF0082ADC3 /* MainViewController.m in Sources */,

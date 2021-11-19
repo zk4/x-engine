@@ -34,7 +34,7 @@
 		580B91BA2694D0DA006AD356 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6FA24C841FD006A53EE /* EntryViewController.xib */; };
 		580B91BB2694D0DA006AD356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DFC6E424C84000006A53EE /* Assets.xcassets */; };
 		580B91CD2694D10D006AD356 /* Info.uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 580B91CC2694D10D006AD356 /* Info.uat.plist */; };
-		A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		A4F5678F2739233E00675340 /* ReactNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F5678E2739233E00675340 /* ReactNativeViewController.m */; };
 		A4F56792273928C800675340 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F56791273928C800675340 /* SwiftBridge.swift */; };
 		B716B8680FFBE4A942FBAD7C /* libPods-react_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E2791A9045AAC4D5BE8FBB /* libPods-react_nativeTests.a */; };
@@ -155,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				580B91682694CCEA006AD356 /* libc++.tbd in Frameworks */,
-				A34D74F2ECABB58EC6384A41 /* (null) in Frameworks */,
+				A34D74F2ECABB58EC6384A41 /* BuildFile in Frameworks */,
 				565DD27B989F5FB8F69BF75F /* libPods-sit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,7 +308,6 @@
 				00DFC6A724C83F94006A53EE /* Frameworks */,
 				00DFC6A824C83F94006A53EE /* Resources */,
 				5826725D24FFE94A001D6CF3 /* ShellScript */,
-				BCA32443AB651D0483144E49 /* [CP] Embed Pods Frameworks */,
 				76EEA380930BE7F69DAE9452 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -328,7 +327,6 @@
 				00DFC6C124C83F95006A53EE /* Sources */,
 				00DFC6C224C83F95006A53EE /* Frameworks */,
 				00DFC6C324C83F95006A53EE /* Resources */,
-				DE6F88EE79F5C642BF7E327E /* [CP] Embed Pods Frameworks */,
 				8917A6A1D3B9C69578DD69ED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -350,7 +348,6 @@
 				00DFC6CD24C83F95006A53EE /* Frameworks */,
 				00DFC6CE24C83F95006A53EE /* Resources */,
 				5826725C24FFE896001D6CF3 /* ShellScript */,
-				DFB2A67E871AE41D5EFF6CFA /* [CP] Embed Pods Frameworks */,
 				545D20225DC1435DF94DEE75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -372,7 +369,6 @@
 				580B91672694CCEA006AD356 /* Frameworks */,
 				580B916A2694CCEA006AD356 /* Resources */,
 				580B916D2694CCEA006AD356 /* ShellScript */,
-				07B789C8D1DD856175589E76 /* [CP] Embed Pods Frameworks */,
 				42EF9596BBE4171D0F2AA125 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -393,7 +389,6 @@
 				580B91B62694D0DA006AD356 /* Frameworks */,
 				580B91B92694D0DA006AD356 /* Resources */,
 				580B91BC2694D0DA006AD356 /* ShellScript */,
-				70EF1A1D2F1D7BFF26AADD84 /* [CP] Embed Pods Frameworks */,
 				69D42D57C9DE02631713A145 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -497,23 +492,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07B789C8D1DD856175589E76 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sit/Pods-sit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sit/Pods-sit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sit/Pods-sit-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0D35607985D032CA76333046 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -721,23 +699,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uat/Pods-uat-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		70EF1A1D2F1D7BFF26AADD84 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uat/Pods-uat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uat/Pods-uat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uat/Pods-uat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		76EEA380930BE7F69DAE9452 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -772,23 +733,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-react_nativeTests/Pods-react_nativeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BCA32443AB651D0483144E49 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_native/Pods-react_native-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_native/Pods-react_native-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-react_native/Pods-react_native-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CC6219C06A1F8CEF4D860D79 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -809,40 +753,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE6F88EE79F5C642BF7E327E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_nativeTests/Pods-react_nativeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_nativeTests/Pods-react_nativeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-react_nativeTests/Pods-react_nativeTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DFB2A67E871AE41D5EFF6CFA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_nativeUITests/Pods-react_nativeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_nativeUITests/Pods-react_nativeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-react_nativeUITests/Pods-react_nativeUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

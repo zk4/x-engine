@@ -20,6 +20,7 @@
     self.navigationItem.title = @"JustViewController";
     [self setupView];
 }
+
 - (void)setupView {
     {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

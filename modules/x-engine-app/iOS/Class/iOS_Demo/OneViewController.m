@@ -10,7 +10,9 @@
 #import "iDirectManager.h"
 #import "XENativeContext.h"
 #import "iDevice.h"
- 
+#import <React/RCTRootView.h>
+#import <React/RCTBridge.h>
+
 
 @interface OneViewController ()
 
@@ -20,28 +22,15 @@
     
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
-}
-
-- (void)setupUI {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 100, [UIScreen mainScreen].bounds.size.height / 2 - 200, 200, 80);
-    btn.layer.masksToBounds = YES;
-    btn.layer.cornerRadius = 15.0;
-    btn.layer.borderWidth = 2;
-    btn.layer.borderColor = [UIColor blackColor].CGColor;
-    [btn setTitle:@"Push React Native" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(gotoRn) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-}
-
-- (void)gotoRn {
-//    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"App"}} frame:[UIScreen mainScreen].bounds];
     
-//    [XENP(iDirectManager) push:@"orn://localhost:8081/index.bundle?platform=ios"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"taroDemo"}} frame:[UIScreen mainScreen].bounds];
+    id<iDevice> device = XENP(iDevice);
+    float tabbarHeight= [device getTabbarHeight];
+    CGRect frame =  CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
+    [XENP(iDirectManager) addToTab:self uri:@"lrn://rnapps/index.bundle" params:@{@"hideNavbar":@TRUE, @"__RN__":@{@"moduleName":@"taroDemo"}} frame:frame];
     
-    NSString *url = @"omp://10.2.148.80:10086/#/pages/index/index";
-    [XENP(iDirectManager) push:url params:@{@"hideNavbar":@TRUE} frame:[UIScreen mainScreen].bounds];
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"rnapps/index.bundle" withExtension:nil];
+//    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:url moduleName:@"taroDemo" initialProperties:nil launchOptions:nil];
+//    rootView.frame = self.view.frame;
+//    [self.view addSubview: rootView];
 }
 @end

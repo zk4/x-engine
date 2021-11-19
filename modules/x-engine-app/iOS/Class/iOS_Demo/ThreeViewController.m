@@ -9,13 +9,7 @@
 #import "ThreeViewController.h"
 #import <iDirectManager.h>
 #import <XENativeContext.h>
-#import <React/RCTRootView.h>
-#import <React/RCTBridge.h>
-
-
-//#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
-
-
+#import "iDevice.h"
 @interface ThreeViewController ()
 
 @end
@@ -24,14 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // 本地bundle加载reactnative
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"bundle/index.jsbundle" withExtension:nil];
-//    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:url moduleName:@"App" initialProperties:nil launchOptions:nil];
-//    rootView.frame = self.view.frame;
-//    [self.view addSubview:rootView];
-    
+    id<iDevice> device = XENP(iDevice);
+    float tabbarHeight= [device getTabbarHeight];
+    CGRect frame =  CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
     // 本地地址加载rn
-    [XENP(iDirectManager) push:@"lrn://bundle/index.jsbundle"  params:@{@"hideNavbar":@TRUE,@"__RN__":@{@"moduleName":@"App"}} frame:[UIScreen mainScreen].bounds];
+    [XENP(iDirectManager) addToTab:self uri:@"omp://10.2.148.80:8080" params:@{@"hideNavbar":@TRUE} frame:frame];
 }
 @end

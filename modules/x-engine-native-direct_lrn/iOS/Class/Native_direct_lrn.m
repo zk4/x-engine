@@ -24,7 +24,7 @@ NATIVE_MODULE(Native_direct_lrn)
     return @"com.zkty.native.direct_lrn";
 }
 - (nonnull NSString *)protocol {
-    return @"lrn:";
+    return @"file:";
 }
 -(NSString*) scheme{
     return @"lrn";
@@ -54,7 +54,6 @@ NATIVE_MODULE(Native_direct_lrn)
     
     BOOL isHideNavBar = [params[@"hideNavbar"] boolValue];
     NSString *finalUrl = @"";
-    
     
     NSAssert(!fragment || ![fragment hasPrefix:@"#"]  , @"fragment 不需要加#");
     fragment = (fragment && fragment.length>0) ? [NSString stringWithFormat:@"#%@",fragment] : @"";

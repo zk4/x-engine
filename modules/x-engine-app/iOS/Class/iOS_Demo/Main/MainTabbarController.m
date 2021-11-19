@@ -10,14 +10,12 @@
 #import "OneViewController.h"
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
+#import "FourViewController.h"
 #import <x-engine-native-tabbar/iTabbar.h>
 #import <x-engine-native-core/XENativeContext.h>
 #import <x-engine-native-ui/SafeGestureNavigationController.h>
 
-
-
 @interface MainTabbarController ()
-
 @end
 
 @implementation MainTabbarController
@@ -37,14 +35,18 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     [XENP(iTabbar) registerDelegate:self];
         
-    [self setupChildVc:[[OneViewController alloc] init] title:@"模块1" image:@"one-nor" selectedImage:@"one-sel"];
+    [self setupChildVc:[[OneViewController alloc] init] title:@"orn" image:@"one-nor" selectedImage:@"one-sel"];
     
-    [self setupChildVc:[[TwoViewController alloc] init] title:@"模块2" image:@"two-nor" selectedImage:@"two-sel"];
+    [self setupChildVc:[[TwoViewController alloc] init] title:@"lrn" image:@"two-nor" selectedImage:@"two-sel"];
     
-    [self setupChildVc:[[ThreeViewController alloc] init] title:@"模块3" image:@"three-nor" selectedImage:@"three-sel"];
+    [self setupChildVc:[[ThreeViewController alloc] init] title:@"omp" image:@"three-nor" selectedImage:@"three-sel"];
+    
+    [self setupChildVc:[[FourViewController alloc] init] title:@"microapp" image:@"three-nor" selectedImage:@"three-sel"];
 }
 
 - (void)setupChildVc:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {
@@ -54,10 +56,5 @@
     // 包装一个导航控制器, 添加导航控制器为tabbarcontroller的子控制器
     SafeGestureNavigationController *nav = [[SafeGestureNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];
-}
-- (UIViewController*)getCurrentTabItemVC{
-    UIViewController* ret= [self.viewControllers objectAtIndex:self.selectedIndex ];
-    NSArray* children = ret.childViewControllers;
-    return children[0];
 }
 @end

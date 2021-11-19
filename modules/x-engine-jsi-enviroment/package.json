@@ -1,0 +1,41 @@
+{
+  "name": "@zkty-team/x-engine-jsi-enviroment",
+  "version": "3.0.3",
+  "description": "enviroment",
+  "main": "h5/src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "WEBPACK_MODE=development webpack-dev-server --mode development -p --open --host 0.0.0.0 --config webpack.dev.js",
+    "md": "webpack  --config webpack.md.js",
+    "build": "webpack  --config webpack.prod.js",
+    "prod": "WEBPACK_MODE=production webpack  --config webpack.prod.js",
+    "patch": "npm version patch"
+  },
+  "files": [
+    "h5/src/*.js",
+    "h5/src/*.md",
+    "*.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "benchmark": "^2.1.4",
+    "css-loader": "^3.6.0",
+    "file-loader": "^1.1.11",
+    "fs-extra": "^9.0.1",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "vconsole-webpack-plugin": "^1.5.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server-qr-code": "^1.2.0"
+  },
+  "dependencies": {
+    "@zkty-team/x-cli": "^1.26.0",
+    "@zkty-team/x-engine-core": "^0.1.13"
+  },
+  "gitHead": "34c89869efddc496e03329310dab8d05497922b4"
+}

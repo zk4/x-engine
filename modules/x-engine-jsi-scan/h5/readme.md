@@ -2,7 +2,7 @@
 
 JSI Id: com.zkty.jsi.scan
 
-version: 2.9.0
+version: 3.0.3
 
 
 

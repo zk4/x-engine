@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jsi.enviroment">
+ <application>
+    <meta-data
+        android:name="com.zkty.jsi.enviroment"
+        android:value="com.zkty.jsi.JSI_enviroment" />
+  </application>
+</manifest>

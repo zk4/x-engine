@@ -6,7 +6,7 @@
 
 JSI Id: com.zkty.jsi.device
 
-version: 2.9.0
+version: 3.0.3
 
 
 
@@ -192,6 +192,8 @@ interface DeviceDTO {
   language: string;
   // 设备版本
   UUID: string;
+  // 手机类型
+  photoType: string;
 
 }
 ``` 

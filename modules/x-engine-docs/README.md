@@ -1,6 +1,6 @@
-<img src="assets/image-20210522170631443.png" alt="image-20210522170631443" style="center:true;zoom:50%;" />
+![image-20211119140240084](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211119140240084.png)
 
-# X-engine 简介
+
 
 x-engine 是一个跨端模块管理框架. <span style="color:blue">管理原生模块(iOS/android)</span>。 所有功能特性均由模块支撑。
 

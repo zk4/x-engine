@@ -10,10 +10,12 @@
     },
     "scripts": {
         "build:weapp": "taro build --type weapp",
-        "build:h5": "taro build --type h5",
-        "build:rn": "taro build --type rn",
         "dev:weapp": "npm run build:weapp -- --watch",
+
+        "build:h5": "taro build --type h5",
         "dev:h5": "npm run build:h5 -- --watch",
+
+        "build:rn": "taro build --type rn",
         "dev:rn": "npm run build:rn -- --watch"
     },
     "browserslist": [
@@ -31,9 +33,10 @@
         "@tarojs/runtime": "3.3.5",
         "@tarojs/taro": "3.3.5",
         "@tarojs/taro-rn": "^3.3.14",
-        "react": "^17.0.0",
         "react-dom": "^17.0.0",
-        "react-native": "^0.64.0",
+        "react": "17.0.2",
+        "react-native": "0.66.0",
+        "react-native-unimodules": "^0.14.10",
         "react-native-gesture-handler": "^1.10.3",
         "react-native-safe-area-context": "^3.0.1",
         "react-native-safe-area-view": "^1.1.1"

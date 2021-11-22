@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { View, Button, Text } from "@tarojs/components";
+import { View, Button } from "@tarojs/components";
 import { NativeModules } from "react-native";
 import "./index.css";
 

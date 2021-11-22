@@ -10,8 +10,6 @@
 #import "iDirectManager.h"
 #import "XENativeContext.h"
 #import "iDevice.h"
-#import <React/RCTRootView.h>
-#import <React/RCTBridge.h>
 
 
 @interface OneViewController ()
@@ -26,7 +24,8 @@
     id<iDevice> device = XENP(iDevice);
     float tabbarHeight= [device getTabbarHeight];
     CGRect frame =  CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-tabbarHeight);
-    [XENP(iDirectManager) addToTab:self uri:@"lrn://rnapps/index.bundle" params:@{@"hideNavbar":@TRUE, @"__RN__":@{@"moduleName":@"taroDemo"}} frame:frame];
+    [XENP(iDirectManager) addToTab:self uri:@"lrn://rnapps/index.bundle" params:@{@"hideNavbar":@TRUE, @"__RN__":@{@"moduleName":@"App"}} frame:frame];
+//    [XENP(iDirectManager) addToTab:self uri:@"orn://localhost:8081/index.bundle?platform=ios" params:@{@"hideNavbar":@TRUE, @"__RN__":@{@"moduleName":@"App"}} frame:frame];
     
 //    NSURL *url = [[NSBundle mainBundle] URLForResource:@"rnapps/index.bundle" withExtension:nil];
 //    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:url moduleName:@"taroDemo" initialProperties:nil launchOptions:nil];

@@ -202,9 +202,9 @@ NATIVE_MODULE(Native_direct)
     if([direct respondsToSelector:@selector(push:params:)]){
         [direct push:container params:params];
     }else{
-
+        
         UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
-
+        
         //  删除历史逻辑
         NSDictionary* nativeParams =  [params objectForKey:@"nativeParams"];
         int deleteHistory = 0;

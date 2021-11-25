@@ -69,7 +69,7 @@ import VueRouter from "@zkty-team/vue-router"
 Vue.use(VueRouter)
 ```
 **值得注意的是**
-> 我们支持 'omp' 和 'microapp' 俩种protocol, 默认情况下如果你的页面打开是'http'或者'https' 那么protocol便是'omp', 如果你的页面是本地文件类似如'file'协议,便是 'microapp'<br>
+> 我们支持 'omp','omps' 和 'microapp' protocol, 如果你的页面打开是'http' 那么protocol便是'omp',打开是'https' 那么protocol便是'omps'.<br>
 ```javascript
 import Vue from "vue"
 import VueRouter from "@zkty-team/vue-router"

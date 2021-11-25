@@ -21,15 +21,20 @@ interface NamedDTO {
 }
 
 
+// 这个方法其实只为了确定 jsi 能通。永远会返回 {code:0，msg:''}。
 @sync
 function isHybird(): {
+  // 如果没问题，code 为 0
+  // 有问题 code -1
   code: int,
+  // 问题描述
   msg:string
 } {}
 
 // test function
 function test_isHybrid() {
   let val = xengine.api("com.zkty.jsi.enviroment", "isHybird");
-  document.getElementById("debug_text").innerText = JSON.stringify(val);
-  xengine.assert('test_isHybrid', val.code ===0 && val.msg==="" )
+  console.log(val)
+  // document.getElementById("debug_text").innerText = JSON.stringify(val);
+  // xengine.assert('test_isHybrid', val.code ===0 && val.msg==="" )
 }

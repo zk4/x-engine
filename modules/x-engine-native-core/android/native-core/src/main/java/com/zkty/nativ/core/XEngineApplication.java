@@ -21,10 +21,6 @@ public class XEngineApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         application = this;
-        //主进程中初始化引擎
-        if (Utils.getCurProcessName(this).equals(getApplicationInfo().packageName)) {
-            NativeContext.sharedInstance().init(this);
-        }
         ActivityStackManager.getInstance().register(this);
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override

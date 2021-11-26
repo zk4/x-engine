@@ -103,6 +103,7 @@ dependencies {
     implementation project(':jsi-globalstorage')
     implementation project(':jsi-geo')
     implementation project(':jsi-media')
+    implementation project(':jsi-enviroment')
 //    implementation project(':jsi-media2')
 
     implementation 'com.didichuxing.doraemonkit:doraemonkit:3.2.0'

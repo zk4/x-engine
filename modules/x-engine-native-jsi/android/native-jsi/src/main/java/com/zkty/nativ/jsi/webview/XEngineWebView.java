@@ -2,6 +2,7 @@ package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -81,6 +82,7 @@ public class XEngineWebView extends DWebView {
         getSettings().setDomStorageEnabled(true);
         getSettings().setDatabaseEnabled(true);
         setWebContentsDebuggingEnabled(!"release".equals(BuildConfig.BUILD_TYPE));
+//        setWebContentsDebuggingEnabled(true);
         ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         setLayoutParams(params);
@@ -105,7 +107,13 @@ public class XEngineWebView extends DWebView {
                 }
             }
 
-//            @Override
+            @Override
+            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+                super.onPageStarted(webView, s, bitmap);
+                evaluateJavascript("window._dswk=true;");
+            }
+
+            //            @Override
 //            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
 //
 //                Log.d("DWebview", "shouldOverrideUrlLoading  = " + s);

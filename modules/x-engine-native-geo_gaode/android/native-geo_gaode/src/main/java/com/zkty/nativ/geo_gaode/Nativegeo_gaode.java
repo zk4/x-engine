@@ -29,45 +29,49 @@ public class Nativegeo_gaode extends NativeModule implements Igeo {
     @Override
     public void afterAllNativeModuleInited() {
         //初始化定位
-        mLocationClient = new AMapLocationClient(XEngineApplication.getApplication().getApplicationContext());
-        mLocationListener = new AMapLocationListener() {
-            @Override
-            public void onLocationChanged(AMapLocation amapLocation) {
-                if (amapLocation != null) {
-                    if (amapLocation.getErrorCode() == 0) {
-                        //可在其中解析amapLocation获取相应内容。
-                        Map<String, String> result = new HashMap<>();
-                        result.put("longitude", String.valueOf(amapLocation.getLongitude()));
-                        result.put("latitude", String.valueOf(amapLocation.getLatitude()));
-                        result.put("address", amapLocation.getAddress());
-                        result.put("country", amapLocation.getCountry());
-                        result.put("province", amapLocation.getProvince());
-                        result.put("city", amapLocation.getCity());
-                        result.put("district", amapLocation.getDistrict());
-                        result.put("street", amapLocation.getStreet());
-                        if (mCallback != null) {
-                            mCallback.onLocation(JSON.toJSONString(result));
+        try {
+            mLocationClient = new AMapLocationClient(XEngineApplication.getApplication().getApplicationContext());
+
+            mLocationListener = new AMapLocationListener() {
+                @Override
+                public void onLocationChanged(AMapLocation amapLocation) {
+                    if (amapLocation != null) {
+                        if (amapLocation.getErrorCode() == 0) {
+                            //可在其中解析amapLocation获取相应内容。
+                            Map<String, String> result = new HashMap<>();
+                            result.put("longitude", String.valueOf(amapLocation.getLongitude()));
+                            result.put("latitude", String.valueOf(amapLocation.getLatitude()));
+                            result.put("address", amapLocation.getAddress());
+                            result.put("country", amapLocation.getCountry());
+                            result.put("province", amapLocation.getProvince());
+                            result.put("city", amapLocation.getCity());
+                            result.put("district", amapLocation.getDistrict());
+                            result.put("street", amapLocation.getStreet());
+                            if (mCallback != null) {
+                                mCallback.onLocation(JSON.toJSONString(result));
+                            }
+                            mLocationClient.stopLocation();
+                            return;
+
+                        } else {
+                            //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                            Log.d("AmapError", "location Error, ErrCode:"
+                                    + amapLocation.getErrorCode() + ", errInfo:"
+                                    + amapLocation.getErrorInfo());
+
                         }
-                        mLocationClient.stopLocation();
-                        return;
-
-                    } else {
-                        //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
-                        Log.d("AmapError", "location Error, ErrCode:"
-                                + amapLocation.getErrorCode() + ", errInfo:"
-                                + amapLocation.getErrorInfo());
-
                     }
+                    if (mCallback != null) {
+                        mCallback.onLocation(null);
+                    }
+                    mLocationClient.stopLocation();
                 }
-                if (mCallback != null) {
-                    mCallback.onLocation(null);
-                }
-                mLocationClient.stopLocation();
-            }
-        };
-        //设置定位回调监听
-        mLocationClient.setLocationListener(mLocationListener);
-
+            };
+            //设置定位回调监听
+            mLocationClient.setLocationListener(mLocationListener);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -8,10 +8,6 @@ template 工程地址: https://github.com/zkty-team/vue-template
 
 ## 生命周期
 
-template 工程地址: https://github.com/zkty-team/vue-template
-
-! 生命周期将会回调当前页面所有的注册过的web页面.这个要特别注意. 比如: 你在当前 web 里有 5 个组件,都在 methods 里写了 onNativeShow 那就会有 5 次回调.
-
 ``` js
 const ON_NATIVE_SHOW = "onNativeShow"; // 原生显示, 有可能 webview 还没有加载完成。 需要自行判断
 const ON_NATIVE_HIDE = "onNativeHide"; // 原生隐藏
@@ -45,7 +41,7 @@ methods: {
 
 ---
 
-## vue-router 兼容
+## vue-router 兼容  （可选）
 
 - 为了方便业务人员的开发,我们对原生VueRouter的跳转进行了拦截.
 - 开发人员可以直接使用VueRouter的`push()`和`go()`来进行路由的相关操作。
@@ -69,20 +65,25 @@ import VueRouter from "@zkty-team/vue-router"
 Vue.use(VueRouter)
 ```
 **值得注意的是**
-> 我们支持 'omp','omps' 和 'microapp' protocol, 如果你的页面打开是'http' 那么protocol便是'omp',打开是'https' 那么protocol便是'omps'.<br>
-```javascript
-import Vue from "vue"
-import VueRouter from "@zkty-team/vue-router"
-Vue.use(VueRouter)
-```
-> 当然我们也支持手动传入protocol, 例如:
+> 我们支持 'omp','omps' 和 'microapp' scheme, 如果你的页面打开是'http:' 那么 scheme 便是'omp',如果'https:' 那么 scheme 便是'omps'.<br>
+>
+> 一定要注意区分 scheme 与 protocol。
+>
+> scheme 一般指人为定义的字段。  protocol 一般指标准的字段。且结尾为冒号
+>
+> 如 omp 是 scheme,  映射到 http:
+
+
 ```javascript
 
 import Vue from "vue"
 import VueRouter from "@zkty-team/vue-router"
 Vue.use(VueRouter, 'omp')
 ```
+
+
 3. 配置成功后即可使用VueRouter的跳转方式进行跳转相关的操作 [详细参考](./docs/modules/all/模块-direct.md)
+
 > tips:
 >
 > router配置中请设置为相同的path和name 如下
@@ -99,7 +100,7 @@ const routes = [
 
 ---
 
-## vuex 兼容
+## vuex 兼容  （可选）
 
 由于 microapp 容器里的每一页都是在新的 webview 里, 传统的 vuex 是不会生效的.我们为 vuex 做了一定的兼容. 现在仅是可用. 性能完全没考虑.
 
@@ -109,21 +110,14 @@ const routes = [
 npm install @zkty-team/vuex
 ```
 
-2. 在vue项目中将以下内容放在main.js 即可 ·
 
-```javascript
-import store from "./store"
-new Vue({
-  store,
-  render: (h) ==>h(App),
-}).$mount("#app");
-```
 
-3. 在store的index中配置以下内容
+2. 与传统的 vuex 包使用方式一模一样。
+
 ```javascript
 import Vue from 'vue'
-import Vuex from '@zkty-team/vuex'
-Vue.use(Vuex)
+import Vuex from '@zkty-team/vuex'   //  <----  引入
+Vue.use(Vuex)                        //  <----  使用
 const store = new Vuex.Store({
     state: {
         count: 0,
@@ -158,10 +152,10 @@ Vuex 可以帮助我们管理共享状态，并附带了更多的概念和框架
 
 
 
-##  header 适配
+##  header 适配 （可选）
 
 - 基于Vue的仿原生导航条
-- 完美支持Android和iOS上导航条高度
+- 支持Android和iOS上导航条高度
 - 通过@zkty-team/vue-router中的meta传递信息
 - 使用`Header`,开发人员不用在每个页面都配置一次，主需要在配置router的信息的时候配置好要展示的内容即可。
 

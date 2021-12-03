@@ -16,17 +16,17 @@ npm install @zkty-team/x-engine-core
 
 ```bash
 import xengine from "@zkty-team/x-engine-core"
-Vue.use(xengine)
+Vue.use(xengine)  // Vue 要选 配置成功后即可在全局通过`this.$engine.api`去触发原生相关模块
 ```
 
-3. 配置成功后即可在全局通过`this.$engine.api`去触发原生相关模块
+3. 使用
 
 ```javascript
 // 同步调用示例
-xengine.api("com.zkty.jsi.device",	"getTabbarHeight")
+xengine.api("com.zkty.jsi.device",	"getTabbarHeight",{})
 
 // 异步调用示例(异步的方法参考详细模块调用)
-xengine.api("com.zkty.jsi.device",	"getTabbarHeight"), function (res) {
+xengine.api("com.zkty.jsi.device",	"getTabbarHeight",{}, function (res) {
 	 console.log("res :>> ", res)
 })
 ```

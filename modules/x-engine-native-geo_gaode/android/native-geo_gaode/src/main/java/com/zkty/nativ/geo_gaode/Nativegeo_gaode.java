@@ -82,7 +82,7 @@ public class Nativegeo_gaode extends NativeModule implements Igeo {
         option.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy)//高精度定位模式：会同时使用网络定位和GPS定位，优先返回最高精度的定位结果，以及对应的地址描述信息。
                 .setOnceLocationLatest(true)//获取最近3s内精度最高的一次定位结果：
                 .setNeedAddress(true)//设置定位同时是否需要返回地址描述。
-                .setMockEnable(false)//设置是否允许模拟软件Mock位置结果，多为模拟GPS定位结果
+                .setMockEnable(true)//设置是否允许模拟软件Mock位置结果，多为模拟GPS定位结果
                 .setLocationCacheEnable(true);//开启缓存机制
 
         if (null != mLocationClient) {

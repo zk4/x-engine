@@ -40,6 +40,22 @@ project(':native-direct_microapp').projectDir = new File('../../x-engine-native-
 include ':native-direct_native'
 project(':native-direct_native').projectDir = new File('../../x-engine-native-direct_native/android/native-direct_native')
 
+include ':native-direct_lrn'
+project(':native-direct_lrn').projectDir = new File('../../x-engine-native-direct_lrn/android/native-direct_lrn')
+
+include ':native-direct_orn'
+project(':native-direct_orn').projectDir = new File('../../x-engine-native-direct_orn/android/native-direct_orn')
+
+include ':native-direct_orns'
+project(':native-direct_orns').projectDir = new File('../../x-engine-native-direct_orns/android/native-direct_orns')
+
+include ':native-direct_rn'
+project(':native-direct_rn').projectDir = new File('../../x-engine-native-direct_rn/android/native-direct_rn')
+
+include ':native-direct_rns'
+project(':native-direct_rns').projectDir = new File('../../x-engine-native-direct_rns/android/native-direct_rns')
+
+
 include ':native-share'
 project(':native-share').projectDir = new File('../../x-engine-native-share/android/native-share')
 

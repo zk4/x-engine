@@ -12,7 +12,7 @@ public class Nativedirect_lrn extends NativeModule implements Idirect_lrn {
 
     @Override
     public String moduleId() {
-        retulrn "com.zkty.native.direct_lrn";
+        return  "com.zkty.native.direct_lrn";
     }
 
     @Override

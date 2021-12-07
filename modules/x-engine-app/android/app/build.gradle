@@ -85,8 +85,9 @@ dependencies {
     implementation project(':native-direct_lrn')
     implementation project(':native-direct_orn')
     implementation project(':native-direct_orns')
-    implementation project(':native-direct_rn')
-    implementation project(':native-direct_rns')
+//    implementation project(':rn-direct')
+    implementation project(':native-react_native')
+
     implementation project(':native-jsi')
     implementation project(':native-share')
     implementation project(':native-share_wx')

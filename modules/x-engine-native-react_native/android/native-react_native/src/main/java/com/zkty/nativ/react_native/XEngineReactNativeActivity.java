@@ -1,24 +1,20 @@
-package com.zkty.nativ.core.base;
+package com.zkty.nativ.react_native;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactInstanceManagerBuilder;
-import com.facebook.react.ReactPackage;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.bridge.JSBundleLoader;
+import com.facebook.react.bridge.JSBundleLoaderDelegate;
+import com.facebook.react.common.LifecycleState;
 import com.facebook.soloader.SoLoader;
-
-import java.util.List;
-
-import nativ.core.R;
 
 /**
  * @author : MaJi
@@ -51,13 +47,24 @@ public class XEngineReactNativeActivity extends AppCompatActivity {
 
         ReactInstanceManagerBuilder builder = ReactInstanceManager.builder();
 
+        JSBundleLoader index = new JSBundleLoader() {
+            @Override
+            public String loadScript(JSBundleLoaderDelegate delegate) {
+                return "null";
+            }
+        }.createFileLoader("index");
+
+
+
+
         builder.setApplication(getApplication()).setCurrentActivity(this);
         builder.setBundleAssetName(assetsName);
         builder.setJSMainModulePath(modulePath);
+        builder.setJSBundleLoader(index);
         builder
 //                .addPackages(packages)
-                .setUseDeveloperSupport(true);
-//                .setInitialLifecycleState(LifecycleState.RESUMED);
+                .setUseDeveloperSupport(false)
+                .setInitialLifecycleState(LifecycleState.RESUMED);
 
         mReactInstanceManager = builder.build();
         // 注意这里的MyReactNativeApp 必须对应"index.js"中的
@@ -66,7 +73,6 @@ public class XEngineReactNativeActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("title","标题1");
         mReactRootView.startReactApplication(mReactInstanceManager, moduleName, bundle);
-
 
         setContentView(mReactRootView);
 

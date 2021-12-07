@@ -50,8 +50,4 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.6.1'
     api 'androidx.recyclerview:recyclerview:1.1.0'
     api 'com.squareup.okhttp3:okhttp:3.8.1'
-    /*rn start*/
-    api "com.facebook.react:react-native:+"  // From node_modules
-    api "org.webkit:android-jsc:+"
-    /*rn end*/
 }

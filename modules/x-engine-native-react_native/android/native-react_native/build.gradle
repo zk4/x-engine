@@ -42,4 +42,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     compile project(':native-core')
+    /*rn start*/
+    api "com.facebook.react:react-native:+"  // From node_modules
+    api "org.webkit:android-jsc:+"
+    /*rn end*/
 }

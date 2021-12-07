@@ -49,11 +49,11 @@ project(':native-direct_orn').projectDir = new File('../../x-engine-native-direc
 include ':native-direct_orns'
 project(':native-direct_orns').projectDir = new File('../../x-engine-native-direct_orns/android/native-direct_orns')
 
-include ':native-direct_rn'
-project(':native-direct_rn').projectDir = new File('../../x-engine-native-direct_rn/android/native-direct_rn')
+//include ':rn-direct'
+//project(':rn-direct').projectDir = new File('../../x-engine-rn-direct/android/rn-direct')
 
-include ':native-direct_rns'
-project(':native-direct_rns').projectDir = new File('../../x-engine-native-direct_rns/android/native-direct_rns')
+include ':native-react_native'
+project(':native-react_native').projectDir = new File('../../x-engine-native-react_native/android/native-react_native')
 
 
 include ':native-share'

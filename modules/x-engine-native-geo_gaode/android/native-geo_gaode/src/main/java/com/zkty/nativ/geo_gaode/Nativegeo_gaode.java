@@ -30,6 +30,7 @@ public class Nativegeo_gaode extends NativeModule implements Igeo {
     public void afterAllNativeModuleInited() {
         //初始化定位
         try {
+
             mLocationClient = new AMapLocationClient(XEngineApplication.getApplication().getApplicationContext());
 
             mLocationListener = new AMapLocationListener() {

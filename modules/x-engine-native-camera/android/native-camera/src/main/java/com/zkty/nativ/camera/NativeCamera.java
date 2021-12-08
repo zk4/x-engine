@@ -246,7 +246,8 @@ public class NativeCamera extends NativeModule implements ICamera {
                 Log.d(TAG, "onRequestPermissionsResult" + requestCode);
                 if (requestCode == PERMISSION_REQUEST_CAMERA) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (act.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        if (act.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                                && act.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                             showDialog(act);
                         }
                     }
@@ -257,8 +258,9 @@ public class NativeCamera extends NativeModule implements ICamera {
 //        }
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && act.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            act.requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && (act.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                || act.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+            act.requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CAMERA);
         } else {
             showDialog(act);
         }
@@ -468,9 +470,11 @@ public class NativeCamera extends NativeModule implements ICamera {
     public void saveImageToAlbum(String imageData, String type, SaveCallBack callBack) {
         Activity activity = XEngineApplication.getCurrentActivity();
         if ("url".equals(type)) {
-            ImageUtils.savePictureByUrl(activity, imageData,(status, msg) -> {});
+            ImageUtils.savePictureByUrl(activity, imageData, (status, msg) -> {
+            });
         } else {
-            ImageUtils.savePictureByBase64(activity, imageData,(status, msg) -> {});
+            ImageUtils.savePictureByBase64(activity, imageData, (status, msg) -> {
+            });
         }
         callBack.saveCallBack();
     }

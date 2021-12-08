@@ -1,18 +1,13 @@
 package com.zkty.nativ.react_native;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.react.ReactInstanceManager;
-import com.facebook.react.ReactInstanceManagerBuilder;
 import com.facebook.react.ReactRootView;
-import com.facebook.react.bridge.JSBundleLoader;
-import com.facebook.react.bridge.JSBundleLoaderDelegate;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.soloader.SoLoader;
 
@@ -27,6 +22,16 @@ public class XEngineReactNativeActivity extends AppCompatActivity {
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
 
+
+    public static void start(Activity activity, String moduleName, String assetsName, String modulePath){
+        Intent intent = new Intent(activity,XEngineReactNativeActivity.class);
+        intent.putExtra("moduleName",moduleName);
+        intent.putExtra("assetsName",assetsName);
+        intent.putExtra("modulePath",modulePath);
+        activity.startActivity(intent);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,55 +39,38 @@ public class XEngineReactNativeActivity extends AppCompatActivity {
         SoLoader.init(this, false);
 //        List<ReactPackage> packages = new PackageList(getApplication()).getPackages();
 
-
         String moduleName = getIntent().getStringExtra("moduleName");
-        String scheme = getIntent().getStringExtra("scheme");
         String assetsName = getIntent().getStringExtra("assetsName");
         String modulePath = getIntent().getStringExtra("modulePath");
 
 
-
-
         mReactRootView = new ReactRootView(this);
 
-        ReactInstanceManagerBuilder builder = ReactInstanceManager.builder();
 
-        JSBundleLoader index = new JSBundleLoader() {
-            @Override
-            public String loadScript(JSBundleLoaderDelegate delegate) {
-                return "null";
-            }
-        }.createFileLoader("index");
-
-
-
-
-        builder.setApplication(getApplication()).setCurrentActivity(this);
-        builder.setBundleAssetName(assetsName);
-        builder.setJSMainModulePath(modulePath);
-        builder.setJSBundleLoader(index);
-        builder
+        mReactInstanceManager = ReactInstanceManager.builder().
+                setApplication(getApplication())
+                .setCurrentActivity(this)
+                .setBundleAssetName(assetsName)
+                .setJSMainModulePath(modulePath)
 //                .addPackages(packages)
                 .setUseDeveloperSupport(false)
-                .setInitialLifecycleState(LifecycleState.RESUMED);
-
-        mReactInstanceManager = builder.build();
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .build();
         // 注意这里的MyReactNativeApp 必须对应"index.js"中的
         // "AppRegistry.registerComponent()"的第一个参数
-
         Bundle bundle = new Bundle();
         bundle.putString("title","标题1");
         mReactRootView.startReactApplication(mReactInstanceManager, moduleName, bundle);
 
         setContentView(mReactRootView);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + getPackageName()));
-                startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
-            }
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (!Settings.canDrawOverlays(this)) {
+//                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+//                        Uri.parse("package:" + getPackageName()));
+//                startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
+//            }
+//        }
 
     }
 

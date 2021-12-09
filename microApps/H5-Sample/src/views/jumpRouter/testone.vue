@@ -62,8 +62,9 @@ export default {
       this.$router.push({
         name: "testtwo",
         query: {
-          changeNavTitle: "第二页"
-        },
+          changeNavTitle: "第二页",
+          other:JSON.stringify([{ a:1, b:'中文' }])        
+          },
         params: {
           id: 1,
           age: 18,

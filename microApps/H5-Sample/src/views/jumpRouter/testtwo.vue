@@ -15,6 +15,8 @@
     <div>id ==> {{ id }}</div>
     <div>age ==> {{ age }}</div>
     <div>name ==> {{ name }}</div>
+    <div>other ==> {{ other }}</div>
+    <div>other[0] ==> {{ other[0] }}</div>
   </div>
 </template>
 
@@ -25,30 +27,17 @@ export default {
       id: "",
       age: "",
       name: "",
+      other: "",
     }
   },
 
-  // beforeCreate() {
-  //   console.log("pagetwo-beforeCreate")
-  // },
-  // created() {
-  //   console.log("pagetwo-created")
-  // },
-  // beforeMount() {
-  //   console.log("beforeMount")
-  // },
   mounted() {
-    // console.log("two mounted")
+    console.log(this.$route.params)
     this.id = this.$route.params.id
     this.age = this.$route.params.age
     this.name = this.$route.params.name
+    this.other = JSON.parse(this.$route.query.other)
   },
-  // beforeDestroy() {
-  //   console.log("beforeDestroy")
-  // },
-  // destroyed() {
-  //   console.log("destroyed")
-  // },
 
   methods: {
   handlerPushNative(){

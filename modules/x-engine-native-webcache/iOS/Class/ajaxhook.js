@@ -327,6 +327,10 @@
                 params.headers = Object.assign(params.headers,{
                     'Content-Type': `multipart/form-data;boundary=${boundary}`
                 })
+            }else{
+                params.headers = {
+                    'Content-Type': `multipart/form-data;boundary=${boundary}`
+                }
             }
         }
 

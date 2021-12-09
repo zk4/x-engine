@@ -104,26 +104,6 @@
     ////////////////////////////////////////////////////////////////////////////////
     
     async function formData2Json (params, formData) {
-        let object = {};
-//        for (let [name, value] of formData) {
-//            if (value instanceof File) {
-//                let data = await value.arrayBuffer()
-//
-//                let base64Str = encode(data);
-//
-//                object['@' + name] = {
-//                    'type': value.type,
-//                    'name': value.name,
-//                    'binary': base64Str
-//                }
-//
-//            } else {
-//                object[name] = value
-//            }
-//        }
-//        params.data = object
-        
-   
         const parts = [];
         for (const [name, value] of formData) {
             parts.push(`--${boundary}\r\n`);
@@ -154,15 +134,7 @@
             const item = result[i];
             newParts[i] = encode(item)
         }
-        // const test = []
-        // for (i = 0; i < newParts.length; i++) {
-        //  const item = newParts[i];
-        //  console.log('item: ', item);
-        //  test[i] = decode(item)
-        // }
-        // console.log('test: ', test);
         params.data = newParts
-//        console.log('object ------ params: ', params);
     }
     
     function nativeRequest (xhr, params) {
@@ -352,6 +324,7 @@
         if (FormData.prototype.isPrototypeOf(params.data)) {
             await formData2Json(params, params.data)
             params.headers = {
+                ...params.headers,
                 'Content-Type': `multipart/form-data;boundary=${boundary}`
             }
         }

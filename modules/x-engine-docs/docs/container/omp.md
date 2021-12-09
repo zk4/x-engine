@@ -9,7 +9,7 @@ iOS 使用的 wkwebview。
 
 ## 一些JS在平台之间要注意差异
 
-### 时间
+### new Date 差异
 
 ```
 new Date('2017-07-13 20:01:02')
@@ -17,13 +17,16 @@ new Date('2017-07-13 20:01:02')
 
 这条命令在 Chrome， X5 控制台中运行，结果如下：
 
+```
 Thu Jul 13 2017 20:01:02 GMT+0800 (China Standard Time)
+```
 
 
 
 而在Safari，Wkwebview 中，结果却是这样：
-
+```
 Invalid Date
+```
 
 
 

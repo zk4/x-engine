@@ -26,7 +26,7 @@ public class Nativedirect_lrn extends NativeModule implements IDirect {
 
     @Override
     public String scheme() {
-        return "file";
+        return "lrn";
     }
 
     @Override
@@ -37,7 +37,17 @@ public class Nativedirect_lrn extends NativeModule implements IDirect {
     @Override
     public void push(String protocol, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
         Activity mActivity = XEngineApplication.getCurrentActivity();
-        XEngineReactNativeActivity.start(mActivity,"MyReactNativeApp","index.android.jsbundle","indexsdadad");
+        if(mActivity == null){
+            return;
+        }
+        //应用名称
+        String moduleName = params.get("moduleName");
+        //本地 jsBundle 名称
+        String bundleAssetName = params.get("bundleAssetName");
+        //debug 本地 jsBundle Serve  jsMainModulePath 设置
+        String jsMainModulePath = params.get("jsMainModulePath");
+
+        XEngineReactNativeActivity.start(mActivity,moduleName,bundleAssetName,jsMainModulePath,query);
     }
 
     @Override

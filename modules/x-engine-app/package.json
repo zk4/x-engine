@@ -1,13 +1,7 @@
 {
-    "name": "taro-demo",
+    "name": "tarodemo",
     "version": "1.0.0",
     "private": true,
-    "description": "taro-demo",
-    "templateInfo": {
-        "name": "default",
-        "typescript": false,
-        "css": "none"
-    },
     "scripts": {
         "build:weapp": "taro build --type weapp",
         "dev:weapp": "npm run build:weapp -- --watch",

@@ -6,15 +6,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zkty.modules.engine.R;
-import com.zkty.nativ.core.ActivityStackManager;
-import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.direct.DirectManager;
 import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
@@ -67,7 +64,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void nextAct(View view) {
-        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
+        HashMap<String, String> query = new HashMap<>();
+        query.put("title","title1");
+        query.put("sex","1");
+        query.put("age","2");
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("moduleName","tarodemo");
+        params.put("bundleAssetName","index.android.jsbundle");
+        params.put("jsMainModulePath","index");
+
+        DirectManager.push("lrn","","","",query,params);
+
+//        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
     }
 
     public void download(View view) {

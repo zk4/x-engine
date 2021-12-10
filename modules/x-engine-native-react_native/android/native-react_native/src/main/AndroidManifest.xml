@@ -10,5 +10,9 @@
         <meta-data
             android:name="com.zkty.native.react_native"
             android:value="com.zkty.nativ.react_native.Nativereact_native" />
+        <activity android:name="com.zkty.nativ.react_native.XEngineReactNativeActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 </manifest>

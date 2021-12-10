@@ -323,15 +323,9 @@
         // TODO: 处理 formdata, 应该返回 promise
         if (FormData.prototype.isPrototypeOf(params.data)) {
             await formData2Json(params, params.data)
-            if(params.headers){
-                params.headers = Object.assign(params.headers,{
-                    'Content-Type': `multipart/form-data;boundary=${boundary}`
-                })
-            }else{
-                params.headers = {
-                    'Content-Type': `multipart/form-data;boundary=${boundary}`
-                }
-            }
+            params.headers = Object.assign(params.headers || {}, {
+              'Content-Type': `multipart/form-data;boundary=${boundary}`
+            })
         }
 
         // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求

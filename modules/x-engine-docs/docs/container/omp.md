@@ -7,7 +7,9 @@ android 使用的 x5 浏览器。
 
 iOS 使用的 wkwebview。
 
-## 一些JS在平台之间要注意差异
+
+
+## 一些常见问题
 
 ### new Date 差异
 
@@ -24,6 +26,7 @@ Thu Jul 13 2017 20:01:02 GMT+0800 (China Standard Time)
 
 
 而在Safari，Wkwebview 中，结果却是这样：
+
 ```
 Invalid Date
 ```
@@ -41,3 +44,6 @@ moment('2017-07-13 20:01:02', 'YYYY-MM-DD HH:mm:ss').format('YYYYMMDDHHmmss')
 
 
 
+### 本地包，手机白屏
+
+可能情况，打包时 html 里的解析 js 的路径不对。导致本地文件在打开时找不到 js 脚本。

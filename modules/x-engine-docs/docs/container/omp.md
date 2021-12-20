@@ -3,41 +3,33 @@ omp 容器为  online microapp 的缩写. 也就是 h5 拥有本地 api 的功�
 
 
 
-android 使用的 x5 浏览器。
+omp / omps 容器支持在线 h5 + native api的能力。
 
-iOS 使用的 wkwebview。
-
-## 一些JS在平台之间要注意差异
-
-### new Date 差异
-
-```
-new Date('2017-07-13 20:01:02')
-```
-
-这条命令在 Chrome， X5 控制台中运行，结果如下：
-
-```
-Thu Jul 13 2017 20:01:02 GMT+0800 (China Standard Time)
-```
+并带有开箱即用的一些有用特性。
 
 
 
-而在Safari，Wkwebview 中，结果却是这样：
-```
-Invalid Date
-```
+## 缓存
 
+缓存是会拦截 http, https 的请求，现在默认是缓存图片。js，以及 css 等资源性文件。
 
+同时也解决了 iOS 里 wkwebview 在 post 里会丢失 body 的问题。
 
-原来Safari不支持直接将这种格式的字符串转为Date对象，所以接下来的处理就都出错了。
+见 x-engine-jsi-webcache 与 x-engine-native-webcache 模块。
 
-解决方案为：
-引入moment库，然后进行格式转换，例如：
+详见： [分发与缓存](./docs/modules/分发与缓存)
 
-```
-moment('2017-07-13 20:01:02', 'YYYY-MM-DD HH:mm:ss').format('YYYYMMDDHHmmss')
-```
+## 路由
 
+路由是基于接口设计，所以，你可以路由到你想到去的任何容器。
 
+见 x-egnine-native-direct x-egnine-native-direct_omp  x-egnine-native-direct_omps x-egnine-native-direct_microapp 模块。
+
+详见： [分发与缓存](./docs/modules/分发与缓存)
+
+## 热更
+
+见 x-egnine-native-updator 模块。
+
+详见： [分发与缓存](./docs/modules/分发与缓存)
 

@@ -1,6 +1,9 @@
 ;
 (function () {
-    
+    Blob.prototype.arrayBuffer = function(){
+        return new Response(this).arrayBuffer()
+    }
+
     const boundary
     = '----tabrisformdataboundary-' + Math.round(Math.random() * 100000000) + '-yradnuobatadmrofsirbat';
     // blob 转 base64
@@ -103,12 +106,24 @@
     
     ////////////////////////////////////////////////////////////////////////////////
     
+    // 判断某个对象是否存在某个方法
+    function isHaveMethod(object, property) {
+        var t = typeof object[property];
+        return t == 'function' || (!!(t == 'object' && object[property])) || t == 'unknown';
+    }
+    
+    
     async function formData2Json (params, formData) {
         const parts = [];
         for (const [name, value] of formData) {
             parts.push(`--${boundary}\r\n`);
             if (value instanceof File) {
-                let data = await value.arrayBuffer()
+                let data;
+                if (isHaveMethod(value, "arrayBuffer")) {
+                    data = await value.arrayBuffer()
+                } else {
+                    data = Blob.arraybuffer(value)
+                }
                 
                 // let base64Str = encode(data);
                 parts.push(`Content-Disposition: form-data; name="${name}"; filename="${value.name}"\r\n`);

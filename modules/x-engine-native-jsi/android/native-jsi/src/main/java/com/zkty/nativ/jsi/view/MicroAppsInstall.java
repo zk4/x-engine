@@ -279,9 +279,9 @@ public class MicroAppsInstall {
     private boolean isMicroAppValid(File file) {
 
         File file1 = new File(file, "microapp.json");
-        File file2 = new File(file, "sitemap.json");
-        return file1.exists() && file2.exists();
-
+//        File file2 = new File(file, "sitemap.json");
+//        return file1.exists() && file2.exists();
+        return file1.exists();
 
     }
 

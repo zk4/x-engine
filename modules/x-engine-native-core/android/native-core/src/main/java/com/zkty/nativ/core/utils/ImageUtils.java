@@ -337,17 +337,17 @@ public class ImageUtils {
     }
 
 
-    public static boolean savePictureByBase64(Context context, String base64DataStr,SaveCallBack callBack) {
+    public static boolean savePictureByBase64(Context context, String base64DataStr, SaveCallBack callBack) {
         // 1.去掉base64中的前缀
         String base64Str = base64DataStr.substring(base64DataStr.indexOf(",") + 1, base64DataStr.length());
 
         byte[] bytes = Base64.decode(base64Str, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg",callBack);
+        saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg", callBack);
         return true;
     }
 
-    public static void savePictureByUrl(Context context, String photoUrls,SaveCallBack callBack) {
+    public static void savePictureByUrl(Context context, String photoUrls, SaveCallBack callBack) {
 
         new Thread() {
             @Override
@@ -358,7 +358,7 @@ public class ImageUtils {
                         saveBitmap(context, bitmap, System.currentTimeMillis() + ".jpg", new SaveCallBack() {
                             @Override
                             public void saveCallBack(int status, String msg) {
-                                callBack.saveCallBack(status,msg);
+                                callBack.saveCallBack(status, msg);
                             }
                         });
                     }
@@ -389,7 +389,7 @@ public class ImageUtils {
     }
 
 
-    public static Bitmap Base64toBitmap(String base64DataStr){
+    public static Bitmap Base64toBitmap(String base64DataStr) {
         String base64Str = base64DataStr.substring(base64DataStr.indexOf(",") + 1, base64DataStr.length());
         byte[] bytes = Base64.decode(base64Str, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -400,7 +400,7 @@ public class ImageUtils {
     /*
      * 保存文件，文件名为当前日期
      */
-    public static boolean saveBitmap(Context context, Bitmap bitmap, String bitName,SaveCallBack callBack) {
+    public static boolean saveBitmap(Context context, Bitmap bitmap, String bitName, SaveCallBack callBack) {
         String fileName;
         File file;
         String brand = Build.BRAND;
@@ -414,7 +414,7 @@ public class ImageUtils {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            saveSignImage(context, bitName, bitmap,callBack);
+            saveSignImage(context, bitName, bitmap, callBack);
             return true;
         } else {
             Log.d("saveBitmap brand", "" + brand);
@@ -440,14 +440,14 @@ public class ImageUtils {
             e.printStackTrace();
             //保存失败 删除该图
             file.delete();
-            if(callBack != null){
-                callBack.saveCallBack(-1,"保存失败，请重试");
+            if (callBack != null) {
+                callBack.saveCallBack(-1, "保存失败，请重试");
             }
 //            ToastUtils.showThreadToast("保存失败，请重试");
             return false;
         }
-        if(callBack != null){
-            callBack.saveCallBack(0,"保存成功");
+        if (callBack != null) {
+            callBack.saveCallBack(0, "保存成功");
         }
 //        ToastUtils.showThreadToast("保存成功");
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileName)));
@@ -482,15 +482,15 @@ public class ImageUtils {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
                     outputStream.flush();
                     outputStream.close();
-                    if(callBack != null){
-                        callBack.saveCallBack(0,"保存成功");
+                    if (callBack != null) {
+                        callBack.saveCallBack(0, "保存成功");
                     }
 //                    ToastUtils.showThreadToast("保存成功");
                 }
             }
         } catch (Exception e) {
-            if(callBack != null){
-                callBack.saveCallBack(0,"保存失败，请重试");
+            if (callBack != null) {
+                callBack.saveCallBack(0, "保存失败，请重试");
             }
 //            ToastUtils.showThreadToast("保存失败，请重试");
         }
@@ -579,7 +579,7 @@ public class ImageUtils {
     }
 
     public static byte[] bitmapToBytes(Bitmap bitmap) {
-
+        if (bitmap == null) return null;
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
@@ -593,6 +593,6 @@ public class ImageUtils {
     }
 
     public interface SaveCallBack {
-        void saveCallBack(int status,String msg);
+        void saveCallBack(int status, String msg);
     }
 }

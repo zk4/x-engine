@@ -1,9 +1,7 @@
 package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -30,11 +28,9 @@ import com.zkty.nativ.jsi.view.PermissionDto;
 import com.zkty.nativ.webcache.lib.WebViewCacheInterceptorInst;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import nativ.jsi.BuildConfig;
+import nativ.core.BuildConfig;
 
 
 public class XEngineWebView extends DWebView {

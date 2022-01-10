@@ -38,14 +38,17 @@ JSI_MODULE(JSI_globalstorage)
         return;
     }
     NSString *key = [NSString stringWithFormat:@"%@", [self genkey:dto.key]];
+#ifdef DEBUG
     NSString *title = [NSString stringWithFormat:@"key: %@ 已存在! 你正在覆盖全局数据! 请调用 del 后再重试.", dto.key];
     if ([_store get:key]) {
         UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"警告!" message:title preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction * action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
         [ac addAction:action];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+
         return;
     }
+#endif
     [_store set:[self genkey:dto.key] val:dto.val];
 }
 

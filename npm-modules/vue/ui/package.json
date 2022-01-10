@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-ui",
-  "version": "3.0.6",
+  "version": "3.0.8",
   "private": false,
   "author": "Cwz.",
   "main": "lib/Header.common.js",
@@ -53,5 +53,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "gitHead": "34c89869efddc496e03329310dab8d05497922b4"
+  "gitHead": "a746aa03820c4d481cee05c51409ff393018f814"
 }

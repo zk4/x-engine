@@ -1,13 +1,13 @@
 {
   "name": "@zkty-team/x-engine-core",
-  "version": "3.0.6",
+  "version": "3.0.8",
   "description": "连接原生native和js之间的重要模块",
   "main": "dist/bridge.common.js",
   "scripts": {
     "build": "rimraf dist && microbundle --external all"
   },
   "source": "src/index.js",
-  "module": "./dist/bridge.module.js",
+  "module": "./dist/bridge.common.js",
   "keywords": [
     "x-engine-core"
   ],
@@ -17,5 +17,5 @@
     "microbundle": "^0.13.0",
     "rimraf": "^3.0.2"
   },
-  "gitHead": "34c89869efddc496e03329310dab8d05497922b4"
+  "gitHead": "a746aa03820c4d481cee05c51409ff393018f814"
 }

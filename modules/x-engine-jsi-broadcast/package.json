@@ -1,6 +1,6 @@
 {
   "name": "@zkty-team/x-engine-jsi-broadcast",
-  "version": "3.0.3",
+  "version": "3.0.7",
   "description": "broadcast",
   "main": "h5/src/index.js",
   "license": "MIT",

@@ -6,6 +6,7 @@
     - [旧Vue项目迁移](./docs/devProcess/版本库迁移.md)
     - [api 调用](./docs/modules/jsi-调用.md)
     - [分发与缓存](./docs/modules/分发与缓存.md)
+    - [QA](./docs/devProcess/QA.md)
   - [h5 容器](./docs/container/h5.md)
   - [native 容器](./docs/container/native.md)
   - [flutter 容器](./docs/container/flutter.md)

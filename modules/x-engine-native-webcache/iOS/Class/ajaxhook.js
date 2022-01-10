@@ -1,6 +1,10 @@
 ;
 (function () {
     
+    Blob.prototype.arrayBuffer = function(){
+        return new Response(this).arrayBuffer()
+    }
+
     const boundary
     = '----tabrisformdataboundary-' + Math.round(Math.random() * 100000000) + '-yradnuobatadmrofsirbat';
     // blob 转 base64
@@ -101,35 +105,23 @@
       return new Uint8Array(ba).buffer;
      }
     
-    ////////////////////////////////////////////////////////////////////////////////
-    
+    // 判断某个对象是否存在某个方法
+    function isHaveMethod(object, property) {
+        var t = typeof object[property];
+        return t == 'function' || (!!(t == 'object' && object[property])) || t == 'unknown';
+    }
+
     async function formData2Json (params, formData) {
-        let object = {};
-//        for (let [name, value] of formData) {
-//            if (value instanceof File) {
-//                let data = await value.arrayBuffer()
-//
-//                let base64Str = encode(data);
-//
-//                object['@' + name] = {
-//                    'type': value.type,
-//                    'name': value.name,
-//                    'binary': base64Str
-//                }
-//
-//            } else {
-//                object[name] = value
-//            }
-//        }
-//        params.data = object
-        
-   
         const parts = [];
         for (const [name, value] of formData) {
             parts.push(`--${boundary}\r\n`);
             if (value instanceof File) {
-                let data = await value.arrayBuffer()
-                
+                let data;
+                if (isHaveMethod(value, "arrayBuffer")) {
+                    data = await value.arrayBuffer()
+                } else {
+                    data = Blob.arraybuffer(value)
+                }                
                 // let base64Str = encode(data);
                 parts.push(`Content-Disposition: form-data; name="${name}"; filename="${value.name}"\r\n`);
                 parts.push(`Content-Type: ${value.type || 'application/octet-stream'}\r\n\r\n`);
@@ -154,15 +146,7 @@
             const item = result[i];
             newParts[i] = encode(item)
         }
-        // const test = []
-        // for (i = 0; i < newParts.length; i++) {
-        //  const item = newParts[i];
-        //  console.log('item: ', item);
-        //  test[i] = decode(item)
-        // }
-        // console.log('test: ', test);
         params.data = newParts
-//        console.log('object ------ params: ', params);
     }
     
     function nativeRequest (xhr, params) {
@@ -351,11 +335,11 @@
         // TODO: 处理 formdata, 应该返回 promise
         if (FormData.prototype.isPrototypeOf(params.data)) {
             await formData2Json(params, params.data)
-            params.headers = {
-                'Content-Type': `multipart/form-data;boundary=${boundary}`
-            }
+            params.headers = Object.assign(params.headers || {}, {
+              'Content-Type': `multipart/form-data;boundary=${boundary}`
+            })
         }
-//        console.log('params: ', params);
+
         // 通过 return true 可以阻止默认 Ajax 请求，不返回则会继续原来的请求
         if( nativeRequest(that, params))
             return true;

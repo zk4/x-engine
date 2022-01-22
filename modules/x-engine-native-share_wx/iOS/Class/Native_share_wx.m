@@ -142,6 +142,20 @@ NATIVE_MODULE(Native_share_wx)
             req.message = message;
             req.scene = WXSceneTimeline;
         }
+        if ([type isEqualToString:@"link"]) {
+            WXWebpageObject *webpageObject = [WXWebpageObject object];
+            webpageObject.webpageUrl = info[@"url"];
+            message.title = info[@"title"];
+            message.description = info[@"desc"];
+            NSString* imgurl = info[@"imgUrl"];
+            UIImage * thumbImg = [XToolImage thumbnail_64kb:imgurl];
+            
+            //  大小不能超过64K
+            [message setThumbImage:thumbImg];
+            message.mediaObject = webpageObject;
+            req.message = message;
+            req.scene = WXSceneTimeline;
+        }
     }
     
     [WXApi sendReq:req completion:^(BOOL success) {

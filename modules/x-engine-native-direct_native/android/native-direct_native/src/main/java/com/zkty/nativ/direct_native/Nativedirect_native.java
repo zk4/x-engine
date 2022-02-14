@@ -55,8 +55,10 @@ public class Nativedirect_native extends NativeModule implements IDirect, IAppli
     @Override
     public void push(String protocol, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
         Postcard postcard = ARouter.getInstance().build(pathname);
-        for (Map.Entry<String, String> entry : query.entrySet()) {
-            postcard.withString(entry.getKey(), entry.getValue());
+        if (query != null && query.size() > 0) {
+            for (Map.Entry<String, String> entry : query.entrySet()) {
+                postcard.withString(entry.getKey(), entry.getValue());
+            }
         }
         postcard.navigation();
 

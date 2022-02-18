@@ -34,6 +34,8 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
 @property (nonatomic, strong) id<iWebcache> webcache;
+@property (nonatomic, assign) BOOL isLooseNetwork;
+
 /** 标记使用状态 */
 @property (nonatomic, assign) BOOL bWebviewOnTop;
 
@@ -67,7 +69,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
-
+        
         self.webcache =XENP(iWebcache);
         if(self.webcache){
             [self.webcache enableCache];
@@ -107,7 +109,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
-
+        self.isLooseNetwork = isLooseNetwork;
         if(!isLooseNetwork) {
             self.webcache =XENP(iWebcache);
             if(self.webcache){
@@ -319,15 +321,18 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
 
 - (void)afterHide {
-    [self.webcache disableCache];
+    if(!self.isLooseNetwork) {
+        [self.webcache disableCache];
+    }
 }
 
 - (void)afterShow {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-
-    [self.webcache enableCache];
+    if(!self.isLooseNetwork) {
+        [self.webcache enableCache];
+    }
 }
 
 - (void)beforeDead {

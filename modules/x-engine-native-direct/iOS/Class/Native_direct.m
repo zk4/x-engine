@@ -178,7 +178,7 @@ NATIVE_MODULE(Native_direct)
     }
     
     // 拿容器
-    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
+    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
     
     if(!container){
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];

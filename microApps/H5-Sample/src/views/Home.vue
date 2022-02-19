@@ -4,6 +4,12 @@
       color="linear-gradient(to right, #013656, #7e57c2)"
       size="large"
       round
+      @click="handlerBug1"
+    >Bug1</van-button>
+    <van-button
+      color="linear-gradient(to right, #013656, #7e57c2)"
+      size="large"
+      round
       @click="handlerMedia"
     >Media</van-button>
     <van-button
@@ -75,6 +81,36 @@ export default {
         "com.zkty.jsi.dev",
         "log",
         "home-->onNativeHide"
+      )
+    },
+    handlerBug1(){
+    /* [XENP(iDirectManager) addToTab:self uri:@"omps://taskh5.rongketech.com/gome/sign?appId=1425283729250631681&nonceStr=7879514742884859b0769756371217bb&taskNo=10613162461425818762712&sign=C63EAE13E52BFDB8C49F05EDBF9D2029&mobile=18611558714&outerUserId=16212683641856" params:@{@"hideNavbar":@TRUE,@"nativeParams":@{@"isLooseNetwork":@TRUE}} frame:rectF] */
+      this.$engine.api(
+        "com.zkty.jsi.direct",
+        "push",
+        {
+          scheme: "omps",
+          host: "taskh5.rongketech.com",
+          pathname: "/gome/sign",
+          fragment: "/",
+          query: {
+            appId:"1425283729250631681",
+            nonceStr:'7879514742884859b0769756371217bb',
+            taskNo:"10613162461425818762712",
+            sign:"C63EAE13E52BFDB8C49F05EDBF9D2029",
+            mobile:"18611558714",
+            outerUserId:"16212683641856"
+          },
+          params: {
+            hideNavbar: false,
+            nativeParams:{
+              isLooseNetwork: true
+            }
+          },
+        },
+        function (res) {
+          // console.log("res :>> ", res)
+        }
       )
     },
     handlerMedia() {

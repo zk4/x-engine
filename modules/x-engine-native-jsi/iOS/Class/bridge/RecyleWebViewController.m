@@ -63,6 +63,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     if (self){
         if(fileUrl.length == 0)
             return self;
+      
         self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView:NO];
         self.webview.allowsBackForwardNavigationGestures = YES;
@@ -70,10 +71,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
         
-        self.webcache =XENP(iWebcache);
-        if(self.webcache){
-            [self.webcache enableCache];
-        }
+    
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
 
@@ -102,20 +100,23 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     if (self){
         if(fileUrl.length == 0)
             return self;
-
+        self.isLooseNetwork = isLooseNetwork;
+        self.webcache =XENP(iWebcache);
+        if(!isLooseNetwork) {
+            if(self.webcache){
+                [self.webcache enableCache];
+            }
+        }else{
+            if(self.webcache)
+                [self.webcache disableCache];
+        }
         self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView:isLooseNetwork];
         self.webview.allowsBackForwardNavigationGestures = YES;
 
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
-        self.isLooseNetwork = isLooseNetwork;
-        if(!isLooseNetwork) {
-            self.webcache =XENP(iWebcache);
-            if(self.webcache){
-                [self.webcache enableCache];
-            }
-        }
+    
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
 
@@ -321,7 +322,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
 
 - (void)afterHide {
-    if(!self.isLooseNetwork) {
+    if(!self.isLooseNetwork && self.webcache) {
         [self.webcache disableCache];
     }
 }
@@ -331,7 +332,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     if(!self.isLooseNetwork) {
-        [self.webcache enableCache];
+        if(self.webcache)
+            [self.webcache enableCache];
+    }else {
+        if(self.webcache)
+            [self.webcache disableCache];
     }
 }
 

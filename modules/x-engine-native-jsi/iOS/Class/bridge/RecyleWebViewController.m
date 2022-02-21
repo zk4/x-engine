@@ -202,11 +202,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self onCreated];
-  
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self beforeShow];
 }
 
@@ -218,6 +218,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [self beforeHide];
 }
 
@@ -225,7 +226,6 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     [super viewDidDisappear:animated];
     [self afterHide];
 }
-
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];

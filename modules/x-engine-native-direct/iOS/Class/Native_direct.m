@@ -197,11 +197,11 @@ NATIVE_MODULE(Native_direct)
     // 实在找不到,跳到默认错误页
 //    NSAssert(container,@"why here, where is your container?");
 
-
+    
     if([direct respondsToSelector:@selector(push:params:)]){
         [direct push:container params:params];
     }else{
-
+        
         UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
 
         //  删除历史逻辑
@@ -218,7 +218,7 @@ NATIVE_MODULE(Native_direct)
             [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
             deleteHistory--;
         }
-        
+        navc.view.backgroundColor = [UIColor whiteColor];
         if(navc){
             [navc pushViewController:container animated:YES];
             HistoryModel* hm = [HistoryModel new];

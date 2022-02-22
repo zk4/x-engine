@@ -10,7 +10,6 @@
 #import "Native_viewer.h"
 #import "XENativeContext.h"
 
-#import "AFNetworking.h"
 #import "iViewer.h"
 #import "Unity.h"
 #import <x-engine-native-protocols/iStore.h>

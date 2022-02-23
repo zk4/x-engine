@@ -13,12 +13,19 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zkty.modules.engine.R;
+import com.zkty.nativ.broadcast.IBroadcast;
+import com.zkty.nativ.broadcast.NativeBroadcast;
 import com.zkty.nativ.core.ActivityStackManager;
+import com.zkty.nativ.core.NativeContext;
+import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.direct.DirectManager;
 import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 import com.zkty.nativ.scan.activity.ScanActivity;
+import com.zkty.nativ.viewer.CallBack;
+import com.zkty.nativ.viewer.Iviewer;
+import com.zkty.nativ.viewer.Nativeviewer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,14 +45,20 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void nextPage(View view) {
-        String protocol = "http:";
-        String host = et_content.getText().toString();
-          protocol = "http:";
-         host = "10.2.46.17:8848/%E8%B0%83%E8%AF%95/index.html";
-        String pathname = "";
-        String fragment = "";
-        XEngineWebActivityManager.sharedInstance().startXEngineActivity(this, protocol, host, pathname, fragment, null, true);
-    }
+        NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(Iviewer.class);
+        if (module instanceof Nativeviewer) {
+            Nativeviewer iView = (Nativeviewer) module;
+            iView.openFileReader("http://10.2.46.11:8080/Desktop/111.docx", "docx", "111", new CallBack() {
+                @Override
+                public void success(String dto) {
+
+                }
+            });
+
+        }
+
+
+         }
 
 
     public void scan(View view) {

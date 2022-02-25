@@ -6,8 +6,8 @@ PODS:
     - JSONModel
 
 DEPENDENCIES:
-  - x-engine-native-core (from `../../x-engine-native-core`)
-  - x-engine-native-protocols (from `../../x-engine-native-protocols`)
+  - x-engine-native-core (from `/Users/zk/git/working/x-engine/modules/x-engine-native-core`)
+  - x-engine-native-protocols (from `/Users/zk/git/working/x-engine/modules/x-engine-native-protocols`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -15,9 +15,9 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   x-engine-native-core:
-    :path: "../../x-engine-native-core"
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-core"
   x-engine-native-protocols:
-    :path: "../../x-engine-native-protocols"
+    :path: "/Users/zk/git/working/x-engine/modules/x-engine-native-protocols"
 
 SPEC CHECKSUMS:
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
@@ -26,4 +26,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1466b04bcf2083ee5202109e50f0a983922dd7aa
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

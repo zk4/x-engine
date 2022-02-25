@@ -5,7 +5,7 @@
 
 #import "AppDelegate.h"
 #import "EntryViewController.h"
-#import "NativeContext.h"
+#import "XENativeContext.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +17,7 @@
 
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
-    [[NativeContext sharedInstance] start];
+    [[XENativeContext sharedInstance] start];
 
     EntryViewController *homePageVC = [[EntryViewController alloc] init];
        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homePageVC];

@@ -21,6 +21,8 @@
 //记录正在下载的任务、防止下载请求的循环调用
 ///内存缓存空间
 @property (nonatomic, strong) NSCache *memoryCache;
+@property (nonatomic, assign) BOOL  cacheEnabled;
+
 //@property (nonatomic, strong) YYCache *memoryCache;
 @end
 
@@ -37,6 +39,7 @@
 }
 ///启用缓存功能
 - (void)openCache {
+    self.cacheEnabled = YES;
     //注册协议类, 然后URL加载系统就会在请求发出时使用我们创建的协议对象对该请求进行拦截处理，不需要拦截的时候，要进行注销unregisterClass
     [WKWebView sl_registerSchemeForSupportHttpProtocol];
     if (self.isUsingURLProtocol) {
@@ -50,9 +53,10 @@
 }
 ///关闭缓存功能
 - (void)closeCache {
+    self.cacheEnabled = NO;
     [WKWebView sl_unregisterSchemeForSupportHttpProtocol];
     if (self.isUsingURLProtocol) {
-        [NSURLProtocol unregisterClass:[NSURLProtocol class]];
+        [NSURLProtocol unregisterClass:[SLUrlProtocol class]];
     }else {
 //        [NSURLCache setSharedURLCache:nil];
     }
@@ -61,6 +65,7 @@
 }
 ///是否缓存该请求，该请求是否在白名单里或合法
 - (BOOL)canCacheRequest:(NSURLRequest *)request {
+    if(!self.cacheEnabled)return FALSE;
     NSString *key = [self genKey:request];
     if([key containsString:@"sockjs-node"]) return NO;
     //User-Agent来过滤

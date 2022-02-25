@@ -178,7 +178,7 @@ NATIVE_MODULE(Native_direct)
     }
     
     // 拿容器
-    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
+    UIViewController* container =[direct getContainer:[direct protocol] host:host pathname:pathname fragment:fragment query:query params:params frame:frame];
     
     if(!container){
         NSURL * fallbackUrl = [self fallback:host params:params pathname:pathname scheme:scheme];
@@ -197,11 +197,11 @@ NATIVE_MODULE(Native_direct)
     // 实在找不到,跳到默认错误页
 //    NSAssert(container,@"why here, where is your container?");
 
-
+    
     if([direct respondsToSelector:@selector(push:params:)]){
         [direct push:container params:params];
     }else{
-
+        
         UINavigationController* navc = [Unity sharedInstance].getCurrentVC.navigationController;
 
         //  删除历史逻辑
@@ -218,7 +218,7 @@ NATIVE_MODULE(Native_direct)
             [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:NO];
             deleteHistory--;
         }
-        
+        navc.view.backgroundColor = [UIColor whiteColor];
         if(navc){
             [navc pushViewController:container animated:YES];
             HistoryModel* hm = [HistoryModel new];

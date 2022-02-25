@@ -10,7 +10,7 @@
 #import "XENativeContext.h"
 #import "WebViewFactory.h"
 #import "Unity.h"
-#import "NormalWebViewController.h"
+//#import "NormalWebViewController.h"
 #import "NSURL+QueryDictionary.h"
 #import "iDirectManager.h"
 

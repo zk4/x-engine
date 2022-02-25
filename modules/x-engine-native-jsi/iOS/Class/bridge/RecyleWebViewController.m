@@ -34,6 +34,8 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 @property (nonatomic, strong) UIImageView *imageView404;
 @property (nonatomic, strong) UILabel *tipLabel404;
 @property (nonatomic, strong) id<iWebcache> webcache;
+@property (nonatomic, assign) BOOL isLooseNetwork;
+
 /** 标记使用状态 */
 @property (nonatomic, assign) BOOL bWebviewOnTop;
 
@@ -61,17 +63,15 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     if (self){
         if(fileUrl.length == 0)
             return self;
+      
         self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView:NO];
         self.webview.allowsBackForwardNavigationGestures = YES;
 
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
-
-        self.webcache =XENP(iWebcache);
-        if(self.webcache){
-            [self.webcache enableCache];
-        }
+        
+    
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
 
@@ -100,20 +100,23 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     if (self){
         if(fileUrl.length == 0)
             return self;
-
+        self.isLooseNetwork = isLooseNetwork;
+        self.webcache =XENP(iWebcache);
+        if(!isLooseNetwork) {
+            if(self.webcache){
+                [self.webcache enableCache];
+            }
+        }else{
+            if(self.webcache)
+                [self.webcache disableCache];
+        }
         self.bWebviewOnTop = YES;
         self.webview= [[WebViewFactory sharedInstance] createWebView:isLooseNetwork];
         self.webview.allowsBackForwardNavigationGestures = YES;
 
         self.webview.scrollView.delegate = self;
         self.webview.frame=frame;
-
-        if(!isLooseNetwork) {
-            self.webcache =XENP(iWebcache);
-            if(self.webcache){
-                [self.webcache enableCache];
-            }
-        }
+    
         self.isHiddenNavbar = isHidden;
         self.loadUrl = fileUrl;
 
@@ -199,11 +202,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self onCreated];
-  
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self beforeShow];
 }
 
@@ -215,6 +218,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [self beforeHide];
 }
 
@@ -222,7 +226,6 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     [super viewDidDisappear:animated];
     [self afterHide];
 }
-
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -319,15 +322,22 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
 
 - (void)afterHide {
-    [self.webcache disableCache];
+    if(!self.isLooseNetwork && self.webcache) {
+        [self.webcache disableCache];
+    }
 }
 
 - (void)afterShow {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-
-    [self.webcache enableCache];
+    if(!self.isLooseNetwork) {
+        if(self.webcache)
+            [self.webcache enableCache];
+    }else {
+        if(self.webcache)
+            [self.webcache disableCache];
+    }
 }
 
 - (void)beforeDead {

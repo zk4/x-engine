@@ -80,9 +80,9 @@ NATIVE_MODULE(Native_viewer_original)
     CGFloat topHeight   = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat WIDTH       = [Unity sharedInstance].getCurrentVC.view.frame.size.width;
     CGFloat HEIGHT      = [Unity sharedInstance].getCurrentVC.view.frame.size.height;
-    self.navigationView.frame = CGRectMake(0, topHeight, WIDTH, 44);
-    self.previewController.view.frame = CGRectMake(0, CGRectGetMaxY(self.navigationView.frame), WIDTH, HEIGHT-CGRectGetMaxY(self.navigationView.frame));
-    [[UIApplication sharedApplication].keyWindow addSubview:self.navigationView];
+//    self.navigationView.frame = CGRectMake(0, topHeight, WIDTH, 44);
+    self.previewController.view.frame = CGRectMake(0, topHeight, WIDTH, HEIGHT-topHeight);
+//    [[UIApplication sharedApplication].keyWindow addSubview:self.navigationView];
     // document
     // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     // caches

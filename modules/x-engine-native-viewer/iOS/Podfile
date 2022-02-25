@@ -11,6 +11,7 @@ X_ENGINE_MODULES=ENV['X_ENGINE_MODULES'] || '../..'
 def shared_pods
   pod 'x-engine-native-core', :path => X_ENGINE_MODULES+'/x-engine-native-core'
   pod 'x-engine-native-protocols', :path => X_ENGINE_MODULES+'/x-engine-native-protocols'
+  pod 'AFNetworking',        :git => 'http://code.gome.inc/gitlab/mobile-ios-open/AFNetworking.git',        :tag => '4.0.1'
 end
 
 target 'viewer' do

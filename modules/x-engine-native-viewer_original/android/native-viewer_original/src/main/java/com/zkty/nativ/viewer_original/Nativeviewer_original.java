@@ -25,7 +25,7 @@ public class Nativeviewer_original extends NativeModule implements IviewerStatus
 
     @Override
     public boolean isDefault() {
-        return (boolean) StoreUtils.get(moduleId(),false);
+        return (boolean) StoreUtils.get(moduleId(), false);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Nativeviewer_original extends NativeModule implements IviewerStatus
 
     @Override
     public void setDefault(Boolean isDefault) {
-        StoreUtils.put(moduleId(),isDefault);
+        StoreUtils.put(moduleId(), isDefault);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Nativeviewer_original extends NativeModule implements IviewerStatus
 
     @Override
     public int getModelPicRes() {
-        return R.mipmap.ic_launcher;
+        return R.mipmap.default_icon;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Nativeviewer_original extends NativeModule implements IviewerStatus
 
     @Override
     public void openFileReader(String filePath, String title, String fileType) {
-        PreViewActivity.startAty(filePath,title,fileType);
+        PreViewActivity.startAty(filePath, title, fileType);
     }
 
 }

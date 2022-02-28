@@ -236,9 +236,11 @@ NATIVE_MODULE(Native_viewer_original)
 
 }
 - (void)addchild {
-    [[Unity sharedInstance].getCurrentVC addChildViewController:self.previewController];
-    [[Unity sharedInstance].getCurrentVC.view addSubview:self.previewController.view];
-    [self.previewController didMoveToParentViewController:[Unity sharedInstance].getCurrentVC];
+//    [[Unity sharedInstance].getCurrentVC addChildViewController:self.previewController];
+//    [[Unity sharedInstance].getCurrentVC.view addSubview:self.previewController.view];
+//    [self.previewController didMoveToParentViewController:[Unity sharedInstance].getCurrentVC];
+    [self.hud hideAnimated:YES];
+    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:self.previewController animated:YES];
 }
 @end
 #undef  DEFAULT_KEY

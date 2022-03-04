@@ -4,8 +4,7 @@ fileName=$2
 filepath=$3
 productVersion=$4
 
-#app_id=e82738941c
-#app_key=70127c88-44cb-4998-a20b-6e8717fdfdc3
+
 app_id=$5
 app_key=$6
 

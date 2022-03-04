@@ -80,11 +80,7 @@ NATIVE_MODULE(Native_viewer_original)
     CGFloat topHeight   = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat WIDTH       = [Unity sharedInstance].getCurrentVC.view.frame.size.width;
     CGFloat HEIGHT      = [Unity sharedInstance].getCurrentVC.view.frame.size.height;
-//    self.navigationView.frame = CGRectMake(0, topHeight, WIDTH, 44);
     self.previewController.view.frame = CGRectMake(0, topHeight, WIDTH, HEIGHT-topHeight);
-//    [[UIApplication sharedApplication].keyWindow addSubview:self.navigationView];
-    // document
-    // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     // caches
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *localPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.encryptUrl];
@@ -236,9 +232,6 @@ NATIVE_MODULE(Native_viewer_original)
 
 }
 - (void)addchild {
-//    [[Unity sharedInstance].getCurrentVC addChildViewController:self.previewController];
-//    [[Unity sharedInstance].getCurrentVC.view addSubview:self.previewController.view];
-//    [self.previewController didMoveToParentViewController:[Unity sharedInstance].getCurrentVC];
     [self.hud hideAnimated:YES];
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:self.previewController animated:YES];
 }

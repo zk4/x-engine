@@ -41,8 +41,8 @@ public class JSI_camera extends xengine_jsi_camera {
     public void _saveImageToPhotoAlbum(_1_com_zkty_jsi_camera_DTO dto, CompletionHandler<String> handler) {
         iCamera.saveImageToAlbum(dto.imageData, dto.type, new SaveCallBack() {
             @Override
-            public void saveCallBack() {
-                handler.complete("success");
+            public void saveCallBack(int code) {
+                handler.complete(code == 0 ? "success" : "fail");
             }
         });
     }

@@ -6,5 +6,5 @@ package com.zkty.nativ.camera;
  * dexc :
  */
 public interface SaveCallBack {
-    void saveCallBack();
+    void saveCallBack(int code);
 }

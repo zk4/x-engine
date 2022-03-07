@@ -364,6 +364,7 @@ public class ImageUtils {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    callBack.saveCallBack(-1, "保存失败");
                 }
             }
         }.start();
@@ -490,7 +491,7 @@ public class ImageUtils {
             }
         } catch (Exception e) {
             if (callBack != null) {
-                callBack.saveCallBack(0, "保存失败，请重试");
+                callBack.saveCallBack(-1, "保存失败，请重试");
             }
 //            ToastUtils.showThreadToast("保存失败，请重试");
         }

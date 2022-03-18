@@ -18,12 +18,15 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
-
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.zkty.nativ.core.XEngineApplication;
-
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -530,36 +533,27 @@ public class ImageUtils {
 
     }
 
-    public static void getBitmap(String path, int width, int height, BitmapCallback callback) {
+    public static void getBitmap(String path,  BitmapCallback callback) {
         if (TextUtils.isEmpty(path)) callback.onFail();
 
         if (path.startsWith("http")) {
-            new Thread() {
-                @Override
-                public void run() {
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = Glide.with(XEngineApplication.getCurrentActivity())
-                                .asBitmap()
-                                .load(path)
-                                .into(width, height).get();
-                        if (bitmap != null) {
-
-                            callback.onSuccess(bitmap);
-//                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-//                            bytes = stream.toByteArray();
+            XEngineApplication.getCurrentActivity().runOnUiThread(() -> {
+                try {
+                    Glide.with(XEngineApplication.getCurrentActivity())
+                            .asBitmap()
+                            .load(path).into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL) {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            callback.onSuccess(resource);
                         }
+                    });
 
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                        callback.onFail();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                        callback.onFail();
-                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    callback.onFail();
                 }
-            }.start();
+
+            });
 
         } else {
             try {
@@ -573,11 +567,6 @@ public class ImageUtils {
 
     }
 
-
-    public static void getBitmap(String path, BitmapCallback callback) {
-
-        getBitmap(path, 250, 250, callback);
-    }
 
     public static byte[] bitmapToBytes(Bitmap bitmap) {
         if (bitmap == null) return null;

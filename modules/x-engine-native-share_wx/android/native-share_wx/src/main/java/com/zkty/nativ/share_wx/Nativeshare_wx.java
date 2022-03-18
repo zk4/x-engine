@@ -139,7 +139,7 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
         IWXAPI iwxapi = createWXAPI();
         if (iwxapi == null) return;
         Handler handler = new Handler(Looper.getMainLooper());
-        ImageUtils.getBitmap(info.imgUrl, 150, 150, new ImageUtils.BitmapCallback() {
+        ImageUtils.getBitmap(info.imgUrl, new ImageUtils.BitmapCallback() {
             @Override
             public void onSuccess(Bitmap bitmap) {
 
@@ -152,8 +152,11 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                     WXMediaMessage msg3 = new WXMediaMessage(webpage);
                     msg3.title = info.title;
                     msg3.description = info.desc;
-                    if (bitmap != null)
-                        msg3.thumbData = ImageUtils.bitmapToBytes(bitmap);
+                    if (bitmap != null){
+                        Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 50, 50, true);
+                        msg3.thumbData = ImageUtils.bitmapToBytes(thumbBmp);
+                    }
+
 
                     //构造一个Req
                     SendMessageToWX.Req req3 = new SendMessageToWX.Req();

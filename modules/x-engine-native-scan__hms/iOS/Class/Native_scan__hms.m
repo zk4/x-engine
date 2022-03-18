@@ -74,7 +74,7 @@ NATIVE_MODULE(Native_scan__hms)
     
     //初始化扫码能力
     BOOL photoMode = true;
-    HmsScanOptions *options = [[HmsScanOptions alloc] initWithScanFormatType:QR_CODE | DATA_MATRIX Photo:photoMode];
+    HmsScanOptions *options = [[HmsScanOptions alloc] initWithScanFormatType:QR_CODE | DATA_MATRIX | AZTEC | CODABAR | CODE_39 | CODE_93 | CODE_128 | EAN_8 | EAN_13 | ITF | PDF_417 | UPC_A | UPC_E | ALL  Photo:photoMode];
     HmsCustomScanViewController *hmsCustomScanViewController = [[HmsCustomScanViewController alloc] initCustomizedScanWithFormatType:options];
     hmsCustomScanViewController.customizedScanDelegate = self;
     hmsCustomScanViewController.backButtonHidden = true;

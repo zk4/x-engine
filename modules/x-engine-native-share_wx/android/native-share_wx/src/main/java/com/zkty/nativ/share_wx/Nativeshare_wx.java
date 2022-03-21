@@ -152,7 +152,7 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                     WXMediaMessage msg3 = new WXMediaMessage(webpage);
                     msg3.title = info.title;
                     msg3.description = info.desc;
-                    if (bitmap != null){
+                    if (bitmap != null) {
                         Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 50, 50, true);
                         msg3.thumbData = ImageUtils.bitmapToBytes(thumbBmp);
                     }
@@ -226,9 +226,10 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                     msg4.title = info.title;                    // 小程序消息title
                     msg4.description = info.desc;               // 小程序消息desc
 
-                    if (bitmap != null)
-                        msg4.thumbData = ImageUtils.bitmapToBytes(bitmap);                      // 小程序消息封面图片，小于128k
-
+                    if (bitmap != null) {
+                        Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 250, 250, true);
+                        msg4.thumbData = ImageUtils.bitmapToBytes(thumbBmp);                      // 小程序消息封面图片，小于128k
+                    }
                     SendMessageToWX.Req req4 = new SendMessageToWX.Req();
                     req4.message = msg4;
                     req4.scene = SendMessageToWX.Req.WXSceneSession;  // 目前只支持会话

@@ -45,9 +45,36 @@ NATIVE_MODULE(Native_scan__hms)
  
 - (void)openScanView:(void (^)(NSString *))completionHandler {
     
+    /*
+      AVAuthorizationStatusNotDetermined 没有对应用程序授权进行操作
+      AVAuthorizationStatusRestricted    没有授权访问的照片数据
+      AVAuthorizationStatusDenied        用户拒绝对应用程序授权
+      AVAuthorizationStatusAuthorized    用户对应用程序授权
+    */
+    NSString *mediaType = AVMediaTypeVideo; //读取媒体类型
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType]; //读取设备授权状态
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) { // 授权受阻
+        UIAlertController *alterCon = [UIAlertController alertControllerWithTitle:@"乐活秀需要访问您的相机，请前往设置页面打开授权,如不允许，您将无法扫码"
+                                                                          message:nil
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *OFF = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *ON = [UIAlertAction actionWithTitle:@"去开启" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) { // 设置权限
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                    // do something
+                }];
+            }
+        }];
+        [alterCon addAction:OFF];
+        [alterCon addAction:ON];
+        [[Unity sharedInstance].getCurrentVC presentViewController:alterCon animated:YES completion:nil];
+        return;
+    }
+    
     //初始化扫码能力
     BOOL photoMode = true;
-    HmsScanOptions *options = [[HmsScanOptions alloc] initWithScanFormatType:QR_CODE | DATA_MATRIX Photo:photoMode];
+    HmsScanOptions *options = [[HmsScanOptions alloc] initWithScanFormatType:QR_CODE | DATA_MATRIX | AZTEC | CODABAR | CODE_39 | CODE_93 | CODE_128 | EAN_8 | EAN_13 | ITF | PDF_417 | UPC_A | UPC_E | ALL  Photo:photoMode];
     HmsCustomScanViewController *hmsCustomScanViewController = [[HmsCustomScanViewController alloc] initCustomizedScanWithFormatType:options];
     hmsCustomScanViewController.customizedScanDelegate = self;
     hmsCustomScanViewController.backButtonHidden = true;

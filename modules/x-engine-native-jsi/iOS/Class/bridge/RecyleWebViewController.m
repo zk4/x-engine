@@ -201,6 +201,12 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 #pragma mark - <life cycle>
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    [button setImage:[UIImage imageNamed:@"appc_back"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"appc_back"] forState:UIControlStateHighlighted];
+    [button sizeToFit];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     [self onCreated];
 }
 
@@ -375,6 +381,10 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     }
 
     return self.navigationController.childViewControllers.count == 1 ? NO : YES;
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

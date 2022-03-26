@@ -233,6 +233,9 @@ NATIVE_MODULE(Native_viewer_original)
 }
 - (void)addchild {
     [self.hud hideAnimated:YES];
+    self.previewController.navigationController.navigationBar.hidden = YES;
+    self.previewController.navigationController.navigationBarHidden = YES;
+    self.previewController.hidesBottomBarWhenPushed = YES;
     [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:self.previewController animated:YES];
 }
 @end

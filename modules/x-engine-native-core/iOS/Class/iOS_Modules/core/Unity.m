@@ -33,7 +33,7 @@
 //获取当前屏幕显示的viewcontroller
 - (UIViewController *)getCurrentVC
 {
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     
     UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
     

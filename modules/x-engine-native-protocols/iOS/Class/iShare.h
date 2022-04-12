@@ -16,12 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ChannelDTO :JSONModel
 @property(nonatomic,copy) NSString *channel;
 @property(nonatomic,copy) NSString *shareType;
+@property(nonatomic,copy) NSString* linkToCopy;
 @property(nonatomic,copy) NSString* shareImgData;
 @end
 
 @interface OpenShareUiDTO :JSONModel
 @property(nonatomic,copy) NSString *shopWechatGroupImgUrl;
 @property(nonatomic,copy) NSString* posterImgUrl;
+@property(nonatomic,copy) NSString* linkToCopy;
 @property(nonatomic,strong) NSArray<ChannelDTO*>* channelList;
 @end
 

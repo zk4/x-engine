@@ -31,7 +31,7 @@ JSI_MODULE(JSI_webcache)
         NSMutableArray* pipeline  =[NSMutableArray new];
         [pipeline addObject:[GlobalReqInnerNetworkDetectorFilter sharedInstance]];
         [pipeline addObject:[GlobalReqConfigFilter sharedInstance]];
-        [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
+//        [pipeline addObject:[GlobalResStatusCodeNot2xxFilter sharedInstance]];
         [pipeline addObject:[GlobalResNoResponseFilter sharedInstance]];
 //        [pipeline addObject:[GlobalReqResMergeRequestFilter sharedInstance]];
         pipeline;

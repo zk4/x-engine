@@ -56,7 +56,7 @@ NATIVE_MODULE(Native_direct_microapp)
  
     if(host && host.length>0){
         // microapp 的 host 要特殊处理.
-        // 当第一次打开时, 因为这里传过来的时 microappid => host, pathname
+        // 当第一次打开时, 因为这里传过来的是 microappid,而不是真正的 host
         NSString* rootPath =  [XENP(iUpdator) getPath:host];
         if(!rootPath){
             NSString* errStr = [NSString stringWithFormat:@"找不到本地微应用:%@",host];

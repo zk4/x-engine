@@ -11,6 +11,8 @@
 #import "WXApi.h"//微信分享
 #import "Unity.h"
 #import <XTool.h>
+#import "iToast.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface Native_share_wx()<WXApiDelegate>
 { }
@@ -71,7 +73,7 @@ NATIVE_MODULE(Native_share_wx)
  
  
 - (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(BOOL complete)) completionHandler {
-    
+    [SVProgressHUD show];
     WXMediaMessage *message = [WXMediaMessage message];
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
@@ -159,6 +161,7 @@ NATIVE_MODULE(Native_share_wx)
     }
     
     [WXApi sendReq:req completion:^(BOOL success) {
+        [SVProgressHUD dismiss];
         completionHandler(success);
     }];
 

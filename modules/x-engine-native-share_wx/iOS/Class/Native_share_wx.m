@@ -13,7 +13,10 @@
 #import <XTool.h>
 
 @interface Native_share_wx()<WXApiDelegate>
-{ }
+{
+    
+    BOOL _isLoading;
+}
 @end
 
 @implementation Native_share_wx
@@ -71,7 +74,10 @@ NATIVE_MODULE(Native_share_wx)
  
  
 - (void)shareWithType:(NSString *)type channel:(NSString *)channel posterInfo:(NSDictionary *)info complete:(void (^)(BOOL complete)) completionHandler {
-    
+    if (self->_isLoading) {
+        return;
+    }
+    _isLoading = YES;
     WXMediaMessage *message = [WXMediaMessage message];
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = NO;
@@ -160,10 +166,11 @@ NATIVE_MODULE(Native_share_wx)
     
     [WXApi sendReq:req completion:^(BOOL success) {
         completionHandler(success);
+        _isLoading = NO;
     }];
 
 }
-
+                                                            
 - (UIImage *)thumbImageWithImage:(UIImage *)scImg limitSize:(CGSize)limitSize {
     
     if (scImg.size.width <= limitSize.width && scImg.size.height <= limitSize.height) {

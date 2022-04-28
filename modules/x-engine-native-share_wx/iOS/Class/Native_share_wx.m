@@ -164,9 +164,9 @@ NATIVE_MODULE(Native_share_wx)
         }
     }
     
+    self->_isLoading = NO;
     [WXApi sendReq:req completion:^(BOOL success) {
         completionHandler(success);
-        _isLoading = NO;
     }];
 
 }

@@ -59,33 +59,33 @@
     [webview.configuration setValue:@YES forKey:@"allowUniversalAccessFromFileURLs"];
     
     ///web禁止长按
-//    {
-//    NSMutableString *javascript = [NSMutableString string];
-//    [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];
-//    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
-//    [webview.configuration.userContentController addUserScript:noneSelectScript];
-//    }
-//    ///web禁止双击
-//    {
-//    NSMutableString *javascript = [NSMutableString string];
-//    [javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];
-//    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
-//    [webview.configuration.userContentController addUserScript:noneSelectScript];
-//    }
-//    
-    
-    NSString*css = @"* { -webkit-user-select: none !important;-moz-user-select: none!important;-webkit-touch-callout: none!important;-webkit-user-drag: none!important;}";
-    NSMutableString*javascript = [NSMutableString string];
-    [javascript appendString:@"var style = document.createElement('style');"];
-    [javascript appendString:@"style.type = 'text/css';"];
-    [javascript appendFormat:@"var cssContent = document.createTextNode('%@');", css];
-    [javascript appendString:@"style.appendChild(cssContent);"];
-    [javascript appendString:@"document.body.appendChild(style);"];
-
-    //javascript 注入
-    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+    {
+    NSMutableString *javascript = [NSMutableString string];
+    [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];
+    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
     [webview.configuration.userContentController addUserScript:noneSelectScript];
-    
+    }
+    ///web禁止双击
+    {
+    NSMutableString *javascript = [NSMutableString string];
+    [javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];
+    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+    [webview.configuration.userContentController addUserScript:noneSelectScript];
+    }
+//    
+//
+//    NSString*css = @"* { -webkit-user-select: none !important;-moz-user-select: none!important;-webkit-touch-callout: none!important;-webkit-user-drag: none!important;}";
+//    NSMutableString*javascript = [NSMutableString string];
+//    [javascript appendString:@"var style = document.createElement('style');"];
+//    [javascript appendString:@"style.type = 'text/css';"];
+//    [javascript appendFormat:@"var cssContent = document.createTextNode('%@');", css];
+//    [javascript appendString:@"style.appendChild(cssContent);"];
+//    [javascript appendString:@"document.body.appendChild(style);"];
+//
+//    //javascript 注入
+//    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+//    [webview.configuration.userContentController addUserScript:noneSelectScript];
+//
     
     // webcache 插件
     if (!isLooseNetwork) {

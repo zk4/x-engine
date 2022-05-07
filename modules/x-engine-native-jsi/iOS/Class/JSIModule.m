@@ -55,7 +55,10 @@ static  XEngineWebView* s_webview = nil;
 
 - (void)showErrorAlert:(NSString *)errorString
 {
+#ifdef DEBUG
     [XENP(iToast) toast:errorString duration:1.0];
+#endif
+    
 }
 
 

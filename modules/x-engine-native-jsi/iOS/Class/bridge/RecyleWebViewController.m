@@ -328,11 +328,8 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
 
 - (void)afterHide {
-    if(!self.isLooseNetwork && self.webcache) {
-        [self.webcache disableCache];
-    }
+    
 }
-
 - (void)afterShow {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeShow];
     [self.navigationController setNavigationBarHidden:self.isHiddenNavbar animated:NO];
@@ -353,6 +350,9 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
 - (void)beforeHide {
     [self.webview triggerVueLifeCycleWithMethod:OnNativeHide];
+    if(!self.isLooseNetwork && self.webcache) {
+        [self.webcache disableCache];
+    }
 }
 
 - (void)beforeShow {

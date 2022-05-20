@@ -3,6 +3,7 @@ package com.zkty.nativ.geo;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
@@ -139,7 +141,22 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
     @Override
     public void locatable(StatusCallBack callBack) {
-
+        if (isLocServiceEnable()) {
+            if (Build.VERSION.SDK_INT < 23) {//6.0才用动态权限
+                callBack.onLocatable(0);
+                return;
+            }
+            //逐个判断你要的权限是否已经通过
+            for (String permission : permissionsO) {
+                if (ContextCompat.checkSelfPermission(XEngineApplication.getApplication().getApplicationContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                    callBack.onLocatable(-1);
+                    return;
+                }
+            }
+            callBack.onLocatable(0);
+            return;
+        }
+        callBack.onLocatable(-1);
     }
 
     private void checkGeoService() {

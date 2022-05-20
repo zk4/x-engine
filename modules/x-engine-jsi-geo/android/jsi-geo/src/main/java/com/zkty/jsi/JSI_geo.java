@@ -32,6 +32,7 @@ public class JSI_geo extends xengine_jsi_geo {
         igeo.locatable(code -> {
             LocationStatusDTO dto = new LocationStatusDTO();
             dto.code = code;
+            dto.msg = code == 0 ? "已授权，可获取定位" : "未授权，无法定位";
             handler.complete(dto);
         });
     }

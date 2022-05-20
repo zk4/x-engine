@@ -33,9 +33,8 @@ interface LocationDTO {
 } 
 
 interface LocationStatusDTO {
-   //  0:手机开启定位服务且app已授权
-   // -1:手机开启定位服务但app未授权
-   // -2:手机未开启定位服务
+   //  0:已授权，可获取定位
+   // -1:未授权，无法定位 
   code: int;
   msg: string;
   

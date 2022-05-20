@@ -26,4 +26,13 @@ public class JSI_geo extends xengine_jsi_geo {
             handler.complete(dto);
         });
     }
+
+    @Override
+    public void _locatable(CompletionHandler<LocationStatusDTO> handler) {
+        igeo.locatable(code -> {
+            LocationStatusDTO dto = new LocationStatusDTO();
+            dto.code = code;
+            handler.complete(dto);
+        });
+    }
 }

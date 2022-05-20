@@ -30,13 +30,30 @@ interface LocationDTO {
   // 街道
   street: string;
   
-  
+} 
+
+interface LocationStatusDTO {
+   //  0:手机开启定位服务且app已授权
+   // -1:手机开启定位服务但app未授权
+   // -2:手机未开启定位服务
+  code: int;
+  msg: string;
   
 } 
+
+
 // 获取单次定位信息
 @async
 function locate():LocationDTO  {
   xengine.api("com.zkty.jsi.geo", "locate",(val)=>{
+  document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
+
+// 获取定位服务状态
+@async
+function locatable():LocationStatusDTO  {
+  xengine.api("com.zkty.jsi.geo", "locatable",(val)=>{
   document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }

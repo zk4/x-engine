@@ -137,6 +137,11 @@ public class Nativegeo extends NativeModule implements IGeoManager {
 
     }
 
+    @Override
+    public void locatable(StatusCallBack callBack) {
+
+    }
+
     private void checkGeoService() {
         if (!isLocServiceEnable()) {
             Activity activity = XEngineApplication.getCurrentActivity();

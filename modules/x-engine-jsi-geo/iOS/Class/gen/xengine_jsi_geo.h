@@ -7,7 +7,9 @@
 #import "JSONModel.h"
 
 @protocol LocationDTO;
+@protocol LocationStatusDTO;
 @class LocationDTO;
+@class LocationStatusDTO;
 
 @interface LocationDTO: JSONModel
   	@property(nonatomic,copy) NSString* longitude;
@@ -21,10 +23,19 @@
 @end
 
 
+@interface LocationStatusDTO: JSONModel
+  	@property(nonatomic,assign) NSInteger code;
+   	@property(nonatomic,copy) NSString* msg;
+@end
+
+
 
 @protocol xengine_jsi_geo_protocol
    @required 
      - (void) _locate:(void (^)(LocationDTO* result,BOOL complete)) completionHandler;
+
+   @required 
+     - (void) _locatable:(void (^)(LocationStatusDTO* result,BOOL complete)) completionHandler;
 
 @end
 

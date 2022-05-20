@@ -10,6 +10,8 @@
 // 单次定位
 -(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult;
 
+-(void)getPositionStateResult:(void(^)(BOOL isOpen))result;
+
 -(void) initSDK:(NSString*) key;
 
 

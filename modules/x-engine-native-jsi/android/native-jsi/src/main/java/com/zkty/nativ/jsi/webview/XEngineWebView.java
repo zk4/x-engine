@@ -156,7 +156,6 @@ public class XEngineWebView extends DWebView {
         List<JSIModule> modules = JSIContext.sharedInstance().modules();
         for (JSIModule object : modules) {
             String tag = object.moduleId();
-            object.setEngineWebView(this);
             addJavascriptObject(object, tag);
         }
 
@@ -344,5 +343,9 @@ public class XEngineWebView extends DWebView {
 
     public void setActivity(Activity mActivity) {
         this.mActivity = mActivity;
+    }
+
+    public void removeActivity() {
+        this.mActivity = null;
     }
 }

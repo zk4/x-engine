@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zkty.nativ.core.annotation.Optional;
 import com.zkty.nativ.jsi.bridge.CompletionHandler;
+import com.zkty.nativ.jsi.bridge.DWebView;
 import com.zkty.nativ.jsi.exception.XEngineException;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
 
@@ -24,8 +25,11 @@ public abstract class JSIModule {
 
     protected XEngineWebView xEngineWebView;
 
-    public void setEngineWebView(XEngineWebView webView) {
-        this.xEngineWebView = webView;
+    //反射调用，在 DWebView 的 call() 方法
+    public void setWebView(DWebView webView) {
+        if (webView instanceof XEngineWebView) {
+            this.xEngineWebView = (XEngineWebView) webView;
+        }
 
     }
 

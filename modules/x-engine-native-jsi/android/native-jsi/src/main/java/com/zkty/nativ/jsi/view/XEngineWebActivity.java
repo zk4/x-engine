@@ -114,17 +114,13 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         historyModel = (HistoryModel) getIntent().getSerializableExtra(HISTORYMODEL);
 
         mWebView = XWebViewPool.sharedInstance().getUnusedWebViewFromPool(historyModel.host);
-        //增加神策埋点（webview初始化）
-//        SensorsDataAPI.sharedInstance().showUpX5WebView(mWebView, true);
-
-//        AnalysisManager.getInstance().initX5WebView(mWebView);
-        if(WebViewManager.getInstance().getWebViewManagerImi() != null)WebViewManager.getInstance().getWebViewManagerImi().activityCreateWevView(mWebView);
+        mWebView.setActivity(this);
+        if (WebViewManager.getInstance().getWebViewManagerImi() != null)
+            WebViewManager.getInstance().getWebViewManagerImi().activityCreateWevView(mWebView);
 
         xEngineNavBar.setVisibility(hideNavBar ? View.GONE : View.VISIBLE);
 
-        xEngineNavBar.setLeftListener(view -> {
-            backUp();
-        });
+        xEngineNavBar.setLeftListener(view -> backUp());
 
 //        PermissionDto dto = MicroAppPermissionManager.sharedInstance().getPermission(mMicroAppId, version);
 //        mWebView.setPermission(dto);
@@ -257,6 +253,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
         XEngineWebActivityManager.sharedInstance().clearActivity(this);
+        mWebView.removeActivity();
         mWebView.goBack();
 
 //        SwipeBackHelper.onDestroy(this);

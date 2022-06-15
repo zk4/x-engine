@@ -87,6 +87,19 @@ NATIVE_MODULE(Native_geo_gaode)
     }];
 }
 
+/**
+ 获取当前定位权限是否开启
+ */
+- (void)getPositionStateResult:(void (^)(BOOL isOpen))result {
+    if ([ CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+        // 无定位权限
+        result(NO);
+    }else{
+        result(YES);
+    }
+}
+
+
 //model转化为字典
 - (NSMutableDictionary *)dicFromObject:(NSObject *)object {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];

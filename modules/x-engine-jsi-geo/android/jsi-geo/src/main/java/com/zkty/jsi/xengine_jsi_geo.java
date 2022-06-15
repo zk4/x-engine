@@ -32,9 +32,16 @@ class LocationDTO {
 
     public String street;
   }
+  
+class LocationStatusDTO {
+  public Integer code;
+
+    public String msg;
+  }
 
 interface xengine_jsi_geo_protocol {
   public void _locate(final CompletionHandler<LocationDTO> handler);
+  public void _locatable(final CompletionHandler<LocationStatusDTO> handler);
 }
   
 
@@ -53,6 +60,19 @@ interface xengine_jsi_geo_protocol {
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(LocationDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void locatable(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _locatable(new CompletionHandler<LocationStatusDTO>() {
+        @Override
+        public void complete(LocationStatusDTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(LocationStatusDTO value) { handler.setProgressData(value); }
       });
 
     }

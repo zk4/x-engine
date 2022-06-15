@@ -18,6 +18,13 @@
     }
 @end
 
+  
+@implementation LocationStatusDTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
 
 
 
@@ -36,6 +43,12 @@
     - (void) locate:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           [self _locate:^(LocationDTO* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+  }
+    - (void) locatable:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _locatable:^(LocationStatusDTO* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
   }

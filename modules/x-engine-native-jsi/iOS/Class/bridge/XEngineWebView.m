@@ -734,8 +734,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    //    [self.indicatorView stopAnimating];
-    [self addCustomView];
+    //似乎时有错误，导致该网站无法显示内容，而不是当一个页面已经呈现，并试图加载下一个页面，只应调用。
 }
 
 // 4.2- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。

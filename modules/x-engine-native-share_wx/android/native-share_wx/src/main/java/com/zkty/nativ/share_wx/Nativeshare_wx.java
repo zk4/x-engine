@@ -87,6 +87,11 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
             ToastUtils.showNormalShortToast("安装微信后分享");
             return;
         }
+        if (TextUtils.isEmpty(info.imgData)) {
+            callBack.onResult(-1);
+            ToastUtils.showNormalShortToast("图片不能为空");
+            return;
+        }
 
         IWXAPI iwxapi = createWXAPI();
         if (iwxapi == null) return;

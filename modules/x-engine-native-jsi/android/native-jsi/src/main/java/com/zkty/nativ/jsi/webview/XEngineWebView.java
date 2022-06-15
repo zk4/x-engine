@@ -1,5 +1,6 @@
 package com.zkty.nativ.jsi.webview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -40,6 +41,7 @@ public class XEngineWebView extends DWebView {
     //自定义webview 历史记录
     private List<HistoryModel> historyModels;
     private HistoryModel historyModel;
+    private Activity mActivity;
 
     public XEngineWebView(Context context) {
         super(context);
@@ -336,4 +338,11 @@ public class XEngineWebView extends DWebView {
         return this.historyModel;
     }
 
+    public Activity getActivity() {
+        return mActivity;
+    }
+
+    public void setActivity(Activity mActivity) {
+        this.mActivity = mActivity;
+    }
 }

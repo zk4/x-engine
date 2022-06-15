@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.zkty.nativ.direct.DirectManager;
 import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 import com.zkty.nativ.scan.activity.ScanActivity;
+import com.zkty.nativ.ui.view.dialog.CommonDialog;
 import com.zkty.nativ.viewer.CallBack;
 import com.zkty.nativ.viewer.Iviewer;
 import com.zkty.nativ.viewer.Nativeviewer;
@@ -58,12 +60,17 @@ public class HomeActivity extends AppCompatActivity {
         }
 
 
-         }
+    }
 
 
     public void scan(View view) {
         Intent intent = new Intent(this, ScanActivity.class);
         startActivityForResult(intent, 100);
+
+        CommonDialog dialog = new CommonDialog(this);
+        dialog.setContent("xxxxxxx");
+        new Handler().postDelayed(() -> dialog.show(), 1000);
+
     }
 
     @Override

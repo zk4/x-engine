@@ -42,6 +42,8 @@ public class XEngineWebView extends DWebView {
     private List<HistoryModel> historyModels;
     private HistoryModel historyModel;
     private Activity mActivity;
+    //是否开启js、图片缓存。默认开启
+    public boolean isInterceptCache = true;
 
     public XEngineWebView(Context context) {
         super(context);
@@ -134,20 +136,27 @@ public class XEngineWebView extends DWebView {
 //                return super.shouldOverrideUrlLoading(webView, s);
 //            }
 
+
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-
-                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-                        interceptRequest(s));
+                if (isInterceptCache) {
+                    return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                            interceptRequest(s));
+                } else {
+                    return super.shouldInterceptRequest(webView, s);
+                }
             }
-
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-                        interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
-            }
+                if (isInterceptCache) {
+                    return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                            interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
+                } else {
+                    return super.shouldInterceptRequest(webView, webResourceRequest);
+                }
 
+            }
         });
     }
 
@@ -347,5 +356,9 @@ public class XEngineWebView extends DWebView {
 
     public void removeActivity() {
         this.mActivity = null;
+    }
+
+    public void setInterceptCache(boolean isInterceptCache) {
+        this.isInterceptCache = isInterceptCache;
     }
 }

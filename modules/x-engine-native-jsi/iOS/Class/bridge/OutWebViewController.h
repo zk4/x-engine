@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OutWebViewController : UIViewController
 
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
-                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork;
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork WhiteUrls:(NSArray *)whitesUrls;
 
 - (WKWebView* _Nonnull) getWebView;
 

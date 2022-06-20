@@ -43,7 +43,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 }
 
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
-                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork{
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork WhiteUrls:(NSArray *)whitesUrls{
     self = [super init];
     if (self){
         self.isLooseNetwork = isLooseNetwork;
@@ -66,35 +66,27 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
         [self.view addSubview:_webView];
         self.webView = _webView;
         //设置uesrAgent
+        __weak typeof(self)  weakSelf = self;
         [_webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//            __strong typeof(weakSelf) strongSelf = weakSelf;
             NSString *userAgent = result;
             
-            if ([userAgent rangeOfString:@"/lohashow/appc"].location != NSNotFound) {
+            if ([userAgent rangeOfString:@"/gomeplus/lohashow/appc"].location != NSNotFound) {
                 return ;
             }
-            NSString *newUserAgent = [userAgent stringByAppendingString:@"/lohashow/appc"];
+            NSString *newUserAgent = [userAgent stringByAppendingString:@"/gomeplus/lohashow/appc"];
             NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:newUserAgent,@"UserAgent", nil];
             [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
             [[NSUserDefaults standardUserDefaults] synchronize];
             //不添加以下代码则只是在本地更改UA，网页并未同步更改
-            [_webView setValue:newUserAgent forKey:@"applicationNameForUserAgent"];
+            [weakSelf.webView setValue:newUserAgent forKey:@"applicationNameForUserAgent"];
+           
         }];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self->_webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                NSString *userAgent = result;
-                
-                if ([userAgent rangeOfString:@"/lohashow/appc"].location != NSNotFound) {
-                    return ;
-                }
-            }];
-        });
-        
-        [self.navigationController.navigationBar addSubview:self.progressView];
         if (fileUrl) {
             NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:fileUrl]];
-            [_webView loadRequest:request];
+            [weakSelf.webView loadRequest:request];
         }
+        [self.navigationController.navigationBar addSubview:self.progressView];
         [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
         [self.webView addObserver:self forKeyPath:@"URL" options:NSKeyValueObservingOptionNew context:nil];
         [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
@@ -127,7 +119,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
    }else if ([keyPath isEqual:@"URL"]&& object == self.webView){
        NSLog(@"url == %@",_webView.URL.absoluteString);
        if ([_webView.URL.absoluteString containsString:@"app/id486744917"]) {
-           [[UIApplication sharedApplication] openURL:_webView.URL];
+//           [[UIApplication sharedApplication] openURL:_webView.URL];
        }
    }else if ([keyPath isEqual:@"title"]&& object == self.webView){
        self.title = self.webView.title;
@@ -153,6 +145,23 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 }
 
 #pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView*)webView decidePolicyForNavigationAction:(WKNavigationAction*)navigationAction decisionHandler:(void(^)(WKNavigationActionPolicy))decisionHandler{
+
+    WKNavigationActionPolicy policy =WKNavigationActionPolicyAllow;
+
+    /* 判断itunes的host链接 */
+    NSLog(@"webview导航跳转的host：%@",[navigationAction.request.URL host]);
+    if([[navigationAction.request.URL host] isEqualToString:@"itunes.apple.com"] &&
+
+    [[UIApplication sharedApplication] openURL:navigationAction.request.URL]){
+
+    policy =WKNavigationActionPolicyCancel;}
+
+    decisionHandler(policy);
+
+}
+
+
 // 开始加载
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     // 可以在这里做正在加载的提示动画 然后在加载完成代理方法里移除动画

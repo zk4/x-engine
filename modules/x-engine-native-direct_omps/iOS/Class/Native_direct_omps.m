@@ -95,7 +95,7 @@ NATIVE_MODULE(Native_direct_omps)
     // 判断params是否传入了isOpenWebCache属性
     BOOL isLooseNetwork = [nativeParams objectForKey:@"isLooseNetwork"];
     if (isLooseNetwork) {
-        OutWebViewController *vc =  [[OutWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame looseNetwork:isLooseNetwork];
+        OutWebViewController *vc =  [[OutWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame looseNetwork:isLooseNetwork WhiteUrls:@[]];
         vc.hidesBottomBarWhenPushed = YES;
         return vc;
     }

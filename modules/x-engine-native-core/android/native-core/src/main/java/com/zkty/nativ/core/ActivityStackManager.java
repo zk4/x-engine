@@ -63,6 +63,12 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
         return stack.search(activity);
     }
 
+    public Activity getFirstActivity() {
+        if (!stack.isEmpty())
+            return stack.get(0);
+        return null;
+    }
+
     /**
      * @param activity 将指定的activity从栈中删除然后finish()掉
      */

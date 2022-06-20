@@ -1,5 +1,6 @@
 package com.zkty.nativ.jsi.webview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -40,6 +41,9 @@ public class XEngineWebView extends DWebView {
     //自定义webview 历史记录
     private List<HistoryModel> historyModels;
     private HistoryModel historyModel;
+    private Activity mActivity;
+    //是否开启js、图片缓存。默认开启
+    public boolean isInterceptCache = true;
 
     public XEngineWebView(Context context) {
         super(context);
@@ -132,20 +136,27 @@ public class XEngineWebView extends DWebView {
 //                return super.shouldOverrideUrlLoading(webView, s);
 //            }
 
+
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-
-                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-                        interceptRequest(s));
+                if (isInterceptCache) {
+                    return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                            interceptRequest(s));
+                } else {
+                    return super.shouldInterceptRequest(webView, s);
+                }
             }
-
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-                return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
-                        interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
-            }
+                if (isInterceptCache) {
+                    return WebResourceResponseAdapter.adapter(WebViewCacheInterceptorInst.getInstance().
+                            interceptRequest(WebResourceRequestAdapter.adapter(webResourceRequest)));
+                } else {
+                    return super.shouldInterceptRequest(webView, webResourceRequest);
+                }
 
+            }
         });
     }
 
@@ -154,7 +165,6 @@ public class XEngineWebView extends DWebView {
         List<JSIModule> modules = JSIContext.sharedInstance().modules();
         for (JSIModule object : modules) {
             String tag = object.moduleId();
-            object.setEngineWebView(this);
             addJavascriptObject(object, tag);
         }
 
@@ -336,4 +346,19 @@ public class XEngineWebView extends DWebView {
         return this.historyModel;
     }
 
+    public Activity getActivity() {
+        return mActivity;
+    }
+
+    public void setActivity(Activity mActivity) {
+        this.mActivity = mActivity;
+    }
+
+    public void removeActivity() {
+        this.mActivity = null;
+    }
+
+    public void setInterceptCache(boolean isInterceptCache) {
+        this.isInterceptCache = isInterceptCache;
+    }
 }

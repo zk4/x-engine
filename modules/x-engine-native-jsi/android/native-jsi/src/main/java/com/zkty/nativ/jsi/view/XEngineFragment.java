@@ -66,6 +66,7 @@ public class XEngineFragment extends Fragment {
             HistoryModel historyModel = (HistoryModel) getArguments().getSerializable(ARG_PARAM_HISTORY_MODEL);
             int index = getArguments().getInt(ARG_PARAM_INDEX);
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
+            mWebView.setActivity(getActivity());
 //            AnalysisManager.getInstance().initX5WebView(mWebView);
             if(WebViewManager.getInstance().getWebViewManagerImi() != null)WebViewManager.getInstance().getWebViewManagerImi().fragmentCreateWevView(mWebView);
 

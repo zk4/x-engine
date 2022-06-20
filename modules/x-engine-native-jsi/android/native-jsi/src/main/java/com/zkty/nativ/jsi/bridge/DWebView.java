@@ -102,6 +102,16 @@ public class DWebView extends WebView {
                 PrintDebugInfo(error);
                 return JSONObject.toJSONString(ret, SerializerFeature.WriteMapNullValue);
             }
+            try {
+                Class<?> cls = jsb.getClass();
+                Method method = cls.getMethod("setWebView", new Class[]{ DWebView.class});
+                method.setAccessible(true);
+                method.invoke(jsb,DWebView.this);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
             /**
              * isArgDataJson:根据argStr.data格式转成JSONObject 或String；

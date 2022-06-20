@@ -62,6 +62,7 @@ JSI_MODULE(JSI_geo)
         LocationStatusDTO *dto = [[LocationStatusDTO alloc]init];
         dto.msg = isOpen?@"0：已授权，可获取定位":@"-1：未授权，无法定位";
         dto.code = isOpen?0:-1;
+        completionHandler(dto,isOpen);
     }];
 }
 

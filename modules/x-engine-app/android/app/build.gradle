@@ -85,6 +85,7 @@ dependencies {
     implementation project(':native-media')
 //    implementation project(':native-media2')
     implementation project(':native-gmupload')
+    implementation project(':native-browser')
 
 
     implementation project(':jsi-direct')
@@ -104,6 +105,7 @@ dependencies {
     implementation project(':jsi-geo')
     implementation project(':jsi-media')
     implementation project(':jsi-enviroment')
+    implementation project(':jsi-browser')
 //    implementation project(':jsi-media2')
 
     implementation 'com.didichuxing.doraemonkit:doraemonkit:3.2.0'

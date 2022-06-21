@@ -66,7 +66,9 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
                                                forMainFrameOnly:YES];
     [configuration.userContentController addUserScript:script];
-    
+    configuration.allowsInlineMediaPlayback = YES;
+    configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+
     self = [super initWithFrame:frame configuration: configuration];
     if (self) {
         super.UIDelegate=self;

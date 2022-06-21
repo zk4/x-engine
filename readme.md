@@ -1,18 +1,9 @@
 另一个简单的 iOS /android 模块管理框架. 支持混合应用开发，任意 UI 方案的混合。
 
-如果你只想混合 h5. 
-
-jsi-* 与 native-jsi 模块可帮助你快速开发 h5 混合应用。详细可参看文档。
-
-如果你想混合 flutter/rn/weex.
-
-实现 idrect 接口即可。
-
 文档: http://x-engine-1257400556.cos-website.ap-guangzhou.myqcloud.com
 
 
-
-文档包含两部分，api 文档与手写文档，
+文档包含两部分，api 文档与手写文档
 
 1. api 文档
 
@@ -28,8 +19,7 @@ jsi-* 与 native-jsi 模块可帮助你快速开发 h5 混合应用。详细可�
 
 
 
-到 x-engine/modules 下，执行 serverless，即可发布文档。当然，需要 serverless 服务管理员权限。
-
+发布文档：到 x-engine/modules 下，执行 serverless，即可发布文档。当然，需要 serverless 服务管理员权限。
 
 
 

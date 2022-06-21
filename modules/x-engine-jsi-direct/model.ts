@@ -77,16 +77,12 @@ function push(arg: DirectPushDTO = {scheme:'omp',fragment:'/',params:{'hideNavba
     host: "com.zkty.microapp.mine",
     pathname: "",
     fragment: "",
-    //通过 vue router 的 api，则不需要加 nativeParams
     params:{
-      __deleteHistory__:1
+      nativeParams:{
+        __deleteHistory__:1
+      }
     }
-    //直接使用 xengine.api 则需要加 nativeParams。
-    // params:{
-    //   nativeParams:{
-    //     __deleteHistory__:1
-    //   }
-    // }
+    
   })
 
   // 跳转http

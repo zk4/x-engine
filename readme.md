@@ -8,8 +8,31 @@ jsi-* 与 native-jsi 模块可帮助你快速开发 h5 混合应用。详细可�
 
 实现 idrect 接口即可。
 
-
 文档: http://x-engine-1257400556.cos-website.ap-guangzhou.myqcloud.com
+
+
+
+文档包含两部分，api 文档与手写文档，
+
+1. api 文档
+
+由 model.ts 生成 readme.md。
+
+最终要放到 x-engine-docs 里，
+
+可以通过 x-engine-docs/gen_readme.py 做这件事，gen_readme.py
+
+在运行 gen_readme.py 前，先在 x-engine 执行 yarn install 
+
+2. 手写文档维护在 x-engine-docs
+
+
+
+到 x-engine/modules 下，执行 serverless，即可发布文档。当然，需要 serverless 服务管理员权限。
+
+
+
+
 
 ``` 
 ├── Makefile

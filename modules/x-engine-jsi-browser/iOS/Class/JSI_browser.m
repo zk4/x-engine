@@ -34,95 +34,28 @@
 JSI_MODULE(JSI_browser)
 
 - (void)afterAllJSIModuleInited {
+    
 }
 
-   
-//
-//
-//- (void)_simpleMethod:(void (^)(BOOL))completionHandler {
-//    NSLog(@"hello,_simpleMethod");
-//}
-//
-//- (void)_simpleMethod {
-//    NSLog(@"hello,_simpleMethod");
-//
-//}
-//
-//- (NamedDTO *)_namedObject {
-//    NamedDTO* ret = [NamedDTO new];
-//    ret.title=@"_namedObject sync";
-//    ret.titleSize=10000;
-//    return ret;
-//}
-//
-//
-//- (void)_namedObject:(void (^)(NamedDTO *, BOOL))completionHandler {
-//    NamedDTO* ret = [NamedDTO new];
-//    ret.title=@"_namedObject async";
-//    ret.titleSize=10000;
-//    completionHandler(ret,TRUE);
-//}
-//
-//
-//- (_0_com_zkty_jsi_browser_DTO *)_nestedAnonymousObject {
-//    _0_com_zkty_jsi_browser_DTO * ret =[_0_com_zkty_jsi_browser_DTO new];
-//    ret.a=@"hello";
-//    ret.i =[_1_com_zkty_jsi_browser_DTO new];
-//    ret.i.n1=@"_nestedAnonymousObject sync";
-//    return ret;
-//}
-//
-//
-//- (void)_nestedAnonymousObject:(void (^)(_0_com_zkty_jsi_browser_DTO *, BOOL))completionHandler {
-//    _0_com_zkty_jsi_browser_DTO * ret =[_0_com_zkty_jsi_browser_DTO new];
-//    ret.a=@"hello";
-//    ret.i =[_1_com_zkty_jsi_browser_DTO new];
-//    ret.i.n1=@"_nestedAnonymousObject async";
-//    completionHandler(ret,TRUE);
-//}
-//
-//- (NSString *)_simpleArgMethod:(NSString *)dto {
-//    return @"from native sync";
-//}
-//
-//
-//- (void)_simpleArgMethod:(NSString *)dto complete:(void (^)(NSString *, BOOL))completionHandler {
-//    completionHandler(@"from native async",TRUE);
-//}
-//
-//
-//- (NSInteger)_simpleArgNumberMethod:(NSInteger)dto {
-//    return dto;
-//}
-//
-//
-//- (void)_simpleArgNumberMethod:(NSInteger)dto complete:(void (^)(NSInteger, BOOL))completionHandler {
-//    completionHandler(dto,TRUE);
-//}
-//
-
- 
-
- 
-- (_complexAnoymousRetWithAnoymousArgs0_DTO *)_complexAnoymousRetWithAnoymousArgs:(_complexAnoymousRetWithAnoymousArgs3_DTO *)dto {
-  [_complexAnoymousRetWithAnoymousArgs3_DTO new];
-    NSString* retstr= [dto toJSONString];
-    _complexAnoymousRetWithAnoymousArgs0_DTO* ret =  [[_complexAnoymousRetWithAnoymousArgs0_DTO alloc] initWithString:retstr error:nil];
-    return ret;
+- (void)_open:(_open_com_zkty_jsi_browser_1_DTO *)dto complete:(void (^)(_open_com_zkty_jsi_browser_0_DTO *, BOOL))completionHandler {
+    NSURL *linkUrl = [NSURL URLWithString:dto.url?:@""];
+    if ([[UIApplication sharedApplication] canOpenURL:linkUrl]) {
+        [[UIApplication sharedApplication]openURL:linkUrl options:@{} completionHandler:^(BOOL success) {
+            _open_com_zkty_jsi_browser_0_DTO *backDto = [_open_com_zkty_jsi_browser_0_DTO new];
+            backDto.code = 0;
+            backDto.msg = @"打开成功";
+            if (completionHandler) {
+                completionHandler(backDto,TRUE);
+            }
+        }];
+    }else{
+        _open_com_zkty_jsi_browser_0_DTO *backDto = [_open_com_zkty_jsi_browser_0_DTO new];
+        backDto.code = 1;
+        backDto.msg = @"网址无效，请检查后重试";
+        if (completionHandler) {
+            completionHandler(backDto,FALSE);
+        }
+    }
 }
-
-- (void)_complexAnoymousRetWithAnoymousArgs:(_complexAnoymousRetWithAnoymousArgs3_DTO *)dto complete:(void (^)(_complexAnoymousRetWithAnoymousArgs0_DTO *, BOOL))completionHandler {
-    completionHandler([self _complexAnoymousRetWithAnoymousArgs:dto],TRUE);
-}
- 
-- (NSInteger)_simpleArgNumberMethod:(NSInteger)dto {
-    return dto;
-}
-
-
-- (void)_simpleArgNumberMethod:(NSInteger)dto complete:(void (^)(NSInteger, BOOL))completionHandler {
-    completionHandler(dto,TRUE);
-}
- 
 
 @end

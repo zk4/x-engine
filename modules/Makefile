@@ -1,2 +1,4 @@
 deploy_docs:
-	npx serverless@2.72.2
+	# help 
+	# https://cloud.tencent.com/document/product/1154/50938
+	sls deploy

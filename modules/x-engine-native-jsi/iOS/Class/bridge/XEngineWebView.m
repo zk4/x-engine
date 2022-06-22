@@ -66,7 +66,9 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
                                                forMainFrameOnly:YES];
     [configuration.userContentController addUserScript:script];
-    
+    configuration.allowsInlineMediaPlayback = YES;
+    configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+
     self = [super initWithFrame:frame configuration: configuration];
     if (self) {
         super.UIDelegate=self;
@@ -627,11 +629,11 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 #pragma mark - <WKWebView cycleLife>
 // 1.1- 询问开发者是否下载并载入当前 URL
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+
     NSString * urlStr = [navigationAction.request.URL absoluteString];
     NSRange range = NSMakeRange(0, 0);
     NSURL * URL;
     NSString *scheme;
-    
     if ([urlStr hasPrefix:@"weixin://"] || [urlStr hasPrefix:@"alipay://"]  || [urlStr hasPrefix:@"alipays://"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -735,11 +737,26 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     //似乎时有错误，导致该网站无法显示内容，而不是当一个页面已经呈现，并试图加载下一个页面，只应调用。
+    if([error code] == NSURLErrorCancelled) {
+            return ;
+        }
+        
+    //Frame load interrupted
+    if ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102) {
+        return;
+    }
 }
 
 // 4.2- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    //    [self.indicatorView stopAnimating];
+    if([error code] == NSURLErrorCancelled) {
+            return ;
+        }
+        
+    //Frame load interrupted
+    if ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102) {
+        return;
+    }
     [self addCustomView];
 }
 

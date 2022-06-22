@@ -70,6 +70,9 @@ project(':native-geo_gaode').projectDir = new File('../../x-engine-native-geo_ga
 include ':native-jsi'
 project(':native-jsi').projectDir = new File('../../x-engine-native-jsi/android/native-jsi')
 
+include ':native-browser'
+project(':native-browser').projectDir = new File('../../x-engine-native-browser/android/native-browser')
+
 include ':native-gmupload'
 project(':native-gmupload').projectDir = new File('../../../../gome-business/gm-modules/x-engine-native-gmupload/android/native-gmupload')
 
@@ -123,6 +126,9 @@ project(':jsi-media').projectDir = new File('../../x-engine-jsi-media/android/js
 
 include ':jsi-enviroment'
 project(':jsi-enviroment').projectDir = new File('../../x-engine-jsi-enviroment/android/jsi-enviroment')
+
+include ':jsi-browser'
+project(':jsi-browser').projectDir = new File('../../x-engine-jsi-browser/android/jsi-browser')
 
 //include ':jsi-media2'
 //project(':jsi-media2').projectDir = new File('../../x-engine-jsi-media2/android/jsi-media2')

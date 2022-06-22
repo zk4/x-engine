@@ -1,5 +1,8 @@
 x-cli 主要是为了生成统一的 jsi 模块。根据 [model.ts](#model.ts语法)  唯一定义， 生成 oc， java， js 三端统一接口与 readme.md。 以及 h5 的自动测试。
 
+x-cli 借用了 typescript 的 AST parser，用来解析 model.ts 并生成对应代码。  
+
+
 ## 安装
 
  ```
@@ -92,7 +95,7 @@ interface SheetDTO {
 
 **推荐**
 
-匿名类型则不需要你再定义具名类型.因为只有 js bridge 会用到. 你可以不用关心
+匿名类型则不需要你再定义具名类型. 会自动生成一个唯一类型名，这个类型只有 js bridge 内部会用到. 虽然较丑陋，但你完全可以不用关心。
 
 ```
 function hello(arg:{name:string,age:int}){}
@@ -118,7 +121,7 @@ function hello(arg:{name:string,age:int}){}
 
 
 
-##### 支持嵌套
+##### 支持无限嵌套
 
 ```
 Map<string,Map<string,Map<string,Map<string,string>>>>;
@@ -146,10 +149,6 @@ title?:string
 __event__:(a:string,b:Array<string>) =>void
 ```
 
- oc/java 主动调用 js 的桥梁 
-
-
-
 #### 函数
 
 可以指定默认参数.返回值. 将生成 native 对应类型与接口.
@@ -162,7 +161,32 @@ function showActionSheet(sheetDTO:SheetDTO={title:"title",itemList:["a","b","c"]
 
 #### demo 方法
 
-直接写在函数声明的函数体内即可.
+直接写在函数声明的函数体内即可，编译时，会自动提取并生成文档。
+
+```typescript
+@async
+function saveImageToPhotoAlbum(arg: {
+  imgUrl: string;
+}): {
+  status: int;
+  msg: string;
+} {
+  // demo 方法
+  xengine.api(
+    "com.zkty.jsi.media",
+    "saveImageToPhotoAlbum",
+    {
+      imgUrl: "http://xxx",
+    },
+    (res) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(res);
+    }
+  );
+}
+
+```
+
+
 
 #### 测试方法
 
@@ -224,6 +248,8 @@ function funcname(arg:SheetDTO={arg:"abc"}):string {
 如果只加了@sync, 只会生成同步方法
 
 如果只加了@async, 只会生成异步方法
+
+如果加了@async 与 @sync， 会生成同步与异步方法
 
 
 

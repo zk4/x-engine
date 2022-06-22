@@ -1,2 +1,2 @@
 deploy_docs:
-	serverless --debug
+	npx serverless@2.72.2

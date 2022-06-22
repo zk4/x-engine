@@ -19,14 +19,11 @@
 
 
 
-发布文档：到 x-engine/modules 下，执行 serverless，即可发布文档。当然，需要 serverless 服务管理员权限。
-
-如果未安装serverless,  执行如下脚本再试
-
+发布文档：到 x-engine/modules 下，执行 
 ``` bash
-npm install -g serverless
-npm install -g @serverless/cli
+npx serverless@2.72.2
 ```
+即可发布文档。
 
 
 

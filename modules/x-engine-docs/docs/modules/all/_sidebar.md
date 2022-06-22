@@ -9,4 +9,5 @@
 - [share](./docs/modules/all/模块-share.md)
 - [localstorage](./docs/modules/all/模块-localstorage.md)
 - [dev](./docs/modules/all/模块-dev.md)
+- [browser](./docs/modules/all/模块-browser.md)
 - [direct](./docs/modules/all/模块-direct.md)

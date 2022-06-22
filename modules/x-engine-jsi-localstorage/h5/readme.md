@@ -2,7 +2,7 @@
 
 JSI Id: com.zkty.jsi.localstorage
 
-version: 3.0.3
+version: 3.0.7
 
 
 

@@ -41,6 +41,7 @@ version: 3.0.7
         __deleteHistory__:1
       }
     }
+    
   })
 
   // 跳转http

@@ -2,7 +2,7 @@
 
 JSI Id: com.zkty.jsi.media
 
-version: 3.0.3
+version: 3.0.7
 
 
 

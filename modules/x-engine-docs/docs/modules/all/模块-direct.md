@@ -73,7 +73,7 @@ this.$router.go(0)
 
 JSI Id: com.zkty.jsi.direct
 
-version: 3.0.3
+version: 3.0.7
 
 
 
@@ -108,8 +108,11 @@ version: 3.0.3
     pathname: "",
     fragment: "",
     params:{
-      __deleteHistory__:1
+      nativeParams:{
+        __deleteHistory__:1
+      }
     }
+    
   })
 
   // 跳转http
@@ -127,6 +130,20 @@ version: 3.0.3
     fragment: "",  
     pathname: "",  
   })  
+
+  // 跳转真快乐内嵌H5
+  engine.api('com.zkty.jsi.direct', 'push', {  
+    scheme: "gome",  
+    host: "www.youtube.com",  
+    fragment: "",  
+    pathname: "",  
+    params:{
+      nativeParams:{
+        whiteUrls:[],//iOS使用应用App Store id列表
+        schemes:[],//Android scheme 列表
+      }
+    }
+  }) 
 
 ``` 
 

@@ -6,7 +6,7 @@
 
 JSI Id: com.zkty.jsi.geo
 
-version: 3.0.3
+version: 3.0.7
 
 
 
@@ -49,7 +49,39 @@ interface LocationDTO {
   // 街道
   street: string;
   
-  
+
+}
+``` 
+
+
+
+## locatable
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
+ 获取定位服务状态
+
+
+> **demo**
+``` js
+
+  xengine.api("com.zkty.jsi.geo", "locatable",(val)=>{
+  document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+
+``` 
+
+**无参数**
+
+
+**返回值**
+``` js
+ 
+
+interface LocationStatusDTO {
+
+   //  0:已授权，可获取定位
+   // -1:未授权，无法定位 
+  code: int;
+  msg: string;
   
 
 }

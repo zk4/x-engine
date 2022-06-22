@@ -21,9 +21,9 @@
 
 发布文档：到 x-engine/modules 下，执行 
 ``` bash
-npx serverless@2.72.2
+sls deploy
 ```
-即可发布文档。
+即可发布文档。 如果需要扫码，找一下管理员。
 
 
 

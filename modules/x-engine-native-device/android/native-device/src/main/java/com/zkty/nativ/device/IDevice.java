@@ -20,5 +20,10 @@ public interface IDevice {
 
     String getDeviceInfo();
 
+    void pickContact(ContactCallBack callBack);
 
+
+    public interface ContactCallBack {
+        void onResult(String name, String phone);
+    }
 }

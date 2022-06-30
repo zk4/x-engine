@@ -58,5 +58,13 @@ public class JSI_device extends xengine_jsi_device {
         handler.complete(JSON.parseObject(json, DeviceDTO.class));
     }
 
-
+    @Override
+    public void _pickContact(CompletionHandler<_0_com_zkty_jsi_device_DTO> handler) {
+        iDevice.pickContact((name, phone) -> {
+            _0_com_zkty_jsi_device_DTO dto = new _0_com_zkty_jsi_device_DTO();
+            dto.name = name;
+            dto.phone = phone;
+            handler.complete(dto);
+        });
+    }
 }

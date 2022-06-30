@@ -87,6 +87,18 @@ function getDeviceInfo(): DeviceDTO {
   });
 }
 
+//打开系统通讯录，获取单个联系人信息
+function pickContact(): {
+  //联系人姓名
+  name: string;
+  //联系人电话号码
+  phone: string;
+} {
+  xengine.api("com.zkty.jsi.device", "pickContact", {} ,(val) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(val);
+    });
+}
+
 function test_getStatusHeight() {
   let val = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
   document.getElementById("debug_text").innerText = typeof val + ":" + val;
@@ -126,3 +138,9 @@ function test_getDeviceInfo() {
     document.getElementById("debug_text").innerText = JSON.stringify(val);
   });
 }
+function test_pickContact() {
+  xengine.api("com.zkty.jsi.device", "pickContact", {}, (val) => {
+    document.getElementById("debug_text").innerText = JSON.stringify(val);
+  });
+}
+

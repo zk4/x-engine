@@ -22,6 +22,13 @@
     }
 @end
 
+  
+@implementation _pickContact_com_zkty_jsi_device_0_DTO
+    + (BOOL)propertyIsOptional:(NSString *)propertyName {
+   	return NO;
+    }
+@end
+
 
 
 
@@ -82,6 +89,12 @@
     - (void) getDeviceInfo:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           [self _getDeviceInfo:^(DeviceDTO* result, BOOL complete) {
+            completionHandler(result ,complete);
+          }];
+  }
+    - (void) pickContact:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
+
+          [self _pickContact:^(_pickContact_com_zkty_jsi_device_0_DTO* result, BOOL complete) {
             completionHandler(result ,complete);
           }];
   }

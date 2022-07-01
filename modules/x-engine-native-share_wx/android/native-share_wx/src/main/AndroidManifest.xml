@@ -11,4 +11,7 @@
             android:name="com.zkty.native.share_wx"
             android:value="com.zkty.nativ.share_wx.Nativeshare_wx" />
     </application>
+    <queries>
+        <package android:name="com.tencent.mm"/>
+    </queries>
 </manifest>

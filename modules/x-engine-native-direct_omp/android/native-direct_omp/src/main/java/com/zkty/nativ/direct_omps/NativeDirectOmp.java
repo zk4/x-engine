@@ -1,4 +1,4 @@
-package com.zkty.nativ.direct_omp;
+package com.zkty.nativ.direct_omps;
 
 import android.app.Activity;
 import android.os.Handler;

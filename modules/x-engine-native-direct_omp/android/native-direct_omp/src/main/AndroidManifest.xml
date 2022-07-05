@@ -8,6 +8,6 @@
     <application>
         <meta-data
             android:name="com.zkty.native.direct_omp"
-            android:value="com.zkty.nativ.direct_omp.NativeDirectOmps" />
+            android:value="com.zkty.nativ.direct_omp.NativeDirectOmp" />
     </application>
 </manifest>

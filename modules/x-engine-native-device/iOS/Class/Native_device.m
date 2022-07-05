@@ -10,13 +10,17 @@
 #import "XENativeContext.h"
 #import <x-engine-native-core/Unity.h>
 #import <sys/sysctl.h>
+#import <Contacts/Contacts.h>
+#import <ContactsUI/ContactsUI.h>
+//typedef void(^completeContactInfo)(NSDictionary *contactInfo);
 
+@interface Native_device()<CNContactPickerDelegate>
 
-@interface Native_device()
 @end
 
 @implementation Native_device
 NATIVE_MODULE(Native_device)
+@synthesize contactInfoBlock = _contactInfoBlock;
 
 - (NSString*) moduleId{
     return @"com.zkty.native.device";
@@ -26,7 +30,8 @@ NATIVE_MODULE(Native_device)
     return 0;
 }
 
-- (void)afterAllNativeModuleInited{}
+- (void)afterAllNativeModuleInited{
+}
 
 - (NSString *)getStatusHeight {
     NSString *hexightStr= [NSString stringWithFormat:@"%.2f", [[UIApplication sharedApplication] statusBarFrame].size.height];
@@ -78,6 +83,120 @@ NATIVE_MODULE(Native_device)
     return dict;
 }
 
+//请求通讯录权限
+- (void)pickContactInfo{
+    CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+    if (status == CNAuthorizationStatusNotDetermined) {
+        CNContactStore *store = [[CNContactStore alloc] init];
+        [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError*  _Nullable error) {
+            if (error) {
+                NSLog(@"授权失败");
+            }else {
+                NSLog(@"成功授权");
+                [self openContact];
+            }
+        }];
+    }
+    else if(status == CNAuthorizationStatusRestricted)
+    {
+        NSLog(@"用户拒绝");
+        [self showAlertViewAboutNotAuthorAccessContact];
+    }
+    else if (status == CNAuthorizationStatusDenied)
+    {
+        NSLog(@"用户拒绝");
+        [self showAlertViewAboutNotAuthorAccessContact];
+    }
+    else if (status == CNAuthorizationStatusAuthorized)//已经授权
+    {
+        //有通讯录权限-- 进行下一步操作
+        [self openContact];
+    }
+    
+}
+ 
+//有通讯录权限-- 进行下一步操作
+- (void)openContact{
+    // 创建联系人选择控制器
+    CNContactPickerViewController *contact = [[CNContactPickerViewController alloc]init];
+
+    contact.delegate = self;
+
+    [[Unity sharedInstance].getCurrentVC.navigationController presentViewController:contact animated:YES completion:nil];
+ 
+}
+#pragma mark  CNContactPickerDelegate
+
+//取消
+
+- (void)contactPickerDidCancel:(CNContactPickerViewController *)picker
+
+{
+
+[picker dismissViewControllerAnimated:YES completion:nil];
+
+}
+
+//选中与取消选中时调用的方法
+
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact{
+    
+    NSString * givenName = contact.givenName;
+
+    NSString * familyName = contact.familyName;
+
+    NSString *nameString = [NSString stringWithFormat:@"%@ %@",familyName,givenName];
+
+    NSMutableArray *phoneArray = [NSMutableArray array];
+
+    NSArray * tmpArr = contact.phoneNumbers;
+    
+    NSDictionary *contactInfo = [NSDictionary new];
+
+    for (CNLabeledValue * labelValue in tmpArr) {
+        
+        CNPhoneNumber * number = labelValue.value;
+
+        [phoneArray addObject:number.stringValue];
+
+        }
+
+    [contactInfo setValue:nameString?:@"" forKey:@"name"];
+
+    if (phoneArray.count != 0) {
+        
+        NSString *firstPhone = [phoneArray firstObject];
+
+        if ([firstPhone rangeOfString:@"-"].location != NSNotFound) {
+            
+            firstPhone  = [firstPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+
+        }
+
+        [contactInfo setValue:firstPhone?:@"" forKey:@"phone"];
+        
+        }
+
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    if (self.contactInfoBlock) {
+        self.contactInfoBlock(contactInfo);
+    }
+
+}
+//提示没有通讯录权限
+- (void)showAlertViewAboutNotAuthorAccessContact{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请授权通讯录权限" message:@"请在iPhone的""设置-隐私-通讯录""选项中,允许乐活秀访问你的通讯录" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self jumpSettingPage];
+    }]];
+    [[Unity sharedInstance].getCurrentVC.navigationController presentViewController:alertController animated:YES completion:nil];
+}
+-(void)jumpSettingPage{
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    [[UIApplication sharedApplication]openURL:url];
+}
 - (NSString *) userDeviceName {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);

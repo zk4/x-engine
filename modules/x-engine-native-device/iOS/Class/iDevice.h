@@ -10,8 +10,10 @@
 #define iDevice_h
 
 @class DeviceSheetModel, DeviceMoreModel;
+typedef void(^completeContactInfo)(NSDictionary *contactInfo);
 
 @protocol iDevice <NSObject>
+@property (nonatomic, copy)void(^contactInfoBlock)(NSDictionary *contactInfo);
 - (NSString *)getStatusHeight;
 - (NSString *)getNavigationHeight;
 - (NSString *)getScreenHeight;
@@ -19,5 +21,6 @@
 - (NSString *)callPhone:(NSString *)phoneNum;
 - (NSString *)sendMsgWithPhoneNum:(NSString *)phoneNum withMsg:(NSString *)phoneMsg;
 - (NSMutableDictionary *)getDeviceInfo;
+- (void)pickContactInfo;
 @end
 #endif /* iDevice_h */

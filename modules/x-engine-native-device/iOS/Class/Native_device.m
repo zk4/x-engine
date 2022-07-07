@@ -31,6 +31,7 @@ NATIVE_MODULE(Native_device)
 }
 
 - (void)afterAllNativeModuleInited{
+
 }
 
 - (NSString *)getStatusHeight {
@@ -129,59 +130,33 @@ NATIVE_MODULE(Native_device)
 
 //取消
 
-- (void)contactPickerDidCancel:(CNContactPickerViewController *)picker
+- (void)contactPickerDidCancel:(CNContactPickerViewController *)picker{
 
-{
-
-[picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 
 }
 
-//选中与取消选中时调用的方法
 
-- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact{
-    
-    NSString * givenName = contact.givenName;
-
-    NSString * familyName = contact.familyName;
-
-    NSString *nameString = [NSString stringWithFormat:@"%@ %@",familyName,givenName];
-
-    NSMutableArray *phoneArray = [NSMutableArray array];
-
-    NSArray * tmpArr = contact.phoneNumbers;
-    
-    NSDictionary *contactInfo = [NSDictionary new];
-
-    for (CNLabeledValue * labelValue in tmpArr) {
-        
-        CNPhoneNumber * number = labelValue.value;
-
-        [phoneArray addObject:number.stringValue];
-
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty{
+    //获得点击的属性,在此进行处理...
+    CNContact *contact = contactProperty.contact;
+    if (contact) {
+        NSString * givenName = contact.givenName;
+        NSString * familyName = contact.familyName;
+        NSString * organizationName = contact.organizationName;
+        NSString *phone = [contactProperty.value stringValue];
+        NSString *nameString = [NSString stringWithFormat:@"%@ %@",familyName?:@"",givenName?:@""];
+        if (!nameString || nameString.length == 0 || [nameString isEqualToString:@" "]) {
+            nameString = [NSString stringWithFormat:@"%@",organizationName?:@""];
         }
-
-    [contactInfo setValue:nameString?:@"" forKey:@"name"];
-
-    if (phoneArray.count != 0) {
-        
-        NSString *firstPhone = [phoneArray firstObject];
-
-        if ([firstPhone rangeOfString:@"-"].location != NSNotFound) {
-            
-            firstPhone  = [firstPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
-
+        NSMutableDictionary *contactInfo = [NSMutableDictionary new];
+        [contactInfo setObject:nameString?nameString:@"" forKey:@"name"];
+        [contactInfo setObject:phone?phone:@"" forKey:@"phone"];
+        if (self.contactInfoBlock) {
+            self.contactInfoBlock(contactInfo);
         }
-
-        [contactInfo setValue:firstPhone?:@"" forKey:@"phone"];
-        
-        }
-
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    if (self.contactInfoBlock) {
-        self.contactInfoBlock(contactInfo);
     }
-
+   
 }
 //提示没有通讯录权限
 - (void)showAlertViewAboutNotAuthorAccessContact{

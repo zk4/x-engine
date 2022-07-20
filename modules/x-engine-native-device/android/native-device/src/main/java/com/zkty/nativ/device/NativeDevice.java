@@ -3,15 +3,18 @@ package com.zkty.nativ.device;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.alibaba.fastjson.JSON;
 import com.zkty.nativ.core.NativeModule;
@@ -189,6 +192,8 @@ public class NativeDevice extends NativeModule implements IDevice {
                 if (requestCode == CODE_PERMISSION_CONTACTS) {
                     if (activity.checkCallingOrSelfPermission(permissions[0]) == PackageManager.PERMISSION_GRANTED) {
                         pick(activity);
+                    } else {
+                        showSystemPermissionsSettingDialog(activity);
                     }
                 }
             }
@@ -215,6 +220,48 @@ public class NativeDevice extends NativeModule implements IDevice {
         intent.addCategory("android.intent.category.DEFAULT");
         intent.setType("vnd.android.cursor.dir/phone_v2");
         activity.startActivityForResult(intent, REQUEST_CODE_DEFINE);
+    }
+
+
+    /**
+     * 不再提示权限时的展示对话框
+     */
+    AlertDialog mPermissionDialog;
+
+    private void showSystemPermissionsSettingDialog(final Activity context) {
+        final String mPackName = context.getPackageName();
+        if (mPermissionDialog == null) {
+            mPermissionDialog = new AlertDialog.Builder(context)
+                    .setCancelable(false)
+                    .setMessage("已禁用权限，请手动授予")
+                    .setPositiveButton("设置", (dialog, which) -> {
+                        cancelPermissionDialog();
+
+                        Uri packageURI = Uri.parse("package:" + mPackName);
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                        context.startActivity(intent);
+
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //关闭页面或者做其他操作
+                            cancelPermissionDialog();
+                            //mContext.finish();
+                        }
+                    })
+                    .create();
+        }
+        mPermissionDialog.show();
+    }
+
+    //关闭对话框
+    private void cancelPermissionDialog() {
+        if (mPermissionDialog != null) {
+            mPermissionDialog.cancel();
+            mPermissionDialog = null;
+        }
+
     }
 
 

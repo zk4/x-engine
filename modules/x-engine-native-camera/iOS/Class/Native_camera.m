@@ -368,6 +368,9 @@ NATIVE_MODULE(Native_camera)
 // image转base64
 - (NSString *)UIImageToBase64Str:(UIImage *)image {
     NSData *data = UIImagePNGRepresentation(image);
+    if (data.length> 2*1000*1000) {
+        data = [self compressOriginalImage:image toMaxDataSizeKBytes:@"2000" withQuality:nil];
+    }
     NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     return encodedImageStr;
 }

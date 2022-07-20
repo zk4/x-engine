@@ -97,7 +97,8 @@ NATIVE_MODULE(Native_direct_omp)
         isLooseNetwork = [nativeParams objectForKey:@"isLooseNetwork"];
     }
 
-    RecyleWebViewController *vc =  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame looseNetwork:isLooseNetwork];
+    XEngineWebView *webView = [nativeParams objectForKey:@"webView"];
+    RecyleWebViewController *vc =  [[RecyleWebViewController alloc] initWithUrl:finalUrl  withHiddenNavBar:isHideNavBar webviewFrame:frame looseNetwork:isLooseNetwork webView:webView];
     vc.hidesBottomBarWhenPushed = YES;
 
     return  vc;

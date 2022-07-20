@@ -11,10 +11,11 @@
 #import "RecyleWebViewController.h"
 #import "iWebcache.h"
 #import "XENativeContext.h"
-
+#import "iToast.h"
 
 @interface WebViewFactory ()
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
+@property (nonatomic, strong) XEngineWebView *preWebView;
 @end
 
 @implementation WebViewFactory
@@ -134,6 +135,43 @@
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
+}
+
+- (void)preLoadWithUrl:(NSString *)str{
+    self.preWebView = [self createWebView:NO];
+    self.preWebView.frame = CGRectMake(0, 0, 1, 1);
+    [[UIApplication sharedApplication].keyWindow addSubview:self.preWebView];
+    if([[str lowercaseString] hasPrefix:@"http"]){
+        [self.preWebView _loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    }else{
+ 
+        if([str rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+            [self.preWebView loadUrl:str];
+        }else{
+//             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+             NSURL *fileURL = [NSURL URLWithString:str];
+            NSError *error = nil;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"microapps/.*?/" options:0 error:&error];
+            NSTextCheckingResult *match = [regex firstMatchInString:str
+                                                            options:0
+                                                              range:NSMakeRange(0, [str length])];
+            if(error || !match || [match numberOfRanges]==0){
+#ifdef DEBUG
+                NSString* msg = [NSString stringWithFormat:@"路径不对: %@", str];
+                [XENP(iToast) toast: msg];
+#endif
+                return;
+            }
+            NSRange matchRange = [match rangeAtIndex:0];
+            NSString *safeZone = [str substringWithRange:NSMakeRange(0, matchRange.location+matchRange.length)];
+            [self.preWebView _loadFileURL:fileURL allowingReadAccessToURL:[NSURL URLWithString:safeZone]];
+        }
+ 
+    }
+}
+
+- (XEngineWebView *)getWebview{
+    return self.preWebView;
 }
 @end
 

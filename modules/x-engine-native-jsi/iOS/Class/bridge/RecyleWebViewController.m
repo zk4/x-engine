@@ -9,7 +9,7 @@
 #import "iWebcache.h"
 #import "iToast.h"
 
-
+#define kAppDelegate            ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 /// TODO: webview refactor
 /*
@@ -38,6 +38,9 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 
 /** 标记使用状态 */
 @property (nonatomic, assign) BOOL bWebviewOnTop;
+
+@property (nonatomic, strong) XEngineWebView * _Nullable preWebview;
+
 
 @end
 
@@ -137,8 +140,56 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     }
     return self;
 }
+- (void)preLoadWebView{
+    
+}
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork webView:(BOOL )showWebView{
+    self = [super init];
+    if (self){
+        if(fileUrl.length == 0)
+            return self;
+        self.isLooseNetwork = isLooseNetwork;
+        self.webcache =XENP(iWebcache);
+        if(!isLooseNetwork) {
+            if(self.webcache){
+                [self.webcache enableCache];
+            }
+        }else{
+            if(self.webcache)
+                [self.webcache disableCache];
+        }
+        self.bWebviewOnTop = YES;
+        if (showWebView) {
+            self.webview= [[WebViewFactory sharedInstance] getWebview];
+        }else{
+            self.webview= [[WebViewFactory sharedInstance] createWebView:isLooseNetwork];
+        }
+        self.webview.allowsBackForwardNavigationGestures = YES;
 
+        self.webview.scrollView.delegate = self;
+        self.webview.frame=frame;
+    
+        self.isHiddenNavbar = isHidden;
+        self.loadUrl = fileUrl;
 
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewProgressChange:)
+                                                     name:@"XEWebViewProgressChangeNotification"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadFail:)
+                                                     name:@"XEWebViewLoadFailNotification"
+                                                   object:nil];
+        [self loadFileUrl];
+        
+        
+        [self.webview.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"selfClassContextNotSuper"];
+
+    }
+    return self;
+}
 - (void)webViewScrollerToTop{
     [self.webview.scrollView setContentOffset:CGPointZero animated:YES];
 }

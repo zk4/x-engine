@@ -9,19 +9,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.alibaba.fastjson.JSON;
-
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.core.utils.DensityUtils;
 import com.zkty.nativ.core.utils.DeviceUtils;
-import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.LifecycleListener;
 
@@ -193,10 +189,6 @@ public class NativeDevice extends NativeModule implements IDevice {
                 if (requestCode == CODE_PERMISSION_CONTACTS) {
                     if (activity.checkCallingOrSelfPermission(permissions[0]) == PackageManager.PERMISSION_GRANTED) {
                         pick(activity);
-                    } else {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            activity.requestPermissions(permissions, CODE_PERMISSION_CONTACTS);
-                        }
                     }
                 }
             }

@@ -141,9 +141,9 @@ NATIVE_MODULE(Native_direct)
         query:(nullable NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,id>*) params
         frame:(CGRect)frame{
-    if ([host isEqualToString:@"prom.m.gome.com.cn:443"] && ![scheme isEqualToString:@"gome"]) {
-        scheme = @"gome";
-    }
+//    if ([host isEqualToString:@"prom.m.gome.com.cn:443"] && ![scheme isEqualToString:@"gome"]) {
+//        scheme = @"gome";
+//    }
     UInt64 now  = [[ NSDate date ] timeIntervalSince1970 ] * 1000;
     // 路由 throttle
     if(now - self.lastTimeStamp<500){

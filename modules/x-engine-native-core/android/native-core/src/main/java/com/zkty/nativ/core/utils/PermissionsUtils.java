@@ -112,7 +112,6 @@ public class PermissionsUtils {
                         Uri packageURI = Uri.parse("package:" + mPackName);
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
                         context.startActivity(intent);
-                        context.finish();
                     })
                     .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                         @Override

@@ -56,7 +56,7 @@ import nativ.jsi.BuildConfig;
 public class DWebView extends WebView {
     private static final String BRIDGE_NAME = "_dsbridge";
     private static final String LOG_TAG = "dsBridge";
-    protected static boolean isDebug = !BuildConfig.BUILD_TYPE.equals("release");
+    protected static boolean isDebug = "debug".equals(BuildConfig.BUILD_TYPE);
     private Map<String, Object> javaScriptNamespaceInterfaces = new HashMap();
     private String APP_CACHE_DIRNAME;
     int callID = 0;
@@ -299,7 +299,6 @@ public class DWebView extends WebView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(enabled);
         }
-        isDebug = enabled;
     }
 
     @Keep

@@ -58,11 +58,33 @@ JSI_MODULE(JSI_geo)
 }
 
 - (void)_locatable:(void (^)(LocationStatusDTO *, BOOL))completionHandler {
-    [self.geo getPositionStateResult:^(BOOL isOpen) {
-        LocationStatusDTO *dto = [[LocationStatusDTO alloc]init];
-        dto.msg = isOpen?@"0：已授权，可获取定位":@"-1：未授权，无法定位";
-        dto.code = isOpen?0:-1;
-        completionHandler(dto,isOpen);
+//    [self.geo getPositionStateResult:^(GM isOpen) {
+//        LocationStatusDTO *dto = [[LocationStatusDTO alloc]init];
+//        dto.msg = isOpen?@"0：已授权，可获取定位":@"-1：未授权，无法定位";
+//        dto.code = isOpen?0:-1;
+//        completionHandler(dto,isOpen);
+//    }];
+    [self.geo getPositionStateResult:^(GMJLocationType locationType) {
+                LocationStatusDTO *dto = [[LocationStatusDTO alloc]init];
+        switch (locationType) {
+            case 0:
+                dto.msg = @"0：已授权，可获取定位";
+                break;
+                
+            case -1:
+                dto.msg = @"-1：未授权，无法定位";
+                break;
+                
+            case 1:
+                dto.msg = @"1：未请求授权或允许一次授权";
+                break;
+                
+            default:
+                break;
+        }
+                
+                dto.code = locationType;
+                completionHandler(dto,locationType);
     }];
 }
 

@@ -34,6 +34,8 @@ NATIVE_MODULE(Native_tabbar)
 - (void)registerDelegate:(id)delegate {
     self.delegate=delegate;
 }
-
+- (void)changeTab:(NSInteger)tabIndex{
+    [self.delegate changeTab:tabIndex];
+}
 @end
  

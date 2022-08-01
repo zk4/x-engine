@@ -33,8 +33,9 @@ interface LocationDTO {
 } 
 
 interface LocationStatusDTO {
-   //  0:已授权，可获取定位
-   // -1:未授权，无法定位 
+// 0:已授权，可获取定位
+//-1:未授权，无法定位
+// 1:未请求过权限(首次安装或上次点击允许一次再次启动会返回1)
   code: int;
   msg: string;
   

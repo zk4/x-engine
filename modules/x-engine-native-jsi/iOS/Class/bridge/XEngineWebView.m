@@ -62,12 +62,14 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     dialogTextDic=@{};
     semaphore_webloaded = dispatch_semaphore_create(0);
     
+
     WKUserScript *script = [[WKUserScript alloc] initWithSource:@"window._dswk=true;"
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
                                                forMainFrameOnly:YES];
     [configuration.userContentController addUserScript:script];
     configuration.allowsInlineMediaPlayback = YES;
     configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+
 
     self = [super initWithFrame:frame configuration: configuration];
     if (self) {

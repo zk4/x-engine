@@ -314,7 +314,11 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         return   action(obj, selector);
     }else if ([obj isKindOfClass:NSDictionary.class]){
         return [XToolDataConverter dictionaryToJson:obj ];
-    }else{
+    }
+    else if ([obj isKindOfClass:NSArray.class]){
+    return [XToolDataConverter arrayToJson:obj ];
+}
+    else{
         return [NSString stringWithFormat:@"%@",obj];
     }
 }

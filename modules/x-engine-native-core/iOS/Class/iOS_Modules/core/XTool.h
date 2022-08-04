@@ -55,7 +55,7 @@
 /// @param jsonString json
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
 
-
++ (NSString*)arrayToJson:(NSArray *)array;
 /// json格式字符串转字典:
 /// @param jsonString json
 + (NSDictionary *)dictionaryWithJsonStringWithError:(NSString *)jsonString error:(NSError**)error;

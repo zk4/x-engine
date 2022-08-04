@@ -9,6 +9,7 @@
 @protocol iTabbarDelegate;
 @protocol iTabbar <NSObject>
 - (UIViewController*)getCurrentTabItemVC;
+- (void)changeTab:(NSInteger)tabIndex;
 -(void) registerDelegate:(id<iTabbarDelegate>) delegate;
 @end
 #endif /* iTabbar_h */

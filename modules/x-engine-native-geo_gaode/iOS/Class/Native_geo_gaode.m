@@ -89,16 +89,50 @@ NATIVE_MODULE(Native_geo_gaode)
 
 /**
  获取当前定位权限是否开启
+ 
+ 
  */
-- (void)getPositionStateResult:(void (^)(BOOL isOpen))result {
-    if ([ CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
-        // 无定位权限
-        result(NO);
-    }else{
-        result(YES);
+//- (void)getPositionStateResult:(void (^)(BOOL isOpen))result {
+//    CLAuthorizationStatus status = [ CLLocationManager authorizationStatus];
+////    if (status== kCLAuthorizationStatusDenied){
+////        // 无定位权限
+////        result(NO);
+////    }else{
+////        result(YES);
+////    }
+//    result(status);
+//}
+-(void)getPositionStateResult:(void (^)(GMJLocationType))result {
+        CLAuthorizationStatus status = [ CLLocationManager authorizationStatus];
+    
+    GMJLocationType  locationType = GMJLocationTypeNone;
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+            locationType = GMJLocationTypeNone;
+            break;
+        case kCLAuthorizationStatusDenied:
+            locationType = GMJLocationTypeDenied;
+            break;
+        case kCLAuthorizationStatusAuthorizedAlways:
+            locationType = GMJLocationTypeAllow;
+            break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            locationType = GMJLocationTypeAllow;
+            break;
+        case kCLAuthorizationStatusRestricted:
+            locationType = GMJLocationTypeDenied;
+            break;
+        default:
+            break;
     }
+    //    if (status== kCLAuthorizationStatusDenied){
+    //        // 无定位权限
+    //        result(NO);
+    //    }else{
+    //        result(YES);
+    //    }
+        result(locationType);
 }
-
 
 //model转化为字典
 - (NSMutableDictionary *)dicFromObject:(NSObject *)object {

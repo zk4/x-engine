@@ -15,8 +15,6 @@ import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
-import com.zkty.nativ.core.utils.ImageUtils;
-import com.zkty.nativ.core.utils.ToastUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.JSIContext;
 import com.zkty.nativ.jsi.JSIModule;
@@ -91,7 +89,7 @@ public class XEngineWebView extends DWebView {
         setWebViewClient();
         // setErrorPage();
         //屏蔽长按图片保存功能
-//        setOnLongClickListener();
+        setOnLongClickListener();
     }
 
 
@@ -219,36 +217,8 @@ public class XEngineWebView extends DWebView {
 
 
     private void setOnLongClickListener() {
-
-        setOnLongClickListener(view -> {
-            HitTestResult result = getHitTestResult();
-            switch (result.getType()) {
-
-//                    case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
-                case HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项  base64类型
-//                    new Thread(() -> {
-                    if (result != null && result.getExtra() != null) {
-                        if (result.getExtra().toLowerCase().startsWith("http")) {
-                            ImageUtils.savePictureByUrl(mContext, result.getExtra(), new ImageUtils.SaveCallBack() {
-                                @Override
-                                public void saveCallBack(int status, String msg) {
-                                    ToastUtils.showCenterToast(msg);
-                                }
-                            });
-                        } else {
-                            ImageUtils.savePictureByBase64(mContext, result.getExtra(), new ImageUtils.SaveCallBack() {
-                                @Override
-                                public void saveCallBack(int status, String msg) {
-                                    ToastUtils.showCenterToast(msg);
-                                }
-                            });
-                        }
-                    }
-//                    }).start();
-                    break;
-            }
-            return false;
-        });
+        setLongClickable(true);
+        setOnLongClickListener(view -> true);
     }
 
     int speed = 120;

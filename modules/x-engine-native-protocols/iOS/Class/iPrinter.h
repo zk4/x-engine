@@ -31,5 +31,6 @@
 -(void)getDevice:(void(^)(NSDictionary *reDic))complete;
 -(void)connect:(NSDictionary *)params complete:(void(^)(NSDictionary *reDic))complete;
 -(void)disconnect:(NSDictionary *)params complete:(void(^)(NSDictionary *reDic))complete;
+-(void)print:(NSDictionary *)params complete:(void(^)(NSDictionary *reDic))complete;
 @end
 #endif /* iPrinter_h */

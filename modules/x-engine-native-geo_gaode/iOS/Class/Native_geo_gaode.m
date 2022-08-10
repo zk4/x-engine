@@ -54,6 +54,15 @@ NATIVE_MODULE(Native_geo_gaode)
  单次定位
  */
 -(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult{
+    
+
+    [self getPositionStateResult:^(GMJLocationType locationType) {
+        if(locationType == GMJLocationTypeDenied) {
+            
+            [self showAlert];
+      }
+    }];
+    
     if(!self.apikey){
         [XENP(iToast) toast:@"未设 apikey，高德没有初始化，请使用[XENP(iGeo_gaode) initSDK:] 初始化"];
         return;
@@ -131,9 +140,24 @@ NATIVE_MODULE(Native_geo_gaode)
     //    }else{
     //        result(YES);
     //    }
+    
+   
         result(locationType);
 }
-
+-(void)showAlert{
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"定位服务已关闭" message:@"请进入设置--乐活秀--位置--允许定位服务" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
+            }else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] ];
+            }
+    }];
+    [ac addAction:action];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:action2];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+}
 //model转化为字典
 - (NSMutableDictionary *)dicFromObject:(NSObject *)object {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];

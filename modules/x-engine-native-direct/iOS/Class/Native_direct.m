@@ -330,9 +330,12 @@ NATIVE_MODULE(Native_direct)
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
     NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
-    NSString * authority = [self formAuthority:url];
-    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
-    [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    if (url) {
+        NSString * authority = [self formAuthority:url];
+        NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
+        [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    }
+  
 }
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {

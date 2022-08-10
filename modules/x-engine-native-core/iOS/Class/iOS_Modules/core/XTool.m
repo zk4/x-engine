@@ -217,23 +217,55 @@
         NSString* sub3=[[raw substringFromIndex:questionMark]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         return [NSString stringWithFormat:@"%@%@%@",sub1,sub3,sub2] ;
     }
+//    raw  = [raw stringByReplacingOccurrencesOfString:@"null" withString:@"0"];
+//    raw  = [raw stringByReplacingOccurrencesOfString:@"undefined" withString:@"0"];
     return raw;
 }
  
++(NSDictionary *)urlWithString:(NSString *)url{
+    
+    NSURL *urlBase = [NSURL URLWithString:url];
+    
+    //1.先按照‘&’拆分字符串
+    NSArray *array = [urlBase.query componentsSeparatedByString:@"&"];
+    //2.初始化两个可变数组
+    NSMutableArray *mutArrayKey = [[NSMutableArray alloc]init];
+    NSMutableArray *mutArrayValue = [[NSMutableArray alloc]init];
+    //3.以拆分的数组内容个数为准继续拆分数组，并将拆分的元素分别存到两个可变数组中
+    for (int i=0; i<[array count]; i++) {
+        NSArray *arr = [array[i] componentsSeparatedByString:@"="];
+        [mutArrayKey addObject:arr[0]];
+        [mutArrayValue addObject:arr[1]];
+    }
+    //4.初始化一个可变字典，并设置键值对
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjects:mutArrayValue forKeys:mutArrayKey];
+    
+    return @{@"scheme":urlBase.scheme?:@"",
+             @"host":urlBase.host?:@"",
+             @"port":urlBase.port?:@"",
+             @"path":urlBase.path?:@"",
+             @"query":dict};
+    
+}
 + (NSURL*)SPAUrl2StandardUrlWithPort:(NSString*)raw{
     
     NSURL* url = [NSURL URLWithString:[XToolDataConverter SPAUrl2StandardUrl:raw]];
-
-    NSURLComponents * c = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO] ;
-        
-    NSNumber* port = url.port;
-    if(!port){
-        if([c.scheme isEqualToString:@"https"])
-            c.port = @443;
-        else if([url.scheme isEqualToString:@"http"])
-            c.port = @80;
+    
+    if (url) {
+        NSURLComponents * c = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO] ;
+            
+        NSNumber* port = url.port;
+        if(!port){
+            if([c.scheme isEqualToString:@"https"])
+                c.port = @443;
+            else if([url.scheme isEqualToString:@"http"])
+                c.port = @80;
+        }
+         return c.URL;
+    }else{
+        return  nil;;
     }
-     return c.URL;
+
 }
 @end
 

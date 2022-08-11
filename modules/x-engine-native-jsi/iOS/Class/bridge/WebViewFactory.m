@@ -74,8 +74,9 @@
         [webview.configuration.userContentController addUserScript:noneSelectScript];
     }
     
+    ///拦截JS  log
 //    {
-//        
+//
 //        NSString *jsCode = @"console.log = (function(oriLogFunc){\
 //        return function(str)\
 //        {\
@@ -83,11 +84,13 @@
 //        oriLogFunc.call(console,str);\
 //        }\
 //        })(console.log);";
-//        
+//
 //        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:jsCode injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
 //        [webview.configuration.userContentController addUserScript:noneSelectScript];
 //        [webview.configuration.userContentController addScriptMessageHandler:self name:@"log"];
 //    }
+//
+    
     //
     //
     //    NSString*css = @"* { -webkit-user-select: none !important;-moz-user-select: none!important;-webkit-touch-callout: none!important;-webkit-user-drag: none!important;}";
@@ -191,13 +194,13 @@
 
 
 //- (void)userContentController:(WKUserContentController*)userContentController didReceiveScriptMessage:(WKScriptMessage*)message {
-//    
+//
 //    //    NSLog(@"%@",NSStringFromSelector(_cmd));
-//    
+//
 //    if ([message.name isEqualToString:@"log"]) {
 //        NSLog(@"js log*************%@",message.body);
 //    }
-//    
+//
 //}
 @end
 

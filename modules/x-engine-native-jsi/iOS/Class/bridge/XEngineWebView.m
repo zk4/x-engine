@@ -324,6 +324,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 }
 
 - (NSString *)call:(NSString*) method :(NSString*) argStr {
+//    NSLog(@"js call native==>method:%@ params:%@",method,argStr);
     NSArray *nameStr=[XEngineJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     if(nameStr.count<2){
         NSLog(@"JS 参数有错,%@",nameStr);

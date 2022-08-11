@@ -60,40 +60,43 @@ NATIVE_MODULE(Native_geo_gaode)
         if(locationType == GMJLocationTypeDenied) {
             
             [self showAlert];
-      }
+            geoResult(nil);
+        }else{
+            if(!self.apikey){
+                [XENP(iToast) toast:@"未设 apikey，高德没有初始化，请使用[XENP(iGeo_gaode) initSDK:] 初始化"];
+                return;
+            }
+            // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
+            [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+                if (error || !regeocode)
+                {
+                    geoResult(nil);
+                    return;
+                }
+                //取出第一个位置
+                NSLog(@"%@",location.timestamp);
+                
+                //位置坐标
+                CLLocationCoordinate2D coordinate=location.coordinate;
+                
+                NSLog(@"您的当前位置:经度：%f,纬度：%f,海拔：%f,航向：%f,速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
+                
+                NSMutableDictionary *reGeoDict = [self dicFromObject:regeocode];
+           
+                NSString* longitude = [NSString stringWithFormat:@"%f",coordinate.longitude];
+                [reGeoDict setObject:longitude forKey:@"longitude"];
+                
+                NSString* latitude = [NSString stringWithFormat:@"%f",coordinate.latitude];
+                [reGeoDict setObject:latitude forKey:@"latitude" ];
+                
+                geoResult(reGeoDict);
+                
+                
+            }];
+        }
     }];
     
-    if(!self.apikey){
-        [XENP(iToast) toast:@"未设 apikey，高德没有初始化，请使用[XENP(iGeo_gaode) initSDK:] 初始化"];
-        return;
-    }
-    // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
-    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        if (error || !regeocode)
-        {
-            geoResult(nil);
-            return;
-        }
-        //取出第一个位置
-        NSLog(@"%@",location.timestamp);
-        
-        //位置坐标
-        CLLocationCoordinate2D coordinate=location.coordinate;
-        
-        NSLog(@"您的当前位置:经度：%f,纬度：%f,海拔：%f,航向：%f,速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
-        
-        NSMutableDictionary *reGeoDict = [self dicFromObject:regeocode];
-   
-        NSString* longitude = [NSString stringWithFormat:@"%f",coordinate.longitude];
-        [reGeoDict setObject:longitude forKey:@"longitude"];
-        
-        NSString* latitude = [NSString stringWithFormat:@"%f",coordinate.latitude];
-        [reGeoDict setObject:latitude forKey:@"latitude" ];
-        
-        geoResult(reGeoDict);
-        
-        
-    }];
+ 
 }
 
 /**

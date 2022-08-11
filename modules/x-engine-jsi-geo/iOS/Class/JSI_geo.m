@@ -28,14 +28,14 @@ JSI_MODULE(JSI_geo)
  
     
 - (void)_locate:(void (^)(LocationDTO *, BOOL))completionHandler {
-    NSDictionary* d = [self.store get:JSI_GEO_LAST_LOCATION];
-    NSError* err;
-    if(d){
-        LocationDTO* last = [[LocationDTO alloc] initWithDictionary:d error:&err];
-        if(!err){
-            completionHandler(last,NO);
-        }
-    }
+//    NSDictionary* d = [self.store get:JSI_GEO_LAST_LOCATION];
+//    NSError* err;
+//    if(d){
+//        LocationDTO* last = [[LocationDTO alloc] initWithDictionary:d error:&err];
+//        if(!err){
+//            completionHandler(last,NO);
+//        }
+//    }
 
     [self.geo geoSinglePositionResult:^(NSDictionary *reDic) {
         if (reDic == nil) {

@@ -62,12 +62,14 @@ typedef void (^XEngineCallBack)(id _Nullable result,BOOL complete);
     dialogTextDic=@{};
     semaphore_webloaded = dispatch_semaphore_create(0);
     
+
     WKUserScript *script = [[WKUserScript alloc] initWithSource:@"window._dswk=true;"
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
                                                forMainFrameOnly:YES];
     [configuration.userContentController addUserScript:script];
     configuration.allowsInlineMediaPlayback = YES;
     configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+
 
     self = [super initWithFrame:frame configuration: configuration];
     if (self) {
@@ -312,12 +314,17 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         return   action(obj, selector);
     }else if ([obj isKindOfClass:NSDictionary.class]){
         return [XToolDataConverter dictionaryToJson:obj ];
-    }else{
+    }
+    else if ([obj isKindOfClass:NSArray.class]){
+    return [XToolDataConverter arrayToJson:obj ];
+}
+    else{
         return [NSString stringWithFormat:@"%@",obj];
     }
 }
 
 - (NSString *)call:(NSString*) method :(NSString*) argStr {
+//    NSLog(@"js call native==>method:%@ params:%@",method,argStr);
     NSArray *nameStr=[XEngineJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     if(nameStr.count<2){
         NSLog(@"JS 参数有错,%@",nameStr);

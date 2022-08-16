@@ -54,52 +54,113 @@ NATIVE_MODULE(Native_geo_gaode)
  单次定位
  */
 -(void)geoSinglePositionResult:(void(^)(NSDictionary *reDic))geoResult{
-    if(!self.apikey){
-        [XENP(iToast) toast:@"未设 apikey，高德没有初始化，请使用[XENP(iGeo_gaode) initSDK:] 初始化"];
-        return;
-    }
-    // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
-    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        if (error || !regeocode)
-        {
+    
+
+    [self getPositionStateResult:^(GMJLocationType locationType) {
+        if(locationType == GMJLocationTypeDenied) {
+            
+            [self showAlert];
             geoResult(nil);
-            return;
+        }else{
+            if(!self.apikey){
+                [XENP(iToast) toast:@"未设 apikey，高德没有初始化，请使用[XENP(iGeo_gaode) initSDK:] 初始化"];
+                return;
+            }
+            // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
+            [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+                if (error || !regeocode)
+                {
+                    geoResult(nil);
+                    return;
+                }
+                //取出第一个位置
+                NSLog(@"%@",location.timestamp);
+                
+                //位置坐标
+                CLLocationCoordinate2D coordinate=location.coordinate;
+                
+                NSLog(@"您的当前位置:经度：%f,纬度：%f,海拔：%f,航向：%f,速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
+                
+                NSMutableDictionary *reGeoDict = [self dicFromObject:regeocode];
+           
+                NSString* longitude = [NSString stringWithFormat:@"%f",coordinate.longitude];
+                [reGeoDict setObject:longitude forKey:@"longitude"];
+                
+                NSString* latitude = [NSString stringWithFormat:@"%f",coordinate.latitude];
+                [reGeoDict setObject:latitude forKey:@"latitude" ];
+                
+                geoResult(reGeoDict);
+                
+                
+            }];
         }
-        //取出第一个位置
-        NSLog(@"%@",location.timestamp);
-        
-        //位置坐标
-        CLLocationCoordinate2D coordinate=location.coordinate;
-        
-        NSLog(@"您的当前位置:经度：%f,纬度：%f,海拔：%f,航向：%f,速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
-        
-        NSMutableDictionary *reGeoDict = [self dicFromObject:regeocode];
-   
-        NSString* longitude = [NSString stringWithFormat:@"%f",coordinate.longitude];
-        [reGeoDict setObject:longitude forKey:@"longitude"];
-        
-        NSString* latitude = [NSString stringWithFormat:@"%f",coordinate.latitude];
-        [reGeoDict setObject:latitude forKey:@"latitude" ];
-        
-        geoResult(reGeoDict);
-        
-        
     }];
+    
+ 
 }
 
 /**
  获取当前定位权限是否开启
+ 
+ 
  */
-- (void)getPositionStateResult:(void (^)(BOOL isOpen))result {
-    if ([ CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
-        // 无定位权限
-        result(NO);
-    }else{
-        result(YES);
+//- (void)getPositionStateResult:(void (^)(BOOL isOpen))result {
+//    CLAuthorizationStatus status = [ CLLocationManager authorizationStatus];
+////    if (status== kCLAuthorizationStatusDenied){
+////        // 无定位权限
+////        result(NO);
+////    }else{
+////        result(YES);
+////    }
+//    result(status);
+//}
+-(void)getPositionStateResult:(void (^)(GMJLocationType))result {
+        CLAuthorizationStatus status = [ CLLocationManager authorizationStatus];
+    
+    GMJLocationType  locationType = GMJLocationTypeNone;
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+            locationType = GMJLocationTypeNone;
+            break;
+        case kCLAuthorizationStatusDenied:
+            locationType = GMJLocationTypeDenied;
+            break;
+        case kCLAuthorizationStatusAuthorizedAlways:
+            locationType = GMJLocationTypeAllow;
+            break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            locationType = GMJLocationTypeAllow;
+            break;
+        case kCLAuthorizationStatusRestricted:
+            locationType = GMJLocationTypeDenied;
+            break;
+        default:
+            break;
     }
+    //    if (status== kCLAuthorizationStatusDenied){
+    //        // 无定位权限
+    //        result(NO);
+    //    }else{
+    //        result(YES);
+    //    }
+    
+   
+        result(locationType);
 }
-
-
+-(void)showAlert{
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"定位服务已关闭" message:@"请进入设置--乐活秀--位置--允许定位服务" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
+            }else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] ];
+            }
+    }];
+    [ac addAction:action];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:action2];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+}
 //model转化为字典
 - (NSMutableDictionary *)dicFromObject:(NSObject *)object {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];

@@ -1,6 +1,7 @@
 package com.zkty.nativ.jsi.webview;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public class XWebViewPool {
 
     private XEngineWebView currentWebView;
     private XEngineWebView currentTabWebView;
+    //webview 进度显示动画，若无仅显示进度条
+    private View webLoadingView;
 
 
     private XWebViewPool() {
@@ -156,5 +159,13 @@ public class XWebViewPool {
 
     public XEngineWebView getCurrentTabWebView() {
         return currentTabWebView;
+    }
+
+    public View getWebLoadingView() {
+        return webLoadingView;
+    }
+
+    public void setWebLoadingView(View webLoadingView) {
+        this.webLoadingView = webLoadingView;
     }
 }

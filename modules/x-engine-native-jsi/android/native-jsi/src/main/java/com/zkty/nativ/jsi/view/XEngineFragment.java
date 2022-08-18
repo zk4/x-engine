@@ -1,8 +1,10 @@
 package com.zkty.nativ.jsi.view;
 
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebView;
+import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.WebViewManager;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -68,9 +74,11 @@ public class XEngineFragment extends Fragment {
             mWebView = XWebViewPool.sharedInstance().getTabWebViewByIndex(index);
             mWebView.setActivity(getActivity());
 //            AnalysisManager.getInstance().initX5WebView(mWebView);
-            if(WebViewManager.getInstance().getWebViewManagerImi() != null)WebViewManager.getInstance().getWebViewManagerImi().fragmentCreateWevView(mWebView);
+            if (WebViewManager.getInstance().getWebViewManagerImi() != null)
+                WebViewManager.getInstance().getWebViewManagerImi().fragmentCreateWevView(mWebView);
 
             XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
+            mWebView.setWebChromeClient(new MyWebChromeClient());
             if (historyModel.protocol == null && historyModel.host == null && historyModel.pathname == null) {
                 View view1 = getLayoutInflater().inflate(R.layout.layout_notfound_page, null);
                 mRoot.addView(view1, 0);
@@ -83,6 +91,7 @@ public class XEngineFragment extends Fragment {
 //            mWebView.setPermission(dto);
                 mWebView.loadUrl(historyModel);
             }
+
             mWebView.setOnPageStateListener(() -> broadcast(ON_WEBVIEW_SHOW, ON_WEBVIEW_SHOW));
         }
 
@@ -119,4 +128,28 @@ public class XEngineFragment extends Fragment {
     }
 
 
+    class MyWebChromeClient extends WebChromeClient {
+        private boolean isLoading;
+        private View loadingView;
+
+
+        @Override
+        public void onProgressChanged(WebView webView, int i) {
+            loadingView = XWebViewPool.sharedInstance().getWebLoadingView();
+            if (loadingView != null) {
+                if (!isLoading) {
+                    if (loadingView.getParent() != null) {
+                        ((ViewGroup) loadingView.getParent()).removeAllViews();
+                    }
+                    mRoot.addView(loadingView, 1);
+                    isLoading = true;
+                }
+                if (i == 100) {
+                    mRoot.removeView(loadingView);
+                }
+            }
+            super.onProgressChanged(webView, i);
+        }
+
+    }
 }

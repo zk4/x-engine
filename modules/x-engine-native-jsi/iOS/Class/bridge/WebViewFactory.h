@@ -13,6 +13,10 @@
     -(XEngineWebView *)createWebView;
 - (XEngineWebView *)createWebView:(BOOL)isLooseNetwork;
 
+- (void)preLoadWithUrl:(NSString *)str;
+
+- (XEngineWebView *)getWebview;
+
 @end
 
 

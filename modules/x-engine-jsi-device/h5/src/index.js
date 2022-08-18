@@ -46,6 +46,11 @@ function osCheck() {
     "name": "test_getDeviceInfo",
     "default_args": {},
     "decorators": []
+  },
+  {
+    "name": "test_pickContact",
+    "default_args": {},
+    "decorators": []
   }
 ]
 )}}

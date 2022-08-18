@@ -1,4 +1,4 @@
-package com.zkty.nativ.direct_microapp;
+package com.zkty.nativ.direct_omps;
 
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
@@ -7,12 +7,12 @@ import com.zkty.nativ.direct.IDirect;
 import java.util.List;
 import java.util.Map;
 
-public class NativeDirecMicroapp extends NativeModule implements IDirect {
+public class NativeDirectOmps extends NativeModule implements IDirect {
     private IDirect microappDirect;
 
     @Override
     public String moduleId() {
-        return "com.zkty.native.direct_microapp";
+        return "com.zkty.native.direct_omps";
     }
 
     @Override
@@ -22,6 +22,7 @@ public class NativeDirecMicroapp extends NativeModule implements IDirect {
 
     @Override
     public void afterAllNativeModuleInited() {
+
         List<NativeModule> modules = NativeContext.sharedInstance().getModulesByProtocol(IDirect.class);
 
         for (NativeModule iDirect : modules) {
@@ -36,25 +37,25 @@ public class NativeDirecMicroapp extends NativeModule implements IDirect {
 
     @Override
     public String scheme() {
-        return "microapp";
+        return "omps";
     }
 
     @Override
     public String protocol() {
-        return "file:";
+        return "https:";
     }
 
     @Override
     public void push(String protocol, String host, String pathname, String fragment, Map<String, String> query, Map<String, String> params) {
-        if (microappDirect != null) {
+        if (microappDirect != null)
             microappDirect.push(protocol(), host, pathname, fragment, query, params);
-        }
     }
 
     @Override
     public void back(String host, String fragment) {
         if (microappDirect != null)
             microappDirect.back(host, fragment);
+
     }
 
 

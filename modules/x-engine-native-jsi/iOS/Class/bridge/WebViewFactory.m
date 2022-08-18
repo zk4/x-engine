@@ -11,10 +11,11 @@
 #import "RecyleWebViewController.h"
 #import "iWebcache.h"
 #import "XENativeContext.h"
+#import "iToast.h"
 
-
-@interface WebViewFactory ()
+@interface WebViewFactory ()<WKScriptMessageHandler>
 @property (nonatomic, strong) WKProcessPool* wkprocessPool;
+@property (nonatomic, strong) XEngineWebView *preWebView;
 @end
 
 @implementation WebViewFactory
@@ -42,16 +43,16 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.processPool = self.wkprocessPool;
     configuration.websiteDataStore = [WKWebsiteDataStore nonPersistentDataStore];
-//    if (@available(iOS 11.0, *) ) {
-//        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
-//        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
-//        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
-//    }
+    //    if (@available(iOS 11.0, *) ) {
+    //        CustomURLSchemeHandler *handler = [CustomURLSchemeHandler new];
+    //        [configuration setURLSchemeHandler:handler forURLScheme:@"https"];
+    //        [configuration setURLSchemeHandler:handler forURLScheme:@"http"];
+    //    }
     XEngineWebView* webview = [[XEngineWebView alloc] initWithFrame:CGRectZero configuration:configuration];
-        
+    
     // 禁止回弹
-     webview.scrollView.bounces = false;
-
+    webview.scrollView.bounces = false;
+    
     webview.configuration.preferences.javaScriptEnabled = YES;
     webview.configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
     
@@ -60,32 +61,50 @@
     
     ///web禁止长按
     {
-    NSMutableString *javascript = [NSMutableString string];
-    [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];
-    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
-    [webview.configuration.userContentController addUserScript:noneSelectScript];
+        NSMutableString *javascript = [NSMutableString string];
+        [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];
+        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+        [webview.configuration.userContentController addUserScript:noneSelectScript];
     }
     ///web禁止双击
     {
-    NSMutableString *javascript = [NSMutableString string];
-    [javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];
-    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
-    [webview.configuration.userContentController addUserScript:noneSelectScript];
+        NSMutableString *javascript = [NSMutableString string];
+        [javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];
+        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+        [webview.configuration.userContentController addUserScript:noneSelectScript];
     }
-//    
+    
+    ///拦截JS  log
+//    {
 //
-//    NSString*css = @"* { -webkit-user-select: none !important;-moz-user-select: none!important;-webkit-touch-callout: none!important;-webkit-user-drag: none!important;}";
-//    NSMutableString*javascript = [NSMutableString string];
-//    [javascript appendString:@"var style = document.createElement('style');"];
-//    [javascript appendString:@"style.type = 'text/css';"];
-//    [javascript appendFormat:@"var cssContent = document.createTextNode('%@');", css];
-//    [javascript appendString:@"style.appendChild(cssContent);"];
-//    [javascript appendString:@"document.body.appendChild(style);"];
+//        NSString *jsCode = @"console.log = (function(oriLogFunc){\
+//        return function(str)\
+//        {\
+//        window.webkit.messageHandlers.log.postMessage(str);\
+//        oriLogFunc.call(console,str);\
+//        }\
+//        })(console.log);";
 //
-//    //javascript 注入
-//    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
-//    [webview.configuration.userContentController addUserScript:noneSelectScript];
+//        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:jsCode injectionTime:WKUserScriptInjectionTimeAtDocumentEnd  forMainFrameOnly:YES];
+//        [webview.configuration.userContentController addUserScript:noneSelectScript];
+//        [webview.configuration.userContentController addScriptMessageHandler:self name:@"log"];
+//    }
 //
+    
+    //
+    //
+    //    NSString*css = @"* { -webkit-user-select: none !important;-moz-user-select: none!important;-webkit-touch-callout: none!important;-webkit-user-drag: none!important;}";
+    //    NSMutableString*javascript = [NSMutableString string];
+    //    [javascript appendString:@"var style = document.createElement('style');"];
+    //    [javascript appendString:@"style.type = 'text/css';"];
+    //    [javascript appendFormat:@"var cssContent = document.createTextNode('%@');", css];
+    //    [javascript appendString:@"style.appendChild(cssContent);"];
+    //    [javascript appendString:@"document.body.appendChild(style);"];
+    //
+    //    //javascript 注入
+    //    WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+    //    [webview.configuration.userContentController addUserScript:noneSelectScript];
+    //
     
     // webcache 插件
     if (!isLooseNetwork) {
@@ -107,15 +126,15 @@
     
     [self.webviews addPointer:(__bridge void * _Nullable)(webview)];
     printf("retain count =%ld\n",CFGetRetainCount((__bridge CFTypeRef)([[self.webviews allObjects] firstObject])));
-
-
+    
+    
     return webview;
 }
 
 /// TODO: 为什么 estimatedProgress 在这??
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"estimatedProgress"]) {
-
+        
         float floatNum = [[change objectForKey:@"new"] floatValue];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
             @"progress":@(floatNum),
@@ -135,6 +154,54 @@
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
+
+- (void)preLoadWithUrl:(NSString *)str{
+    self.preWebView = [self createWebView:NO];
+    self.preWebView.frame = CGRectMake(0, 0, 1, 1);
+    [[UIApplication sharedApplication].keyWindow addSubview:self.preWebView];
+    if([[str lowercaseString] hasPrefix:@"http"]){
+        [self.preWebView _loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    }else{
+        
+        if([str rangeOfString:[[NSBundle mainBundle] bundlePath]].location != NSNotFound){
+            [self.preWebView loadUrl:str];
+        }else{
+            //             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSURL *fileURL = [NSURL URLWithString:str];
+            NSError *error = nil;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"microapps/.*?/" options:0 error:&error];
+            NSTextCheckingResult *match = [regex firstMatchInString:str
+                                                            options:0
+                                                              range:NSMakeRange(0, [str length])];
+            if(error || !match || [match numberOfRanges]==0){
+#ifdef DEBUG
+                NSString* msg = [NSString stringWithFormat:@"路径不对: %@", str];
+                [XENP(iToast) toast: msg];
+#endif
+                return;
+            }
+            NSRange matchRange = [match rangeAtIndex:0];
+            NSString *safeZone = [str substringWithRange:NSMakeRange(0, matchRange.location+matchRange.length)];
+            [self.preWebView _loadFileURL:fileURL allowingReadAccessToURL:[NSURL URLWithString:safeZone]];
+        }
+        
+    }
+}
+
+- (XEngineWebView *)getWebview{
+    return self.preWebView;
+}
+
+
+//- (void)userContentController:(WKUserContentController*)userContentController didReceiveScriptMessage:(WKScriptMessage*)message {
+//
+//    //    NSLog(@"%@",NSStringFromSelector(_cmd));
+//
+//    if ([message.name isEqualToString:@"log"]) {
+//        NSLog(@"js log*************%@",message.body);
+//    }
+//
+//}
 @end
 
 

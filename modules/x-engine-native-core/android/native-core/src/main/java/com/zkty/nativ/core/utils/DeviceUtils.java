@@ -22,8 +22,8 @@ public class DeviceUtils {
      * 获取手机型号
      */
     public static String getSystemModel() {
+        return String.format("%s %s", Build.BRAND, Build.MODEL);
 
-        return Build.MODEL;
     }
 
     /**

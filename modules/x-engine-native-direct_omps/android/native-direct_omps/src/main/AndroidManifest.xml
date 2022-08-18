@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nativ.direct.omp">
+    package="nativ.direct.omps">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -7,7 +7,7 @@
 
     <application>
         <meta-data
-            android:name="com.zkty.native.direct_omp"
-            android:value="com.zkty.nativ.direct_omp.NativeDirectOmp" />
+            android:name="com.zkty.native.direct_omps"
+            android:value="com.zkty.nativ.direct_omps.NativeDirectOmps" />
     </application>
 </manifest>

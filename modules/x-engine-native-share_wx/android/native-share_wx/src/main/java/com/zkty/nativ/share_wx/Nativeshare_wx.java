@@ -2,7 +2,6 @@ package com.zkty.nativ.share_wx;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -295,17 +294,16 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
     }
 
     private boolean isWxExited() {
-        final PackageManager packageManager = XEngineApplication.getApplication().getPackageManager();// 获取packagemanager
-        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);// 获取所有已安装程序的包信息
-        if (pinfo != null) {
-            for (int i = 0; i < pinfo.size(); i++) {
-                String pn = pinfo.get(i).packageName;
-                if (pn.equals("com.tencent.mm")) {
-                    return true;
-                }
-            }
+
+        boolean bHas = true;
+        try {
+            XEngineApplication.getApplication().getPackageManager().getPackageInfo("com.tencent.mm", PackageManager.GET_GIDS);
+        } catch (PackageManager.NameNotFoundException e) {
+            // 抛出找不到的异常，说明该程序已经被卸载
+            bHas = false;
         }
-        return false;
+
+        return bHas;
     }
 
 }

@@ -13,10 +13,10 @@ version: 3.0.7
 
 > **demo**
 ``` js
-
+ {
   let val = xengine.api("com.zkty.jsi.device", "getStatusBarHeight");
   console.log(val);
-
+}
 ``` 
 
 **无参数**
@@ -36,10 +36,10 @@ string
 
 > **demo**
 ``` js
-
+ {
   let val = xengine.api("com.zkty.jsi.device", "getNavigationHeight");
   console.log(val);
-
+}
 ``` 
 
 **无参数**
@@ -59,10 +59,10 @@ string
 
 > **demo**
 ``` js
-
+ {
   let val = xengine.api("com.zkty.jsi.device", "getScreenHeight");
   console.log(val);
-
+}
 ``` 
 
 **无参数**
@@ -82,10 +82,10 @@ string
 
 > **demo**
 ``` js
-
+ {
   let val = xengine.api("com.zkty.jsi.device", "getTabbarHeight");
   console.log(val);
-
+}
 ``` 
 
 **无参数**
@@ -105,12 +105,12 @@ string
 
 > **demo**
 ``` js
-
+ {
   xengine.api("com.zkty.jsi.device", "callPhone", {
     phoneNum: "xxx",
     phoneMsg: "",
   });
-
+}
 ``` 
 
 **参数说明**
@@ -134,12 +134,12 @@ string
 
 > **demo**
 ``` js
-
+ {
   xengine.api("com.zkty.jsi.device", "sendMessage", {
     phoneNum: "xxx",
     phoneMsg: "你好",
   });
-
+}
 ``` 
 
 **参数说明**
@@ -163,11 +163,11 @@ string
 
 > **demo**
 ``` js
-
+ {
   xengine.api("com.zkty.jsi.device", "getDeviceInfo", {}, (val) => {
     console.log(JSON.stringify(val));
   });
-
+}
 ``` 
 
 **无参数**
@@ -190,6 +190,37 @@ interface DeviceDTO {
   UUID: string;
   // 手机类型
   photoType: string;
+
+}
+``` 
+
+
+
+## pickContact
+[`async`](/docs/modules/模块-规范?id=jsi-调用)
+ 打开系统通讯录，获取单个联系人信息
+
+
+> **demo**
+``` js
+ {
+  xengine.api("com.zkty.jsi.device", "pickContact", {} ,(val) => {
+      document.getElementById("debug_text").innerText = JSON.stringify(val);
+    });
+}
+``` 
+
+**无参数**
+
+
+**返回值**
+``` js
+ {
+
+  //联系人姓名
+  name: string;
+  //联系人电话号码
+  phone: string;
 
 }
 ``` 

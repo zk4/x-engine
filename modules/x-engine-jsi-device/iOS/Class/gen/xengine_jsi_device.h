@@ -8,8 +8,10 @@
 
 @protocol phoneDto;
 @protocol DeviceDTO;
+@protocol _pickContact_com_zkty_jsi_device_0_DTO;
 @class phoneDto;
 @class DeviceDTO;
+@class _pickContact_com_zkty_jsi_device_0_DTO;
 
 @interface phoneDto: JSONModel
   	@property(nonatomic,copy) NSString* phoneNum;
@@ -23,6 +25,12 @@
    	@property(nonatomic,copy) NSString* language;
    	@property(nonatomic,copy) NSString* UUID;
    	@property(nonatomic,copy) NSString* photoType;
+@end
+
+
+@interface _pickContact_com_zkty_jsi_device_0_DTO: JSONModel
+  	@property(nonatomic,copy) NSString* name;
+   	@property(nonatomic,copy) NSString* phone;
 @end
 
 
@@ -48,6 +56,9 @@
 
    @required 
      - (void) _getDeviceInfo:(void (^)(DeviceDTO* result,BOOL complete)) completionHandler;
+
+   @required 
+     - (void) _pickContact:(void (^)(_pickContact_com_zkty_jsi_device_0_DTO* result,BOOL complete)) completionHandler;
 
 @end
 

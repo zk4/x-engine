@@ -141,6 +141,9 @@ NATIVE_MODULE(Native_direct)
         query:(nullable NSDictionary<NSString*,NSString*>*) query
         params:(NSDictionary<NSString*,id>*) params
         frame:(CGRect)frame{
+//    if ([host isEqualToString:@"prom.m.gome.com.cn:443"] && ![scheme isEqualToString:@"gome"]) {
+//        scheme = @"gome";
+//    }
     UInt64 now  = [[ NSDate date ] timeIntervalSince1970 ] * 1000;
     // 路由 throttle
     if(now - self.lastTimeStamp<500){
@@ -327,9 +330,12 @@ NATIVE_MODULE(Native_direct)
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame{
     NSURL* url = [XToolDataConverter SPAUrl2StandardUrlWithPort:uri];
-    NSString * authority = [self formAuthority:url];
-    NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
-    [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    if (url) {
+        NSString * authority = [self formAuthority:url];
+        NSString* path =[NSString stringWithFormat:@"%@%@",url.path,url.hasDirectoryPath?@"/":@""];
+        [self push:url.scheme host:authority pathname:path fragment:url.fragment query:url.uq_queryDictionary params:params];
+    }
+  
 }
 
 - (void)addToTab:(nonnull UIViewController *)parent uri:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params frame:(CGRect)frame {

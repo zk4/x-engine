@@ -74,6 +74,7 @@ dependencies {
     implementation project(':native-direct_https')
     implementation project(':native-direct_microapp')
     implementation project(':native-direct_omp')
+    implementation project(':native-direct_omps')
     implementation project(':native-direct_native')
     implementation project(':native-jsi')
     implementation project(':native-share')

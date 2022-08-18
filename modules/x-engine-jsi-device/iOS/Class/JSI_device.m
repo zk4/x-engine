@@ -56,4 +56,18 @@ JSI_MODULE(JSI_device)
     dto.systemVersion = dict[@"systemVersion"];
     completionHandler(dto, true);
 }
+
+- (void)_pickContact:(void (^)(_pickContact_com_zkty_jsi_device_0_DTO *, BOOL))completionHandler{
+    __weak typeof(self) weakSelf = self;
+    self.device.contactInfoBlock = ^(NSDictionary *contactInfo) {
+        _pickContact_com_zkty_jsi_device_0_DTO *dto = [_pickContact_com_zkty_jsi_device_0_DTO new];
+        dto.name = contactInfo[@"name"];
+        dto.phone = contactInfo[@"phone"];
+        if (completionHandler) {
+            completionHandler(dto, true);
+        }
+    };
+    [self.device pickContactInfo];
+}
+
 @end

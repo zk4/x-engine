@@ -11,5 +11,8 @@
 - (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
                     withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork;
 
+- (instancetype _Nonnull)initWithUrl:(NSString * _Nullable)fileUrl
+                    withHiddenNavBar:(BOOL)isHidden webviewFrame:(CGRect) frame looseNetwork:(BOOL)isLooseNetwork webView:(BOOL )showWebView;
+
 - (XEngineWebView* _Nonnull) getWebView;
 @end

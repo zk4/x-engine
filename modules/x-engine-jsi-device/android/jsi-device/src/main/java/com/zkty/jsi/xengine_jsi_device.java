@@ -32,6 +32,12 @@ class DeviceDTO {
 
     public String photoType;
   }
+  
+class _0_com_zkty_jsi_device_DTO {
+  public String name;
+
+    public String phone;
+  }
 
 interface xengine_jsi_device_protocol {
   
@@ -47,6 +53,7 @@ public String _callPhone(phoneDto dto);
   
 public String _sendMessage(phoneDto dto);
   public void _getDeviceInfo(final CompletionHandler<DeviceDTO> handler);
+  public void _pickContact(final CompletionHandler<_0_com_zkty_jsi_device_DTO> handler);
 }
   
 
@@ -107,6 +114,19 @@ public String _sendMessage(phoneDto dto);
         public void complete() { handler.complete(); }
         @Override
         public void setProgressData(DeviceDTO value) { handler.setProgressData(value); }
+      });
+
+    }
+
+    @JavascriptInterface
+    final public void pickContact(JSONObject jsonobj, final CompletionHandler<Object> handler) {
+      _pickContact(new CompletionHandler<_0_com_zkty_jsi_device_DTO>() {
+        @Override
+        public void complete(_0_com_zkty_jsi_device_DTO retValue) { handler.complete(retValue); }
+        @Override
+        public void complete() { handler.complete(); }
+        @Override
+        public void setProgressData(_0_com_zkty_jsi_device_DTO value) { handler.setProgressData(value); }
       });
 
     }

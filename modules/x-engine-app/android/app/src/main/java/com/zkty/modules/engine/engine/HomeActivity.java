@@ -1,17 +1,25 @@
 package com.zkty.modules.engine.engine;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.zkty.modules.engine.R;
 import com.zkty.nativ.broadcast.IBroadcast;
@@ -20,7 +28,12 @@ import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.NativeContext;
 import com.zkty.nativ.core.NativeModule;
 import com.zkty.nativ.core.XEngineApplication;
+import com.zkty.nativ.core.utils.PermissionsUtils;
+import com.zkty.nativ.core.utils.ToastUtils;
+import com.zkty.nativ.device.IDevice;
+import com.zkty.nativ.device.NativeDevice;
 import com.zkty.nativ.direct.DirectManager;
+import com.zkty.nativ.jsi.view.BaseXEngineActivity;
 import com.zkty.nativ.jsi.view.MicroAppsInstall;
 import com.zkty.nativ.jsi.view.XEngineWebActivityManager;
 import com.zkty.nativ.scan.activity.ScanActivity;
@@ -32,7 +45,7 @@ import com.zkty.nativ.viewer.Nativeviewer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseXEngineActivity {
 
     private EditText et_content;
 
@@ -84,10 +97,24 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         }
+
+
     }
 
+
     public void nextAct(View view) {
-        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
+//        MicroAppsInstall.sharedInstance().init(XEngineApplication.getApplication());
+
+        NativeModule module = NativeContext.sharedInstance().getModuleByProtocol(IDevice.class);
+        if (module instanceof NativeDevice) {
+            NativeDevice iView = (NativeDevice) module;
+            iView.pickContact((name, phone) -> {
+                ToastUtils.showCenterToast(name + "   :   " + phone);
+            });
+
+        }
+
+
     }
 
     public void download(View view) {

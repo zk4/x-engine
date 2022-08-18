@@ -34,6 +34,9 @@ project(':native-direct_https').projectDir = new File('../../x-engine-native-dir
 include ':native-direct_omp'
 project(':native-direct_omp').projectDir = new File('../../x-engine-native-direct_omp/android/native-direct_omp')
 
+include ':native-direct_omps'
+project(':native-direct_omps').projectDir = new File('../../x-engine-native-direct_omps/android/native-direct_omps')
+
 include ':native-direct_microapp'
 project(':native-direct_microapp').projectDir = new File('../../x-engine-native-direct_microapp/android/native-direct_microapp')
 

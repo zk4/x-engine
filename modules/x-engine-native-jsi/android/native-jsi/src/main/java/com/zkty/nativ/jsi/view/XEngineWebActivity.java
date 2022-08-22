@@ -351,7 +351,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
             if (loadingView != null) {
                 if (!isLoading) {
                     if (loadingView.getParent() != null) {
-                        ((ViewGroup) loadingView.getParent()).removeAllViews();
+                        ((ViewGroup) loadingView.getParent()).removeView(loadingView);
                     }
                     mRoot.addView(loadingView, 1);
                     isLoading = true;

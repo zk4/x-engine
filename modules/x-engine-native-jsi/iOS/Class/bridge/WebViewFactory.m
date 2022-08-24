@@ -202,6 +202,11 @@
 //    }
 //
 //}
+-(void)setCustomLoadingView:(UIView *)customLoadingView {
+    if (!_customLoadingView) {
+        _customLoadingView = customLoadingView;
+    }
+}
 @end
 
 

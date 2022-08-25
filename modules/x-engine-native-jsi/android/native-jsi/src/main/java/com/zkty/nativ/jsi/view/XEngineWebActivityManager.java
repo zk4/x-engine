@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
+import com.zkty.nativ.core.ActivityStackManager;
 import com.zkty.nativ.core.XEngineApplication;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.exception.XEngineException;
@@ -86,10 +87,7 @@ public class XEngineWebActivityManager {
         if (current != null)
             current.showScreenCapture(true);
         XWebViewPool.sharedInstance().cleanWebView();
-
-        for (XEngineWebActivity activity : activityList) {
-            activity.finish();
-        }
+        ActivityStackManager.getInstance().finishAllActivityExceptRoot();
         activityList.clear();
     }
 

@@ -10,5 +10,6 @@
 #define iScan_h
 @protocol iScan <NSObject>
 - (void)openScanView:(void (^)(NSString * res))completionHandler;
+- (void)openScanView:(NSString *)routeUrl complete:(void (^)(NSString * res))completionHandler;
 @end
 #endif /* iScan_h */

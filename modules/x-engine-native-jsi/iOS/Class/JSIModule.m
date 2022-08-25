@@ -61,14 +61,13 @@ static  XEngineWebView* s_webview = nil;
     
 }
 
-
 - (id)convert:(NSDictionary *)param clazz:(Class)clazz {
     // 目标格式是字典不做转换
     if(clazz && [NSDictionary.class isEqual:clazz])
         return param;
     NSError *err;
     id dto = [clazz class];
-
+    
     if([param isKindOfClass:NSString.class]){
         return param;
     }

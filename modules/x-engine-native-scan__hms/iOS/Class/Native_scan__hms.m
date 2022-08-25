@@ -11,8 +11,9 @@
 #import "QRCodeScanPreviewView.h"
 
 #import "MBProgressHUD.h"
-
+#include "iDirectManager.h"
 #include <Unity.h>
+#import <Masonry/Masonry.h>
  
 typedef void (^xScanBlock)(NSString *);
 @interface Native_scan__hms() <CustomizedScanDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
@@ -25,7 +26,8 @@ typedef void (^xScanBlock)(NSString *);
 @property (nonatomic, strong) UIImageView *line;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) MBProgressHUD *hud;
-
+@property (nonatomic, strong) NSString *routeUrl;
+@property (nonatomic, assign) BOOL isBack;
 @end
 
 @implementation Native_scan__hms
@@ -43,6 +45,83 @@ NATIVE_MODULE(Native_scan__hms)
     
 } 
  
+- (void)openScanView:(NSString *)routeUrl complete:(void (^)(NSString * res))completionHandler{
+    self.isBack = YES;
+    self.routeUrl = routeUrl;
+    [self openScanView:^(NSString *res) {
+        completionHandler(res);
+    }];
+  
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (weakSelf && weakSelf.isBack) {
+            [weakSelf addRichText];
+        }
+     
+    });
+}
+-(void)addRichText{
+    UIView *superV = [Unity sharedInstance].getCurrentVC.view;
+    UIView *bagView = [[UIView alloc] init];
+
+    bagView.backgroundColor = [UIColor whiteColor];
+    bagView.layer.cornerRadius = 5;
+    [superV addSubview:bagView];
+    [bagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(superV.mas_left).offset(15);
+        make.right.equalTo(superV.mas_right).offset(-15);
+        make.bottom.equalTo(superV.mas_bottom).offset(-40);
+        make.height.equalTo(@80);
+    }];
+  
+    
+    UILabel *tipLB  = [[UILabel alloc] init];
+//    tipLB.frame = CGRectMake(20, [Unity sharedInstance].getCurrentVC.view.frame.size.height-100, [Unity sharedInstance].getCurrentVC.view.frame.size.width-40, 80);
+    tipLB.layer.masksToBounds = YES;
+    
+    tipLB.text = @"本功能可以扫的码有：会员码、团购码等。如果扫码不成功，可尝试手工输入码号。点我手工输入码号";
+    tipLB.textColor = [UIColor blackColor];
+    tipLB.numberOfLines = 0;
+    tipLB.backgroundColor = [UIColor whiteColor];
+    tipLB.textAlignment = NSTextAlignmentLeft;
+    
+    NSRange range = [tipLB.text rangeOfString:@"点我手工输入码号"];
+    
+    [self richTextLabel:tipLB FontNumber:[UIFont systemFontOfSize:15] AndRange:range AndColor:[UIColor blueColor]];
+    
+    [bagView addSubview:tipLB];
+    
+    tipLB.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    [tipLB addGestureRecognizer:tap];
+   
+    
+    [tipLB mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bagView.mas_left).offset(10);
+        make.right.equalTo(bagView.mas_right).offset(-10);
+        make.top.equalTo(bagView.mas_top).offset(10);
+    }];
+
+}
+-(void)tap:(UITapGestureRecognizer *)tap{
+    
+    id<iDirectManager> customDirect = XENP(iDirectManager);
+
+    [customDirect push:self.routeUrl params:@{@"hideNavbar":@"YES"}];
+}
+-(void)richTextLabel:(UILabel *)labell FontNumber:(id)font AndRange:(NSRange)range AndColor:(UIColor *)vaColor
+{
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:labell.text];
+    //设置字号
+    [str addAttribute:NSFontAttributeName value:font range:range];
+    
+    [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+    [str addAttribute:NSUnderlineColorAttributeName value:[UIColor blueColor] range:range];
+    //设置文字颜色
+    [str addAttribute:NSForegroundColorAttributeName value:vaColor range:range];
+    labell.attributedText = str;
+}
 - (void)openScanView:(void (^)(NSString *))completionHandler {
     
     /*
@@ -77,9 +156,11 @@ NATIVE_MODULE(Native_scan__hms)
     HmsScanOptions *options = [[HmsScanOptions alloc] initWithScanFormatType:QR_CODE | DATA_MATRIX | AZTEC | CODABAR | CODE_39 | CODE_93 | CODE_128 | EAN_8 | EAN_13 | ITF | PDF_417 | UPC_A | UPC_E | ALL  Photo:photoMode];
     HmsCustomScanViewController *hmsCustomScanViewController = [[HmsCustomScanViewController alloc] initCustomizedScanWithFormatType:options];
     hmsCustomScanViewController.customizedScanDelegate = self;
-    hmsCustomScanViewController.backButtonHidden = true;
+    hmsCustomScanViewController.backButtonHidden = YES;
+
     hmsCustomScanViewController.modalPresentationStyle = 0;
-    [[Unity sharedInstance].getCurrentVC presentViewController:hmsCustomScanViewController animated:YES completion:^{}];
+//    [[Unity sharedInstance].getCurrentVC presentViewController:hmsCustomScanViewController animated:YES completion:^{}];
+    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:hmsCustomScanViewController animated:YES];
     self.hmsCustomScanViewController = hmsCustomScanViewController;
     
     //扫码区域
@@ -214,11 +295,14 @@ NATIVE_MODULE(Native_scan__hms)
 }
 
 - (void)backAction:(UIButton *)sender {
+    self.isBack = NO;
     [self stopTimer:_timer];
-    [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
-        //自定义按钮中绑定返回操作
-        [self.hmsCustomScanViewController backAction];
-    }];
+//    [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
+//        //自定义按钮中绑定返回操作
+//        [self.hmsCustomScanViewController backAction];
+//    }];
+    [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
+    [self.hmsCustomScanViewController backAction];
 }
 
 - (void)imagePickersource {
@@ -295,6 +379,9 @@ NATIVE_MODULE(Native_scan__hms)
  */
 - (void)defaultScanImagePickerDelegateForImage:(UIImage *)image{
    // TODO: iScan 没这个功能
+}
+-(void)dealloc {
+    self.isBack = NO;
 }
 @end
  

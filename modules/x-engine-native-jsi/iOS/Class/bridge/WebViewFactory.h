@@ -9,6 +9,7 @@
 @class XEngineWebView;
 @interface WebViewFactory: NSObject
 @property (nonatomic, strong) NSPointerArray* webviews;
+@property (nonatomic,strong) UIView *customLoadingView;
     + (instancetype)sharedInstance;
     -(XEngineWebView *)createWebView;
 - (XEngineWebView *)createWebView:(BOOL)isLooseNetwork;

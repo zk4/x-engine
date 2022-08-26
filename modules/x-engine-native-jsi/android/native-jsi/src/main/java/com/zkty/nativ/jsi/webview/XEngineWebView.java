@@ -89,7 +89,9 @@ public class XEngineWebView extends DWebView {
         setWebViewClient();
         // setErrorPage();
         //屏蔽长按图片保存功能
-        setOnLongClickListener();
+        if ("release".equals(BuildConfig.BUILD_TYPE)) {
+            setOnLongClickListener();
+        }
     }
 
 

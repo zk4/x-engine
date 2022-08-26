@@ -25,17 +25,16 @@
 - (NSString *)moduleId{
     return @"com.zkty.jsi.scan";
 }
-
 - (void) openScanView:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
     
     if (dict && dict.allKeys.count>0) {
         _openScanView_com_zkty_jsi_scan_0_DTO* dto = [self convert:dict clazz:_openScanView_com_zkty_jsi_scan_0_DTO.class];
-        
+
         if(!dto) {
             [self showErrorAlert: @"dto 转换为空"];
             return;
         }
-        
+
         [self _openScanView:dto complete:^(NSString* result,  BOOL complete) {
             completionHandler(result,complete);
         }];

@@ -159,8 +159,13 @@ NATIVE_MODULE(Native_scan__hms)
     hmsCustomScanViewController.backButtonHidden = YES;
 
     hmsCustomScanViewController.modalPresentationStyle = 0;
-//    [[Unity sharedInstance].getCurrentVC presentViewController:hmsCustomScanViewController animated:YES completion:^{}];
-    [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:hmsCustomScanViewController animated:YES];
+    if (self.routeUrl) {
+        [[Unity sharedInstance].getCurrentVC.navigationController pushViewController:hmsCustomScanViewController animated:YES];
+
+    }else{
+        [[Unity sharedInstance].getCurrentVC presentViewController:hmsCustomScanViewController animated:YES completion:^{}];
+
+    }
     self.hmsCustomScanViewController = hmsCustomScanViewController;
     
     //扫码区域
@@ -297,11 +302,16 @@ NATIVE_MODULE(Native_scan__hms)
 - (void)backAction:(UIButton *)sender {
     self.isBack = NO;
     [self stopTimer:_timer];
-//    [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
-//        //自定义按钮中绑定返回操作
-//        [self.hmsCustomScanViewController backAction];
-//    }];
-    [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
+    if(self.routeUrl) {
+        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
+                //自定义按钮中绑定返回操作
+                [self.hmsCustomScanViewController backAction];
+            }];
+    }else{
+        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
+
+    }
+
     [self.hmsCustomScanViewController backAction];
 }
 

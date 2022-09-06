@@ -390,12 +390,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     if(web == self.webview){
         if(dic[@"progress"]){
             float floatNum = [dic[@"progress"] floatValue];
-            
             if ([WebViewFactory sharedInstance].customLoadingView) {
                 //            self.progresslayer.alpha = 1;
                 [WebViewFactory sharedInstance].customLoadingView.alpha = 1;
                 //            [self.progresslayer setProgress:floatNum animated:YES];
-                            if (floatNum == 1) {
+                            if (floatNum >0.85) {
                 //                [UIView animateWithDuration:0.3 animations:^{
                 //                    self.progresslayer.alpha = 0;
                                 [WebViewFactory sharedInstance].customLoadingView.alpha = 0;

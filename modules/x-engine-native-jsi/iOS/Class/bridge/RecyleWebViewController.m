@@ -88,6 +88,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
                                                  selector:@selector(webViewLoadFail:)
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
+        
+        
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJWebViewLoadFinish" object:nil];
+
         [self loadFileUrl];
 
         
@@ -183,6 +188,20 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
                                                  selector:@selector(webViewLoadFail:)
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadFinish:)
+                                                     name:@"GMJWebViewLoadFinish"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadStart:)
+                                                     name:@"GMJWebViewLoadStart"
+                                                   object:nil];
+        
+
+        
         [self loadFileUrl];
         
         
@@ -383,6 +402,22 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel404];
 }
+- (void)webViewLoadFinish:(NSNotification *)notifi{
+    
+    if ([WebViewFactory sharedInstance].customLoadingView) {
+        [WebViewFactory sharedInstance].customLoadingView.alpha = 0;
+        [WebViewFactory sharedInstance].customLoadingView.hidden = YES;
+    }
+  
+}
+- (void)webViewLoadStart:(NSNotification *)notifi{
+    if ([WebViewFactory sharedInstance].customLoadingView) {
+        [WebViewFactory sharedInstance].customLoadingView.alpha = 1;
+        [WebViewFactory sharedInstance].customLoadingView.hidden = NO;
+    }
+
+}
+
 
 - (void)webViewProgressChange:(NSNotification *)notifi{
     NSDictionary *dic = notifi.object;
@@ -393,14 +428,17 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
             
             if ([WebViewFactory sharedInstance].customLoadingView) {
                 //            self.progresslayer.alpha = 1;
-                [WebViewFactory sharedInstance].customLoadingView.alpha = 1;
+                NSLog(@"loading thread %@",[NSThread currentThread]);
                 //            [self.progresslayer setProgress:floatNum animated:YES];
-                            if (floatNum == 1) {
-                //                [UIView animateWithDuration:0.3 animations:^{
+                            if (floatNum >=0.85f) {
+//                                [UIView animateWithDuration:0.3 animations:^{
                 //                    self.progresslayer.alpha = 0;
                                 [WebViewFactory sharedInstance].customLoadingView.alpha = 0;
-                //                }];
+//                                }];
                       
+                            }else{
+                                [WebViewFactory sharedInstance].customLoadingView.alpha = 1;
+
                             }
             }else{
                             self.progresslayer.alpha = 1;
@@ -420,6 +458,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 }
  
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"XEWebViewProgressChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"XEWebViewLoadFailNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GMJWebViewLoadFinish" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GMJWebViewLoadStart" object:nil];
+
     [self beforeDead];
 }
 

@@ -347,10 +347,13 @@ NATIVE_MODULE(Native_direct)
 
 - (void)push:(nonnull NSString *)scheme host:(nullable NSString *)host pathname:(nonnull NSString *)pathname fragment:(nullable NSString *)fragment query:(nullable NSDictionary<NSString *,id> *)query params:(nullable NSDictionary<NSString *,id> *)params {
     [self push:scheme host:host pathname:pathname fragment:fragment query:query params:params frame:[UIScreen mainScreen].bounds];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJNativePushNotification" object:nil  userInfo:nil];
 }
 
 - (void)push:(nonnull NSString *)uri params:(nullable NSDictionary<NSString *,id> *)params {
     [self push:uri params:params frame:[UIScreen mainScreen].bounds];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJNativePushNotification" object:nil  userInfo:nil];
+
 }
 
  

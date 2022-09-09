@@ -722,6 +722,9 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 // 2.1- 开始下载指定 URL 的内容, 下载之前会调用一次 开始下载 回调
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
     //    [self.indicatorView startAnimating];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJWebViewLoadStart" object:nil];
+
     if(self.DSNavigationDelegate && [self.DSNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]){
         [self.DSNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
     }
@@ -739,6 +742,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         [self.DSNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
     [self removeGestureRecognizer:swiperGesture];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJWebViewLoadFinish" object:nil];
 }
 
 // 4.1- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。
@@ -752,6 +757,8 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     if ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102) {
         return;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJWebViewLoadFinish" object:nil];
+
 }
 
 // 4.2- 成功则调用成功回调，整个流程有错误发生都会发出错误回调。

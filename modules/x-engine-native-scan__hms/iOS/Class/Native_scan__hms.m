@@ -28,6 +28,9 @@ typedef void (^xScanBlock)(NSString *);
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, strong) NSString *routeUrl;
 @property (nonatomic, assign) BOOL isBack;
+@property (nonatomic, strong) UIView *tipView;
+@property (nonatomic, strong) UIView *superView;
+@property (nonatomic, assign) BOOL isOnTopView;
 @end
 
 @implementation Native_scan__hms
@@ -42,10 +45,13 @@ NATIVE_MODULE(Native_scan__hms)
 }
 
 - (void)afterAllNativeModuleInited{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNativePush:) name:@"GMJNativePushNotification" object:nil];
+
     
 } 
  
 - (void)openScanView:(NSString *)routeUrl complete:(void (^)(NSString * res))completionHandler{
+    self.isOnTopView = YES;
     self.isBack = YES;
     self.routeUrl = routeUrl;
     [self openScanView:^(NSString *res) {
@@ -55,20 +61,38 @@ NATIVE_MODULE(Native_scan__hms)
     
     __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (weakSelf && weakSelf.isBack) {
+        if (weakSelf && weakSelf.isOnTopView) {
             [weakSelf addRichText];
         }
      
     });
 }
+-(void)onNativePush:(NSNotification *)noti{
+    if (_timer) {
+        [self stopTimer:_timer];
+      
+//        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GMJNativePushNotification" object:nil];
+    }
+   
+    
+}
 -(void)addRichText{
-    UIView *superV = [Unity sharedInstance].getCurrentVC.view;
-    UIView *bagView = [[UIView alloc] init];
+    
 
-    bagView.backgroundColor = [UIColor whiteColor];
-    bagView.layer.cornerRadius = 5;
-    [superV addSubview:bagView];
-    [bagView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *superV = [Unity sharedInstance].getCurrentVC.view;
+    _superView =superV;
+    
+    if ([superV.subviews containsObject:_tipView]) {
+        return;
+    }
+    _tipView = [[UIView alloc] init];
+    _tipView.tag=999998;
+    _tipView.hidden = NO;
+    _tipView.backgroundColor = [UIColor whiteColor];
+    _tipView.layer.cornerRadius = 5;
+    [superV addSubview:_tipView];
+
+    [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(superV.mas_left).offset(15);
         make.right.equalTo(superV.mas_right).offset(-15);
         make.bottom.equalTo(superV.mas_bottom).offset(-40);
@@ -90,7 +114,7 @@ NATIVE_MODULE(Native_scan__hms)
     
     [self richTextLabel:tipLB FontNumber:[UIFont systemFontOfSize:15] AndRange:range AndColor:[UIColor blueColor]];
     
-    [bagView addSubview:tipLB];
+    [_tipView addSubview:tipLB];
     
     tipLB.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
@@ -98,9 +122,9 @@ NATIVE_MODULE(Native_scan__hms)
    
     
     [tipLB mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(bagView.mas_left).offset(10);
-        make.right.equalTo(bagView.mas_right).offset(-10);
-        make.top.equalTo(bagView.mas_top).offset(10);
+        make.left.equalTo(_tipView.mas_left).offset(10);
+        make.right.equalTo(_tipView.mas_right).offset(-10);
+        make.top.equalTo(_tipView.mas_top).offset(10);
     }];
 
 }
@@ -303,17 +327,19 @@ NATIVE_MODULE(Native_scan__hms)
     self.isBack = NO;
     [self stopTimer:_timer];
     if(self.routeUrl) {
+        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
+
+    }else{
         [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
                 //自定义按钮中绑定返回操作
                 [self.hmsCustomScanViewController backAction];
             }];
-    }else{
-        [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
 
     }
 
     [self.hmsCustomScanViewController backAction];
 }
+
 
 - (void)imagePickersource {
     if (self.imagePickerController == nil) {
@@ -338,30 +364,75 @@ NATIVE_MODULE(Native_scan__hms)
     [picker dismissViewControllerAnimated:YES completion:^{
         [self removeHud];
         self.block(jsonStr?jsonStr:@"");
-        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:NO completion:^{}];
+//        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:NO completion:^{}];
+        
+        
+        if(self.routeUrl) {
+           
+            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
+
+        }else{
+            [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
+                    //自定义按钮中绑定返回操作
+                }];
+        }
     }];
 }
 
 - (void)customizedScanDelegateForResult:(NSDictionary *)resultDic{
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString* jsonStr =  resultDic[@"text"];
-        [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
+        
+        if(self.routeUrl) {
+         
+            [[Unity sharedInstance].getCurrentVC.navigationController popViewControllerAnimated:YES];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 self.block(jsonStr?jsonStr:@"");
             });
-            
 
-        
-        }];
+        }else{
+            [[Unity sharedInstance].getCurrentVC dismissViewControllerAnimated:YES completion:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    self.block(jsonStr?jsonStr:@"");
+                });
+                
+
+            
+            }];
+        }
+       
 
    });
 }
 
 - (void)stopTimer:(NSTimer *)t{
+    self.isOnTopView = NO;
     [t setFireDate:[NSDate distantFuture]];
     [t invalidate];
     t = nil;
+    
+    if ([_superView.subviews containsObject:_tipView]) {
+        _tipView.hidden = YES;
+        [_tipView removeFromSuperview];
+        _tipView = nil;
+    }
+//    for(id tmpView in _superView.subviews)
+//    {
+//        //找到要删除的子视图的对象
+//        if([tmpView isKindOfClass:[UIView class]])
+//        {   UIView *v = (UIView *)tmpView;
+//
+//            if(v.tag == 999998)
+//            {
+//                [tmpView removeFromSuperview];
+//                break;
+//            }
+//        }
+//    }
+//
+  
 }
 
 - (void)showLoading:(NSString *)tip{

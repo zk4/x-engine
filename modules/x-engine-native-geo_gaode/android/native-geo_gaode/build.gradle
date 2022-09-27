@@ -45,5 +45,5 @@ dependencies {
     compile project(':native-core')
     compile project(':native-geo')
 
-    api 'com.amap.api:location:5.5.0'
+    api 'com.amap.api:location:6.1.0'
 }

@@ -30,6 +30,8 @@ public class Nativegeo_gaode extends NativeModule implements Igeo {
     public void afterAllNativeModuleInited() {
         //初始化定位
         try {
+            AMapLocationClient.updatePrivacyShow(XEngineApplication.getApplication().getApplicationContext(),true,true);
+            AMapLocationClient.updatePrivacyAgree(XEngineApplication.getApplication().getApplicationContext(),true);
 
             mLocationClient = new AMapLocationClient(XEngineApplication.getApplication().getApplicationContext());
 
@@ -77,6 +79,8 @@ public class Nativegeo_gaode extends NativeModule implements Igeo {
 
     @Override
     public void locate(IGeoManager.CallBack callBack) {
+        AMapLocationClient.updatePrivacyShow(XEngineApplication.getApplication().getApplicationContext(),true,true);
+        AMapLocationClient.updatePrivacyAgree(XEngineApplication.getApplication().getApplicationContext(),true);
         AMapLocationClientOption option = new AMapLocationClientOption();
 //        option.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
         option.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy)//高精度定位模式：会同时使用网络定位和GPS定位，优先返回最高精度的定位结果，以及对应的地址描述信息。

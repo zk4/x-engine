@@ -1,10 +1,8 @@
 package com.zkty.nativ.jsi.view;
 
 
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
-import com.zkty.nativ.core.utils.ImageUtils;
 import com.zkty.nativ.jsi.HistoryModel;
 import com.zkty.nativ.jsi.WebViewManager;
 import com.zkty.nativ.jsi.webview.XEngineWebView;
@@ -101,16 +97,35 @@ public class XEngineFragment extends Fragment {
         return mWebView;
     }
 
+    private boolean mIsShow = true;
+    private boolean mIsCreate;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mIsCreate = true;
+        if (mIsShow) {
+            broadcast(ON_NATIVE_SHOW, ON_NATIVE_SHOW);
+        }
+    }
+
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden) {
-            XWebViewPool.sharedInstance().setCurrentTabWebView(mWebView);
+        mIsShow = !hidden;
+        if (mIsCreate && mIsShow) {
             broadcast(ON_NATIVE_SHOW, ON_NATIVE_SHOW);
         } else {
             broadcast(ON_NATIVE_HIDE, ON_NATIVE_HIDE);
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        broadcast(ON_NATIVE_HIDE, ON_NATIVE_HIDE);
+    }
+
 
     @Override
     public void onDestroy() {
@@ -119,7 +134,7 @@ public class XEngineFragment extends Fragment {
     }
 
     private void broadcast(String type, String payload) {
-//        Log.d("DWebView-Log", "broadcast：type=" + type + " ,payload = " + payload + "__" + mWebView.hashCode());
+        Log.d("DWebView-Log", "broadcast：type=" + type + " ,payload = " + payload + "__" + mWebView.hashCode());
         Map<String, String> bro = new HashMap<>();
         bro.put("type", type);
         bro.put("payload", payload);

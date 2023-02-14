@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 21
@@ -44,12 +44,8 @@ dependencies {
 
     implementation 'org.jetbrains:annotations:15.0'
     api files('src/libs/tbs_sdk_thirdapp_v4.3.0.313_44213.jar')
-    api 'com.gyf.barlibrary:barlibrary:2.3.0'
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     api 'com.github.anthonynsimon:jurl:v0.4.2'
-
-//    api 'com.sensorsdata.analytics.android:SensorsAnalyticsSDK:5.3.1'
-//    //神策sdk
-//    api 'com.gome.ecmall:ganalysis:3.6.9-plus@aar'
-    compile project(':native-core')
-    compile project(':native-webcache')
+    implementation project(':native-core')
+    implementation project(':native-webcache')
 }

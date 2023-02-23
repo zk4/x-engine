@@ -54,4 +54,5 @@ dependencies {
     implementation project(':native-direct_native')
     //scankitSDK
     implementation 'com.huawei.hms:scan:2.0.0.300'
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
 }

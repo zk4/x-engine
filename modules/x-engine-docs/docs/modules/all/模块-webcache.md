@@ -42,7 +42,7 @@ zip 包格式为  {microappid}.{version}.zip
 
 ## 分发
 
-![image-20210802132136901](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210802132136901.png)
+![image-20210802132136901](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210802132136901.png)
 
 ### 原生集成上架分发
 
@@ -77,7 +77,7 @@ zip 包更新是在线更新的一种补足方式. 对比版本.异步下载最�
 
 
 
-![image-20210802142533432](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210802142533432.png)
+![image-20210802142533432](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210802142533432.png)
 
 
 
@@ -143,7 +143,7 @@ fallback 参数是在路由的数据里.
 
 >  由于 iOS 在拦截请求时,会丢失 post body. 故需要在 xhr 层做拦截. 由 webview 注入 xhrhook.js.由原生请求.
 
-![image-20210802214724985](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210802214724985.png)
+![image-20210802214724985](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210802214724985.png)
 
 
 
@@ -155,7 +155,7 @@ fallback 参数是在路由的数据里.
 
 内存缓存,与磁盘缓存. 优先内存缓存.
 
-![image-20210802140957160](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210802140957160.png)
+![image-20210802140957160](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210802140957160.png)
 
 实现细节:
 

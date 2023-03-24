@@ -51,7 +51,7 @@ remotedebug_ios_webkit_adapter --port=9000
 
 Chrome中打开chrome://inspect/#devices，在configure中添加localhost:9000,能够看到设备出如今列表中。iphone的Safari中的页面，就能够在这里看到，点击inspect，就能够和PC端同样，进行调试啦 浏览器
 
-![img](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/5f3d6b0aaad74604a9f376e7601a2d9c-1.jpg)
+![img](https://md4zk.oss-cn-beijing.aliyuncs.com/img/5f3d6b0aaad74604a9f376e7601a2d9c-1.jpg)
 
 
 
@@ -59,11 +59,11 @@ Chrome中打开chrome://inspect/#devices，在configure中添加localhost:9000,�
 
 Safari浏览器中相对就比较简单啦，iphone端的操做彻底同样，打开Safari浏览器，选中系统偏好设置-->高级,勾选在菜单中打开“开发”菜单 bash
 
-![img](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/587a11350b6a4b39a19af8a2faae3867-1.jpg)
+![img](https://md4zk.oss-cn-beijing.aliyuncs.com/img/587a11350b6a4b39a19af8a2faae3867-1.jpg)
 
 链接手机，打开Safari浏览器，选择开发，选中设备，可看到移动端Safari浏览器中打开的网址，点击，就能打开Safari浏览器的开发者工具了。如图所示：
 
-![img](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/75524221bfd64b938693dad73c1ddd25-1.jpg)
+![img](https://md4zk.oss-cn-beijing.aliyuncs.com/img/75524221bfd64b938693dad73c1ddd25-1.jpg)
 
 
 

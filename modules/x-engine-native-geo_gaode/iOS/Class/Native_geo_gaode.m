@@ -99,21 +99,6 @@ NATIVE_MODULE(Native_geo_gaode)
  
 }
 
-/**
- 获取当前定位权限是否开启
- 
- 
- */
-//- (void)getPositionStateResult:(void (^)(BOOL isOpen))result {
-//    CLAuthorizationStatus status = [ CLLocationManager authorizationStatus];
-////    if (status== kCLAuthorizationStatusDenied){
-////        // 无定位权限
-////        result(NO);
-////    }else{
-////        result(YES);
-////    }
-//    result(status);
-//}
 -(void)getPositionStateResult:(void (^)(GMJLocationType))result {
         CLAuthorizationStatus status = [ CLLocationManager authorizationStatus];
     
@@ -137,15 +122,7 @@ NATIVE_MODULE(Native_geo_gaode)
         default:
             break;
     }
-    //    if (status== kCLAuthorizationStatusDenied){
-    //        // 无定位权限
-    //        result(NO);
-    //    }else{
-    //        result(YES);
-    //    }
-    
-   
-        result(locationType);
+    result(locationType);
 }
 -(void)showAlert{
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"定位服务已关闭" message:@"请进入设置--乐活秀--位置--允许定位服务" preferredStyle:UIAlertControllerStyleAlert];
@@ -174,7 +151,6 @@ NATIVE_MODULE(Native_geo_gaode)
         NSObject *value = [object valueForKey:name];//valueForKey返回的数字和字符串都是对象
         
         if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
-            //string , bool, int ,NSinteger
             [dic setObject:value forKey:name];
             
         } else {

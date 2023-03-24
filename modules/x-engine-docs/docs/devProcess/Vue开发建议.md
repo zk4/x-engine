@@ -47,7 +47,7 @@ methods: {
 
 ## vue-router 兼容
 
-- 为了方便业务人员的开发,我们对原生VueRouter的跳转进行了拦截.
+- 为了方便业务人员的开发,对原生VueRouter的跳转进行了拦截.
 - 开发人员可以直接使用VueRouter的`push()`和`go()`来进行路由的相关操作。
 - 支持query传递参数
 - 支持params传递参数
@@ -68,14 +68,12 @@ import Vue from "vue"
 import VueRouter from "@zkty-team/vue-router"
 Vue.use(VueRouter)
 ```
-**值得注意的是**
-> 我们支持 'omp','omps' 和 'microapp' protocol, 如果你的页面打开是'http' 那么protocol便是'omp',打开是'https' 那么protocol便是'omps'.<br>
 ```javascript
 import Vue from "vue"
 import VueRouter from "@zkty-team/vue-router"
 Vue.use(VueRouter)
 ```
-> 当然我们也支持手动传入protocol, 例如:
+> 手动传入protocol, 例如:
 ```javascript
 
 import Vue from "vue"
@@ -101,7 +99,7 @@ const routes = [
 
 ## vuex 兼容
 
-由于 microapp 容器里的每一页都是在新的 webview 里, 传统的 vuex 是不会生效的.我们为 vuex 做了一定的兼容. 现在仅是可用. 性能完全没考虑.
+由于 microapp 容器里的每一页都是在新的容器里, 传统的 vuex 是不会生效的.我们利用原生能力为 vuex 做了容器间的兼容.
 
 1. 安装方式:
 
@@ -159,11 +157,10 @@ Vuex 可以帮助我们管理共享状态，并附带了更多的概念和框架
 
 
 ##  header 适配
-
 - 基于Vue的仿原生导航条
-- 完美支持Android和iOS上导航条高度
+- 完美支持 Android 和 iOS 上导航条高度
 - 通过@zkty-team/vue-router中的meta传递信息
-- 使用`Header`,开发人员不用在每个页面都配置一次，主需要在配置router的信息的时候配置好要展示的内容即可。
+- 使用`Header`,开发人员不用在每个页面都配置一次，主需要在配置router 的信息的时候配置好要展示的内容即可。
 
 #### 安装方式
 

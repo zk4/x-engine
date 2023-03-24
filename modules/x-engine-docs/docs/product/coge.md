@@ -49,7 +49,7 @@ vue-cli 也算是一种模板生成工具，做的重且只能生成 vue 项目�
 
 但随着 vue 的升级。 你会发现 vue-cli 同样的命令，告诉你生成项目出错。。 比如
 
-![image-20210830002504319](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210830002504319.png)
+![image-20210830002504319](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210830002504319.png)
 
 当然解决方法很容易查到。 但一个模板生成工具为什么不能时刻按我原来设想的模板快速生成？
 
@@ -88,7 +88,7 @@ pip3 install coge
 我假定你已经有一个可运行的 vue 干净项目。叫 vue-template, 并通过 git 管理。
 
 
-![image-20210830003337836](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210830003337836.png)
+![image-20210830003337836](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210830003337836.png)
 
 一般来讲，我们生成项目时，会希望同时修改 package.json 的 name， author。 给它们取一个一定不会重复的名字
 
@@ -115,7 +115,7 @@ coge -r
 
 会将当前文件链到 ~/.code_template 
 
-![image-20210830003843593](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210830003843593.png)
+![image-20210830003843593](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210830003843593.png)
 
 
 
@@ -125,7 +125,7 @@ coge -r
 coge vue_template coge_name:vue_mall   coge_author:zk @:vue_mall -w
 ```
 
-![image-20210830004055995](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210830004055995.png)
+![image-20210830004055995](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210830004055995.png)
 
 
 
@@ -152,7 +152,7 @@ coge vue_template coge_name:vue_mall   coge_author:zk @:vue_mall2 -w
 yarn serve
 ```
 
-![image-20210830013747408](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20210830013747408.png)
+![image-20210830013747408](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20210830013747408.png)
 
 
 

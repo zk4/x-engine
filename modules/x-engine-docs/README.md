@@ -1,4 +1,4 @@
-![image-20211119140240084](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211119140240084.png)
+![image-20211119140240084](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20211119140240084.png)
 
 
 
@@ -42,11 +42,11 @@ UI 层在最终呈现时，现在主流有 4 种方案.x-engine 都可以支持.
 
 
 
-![image-20211026010158237](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211026010158237.png)
+![image-20211026010158237](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20211026010158237.png)
 
 #### **类图**
 
-![](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/design-compatiable.png)
+![](https://md4zk.oss-cn-beijing.aliyuncs.com/img/design-compatiable.png)
 
 
 <!-- tabs:end -->
@@ -57,7 +57,7 @@ UI 层在最终呈现时，现在主流有 4 种方案.x-engine 都可以支持.
 
 RN Container 调用原生相机
 
-![](https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211018132618053.png)
+![](https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20211018132618053.png)
 
  
 

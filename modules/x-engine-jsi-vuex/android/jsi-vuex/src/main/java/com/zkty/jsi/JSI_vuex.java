@@ -38,28 +38,12 @@ public class JSI_vuex extends xengine_jsi_vuex {
     @Override
     public void _set(_0_com_zkty_jsi_vuex_DTO dto) {
         iStore.set(genKey(dto.key), dto.val);
-//        iBroadcast.broadcast(BROADCAST_EVENT, dto.val);
-
-
-//        Map<String, String> bro = new HashMap<>();
-//        bro.put("type", BROADCAST_EVENT);
-//        bro.put("payload", dto.val);
-//        for (XEngineWebView webView : XWebViewPool.sharedInstance().getWebViews()) {
-//            if (isSameMicroApp(xEngineWebView, webView))
-//                webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast return:" + retValue));
-//        }
-//        for (XEngineWebView webView : XWebViewPool.sharedInstance().getTabWebViewList()) {
-//            if (isSameMicroApp(xEngineWebView, webView))
-//                webView.callHandler("com.zkty.module.engine.broadcast", new Object[]{bro}, retValue -> Log.d("NativeBroadcast", "broadcast return:" + retValue));
-//        }
     }
 
     private String genKey(String key) {
-
         HistoryModel hm = XWebViewPool.sharedInstance().getCurrentWebView().getHistoryModel();
         if (hm == null)
             return key;
-
         return String.format("%s%s%s:%s", VUEX_STORE_KEY, hm.host == null ? "" : hm.host, hm.pathname == null ? "" : hm.pathname, key);
 
     }

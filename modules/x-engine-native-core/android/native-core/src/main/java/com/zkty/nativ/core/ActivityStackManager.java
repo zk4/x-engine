@@ -113,6 +113,7 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
         }
     }
 
+
     /**
      * 销毁所有的activity
      */
@@ -122,9 +123,18 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
         }
     }
 
+    /**
+     * 销毁所有的activity,保留根activity
+     */
+    public void finishAllActivityExceptRoot() {
+        while (stack.size() > 1) {
+            stack.pop().finish();
+        }
+    }
+
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        if (activity instanceof CoreActivity)
+//        if (activity instanceof CoreActivity)
             addActivity(activity);
     }
 
@@ -155,7 +165,7 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        if (activity instanceof CoreActivity)
+//        if (activity instanceof CoreActivity)
             removeActivity(activity);
     }
 }

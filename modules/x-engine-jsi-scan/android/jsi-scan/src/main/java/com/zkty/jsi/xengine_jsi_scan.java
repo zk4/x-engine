@@ -15,9 +15,13 @@ import androidx.annotation.Nullable;
 import com.zkty.nativ.core.annotation.Optional;
 
 
+class _0_com_zkty_jsi_scan_DTO {
+  @Optional
+		public String routerUrl;
+  }
 
 interface xengine_jsi_scan_protocol {
-  public void _openScanView(final CompletionHandler<String> handler);
+  public void _openScanView(_0_com_zkty_jsi_scan_DTO dto, final CompletionHandler<String> handler);
 }
   
 
@@ -29,7 +33,8 @@ interface xengine_jsi_scan_protocol {
   
     @JavascriptInterface
     final public void openScanView(JSONObject jsonobj, final CompletionHandler<Object> handler) {
-      _openScanView(new CompletionHandler<String>() {
+      _0_com_zkty_jsi_scan_DTO dto= convert(jsonobj,_0_com_zkty_jsi_scan_DTO.class);
+      _openScanView(dto, new CompletionHandler<String>() {
         @Override
         public void complete(String retValue) { handler.complete(retValue); }
         @Override

@@ -9,7 +9,10 @@
 #import "UIView+Toast.h"
 #import "Unity.h"
 @interface Native_toast()
-{ }
+{
+    
+    BOOL _showToast;
+}
 @end
 
 @implementation Native_toast
@@ -25,39 +28,52 @@ NATIVE_MODULE(Native_toast)
 
 - (void)afterAllNativeModuleInited{
     [CSToastManager setQueueEnabled:YES];
+    _showToast = NO;
 }
 
 - (void)toastWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2){
-      va_list args;
-      va_start(args, format);
-      NSString *s = [[NSString alloc] initWithFormat:format arguments:args] ;
-      va_end(args);
-      [self toast:s];
+    if (_showToast) {
+              va_list args;
+              va_start(args, format);
+              NSString *s = [[NSString alloc] initWithFormat:format arguments:args] ;
+              va_end(args);
+              [self toast:s];
+    }
+
 }
 
 
 - (void)toast:(NSString *)msg{
-    dispatch_async(dispatch_get_main_queue(), ^{
-     [[Unity sharedInstance].getCurrentVC.view makeToast:msg
-                                               duration:3.0
-                                               position:CSToastPositionTop];
-    });
+    if (_showToast) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+             [[Unity sharedInstance].getCurrentVC.view makeToast:msg
+                                                       duration:3.0
+                                                       position:CSToastPositionTop];
+            });
+    }
+
 }
 - (void)toast:(NSString *)msg duration:(NSTimeInterval)duration{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[Unity sharedInstance].getCurrentVC.view makeToast:msg
-                                               duration:duration
-                                               position:CSToastPositionTop];
-    });
+    if (_showToast) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[Unity sharedInstance].getCurrentVC.view makeToast:msg
+                                                       duration:duration
+                                                       position:CSToastPositionTop];
+            });
+    }
+
 }
 
 - (void)toastCurrentView:(NSString *)msg duration:(NSTimeInterval)duration{
-    dispatch_async(dispatch_get_main_queue(), ^{
+    if (_showToast) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+        
+            [[Unity sharedInstance].getCurrentVC.view makeToast:msg
+                                                       duration:duration
+                                                       position:CSToastPositionTop];
+            });
+    }
 
-    [[Unity sharedInstance].getCurrentVC.view makeToast:msg
-                                               duration:duration
-                                               position:CSToastPositionTop];
-    });
 }
 
 

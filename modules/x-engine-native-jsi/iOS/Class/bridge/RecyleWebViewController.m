@@ -8,7 +8,8 @@
 #import "XENativeContext.h"
 #import "iWebcache.h"
 #import "iToast.h"
-
+#import <SDWebImage/SDWebImage.h>
+#import <Masonry/Masonry.h>
 #define kAppDelegate            ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 /// TODO: webview refactor
@@ -35,7 +36,7 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
 @property (nonatomic, strong) UILabel *tipLabel404;
 @property (nonatomic, strong) id<iWebcache> webcache;
 @property (nonatomic, assign) BOOL isLooseNetwork;
-
+@property (nonatomic, strong) UIImageView *  imageV;
 /** 标记使用状态 */
 @property (nonatomic, assign) BOOL bWebviewOnTop;
 
@@ -87,6 +88,11 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
                                                  selector:@selector(webViewLoadFail:)
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
+        
+        
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJWebViewLoadFinish" object:nil];
+
         [self loadFileUrl];
 
         
@@ -182,6 +188,20 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
                                                  selector:@selector(webViewLoadFail:)
                                                      name:@"XEWebViewLoadFailNotification"
                                                    object:nil];
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadFinish:)
+                                                     name:@"GMJWebViewLoadFinish"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(webViewLoadStart:)
+                                                     name:@"GMJWebViewLoadStart"
+                                                   object:nil];
+        
+
+        
         [self loadFileUrl];
         
         
@@ -259,8 +279,39 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     [self onCreated];
+    
+    
+    
+    [self setUpLoadingView];
+
 }
 
+-(void)setUpLoadingView {
+//    self.imageV = [[UIImageView alloc] init];
+//    self.imageV.backgroundColor = [UIColor clearColor];
+//    self.imageV.layer.masksToBounds = NO;
+//    self.imageV.alpha = 0;
+//    [self.view addSubview:self.imageV];
+//    float height =60;
+//
+//    self.imageV.frame = CGRectMake((self.view.bounds.size.width - height) * 0.5, (self.view.bounds.size.height - height) * 0.5, height, height);
+//    NSString *SuperBgImgPath = [[NSBundle mainBundle] pathForResource:@"111" ofType:@"png"];
+//
+//     NSURL *APNGURL = [NSURL fileURLWithPath:SuperBgImgPath];
+//
+//    [self.imageV sd_setImageWithURL:APNGURL];
+    UIView *v = [WebViewFactory sharedInstance].customLoadingView;
+    if (v) {
+        [self.view addSubview:v];
+        [v mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.height.equalTo(@100);
+            make.width.equalTo(@100);
+        }];
+    }
+
+
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -351,6 +402,22 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     self.tipLabel404.textColor = [UIColor colorWithRed:141/255.0 green:141/255.0 blue:141/255.0 alpha:1.0];
     [self.imageView404 addSubview:self.tipLabel404];
 }
+- (void)webViewLoadFinish:(NSNotification *)notifi{
+    
+    if ([WebViewFactory sharedInstance].customLoadingView) {
+        [WebViewFactory sharedInstance].customLoadingView.alpha = 0;
+        [WebViewFactory sharedInstance].customLoadingView.hidden = YES;
+    }
+  
+}
+- (void)webViewLoadStart:(NSNotification *)notifi{
+    if ([WebViewFactory sharedInstance].customLoadingView) {
+        [WebViewFactory sharedInstance].customLoadingView.alpha = 1;
+        [WebViewFactory sharedInstance].customLoadingView.hidden = NO;
+    }
+
+}
+
 
 - (void)webViewProgressChange:(NSNotification *)notifi{
     NSDictionary *dic = notifi.object;
@@ -358,19 +425,44 @@ static NSString * const kWEBVIEW_STATUS_ON_TOP  = @"kWEBVIEW_STATUS_ON_TOP";
     if(web == self.webview){
         if(dic[@"progress"]){
             float floatNum = [dic[@"progress"] floatValue];
-            self.progresslayer.alpha = 1;
-            [self.progresslayer setProgress:floatNum animated:YES];
-            if (floatNum == 1) {
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.progresslayer.alpha = 0;
-                }];
-      
+            
+            if ([WebViewFactory sharedInstance].customLoadingView) {
+                //            self.progresslayer.alpha = 1;
+                NSLog(@"loading thread %@",[NSThread currentThread]);
+                //            [self.progresslayer setProgress:floatNum animated:YES];
+                            if (floatNum >=0.85f) {
+//                                [UIView animateWithDuration:0.3 animations:^{
+                //                    self.progresslayer.alpha = 0;
+                                [WebViewFactory sharedInstance].customLoadingView.alpha = 0;
+//                                }];
+                      
+                            }else{
+                                [WebViewFactory sharedInstance].customLoadingView.alpha = 1;
+
+                            }
+            }else{
+                            self.progresslayer.alpha = 1;
+//                            self.imageV.alpha = 1;
+                            [self.progresslayer setProgress:floatNum animated:YES];
+                            if (floatNum == 1) {
+                                [UIView animateWithDuration:0.3 animations:^{
+                                    self.progresslayer.alpha = 0;
+//                                    self.imageV.alpha = 0;
+                                }];
+                      
+                            }
             }
+
         }
     }
 }
  
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"XEWebViewProgressChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"XEWebViewLoadFailNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GMJWebViewLoadFinish" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GMJWebViewLoadStart" object:nil];
+
     [self beforeDead];
 }
 

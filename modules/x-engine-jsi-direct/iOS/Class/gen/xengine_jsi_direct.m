@@ -37,10 +37,21 @@
     - (NSString *)moduleId{
         return @"com.zkty.jsi.direct";
     }
-    
+-(NSDictionary *)dealWithNullData:(NSDictionary *)dic{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:dic];
+    for (NSString *key in dict.allKeys) {
+        NSString *value = dict[key];
+        if ([value isEqual:[NSNull null]]) {
+            [dict setValue:@"" forKey:key];
+        }
+    }
+    return dict;
+}
+
     - (void) push:(NSDictionary*) dict complete:(XEngineCallBack)completionHandler {
 
           dict=[self mergeDefault:dict defaultString:@"{  \"scheme\": \"omp\",  \"fragment\": \"/\",  \"params\": {    \"hideNavbar\": true  }}"];
+//        dict = [self dealWithNullData:dict];
 
           DirectPushDTO* dto = [self convert:dict clazz:DirectPushDTO.class];
           

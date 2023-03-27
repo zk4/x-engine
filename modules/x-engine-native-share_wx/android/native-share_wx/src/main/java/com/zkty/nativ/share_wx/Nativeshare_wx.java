@@ -115,8 +115,10 @@ public class Nativeshare_wx extends NativeModule implements Ishare {
                     req2.scene = "wx_friend".equals(channel) ? SendMessageToWX.Req.WXSceneSession : SendMessageToWX.Req.WXSceneTimeline;
                     //调用api接口，发送数据到微信
                     iwxapi.sendReq(req2);
-                    bitmap.recycle();
-                    thumbBmp.recycle();
+//                    if (!bitmap.isRecycled() && !bitmap.equals(thumbBmp))
+//                        bitmap.recycle();
+//                    if (!thumbBmp.isRecycled() && !thumbBmp.equals(bitmap))
+//                        thumbBmp.recycle();
                 });
 
             }

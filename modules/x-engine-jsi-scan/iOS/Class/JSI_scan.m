@@ -27,4 +27,19 @@ JSI_MODULE(JSI_scan)
         completionHandler(res, true);
     }];
 }
+- (void) _openScanView:(_openScanView_com_zkty_jsi_scan_0_DTO*) dto complete:(void (^)(NSString* result,BOOL complete)) completionHandler{
+    
+    if(dto && dto.routerUrl && dto.routerUrl.length>0) {
+
+        [self.scan openScanView:dto.routerUrl complete:^(NSString *res) {
+            completionHandler(res, true);
+        }];
+    }else{
+        [self.scan openScanView:^(NSString * res) {
+            completionHandler(res, true);
+        }];
+    
+    }
+    
+}
 @end

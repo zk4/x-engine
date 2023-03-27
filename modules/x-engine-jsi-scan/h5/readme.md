@@ -13,15 +13,18 @@ version: 3.0.7
 
 > **demo**
 ``` js
-
+ {
   xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
     console.log(JSON.stringify(val))
   });
-
+}
 ``` 
 
-**无参数**
+**参数说明**
 
+| name                        | type      | optional | default   | comment  |
+| --------------------------- | --------- | -------- | --------- |--------- |
+| routerUrl | string | optional |  | 扫描失败跳转地址 |
 
 **返回值**
 ``` js

@@ -140,9 +140,9 @@
             @"progress":@(floatNum),
             @"webView":object,
         }];
-        if (floatNum >= 1) {
-            [object removeObserver:self forKeyPath:@"estimatedProgress"];
-        }
+//        if (floatNum >= 1) {
+//            [object removeObserver:self forKeyPath:@"estimatedProgress"];
+//        }
     } else if ([keyPath isEqualToString:@"title"]) {
         if([change objectForKey:@"new"]){
             [[NSNotificationCenter defaultCenter] postNotificationName:@"XEWebViewProgressChangeNotification" object:@{
@@ -202,6 +202,16 @@
 //    }
 //
 //}
+-(void)setCustomLoadingView:(UIView *)customLoadingView {
+    if (!_customLoadingView) {
+        _customLoadingView = customLoadingView;
+    }
+}
+
+- (void)dealloc{
+    [self removeObserver:self forKeyPath:@"estimatedProgress"];
+}
+
 @end
 
 

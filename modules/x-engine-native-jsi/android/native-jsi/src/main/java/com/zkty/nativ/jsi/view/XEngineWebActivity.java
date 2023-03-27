@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -107,7 +108,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
         mWebChromeClient = new MyWebChromeClient();
         xEngineNavBar = findViewById(R.id.nav_bar);
 
-        mRoot = findViewById(R.id.content_root);
+        mRoot = findViewById(R.id.rl_root);
         ivScreen = findViewById(R.id.iv_screen);
         mProgressBar = findViewById(R.id.pb_web_activity);
 
@@ -126,7 +127,7 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 //        mWebView.setPermission(dto);
 
 
-        ((RelativeLayout) findViewById(R.id.rl_root)).addView(mWebView, 0);
+        mRoot.addView(mWebView, 0);
         XEngineWebActivityManager.sharedInstance().addActivity(this);
 
         mWebView.setOnPageStateListener(() -> broadcast(ON_WEBVIEW_SHOW, ON_WEBVIEW_SHOW));
@@ -330,6 +331,8 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 //    private boolean isFirstReceiveTitle = true;
 
     class MyWebChromeClient extends WebChromeClient {
+        private boolean isLoading;
+        private View loadingView;
 
         @Override
         public void onReceivedTitle(WebView webView, String title) {
@@ -344,11 +347,26 @@ public class XEngineWebActivity extends BaseXEngineActivity {
 
         @Override
         public void onProgressChanged(WebView webView, int i) {
+            loadingView = XWebViewPool.sharedInstance().getWebLoadingView();
+            if (loadingView != null) {
+                if (!isLoading) {
+                    if (loadingView.getParent() != null) {
+                        ((ViewGroup) loadingView.getParent()).removeView(loadingView);
+                    }
+                    mRoot.addView(loadingView, 1);
+                    isLoading = true;
+                }
+                if (i == 100) {
+                    mRoot.removeView(loadingView);
+                }
 
-            mProgressBar.setVisibility(View.VISIBLE);
-            mProgressBar.setProgress(i);
-            if (i == 100) {
-                mProgressBar.setVisibility(View.GONE);
+
+            } else {
+                mProgressBar.setVisibility(View.VISIBLE);
+                mProgressBar.setProgress(i);
+                if (i == 100) {
+                    mProgressBar.setVisibility(View.GONE);
+                }
             }
             super.onProgressChanged(webView, i);
         }

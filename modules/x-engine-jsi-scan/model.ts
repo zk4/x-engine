@@ -14,7 +14,11 @@ const conf = {
 };
 
 @async // 打开扫码页面
-function openScanView(): string {
+function openScanView(
+	extDTO : {
+  //扫描失败跳转地址
+  routerUrl?: string; 
+): string {
   xengine.api("com.zkty.jsi.scan", "openScanView", {}, (val) => {
     console.log(JSON.stringify(val))
   });

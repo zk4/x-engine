@@ -126,7 +126,7 @@ NATIVE_MODULE(Native_share_wx)
             NSString *imgDatastr =[info objectForKey:@"imgData"];
             // 大小不能超过128k
             object.hdImageData = [self shrinkSizeForKB:127 imgData:imgDatastr];
-            object.withShareTicket = YES;
+            object.withShareTicket = NO;
             object.miniProgramType = [info[@"miniProgramType"] intValue];
             message.title = info[@"title"];
             message.description = info[@"desc"];

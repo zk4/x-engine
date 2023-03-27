@@ -110,5 +110,7 @@ dependencies {
 //    implementation project(':jsi-media2')
 
     implementation 'com.didichuxing.doraemonkit:doraemonkit:3.2.0'
+    implementation 'com.github.penfeizhou.android.animation:apng:2.10.0'
+
 
 }

@@ -40,7 +40,7 @@ public class NativeScan extends NativeModule implements IScan {
     }
 
     @Override
-    public void openScanView(CallBack callBack) {
+    public void openScanView(ScanExtDto dto, CallBack callBack) {
 
         Activity activity = XEngineApplication.getCurrentActivity();
         if (activity == null || !(activity instanceof BaseXEngineActivity)) return;
@@ -125,7 +125,6 @@ public class NativeScan extends NativeModule implements IScan {
         act.addLifeCycleListener(lifeCycleListener);
 
 
-
         if (activity.checkCallingOrSelfPermission(permissions[0]) == PackageManager.PERMISSION_GRANTED) {
             startScan(activity);
         } else {
@@ -135,7 +134,7 @@ public class NativeScan extends NativeModule implements IScan {
         }
     }
 
-    private void startScan(Activity activity){
+    private void startScan(Activity activity) {
         //zxing 扫描
 //        Intent intent = new Intent();
 //        intent.setClass(act.getApplicationContext(), ScanActivity.class);

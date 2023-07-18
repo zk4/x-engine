@@ -2,7 +2,7 @@
 
 
 
-<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211011150621026.png" alt="image-20211011150621026" style="zoom: 50%;" />
+<img src="https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20211011150621026.png" alt="image-20211011150621026" style="zoom: 50%;" />
 
 ### 需求与设计
 
@@ -34,13 +34,13 @@
 
 ## 核心逻辑
 
-<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211008185732224.png" alt="image-20211008185732224" style="zoom:50%;" />
+<img src="https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20211008185732224.png" alt="image-20211008185732224" style="zoom:50%;" />
 
 ## Pipeline
 
 一组 filter 可以组成 pipeline 可以方便切换
 
-<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211008152206298.png" alt="image-20211008152206298" style="zoom:50%;" />
+<img src="https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20211008152206298.png" alt="image-20211008152206298" style="zoom:50%;" />
 
 ## 代码自动生成
 
@@ -162,7 +162,7 @@ x-cli swagger openapi.ts
 
 
 
-<img src="https://zk4bucket.oss-cn-beijing.aliyuncs.com/img/image-20211008143502554.png" alt="image-20211008143502554" style="zoom: 50%;" />
+<img src="https://md4zk.oss-cn-beijing.aliyuncs.com/img/image-20211008143502554.png" alt="image-20211008143502554" style="zoom: 50%;" />
 
 
 

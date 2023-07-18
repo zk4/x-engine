@@ -1,6 +1,6 @@
 @startuml
 !define DARKGREEN
-!includeurl http://zk4bucket.oss-cn-beijing.aliyuncs.com/files/style1.puml
+!includeurl http://md4zk.oss-cn-beijing.aliyuncs.com/files/style1.puml
 skinparam componentStyle uml2
 skinparam packageStyle rectangle
  
